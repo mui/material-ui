@@ -1,32 +1,36 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "loading": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "loading": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "loadingIndicator": {
       "type": { "name": "node" },
-      "default": "<CircularProgress color=\"inherit\" size={16} />"
+      "default": "<CircularProgress color=\"inherit\" size={16} />",
+      "additionalPropsInfo": {}
     },
     "loadingPosition": {
       "type": {
         "name": "custom",
         "description": "'start'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'center'"
       },
-      "default": "'center'"
+      "default": "'center'",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
-      "default": "'text'"
+      "default": "'text'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "LoadingButton",

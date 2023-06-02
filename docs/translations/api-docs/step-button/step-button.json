@@ -1,11 +1,36 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "Can be a <code>StepLabel</code> or a node to place inside <code>StepLabel</code> as children.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "icon": "The icon displayed by the step label.",
-    "optional": "The optional node to display.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
+    "children": {
+      "description": "Can be a <code>StepLabel</code> or a node to place inside <code>StepLabel</code> as children.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "icon": {
+      "description": "The icon displayed by the step label.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "optional": {
+      "description": "The optional node to display.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

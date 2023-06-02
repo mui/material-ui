@@ -1,19 +1,84 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "color": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
-    "disableAnimation": "If <code>true</code>, the transition animation is disabled.",
-    "disabled": "If <code>true</code>, the component is disabled.",
-    "error": "If <code>true</code>, the label is displayed in an error state.",
-    "focused": "If <code>true</code>, the <code>input</code> of this label is focused.",
-    "margin": "If <code>dense</code>, will adjust vertical spacing. This is normally obtained via context from FormControl.",
-    "required": "if <code>true</code>, the label will indicate that the <code>input</code> is required.",
-    "shrink": "If <code>true</code>, the label is shrunk.",
-    "size": "The size of the component.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The variant to use."
+    "children": {
+      "description": "The content of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "color": {
+      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableAnimation": {
+      "description": "If <code>true</code>, the transition animation is disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disabled": {
+      "description": "If <code>true</code>, the component is disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "error": {
+      "description": "If <code>true</code>, the label is displayed in an error state.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "focused": {
+      "description": "If <code>true</code>, the <code>input</code> of this label is focused.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "margin": {
+      "description": "If <code>dense</code>, will adjust vertical spacing. This is normally obtained via context from FormControl.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "required": {
+      "description": "if <code>true</code>, the label will indicate that the <code>input</code> is required.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "shrink": {
+      "description": "If <code>true</code>, the label is shrunk.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "size": {
+      "description": "The size of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "variant": {
+      "description": "The variant to use.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

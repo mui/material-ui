@@ -1,36 +1,47 @@
 {
   "props": {
-    "control": { "type": { "name": "element" }, "required": true },
-    "checked": { "type": { "name": "bool" } },
-    "classes": { "type": { "name": "object" } },
+    "control": { "type": { "name": "element" }, "required": true, "additionalPropsInfo": {} },
+    "checked": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ typography?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
-    "disabled": { "type": { "name": "bool" } },
-    "disableTypography": { "type": { "name": "bool" } },
-    "inputRef": { "type": { "name": "custom", "description": "ref" } },
-    "label": { "type": { "name": "node" } },
+    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "disableTypography": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "inputRef": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
+    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "labelPlacement": {
       "type": {
         "name": "enum",
         "description": "'bottom'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;'top'"
       },
-      "default": "'end'"
+      "default": "'end'",
+      "additionalPropsInfo": {}
     },
-    "onChange": { "type": { "name": "func" } },
-    "required": { "type": { "name": "bool" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent) => void",
+        "describedArgs": ["event"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "required": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": { "name": "shape", "description": "{ typography?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "any" } }
+    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} }
   },
   "name": "FormControlLabel",
   "styles": {

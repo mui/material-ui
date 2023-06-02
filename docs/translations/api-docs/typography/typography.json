@@ -1,16 +1,66 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "align": "Set the text-align on the component.",
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "gutterBottom": "If <code>true</code>, the text will have a bottom margin.",
-    "noWrap": "If <code>true</code>, the text will not wrap, but instead will truncate with a text overflow ellipsis.<br>Note that text overflow can only happen with block or inline-block level elements (the element needs to have a width in order to overflow).",
-    "paragraph": "If <code>true</code>, the element will be a paragraph element.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "Applies the theme typography styles.",
-    "variantMapping": "The component maps the variant prop to a range of different HTML element types. For instance, subtitle1 to <code>&lt;h6&gt;</code>. If you wish to change that mapping, you can provide your own. Alternatively, you can use the <code>component</code> prop."
+    "align": {
+      "description": "Set the text-align on the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "children": {
+      "description": "The content of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "component": {
+      "description": "The component used for the root node. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "gutterBottom": {
+      "description": "If <code>true</code>, the text will have a bottom margin.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "noWrap": {
+      "description": "If <code>true</code>, the text will not wrap, but instead will truncate with a text overflow ellipsis.<br>Note that text overflow can only happen with block or inline-block level elements (the element needs to have a width in order to overflow).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "paragraph": {
+      "description": "If <code>true</code>, the element will be a paragraph element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "variant": {
+      "description": "Applies the theme typography styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "variantMapping": {
+      "description": "The component maps the variant prop to a range of different HTML element types. For instance, subtitle1 to <code>&lt;h6&gt;</code>. If you wish to change that mapping, you can provide your own. Alternatively, you can use the <code>component</code> prop.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

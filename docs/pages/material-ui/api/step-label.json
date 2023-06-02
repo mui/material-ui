@@ -1,25 +1,28 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ label?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
-    "error": { "type": { "name": "bool" }, "default": "false" },
-    "icon": { "type": { "name": "node" } },
-    "optional": { "type": { "name": "node" } },
+    "error": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "icon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "optional": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": { "name": "shape", "description": "{ label?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
-    "StepIconComponent": { "type": { "name": "elementType" } },
-    "StepIconProps": { "type": { "name": "object" } },
+    "StepIconComponent": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "StepIconProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "StepLabel",

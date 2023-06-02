@@ -1,40 +1,45 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "color": {
       "type": {
         "name": "union",
         "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'inherit'"
+      "default": "'inherit'",
+      "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
     "fontSize": {
       "type": {
         "name": "enum",
         "description": "'inherit'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xl2'<br>&#124;&nbsp;'xl3'<br>&#124;&nbsp;'xl4'<br>&#124;&nbsp;'xl5'<br>&#124;&nbsp;'xl6'<br>&#124;&nbsp;'xl7'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;'xs2'<br>&#124;&nbsp;'xs3'"
       },
-      "default": "'xl'"
+      "default": "'xl'",
+      "additionalPropsInfo": {}
     },
-    "htmlColor": { "type": { "name": "string" } },
-    "inheritViewBox": { "type": { "name": "bool" }, "default": "false" },
-    "shapeRendering": { "type": { "name": "string" } },
+    "htmlColor": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "inheritViewBox": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "shapeRendering": { "type": { "name": "string" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "titleAccess": { "type": { "name": "string" } },
-    "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'" }
+    "titleAccess": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'", "additionalPropsInfo": {} }
   },
   "name": "SvgIcon",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

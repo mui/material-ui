@@ -1,42 +1,53 @@
 {
   "props": {
-    "avatar": { "type": { "name": "element" } },
-    "children": { "type": { "name": "custom", "description": "unsupportedProp" } },
-    "classes": { "type": { "name": "object" } },
-    "clickable": { "type": { "name": "bool" } },
+    "avatar": { "type": { "name": "element" }, "additionalPropsInfo": {} },
+    "children": {
+      "type": { "name": "custom", "description": "unsupportedProp" },
+      "additionalPropsInfo": {}
+    },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "clickable": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "color": {
       "type": {
         "name": "union",
         "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'default'"
+      "default": "'default'",
+      "additionalPropsInfo": {}
     },
-    "component": { "type": { "name": "elementType" } },
-    "deleteIcon": { "type": { "name": "element" } },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "icon": { "type": { "name": "element" } },
-    "label": { "type": { "name": "node" } },
-    "onDelete": { "type": { "name": "func" } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "deleteIcon": { "type": { "name": "element" }, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "icon": { "type": { "name": "element" }, "additionalPropsInfo": {} },
+    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "onDelete": { "type": { "name": "func" }, "additionalPropsInfo": {} },
     "size": {
       "type": {
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'"
+      "default": "'medium'",
+      "additionalPropsInfo": {}
     },
-    "skipFocusWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
+    "skipFocusWhenDisabled": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string"
       },
-      "default": "'filled'"
+      "default": "'filled'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "Chip",

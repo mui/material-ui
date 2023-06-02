@@ -5,46 +5,52 @@
         "name": "union",
         "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'"
+      "default": "'primary'",
+      "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" } },
-    "endDecorator": { "type": { "name": "node" } },
-    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
-    "role": { "type": { "name": "string" }, "default": "'alert'" },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "endDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "invertedColors": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "role": { "type": { "name": "string" }, "default": "'alert'", "additionalPropsInfo": {} },
     "size": {
       "type": {
         "name": "union",
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
-      "default": "'md'"
+      "default": "'md'",
+      "additionalPropsInfo": { "joy-size": true }
     },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ endDecorator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ endDecorator?: elementType, root?: elementType, startDecorator?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
-    "startDecorator": { "type": { "name": "node" } },
+    "startDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'soft'"
+      "default": "'soft'",
+      "additionalPropsInfo": { "joy-variant": true }
     }
   },
   "name": "Alert",

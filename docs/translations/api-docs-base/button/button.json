@@ -1,11 +1,36 @@
 {
   "componentDescription": "The foundation for building custom-styled buttons.",
   "propDescriptions": {
-    "action": "A ref for imperative actions. It currently only supports <code>focusVisible()</code> action.",
-    "disabled": "If <code>true</code>, the component is disabled.",
-    "focusableWhenDisabled": "If <code>true</code>, allows a disabled button to receive focus.",
-    "slotProps": "The props used for each slot inside the Button.",
-    "slots": "The components used for each slot inside the Button. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details."
+    "action": {
+      "description": "A ref for imperative actions. It currently only supports <code>focusVisible()</code> action.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disabled": {
+      "description": "If <code>true</code>, the component is disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "focusableWhenDisabled": {
+      "description": "If <code>true</code>, allows a disabled button to receive focus.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "The props used for each slot inside the Button.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slots": {
+      "description": "The components used for each slot inside the Button. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },

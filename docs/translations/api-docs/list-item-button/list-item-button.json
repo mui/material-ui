@@ -1,18 +1,78 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "alignItems": "Defines the <code>align-items</code> style property.",
-    "autoFocus": "If <code>true</code>, the list item is focused during the first mount. Focus will also be triggered if the value changes from false to true.",
-    "children": "The content of the component if a <code>ListItemSecondaryAction</code> is used it must be the last child.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "dense": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used. The prop defaults to the value inherited from the parent List component.",
-    "disabled": "If <code>true</code>, the component is disabled.",
-    "disableGutters": "If <code>true</code>, the left and right padding is removed.",
-    "divider": "If <code>true</code>, a 1px light border is added to the bottom of the list item.",
-    "focusVisibleClassName": "This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It&#39;s a polyfill for the <a href=\"https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo\">CSS :focus-visible selector</a>. The rationale for using this feature <a href=\"https://github.com/WICG/focus-visible/blob/HEAD/explainer.md\">is explained here</a>. A <a href=\"https://github.com/WICG/focus-visible\">polyfill can be used</a> to apply a <code>focus-visible</code> class to other components if needed.",
-    "selected": "Use to apply selected styling.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
+    "alignItems": {
+      "description": "Defines the <code>align-items</code> style property.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "autoFocus": {
+      "description": "If <code>true</code>, the list item is focused during the first mount. Focus will also be triggered if the value changes from false to true.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "children": {
+      "description": "The content of the component if a <code>ListItemSecondaryAction</code> is used it must be the last child.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "component": {
+      "description": "The component used for the root node. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "dense": {
+      "description": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used. The prop defaults to the value inherited from the parent List component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disabled": {
+      "description": "If <code>true</code>, the component is disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableGutters": {
+      "description": "If <code>true</code>, the left and right padding is removed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "divider": {
+      "description": "If <code>true</code>, a 1px light border is added to the bottom of the list item.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "focusVisibleClassName": {
+      "description": "This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It&#39;s a polyfill for the <a href=\"https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo\">CSS :focus-visible selector</a>. The rationale for using this feature <a href=\"https://github.com/WICG/focus-visible/blob/HEAD/explainer.md\">is explained here</a>. A <a href=\"https://github.com/WICG/focus-visible\">polyfill can be used</a> to apply a <code>focus-visible</code> class to other components if needed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "selected": {
+      "description": "Use to apply selected styling.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

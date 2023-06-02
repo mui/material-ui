@@ -1,40 +1,79 @@
 {
   "props": {
-    "classes": { "type": { "name": "object" } },
-    "defaultValue": { "type": { "name": "number" }, "default": "null" },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "emptyIcon": { "type": { "name": "node" }, "default": "<StarBorder fontSize=\"inherit\" />" },
-    "emptyLabelText": { "type": { "name": "node" }, "default": "'Empty'" },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "defaultValue": { "type": { "name": "number" }, "default": "null", "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "emptyIcon": {
+      "type": { "name": "node" },
+      "default": "<StarBorder fontSize=\"inherit\" />",
+      "additionalPropsInfo": {}
+    },
+    "emptyLabelText": {
+      "type": { "name": "node" },
+      "default": "'Empty'",
+      "additionalPropsInfo": {}
+    },
     "getLabelText": {
       "type": { "name": "func" },
-      "default": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}"
+      "default": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}",
+      "signature": { "type": "function(value: number) => string", "describedArgs": ["value"] },
+      "additionalPropsInfo": {}
     },
-    "highlightSelectedOnly": { "type": { "name": "bool" }, "default": "false" },
-    "icon": { "type": { "name": "node" }, "default": "<Star fontSize=\"inherit\" />" },
+    "highlightSelectedOnly": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "icon": {
+      "type": { "name": "node" },
+      "default": "<Star fontSize=\"inherit\" />",
+      "additionalPropsInfo": {}
+    },
     "IconContainerComponent": {
       "type": { "name": "elementType" },
-      "default": "function IconContainer(props) {\n  const { value, ...other } = props;\n  return <span {...other} />;\n}"
+      "default": "function IconContainer(props) {\n  const { value, ...other } = props;\n  return <span {...other} />;\n}",
+      "additionalPropsInfo": {}
     },
-    "max": { "type": { "name": "number" }, "default": "5" },
-    "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
-    "onChangeActive": { "type": { "name": "func" } },
-    "precision": { "type": { "name": "custom", "description": "number" }, "default": "1" },
-    "readOnly": { "type": { "name": "bool" }, "default": "false" },
+    "max": { "type": { "name": "number" }, "default": "5", "additionalPropsInfo": {} },
+    "name": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: number | null) => void",
+        "describedArgs": ["event", "value"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "onChangeActive": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: number) => void",
+        "describedArgs": ["event", "value"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "precision": {
+      "type": { "name": "custom", "description": "number" },
+      "default": "1",
+      "additionalPropsInfo": {}
+    },
+    "readOnly": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "size": {
       "type": {
         "name": "union",
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'"
+      "default": "'medium'",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "number" } }
+    "value": { "type": { "name": "number" }, "additionalPropsInfo": {} }
   },
   "name": "Rating",
   "styles": {

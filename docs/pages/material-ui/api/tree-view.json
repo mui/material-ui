@@ -1,35 +1,71 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "defaultCollapseIcon": { "type": { "name": "node" } },
-    "defaultEndIcon": { "type": { "name": "node" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "defaultCollapseIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "defaultEndIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "defaultExpanded": {
       "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" },
-      "default": "[]"
+      "default": "[]",
+      "additionalPropsInfo": {}
     },
-    "defaultExpandIcon": { "type": { "name": "node" } },
-    "defaultParentIcon": { "type": { "name": "node" } },
+    "defaultExpandIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "defaultParentIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "defaultSelected": {
       "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" },
-      "default": "[]"
+      "default": "[]",
+      "additionalPropsInfo": {}
     },
-    "disabledItemsFocusable": { "type": { "name": "bool" }, "default": "false" },
-    "disableSelection": { "type": { "name": "bool" }, "default": "false" },
-    "expanded": { "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" } },
-    "id": { "type": { "name": "string" } },
-    "multiSelect": { "type": { "name": "bool" }, "default": "false" },
-    "onNodeFocus": { "type": { "name": "func" } },
-    "onNodeSelect": { "type": { "name": "func" } },
-    "onNodeToggle": { "type": { "name": "func" } },
+    "disabledItemsFocusable": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableSelection": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "expanded": {
+      "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" },
+      "additionalPropsInfo": {}
+    },
+    "id": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "multiSelect": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "onNodeFocus": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: string) => void",
+        "describedArgs": ["event", "value"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "onNodeSelect": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, nodeIds: Array<string> | string) => void",
+        "describedArgs": ["event", "nodeIds"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "onNodeToggle": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, nodeIds: array) => void",
+        "describedArgs": ["event", "nodeIds"]
+      },
+      "additionalPropsInfo": {}
+    },
     "selected": {
-      "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" }
+      "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" },
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "TreeView",

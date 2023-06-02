@@ -1,44 +1,47 @@
 {
   "props": {
-    "autoComplete": { "type": { "name": "string" } },
-    "autoFocus": { "type": { "name": "bool" } },
-    "className": { "type": { "name": "string" } },
-    "defaultValue": { "type": { "name": "any" } },
-    "disabled": { "type": { "name": "bool" } },
-    "endAdornment": { "type": { "name": "node" } },
-    "error": { "type": { "name": "bool" } },
-    "id": { "type": { "name": "string" } },
-    "maxRows": { "type": { "name": "number" } },
-    "minRows": { "type": { "name": "number" } },
-    "multiline": { "type": { "name": "bool" }, "default": "false" },
-    "name": { "type": { "name": "string" } },
-    "placeholder": { "type": { "name": "string" } },
-    "readOnly": { "type": { "name": "bool" } },
-    "required": { "type": { "name": "bool" } },
-    "rows": { "type": { "name": "number" } },
+    "autoComplete": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "autoFocus": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "className": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "defaultValue": { "type": { "name": "any" }, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "endAdornment": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "error": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "id": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "maxRows": { "type": { "name": "number" }, "additionalPropsInfo": {} },
+    "minRows": { "type": { "name": "number" }, "additionalPropsInfo": {} },
+    "multiline": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "name": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "placeholder": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "readOnly": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "required": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "rows": { "type": { "name": "number" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ input?: elementType, root?: elementType, textarea?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
-    "startAdornment": { "type": { "name": "node" } },
+    "startAdornment": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "type": {
       "type": {
         "name": "enum",
         "description": "'button'<br>&#124;&nbsp;'checkbox'<br>&#124;&nbsp;'color'<br>&#124;&nbsp;'date'<br>&#124;&nbsp;'datetime-local'<br>&#124;&nbsp;'email'<br>&#124;&nbsp;'file'<br>&#124;&nbsp;'hidden'<br>&#124;&nbsp;'image'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'number'<br>&#124;&nbsp;'password'<br>&#124;&nbsp;'radio'<br>&#124;&nbsp;'range'<br>&#124;&nbsp;'reset'<br>&#124;&nbsp;'search'<br>&#124;&nbsp;'submit'<br>&#124;&nbsp;'tel'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;'time'<br>&#124;&nbsp;'url'<br>&#124;&nbsp;'week'"
       },
-      "default": "'text'"
+      "default": "'text'",
+      "additionalPropsInfo": {}
     },
-    "value": { "type": { "name": "any" } }
+    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} }
   },
   "name": "Input",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

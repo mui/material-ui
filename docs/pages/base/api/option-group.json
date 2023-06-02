@@ -1,20 +1,22 @@
 {
   "props": {
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "label": { "type": { "name": "node" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ label?: func<br>&#124;&nbsp;object, list?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ label?: elementType, list?: elementType, root?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     }
   },
   "name": "OptionGroup",

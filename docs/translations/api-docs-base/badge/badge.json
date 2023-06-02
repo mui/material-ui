@@ -1,13 +1,48 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "badgeContent": "The content rendered within the badge.",
-    "children": "The badge will be added relative to this node.",
-    "invisible": "If <code>true</code>, the badge is invisible.",
-    "max": "Max count to show.",
-    "showZero": "Controls whether the badge is hidden when <code>badgeContent</code> is zero.",
-    "slotProps": "The props used for each slot inside the Badge.",
-    "slots": "The components used for each slot inside the Badge. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details."
+    "badgeContent": {
+      "description": "The content rendered within the badge.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "children": {
+      "description": "The badge will be added relative to this node.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "invisible": {
+      "description": "If <code>true</code>, the badge is invisible.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "max": {
+      "description": "Max count to show.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "showZero": {
+      "description": "Controls whether the badge is hidden when <code>badgeContent</code> is zero.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "The props used for each slot inside the Badge.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slots": {
+      "description": "The components used for each slot inside the Badge. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },

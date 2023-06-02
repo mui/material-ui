@@ -1,23 +1,25 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "enum",
         "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'"
       },
-      "default": "'default'"
+      "default": "'default'",
+      "additionalPropsInfo": {}
     },
-    "component": { "type": { "name": "elementType" } },
-    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
-    "disableSticky": { "type": { "name": "bool" }, "default": "false" },
-    "inset": { "type": { "name": "bool" }, "default": "false" },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disableSticky": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "inset": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "ListSubheader",

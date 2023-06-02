@@ -1,105 +1,271 @@
 {
   "props": {
-    "options": { "type": { "name": "array" }, "required": true },
-    "renderInput": { "type": { "name": "func" }, "required": true },
-    "autoComplete": { "type": { "name": "bool" }, "default": "false" },
-    "autoHighlight": { "type": { "name": "bool" }, "default": "false" },
-    "autoSelect": { "type": { "name": "bool" }, "default": "false" },
+    "options": { "type": { "name": "array" }, "required": true, "additionalPropsInfo": {} },
+    "renderInput": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": { "type": "function(params: object) => ReactNode", "describedArgs": [] },
+      "additionalPropsInfo": {}
+    },
+    "autoComplete": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "autoHighlight": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "autoSelect": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "blurOnSelect": {
       "type": {
         "name": "union",
         "description": "'mouse'<br>&#124;&nbsp;'touch'<br>&#124;&nbsp;bool"
       },
-      "default": "false"
+      "default": "false",
+      "additionalPropsInfo": {}
     },
-    "ChipProps": { "type": { "name": "object" } },
-    "classes": { "type": { "name": "object" } },
-    "clearIcon": { "type": { "name": "node" }, "default": "<ClearIcon fontSize=\"small\" />" },
-    "clearOnBlur": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
-    "clearOnEscape": { "type": { "name": "bool" }, "default": "false" },
-    "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
-    "closeText": { "type": { "name": "string" }, "default": "'Close'" },
+    "ChipProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "clearIcon": {
+      "type": { "name": "node" },
+      "default": "<ClearIcon fontSize=\"small\" />",
+      "additionalPropsInfo": {}
+    },
+    "clearOnBlur": {
+      "type": { "name": "bool" },
+      "default": "!props.freeSolo",
+      "additionalPropsInfo": {}
+    },
+    "clearOnEscape": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "clearText": { "type": { "name": "string" }, "default": "'Clear'", "additionalPropsInfo": {} },
+    "closeText": { "type": { "name": "string" }, "default": "'Close'", "additionalPropsInfo": {} },
     "componentsProps": {
       "type": {
         "name": "shape",
         "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "defaultValue": {
       "type": { "name": "custom", "description": "any" },
-      "default": "props.multiple ? [] : null"
+      "default": "props.multiple ? [] : null",
+      "additionalPropsInfo": {}
     },
-    "disableClearable": { "type": { "name": "bool" }, "default": "false" },
-    "disableCloseOnSelect": { "type": { "name": "bool" }, "default": "false" },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "disabledItemsFocusable": { "type": { "name": "bool" }, "default": "false" },
-    "disableListWrap": { "type": { "name": "bool" }, "default": "false" },
-    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
-    "filterOptions": { "type": { "name": "func" }, "default": "createFilterOptions()" },
-    "filterSelectedOptions": { "type": { "name": "bool" }, "default": "false" },
+    "disableClearable": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableCloseOnSelect": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disabledItemsFocusable": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableListWrap": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "filterOptions": {
+      "type": { "name": "func" },
+      "default": "createFilterOptions()",
+      "signature": {
+        "type": "function(options: Array<T>, state: object) => Array<T>",
+        "describedArgs": ["options", "state"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "filterSelectedOptions": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
     "forcePopupIcon": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;bool" },
-      "default": "'auto'"
+      "default": "'auto'",
+      "additionalPropsInfo": {}
     },
-    "freeSolo": { "type": { "name": "bool" }, "default": "false" },
-    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
-    "getLimitTagsText": { "type": { "name": "func" }, "default": "(more) => `+${more}`" },
-    "getOptionDisabled": { "type": { "name": "func" } },
+    "freeSolo": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "getLimitTagsText": {
+      "type": { "name": "func" },
+      "default": "(more) => `+${more}`",
+      "signature": { "type": "function(more: number) => ReactNode", "describedArgs": ["more"] },
+      "additionalPropsInfo": {}
+    },
+    "getOptionDisabled": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(option: T) => boolean", "describedArgs": ["option"] },
+      "additionalPropsInfo": {}
+    },
     "getOptionLabel": {
       "type": { "name": "func" },
-      "default": "(option) => option.label ?? option"
+      "default": "(option) => option.label ?? option",
+      "signature": { "type": "function(option: T) => string", "describedArgs": [] },
+      "additionalPropsInfo": {}
     },
-    "groupBy": { "type": { "name": "func" } },
-    "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
-    "id": { "type": { "name": "string" } },
-    "includeInputInList": { "type": { "name": "bool" }, "default": "false" },
-    "inputValue": { "type": { "name": "string" } },
-    "isOptionEqualToValue": { "type": { "name": "func" } },
-    "limitTags": { "type": { "name": "custom", "description": "integer" }, "default": "-1" },
-    "ListboxComponent": { "type": { "name": "elementType" }, "default": "'ul'" },
-    "ListboxProps": { "type": { "name": "object" } },
-    "loading": { "type": { "name": "bool" }, "default": "false" },
-    "loadingText": { "type": { "name": "node" }, "default": "'Loading…'" },
-    "multiple": { "type": { "name": "bool" }, "default": "false" },
-    "noOptionsText": { "type": { "name": "node" }, "default": "'No options'" },
-    "onChange": { "type": { "name": "func" } },
-    "onClose": { "type": { "name": "func" } },
-    "onHighlightChange": { "type": { "name": "func" } },
-    "onInputChange": { "type": { "name": "func" } },
-    "onOpen": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" } },
-    "openOnFocus": { "type": { "name": "bool" }, "default": "false" },
-    "openText": { "type": { "name": "string" }, "default": "'Open'" },
-    "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
-    "PopperComponent": { "type": { "name": "elementType" }, "default": "Popper" },
-    "popupIcon": { "type": { "name": "node" }, "default": "<ArrowDropDownIcon />" },
-    "readOnly": { "type": { "name": "bool" }, "default": "false" },
-    "renderGroup": { "type": { "name": "func" } },
-    "renderOption": { "type": { "name": "func" } },
-    "renderTags": { "type": { "name": "func" } },
-    "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
+    "groupBy": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(options: T) => string", "describedArgs": ["options"] },
+      "additionalPropsInfo": {}
+    },
+    "handleHomeEndKeys": {
+      "type": { "name": "bool" },
+      "default": "!props.freeSolo",
+      "additionalPropsInfo": {}
+    },
+    "id": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "includeInputInList": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "inputValue": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "isOptionEqualToValue": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(option: T, value: T) => boolean",
+        "describedArgs": ["option", "value"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "limitTags": {
+      "type": { "name": "custom", "description": "integer" },
+      "default": "-1",
+      "additionalPropsInfo": {}
+    },
+    "ListboxComponent": {
+      "type": { "name": "elementType" },
+      "default": "'ul'",
+      "additionalPropsInfo": {}
+    },
+    "ListboxProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "loading": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "loadingText": {
+      "type": { "name": "node" },
+      "default": "'Loading…'",
+      "additionalPropsInfo": {}
+    },
+    "multiple": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "noOptionsText": {
+      "type": { "name": "node" },
+      "default": "'No options'",
+      "additionalPropsInfo": {}
+    },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: T | Array<T>, reason: string, details?: string) => void",
+        "describedArgs": ["event", "value", "reason"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "onHighlightChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, option: T, reason: string) => void",
+        "describedArgs": ["event", "option", "reason"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "onInputChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: string, reason: string) => void",
+        "describedArgs": ["event", "value", "reason"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "onOpen": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent) => void",
+        "describedArgs": ["event"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "open": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "openOnFocus": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "openText": { "type": { "name": "string" }, "default": "'Open'", "additionalPropsInfo": {} },
+    "PaperComponent": {
+      "type": { "name": "elementType" },
+      "default": "Paper",
+      "additionalPropsInfo": {}
+    },
+    "PopperComponent": {
+      "type": { "name": "elementType" },
+      "default": "Popper",
+      "additionalPropsInfo": {}
+    },
+    "popupIcon": {
+      "type": { "name": "node" },
+      "default": "<ArrowDropDownIcon />",
+      "additionalPropsInfo": {}
+    },
+    "readOnly": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "renderGroup": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: AutocompleteRenderGroupParams) => ReactNode",
+        "describedArgs": ["params"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "renderOption": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(props: object, option: T, state: object) => ReactNode",
+        "describedArgs": ["props", "option", "state"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "renderTags": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: Array<T>, getTagProps: function, ownerState: object) => ReactNode",
+        "describedArgs": ["value", "getTagProps", "ownerState"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "selectOnFocus": {
+      "type": { "name": "bool" },
+      "default": "!props.freeSolo",
+      "additionalPropsInfo": {}
+    },
     "size": {
       "type": {
         "name": "union",
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'"
+      "default": "'medium'",
+      "additionalPropsInfo": {}
     },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "custom", "description": "any" } }
+    "value": { "type": { "name": "custom", "description": "any" }, "additionalPropsInfo": {} }
   },
   "name": "Autocomplete",
   "styles": {

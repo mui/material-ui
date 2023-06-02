@@ -1,60 +1,89 @@
 {
   "props": {
-    "autoComplete": { "type": { "name": "string" } },
-    "autoFocus": { "type": { "name": "bool" } },
-    "classes": { "type": { "name": "object" } },
+    "autoComplete": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "autoFocus": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": {}
     },
     "components": {
       "type": { "name": "shape", "description": "{ Input?: elementType, Root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ input?: object, root?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
-    "defaultValue": { "type": { "name": "any" } },
-    "disabled": { "type": { "name": "bool" } },
-    "disableUnderline": { "type": { "name": "bool" } },
-    "endAdornment": { "type": { "name": "node" } },
-    "error": { "type": { "name": "bool" } },
-    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
-    "hiddenLabel": { "type": { "name": "bool" }, "default": "false" },
-    "id": { "type": { "name": "string" } },
-    "inputComponent": { "type": { "name": "elementType" }, "default": "'input'" },
-    "inputProps": { "type": { "name": "object" }, "default": "{}" },
-    "inputRef": { "type": { "name": "custom", "description": "ref" } },
-    "margin": { "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" } },
-    "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
-    "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
-    "multiline": { "type": { "name": "bool" }, "default": "false" },
-    "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
-    "placeholder": { "type": { "name": "string" } },
-    "readOnly": { "type": { "name": "bool" } },
-    "required": { "type": { "name": "bool" } },
-    "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "defaultValue": { "type": { "name": "any" }, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "disableUnderline": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "endAdornment": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "error": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "hiddenLabel": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "id": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "inputComponent": {
+      "type": { "name": "elementType" },
+      "default": "'input'",
+      "additionalPropsInfo": {}
+    },
+    "inputProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} },
+    "inputRef": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
+    "margin": {
+      "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" },
+      "additionalPropsInfo": {}
+    },
+    "maxRows": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "additionalPropsInfo": {}
+    },
+    "minRows": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "additionalPropsInfo": {}
+    },
+    "multiline": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "name": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "placeholder": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "readOnly": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "required": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "rows": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "additionalPropsInfo": {}
+    },
     "slotProps": {
       "type": { "name": "shape", "description": "{ input?: object, root?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
-    "startAdornment": { "type": { "name": "node" } },
+    "startAdornment": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "type": { "type": { "name": "string" }, "default": "'text'" },
-    "value": { "type": { "name": "any" } }
+    "type": { "type": { "name": "string" }, "default": "'text'", "additionalPropsInfo": {} },
+    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} }
   },
   "name": "FilledInput",
   "styles": {

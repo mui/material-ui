@@ -1,13 +1,22 @@
 {
   "props": {
-    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
-    "autoFocusItem": { "type": { "name": "bool" }, "default": "false" },
-    "children": { "type": { "name": "node" } },
-    "disabledItemsFocusable": { "type": { "name": "bool" }, "default": "false" },
-    "disableListWrap": { "type": { "name": "bool" }, "default": "false" },
+    "autoFocus": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "autoFocusItem": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "disabledItemsFocusable": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableListWrap": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
     "variant": {
       "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
-      "default": "'selectedMenu'"
+      "default": "'selectedMenu'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "MenuList",

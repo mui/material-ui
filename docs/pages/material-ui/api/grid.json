@@ -1,92 +1,104 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "columns": {
       "type": {
         "name": "union",
         "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object"
       },
-      "default": "12"
+      "default": "12",
+      "additionalPropsInfo": {}
     },
     "columnSpacing": {
       "type": {
         "name": "union",
         "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": {}
     },
-    "component": { "type": { "name": "elementType" } },
-    "container": { "type": { "name": "bool" }, "default": "false" },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "container": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "direction": {
       "type": {
         "name": "union",
         "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;Array&lt;'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'&gt;<br>&#124;&nbsp;object"
       },
-      "default": "'row'"
+      "default": "'row'",
+      "additionalPropsInfo": {}
     },
-    "item": { "type": { "name": "bool" }, "default": "false" },
+    "item": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "lg": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
       },
-      "default": "false"
+      "default": "false",
+      "additionalPropsInfo": {}
     },
     "md": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
       },
-      "default": "false"
+      "default": "false",
+      "additionalPropsInfo": {}
     },
     "rowSpacing": {
       "type": {
         "name": "union",
         "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": {}
     },
     "sm": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
       },
-      "default": "false"
+      "default": "false",
+      "additionalPropsInfo": {}
     },
     "spacing": {
       "type": {
         "name": "union",
         "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
       },
-      "default": "0"
+      "default": "0",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "wrap": {
       "type": {
         "name": "enum",
         "description": "'nowrap'<br>&#124;&nbsp;'wrap-reverse'<br>&#124;&nbsp;'wrap'"
       },
-      "default": "'wrap'"
+      "default": "'wrap'",
+      "additionalPropsInfo": {}
     },
     "xl": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
       },
-      "default": "false"
+      "default": "false",
+      "additionalPropsInfo": {}
     },
     "xs": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
       },
-      "default": "false"
+      "default": "false",
+      "additionalPropsInfo": {}
     },
-    "zeroMinWidth": { "type": { "name": "bool" }, "default": "false" }
+    "zeroMinWidth": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} }
   },
   "name": "Grid",
   "styles": {

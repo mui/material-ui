@@ -1,26 +1,29 @@
 {
   "props": {
-    "actionIcon": { "type": { "name": "node" } },
+    "actionIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "actionPosition": {
       "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
-      "default": "'right'"
+      "default": "'right'",
+      "additionalPropsInfo": {}
     },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "position": {
       "type": {
         "name": "enum",
         "description": "'below'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'top'"
       },
-      "default": "'bottom'"
+      "default": "'bottom'",
+      "additionalPropsInfo": {}
     },
-    "subtitle": { "type": { "name": "node" } },
+    "subtitle": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "title": { "type": { "name": "node" } }
+    "title": { "type": { "name": "node" }, "additionalPropsInfo": {} }
   },
   "name": "ImageListItemBar",
   "styles": {

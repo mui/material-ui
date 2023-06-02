@@ -1,21 +1,96 @@
 {
   "componentDescription": "Chips represent complex entities in small blocks, such as a contact.",
   "propDescriptions": {
-    "avatar": "The Avatar element to display.",
-    "children": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "clickable": "If <code>true</code>, the chip will appear clickable, and will raise when pressed, even if the onClick prop is not defined. If <code>false</code>, the chip will not appear clickable, even if onClick prop is defined. This can be used, for example, along with the component prop to indicate an anchor Chip is clickable. Note: this controls the UI and does not affect the onClick event.",
-    "color": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "deleteIcon": "Override the default delete icon element. Shown only if <code>onDelete</code> is set.",
-    "disabled": "If <code>true</code>, the component is disabled.",
-    "icon": "Icon element.",
-    "label": "The content of the component.",
-    "onDelete": "Callback fired when the delete icon is clicked. If set, the delete icon will be shown.",
-    "size": "The size of the component.",
-    "skipFocusWhenDisabled": "If <code>true</code>, allows the disabled chip to escape focus. If <code>false</code>, allows the disabled chip to receive focus.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The variant to use."
+    "avatar": {
+      "description": "The Avatar element to display.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "children": {
+      "description": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "clickable": {
+      "description": "If <code>true</code>, the chip will appear clickable, and will raise when pressed, even if the onClick prop is not defined. If <code>false</code>, the chip will not appear clickable, even if onClick prop is defined. This can be used, for example, along with the component prop to indicate an anchor Chip is clickable. Note: this controls the UI and does not affect the onClick event.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "color": {
+      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "component": {
+      "description": "The component used for the root node. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "deleteIcon": {
+      "description": "Override the default delete icon element. Shown only if <code>onDelete</code> is set.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disabled": {
+      "description": "If <code>true</code>, the component is disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "icon": {
+      "description": "Icon element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "label": {
+      "description": "The content of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onDelete": {
+      "description": "Callback fired when the delete icon is clicked. If set, the delete icon will be shown.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "size": {
+      "description": "The size of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "skipFocusWhenDisabled": {
+      "description": "If <code>true</code>, allows the disabled chip to escape focus. If <code>false</code>, allows the disabled chip to receive focus.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "variant": {
+      "description": "The variant to use.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

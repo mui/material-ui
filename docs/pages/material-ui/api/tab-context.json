@@ -1,7 +1,7 @@
 {
   "props": {
-    "value": { "type": { "name": "string" }, "required": true },
-    "children": { "type": { "name": "node" } }
+    "value": { "type": { "name": "string" }, "required": true, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} }
   },
   "name": "TabContext",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

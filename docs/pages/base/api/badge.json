@@ -1,20 +1,22 @@
 {
   "props": {
-    "badgeContent": { "type": { "name": "node" } },
-    "children": { "type": { "name": "node" } },
-    "invisible": { "type": { "name": "bool" }, "default": "false" },
-    "max": { "type": { "name": "number" }, "default": "99" },
-    "showZero": { "type": { "name": "bool" }, "default": "false" },
+    "badgeContent": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "invisible": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "max": { "type": { "name": "number" }, "default": "99", "additionalPropsInfo": {} },
+    "showZero": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ badge?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ badge?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     }
   },
   "name": "Badge",

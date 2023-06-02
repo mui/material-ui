@@ -1,15 +1,60 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "activeStep": "Set the active step (zero based index). Defines which dot is highlighted when the variant is &#39;dots&#39;.",
-    "backButton": "A back button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "LinearProgressProps": "Props applied to the <code>LinearProgress</code> element.",
-    "nextButton": "A next button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>.",
-    "position": "Set the positioning type.",
-    "steps": "The total steps.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The variant to use."
+    "activeStep": {
+      "description": "Set the active step (zero based index). Defines which dot is highlighted when the variant is &#39;dots&#39;.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "backButton": {
+      "description": "A back button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "LinearProgressProps": {
+      "description": "Props applied to the <code>LinearProgress</code> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "nextButton": {
+      "description": "A next button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "position": {
+      "description": "Set the positioning type.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "steps": {
+      "description": "The total steps.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "variant": {
+      "description": "The variant to use.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

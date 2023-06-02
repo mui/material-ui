@@ -4,7 +4,8 @@
       "type": {
         "name": "union",
         "description": "array<br>&#124;&nbsp;func<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string<br>&#124;&nbsp;bool"
-      }
+      },
+      "additionalPropsInfo": {}
     }
   },
   "name": "GlobalStyles",

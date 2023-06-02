@@ -1,25 +1,123 @@
 {
   "componentDescription": "Dialogs are overlaid modal paper based components with a backdrop.",
   "propDescriptions": {
-    "aria-describedby": "The id(s) of the element(s) that describe the dialog.",
-    "aria-labelledby": "The id(s) of the element(s) that label the dialog.",
-    "BackdropComponent": "A backdrop component. This prop enables custom backdrop rendering.",
-    "children": "Dialog children, usually the included sub-components.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "disableEscapeKeyDown": "If <code>true</code>, hitting escape will not fire the <code>onClose</code> callback.",
-    "fullScreen": "If <code>true</code>, the dialog is full-screen.",
-    "fullWidth": "If <code>true</code>, the dialog stretches to <code>maxWidth</code>.<br>Notice that the dialog width grow is limited by the default margin.",
-    "maxWidth": "Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to <code>false</code> to disable <code>maxWidth</code>.",
-    "onBackdropClick": "Callback fired when the backdrop is clicked.",
-    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: object, reason: string) =&gt; void</code><br><ul><li>event: The event source of the callback.</li><li>reason: Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>.</li></ul>",
-    "open": "If <code>true</code>, the component is shown.",
-    "PaperComponent": "The component used to render the body of the dialog.",
-    "PaperProps": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element.",
-    "scroll": "Determine the container for scrolling the dialog.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "TransitionComponent": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
-    "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.",
-    "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
+    "aria-describedby": {
+      "description": "The id(s) of the element(s) that describe the dialog.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "aria-labelledby": {
+      "description": "The id(s) of the element(s) that label the dialog.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "BackdropComponent": {
+      "description": "A backdrop component. This prop enables custom backdrop rendering.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "children": {
+      "description": "Dialog children, usually the included sub-components.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableEscapeKeyDown": {
+      "description": "If <code>true</code>, hitting escape will not fire the <code>onClose</code> callback.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "fullScreen": {
+      "description": "If <code>true</code>, the dialog is full-screen.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "fullWidth": {
+      "description": "If <code>true</code>, the dialog stretches to <code>maxWidth</code>.<br>Notice that the dialog width grow is limited by the default margin.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "maxWidth": {
+      "description": "Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to <code>false</code> to disable <code>maxWidth</code>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onBackdropClick": {
+      "description": "Callback fired when the backdrop is clicked.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onClose": {
+      "description": "Callback fired when the component requests to be closed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "event": "The event source of the callback.",
+        "reason": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>."
+      }
+    },
+    "open": {
+      "description": "If <code>true</code>, the component is shown.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "PaperComponent": {
+      "description": "The component used to render the body of the dialog.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "PaperProps": {
+      "description": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "scroll": {
+      "description": "Determine the container for scrolling the dialog.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "TransitionComponent": {
+      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "transitionDuration": {
+      "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "TransitionProps": {
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

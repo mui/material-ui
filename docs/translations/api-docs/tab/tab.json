@@ -1,17 +1,72 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "disabled": "If <code>true</code>, the component is disabled.",
-    "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
-    "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusVisible</code> class.",
-    "icon": "The icon to display.",
-    "iconPosition": "The position of the icon relative to the label.",
-    "label": "The label element.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "value": "You can provide your own value. Otherwise, we fallback to the child position index.",
-    "wrapped": "Tab labels appear in a single row. They can use a second line if needed."
+    "children": {
+      "description": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disabled": {
+      "description": "If <code>true</code>, the component is disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableFocusRipple": {
+      "description": "If <code>true</code>, the  keyboard focus ripple is disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableRipple": {
+      "description": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusVisible</code> class.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "icon": {
+      "description": "The icon to display.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "iconPosition": {
+      "description": "The position of the icon relative to the label.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "label": {
+      "description": "The label element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "value": {
+      "description": "You can provide your own value. Otherwise, we fallback to the child position index.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "wrapped": {
+      "description": "Tab labels appear in a single row. They can use a second line if needed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

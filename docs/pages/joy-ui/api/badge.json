@@ -5,55 +5,63 @@
         "name": "shape",
         "description": "{ horizontal: 'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
       },
-      "default": "{\n  vertical: 'top',\n  horizontal: 'right',\n}"
+      "default": "{\n  vertical: 'top',\n  horizontal: 'right',\n}",
+      "additionalPropsInfo": {}
     },
-    "badgeContent": { "type": { "name": "node" }, "default": "''" },
+    "badgeContent": { "type": { "name": "node" }, "default": "''", "additionalPropsInfo": {} },
     "badgeInset": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "default": "0"
+      "default": "0",
+      "additionalPropsInfo": {}
     },
-    "children": { "type": { "name": "node" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "color": {
       "type": {
         "name": "union",
         "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'"
+      "default": "'primary'",
+      "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" } },
-    "invisible": { "type": { "name": "bool" }, "default": "false" },
-    "max": { "type": { "name": "number" }, "default": "99" },
-    "showZero": { "type": { "name": "bool" }, "default": "false" },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "invisible": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "max": { "type": { "name": "number" }, "default": "99", "additionalPropsInfo": {} },
+    "showZero": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "size": {
       "type": {
         "name": "union",
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
-      "default": "'md'"
+      "default": "'md'",
+      "additionalPropsInfo": { "joy-size": true }
     },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ badge?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ badge?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'solid'"
+      "default": "'solid'",
+      "additionalPropsInfo": { "joy-variant": true }
     }
   },
   "name": "Badge",

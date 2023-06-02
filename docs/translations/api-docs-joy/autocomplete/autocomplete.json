@@ -1,58 +1,344 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "aria-describedby": "Identifies the element (or elements) that describes the object.",
-    "aria-label": "Defines a string value that labels the current element.",
-    "aria-labelledby": "Identifies the element (or elements) that labels the current element.",
-    "autoFocus": "If <code>true</code>, the <code>input</code> element is focused during the first mount.",
-    "clearIcon": "The icon to display in place of the default clear icon.",
-    "clearText": "Override the default text for the <em>clear</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
-    "closeText": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
-    "defaultValue": "The default value. Use when the component is not controlled.",
-    "disableClearable": "If <code>true</code>, the input can&#39;t be cleared.",
-    "disabled": "If <code>true</code>, the component is disabled.",
-    "endDecorator": "Trailing adornment for this input.",
-    "error": "If <code>true</code>, the <code>input</code> will indicate an error. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
-    "filterOptions": "A function that determines the filtered options to be rendered on search.<br><br><strong>Signature:</strong><br><code>function(options: Array&lt;T&gt;, state: object) =&gt; Array&lt;T&gt;</code><br><ul><li>options: The options to render.</li><li>state: The state of the component.</li></ul>",
-    "forcePopupIcon": "Force the visibility display of the popup icon.",
-    "freeSolo": "If <code>true</code>, the Autocomplete is free solo, meaning that the user input is not bound to provided options.",
-    "getLimitTagsText": "The label to display when the tags are truncated (<code>limitTags</code>).<br><br><strong>Signature:</strong><br><code>function(more: string | number) =&gt; ReactNode</code><br><ul><li>more: The number of truncated tags.</li></ul>",
-    "getOptionDisabled": "Used to determine the disabled state for a given option.<br><br><strong>Signature:</strong><br><code>function(option: T) =&gt; boolean</code><br><ul><li>option: The option to test.</li></ul>",
-    "getOptionLabel": "Used to determine the string value for a given option. It&#39;s used to fill the input (and the list box options if <code>renderOption</code> is not provided).<br>If used in free solo mode, it must accept both the type of the options and a string.<br><br><strong>Signature:</strong><br><code>function(option: T) =&gt; string</code><br>",
-    "groupBy": "If provided, the options will be grouped under the returned string. The groupBy value is also used as the text for group headings when <code>renderGroup</code> is not provided.<br><br><strong>Signature:</strong><br><code>function(options: T) =&gt; string</code><br><ul><li>options: The options to group.</li></ul>",
-    "id": "This prop is used to help implement the accessibility logic. If you don&#39;t provide an id it will fall back to a randomly generated one.",
-    "inputValue": "The input value.",
-    "isOptionEqualToValue": "Used to determine if the option represents the given value. Uses strict equality by default. ⚠️ Both arguments need to be handled, an option can only match with one value.<br><br><strong>Signature:</strong><br><code>function(option: T, value: T) =&gt; boolean</code><br><ul><li>option: The option to test.</li><li>value: The value to test against.</li></ul>",
-    "limitTags": "The maximum number of tags that will be visible when not focused. Set <code>-1</code> to disable the limit.",
-    "loading": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, e.g. <code>options</code> are empty).",
-    "loadingText": "Text to display when in a loading state.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
-    "multiple": "If <code>true</code>, <code>value</code> must be an array and the menu will support multiple selections.",
-    "name": "Name attribute of the <code>input</code> element.",
-    "noOptionsText": "Text to display when there are no options.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
-    "onChange": "Callback fired when the value changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, value: T | Array&lt;T&gt;, reason: string, details?: string) =&gt; void</code><br><ul><li>event: The event source of the callback.</li><li>value: The new value of the component.</li><li>reason: One of &quot;createOption&quot;, &quot;selectOption&quot;, &quot;removeOption&quot;, &quot;blur&quot; or &quot;clear&quot;.</li></ul>",
-    "onClose": "Callback fired when the popup requests to be closed. Use in controlled mode (see open).<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, reason: string) =&gt; void</code><br><ul><li>event: The event source of the callback.</li><li>reason: Can be: <code>&quot;toggleInput&quot;</code>, <code>&quot;escape&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>, <code>&quot;blur&quot;</code>.</li></ul>",
-    "onHighlightChange": "Callback fired when the highlight option changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, option: T, reason: string) =&gt; void</code><br><ul><li>event: The event source of the callback.</li><li>option: The highlighted option.</li><li>reason: Can be: <code>&quot;keyboard&quot;</code>, <code>&quot;auto&quot;</code>, <code>&quot;mouse&quot;</code>, <code>&quot;touch&quot;</code>.</li></ul>",
-    "onInputChange": "Callback fired when the input value changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, value: string, reason: string) =&gt; void</code><br><ul><li>event: The event source of the callback.</li><li>value: The new value of the text input.</li><li>reason: Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>.</li></ul>",
-    "onOpen": "Callback fired when the popup requests to be opened. Use in controlled mode (see open).<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent) =&gt; void</code><br><ul><li>event: The event source of the callback.</li></ul>",
-    "open": "If <code>true</code>, the component is shown.",
-    "openText": "Override the default text for the <em>open popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
-    "options": "Array of options.",
-    "placeholder": "The input placeholder",
-    "popupIcon": "The icon to display in place of the default popup icon.",
-    "readOnly": "If <code>true</code>, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.",
-    "renderGroup": "Render the group.<br><br><strong>Signature:</strong><br><code>function(params: AutocompleteRenderGroupParams) =&gt; ReactNode</code><br><ul><li>params: The group to render.</li></ul>",
-    "renderOption": "Render the option, use <code>getOptionLabel</code> by default.<br><br><strong>Signature:</strong><br><code>function(props: object, option: T, state: object) =&gt; ReactNode</code><br><ul><li>props: The props to apply on the li element.</li><li>option: The option to render.</li><li>state: The state of the component.</li></ul>",
-    "renderTags": "Render the selected value.<br><br><strong>Signature:</strong><br><code>function(value: Array&lt;T&gt;, getTagProps: function, ownerState: object) =&gt; ReactNode</code><br><ul><li>value: The <code>value</code> provided to the component.</li><li>getTagProps: A tag props getter.</li><li>ownerState: The state of the Autocomplete component.</li></ul>",
-    "required": "If <code>true</code>, the <code>input</code> element is required. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
-    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
-    "slotProps": "The props used for each slot inside.",
-    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
-    "startDecorator": "Leading adornment for this input.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "type": "Type of the <code>input</code> element. It should be <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types\">a valid HTML5 input type</a>.",
-    "value": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>isOptionEqualToValue</code> prop.",
-    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+    "aria-describedby": {
+      "description": "Identifies the element (or elements) that describes the object.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "aria-label": {
+      "description": "Defines a string value that labels the current element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "aria-labelledby": {
+      "description": "Identifies the element (or elements) that labels the current element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "autoFocus": {
+      "description": "If <code>true</code>, the <code>input</code> element is focused during the first mount.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "clearIcon": {
+      "description": "The icon to display in place of the default clear icon.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "clearText": {
+      "description": "Override the default text for the <em>clear</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "closeText": {
+      "description": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "color": {
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "defaultValue": {
+      "description": "The default value. Use when the component is not controlled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableClearable": {
+      "description": "If <code>true</code>, the input can&#39;t be cleared.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disabled": {
+      "description": "If <code>true</code>, the component is disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "endDecorator": {
+      "description": "Trailing adornment for this input.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "error": {
+      "description": "If <code>true</code>, the <code>input</code> will indicate an error. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "filterOptions": {
+      "description": "A function that determines the filtered options to be rendered on search.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "options": "The options to render.",
+        "state": "The state of the component."
+      }
+    },
+    "forcePopupIcon": {
+      "description": "Force the visibility display of the popup icon.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "freeSolo": {
+      "description": "If <code>true</code>, the Autocomplete is free solo, meaning that the user input is not bound to provided options.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "getLimitTagsText": {
+      "description": "The label to display when the tags are truncated (<code>limitTags</code>).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": { "more": "The number of truncated tags." }
+    },
+    "getOptionDisabled": {
+      "description": "Used to determine the disabled state for a given option.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": { "option": "The option to test." }
+    },
+    "getOptionLabel": {
+      "description": "Used to determine the string value for a given option. It&#39;s used to fill the input (and the list box options if <code>renderOption</code> is not provided).<br>If used in free solo mode, it must accept both the type of the options and a string.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "groupBy": {
+      "description": "If provided, the options will be grouped under the returned string. The groupBy value is also used as the text for group headings when <code>renderGroup</code> is not provided.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": { "options": "The options to group." }
+    },
+    "id": {
+      "description": "This prop is used to help implement the accessibility logic. If you don&#39;t provide an id it will fall back to a randomly generated one.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "inputValue": {
+      "description": "The input value.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "isOptionEqualToValue": {
+      "description": "Used to determine if the option represents the given value. Uses strict equality by default. ⚠️ Both arguments need to be handled, an option can only match with one value.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": { "option": "The option to test.", "value": "The value to test against." }
+    },
+    "limitTags": {
+      "description": "The maximum number of tags that will be visible when not focused. Set <code>-1</code> to disable the limit.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "loading": {
+      "description": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, e.g. <code>options</code> are empty).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "loadingText": {
+      "description": "Text to display when in a loading state.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "multiple": {
+      "description": "If <code>true</code>, <code>value</code> must be an array and the menu will support multiple selections.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "name": {
+      "description": "Name attribute of the <code>input</code> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "noOptionsText": {
+      "description": "Text to display when there are no options.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onChange": {
+      "description": "Callback fired when the value changes.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "event": "The event source of the callback.",
+        "value": "The new value of the component.",
+        "reason": "One of &quot;createOption&quot;, &quot;selectOption&quot;, &quot;removeOption&quot;, &quot;blur&quot; or &quot;clear&quot;."
+      }
+    },
+    "onClose": {
+      "description": "Callback fired when the popup requests to be closed. Use in controlled mode (see open).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "event": "The event source of the callback.",
+        "reason": "Can be: <code>&quot;toggleInput&quot;</code>, <code>&quot;escape&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>, <code>&quot;blur&quot;</code>."
+      }
+    },
+    "onHighlightChange": {
+      "description": "Callback fired when the highlight option changes.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "event": "The event source of the callback.",
+        "option": "The highlighted option.",
+        "reason": "Can be: <code>&quot;keyboard&quot;</code>, <code>&quot;auto&quot;</code>, <code>&quot;mouse&quot;</code>, <code>&quot;touch&quot;</code>."
+      }
+    },
+    "onInputChange": {
+      "description": "Callback fired when the input value changes.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "event": "The event source of the callback.",
+        "value": "The new value of the text input.",
+        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>."
+      }
+    },
+    "onOpen": {
+      "description": "Callback fired when the popup requests to be opened. Use in controlled mode (see open).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": { "event": "The event source of the callback." }
+    },
+    "open": {
+      "description": "If <code>true</code>, the component is shown.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "openText": {
+      "description": "Override the default text for the <em>open popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "options": {
+      "description": "Array of options.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "placeholder": {
+      "description": "The input placeholder",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "popupIcon": {
+      "description": "The icon to display in place of the default popup icon.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "readOnly": {
+      "description": "If <code>true</code>, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "renderGroup": {
+      "description": "Render the group.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": { "params": "The group to render." }
+    },
+    "renderOption": {
+      "description": "Render the option, use <code>getOptionLabel</code> by default.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "props": "The props to apply on the li element.",
+        "option": "The option to render.",
+        "state": "The state of the component."
+      }
+    },
+    "renderTags": {
+      "description": "Render the selected value.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "value": "The <code>value</code> provided to the component.",
+        "getTagProps": "A tag props getter.",
+        "ownerState": "The state of the Autocomplete component."
+      }
+    },
+    "required": {
+      "description": "If <code>true</code>, the <code>input</code> element is required. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "size": {
+      "description": "The size of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "The props used for each slot inside.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slots": {
+      "description": "The components used for each slot inside.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "startDecorator": {
+      "description": "Leading adornment for this input.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "type": {
+      "description": "Type of the <code>input</code> element. It should be <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types\">a valid HTML5 input type</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "value": {
+      "description": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>isOptionEqualToValue</code> prop.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "variant": {
+      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },

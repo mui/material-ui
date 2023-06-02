@@ -1,27 +1,39 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "unsupportedProp" } },
-    "classes": { "type": { "name": "object" } },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
-    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
-    "icon": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;string" } },
+    "children": {
+      "type": { "name": "custom", "description": "unsupportedProp" },
+      "additionalPropsInfo": {}
+    },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disableFocusRipple": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "icon": {
+      "type": { "name": "union", "description": "element<br>&#124;&nbsp;string" },
+      "additionalPropsInfo": {}
+    },
     "iconPosition": {
       "type": {
         "name": "enum",
         "description": "'bottom'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;'top'"
       },
-      "default": "'top'"
+      "default": "'top'",
+      "additionalPropsInfo": {}
     },
-    "label": { "type": { "name": "node" } },
+    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "any" } },
-    "wrapped": { "type": { "name": "bool" }, "default": "false" }
+    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} },
+    "wrapped": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} }
   },
   "name": "Tab",
   "styles": {

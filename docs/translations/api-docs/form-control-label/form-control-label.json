@@ -1,20 +1,92 @@
 {
   "componentDescription": "Drop-in replacement of the `Radio`, `Switch` and `Checkbox` component.\nUse this component if you want to display an extra label.",
   "propDescriptions": {
-    "checked": "If <code>true</code>, the component appears selected.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "componentsProps": "The props used for each slot inside.",
-    "control": "A control element. For instance, it can be a <code>Radio</code>, a <code>Switch</code> or a <code>Checkbox</code>.",
-    "disabled": "If <code>true</code>, the control is disabled.",
-    "disableTypography": "If <code>true</code>, the label is rendered as it is passed without an additional typography node.",
-    "inputRef": "Pass a ref to the <code>input</code> element.",
-    "label": "A text or an element to be used in an enclosing label element.",
-    "labelPlacement": "The position of the label.",
-    "onChange": "Callback fired when the state is changed.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent) =&gt; void</code><br><ul><li>event: The event source of the callback. You can pull out the new checked state by accessing <code>event.target.checked</code> (boolean).</li></ul>",
-    "required": "If <code>true</code>, the label will indicate that the <code>input</code> is required.",
-    "slotProps": "The props used for each slot inside.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "value": "The value of the component."
+    "checked": {
+      "description": "If <code>true</code>, the component appears selected.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "componentsProps": {
+      "description": "The props used for each slot inside.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "control": {
+      "description": "A control element. For instance, it can be a <code>Radio</code>, a <code>Switch</code> or a <code>Checkbox</code>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disabled": {
+      "description": "If <code>true</code>, the control is disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableTypography": {
+      "description": "If <code>true</code>, the label is rendered as it is passed without an additional typography node.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "inputRef": {
+      "description": "Pass a ref to the <code>input</code> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "label": {
+      "description": "A text or an element to be used in an enclosing label element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "labelPlacement": {
+      "description": "The position of the label.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onChange": {
+      "description": "Callback fired when the state is changed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "event": "The event source of the callback. You can pull out the new checked state by accessing <code>event.target.checked</code> (boolean)."
+      }
+    },
+    "required": {
+      "description": "If <code>true</code>, the label will indicate that the <code>input</code> is required.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "The props used for each slot inside.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "value": {
+      "description": "The value of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

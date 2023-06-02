@@ -1,64 +1,105 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "columns": {
       "type": {
         "name": "union",
         "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": {}
     },
     "columnSpacing": {
       "type": {
         "name": "union",
         "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": {}
     },
-    "container": { "type": { "name": "bool" } },
+    "container": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "direction": {
       "type": {
         "name": "union",
         "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;Array&lt;'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'&gt;<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": {}
     },
-    "disableEqualOverflow": { "type": { "name": "bool" } },
+    "disableEqualOverflow": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "lg": {
-      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
+      },
+      "additionalPropsInfo": {}
     },
-    "lgOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } },
+    "lgOffset": {
+      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
+      "additionalPropsInfo": {}
+    },
     "md": {
-      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
+      },
+      "additionalPropsInfo": {}
     },
-    "mdOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } },
+    "mdOffset": {
+      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
+      "additionalPropsInfo": {}
+    },
     "rowSpacing": {
       "type": {
         "name": "union",
         "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": {}
     },
     "sm": {
-      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
+      },
+      "additionalPropsInfo": {}
     },
-    "smOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } },
+    "smOffset": {
+      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
+      "additionalPropsInfo": {}
+    },
     "spacing": {
       "type": {
         "name": "union",
         "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": {}
     },
     "wrap": {
       "type": {
         "name": "enum",
         "description": "'nowrap'<br>&#124;&nbsp;'wrap-reverse'<br>&#124;&nbsp;'wrap'"
-      }
+      },
+      "additionalPropsInfo": {}
     },
     "xl": {
-      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
+      },
+      "additionalPropsInfo": {}
     },
-    "xlOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } },
+    "xlOffset": {
+      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
+      "additionalPropsInfo": {}
+    },
     "xs": {
-      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
+      },
+      "additionalPropsInfo": {}
     },
-    "xsOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } }
+    "xsOffset": {
+      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
+      "additionalPropsInfo": {}
+    }
   },
   "name": "Grid",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

@@ -1,32 +1,45 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } },
-    "expandText": { "type": { "name": "string" }, "default": "'Show path'" },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "expandText": {
+      "type": { "name": "string" },
+      "default": "'Show path'",
+      "additionalPropsInfo": {}
+    },
     "itemsAfterCollapse": {
       "type": { "name": "custom", "description": "integer" },
-      "default": "1"
+      "default": "1",
+      "additionalPropsInfo": {}
     },
     "itemsBeforeCollapse": {
       "type": { "name": "custom", "description": "integer" },
-      "default": "1"
+      "default": "1",
+      "additionalPropsInfo": {}
     },
-    "maxItems": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
-    "separator": { "type": { "name": "node" }, "default": "'/'" },
+    "maxItems": {
+      "type": { "name": "custom", "description": "integer" },
+      "default": "8",
+      "additionalPropsInfo": {}
+    },
+    "separator": { "type": { "name": "node" }, "default": "'/'", "additionalPropsInfo": {} },
     "slotProps": {
       "type": { "name": "shape", "description": "{ collapsedIcon?: func<br>&#124;&nbsp;object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ CollapsedIcon?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "Breadcrumbs",

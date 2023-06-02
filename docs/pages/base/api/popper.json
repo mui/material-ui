@@ -1,50 +1,63 @@
 {
   "props": {
-    "open": { "type": { "name": "bool" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true, "additionalPropsInfo": {} },
     "anchorEl": {
       "type": {
         "name": "custom",
         "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
-      }
+      },
+      "additionalPropsInfo": {}
     },
-    "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
-    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "children": {
+      "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" },
+      "additionalPropsInfo": {}
+    },
+    "container": {
+      "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
+      "additionalPropsInfo": {}
+    },
     "direction": {
       "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },
-      "default": "'ltr'"
+      "default": "'ltr'",
+      "additionalPropsInfo": {}
     },
-    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
-    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "modifiers": {
       "type": {
         "name": "arrayOf",
         "description": "Array&lt;{ data?: object, effect?: func, enabled?: bool, fn?: func, name?: any, options?: object, phase?: 'afterMain'<br>&#124;&nbsp;'afterRead'<br>&#124;&nbsp;'afterWrite'<br>&#124;&nbsp;'beforeMain'<br>&#124;&nbsp;'beforeRead'<br>&#124;&nbsp;'beforeWrite'<br>&#124;&nbsp;'main'<br>&#124;&nbsp;'read'<br>&#124;&nbsp;'write', requires?: Array&lt;string&gt;, requiresIfExists?: Array&lt;string&gt; }&gt;"
-      }
+      },
+      "additionalPropsInfo": {}
     },
     "placement": {
       "type": {
         "name": "enum",
         "description": "'auto-end'<br>&#124;&nbsp;'auto-start'<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'"
       },
-      "default": "'bottom'"
+      "default": "'bottom'",
+      "additionalPropsInfo": {}
     },
     "popperOptions": {
       "type": {
         "name": "shape",
         "description": "{ modifiers?: array, onFirstUpdate?: func, placement?: 'auto-end'<br>&#124;&nbsp;'auto-start'<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top', strategy?: 'absolute'<br>&#124;&nbsp;'fixed' }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
-    "popperRef": { "type": { "name": "custom", "description": "ref" } },
+    "popperRef": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
-    "transition": { "type": { "name": "bool" }, "default": "false" }
+    "transition": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} }
   },
   "name": "Popper",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

@@ -1,19 +1,24 @@
 {
   "props": {
-    "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "error": { "type": { "name": "bool" }, "default": "false" },
-    "onChange": { "type": { "name": "func" } },
-    "required": { "type": { "name": "bool" }, "default": "false" },
+    "children": {
+      "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" },
+      "additionalPropsInfo": {}
+    },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "error": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "onChange": { "type": { "name": "func" }, "additionalPropsInfo": {} },
+    "required": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
-    "value": { "type": { "name": "any" } }
+    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} }
   },
   "name": "FormControl",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

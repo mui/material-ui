@@ -1,27 +1,132 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "autoComplete": "This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it&#39;s more like an autofill. You can learn more about it <a href=\"https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill\">following the specification</a>.",
-    "autoFocus": "If <code>true</code>, the <code>input</code> element is focused during the first mount.",
-    "className": "Class name applied to the root element.",
-    "defaultValue": "The default value. Use when the component is not controlled.",
-    "disabled": "If <code>true</code>, the component is disabled. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
-    "endAdornment": "Trailing adornment for this input.",
-    "error": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute on the input and the <code>Mui-error</code> class on the root element. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
-    "id": "The id of the <code>input</code> element.",
-    "maxRows": "Maximum number of rows to display when multiline option is set to true.",
-    "minRows": "Minimum number of rows to display when multiline option is set to true.",
-    "multiline": "If <code>true</code>, a <code>textarea</code> element is rendered.",
-    "name": "Name attribute of the <code>input</code> element.",
-    "placeholder": "The short hint displayed in the <code>input</code> before the user enters a value.",
-    "readOnly": "It prevents the user from changing the value of the field (not from interacting with the field).",
-    "required": "If <code>true</code>, the <code>input</code> element is required. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
-    "rows": "Number of rows to display when multiline option is set to true.",
-    "slotProps": "The props used for each slot inside the Input.",
-    "slots": "The components used for each slot inside the InputBase. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details.",
-    "startAdornment": "Leading adornment for this input.",
-    "type": "Type of the <code>input</code> element. It should be <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types\">a valid HTML5 input type</a>.",
-    "value": "The value of the <code>input</code> element, required for a controlled component."
+    "autoComplete": {
+      "description": "This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it&#39;s more like an autofill. You can learn more about it <a href=\"https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill\">following the specification</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "autoFocus": {
+      "description": "If <code>true</code>, the <code>input</code> element is focused during the first mount.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "className": {
+      "description": "Class name applied to the root element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "defaultValue": {
+      "description": "The default value. Use when the component is not controlled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disabled": {
+      "description": "If <code>true</code>, the component is disabled. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "endAdornment": {
+      "description": "Trailing adornment for this input.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "error": {
+      "description": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute on the input and the <code>Mui-error</code> class on the root element. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "id": {
+      "description": "The id of the <code>input</code> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "maxRows": {
+      "description": "Maximum number of rows to display when multiline option is set to true.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "minRows": {
+      "description": "Minimum number of rows to display when multiline option is set to true.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "multiline": {
+      "description": "If <code>true</code>, a <code>textarea</code> element is rendered.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "name": {
+      "description": "Name attribute of the <code>input</code> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "placeholder": {
+      "description": "The short hint displayed in the <code>input</code> before the user enters a value.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "readOnly": {
+      "description": "It prevents the user from changing the value of the field (not from interacting with the field).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "required": {
+      "description": "If <code>true</code>, the <code>input</code> element is required. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rows": {
+      "description": "Number of rows to display when multiline option is set to true.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "The props used for each slot inside the Input.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slots": {
+      "description": "The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "startAdornment": {
+      "description": "Leading adornment for this input.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "type": {
+      "description": "Type of the <code>input</code> element. It should be <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types\">a valid HTML5 input type</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "value": {
+      "description": "The value of the <code>input</code> element, required for a controlled component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },

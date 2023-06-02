@@ -1,36 +1,44 @@
 {
   "props": {
-    "addEndListener": { "type": { "name": "func" } },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "addEndListener": { "type": { "name": "func" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "collapsedSize": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "default": "'0px'"
+      "default": "'0px'",
+      "additionalPropsInfo": {}
     },
-    "component": { "type": { "name": "custom", "description": "element type" } },
+    "component": {
+      "type": { "name": "custom", "description": "element type" },
+      "additionalPropsInfo": {}
+    },
     "easing": {
       "type": {
         "name": "union",
         "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": {}
     },
-    "in": { "type": { "name": "bool" } },
+    "in": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'vertical'"
+      "default": "'vertical'",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "timeout": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "duration.standard"
+      "default": "duration.standard",
+      "additionalPropsInfo": {}
     }
   },
   "name": "Collapse",

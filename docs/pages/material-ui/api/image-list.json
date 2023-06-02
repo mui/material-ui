@@ -1,26 +1,33 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "required": true },
-    "classes": { "type": { "name": "object" } },
-    "cols": { "type": { "name": "custom", "description": "integer" }, "default": "2" },
-    "component": { "type": { "name": "elementType" } },
-    "gap": { "type": { "name": "number" }, "default": "4" },
+    "children": { "type": { "name": "node" }, "required": true, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "cols": {
+      "type": { "name": "custom", "description": "integer" },
+      "default": "2",
+      "additionalPropsInfo": {}
+    },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "gap": { "type": { "name": "number" }, "default": "4", "additionalPropsInfo": {} },
     "rowHeight": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
-      "default": "'auto'"
+      "default": "'auto'",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'masonry'<br>&#124;&nbsp;'quilted'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;'woven'<br>&#124;&nbsp;string"
       },
-      "default": "'standard'"
+      "default": "'standard'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "ImageList",

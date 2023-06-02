@@ -1,16 +1,66 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "color": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "disabled": "If <code>true</code>, the label should be displayed in a disabled state.",
-    "error": "If <code>true</code>, the label is displayed in an error state.",
-    "filled": "If <code>true</code>, the label should use filled classes key.",
-    "focused": "If <code>true</code>, the input of this label is focused (used by <code>FormGroup</code> components).",
-    "required": "If <code>true</code>, the label will indicate that the <code>input</code> is required.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
+    "children": {
+      "description": "The content of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "color": {
+      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "component": {
+      "description": "The component used for the root node. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disabled": {
+      "description": "If <code>true</code>, the label should be displayed in a disabled state.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "error": {
+      "description": "If <code>true</code>, the label is displayed in an error state.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "filled": {
+      "description": "If <code>true</code>, the label should use filled classes key.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "focused": {
+      "description": "If <code>true</code>, the input of this label is focused (used by <code>FormGroup</code> components).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "required": {
+      "description": "If <code>true</code>, the label will indicate that the <code>input</code> is required.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

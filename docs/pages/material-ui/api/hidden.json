@@ -1,32 +1,35 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "implementation": {
       "type": { "name": "enum", "description": "'css'<br>&#124;&nbsp;'js'" },
-      "default": "'js'"
+      "default": "'js'",
+      "additionalPropsInfo": {}
     },
     "initialWidth": {
       "type": {
         "name": "enum",
         "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'"
-      }
+      },
+      "additionalPropsInfo": {}
     },
-    "lgDown": { "type": { "name": "bool" }, "default": "false" },
-    "lgUp": { "type": { "name": "bool" }, "default": "false" },
-    "mdDown": { "type": { "name": "bool" }, "default": "false" },
-    "mdUp": { "type": { "name": "bool" }, "default": "false" },
+    "lgDown": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "lgUp": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "mdDown": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "mdUp": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "only": {
       "type": {
         "name": "union",
         "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;Array&lt;'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'&gt;"
-      }
+      },
+      "additionalPropsInfo": {}
     },
-    "smDown": { "type": { "name": "bool" }, "default": "false" },
-    "smUp": { "type": { "name": "bool" }, "default": "false" },
-    "xlDown": { "type": { "name": "bool" }, "default": "false" },
-    "xlUp": { "type": { "name": "bool" }, "default": "false" },
-    "xsDown": { "type": { "name": "bool" }, "default": "false" },
-    "xsUp": { "type": { "name": "bool" }, "default": "false" }
+    "smDown": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "smUp": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "xlDown": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "xlUp": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "xsDown": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "xsUp": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} }
   },
   "name": "Hidden",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

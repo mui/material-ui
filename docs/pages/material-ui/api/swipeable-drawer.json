@@ -1,29 +1,54 @@
 {
   "props": {
-    "onClose": { "type": { "name": "func" }, "required": true },
-    "onOpen": { "type": { "name": "func" }, "required": true },
+    "onClose": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] },
+      "additionalPropsInfo": {}
+    },
+    "onOpen": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] },
+      "additionalPropsInfo": {}
+    },
     "allowSwipeInChildren": {
       "type": { "name": "union", "description": "bool<br>&#124;&nbsp;func" },
-      "default": "false"
+      "default": "false",
+      "additionalPropsInfo": {}
     },
-    "children": { "type": { "name": "node" } },
-    "disableBackdropTransition": { "type": { "name": "bool" }, "default": "false" },
-    "disableDiscovery": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "disableBackdropTransition": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableDiscovery": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
     "disableSwipeToOpen": {
       "type": { "name": "bool" },
-      "default": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)"
+      "default": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)",
+      "additionalPropsInfo": {}
     },
-    "hysteresis": { "type": { "name": "number" }, "default": "0.52" },
-    "minFlingVelocity": { "type": { "name": "number" }, "default": "450" },
-    "open": { "type": { "name": "bool" }, "default": "false" },
-    "SwipeAreaProps": { "type": { "name": "object" } },
-    "swipeAreaWidth": { "type": { "name": "number" }, "default": "20" },
+    "hysteresis": { "type": { "name": "number" }, "default": "0.52", "additionalPropsInfo": {} },
+    "minFlingVelocity": {
+      "type": { "name": "number" },
+      "default": "450",
+      "additionalPropsInfo": {}
+    },
+    "open": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "SwipeAreaProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "swipeAreaWidth": { "type": { "name": "number" }, "default": "20", "additionalPropsInfo": {} },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}",
+      "additionalPropsInfo": {}
     }
   },
   "name": "SwipeableDrawer",

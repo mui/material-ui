@@ -1,21 +1,27 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
-    "addEndListener": { "type": { "name": "func" } },
-    "appear": { "type": { "name": "bool" }, "default": "true" },
+    "children": {
+      "type": { "name": "custom", "description": "element" },
+      "required": true,
+      "additionalPropsInfo": {}
+    },
+    "addEndListener": { "type": { "name": "func" }, "additionalPropsInfo": {} },
+    "appear": { "type": { "name": "bool" }, "default": "true", "additionalPropsInfo": {} },
     "easing": {
       "type": {
         "name": "union",
         "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": {}
     },
-    "in": { "type": { "name": "bool" } },
+    "in": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "timeout": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}",
+      "additionalPropsInfo": {}
     }
   },
   "name": "Zoom",

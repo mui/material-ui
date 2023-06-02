@@ -1,19 +1,89 @@
 {
   "componentDescription": "A pagination for tables.",
   "propDescriptions": {
-    "count": "The total number of rows.<br>To enable server side pagination for an unknown number of items, provide -1.",
-    "getItemAriaLabel": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.<br><br><strong>Signature:</strong><br><code>function(type: string) =&gt; string</code><br><ul><li>type: The link or button type to format (&#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39;).</li></ul>",
-    "labelDisplayedRows": "Customize the displayed rows label. Invoked with a <code>{ from, to, count, page }</code> object.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
-    "labelId": "Id of the label element within the pagination.",
-    "labelRowsPerPage": "Customize the rows per page label.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
-    "onPageChange": "Callback fired when the page is changed.<br><br><strong>Signature:</strong><br><code>function(event: React.MouseEvent&lt;HTMLButtonElement&gt; | null, page: number) =&gt; void</code><br><ul><li>event: The event source of the callback.</li><li>page: The page selected.</li></ul>",
-    "onRowsPerPageChange": "Callback fired when the number of rows per page is changed.<br><br><strong>Signature:</strong><br><code>function(event: React.ChangeEvent&lt;HTMLTextAreaElement | HTMLInputElement&gt;) =&gt; void</code><br><ul><li>event: The event source of the callback.</li></ul>",
-    "page": "The zero-based index of the current page.",
-    "rowsPerPage": "The number of rows per page.<br>Set -1 to display all the rows.",
-    "rowsPerPageOptions": "Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. Use -1 for the value with a custom label to show all the rows.",
-    "selectId": "Id of the select element within the pagination.",
-    "slotProps": "The props used for each slot inside the TablePagination.",
-    "slots": "The components used for each slot inside the TablePagination. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details."
+    "count": {
+      "description": "The total number of rows.<br>To enable server side pagination for an unknown number of items, provide -1.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "getItemAriaLabel": {
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "type": "The link or button type to format (&#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39;)."
+      }
+    },
+    "labelDisplayedRows": {
+      "description": "Customize the displayed rows label. Invoked with a <code>{ from, to, count, page }</code> object.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "labelId": {
+      "description": "Id of the label element within the pagination.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "labelRowsPerPage": {
+      "description": "Customize the rows per page label.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onPageChange": {
+      "description": "Callback fired when the page is changed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "event": "The event source of the callback.",
+        "page": "The page selected."
+      }
+    },
+    "onRowsPerPageChange": {
+      "description": "Callback fired when the number of rows per page is changed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": { "event": "The event source of the callback." }
+    },
+    "page": {
+      "description": "The zero-based index of the current page.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowsPerPage": {
+      "description": "The number of rows per page.<br>Set -1 to display all the rows.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowsPerPageOptions": {
+      "description": "Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. Use -1 for the value with a custom label to show all the rows.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "selectId": {
+      "description": "Id of the select element within the pagination.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "The props used for each slot inside the TablePagination.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slots": {
+      "description": "The components used for each slot inside the TablePagination. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },

@@ -2,24 +2,35 @@
   "props": {
     "position": {
       "type": { "name": "enum", "description": "'end'<br>&#124;&nbsp;'start'" },
-      "required": true
+      "required": true,
+      "additionalPropsInfo": {}
     },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } },
-    "disablePointerEvents": { "type": { "name": "bool" }, "default": "false" },
-    "disableTypography": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "disablePointerEvents": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableTypography": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
-      }
+      },
+      "additionalPropsInfo": {}
     }
   },
   "name": "InputAdornment",

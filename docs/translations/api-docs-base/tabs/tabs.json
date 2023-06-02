@@ -1,15 +1,60 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the component.",
-    "defaultValue": "The default value. Use when the component is not controlled.",
-    "direction": "The direction of the text.",
-    "onChange": "Callback invoked when new value is being set.",
-    "orientation": "The component orientation (layout flow direction).",
-    "selectionFollowsFocus": "If <code>true</code> the selected tab changes on focus. Otherwise it only changes on activation.",
-    "slotProps": "The props used for each slot inside the Tabs.",
-    "slots": "The components used for each slot inside the Tabs. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details.",
-    "value": "The value of the currently selected <code>Tab</code>. If you don&#39;t want any selected <code>Tab</code>, you can set this prop to <code>null</code>."
+    "children": {
+      "description": "The content of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "defaultValue": {
+      "description": "The default value. Use when the component is not controlled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "direction": {
+      "description": "The direction of the text.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onChange": {
+      "description": "Callback invoked when new value is being set.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "orientation": {
+      "description": "The component orientation (layout flow direction).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "selectionFollowsFocus": {
+      "description": "If <code>true</code> the selected tab changes on focus. Otherwise it only changes on activation.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "The props used for each slot inside the Tabs.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slots": {
+      "description": "The components used for each slot inside the Tabs. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "value": {
+      "description": "The value of the currently selected <code>Tab</code>. If you don&#39;t want any selected <code>Tab</code>, you can set this prop to <code>null</code>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },

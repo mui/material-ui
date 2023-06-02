@@ -1,47 +1,52 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'"
+      "default": "'primary'",
+      "additionalPropsInfo": {}
     },
-    "component": { "type": { "name": "elementType" } },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "error": { "type": { "name": "bool" }, "default": "false" },
-    "focused": { "type": { "name": "bool" } },
-    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
-    "hiddenLabel": { "type": { "name": "bool" }, "default": "false" },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "error": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "focused": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "hiddenLabel": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "margin": {
       "type": {
         "name": "enum",
         "description": "'dense'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
       },
-      "default": "'none'"
+      "default": "'none'",
+      "additionalPropsInfo": {}
     },
-    "required": { "type": { "name": "bool" }, "default": "false" },
+    "required": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "size": {
       "type": {
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'"
+      "default": "'medium'",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
-      "default": "'outlined'"
+      "default": "'outlined'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "FormControl",

@@ -1,21 +1,96 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "collapseIcon": "The icon used to collapse the node.",
-    "ContentComponent": "The component used for the content node.<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
-    "ContentProps": "Props applied to ContentComponent",
-    "disabled": "If <code>true</code>, the node is disabled.",
-    "endIcon": "The icon displayed next to a end node.",
-    "expandIcon": "The icon used to expand the node.",
-    "icon": "The icon to display next to the tree node&#39;s label.",
-    "label": "The tree node label.",
-    "nodeId": "The id of the node.",
-    "onFocus": "This prop isn&#39;t supported. Use the <code>onNodeFocus</code> callback on the tree if you need to monitor a node&#39;s focus.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "TransitionComponent": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
-    "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
+    "children": {
+      "description": "The content of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "collapseIcon": {
+      "description": "The icon used to collapse the node.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "ContentComponent": {
+      "description": "The component used for the content node.",
+      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "ContentProps": {
+      "description": "Props applied to ContentComponent",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disabled": {
+      "description": "If <code>true</code>, the node is disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "endIcon": {
+      "description": "The icon displayed next to a end node.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "expandIcon": {
+      "description": "The icon used to expand the node.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "icon": {
+      "description": "The icon to display next to the tree node&#39;s label.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "label": {
+      "description": "The tree node label.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "nodeId": {
+      "description": "The id of the node.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onFocus": {
+      "description": "This prop isn&#39;t supported. Use the <code>onNodeFocus</code> callback on the tree if you need to monitor a node&#39;s focus.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "TransitionComponent": {
+      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "TransitionProps": {
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

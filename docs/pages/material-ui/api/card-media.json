@@ -1,15 +1,16 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } },
-    "image": { "type": { "name": "string" } },
-    "src": { "type": { "name": "string" } },
+    "children": { "type": { "name": "custom", "description": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "image": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "src": { "type": { "name": "string" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "CardMedia",

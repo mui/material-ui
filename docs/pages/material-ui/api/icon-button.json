@@ -1,36 +1,44 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "children": { "type": { "name": "custom", "description": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'inherit'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'default'"
+      "default": "'default'",
+      "additionalPropsInfo": {}
     },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
-    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disableFocusRipple": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "edge": {
       "type": {
         "name": "enum",
         "description": "'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;false"
       },
-      "default": "false"
+      "default": "false",
+      "additionalPropsInfo": {}
     },
     "size": {
       "type": {
         "name": "union",
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'"
+      "default": "'medium'",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "IconButton",

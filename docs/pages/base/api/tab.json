@@ -4,19 +4,25 @@
       "type": {
         "name": "union",
         "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
-      }
+      },
+      "additionalPropsInfo": {}
     },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "onChange": { "type": { "name": "func" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "onChange": { "type": { "name": "func" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
-    "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
+    "value": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "additionalPropsInfo": {}
+    }
   },
   "name": "Tab",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

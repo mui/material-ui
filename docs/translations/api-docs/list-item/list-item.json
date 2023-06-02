@@ -1,26 +1,126 @@
 {
   "componentDescription": "Uses an additional container component if `ListItemSecondaryAction` is the last child.",
   "propDescriptions": {
-    "alignItems": "Defines the <code>align-items</code> style property.",
-    "autoFocus": "If <code>true</code>, the list item is focused during the first mount. Focus will also be triggered if the value changes from false to true.",
-    "button": "If <code>true</code>, the list item is a button (using <code>ButtonBase</code>). Props intended for <code>ButtonBase</code> can then be applied to <code>ListItem</code>.",
-    "children": "The content of the component if a <code>ListItemSecondaryAction</code> is used it must be the last child.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "components": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead.",
-    "componentsProps": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>slotProps</code> prop. It&#39;s recommended to use the <code>slotProps</code> prop instead, as <code>componentsProps</code> will be deprecated in the future.",
-    "ContainerComponent": "The container component used when a <code>ListItemSecondaryAction</code> is the last child.<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
-    "ContainerProps": "Props applied to the container component if used.",
-    "dense": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used. The prop defaults to the value inherited from the parent List component.",
-    "disabled": "If <code>true</code>, the component is disabled.",
-    "disableGutters": "If <code>true</code>, the left and right padding is removed.",
-    "disablePadding": "If <code>true</code>, all padding is removed.",
-    "divider": "If <code>true</code>, a 1px light border is added to the bottom of the list item.",
-    "secondaryAction": "The element to display at the end of ListItem.",
-    "selected": "Use to apply selected styling.",
-    "slotProps": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>componentsProps</code> prop, which will be deprecated in the future.",
-    "slots": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
+    "alignItems": {
+      "description": "Defines the <code>align-items</code> style property.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "autoFocus": {
+      "description": "If <code>true</code>, the list item is focused during the first mount. Focus will also be triggered if the value changes from false to true.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "button": {
+      "description": "If <code>true</code>, the list item is a button (using <code>ButtonBase</code>). Props intended for <code>ButtonBase</code> can then be applied to <code>ListItem</code>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "children": {
+      "description": "The content of the component if a <code>ListItemSecondaryAction</code> is used it must be the last child.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "component": {
+      "description": "The component used for the root node. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "components": {
+      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "componentsProps": {
+      "description": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>slotProps</code> prop. It&#39;s recommended to use the <code>slotProps</code> prop instead, as <code>componentsProps</code> will be deprecated in the future.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "ContainerComponent": {
+      "description": "The container component used when a <code>ListItemSecondaryAction</code> is the last child.",
+      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "ContainerProps": {
+      "description": "Props applied to the container component if used.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "dense": {
+      "description": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used. The prop defaults to the value inherited from the parent List component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disabled": {
+      "description": "If <code>true</code>, the component is disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableGutters": {
+      "description": "If <code>true</code>, the left and right padding is removed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disablePadding": {
+      "description": "If <code>true</code>, all padding is removed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "divider": {
+      "description": "If <code>true</code>, a 1px light border is added to the bottom of the list item.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "secondaryAction": {
+      "description": "The element to display at the end of ListItem.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "selected": {
+      "description": "Use to apply selected styling.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>componentsProps</code> prop, which will be deprecated in the future.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slots": {
+      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": {

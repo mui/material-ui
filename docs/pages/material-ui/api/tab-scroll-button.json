@@ -2,34 +2,39 @@
   "props": {
     "direction": {
       "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
-      "required": true
+      "required": true,
+      "additionalPropsInfo": {}
     },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "required": true
+      "required": true,
+      "additionalPropsInfo": {}
     },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ EndScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "TabScrollButton",

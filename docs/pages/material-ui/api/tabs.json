@@ -1,69 +1,104 @@
 {
   "props": {
-    "action": { "type": { "name": "custom", "description": "ref" } },
-    "allowScrollButtonsMobile": { "type": { "name": "bool" }, "default": "false" },
-    "aria-label": { "type": { "name": "string" } },
-    "aria-labelledby": { "type": { "name": "string" } },
-    "centered": { "type": { "name": "bool" }, "default": "false" },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } },
+    "action": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
+    "allowScrollButtonsMobile": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "aria-label": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "aria-labelledby": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "centered": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
     "indicatorColor": {
       "type": {
         "name": "union",
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'"
+      "default": "'primary'",
+      "additionalPropsInfo": {}
     },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: any) => void",
+        "describedArgs": ["event", "value"]
+      },
+      "additionalPropsInfo": {}
+    },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'horizontal'"
+      "default": "'horizontal'",
+      "additionalPropsInfo": {}
     },
-    "ScrollButtonComponent": { "type": { "name": "elementType" }, "default": "TabScrollButton" },
+    "ScrollButtonComponent": {
+      "type": { "name": "elementType" },
+      "default": "TabScrollButton",
+      "additionalPropsInfo": {}
+    },
     "scrollButtons": {
       "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;false<br>&#124;&nbsp;true" },
-      "default": "'auto'"
+      "default": "'auto'",
+      "additionalPropsInfo": {}
     },
-    "selectionFollowsFocus": { "type": { "name": "bool" } },
+    "selectionFollowsFocus": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ EndScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "TabIndicatorProps": { "type": { "name": "object" }, "default": "{}" },
-    "TabScrollButtonProps": { "type": { "name": "object" }, "default": "{}" },
+    "TabIndicatorProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "additionalPropsInfo": {}
+    },
+    "TabScrollButtonProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "additionalPropsInfo": {}
+    },
     "textColor": {
       "type": {
         "name": "enum",
         "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
-      "default": "'primary'"
+      "default": "'primary'",
+      "additionalPropsInfo": {}
     },
-    "value": { "type": { "name": "any" } },
+    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'fullWidth'<br>&#124;&nbsp;'scrollable'<br>&#124;&nbsp;'standard'"
       },
-      "default": "'standard'"
+      "default": "'standard'",
+      "additionalPropsInfo": {}
     },
-    "visibleScrollbar": { "type": { "name": "bool" }, "default": "false" }
+    "visibleScrollbar": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    }
   },
   "name": "Tabs",
   "styles": {

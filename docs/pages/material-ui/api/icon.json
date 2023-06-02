@@ -1,28 +1,35 @@
 {
   "props": {
-    "baseClassName": { "type": { "name": "string" }, "default": "'material-icons'" },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "baseClassName": {
+      "type": { "name": "string" },
+      "default": "'material-icons'",
+      "additionalPropsInfo": {}
+    },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'inherit'<br>&#124;&nbsp;'action'<br>&#124;&nbsp;'disabled'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'inherit'"
+      "default": "'inherit'",
+      "additionalPropsInfo": {}
     },
-    "component": { "type": { "name": "elementType" } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
     "fontSize": {
       "type": {
         "name": "union",
         "description": "'inherit'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'"
+      "default": "'medium'",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "Icon",

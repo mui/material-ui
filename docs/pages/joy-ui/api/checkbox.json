@@ -1,64 +1,86 @@
 {
   "props": {
-    "checked": { "type": { "name": "bool" } },
-    "checkedIcon": { "type": { "name": "node" }, "default": "<CheckIcon />" },
-    "className": { "type": { "name": "string" } },
+    "checked": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "checkedIcon": {
+      "type": { "name": "node" },
+      "default": "<CheckIcon />",
+      "additionalPropsInfo": {}
+    },
+    "className": { "type": { "name": "string" }, "additionalPropsInfo": {} },
     "color": {
       "type": {
         "name": "union",
         "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'neutral'"
+      "default": "'neutral'",
+      "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" } },
-    "defaultChecked": { "type": { "name": "bool" } },
-    "disabled": { "type": { "name": "bool" } },
-    "disableIcon": { "type": { "name": "bool" }, "default": "false" },
-    "indeterminate": { "type": { "name": "bool" }, "default": "false" },
-    "indeterminateIcon": { "type": { "name": "node" }, "default": "<IndeterminateIcon />" },
-    "label": { "type": { "name": "node" } },
-    "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
-    "overlay": { "type": { "name": "bool" }, "default": "false" },
-    "readOnly": { "type": { "name": "bool" } },
-    "required": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "defaultChecked": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "disableIcon": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "indeterminate": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "indeterminateIcon": {
+      "type": { "name": "node" },
+      "default": "<IndeterminateIcon />",
+      "additionalPropsInfo": {}
+    },
+    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "name": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "overlay": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "readOnly": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "required": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "size": {
       "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },
-      "default": "'md'"
+      "default": "'md'",
+      "additionalPropsInfo": { "joy-size": true }
     },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ action?: func<br>&#124;&nbsp;object, checkbox?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ action?: elementType, checkbox?: elementType, input?: elementType, label?: elementType, root?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "uncheckedIcon": { "type": { "name": "node" } },
+    "uncheckedIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "value": {
       "type": {
         "name": "union",
         "description": "Array&lt;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": {}
     },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'"
       },
-      "default": "'solid'"
+      "default": "'solid'",
+      "additionalPropsInfo": { "joy-variant": true }
     }
   },
   "name": "Checkbox",

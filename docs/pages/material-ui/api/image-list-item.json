@@ -1,15 +1,24 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "cols": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
-    "component": { "type": { "name": "elementType" } },
-    "rows": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "cols": {
+      "type": { "name": "custom", "description": "integer" },
+      "default": "1",
+      "additionalPropsInfo": {}
+    },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "rows": {
+      "type": { "name": "custom", "description": "integer" },
+      "default": "1",
+      "additionalPropsInfo": {}
+    },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "ImageListItem",

@@ -1,69 +1,125 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
-    "arrow": { "type": { "name": "bool" }, "default": "false" },
-    "classes": { "type": { "name": "object" } },
+    "children": {
+      "type": { "name": "custom", "description": "element" },
+      "required": true,
+      "additionalPropsInfo": {}
+    },
+    "arrow": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "components": {
       "type": {
         "name": "shape",
         "description": "{ Arrow?: elementType, Popper?: elementType, Tooltip?: elementType, Transition?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "componentsProps": {
       "type": {
         "name": "shape",
         "description": "{ arrow?: object, popper?: object, tooltip?: object, transition?: object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
-    "describeChild": { "type": { "name": "bool" }, "default": "false" },
-    "disableFocusListener": { "type": { "name": "bool" }, "default": "false" },
-    "disableHoverListener": { "type": { "name": "bool" }, "default": "false" },
-    "disableInteractive": { "type": { "name": "bool" }, "default": "false" },
-    "disableTouchListener": { "type": { "name": "bool" }, "default": "false" },
-    "enterDelay": { "type": { "name": "number" }, "default": "100" },
-    "enterNextDelay": { "type": { "name": "number" }, "default": "0" },
-    "enterTouchDelay": { "type": { "name": "number" }, "default": "700" },
-    "followCursor": { "type": { "name": "bool" }, "default": "false" },
-    "id": { "type": { "name": "string" } },
-    "leaveDelay": { "type": { "name": "number" }, "default": "0" },
-    "leaveTouchDelay": { "type": { "name": "number" }, "default": "1500" },
-    "onClose": { "type": { "name": "func" } },
-    "onOpen": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" } },
+    "describeChild": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disableFocusListener": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableHoverListener": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableInteractive": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableTouchListener": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "enterDelay": { "type": { "name": "number" }, "default": "100", "additionalPropsInfo": {} },
+    "enterNextDelay": { "type": { "name": "number" }, "default": "0", "additionalPropsInfo": {} },
+    "enterTouchDelay": {
+      "type": { "name": "number" },
+      "default": "700",
+      "additionalPropsInfo": {}
+    },
+    "followCursor": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "id": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "leaveDelay": { "type": { "name": "number" }, "default": "0", "additionalPropsInfo": {} },
+    "leaveTouchDelay": {
+      "type": { "name": "number" },
+      "default": "1500",
+      "additionalPropsInfo": {}
+    },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent) => void",
+        "describedArgs": ["event"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "onOpen": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent) => void",
+        "describedArgs": ["event"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "open": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "placement": {
       "type": {
         "name": "enum",
         "description": "'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'"
       },
-      "default": "'bottom'"
+      "default": "'bottom'",
+      "additionalPropsInfo": {}
     },
-    "PopperComponent": { "type": { "name": "elementType" }, "default": "Popper" },
-    "PopperProps": { "type": { "name": "object" }, "default": "{}" },
+    "PopperComponent": {
+      "type": { "name": "elementType" },
+      "default": "Popper",
+      "additionalPropsInfo": {}
+    },
+    "PopperProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ arrow?: object, popper?: object, tooltip?: object, transition?: object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ arrow?: elementType, popper?: elementType, tooltip?: elementType, transition?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "title": { "type": { "name": "node" } },
-    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
-    "TransitionProps": { "type": { "name": "object" } }
+    "title": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "default": "Grow",
+      "additionalPropsInfo": {}
+    },
+    "TransitionProps": { "type": { "name": "object" }, "additionalPropsInfo": {} }
   },
   "name": "Tooltip",
   "styles": {

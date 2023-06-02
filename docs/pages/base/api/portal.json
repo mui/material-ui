@@ -1,8 +1,11 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
-    "disablePortal": { "type": { "name": "bool" }, "default": "false" }
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "container": {
+      "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
+      "additionalPropsInfo": {}
+    },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} }
   },
   "name": "Portal",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

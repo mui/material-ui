@@ -1,34 +1,38 @@
 {
   "props": {
-    "absolute": { "type": { "name": "bool" }, "default": "false" },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } },
-    "flexItem": { "type": { "name": "bool" }, "default": "false" },
-    "light": { "type": { "name": "bool" }, "default": "false" },
+    "absolute": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "flexItem": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "light": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'horizontal'"
+      "default": "'horizontal'",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "textAlign": {
       "type": {
         "name": "enum",
         "description": "'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
-      "default": "'center'"
+      "default": "'center'",
+      "additionalPropsInfo": {}
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'fullWidth'<br>&#124;&nbsp;'inset'<br>&#124;&nbsp;'middle'<br>&#124;&nbsp;string"
       },
-      "default": "'fullWidth'"
+      "default": "'fullWidth'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "Divider",

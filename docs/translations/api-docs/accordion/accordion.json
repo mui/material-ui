@@ -1,17 +1,75 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "defaultExpanded": "If <code>true</code>, expands the accordion by default.",
-    "disabled": "If <code>true</code>, the component is disabled.",
-    "disableGutters": "If <code>true</code>, it removes the margin between two expanded accordion items and the increase of height.",
-    "expanded": "If <code>true</code>, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion.",
-    "onChange": "Callback fired when the expand/collapse state is changed.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, expanded: boolean) =&gt; void</code><br><ul><li>event: The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.</li><li>expanded: The <code>expanded</code> state of the accordion.</li></ul>",
-    "square": "If <code>true</code>, rounded corners are disabled.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "TransitionComponent": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
-    "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
+    "children": {
+      "description": "The content of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "defaultExpanded": {
+      "description": "If <code>true</code>, expands the accordion by default.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disabled": {
+      "description": "If <code>true</code>, the component is disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableGutters": {
+      "description": "If <code>true</code>, it removes the margin between two expanded accordion items and the increase of height.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "expanded": {
+      "description": "If <code>true</code>, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onChange": {
+      "description": "Callback fired when the expand/collapse state is changed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "event": "The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.",
+        "expanded": "The <code>expanded</code> state of the accordion."
+      }
+    },
+    "square": {
+      "description": "If <code>true</code>, rounded corners are disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "TransitionComponent": {
+      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "TransitionProps": {
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
