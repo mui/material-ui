@@ -474,13 +474,14 @@ export function getThemedComponents(): ThemeOptions {
               ownerState.color === 'primary' && {
                 color: (theme.vars || theme).palette.primary[500],
                 backgroundColor: alpha(theme.palette.primary[50], 0.3),
-                borderColor: (theme.vars || theme).palette.primary[200],
+                borderColor: (theme.vars || theme).palette.primary[100],
                 boxShadow: `0px 2px 2px ${alpha(
                   theme.palette.primary[100],
                   0.2,
-                )}, inset 0px 4px 4px ${alpha(theme.palette.primary[100], 0.2)}`,
+                )}, inset 0px 4px 4px ${alpha(theme.palette.primary[100], 0.1)}`,
                 '&:hover': {
                   background: (theme.vars || theme).palette.primary[50],
+                  borderColor: (theme.vars || theme).palette.primary[300],
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[200],
@@ -489,6 +490,7 @@ export function getThemedComponents(): ThemeOptions {
                   boxShadow: '0px 2px 2px #0B0D0E, inset 0px 4px 4px rgba(20, 25, 31, 0.3)',
                   '&:hover': {
                     backgroundColor: (theme.vars || theme).palette.primary[900],
+                    borderColor: (theme.vars || theme).palette.primary[700],
                   },
                 }),
               }),
@@ -504,22 +506,18 @@ export function getThemedComponents(): ThemeOptions {
                 color: '#FFF',
                 background: `linear-gradient(180deg, ${
                   (theme.vars || theme).palette.primary[500]
-                } 0%, ${(theme.vars || theme).palette.primary[300]} 100%)`,
+                } 0%, ${(theme.vars || theme).palette.primary[400]} 100%)`,
                 border: '1px solid',
                 borderColor: (theme.vars || theme).palette.primary[400],
                 boxShadow: `0px 2px 4px ${alpha(
                   theme.palette.primary[700],
                   0.2,
-                )}, inset 0px 4px 8px ${alpha(theme.palette.primary[400], 0.4)}`,
+                )}, inset 0px 4px 8px ${alpha(theme.palette.primary[200], 0.4)}`,
                 textShadow: `0px 1px 1px ${alpha(theme.palette.grey[900], 0.3)}`,
-                transition: theme.transitions.create('background', {
-                  easing: theme.transitions.easing.sharp,
-                  duration: theme.transitions.duration.enteringScreen,
-                }),
                 '&:hover': {
                   background: `linear-gradient(180deg, ${
-                    (theme.vars || theme).palette.primary[500]
-                  } 0%, ${(theme.vars || theme).palette.primary[400]} 100%)`,
+                    (theme.vars || theme).palette.primary[400]
+                  } 0%, ${(theme.vars || theme).palette.primary[300]} 100%)`,
                   boxShadow:
                     '0px 0px 8px rgba(0, 127, 255, 0.2), inset 0px 4px 8px rgba(102, 178, 255, 0.4)',
                 },

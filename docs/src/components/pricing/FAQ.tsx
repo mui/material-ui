@@ -260,7 +260,7 @@ export default function FAQ() {
     );
   }
   return (
-    <Section>
+    <Section cozy>
       <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
         Frequently asked questions
       </Typography>

@@ -25,7 +25,7 @@ const Image = styled('img')(({ theme }) => ({
 
 export default function XPlans() {
   return (
-    <Section>
+    <Section cozy>
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500} sx={{ mb: { xs: 2, sm: 0 } }}>

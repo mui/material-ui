@@ -688,8 +688,9 @@ function AboutContent() {
       <Container>
         <Box
           sx={{
-            height: '40vh',
-            minHeight: 300,
+            pt: 12,
+
+            minHeight: 200,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',

@@ -10,7 +10,7 @@ export default function HeroPricing() {
     <Container>
       <Box
         sx={{
-          height: '32vh',
+          height: '40vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -34,7 +34,8 @@ export default function HeroPricing() {
           Start using <GradientText>MUI</GradientText> for free!
         </Typography>
         <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 500 }}>
-          Switch to a commercial plan to access advanced features & technical support.
+          Switch to a commercial plan to access advanced
+          <br /> features & technical support.
         </Typography>
       </Box>
       <Divider />

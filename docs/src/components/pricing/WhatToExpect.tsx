@@ -12,7 +12,7 @@ import Section from 'docs/src/layouts/Section';
 
 export default function WhatToExpect() {
   return (
-    <Section>
+    <Section cozy>
       <Typography
         variant="h2"
         sx={{ maxWidth: { xs: 280, sm: 320, md: 400 }, mb: { xs: 2, sm: 4 } }}

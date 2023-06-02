@@ -6,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Link from 'docs/src/modules/components/Link';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import { alpha } from '@mui/material/styles';
 
 export default function EarlyBird() {
   return (
@@ -20,8 +21,11 @@ export default function EarlyBird() {
       <Stack
         sx={(theme) => ({
           borderRadius: 1,
-          p: 2,
-          bgcolor: 'primary.50',
+          px: 2,
+          py: 3,
+          background: `linear-gradient(180deg, ${alpha(theme.palette.primary[50], 0.2)}  50%, 
+          ${(theme.vars || theme).palette.primary[50]} 100%)
+          `,
           border: '1px solid',
           borderColor: 'primary.100',
           display: 'flex',
@@ -35,8 +39,10 @@ export default function EarlyBird() {
             sm: 'center',
           },
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900',
-            borderColor: 'primaryDark.500',
+            background: `linear-gradient(180deg, ${alpha(theme.palette.primary[900], 0.7)}  50%, 
+            ${(theme.vars || theme).palette.primary[900]} 100%)
+            `,
+            borderColor: 'primary.800',
           }),
         })}
       >
