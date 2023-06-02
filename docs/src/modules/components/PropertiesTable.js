@@ -53,7 +53,7 @@ export default function PropertiesTable(props) {
             >
               {propDescription?.description && (
                 <p
-                  className="description"
+                  className="prop-list-description"
                   dangerouslySetInnerHTML={{
                     __html: propDescription?.description,
                   }}
@@ -61,7 +61,7 @@ export default function PropertiesTable(props) {
               )}
               {propDescription?.notes && (
                 <p
-                  className="notes"
+                  className="prop-list-notes"
                   dangerouslySetInnerHTML={{
                     __html: propDescription?.notes,
                   }}
@@ -72,7 +72,7 @@ export default function PropertiesTable(props) {
                 .filter((key) => propData.additionalInfo?.[key])
                 .map((key) => (
                   <p
-                    className="additional-info"
+                    className="prop-list-additional-info"
                     key={key}
                     dangerouslySetInnerHTML={{
                       __html: additionalPropsInfoText[key],
@@ -111,16 +111,16 @@ export default function PropertiesTable(props) {
               )}
 
               {propDefault && (
-                <p className="default-props">
+                <p className="prop-list-default-props">
                   <span>{t('api-docs.default')}: </span>
                   <code>{propDefault}</code>
                 </p>
               )}
 
               {signature && (
-                <div className="signature">
+                <div className="prop-list-signature">
                   <p>
-                    <span>Signature: </span>
+                    <span>{t('api-docs.signature')}: </span>
                     <code
                       dangerouslySetInnerHTML={{
                         __html: signature,
@@ -128,8 +128,8 @@ export default function PropertiesTable(props) {
                     />
                   </p>
                   {propData.signature.describedArgs && (
-                    <div className="parameters args">
-                      <p>Args:</p>
+                    <div className="prop-list-parameters porps-list-args">
+                      <p>{t('api-docs.parameters')}: </p>
                       <ul>
                         {propData.signature.describedArgs.map((argName) => (
                           <li
@@ -143,8 +143,8 @@ export default function PropertiesTable(props) {
                     </div>
                   )}
                   {propData.signature.returned && (
-                    <p className="parameters return">
-                      Return:{' '}
+                    <p className="prop-list-parameters porps-list-return">
+                      <span>{t('api-docs.returnValue')}: </span>
                       <span
                         dangerouslySetInnerHTML={{
                           __html:

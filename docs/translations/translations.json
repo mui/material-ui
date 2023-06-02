@@ -38,6 +38,7 @@
     "refNotHeld": "The component cannot hold a ref.",
     "refRootElement": "The <code>ref</code> is forwarded to the root element.",
     "ruleName": "Rule name",
+    "signature": "Signature",
     "slots": "Slots",
     "spreadHint": "Props of the {{spreadHintElement}} component are also available.",
     "state": "STATE",
