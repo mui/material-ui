@@ -52,81 +52,95 @@ const ButtonGroupRoot = styled('div', {
     ownerState.orientation === 'vertical'
       ? 'var(--ButtonGroup-separatorSize) 0 0 0'
       : '0 0 0 var(--ButtonGroup-separatorSize)';
-  return {
-    '--ButtonGroup-separatorSize': '-1px',
-    ...(ownerState.color !== 'context' && {
-      '--ButtonGroup-separatorColor':
-        ownerState.variant === 'solid'
-          ? `rgb(255 255 255 / 32%)`
-          : theme.vars.palette[ownerState.color!]?.outlinedBorder,
-    }),
-    '--ButtonGroup-radius': theme.vars.radius.sm,
-    '--Divider-inset': '0.5rem',
-    display: 'flex',
-    flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
-    [`&:not(.${buttonGroupClasses.detached})`]: {
-      // first Button or IconButton
-      [`& > [data-first-child]`]: {
-        '--Button-radius': firstChildRadius,
-        '--IconButton-radius': firstChildRadius,
-        ...(shouldHaveBorder &&
-          ownerState.orientation === 'horizontal' && {
-            borderRight: '1px solid var(--ButtonGroup-separatorColor)',
-          }),
-        ...(shouldHaveBorder &&
-          ownerState.orientation === 'vertical' && {
-            borderBottom: '1px solid var(--ButtonGroup-separatorColor)',
-          }),
-      },
-      // middle Buttons or IconButtons
-      [`& > :not([data-first-child]):not([data-last-child])`]: {
-        borderRadius: 0,
-        ...(shouldHaveBorder &&
-          ownerState.orientation === 'horizontal' && {
-            borderLeft: '1px solid var(--ButtonGroup-separatorColor)',
-            borderRight: '1px solid var(--ButtonGroup-separatorColor)',
-          }),
-        ...(shouldHaveBorder &&
-          ownerState.orientation === 'vertical' && {
-            borderTop: '1px solid var(--ButtonGroup-separatorColor)',
-            borderBottom: '1px solid var(--ButtonGroup-separatorColor)',
-          }),
-      },
-      // last Button or IconButton
-      [`& > [data-last-child]`]: {
-        '--Button-radius': lastChildRadius,
-        '--IconButton-radius': lastChildRadius,
-        ...(shouldHaveBorder &&
-          ownerState.orientation === 'horizontal' && {
-            borderLeft: '1px solid var(--ButtonGroup-separatorColor)',
-          }),
-        ...(shouldHaveBorder &&
-          ownerState.orientation === 'vertical' && {
-            borderTop: '1px solid var(--ButtonGroup-separatorColor)',
-          }),
-      },
-      [`& > :not([data-first-child])`]: {
-        '--Button-margin': margin,
-        '--IconButton-margin': margin,
-      },
-      [`& .${buttonClasses.root}, & .${iconButtonClasses.root}`]: {
-        [`&:hover, ${theme.focus.selector}`]: {
-          zIndex: 1,
-        },
-        '&:disabled': {
-          zIndex: -1,
-        },
-      },
-      ...(ownerState.buttonFlex && {
-        [`& > *:not(.${iconButtonClasses.root})`]: {
-          flex: ownerState.buttonFlex,
-        },
-        [`& > :not(button) > .${buttonClasses.root}`]: {
-          width: '100%', // for button to fill its wrapper.
-        },
+  return [
+    {
+      '--ButtonGroup-separatorSize': '-1px',
+      ...(ownerState.color !== 'context' && {
+        '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.outlinedBorder,
+        ...(ownerState.variant === 'solid' && {
+          '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[400],
+        }),
       }),
+      '--ButtonGroup-radius': theme.vars.radius.sm,
+      '--Divider-inset': '0.5rem',
+      display: 'flex',
+      flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
+      [`&:not(.${buttonGroupClasses.detached})`]: {
+        // first Button or IconButton
+        [`& > [data-first-child]`]: {
+          '--Button-radius': firstChildRadius,
+          '--IconButton-radius': firstChildRadius,
+          ...(shouldHaveBorder &&
+            ownerState.orientation === 'horizontal' && {
+              borderRight: '1px solid var(--ButtonGroup-separatorColor)',
+            }),
+          ...(shouldHaveBorder &&
+            ownerState.orientation === 'vertical' && {
+              borderBottom: '1px solid var(--ButtonGroup-separatorColor)',
+            }),
+        },
+        // middle Buttons or IconButtons
+        [`& > :not([data-first-child]):not([data-last-child])`]: {
+          borderRadius: 0,
+          ...(shouldHaveBorder &&
+            ownerState.orientation === 'horizontal' && {
+              borderLeft: '1px solid var(--ButtonGroup-separatorColor)',
+              borderRight: '1px solid var(--ButtonGroup-separatorColor)',
+            }),
+          ...(shouldHaveBorder &&
+            ownerState.orientation === 'vertical' && {
+              borderTop: '1px solid var(--ButtonGroup-separatorColor)',
+              borderBottom: '1px solid var(--ButtonGroup-separatorColor)',
+            }),
+        },
+        // last Button or IconButton
+        [`& > [data-last-child]`]: {
+          '--Button-radius': lastChildRadius,
+          '--IconButton-radius': lastChildRadius,
+          ...(shouldHaveBorder &&
+            ownerState.orientation === 'horizontal' && {
+              borderLeft: '1px solid var(--ButtonGroup-separatorColor)',
+            }),
+          ...(shouldHaveBorder &&
+            ownerState.orientation === 'vertical' && {
+              borderTop: '1px solid var(--ButtonGroup-separatorColor)',
+            }),
+        },
+        [`& > :not([data-first-child])`]: {
+          '--Button-margin': margin,
+          '--IconButton-margin': margin,
+        },
+        [`& .${buttonClasses.root}, & .${iconButtonClasses.root}`]: {
+          [`&:hover, ${theme.focus.selector}`]: {
+            zIndex: 1,
+          },
+          '&:disabled': {
+            zIndex: 0,
+          },
+        },
+        ...(ownerState.buttonFlex && {
+          [`& > *:not(.${iconButtonClasses.root})`]: {
+            flex: ownerState.buttonFlex,
+          },
+          [`& > :not(button) > .${buttonClasses.root}`]: {
+            width: '100%', // for button to fill its wrapper.
+          },
+        }),
+      },
     },
-  };
+    {
+      [theme.getColorSchemeSelector('dark')]: {
+        ...(ownerState.color !== 'context' && {
+          ...((ownerState.variant === 'solid' || ownerState.variant === 'soft') && {
+            '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[700],
+          }),
+          ...(ownerState.variant === 'plain' && {
+            '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[300],
+          }),
+        }),
+      },
+    },
+  ];
 });
 
 /**

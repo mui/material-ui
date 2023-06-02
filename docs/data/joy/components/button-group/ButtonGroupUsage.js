@@ -22,6 +22,10 @@ export default function ButtonUsage() {
           defaultValue: 'neutral',
         },
         {
+          propName: 'disabled',
+          knob: 'switch',
+        },
+        {
           propName: 'size',
           knob: 'radio',
           options: ['sm', 'md', 'lg'],
@@ -43,7 +47,7 @@ export default function ButtonUsage() {
       renderDemo={(props) => (
         <ButtonGroup {...props}>
           <Button>Vote</Button>
-          <Button disabled>Comment</Button>
+          <Button>Comment</Button>
           <IconButton>
             <FavoriteBorder />
           </IconButton>
