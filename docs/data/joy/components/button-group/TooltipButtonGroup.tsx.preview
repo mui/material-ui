@@ -1,4 +1,4 @@
-<ButtonGroup aria-label="tooltip button group">
+<ButtonGroup variant="soft" aria-label="tooltip button group">
   <Tooltip arrow title="Go to profile">
     <Button startDecorator={<Person />}>Hover me</Button>
   </Tooltip>
@@ -8,5 +8,8 @@
         <Settings />
       </IconButton>
     </span>
+  </Tooltip>
+  <Tooltip arrow title="Go to profile">
+    <Button endDecorator={<Person />}>Hover me</Button>
   </Tooltip>
 </ButtonGroup>

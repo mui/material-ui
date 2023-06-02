@@ -8,7 +8,7 @@ import Person from '@mui/icons-material/Person';
 
 export default function TooltipButtonGroup() {
   return (
-    <ButtonGroup aria-label="tooltip button group">
+    <ButtonGroup variant="soft" aria-label="tooltip button group">
       <Tooltip arrow title="Go to profile">
         <Button startDecorator={<Person />}>Hover me</Button>
       </Tooltip>
@@ -18,6 +18,9 @@ export default function TooltipButtonGroup() {
             <Settings />
           </IconButton>
         </span>
+      </Tooltip>
+      <Tooltip arrow title="Go to profile">
+        <Button endDecorator={<Person />}>Hover me</Button>
       </Tooltip>
     </ButtonGroup>
   );
