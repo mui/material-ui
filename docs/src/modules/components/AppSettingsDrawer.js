@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled, useTheme, alpha } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -177,32 +177,9 @@ function AppSettingsDrawer(props) {
           href="/material-ui/customization/color/#playground"
           data-ga-event-category="settings"
           data-ga-event-action="colors"
-          size="small"
+          size="medium"
           variant="outlined"
-          sx={[
-            {
-              width: '100%',
-              mx: 0,
-              py: 1,
-              fontWeight: 500,
-              border: '1px solid',
-              borderColor: 'grey.200',
-              color: 'primary.500',
-              '&:hover': {
-                borderColor: 'grey.300',
-                background: 'grey.50',
-              },
-            },
-            (theme) =>
-              theme.applyDarkStyles({
-                borderColor: 'primaryDark.700',
-                color: 'primary.300',
-                '&:hover': {
-                  borderColor: 'primaryDark.600',
-                  background: alpha(theme.palette.primaryDark[700], 0.4),
-                },
-              }),
-          ]}
+          fullWidth
         >
           {t('settings.editWebsiteColors')}
         </Button>
