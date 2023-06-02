@@ -1,23 +1,44 @@
 import * as React from 'react';
-import Button from '@mui/joy/Button';
-import Divider from '@mui/joy/Divider';
 import Grid from '@mui/joy/Grid';
-import Textarea from '@mui/joy/Textarea';
 import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
-import { Badge, Chip, IconButton, Input } from '@mui/joy';
-import Avatar from '@mui/joy/Avatar';
+import { Chip, IconButton, Input } from '@mui/joy';
 import List from '@mui/joy/List';
-import ListDivider from '@mui/joy/ListDivider';
-import ListItem from '@mui/joy/ListItem';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
-import ListItemButton from '@mui/joy/ListItemButton';
-import ChatBubble from './ChatBubble';
 import ConversationListItem from './ConversationListItem';
-import MessageInput from './MessageInput';
+import MessagesPane from './MessagesPane';
 
 const messages = [
+  {
+    time: 'Thursday 11:41am',
+    sender: 'You',
+    message: 'Awesome! Thanks. I’ll look at this today.',
+  },
+  {
+    time: 'Thursday 11:44am',
+    sender: 'Katherine Moss',
+    message: 'No rush though — we still have to wait for Lana’s designs.',
+  },
+  {
+    time: 'Thursday 11:41am',
+    sender: 'You',
+    message: 'Awesome! Thanks. I’ll look at this today.',
+  },
+  {
+    time: 'Thursday 11:44am',
+    sender: 'Katherine Moss',
+    message: 'No rush though — we still have to wait for Lana’s designs.',
+  },
+  {
+    time: 'Thursday 11:41am',
+    sender: 'You',
+    message: 'Awesome! Thanks. I’ll look at this today.',
+  },
+  {
+    time: 'Thursday 11:44am',
+    sender: 'Katherine Moss',
+    message: 'No rush though — we still have to wait for Lana’s designs.',
+  },
   {
     time: 'Thursday 10:16am',
     sender: 'Katherine Moss',
@@ -58,6 +79,11 @@ const messages = [
     time: 'Just now',
     sender: 'You',
     message: 'Sure thing, I’ll have a look today. They’re looking great!',
+  },
+  {
+    time: 'now',
+    sender: 'Katherine Moss',
+    message: 'Typing...',
   },
 ];
 
@@ -134,80 +160,7 @@ export default function MyProfile() {
           </Sheet>
         </Grid>
         <Grid xs={12} md={8}>
-          <Sheet
-            sx={{
-              // px: 4,
-              // py: 3,
-              height: '100dvh',
-            }}
-          >
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              sx={{ borderBottom: '1px solid green', backgroundColor: 'yellow' }}
-            >
-              <Stack direction="row" spacing={1} alignItems="flex-start">
-                <Badge
-                  color="success"
-                  anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                >
-                  <Avatar size="lg" src="/static/images/avatar/1.jpg" />
-                </Badge>
-                <div>
-                  <Typography
-                    endDecorator={
-                      <Chip
-                        variant="outlined"
-                        size="sm"
-                        startDecorator={<Badge size="sm" />}
-                      >
-                        Online
-                      </Chip>
-                    }
-                  >
-                    Katherine Moss
-                  </Typography>
-
-                  <Typography>@kathy</Typography>
-                </div>
-              </Stack>
-              <div>
-                <Button>Call</Button>
-                <Button>View profile</Button>
-                <IconButton>kabob</IconButton>
-              </div>
-            </Stack>
-            {/* todo: come back and fix the height here once top bar and textarea are done */}
-            <Stack
-              spacing={2}
-              justifyContent="flex-end"
-              sx={{ height: 'calc(100dvh - 300px)', px: 4, py: 3 }}
-            >
-              {/* <Typography>messages list/item - an item has a chat bubble</Typography> */}
-              {messages.map((message, index) => {
-                return (
-                  <ChatBubble
-                    key={index}
-                    variant={message.sender === 'You' ? 'sent' : 'received'}
-                    message={message.message}
-                    attachment={message.attachment}
-                    time={message.time}
-                    sender={message.sender}
-                  />
-                );
-              })}
-              {/* <ChatBubble variant="received" />
-              <Divider>Today</Divider>
-              <ChatBubble variant="sent" />
-              <ChatBubble variant="sent" />
-              <ChatBubble variant="received" /> */}
-            </Stack>
-            {/* <Textarea placeholder="Send a message" minRows={2} />
-            <Button variant="solid" color="primary">
-              Send
-            </Button> */}
-            <MessageInput />
-          </Sheet>
+          <MessagesPane messages={messages} />
         </Grid>
       </Grid>
     </Sheet>

@@ -22,7 +22,7 @@ export default function MessageInput() {
       <Textarea
         placeholder="Type something here…"
         aria-label="Message"
-        minRows={3}
+        minRows={2}
         endDecorator={
           <Box
             sx={
@@ -34,7 +34,7 @@ export default function MessageInput() {
               }
             }
           >
-            <IconButton
+            {/* <IconButton
               variant="plain"
               color="neutral"
               onClick={(event) => setAnchorEl(event.currentTarget)}
@@ -62,8 +62,8 @@ export default function MessageInput() {
                   {weight === '200' ? 'lighter' : weight}
                 </MenuItem>
               ))}
-            </Menu>
-            <IconButton>emoji</IconButton>
+            </Menu> */}
+            {/* <IconButton>emoji</IconButton> */}
             <Button>Send</Button>
           </Box>
         }

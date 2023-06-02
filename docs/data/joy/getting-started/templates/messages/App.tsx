@@ -7,7 +7,7 @@ import useScript from './useScript';
 import customTheme from './theme';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
-import MyProfile from './components/MyProfile';
+import MyMessages from './components/MyMessages';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -68,7 +68,7 @@ export default function JoyMessagesTemplate() {
             // overflow: 'auto',
           })}
         >
-          <MyProfile />
+          <MyMessages />
         </Box>
       </Box>
     </CssVarsProvider>
