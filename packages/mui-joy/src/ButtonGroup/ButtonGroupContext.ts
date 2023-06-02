@@ -1,10 +1,10 @@
 import * as React from 'react';
-import type { ButtonGroupOwnerState } from './ButtonGroupProps';
+import type { ButtonGroupProps } from './ButtonGroupProps';
 
 interface IButtonGroupContext {
-  color?: ButtonGroupOwnerState['color'];
-  variant?: ButtonGroupOwnerState['variant'];
-  size?: ButtonGroupOwnerState['size'];
+  color?: ButtonGroupProps['color'];
+  variant?: ButtonGroupProps['variant'];
+  size?: ButtonGroupProps['size'];
   disabled?: boolean;
 }
 
