@@ -5,12 +5,12 @@ import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import { ClassesTable } from 'docs/src/modules/components/ApiPage';
 import Divider from 'docs/src/modules/components/ApiDivider';
 import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CSSList from './ApiPage/CSSList';
+import ClassesList from './ApiPage/ClassesList';
 import SlotsList from './ApiPage/SlotsList';
 
 function getTranslatedHeader(t, header, text) {
@@ -265,7 +265,7 @@ import { ${pageContent.name} } from '${source}';`}
                   __html: t('api-docs.classesDescription'),
                 }}
               />
-              <ClassesTable
+              <ClassesList
                 componentClasses={componentClasses}
                 componentName={pageContent.name}
                 classDescriptions={classDescriptions}

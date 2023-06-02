@@ -3,79 +3,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-import { sxChip } from './AppNavDrawerItem';
 import CSSList from './ApiPage/CSSList';
+import ClassesList from './ApiPage/ClassesList';
 import SlotsList from './ApiPage/SlotsList';
-
-export function ClassesTable(props) {
-  const { componentClasses, classDescriptions, componentName } = props;
-  const t = useTranslate();
-
-  const list = componentClasses.classes.map((classes) => ({
-    classes,
-    className:
-      componentClasses.globalClasses[classes] ||
-      `Mui${componentName.replace('Unstyled', '')}-${classes}`,
-  }));
-
-  return (
-    <table style={{ display: 'table', width: '100%' }}>
-      <thead>
-        <tr>
-          <th align="left">{t('api-docs.globalClass')}</th>
-          <th align="left">{t('api-docs.description')}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {list
-          .sort((a, b) => a.className.localeCompare(b.className))
-          .map((item) => {
-            const isGlobalStateClass = !!componentClasses.globalClasses[item.classes];
-            return (
-              <tr key={item.classes}>
-                <td align="left">
-                  <span className="prop-name">
-                    .
-                    {isGlobalStateClass ? (
-                      <React.Fragment>
-                        {item.className}
-                        <Chip size="small" label={t('api-docs.state')} sx={sxChip('grey')} />
-                      </React.Fragment>
-                    ) : (
-                      item.className
-                    )}
-                  </span>
-                </td>
-                <td
-                  align="left"
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      classDescriptions[item.classes] &&
-                      classDescriptions[item.classes].description
-                        .replace(/{{conditions}}/, classDescriptions[item.classes].conditions)
-                        .replace(/{{nodeName}}/, classDescriptions[item.classes].nodeName),
-                  }}
-                />
-              </tr>
-            );
-          })}
-      </tbody>
-    </table>
-  );
-}
-
-ClassesTable.propTypes = {
-  classDescriptions: PropTypes.object.isRequired,
-  componentClasses: PropTypes.object.isRequired,
-  componentName: PropTypes.string.isRequired,
-};
 
 export function getTranslatedHeader(t, header) {
   const translations = {
@@ -362,7 +298,7 @@ import { ${pageContent.name} } from '${source}';`}
                 __html: t('api-docs.classesDescription'),
               }}
             />
-            <ClassesTable
+            <ClassesList
               componentClasses={componentClasses}
               componentName={pageContent.name}
               classDescriptions={classDescriptions}
