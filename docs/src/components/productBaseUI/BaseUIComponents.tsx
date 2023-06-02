@@ -101,32 +101,35 @@ export default function BaseUIComponents() {
               {
                 height: '100%',
                 '--palette-primary': 'var(--muidocs-palette-primary-main)',
+                '--palette-primary-light': 'var(--muidocs-palette-primary-400)',
                 '--palette-primary-dark': 'var(--muidocs-palette-primary-800)',
                 '--focus-ring': 'var(--muidocs-palette-primary-200)',
                 '--shadow': 'var(--muidocs-shadows-2)',
                 ...(styling === 'tailwindcss' && {
-                  '--palette-primary': '#4f46e5',
-                  '--palette-primary-dark': '#3730a3',
-                  '--focus-ring': '#a5b4fc',
+                  '--palette-primary': '#4f46E5',
+                  '--palette-primary-light': '#7B74EC',
+                  '--palette-primary-dark': '#3730A3',
+                  '--focus-ring': '#A5B4FC',
                   '--shadow': 'var(--muidocs-shadows-2)',
                 }),
                 ...(styling === 'css' && {
-                  '--palette-primary': '#9333ea',
-                  '--palette-primary-dark': '#581c87',
-                  '--focus-ring': '#d8b4fe',
+                  '--palette-primary': '#9333EA',
+                  '--palette-primary-light': '#AC62EF',
+                  '--palette-primary-dark': '#581C87',
+                  '--focus-ring': '#D8B4FE',
                   '--shadow': 'var(--muidocs-shadows-2)',
                 }),
               },
               (theme) =>
                 theme.applyDarkStyles({
-                  '--focus-ring': 'var(--muidocs-palette-primary-900)',
+                  '--focus-ring': 'var(--muidocs-palette-primary-600)',
                   ...(styling === 'tailwindcss' && {
-                    '--palette-primary': '#818cf8',
-                    '--focus-ring': '#312e81',
+                    '--palette-primary': '#818CF8',
+                    '--focus-ring': '#7B78CF',
                   }),
                   ...(styling === 'css' && {
-                    '--palette-primary': '#c084fc',
-                    '--focus-ring': '#581c87',
+                    '--palette-primary': '#C084FC',
+                    '--focus-ring': '#A65EDE',
                   }),
                 }),
             ]}
