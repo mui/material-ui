@@ -126,6 +126,22 @@ This is because the variables are also used to calculate a proper radius for the
 
 ## Common examples
 
+### Product card
+
+This example demonstrates the automatic adjustment when a button is placed as a only child of a [CardOverflow](#expand-to-fill) component. The button will be stretched to fill the entire area of the CardOverflow and the bottom corner radius is also adjusted.
+
+{{"demo": "ProductCard.js" }}
+
+### User card
+
+A [horizontal card](#horizontal-alignment) can be stacked when its width is equal or lower than the `stackWidth` value.
+
+{{"demo": "UserCard.js" }}
+
+:::info
+Alternatively, you can use [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries) to achieve the similar result. You should check the [browser support](https://caniuse.com/css-container-queries) before using CSS Container Queries.
+:::
+
 ### Instagram post
 
 {{"demo": "InstagramPost.js" }}

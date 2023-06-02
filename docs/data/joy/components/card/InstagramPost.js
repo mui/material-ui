@@ -4,6 +4,7 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Link from '@mui/joy/Link';
 import IconButton from '@mui/joy/IconButton';
@@ -25,7 +26,7 @@ export default function InstagramPost() {
         '--Card-radius': (theme) => theme.vars.radius.xs,
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', pb: 1.5, gap: 1 }}>
+      <CardContent sx={{ flexDirection: 'row', alignItems: 'center', gap: 1 }}>
         <Box
           sx={{
             position: 'relative',
@@ -53,13 +54,13 @@ export default function InstagramPost() {
         <IconButton variant="plain" color="neutral" size="sm" sx={{ ml: 'auto' }}>
           <MoreHoriz />
         </IconButton>
-      </Box>
+      </CardContent>
       <CardOverflow>
         <AspectRatio>
           <img src="/static/images/cards/yosemite.jpeg" alt="" loading="lazy" />
         </AspectRatio>
       </CardOverflow>
-      <Box sx={{ display: 'flex', alignItems: 'center', mx: -1, my: 1 }}>
+      <CardContent sx={{ flexDirection: 'row', alignItems: 'center', mx: -1 }}>
         <Box sx={{ width: 0, display: 'flex', gap: 0.5 }}>
           <IconButton variant="plain" color="neutral" size="sm">
             <FavoriteBorder />
@@ -89,7 +90,7 @@ export default function InstagramPost() {
             <BookmarkBorderRoundedIcon />
           </IconButton>
         </Box>
-      </Box>
+      </CardContent>
       <Link
         component="button"
         underline="none"

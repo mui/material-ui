@@ -45,6 +45,7 @@ export default function CardLayers3d() {
               'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)',
             border: '1px solid',
             borderColor: '#777',
+            backdropFilter: 'blur(1px)',
           }}
         >
           <Typography level="h2" fontSize="lg" textColor="#fff">
@@ -58,6 +59,7 @@ export default function CardLayers3d() {
             background: 'linear-gradient(to top, rgba(0,0,0,0.3), rgba(0,0,0,0.3))',
             border: '1px solid',
             borderColor: '#000',
+            backdropFilter: 'blur(1px)',
           }}
         >
           <Typography level="h2" fontSize="lg" textColor="#fff" m={3}>

@@ -87,7 +87,7 @@ const CardRoot = styled('div', {
           typeof ownerState.stackWidth === 'number'
             ? `${ownerState.stackWidth}px`
             : ownerState.stackWidth
-        } - 2 * var(--Card-padding))`,
+        } - 2 * var(--Card-padding) - 2 * var(--variant-borderWidth, 0px))`,
         minWidth: 'clamp(0px, (var(--unstable_Card-stackPoint) + 1px - 100%) * 999, 100%)',
       },
     }),
