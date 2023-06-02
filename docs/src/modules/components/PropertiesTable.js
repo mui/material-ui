@@ -5,6 +5,19 @@ import Alert from '@mui/material/Alert';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ApiItem from './ApiPage/ApiItem';
 
+// TODO: Move to translation
+const additionalPropsInfoText = {
+  cssApi: 'See <a href="#css">CSS API</a> below for more details.',
+  sx: 'See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.',
+  slotsApi: 'See <a href="#slots">Slots API</a> below for more details.',
+  'joy-size':
+    'To learn how to add custom sizes to the component, check out <a href="/joy-ui/customization/themed-components/#extend-sizes">Themed components—Extend sizes</a>.',
+  'joy-color':
+    'To learn how to add your own colors, check out <a href="/joy-ui/customization/themed-components/#extend-colors">Themed components—Extend colors</a>.',
+  'joy-variant':
+    'To learn how to add your own variants, check out <a href="/joy-ui/customization/themed-components/#extend-variants">Themed components—Extend variants</a>.',
+};
+
 export default function PropertiesTable(props) {
   const {
     properties,
@@ -23,6 +36,7 @@ export default function PropertiesTable(props) {
           // ApiItem
           const typeName = propData.type.description || propData.type.name;
           const propDefault = propData.default;
+          const signature = propData.signature?.type;
           return (
             <ApiItem
               key={propName}
@@ -31,15 +45,36 @@ export default function PropertiesTable(props) {
               description={typeName}
               note={
                 (propData.required && !showOptionalAbbr && 'Required') ||
-                (!propData.required && showOptionalAbbr && 'Optional')
+                (!propData.required && showOptionalAbbr && 'Optional') ||
+                ''
               }
             >
               <p
+                className="description"
                 dangerouslySetInnerHTML={{
-                  __html: propertiesDescriptions[propName] || '',
+                  __html: propertiesDescriptions[propName].description || '',
                 }}
               />
+              {propertiesDescriptions[propName].notes && (
+                <p
+                  className="notes"
+                  dangerouslySetInnerHTML={{
+                    __html: propertiesDescriptions[propName].notes || '',
+                  }}
+                />
+              )}
 
+              {Object.keys(additionalPropsInfoText)
+                .filter((key) => propData.additionalInfo?.[key])
+                .map((key) => (
+                  <p
+                    className="additional-info"
+                    key={key}
+                    dangerouslySetInnerHTML={{
+                      __html: additionalPropsInfoText[key],
+                    }}
+                  />
+                ))}
               {propData.deprecated && (
                 <Alert
                   severity="warning"
@@ -76,6 +111,47 @@ export default function PropertiesTable(props) {
                   <span>{t('api-docs.default')}: </span>
                   <code>{propDefault}</code>
                 </p>
+              )}
+
+              {signature && (
+                <div className="signature">
+                  <p>
+                    <span>Signature: </span>
+                    <code
+                      dangerouslySetInnerHTML={{
+                        __html: signature,
+                      }}
+                    />
+                  </p>
+                  {propData.signature.describedArgs && (
+                    <div className="parameters args">
+                      <p>Args:</p>
+                      <ul>
+                        {propData.signature.describedArgs.map((argName) => (
+                          <li
+                            key={argName}
+                            dangerouslySetInnerHTML={{
+                              __html: propertiesDescriptions[propName].typeDescriptions[argName],
+                            }}
+                          />
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {propData.signature.returned && (
+                    <p className="parameters return">
+                      Return:{' '}
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            propertiesDescriptions[propName].typeDescriptions[
+                              propData.signature.returned
+                            ],
+                        }}
+                      />
+                    </p>
+                  )}
+                </div>
               )}
             </ApiItem>
           );
