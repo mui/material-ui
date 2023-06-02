@@ -16,6 +16,8 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       maxHeight: 'min(68vh, 1000px)',
       overflow: 'auto',
       backgroundColor: blueDark[800],
+      border: '1px solid',
+      borderColor: blueDark[700],
       colorScheme: 'dark',
       '&:hover': {
         boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary.light}`,
@@ -37,10 +39,10 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
   theme.applyDarkStyles({
     '& .scrollContainer': {
       '&:hover': {
-        boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primaryDark[400]}`,
+        boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary[400]}`,
       },
       '&:focus-within': {
-        boxShadow: `0 0 0 2px ${(theme.vars || theme).palette.primaryDark.main}`,
+        boxShadow: `0 0 0 2px ${(theme.vars || theme).palette.primary.main}`,
       },
     },
   }),

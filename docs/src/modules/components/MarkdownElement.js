@@ -387,7 +387,7 @@ const Root = styled('div')(
     '& .MuiCode-copy': {
       minWidth: 64,
       display: 'none',
-      backgroundColor: alpha(lightTheme.palette.primaryDark[600], 0.5),
+      backgroundColor: lightTheme.palette.primaryDark[700],
       cursor: 'pointer',
       position: 'absolute',
       top: theme.spacing(1),
@@ -395,15 +395,15 @@ const Root = styled('div')(
       fontFamily: 'inherit',
       fontSize: lightTheme.typography.pxToRem(13),
       fontWeight: 500,
-      padding: theme.spacing(0.5, 1),
-      borderRadius: 4,
+      padding: theme.spacing(0.5, 0.5, 0.75, 0.5),
+      borderRadius: 6,
       border: `1px solid`,
       borderColor: lightTheme.palette.primaryDark[500],
       color: lightTheme.palette.primaryDark[50],
       '&:hover, &:focus': {
         opacity: 1,
         color: '#fff',
-        backgroundColor: alpha(lightTheme.palette.primaryDark[600], 0.7),
+        backgroundColor: lightTheme.palette.primaryDark[600],
         borderColor: lightTheme.palette.primaryDark[500],
         '& .MuiCode-copyKeypress': {
           display: 'block',
