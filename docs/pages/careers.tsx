@@ -170,17 +170,6 @@ const openRolesData = [
       },
     ],
   },
-  {
-    title: 'Operations',
-    roles: [
-      {
-        title: 'Head of Operations',
-        description:
-          "You will take ownership of designing, implementing, and overseeing most of the business operations to support MUI's growth.",
-        url: '/careers/head-of-operations/',
-      },
-    ],
-  },
 ];
 
 const nextRolesData = [
