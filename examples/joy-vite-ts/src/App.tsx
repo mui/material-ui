@@ -3,9 +3,8 @@ import Container from '@mui/joy/Container';
 import Typography from '@mui/joy/Typography';
 import Card from '@mui/joy/Card';
 import Button from '@mui/joy/Button';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import Link from '@mui/joy/Link';
-// import ProTip from './ProTip';
+import SvgIcon from '@mui/joy/SvgIcon';
 
 function Copyright() {
   return (
@@ -19,6 +18,14 @@ function Copyright() {
   );
 }
 
+function Arrow() {
+  return (
+    <SvgIcon>
+      <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+    </SvgIcon>
+  );
+}
+
 export default function App() {
   return (
     <Container maxWidth="md">
@@ -28,8 +35,8 @@ export default function App() {
           sx={{ mt: 6, mb: 3 }}
           variant="soft"
           component="a"
-          href="https://mui.com/material-ui/getting-started/templates/"
-          endDecorator={<KeyboardArrowRight />}
+          href="https://mui.com/joy-ui/getting-started/templates/"
+          endDecorator={<Arrow />}
         >
           See more examples
         </Button>
