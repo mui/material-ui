@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ApiItem from './ApiItem';
 
 export type CSSListProps = {
@@ -21,7 +22,7 @@ export type CSSListProps = {
 
 export default function CSSList(props: CSSListProps) {
   const { componentStyles, classDescriptions, componentName } = props;
-  // const t = useTranslate();
+  const t = useTranslate();
 
   const hashPrefix = componentName ? `${componentName}-` : '';
   return (
@@ -36,7 +37,7 @@ export default function CSSList(props: CSSListProps) {
             title={`.${
               componentStyles.globalClasses[className] || `${componentStyles.name}-${className}`
             }`}
-            note="Required"
+            note={isGlobalStateClass ? t('api-docs.state') : ''}
           >
             <p
               dangerouslySetInnerHTML={{

@@ -42,7 +42,7 @@ export default function ClassesList(props: ClassesListProps) {
             <ApiItem
               id={`${hashPrefix}classes-${item.className}`}
               key={item.className}
-              description={`${isGlobalStateClass ? ` ${t('api-docs.state')}` : ''}`}
+              note={isGlobalStateClass ? t('api-docs.state') : ''}
               title={cssClassName}
             >
               <p
