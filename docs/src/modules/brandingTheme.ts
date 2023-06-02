@@ -714,11 +714,11 @@ export function getThemedComponents(): ThemeOptions {
               borderColor: (theme.vars || theme).palette.primaryDark[700],
               '& .MuiMenuItem-root': {
                 '&:hover, &:focus': {
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
                 '&.Mui-selected': {
                   color: (theme.vars || theme).palette.primary[300],
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                  backgroundColor: alpha(theme.palette.primary[900], 0.4),
                 },
               },
             }),
@@ -998,7 +998,7 @@ export function getThemedComponents(): ThemeOptions {
               color: theme.palette.grey[300],
               borderColor: theme.palette.primaryDark[500],
               '&.Mui-selected': {
-                color: '#fff',
+                color: (theme.vars || theme).palette.primary[200],
                 borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
                 backgroundColor: alpha(theme.palette.primary[900], 0.4),
                 '&:hover': {
@@ -1013,6 +1013,7 @@ export function getThemedComponents(): ThemeOptions {
       MuiTooltip: {
         styleOverrides: {
           tooltip: {
+            borderRadius: 6,
             padding: '6px 12px',
           },
         },
