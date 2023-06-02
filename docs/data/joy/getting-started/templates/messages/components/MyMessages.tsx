@@ -43,7 +43,7 @@ const messages = [
   },
   {
     time: 'Thursday 11:40am',
-    sender: 'Katherine Moss',
+    sender: 'You',
     message:
       'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
   },

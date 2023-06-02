@@ -2,6 +2,7 @@ import * as React from 'react';
 import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
+import { Box } from '@mui/joy';
 
 type ChatBubbleProps = {
   variant: 'sent' | 'received';
@@ -20,7 +21,7 @@ export default function ChatBubble({
 }: ChatBubbleProps) {
   const isSent = variant === 'sent';
   return (
-    <div>
+    <Box maxWidth="80%">
       <Stack direction="row" spacing={2} justifyContent="space-between">
         <Typography fontSize="sm">{sender}</Typography>
         {/* <Typography fontSize="sm">Katherine Moss</Typography> */}
@@ -39,6 +40,6 @@ export default function ChatBubble({
       >
         {message}
       </Sheet>
-    </div>
+    </Box>
   );
 }

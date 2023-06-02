@@ -1,18 +1,13 @@
 import * as React from 'react';
-import Button from '@mui/joy/Button';
-import Divider from '@mui/joy/Divider';
-import Grid from '@mui/joy/Grid';
-import Textarea from '@mui/joy/Textarea';
 import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
-import { Badge, Box, Chip, IconButton, Input } from '@mui/joy';
+import { Badge, Box } from '@mui/joy';
 import Avatar from '@mui/joy/Avatar';
-import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton, { ListItemButtonProps } from '@mui/joy/ListItemButton';
+import AvatarWithStatus from './AvatarWithStatus';
 
 type ConversationListItemProps = ListItemButtonProps & {
   isNew?: boolean;
@@ -51,15 +46,9 @@ export default function ConversationListItem({
                     />
                   )}
                 </Box>
-                <div>
-                  <Badge
-                    color="success"
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                    badgeInset="6px 6px"
-                  >
-                    <Avatar src="/static/images/avatar/1.jpg" />
-                  </Badge>
-                </div>
+
+                <AvatarWithStatus online={true} src="/static/images/avatar/1.jpg" />
+
                 <Box ml={1.5}>
                   <Typography fontSize="sm" fontWeight="lg">
                     Mabel Boyle

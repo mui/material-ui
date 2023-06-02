@@ -8,6 +8,7 @@ import Avatar from '@mui/joy/Avatar';
 import ChatBubble from './ChatBubble';
 import MessageInput from './MessageInput';
 import MessagesPaneHeader from './MessagesPaneHeader';
+import AvatarWithStatus from './AvatarWithStatus';
 
 type MessagesPaneProps = {
   messages: any;
@@ -42,15 +43,29 @@ export default function MessagesPane({ messages }: MessagesPaneProps) {
         >
           {/* <Typography>messages list/item - an item has a chat bubble</Typography> */}
           {messages.map((message, index) => {
+            const isYou = message.sender === 'You';
             return (
-              <ChatBubble
+              <Stack
                 key={index}
-                variant={message.sender === 'You' ? 'sent' : 'received'}
-                message={message.message}
-                attachment={message.attachment}
-                time={message.time}
-                sender={message.sender}
-              />
+                direction="row"
+                spacing={2}
+                flexDirection={isYou ? 'row-reverse' : 'row'}
+                // maxWidth="80%"
+              >
+                {!isYou && (
+                  <AvatarWithStatus
+                    online={true}
+                    src="/static/images/avatar/1.jpg"
+                  />
+                )}
+                <ChatBubble
+                  variant={isYou ? 'sent' : 'received'}
+                  message={message.message}
+                  attachment={message.attachment}
+                  time={message.time}
+                  sender={message.sender}
+                />
+              </Stack>
             );
           })}
         </Stack>
