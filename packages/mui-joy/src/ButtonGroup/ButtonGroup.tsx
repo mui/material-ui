@@ -81,6 +81,8 @@ const ButtonGroupRoot = styled('div', {
         },
         // middle Buttons or IconButtons
         [`& > :not([data-first-child]):not([data-last-child])`]: {
+          '--Button-radius': '0px',
+          '--IconButton-radius': '0px',
           borderRadius: 0,
           ...(shouldHaveBorder &&
             ownerState.orientation === 'horizontal' && {
@@ -112,10 +114,7 @@ const ButtonGroupRoot = styled('div', {
         },
         [`& .${buttonClasses.root}, & .${iconButtonClasses.root}`]: {
           [`&:hover, ${theme.focus.selector}`]: {
-            zIndex: 1,
-          },
-          '&:disabled': {
-            zIndex: 0,
+            zIndex: 1, // to make borders appear above sibling.
           },
         },
         ...(ownerState.buttonFlex && {

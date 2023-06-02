@@ -21,7 +21,7 @@ export default function SeparatorButtonGroup() {
       <ButtonGroup
         variant="plain"
         aria-label="button group"
-        sx={{ '--ButtonGroup-separatorColor': `hsl(${hue} 100% 50%)` }}
+        sx={{ '--ButtonGroup-separatorColor': `hsl(${hue} 100% 50%) !important` }}
       >
         <Button>One</Button>
         <Button>Two</Button>
