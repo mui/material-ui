@@ -72,12 +72,12 @@ export default function ConversationsPane() {
           py: 0,
         }}
       >
-        <ConversationListItem selected />
+        <ConversationListItem selected isNew />
+        <ConversationListItem />
+        <ConversationListItem isNew />
         <ConversationListItem />
         <ConversationListItem />
-        <ConversationListItem />
-        <ConversationListItem />
-        <ConversationListItem />
+        <ConversationListItem isNew />
         <ConversationListItem />
         <ConversationListItem />
         <ConversationListItem />
