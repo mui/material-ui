@@ -15,6 +15,23 @@ type MessagesPaneProps = {
 };
 
 export default function MessagesPane({ messages }: MessagesPaneProps) {
+  // const [height, setHeight] = React.useState(290);
+  // const [height, setHeight] = React.useState<number>(128);
+  // const ref = React.useRef<null | HTMLDivElement>(null);
+
+  // React.useEffect(() => {
+  //   if (ref.current) {
+  //     setHeight(ref.current.clientHeight);
+  //   }
+  // }, [setHeight]);
+
+  // const measuredRef = React.useCallback((node) => {
+  //   console.log('!!!!', node);
+  //   if (node !== null) {
+  //     setHeight(node.getBoundingClientRect().height);
+  //   }
+  // }, []);
+
   return (
     <Sheet
       sx={{
@@ -29,7 +46,8 @@ export default function MessagesPane({ messages }: MessagesPaneProps) {
       <Box
         sx={{
           display: 'flex',
-          height: 'calc(100dvh - 177px)',
+          height: `calc(100dvh - 217px)`,
+          // height: `calc(100dvh - 88px - ${height}px)`,
           px: 4,
           py: 3,
           overflowY: 'scroll',
@@ -70,15 +88,10 @@ export default function MessagesPane({ messages }: MessagesPaneProps) {
           })}
         </Stack>
       </Box>
-      <Box
-        sx={{
-          backgroundColor: 'green',
-          px: 4,
-          pb: 3,
-        }}
-      >
-        <MessageInput />
-      </Box>
+
+      <MessageInput
+      //  ref={measuredRef}
+      />
     </Sheet>
   );
 }

@@ -13,28 +13,38 @@ import FormatItalic from '@mui/icons-material/FormatItalic';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import Check from '@mui/icons-material/Check';
 
-export default function MessageInput() {
+export default function MessageInput({ ref }: any) {
   // const [italic, setItalic] = React.useState(false);
   // const [fontWeight, setFontWeight] = React.useState('normal');
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   return (
-    <FormControl>
-      <Textarea
-        placeholder="Type something here…"
-        aria-label="Message"
-        minRows={2}
-        endDecorator={
-          <Box
-            sx={
-              {
-                // display: 'flex',
-                // gap: 'var(--Textarea-paddingBlock)',
-                // pt: 'var(--Textarea-paddingBlock)',
-                // flex: 'auto',
+    <Box
+      sx={{
+        // backgroundColor: 'green',
+        px: 4,
+        pb: 3,
+        minHeight: 128,
+      }}
+      // ref={ref}
+    >
+      <FormControl>
+        <Textarea
+          placeholder="Type something here…"
+          aria-label="Message"
+          minRows={2}
+          maxRows={2}
+          endDecorator={
+            <Box
+              sx={
+                {
+                  // display: 'flex',
+                  // gap: 'var(--Textarea-paddingBlock)',
+                  // pt: 'var(--Textarea-paddingBlock)',
+                  // flex: 'auto',
+                }
               }
-            }
-          >
-            {/* <IconButton
+            >
+              {/* <IconButton
               variant="plain"
               color="neutral"
               onClick={(event) => setAnchorEl(event.currentTarget)}
@@ -63,11 +73,12 @@ export default function MessageInput() {
                 </MenuItem>
               ))}
             </Menu> */}
-            {/* <IconButton>emoji</IconButton> */}
-            <Button>Send</Button>
-          </Box>
-        }
-      />
-    </FormControl>
+              {/* <IconButton>emoji</IconButton> */}
+              <Button>Send</Button>
+            </Box>
+          }
+        />
+      </FormControl>
+    </Box>
   );
 }

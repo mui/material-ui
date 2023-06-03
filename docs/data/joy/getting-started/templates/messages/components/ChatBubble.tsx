@@ -22,7 +22,12 @@ export default function ChatBubble({
   const isSent = variant === 'sent';
   return (
     <Box maxWidth="80%">
-      <Stack direction="row" spacing={2} justifyContent="space-between">
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="space-between"
+        alignItems="center"
+      >
         <Typography fontSize="sm">{sender}</Typography>
         {/* <Typography fontSize="sm">Katherine Moss</Typography> */}
         <Typography fontSize="xs">{time}</Typography>
