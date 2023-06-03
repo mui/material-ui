@@ -65,6 +65,22 @@ describe('<Input />', () => {
     expect(handleOnKeyUp.callCount).to.equal(1);
   });
 
+  it('should call event handlers passed to component', () => {
+    const handleOnKeyDown = spy();
+    const handleOnKeyUp = spy();
+    const { getByRole } = render(
+      <Input onKeyDown={handleOnKeyDown} onKeyUp={handleOnKeyUp} autoFocus />,
+    );
+
+    const input = getByRole('textbox');
+
+    fireEvent.keyDown(input, { key: 'a' });
+    fireEvent.keyUp(input, { key: 'a' });
+
+    expect(handleOnKeyDown.callCount).to.equal(1);
+    expect(handleOnKeyUp.callCount).to.equal(1);
+  });
+
   describe('prop: multiline', () => {
     it('should pass the rows prop to the underlying textarea when multiline=true', () => {
       const { getByRole } = render(<Input multiline rows={5} />);

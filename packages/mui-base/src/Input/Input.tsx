@@ -149,10 +149,8 @@ const Input = React.forwardRef(function Input<RootComponentType extends React.El
     elementType: InputComponent,
     getSlotProps: (otherHandlers: EventHandlers) => {
       return getInputProps({
-        ...otherHandlers,
         ...propsToForward,
-        onKeyDown: propsToForward.onKeyDown ?? otherHandlers.onKeyDown,
-        onKeyUp: propsToForward.onKeyUp ?? otherHandlers.onKeyUp,
+        ...otherHandlers,
       });
     },
     externalSlotProps: slotProps.input,
