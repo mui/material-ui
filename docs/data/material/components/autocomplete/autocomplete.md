@@ -106,6 +106,12 @@ You could also display a dialog when the user wants to add a new value.
 
 {{"demo": "FreeSoloCreateOptionDialog.js"}}
 
+## Hint
+
+Following demo shows how to add hinting feature to Autocomplete using `renderInput` and `filterOptions` prop.
+
+{{"demo": "Hint.js"}}
+
 ## Grouped
 
 You can group the options with the `groupBy` prop.
