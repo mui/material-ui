@@ -1,21 +1,24 @@
 import * as React from 'react';
-import Stack from '@mui/joy/Stack';
-import Sheet from '@mui/joy/Sheet';
-import Typography from '@mui/joy/Typography';
-import { Badge, Box } from '@mui/joy';
-import Avatar from '@mui/joy/Avatar';
+import Box from '@mui/joy/Box';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton, { ListItemButtonProps } from '@mui/joy/ListItemButton';
+import Stack from '@mui/joy/Stack';
+import Sheet from '@mui/joy/Sheet';
+import Typography from '@mui/joy/Typography';
 import AvatarWithStatus from './AvatarWithStatus';
 
 type ConversationListItemProps = ListItemButtonProps & {
   isNew?: boolean;
+  user: any;
+  messages: any;
 };
 
 export default function ConversationListItem({
   isNew = false,
   selected = false,
+  user,
+  messages,
 }: ConversationListItemProps) {
   return (
     <React.Fragment>
@@ -29,7 +32,7 @@ export default function ConversationListItem({
             p: 2,
           }}
         >
-          <Stack spacing={2}>
+          <Stack spacing={2} flex={1}>
             <Stack direction="row" justifyContent="space-between" flex={1}>
               <Stack direction="row">
                 {/* new icon */}
@@ -47,13 +50,13 @@ export default function ConversationListItem({
                   )}
                 </Box>
 
-                <AvatarWithStatus online={true} src="/static/images/avatar/1.jpg" />
+                <AvatarWithStatus online={user.online} src={user.avatar} />
 
                 <Box ml={1.5}>
                   <Typography fontSize="sm" fontWeight="lg">
-                    Mabel Boyle
+                    {user.name}
                   </Typography>
-                  <Typography level="body2">@mabel</Typography>
+                  <Typography level="body2">{user.username}</Typography>
                 </Box>
               </Stack>
               <Typography level="body2">5 mins ago</Typography>
@@ -64,15 +67,13 @@ export default function ConversationListItem({
               pl={2.5}
               sx={{
                 display: '-webkit-box',
-                '-webkit-line-clamp': '2',
-                '-webkit-box-orient': 'vertical',
+                WebkitLineClamp: '2',
+                WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
               }}
             >
-              Hey Olivia, Katherine sent me over the latest doc. I just have a quick
-              question about the thing that we talked about last week. When is a good
-              time?
+              {messages[0].content}
             </Typography>
           </Stack>
         </ListItemButton>

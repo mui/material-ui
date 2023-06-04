@@ -96,7 +96,7 @@ export default function MyProfile() {
     >
       <Grid container>
         <Grid xs={12} md={4}>
-          <ConversationsPane />
+          <ConversationsPane messages={messages} />
         </Grid>
         <Grid xs={12} md={8}>
           <MessagesPane messages={messages} />
