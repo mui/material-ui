@@ -176,13 +176,13 @@ const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
   }),
 }));
 
-const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'span', {
+const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: OwnerState }>({});
 
-const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'span', {
+const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
@@ -249,7 +249,7 @@ const AutocompleteNoOptions = styled(ListItem, {
   color: (theme.vars || theme).palette.text.secondary,
 }));
 
-const AutocompleteLimitTag = styled('span', {
+const AutocompleteLimitTag = styled('div', {
   name: 'JoyAutocomplete',
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
