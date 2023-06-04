@@ -12,7 +12,7 @@ export default function MessageInput({ ref }: any) {
     <Box
       sx={{
         // backgroundColor: 'green',
-        px: 4,
+        px: 3.25,
         pb: 3,
         minHeight: 128,
       }}

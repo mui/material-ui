@@ -57,13 +57,14 @@ const foo = [
         id: '1',
         content: 'no',
         timestamp: '5 mins ago',
+        unread: true,
       },
     ],
   },
 ];
 
 export default function ConversationsPane({ messages }: ConversationsPaneProps) {
-  const [isNew, setIsNew] = React.useState<boolean>(false);
+  // const [isNew, setIsNew] = React.useState<boolean>(false);
   return (
     <Sheet
       sx={{

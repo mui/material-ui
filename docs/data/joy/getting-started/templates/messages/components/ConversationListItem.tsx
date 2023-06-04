@@ -9,13 +9,13 @@ import Typography from '@mui/joy/Typography';
 import AvatarWithStatus from './AvatarWithStatus';
 
 type ConversationListItemProps = ListItemButtonProps & {
-  isNew?: boolean;
+  unread?: boolean;
   user: any;
   messages: any;
 };
 
 export default function ConversationListItem({
-  isNew = false,
+  unread = false,
   selected = false,
   user,
   messages,
@@ -37,7 +37,7 @@ export default function ConversationListItem({
               <Stack direction="row">
                 {/* new icon */}
                 <Box width={20} display="flex" alignItems="center">
-                  {isNew && (
+                  {messages[0].unread && (
                     <Sheet
                       color="primary"
                       variant="solid"
