@@ -68,9 +68,7 @@ Provide these CSS variables to `sx` prop to control the focused ring appearance:
 To get full control of the focused ring, customize the `box-shadow` of the `::before` pseudo element directly
 
 ```js
-<Textarea
-  sx={{ '&:focus-within::before': { boxShadow: '...your custom value' } }}
-/>
+<Textarea sx={{ '&:focus-within::before': { boxShadow: '...your custom value' } }} />
 ```
 
 :::

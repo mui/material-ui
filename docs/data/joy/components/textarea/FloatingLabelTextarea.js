@@ -5,7 +5,7 @@ import Textarea from '@mui/joy/Textarea';
 
 const StyledTextarea = styled(TextareaAutosize)({
   resize: 'none',
-  border: 'none', // remove the native textarea width
+  border: 'none', // remove the native textarea border
   minWidth: 0, // remove the native textarea width
   outline: 0, // remove the native textarea outline
   padding: 0, // remove the native textarea padding

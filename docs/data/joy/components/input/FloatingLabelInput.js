@@ -4,7 +4,7 @@ import Input from '@mui/joy/Input';
 import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined';
 
 const StyledInput = styled('input')({
-  border: 'none', // remove the native input width
+  border: 'none', // remove the native input border
   minWidth: 0, // remove the native input width
   outline: 0, // remove the native input outline
   padding: 0, // remove the native input padding
@@ -67,7 +67,6 @@ const InnerInput = React.forwardRef(function InnerInput(props, ref) {
 export default function FloatingLabelInput() {
   return (
     <Input
-      placeholder="Type in here…"
       endDecorator={<CheckCircleOutlined sx={{ color: 'text.tertiary' }} />}
       slots={{ input: InnerInput }}
       slotProps={{ input: { placeholder: 'A placeholder', type: 'password' } }}
