@@ -61,15 +61,17 @@ const CardRoot = styled('div', {
     ...(ownerState.size === 'sm' && {
       '--Card-radius': theme.vars.radius.sm,
       '--Card-padding': '0.5rem',
+      gap: '0.375rem 0.5rem',
     }),
     ...(ownerState.size === 'md' && {
       '--Card-radius': theme.vars.radius.md,
       '--Card-padding': '1rem',
-      fontSize: theme.vars.fontSize.md,
+      gap: '0.75rem 1rem',
     }),
     ...(ownerState.size === 'lg' && {
       '--Card-radius': theme.vars.radius.lg,
       '--Card-padding': '1.5rem',
+      gap: '1rem 1.5rem',
     }),
     '--unstable_Card-horizontal': ownerState.orientation === 'horizontal' ? 1 : 0, // internal usage, developer should rely on `orientation` prop
     padding: 'var(--Card-padding)',
@@ -77,6 +79,7 @@ const CardRoot = styled('div', {
     boxShadow: theme.shadow.sm,
     backgroundColor: theme.vars.palette.background.surface,
     fontFamily: theme.vars.fontFamily.body,
+    fontSize: theme.vars.fontSize.md,
     position: 'relative',
     display: 'flex',
     flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',

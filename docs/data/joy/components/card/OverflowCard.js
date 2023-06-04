@@ -27,7 +27,6 @@ export default function OverflowCard() {
           California
         </Typography>
       </CardContent>
-      <Divider />
       <CardOverflow
         variant="soft"
         sx={{
@@ -36,6 +35,8 @@ export default function OverflowCard() {
           py: 1.5,
           px: 'var(--Card-padding)',
           bgcolor: 'background.level1',
+          borderTop: '1px solid',
+          borderColor: 'divider',
         }}
       >
         <Typography level="body3" fontWeight="md" textColor="text.secondary">

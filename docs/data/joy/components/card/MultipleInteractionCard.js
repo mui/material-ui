@@ -48,7 +48,6 @@ export default function MultipleInteractionCard() {
           <Link href="#multiple-actions">California</Link>
         </Typography>
       </CardContent>
-      <Divider inset="context" />
       <CardOverflow
         variant="soft"
         sx={{
@@ -57,6 +56,8 @@ export default function MultipleInteractionCard() {
           py: 1.5,
           px: 'var(--Card-padding)',
           bgcolor: 'background.level1',
+          borderTop: '1px solid',
+          borderColor: 'divider',
         }}
       >
         <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>

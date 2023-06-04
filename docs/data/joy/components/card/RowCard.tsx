@@ -3,7 +3,6 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
-import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 
 export default function RowCard() {
@@ -29,7 +28,6 @@ export default function RowCard() {
         </Typography>
         <Typography level="body2">California, USA</Typography>
       </CardContent>
-      <Divider />
       <CardOverflow
         variant="soft"
         color="primary"
@@ -41,6 +39,8 @@ export default function RowCard() {
           fontWeight: 'xl2',
           letterSpacing: '1px',
           textTransform: 'uppercase',
+          borderLeft: '1px solid',
+          borderColor: 'divider',
         }}
       >
         Ticket

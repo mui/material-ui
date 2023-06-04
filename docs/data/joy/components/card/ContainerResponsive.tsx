@@ -42,7 +42,13 @@ export default function ContainerResponsive() {
             alt=""
           />
         </AspectRatio>
-        <CardContent sx={{ gap: 2, maxWidth: 200, mt: 0 }}>
+        <CardContent
+          sx={{
+            gap: 2,
+            maxWidth: 200,
+            mt: 'clamp(-1 * var(--Card-padding), (100% - var(--unstable_Card-stackPoint)) * 999, 0px)',
+          }}
+        >
           <Box sx={{ display: 'flex' }}>
             <div>
               <Typography level="h2" fontSize="md" mb={0.5}>
