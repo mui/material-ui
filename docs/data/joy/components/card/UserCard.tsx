@@ -7,7 +7,7 @@ import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 
-export default function BioCard() {
+export default function UserCard() {
   return (
     <Card
       orientation="horizontal"

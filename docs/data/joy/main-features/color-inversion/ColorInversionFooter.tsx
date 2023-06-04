@@ -92,17 +92,13 @@ export default function ColorInversionFooter() {
         <Card
           variant="soft"
           size="sm"
+          orientation="horizontal"
+          stackWidth={360}
           sx={{
-            flexDirection: { xs: 'row', md: 'column' },
             minWidth: { xs: '100%', md: 'auto' },
-            gap: 1,
           }}
         >
-          <AspectRatio
-            ratio="21/9"
-            minHeight={80}
-            sx={{ flexBasis: { xs: 200, md: 'initial' } }}
-          >
+          <AspectRatio ratio="21/9" minHeight={80} sx={{ flex: 0.75 }}>
             <img alt="" src="/static/blog/mui-product-comparison/ecosystem.png" />
           </AspectRatio>
           <CardContent>

@@ -24,9 +24,11 @@ const CardContentRoot = styled('div', {
 })<{ ownerState: CardContentProps }>({
   display: 'flex',
   flexDirection: 'column',
-  flexGrow: 1,
+  flex: 1, // fill the available space in the Card and also shrink if needed
   zIndex: 1,
-  // TODO: remove all of the lines below when flexbox `gap` reaches ~95% support (https://caniuse.com/flexbox-gap)
+  // Why not using gap?
+  // 1. flexbox gap is ~93% whereas grid gap is ~95% (https://caniuse.com/flexbox-gap)
+  // 2. using gap on the Card requires developer to group set of elements so that the card has proportional space
   marginTop:
     'var(--unstable_pt, calc((1 - var(--unstable_Card-horizontal)) * var(--Card-padding)))',
   marginLeft: 'var(--unstable_pl, calc(var(--unstable_Card-horizontal) * var(--Card-padding)))',
@@ -61,6 +63,7 @@ const CardContentRoot = styled('div', {
   },
 });
 /**
+ * ⚠️ CardContent must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
  * Demos:
  *
