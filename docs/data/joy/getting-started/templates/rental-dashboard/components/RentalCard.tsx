@@ -142,7 +142,7 @@ export default function RentalCard({
             <Typography>202 reviews</Typography>
           </Stack>
 
-          <Stack spacing={1} direction="row" justifyContent="space-between">
+          <Stack spacing={3} direction="row">
             <Typography startDecorator={<i data-feather="map-pin" />}>
               Collingwood VIC
             </Typography>
