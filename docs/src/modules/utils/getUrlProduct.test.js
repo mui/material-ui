@@ -12,7 +12,7 @@ describe('getUrlProduct', () => {
     expect(getUrlProduct('/zh/base/react-button/')).to.equal('base');
   });
 
-  it('get base', () => {
+  it('get base from base-ui url', () => {
     expect(getUrlProduct('/base-ui/react-button/')).to.equal('base');
     expect(getUrlProduct('/zh/base-ui/react-button/')).to.equal('base');
   });

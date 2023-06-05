@@ -24,10 +24,12 @@ function fixPathname(pathname: string): string {
       'material-ui',
       'joy-ui',
     );
-  } else {
+  } else if (pathname.startsWith('/base')) {
     fixedPathname = `${pathname
       .replace('/base/', '/base-ui/')
       .replace('/components/', '/react-')}/`;
+  } else {
+    fixedPathname = `${pathname.replace('/components/', '/react-')}/`;
   }
 
   return fixedPathname;
