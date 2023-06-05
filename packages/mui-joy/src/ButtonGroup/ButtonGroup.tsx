@@ -130,11 +130,8 @@ const ButtonGroupRoot = styled('div', {
     {
       [theme.getColorSchemeSelector('dark')]: {
         ...(ownerState.color !== 'context' && {
-          ...((ownerState.variant === 'solid' || ownerState.variant === 'soft') && {
+          ...(ownerState.variant !== 'outlined' && {
             '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[700],
-          }),
-          ...(ownerState.variant === 'plain' && {
-            '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[300],
           }),
         }),
       },
