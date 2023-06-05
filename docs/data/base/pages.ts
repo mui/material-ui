@@ -110,6 +110,10 @@ const pages: readonly MuiPage[] = [
         title: 'Working with Tailwind CSS',
       },
       {
+        pathname: '/base-ui/guides/working-with-react-hook-form',
+        title: 'Working with React Hook Form',
+      },
+      {
         pathname: '/base-ui/guides/overriding-component-structure',
         title: 'Overriding component structure',
       },

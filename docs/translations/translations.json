@@ -334,6 +334,7 @@
     "/base-ui/react-tabs/hooks-api/#use-tabs-list": "useTabsList",
     "/base-ui/guides": "How-to guides",
     "/base-ui/guides/working-with-tailwind-css": "Working with Tailwind CSS",
+    "/base-ui/guides/working-with-react-hook-form": "Working with React Hook Form",
     "/base-ui/guides/overriding-component-structure": "Overriding component structure",
     "/base-ui/guides/next-js-app-router": "Next.js App Router",
     "/material-ui/getting-started-group": "Getting started",
