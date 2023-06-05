@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## 5.13.4
+
 <!-- generated comparing v5.13.3..master -->
+
 _Jun 5, 2023_
 
 A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
@@ -39,7 +41,6 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 14 -->[core] Do not let Renovate handle `examples` packages updates (#37386) @ZeeshanTamboli
 - &#8203;<!-- 01 -->[website] Add header filters to the pricing table (#37455) @MBilalShafi
-
 
 All contributors of this release in alphabetical order: @brijeshb42, @danielplewes, @danilo-leal, @DiegoAndai, @gitstart, @MBilalShafi, @mj12albert, @oliviertassinari, @sai6855, @siriwatknp, @vishalthatipamula0219, @ZeeshanTamboli
 
