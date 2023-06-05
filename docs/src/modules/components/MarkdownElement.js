@@ -51,7 +51,7 @@ const Root = styled('div')(
     // inline code block
     '& :not(pre) > code': {
       display: 'inline-block',
-      padding: '0 5px',
+      padding: '0 4px',
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
       backgroundColor: alpha(lightTheme.palette.primary.light, 0.1),
       border: '1px solid',
