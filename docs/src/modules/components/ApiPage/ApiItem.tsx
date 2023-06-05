@@ -114,15 +114,20 @@ const Root = styled('div')(
     },
     '& .prop-list-signature': {
       marginBottom: 16,
-      p: { marginBottom: 8 },
+      p: {
+        ...theme.typography.body2,
+        fontWeight: theme.typography.fontWeightMedium,
+        marginBottom: 8,
+      },
       '&>code': {
         borderRadius: 8,
         padding: 8,
-        color: '#003A75',
-        border: 'solid #C2E0FF 1px',
-        backgroundColor: '#EAEDF180',
         width: '100%',
         marginBottom: 8,
+        color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
+        border: '1px solid',
+        borderColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
+        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       },
     },
     marginBottom: 32,
@@ -177,9 +182,9 @@ const Root = styled('div')(
       },
       '& .prop-list-signature': {
         '&>code': {
-          color: '#C2E0FF',
-          backgroundColor: '#003A7566',
-          borderColor: '#0059B24D',
+          color: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
+          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+          backgroundColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
         },
       },
     },
