@@ -60,7 +60,7 @@ For more information on the virtual element's properties, see the following reso
 
 :::warning
 The usage of a virtual element for the Popover component requires the `nodeType` property.
-This is different from virtual elements used for the [`Popper`](/material-ui/react-popper/#virtual-element) and [`Tooltip`](/material-ui/react-tooltip/#virtual-element) components that don't require it.
+This is different from virtual elements used for the [`Popper`](/material-ui/react-popper/#virtual-element) or [`Tooltip`](/material-ui/react-tooltip/#virtual-element) components, both of which don't require the property.
 :::
 
 ## Complementary projects
