@@ -8,7 +8,7 @@ import { styled, useThemeProps, Theme } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
-import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
+import { SwitchTypeMap, SwitchOwnerState, SwitchProps } from './SwitchProps';
 import FormControlContext from '../FormControl/FormControlContext';
 import { SxProps } from '../styles/types';
 
@@ -215,6 +215,22 @@ const SwitchEndDecorator = styled('span', {
   display: 'inline-flex',
   marginInlineStart: 'var(--Switch-gap)',
 });
+
+// TODO: extract this to a util that can be used in all components
+const prepareSxProp = (sx: SxProps | undefined, vx: SwitchProps['vx']) => {
+  let sxAsArray = undefined;
+  if (sx) {
+    sxAsArray = Array.isArray(sx) ? sx : [sx];
+  }
+  return sx || vx
+    ? ([
+        ...Object.entries(vx ?? {}).map(([key, value]) => ({
+          [getCSSVariable(key)]: value,
+        })),
+        ...(sxAsArray ?? []),
+      ] as SxProps)
+    : undefined;
+};
 /**
  *
  * Demos:
@@ -255,15 +271,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     ...other
   } = props;
 
-  const sx =
-    sxProp || vx
-      ? ([
-          ...Object.entries(vx ?? {}).map(([key, value]) => ({
-            [getCSSVariable(key)]: value,
-          })),
-          ...(sxProp ? (Array.isArray(sxProp) ? sxProp : [sxProp]) : []),
-        ] as SxProps)
-      : undefined;
+  const sx = prepareSxProp(sxProp, vx);
 
   const formControl = React.useContext(FormControlContext);
 
