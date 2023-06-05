@@ -10,6 +10,8 @@ export interface AutocompleteClasses {
   expanded: string;
   /** State class applied to the root element if focused. */
   focused: string;
+  /** Styles applied to the option elements if they are keyboard focused. */
+  focusVisible: string;
   /** Styles applied to the tag elements, e.g. the chips. */
   tag: string;
   /** Styles applied to the tag elements, e.g. the chips if `size="small"`. */
@@ -52,8 +54,6 @@ export interface AutocompleteClasses {
   groupLabel: string;
   /** Styles applied to the group's ul elements. */
   groupUl: string;
-  /** Styles applied to the root element if keyboard focused. */
-  focusVisible: string;
 }
 
 export type AutocompleteClassKey = keyof AutocompleteClasses;

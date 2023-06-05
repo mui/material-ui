@@ -81,6 +81,11 @@
       "nodeName": "the root element",
       "conditions": "focused"
     },
+    "focusVisible": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the option elements",
+      "conditions": "they are keyboard focused"
+    },
     "tag": {
       "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
@@ -161,11 +166,6 @@
     "groupUl": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the group's ul elements"
-    },
-    "focusVisible": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "keyboard focused"
     }
   }
 }

@@ -108,6 +108,7 @@
       "fullWidth",
       "expanded",
       "focused",
+      "focusVisible",
       "tag",
       "tagSizeSmall",
       "tagSizeMedium",
@@ -128,8 +129,7 @@
       "noOptions",
       "option",
       "groupLabel",
-      "groupUl",
-      "focusVisible"
+      "groupUl"
     ],
     "globalClasses": {
       "expanded": "Mui-expanded",
