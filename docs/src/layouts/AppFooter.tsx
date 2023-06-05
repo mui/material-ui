@@ -16,7 +16,14 @@ import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
-export default function AppFooter() {
+interface AppFooterProps {
+  stackOverflowURL?: string;
+}
+
+
+export default function AppFooter(props: AppFooterProps) {
+  const { stackOverflowURL = 'https://stackoverflow.com/questions/tagged/mui' } = props;
+
   return (
     <Container component="footer">
       <Box
@@ -163,7 +170,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://stackoverflow.com/questions/tagged/mui-x"
+              href={stackOverflowURL}
               aria-label="Stack Overflow"
               title="Stack Overflow"
               size="small"
