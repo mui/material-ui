@@ -126,5 +126,18 @@
     "track": "The component that renders the track.",
     "startDecorator": "The component that renders the start decorator.",
     "endDecorator": "The component that renders the end decorator."
+  },
+  "cssVariablesDescriptions": {
+    "trackBackground": "The background color of the track slot.",
+    "trackColor": "The color of the track slot.",
+    "trackBorderColor": "The border color of the track slot.",
+    "thumbBackground": "The background color of the thumb slot.",
+    "thumbColor": "The color of the thumb slot.",
+    "trackRadius": "The radius of the track slot.",
+    "thumbShadow": "The shadow of the thumb slot.",
+    "trackWidth": "The width of the track slot.",
+    "trackHeight": "The height of the track slot.",
+    "thumbSize": "The height and width of the track slot.",
+    "gap": "The gap between the Switch and the decorators."
   }
 }

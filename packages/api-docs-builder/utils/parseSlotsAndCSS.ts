@@ -16,6 +16,11 @@ const GLOBAL_STATE_CLASSES: string[] = [
   'selected',
 ];
 
+export interface CssVariables {
+  cssVariables: string[];
+  descriptions: Record<string, string>;
+}
+
 export interface Slot {
   class: string | null;
   name: string;
@@ -47,7 +52,37 @@ function extractClasses({
   return result;
 }
 
-export default function parseSlotsAndClasses({
+function extractVariables({
+  project,
+  componentName,
+}: {
+  project: TypeScriptProject;
+  componentName: string;
+}): { cssVariables: string[]; descriptions: Record<string, string> } {
+  const result: { cssVariables: string[]; descriptions: Record<string, string> } = {
+    cssVariables: [],
+    descriptions: {},
+  };
+  try {
+    const variablesInterface = `${componentName}CssVariables`;
+    const variablesType = project.checker.getDeclaredTypeOfSymbol(
+      project.exports[variablesInterface],
+    );
+    const variablesTypeDeclaration = variablesType?.symbol?.declarations?.[0];
+    if (variablesTypeDeclaration && ts.isInterfaceDeclaration(variablesTypeDeclaration)) {
+      const cssVariables = variablesType.getProperties();
+      cssVariables.forEach((symbol) => {
+        result.cssVariables.push(symbol.name);
+        result.descriptions[symbol.name] = getSymbolDescription(symbol, project);
+      });
+    }
+  } catch (e) {
+    // ignore if css variables interface does not exist
+  }
+  return result;
+}
+
+export default function parseSlotsAndCSS({
   project,
   componentName,
   muiName,
@@ -55,10 +90,11 @@ export default function parseSlotsAndClasses({
   project: TypeScriptProject;
   componentName: string;
   muiName: string;
-}): { slots: Slot[]; classes: Classes } {
-  let result: { slots: Slot[]; classes: Classes } = {
+}): { slots: Slot[]; classes: Classes; cssVariables: CssVariables } {
+  let result: { slots: Slot[]; classes: Classes; cssVariables: CssVariables } = {
     slots: [],
     classes: { classes: [], globalClasses: {}, descriptions: {} },
+    cssVariables: { cssVariables: [], descriptions: {} },
   };
   const slotsInterface = `${componentName}Slots`;
   try {
@@ -76,6 +112,12 @@ export default function parseSlotsAndClasses({
     });
     const slots: Record<string, Slot> = {};
     const propertiesOnProject = type.getProperties();
+
+    // Obtain an array of classes for the given component
+    const { cssVariables, descriptions: cssVariablesDescriptions } = extractVariables({
+      project,
+      componentName,
+    });
 
     propertiesOnProject.forEach((propertySymbol) => {
       const tags = getSymbolJSDocTags(propertySymbol);
@@ -112,6 +154,10 @@ export default function parseSlotsAndClasses({
           .sort((a, b) => a.localeCompare(b)),
         globalClasses: globalStateClassNames,
         descriptions: classDescriptions,
+      },
+      cssVariables: {
+        cssVariables: cssVariables.sort((a, b) => a.localeCompare(b)),
+        descriptions: cssVariablesDescriptions,
       },
     };
   } catch (e) {

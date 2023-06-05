@@ -10,6 +10,9 @@ import useSlot from '../utils/useSlot';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
 import FormControlContext from '../FormControl/FormControlContext';
+import { SxProps } from '../styles/types';
+
+const getCSSVariable = (variableName: string) => `--Switch-${variableName}`;
 
 const useUtilityClasses = (ownerState: SwitchOwnerState) => {
   const { checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
@@ -247,8 +250,20 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     component,
     slots = {},
     slotProps = {},
+    sx: sxProp,
+    vx,
     ...other
   } = props;
+
+  const sx =
+    sxProp || vx
+      ? ({
+          ...Object.entries(vx ?? {}).map(([key, value]) => ({
+            [getCSSVariable(key)]: value,
+          })),
+          ...(sxProp ?? {}),
+        } as SxProps)
+      : undefined;
 
   const formControl = React.useContext(FormControlContext);
 
@@ -362,7 +377,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   });
 
   return (
-    <SlotRoot {...rootProps}>
+    <SlotRoot {...rootProps} sx={sx}>
       {startDecorator && (
         <SlotStartDecorator {...startDecoratorProps}>
           {typeof startDecorator === 'function' ? startDecorator(ownerState) : startDecorator}

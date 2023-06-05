@@ -13,6 +13,53 @@ export type SwitchSlot =
   | 'startDecorator'
   | 'endDecorator';
 
+export interface SwitchCssVariables {
+  /**
+   * The background color of the track slot.
+   */
+  trackBackground?: string;
+  /**
+   * The color of the track slot.
+   */
+  trackColor?: string;
+  /**
+   * The border color of the track slot.
+   */
+  trackBorderColor?: string;
+  /**
+   * The background color of the thumb slot.
+   */
+  thumbBackground?: string;
+  /**
+   * The color of the thumb slot.
+   */
+  thumbColor?: string;
+  /**
+   * The radius of the track slot.
+   */
+  trackRadius?: string;
+  /**
+   * The shadow of the thumb slot.
+   */
+  thumbShadow?: string;
+  /**
+   * The width of the track slot.
+   */
+  trackWidth?: string;
+  /**
+   * The height of the track slot.
+   */
+  trackHeight?: string;
+  /**
+   * The height and width of the track slot.
+   */
+  thumbSize?: string;
+  /**
+   * The gap between the Switch and the decorators.
+   */
+  gap?: string;
+}
+
 export interface SwitchSlots {
   /**
    * The component that renders the root.
@@ -98,6 +145,10 @@ export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, SwitchPropsVariantOverrides>;
+      /**
+       * The component's CSS variables.
+       */
+      vx?: SwitchCssVariables;
     } & SwitchSlotsAndSlotProps;
   defaultComponent: D;
 }
@@ -107,7 +158,7 @@ export type SwitchProps<
   P = { component?: React.ElementType },
 > = OverrideProps<SwitchTypeMap<P, D>, D>;
 
-export interface SwitchOwnerState extends ApplyColorInversion<SwitchProps> {
+export interface SwitchOwnerState extends ApplyColorInversion<Omit<SwitchProps, 'vx'>> {
   /**
    * If `true`, the switch's focus is visible.
    */

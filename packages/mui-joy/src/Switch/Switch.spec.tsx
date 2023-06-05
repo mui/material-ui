@@ -136,3 +136,6 @@ import { expectType } from '@mui/types';
     },
   }}
 />;
+
+// vx prop
+<Switch vx={{ trackBackground: '#DDD' }} />;

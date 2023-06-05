@@ -22,7 +22,7 @@ import createDescribeableProp, {
 import generatePropDescription from '../utils/generatePropDescription';
 import parseStyles, { Classes, Styles } from '../utils/parseStyles';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
+import parseSlotsAndCSS, { CssVariables, Slot } from '../utils/parseSlotsAndCSS';
 
 export interface ReactApi extends ReactDocgenApi {
   demos: ReturnType<ComponentInfo['getDemos']>;
@@ -52,6 +52,7 @@ export interface ReactApi extends ReactDocgenApi {
   styles: Styles;
   classes: Classes;
   slots: Slot[];
+  cssVariables: CssVariables;
   propsTable: _.Dictionary<{
     default: string | undefined;
     required: boolean | undefined;
@@ -64,6 +65,7 @@ export interface ReactApi extends ReactDocgenApi {
     propDescriptions: { [key: string]: string | undefined };
     classDescriptions: { [key: string]: { description: string; conditions?: string } };
     slotDescriptions?: { [key: string]: string };
+    cssVariablesDescriptions?: { [key: string]: string };
   };
 }
 
@@ -472,6 +474,16 @@ const attachTranslations = (reactApi: ReactApi) => {
       : reactApi.classes.descriptions,
   );
 
+  /**
+   * CSS variables descriptions.
+   */
+  if (
+    reactApi.cssVariables.descriptions &&
+    Object.keys(reactApi.cssVariables.descriptions).length > 0
+  ) {
+    translations.cssVariablesDescriptions = reactApi.cssVariables.descriptions;
+  }
+
   reactApi.translations = translations;
 };
 
@@ -647,16 +659,17 @@ export default async function generateComponentApi(
   reactApi.themeDefaultProps = testInfo.themeDefaultProps;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
 
-  // Both `slots` and `classes` are empty if
+  // Both `slots`, `classes` and `cssVariables` are empty if
   // interface `${componentName}Slots` wasn't found.
   // Currently, Base UI and Joy UI components support this interface
-  const { slots, classes } = parseSlotsAndClasses({
+  const { slots, classes, cssVariables } = parseSlotsAndCSS({
     project,
     componentName: reactApi.name,
     muiName: reactApi.muiName,
   });
   reactApi.slots = slots;
   reactApi.classes = classes;
+  reactApi.cssVariables = cssVariables;
 
   reactApi.styles = parseStyles({ project, componentName: reactApi.name });
 

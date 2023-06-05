@@ -72,6 +72,38 @@ CSSTable.propTypes = {
   componentStyles: PropTypes.object.isRequired,
 };
 
+function CssVariablesTable(props) {
+  const { cssVariables } = props;
+
+  const t = useTranslate();
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th align="left">{t('api-docs.cssVariableName')}</th>
+          <th align="left">{t('api-docs.description')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Object.keys(cssVariables).map((cssVariable) => {
+          return (
+            <tr key={cssVariable}>
+              <td align="left">
+                <span className="prop-name">{cssVariable}</span>
+              </td>
+              <td align="left">{cssVariables[cssVariable]}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+}
+
+CssVariablesTable.propTypes = {
+  cssVariables: PropTypes.object.isRequired,
+};
+
 export function SlotsTable(props) {
   const { componentSlots, slotDescriptions } = props;
   const t = useTranslate();
@@ -195,6 +227,7 @@ export function getTranslatedHeader(t, header) {
     slots: t('api-docs.slots'),
     classes: t('api-docs.classes'),
     css: t('api-docs.css'),
+    cssVariables: t('api-docs.cssVariables'),
   };
 
   // TODO Drop runtime type-checking once we type-check this file
@@ -269,6 +302,7 @@ export default function ApiPage(props) {
     classDescriptions,
     propDescriptions,
     slotDescriptions,
+    cssVariablesDescriptions: componentCssVariables,
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, pageContent.name);
 
@@ -307,6 +341,9 @@ export default function ApiPage(props) {
     componentStyles.classes.length > 0 && createTocEntry('css'),
     componentSlots?.length > 0 && createTocEntry('slots'),
     hasClasses && createTocEntry('classes'),
+    componentCssVariables &&
+      Object.keys(componentCssVariables).length &&
+      createTocEntry('cssVariables'),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
@@ -478,6 +515,13 @@ import { ${pageContent.name} } from '${source}';`}
             <br />
           </React.Fragment>
         ) : null}
+        {componentCssVariables && Object.keys(componentCssVariables).length && (
+          <React.Fragment>
+            <Heading hash="cssVariables" />
+            <p>{t('api-docs.cssVariablesDescription')}</p>
+            <CssVariablesTable cssVariables={componentCssVariables} />
+          </React.Fragment>
+        )}
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 16 16">
