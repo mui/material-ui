@@ -6,6 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardContentUtilityClass } from './cardContentClasses';
+import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
 import { CardContentProps, CardContentTypeMap } from './CardContentProps';
 import useSlot from '../utils/useSlot';
 
@@ -26,6 +27,11 @@ const CardContentRoot = styled('div', {
   flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   flex: 1, // fill the available space in the Card and also shrink if needed
   zIndex: 1,
+  columnGap: 'calc(0.75 * var(--Card-padding))',
+  padding: 'var(--CardContent-padding)',
+  [`.${cardOverflowClasses.root} > &`]: {
+    '--CardContent-padding': 'calc(var(--Card-padding) * 0.75) 0px',
+  },
 }));
 /**
  * ⚠️ CardContent must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
