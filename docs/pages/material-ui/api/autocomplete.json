@@ -128,9 +128,14 @@
       "noOptions",
       "option",
       "groupLabel",
-      "groupUl"
+      "groupUl",
+      "focusVisible"
     ],
-    "globalClasses": { "expanded": "Mui-expanded", "focused": "Mui-focused" },
+    "globalClasses": {
+      "expanded": "Mui-expanded",
+      "focused": "Mui-focused",
+      "focusVisible": "Mui-focusVisible"
+    },
     "name": "MuiAutocomplete"
   },
   "spread": true,

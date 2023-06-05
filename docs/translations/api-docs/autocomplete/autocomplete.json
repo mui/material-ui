@@ -161,6 +161,11 @@
     "groupUl": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the group's ul elements"
+    },
+    "focusVisible": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "keyboard focused"
     }
   }
 }
