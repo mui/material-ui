@@ -12,6 +12,11 @@ describe('getUrlProduct', () => {
     expect(getUrlProduct('/zh/base/react-button/')).to.equal('base');
   });
 
+  it('get base', () => {
+    expect(getUrlProduct('/base-ui/react-button/')).to.equal('base');
+    expect(getUrlProduct('/zh/base-ui/react-button/')).to.equal('base');
+  });
+
   it('get joy-ui', () => {
     expect(getUrlProduct('/joy-ui/react-button/')).to.equal('joy-ui');
     expect(getUrlProduct('/zh/joy-ui/react-button/')).to.equal('joy-ui');
