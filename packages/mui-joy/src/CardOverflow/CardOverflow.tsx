@@ -15,7 +15,6 @@ import {
 } from './CardOverflowProps';
 import { CardRowContext } from '../Card/CardContext';
 import useSlot from '../utils/useSlot';
-import buttonClasses from '../Button/buttonClasses';
 
 const useUtilityClasses = (ownerState: CardOverflowOwnerState) => {
   const { variant, color } = ownerState;
@@ -46,7 +45,6 @@ const CardOverflowRoot = styled('div', {
     ownerState.row
       ? {
           '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
-          alignSelf: 'stretch', // prevent shrinking if parent's align-items is not initial
           marginTop: 'var(--CardOverflow-offset)',
           marginBottom: 'var(--CardOverflow-offset)',
           padding: 'var(--Card-padding) 0px',
@@ -65,19 +63,9 @@ const CardOverflowRoot = styled('div', {
             borderBottomLeftRadius: 0,
             marginRight: 'var(--CardOverflow-offset)',
           }),
-          ...(ownerState['data-first-child'] !== undefined &&
-            ownerState['data-last-child'] !== undefined && {
-              '--AspectRatio-radius': childRadius,
-            }),
-          [`& > .${buttonClasses.root}:only-child`]: {
-            height: 'calc(100% + -2 * var(--CardOverflow-offset))',
-            '--Button-margin': 'var(--CardOverflow-offset) 0',
-            '--Button-radius': '0 var(--CardOverflow-radius) var(--CardOverflow-radius) 0',
-          },
         }
       : {
           '--AspectRatio-margin': '0px calc(-1 * var(--Card-padding))',
-          alignSelf: 'stretch', // prevent shrinking if parent's align-items is not initial
           marginLeft: 'var(--CardOverflow-offset)',
           marginRight: 'var(--CardOverflow-offset)',
           padding: '0px var(--Card-padding)',
@@ -96,15 +84,6 @@ const CardOverflowRoot = styled('div', {
             borderTopRightRadius: 0,
             marginBottom: 'var(--CardOverflow-offset)',
           }),
-          ...(ownerState['data-first-child'] !== undefined &&
-            ownerState['data-last-child'] !== undefined && {
-              '--AspectRatio-radius': childRadius,
-            }),
-          [`& > .${buttonClasses.root}:only-child`]: {
-            width: 'calc(100% + -2 * var(--CardOverflow-offset))',
-            '--Button-margin': '0 var(--CardOverflow-offset)',
-            '--Button-radius': '0 0 var(--CardOverflow-radius) var(--CardOverflow-radius)',
-          },
         },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];
@@ -220,8 +199,5 @@ CardOverflow.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
-
-// @ts-ignore internal logic
-CardOverflow.muiName = 'CardOverflow';
 
 export default CardOverflow;

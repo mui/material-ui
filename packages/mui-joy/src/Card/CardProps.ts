@@ -37,11 +37,6 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, CardPropsColorOverrides>;
     /**
-     * For `orientation="horizontal"` only.
-     * When the Card's width is less than or equal to this value, the Card's children will stack vertically.
-     */
-    stackWidth?: number | string;
-    /**
      * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
      * @default false
      */
