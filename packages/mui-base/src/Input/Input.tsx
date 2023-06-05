@@ -147,8 +147,12 @@ const Input = React.forwardRef(function Input<RootComponentType extends React.El
   const InputComponent = multiline ? slots.textarea ?? 'textarea' : slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<InputInputSlotProps> = useSlotProps({
     elementType: InputComponent,
-    getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsToForward }),
+    getSlotProps: (otherHandlers: EventHandlers) => {
+      return getInputProps({
+        ...propsToForward,
+        ...otherHandlers,
+      });
+    },
     externalSlotProps: slotProps.input,
     additionalProps: {
       rows: multiline ? rows : undefined,
