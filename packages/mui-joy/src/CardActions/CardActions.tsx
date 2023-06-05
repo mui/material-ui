@@ -26,11 +26,20 @@ const CardActionsRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardActionsProps }>(({ ownerState }) => {
   return {
+    '--Button-radius': 'var(--Card-childRadius)',
     display: 'flex',
+    ...(ownerState.orientation?.startsWith('horizontal') && {
+      alignItems: 'center', // it is common to have children aligned center in horizontal orientation, but not vertically.
+    }),
+    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+    ...(ownerState.orientation === 'horizontal-reverse' && {
+      flexDirection: 'row-reverse',
+    }),
     gap: 'calc(0.625 * var(--Card-padding))',
-    padding: 'var(--unstable_CardActions-padding)',
+    padding: 'var(--unstable_padding)',
+    '--unstable_padding': 'calc(0.75 * var(--Card-padding)) 0 0 0',
     [`.${cardOverflowClasses.root} > &`]: {
-      '--unstable_CardActions-padding': 'calc(0.75 * var(--Card-padding)) 0',
+      '--unstable_padding': 'calc(0.75 * var(--Card-padding)) 0 var(--Card-padding)',
     },
     ...(ownerState.buttonFlex && {
       [`& > :not(.${iconButtonClasses.root})`]: {
@@ -62,7 +71,8 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
     className,
     component = 'div',
     children,
-    buttonFlex,
+    buttonFlex = 1,
+    orientation = 'horizontal',
     slots = {},
     slotProps = {},
     ...other
@@ -73,6 +83,7 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
     ...props,
     component,
     buttonFlex,
+    orientation,
   };
 
   const classes = useUtilityClasses();
