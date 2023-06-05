@@ -29,7 +29,7 @@ export interface LabComponentNameToClassKey {
   MuiTreeView: TreeViewClassKey;
 }
 
-declare module '@mui/material/styles' {
+declare module '@mui/material/styles/overrides' {
   interface ComponentNameToClassKey extends LabComponentNameToClassKey {}
 }
 
