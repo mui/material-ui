@@ -110,12 +110,6 @@ describe('<Avatar />', () => {
       expect(img).to.have.attribute('src', '/fake.png');
     });
 
-    it('should render first letter of alt when src and srcSet is not available', () => {
-      const { container } = render(<Avatar className="my-avatar" alt="Hello World!" />);
-      const avatar = container.firstChild;
-      expect(avatar).to.have.text('H');
-    });
-
     it('should be able to add more props to the image', () => {
       const onError = spy();
       const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
@@ -283,5 +277,11 @@ describe('<Avatar />', () => {
 
       expect(avatar).to.have.class(classes.colorNeutral);
     });
+  });
+
+  it('should render first letter of alt when src and srcSet is not available', () => {
+    const { container } = render(<Avatar className="my-avatar" alt="Hello World!" />);
+    const avatar = container.firstChild;
+    expect(avatar).to.have.text('H');
   });
 });
