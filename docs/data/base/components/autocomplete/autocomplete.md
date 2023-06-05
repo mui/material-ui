@@ -175,5 +175,3 @@ export default function App(props) {
 Here's a complete demo that renders the listbox inside a Popper:
 
 {{"demo": "UseAutocompletePopper.js", "defaultCodeOpen": false}}
-
-{{"demo": ""}}
