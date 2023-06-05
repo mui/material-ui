@@ -52,7 +52,7 @@ Highlight part of the text to see the popover:
 
 {{"demo": "VirtualElementPopover.js"}}
 
-For more information on the virtual element's properties see the following resources:
+For more information on the virtual element's properties, see the following resources:
 
 - [getBoundingClientRect](https://developer.mozilla.org/docs/Web/API/Element/getBoundingClientRect)
 - [DOMRect](https://drafts.fxtf.org/geometry-1/#domrectreadonly)
