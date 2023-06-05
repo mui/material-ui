@@ -130,7 +130,7 @@ const Root = styled('div')(
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       },
     },
-    marginBottom: 32,
+    marginBottom: 40,
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
