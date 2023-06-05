@@ -49,6 +49,12 @@
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
       "default": "'solid'"
+    },
+    "vx": {
+      "type": {
+        "name": "shape",
+        "description": "{ gap?: string, thumbBackground?: string, thumbColor?: string, thumbShadow?: string, thumbSize?: string, trackBackground?: string, trackBorderColor?: string, trackColor?: string, trackHeight?: string, trackRadius?: string, trackWidth?: string }"
+      }
     }
   },
   "name": "Switch",

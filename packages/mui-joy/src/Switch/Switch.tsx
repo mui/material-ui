@@ -531,6 +531,22 @@ Switch.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
+  /**
+   * The component's CSS variables.
+   */
+  vx: PropTypes.shape({
+    gap: PropTypes.string,
+    thumbBackground: PropTypes.string,
+    thumbColor: PropTypes.string,
+    thumbShadow: PropTypes.string,
+    thumbSize: PropTypes.string,
+    trackBackground: PropTypes.string,
+    trackBorderColor: PropTypes.string,
+    trackColor: PropTypes.string,
+    trackHeight: PropTypes.string,
+    trackRadius: PropTypes.string,
+    trackWidth: PropTypes.string,
+  }),
 } as any;
 
 export default Switch;
