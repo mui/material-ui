@@ -131,7 +131,7 @@ const Root = styled('div')(
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .MuiApi-item-header': {
         '& span': {
-          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+          borderColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
         },
         '& .MuiApi-item-title': {
           color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
