@@ -129,7 +129,7 @@ export default function RentalDashboard() {
               >
                 <Box
                   sx={{
-                    backgroundColor: 'orange',
+                    backgroundColor: 'background.level1',
                     height: '100%',
                     borderRadius: 'sm',
                     backgroundSize: 'cover',
