@@ -62,7 +62,7 @@ export default function CardLayers3d() {
             backdropFilter: 'blur(1px)',
           }}
         >
-          <Typography level="h2" fontSize="lg" textColor="#fff" m={3}>
+          <Typography level="h2" fontSize="lg" textColor="#fff" m={2}>
             Card Content
           </Typography>
         </CardContent>

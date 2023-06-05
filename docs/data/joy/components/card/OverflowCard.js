@@ -27,24 +27,17 @@ export default function OverflowCard() {
           California
         </Typography>
       </CardContent>
-      <Divider />
-      <CardOverflow
-        variant="soft"
-        sx={{
-          display: 'flex',
-          gap: 1.5,
-          py: 1.5,
-          px: 'var(--Card-padding)',
-          bgcolor: 'background.level1',
-        }}
-      >
-        <Typography level="body3" fontWeight="md" textColor="text.secondary">
-          6.3k views
-        </Typography>
-        <Divider orientation="vertical" />
-        <Typography level="body3" fontWeight="md" textColor="text.secondary">
-          1 hour ago
-        </Typography>
+      <CardOverflow variant="soft" sx={{ bgcolor: 'background.level1' }}>
+        <Divider inset="context" />
+        <CardContent orientation="horizontal">
+          <Typography level="body3" fontWeight="md" textColor="text.secondary">
+            6.3k views
+          </Typography>
+          <Divider orientation="vertical" />
+          <Typography level="body3" fontWeight="md" textColor="text.secondary">
+            1 hour ago
+          </Typography>
+        </CardContent>
       </CardOverflow>
     </Card>
   );

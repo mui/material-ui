@@ -29,7 +29,6 @@
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}"
     },
-    "stackWidth": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "sx": {
       "type": {
         "name": "union",

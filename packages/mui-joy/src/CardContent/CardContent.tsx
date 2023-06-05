@@ -5,7 +5,8 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import cardContentClasses, { getCardContentUtilityClass } from './cardContentClasses';
+import { getCardContentUtilityClass } from './cardContentClasses';
+import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
 import { CardContentProps, CardContentTypeMap } from './CardContentProps';
 import useSlot from '../utils/useSlot';
 
@@ -21,47 +22,17 @@ const CardContentRoot = styled('div', {
   name: 'JoyCardContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardContentProps }>({
+})<{ ownerState: CardContentProps }>(({ ownerState }) => ({
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   flex: 1, // fill the available space in the Card and also shrink if needed
   zIndex: 1,
-  // Why not using gap?
-  // 1. flexbox gap is ~93% whereas grid gap is ~95% (https://caniuse.com/flexbox-gap)
-  // 2. using gap on the Card requires developer to group set of elements so that the card has proportional space
-  marginTop:
-    'var(--unstable_pt, calc((1 - var(--unstable_Card-horizontal)) * var(--Card-padding)))',
-  marginLeft: 'var(--unstable_pl, calc(var(--unstable_Card-horizontal) * var(--Card-padding)))',
-  marginBottom:
-    'var(--unstable_pb, calc((1 - var(--unstable_Card-horizontal)) * var(--Card-padding)))',
-  marginRight: 'var(--unstable_pr, calc(var(--unstable_Card-horizontal) * var(--Card-padding)))',
-  '&[data-first-child]': {
-    '--unstable_pt': '0px',
-    '--unstable_pl': '0px',
+  columnGap: 'calc(0.75 * var(--Card-padding))',
+  padding: 'var(--CardContent-padding)',
+  [`.${cardOverflowClasses.root} > &`]: {
+    '--CardContent-padding': 'calc(var(--Card-padding) * 0.75) 0px',
   },
-  '&[data-last-child]': {
-    '--unstable_pr': '0px',
-    '--unstable_pb': '0px',
-  },
-  '&:not([data-first-child])': {
-    // to work with Card's stackWidth
-    '--unstable_pt':
-      'clamp(0px, (100% - var(--unstable_Card-stackPoint) - 1px) * -999, var(--Card-padding))',
-    '--unstable_pl':
-      'clamp(0px, (100% - var(--unstable_Card-stackPoint)) * 999, var(--Card-padding))',
-  },
-  '&:not([data-last-child])': {
-    // to work with Card's stackWidth
-    '--unstable_pr':
-      'clamp(0px, (100% - var(--unstable_Card-stackPoint)) * 999, var(--Card-padding))',
-  },
-  [`& + .${cardContentClasses.root}`]: {
-    // support consecutive CardContent
-    '--unstable_pt':
-      'clamp(0px, (var(--unstable_Card-stackPoint, 0px) - 100%) * 999, var(--Card-padding))',
-    '--unstable_pl': '0px',
-  },
-});
+}));
 /**
  * ⚠️ CardContent must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
@@ -79,12 +50,21 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
     name: 'JoyCardContent',
   });
 
-  const { className, component = 'div', children, slots = {}, slotProps = {}, ...other } = props;
+  const {
+    className,
+    component = 'div',
+    children,
+    orientation = 'vertical',
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const ownerState = {
     ...props,
     component,
+    orientation,
   };
 
   const classes = useUtilityClasses();
@@ -119,6 +99,11 @@ CardContent.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The component orientation.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The props used for each slot inside.
    * @default {}

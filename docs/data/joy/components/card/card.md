@@ -134,7 +134,9 @@ This example demonstrates the automatic adjustment when a button is placed as a 
 
 ### User card
 
-A [horizontal card](#horizontal-alignment) can be stacked when its width is equal or lower than the `stackWidth` value.
+Combining CSS min-width with clamp, a [horizontal card](#horizontal-alignment) can be stacked when it reaches a certain width or below.
+
+The example below shows a user card that stacks when the card's width is equal or below 500px. The drag handle is at the bottom right corner of the card.
 
 {{"demo": "UserCard.js" }}
 

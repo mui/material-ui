@@ -26,7 +26,7 @@ export default function InstagramPost() {
         '--Card-radius': (theme) => theme.vars.radius.xs,
       }}
     >
-      <CardContent sx={{ flexDirection: 'row', alignItems: 'center', gap: 1 }}>
+      <CardContent orientation="horizontal" sx={{ alignItems: 'center', gap: 1 }}>
         <Box
           sx={{
             position: 'relative',
@@ -60,7 +60,7 @@ export default function InstagramPost() {
           <img src="/static/images/cards/yosemite.jpeg" alt="" loading="lazy" />
         </AspectRatio>
       </CardOverflow>
-      <CardContent sx={{ flexDirection: 'row', alignItems: 'center', mx: -1 }}>
+      <CardContent orientation="horizontal" sx={{ alignItems: 'center', mx: -1 }}>
         <Box sx={{ width: 0, display: 'flex', gap: 0.5 }}>
           <IconButton variant="plain" color="neutral" size="sm">
             <FavoriteBorder />
@@ -91,44 +91,46 @@ export default function InstagramPost() {
           </IconButton>
         </Box>
       </CardContent>
-      <Link
-        component="button"
-        underline="none"
-        fontSize="sm"
-        fontWeight="lg"
-        textColor="text.primary"
-      >
-        8.1M Likes
-      </Link>
-      <Typography fontSize="sm">
+      <CardContent>
         <Link
           component="button"
-          color="neutral"
+          underline="none"
+          fontSize="sm"
           fontWeight="lg"
           textColor="text.primary"
         >
-          MUI
-        </Link>{' '}
-        The React component library you always wanted
-      </Typography>
-      <Link
-        component="button"
-        underline="none"
-        fontSize="sm"
-        startDecorator="…"
-        sx={{ color: 'text.tertiary' }}
-      >
-        more
-      </Link>
-      <Link
-        component="button"
-        underline="none"
-        fontSize="10px"
-        sx={{ color: 'text.tertiary', my: 0.5 }}
-      >
-        2 DAYS AGO
-      </Link>
-      <CardOverflow sx={{ p: 'var(--Card-padding)', display: 'flex' }}>
+          8.1M Likes
+        </Link>
+        <Typography fontSize="sm">
+          <Link
+            component="button"
+            color="neutral"
+            fontWeight="lg"
+            textColor="text.primary"
+          >
+            MUI
+          </Link>{' '}
+          The React component library you always wanted
+        </Typography>
+        <Link
+          component="button"
+          underline="none"
+          fontSize="sm"
+          startDecorator="…"
+          sx={{ color: 'text.tertiary' }}
+        >
+          more
+        </Link>
+        <Link
+          component="button"
+          underline="none"
+          fontSize="10px"
+          sx={{ color: 'text.tertiary', my: 0.5 }}
+        >
+          2 DAYS AGO
+        </Link>
+      </CardContent>
+      <CardOverflow sx={{ pb: 'var(--Card-padding)', display: 'flex' }}>
         <IconButton size="sm" variant="plain" color="neutral" sx={{ ml: -1 }}>
           <Face />
         </IconButton>
