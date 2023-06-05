@@ -257,12 +257,12 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
   const sx =
     sxProp || vx
-      ? [
+      ? ([
           ...Object.entries(vx ?? {}).map(([key, value]) => ({
             [getCSSVariable(key)]: value,
           })),
-          ...[sxProp ?? {}],
-        ] as SxProps
+          ...(sxProp ? (Array.isArray(sxProp) ? sxProp : [sxProp]) : []),
+        ] as SxProps)
       : undefined;
 
   const formControl = React.useContext(FormControlContext);
