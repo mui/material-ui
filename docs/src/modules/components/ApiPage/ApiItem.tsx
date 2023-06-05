@@ -93,7 +93,7 @@ const Root = styled('div')(
         fill: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
       },
     },
-    '& .default-props': {
+    '& .prop-list-default-props': {
       ...theme.typography.body2,
       fontWeight: theme.typography.fontWeightMedium,
       display: 'flex',
@@ -168,7 +168,7 @@ const Root = styled('div')(
           fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
         },
       },
-      '& .default-props': {
+      '& .prop-list-default-props': {
         color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
         code: {
           borderColor: `var(--muidocs-palette-grey-800, ${darkTheme.palette.grey[800]})`,
