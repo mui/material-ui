@@ -29,7 +29,6 @@ export interface CardActionsTypeMap<P = {}, D extends React.ElementType = 'div'>
     children?: React.ReactNode;
     /**
      * The CSS `flex` for the Button and its wrapper.
-     * @default 1
      */
     buttonFlex?: string | number;
     /**

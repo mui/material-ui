@@ -11,6 +11,7 @@ import useSlot from '../utils/useSlot';
 import buttonClasses from '../Button/buttonClasses';
 import iconButtonClasses from '../IconButton/iconButtonClasses';
 import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
+import dividerClasses from '../Divider/dividerClasses';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -41,6 +42,9 @@ const CardActionsRoot = styled('div', {
     [`.${cardOverflowClasses.root} > &`]: {
       '--unstable_padding': 'calc(0.75 * var(--Card-padding)) 0 var(--Card-padding)',
     },
+    [`.${dividerClasses.root} + &`]: {
+      '--unstable_padding': '0',
+    },
     ...(ownerState.buttonFlex && {
       [`& > :not(.${iconButtonClasses.root})`]: {
         flex: ownerState.buttonFlex,
@@ -49,6 +53,9 @@ const CardActionsRoot = styled('div', {
         width: '100%', // for button to fill its wrapper.
       },
     }),
+    [`& > .${buttonClasses.root}:only-child`]: {
+      flex: 'auto',
+    },
   };
 });
 /**
@@ -71,7 +78,7 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
     className,
     component = 'div',
     children,
-    buttonFlex = 1,
+    buttonFlex,
     orientation = 'horizontal',
     slots = {},
     slotProps = {},
