@@ -20,7 +20,6 @@ interface AppFooterProps {
   stackOverflowURL?: string;
 }
 
-
 export default function AppFooter(props: AppFooterProps) {
   const { stackOverflowURL = 'https://stackoverflow.com/questions/tagged/mui' } = props;
 
