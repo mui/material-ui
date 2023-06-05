@@ -13,7 +13,6 @@ import { ColorInversionProvider, useColorInversion } from '../styles/ColorInvers
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
-import cardCoverClasses from '../CardCover/cardCoverClasses';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
@@ -73,7 +72,6 @@ const CardRoot = styled('div', {
       '--Card-padding': '1.5rem',
       gap: '1rem 1.5rem',
     }),
-    '--unstable_Card-horizontal': ownerState.orientation === 'horizontal' ? 1 : 0, // internal usage, developer should rely on `orientation` prop
     padding: 'var(--Card-padding)',
     borderRadius: 'var(--Card-radius)',
     boxShadow: theme.shadow.sm,
@@ -83,17 +81,6 @@ const CardRoot = styled('div', {
     position: 'relative',
     display: 'flex',
     flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-    ...(ownerState.stackWidth && {
-      flexWrap: 'wrap',
-      [`& > *:not(.${cardCoverClasses.root})`]: {
-        '--unstable_Card-stackPoint': `calc(${
-          typeof ownerState.stackWidth === 'number'
-            ? `${ownerState.stackWidth}px`
-            : ownerState.stackWidth
-        } - 2 * var(--Card-padding) - 2 * var(--variant-borderWidth, 0px))`,
-        minWidth: 'clamp(0px, (var(--unstable_Card-stackPoint) + 1px - 100%) * 999, 100%)',
-      },
-    }),
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   ownerState.color !== 'context' &&
@@ -128,7 +115,6 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     orientation = 'vertical',
     slots = {},
     slotProps = {},
-    stackWidth,
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -141,7 +127,6 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     orientation,
     size,
     variant,
-    stackWidth,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -254,13 +239,6 @@ Card.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     root: PropTypes.elementType,
   }),
-  /**
-   * For `orientation="horizontal"` only.
-   * When the Card's width is less than or equal to this value, the Card's children will stack vertically.
-   *
-   * Note: If the value is a number, it will be converted to pixels.
-   */
-  stackWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

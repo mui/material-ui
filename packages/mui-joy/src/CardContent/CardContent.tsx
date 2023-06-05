@@ -94,6 +94,11 @@ CardContent.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The component orientation.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * The props used for each slot inside.
    * @default {}
    */
