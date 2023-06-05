@@ -279,7 +279,7 @@ describe('<Avatar />', () => {
     });
   });
 
-  it('should render first letter of alt when src and srcSet is not available', () => {
+  it('should render first letter of alt when src or srcSet are not available', () => {
     const { container } = render(<Avatar className="my-avatar" alt="Hello World!" />);
     const avatar = container.firstChild;
     expect(avatar).to.have.text('H');
