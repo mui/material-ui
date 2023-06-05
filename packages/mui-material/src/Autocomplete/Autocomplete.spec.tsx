@@ -90,6 +90,13 @@ function MyAutocomplete<
   renderInput={(params) => <TextField {...params} value={params.inputProps.value} />}
 />;
 
+// Test for focusVisible class
+<Autocomplete
+  classes={{ focusVisible: 'test' }}
+  options={[{ label: '1' }, { label: '2' }]}
+  renderInput={(params) => <TextField {...params} />}
+/>;
+
 interface Option {
   label: string;
   value: string;
