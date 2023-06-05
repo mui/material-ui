@@ -52,7 +52,8 @@ const messages = [
     sender: 'Katherine Moss',
     message: 'Tech requirements.pdf',
     attachment: {
-      type: 'PDF',
+      fileName: 'Tech requirements.pdf',
+      type: 'pdf',
       size: '1.2 MB',
     },
   },
