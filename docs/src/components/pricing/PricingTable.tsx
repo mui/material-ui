@@ -453,17 +453,20 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/row-rangeselection': (
     <ColumnHead label="Range selection" nested href="/x/react-data-grid/cell-selection/" />
   ),
-  'data-grid/filter-quick': (
-    <ColumnHead label="Quick filter" nested href="/x/react-data-grid/filtering/#quick-filter" />
-  ),
   'data-grid/filter-column': (
     <ColumnHead label="Column filters" nested href="/x/react-data-grid/filtering/" />
+  ),
+  'data-grid/filter-quick': (
+    <ColumnHead label="Quick filter" nested href="/x/react-data-grid/filtering/quick-filter/" />
+  ),
+  'data-grid/header-filters': (
+    <ColumnHead label="Header filters" nested href="/x/react-data-grid/filtering/header-filters/" />
   ),
   'data-grid/filter-multicolumn': (
     <ColumnHead
       label="Multi-column filtering"
       nested
-      href="/x/react-data-grid/filtering/#single-and-multi-filtering"
+      href="/x/react-data-grid/filtering/multi-filters/"
     />
   ),
   'data-grid/pagination': (
@@ -642,6 +645,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-rangeselection': no,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
+  'data-grid/header-filters': no,
   'data-grid/filter-multicolumn': no,
   'data-grid/column-sorting': yes,
   'data-grid/multi-column-sorting': no,
@@ -702,6 +706,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-rangeselection': no,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
+  'data-grid/header-filters': yes,
   'data-grid/filter-multicolumn': yes,
   'data-grid/column-sorting': yes,
   'data-grid/multi-column-sorting': yes,
@@ -762,6 +767,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-rangeselection': yes,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
+  'data-grid/header-filters': yes,
   'data-grid/filter-multicolumn': yes,
   'data-grid/column-sorting': yes,
   'data-grid/multi-column-sorting': yes,
@@ -1164,9 +1170,11 @@ export default function PricingTable({
         {renderRow('data-grid/row-rangeselection')}
         {nestedDivider}
         <RowCategory>Filtering features</RowCategory>
+        {renderRow('data-grid/filter-column')}
+        {nestedDivider}
         {renderRow('data-grid/filter-quick')}
         {nestedDivider}
-        {renderRow('data-grid/filter-column')}
+        {renderRow('data-grid/header-filters')}
         {nestedDivider}
         {renderRow('data-grid/filter-multicolumn')}
         {nestedDivider}
@@ -1193,6 +1201,7 @@ export default function PricingTable({
         {renderRow('data-grid/file-excel')}
         {nestedDivider}
         {renderRow('data-grid/file-clipboard-copy')}
+        {nestedDivider}
         {renderRow('data-grid/file-clipboard-paste')}
         {nestedDivider}
         <RowCategory>Rendering features</RowCategory>
