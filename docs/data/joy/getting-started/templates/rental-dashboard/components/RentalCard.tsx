@@ -164,7 +164,7 @@ export default function RentalCard({
             >
               Wi-Fi
             </Typography>
-            <Typography>
+            <Typography sx={{ flexGrow: 1, textAlign: 'right' }}>
               <strong>$540</strong> <Typography>total</Typography>
             </Typography>
           </Stack>
