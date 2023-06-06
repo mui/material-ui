@@ -1,4 +1,4 @@
-# Supported components
+# Components overview
 
 <p class="description">A list of every currently supported Base UI components.</p>
 

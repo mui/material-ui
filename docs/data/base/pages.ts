@@ -10,7 +10,6 @@ const pages = [
       { pathname: '/base/getting-started/quickstart', title: 'Quickstart' },
       { pathname: '/base/getting-started/usage', title: 'Usage' },
       { pathname: '/base/getting-started/customization', title: 'Customization' },
-      { pathname: '/base/getting-started/supported-components', title: 'Supported Components' },
     ],
   },
   {
@@ -18,6 +17,7 @@ const pages = [
     title: 'Components',
     icon: standardNavIcons.ToggleOnIcon,
     children: [
+      { pathname: '/base/react-components', title: 'All components' },
       {
         pathname: '/base/components/inputs',
         subheader: 'inputs',
