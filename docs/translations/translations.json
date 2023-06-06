@@ -213,6 +213,7 @@
     "/system/react-stack": "Stack",
     "/system/experimental-api": "Experimental APIs",
     "/system/experimental-api/configure-the-sx-prop": "Configure the sx prop",
+    "/system/experimental-api/css-theme-variables": "CSS Theme Variables",
     "/system/styles": "Styles",
     "/system/styles/basics": "Basics",
     "/system/styles/advanced": "Advanced",
