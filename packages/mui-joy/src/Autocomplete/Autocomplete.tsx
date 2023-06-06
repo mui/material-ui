@@ -223,7 +223,9 @@ const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})<{ ownerState: OwnerState }>({});
+})<{ ownerState: OwnerState }>(({ theme }) => ({
+  zIndex: theme.zIndex.modal,
+}));
 
 const AutocompleteOption = styled(StyledAutocompleteOption, {
   name: 'JoyAutocomplete',
