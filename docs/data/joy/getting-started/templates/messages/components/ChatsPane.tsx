@@ -9,9 +9,15 @@ import { ChatProps } from './MyMessages';
 
 type ChatsPaneProps = {
   chats: ChatProps[];
+  setSelectedChat: (chat: ChatProps) => void;
+  selectedChatId: string;
 };
 
-export default function ChatsPane({ chats }: ChatsPaneProps) {
+export default function ChatsPane({
+  chats,
+  setSelectedChat,
+  selectedChatId,
+}: ChatsPaneProps) {
   // const [isNew, setIsNew] = React.useState<boolean>(false);
   return (
     <Sheet
@@ -71,7 +77,12 @@ export default function ChatsPane({ chats }: ChatsPaneProps) {
         }}
       >
         {chats.map((chat) => (
-          <ChatListItem key={chat.id} {...chat} />
+          <ChatListItem
+            key={chat.id}
+            {...chat}
+            setSelectedChat={setSelectedChat}
+            selectedChatId={selectedChatId}
+          />
         ))}
       </List>
     </Sheet>

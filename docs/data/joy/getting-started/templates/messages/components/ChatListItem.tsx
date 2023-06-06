@@ -7,24 +7,31 @@ import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import AvatarWithStatus from './AvatarWithStatus';
+import { ChatProps } from './MyMessages';
 
 type ChatListItemProps = ListItemButtonProps & {
+  id: string;
   unread?: boolean;
   sender: any;
   messages: any;
+  selectedChatId?: string;
+  setSelectedChat: (chat: ChatProps) => void;
 };
 
 export default function ChatListItem({
   unread = false,
-  selected = false,
+  id,
   sender,
   messages,
+  selectedChatId,
+  setSelectedChat,
 }: ChatListItemProps) {
+  const selected = selectedChatId === id;
   return (
     <React.Fragment>
       <ListItem>
         <ListItemButton
-          onClick={() => alert('You clicked')}
+          onClick={() => setSelectedChat({ id, sender, messages })}
           selected={selected}
           variant={selected ? 'soft' : 'plain'}
           color="neutral"
