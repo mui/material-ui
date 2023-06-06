@@ -1,13 +1,11 @@
 import * as React from 'react';
-import Stack from '@mui/joy/Stack';
+import Box from '@mui/joy/Box';
 import Sheet from '@mui/joy/Sheet';
-import Typography from '@mui/joy/Typography';
-import { Badge, Box, Chip, IconButton } from '@mui/joy';
-import Avatar from '@mui/joy/Avatar';
+import Stack from '@mui/joy/Stack';
+import AvatarWithStatus from './AvatarWithStatus';
 import ChatBubble from './ChatBubble';
 import MessageInput from './MessageInput';
 import MessagesPaneHeader from './MessagesPaneHeader';
-import AvatarWithStatus from './AvatarWithStatus';
 import { ChatProps, MessageProps } from './MyMessages';
 
 type MessagesPaneProps = {
@@ -61,17 +59,11 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
               >
                 {!isYou && (
                   <AvatarWithStatus
-                    online={true}
+                    online={message.sender.online}
                     src="/static/images/avatar/1.jpg"
                   />
                 )}
-                <ChatBubble
-                  variant={isYou ? 'sent' : 'received'}
-                  message={message.content}
-                  attachment={message.attachment}
-                  time={message.timestamp}
-                  sender={message.sender}
-                />
+                <ChatBubble variant={isYou ? 'sent' : 'received'} {...message} />
               </Stack>
             );
           })}

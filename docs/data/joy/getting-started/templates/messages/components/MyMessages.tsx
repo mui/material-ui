@@ -153,12 +153,12 @@ const users: UserProps[] = [
     avatar: '/static/images/avatar/7.jpg',
     online: false,
   },
-  {
-    name: 'Frank Phillips',
-    username: '@frank',
-    avatar: '/static/images/avatar/8.jpg',
-    online: false,
-  },
+  // {
+  //   name: 'Frank Phillips',
+  //   username: '@frank',
+  //   avatar: '/static/images/avatar/8.jpg',
+  //   online: false,
+  // },
 ];
 
 const chats: ChatProps[] = [
@@ -217,6 +217,92 @@ const chats: ChatProps[] = [
       },
     ],
   },
+  {
+    id: '3',
+    sender: users[2],
+    messages: [
+      {
+        id: '1',
+        content:
+          'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
+        timestamp: '5 mins ago',
+        sender: users[2],
+        unread: true,
+      },
+    ],
+  },
+  {
+    id: '4',
+    sender: users[3],
+    messages: [
+      {
+        id: '1',
+        content:
+          'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
+        timestamp: '5 mins ago',
+        sender: users[3],
+        unread: true,
+      },
+    ],
+  },
+
+  {
+    id: '5',
+    sender: users[4],
+    messages: [
+      {
+        id: '1',
+        content:
+          'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
+        timestamp: '5 mins ago',
+        sender: users[4],
+        unread: true,
+      },
+    ],
+  },
+  {
+    id: '6',
+    sender: users[5],
+    messages: [
+      {
+        id: '1',
+        content:
+          'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
+        timestamp: '5 mins ago',
+        sender: users[5],
+        unread: true,
+      },
+    ],
+  },
+
+  {
+    id: '7',
+    sender: users[6],
+    messages: [
+      {
+        id: '1',
+        content:
+          'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
+        timestamp: '5 mins ago',
+        sender: users[6],
+        unread: true,
+      },
+    ],
+  },
+  // {
+  //   id: '8',
+  //   sender: users[7],
+  //   messages: [
+  //     {
+  //       id: '1',
+  //       content:
+  //         'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
+  //       timestamp: '5 mins ago',
+  //       sender: users[7],
+  //       unread: true,
+  //     },
+  //   ],
+  // },
 ];
 
 export default function MyProfile() {
