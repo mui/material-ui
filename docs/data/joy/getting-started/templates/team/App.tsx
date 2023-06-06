@@ -132,7 +132,11 @@ function TeamNav() {
 export default function TeamExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
-    <CssVarsProvider disableTransitionOnChange theme={teamTheme}>
+    <CssVarsProvider
+      defaultMode="system"
+      disableTransitionOnChange
+      theme={teamTheme}
+    >
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>

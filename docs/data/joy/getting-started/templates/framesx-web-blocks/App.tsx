@@ -59,7 +59,11 @@ function ColorSchemeToggle() {
 
 export default function TeamExample() {
   return (
-    <CssVarsProvider disableTransitionOnChange theme={framesxTheme}>
+    <CssVarsProvider
+      defaultMode="system"
+      disableTransitionOnChange
+      theme={framesxTheme}
+    >
       <CssBaseline />
       <ColorSchemeToggle />
       <Box

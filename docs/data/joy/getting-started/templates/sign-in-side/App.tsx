@@ -62,7 +62,7 @@ function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
 export default function JoySignInSideTemplate() {
   return (
     <CssVarsProvider
-      defaultMode="dark"
+      defaultMode="system"
       disableTransitionOnChange
       theme={customTheme}
     >

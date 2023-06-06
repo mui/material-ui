@@ -55,7 +55,11 @@ function ColorSchemeToggle() {
 export default function EmailExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
-    <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
+    <CssVarsProvider
+      defaultMode="system"
+      disableTransitionOnChange
+      theme={emailTheme}
+    >
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>

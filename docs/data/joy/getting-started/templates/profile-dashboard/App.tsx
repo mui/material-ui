@@ -25,7 +25,11 @@ export default function JoyOrderDashboardTemplate() {
   }, [status]);
 
   return (
-    <CssVarsProvider disableTransitionOnChange theme={customTheme}>
+    <CssVarsProvider
+      defaultMode="system"
+      disableTransitionOnChange
+      theme={customTheme}
+    >
       <GlobalStyles
         styles={{
           '[data-feather], .feather': {
