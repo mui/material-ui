@@ -35,8 +35,6 @@ export interface TypographyClasses {
   colorNeutral: string;
   /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the root element if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
   /** Class name applied to the root element if `color="warning"`. */
@@ -77,7 +75,6 @@ const typographyClasses: TypographyClasses = generateUtilityClasses('MuiTypograp
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',

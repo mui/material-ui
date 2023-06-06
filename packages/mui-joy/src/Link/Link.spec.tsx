@@ -14,7 +14,6 @@ import { expectType } from '@mui/types';
 // `color`
 <Link color="primary" />;
 <Link color="danger" />;
-<Link color="info" />;
 <Link color="success" />;
 <Link color="warning" />;
 <Link color="neutral" />;

@@ -24,9 +24,6 @@ function HomeIcon() {
 <SvgIcon color="danger">
   <HomeIcon />
 </SvgIcon>;
-<SvgIcon color="info">
-  <HomeIcon />
-</SvgIcon>;
 <SvgIcon color="success">
   <HomeIcon />
 </SvgIcon>;

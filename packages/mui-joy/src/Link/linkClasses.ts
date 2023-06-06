@@ -9,8 +9,6 @@ export interface LinkClasses {
   colorNeutral: string;
   /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the root element if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
   /** Class name applied to the root element if `color="warning"`. */
@@ -72,7 +70,6 @@ const linkClasses: LinkClasses = generateUtilityClasses('MuiLink', [
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',

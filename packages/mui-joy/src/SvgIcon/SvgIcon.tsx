@@ -140,7 +140,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * @default 'inherit'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'inherit', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'inherit', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

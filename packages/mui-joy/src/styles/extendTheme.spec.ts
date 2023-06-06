@@ -65,9 +65,9 @@ extendTheme({
   colorInversion: (theme) => ({
     soft: {
       primary: {
-        '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-darkChannel')} / 0.4)`,
+        '--variant-plainColor': `rgba(${theme.getCssVar('palette-primary-darkChannel')} / 0.4)`,
         [theme.getColorSchemeSelector('dark')]: {
-          '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-lightChannel')} / 0.4)`,
+          '--variant-plainColor': `rgba(${theme.getCssVar('palette-primary-lightChannel')} / 0.4)`,
         },
       },
     },

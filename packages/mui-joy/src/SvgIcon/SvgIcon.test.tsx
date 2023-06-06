@@ -82,7 +82,7 @@ describe('<SvgIcon />', () => {
       expect(container.firstChild).to.have.class(classes.colorInherit);
     });
 
-    (['inherit', 'primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach(
+    (['inherit', 'primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach(
       (color) => {
         it(`should render ${color}`, () => {
           const { container } = render(<SvgIcon color={color}>{path}</SvgIcon>);
