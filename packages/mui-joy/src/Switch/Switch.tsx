@@ -4,15 +4,12 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import useSwitch from '@mui/base/useSwitch';
-import { styled, useThemeProps, Theme } from '../styles';
+import { styled, useThemeProps, Theme, prepareSxProp } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
-import { SwitchTypeMap, SwitchOwnerState, SwitchProps } from './SwitchProps';
+import { SwitchTypeMap, SwitchOwnerState, SwitchCssVariables } from './SwitchProps';
 import FormControlContext from '../FormControl/FormControlContext';
-import { SxProps } from '../styles/types';
-
-const getCSSVariable = (variableName: string) => `--Switch-${variableName}`;
 
 const useUtilityClasses = (ownerState: SwitchOwnerState) => {
   const { checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
@@ -215,22 +212,6 @@ const SwitchEndDecorator = styled('span', {
   display: 'inline-flex',
   marginInlineStart: 'var(--Switch-gap)',
 });
-
-// TODO: extract this to a util that can be used in all components
-const prepareSxProp = (sx: SxProps | undefined, vx: SwitchProps['vx']) => {
-  let sxAsArray = undefined;
-  if (sx) {
-    sxAsArray = Array.isArray(sx) ? sx : [sx];
-  }
-  return sx || vx
-    ? ([
-        ...Object.entries(vx ?? {}).map(([key, value]) => ({
-          [getCSSVariable(key)]: value,
-        })),
-        ...(sxAsArray ?? []),
-      ] as SxProps)
-    : undefined;
-};
 /**
  *
  * Demos:
@@ -271,7 +252,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     ...other
   } = props;
 
-  const sx = prepareSxProp(sxProp, vx);
+  const sx = prepareSxProp<SwitchCssVariables>('Switch', sxProp, vx);
 
   const formControl = React.useContext(FormControlContext);
 
