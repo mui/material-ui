@@ -8,7 +8,7 @@ import {
   unstable_composeClasses as composeClasses,
 } from '@mui/base';
 import useSlider, { valueToPercent } from '@mui/base/useSlider';
-import { alpha, lighten, darken, shouldForwardProp } from '@mui/system';
+import { shouldForwardProp } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
@@ -16,6 +16,7 @@ import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import SliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderOwnerState, SliderTypeMap, SliderProps } from './Slider.types';
+import { MD3State } from '../styles';
 
 function Identity<Type>(x: Type): Type {
   return x;
@@ -37,24 +38,20 @@ const SliderRoot = styled('span', {
       ownerState.track === false && styles.trackFalse,
     ];
   },
-})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => ({
-  borderRadius: 12,
+})<{ ownerState: SliderOwnerState }>(({ theme: { vars: tokens }, ownerState }) => ({
+  borderRadius: tokens.sys.shape.corner.full,
   boxSizing: 'content-box',
   display: 'inline-block',
   position: 'relative',
   cursor: 'pointer',
   touchAction: 'none',
-  color: (theme.vars || theme).palette[ownerState.color || 'primary'].main,
+  color: tokens.sys.color[ownerState.color || 'primary'],
   WebkitTapHighlightColor: 'transparent',
   ...(ownerState.orientation === 'horizontal' && {
     height: 4,
     width: '100%',
-    padding: '13px 0',
-    // The primary input mechanism of the device includes a pointing device of limited accuracy.
-    '@media (pointer: coarse)': {
-      // Reach 42px touch target, about ~8mm on screen.
-      padding: '20px 0',
-    },
+    // 40px touch target
+    padding: '18px 0',
     ...(ownerState.size === 'small' && {
       height: 2,
     }),
@@ -65,12 +62,7 @@ const SliderRoot = styled('span', {
   ...(ownerState.orientation === 'vertical' && {
     height: '100%',
     width: 4,
-    padding: '0 13px',
-    // The primary input mechanism of the device includes a pointing device of limited accuracy.
-    '@media (pointer: coarse)': {
-      // Reach 42px touch target, about ~8mm on screen.
-      padding: '0 20px',
-    },
+    padding: '0 18px',
     ...(ownerState.size === 'small' && {
       width: 2,
     }),
@@ -84,7 +76,7 @@ const SliderRoot = styled('span', {
   [`&.${sliderClasses.disabled}`]: {
     pointerEvents: 'none',
     cursor: 'default',
-    color: (theme.vars || theme).palette.grey[400],
+    color: tokens.ref.palette.neutral[50],
   },
   [`&.${sliderClasses.dragging}`]: {
     [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
@@ -110,12 +102,12 @@ const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
   overridesResolver: (props, styles) => styles.rail,
-})<{ ownerState: SliderOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: SliderOwnerState }>(({ theme: { vars: tokens }, ownerState }) => ({
   display: 'block',
   position: 'absolute',
   borderRadius: 'inherit',
-  backgroundColor: 'currentColor',
-  opacity: 0.38,
+  backgroundColor: tokens.sys.color.surfaceContainerHighest,
+  boxShadow: tokens.sys.elevation[0],
   ...(ownerState.orientation === 'horizontal' && {
     width: '100%',
     height: 'inherit',
@@ -128,8 +120,11 @@ const SliderRail = styled('span', {
     left: '50%',
     transform: 'translateX(-50%)',
   }),
+  ...(ownerState.disabled && {
+    backgroundColor: `rgba(${tokens.sys.color.onSurfaceChannel} / 0.12)`,
+  }),
   ...(ownerState.track === 'inverted' && {
-    opacity: 1,
+    backgroundColor: ownerState.disabled ? tokens.ref.palette.neutral[50] : 'currentColor',
   }),
 }));
 
@@ -151,21 +146,16 @@ const SliderTrack = styled('span', {
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
 })<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => {
-  const color = // Same logic as the LinearProgress track color
-    theme.palette.mode === 'light'
-      ? lighten(theme.palette[ownerState.color || 'primary'].main, 0.62)
-      : darken(theme.palette[ownerState.color || 'primary'].main, 0.5);
+  const { vars: tokens } = theme;
+
   return {
     display: 'block',
     position: 'absolute',
     borderRadius: 'inherit',
-    border: '1px solid currentColor',
     backgroundColor: 'currentColor',
+    boxShadow: tokens.sys.elevation[0],
     transition: theme.transitions.create(['left', 'width', 'bottom', 'height'], {
       duration: theme.transitions.duration.shortest,
-    }),
-    ...(ownerState.size === 'small' && {
-      border: 'none',
     }),
     ...(ownerState.orientation === 'horizontal' && {
       height: 'inherit',
@@ -181,12 +171,9 @@ const SliderTrack = styled('span', {
       display: 'none',
     }),
     ...(ownerState.track === 'inverted' && {
-      backgroundColor: theme.vars
-        ? theme.vars.palette.Slider[`${ownerState.color || 'primary'}Track`]
-        : color,
-      borderColor: theme.vars
-        ? theme.vars.palette.Slider[`${ownerState.color || 'primary'}Track`]
-        : color,
+      backgroundColor: ownerState.disabled
+        ? tokens.sys.color.surfaceContainerHighest
+        : tokens.sys.color.surfaceContainerHigh,
     }),
   };
 });
@@ -215,77 +202,81 @@ const SliderThumb = styled('span', {
       ownerState.size !== 'medium' && styles[`thumbSize${capitalize(ownerState.size)}`],
     ];
   },
-})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => ({
-  position: 'absolute',
-  width: 20,
-  height: 20,
-  boxSizing: 'border-box',
-  borderRadius: '50%',
-  outline: 0,
-  backgroundColor: 'currentColor',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
-    duration: theme.transitions.duration.shortest,
-  }),
-  ...(ownerState.size === 'small' && {
-    width: 12,
-    height: 12,
-  }),
-  ...(ownerState.orientation === 'horizontal' && {
-    top: '50%',
-    transform: 'translate(-50%, -50%)',
-  }),
-  ...(ownerState.orientation === 'vertical' && {
-    left: '50%',
-    transform: 'translate(-50%, 50%)',
-  }),
-  '&:before': {
+})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+
+  function getBoxShadow(state: keyof MD3State) {
+    return `0px 0px 0px 10px rgba(${tokens.sys.color.primaryChannel} / ${tokens.sys.state[state].stateLayerOpacity})`;
+  }
+
+  return {
     position: 'absolute',
-    content: '""',
-    borderRadius: 'inherit',
-    width: '100%',
-    height: '100%',
-    boxShadow: (theme.vars || theme).shadows[2],
-    ...(ownerState.size === 'small' && {
-      boxShadow: 'none',
+    width: 20,
+    height: 20,
+    boxSizing: 'border-box',
+    borderRadius: tokens.sys.shape.corner.full,
+    outline: 0,
+    backgroundColor: 'currentColor',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
+      duration: theme.transitions.duration.shortest,
     }),
-  },
-  '&::after': {
-    position: 'absolute',
-    content: '""',
-    borderRadius: '50%',
-    // 42px is the hit target
-    width: 42,
-    height: 42,
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-  },
-  [`&:hover, &.${sliderClasses.focusVisible}`]: {
-    boxShadow: `0px 0px 0px 8px ${
-      theme.vars
-        ? `rgba(${theme.vars.palette[ownerState.color || 'primary'].mainChannel} / 0.16)`
-        : alpha(theme.palette[ownerState.color || 'primary'].main, 0.16)
-    }`,
-    '@media (hover: none)': {
-      boxShadow: 'none',
+    ...(ownerState.size === 'small' && {
+      width: 12,
+      height: 12,
+    }),
+    ...(ownerState.orientation === 'horizontal' && {
+      top: '50%',
+      transform: 'translate(-50%, -50%)',
+    }),
+    ...(ownerState.orientation === 'vertical' && {
+      left: '50%',
+      transform: 'translate(-50%, 50%)',
+    }),
+    '&:before': {
+      position: 'absolute',
+      content: '""',
+      borderRadius: 'inherit',
+      width: '100%',
+      height: '100%',
+      boxShadow: tokens.sys.elevation[1],
+      ...(ownerState.size === 'small' && {
+        boxShadow: 'none',
+      }),
     },
-  },
-  [`&.${sliderClasses.active}`]: {
-    boxShadow: `0px 0px 0px 14px ${
-      theme.vars
-        ? `rgba(${theme.vars.palette[ownerState.color || 'primary'].mainChannel} / 0.16)`
-        : alpha(theme.palette[ownerState.color || 'primary'].main, 0.16)
-    }`,
-  },
-  [`&.${sliderClasses.disabled}`]: {
-    '&:hover': {
-      boxShadow: 'none',
+    '&::after': {
+      position: 'absolute',
+      content: '""',
+      borderRadius: '50%',
+      // 40px is the hit target
+      width: 40,
+      height: 40,
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
     },
-  },
-}));
+    [`&:hover`]: {
+      boxShadow: getBoxShadow('hover'),
+      '@media (hover: none)': {
+        boxShadow: 'none',
+      },
+    },
+    [`&.${sliderClasses.focusVisible}`]: {
+      boxShadow: getBoxShadow('focus'),
+    },
+    [`&.${sliderClasses.active}`]: {
+      boxShadow: getBoxShadow('pressed'),
+    },
+    [`&.${sliderClasses.disabled}`]: {
+      boxShadow: 'none',
+      '&:before': {
+        boxShadow: tokens.sys.elevation[0],
+      },
+    },
+  };
+});
 
 SliderThumb.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -304,64 +295,71 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
-})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => ({
-  [`&.${sliderClasses.valueLabelOpen}`]: {
-    transform: `${
-      ownerState.orientation === 'vertical' ? 'translateY(-50%)' : 'translateY(-100%)'
-    } scale(1)`,
-  },
-  zIndex: 1,
-  whiteSpace: 'nowrap',
-  ...theme.typography.body2,
-  fontWeight: 500,
-  transition: theme.transitions.create(['transform'], {
-    duration: theme.transitions.duration.shortest,
-  }),
-  transform: `${
-    ownerState.orientation === 'vertical' ? 'translateY(-50%)' : 'translateY(-100%)'
-  } scale(0)`,
-  position: 'absolute',
-  backgroundColor: (theme.vars || theme).palette.grey[600],
-  borderRadius: 2,
-  color: (theme.vars || theme).palette.common.white,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '0.25rem 0.75rem',
-  ...(ownerState.orientation === 'horizontal' && {
-    top: '-10px',
-    transformOrigin: 'bottom center',
-    '&:before': {
-      position: 'absolute',
-      content: '""',
-      width: 8,
-      height: 8,
-      transform: 'translate(-50%, 50%) rotate(45deg)',
-      backgroundColor: 'inherit',
-      bottom: 0,
-      left: '50%',
+})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+  const letterSpacing = `${
+    theme.sys.typescale.label.medium.tracking / theme.sys.typescale.label.medium.size
+  }rem`;
+
+  return {
+    zIndex: 1,
+    whiteSpace: 'nowrap',
+    fontFamily: tokens.sys.typescale.label.medium.family,
+    lineHeight: `calc(${tokens.sys.typescale.label.large.lineHeight} / ${tokens.sys.typescale.label.medium.size})`,
+    fontWeight: tokens.sys.typescale.label.medium.weight,
+    fontSize: theme.typography.pxToRem(theme.sys.typescale.label.medium.size),
+    letterSpacing,
+    transition: theme.transitions.create(['transform'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    position: 'absolute',
+    backgroundColor: tokens.sys.color[ownerState.color || 'primary'],
+    boxShadow: tokens.sys.elevation[0],
+    borderRadius: '50% 50% 50% 0',
+    color: tokens.sys.color.onPrimary,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 28,
+    height: 28,
+    [`& .${sliderClasses.valueLabelLabel}`]: {
+      // compensates letter spacing being added only on the right side
+      paddingLeft: letterSpacing,
     },
-  }),
-  ...(ownerState.orientation === 'vertical' && {
-    right: ownerState.size === 'small' ? '20px' : '30px',
-    top: '50%',
-    transformOrigin: 'right center',
-    '&:before': {
-      position: 'absolute',
-      content: '""',
-      width: 8,
-      height: 8,
-      transform: 'translate(-50%, -50%) rotate(45deg)',
-      backgroundColor: 'inherit',
-      right: '-20%',
-      top: '50%',
-    },
-  }),
-  ...(ownerState.size === 'small' && {
-    fontSize: theme.typography.pxToRem(12),
-    padding: '0.25rem 0.5rem',
-  }),
-}));
+    ...(ownerState.orientation === 'horizontal' && {
+      top: ownerState.size === 'small' ? -32 : -36,
+      [`&.${sliderClasses.valueLabel}`]: {
+        transform: 'translateY(50%) rotate(-45deg) scale(0)',
+      },
+      [`& .${sliderClasses.valueLabelCircle}`]: {
+        transform: 'rotate(45deg)',
+      },
+      [`&.${sliderClasses.valueLabelOpen}`]: {
+        transform: 'translateY(0) rotate(-45deg) scale(1)',
+      },
+    }),
+    ...(ownerState.orientation === 'vertical' && {
+      left: ownerState.size === 'small' ? -32 : -36,
+      [`&.${sliderClasses.valueLabel}`]: {
+        transform: 'translateX(50%) rotate(225deg) scale(0)',
+      },
+      [`& .${sliderClasses.valueLabelCircle}`]: {
+        transform: 'rotate(-225deg)',
+      },
+      [`&.${sliderClasses.valueLabelOpen}`]: {
+        transform: 'translateX(0) rotate(225deg) scale(1)',
+      },
+    }),
+    ...(ownerState.size === 'small' && {
+      fontSize: theme.typography.pxToRem(theme.sys.typescale.label.small.size),
+      width: 24,
+      height: 24,
+    }),
+    ...(ownerState.disabled && {
+      backgroundColor: tokens.ref.palette.neutral[50],
+    }),
+  };
+});
 
 StyledSliderValueLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -385,25 +383,27 @@ const SliderMark = styled('span', {
 
     return [styles.mark, markActive && styles.markActive];
   },
-})<{ ownerState: SliderOwnerState; markActive: boolean }>(({ theme, ownerState, markActive }) => ({
-  position: 'absolute',
-  width: 2,
-  height: 2,
-  borderRadius: 1,
-  backgroundColor: 'currentColor',
-  ...(ownerState.orientation === 'horizontal' && {
-    top: '50%',
-    transform: 'translate(-1px, -50%)',
+})<{ ownerState: SliderOwnerState; markActive: boolean }>(
+  ({ theme: { vars: tokens }, ownerState, markActive }) => ({
+    position: 'absolute',
+    width: 2,
+    height: 2,
+    borderRadius: tokens.sys.shape.corner.full,
+    backgroundColor: tokens.sys.color.onSurfaceVariant,
+    opacity: 0.38,
+    ...(ownerState.orientation === 'horizontal' && {
+      top: '50%',
+      transform: 'translate(-1px, -50%)',
+    }),
+    ...(ownerState.orientation === 'vertical' && {
+      left: '50%',
+      transform: 'translate(-50%, 1px)',
+    }),
+    ...(markActive && {
+      backgroundColor: tokens.sys.color.onPrimary,
+    }),
   }),
-  ...(ownerState.orientation === 'vertical' && {
-    left: '50%',
-    transform: 'translate(-50%, 1px)',
-  }),
-  ...(markActive && {
-    backgroundColor: (theme.vars || theme).palette.background.paper,
-    opacity: 0.8,
-  }),
-}));
+);
 
 SliderMark.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -424,29 +424,37 @@ const SliderMarkLabel = styled('span', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markLabelActive',
   overridesResolver: (props, styles) => styles.markLabel,
 })<{ ownerState: SliderOwnerState; markLabelActive: boolean }>(
-  ({ theme, ownerState, markLabelActive }) => ({
-    ...theme.typography.body2,
-    color: (theme.vars || theme).palette.text.secondary,
-    position: 'absolute',
-    whiteSpace: 'nowrap',
-    ...(ownerState.orientation === 'horizontal' && {
-      top: 30,
-      transform: 'translateX(-50%)',
-      '@media (pointer: coarse)': {
-        top: 40,
-      },
-    }),
-    ...(ownerState.orientation === 'vertical' && {
-      left: 36,
-      transform: 'translateY(50%)',
-      '@media (pointer: coarse)': {
-        left: 44,
-      },
-    }),
-    ...(markLabelActive && {
-      color: (theme.vars || theme).palette.text.primary,
-    }),
-  }),
+  ({ theme, ownerState, markLabelActive }) => {
+    const { vars: tokens } = theme;
+
+    return {
+      fontFamily: tokens.sys.typescale.label.medium.family,
+      lineHeight: `calc(${tokens.sys.typescale.label.medium.lineHeight} / ${tokens.sys.typescale.label.medium.size})`,
+      fontWeight: tokens.sys.typescale.label.medium.weight,
+      fontSize: theme.typography.pxToRem(theme.sys.typescale.label.medium.size),
+      letterSpacing: tokens.sys.typescale.label.medium.tracking,
+      color: tokens.sys.color.onSurfaceVariant,
+      position: 'absolute',
+      whiteSpace: 'nowrap',
+      ...(ownerState.orientation === 'horizontal' && {
+        top: 36,
+        transform: 'translateX(-50%)',
+        '@media (pointer: coarse)': {
+          top: 44,
+        },
+      }),
+      ...(ownerState.orientation === 'vertical' && {
+        left: 36,
+        transform: 'translateY(50%)',
+        '@media (pointer: coarse)': {
+          left: 44,
+        },
+      }),
+      ...(markLabelActive && {
+        color: tokens.sys.color.onSurface,
+      }),
+    };
+  },
 );
 
 SliderMarkLabel.propTypes /* remove-proptypes */ = {
@@ -795,7 +803,7 @@ const Slider = React.forwardRef(function Slider<
 Slider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The label of the slider.
@@ -829,10 +837,6 @@ Slider.propTypes /* remove-proptypes */ = {
 
     return null;
   }),
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    */
@@ -898,10 +902,6 @@ Slider.propTypes /* remove-proptypes */ = {
       }),
     ]),
   }),
-  /**
-   * The default value. Use when the component is not controlled.
-   */
-  defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -1046,14 +1046,6 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   step: PropTypes.number,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-  /**
    * Tab index attribute of the hidden `input` element.
    */
   tabIndex: PropTypes.number,
@@ -1094,6 +1086,6 @@ Slider.propTypes /* remove-proptypes */ = {
    * }
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-};
+} as any;
 
 export default Slider;
