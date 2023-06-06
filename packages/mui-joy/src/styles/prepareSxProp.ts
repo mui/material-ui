@@ -8,7 +8,7 @@ function prepareSxProp<VXType>(
   sx: SxProps | undefined,
   vx: VXType | undefined,
 ) {
-  let sxAsArray = undefined;
+  let sxAsArray;
   if (sx) {
     sxAsArray = Array.isArray(sx) ? sx : [sx];
   }
