@@ -44,6 +44,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
 
   return (
     <TabPanelRoot
+      style={{minWidth:0}}
       aria-labelledby={tabId}
       className={clsx(classes.root, className)}
       hidden={value !== context.value}
