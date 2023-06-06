@@ -90,14 +90,16 @@ export default function ComponentPageTabs(props) {
           label={t('api-docs.demos')}
           value=""
         />
-        <StyledTab
-          component={Link}
-          shallow
-          scroll
-          href={componentsHref}
-          label={t('api-docs.componentsApi')}
-          value="components-api"
-        />
+        {headers.components?.length > 0 && (
+          <StyledTab
+            component={Link}
+            shallow
+            scroll
+            href={componentsHref}
+            label={t('api-docs.componentsApi')}
+            value="components-api"
+          />
+        )}
         {headers.hooks && headers.hooks.length > 0 && (
           <StyledTab
             component={Link}
@@ -119,6 +121,7 @@ ComponentPageTabs.propTypes = {
   children: PropTypes.node,
   markdown: PropTypes.shape({
     headers: PropTypes.shape({
+      components: PropTypes.array,
       hooks: PropTypes.array,
     }),
   }),

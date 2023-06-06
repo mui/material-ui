@@ -803,12 +803,15 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiToggleButton: {
         styleOverrides: {
-          root: ({ theme }) => [
+          root: ({ theme, ownerState }) => [
             {
               textTransform: 'none',
               fontWeight: 500,
               color: theme.palette.grey[700],
               borderColor: theme.palette.grey[200],
+              ...(ownerState.size === 'small' && {
+                padding: '0.375rem 0.75rem',
+              }),
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[500],
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,

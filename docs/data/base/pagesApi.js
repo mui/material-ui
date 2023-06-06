@@ -41,6 +41,10 @@ module.exports = [
     pathname: '/base/react-textarea-autosize/components-api/#textarea-autosize',
     title: 'TextareaAutosize',
   },
+  {
+    pathname: '/base/react-autocomplete/hooks-api/#use-autocomplete',
+    title: 'useAutocomplete',
+  },
   { pathname: '/base/react-badge/hooks-api/#use-badge', title: 'useBadge' },
   { pathname: '/base/react-button/hooks-api/#use-button', title: 'useButton' },
   {
