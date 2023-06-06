@@ -108,8 +108,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     success: colors.green,
     warning: colors.yellow,
     common: {
-      white: '#FFF',
-      black: '#09090D',
+      white: '#FCFCFD',
+      black: '#09090B',
     },
   };
 
@@ -123,60 +123,66 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
-    plainColor: getCssVarColor(`palette-${color}-600`),
-    plainHoverBg: getCssVarColor(`palette-${color}-100`),
-    plainActiveBg: getCssVarColor(`palette-${color}-200`),
-    plainDisabledColor: getCssVarColor(`palette-${color}-200`),
+    plainColor: getCssVarColor(`palette-${color}-500`),
+    plainHoverBg: getCssVarColor(`palette-${color}-50`),
+    plainActiveBg: getCssVarColor(`palette-${color}-100`),
+    plainDisabledColor: getCssVarColor(`palette-${color}-600`),
 
     outlinedColor: getCssVarColor(`palette-${color}-500`),
-    outlinedBorder: getCssVarColor(`palette-${color}-200`),
+    outlinedBorder: getCssVarColor(`palette-${color}-300`),
     outlinedHoverBg: getCssVarColor(`palette-${color}-100`),
     outlinedHoverBorder: getCssVarColor(`palette-${color}-300`),
+    outlinedActiveColor: getCssVarColor(`palette-${color}-700`),
     outlinedActiveBg: getCssVarColor(`palette-${color}-200`),
-    outlinedDisabledColor: getCssVarColor(`palette-${color}-100`),
+    outlinedActiveBorder: getCssVarColor(`palette-${color}-300`),
+    outlinedDisabledColor: getCssVarColor(`palette-neutral-700`),
     outlinedDisabledBorder: getCssVarColor(`palette-${color}-100`),
 
-    softColor: getCssVarColor(`palette-${color}-600`),
+    softColor: getCssVarColor(`palette-${color}-700`),
     softBg: getCssVarColor(`palette-${color}-100`),
     softHoverBg: getCssVarColor(`palette-${color}-200`),
+    softActiveColor: getCssVarColor(`palette-${color}-800`),
     softActiveBg: getCssVarColor(`palette-${color}-300`),
-    softDisabledColor: getCssVarColor(`palette-${color}-300`),
+    softDisabledColor: getCssVarColor(`palette-neutral-600`),
     softDisabledBg: getCssVarColor(`palette-${color}-50`),
 
-    solidColor: '#fff',
+    solidColor: getCssVarColor(`palette-common-white`),
     solidBg: getCssVarColor(`palette-${color}-500`),
     solidHoverBg: getCssVarColor(`palette-${color}-600`),
     solidActiveBg: getCssVarColor(`palette-${color}-700`),
-    solidDisabledColor: `#fff`,
-    solidDisabledBg: getCssVarColor(`palette-${color}-200`),
+    solidDisabledColor: getCssVarColor(`palette-neutral-600`),
+    solidDisabledBg: getCssVarColor(`palette-${color}-50`),
   });
 
   const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
     plainColor: getCssVarColor(`palette-${color}-300`),
     plainHoverBg: getCssVarColor(`palette-${color}-800`),
-    plainActiveBg: getCssVarColor(`palette-${color}-700`),
-    plainDisabledColor: getCssVarColor(`palette-${color}-800`),
+    plainActiveBg: getCssVarColor(`palette-${color}-900`),
+    plainDisabledColor: getCssVarColor(`palette-neutral-400`),
 
     outlinedColor: getCssVarColor(`palette-${color}-200`),
     outlinedBorder: getCssVarColor(`palette-${color}-700`),
     outlinedHoverBg: getCssVarColor(`palette-${color}-800`),
-    outlinedHoverBorder: getCssVarColor(`palette-${color}-600`),
+    outlinedHoverBorder: getCssVarColor(`palette-${color}-700`),
+    outlinedActiveColor: getCssVarColor(`palette-${color}-300`),
     outlinedActiveBg: getCssVarColor(`palette-${color}-900`),
-    outlinedDisabledColor: getCssVarColor(`palette-${color}-800`),
+    outlinedActiveBorder: getCssVarColor(`palette-${color}-700`),
+    outlinedDisabledColor: getCssVarColor(`palette-neutral-400`),
     outlinedDisabledBorder: getCssVarColor(`palette-${color}-800`),
 
     softColor: getCssVarColor(`palette-${color}-200`),
-    softBg: getCssVarColor(`palette-${color}-900`),
-    softHoverBg: getCssVarColor(`palette-${color}-800`),
-    softActiveBg: getCssVarColor(`palette-${color}-700`),
-    softDisabledColor: getCssVarColor(`palette-${color}-800`),
+    softBg: getCssVarColor(`palette-${color}-800`),
+    softHoverBg: getCssVarColor(`palette-${color}-700`),
+    softActiveColor: getCssVarColor(`palette-${color}-100`),
+    softActiveBg: getCssVarColor(`palette-${color}-600`),
+    softDisabledColor: getCssVarColor(`palette-neutral-400`),
     softDisabledBg: getCssVarColor(`palette-${color}-900`),
 
-    solidColor: `#fff`,
+    solidColor: getCssVarColor(`palette-common-white`),
     solidBg: getCssVarColor(`palette-${color}-600`),
     solidHoverBg: getCssVarColor(`palette-${color}-700`),
     solidActiveBg: getCssVarColor(`palette-${color}-800`),
-    solidDisabledColor: getCssVarColor(`palette-${color}-700`),
+    solidDisabledColor: getCssVarColor(`palette-neutral-400`),
     solidDisabledBg: getCssVarColor(`palette-${color}-900`),
   });
 
@@ -189,34 +195,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
       neutral: {
         ...defaultColors.neutral,
-        plainColor: getCssVarColor(`palette-neutral-800`),
-        plainHoverColor: getCssVarColor(`palette-neutral-900`),
-        plainHoverBg: getCssVarColor(`palette-neutral-100`),
-        plainActiveBg: getCssVarColor(`palette-neutral-200`),
-        plainDisabledColor: getCssVarColor(`palette-neutral-300`),
-
-        outlinedColor: getCssVarColor(`palette-neutral-800`),
-        outlinedBorder: getCssVarColor(`palette-neutral-200`),
-        outlinedHoverColor: getCssVarColor(`palette-neutral-900`),
-        outlinedHoverBg: getCssVarColor(`palette-neutral-100`),
-        outlinedHoverBorder: getCssVarColor(`palette-neutral-300`),
-        outlinedActiveBg: getCssVarColor(`palette-neutral-200`),
-        outlinedDisabledColor: getCssVarColor(`palette-neutral-300`),
-        outlinedDisabledBorder: getCssVarColor(`palette-neutral-100`),
-
-        softColor: getCssVarColor(`palette-neutral-800`),
-        softBg: getCssVarColor(`palette-neutral-100`),
-        softHoverColor: getCssVarColor(`palette-neutral-900`),
-        softHoverBg: getCssVarColor(`palette-neutral-200`),
-        softActiveBg: getCssVarColor(`palette-neutral-300`),
-        softDisabledColor: getCssVarColor(`palette-neutral-300`),
-        softDisabledBg: getCssVarColor(`palette-neutral-50`),
-        solidColor: getCssVarColor(`palette-common-white`),
-        solidBg: getCssVarColor(`palette-neutral-600`),
-        solidHoverBg: getCssVarColor(`palette-neutral-700`),
-        solidActiveBg: getCssVarColor(`palette-neutral-800`),
-        solidDisabledColor: getCssVarColor(`palette-neutral-300`),
-        solidDisabledBg: getCssVarColor(`palette-neutral-50`),
+        ...createLightModeVariantVariables('neutral'),
       },
       danger: {
         ...defaultColors.danger,
@@ -233,33 +212,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       warning: {
         ...defaultColors.warning,
         ...createLightModeVariantVariables('warning'),
-        solidColor: getCssVarColor(`palette-warning-800`),
-        solidBg: getCssVarColor(`palette-warning-200`),
-        solidHoverBg: getCssVarColor(`palette-warning-300`),
-        solidActiveBg: getCssVarColor(`palette-warning-400`),
-        solidDisabledColor: getCssVarColor(`palette-warning-200`),
-        solidDisabledBg: getCssVarColor(`palette-warning-50`),
-
-        softColor: getCssVarColor(`palette-warning-800`),
-        softBg: getCssVarColor(`palette-warning-50`),
-        softHoverBg: getCssVarColor(`palette-warning-100`),
-        softActiveBg: getCssVarColor(`palette-warning-200`),
-        softDisabledColor: getCssVarColor(`palette-warning-200`),
-        softDisabledBg: getCssVarColor(`palette-warning-50`),
-
-        outlinedColor: getCssVarColor(`palette-warning-800`),
-        outlinedHoverBg: getCssVarColor(`palette-warning-50`),
-
-        plainColor: getCssVarColor(`palette-warning-800`),
-        plainHoverBg: getCssVarColor(`palette-warning-50`),
       },
       common: {
-        white: '#FFF',
-        black: '#09090D',
+        white: '#FCFCFD',
+        black: '#09090B',
       },
       text: {
-        primary: getCssVarColor('palette-neutral-800'),
-        secondary: getCssVarColor('palette-neutral-600'),
+        primary: getCssVarColor('palette-neutral-900'),
+        secondary: getCssVarColor('palette-neutral-700'),
         tertiary: getCssVarColor('palette-neutral-500'),
       },
       background: {
@@ -270,12 +230,15 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         level2: getCssVarColor('palette-neutral-100'),
         level3: getCssVarColor('palette-neutral-200'),
         tooltip: getCssVarColor('palette-neutral-800'),
-        backdrop: 'rgba(255 255 255 / 0.5)',
+        backdrop: `rgba(${getCssVar(
+          'palette-neutral-darkChannel',
+          colorChannel(defaultColors.neutral[900]), // should be the same index as in `attachColorChannels`
+        )} / 0.25)`,
       },
       divider: `rgba(${getCssVar(
         'palette-neutral-mainChannel',
         colorChannel(defaultColors.neutral[500]), // should be the same index as in `attachColorChannels`
-      )} / 0.28)`,
+      )} / 0.16)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
@@ -290,35 +253,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
       neutral: {
         ...defaultColors.neutral,
-        plainColor: getCssVarColor(`palette-neutral-200`),
-        plainHoverColor: getCssVarColor(`palette-neutral-50`),
-        plainHoverBg: getCssVarColor(`palette-neutral-800`),
-        plainActiveBg: getCssVarColor(`palette-neutral-700`),
-        plainDisabledColor: getCssVarColor(`palette-neutral-700`),
-
-        outlinedColor: getCssVarColor(`palette-neutral-200`),
-        outlinedBorder: getCssVarColor(`palette-neutral-800`),
-        outlinedHoverColor: getCssVarColor(`palette-neutral-50`),
-        outlinedHoverBg: getCssVarColor(`palette-neutral-800`),
-        outlinedHoverBorder: getCssVarColor(`palette-neutral-700`),
-        outlinedActiveBg: getCssVarColor(`palette-neutral-800`),
-        outlinedDisabledColor: getCssVarColor(`palette-neutral-800`),
-        outlinedDisabledBorder: getCssVarColor(`palette-neutral-800`),
-
-        softColor: getCssVarColor(`palette-neutral-200`),
-        softBg: getCssVarColor(`palette-neutral-800`),
-        softHoverColor: getCssVarColor(`palette-neutral-50`),
-        softHoverBg: getCssVarColor(`palette-neutral-700`),
-        softActiveBg: getCssVarColor(`palette-neutral-600`),
-        softDisabledColor: getCssVarColor(`palette-neutral-700`),
-        softDisabledBg: getCssVarColor(`palette-neutral-900`),
-
-        solidColor: getCssVarColor(`palette-common-white`),
-        solidBg: getCssVarColor(`palette-neutral-600`),
-        solidHoverBg: getCssVarColor(`palette-neutral-700`),
-        solidActiveBg: getCssVarColor(`palette-neutral-800`),
-        solidDisabledColor: getCssVarColor(`palette-neutral-700`),
-        solidDisabledBg: getCssVarColor(`palette-neutral-900`),
+        ...createDarkModeVariantVariables('neutral'),
       },
       danger: {
         ...defaultColors.danger,
@@ -331,45 +266,37 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       success: {
         ...defaultColors.success,
         ...createDarkModeVariantVariables('success'),
-        solidColor: '#fff',
-        solidBg: getCssVarColor(`palette-success-600`),
-        solidHoverBg: getCssVarColor(`palette-success-700`),
-        solidActiveBg: getCssVarColor(`palette-success-800`),
       },
       warning: {
         ...defaultColors.warning,
         ...createDarkModeVariantVariables('warning'),
-        solidColor: getCssVarColor(`palette-common-black`),
-        solidBg: getCssVarColor(`palette-warning-300`),
-        solidHoverBg: getCssVarColor(`palette-warning-400`),
-        solidActiveBg: getCssVarColor(`palette-warning-500`),
       },
       common: {
-        white: '#FFF',
-        black: '#09090D',
+        white: '#FCFCFD',
+        black: '#09090B',
       },
       text: {
-        primary: getCssVarColor('palette-neutral-100'),
-        secondary: getCssVarColor('palette-neutral-300'),
+        primary: getCssVarColor('palette-neutral-50'),
+        secondary: getCssVarColor('palette-neutral-200'),
         tertiary: getCssVarColor('palette-neutral-400'),
       },
       background: {
-        body: getCssVarColor('palette-neutral-900'),
+        body: getCssVarColor('palette-common-black'),
         surface: getCssVarColor('palette-common-black'),
-        popup: getCssVarColor('palette-neutral-900'),
-        level1: getCssVarColor('palette-neutral-800'),
-        level2: getCssVarColor('palette-neutral-700'),
-        level3: getCssVarColor('palette-neutral-600'),
+        popup: getCssVarColor('palette-common-black'),
+        level1: getCssVarColor('palette-neutral-900'),
+        level2: getCssVarColor('palette-neutral-800'),
+        level3: getCssVarColor('palette-neutral-700'),
         tooltip: getCssVarColor('palette-neutral-600'),
         backdrop: `rgba(${getCssVar(
           'palette-neutral-darkChannel',
-          colorChannel(defaultColors.neutral[800]), // should be the same index as in `attachColorChannels`
-        )} / 0.5)`,
+          colorChannel(defaultColors.neutral[50]), // should be the same index as in `attachColorChannels`
+        )} / 0.25)`,
       },
       divider: `rgba(${getCssVar(
         'palette-neutral-mainChannel',
         colorChannel(defaultColors.neutral[500]), // should be the same index as in `attachColorChannels`
-      )} / 0.24)`,
+      )} / 0.16)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
@@ -379,19 +306,19 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   const fontFamilyFallback =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
   const fontFamily = {
-    body: `"Public Sans", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
-    display: `"Public Sans", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
+    body: `"Inter", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
+    display: `"Inter", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
     code: 'Source Code Pro,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
     fallback: fontFamilyFallback,
     ...scalesInput.fontFamily,
   };
 
   const fontWeight = {
-    xs: 200,
-    sm: 300,
+    xs: 300,
+    sm: 400,
     md: 500,
-    lg: 700,
-    xl: 900,
+    lg: 600,
+    xl: 700,
     ...scalesInput.fontWeight,
   };
 
@@ -399,19 +326,21 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     xs: '0.75rem', // 12px
     sm: '0.875rem', // 14px
     md: '1rem', // 16px
-    lg: '1.125rem', // 18px
-    xl: '1.25rem', // 20px
-    xl2: '1.5rem', // 24px
-    xl3: '1.875rem', // 30px
-    xl4: '2.25rem', // 36px
-    xl5: '3rem', // 48px
+    lg: '1.25rem', // 20px
+    xl: '1.5rem', // 24px
+    xl2: '2rem', // 32px
+    xl3: '2.5rem', // 40px
+    xl4: '3.5rem', // 56px
+    xl5: '4rem', // 64px
+
     ...scalesInput.fontSize,
   };
 
   const lineHeight = {
-    sm: 1.25,
-    md: 1.5,
-    lg: 1.7,
+    xs: '1.5rem',
+    sm: '2rem',
+    md: '3rem',
+    lg: '4rem',
     ...scalesInput.lineHeight,
   };
 
@@ -447,97 +376,67 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     lineHeight,
     letterSpacing,
     radius: {
-      xs: '4px',
-      sm: '8px',
-      md: '12px',
-      lg: '16px',
-      xl: '20px',
+      xs: '2px',
+      sm: '6px',
+      md: '8px',
+      lg: '12px',
+      xl: '16px',
     },
+
     shadow: {
       xs: `${getCssVar(
         'shadowRing',
         scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0 1px 2px 0 rgba(${getCssVar(
+      )}, 0px 1px 2px 0px rgba(${getCssVar(
         'shadowChannel',
         scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.12)`,
+      )} / 0.2)`,
+
       sm: `${getCssVar(
         'shadowRing',
         scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0.3px 0.8px 1.1px rgba(${getCssVar(
+      )}, 0px 1px 2px 0px rgba(${getCssVar(
         'shadowChannel',
         scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.11), 0.5px 1.3px 1.8px -0.6px rgba(${getCssVar(
+      )} / 0.2), 0px 2px 4px 0px rgba(${getCssVar(
         'shadowChannel',
         scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.18), 1.1px 2.7px 3.8px -1.2px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.26)`,
+      )} / 0.2)`,
+
       md: `${getCssVar(
         'shadowRing',
         scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0.3px 0.8px 1.1px rgba(${getCssVar(
+      )}, 0px 2px 8px -2px rgba(${getCssVar(
         'shadowChannel',
         scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.12), 1.1px 2.8px 3.9px -0.4px rgba(${getCssVar(
+      )} / 0.2), 0px 6px 12px -2px rgba(${getCssVar(
         'shadowChannel',
         scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.17), 2.4px 6.1px 8.6px -0.8px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.23), 5.3px 13.3px 18.8px -1.2px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.29)`,
+      )} / 0.2)`,
+
       lg: `${getCssVar(
         'shadowRing',
         scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0.3px 0.8px 1.1px rgba(${getCssVar(
+      )}, 0px 2px 8px -2px rgba(${getCssVar(
         'shadowChannel',
         scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(${getCssVar(
+      )} / 0.2), 0px 12px 16px -4px rgba(${getCssVar(
         'shadowChannel',
         scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.16), 4.8px 12px 17px -0.5px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.19), 7px 17.5px 24.7px -0.7px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.21)`,
+      )} / 0.2)`,
+
       xl: `${getCssVar(
         'shadowRing',
         scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0.3px 0.8px 1.1px rgba(${getCssVar(
+      )}, 0px 2px 8px -2px rgba(${getCssVar(
         'shadowChannel',
         scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(${getCssVar(
+      )} / 0.2), 0px 20px 24px -4px rgba(${getCssVar(
         'shadowChannel',
         scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.16), 4.8px 12px 17px -0.5px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.19), 7px 17.5px 24.7px -0.7px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.21), 10.2px 25.5px 36px -0.9px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.24), 14.8px 36.8px 52.1px -1.1px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.27), 21px 52.3px 74px -1.2px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.29)`,
+      )} / 0.2)`,
     },
+
     zIndex: {
       badge: 1,
       table: 10,
@@ -545,69 +444,68 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       modal: 1300,
       tooltip: 1500,
     },
+
     typography: {
       display1: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
+        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-xl5', fontSize.xl5),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
-        letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
+        lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
-      display2: {
-        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
-        fontSize: getCssVar('fontSize-xl4', fontSize.xl4),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
-        letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-      },
+
       h1: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
         fontSize: getCssVar('fontSize-xl3', fontSize.xl3),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
-        letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
+        lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
+
       h2: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
         fontSize: getCssVar('fontSize-xl2', fontSize.xl2),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
-        letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
+        lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
+
       h3: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
+        fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
         fontSize: getCssVar('fontSize-xl', fontSize.xl),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
+        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
+
       h4: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
+        fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-lg', fontSize.lg),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
+
       body1: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
+        fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-md', fontSize.md),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
+        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
+
       body2: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
+        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-sm', fontSize.sm),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
+        lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
         color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
       },
       body3: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
+        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-xs', fontSize.xs),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
+        lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
         color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
       },
     },
