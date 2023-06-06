@@ -135,7 +135,11 @@ export const style = ({ ownerState, theme }: StyleFunctionProps) => {
         return { gap: getValue(transformer, propValue) };
       }
       return {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           [`margin${getSideFromDirection(
             breakpoint ? directionValues[breakpoint] : ownerState.direction,
@@ -198,7 +202,7 @@ export default function createStack(
     };
 
     const classes = useUtilityClasses();
-
+    // console.log(children);
     return (
       <StackRoot
         as={component}

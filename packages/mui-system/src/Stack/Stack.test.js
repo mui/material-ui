@@ -29,21 +29,33 @@ describe('<Stack />', () => {
       }),
     ).to.deep.equal({
       '@media (min-width:0px)': {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginTop: '8px',
         },
         flexDirection: 'column',
       },
       [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginLeft: '16px',
         },
         flexDirection: 'row',
       },
       [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginLeft: '32px',
         },
@@ -64,14 +76,22 @@ describe('<Stack />', () => {
       }),
     ).to.deep.equal({
       [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginTop: '16px',
         },
         flexDirection: 'column',
       },
       [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginLeft: '16px',
         },
@@ -93,13 +113,21 @@ describe('<Stack />', () => {
       }),
     ).to.deep.equal({
       [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginTop: '16px',
         },
       },
       [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginTop: '32px',
         },
@@ -120,19 +148,31 @@ describe('<Stack />', () => {
       }),
     ).to.deep.equal({
       [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginTop: '16px',
         },
       },
       [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginTop: '0px',
         },
       },
       [`@media (min-width:${theme.breakpoints.values.lg}px)`]: {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginTop: '32px',
         },
@@ -152,7 +192,11 @@ describe('<Stack />', () => {
         theme,
       }),
     ).to.deep.equal({
+<<<<<<< HEAD
       '& > :not(style) ~ :not(style)': {
+=======
+      '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
         margin: 0,
         marginLeft: '24px',
       },
@@ -172,14 +216,22 @@ describe('<Stack />', () => {
       }),
     ).to.deep.equal({
       '@media (min-width:0px)': {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginTop: '8px',
         },
         flexDirection: 'column',
       },
       [`@media (min-width:${theme.breakpoints.values.lg}px)`]: {
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginTop: '16px',
         },
@@ -200,7 +252,11 @@ describe('<Stack />', () => {
           theme,
         }),
       ).to.deep.equal({
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginBottom: '8px',
         },
@@ -220,21 +276,33 @@ describe('<Stack />', () => {
         }),
       ).to.deep.equal({
         '@media (min-width:0px)': {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginTop: '8px',
           },
           flexDirection: 'column',
         },
         [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginLeft: '16px',
           },
           flexDirection: 'row',
         },
         [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginLeft: '24px',
           },
@@ -272,26 +340,42 @@ describe('<Stack />', () => {
         }),
       ).to.deep.equal({
         [`@media (min-width:${theme.breakpoints.values.xs}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginTop: '0px',
           },
         },
         [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginTop: '16px',
           },
         },
         [`@media (min-width:${theme.breakpoints.values.lg}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginLeft: '16px',
           },
           flexDirection: 'row',
         },
         [`@media (min-width:${theme.breakpoints.values.xl}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginLeft: '32px',
           },
@@ -310,33 +394,53 @@ describe('<Stack />', () => {
         }),
       ).to.deep.equal({
         [`@media (min-width:${theme.breakpoints.values.xs}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginTop: '0px',
           },
         },
         [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginLeft: '0px',
           },
           flexDirection: 'row',
         },
         [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginLeft: '16px',
           },
         },
         [`@media (min-width:${theme.breakpoints.values.lg}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginTop: '16px',
           },
           flexDirection: 'column',
         },
         [`@media (min-width:${theme.breakpoints.values.xl}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginTop: '32px',
           },
@@ -359,19 +463,31 @@ describe('<Stack />', () => {
         }),
       ).to.deep.equal({
         '@media (min-width:0px)': {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginTop: '8px',
           },
         },
         [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginTop: '16px',
           },
         },
         [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginTop: '24px',
           },
@@ -403,7 +519,11 @@ describe('<Stack />', () => {
           theme: customTheme,
         }),
       ).to.deep.equal({
+<<<<<<< HEAD
         '& > :not(style) ~ :not(style)': {
+=======
+        '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
           margin: 0,
           marginTop: '32px',
         },
@@ -435,7 +555,11 @@ describe('<Stack />', () => {
         }),
       ).to.deep.equal({
         [`@media (min-width:${customTheme.breakpoints.values.small}px)`]: {
+<<<<<<< HEAD
           '& > :not(style) ~ :not(style)': {
+=======
+          '& > :not(style):not(style)': {
+>>>>>>> 0a02719a60 ([Stack] Fix css selector)
             margin: 0,
             marginTop: '32px',
           },
