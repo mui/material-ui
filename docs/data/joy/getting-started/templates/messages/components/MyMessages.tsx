@@ -2,7 +2,7 @@ import * as React from 'react';
 import Grid from '@mui/joy/Grid';
 import Sheet from '@mui/joy/Sheet';
 import MessagesPane from './MessagesPane';
-import ConversationsPane from './ConversationsPane';
+import ChatsPane from './ChatsPane';
 
 const messages = [
   {
@@ -97,7 +97,7 @@ export default function MyProfile() {
     >
       <Grid container>
         <Grid xs={12} md={4}>
-          <ConversationsPane messages={messages} />
+          <ChatsPane messages={messages} />
         </Grid>
         <Grid xs={12} md={8}>
           <MessagesPane messages={messages} />

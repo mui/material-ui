@@ -7,13 +7,7 @@ import { IconButton, Stack } from '@mui/joy';
 
 export default function MessageInput() {
   return (
-    <Box
-      sx={{
-        px: 3.25,
-        pb: 3,
-        // minHeight: 136,
-      }}
-    >
+    <Box sx={{ px: 3.25, pb: 3 }}>
       <FormControl>
         <Textarea
           placeholder="Type something here…"

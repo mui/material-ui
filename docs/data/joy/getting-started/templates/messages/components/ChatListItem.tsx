@@ -8,18 +8,18 @@ import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import AvatarWithStatus from './AvatarWithStatus';
 
-type ConversationListItemProps = ListItemButtonProps & {
+type ChatListItemProps = ListItemButtonProps & {
   unread?: boolean;
   user: any;
   messages: any;
 };
 
-export default function ConversationListItem({
+export default function ChatListItem({
   unread = false,
   selected = false,
   user,
   messages,
-}: ConversationListItemProps) {
+}: ChatListItemProps) {
   return (
     <React.Fragment>
       <ListItem>

@@ -4,9 +4,9 @@ import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import { Box, Chip, IconButton, Input } from '@mui/joy';
 import List from '@mui/joy/List';
-import ConversationListItem from './ConversationListItem';
+import ChatListItem from './ChatListItem';
 
-interface ConversationsPaneProps {
+interface ChatsPaneProps {
   messages: any;
 }
 
@@ -63,7 +63,7 @@ const foo = [
   },
 ];
 
-export default function ConversationsPane({ messages }: ConversationsPaneProps) {
+export default function ChatsPane({ messages }: ChatsPaneProps) {
   // const [isNew, setIsNew] = React.useState<boolean>(false);
   return (
     <Sheet
@@ -105,18 +105,14 @@ export default function ConversationsPane({ messages }: ConversationsPaneProps) 
           <i data-feather="edit" />
         </IconButton>
       </Stack>
-      <Box
-        // sx={{ backgroundColor: 'red' }}
-        px={2}
-        pb={1.5}
-      >
+      <Box px={2} pb={1.5}>
         <Input
           startDecorator={<i data-feather="search" />}
           placeholder="Search"
           aria-label="Search"
         />
       </Box>
-      {/* <Typography>conversations list</Typography> */}
+      {/* <Typography>Chats list</Typography> */}
       <List
         sx={{
           // bgcolor: 'background.body',
@@ -128,17 +124,8 @@ export default function ConversationsPane({ messages }: ConversationsPaneProps) 
         }}
       >
         {foo.map((item) => (
-          <ConversationListItem key={item.id} {...item} />
+          <ChatListItem key={item.id} {...item} />
         ))}
-        {/* <ConversationListItem selected isNew />
-        <ConversationListItem />
-        <ConversationListItem isNew />
-        <ConversationListItem />
-        <ConversationListItem />
-        <ConversationListItem isNew />
-        <ConversationListItem />
-        <ConversationListItem />
-        <ConversationListItem /> */}
       </List>
     </Sheet>
   );
