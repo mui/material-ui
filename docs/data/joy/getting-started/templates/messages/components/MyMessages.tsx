@@ -192,6 +192,25 @@ const chats: ChatProps[] = [
       },
     ],
   },
+  {
+    id: '2',
+    sender: users[1],
+    messages: [
+      {
+        id: '1',
+        content:
+          'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
+        timestamp: '5 mins ago',
+        sender: users[1],
+      },
+      {
+        id: '2',
+        content: 'Awesome! Thanks. I’ll look at this today.',
+        timestamp: '5 mins ago',
+        sender: 'You',
+      },
+    ],
+  },
 ];
 
 export default function MyProfile() {
