@@ -115,7 +115,7 @@ function TeamNav() {
               <ListItemContent>Policies</ListItemContent>
               <Chip
                 variant="soft"
-                color="info"
+                color="neutral"
                 size="sm"
                 sx={{ borderRadius: 'sm' }}
               >

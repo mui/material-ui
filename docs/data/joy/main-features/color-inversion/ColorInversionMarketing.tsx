@@ -73,7 +73,6 @@ export default function ColorInversionMarketing() {
             'primary',
             'neutral',
             'danger',
-            'info',
             'success',
             'warning',
           ];

@@ -26,7 +26,7 @@ export default function HeroLeft07() {
         orientation="horizontal"
         sx={{ gap: 2, my: 1, textAlign: 'left' }}
       >
-        <AutoAwesomeIcon color="info" fontSize="xl3" />
+        <AutoAwesomeIcon color="success" fontSize="xl3" />
         <Box>
           <Typography fontSize="xl" fontWeight="lg" sx={{ mb: 1 }}>
             The new version is out.

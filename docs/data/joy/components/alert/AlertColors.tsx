@@ -29,9 +29,6 @@ export default function AlertColors() {
         <Alert variant={variant} color="danger">
           Danger
         </Alert>
-        <Alert variant={variant} color="info">
-          Info
-        </Alert>
         <Alert variant={variant} color="success">
           Success
         </Alert>

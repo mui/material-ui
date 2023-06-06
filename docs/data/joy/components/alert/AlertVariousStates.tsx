@@ -19,7 +19,7 @@ export default function AlertVariousStates() {
     { title: 'Success', color: 'success', icon: <CheckCircleIcon /> },
     { title: 'Warning', color: 'warning', icon: <WarningIcon /> },
     { title: 'Error', color: 'danger', icon: <ReportIcon /> },
-    { title: 'Info', color: 'info', icon: <InfoIcon /> },
+    { title: 'Neutral', color: 'neutral', icon: <InfoIcon /> },
   ];
   return (
     <Box sx={{ display: 'flex', gap: 2, width: '100%', flexDirection: 'column' }}>

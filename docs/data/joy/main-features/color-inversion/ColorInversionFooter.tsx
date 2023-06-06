@@ -47,7 +47,6 @@ export default function ColorInversionFooter() {
               'primary',
               'neutral',
               'danger',
-              'info',
               'success',
               'warning',
             ];

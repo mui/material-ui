@@ -49,7 +49,6 @@ export default function ColorInversionHeader() {
             'primary',
             'neutral',
             'danger',
-            'info',
             'success',
             'warning',
           ];

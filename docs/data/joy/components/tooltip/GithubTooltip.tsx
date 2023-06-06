@@ -51,7 +51,7 @@ export default function GithubTooltip() {
               <Chip size="sm" color="danger" sx={{ fontWeight: 'lg' }}>
                 bug 🐛
               </Chip>
-              <Chip size="sm" color="info" sx={{ ml: 1, fontWeight: 'lg' }}>
+              <Chip size="sm" color="warning" sx={{ ml: 1, fontWeight: 'lg' }}>
                 package: system
               </Chip>
             </Box>

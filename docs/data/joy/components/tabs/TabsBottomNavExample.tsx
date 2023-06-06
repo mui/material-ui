@@ -11,7 +11,7 @@ import Person from '@mui/icons-material/Person';
 
 export default function TabsBottomNavExample() {
   const [index, setIndex] = React.useState(0);
-  const colors = ['primary', 'info', 'danger', 'success'] as const;
+  const colors = ['primary', 'danger', 'success', 'warning'] as const;
   return (
     <Box
       sx={{

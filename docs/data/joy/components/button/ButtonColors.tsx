@@ -33,9 +33,6 @@ export default function ButtonColors() {
         <Button size="md" variant={variant} color="danger">
           Danger
         </Button>
-        <Button size="md" variant={variant} color="info">
-          Info
-        </Button>
         <Button size="md" variant={variant} color="success">
           Success
         </Button>

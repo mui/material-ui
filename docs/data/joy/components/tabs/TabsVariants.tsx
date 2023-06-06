@@ -36,7 +36,7 @@ export default function TabsVariants() {
           </Tab>
           <Tab
             variant={index === 1 ? 'soft' : 'plain'}
-            color={index === 1 ? 'info' : 'neutral'}
+            color={index === 1 ? 'success' : 'neutral'}
           >
             Second tab
           </Tab>

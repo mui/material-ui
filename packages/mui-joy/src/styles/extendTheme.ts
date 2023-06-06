@@ -104,7 +104,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     primary: colors.blue,
     neutral: colors.grey,
     danger: colors.red,
-    info: colors.purple,
     success: colors.green,
     warning: colors.yellow,
     common: {
@@ -201,10 +200,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...defaultColors.danger,
         ...createLightModeVariantVariables('danger'),
       },
-      info: {
-        ...defaultColors.info,
-        ...createLightModeVariantVariables('info'),
-      },
       success: {
         ...defaultColors.success,
         ...createLightModeVariantVariables('success'),
@@ -258,10 +253,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       danger: {
         ...defaultColors.danger,
         ...createDarkModeVariantVariables('danger'),
-      },
-      info: {
-        ...defaultColors.info,
-        ...createDarkModeVariantVariables('info'),
       },
       success: {
         ...defaultColors.success,

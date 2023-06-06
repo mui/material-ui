@@ -70,7 +70,7 @@ export default function ExampleGmailList() {
           <ListItemButton
             selected={index === 2}
             variant={index === 2 ? 'soft' : 'plain'}
-            color={index === 2 ? 'info' : undefined}
+            color={index === 2 ? 'danger' : undefined}
             onClick={() => setIndex(2)}
           >
             <ListItemDecorator>

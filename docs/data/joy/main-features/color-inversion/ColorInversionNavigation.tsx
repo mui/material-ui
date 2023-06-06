@@ -30,13 +30,13 @@ export default function ColorInversionNavigation() {
     <Box sx={{ display: 'flex' }}>
       <Sheet
         variant="solid"
-        color="info"
+        color="neutral"
         invertedColors
         sx={(theme) => ({
           p: 2,
           ml: -3,
           my: -3,
-          background: `linear-gradient(to top, ${theme.vars.palette.info[700]}, ${theme.vars.palette.info[600]} 25%, ${theme.vars.palette.info[500]} 75%)`,
+          background: `linear-gradient(to top, ${theme.vars.palette.neutral[700]}, ${theme.vars.palette.neutral[600]} 25%, ${theme.vars.palette.neutral[500]} 75%)`,
         })}
       >
         <Select
@@ -134,7 +134,7 @@ export default function ColorInversionNavigation() {
       </Sheet>
       <Sheet
         variant="soft"
-        color="info"
+        color="neutral"
         invertedColors
         sx={(theme) => ({
           p: 2,

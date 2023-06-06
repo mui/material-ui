@@ -26,49 +26,49 @@ export default function ExampleProductAttributes() {
         defaultValue="warning"
         sx={{ gap: 2, flexWrap: 'wrap', flexDirection: 'row' }}
       >
-        {(
-          ['primary', 'neutral', 'danger', 'info', 'success', 'warning'] as const
-        ).map((color) => (
-          <Sheet
-            key={color}
-            sx={{
-              position: 'relative',
-              width: 40,
-              height: 40,
-              flexShrink: 0,
-              bgcolor: `${color}.solidBg`,
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Radio
-              overlay
-              variant="solid"
-              color={color}
-              checkedIcon={<Done fontSize="xl2" />}
-              value={color}
-              slotProps={{
-                input: { 'aria-label': color },
-                radio: {
-                  sx: {
-                    display: 'contents',
-                    '--variant-borderWidth': '2px',
-                  },
-                },
-              }}
+        {(['primary', 'neutral', 'danger', 'success', 'warning'] as const).map(
+          (color) => (
+            <Sheet
+              key={color}
               sx={{
-                '--joy-focus-outlineOffset': '4px',
-                '--joy-palette-focusVisible': (theme) =>
-                  theme.vars.palette[color][500],
-                [`& .${radioClasses.action}.${radioClasses.focusVisible}`]: {
-                  outlineWidth: '2px',
-                },
+                position: 'relative',
+                width: 40,
+                height: 40,
+                flexShrink: 0,
+                bgcolor: `${color}.solidBg`,
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
-            />
-          </Sheet>
-        ))}
+            >
+              <Radio
+                overlay
+                variant="solid"
+                color={color}
+                checkedIcon={<Done fontSize="xl2" />}
+                value={color}
+                slotProps={{
+                  input: { 'aria-label': color },
+                  radio: {
+                    sx: {
+                      display: 'contents',
+                      '--variant-borderWidth': '2px',
+                    },
+                  },
+                }}
+                sx={{
+                  '--joy-focus-outlineOffset': '4px',
+                  '--joy-palette-focusVisible': (theme) =>
+                    theme.vars.palette[color][500],
+                  [`& .${radioClasses.action}.${radioClasses.focusVisible}`]: {
+                    outlineWidth: '2px',
+                  },
+                }}
+              />
+            </Sheet>
+          ),
+        )}
       </RadioGroup>
       <br />
       <FormLabel

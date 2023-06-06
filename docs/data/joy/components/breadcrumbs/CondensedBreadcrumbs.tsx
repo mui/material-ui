@@ -23,7 +23,7 @@ export default function CondensedBreadcrumbs() {
             setCondensed(false);
           }}
           variant="plain"
-          color="info"
+          color="primary"
         >
           •••
         </Button>
@@ -33,7 +33,7 @@ export default function CondensedBreadcrumbs() {
           // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
           onClick={(event) => event.preventDefault()}
           underline="hover"
-          color="info"
+          color="primary"
           href="/"
           fontSize="inherit"
         >
