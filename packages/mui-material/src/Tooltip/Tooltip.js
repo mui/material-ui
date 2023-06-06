@@ -233,7 +233,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
-    children,
+    children: childrenProp,
     classes: classesProp,
     components = {},
     componentsProps = {},
@@ -262,6 +262,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     TransitionProps,
     ...other
   } = props;
+
+  const children = React.isValidElement(childrenProp) ? childrenProp : <span>{childrenProp}</span>;
 
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
