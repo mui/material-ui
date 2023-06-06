@@ -30,7 +30,6 @@ export default function ChatBubble({
         alignItems="center"
       >
         <Typography fontSize="sm">{sender}</Typography>
-        {/* <Typography fontSize="sm">Katherine Moss</Typography> */}
         <Typography fontSize="xs">{time}</Typography>
       </Stack>
       {attachment ? (

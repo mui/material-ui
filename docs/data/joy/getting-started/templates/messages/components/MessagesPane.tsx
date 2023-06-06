@@ -46,7 +46,7 @@ export default function MessagesPane({ messages }: MessagesPaneProps) {
       <Box
         sx={{
           display: 'flex',
-          height: `calc(100dvh - 217px)`,
+          height: `calc(100dvh - 225px)`,
           // height: `calc(100dvh - 88px - ${height}px)`,
           px: 4,
           py: 3,

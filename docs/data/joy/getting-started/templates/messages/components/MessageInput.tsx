@@ -5,17 +5,14 @@ import FormControl from '@mui/joy/FormControl';
 import Textarea from '@mui/joy/Textarea';
 import { IconButton, Stack } from '@mui/joy';
 
-export default function MessageInput({ ref }: any) {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+export default function MessageInput() {
   return (
     <Box
       sx={{
-        // backgroundColor: 'green',
         px: 3.25,
         pb: 3,
-        minHeight: 128,
+        // minHeight: 136,
       }}
-      // ref={ref}
     >
       <FormControl>
         <Textarea
@@ -29,15 +26,12 @@ export default function MessageInput({ ref }: any) {
               spacing={1}
               justifyContent="flex-end"
               flexGrow={1}
+              minHeight={40}
             >
               <IconButton variant="plain" color="neutral">
                 <i data-feather="smile" />
               </IconButton>
-              <IconButton
-                variant="plain"
-                color="neutral"
-                onClick={(event) => setAnchorEl(event.currentTarget)}
-              >
+              <IconButton variant="plain" color="neutral">
                 <i data-feather="more-horizontal" />
               </IconButton>
               <Button>Send</Button>
