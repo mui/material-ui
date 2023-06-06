@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
@@ -9,12 +8,13 @@ import ChatBubble from './ChatBubble';
 import MessageInput from './MessageInput';
 import MessagesPaneHeader from './MessagesPaneHeader';
 import AvatarWithStatus from './AvatarWithStatus';
+import { ChatProps, MessageProps } from './MyMessages';
 
 type MessagesPaneProps = {
-  messages: any;
+  chat: ChatProps;
 };
 
-export default function MessagesPane({ messages }: MessagesPaneProps) {
+export default function MessagesPane({ chat }: MessagesPaneProps) {
   // const [height, setHeight] = React.useState(290);
   // const [height, setHeight] = React.useState<number>(128);
   // const ref = React.useRef<null | HTMLDivElement>(null);
@@ -33,13 +33,7 @@ export default function MessagesPane({ messages }: MessagesPaneProps) {
   // }, []);
 
   return (
-    <Sheet
-      sx={{
-        // px: 4,
-        // py: 3,
-        height: '100dvh',
-      }}
-    >
+    <Sheet sx={{ height: '100dvh' }}>
       <MessagesPaneHeader />
 
       {/* todo: come back and fix the height here once top bar and textarea are done */}
@@ -54,21 +48,16 @@ export default function MessagesPane({ messages }: MessagesPaneProps) {
           flexDirection: 'column-reverse',
         }}
       >
-        <Stack
-          spacing={2}
-          justifyContent="flex-end"
-          // todo: will probably need to adjust this
-        >
-          {/* <Typography>messages list/item - an item has a chat bubble</Typography> */}
-          {messages.map((message, index) => {
+        <Stack spacing={2} justifyContent="flex-end">
+          {chat.messages.map((message: MessageProps, index: number) => {
             const isYou = message.sender === 'You';
+            console.log('isYou', message);
             return (
               <Stack
                 key={index}
                 direction="row"
                 spacing={2}
                 flexDirection={isYou ? 'row-reverse' : 'row'}
-                // maxWidth="80%"
               >
                 {!isYou && (
                   <AvatarWithStatus
@@ -78,9 +67,9 @@ export default function MessagesPane({ messages }: MessagesPaneProps) {
                 )}
                 <ChatBubble
                   variant={isYou ? 'sent' : 'received'}
-                  message={message.message}
+                  message={message.content}
                   attachment={message.attachment}
-                  time={message.time}
+                  time={message.timestamp}
                   sender={message.sender}
                 />
               </Stack>

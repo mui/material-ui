@@ -5,65 +5,13 @@ import Typography from '@mui/joy/Typography';
 import { Box, Chip, IconButton, Input } from '@mui/joy';
 import List from '@mui/joy/List';
 import ChatListItem from './ChatListItem';
+import { ChatProps } from './MyMessages';
 
-interface ChatsPaneProps {
-  messages: any;
-}
+type ChatsPaneProps = {
+  chats: ChatProps[];
+};
 
-const foo = [
-  {
-    id: '1',
-    user: {
-      name: 'Mabel Boyle',
-      username: '@mabel',
-      avatar: '/static/images/avatar/1.jpg',
-      online: true,
-    },
-    messages: [
-      {
-        id: '1',
-        content: 'Hey, how are you?',
-        timestamp: '5 mins ago',
-      },
-    ],
-  },
-  {
-    id: '2',
-    user: {
-      name: 'Katherine Moss',
-      username: '@kathy',
-      avatar: '/static/images/avatar/2.jpg',
-      online: false,
-    },
-    messages: [
-      {
-        id: '1',
-        content:
-          'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
-        timestamp: '5 mins ago',
-      },
-    ],
-  },
-  {
-    id: '3',
-    user: {
-      name: 'Phoenix Baker',
-      username: '@phoenix',
-      avatar: '/static/images/avatar/3.jpg',
-      online: true,
-    },
-    messages: [
-      {
-        id: '1',
-        content: 'no',
-        timestamp: '5 mins ago',
-        unread: true,
-      },
-    ],
-  },
-];
-
-export default function ChatsPane({ messages }: ChatsPaneProps) {
+export default function ChatsPane({ chats }: ChatsPaneProps) {
   // const [isNew, setIsNew] = React.useState<boolean>(false);
   return (
     <Sheet
@@ -112,7 +60,6 @@ export default function ChatsPane({ messages }: ChatsPaneProps) {
           aria-label="Search"
         />
       </Box>
-      {/* <Typography>Chats list</Typography> */}
       <List
         sx={{
           // bgcolor: 'background.body',
@@ -123,8 +70,8 @@ export default function ChatsPane({ messages }: ChatsPaneProps) {
           py: 0,
         }}
       >
-        {foo.map((item) => (
-          <ChatListItem key={item.id} {...item} />
+        {chats.map((chat) => (
+          <ChatListItem key={chat.id} {...chat} />
         ))}
       </List>
     </Sheet>

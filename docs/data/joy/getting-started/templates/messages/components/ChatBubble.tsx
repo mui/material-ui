@@ -4,13 +4,14 @@ import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import { Box } from '@mui/joy';
 import FileIcon from './FileIcon';
+import { UserProps } from './MyMessages';
 
 type ChatBubbleProps = {
   variant: 'sent' | 'received';
   message: string;
   attachment?: any;
   time: string;
-  sender: string;
+  sender: UserProps;
 };
 
 export default function ChatBubble({
@@ -29,7 +30,7 @@ export default function ChatBubble({
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography fontSize="sm">{sender}</Typography>
+        <Typography fontSize="sm">{sender.username}</Typography>
         <Typography fontSize="xs">{time}</Typography>
       </Stack>
       {attachment ? (

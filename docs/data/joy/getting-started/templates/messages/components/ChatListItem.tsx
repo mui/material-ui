@@ -10,14 +10,14 @@ import AvatarWithStatus from './AvatarWithStatus';
 
 type ChatListItemProps = ListItemButtonProps & {
   unread?: boolean;
-  user: any;
+  sender: any;
   messages: any;
 };
 
 export default function ChatListItem({
   unread = false,
   selected = false,
-  user,
+  sender,
   messages,
 }: ChatListItemProps) {
   return (
@@ -50,13 +50,13 @@ export default function ChatListItem({
                   )}
                 </Box>
 
-                <AvatarWithStatus online={user.online} src={user.avatar} />
+                <AvatarWithStatus online={sender.online} src={sender.avatar} />
 
                 <Box ml={1.5}>
                   <Typography fontSize="sm" fontWeight="lg">
-                    {user.name}
+                    {sender.name}
                   </Typography>
-                  <Typography level="body2">{user.username}</Typography>
+                  <Typography level="body2">{sender.username}</Typography>
                 </Box>
               </Stack>
               <Typography level="body2">5 mins ago</Typography>
