@@ -18,6 +18,8 @@ import Autocomplete, {
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import Chip, { chipClasses } from '@mui/joy/Chip';
 import ChipDelete from '@mui/joy/ChipDelete';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 import { ThemeProvider, styled } from '@mui/joy/styles';
 
 function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
@@ -1288,6 +1290,46 @@ describe('Joy <Autocomplete />', () => {
   });
 
   describe('prop: options', () => {
+    it('should scroll selected option into view when multiple elements with role as listbox available', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      render(
+        <React.Fragment>
+          <Autocomplete
+            defaultValue={'six'}
+            options={['one', 'two', 'three', 'four', 'five', 'six']}
+            slotProps={{
+              listbox: {
+                'data-testid': 'autocomplete-listbox',
+                sx: {
+                  height: '40px',
+                },
+              },
+              input: {
+                'data-testid': 'autocomplete-input',
+              },
+            }}
+            autoFocus
+          />
+          <Select defaultValue="1">
+            <Option value="1">1</Option>
+            <Option value="2">2</Option>
+          </Select>
+        </React.Fragment>,
+      );
+      const autocompleteInput = screen.getByTestId('autocomplete-input');
+
+      act(() => {
+        autocompleteInput.focus();
+      });
+      fireEvent.keyDown(autocompleteInput, { key: 'ArrowDown' });
+
+      const autocompleteListbox = screen.getByTestId('autocomplete-listbox');
+
+      checkHighlightIs(autocompleteListbox, 'six');
+      expect(autocompleteListbox.scrollTop).to.greaterThan(0);
+    });
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const { setProps } = render(<Autocomplete open options={['one', 'two']} autoFocus />);
       const textbox = screen.getByRole('combobox');
@@ -1844,31 +1886,24 @@ describe('Joy <Autocomplete />', () => {
 
     it('provides a reason on select reset', () => {
       const handleInputChange = spy();
-      const options = [{ name: 'foo' }, { name: 'bar' }];
+      const options = [{ name: 'foo' }];
+      render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          openOnFocus
+          options={options}
+          getOptionLabel={(option) => option.name}
+          autoFocus
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
 
-      function MyComponent() {
-        const [value, setValue] = React.useState(options[0]);
-        return (
-          <React.Fragment>
-            <Autocomplete
-              onInputChange={handleInputChange}
-              openOnFocus
-              options={options}
-              getOptionLabel={(option) => option.name}
-              value={value}
-            />
-            <button onClick={() => setValue(options[1])}>Reset</button>
-          </React.Fragment>
-        );
-      }
-      render(<MyComponent />);
-      const resetBtn = screen.getByText('Reset');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
 
-      fireEvent.click(resetBtn);
-
-      expect(handleInputChange.callCount).to.equal(4);
-      expect(handleInputChange.args[3][1]).to.equal(options[1].name);
-      expect(handleInputChange.args[3][2]).to.equal('reset');
+      expect(handleInputChange.callCount).to.equal(1);
+      expect(handleInputChange.args[0][1]).to.equal(options[0].name);
+      expect(handleInputChange.args[0][2]).to.equal('reset');
     });
   });
 

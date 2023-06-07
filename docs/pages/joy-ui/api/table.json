@@ -33,6 +33,7 @@
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}"
     },
+    "stickyFooter": { "type": { "name": "bool" }, "default": "false" },
     "stickyHeader": { "type": { "name": "bool" }, "default": "false" },
     "stripe": {
       "type": {
@@ -85,6 +86,7 @@
       "sizeLg",
       "sizeMd",
       "sizeSm",
+      "stickyFooter",
       "stickyHeader",
       "variantOutlined",
       "variantPlain",

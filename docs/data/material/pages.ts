@@ -226,10 +226,6 @@ const pages: MuiPage[] = [
             pathname: '/material-ui/experimental-api/css-theme-variables/migration',
             title: 'Migrating to CSS variables',
           },
-          {
-            pathname: '/material-ui/experimental-api/css-variables',
-            title: 'TODO merge with other pages',
-          },
         ],
       },
     ],
@@ -245,7 +241,6 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/discover-more/backers', title: 'Sponsors & Backers' },
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
-      { pathname: '/material-ui/discover-more/languages' },
     ],
   },
   {
