@@ -17,7 +17,7 @@ export default function Core() {
     <BrandingCssVarsProvider>
       <Head
         title="Base UI: Ship accessible & sleek components"
-        description='MUI Base gives you a set of foundational \"headless\" components that you can build with using any styling solution you choose—no need to override any default style engine or theme.'
+        description='Base UI gives you a set of foundational \"headless\" components that you can build with using any styling solution you choose—no need to override any default style engine or theme.'
         card="/static/blog/introducing-mui-base/card.png"
       />
       <AppHeaderBanner />
