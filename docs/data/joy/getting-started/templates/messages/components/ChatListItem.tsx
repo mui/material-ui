@@ -42,7 +42,12 @@ export default function ChatListItem({
           <Stack spacing={2} flex={1}>
             <Stack direction="row" justifyContent="space-between" flex={1}>
               <Stack direction="row">
-                <Box width={20} display="flex" alignItems="center">
+                <Box
+                  width={20}
+                  display="flex"
+                  alignItems="center"
+                  sx={{ display: { xs: 'none', md: 'block' } }}
+                >
                   {messages[0].unread && (
                     <CircleIcon sx={{ fontSize: 10 }} color="primary" />
                   )}
@@ -57,7 +62,9 @@ export default function ChatListItem({
                   <Typography level="body2">{sender.username}</Typography>
                 </Box>
               </Stack>
-              <Typography level="body2">5 mins ago</Typography>
+              <Typography level="body2" display={{ xs: 'none', md: 'block' }}>
+                5 mins ago
+              </Typography>
             </Stack>
 
             <Typography

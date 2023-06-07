@@ -30,6 +30,7 @@ export default function ChatsPane({
     >
       <Stack
         direction="row"
+        // direction={{ xs: 'column', md: 'row' }}
         spacing={2}
         alignItems="center"
         justifyContent="space-between"
@@ -38,7 +39,7 @@ export default function ChatsPane({
       >
         <Typography
           level="h1"
-          fontSize="xl2"
+          fontSize={{ xs: 'md', md: 'xl2' }}
           endDecorator={
             <Chip
               variant="outlined"
@@ -55,7 +56,12 @@ export default function ChatsPane({
           Messages
         </Typography>
 
-        <IconButton variant="outlined" aria-label="edit" color="neutral">
+        <IconButton
+          variant="outlined"
+          aria-label="edit"
+          color="neutral"
+          // size="sm"
+        >
           <i data-feather="edit" />
         </IconButton>
       </Stack>
