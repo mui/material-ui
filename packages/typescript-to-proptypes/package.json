@@ -25,7 +25,7 @@
     "@types/doctrine": "^0.0.5",
     "@types/lodash": "^4.14.195",
     "@types/node": "^16.18.34",
-    "@types/prettier": "^2.7.2",
+    "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.7",
     "@types/uuid": "^8.3.4",
     "fast-glob": "^3.2.12",
