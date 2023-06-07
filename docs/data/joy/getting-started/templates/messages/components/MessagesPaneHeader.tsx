@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import { Chip, IconButton } from '@mui/joy';
+import { Box, Chip, IconButton } from '@mui/joy';
 import Avatar from '@mui/joy/Avatar';
 import CircleIcon from '@mui/icons-material/Circle';
 import { UserProps } from '../types';
@@ -30,6 +30,7 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
           <Typography
             fontWeight="lg"
             fontSize="lg"
+            noWrap
             endDecorator={
               sender.online ? (
                 <Chip
@@ -59,10 +60,20 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
           startDecorator={<i data-feather="phone-call" />}
           color="neutral"
           variant="outlined"
+          sx={{
+            display: { xs: 'none', md: 'inline-flex' },
+          }}
         >
           Call
         </Button>
-        <Button>View profile</Button>
+        <Button
+          sx={{
+            display: { xs: 'none', md: 'inline-flex' },
+          }}
+        >
+          View profile
+        </Button>
+
         <IconButton variant="plain" color="neutral">
           <i data-feather="more-vertical" />
         </IconButton>

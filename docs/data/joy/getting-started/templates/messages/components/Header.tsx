@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <Sheet
       sx={{
-        display: { xs: 'flex', md: 'none' },
+        display: { xs: 'flex', lg: 'none' },
         alignItems: 'center',
         position: 'fixed',
         top: 0,
@@ -27,7 +27,7 @@ export default function Header() {
         styles={(theme) => ({
           ':root': {
             '--Header-height': '52px',
-            [theme.breakpoints.up('md')]: {
+            [theme.breakpoints.up('lg')]: {
               '--Header-height': '0px',
             },
           },

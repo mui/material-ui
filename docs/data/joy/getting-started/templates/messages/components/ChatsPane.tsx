@@ -24,7 +24,7 @@ export default function ChatsPane({
       sx={{
         borderRight: '1px solid',
         borderColor: 'divider',
-        height: '100dvh',
+        height: { xs: 0, sm: 'calc(100dvh - var(--Header-height))' },
         overflowY: 'auto',
       }}
     >

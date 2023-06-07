@@ -31,15 +31,18 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
   // }, []);
 
   return (
-    <Sheet sx={{ height: '100dvh' }}>
+    <Sheet
+      sx={{
+        height: { xs: 'calc(100dvh - var(--Header-height))', lg: '100dvh' },
+      }}
+    >
       <MessagesPaneHeader sender={chat.sender} />
 
       {/* todo: come back and fix the height here once top bar and textarea are done */}
       <Box
         sx={{
           display: 'flex',
-          height: `calc(100dvh - 225px)`,
-          // height: `calc(100dvh - 88px - ${height}px)`,
+          height: `calc(100dvh - 225px - var(--Header-height))`,
           px: 4,
           py: 3,
           overflowY: 'scroll',
