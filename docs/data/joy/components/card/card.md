@@ -134,7 +134,7 @@ This is because the variables are also used to calculate a proper radius for the
 
 {{"demo": "BioCard.js" }}
 
-### Credit card
+### Credit card form
 
 {{"demo": "CreditCardForm.js" }}
 
