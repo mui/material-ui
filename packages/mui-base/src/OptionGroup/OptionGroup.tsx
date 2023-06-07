@@ -88,6 +88,10 @@ OptionGroup.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * If `true` all the options in the group will be disabled.
    * @default false
    */

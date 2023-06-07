@@ -128,6 +128,10 @@ Menu.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  className: PropTypes.string,
+  /**
+   * @ignore
+   */
   defaultOpen: PropTypes.bool,
   /**
    * @ignore

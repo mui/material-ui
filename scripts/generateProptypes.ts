@@ -211,6 +211,7 @@ async function generateProptypes(
   const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
 
   const propsFile = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, 'Props.ts');
+  const propsFileAlternative = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, '.types.ts');
   const generatedForTypeScriptFile = sourceFile === tsFile;
   const result = ttp.inject(proptypes, sourceContent, {
     disablePropTypesTypeChecking: generatedForTypeScriptFile,
@@ -263,7 +264,7 @@ async function generateProptypes(
         const isExternal = filename !== tsFile;
         const implementedByUnstyledVariant =
           filename === unstyledFile || filename === unstyledPropsFile;
-        const implementedBySelfPropsFile = filename === propsFile;
+        const implementedBySelfPropsFile = filename === propsFile || filename === propsFileAlternative && filename.indexOf('/base/') === -1;
         if (!isExternal || implementedByUnstyledVariant || implementedBySelfPropsFile) {
           shouldDocument = true;
         }

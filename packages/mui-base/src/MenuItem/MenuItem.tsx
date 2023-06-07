@@ -76,12 +76,20 @@ MenuItem.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  className: PropTypes.string,
+  /**
+   * @ignore
+   */
   disabled: PropTypes.bool,
   /**
    * A text representation of the menu item's content.
    * Used for keyboard text navigation matching.
    */
   label: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
   /**
    * The props used for each slot inside the MenuItem.
    * @default {}

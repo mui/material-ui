@@ -84,6 +84,10 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

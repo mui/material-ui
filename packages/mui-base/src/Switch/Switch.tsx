@@ -144,6 +144,10 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   checked: PropTypes.bool,
   /**
+   * Class name applied to the root element.
+   */
+  className: PropTypes.string,
+  /**
    * The default checked state. Use when the component is not controlled.
    */
   defaultChecked: PropTypes.bool,

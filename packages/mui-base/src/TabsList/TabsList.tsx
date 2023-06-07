@@ -78,6 +78,10 @@ TabsList.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The props used for each slot inside the TabsList.
    * @default {}
    */
