@@ -4,7 +4,7 @@ import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import { Box } from '@mui/joy';
 import FileIcon from './FileIcon';
-import { MessageProps, UserProps } from './MyMessages';
+import { MessageProps } from '../types';
 
 type ChatBubbleProps = MessageProps & {
   variant: 'sent' | 'received';

@@ -7,7 +7,7 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
 import AvatarWithStatus from './AvatarWithStatus';
-import { ChatProps } from './MyMessages';
+import { ChatProps } from '../types';
 
 type ChatListItemProps = ListItemButtonProps & {
   id: string;

@@ -5,9 +5,11 @@ import Typography from '@mui/joy/Typography';
 import { Chip, IconButton } from '@mui/joy';
 import Avatar from '@mui/joy/Avatar';
 import CircleIcon from '@mui/icons-material/Circle';
-import { UserProps } from './MyMessages';
+import { UserProps } from '../types';
 
-type MessagesPaneHeaderProps = UserProps & {};
+type MessagesPaneHeaderProps = {
+  sender: UserProps;
+};
 
 export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) {
   return (

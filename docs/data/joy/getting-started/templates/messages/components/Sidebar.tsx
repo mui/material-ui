@@ -7,7 +7,6 @@ import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import Divider from '@mui/joy/Divider';
 import IconButton from '@mui/joy/IconButton';
-import Input from '@mui/joy/Input';
 import Link from '@mui/joy/Link';
 import LinearProgress from '@mui/joy/LinearProgress';
 import List from '@mui/joy/List';
@@ -32,11 +31,11 @@ export default function Sidebar() {
       sx={{
         position: {
           xs: 'fixed',
-          md: 'sticky',
+          lg: 'sticky',
         },
         transform: {
           xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1)))',
-          md: 'none',
+          lg: 'none',
         },
         transition: 'transform 0.4s, width 0.4s',
         zIndex: 10000,

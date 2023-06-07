@@ -5,7 +5,7 @@ import Typography from '@mui/joy/Typography';
 import { Box, Chip, IconButton, Input } from '@mui/joy';
 import List from '@mui/joy/List';
 import ChatListItem from './ChatListItem';
-import { ChatProps } from './MyMessages';
+import { ChatProps } from '../types';
 
 type ChatsPaneProps = {
   chats: ChatProps[];
