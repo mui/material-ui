@@ -32,7 +32,7 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
 
   return (
     <Sheet sx={{ height: '100dvh' }}>
-      <MessagesPaneHeader />
+      <MessagesPaneHeader sender={chat.sender} />
 
       {/* todo: come back and fix the height here once top bar and textarea are done */}
       <Box
@@ -60,7 +60,7 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
                 {!isYou && (
                   <AvatarWithStatus
                     online={message.sender.online}
-                    src="/static/images/avatar/1.jpg"
+                    src={message.sender.avatar}
                   />
                 )}
                 <ChatBubble variant={isYou ? 'sent' : 'received'} {...message} />
