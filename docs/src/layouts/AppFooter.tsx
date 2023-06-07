@@ -17,7 +17,7 @@ import Link from 'docs/src/modules/components/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
 interface AppFooterProps {
-  stackOverflowURL?: string;
+  stackOverflowUrl?: string;
 }
 
 export default function AppFooter(props: AppFooterProps) {
