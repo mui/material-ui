@@ -134,6 +134,26 @@ This is because the variables are also used to calculate a proper radius for the
 
 {{"demo": "BioCard.js" }}
 
+### Credit card
+
+{{"demo": "CreditCardForm.js" }}
+
+### Congratulations card
+
+{{"demo": "CongratCard.js" }}
+
+### FAQ card
+
+{{"demo": "FAQCard.js" }}
+
+### License card
+
+{{"demo": "LicenseCard.js" }}
+
+### Pricing card
+
+{{"demo": "PricingCards.js" }}
+
 ### Product card
 
 This example demonstrates the automatic adjustment when a button is placed as a only child of a [CardOverflow](#expand-to-fill) component. The button will be stretched to fill the entire area of the CardOverflow and the bottom corner radius is also adjusted.
