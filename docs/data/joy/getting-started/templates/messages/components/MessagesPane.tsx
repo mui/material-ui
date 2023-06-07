@@ -13,23 +13,11 @@ type MessagesPaneProps = {
 };
 
 export default function MessagesPane({ chat }: MessagesPaneProps) {
-  // const [height, setHeight] = React.useState(290);
-  // const [height, setHeight] = React.useState<number>(128);
-  // const ref = React.useRef<null | HTMLDivElement>(null);
+  const [textAreaHeight, setTextAreaHeight] = React.useState(112);
 
-  // React.useEffect(() => {
-  //   if (ref.current) {
-  //     setHeight(ref.current.clientHeight);
-  //   }
-  // }, [setHeight]);
-
-  // const measuredRef = React.useCallback((node) => {
-  //   console.log('!!!!', node);
-  //   if (node !== null) {
-  //     setHeight(node.getBoundingClientRect().height);
-  //   }
-  // }, []);
-
+  const handleHeightChange = (height: number) => {
+    setTextAreaHeight(height);
+  };
   return (
     <Sheet
       sx={{
@@ -38,11 +26,10 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
     >
       <MessagesPaneHeader sender={chat.sender} />
 
-      {/* todo: come back and fix the height here once top bar and textarea are done */}
       <Box
         sx={{
           display: 'flex',
-          height: `calc(100dvh - 225px - var(--Header-height))`,
+          height: `calc(100dvh - ${textAreaHeight}px - 113px - var(--Header-height))`,
           px: 4,
           py: 3,
           overflowY: 'scroll',
@@ -72,9 +59,7 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
         </Stack>
       </Box>
 
-      <MessageInput
-      //  ref={measuredRef}
-      />
+      <MessageInput onHeightChange={handleHeightChange} />
     </Sheet>
   );
 }
