@@ -21,7 +21,7 @@ export default function NestedModal() {
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
-        slots={{ backdrop: Backdrop }}
+        slots={{ backdrop: StyledBackdrop }}
       >
         <Box sx={style}>
           <h2 id="parent-modal-title">Text in a modal</h2>
@@ -112,7 +112,7 @@ const StyledModal = styled(Modal)`
 `;
 
 const StyledBackdrop = styled(Backdrop)`
-  z-index: -1;
+  z-index: 1200;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -132,6 +132,7 @@ const style = (theme: Theme) => ({
   padding: '16px 32px 24px 32px',
   backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
   boxShadow: `0px 2px 24px ${theme.palette.mode === 'dark' ? '#000' : '#383838'}`,
+  'z-index': 1200,
 });
 
 const TriggerButton = styled(Button)(
