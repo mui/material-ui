@@ -107,7 +107,9 @@ const SliderRoot = styled('span', {
       '--Slider-thumbWidth': 'var(--Slider-thumbSize)',
       ...getColorVariables(),
       '&:hover': {
-        ...getColorVariables({ state: 'Hover' }),
+        '@media (hover: hover)': {
+          ...getColorVariables({ state: 'Hover' }),
+        },
       },
       '&:active': {
         ...getColorVariables({ state: 'Active' }),

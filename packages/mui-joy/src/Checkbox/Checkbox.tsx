@@ -107,7 +107,12 @@ const CheckboxCheckbox = styled('span', {
             ...variantStyle,
             backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
           },
-          { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+          {
+            '&:hover': {
+              '@media (hover: hover)':
+                theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+            },
+          },
           { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
           {
             [`&.${checkboxClasses.disabled}`]:

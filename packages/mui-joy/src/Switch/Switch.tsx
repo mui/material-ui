@@ -88,12 +88,16 @@ const SwitchRoot = styled('div', {
     '--Switch-thumbOffset': `max((var(--Switch-trackHeight) - var(--Switch-thumbSize)) / 2, 0px)`,
     ...getColorVariables(),
     '&:hover': {
-      ...getColorVariables({ state: 'Hover' }),
+      '@media (hover: hover)': {
+        ...getColorVariables({ state: 'Hover' }),
+      },
     },
     [`&.${switchClasses.checked}`]: {
       ...getColorVariables(),
       '&:hover': {
-        ...getColorVariables({ state: 'Hover' }),
+        '@media (hover: hover)': {
+          ...getColorVariables({ state: 'Hover' }),
+        },
       },
     },
     [`&.${switchClasses.disabled}`]: {
