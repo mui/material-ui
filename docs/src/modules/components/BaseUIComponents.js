@@ -185,11 +185,12 @@ function BaseUIComponents() {
                 borderBottom: '1px solid',
                 borderColor: 'divider',
                 ...theme.applyDarkStyles({
+                  background: `linear-gradient(180deg, ${theme.palette.primaryDark[800]} 20%, ${theme.palette.primaryDark[700]} 100%)`,
                   borderColor: 'grey.900',
                 }),
               })}
             />
-            <CardContent sx={{ flexGrow: 1, px: 2, py: 1 }}>
+            <CardContent sx={{ flexGrow: 1, px: 2, py: 0.5 }}>
               <Typography component="h2" variant="body1" fontWeight={600} gutterBottom>
                 {component.title}
               </Typography>
