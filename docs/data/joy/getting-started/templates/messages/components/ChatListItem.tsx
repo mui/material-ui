@@ -36,10 +36,10 @@ export default function ChatListItem({
           variant={selected ? 'soft' : 'plain'}
           color="neutral"
           sx={{
-            p: 2,
+            p: { xs: 1, md: 2 },
           }}
         >
-          <Stack spacing={2} flex={1}>
+          <Stack spacing={{ xs: 1, md: 2 }} flex={1}>
             <Stack direction="row" justifyContent="space-between" flex={1}>
               <Stack direction="row">
                 <Box
@@ -53,7 +53,12 @@ export default function ChatListItem({
                   )}
                 </Box>
 
-                <AvatarWithStatus online={sender.online} src={sender.avatar} />
+                <AvatarWithStatus
+                  online={sender.online}
+                  src={sender.avatar}
+                  // size="sm"
+                  // size={{ xs: 'md', md: 'sm' }}
+                />
 
                 <Box ml={1.5}>
                   <Typography fontSize="sm" fontWeight="lg">
@@ -69,7 +74,8 @@ export default function ChatListItem({
 
             <Typography
               level="body2"
-              pl={2.5}
+              // l={2.5}
+              pl={{ xs: 0, md: 2.5 }}
               sx={{
                 display: '-webkit-box',
                 WebkitLineClamp: '2',

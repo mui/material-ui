@@ -52,7 +52,6 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
         <Stack spacing={2} justifyContent="flex-end">
           {chat.messages.map((message: MessageProps, index: number) => {
             const isYou = message.sender === 'You';
-            console.log('isYou', message);
             return (
               <Stack
                 key={index}

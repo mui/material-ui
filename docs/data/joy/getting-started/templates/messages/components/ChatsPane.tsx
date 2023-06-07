@@ -36,6 +36,7 @@ export default function ChatsPane({
         justifyContent="space-between"
         py={3}
         px={2.5}
+        display={{ xs: 'none', md: 'flex' }}
       >
         <Typography
           level="h1"
@@ -56,16 +57,45 @@ export default function ChatsPane({
           Messages
         </Typography>
 
-        <IconButton
-          variant="outlined"
-          aria-label="edit"
-          color="neutral"
-          // size="sm"
-        >
+        <IconButton variant="outlined" aria-label="edit" color="neutral">
           <i data-feather="edit" />
         </IconButton>
       </Stack>
-      <Box px={2} pb={1.5}>
+
+      <Stack
+        direction="row"
+        spacing={2}
+        alignItems="center"
+        justifyContent="space-between"
+        p={1}
+        display={{ xs: 'flex', md: 'none' }}
+        // px={2.5}
+      >
+        <Typography
+          level="h1"
+          fontSize={{ xs: 'md', md: 'xl2' }}
+          endDecorator={
+            <Chip
+              variant="outlined"
+              color="neutral"
+              size="sm"
+              sx={{
+                '--Chip-radius': '6px',
+              }}
+            >
+              40
+            </Chip>
+          }
+        >
+          Messages
+        </Typography>
+
+        <IconButton variant="outlined" aria-label="edit" color="neutral" size="sm">
+          <i data-feather="edit" />
+        </IconButton>
+      </Stack>
+
+      <Box px={{ xs: 1, md: 2 }} pb={1.5}>
         <Input
           startDecorator={<i data-feather="search" />}
           placeholder="Search"

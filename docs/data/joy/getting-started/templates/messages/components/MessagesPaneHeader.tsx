@@ -20,10 +20,19 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
         borderBottom: '1px solid',
         borderColor: 'divider',
       }}
-      px={3}
-      py={2.5}
+      py={{ xs: 2, md: 2.5 }}
+      px={{ xs: 1, md: 3 }}
     >
-      <Stack direction="row" spacing={2} alignItems="flex-start">
+      <Stack direction="row" spacing={{ xs: 1, md: 2 }} alignItems="center">
+        <IconButton
+          variant="plain"
+          color="neutral"
+          sx={{
+            display: { xs: 'inline-flex', sm: 'none' },
+          }}
+        >
+          <i data-feather="chevron-left" />
+        </IconButton>
         <Avatar size="lg" src={sender.avatar} />
 
         <div>
