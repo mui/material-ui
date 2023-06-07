@@ -31,7 +31,7 @@ export default function X() {
         <XPlans />
         <XRoadmap />
       </main>
-      <AppFooter stackOverflowURL="https://stackoverflow.com/questions/tagged/mui-x" />
+      <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/mui-x" />
     </BrandingCssVarsProvider>
   );
 }

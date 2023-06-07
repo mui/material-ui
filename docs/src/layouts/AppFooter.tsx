@@ -17,11 +17,11 @@ import Link from 'docs/src/modules/components/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
 interface AppFooterProps {
-  stackOverflowURL?: string;
+  stackOverflowUrl?: string;
 }
 
 export default function AppFooter(props: AppFooterProps) {
-  const { stackOverflowURL = 'https://stackoverflow.com/questions/tagged/mui' } = props;
+  const { stackOverflowUrl = 'https://stackoverflow.com/questions/tagged/mui' } = props;
 
   return (
     <Container component="footer">
@@ -169,7 +169,7 @@ export default function AppFooter(props: AppFooterProps) {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href={stackOverflowURL}
+              href={stackOverflowUrl}
               aria-label="Stack Overflow"
               title="Stack Overflow"
               size="small"
