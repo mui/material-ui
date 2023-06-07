@@ -84,7 +84,7 @@ When the Aspect Ratio component is a child of a flexbox `row` container, use `fl
 
 ## Using with Next.js Image
 
-The Aspect Ratio component can be used with a [Next.js Image](https://nextjs.org/docs/basic-features/image-optimization) component as a child.
+The Aspect Ratio component can be used with a [Next.js Image](https://nextjs.org/docs/app/building-your-application/optimizing/images) component as a child.
 The Image should always include the `layout="fill"` property—otherwise it requires `height` and `width` values, which would defeat the purpose of the Aspect Ratio component.
 
 ```js

@@ -81,6 +81,11 @@
       "nodeName": "the root element",
       "conditions": "focused"
     },
+    "focusVisible": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the option elements",
+      "conditions": "they are keyboard focused"
+    },
     "tag": {
       "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
