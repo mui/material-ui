@@ -230,7 +230,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           p: 3,
           background: (theme) => `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
           backdropFilter: 'blur(8px)',
-          minWidth: '280px',
+          minWidth: '240px',
         }}
       >
         <Box
@@ -433,7 +433,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     }
                     sx={{ flexWrap: 'wrap', gap: 1.5 }}
                   >
-                    {(['primary', 'neutral', 'danger', 'info', 'success', 'warning'] as const).map(
+                    {(['primary', 'neutral', 'danger', 'success', 'warning'] as const).map(
                       (value) => {
                         const checked = resolvedValue === value;
                         return (
