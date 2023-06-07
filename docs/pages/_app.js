@@ -192,7 +192,7 @@ function AppWrapper(props) {
 
     if (product === 'base') {
       return {
-        name: 'MUI Base',
+        name: 'Base UI',
         metadata: 'MUI Core',
         versions: [{ text: `v${basePkgJson.version}`, current: true }],
       };
