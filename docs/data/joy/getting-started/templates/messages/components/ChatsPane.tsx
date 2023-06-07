@@ -39,8 +39,8 @@ export default function ChatsPane({
         display={{ xs: 'none', md: 'flex' }}
       >
         <Typography
-          level="h1"
-          fontSize={{ xs: 'md', md: 'xl2' }}
+          fontSize={{ xs: 'md', md: 'lg' }}
+          fontWeight="lg"
           endDecorator={
             <Chip
               variant="outlined"
