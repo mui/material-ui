@@ -91,6 +91,8 @@ The following sections explain how to approach each of these scenarios.
 
 Cards often include buttons at the bottom section. Use `CardActions` component as a wrapper of those buttons to create proper spacing around them.
 
+The demo below also use `buttonFlex` prop to set the ideal width of the buttons to `120px` while allowing them to shrink if necessary. To learn more about CSS flex, visit [MDN's guide](https://developer.mozilla.org/en-US/docs/Web/CSS/flex).
+
 {{"demo": "BottomActionsCard.js" }}
 
 #### Discrete actions
