@@ -29,15 +29,6 @@ export default function AutocompleteHint() {
             .includes(state.inputValue.toLowerCase().trim()),
         );
 
-        const matchingOption = options.find((option) =>
-          option.label.startsWith(state.inputValue),
-        );
-
-        if (displayOptions.length > 0 && state.inputValue && matchingOption) {
-          hint.current = matchingOption.label;
-        } else {
-          hint.current = '';
-        }
         return displayOptions;
       }}
       id="combo-box-hint-demo"
@@ -53,7 +44,19 @@ export default function AutocompleteHint() {
             </Typography>
             <TextField
               {...params}
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={(e) => {
+                const newValue = e.target.value;
+                setInputValue(newValue);
+                const matchingOption = top100Films.find((option) =>
+                  option.label.startsWith(newValue),
+                );
+
+                if (newValue && matchingOption) {
+                  hint.current = matchingOption.label;
+                } else {
+                  hint.current = '';
+                }
+              }}
               label="Movie"
             />
           </Box>
