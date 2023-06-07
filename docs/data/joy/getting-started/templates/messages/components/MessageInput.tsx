@@ -39,6 +39,7 @@ export default function MessageInput({ onHeightChange }: MessageInputProps) {
           aria-label="Message"
           ref={textAreaRef}
           onKeyUp={handleHeightChange}
+          onPaste={handleHeightChange}
           minRows={2}
           maxRows={10}
           endDecorator={
