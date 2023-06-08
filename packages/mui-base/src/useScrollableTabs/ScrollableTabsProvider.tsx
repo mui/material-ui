@@ -20,7 +20,7 @@ export interface TabsProviderProps {
  *
  * @ignore - do not document.
  */
-export default function TabsProvider(props: TabsProviderProps) {
+export default function ScrollableTabsProvider(props: TabsProviderProps) {
   const { value: valueProp, children } = props;
   const {
     direction,
