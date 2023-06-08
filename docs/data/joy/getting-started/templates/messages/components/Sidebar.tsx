@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { styled } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
-import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import Divider from '@mui/joy/Divider';

@@ -29,12 +29,6 @@ function ReactionButton({
       color={selected ? 'primary' : 'neutral'}
       variant="soft"
       size="sm"
-      // sx={(theme) => ({
-      //   boxShadow: selected ? 'none' : theme.shadow.md,
-      //   // '--joy-shadowChannel': theme.vars.palette.primary.mainChannel,
-      //   // '--joy-shadowRing': 'inset 0 -3px 0 rgba(0 0 0 / 0.24)',
-      //   zIndex: 1,
-      // })}
     >
       {children}
     </IconButton>
@@ -112,7 +106,6 @@ export default function ChatBubble({
                 right: 0,
                 left: 0,
                 pt: 0.5,
-                zIndex: 10000000000000,
               }}
             >
               <ReactionButton

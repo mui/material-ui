@@ -23,14 +23,13 @@ export default function ChatsPane({
       sx={{
         borderRight: '1px solid',
         borderColor: 'divider',
-        // height: { xs: 0, sm: 'calc(100dvh - var(--Header-height))' },
         height: 'calc(100dvh - var(--Header-height))',
         overflowY: 'auto',
       }}
     >
+      {/* Look at this again! 6/8/2023 */}
       <Stack
         direction="row"
-        // direction={{ xs: 'column', md: 'row' }}
         spacing={2}
         alignItems="center"
         justifyContent="space-between"
@@ -69,7 +68,6 @@ export default function ChatsPane({
         justifyContent="space-between"
         p={1}
         display={{ xs: 'flex', md: 'none' }}
-        // px={2.5}
       >
         <Typography
           level="h1"
@@ -119,14 +117,6 @@ export default function ChatsPane({
             selectedChatId={selectedChatId}
           />
         ))}
-        {/* {chats.map((chat) => (
-          <ChatListItem
-            key={chat.id}
-            {...chat}
-            setSelectedChat={setSelectedChat}
-            selectedChatId={selectedChatId}
-          />
-        ))} */}
       </List>
     </Sheet>
   );

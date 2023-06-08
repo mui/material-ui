@@ -20,7 +20,6 @@ type ChatListItemProps = ListItemButtonProps & {
 };
 
 export default function ChatListItem({
-  unread = false,
   id,
   sender,
   messages,
