@@ -39,34 +39,41 @@ export default function Album() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
+        <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <CameraIcon sx={{ mr: 2 }} />
           <Typography variant="h6" color="inherit" noWrap>
             Album layout
           </Typography>
         </Toolbar>
-      </AppBar>
+      
       <main>
         {/* Hero unit */}
         <Box
           sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
+            pt: 16,
+            pb: 16,     
+            backgroundImage: `url("https://source.unsplash.com/random?wallpapers")`,
+            backgroundSize: 'cover',
+            color: 'white', 
           }}
         >
-          <Container maxWidth="sm">
+          <Container maxWidth="sm" >
             <Typography
               component="h1"
               variant="h2"
               align="center"
-              color="text.primary"
+              color="inherit"
               gutterBottom
+              sx={{
+                textShadow: '0px 0px 4px rgba(0, 0, 0, 0.9)',
+              }}
             >
               Album layout
             </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" paragraph>
+            <Typography variant="h5" align="center" color="inherit"               
+            sx={{
+                textShadow: '0px 0px 4px rgba(0, 0, 0, 0.9)',
+              }} paragraph>
               Something short and leading about the collection below—its contents,
               the creator, etc. Make it short and sweet, but not too short so folks
               don&apos;t simply skip over it entirely.
@@ -78,7 +85,7 @@ export default function Album() {
               justifyContent="center"
             >
               <Button variant="contained">Main call to action</Button>
-              <Button variant="outlined">Secondary action</Button>
+              
             </Stack>
           </Container>
         </Box>
