@@ -57,12 +57,7 @@ export default function ChatListItem({
                   )}
                 </Box>
 
-                <AvatarWithStatus
-                  online={sender.online}
-                  src={sender.avatar}
-                  // size="sm"
-                  // size={{ xs: 'md', md: 'sm' }}
-                />
+                <AvatarWithStatus online={sender.online} src={sender.avatar} />
 
                 <Box ml={1.5}>
                   <Typography fontSize="sm" fontWeight="lg">
@@ -71,7 +66,7 @@ export default function ChatListItem({
                   <Typography level="body2">{sender.username}</Typography>
                 </Box>
               </Stack>
-              <Typography level="body2" display={{ xs: 'none', md: 'block' }}>
+              <Typography level="body2" display={{ xs: 'none', md: 'block' }} noWrap>
                 5 mins ago
               </Typography>
             </Stack>
@@ -79,7 +74,6 @@ export default function ChatListItem({
             <Typography
               level="body2"
               pl={2.5}
-              // pl={{ xs: 0, md: 2.5 }}
               sx={{
                 display: '-webkit-box',
                 WebkitLineClamp: '2',

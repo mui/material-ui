@@ -220,7 +220,6 @@ export default function Sidebar() {
       </Box>
       <Divider />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-        <Avatar variant="outlined" src="/static/images/avatar/3.jpg" />
         <Box sx={{ minWidth: 0, flex: 1 }}>
           <Typography fontSize="sm" fontWeight="lg">
             Steve E.

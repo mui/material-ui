@@ -1,102 +1,22 @@
 import { ChatProps, UserProps } from './types';
 
-// const messages = [
-//   {
-//     time: 'Thursday 11:41am',
-//     sender: 'You',
-//     message: 'Awesome! Thanks. I’ll look at this today.',
-//   },
-//   {
-//     time: 'Thursday 11:44am',
-//     sender: 'Katherine Moss',
-//     message: 'No rush though — we still have to wait for Lana’s designs.',
-//   },
-//   {
-//     time: 'Thursday 11:41am',
-//     sender: 'You',
-//     message: 'Awesome! Thanks. I’ll look at this today.',
-//   },
-//   {
-//     time: 'Thursday 11:44am',
-//     sender: 'Katherine Moss',
-//     message: 'No rush though — we still have to wait for Lana’s designs.',
-//   },
-//   {
-//     time: 'Thursday 11:41am',
-//     sender: 'You',
-//     message: 'Awesome! Thanks. I’ll look at this today.',
-//   },
-//   {
-//     time: 'Thursday 11:44am',
-//     sender: 'Katherine Moss',
-//     message: 'No rush though — we still have to wait for Lana’s designs.',
-//   },
-//   {
-//     time: 'Thursday 10:16am',
-//     sender: 'Katherine Moss',
-//     message:
-//       'Thanks Olivia! Almost there. I’ll work on making those changes you suggested and will shoot it over.',
-//   },
-//   {
-//     time: 'Thursday 11:40am',
-//     sender: 'You',
-//     message:
-//       'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
-//   },
-//   {
-//     time: 'Thursday 11:40am',
-//     sender: 'Katherine Moss',
-//     message: 'Tech requirements.pdf',
-//     attachment: {
-//       fileName: 'Tech requirements.pdf',
-//       type: 'pdf',
-//       size: '1.2 MB',
-//     },
-//   },
-//   {
-//     time: 'Thursday 11:41am',
-//     sender: 'You',
-//     message: 'Awesome! Thanks. I’ll look at this today.',
-//   },
-//   {
-//     time: 'Thursday 11:44am',
-//     sender: 'Katherine Moss',
-//     message: 'No rush though — we still have to wait for Lana’s designs.',
-//   },
-//   {
-//     time: 'Today 2:20pm',
-//     sender: 'Katherine Moss',
-//     message: 'Hey Olivia, can you please review the latest design when you can?',
-//   },
-//   {
-//     time: 'Just now',
-//     sender: 'You',
-//     message: 'Sure thing, I’ll have a look today. They’re looking great!',
-//   },
-//   {
-//     time: 'now',
-//     sender: 'Katherine Moss',
-//     message: 'Typing...',
-//   },
-// ];
-
 export const users: UserProps[] = [
   {
-    name: 'Mabel Boyle',
-    username: '@mabel',
+    name: 'Abel Boyle',
+    username: '@abel',
     avatar: '/static/images/avatar/1.jpg',
     online: true,
   },
   {
     name: 'Katherine Moss',
     username: '@kathy',
-    avatar: '/static/images/avatar/2.jpg',
+    avatar: '/static/images/avatar/3.jpg',
     online: false,
   },
   {
     name: 'Phoenix Baker',
     username: '@phoenix',
-    avatar: '/static/images/avatar/3.jpg',
+    avatar: '/static/images/avatar/2.jpg',
     online: true,
   },
   {
@@ -106,14 +26,14 @@ export const users: UserProps[] = [
     online: false,
   },
   {
-    name: 'Katie Peterson',
-    username: '@katie',
+    name: 'Kenny Peterson',
+    username: '@kenny',
     avatar: '/static/images/avatar/5.jpg',
     online: true,
   },
   {
-    name: 'Alice Sanders',
-    username: '@alice',
+    name: 'Al Sanders',
+    username: '@al',
     avatar: '/static/images/avatar/6.jpg',
     online: true,
   },
