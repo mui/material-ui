@@ -39,7 +39,12 @@ export default function ChatsPane({
           fontSize={{ xs: 'md', md: 'lg' }}
           fontWeight="lg"
           endDecorator={
-            <Chip variant="outlined" color="neutral" size="sm">
+            <Chip
+              variant="outlined"
+              color="neutral"
+              size="sm"
+              slotProps={{ root: { component: 'span' } }}
+            >
               40
             </Chip>
           }

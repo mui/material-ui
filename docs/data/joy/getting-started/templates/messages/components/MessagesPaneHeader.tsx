@@ -55,6 +55,7 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
                   startDecorator={
                     <CircleIcon sx={{ fontSize: 8 }} color="success" />
                   }
+                  slotProps={{ root: { component: 'span' } }}
                 >
                   Online
                 </Chip>
