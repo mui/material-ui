@@ -50,7 +50,7 @@ export default function ChatListItem({
                   width={20}
                   display="flex"
                   alignItems="center"
-                  sx={{ display: { xs: 'none', md: 'block' } }}
+                  // sx={{ display: { xs: 'none', md: 'block' } }}
                 >
                   {messages[0].unread && (
                     <CircleIcon sx={{ fontSize: 10 }} color="primary" />
@@ -78,8 +78,8 @@ export default function ChatListItem({
 
             <Typography
               level="body2"
-              // l={2.5}
-              pl={{ xs: 0, md: 2.5 }}
+              pl={2.5}
+              // pl={{ xs: 0, md: 2.5 }}
               sx={{
                 display: '-webkit-box',
                 WebkitLineClamp: '2',
