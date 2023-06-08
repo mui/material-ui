@@ -7,9 +7,17 @@ import { IconButton, Stack } from '@mui/joy';
 
 export type MessageInputProps = {
   onHeightChange?: (height: number) => void;
+  textAreaValue: string;
+  setTextAreaValue: (value: string) => void;
+  onSubmit: () => void;
 };
 
-export default function MessageInput({ onHeightChange }: MessageInputProps) {
+export default function MessageInput({
+  onHeightChange,
+  textAreaValue,
+  setTextAreaValue,
+  onSubmit,
+}: MessageInputProps) {
   const [textAreaHeight, setTextAreaHeight] = React.useState(112);
   const textAreaRef = React.useRef<HTMLDivElement>(null);
 
@@ -38,8 +46,11 @@ export default function MessageInput({ onHeightChange }: MessageInputProps) {
           placeholder="Type something here…"
           aria-label="Message"
           ref={textAreaRef}
-          onKeyUp={handleHeightChange}
-          onPaste={handleHeightChange}
+          onChange={(e) => {
+            handleHeightChange();
+            setTextAreaValue(e.target.value);
+          }}
+          value={textAreaValue}
           minRows={2}
           maxRows={10}
           endDecorator={
@@ -56,7 +67,16 @@ export default function MessageInput({ onHeightChange }: MessageInputProps) {
               <IconButton variant="plain" color="neutral">
                 <i data-feather="more-horizontal" />
               </IconButton>
-              <Button>Send</Button>
+              <Button
+                onClick={() => {
+                  if (textAreaValue.trim() !== '') {
+                    onSubmit();
+                    setTextAreaValue('');
+                  }
+                }}
+              >
+                Send
+              </Button>
             </Stack>
           }
         />

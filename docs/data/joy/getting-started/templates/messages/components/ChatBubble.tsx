@@ -112,6 +112,7 @@ export default function ChatBubble({
                 right: 0,
                 left: 0,
                 pt: 0.5,
+                zIndex: 10000000000000,
               }}
             >
               <ReactionButton

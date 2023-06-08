@@ -14,6 +14,12 @@ type MessagesPaneProps = {
 
 export default function MessagesPane({ chat }: MessagesPaneProps) {
   const [textAreaHeight, setTextAreaHeight] = React.useState(112);
+  const [chatMessages, setChatMessages] = React.useState(chat.messages);
+  const [textAreaValue, setTextAreaValue] = React.useState('');
+
+  React.useEffect(() => {
+    setChatMessages(chat.messages);
+  }, [chat.messages]);
 
   const handleHeightChange = (height: number) => {
     setTextAreaHeight(height);
@@ -38,7 +44,7 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
         }}
       >
         <Stack spacing={2} justifyContent="flex-end">
-          {chat.messages.map((message: MessageProps, index: number) => {
+          {chatMessages.map((message: MessageProps, index: number) => {
             const isYou = message.sender === 'You';
             return (
               <Stack
@@ -60,7 +66,24 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
         </Stack>
       </Box>
 
-      <MessageInput onHeightChange={handleHeightChange} />
+      <MessageInput
+        onHeightChange={handleHeightChange}
+        textAreaValue={textAreaValue}
+        setTextAreaValue={setTextAreaValue}
+        onSubmit={() => {
+          const newId = chatMessages.length + 1;
+          const newIdString = newId.toString();
+          setChatMessages([
+            ...chatMessages,
+            {
+              id: newIdString,
+              sender: 'You',
+              content: textAreaValue,
+              timestamp: 'Just now',
+            },
+          ]);
+        }}
+      />
     </Sheet>
   );
 }
