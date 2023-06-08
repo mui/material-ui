@@ -31,7 +31,7 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
         sx={{
           display: 'flex',
           height: `calc(100dvh - ${textAreaHeight}px - 113px - var(--Header-height))`,
-          px: 4,
+          px: { xs: 2, sm: 3, md: 4 },
           py: 3,
           overflowY: 'scroll',
           flexDirection: 'column-reverse',
