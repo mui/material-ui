@@ -26,7 +26,7 @@ const Prose = styled(Container)(({ theme }) => ({
 
 export default function ProsePage() {
   return (
-    <CssVarsProvider>
+    <CssVarsProvider defaultMode="system">
       <Prose sx={{ maxWidth: '692px !important' }}>
         <Typography level="body2">Tuesday, Nov 1, 2022</Typography>
         <Typography level="h1">An introduction to the MUI ecosystem</Typography>
