@@ -25,9 +25,13 @@ The following steps must be proposed as a pull request.
    The output must be prepended to the top level `CHANGELOG.md`
    `yarn release:changelog --help` for more information.
 
-2. Clean the generated changelog, to match the format of https://github.com/mui/material-ui/releases.
+2. Clean the generated changelog:
+   1. Match the format of https://github.com/mui/material-ui/releases.
+   2. Change the packages names casing to be lowercase if applicable, e.g. change `Material` to `material`
 3. Update the root `/package.json`'s version
-4. `yarn release:version` (🔔 manually remove `^` from packages with prerelease version, eg. `-alpha`)
+4. `yarn release:version`, keep in mind:
+   1. Manually remove `^` from packages with prerelease version, e.g. `-alpha`
+   2. Don't bump private packages unless necessary, these have `"private": true` in their `package.json`
 5. Open PR with changes and wait for review and green CI
 6. Merge PR once CI is green and it has been approved
 
