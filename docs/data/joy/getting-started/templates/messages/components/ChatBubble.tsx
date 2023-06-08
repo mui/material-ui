@@ -1,8 +1,9 @@
 import * as React from 'react';
+import Box from '@mui/joy/Box';
+import IconButton from '@mui/joy/IconButton';
 import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
-import { Box, IconButton } from '@mui/joy';
 import CelebrationOutlinedIcon from '@mui/icons-material/CelebrationOutlined';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';

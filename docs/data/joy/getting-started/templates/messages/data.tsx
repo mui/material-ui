@@ -43,12 +43,6 @@ export const users: UserProps[] = [
     avatar: '/static/images/avatar/7.jpg',
     online: false,
   },
-  // {
-  //   name: 'Frank Phillips',
-  //   username: '@frank',
-  //   avatar: '/static/images/avatar/8.jpg',
-  //   online: false,
-  // },
 ];
 
 export const chats: ChatProps[] = [
@@ -275,18 +269,4 @@ export const chats: ChatProps[] = [
       },
     ],
   },
-  // {
-  //   id: '8',
-  //   sender: users[7],
-  //   messages: [
-  //     {
-  //       id: '1',
-  //       content:
-  //         'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
-  //       timestamp: '5 mins ago',
-  //       sender: users[7],
-  //       unread: true,
-  //     },
-  //   ],
-  // },
 ];

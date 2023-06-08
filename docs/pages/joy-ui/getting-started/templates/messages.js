@@ -3,7 +3,7 @@ import Head from 'docs/src/modules/components/Head';
 import MessagesTemplate from 'docs/data/joy/getting-started/templates/messages/App';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 
-export default function OrderDashboard() {
+export default function Messages() {
   return (
     <React.Fragment>
       <Head>

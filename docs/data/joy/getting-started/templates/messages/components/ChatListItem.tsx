@@ -7,14 +7,14 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
 import AvatarWithStatus from './AvatarWithStatus';
-import { ChatProps } from '../types';
+import { ChatProps, MessageProps, UserProps } from '../types';
 import { toggleMessagesPane } from '../utils';
 
 type ChatListItemProps = ListItemButtonProps & {
   id: string;
   unread?: boolean;
-  sender: any;
-  messages: any;
+  sender: UserProps;
+  messages: MessageProps[];
   selectedChatId?: string;
   setSelectedChat: (chat: ChatProps) => void;
 };
@@ -45,12 +45,7 @@ export default function ChatListItem({
           <Stack spacing={{ xs: 1, md: 2 }} flex={1}>
             <Stack direction="row" justifyContent="space-between" flex={1}>
               <Stack direction="row">
-                <Box
-                  width={20}
-                  display="flex"
-                  alignItems="center"
-                  // sx={{ display: { xs: 'none', md: 'block' } }}
-                >
+                <Box width={20} display="flex" alignItems="center">
                   {messages[0].unread && (
                     <CircleIcon sx={{ fontSize: 10 }} color="primary" />
                   )}
