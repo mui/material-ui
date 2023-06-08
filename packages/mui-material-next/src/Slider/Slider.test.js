@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import BaseSlider from '@mui/base/Slider';
-import Slider, { sliderClasses as classes } from '@mui/material/Slider';
+import Slider, { sliderClasses as classes } from '@mui/material-next/Slider';
+import mockMatchMediaBeforeEach from '../utils/tests/mockMatchMediaBeforeEach';
 
 function createTouches(touches) {
   return {
@@ -20,6 +21,8 @@ function createTouches(touches) {
 }
 
 describe('<Slider />', () => {
+  mockMatchMediaBeforeEach();
+
   before(function beforeHook() {
     // only run in supported browsers
     if (typeof Touch === 'undefined') {
@@ -41,6 +44,8 @@ describe('<Slider />', () => {
       testVariantProps: { color: 'primary', orientation: 'vertical', size: 'small' },
       testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
       testLegacyComponentsProp: true,
+      ThemeProvider: CssVarsProvider,
+      createTheme: extendTheme,
       slots: {
         root: {
           expectedClassName: classes.root,
@@ -622,7 +627,7 @@ describe('<Slider />', () => {
     });
 
     it('should be customizable in the theme', () => {
-      const theme = createTheme({
+      const theme = extendTheme({
         components: {
           MuiSlider: {
             styleOverrides: {
@@ -637,9 +642,9 @@ describe('<Slider />', () => {
       });
 
       const { container } = render(
-        <ThemeProvider theme={theme}>
+        <CssVarsProvider theme={theme}>
           <Slider disabled value={0} />
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
       expect(container.firstChild).to.toHaveComputedStyle({
         mixBlendMode: 'darken',
@@ -901,13 +906,13 @@ describe('<Slider />', () => {
   describe('rtl', () => {
     it('should add direction css', () => {
       const { getByRole } = render(
-        <ThemeProvider
-          theme={createTheme({
+        <CssVarsProvider
+          theme={extendTheme({
             direction: 'rtl',
           })}
         >
           <Slider defaultValue={30} />
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
       const thumb = getByRole('slider');
       act(() => {
@@ -920,8 +925,8 @@ describe('<Slider />', () => {
     it('should handle RTL', () => {
       const handleChange = spy();
       const { container, getByTestId } = render(
-        <ThemeProvider
-          theme={createTheme({
+        <CssVarsProvider
+          theme={extendTheme({
             direction: 'rtl',
           })}
         >
@@ -930,7 +935,7 @@ describe('<Slider />', () => {
             onChange={handleChange}
             componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
           />
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
       const thumb = getByTestId('thumb');
       expect(thumb.style.right).to.equal('30%');
@@ -1366,7 +1371,7 @@ describe('<Slider />', () => {
       this.skip();
     }
 
-    const theme = createTheme({
+    const theme = extendTheme({
       components: {
         MuiSlider: {
           styleOverrides: {
@@ -1380,7 +1385,7 @@ describe('<Slider />', () => {
     });
 
     const { container } = render(
-      <ThemeProvider theme={theme}>
+      <CssVarsProvider theme={theme}>
         <Slider
           marks={[
             { label: '1', value: 1 },
@@ -1388,7 +1393,7 @@ describe('<Slider />', () => {
           ]}
           step={null}
         />
-      </ThemeProvider>,
+      </CssVarsProvider>,
     );
 
     expect(container.querySelector(`.${classes.marked}`)).toHaveComputedStyle({
@@ -1402,7 +1407,7 @@ describe('<Slider />', () => {
       this.skip();
     }
 
-    const theme = createTheme({
+    const theme = extendTheme({
       components: {
         MuiSlider: {
           styleOverrides: {
@@ -1416,9 +1421,9 @@ describe('<Slider />', () => {
     });
 
     const { container } = render(
-      <ThemeProvider theme={theme}>
+      <CssVarsProvider theme={theme}>
         <Slider value={2} min={1} max={3} step={1} marks />
-      </ThemeProvider>,
+      </CssVarsProvider>,
     );
 
     expect(container.querySelector(`.${classes.markActive}`)).toHaveComputedStyle({
