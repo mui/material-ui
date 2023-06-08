@@ -448,6 +448,38 @@ describe('<Popover />', () => {
       );
       expect(anchorElSpy.callCount).to.be.greaterThanOrEqual(1);
     });
+
+    it('should accept a virtual element', () => {
+      const top = 100;
+      const left = 300;
+      const virtualElement = {
+        nodeType: 1,
+        getBoundingClientRect: () => ({
+          x: 0,
+          y: 0,
+          top,
+          left,
+          bottom: 0,
+          right: 0,
+          height: 0,
+          width: 0,
+        }),
+      };
+      render(
+        <Popover
+          open
+          anchorEl={virtualElement}
+          transitionDuration={0}
+          slotProps={{ paper: { 'data-testid': 'paper' } }}
+        >
+          <div />
+        </Popover>,
+      );
+      expect(screen.getByTestId('paper')).toHaveInlineStyle({
+        top: `${top}px`,
+        left: `${left}px`,
+      });
+    });
   });
 
   describe('positioning on an anchor', () => {
@@ -569,7 +601,7 @@ describe('<Popover />', () => {
           'prop',
           'MockedPopover',
         );
-      }).toErrorDev('It should be an Element instance');
+      }).toErrorDev('It should be an Element or PopoverVirtualElement instance');
     });
 
     it('warns if a component for the Paper is used that cant hold a ref', () => {

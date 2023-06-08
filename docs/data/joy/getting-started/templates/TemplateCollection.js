@@ -63,6 +63,10 @@ const AUTHORS = {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
   },
+  'rental-dashboard': {
+    name: 'Steve Ernstberger',
+    link: 'https://twitter.com/steveeberger',
+  },
 };
 const DESIGNS = {
   'order-dashboard': {
@@ -77,6 +81,10 @@ const DESIGNS = {
     name: 'Frames X',
     link: 'https://framesxfigma.buninux.com/',
   },
+  'rental-dashboard': {
+    name: 'Untitled UI',
+    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+  },
   messages: {
     name: 'Untitled UI',
     link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
@@ -86,9 +94,9 @@ const DESIGNS = {
 export default function TemplateCollection() {
   const newTemplates = [
     'messages',
+    'rental-dashboard',
     'framesx-web-blocks',
     'profile-dashboard',
-    'order-dashboard',
   ]; // Stay at the top of the page with `new` badge
   const { names: templateNames, map: templateMap } = sourceJoyTemplates();
   const names = [
@@ -265,7 +273,7 @@ export default function TemplateCollection() {
                   </SvgIcon>
                 </IconButton>
               </Box>
-              <Box sx={{ width: '100%', display: 'flex', alignItems: 'baseline' }}>
+              <Box sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
                 {author && (
                   <Typography level="body2" fontWeight="md">
                     Built by{' '}
