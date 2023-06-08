@@ -5,7 +5,7 @@ import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
-import BaseUIHero from 'docs/src/components/productBaseUI/BaseUIHero';
+import BaseUIHero from 'docs/src/components/productBaseUI/BaseUIHero2';
 import BaseUISummary from 'docs/src/components/productBaseUI/BaseUISummary';
 import BaseUIComponents from 'docs/src/components/productBaseUI/BaseUIComponents';
 import BaseUICustomization from 'docs/src/components/productBaseUI/BaseUICustomization';
