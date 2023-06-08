@@ -1,4 +1,4 @@
-import { TabsProviderValue } from '@mui/base';
+import { ScrollableTabsProviderValue } from '@mui/base';
 
 export interface UseScrollableTabsParameters {
   /**
@@ -35,5 +35,5 @@ export interface UseScrollableTabsReturnValue {
   /**
    * Returns the values to be passed to the tabs provider.
    */
-  contextValue: TabsProviderValue;
+  contextValue: ScrollableTabsProviderValue;
 }

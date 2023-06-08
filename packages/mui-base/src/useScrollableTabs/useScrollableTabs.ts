@@ -80,26 +80,26 @@ function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollab
   //   moveTabsScroll(getScrollSize());
   // };
 
-  // const createHandleClick =
-  //   (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
-  //   (event: React.KeyboardEvent<HTMLInputElement>) => {
-  //     if (event.code === 'Space' && inputRef.current) {
-  //       event.preventDefault();
-  //       setCheckedState(!checked);
-  //       otherProps.onKeyDown?.(event);
-  //
-  //       const nativeEvent = event.nativeEvent || event;
-  //       // @ts-ignore
-  //       const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
-  //
-  //       Object.defineProperty(clonedEvent, 'target', {
-  //         writable: true,
-  //         value: { type: 'checkbox', checked: !checked },
-  //       });
-  //       onChange?.(clonedEvent);
-  //       otherProps.onChange?.(clonedEvent);
-  //     }
-  //   };
+  const createHandleClick =
+    (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      // if (event.code === 'Space' && inputRef.current) {
+      //   event.preventDefault();
+      //   setCheckedState(!checked);
+      //   otherProps.onKeyDown?.(event);
+      //
+      //   const nativeEvent = event.nativeEvent || event;
+      //   // @ts-ignore
+      //   const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+      //
+      //   Object.defineProperty(clonedEvent, 'target', {
+      //     writable: true,
+      //     value: { type: 'checkbox', checked: !checked },
+      //   });
+      //   onChange?.(clonedEvent);
+      //   otherProps.onChange?.(clonedEvent);
+      // }
+    };
 
   const getScrollButtonProps: any = (otherProps = {}) => ({
     // ref: handleInputRef,

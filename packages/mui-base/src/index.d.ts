@@ -95,6 +95,9 @@ export * from './useMenuItem';
 export { default as useOption } from './useOption';
 export * from './useOption';
 
+export { default as useScrollableTabs } from './useScrollableTabs';
+export * from './useScrollableTabs';
+
 export { default as useSelect } from './useSelect';
 export * from './useSelect';
 

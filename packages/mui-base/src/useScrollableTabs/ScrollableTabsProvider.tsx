@@ -1,17 +1,18 @@
 import * as React from 'react';
-import TabsContext, { TabsContextValue } from '../Tabs/TabsContext';
+import { TabPanelMetadata } from '@mui/base';
+import ScrollableTabsContext, {
+  ScrollableTabsContextValue,
+} from '../ScrollableTabs/ScrollableTabsContext';
 import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
 
-export type TabPanelMetadata = {
-  id: string | undefined;
-  ref: React.RefObject<HTMLElement>;
-};
+export type ScrollableTabsProviderValue = CompoundComponentContextValue<
+  string | number,
+  TabPanelMetadata
+> &
+  ScrollableTabsContextValue;
 
-export type TabsProviderValue = CompoundComponentContextValue<string | number, TabPanelMetadata> &
-  TabsContextValue;
-
-export interface TabsProviderProps {
-  value: TabsProviderValue;
+export interface ScrollableTabsProviderProps {
+  value: ScrollableTabsProviderValue;
   children: React.ReactNode;
 }
 
@@ -20,7 +21,7 @@ export interface TabsProviderProps {
  *
  * @ignore - do not document.
  */
-export default function ScrollableTabsProvider(props: TabsProviderProps) {
+export default function ScrollableTabsProvider(props: ScrollableTabsProviderProps) {
   const { value: valueProp, children } = props;
   const {
     direction,
@@ -34,6 +35,7 @@ export default function ScrollableTabsProvider(props: TabsProviderProps) {
     value,
     getTabId,
     getTabPanelId,
+    getScrollButtonProps,
   } = valueProp;
 
   const compoundComponentContextValue: CompoundComponentContextValue<
@@ -48,11 +50,12 @@ export default function ScrollableTabsProvider(props: TabsProviderProps) {
     [registerItem, getItemIndex, totalSubitemCount],
   );
 
-  const tabsContextValue: TabsContextValue = React.useMemo(
+  const scrollableTabsContextValue: ScrollableTabsContextValue = React.useMemo(
     () => ({
       direction,
       getTabId,
       getTabPanelId,
+      getScrollButtonProps,
       onSelected,
       orientation,
       registerTabIdLookup,
@@ -63,6 +66,7 @@ export default function ScrollableTabsProvider(props: TabsProviderProps) {
       direction,
       getTabId,
       getTabPanelId,
+      getScrollButtonProps,
       onSelected,
       orientation,
       registerTabIdLookup,
@@ -73,7 +77,9 @@ export default function ScrollableTabsProvider(props: TabsProviderProps) {
 
   return (
     <CompoundComponentContext.Provider value={compoundComponentContextValue}>
-      <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>
+      <ScrollableTabsContext.Provider value={scrollableTabsContextValue}>
+        {children}
+      </ScrollableTabsContext.Provider>
     </CompoundComponentContext.Provider>
   );
 }

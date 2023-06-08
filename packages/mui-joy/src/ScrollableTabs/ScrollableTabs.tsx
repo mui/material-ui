@@ -10,10 +10,10 @@ import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './scrollableTabsClasses';
-import { TabsOwnerState, TabsTypeMap } from './ScrollableTabsProps';
+import { ScrollableTabsOwnerState, ScrollableTabsTypeMap } from './ScrollableTabsProps';
 import useSlot from '../utils/useSlot';
 
-const useUtilityClasses = (ownerState: TabsOwnerState) => {
+const useUtilityClasses = (ownerState: ScrollableTabsOwnerState) => {
   const { orientation, variant, color, size } = ownerState;
 
   const slots = {
@@ -33,7 +33,7 @@ const TabsRoot = styled(SheetRoot, {
   name: 'JoyTabs',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabsOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: ScrollableTabsOwnerState }>(({ ownerState }) => ({
   ...(ownerState.size === 'sm' && {
     '--Tabs-gap': '3px',
   }),
@@ -50,6 +50,45 @@ const TabsRoot = styled(SheetRoot, {
     alignItems: 'flex-start',
   }),
 }));
+
+const TabsScroller = styled('div', {
+  name: 'JoyTabs',
+  slot: 'Scroller',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+    return [
+      styles.scroller,
+      ownerState.fixed && styles.fixed,
+      ownerState.hideScrollbar && styles.hideScrollbar,
+      ownerState.scrollableX && styles.scrollableX,
+      ownerState.scrollableY && styles.scrollableY,
+    ];
+  },
+})<{ ownerState: ScrollableTabsOwnerState }>(({ ownerState }) => ({
+  position: 'relative',
+  display: 'inline-block',
+  flex: '1 1 auto',
+  whiteSpace: 'nowrap',
+  ...(ownerState.fixed && {
+    overflowX: 'hidden',
+    width: '100%',
+  }),
+  ...(ownerState.hideScrollbar && {
+    // Hide dimensionless scrollbar on macOS
+    scrollbarWidth: 'none', // Firefox
+    '&::-webkit-scrollbar': {
+      display: 'none', // Safari + Chrome
+    },
+  }),
+  ...(ownerState.scrollableX && {
+    overflowX: 'auto',
+    overflowY: 'hidden',
+  }),
+  ...(ownerState.scrollableY && {
+    overflowY: 'auto',
+    overflowX: 'hidden',
+  }),
+}));
 /**
  *
  * Demos:
@@ -63,7 +102,7 @@ const TabsRoot = styled(SheetRoot, {
 const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'JoyTabs',
+    name: 'JoyScrollableTabs',
   });
 
   const {
@@ -111,15 +150,41 @@ const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
     className: classes.root,
   });
 
+  const [SlotScroller, scrollerProps] = useSlot('scroller', {
+    ref,
+    elementType: TabsScroller,
+    externalForwardedProps,
+    // additionalProps: {
+    //   ref,
+    //   as: component,
+    // },
+    ownerState,
+    className: classes.root,
+  });
+
+  // className={classes.scroller}
+  // ownerState={ownerState}
+  // style={{
+  //   overflow: scrollerStyle.overflow,
+  //     [vertical ? `margin${isRtl ? 'Left' : 'Right'}` : 'marginBottom']: visibleScrollbar
+  //     ? undefined
+  //     : -scrollerStyle.scrollbarWidth,
+  // }}
+  // ref={tabsRef}
+  // onScroll={handleTabsScroll}
+
   return (
     // @ts-ignore `defaultValue` between HTMLDiv and ScrollableTabsProps is conflicted.
     <SlotRoot {...rootProps}>
       <ScrollableTabsProvider value={contextValue}>
-        <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
+        <SlotScroller {...scrollerProps}>
+          {/* {mounted && indicator} */}
+          <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
+        </SlotScroller>
       </ScrollableTabsProvider>
     </SlotRoot>
   );
-}) as OverridableComponent<TabsTypeMap>;
+}) as OverridableComponent<ScrollableTabsTypeMap>;
 
 ScrollableTabs.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

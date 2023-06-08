@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { TabsOwnProps } from '@mui/base/Tabs';
+import { ScrollableTabsOwnProps } from '@mui/base/ScrollableTabs';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
@@ -17,7 +17,7 @@ export interface TabsSlots {
 export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
   TabsSlots,
   {
-    root: SlotProps<'div', {}, TabsOwnerState>;
+    root: SlotProps<'div', {}, ScrollableTabsOwnerState>;
   }
 >;
 
@@ -25,9 +25,9 @@ export interface TabsPropsColorOverrides {}
 export interface TabsPropsVariantOverrides {}
 export interface TabsPropsSizeOverrides {}
 
-export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
+export interface ScrollableTabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    Omit<TabsOwnProps, 'slots' | 'slotProps'> & {
+    Omit<ScrollableTabsOwnProps, 'slots' | 'slotProps'> & {
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
@@ -52,8 +52,8 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
 }
 
 export type ScrollableTabsProps<
-  D extends React.ElementType = TabsTypeMap['defaultComponent'],
+  D extends React.ElementType = ScrollableTabsTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
-> = OverrideProps<TabsTypeMap<P, D>, D>;
+> = OverrideProps<ScrollableTabsTypeMap<P, D>, D>;
 
-export interface TabsOwnerState extends ApplyColorInversion<ScrollableTabsProps> {}
+export interface ScrollableTabsOwnerState extends ApplyColorInversion<ScrollableTabsProps> {}
