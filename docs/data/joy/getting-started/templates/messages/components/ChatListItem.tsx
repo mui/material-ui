@@ -8,6 +8,7 @@ import Typography from '@mui/joy/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
 import AvatarWithStatus from './AvatarWithStatus';
 import { ChatProps } from '../types';
+import { toggleMessagesPane } from '../utils';
 
 type ChatListItemProps = ListItemButtonProps & {
   id: string;
@@ -31,7 +32,10 @@ export default function ChatListItem({
     <React.Fragment>
       <ListItem>
         <ListItemButton
-          onClick={() => setSelectedChat({ id, sender, messages })}
+          onClick={() => {
+            toggleMessagesPane();
+            setSelectedChat({ id, sender, messages });
+          }}
           selected={selected}
           variant={selected ? 'soft' : 'plain'}
           color="neutral"

@@ -2,10 +2,11 @@ import * as React from 'react';
 import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import { Box, Chip, IconButton } from '@mui/joy';
+import { Chip, IconButton } from '@mui/joy';
 import Avatar from '@mui/joy/Avatar';
 import CircleIcon from '@mui/icons-material/Circle';
 import { UserProps } from '../types';
+import { toggleMessagesPane } from '../utils';
 
 type MessagesPaneHeaderProps = {
   sender: UserProps;
@@ -30,6 +31,7 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
           sx={{
             display: { xs: 'inline-flex', sm: 'none' },
           }}
+          onClick={() => toggleMessagesPane()}
         >
           <i data-feather="chevron-left" />
         </IconButton>

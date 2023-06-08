@@ -18,13 +18,13 @@ export default function ChatsPane({
   setSelectedChat,
   selectedChatId,
 }: ChatsPaneProps) {
-  // const [isNew, setIsNew] = React.useState<boolean>(false);
   return (
     <Sheet
       sx={{
         borderRight: '1px solid',
         borderColor: 'divider',
-        height: { xs: 0, sm: 'calc(100dvh - var(--Header-height))' },
+        // height: { xs: 0, sm: 'calc(100dvh - var(--Header-height))' },
+        height: 'calc(100dvh - var(--Header-height))',
         overflowY: 'auto',
       }}
     >
@@ -104,7 +104,6 @@ export default function ChatsPane({
       </Box>
       <List
         sx={{
-          // bgcolor: 'background.body',
           minWidth: '100%',
           '--ListItemDecorator-size': '48px',
           '--ListItem-paddingLeft': '1.5rem',
@@ -120,6 +119,14 @@ export default function ChatsPane({
             selectedChatId={selectedChatId}
           />
         ))}
+        {/* {chats.map((chat) => (
+          <ChatListItem
+            key={chat.id}
+            {...chat}
+            setSelectedChat={setSelectedChat}
+            selectedChatId={selectedChatId}
+          />
+        ))} */}
       </List>
     </Sheet>
   );
