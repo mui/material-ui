@@ -55,7 +55,9 @@ export default function ChatBubble({
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography fontSize="sm">{sender.name}</Typography>
+        <Typography fontSize="sm">
+          {sender === 'You' ? sender : sender.name}
+        </Typography>
         <Typography fontSize="xs">{timestamp}</Typography>
       </Stack>
       {attachment ? (

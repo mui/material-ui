@@ -53,7 +53,7 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
                 spacing={2}
                 flexDirection={isYou ? 'row-reverse' : 'row'}
               >
-                {!isYou && (
+                {message.sender !== 'You' && (
                   <AvatarWithStatus
                     online={message.sender.online}
                     src={message.sender.avatar}
