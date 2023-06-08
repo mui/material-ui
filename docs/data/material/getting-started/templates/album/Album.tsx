@@ -39,25 +39,34 @@ export default function Album() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-        <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <CameraIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Album layout
-          </Typography>
-        </Toolbar>
-      
+      <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <CameraIcon sx={{ mr: 2 }} />
+        <Typography variant="h6" color="inherit" noWrap>
+          Album layout
+        </Typography>
+      </Toolbar>
+
       <main>
         {/* Hero unit */}
         <Box
           sx={{
-            pt: 16,
-            pb: 16,     
+            width: '100%',
+            height: '480px',
             backgroundImage: `url("https://source.unsplash.com/random?wallpapers")`,
             backgroundSize: 'cover',
-            color: 'white', 
+            color: 'white',
           }}
         >
-          <Container maxWidth="sm" >
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 'inherit',
+              width: '100%',
+              height: '480px',
+              backgroundColor: 'rgba(0, 0, 0, 0.6)',
+            }}
+          />
+          <Container maxWidth="sm" sx={{ position: 'relative', pt: 8, zIndex: 1 }}>
             <Typography
               component="h1"
               variant="h2"
@@ -70,10 +79,15 @@ export default function Album() {
             >
               Album layout
             </Typography>
-            <Typography variant="h5" align="center" color="inherit"               
-            sx={{
+            <Typography
+              variant="h5"
+              align="center"
+              color="inherit"
+              sx={{
                 textShadow: '0px 0px 4px rgba(0, 0, 0, 0.9)',
-              }} paragraph>
+              }}
+              paragraph
+            >
               Something short and leading about the collection below—its contents,
               the creator, etc. Make it short and sweet, but not too short so folks
               don&apos;t simply skip over it entirely.
@@ -84,8 +98,7 @@ export default function Album() {
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained">Main call to action</Button>
-              
+              <Button variant="contained">Main action</Button>
             </Stack>
           </Container>
         </Box>
@@ -112,16 +125,19 @@ export default function Album() {
                         Heading
                       </Typography>
                       <Typography variant="body1" color="text.secondary">
-                        This is a media card. You can use this section to describe the
-                        content.
+                        This is a media card. You can use this section to describe
+                        the content.
                       </Typography>
                     </CardContent>
-                    </CardActionArea>
-                    <CardActions>
-                      <Button size="small" color="primary">View</Button>
-                      <Button size="small" color="primary">Edit</Button>
-                    </CardActions>
-                  
+                  </CardActionArea>
+                  <CardActions>
+                    <Button size="small" color="primary">
+                      View
+                    </Button>
+                    <Button size="small" color="primary">
+                      Edit
+                    </Button>
+                  </CardActions>
                 </Card>
               </Grid>
             ))}
