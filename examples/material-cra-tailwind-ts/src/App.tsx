@@ -5,6 +5,7 @@ import Link from '@mui/material/Link';
 import Slider from '@mui/material/Slider';
 import PopoverMenu from './PopoverMenu';
 import ProTip from './ProTip';
+import muiLogo from './logo.svg';
 
 function Copyright() {
   return (
@@ -22,6 +23,9 @@ function Copyright() {
 export default function App() {
   return (
     <Container maxWidth="sm">
+      <div>
+        <img src={muiLogo} alt="MUI Company Logo" />
+      </div>
       <div className="my-4">
         <Typography variant="h4" component="h1" gutterBottom>
           Material UI Create React App example with Tailwind CSS in TypeScript

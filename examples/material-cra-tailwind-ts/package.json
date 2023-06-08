@@ -6,20 +6,8 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui/material": "latest",
-    "@testing-library/jest-dom": "latest",
-    "@testing-library/react": "latest",
-    "@testing-library/user-event": "latest",
-    "@types/jest": "latest",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "autoprefixer": "latest",
-    "postcss": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest",
-    "tailwindcss": "latest",
-    "typescript": "latest",
     "web-vitals": "latest"
   },
   "scripts": {
@@ -39,5 +27,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@testing-library/user-event": "latest",
+    "@types/jest": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "autoprefixer": "latest",
+    "eslint-config-react-app": "latest",
+    "postcss": "latest",
+    "react-scripts": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
   }
 }
