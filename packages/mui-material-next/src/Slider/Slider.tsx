@@ -16,7 +16,7 @@ import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import SliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderOwnerState, SliderTypeMap, SliderProps } from './Slider.types';
-import { MD3State } from '../styles';
+import { MD3ColorSchemeTokens, MD3State } from '../styles';
 
 function Identity<Type>(x: Type): Type {
   return x;
@@ -76,7 +76,7 @@ const SliderRoot = styled('span', {
   [`&.${sliderClasses.disabled}`]: {
     pointerEvents: 'none',
     cursor: 'default',
-    color: tokens.ref.palette.neutral[50],
+    color: tokens.sys.color.outline,
   },
   [`&.${sliderClasses.dragging}`]: {
     [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
@@ -120,11 +120,8 @@ const SliderRail = styled('span', {
     left: '50%',
     transform: 'translateX(-50%)',
   }),
-  ...(ownerState.disabled && {
-    backgroundColor: `rgba(${tokens.sys.color.onSurfaceChannel} / 0.12)`,
-  }),
   ...(ownerState.track === 'inverted' && {
-    backgroundColor: ownerState.disabled ? tokens.ref.palette.neutral[50] : 'currentColor',
+    backgroundColor: ownerState.disabled ? tokens.sys.color.outline : 'currentColor',
   }),
 }));
 
@@ -171,9 +168,7 @@ const SliderTrack = styled('span', {
       display: 'none',
     }),
     ...(ownerState.track === 'inverted' && {
-      backgroundColor: ownerState.disabled
-        ? tokens.sys.color.surfaceContainerHighest
-        : tokens.sys.color.surfaceContainerHigh,
+      backgroundColor: tokens.sys.color.surfaceContainerHighest,
     }),
   };
 });
@@ -316,7 +311,10 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
     backgroundColor: tokens.sys.color[ownerState.color || 'primary'],
     boxShadow: tokens.sys.elevation[0],
     borderRadius: '50% 50% 50% 0',
-    color: tokens.sys.color.onPrimary,
+    color:
+      tokens.sys.color[
+        `on${capitalize(ownerState.color || 'primary')}` as keyof MD3ColorSchemeTokens
+      ],
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -356,7 +354,8 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
       height: 24,
     }),
     ...(ownerState.disabled && {
-      backgroundColor: tokens.ref.palette.neutral[50],
+      backgroundColor: tokens.sys.color.outline,
+      color: tokens.sys.color.surface,
     }),
   };
 });
@@ -400,7 +399,10 @@ const SliderMark = styled('span', {
       transform: 'translate(-50%, 1px)',
     }),
     ...(markActive && {
-      backgroundColor: tokens.sys.color.onPrimary,
+      backgroundColor:
+        tokens.sys.color[
+          `on${capitalize(ownerState.color || 'primary')}` as keyof MD3ColorSchemeTokens
+        ],
     }),
   }),
 );
