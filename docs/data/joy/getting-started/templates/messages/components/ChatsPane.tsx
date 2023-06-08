@@ -27,60 +27,19 @@ export default function ChatsPane({
         overflowY: 'auto',
       }}
     >
-      {/* Look at this again! 6/8/2023 */}
       <Stack
         direction="row"
         spacing={2}
         alignItems="center"
         justifyContent="space-between"
-        py={3}
-        px={2.5}
-        display={{ xs: 'none', md: 'flex' }}
+        py={{ xs: 1, md: 3 }}
+        px={{ xs: 1, md: 2.5 }}
       >
         <Typography
           fontSize={{ xs: 'md', md: 'lg' }}
           fontWeight="lg"
           endDecorator={
-            <Chip
-              variant="outlined"
-              color="neutral"
-              size="sm"
-              sx={{
-                '--Chip-radius': '6px',
-              }}
-            >
-              40
-            </Chip>
-          }
-        >
-          Messages
-        </Typography>
-
-        <IconButton variant="outlined" aria-label="edit" color="neutral">
-          <i data-feather="edit" />
-        </IconButton>
-      </Stack>
-
-      <Stack
-        direction="row"
-        spacing={2}
-        alignItems="center"
-        justifyContent="space-between"
-        p={1}
-        display={{ xs: 'flex', md: 'none' }}
-      >
-        <Typography
-          level="h1"
-          fontSize={{ xs: 'md', md: 'xl2' }}
-          endDecorator={
-            <Chip
-              variant="outlined"
-              color="neutral"
-              size="sm"
-              sx={{
-                '--Chip-radius': '6px',
-              }}
-            >
+            <Chip variant="outlined" color="neutral" size="sm">
               40
             </Chip>
           }
