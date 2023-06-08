@@ -92,6 +92,7 @@ export default function ComponentPageTabs(props) {
         />
         {headers.components?.length > 0 && (
           <StyledTab
+            className="skip-algolia-crawler"
             component={Link}
             shallow
             scroll
@@ -102,6 +103,7 @@ export default function ComponentPageTabs(props) {
         )}
         {headers.hooks && headers.hooks.length > 0 && (
           <StyledTab
+            className="skip-algolia-crawler"
             component={Link}
             shallow
             scroll
