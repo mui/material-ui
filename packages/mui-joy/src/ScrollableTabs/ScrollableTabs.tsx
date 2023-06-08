@@ -12,6 +12,52 @@ import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './scrollableTabsClasses';
 import { ScrollableTabsOwnerState, ScrollableTabsTypeMap } from './ScrollableTabsProps';
 import useSlot from '../utils/useSlot';
+import selectClasses from '../Select/selectClasses';
+
+// const getConditionalElements = () => {
+//   const conditionalElements = {};
+//
+//   conditionalElements.scrollbarSizeListener = scrollable ? (
+//     <TabsScrollbarSize
+//       onChange={handleScrollbarSizeChange}
+//       className={clsx(classes.scrollableX, classes.hideScrollbar)}
+//     />
+//   ) : null;
+//
+//   const scrollButtonsActive = displayScroll.start || displayScroll.end;
+//   const showScrollButtons =
+//     scrollable && ((scrollButtons === 'auto' && scrollButtonsActive) || scrollButtons === true);
+//
+//   conditionalElements.scrollButtonStart = showScrollButtons ? (
+//     <ScrollButtonComponent
+//       slots={{ StartScrollButtonIcon: slots.StartScrollButtonIcon }}
+//       slotProps={{ startScrollButtonIcon: startScrollButtonIconProps }}
+//       orientation={orientation}
+//       direction={isRtl ? 'right' : 'left'}
+//       onClick={handleStartScrollClick}
+//       disabled={!displayScroll.start}
+//       {...TabScrollButtonProps}
+//       className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
+//     />
+//   ) : null;
+//
+//   conditionalElements.scrollButtonEnd = showScrollButtons ? (
+//     <ScrollButtonComponent
+//       slots={{ EndScrollButtonIcon: slots.EndScrollButtonIcon }}
+//       slotProps={{
+//         endScrollButtonIcon: endScrollButtonIconProps,
+//       }}
+//       orientation={orientation}
+//       direction={isRtl ? 'left' : 'right'}
+//       onClick={handleEndScrollClick}
+//       disabled={!displayScroll.end}
+//       {...TabScrollButtonProps}
+//       className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
+//     />
+//   ) : null;
+//
+//   return conditionalElements;
+// };
 
 const useUtilityClasses = (ownerState: ScrollableTabsOwnerState) => {
   const { orientation, variant, color, size } = ownerState;
@@ -24,6 +70,9 @@ const useUtilityClasses = (ownerState: ScrollableTabsOwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
+    scroller: ['scroller'],
+    scrollButtonStart: ['scrollButtonStart'],
+    scrollButtonEnd: ['scrollButtonEnd'],
   };
 
   return composeClasses(slots, getTabsUtilityClass, {});
@@ -89,6 +138,30 @@ const TabsScroller = styled('div', {
     overflowX: 'hidden',
   }),
 }));
+
+const ScrollButton = styled('span', {
+  name: 'JoyScrollableTabs',
+  slot: 'ScrollButton',
+})<{ ownerState: ScrollableTabsOwnerState }>(({ ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
+    '--Icon-fontSize': '1.125rem',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Icon-fontSize': '1.25rem',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Icon-fontSize': '1.5rem',
+  }),
+  color: 'var(--Select-indicatorColor)',
+  display: 'inherit',
+  alignItems: 'center',
+  marginInlineStart: 'var(--Select-gap)',
+  marginInlineEnd: 'calc(var(--Select-paddingInline) / -4)',
+  [`.${selectClasses.endDecorator} + &`]: {
+    marginInlineStart: 'calc(var(--Select-gap) / 2)',
+  },
+}));
+
 /**
  *
  * Demos:
@@ -126,6 +199,11 @@ const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
   const defaultValue = defaultValueProp || (valueProp === undefined ? 0 : undefined);
   const { contextValue } = useScrollableTabs({ ...props, orientation, defaultValue });
 
+  // const rootRef = React.useRef<HTMLElement | null>(null);
+  // const scrollerRef = React.useRef<HTMLElement | null>(null);
+  // const scrollButtonStartRef = React.useRef<HTMLElement | null>(null);
+  // const scrollButtonEndRef = React.useRef<HTMLElement | null>(null);
+
   const ownerState = {
     ...props,
     orientation,
@@ -151,17 +229,12 @@ const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
   });
 
   const [SlotScroller, scrollerProps] = useSlot('scroller', {
-    ref,
     elementType: TabsScroller,
     externalForwardedProps,
-    // additionalProps: {
-    //   ref,
-    //   as: component,
-    // },
     ownerState,
-    className: classes.root,
+    className: classes.scroller,
   });
-
+  // Scroller Props
   // className={classes.scroller}
   // ownerState={ownerState}
   // style={{
@@ -173,14 +246,30 @@ const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
   // ref={tabsRef}
   // onScroll={handleTabsScroll}
 
+  const [SlotScrollButtonStart, scrollButtonStartProps] = useSlot('scrollButtonStart', {
+    elementType: ScrollButton,
+    externalForwardedProps,
+    ownerState,
+    className: classes.scrollButtonStart,
+  });
+
+  const [SlotScrollButtonEnd, scrollButtonEndProps] = useSlot('scrollButtonEnd', {
+    elementType: ScrollButton,
+    externalForwardedProps,
+    ownerState,
+    className: classes.scrollButtonEnd,
+  });
+
   return (
     // @ts-ignore `defaultValue` between HTMLDiv and ScrollableTabsProps is conflicted.
     <SlotRoot {...rootProps}>
       <ScrollableTabsProvider value={contextValue}>
+        <SlotScrollButtonStart {...scrollButtonStartProps} />
         <SlotScroller {...scrollerProps}>
           {/* {mounted && indicator} */}
           <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
         </SlotScroller>
+        <SlotScrollButtonEnd {...scrollButtonEndProps} />
       </ScrollableTabsProvider>
     </SlotRoot>
   );

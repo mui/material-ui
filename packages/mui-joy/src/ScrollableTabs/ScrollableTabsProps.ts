@@ -4,20 +4,38 @@ import { ScrollableTabsOwnProps } from '@mui/base/ScrollableTabs';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
-export type TabsSlot = 'root';
+export type ScrollableTabsSlot = 'root';
 
-export interface TabsSlots {
+export interface ScrollableTabsSlots {
   /**
    * The component that renders the root.
    * @default 'div'
    */
   root?: React.ElementType;
+  /**
+   * The component that renders the scrollable element.
+   * @default 'div'
+   */
+  scroller?: React.ElementType;
+  /**
+   * The component that renders the scroll buttons at the start.
+   * @default 'div'
+   */
+  scrollButtonStart?: React.ElementType;
+  /**
+   * The component that renders the scroll buttons at the end.
+   * @default 'div'
+   */
+  scrollButtonEnd?: React.ElementType;
 }
 
-export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  TabsSlots,
+export type ScrollableTabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ScrollableTabsSlots,
   {
     root: SlotProps<'div', {}, ScrollableTabsOwnerState>;
+    scroller: SlotProps<'div', {}, ScrollableTabsOwnerState>;
+    scrollButtonStart: SlotProps<'div', {}, ScrollableTabsOwnerState>;
+    scrollButtonEnd: SlotProps<'div', {}, ScrollableTabsOwnerState>;
   }
 >;
 
@@ -47,7 +65,7 @@ export interface ScrollableTabsTypeMap<P = {}, D extends React.ElementType = 'di
        * @default 'plain'
        */
       variant?: OverridableStringUnion<VariantProp, TabsPropsVariantOverrides>;
-    } & TabsSlotsAndSlotProps;
+    } & ScrollableTabsSlotsAndSlotProps;
   defaultComponent: D;
 }
 

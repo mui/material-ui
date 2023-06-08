@@ -6,12 +6,8 @@ import {
   UseScrollableTabsReturnValue,
 } from './useScrollableTabs.types';
 import { useCompoundParent } from '../utils/useCompound';
-
-export interface TabMetadata {
-  disabled: boolean;
-  id: string | undefined;
-  ref: React.RefObject<HTMLElement>;
-}
+import { detectScrollType } from '@mui/material/utils/scrollLeft';
+import animate from '@mui/material/internal/animate';
 
 type IdLookupFunction = (id: string | number) => string | undefined;
 
@@ -34,6 +30,12 @@ function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollab
     direction,
     selectionFollowsFocus,
   } = parameters;
+
+  const vertical = orientation === 'vertical';
+  const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
+  const start = vertical ? 'top' : 'left';
+  const end = vertical ? 'bottom' : 'right';
+  const clientSize = vertical ? 'clientHeight' : 'clientWidth';
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
@@ -80,9 +82,63 @@ function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollab
   //   moveTabsScroll(getScrollSize());
   // };
 
+  const scroll = (scrollValue, { animation = true } = {}) => {
+    if (animation) {
+      animate(scrollStart, tabsRef.current, scrollValue, {
+        duration: theme.transitions.duration.standard,
+      });
+    } else {
+      tabsRef.current[scrollStart] = scrollValue;
+    }
+  };
+
+  const moveTabsScroll = (delta) => {
+    let scrollValue = tabsRef.current[scrollStart];
+
+    if (vertical) {
+      scrollValue += delta;
+    } else {
+      scrollValue += delta * (isRtl ? -1 : 1);
+      // Fix for Edge
+      scrollValue *= isRtl && detectScrollType() === 'reverse' ? -1 : 1;
+    }
+
+    scroll(scrollValue);
+  };
+
+  const getScrollSize = () => {
+    const containerSize = tabsRef.current[clientSize];
+    let totalSize = 0;
+    const children = Array.from(tabListRef.current.children);
+
+    for (let i = 0; i < children.length; i += 1) {
+      const tab = children[i];
+      if (totalSize + tab[clientSize] > containerSize) {
+        // If the first item is longer than the container size, then only scroll
+        // by the container size.
+        if (i === 0) {
+          totalSize = containerSize;
+        }
+        break;
+      }
+      totalSize += tab[clientSize];
+    }
+
+    return totalSize;
+  };
+
+  const handleStartScrollClick = () => {
+    moveTabsScroll(-1 * getScrollSize());
+  };
+
+  const handleEndScrollClick = () => {
+    moveTabsScroll(getScrollSize());
+  };
+
   const createHandleClick =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
     (event: React.KeyboardEvent<HTMLInputElement>) => {
+      console.log('scrollableTabs clicked');
       // if (event.code === 'Space' && inputRef.current) {
       //   event.preventDefault();
       //   setCheckedState(!checked);

@@ -161,6 +161,11 @@ import {
   TypographySlot,
 } from '../Typography/TypographyProps';
 import { TextareaProps, TextareaOwnerState, TextareaSlot } from '../Textarea/TextareaProps';
+import {
+  ScrollableTabsOwnerState,
+  ScrollableTabsProps,
+  ScrollableTabsSlot,
+} from '@mui/joy/ScrollableTabs';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -357,6 +362,10 @@ export interface Components<Theme = unknown> {
   JoyOption?: {
     defaultProps?: Partial<OptionProps>;
     styleOverrides?: OverridesStyleRules<OptionSlot, OptionOwnerState, Theme>;
+  };
+  JoyScrollableTabs?: {
+    defaultProps?: Partial<ScrollableTabsProps>;
+    styleOverrides?: OverridesStyleRules<ScrollableTabsSlot, ScrollableTabsOwnerState, Theme>;
   };
   JoySheet?: {
     defaultProps?: Partial<SheetProps>;

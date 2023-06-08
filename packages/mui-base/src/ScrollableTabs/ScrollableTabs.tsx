@@ -11,8 +11,9 @@ import {
   ScrollableTabsTypeMap,
   TabsScrollerSlotProps,
 } from './ScrollableTabs.types';
-import TabsProvider from '../useTabs/TabsProvider';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import ScrollableTabsProvider from '../useScrollableTabs/ScrollableTabsProvider';
+import clsx from 'clsx';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
   const { orientation } = ownerState;
@@ -88,7 +89,7 @@ const ScrollableTabs = React.forwardRef(function Tabs<RootComponentType extends 
   return (
     <TabsRoot {...tabsRootProps}>
       <TabsScroller {...tabsScrollerProps}>
-        <TabsProvider value={contextValue}>{children}</TabsProvider>
+        <ScrollableTabsProvider value={contextValue}>{children}</ScrollableTabsProvider>
       </TabsScroller>
     </TabsRoot>
   );
