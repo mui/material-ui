@@ -204,7 +204,15 @@ function ApiItem(props: ApiItemProps) {
   return (
     <Root>
       <div id={id} className="MuiApi-item-header">
-        <a className="MuiApi-item-link-visual" href={`#${id}`}>
+        <a
+          className="MuiApi-item-link-visual"
+          href={`#${id}`}
+          onClick={() => {
+            navigator.clipboard.writeText(
+              `${window.location.origin}${window.location.pathname}#${id}`,
+            );
+          }}
+        >
           <svg>
             <use xlinkHref="#anchor-link-icon" />
           </svg>
