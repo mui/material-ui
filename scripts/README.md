@@ -30,8 +30,8 @@ The following steps must be proposed as a pull request.
    2. Change the packages names casing to be lowercase if applicable, e.g. change `Material` to `material`
 3. Update the root `/package.json`'s version
 4. `yarn release:version`, keep in mind:
-   1. Manually remove `^` from packages with prerelease version, e.g. `-alpha`
-   2. Don't bump private packages unless necessary, these have `"private": true` in their `package.json`
+   1. Don't bump private packages unless necessary, these have `"private": true` in their `package.json`
+   2. Manually remove `^` from packages with prerelease version, e.g. `-alpha`
 5. Open PR with changes and wait for review and green CI
 6. Merge PR once CI is green and it has been approved
 
