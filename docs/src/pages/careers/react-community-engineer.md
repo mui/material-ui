@@ -1,4 +1,4 @@
-# React Community Engineer - X (future role)
+# React Community Engineer - X
 
 <p class="description">You will provide guidance, remove blockers, and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.</p>
 
