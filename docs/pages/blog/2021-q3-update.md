@@ -111,10 +111,10 @@ The date picker sits at the border between the core component and advanced compo
 - 🎉 We released the first stable version: [v4.0.0](https://github.com/mui/mui-x/releases/tag/v4.0.0)!
   We also released the first v5-beta, to support MUI Core v5,
   and will be working almost exclusively on the v5 release line going forward.
-- 🔎 We also added a [quick-filter demo](/x/react-data-grid/filtering/#quick-filter) to illustrate how it can be implemented,
+- 🔎 We also added a [quick-filter demo](/x/react-data-grid/filtering/quick-filter/) to illustrate how it can be implemented,
   and will add a [built-in](https://github.com/mui/mui-x/issues/202) solution later on.
 
-  <a href="/x/react-data-grid/filtering/#quick-filter"><img loading="lazy" src="/static/blog/2021-q3-update/quick-filter.png" style="width: 700px; margin-bottom: 16px;" /></a>
+  <a href="/x/react-data-grid/filtering/quick-filter/"><img loading="lazy" src="/static/blog/2021-q3-update/quick-filter.png" style="width: 700px; margin-bottom: 16px;" /></a>
 
 - 🐛 We fixed several non-idiomatic React patterns, for instance we were not handling controllable props by the book, and as we do in MUI Core.
 - 🚀 We introduced the [row editing](/x/react-data-grid/editing/#row-editing) feature.

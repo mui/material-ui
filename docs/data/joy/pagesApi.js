@@ -9,6 +9,7 @@ module.exports = [
   { pathname: '/joy-ui/api/badge' },
   { pathname: '/joy-ui/api/breadcrumbs' },
   { pathname: '/joy-ui/api/button' },
+  { pathname: '/joy-ui/api/button-group' },
   { pathname: '/joy-ui/api/card' },
   { pathname: '/joy-ui/api/card-content' },
   { pathname: '/joy-ui/api/card-cover' },

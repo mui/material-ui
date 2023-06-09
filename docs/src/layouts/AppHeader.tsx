@@ -62,7 +62,11 @@ export default function AppHeader(props: AppHeaderProps) {
     const paletteMode = checked ? 'dark' : 'light';
     setMode(paletteMode);
 
-    localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    try {
+      localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    } catch (error) {
+      // do nothing
+    }
     changeTheme({ paletteMode });
   };
 

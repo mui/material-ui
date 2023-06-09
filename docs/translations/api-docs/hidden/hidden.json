@@ -20,25 +20,25 @@
       "typeDescriptions": {}
     },
     "lgDown": {
-      "description": "If <code>true</code>, screens this size and down are hidden.",
+      "description": "If <code>true</code>, component is hidden on screens below (but not including) this size.",
       "notes": "",
       "deprecated": "",
       "typeDescriptions": {}
     },
     "lgUp": {
-      "description": "If <code>true</code>, screens this size and up are hidden.",
+      "description": "If <code>true</code>, component is hidden on screens this size and above.",
       "notes": "",
       "deprecated": "",
       "typeDescriptions": {}
     },
     "mdDown": {
-      "description": "If <code>true</code>, screens this size and down are hidden.",
+      "description": "If <code>true</code>, component is hidden on screens below (but not including) this size.",
       "notes": "",
       "deprecated": "",
       "typeDescriptions": {}
     },
     "mdUp": {
-      "description": "If <code>true</code>, screens this size and up are hidden.",
+      "description": "If <code>true</code>, component is hidden on screens this size and above.",
       "notes": "",
       "deprecated": "",
       "typeDescriptions": {}
@@ -50,37 +50,37 @@
       "typeDescriptions": {}
     },
     "smDown": {
-      "description": "If <code>true</code>, screens this size and down are hidden.",
+      "description": "If <code>true</code>, component is hidden on screens below (but not including) this size.",
       "notes": "",
       "deprecated": "",
       "typeDescriptions": {}
     },
     "smUp": {
-      "description": "If <code>true</code>, screens this size and up are hidden.",
+      "description": "If <code>true</code>, component is hidden on screens this size and above.",
       "notes": "",
       "deprecated": "",
       "typeDescriptions": {}
     },
     "xlDown": {
-      "description": "If <code>true</code>, screens this size and down are hidden.",
+      "description": "If <code>true</code>, component is hidden on screens below (but not including) this size.",
       "notes": "",
       "deprecated": "",
       "typeDescriptions": {}
     },
     "xlUp": {
-      "description": "If <code>true</code>, screens this size and up are hidden.",
+      "description": "If <code>true</code>, component is hidden on screens this size and above.",
       "notes": "",
       "deprecated": "",
       "typeDescriptions": {}
     },
     "xsDown": {
-      "description": "If <code>true</code>, screens this size and down are hidden.",
+      "description": "If <code>true</code>, component is hidden on screens below (but not including) this size.",
       "notes": "",
       "deprecated": "",
       "typeDescriptions": {}
     },
     "xsUp": {
-      "description": "If <code>true</code>, screens this size and up are hidden.",
+      "description": "If <code>true</code>, component is hidden on screens this size and above.",
       "notes": "",
       "deprecated": "",
       "typeDescriptions": {}

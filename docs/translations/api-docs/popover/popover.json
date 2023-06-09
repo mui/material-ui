@@ -8,7 +8,7 @@
       "typeDescriptions": {}
     },
     "anchorEl": {
-      "description": "An HTML element, or a function that returns one. It&#39;s used to set the position of the popover.",
+      "description": "An HTML element, <a href=\"/material-ui/react-popover/#virtual-element\">PopoverVirtualElement</a>, or a function that returns either. It&#39;s used to set the position of the popover.",
       "notes": "",
       "deprecated": "",
       "typeDescriptions": {}
@@ -74,7 +74,19 @@
       "typeDescriptions": {}
     },
     "PaperProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element.",
+      "description": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element.<br>This prop is an alias for <code>slotProps.paper</code> and will be overriden by it if both are used.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "The extra props for the slot components. You can override the existing props or add new ones.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slots": {
+      "description": "The components used for each slot inside.",
       "notes": "",
       "deprecated": "",
       "typeDescriptions": {}
