@@ -52,11 +52,7 @@ export default function XGridGlobalStyles({
                 fontSize: '1rem',
               },
               '& .MuiDataGrid-columnHeaders': {
-                borderBottom: '1px solid',
                 borderColor: (theme.vars || theme).palette.grey[200],
-              },
-              '& .MuiDataGrid-columnHeaderTitleContainer': {
-                padding: 0,
               },
               '& .MuiDataGrid-columnSeparator': {
                 color: (theme.vars || theme).palette.grey[200],
@@ -64,9 +60,6 @@ export default function XGridGlobalStyles({
                   color: (theme.vars || theme).palette.grey[800],
                 },
                 ...(!pro && { display: 'none' }),
-              },
-              '& .MuiDataGrid-columnHeaderTitle': {
-                flexGrow: 1,
               },
               // -------------------------------
               // table body elements
