@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { unstable_useControlled as useControlled } from '@mui/utils';
 import { TabPanelMetadata } from '@mui/base';
+import { detectScrollType } from '@mui/material/utils/scrollLeft';
+import animate from '@mui/material/internal/animate';
 import {
   UseScrollableTabsParameters,
   UseScrollableTabsReturnValue,
 } from './useScrollableTabs.types';
 import { useCompoundParent } from '../utils/useCompound';
-import { detectScrollType } from '@mui/material/utils/scrollLeft';
-import animate from '@mui/material/internal/animate';
 
 type IdLookupFunction = (id: string | number) => string | undefined;
 
@@ -22,6 +22,11 @@ type IdLookupFunction = (id: string | number) => string | undefined;
  * - [useScrollableTabs API](https://mui.com/base/react-tabs/hooks-api/#use-tabs)
  */
 function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollableTabsReturnValue {
+  // const theme = useTheme();
+  // const isRtl = theme.direction === 'rtl';
+  const theme = {};
+  // TODO -> remove useTheme
+  const isRtl = true;
   const {
     value: valueProp,
     defaultValue,
@@ -30,6 +35,9 @@ function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollab
     direction,
     selectionFollowsFocus,
   } = parameters;
+
+  const tabsRef = React.useRef<HTMLDivElement>(null);
+  const tabListRef = React.useRef<HTMLDivElement>(null);
 
   const vertical = orientation === 'vertical';
   const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
@@ -168,6 +176,19 @@ function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollab
     onClick: createHandleClick(otherProps),
     // onKeyDown: createHandleKeyDown(otherProps),
   });
+
+  const contextVaue = {
+    direction,
+    getTabId,
+    getTabPanelId,
+    onSelected,
+    orientation,
+    registerTabIdLookup,
+    selectionFollowsFocus,
+    value,
+    getScrollButtonProps,
+    ...compoundComponentContextValue,
+  };
 
   return {
     contextValue: {

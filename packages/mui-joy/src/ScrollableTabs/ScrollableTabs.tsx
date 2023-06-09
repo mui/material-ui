@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { TabsProvider, unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import useScrollableTabs from '@mui/base/useScrollableTabs';
 import ScrollableTabsProvider from '@mui/base/useScrollableTabs/ScrollableTabsProvider';
@@ -13,6 +13,7 @@ import { getTabsUtilityClass } from './scrollableTabsClasses';
 import { ScrollableTabsOwnerState, ScrollableTabsTypeMap } from './ScrollableTabsProps';
 import useSlot from '../utils/useSlot';
 import selectClasses from '../Select/selectClasses';
+import useTabs from '@mui/base/useTabs';
 
 // const getConditionalElements = () => {
 //   const conditionalElements = {};
@@ -197,7 +198,12 @@ const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
   const defaultValue = defaultValueProp || (valueProp === undefined ? 0 : undefined);
-  const { contextValue } = useScrollableTabs({ ...props, orientation, defaultValue });
+  const { contextValue: scrollableTabsContextValue } = useScrollableTabs({
+    ...props,
+    orientation,
+    defaultValue,
+  });
+  const { contextValue } = useTabs({ ...props, orientation, defaultValue });
 
   // const rootRef = React.useRef<HTMLElement | null>(null);
   // const scrollerRef = React.useRef<HTMLElement | null>(null);
@@ -263,13 +269,15 @@ const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
   return (
     // @ts-ignore `defaultValue` between HTMLDiv and ScrollableTabsProps is conflicted.
     <SlotRoot {...rootProps}>
-      <ScrollableTabsProvider value={contextValue}>
-        <SlotScrollButtonStart {...scrollButtonStartProps} />
-        <SlotScroller {...scrollerProps}>
-          {/* {mounted && indicator} */}
-          <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
-        </SlotScroller>
-        <SlotScrollButtonEnd {...scrollButtonEndProps} />
+      <ScrollableTabsProvider value={scrollableTabsContextValue}>
+        <TabsProvider value={contextValue}>
+          <SlotScrollButtonStart {...scrollButtonStartProps} />
+          <SlotScroller {...scrollerProps}>
+            {/* {mounted && indicator} */}
+            <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
+          </SlotScroller>
+          <SlotScrollButtonEnd {...scrollButtonEndProps} />
+        </TabsProvider>
       </ScrollableTabsProvider>
     </SlotRoot>
   );
