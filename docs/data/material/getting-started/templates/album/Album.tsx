@@ -91,7 +91,10 @@ export default function Album() {
               backgroundColor: 'rgba(0, 0, 0, 0.6)',
             }}
           />
-          <Container maxWidth="sm" sx={{ position: 'relative', pt: 10, zIndex: 1 }}>
+          <Container
+            maxWidth="sm"
+            sx={{ position: 'relative', pt: { xs: 8, md: 10 }, zIndex: 1 }}
+          >
             <Typography
               component="h1"
               variant="h2"
