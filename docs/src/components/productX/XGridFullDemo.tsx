@@ -172,7 +172,6 @@ export default function XGridFullDemo() {
           sx={[
             {
               height: 328,
-              overflow: 'auto',
               '& .MuiDataGrid-root': {
                 bgcolor: '#fff',
                 '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
