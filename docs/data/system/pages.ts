@@ -44,7 +44,7 @@ const pages = [
     ],
   },
   {
-    title: 'Component API',
+    title: 'APIs',
     pathname: '/system/api',
     icon: standardNavIcons.CodeIcon,
     children: pagesApi,
@@ -68,7 +68,7 @@ const pages = [
     children: [
       { pathname: '/system/styles/basics' },
       { pathname: '/system/styles/advanced' },
-      { pathname: '/system/styles/api', title: 'API' },
+      { pathname: '/system/styles/api', title: 'APIs' },
     ],
   },
 ];

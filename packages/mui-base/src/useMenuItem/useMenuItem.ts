@@ -11,6 +11,10 @@ import {
 import { useListItem } from '../useList';
 import { useCompoundItem } from '../utils/useCompoundItem';
 
+function idGenerator(existingKeys: Set<string>) {
+  return `menu-item-${existingKeys.size}`;
+}
+
 /**
  *
  * Demos:
@@ -40,7 +44,7 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
     item: id,
   });
 
-  const { index, totalItemCount } = useCompoundItem(id, itemMetadata);
+  const { index, totalItemCount } = useCompoundItem(id ?? idGenerator, itemMetadata);
 
   const {
     getRootProps: getButtonProps,

@@ -177,7 +177,7 @@ export default function GlobalCssPriority() {
   return (
     {/* Inject Emotion before JSS */}
     <StyledEngineProvider injectFirst>
-      {/* Your component tree. Now you can override MUI's styles. */}
+      {/* Your component tree. Now you can override Material UI's styles. */}
     </StyledEngineProvider>
   );
 }

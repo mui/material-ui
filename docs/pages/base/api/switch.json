@@ -1,7 +1,6 @@
 {
   "props": {
     "checked": { "type": { "name": "bool" } },
-    "component": { "type": { "name": "elementType" } },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },

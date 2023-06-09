@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { OverrideProps, Simplify } from '@mui/types';
-import { SlotComponentProps } from '../utils';
+import { Simplify } from '@mui/types';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
@@ -72,9 +72,7 @@ export interface FormControlTypeMap<
 
 export type FormControlProps<
   RootComponentType extends React.ElementType = FormControlTypeMap['defaultComponent'],
-> = OverrideProps<FormControlTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<FormControlTypeMap<{}, RootComponentType>, RootComponentType>;
 
 type NonOptionalOwnerState = 'disabled' | 'error' | 'required';
 

@@ -4,7 +4,6 @@
     "onPageChange": { "type": { "name": "func" }, "required": true },
     "page": { "type": { "name": "custom", "description": "integer" }, "required": true },
     "rowsPerPage": { "type": { "name": "custom", "description": "integer" }, "required": true },
-    "component": { "type": { "name": "elementType" } },
     "getItemAriaLabel": {
       "type": { "name": "func" },
       "default": "function defaultGetAriaLabel(type: ItemAriaLabelType) {\n  return `Go to ${type} page`;\n}"

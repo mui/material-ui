@@ -41,7 +41,7 @@ It's possible to customize the control icons.
 
 ## Pagination ranges
 
-You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
+You can specify how many digits to display either side of current page with the `siblingCount` prop, and adjacent to the start and end page number with the `boundaryCount` prop.
 
 {{"demo": "PaginationRanges.js"}}
 

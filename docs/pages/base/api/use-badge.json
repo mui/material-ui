@@ -12,19 +12,10 @@
     },
     "displayValue": {
       "type": { "name": "React.ReactNode", "description": "React.ReactNode" },
-      "default": "badgeContent",
       "required": true
     },
-    "invisible": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "max": {
-      "type": { "name": "number", "description": "number" },
-      "default": "99",
-      "required": true
-    }
+    "invisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "max": { "type": { "name": "number", "description": "number" }, "required": true }
   },
   "name": "useBadge",
   "filename": "/packages/mui-base/src/useBadge/useBadge.ts",

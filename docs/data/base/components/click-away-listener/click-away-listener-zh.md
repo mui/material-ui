@@ -23,7 +23,7 @@ This is useful for components like [`PopperUnstyled`](/base/react-popper/) which
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import ClickAwayListener from '@mui/base/ClickAwayListener';

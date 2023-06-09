@@ -132,6 +132,12 @@ To control the placement of the listbox, use `placement`:
 
 :::
 
+#### Controlling the open state
+
+You can control the open state of the select with the `listboxOpen` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultListboxOpen` prop.
+
+{{"demo": "ControlledOpenSelect.js"}}
+
 ### `Option` component
 
 The `Option` component is used for the choosable options within the select.

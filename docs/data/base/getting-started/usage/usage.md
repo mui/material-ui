@@ -2,28 +2,6 @@
 
 <p class="description">Learn the basics of working with Base UI components.</p>
 
-## Quickstart
-
-The following code snippet demonstrates a simple app that uses the Base UI [Button](/base/react-button/) component:
-
-```jsx
-import * as React from 'react';
-import Button from '@mui/base/Button';
-
-export default function MyApp() {
-  return (
-    <div>
-      <Button>Hello World</Button>
-    </div>
-  );
-}
-```
-
-You can play around with this code in the interactive Code Sandbox demo below.
-Try importing an [Input](/base/react-input/) component and adding it to the `<div>`:
-
-{{"demo": "Usage.js", "hideToolbar": true, "bg": true}}
-
 ## Responsive meta tag
 
 Base UI is a _mobile-first_ component library—we write code for mobile devices first, and then scale up the components as necessary using CSS media queries.
@@ -60,21 +38,6 @@ The code snippet below shows how to override this by assigning a `<div>` to the 
 ```jsx
 <Badge slots={{ root: 'div' }} />
 ```
-
-### component
-
-The `component` prop provides a shortcut to `slots.root`.
-This is useful if you are only overriding the root element of the component.
-
-The code snippet below shows how to override the root element of the Base UI Badge component using the `component` prop:
-
-```jsx
-<Badge component="div" />
-```
-
-:::warning
-If the root slot is customized with both the `component` and `slots` props, then `component` will take precedence.
-:::
 
 ### slotProps
 

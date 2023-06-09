@@ -104,7 +104,6 @@ const Select = React.forwardRef(function Select<
   const {
     autoFocus,
     children,
-    component,
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
@@ -115,7 +114,7 @@ const Select = React.forwardRef(function Select<
     name,
     onChange,
     onListboxOpenChange,
-    optionStringifier = defaultOptionStringifier,
+    getOptionAsString = defaultOptionStringifier,
     renderValue: renderValueProp,
     slotProps = {},
     slots = {},
@@ -130,7 +129,7 @@ const Select = React.forwardRef(function Select<
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
-  const Button = component ?? slots.root ?? 'button';
+  const Button = slots.root ?? 'button';
   const ListboxRoot = slots.listbox ?? 'ul';
   const PopperComponent = slots.popper ?? Popper;
 
@@ -166,7 +165,7 @@ const Select = React.forwardRef(function Select<
     open: listboxOpenProp,
     onChange,
     onOpenChange: onListboxOpenChange,
-    optionStringifier,
+    getOptionAsString,
     value: valueProp,
   });
 
@@ -266,11 +265,6 @@ Select.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * If `true`, the select will be initially open.
    * @default false
    */
@@ -284,6 +278,14 @@ Select.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  getOptionAsString: PropTypes.func,
   /**
    * A function to convert the currently selected value to a string.
    * Used to set a value of a hidden input associated with the select,
@@ -321,14 +323,6 @@ Select.propTypes /* remove-proptypes */ = {
    */
   onListboxOpenChange: PropTypes.func,
   /**
-   * A function used to convert the option label to a string.
-   * It's useful when labels are elements and need to be converted to plain text
-   * to enable navigation using character keys on a keyboard.
-   *
-   * @default defaultOptionStringifier
-   */
-  optionStringifier: PropTypes.func,
-  /**
    * Function that customizes the rendering of the selected value.
    */
   renderValue: PropTypes.func,
@@ -336,7 +330,7 @@ Select.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  slotProps: PropTypes.shape({
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

@@ -6,6 +6,71 @@ import OptionGroup from '@mui/base/OptionGroup';
 import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
+export default function UnstyledSelectGrouping() {
+  return (
+    <CustomSelect>
+      <CustomOptionGroup label="Hobbits">
+        <StyledOption value="Frodo">Frodo</StyledOption>
+        <StyledOption value="Sam">Sam</StyledOption>
+        <StyledOption value="Merry">Merry</StyledOption>
+        <StyledOption value="Pippin">Pippin</StyledOption>
+      </CustomOptionGroup>
+      <CustomOptionGroup label="Elves">
+        <StyledOption value="Galadriel">Galadriel</StyledOption>
+        <StyledOption value="Legolas">Legolas</StyledOption>
+      </CustomOptionGroup>
+    </CustomSelect>
+  );
+}
+
+function CustomSelect(props) {
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} slots={slots} />;
+}
+
+CustomSelect.propTypes = {
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
+  }),
+};
+
+const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(props, ref) {
+  const slots = {
+    root: StyledGroupRoot,
+    label: StyledGroupHeader,
+    list: StyledGroupOptions,
+    ...props.slots,
+  };
+
+  return <OptionGroup {...props} ref={ref} slots={slots} />;
+});
+
+CustomOptionGroup.propTypes = {
+  /**
+   * The components used for each slot inside the OptionGroup.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    label: PropTypes.elementType,
+    list: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+};
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -152,68 +217,3 @@ const StyledGroupOptions = styled('ul')`
 const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
-
-function CustomSelect(props) {
-  const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <Select {...props} slots={slots} />;
-}
-
-CustomSelect.propTypes = {
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    listbox: PropTypes.elementType,
-    popper: PropTypes.func,
-    root: PropTypes.elementType,
-  }),
-};
-
-const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(props, ref) {
-  const slots = {
-    root: StyledGroupRoot,
-    label: StyledGroupHeader,
-    list: StyledGroupOptions,
-    ...props.slots,
-  };
-
-  return <OptionGroup {...props} ref={ref} slots={slots} />;
-});
-
-CustomOptionGroup.propTypes = {
-  /**
-   * The components used for each slot inside the OptionGroup.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    label: PropTypes.elementType,
-    list: PropTypes.elementType,
-    root: PropTypes.elementType,
-  }),
-};
-
-export default function UnstyledSelectGrouping() {
-  return (
-    <CustomSelect>
-      <CustomOptionGroup label="Hobbits">
-        <StyledOption value="Frodo">Frodo</StyledOption>
-        <StyledOption value="Sam">Sam</StyledOption>
-        <StyledOption value="Merry">Merry</StyledOption>
-        <StyledOption value="Pippin">Pippin</StyledOption>
-      </CustomOptionGroup>
-      <CustomOptionGroup label="Elves">
-        <StyledOption value="Galadriel">Galadriel</StyledOption>
-        <StyledOption value="Legolas">Legolas</StyledOption>
-      </CustomOptionGroup>
-    </CustomSelect>
-  );
-}

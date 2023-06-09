@@ -24,11 +24,7 @@
   "returnValue": {
     "checked": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
-    "focusVisible": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
+    "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getInputProps": {
       "type": {
         "name": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt;) =&gt; UseSwitchInputSlotProps",
