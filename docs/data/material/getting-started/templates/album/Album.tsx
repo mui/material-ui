@@ -2,6 +2,8 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import CameraIcon from '@mui/icons-material/PhotoCamera';
+import IconButton from '@mui/material/IconButton';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import { CardActionArea } from '@mui/material';
@@ -40,10 +42,33 @@ export default function Album() {
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <CameraIcon sx={{ mr: 2 }} />
-        <Typography variant="h6" color="inherit" noWrap>
-          Album layout
-        </Typography>
+        <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+          <CameraIcon sx={{ mr: 2 }} />
+          <Typography
+            variant="h6"
+            color="inherit"
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+            }}
+          >
+            Album layout
+          </Typography>
+        </Box>
+
+        <Button color="inherit">About</Button>
+        <Button color="inherit">Contact</Button>
+
+        <Box sx={{ flexGrow: 0 }}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="primary"
+          >
+            <AccountCircle />
+          </IconButton>
+        </Box>
       </Toolbar>
 
       <main>
