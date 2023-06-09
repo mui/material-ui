@@ -49,7 +49,8 @@ function StyledTreeItem(props: StyledTreeItemProps) {
 
   let styleProps = {
     '--tree-view-color': theme.palette.mode !== 'dark' ? color : colorForDarkMode,
-    '--tree-view-bg-color': theme.palette.mode !== 'dark' ? bgColor : bgColorForDarkMode,
+    '--tree-view-bg-color':
+      theme.palette.mode !== 'dark' ? bgColor : bgColorForDarkMode,
   };
 
   return (
@@ -129,9 +130,9 @@ export default function GmailTreeView() {
           labelInfo="90"
           color="#1a73e8"
           bgColor="#e8f0fe"
-          colorForDarkMode='#B8E7FB'
-          bgColorForDarkMode='#071318'
-          iconColorForDarkMode='#29B6F6'
+          colorForDarkMode="#B8E7FB"
+          bgColorForDarkMode="#071318"
+          iconColorForDarkMode="#29B6F6"
         />
         <StyledTreeItem
           nodeId="6"
@@ -140,9 +141,9 @@ export default function GmailTreeView() {
           labelInfo="2,294"
           color="#e3742f"
           bgColor="#fcefe3"
-          colorForDarkMode='#FFE2B7'
-          bgColorForDarkMode='#191207'
-          iconColorForDarkMode='#FFA726'
+          colorForDarkMode="#FFE2B7"
+          bgColorForDarkMode="#191207"
+          iconColorForDarkMode="#FFA726"
         />
         <StyledTreeItem
           nodeId="7"
@@ -151,9 +152,9 @@ export default function GmailTreeView() {
           labelInfo="3,566"
           color="#a250f5"
           bgColor="#f3e8fd"
-          colorForDarkMode='#D9B8FB'
-          bgColorForDarkMode='#100719'
-          iconColorForDarkMode='#8F29F6'
+          colorForDarkMode="#D9B8FB"
+          bgColorForDarkMode="#100719"
+          iconColorForDarkMode="#8F29F6"
         />
         <StyledTreeItem
           nodeId="8"
@@ -162,9 +163,9 @@ export default function GmailTreeView() {
           labelInfo="733"
           color="#3c8039"
           bgColor="#e6f4ea"
-          colorForDarkMode='#CCE8CD'
-          bgColorForDarkMode='#0C130D'
-          iconColorForDarkMode='#66BB6A'
+          colorForDarkMode="#CCE8CD"
+          bgColorForDarkMode="#0C130D"
+          iconColorForDarkMode="#66BB6A"
         />
       </StyledTreeItem>
       <StyledTreeItem nodeId="4" labelText="History" labelIcon={Label} />
