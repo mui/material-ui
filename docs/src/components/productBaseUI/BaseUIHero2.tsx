@@ -9,6 +9,9 @@ import Popper from '@mui/base/Popper';
 import Tabs from '@mui/base/Tabs';
 import Tab from '@mui/base/Tab';
 import TabsList from '@mui/base/TabsList';
+import Modal from '@mui/base/Modal';
+import Snackbar from '@mui/base/Snackbar';
+import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 import TabPanel from '@mui/base/TabPanel';
 import { styled } from '@mui/system';
 import Box, { BoxProps } from '@mui/material/Box';
@@ -27,7 +30,7 @@ import CodeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import GetStartedButtons2 from '../home/GetStartedButtons2';
 
 const Panel = styled('div')({
-  width: 320,
+  width: 340,
   backgroundColor: 'var(--muidocs-palette-background-paper)',
   borderRadius: 'var(--border-radius)',
   border: 'var(--border-width) solid',
@@ -39,6 +42,7 @@ const StyledTabsList = styled('div')({
   display: 'flex',
   borderBottom: '1px solid var(--border-color)',
 });
+
 const StyledTab = styled('button')({
   flex: 1,
   minHeight: 40,
@@ -68,8 +72,7 @@ const StyledButton = styled('button')({
   border: '1px solid',
   borderColor: 'var(--muidocs-palette-grey-200)',
   borderRadius: 'var(--Select-radius)',
-  height: '45px',
-  padding: 'var(--Select-spacing) calc(var(--Select-spacing) * 1.5)',
+  padding: '8px 12px',
   backgroundColor: 'var(--muidocs-palette-background-paper)',
   display: 'flex',
   color: 'var(--muidocs-palette-text-secondary)',
@@ -77,6 +80,7 @@ const StyledButton = styled('button')({
   fontSize: '0.875rem',
   fontFamily: 'var(--muidocs-font-family)',
   lineHeight: 21 / 14,
+  boxShadow: 'var(--muidocs-shadows)',
   '& svg:last-child': {
     marginLeft: 'auto',
   },
@@ -91,6 +95,7 @@ const StyledButton = styled('button')({
 const StyledPopper = styled(Popper)({
   zIndex: 1,
 });
+
 const StyledListbox = styled('ul')({
   width: 'calc(320px - 2rem)',
   display: 'flex',
@@ -155,6 +160,29 @@ const StyledListbox = styled('ul')({
   },
 });
 
+const marks = [
+  {
+    value: 0,
+    label: '0°C',
+  },
+  {
+    value: 20,
+    label: '20°C',
+  },
+  {
+    value: 37,
+    label: '37°C',
+  },
+  {
+    value: 100,
+    label: '100°C',
+  },
+];
+
+function valuetext(value: number) {
+  return `${value}°C`;
+}
+
 const StyledSlider = styled(Slider)(`
   color: var(--color-primary);
   height: 6px;
@@ -209,13 +237,38 @@ const StyledSlider = styled(Slider)(`
       box-shadow: 0 0 0 0.25rem;
     }
   }
+
+  & .${sliderClasses.mark} {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 99%;
+    background-color: var(--color-primary);
+    top: 43%;
+    transform: translateX(-50%);
+  }
+
+  & .${sliderClasses.markActive} {
+    background-color: var(--color-primary);
+  }
+
+  & .${sliderClasses.markLabel} {
+    font-family: IBM Plex Sans;
+    font-weight: 600;
+    font-size: 12px;
+    position: absolute;
+    top: 20px;
+    transform: translateX(-50%);
+    margin-top: 8px;
+  }
 `);
+
 const StyledSwitch = styled('span')(`
   font-size: 0;
   position: relative;
   display: inline-block;
-  width: 40px;
-  height: 24px;
+  width: 34px;
+  height: 20px;
   cursor: pointer;
 
   &.${switchClasses.disabled} {
@@ -234,10 +287,10 @@ const StyledSwitch = styled('span')(`
 
   & .${switchClasses.thumb} {
     display: block;
-    width: 16px;
-    height: 16px;
-    top: 4px;
-    left: 4px;
+    width: 14px;
+    height: 14px;
+    top: 3px;
+    left: 3px;
     border-radius: 16px;
     background-color: #fff;
     position: relative;
@@ -254,8 +307,8 @@ const StyledSwitch = styled('span')(`
 
   &.${switchClasses.checked} {
     .${switchClasses.thumb} {
-      left: 20px;
-      top: 4px;
+      left: 17px;
+      top: 3px;
       background-color: #fff;
     }
 
@@ -277,8 +330,57 @@ const StyledSwitch = styled('span')(`
   }
   `);
 
+const Backdrop = React.forwardRef<HTMLDivElement, { open?: boolean; className: string }>(
+  (props, ref) => {
+    const { open, className, ...other } = props;
+    return <div className={clsx({ 'MuiBackdrop-open': open }, className)} ref={ref} {...other} />;
+  },
+);
+
+const StyledModal = styled(Modal)`
+  position: fixed;
+  z-index: 1300;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledBackdrop = styled(Backdrop)`
+  z-index: -1;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-tap-highlight-color: transparent;
+`;
+
 export default function BaseUIHero() {
   const [customized, setCustomized] = React.useState(true);
+  // Modal
+  const [openModal, setOpenModal] = React.useState(false);
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+  // Snackbar
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+
+  const handleCloseSnackbar = (_: any, reason: SnackbarCloseReason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
+
+  const handleClickSnackbar = () => {
+    setOpenSnackbar(true);
+  };
+
   return (
     <HeroContainer
       linearGradient
@@ -366,6 +468,19 @@ export default function BaseUIHero() {
             </Tabs>
             <Box
               sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                px: '1rem',
+                py: '0.5rem',
+                borderBottom: '1px solid var(--border-color)',
+              }}
+            >
+              <p>Notifications</p>
+              <Box sx={{ height: 32, width: 32, background: '#202020', borderRadius: 99 }} />
+            </Box>
+            <Box
+              sx={{
                 px: '1rem',
                 pt: '1rem',
                 pb: '1.5rem',
@@ -427,7 +542,12 @@ export default function BaseUIHero() {
               }}
             >
               <div>Choose a temperature</div>
-              <StyledSlider />
+              <StyledSlider
+                aria-label="Temperature"
+                defaultValue={37}
+                getAriaValueText={valuetext}
+                marks={marks}
+              />
             </Box>
             <Box
               sx={{
@@ -472,8 +592,27 @@ export default function BaseUIHero() {
                 '& > button': { flex: 1 },
               }}
             >
-              <Button>See modal</Button>
-              <Button>Get feedback</Button>
+              <Button type="button" onClick={handleOpenModal}>
+                View modal
+              </Button>
+              <StyledModal
+                aria-labelledby="unstyled-modal-title"
+                aria-describedby="unstyled-modal-description"
+                open={openModal}
+                onClose={handleCloseModal}
+                slots={{ backdrop: StyledBackdrop }}
+              >
+                <Box>
+                  <h2 id="unstyled-modal-title">Text in a modal</h2>
+                  <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
+                </Box>
+              </StyledModal>
+              <Button type="button" onClick={handleClickSnackbar}>
+                View snackbar
+              </Button>
+              <Snackbar open={openSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
+                Hello World
+              </Snackbar>
             </Box>
             <Box sx={{ display: 'flex', p: '1rem', gap: '0.5rem', '& > button': { flex: 1 } }}>
               <Button>
