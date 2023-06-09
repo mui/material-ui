@@ -110,7 +110,8 @@ export default function BasicMenu() {
       {anchors.elements.map((anchorElement, index) =>
         anchorElement ? (
           <Menu
-            id="basic-menu"
+            id={`basic-menu-${index}`}
+            key={`menu-${index}`}
             anchorEl={anchorElement}
             open={Boolean(anchorElement)}
             onClose={() => handleClose(0)}
