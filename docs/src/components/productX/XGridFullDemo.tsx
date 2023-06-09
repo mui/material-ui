@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGridPro, GridToolbar } from '@mui/x-data-grid-pro';
+import { DataGridPro, GridToolbar, GridPaginationModel } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
@@ -16,7 +16,7 @@ type GridDataType = 'Employee' | 'Commodity';
 interface GridPaginationSettings {
   pagination: boolean;
   autoPageSize: boolean;
-  pageSize: number | undefined;
+  paginationModel: GridPaginationModel | undefined;
 }
 
 interface GridConfigOptions {
@@ -30,6 +30,8 @@ interface GridToolbarContainerProps {
   size: number;
   type: GridDataType;
 }
+
+const pageSizeOptions = [25, 100, 1000];
 
 function SettingsPanel(props: GridToolbarContainerProps) {
   const { onApply, type, size } = props;
@@ -98,9 +100,11 @@ function SettingsPanel(props: GridToolbarContainerProps) {
         <Select value={selectedPaginationValue} onChange={handlePaginationChange} disableUnderline>
           <MenuItem value={-1}>off</MenuItem>
           <MenuItem value={0}>auto</MenuItem>
-          <MenuItem value={25}>25</MenuItem>
-          <MenuItem value={100}>100</MenuItem>
-          <MenuItem value={1000}>{Number(1000).toLocaleString()}</MenuItem>
+          {pageSizeOptions.map((pageSize) => (
+            <MenuItem key={pageSize} value={pageSize}>
+              {Number(pageSize).toLocaleString()}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
       <Button
@@ -127,7 +131,7 @@ export default function XGridFullDemo() {
   const [pagination, setPagination] = React.useState<GridPaginationSettings>({
     pagination: false,
     autoPageSize: false,
-    pageSize: undefined,
+    paginationModel: undefined,
   });
 
   const handleApplyClick = (settings: GridConfigOptions) => {
@@ -147,20 +151,18 @@ export default function XGridFullDemo() {
     const newPaginationSettings: GridPaginationSettings = {
       pagination: settings.pagesize !== -1,
       autoPageSize: settings.pagesize === 0,
-      pageSize: settings.pagesize > 0 ? settings.pagesize : undefined,
+      paginationModel: settings.pagesize > 0 ? { pageSize: settings.pagesize, page: 0 } : undefined,
     };
 
-    setPagination((currentPaginationSettings: GridPaginationSettings): GridPaginationSettings => {
-      if (
-        currentPaginationSettings.pagination === newPaginationSettings.pagination &&
-        currentPaginationSettings.autoPageSize === newPaginationSettings.autoPageSize &&
-        currentPaginationSettings.pageSize === newPaginationSettings.pageSize
-      ) {
-        return currentPaginationSettings;
-      }
-      return newPaginationSettings;
-    });
+    setPagination(newPaginationSettings);
   };
+
+  const handlePaginationModelChange = React.useCallback((newModel: GridPaginationModel) => {
+    setPagination((prev) => ({
+      ...prev,
+      paginationModel: newModel,
+    }));
+  }, []);
 
   return (
     <Frame>
@@ -218,7 +220,9 @@ export default function XGridFullDemo() {
             loading={loading}
             checkboxSelection
             disableRowSelectionOnClick
+            pageSizeOptions={pageSizeOptions}
             {...pagination}
+            onPaginationModelChange={handlePaginationModelChange}
           />
         </Paper>
       </Frame.Demo>
