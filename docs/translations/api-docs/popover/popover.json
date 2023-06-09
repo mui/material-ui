@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "action": "A ref for imperative actions. It currently only supports updatePosition() action.",
-    "anchorEl": "An HTML element, or a function that returns one. It&#39;s used to set the position of the popover.",
+    "anchorEl": "An HTML element, <a href=\"/material-ui/react-popover/#virtual-element\">PopoverVirtualElement</a>, or a function that returns either. It&#39;s used to set the position of the popover.",
     "anchorOrigin": "This is the point on the anchor where the popover&#39;s <code>anchorEl</code> will attach to. This is not used when the anchorReference is &#39;anchorPosition&#39;.<br>Options: vertical: [top, center, bottom]; horizontal: [left, center, right].",
     "anchorPosition": "This is the position that may be used to set the position of the popover. The coordinates are relative to the application&#39;s client area.",
     "anchorReference": "This determines which anchor prop to refer to when setting the position of the popover.",

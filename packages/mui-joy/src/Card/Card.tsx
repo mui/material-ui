@@ -13,7 +13,6 @@ import { ColorInversionProvider, useColorInversion } from '../styles/ColorInvers
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
-import { CardRowContext } from './CardContext';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
@@ -61,21 +60,24 @@ const CardRoot = styled('div', {
     ...(ownerState.size === 'sm' && {
       '--Card-radius': theme.vars.radius.sm,
       '--Card-padding': '0.5rem',
+      gap: '0.375rem 0.5rem',
     }),
     ...(ownerState.size === 'md' && {
       '--Card-radius': theme.vars.radius.md,
       '--Card-padding': '1rem',
-      fontSize: theme.vars.fontSize.md,
+      gap: '0.75rem 1rem',
     }),
     ...(ownerState.size === 'lg' && {
       '--Card-radius': theme.vars.radius.lg,
       '--Card-padding': '1.5rem',
+      gap: '1rem 1.5rem',
     }),
     padding: 'var(--Card-padding)',
     borderRadius: 'var(--Card-radius)',
     boxShadow: theme.shadow.sm,
     backgroundColor: theme.vars.palette.background.surface,
     fontFamily: theme.vars.fontFamily.body,
+    fontSize: theme.vars.fontSize.md,
     position: 'relative',
     display: 'flex',
     flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
@@ -139,30 +141,36 @@ const Card = React.forwardRef(function Card(inProps, ref) {
   });
 
   const result = (
-    <CardRowContext.Provider value={orientation === 'horizontal'}>
-      <SlotRoot {...rootProps}>
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement(child)) {
-            return child;
-          }
-          const extraProps: Record<string, any> = {};
-          if (isMuiElement(child, ['Divider'])) {
-            extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+    <SlotRoot {...rootProps}>
+      {React.Children.map(children, (child, index) => {
+        if (!React.isValidElement(child)) {
+          return child;
+        }
+        const extraProps: Record<string, any> = {};
+        if (isMuiElement(child, ['Divider'])) {
+          extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
 
-            const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
-            extraProps.orientation =
-              'orientation' in child.props ? child.props.orientation : dividerOrientation;
+          const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
+          extraProps.orientation =
+            'orientation' in child.props ? child.props.orientation : dividerOrientation;
+        }
+        if (isMuiElement(child, ['CardOverflow'])) {
+          if (orientation === 'horizontal') {
+            extraProps['data-parent'] = 'Card-horizontal';
           }
-          if (index === 0) {
-            extraProps['data-first-child'] = '';
+          if (orientation === 'vertical') {
+            extraProps['data-parent'] = 'Card-vertical';
           }
-          if (index === React.Children.count(children) - 1) {
-            extraProps['data-last-child'] = '';
-          }
-          return React.cloneElement(child, extraProps);
-        })}
-      </SlotRoot>
-    </CardRowContext.Provider>
+        }
+        if (index === 0) {
+          extraProps['data-first-child'] = '';
+        }
+        if (index === React.Children.count(children) - 1) {
+          extraProps['data-last-child'] = '';
+        }
+        return React.cloneElement(child, extraProps);
+      })}
+    </SlotRoot>
   );
 
   if (invertedColors) {
