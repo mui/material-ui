@@ -29,7 +29,7 @@ function StyledTreeItem(props) {
     ...other
   } = props;
 
-  let styleProps = {
+  const styleProps = {
     '--tree-view-color': theme.palette.mode !== 'dark' ? color : colorForDarkMode,
     '--tree-view-bg-color':
       theme.palette.mode !== 'dark' ? bgColor : bgColorForDarkMode,
@@ -97,8 +97,8 @@ StyledTreeItem.propTypes = {
   bgColorForDarkMode: PropTypes.string,
   color: PropTypes.string,
   colorForDarkMode: PropTypes.string,
-  labelIcon: PropTypes.elementType.isRequired,
   iconColorForDarkMode: PropTypes.string,
+  labelIcon: PropTypes.elementType.isRequired,
   labelInfo: PropTypes.string,
   labelText: PropTypes.string.isRequired,
 };
