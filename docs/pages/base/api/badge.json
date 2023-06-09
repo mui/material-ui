@@ -2,7 +2,6 @@
   "props": {
     "badgeContent": { "type": { "name": "node" } },
     "children": { "type": { "name": "node" } },
-    "component": { "type": { "name": "elementType" } },
     "invisible": { "type": { "name": "bool" }, "default": "false" },
     "max": { "type": { "name": "number" }, "default": "99" },
     "showZero": { "type": { "name": "bool" }, "default": "false" },

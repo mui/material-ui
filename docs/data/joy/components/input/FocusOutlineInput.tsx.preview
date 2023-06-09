@@ -1,0 +1,12 @@
+<Input
+  placeholder="Type in here…"
+  sx={{
+    '&::before': {
+      display: 'none',
+    },
+    '&:focus-within': {
+      outline: '2px solid var(--Input-focusedHighlight)',
+      outlineOffset: '2px',
+    },
+  }}
+/>

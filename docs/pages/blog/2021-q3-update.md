@@ -111,10 +111,10 @@ The date picker sits at the border between the core component and advanced compo
 - 🎉 We released the first stable version: [v4.0.0](https://github.com/mui/mui-x/releases/tag/v4.0.0)!
   We also released the first v5-beta, to support MUI Core v5,
   and will be working almost exclusively on the v5 release line going forward.
-- 🔎 We also added a [quick-filter demo](/x/react-data-grid/filtering/#quick-filter) to illustrate how it can be implemented,
+- 🔎 We also added a [quick-filter demo](/x/react-data-grid/filtering/quick-filter/) to illustrate how it can be implemented,
   and will add a [built-in](https://github.com/mui/mui-x/issues/202) solution later on.
 
-  <a href="/x/react-data-grid/filtering/#quick-filter"><img loading="lazy" src="/static/blog/2021-q3-update/quick-filter.png" style="width: 700px; margin-bottom: 16px;" /></a>
+  <a href="/x/react-data-grid/filtering/quick-filter/"><img loading="lazy" src="/static/blog/2021-q3-update/quick-filter.png" style="width: 700px; margin-bottom: 16px;" /></a>
 
 - 🐛 We fixed several non-idiomatic React patterns, for instance we were not handling controllable props by the book, and as we do in MUI Core.
 - 🚀 We introduced the [row editing](/x/react-data-grid/editing/#row-editing) feature.
@@ -200,7 +200,7 @@ We'll do our best, no guarantee!
   Since v5, MUI is no longer actively supporting IE 11. Dropping this browser requirement unlocks new capabilities of the web platform.
 - 🌈 Resume work on the second design system.
   Some users (and potential users) dislike Material Design. We'll try to make the second design system one that they love! You can check our [first RFC](https://github.com/mui/material-ui/discussions/29024).
-- 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui/material-ui/projects/25).
+- 🗓 Execute on all of the items in the [public roadmap](https://github.com/orgs/mui/projects/18/views/1).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### MUI X

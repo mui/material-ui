@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 import TablePaginationActions from './TablePaginationActions';
 import { ItemAriaLabelType } from './common.types';
 
@@ -205,9 +204,7 @@ export interface TablePaginationTypeMap<
 
 export type TablePaginationProps<
   RootComponentType extends React.ElementType = TablePaginationTypeMap['defaultComponent'],
-> = OverrideProps<TablePaginationTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<TablePaginationTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type TablePaginationOwnerState = TablePaginationOwnProps;
 
@@ -225,7 +222,7 @@ export type TablePaginationSelectSlotProps = {
   children?: React.ReactNode;
   className?: string;
   id?: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
   ownerState: TablePaginationOwnerState;
   value: React.SelectHTMLAttributes<HTMLSelectElement>['value'];
 };

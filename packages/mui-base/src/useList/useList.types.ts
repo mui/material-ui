@@ -8,15 +8,16 @@ import {
 } from '../utils/useControllableReducer.types';
 import { EventHandlers } from '../utils';
 import type { ListContextValue } from './ListContext';
+import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
 
 type ListActionContextRequiredKeys =
   | 'disabledItemsFocusable'
   | 'disableListWrap'
   | 'focusManagement'
+  | 'getItemAsString'
   | 'isItemDisabled'
   | 'itemComparer'
   | 'items'
-  | 'itemStringifier'
   | 'orientation'
   | 'pageSize'
   | 'selectionMode';
@@ -177,7 +178,7 @@ export interface UseListParameters<
    * A function that converts an object to its string representation
    * @default (o) => o
    */
-  itemStringifier?: (option: ItemValue) => string | undefined;
+  getItemAsString?: (option: ItemValue) => string | undefined;
   /**
    * Array of list items.
    */
@@ -235,9 +236,8 @@ export interface ListItemState {
 
 interface UseListRootSlotOwnProps {
   'aria-activedescendant'?: React.AriaAttributes['aria-activedescendant'];
-  id?: string;
-  onBlur: React.FocusEventHandler;
-  onKeyDown: React.KeyboardEventHandler;
+  onBlur: MuiCancellableEventHandler<React.FocusEvent<HTMLElement>>;
+  onKeyDown: MuiCancellableEventHandler<React.KeyboardEvent<HTMLElement>>;
   tabIndex: number;
   ref: React.RefCallback<Element> | null;
 }

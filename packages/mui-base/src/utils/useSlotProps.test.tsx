@@ -162,14 +162,15 @@ describe('useSlotProps', () => {
     const externalClickHandler = spy();
     const externalForwardedClickHandler = spy();
 
-    const createInternalClickHandler = (otherHandlers: EventHandlers) => (e: React.MouseEvent) => {
-      expect(otherHandlers).to.deep.equal({
-        onClick: externalClickHandler,
-      });
+    const createInternalClickHandler =
+      (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
+        expect(otherHandlers).to.deep.equal({
+          onClick: externalClickHandler,
+        });
 
-      otherHandlers.onClick(e);
-      internalClickHandler(e);
-    };
+        otherHandlers.onClick(event);
+        internalClickHandler(event);
+      };
 
     // usually provided by the hook:
     const getSlotProps = (otherHandlers: EventHandlers) => ({

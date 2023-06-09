@@ -4,7 +4,6 @@
     "autoComplete": "This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it&#39;s more like an autofill. You can learn more about it <a href=\"https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill\">following the specification</a>.",
     "autoFocus": "If <code>true</code>, the <code>input</code> element is focused during the first mount.",
     "className": "Class name applied to the root element.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "defaultValue": "The default value. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the component is disabled. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
     "endAdornment": "Trailing adornment for this input.",

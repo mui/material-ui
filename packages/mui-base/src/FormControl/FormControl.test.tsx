@@ -20,6 +20,7 @@ describe('<FormControl />', () => {
         expectedClassName: formControlClasses.root,
       },
     },
+    skip: ['componentProp'],
   }));
 
   describe('initial state', () => {

@@ -80,7 +80,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     }),
     isItemDisabled: (id) => subitems?.get(id)?.disabled || false,
     items: subitemKeys,
-    itemStringifier: (id: string) =>
+    getItemAsString: (id: string) =>
       subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
     rootRef: handleRef,
     onStateChange: stateChangeHandler,

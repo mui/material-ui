@@ -170,7 +170,7 @@ export default function XDateRangeDemo() {
           </Typography>
           <Button
             variant="outlined"
-            href="/x/react-Date-pickers/Date-range-picker/"
+            href="/x/react-date-pickers/date-range-picker/"
             component="a"
             sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
           >

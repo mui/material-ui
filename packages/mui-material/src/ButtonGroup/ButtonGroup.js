@@ -114,6 +114,9 @@ const ButtonGroupRoot = styled('div', {
             : `1px solid ${
                 theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
               }`,
+          [`&.${buttonGroupClasses.disabled}`]: {
+            borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
+          },
         }),
       ...(ownerState.variant === 'text' &&
         ownerState.orientation === 'vertical' && {
@@ -122,6 +125,9 @@ const ButtonGroupRoot = styled('div', {
             : `1px solid ${
                 theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
               }`,
+          [`&.${buttonGroupClasses.disabled}`]: {
+            borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
+          },
         }),
       ...(ownerState.variant === 'text' &&
         ownerState.color !== 'inherit' && {

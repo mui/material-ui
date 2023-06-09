@@ -7,7 +7,7 @@ const pages = [
     icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/base/getting-started/overview', title: 'Overview' },
-      { pathname: '/base/getting-started/installation', title: 'Installation' },
+      { pathname: '/base/getting-started/quickstart', title: 'Quickstart' },
       { pathname: '/base/getting-started/usage', title: 'Usage' },
       { pathname: '/base/getting-started/customization', title: 'Customization' },
     ],
@@ -21,6 +21,7 @@ const pages = [
         pathname: '/base/components/inputs',
         subheader: 'inputs',
         children: [
+          { pathname: '/base/react-autocomplete', title: 'Autocomplete' },
           { pathname: '/base/react-button', title: 'Button' },
           { pathname: '/base/react-input', title: 'Input' },
           { pathname: '/base/react-select', title: 'Select' },

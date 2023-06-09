@@ -22,7 +22,7 @@ declare module '@mui/material/styles' {
   }
 }
 
-// Update the Button's color prop options
+// @babel-ignore-comment-in-output Update the Button's color prop options
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     neutral: true;

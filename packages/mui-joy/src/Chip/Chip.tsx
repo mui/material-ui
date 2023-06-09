@@ -81,6 +81,7 @@ const ChipRoot = styled('div', {
       '--_Chip-paddingBlock':
         'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Chip-decoratorChildHeight)) / 2, 0px)',
       minHeight: 'var(--_Chip-minHeight)',
+      maxWidth: 'max-content', // to prevent Chip from stretching to full width when used with flexbox
       paddingInline: 'var(--Chip-paddingInline)',
       borderRadius: 'var(--_Chip-radius)',
       position: 'relative',

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 export default function EditPage(props) {
   const { markdownLocation } = props;
@@ -27,7 +27,7 @@ export default function EditPage(props) {
       target="_blank"
       rel="noopener nofollow"
       size="small"
-      startIcon={<EditRoundedIcon />}
+      startIcon={<GitHubIcon />}
       data-ga-event-category={userLanguage === 'en' ? undefined : 'l10n'}
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
       data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}

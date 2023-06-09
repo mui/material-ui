@@ -26,21 +26,26 @@ const polymorphicComponentTest = () => {
       {/* @ts-expect-error */}
       <Popper invalidProp={0} open />
 
-      <Popper open component="a" href="#" />
+      <Popper<'a'> open slots={{ root: 'a' }} href="#" />
 
-      <Popper open component={CustomComponent} stringProp="test" numberProp={0} />
+      <Popper<typeof CustomComponent>
+        open
+        slots={{ root: CustomComponent }}
+        stringProp="test"
+        numberProp={0}
+      />
       {/* @ts-expect-error */}
       <Popper open component={CustomComponent} />
 
-      <Popper
+      <Popper<'button'>
         open
-        component="button"
+        slots={{ root: 'button' }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
       <Popper<'button'>
         open
-        component="button"
+        slots={{ root: 'button' }}
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}

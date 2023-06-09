@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { OverrideProps, Simplify } from '@mui/types';
+import { Simplify } from '@mui/types';
 import Popper, { PopperProps } from '../Popper';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
 
@@ -76,9 +76,7 @@ export interface MenuTypeMap<
 
 export type MenuProps<
   RootComponentType extends React.ElementType = MenuTypeMap['defaultComponent'],
-> = OverrideProps<MenuTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<MenuTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type MenuOwnerState = Simplify<
   MenuOwnProps & {

@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { OverrideProps, Simplify } from '@mui/types';
+import { Simplify } from '@mui/types';
 import { SlotComponentProps } from '../utils';
+import { PolymorphicProps } from '../utils/PolymorphicComponent';
 
 export interface TabsRootSlotPropsOverrides {}
 
@@ -75,9 +76,7 @@ export interface TabsTypeMap<
 
 export type TabsProps<
   RootComponentType extends React.ElementType = TabsTypeMap['defaultComponent'],
-> = OverrideProps<TabsTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<TabsTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type TabsOwnerState = Simplify<
   TabsOwnProps & {

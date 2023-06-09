@@ -1,6 +1,6 @@
 # Understanding MUI packages
 
-<p class="description">An overview of the MUI packages and the relationships between them.</p>
+<p class="description">An overview of MUI's packages and the relationships between them.</p>
 
 ## Overview
 

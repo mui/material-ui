@@ -64,6 +64,8 @@ export function NextNProgressBar() {
   return <NProgressBar />;
 }
 
+const sx = { minWidth: { sm: 160 } };
+
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 export function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false);
@@ -75,11 +77,11 @@ export function DeferredAppSearch() {
     <React.Fragment>
       {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
-        <React.Suspense fallback={<Box sx={{ minWidth: { sm: 200 } }} />}>
-          <AppSearch />
+        <React.Suspense fallback={<Box sx={sx} />}>
+          <AppSearch sx={sx} />
         </React.Suspense>
       ) : (
-        <Box sx={{ minWidth: { sm: 200 } }} />
+        <Box sx={sx} />
       )}
     </React.Fragment>
   );
@@ -154,6 +156,8 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
   };
 });
 
+export const HEIGHT = 64;
+
 export default function AppFrame(props) {
   const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
@@ -175,7 +179,7 @@ export default function AppFrame(props) {
         <GlobalStyles
           styles={{
             ':root': {
-              '--MuiDocs-header-height': '64px',
+              '--MuiDocs-header-height': `${HEIGHT}px`,
             },
           }}
         />

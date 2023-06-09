@@ -24,7 +24,7 @@ In addition, the `sx` prop allows you to specify any other CSS rules you may nee
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
-## Overriding MUI components
+## Overriding Material UI components
 
 The Box component wraps your component.
 It creates a new DOM element, a `<div>` that by default can be changed with the `component` prop.
@@ -38,7 +38,7 @@ For instance, you can change the margin this way.
 However, sometimes you have to target the underlying DOM element.
 As an example, you may want to change the border of the Button.
 The Button component defines its own styles. CSS inheritance doesn't help.
-To workaround the problem, you can use the [`sx`](/system/getting-started/the-sx-prop/) prop directly on the child if it is a MUI component.
+To workaround the problem, you can use the [`sx`](/system/getting-started/the-sx-prop/) prop directly on the child if it is a Material UI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -47,7 +47,7 @@ To workaround the problem, you can use the [`sx`](/system/getting-started/the-sx
 +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
 ```
 
-For non-MUI components, use the `component` prop.
+For non-Material UI components, use the `component` prop.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>

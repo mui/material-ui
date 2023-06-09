@@ -1,7 +1,6 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "component": { "type": { "name": "elementType" } },
     "defaultValue": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "direction": {
       "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },

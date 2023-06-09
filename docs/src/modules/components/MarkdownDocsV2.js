@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import kebabCase from 'lodash/kebabCase';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
-import Box from '@mui/material/Box';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiContent';
 import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
@@ -15,6 +14,8 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocsWithoutAppFr
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import Ad from 'docs/src/modules/components/Ad';
+import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
+import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 
 function JoyModeObserver({ mode }) {
@@ -78,7 +79,7 @@ export default function MarkdownDocsV2(props) {
 
   const localizedDoc = docs[userLanguage] || docs.en;
   // Generate the TOC based on the tab
-  const { description, location, rendered, title, toc } = localizedDoc;
+  const { description, location, rendered, title, toc, headers } = localizedDoc;
   const demosToc = toc.filter((item) => item.text !== 'API');
 
   function createHookTocEntry(hookName, sectionName) {
@@ -219,54 +220,56 @@ export default function MarkdownDocsV2(props) {
       toc={activeToc}
       hasTabs
     >
-      <Provider>
-        {isJoy && <JoyModeObserver key="joy-provider" mode={theme.palette.mode} />}
-        {disableAd ? null : (
-          <Wrapper key="add">
-            <AdGuest classSelector=".component-tabs">
-              <Ad />
-            </AdGuest>
-          </Wrapper>
-        )}
-        {commonElements}
-        {activeTab === '' && (
-          <Box>
-            {rendered.slice(i, rendered.length - 1).map((renderedMarkdownOrDemo, index) => (
-              <MarkdownElement
-                key={`demos-section-${index}`}
-                renderedMarkdownOrDemo={renderedMarkdownOrDemo}
-                WrapperComponent={Wrapper}
-                wrapperProps={wrapperProps}
-                srcComponents={srcComponents}
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
-                localizedDoc={localizedDoc}
-                demos={demos}
-                location={location}
-                theme={theme}
-                demoComponents={demoComponents}
-                disableAd={disableAd}
-              />
-            ))}
-          </Box>
-        )}
-        {activeTab === 'components-api' && (
-          <Box>
+      <div
+        style={{
+          '--MuiDocs-header-height': `${AppFrameHeight + TabsHeight}px`,
+        }}
+      >
+        <Provider>
+          {isJoy && <JoyModeObserver key="joy-provider" mode={theme.palette.mode} />}
+          {disableAd ? null : (
+            <Wrapper key="add">
+              <AdGuest classSelector=".component-tabs">
+                <Ad />
+              </AdGuest>
+            </Wrapper>
+          )}
+          {commonElements}
+          {activeTab === '' &&
+            rendered
+              // for the "hook only" edge case, e.g. Base UI autocomplete
+              .slice(i, rendered.length - (headers.components.length > 0 ? 1 : 0))
+              .map((renderedMarkdownOrDemo, index) => (
+                <MarkdownElement
+                  key={`demos-section-${index}`}
+                  renderedMarkdownOrDemo={renderedMarkdownOrDemo}
+                  WrapperComponent={Wrapper}
+                  wrapperProps={wrapperProps}
+                  srcComponents={srcComponents}
+                  activeTab={activeTab}
+                  setActiveTab={setActiveTab}
+                  localizedDoc={localizedDoc}
+                  demos={demos}
+                  location={location}
+                  theme={theme}
+                  demoComponents={demoComponents}
+                  disableAd={disableAd}
+                />
+              ))}
+          {activeTab === 'components-api' && (
             <ComponentsApiContent
               descriptions={componentsApiDescriptions}
               pageContents={componentsApiPageContents}
             />
-          </Box>
-        )}
-        {activeTab === 'hooks-api' && (
-          <Box>
+          )}
+          {activeTab === 'hooks-api' && (
             <HooksApiContent
               descriptions={hooksApiDescriptions}
               pagesContents={hooksApiPageContents}
             />
-          </Box>
-        )}
-      </Provider>
+          )}
+        </Provider>
+      </div>
     </AppLayoutDocs>
   );
 }
