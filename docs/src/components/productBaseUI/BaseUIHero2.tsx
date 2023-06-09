@@ -1,33 +1,40 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Button from '@mui/base/Button';
+
+// Base UI imports
 import Switch, { switchClasses } from '@mui/base/Switch';
 import Select, { SelectProps, selectClasses } from '@mui/base/Select';
 import Slider, { sliderClasses } from '@mui/base/Slider';
 import Option, { optionClasses } from '@mui/base/Option';
+import Button from '@mui/base/Button';
 import Popper from '@mui/base/Popper';
 import Tabs from '@mui/base/Tabs';
 import Tab from '@mui/base/Tab';
 import TabsList from '@mui/base/TabsList';
+import TabPanel from '@mui/base/TabPanel';
 import Modal from '@mui/base/Modal';
 import Snackbar from '@mui/base/Snackbar';
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
-import TabPanel from '@mui/base/TabPanel';
+import Badge, { badgeClasses } from '@mui/base/Badge';
+
+// Other packages
 import { styled } from '@mui/system';
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import HeroContainer from 'docs/src/layouts/HeroContainer';
-import IconImage from 'docs/src/components/icon/IconImage';
-import GradientText from 'docs/src/components/typography/GradientText';
-import ROUTES from 'docs/src/route';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import ToggleOn from '@mui/icons-material/ToggleOn';
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
 import InputRoundedIcon from '@mui/icons-material/InputRounded';
 import LaunchRoundedIcon from '@mui/icons-material/LaunchRounded';
 import PlaylistAddCheckRoundedIcon from '@mui/icons-material/PlaylistAddCheckRounded';
-import CodeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
+
+// Local imports
+import HeroContainer from 'docs/src/layouts/HeroContainer';
+import IconImage from 'docs/src/components/icon/IconImage';
+import GradientText from 'docs/src/components/typography/GradientText';
+import ROUTES from 'docs/src/route';
 import GetStartedButtons2 from '../home/GetStartedButtons2';
+import CodeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 
 const Panel = styled('div')({
   width: 340,
@@ -36,6 +43,20 @@ const Panel = styled('div')({
   border: 'var(--border-width) solid',
   borderColor: 'var(--border-color)',
   boxShadow: '0 4px 40px 0 rgba(62, 80, 96, 0.15)',
+  overflow: 'hidden',
+});
+
+const StyledLabel = styled('label')({
+  fontSize: 12,
+  fontWeight: 600,
+  color: 'text.tertiary',
+});
+
+const StyledParagraph = styled('p')({
+  margin: 0,
+  fontSize: 14,
+  fontWeight: 600,
+  color: 'text.primary',
 });
 
 const StyledTabsList = styled('div')({
@@ -44,21 +65,28 @@ const StyledTabsList = styled('div')({
 });
 
 const StyledTab = styled('button')({
+  position: 'relative',
+  minHeight: 42,
   flex: 1,
-  minHeight: 40,
   padding: '0.5rem 1rem',
   background: 'transparent',
   border: 'none',
-  position: 'relative',
+  fontSize: 14,
   fontWeight: 600,
+
+  '&:hover': {
+    background: 'var(--muidocs-palette-grey-50)',
+  },
+
   '&.Mui-selected': {
     color: 'var(--color-primary)',
+
     '&::after': {
       content: '""',
       display: 'block',
       height: 2,
-      left: 0,
-      right: 0,
+      left: 2,
+      right: 2,
       bottom: '-1px',
       position: 'absolute',
       backgroundColor: 'var(--color-primary)',
@@ -66,7 +94,7 @@ const StyledTab = styled('button')({
   },
 });
 
-const StyledButton = styled('button')({
+const StyledSelectButton = styled('button')({
   width: '100%',
   maxWidth: '100%',
   border: '1px solid',
@@ -80,7 +108,7 @@ const StyledButton = styled('button')({
   fontSize: '0.875rem',
   fontFamily: 'var(--muidocs-font-family)',
   lineHeight: 21 / 14,
-  boxShadow: 'var(--muidocs-shadows)',
+  boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.3)',
   '& svg:last-child': {
     marginLeft: 'auto',
   },
@@ -92,12 +120,75 @@ const StyledButton = styled('button')({
   },
 });
 
+const StyledModalButton = styled('button')({
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  padding: '8px 12px',
+  cursor: 'pointer',
+  backgroundColor: 'var(--muidocs-palette-primary-50)',
+  border: '1px solid',
+  borderColor: 'var(--muidocs-palette-primary-100)',
+  borderRadius: '8px',
+  boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.3), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
+  fontFamily: 'var(--muidocs-font-family)',
+  fontSize: '0.875rem',
+  fontWeight: 600,
+  color: 'var(--muidocs-palette-primary-600)',
+  lineHeight: 21 / 14,
+
+  '&:hover': {
+    backgroundColor: 'var(--muidocs-palette-primary-100)',
+  },
+});
+
+const StyledSnackbarButton = styled('button')({
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  padding: '8px 12px',
+  cursor: 'pointer',
+  backgroundColor: 'var(--muidocs-palette-grey-50)',
+  border: '1px solid',
+  borderColor: 'var(--muidocs-palette-grey-200)',
+  borderRadius: '8px',
+  boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.3), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
+  fontFamily: 'var(--muidocs-font-family)',
+  fontSize: '0.875rem',
+  fontWeight: 600,
+  color: 'var(--muidocs-palette-grey-900)',
+  lineHeight: 21 / 14,
+
+  '&:hover': {
+    backgroundColor: 'var(--muidocs-palette-grey-300)',
+  },
+});
+
+const StyledViewCode = styled('button')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: 8,
+  width: '100%',
+  padding: '12px 16px',
+  cursor: 'pointer',
+  backgroundColor: 'var(--muidocs-palette-grey-800)',
+  border: 'none',
+  borderRadius: '8px',
+  boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.2), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
+  fontFamily: 'var(--muidocs-font-family)',
+  fontSize: '0.875rem',
+  fontWeight: 600,
+  color: 'var(--muidocs-palette-primary-200)',
+  lineHeight: 21 / 14,
+});
+
 const StyledPopper = styled(Popper)({
   zIndex: 1,
 });
 
 const StyledListbox = styled('ul')({
-  width: 'calc(320px - 2rem)',
+  width: 'calc(320px - 1rem)',
   display: 'flex',
   flexDirection: 'column',
   border: '1px solid',
@@ -105,16 +196,15 @@ const StyledListbox = styled('ul')({
   borderRadius: 'var(--Select-radius)',
   backgroundColor: 'var(--muidocs-palette-background-paper)',
   boxShadow: '0px 4px 40px rgba(62, 80, 96, 0.1)',
-  padding: 'calc(var(--Select-spacing) * 1.5)',
-  gap: 'calc(var(--Select-spacing) * 1.5)',
+  padding: 'calc(var(--Select-spacing) * 0.5)',
+  gap: 'calc(var(--Select-spacing) * 0.3)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
   lineHeight: 21 / 14,
   margin: 'var(--Select-spacing) 0',
   '& li': {
-    minHeight: 32,
     display: 'flex',
-    borderRadius: '4px',
+    borderRadius: '6px',
     '&[role="none"]': {
       flexDirection: 'column',
       padding: 0,
@@ -135,7 +225,7 @@ const StyledListbox = styled('ul')({
     '&[role="option"]': {
       boxSizing: 'border-box',
       border: '1px solid transparent',
-      padding: 'calc(var(--Select-spacing) * 0.75)',
+      padding: 'calc(var(--Select-spacing) * 0.5)',
       fontSize: '0.875rem',
       fontWeight: 500,
       color: 'var(--muidocs-palette-text-secondary)',
@@ -185,7 +275,7 @@ function valuetext(value: number) {
 
 const StyledSlider = styled(Slider)(`
   color: var(--color-primary);
-  height: 6px;
+  height: 8px;
   width: 100%;
   padding: 16px 0;
   display: inline-block;
@@ -360,6 +450,40 @@ const StyledBackdrop = styled(Backdrop)`
   -webkit-tap-highlight-color: transparent;
 `;
 
+const StyledBadge = styled(Badge)(
+  ({ theme }) => `
+  box-sizing: border-box;
+  list-style: none;
+  font-family: IBM Plex Sans, sans-serif;
+  position: relative;
+  display: inline-block;
+  
+
+  & .${badgeClasses.badge} {
+    z-index: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 18px;
+    height: 18px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 12px;
+    background: var(--muidocs-palette-primary-500);
+    box-shadow: 0px 2px 24px ${
+      theme.palette.mode === 'dark'
+        ? 'var(--muidocs-palette-primary-900)'
+        : 'var(--muidocs-palette-primary-100)'
+    };
+    transform: translate(50%, -50%);
+    transform-origin: 100% 0;
+  }
+  `,
+);
+
 export default function BaseUIHero() {
   const [customized, setCustomized] = React.useState(true);
   // Modal
@@ -472,28 +596,39 @@ export default function BaseUIHero() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                px: '1rem',
-                py: '0.5rem',
+                p: '1rem',
                 borderBottom: '1px solid var(--border-color)',
               }}
             >
-              <p>Notifications</p>
-              <Box sx={{ height: 32, width: 32, background: '#202020', borderRadius: 99 }} />
+              <StyledParagraph>Notifications</StyledParagraph>
+              <StyledBadge badgeContent={5}>
+                <Box
+                  component="span"
+                  sx={{
+                    display: 'inline-block',
+                    verticalAlign: 'middle',
+                    height: 32,
+                    width: 32,
+                    background: '#202020',
+                    borderRadius: 99,
+                  }}
+                />
+              </StyledBadge>
             </Box>
             {/* Autocomplete component */}
             <Box
               sx={{
-                px: '1rem',
-                pt: '1rem',
-                pb: '1.5rem',
+                p: '1rem 1rem 1.5rem 1rem',
+                display: 'flex',
+                flexDirection: 'column',
                 borderBottom: '1px solid var(--border-color)',
               }}
             >
-              <Box component="label">Search for a hook</Box>
+              <StyledLabel>Search for a hook</StyledLabel>
               <Select
                 defaultValue={10}
                 slots={{
-                  root: StyledButton,
+                  root: StyledSelectButton,
                   popper: StyledPopper,
                   listbox: StyledListbox,
                 }}
@@ -511,17 +646,17 @@ export default function BaseUIHero() {
             {/* Select component */}
             <Box
               sx={{
-                px: '1rem',
-                pt: '1rem',
-                pb: '1.5rem',
+                p: '1rem 1rem 1.5rem 1rem',
+                display: 'flex',
+                flexDirection: 'column',
                 borderBottom: '1px solid var(--border-color)',
               }}
             >
-              <Box component="label">Select a component</Box>
+              <StyledLabel>Select a component</StyledLabel>
               <Select
                 defaultValue={10}
                 slots={{
-                  root: StyledButton,
+                  root: StyledSelectButton,
                   popper: StyledPopper,
                   listbox: StyledListbox,
                 }}
@@ -545,7 +680,7 @@ export default function BaseUIHero() {
                 borderBottom: '1px solid var(--border-color)',
               }}
             >
-              <div>Choose a temperature</div>
+              <StyledLabel>Choose a temperature</StyledLabel>
               <StyledSlider
                 aria-label="Temperature"
                 defaultValue={37}
@@ -553,7 +688,7 @@ export default function BaseUIHero() {
                 marks={marks}
               />
             </Box>
-            {/* Slider component */}
+            {/* Switch component */}
             <Box
               sx={{
                 p: '1rem',
@@ -564,7 +699,7 @@ export default function BaseUIHero() {
               }}
             >
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div id="make-it-your-own">Make it your own</div>
+                <StyledParagraph id="make-it-your-own">Make it your own</StyledParagraph>
                 <Switch
                   slots={{
                     root: StyledSwitch,
@@ -576,7 +711,7 @@ export default function BaseUIHero() {
                 />
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div id="make-it-your-own">Use every component</div>
+                <StyledParagraph id="make-it-your-own">Use every component</StyledParagraph>
                 <Switch
                   slots={{
                     root: StyledSwitch,
@@ -598,9 +733,9 @@ export default function BaseUIHero() {
                 '& > button': { flex: 1 },
               }}
             >
-              <Button type="button" onClick={handleOpenModal}>
+              <StyledModalButton type="button" onClick={handleOpenModal}>
                 View modal
-              </Button>
+              </StyledModalButton>
               <StyledModal
                 aria-labelledby="unstyled-modal-title"
                 aria-describedby="unstyled-modal-description"
@@ -613,18 +748,18 @@ export default function BaseUIHero() {
                   <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
                 </Box>
               </StyledModal>
-              <Button type="button" onClick={handleClickSnackbar}>
+              <StyledSnackbarButton type="button" onClick={handleClickSnackbar}>
                 View snackbar
-              </Button>
+              </StyledSnackbarButton>
               <Snackbar open={openSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
                 Hello World
               </Snackbar>
             </Box>
             {/* Button "View the code" component */}
             <Box sx={{ display: 'flex', p: '1rem', gap: '0.5rem', '& > button': { flex: 1 } }}>
-              <Button>
-                View the code <LaunchRoundedIcon />
-              </Button>
+              <StyledViewCode>
+                View the code <LaunchRoundedIcon fontSize="small" />
+              </StyledViewCode>
             </Box>
           </Panel>
         </Box>
