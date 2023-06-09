@@ -106,6 +106,12 @@ Here is an example of a context menu. (Right click to open.)
 
 {{"demo": "ContextMenu.js"}}
 
+## Nested menu
+
+Following demo shows how to implement customizable Nested menus
+
+{{"demo": "NestedMenu.js"}}
+
 ## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:
