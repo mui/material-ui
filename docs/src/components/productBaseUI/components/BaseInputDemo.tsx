@@ -20,10 +20,12 @@ const fieldStyles = `
   border-color: var(--muidocs-palette-grey-300);
   border-radius: var(--muidocs-shape-borderRadius);
   outline-color: transparent;
-  box-shadow: 0 2px 4px 0 rgba(0 0 0 / 0.15);
+  box-shadow: var(--shadow);
+
   &:hover {
-    border-color: var(--muidocs-palette-grey-500);
+    border-color: var(--muidocs-palette-grey-400);
   }
+
   &:focus-within {
     border-color: var(--palette-primary);
     outline: 3px solid;
@@ -53,10 +55,10 @@ const fieldStyles = `
 
   :where([data-mui-color-scheme='dark']) & {
     border-color: var(--muidocs-palette-grey-800);
-    box-shadow: 0 2px 4px 0 rgba(0 0 0 / 0.8);
+    box-shadow: var(--shadow);
 
     &:hover {
-      border-color: var(--muidocs-palette-grey-800);
+      border-color: var(--muidocs-palette-grey-700);
     }
 
     &:focus-within {
@@ -171,7 +173,7 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' | 'tailw
       {styling === 'tailwindcss' && (
         <InputUnstyled
           placeholder="Type something here"
-          className=" relative inline-flex h-[--TextInput-height] w-[320px] rounded-[--muidocs-shape-borderRadius] border border-solid border-[--muidocs-palette-grey-300] bg-[--muidocs-palette-background-paper] p-[0px_0.75rem] shadow-[0_2px_4px_0_rgba(0_0_0/0.15)] outline-transparent [--TextInput-height:64px] [--TextInput-labelLineHeight:20px] [--TextInput-labelScale:0.75] [--TextInput-paddingTop:2rem] focus-within:!border-[--palette-primary] focus-within:[outline:3px_solid_var(--focus-ring)] hover:border-[--muidocs-palette-grey-500] dark:border-[--muidocs-palette-grey-800] dark:shadow-[0_2px_4px_0_rgba(0_0_0/0.8)] dark:focus-within:!border-[--palette-primary] dark:focus-within:[outline:3px_solid_var(--focus-ring)] dark:hover:border-[--muidocs-palette-grey-800]"
+          className=" p-[0px_0.75rem][box-shadow:var(--shadow)] relative inline-flex h-[--TextInput-height] w-[320px] rounded-[--muidocs-shape-borderRadius] border border-solid border-[--muidocs-palette-grey-300] bg-[--muidocs-palette-background-paper] outline-transparent [--TextInput-height:64px] [--TextInput-labelLineHeight:20px] [--TextInput-labelScale:0.75] [--TextInput-paddingTop:2rem] focus-within:!border-[--palette-primary] focus-within:[outline:3px_solid_var(--focus-ring)] hover:border-[--muidocs-palette-grey-400] dark:border-[--muidocs-palette-grey-800] dark:shadow-[0_2px_4px_0_rgba(0_0_0/0.8)] dark:focus-within:!border-[--palette-primary] dark:focus-within:[outline:3px_solid_var(--focus-ring)] dark:hover:border-[--muidocs-palette-grey-700]"
           slots={{ input: TailwindFloatingLabelInput }}
         />
       )}
@@ -281,17 +283,17 @@ const FloatingLabelInput = React.forwardRef(
   rounded-[--muidocs-shape-borderRadius] border border-solid 
   border-[--muidocs-palette-grey-300] 
   bg-[--muidocs-palette-background-paper] 
-  p-[0px_0.75rem] shadow-[0_2px_4px_0_rgba(0_0_0/0.15)] 
+  p-[0px_0.75rem] [box-shadow:var(--shadow)] 
   outline-transparent [--TextInput-height:64px] 
   [--TextInput-labelLineHeight:20px] [--TextInput-labelScale:0.75] 
   [--TextInput-paddingTop:2rem] 
   focus-within:!border-[--palette-primary] 
   focus-within:[outline:3px_solid_var(--focus-ring)] 
-  hover:border-[--muidocs-palette-grey-500] dark:border-transparent 
+  hover:border-[--muidocs-palette-grey-400] dark:border-transparent 
   dark:shadow-[0_2px_4px_0_rgba(0_0_0/0.8)] 
   dark:focus-within:!border-[--palette-primary] 
   dark:focus-within:[outline:3px_solid_var(--focus-ring)] 
-  dark:hover:border-[--muidocs-palette-grey-800]"
+  dark:hover:border-[--muidocs-palette-grey-700]"
   slots={{ input: FloatingLabelInput }}
 />
 `;

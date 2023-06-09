@@ -9,11 +9,16 @@ const buttonStyles = `
   font-size: 0.875rem;
   background-color: var(--palette-primary);
   padding: 10px 16px;
-  border-radius: 12px;
+  border-radius: 8px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
+  box-shadow: var(--shadow);
+
+  &:hover {
+    background-color: var(--palette-primary-hover);
+  }
 
   &.Mui-active {
     background-color: var(--palette-primary-dark);
@@ -63,12 +68,12 @@ export default function BaseButtonDemo({
       )}
       {styling === 'tailwindcss' && (
         <React.Fragment>
-          <Button className="transition-all-[150ms_ease] cursor-pointer rounded-[12px] border-none bg-[--palette-primary] p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] ui-active:bg-[--palette-primary-dark] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
+          <Button className="transition-all-[150ms_ease] shaodw-[--shadow] cursor-pointer rounded-[8px] border-none bg-[--palette-primary] p-[10px_16px] text-[0.875rem] font-bold text-white transition [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-hover] ui-active:bg-[--palette-primary-dark] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
             Button
           </Button>
           <Button
             disabled
-            className="transition-all-[150ms_ease] cursor-pointer rounded-[12px] border-none bg-[--palette-primary] p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] ui-active:bg-[--palette-primary-dark] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]"
+            className="transition-all-[150ms_ease] cursor-pointer rounded-[8px] border-none bg-[--palette-primary] p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] ui-active:bg-[--palette-primary-dark] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]"
           >
             Disabled
           </Button>
@@ -104,17 +109,19 @@ import './styles.css';
 
 <Button
   className="transition-all-[150ms_ease] cursor-pointer
-              rounded-[12px] border-none bg-[--palette-primary]
+              rounded-[8px] border-none bg-[--palette-primary]
               p-[10px_16px] text-[0.875rem] font-bold 
               text-white [font-family:IBM_Plex_sans] 
+              hover:bg-[--palette-primary-hover]
+              shadow-[--shadow]
               ui-active:bg-[--palette-primary-dark] 
               ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
-              ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
+              ui-focus-visible:[outline:4px_solid_var(--focus-ring) transition">
   Button
 </Button>
 <Button
   className="transition-all-[150ms_ease] cursor-pointer
-              rounded-[12px] border-none bg-[--palette-primary]
+              rounded-[8px] border-none bg-[--palette-primary]
               p-[10px_16px] text-[0.875rem] font-bold 
               text-white [font-family:IBM_Plex_sans] 
               ui-active:bg-[--palette-primary-dark] 

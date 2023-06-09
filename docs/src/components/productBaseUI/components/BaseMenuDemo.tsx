@@ -16,10 +16,11 @@ const buttonStyles = `
   font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 10px 14px 10px 8px;
+  border-radius: 8px;
+  padding: 8px 12px 8px 6px;
   line-height: 1.5;
   background: var(--muidocs-palette-background-paper);
+  box-shadow: var(--shadow);
   border: 1px solid;
   border-color: var(--muidocs-palette-grey-200);
   color: var(--muidocs-palette-text-primary);
@@ -63,11 +64,11 @@ const listboxStyles = `
   border: 1px solid;
   border-color: var(--muidocs-palette-grey-200);
   background: var(--muidocs-palette-background-paper);
-  box-shadow: 0px 4px 40px rgba(62, 80, 96, 0.1);
+  box-shadow: 0px 4px 40px rgba(205, 210, 215, 0.5);
 
   :where([data-mui-color-scheme='dark']) & {
     border-color: var(--muidocs-palette-primaryDark-700);
-    box-shadow: 0px 4px 40px rgba(11, 13, 14, 0.5);
+    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.5);
   }`;
 const StyledListbox = styled('ul')(listboxStyles);
 
@@ -172,7 +173,7 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwi
       {styling === 'tailwindcss' && (
         <React.Fragment>
           <ButtonUnstyled
-            className="min-h-[calc(1.5em + 22px)] inline-flex items-center gap-[0.5rem] rounded-[12px] border border-solid border-[--muidocs-palette-grey-200] bg-[--muidocs-palette-background-paper] p-[10px_14px_10px_8px] text-[0.875rem] leading-[1.5] transition-all [font-family:IBM_Plex_sans] hover:bg-[--muidocs-palette-grey-50]  ui-focus-visible:[outline:3px_solid_var(--focus-ring)] dark:border-[--muidocs-palette-primaryDark-700] dark:hover:bg-[--muidocs-palette-primaryDark-800]"
+            className="min-h-[calc(1.5em + 22px)] inline-flex items-center gap-[0.5rem] rounded-[8px] border border-solid border-[--muidocs-palette-grey-200] bg-[--muidocs-palette-background-paper] p-[8px_12px_8px_6px] text-[0.875rem] leading-[1.5] transition-all [box-shadow:var(--shadow)] [font-family:IBM_Plex_sans] hover:bg-[--muidocs-palette-grey-50]  ui-focus-visible:[outline:3px_solid_var(--focus-ring)] dark:border-[--muidocs-palette-primaryDark-700] dark:hover:bg-[--muidocs-palette-primaryDark-800]"
             type="button"
             onClick={handleButtonClick}
             onKeyDown={handleButtonKeyDown}
@@ -382,11 +383,12 @@ function Demo() {
     <>
       <ButtonUnstyled
         className="min-h-[calc(1.5em + 22px)] inline-flex 
-        items-center gap-[0.5rem] rounded-[12px] border 
+        items-center gap-[0.5rem] rounded-[8px] border 
         border-solid border-[--muidocs-palette-grey-200] 
         bg-[--muidocs-palette-background-paper] 
-        p-[10px_14px_10px_8px] text-[0.875rem] 
+        p-[8px_12px_8px_6px] text-[0.875rem] 
         leading-[1.5] transition-all [font-family:IBM_Plex_sans] 
+        [box-shadow:var(--shadow)]
         hover:bg-[--muidocs-palette-grey-50] 
         ui-focus-visible:[outline:3px_solid_var(--focus-ring)]
         dark:border-[--muidocs-palette-primaryDark-700] 

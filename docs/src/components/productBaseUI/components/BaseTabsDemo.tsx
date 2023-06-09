@@ -45,7 +45,7 @@ const tabStyles = `
     background-color: var(--palette-primary-light);
   }
 
-  &:focus {
+  &:focus-visible {
     color: #FFF;
     outline: 3px solid var(--focus-ring);
   }
@@ -111,13 +111,13 @@ export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwin
       {styling === 'tailwindcss' && ( // https://play.tailwindcss.com/8jGjUI7EWe
         <TabsUnstyled selectionFollowsFocus defaultValue={0}>
           <TabsListUnstyled className="mb-[16px] flex min-w-[300px] content-between items-center justify-center rounded-[12px] bg-[--palette-primary] [box-shadow:var(--shadow)]">
-            <TabUnstyled className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
+            <TabUnstyled className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
               One
             </TabUnstyled>
-            <TabUnstyled className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
+            <TabUnstyled className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
               Two
             </TabUnstyled>
-            <TabUnstyled className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
+            <TabUnstyled className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
               Three
             </TabUnstyled>
           </TabsListUnstyled>
