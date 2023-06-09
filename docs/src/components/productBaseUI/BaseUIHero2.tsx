@@ -466,6 +466,7 @@ export default function BaseUIHero() {
                 </Tab>
               </TabsList>
             </Tabs>
+            {/* Notification component */}
             <Box
               sx={{
                 display: 'flex',
@@ -479,6 +480,7 @@ export default function BaseUIHero() {
               <p>Notifications</p>
               <Box sx={{ height: 32, width: 32, background: '#202020', borderRadius: 99 }} />
             </Box>
+            {/* Autocomplete component */}
             <Box
               sx={{
                 px: '1rem',
@@ -506,6 +508,7 @@ export default function BaseUIHero() {
                 <Option value={30}>Thirty</Option>
               </Select>
             </Box>
+            {/* Select component */}
             <Box
               sx={{
                 px: '1rem',
@@ -533,6 +536,7 @@ export default function BaseUIHero() {
                 <Option value={30}>Thirty</Option>
               </Select>
             </Box>
+            {/* Slider component */}
             <Box
               sx={{
                 px: '1rem',
@@ -549,6 +553,7 @@ export default function BaseUIHero() {
                 marks={marks}
               />
             </Box>
+            {/* Slider component */}
             <Box
               sx={{
                 p: '1rem',
@@ -583,6 +588,7 @@ export default function BaseUIHero() {
                 />
               </Box>
             </Box>
+            {/* Modal and Snackbar component */}
             <Box
               sx={{
                 display: 'flex',
@@ -614,6 +620,7 @@ export default function BaseUIHero() {
                 Hello World
               </Snackbar>
             </Box>
+            {/* Button "View the code" component */}
             <Box sx={{ display: 'flex', p: '1rem', gap: '0.5rem', '& > button': { flex: 1 } }}>
               <Button>
                 View the code <LaunchRoundedIcon />
