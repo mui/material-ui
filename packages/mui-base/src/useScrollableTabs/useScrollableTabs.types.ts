@@ -32,8 +32,6 @@ export interface UseScrollableTabsParameters {
 }
 
 export interface UseScrollableTabsReturnValue {
-  /**
-   * Returns the values to be passed to the tabs provider.
-   */
-  contextValue: ScrollableTabsProviderValue;
+  getStartScrollButtonProps: any;
+  getEndScrollButtonProps: any;
 }

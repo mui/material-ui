@@ -143,7 +143,7 @@ function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollab
     moveTabsScroll(getScrollSize());
   };
 
-  const createHandleClick =
+  const createHandleStartScrollClick =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
     (event: React.KeyboardEvent<HTMLInputElement>) => {
       console.log('scrollableTabs clicked');
@@ -165,44 +165,45 @@ function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollab
       // }
     };
 
-  const getScrollButtonProps: any = (otherProps = {}) => ({
-    // ref: handleInputRef,
-    // 'aria-readonly': readOnly,
-    // 'aria-disabled': disabled,
-    // 'aria-required': required,
+  const createHandleEndScrollClick =
+    (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      console.log('scrollableTabs clicked');
+      // if (event.code === 'Space' && inputRef.current) {
+      //   event.preventDefault();
+      //   setCheckedState(!checked);
+      //   otherProps.onKeyDown?.(event);
+      //
+      //   const nativeEvent = event.nativeEvent || event;
+      //   // @ts-ignore
+      //   const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+      //
+      //   Object.defineProperty(clonedEvent, 'target', {
+      //     writable: true,
+      //     value: { type: 'checkbox', checked: !checked },
+      //   });
+      //   onChange?.(clonedEvent);
+      //   otherProps.onChange?.(clonedEvent);
+      // }
+    };
+
+  const getStartScrollButtonProps: any = (otherProps = {}) => ({
+    orientation,
+    direction: isRtl ? 'right' : 'left',
     ...otherProps,
-    // onFocus: createHandleFocus(otherProps),
-    // onBlur: createHandleBlur(otherProps),
-    onClick: createHandleClick(otherProps),
-    // onKeyDown: createHandleKeyDown(otherProps),
+    onClick: createHandleStartScrollClick(otherProps),
   });
 
-  const contextVaue = {
-    direction,
-    getTabId,
-    getTabPanelId,
-    onSelected,
+  const getEndScrollButtonProps: any = (otherProps = {}) => ({
     orientation,
-    registerTabIdLookup,
-    selectionFollowsFocus,
-    value,
-    getScrollButtonProps,
-    ...compoundComponentContextValue,
-  };
+    direction: isRtl ? 'right' : 'left',
+    ...otherProps,
+    onClick: createHandleEndScrollClick(otherProps),
+  });
 
   return {
-    contextValue: {
-      direction,
-      getTabId,
-      getTabPanelId,
-      onSelected,
-      orientation,
-      registerTabIdLookup,
-      selectionFollowsFocus,
-      value,
-      getScrollButtonProps,
-      ...compoundComponentContextValue,
-    },
+    getStartScrollButtonProps,
+    getEndScrollButtonProps,
   };
 }
 

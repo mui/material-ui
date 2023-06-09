@@ -198,7 +198,7 @@ const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
   const defaultValue = defaultValueProp || (valueProp === undefined ? 0 : undefined);
-  const { contextValue: scrollableTabsContextValue } = useScrollableTabs({
+  const { getStartScrollButtonProps, getEndScrollButtonProps } = useScrollableTabs({
     ...props,
     orientation,
     defaultValue,
@@ -255,6 +255,7 @@ const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
   const [SlotScrollButtonStart, scrollButtonStartProps] = useSlot('scrollButtonStart', {
     elementType: ScrollButton,
     externalForwardedProps,
+    getSlotProps: getStartScrollButtonProps,
     ownerState,
     className: classes.scrollButtonStart,
   });
@@ -262,6 +263,7 @@ const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
   const [SlotScrollButtonEnd, scrollButtonEndProps] = useSlot('scrollButtonEnd', {
     elementType: ScrollButton,
     externalForwardedProps,
+    getSlotProps: getEndScrollButtonProps,
     ownerState,
     className: classes.scrollButtonEnd,
   });
@@ -269,20 +271,20 @@ const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
   return (
     // @ts-ignore `defaultValue` between HTMLDiv and ScrollableTabsProps is conflicted.
     <SlotRoot {...rootProps}>
-      <ScrollableTabsProvider value={scrollableTabsContextValue}>
-        <TabsProvider value={contextValue}>
-          <SlotScrollButtonStart {...scrollButtonStartProps}>
-            <button>test</button>
-          </SlotScrollButtonStart>
-          <SlotScroller {...scrollerProps}>
-            {/* {mounted && indicator} */}
-            <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
-          </SlotScroller>
-          <SlotScrollButtonEnd {...scrollButtonEndProps}>
-            <button>test</button>
-          </SlotScrollButtonEnd>
-        </TabsProvider>
-      </ScrollableTabsProvider>
+      {/* <ScrollableTabsProvider value={scrollableTabsContextValue}> */}
+      <TabsProvider value={contextValue}>
+        <SlotScrollButtonStart {...scrollButtonStartProps}>
+          <button>test</button>
+        </SlotScrollButtonStart>
+        <SlotScroller {...scrollerProps}>
+          {/* {mounted && indicator} */}
+          <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
+        </SlotScroller>
+        <SlotScrollButtonEnd {...scrollButtonEndProps}>
+          <button>test</button>
+        </SlotScrollButtonEnd>
+      </TabsProvider>
+      {/* </ScrollableTabsProvider> */}
     </SlotRoot>
   );
 }) as OverridableComponent<ScrollableTabsTypeMap>;
