@@ -6,7 +6,6 @@ import { describeConformance, act, createRenderer, fireEvent, screen } from 'tes
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import BaseSlider from '@mui/base/Slider';
 import Slider, { sliderClasses as classes } from '@mui/material-next/Slider';
-import mockMatchMediaBeforeEach from '../utils/tests/mockMatchMediaBeforeEach';
 
 function createTouches(touches) {
   return {
@@ -21,13 +20,24 @@ function createTouches(touches) {
 }
 
 describe('<Slider />', () => {
-  mockMatchMediaBeforeEach();
-
   before(function beforeHook() {
     // only run in supported browsers
     if (typeof Touch === 'undefined') {
       this.skip();
     }
+  });
+
+  let originalMatchmedia;
+
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+    window.matchMedia = () => ({
+      addListener: () => {},
+      removeListener: () => {},
+    });
+  });
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
   });
 
   const { render } = createRenderer();
