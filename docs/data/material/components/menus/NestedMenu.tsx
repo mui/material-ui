@@ -76,7 +76,7 @@ export default function BasicMenu() {
     nestedOptions = options,
   ) => {
     const target = event.currentTarget;
-
+    console.log({ target });
     setAnchors((prevAnchors) => ({
       elements: prevAnchors.elements.map((element, index) =>
         index === level ? target : element,
@@ -130,11 +130,14 @@ export default function BasicMenu() {
             {(anchors.options[index] || []).map((option) => (
               <MenuItem
                 key={option.value}
-                onClick={(event) => {
+                onClick={() => {
+                  if (!option.nestedOptions) {
+                    handleClose(0);
+                  }
+                }}
+                onMouseEnter={(event) => {
                   if (option.nestedOptions) {
                     handleClick(event, option.menuLevel + 1, option.nestedOptions);
-                  } else {
-                    handleClose(0);
                   }
                 }}
                 onKeyDown={(event) => {
