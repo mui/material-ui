@@ -63,7 +63,7 @@ export default function XGridGlobalStyles({
               },
               // -------------------------------
               // table body elements
-              '& .MuiDataGrid-viewport': {
+              '& .MuiDataGrid-virtualScroller': {
                 backgroundColor: (theme.vars || theme).palette.grey[50],
               },
               '& .MuiDataGrid-cell': {
@@ -140,7 +140,7 @@ export default function XGridGlobalStyles({
               },
               // -------------------------------
               // table body elements
-              '& .MuiDataGrid-viewport': {
+              '& .MuiDataGrid-virtualScroller': {
                 backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               },
               '& .MuiDataGrid-cell': {
