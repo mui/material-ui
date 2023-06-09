@@ -13,6 +13,8 @@ githubLabel: 'component: Typography'
 
 The Typography component helps maintain a consistent design by providing a limited set of values to choose from and convenient props for building common designs faster.
 
+{{"demo": "TypographyUsage.js"}}
+
 ## Basics
 
 ```jsx
