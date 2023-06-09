@@ -152,6 +152,14 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 ## Customization
 
+### Vertical
+
+Slider components can be arranged vertically as well as horizontally.
+
+When vertical, you must set `orientation="vertical"` on the `<Slider />` component so the user can navigate with the up and down arrow keys (rather than the default left-to-right behavior for horizontal sliders).
+
+{{"demo": "VerticalSlider.js"}}
+
 ### Discrete sliders
 
 The most basic slider is _continuous_, which means it does not have pre-defined (_discrete_) values for the user to select from.
