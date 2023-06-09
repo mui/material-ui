@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Slider from '@mui/material-next/Slider';
+import { SliderOwnerState } from './Slider.types';
 
 function testOnChange() {
   function handleSliderChange(event: Event, value: unknown) {}
@@ -7,7 +8,6 @@ function testOnChange() {
   <Slider onChange={handleSliderChange} onChangeCommitted={handleSliderChangeCommitted} />;
 
   function handleElementChange(event: React.ChangeEvent) {}
-  // @ts-expect-error internally it's whatever even lead to a change in value
   <Slider onChange={handleElementChange} onChangeCommitted={handleElementChange} />;
 }
 
@@ -38,27 +38,39 @@ function testOnChange() {
 // slotProps and componentsProps as functions
 <Slider
   slotProps={{
-    root: ({ color }) => ({ className: color === 'primary' ? 'root_primary' : 'root_secondary' }),
-    input: ({ size }) => ({ disabled: size === 'medium' }),
-    mark: ({ marked }) => ({
+    root: ({ color }: SliderOwnerState) => ({
+      className: color === 'primary' ? 'root_primary' : 'root_secondary',
+    }),
+    input: ({ size }: SliderOwnerState) => ({ disabled: size === 'medium' }),
+    mark: ({ marked }: SliderOwnerState) => ({
       className: marked ? 'marked' : '',
     }),
-    markLabel: ({ max }) => ({ className: max === 99 ? 'red' : 'normal' }),
-    rail: ({ dragging }) => ({
+    markLabel: ({ max }: SliderOwnerState) => ({
+      className: max === 99 ? 'red' : 'normal',
+    }),
+    rail: ({ dragging }: SliderOwnerState) => ({
       className: dragging ? 'rail' : '',
     }),
-    thumb: ({ orientation }) => ({ className: orientation === 'vertical' ? 'thumb_vertical' : '' }),
+    thumb: ({ orientation }: SliderOwnerState) => ({
+      className: orientation === 'vertical' ? 'thumb_vertical' : '',
+    }),
   }}
   componentsProps={{
-    root: ({ color }) => ({ className: color === 'primary' ? 'root_primary' : 'root_secondary' }),
-    input: ({ size }) => ({ disabled: size === 'medium' }),
-    mark: ({ marked }) => ({
+    root: ({ color }: SliderOwnerState) => ({
+      className: color === 'primary' ? 'root_primary' : 'root_secondary',
+    }),
+    input: ({ size }: SliderOwnerState) => ({ disabled: size === 'medium' }),
+    mark: ({ marked }: SliderOwnerState) => ({
       className: marked ? 'marked' : '',
     }),
-    markLabel: ({ max }) => ({ className: max === 99 ? 'red' : 'normal' }),
-    rail: ({ dragging }) => ({
+    markLabel: ({ max }: SliderOwnerState) => ({
+      className: max === 99 ? 'red' : 'normal',
+    }),
+    rail: ({ dragging }: SliderOwnerState) => ({
       className: dragging ? 'rail' : '',
     }),
-    thumb: ({ orientation }) => ({ className: orientation === 'vertical' ? 'thumb_vertical' : '' }),
+    thumb: ({ orientation }: SliderOwnerState) => ({
+      className: orientation === 'vertical' ? 'thumb_vertical' : '',
+    }),
   }}
 />;
