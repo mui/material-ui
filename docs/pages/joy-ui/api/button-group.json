@@ -1,25 +1,25 @@
 {
   "props": {
-    "action": {
-      "type": {
-        "name": "union",
-        "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
-      }
-    },
+    "buttonFlex": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "children": { "type": { "name": "node" } },
     "color": {
       "type": {
         "name": "union",
         "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'"
+      "default": "'neutral'"
     },
     "component": { "type": { "name": "elementType" } },
+    "detached": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "focusVisibleClassName": { "type": { "name": "string" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
     "size": {
       "type": {
         "name": "union",
-        "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
+        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
     },
@@ -42,17 +42,17 @@
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'soft'"
+      "default": "'outlined'"
     }
   },
-  "name": "IconButton",
+  "name": "ButtonGroup",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
-      "default": "'button'",
-      "class": ".MuiIconButton-root"
+      "default": "'div'",
+      "class": ".MuiButtonGroup-root"
     }
   ],
   "classes": {
@@ -64,24 +64,25 @@
       "colorPrimary",
       "colorSuccess",
       "colorWarning",
-      "disabled",
-      "focusVisible",
+      "detached",
+      "horizontal",
       "sizeLg",
       "sizeMd",
       "sizeSm",
       "variantOutlined",
       "variantPlain",
       "variantSoft",
-      "variantSolid"
+      "variantSolid",
+      "vertical"
     ],
-    "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" }
+    "globalClasses": {}
   },
-  "spread": false,
+  "spread": true,
   "themeDefaultProps": true,
-  "muiName": "JoyIconButton",
-  "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/mui-joy/src/IconButton/IconButton.tsx",
+  "muiName": "JoyButtonGroup",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/ButtonGroup/ButtonGroup.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-button/\">Button</a></li>\n<li><a href=\"/joy-ui/react-button-group/\">Button Group</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-button-group/\">Button Group</a></li></ul>",
   "cssComponent": false
 }
