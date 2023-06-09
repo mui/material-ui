@@ -271,12 +271,16 @@ const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
     <SlotRoot {...rootProps}>
       <ScrollableTabsProvider value={scrollableTabsContextValue}>
         <TabsProvider value={contextValue}>
-          <SlotScrollButtonStart {...scrollButtonStartProps} />
+          <SlotScrollButtonStart {...scrollButtonStartProps}>
+            <button>test</button>
+          </SlotScrollButtonStart>
           <SlotScroller {...scrollerProps}>
             {/* {mounted && indicator} */}
             <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
           </SlotScroller>
-          <SlotScrollButtonEnd {...scrollButtonEndProps} />
+          <SlotScrollButtonEnd {...scrollButtonEndProps}>
+            <button>test</button>
+          </SlotScrollButtonEnd>
         </TabsProvider>
       </ScrollableTabsProvider>
     </SlotRoot>
