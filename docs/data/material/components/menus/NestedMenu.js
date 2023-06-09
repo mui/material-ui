@@ -2,65 +2,56 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { StyledEngineProvider } from '@mui/styled-engine';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Box, Icon, Typography } from '@mui/material';
 
 const options = [
   {
-    value: 'a',
+    value: 'Food',
     menuLevel: 0,
   },
   {
-    value: 'b',
+    value: 'Drinks',
     menuLevel: 0,
     nestedOptions: [
       {
-        value: 'e',
+        value: 'Non-Alcoholic',
         menuLevel: 1,
         nestedOptions: [
           {
-            value: 'h',
+            value: 'Soda',
             menuLevel: 2,
           },
           {
-            value: 'i',
+            value: 'Iced Tea',
             menuLevel: 2,
           },
           {
-            value: 'j',
+            value: 'Lemonade',
             menuLevel: 2,
           },
         ],
       },
       {
-        value: 'f',
-        menuLevel: 1,
-      },
-      {
-        value: 'g',
+        value: 'Alcoholic',
         menuLevel: 1,
       },
     ],
   },
   {
-    value: 'c',
-    menuLevel: 0,
-  },
-  {
-    value: 'd',
+    value: 'Desserts',
     menuLevel: 0,
     nestedOptions: [
       {
-        value: 'm',
+        value: 'Cakes',
         menuLevel: 1,
       },
       {
-        value: 'n',
+        value: 'Ice Cream',
         menuLevel: 1,
       },
       {
-        value: '0',
+        value: 'Pastries',
         menuLevel: 1,
       },
     ],
@@ -105,7 +96,7 @@ export default function BasicMenu() {
           handleClick(event);
         }}
       >
-        Dashboard
+        Menu
       </Button>
 
       {anchors.elements.map((anchorElement, index) =>

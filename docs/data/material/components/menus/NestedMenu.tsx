@@ -62,12 +62,19 @@ const options = [
 export default function BasicMenu() {
   const MENU_LEVELS = 3;
 
-  const [anchors, setAnchors] = React.useState({
+  const [anchors, setAnchors] = React.useState<{
+    elements: Array<null | HTMLElement>;
+    options: Array<null | typeof options>;
+  }>({
     elements: new Array(MENU_LEVELS).fill(null),
     options: new Array(MENU_LEVELS).fill(null),
   });
 
-  const handleClick = (event, level = 0, nestedOptions = options) => {
+  const handleClick = (
+    event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
+    level = 0,
+    nestedOptions = options,
+  ) => {
     const target = event.currentTarget;
 
     setAnchors((prevAnchors) => ({
@@ -79,7 +86,7 @@ export default function BasicMenu() {
       ),
     }));
   };
-  const handleClose = (level) => {
+  const handleClose = (level: number) => {
     setAnchors((prevAnchors) => ({
       elements: prevAnchors.elements.map((element, index) =>
         index >= level ? null : element,
