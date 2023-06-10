@@ -2,20 +2,23 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 // Base UI imports
-import Switch, { switchClasses } from '@mui/base/Switch';
+import Badge, { badgeClasses } from '@mui/base/Badge';
+import Button, { buttonClasses } from '@mui/base/Button';
+import Menu, { MenuActions } from '@mui/base/Menu';
+import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
+import Modal from '@mui/base/Modal';
+import Option, { optionClasses } from '@mui/base/Option';
+import Popper from '@mui/base/Popper';
 import Select, { SelectProps, selectClasses } from '@mui/base/Select';
 import Slider, { sliderClasses } from '@mui/base/Slider';
-import Option, { optionClasses } from '@mui/base/Option';
-import Button from '@mui/base/Button';
-import Popper from '@mui/base/Popper';
-import Tabs from '@mui/base/Tabs';
-import Tab from '@mui/base/Tab';
-import TabsList from '@mui/base/TabsList';
-import TabPanel from '@mui/base/TabPanel';
-import Modal from '@mui/base/Modal';
 import Snackbar from '@mui/base/Snackbar';
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
-import Badge, { badgeClasses } from '@mui/base/Badge';
+import Switch, { switchClasses } from '@mui/base/Switch';
+import Tab from '@mui/base/Tab';
+import TabPanel from '@mui/base/TabPanel';
+import Tabs from '@mui/base/Tabs';
+import TabsList from '@mui/base/TabsList';
+import { ListActionTypes } from '@mui/base/useList';
 
 // Other packages
 import { styled } from '@mui/system';
@@ -484,6 +487,95 @@ const StyledBadge = styled(Badge)(
   `,
 );
 
+const StyledMenuItem = styled(MenuItem)(
+  ({ theme }) => `
+  list-style: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: default;
+  user-select: none;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  &.${menuItemClasses.focusVisible} {
+    outline: 3px solid ${
+      theme.palette.mode === 'dark'
+        ? 'var(--muidocs-palette-primary-600)'
+        : 'var(--muidocs-palette-primary-200)'
+    };
+    background-color: ${
+      theme.palette.mode === 'dark'
+        ? 'var(--muidocs-palette-grey-800)'
+        : 'var(--muidocs-palette-grey-100)'
+    };
+    color: ${
+      theme.palette.mode === 'dark'
+        ? 'var(--muidocs-palette-grey-300)'
+        : 'var(--muidocs-palette-grey-900)'
+    };
+  }
+
+  &.${menuItemClasses.disabled} {
+    color: ${
+      theme.palette.mode === 'dark'
+        ? 'var(--muidocs-palette-grey-700)'
+        : 'var(--muidocs-palette-grey-400)'
+    };
+  }
+
+  &:hover:not(.${menuItemClasses.disabled}) {
+    background-color: ${
+      theme.palette.mode === 'dark'
+        ? 'var(--muidocs-palette-grey-800)'
+        : 'var(--muidocs-palette-grey-50)'
+    };
+    color: ${
+      theme.palette.mode === 'dark'
+        ? 'var(--muidocs-palette-grey-300)'
+        : 'var(--muidocs-palette-grey-900)'
+    };
+  }
+  `,
+);
+
+const StyledMenuListbox = styled('ul')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  padding: 6px;
+  margin: 12px 0;
+  min-width: 200px;
+  border-radius: 12px;
+  overflow: auto;
+  outline: 0px;
+  background: ${theme.palette.mode === 'dark' ? 'var(--muidocs-palette-grey-900)' : '#fff'};
+  border: 1px solid ${
+    theme.palette.mode === 'dark'
+      ? 'var(--muidocs-palette-grey-700)'
+      : 'var(--muidocs-palette-grey-200)'
+  };
+  color: ${
+    theme.palette.mode === 'dark'
+      ? 'var(--muidocs-palette-grey-300)'
+      : 'var(--muidocs-palette-grey-900)'
+  };
+  box-shadow: 0px 2px 16px ${
+    theme.palette.mode === 'dark'
+      ? 'var(--muidocs-palette-grey-900)'
+      : 'var(--muidocs-palette-grey-200)'
+  };
+  `,
+);
+
+const StyledMenuButton = styled(Button)`
+  padding: 0;
+  border: none;
+  background: transparent;
+`;
+
 export default function BaseUIHero() {
   const [customized, setCustomized] = React.useState(true);
   // Modal
@@ -503,6 +595,56 @@ export default function BaseUIHero() {
 
   const handleClickSnackbar = () => {
     setOpenSnackbar(true);
+  };
+  // Menu
+  const [buttonElement, setButtonElement] = React.useState<HTMLButtonElement | null>(null);
+  const [isOpenMenu, setOpenMenu] = React.useState(false);
+  const menuActions = React.useRef<MenuActions>(null);
+  const preventReopen = React.useRef(false);
+
+  const updateAnchor = React.useCallback((node: HTMLButtonElement | null) => {
+    setButtonElement(node);
+  }, []);
+
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (preventReopen.current) {
+      event.preventDefault();
+      preventReopen.current = false;
+      return;
+    }
+
+    setOpenMenu((open) => !open);
+  };
+
+  const handleButtonMouseDown = () => {
+    if (isOpenMenu) {
+      // Prevents the menu from reopening right after closing
+      // when clicking the button.
+      preventReopen.current = true;
+    }
+  };
+
+  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      setOpenMenu(true);
+      if (event.key === 'ArrowUp') {
+        // Focus the last item when pressing ArrowUp.
+        menuActions.current?.dispatch({
+          type: ListActionTypes.keyDown,
+          key: event.key,
+          event,
+        });
+      }
+    }
+  };
+
+  const createHandleMenuClick = (menuItem: string) => {
+    return () => {
+      console.log(`Clicked on ${menuItem}`);
+      setOpenMenu(false);
+      buttonElement?.focus();
+    };
   };
 
   return (
@@ -601,19 +743,46 @@ export default function BaseUIHero() {
               }}
             >
               <StyledParagraph>Notifications</StyledParagraph>
-              <StyledBadge badgeContent={5}>
-                <Box
-                  component="span"
-                  sx={{
-                    display: 'inline-block',
-                    verticalAlign: 'middle',
-                    height: 32,
-                    width: 32,
-                    background: '#202020',
-                    borderRadius: 99,
-                  }}
-                />
-              </StyledBadge>
+              <StyledMenuButton
+                type="button"
+                onClick={handleButtonClick}
+                onKeyDown={handleButtonKeyDown}
+                onMouseDown={handleButtonMouseDown}
+                ref={updateAnchor}
+                aria-controls={isOpenMenu ? 'simple-menu' : undefined}
+                aria-expanded={isOpenMenu || undefined}
+                aria-haspopup="menu"
+              >
+                <StyledBadge badgeContent={5}>
+                  <Box
+                    component="span"
+                    sx={{
+                      display: 'inline-block',
+                      verticalAlign: 'middle',
+                      height: 32,
+                      width: 32,
+                      background: '#202020',
+                      borderRadius: 99,
+                    }}
+                  />
+                </StyledBadge>
+              </StyledMenuButton>
+              <Menu
+                actions={menuActions}
+                open={isOpenMenu}
+                onOpenChange={(open) => {
+                  setOpenMenu(open);
+                }}
+                anchorEl={buttonElement}
+                slots={{ root: StyledPopper, listbox: StyledMenuListbox }}
+                slotProps={{ listbox: { id: 'simple-menu' } }}
+              >
+                <StyledMenuItem onClick={createHandleMenuClick('Profile')}>Profile</StyledMenuItem>
+                <StyledMenuItem onClick={createHandleMenuClick('My account')}>
+                  My account
+                </StyledMenuItem>
+                <StyledMenuItem onClick={createHandleMenuClick('Log out')}>Log out</StyledMenuItem>
+              </Menu>
             </Box>
             {/* Autocomplete component */}
             <Box
