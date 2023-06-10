@@ -3,6 +3,7 @@ import Avatar from '@mui/joy/Avatar';
 import Chip from '@mui/joy/Chip';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import ButtonGroup from '@mui/joy/ButtonGroup';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
@@ -13,7 +14,6 @@ import Typography from '@mui/joy/Typography';
 export default function BioCard() {
   return (
     <Card
-      size="lg"
       sx={{
         width: 320,
         maxWidth: '100%',
@@ -105,16 +105,10 @@ export default function BioCard() {
       </CardContent>
       <CardOverflow sx={{ bgcolor: 'background.level1' }}>
         <CardActions buttonFlex="1">
-          <Button
-            variant="outlined"
-            color="neutral"
-            sx={{ bgcolor: 'background.surface' }}
-          >
-            Message
-          </Button>
-          <Button variant="solid" color="primary">
-            Connect
-          </Button>
+          <ButtonGroup variant="outlined" sx={{ bgcolor: 'background.surface' }}>
+            <Button>Message</Button>
+            <Button>Connect</Button>
+          </ButtonGroup>
         </CardActions>
       </CardOverflow>
     </Card>

@@ -64,6 +64,7 @@ const ButtonGroupRoot = styled('div', {
       '--ButtonGroup-radius': theme.vars.radius.sm,
       '--Divider-inset': '0.5rem',
       display: 'flex',
+      borderRadius: 'var(--ButtonGroup-radius)',
       flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
       [`&:not(.${buttonGroupClasses.detached})`]: {
         // first Button or IconButton
