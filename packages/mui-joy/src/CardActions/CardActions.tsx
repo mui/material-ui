@@ -132,6 +132,11 @@ CardActions.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The component orientation.
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal-reverse', 'horizontal', 'vertical']),
+  /**
    * The props used for each slot inside.
    * @default {}
    */

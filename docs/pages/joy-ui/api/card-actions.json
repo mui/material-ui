@@ -3,6 +3,13 @@
     "buttonFlex": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "children": { "type": { "name": "node" } },
     "component": { "type": { "name": "elementType" } },
+    "orientation": {
+      "type": {
+        "name": "enum",
+        "description": "'horizontal-reverse'<br>&#124;&nbsp;'horizontal'<br>&#124;&nbsp;'vertical'"
+      },
+      "default": "'horizontal'"
+    },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
