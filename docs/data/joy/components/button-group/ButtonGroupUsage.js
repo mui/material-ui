@@ -38,6 +38,11 @@ export default function ButtonUsage() {
           options: ['horizontal', 'vertical'],
         },
         {
+          propName: 'spacing',
+          knob: 'number',
+          defaultValue: 0,
+        },
+        {
           propName: 'children',
           defaultValue: `<Button />
   ...

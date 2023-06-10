@@ -10,7 +10,6 @@
       "default": "'neutral'"
     },
     "component": { "type": { "name": "elementType" } },
-    "detached": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
@@ -30,6 +29,13 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}"
+    },
+    "spacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number<br>&#124;&nbsp;string, md?: number<br>&#124;&nbsp;string, sm?: number<br>&#124;&nbsp;string, xl?: number<br>&#124;&nbsp;string, xs?: number<br>&#124;&nbsp;string }<br>&#124;&nbsp;string"
+      },
+      "default": "0"
     },
     "sx": {
       "type": {

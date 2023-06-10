@@ -2,6 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_traverseBreakpoints as traverseBreakpoints } from '@mui/system/Unstable_Grid';
 import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
@@ -9,7 +10,7 @@ import {
 } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
+import { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import { ButtonGroupProps, ButtonGroupOwnerState, ButtonGroupTypeMap } from './ButtonGroupProps';
 import ButtonGroupContext from './ButtonGroupContext';
 import useSlot from '../utils/useSlot';
@@ -17,13 +18,12 @@ import buttonClasses from '../Button/buttonClasses';
 import iconButtonClasses from '../IconButton/iconButtonClasses';
 
 const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
-  const { size, variant, color, detached, orientation } = ownerState;
+  const { size, variant, color, orientation } = ownerState;
 
   const slots = {
     root: [
       'root',
       orientation,
-      detached && 'detached',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
@@ -42,19 +42,34 @@ const ButtonGroupRoot = styled('div', {
   const shouldHaveBorder = !variantStyle?.border;
   const firstChildRadius =
     ownerState.orientation === 'vertical'
-      ? 'var(--ButtonGroup-radius) var(--ButtonGroup-radius) 0 0'
-      : 'var(--ButtonGroup-radius) 0 0 var(--ButtonGroup-radius)';
+      ? 'var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius) var(--unstable_childRadius)'
+      : 'var(--ButtonGroup-radius) var(--unstable_childRadius) var(--unstable_childRadius) var(--ButtonGroup-radius)';
   const lastChildRadius =
     ownerState.orientation === 'vertical'
-      ? '0 0 var(--ButtonGroup-radius) var(--ButtonGroup-radius)'
-      : '0 var(--ButtonGroup-radius) var(--ButtonGroup-radius) 0';
+      ? 'var(--unstable_childRadius) var(--unstable_childRadius) var(--ButtonGroup-radius) var(--ButtonGroup-radius)'
+      : 'var(--unstable_childRadius) var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius)';
   const margin =
     ownerState.orientation === 'vertical'
       ? 'var(--ButtonGroup-separatorSize) 0 0 0'
       : '0 0 0 var(--ButtonGroup-separatorSize)';
+  const styles = {};
+  traverseBreakpoints<string | number | null>(
+    theme.breakpoints,
+    ownerState.spacing,
+    (appendStyle, value) => {
+      if (value !== null) {
+        appendStyle(styles, {
+          // the buttons should be connected if the value is more than 0
+          '--unstable_connected': value.toString().match(/^0(?!\.)/) ? '1' : '0',
+          gap: typeof value === 'string' ? value : theme.spacing?.(value),
+        });
+      }
+    },
+  );
+
   return [
     {
-      '--ButtonGroup-separatorSize': '-1px',
+      '--ButtonGroup-separatorSize': 'calc(var(--unstable_connected) * -1px)',
       ...(ownerState.color !== 'context' && {
         '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.outlinedBorder,
         ...(ownerState.variant === 'solid' && {
@@ -63,69 +78,70 @@ const ButtonGroupRoot = styled('div', {
       }),
       '--ButtonGroup-radius': theme.vars.radius.sm,
       '--Divider-inset': '0.5rem',
+      '--unstable_childBorder': 'calc(var(--unstable_connected) * 1px)',
+      '--unstable_childRadius': 'calc((1 - var(--unstable_connected)) * var(--ButtonGroup-radius))',
+      ...styles,
       display: 'flex',
       flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
-      [`&:not(.${buttonGroupClasses.detached})`]: {
-        // first Button or IconButton
-        [`& > [data-first-child]`]: {
-          '--Button-radius': firstChildRadius,
-          '--IconButton-radius': firstChildRadius,
-          ...(shouldHaveBorder &&
-            ownerState.orientation === 'horizontal' && {
-              borderRight: '1px solid var(--ButtonGroup-separatorColor)',
-            }),
-          ...(shouldHaveBorder &&
-            ownerState.orientation === 'vertical' && {
-              borderBottom: '1px solid var(--ButtonGroup-separatorColor)',
-            }),
-        },
-        // middle Buttons or IconButtons
-        [`& > :not([data-first-child]):not([data-last-child])`]: {
-          '--Button-radius': '0px',
-          '--IconButton-radius': '0px',
-          borderRadius: 0,
-          ...(shouldHaveBorder &&
-            ownerState.orientation === 'horizontal' && {
-              borderLeft: '1px solid var(--ButtonGroup-separatorColor)',
-              borderRight: '1px solid var(--ButtonGroup-separatorColor)',
-            }),
-          ...(shouldHaveBorder &&
-            ownerState.orientation === 'vertical' && {
-              borderTop: '1px solid var(--ButtonGroup-separatorColor)',
-              borderBottom: '1px solid var(--ButtonGroup-separatorColor)',
-            }),
-        },
-        // last Button or IconButton
-        [`& > [data-last-child]`]: {
-          '--Button-radius': lastChildRadius,
-          '--IconButton-radius': lastChildRadius,
-          ...(shouldHaveBorder &&
-            ownerState.orientation === 'horizontal' && {
-              borderLeft: '1px solid var(--ButtonGroup-separatorColor)',
-            }),
-          ...(shouldHaveBorder &&
-            ownerState.orientation === 'vertical' && {
-              borderTop: '1px solid var(--ButtonGroup-separatorColor)',
-            }),
-        },
-        [`& > :not([data-first-child])`]: {
-          '--Button-margin': margin,
-          '--IconButton-margin': margin,
-        },
-        [`& .${buttonClasses.root}, & .${iconButtonClasses.root}`]: {
-          [`&:hover, ${theme.focus.selector}`]: {
-            zIndex: 1, // to make borders appear above sibling.
-          },
-        },
-        ...(ownerState.buttonFlex && {
-          [`& > *:not(.${iconButtonClasses.root})`]: {
-            flex: ownerState.buttonFlex,
-          },
-          [`& > :not(button) > .${buttonClasses.root}`]: {
-            width: '100%', // for button to fill its wrapper.
-          },
-        }),
+      // first Button or IconButton
+      [`& > [data-first-child]`]: {
+        '--Button-radius': firstChildRadius,
+        '--IconButton-radius': firstChildRadius,
+        ...(shouldHaveBorder &&
+          ownerState.orientation === 'horizontal' && {
+            borderRight: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+          }),
+        ...(shouldHaveBorder &&
+          ownerState.orientation === 'vertical' && {
+            borderBottom: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+          }),
       },
+      // middle Buttons or IconButtons
+      [`& > :not([data-first-child]):not([data-last-child])`]: {
+        '--Button-radius': 'var(--unstable_childRadius)',
+        '--IconButton-radius': 'var(--unstable_childRadius)',
+        borderRadius: 'var(--unstable_childRadius)',
+        ...(shouldHaveBorder &&
+          ownerState.orientation === 'horizontal' && {
+            borderLeft: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+            borderRight: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+          }),
+        ...(shouldHaveBorder &&
+          ownerState.orientation === 'vertical' && {
+            borderTop: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+            borderBottom: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+          }),
+      },
+      // last Button or IconButton
+      [`& > [data-last-child]`]: {
+        '--Button-radius': lastChildRadius,
+        '--IconButton-radius': lastChildRadius,
+        ...(shouldHaveBorder &&
+          ownerState.orientation === 'horizontal' && {
+            borderLeft: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+          }),
+        ...(shouldHaveBorder &&
+          ownerState.orientation === 'vertical' && {
+            borderTop: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+          }),
+      },
+      [`& > :not([data-first-child])`]: {
+        '--Button-margin': margin,
+        '--IconButton-margin': margin,
+      },
+      [`& .${buttonClasses.root}, & .${iconButtonClasses.root}`]: {
+        [`&:hover, ${theme.focus.selector}`]: {
+          zIndex: 1, // to make borders appear above sibling.
+        },
+      },
+      ...(ownerState.buttonFlex && {
+        [`& > *:not(.${iconButtonClasses.root})`]: {
+          flex: ownerState.buttonFlex,
+        },
+        [`& > :not(button) > .${buttonClasses.root}`]: {
+          width: '100%', // for button to fill its wrapper.
+        },
+      }),
     },
     {
       [theme.getColorSchemeSelector('dark')]: {
@@ -160,7 +176,6 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     className,
     component = 'div',
     disabled = false,
-    detached = false,
     size = 'md',
     color = 'neutral',
     variant = 'outlined',
@@ -168,6 +183,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     orientation = 'horizontal',
     slots = {},
     slotProps = {},
+    spacing = 0,
     ...other
   } = props;
 
@@ -176,8 +192,8 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     buttonFlex,
     color,
     component,
-    detached,
     orientation,
+    spacing,
     size,
     variant,
   };
@@ -264,11 +280,6 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the border radius of the buttons are not removed.
-   * @default false
-   */
-  detached: PropTypes.bool,
-  /**
    * If `true`, all the buttons will be disabled.
    * @default false
    */
@@ -301,6 +312,23 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     root: PropTypes.elementType,
   }),
+  /**
+   * Defines the space between the type `item` components.
+   * It can only be used on a type `container` component.
+   * @default 0
+   */
+  spacing: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.shape({
+      lg: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      md: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      sm: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      xl: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      xs: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    }),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
