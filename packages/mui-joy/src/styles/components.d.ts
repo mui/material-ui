@@ -35,6 +35,11 @@ import {
   BreadcrumbsSlot,
 } from '../Breadcrumbs/BreadcrumbsProps';
 import { ButtonProps, ButtonOwnerState, ButtonSlot } from '../Button/ButtonProps';
+import {
+  ButtonGroupProps,
+  ButtonGroupOwnerState,
+  ButtonGroupSlot,
+} from '../ButtonGroup/ButtonGroupProps';
 import { CardProps, CardOwnerState, CardSlot } from '../Card/CardProps';
 import {
   CardActionsProps,
@@ -238,6 +243,10 @@ export interface Components<Theme = unknown> {
   JoyButton?: {
     defaultProps?: Partial<ButtonProps>;
     styleOverrides?: OverridesStyleRules<ButtonSlot, ButtonOwnerState, Theme>;
+  };
+  JoyButtonGroup?: {
+    defaultProps?: Partial<ButtonGroupProps>;
+    styleOverrides?: OverridesStyleRules<ButtonGroupSlot, ButtonGroupOwnerState, Theme>;
   };
   JoyBreadcrumbs?: {
     defaultProps?: Partial<BreadcrumbsProps>;
