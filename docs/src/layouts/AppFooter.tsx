@@ -10,7 +10,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
-import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
@@ -21,7 +21,7 @@ interface AppFooterProps {
 }
 
 export default function AppFooter(props: AppFooterProps) {
-  const { stackOverflowUrl = 'https://stackoverflow.com/questions/tagged/mui' } = props;
+  const { stackOverflowUrl } = props;
 
   return (
     <Container component="footer">
@@ -31,7 +31,7 @@ export default function AppFooter(props: AppFooterProps) {
           pb: 8,
           display: 'grid',
           gridAutoColumns: '1fr',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           justifyContent: 'space-between',
           gap: 4,
           gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
@@ -48,14 +48,13 @@ export default function AppFooter(props: AppFooterProps) {
         }}
       >
         <div>
-          <SvgMuiLogo width={32} />
-          <Typography variant="body2" fontWeight="bold" sx={{ pt: 2 }}>
+          <Typography variant="body2" fontWeight="bold">
             Keep up to date
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
             Join our newsletter for regular updates. No spam ever.
           </Typography>
-          <EmailSubscribe sx={{ mb: 1 }} />
+          <EmailSubscribe sx={{ mb: 4 }} />
         </div>
         <Box
           sx={{
@@ -135,16 +134,16 @@ export default function AppFooter(props: AppFooterProps) {
       <Divider />
       <Box
         sx={{
-          py: 4,
+          my: 3,
           display: { xs: 'block', sm: 'flex' },
           alignItems: { sm: 'center' },
           justifyContent: { sm: 'space-between' },
         }}
       >
-        <Typography color="text.secondary" variant="body2">
-          Copyright © {new Date().getFullYear()} Material UI SAS.
-        </Typography>
-        <Box sx={{ py: { xs: 2, sm: 0 } }}>
+        <Link href="/" aria-label="Go to homepage">
+          <SvgMuiLogotype height={28} width={91} />
+        </Link>
+        <Box sx={{ mt: { xs: 3, sm: 0 } }}>
           <Stack spacing={2} direction="row">
             <IconButton
               target="_blank"
@@ -165,16 +164,6 @@ export default function AppFooter(props: AppFooterProps) {
               size="small"
             >
               <RssFeedIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href={stackOverflowUrl}
-              aria-label="Stack Overflow"
-              title="Stack Overflow"
-              size="small"
-            >
-              <SvgStackOverflow fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
@@ -206,9 +195,24 @@ export default function AppFooter(props: AppFooterProps) {
             >
               <YouTubeIcon fontSize="small" />
             </IconButton>
+            {stackOverflowUrl ? (
+              <IconButton
+                target="_blank"
+                rel="noopener noreferrer"
+                href={stackOverflowUrl}
+                aria-label="Stack Overflow"
+                title="Stack Overflow"
+                size="small"
+              >
+                <SvgStackOverflow fontSize="small" />
+              </IconButton>
+            ) : null}
           </Stack>
         </Box>
       </Box>
+      <Typography color="text.secondary" variant="body2" sx={{ mb: 4 }}>
+        Copyright © {new Date().getFullYear()} Material UI SAS.
+      </Typography>
     </Container>
   );
 }
