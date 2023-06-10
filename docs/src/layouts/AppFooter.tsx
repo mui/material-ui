@@ -211,7 +211,7 @@ export default function AppFooter(props: AppFooterProps) {
         </Box>
       </Box>
       <Typography color="text.secondary" variant="body2" sx={{ mb: 4 }}>
-        Copyright © {new Date().getFullYear()} Material UI SAS.
+        Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
       </Typography>
     </Container>
   );
