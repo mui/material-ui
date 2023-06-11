@@ -135,7 +135,6 @@ export default function BasicMenu() {
                 <Paper>
                   <ClickAwayListener onClickAway={() => handleClose(0)}>
                     <MenuList
-                      sx={{ zIndex: 999 }}
                       autoFocusItem={Boolean(anchorElement)}
                       id="composition-menu"
                       aria-labelledby="composition-button"
