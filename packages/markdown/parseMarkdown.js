@@ -468,6 +468,16 @@ function prepareMarkdown(config) {
         throw new Error(`docs-infra: Missing description in the page: ${location}`);
       }
 
+      if (description.length > 170) {
+        throw new Error(
+          [
+            `docs-infra: The description "${description}" is too long (${description.length} characters).`,
+            'It needs to have fewer than 170 characters—ideally less than 160. For more details, see:',
+            'https://ahrefs.com/blog/meta-description/#4-be-concise',
+          ].join('\n'),
+        );
+      }
+
       const contents = getContents(markdown);
 
       if (headers.unstyled) {
