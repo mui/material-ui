@@ -55,7 +55,7 @@ function checkUrlHealth(href, linkText, context) {
   if (url.pathname[url.pathname.length - 1] !== '/') {
     throw new Error(
       [
-        'Missing trailing slash. The following link:',
+        'docs-infra: Missing trailing slash. The following link:',
         `[${linkText}](${href}) in ${context.location} is missing a trailing slash, please add it.`,
         '',
         'See https://ahrefs.com/blog/trailing-slash/ for more details.',
@@ -76,7 +76,7 @@ function checkUrlHealth(href, linkText, context) {
     if (href[0] !== '/') {
       throw new Error(
         [
-          'Missing leading slash. The following link:',
+          'docs-infra: Missing leading slash. The following link:',
           `[${linkText}](${href}) in ${context.location} is missing a leading slash, please add it.`,
           '',
         ].join('\n'),
@@ -150,7 +150,9 @@ function getHeaders(markdown) {
 
     return headers;
   } catch (err) {
-    throw new Error(`${err.message} in getHeader(markdown) with markdown: \n\n${header}`);
+    throw new Error(
+      `docs-infra: ${err.message} in getHeader(markdown) with markdown: \n\n${header}`,
+    );
   }
 }
 
@@ -274,7 +276,7 @@ function createRender(context) {
         });
       } else if (level === 3) {
         if (!toc[toc.length - 1]) {
-          throw new Error(`Missing parent level for: ${headingText}`);
+          throw new Error(`docs-infra: Missing parent level for: ${headingText}`);
         }
 
         toc[toc.length - 1].children.push({
@@ -449,13 +451,13 @@ function prepareMarkdown(config) {
       const description = headers.description || getDescription(markdown);
 
       if (title == null || title === '') {
-        throw new Error(`Missing title in the page: ${location}`);
+        throw new Error(`docs-infra: Missing title in the page: ${location}`);
       }
 
       if (title.length > 70) {
         throw new Error(
           [
-            `The title "${title}" is too long (${title.length} characters).`,
+            `docs-infra: The title "${title}" is too long (${title.length} characters).`,
             'It needs to have fewer than 70 characters—ideally less than 60. For more details, see:',
             'https://developers.google.com/search/docs/advanced/appearance/title-link',
           ].join('\n'),
@@ -463,7 +465,7 @@ function prepareMarkdown(config) {
       }
 
       if (description == null || description === '') {
-        throw new Error(`Missing description in the page: ${location}`);
+        throw new Error(`docs-infra: Missing description in the page: ${location}`);
       }
 
       const contents = getContents(markdown);
