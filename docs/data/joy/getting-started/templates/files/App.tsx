@@ -69,11 +69,7 @@ function ColorSchemeToggle() {
 export default function FilesExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
-    <CssVarsProvider
-      defaultMode="system"
-      disableTransitionOnChange
-      theme={filesTheme}
-    >
+    <CssVarsProvider disableTransitionOnChange theme={filesTheme}>
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
