@@ -1,9 +1,17 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { Box, Icon, Typography } from '@mui/material';
+import {
+  Box,
+  ClickAwayListener,
+  Grow,
+  Icon,
+  MenuList,
+  Paper,
+  Popper,
+  Typography,
+} from '@mui/material';
 
 const options = [
   {
@@ -76,7 +84,7 @@ export default function BasicMenu() {
     nestedOptions = options,
   ) => {
     const target = event.currentTarget;
-    console.log({ target });
+
     setAnchors((prevAnchors) => ({
       elements: prevAnchors.elements.map((element, index) =>
         index === level ? target : element,
@@ -109,65 +117,85 @@ export default function BasicMenu() {
 
       {anchors.elements.map((anchorElement, index) =>
         anchorElement ? (
-          <Menu
-            id={`basic-menu-${index}`}
-            key={`menu-${index}`}
-            anchorEl={anchorElement}
+          <Popper
             open={Boolean(anchorElement)}
-            onClose={() => handleClose(0)}
-            {...(index > 0
-              ? {
-                  anchorOrigin: {
-                    vertical: 'top',
-                    horizontal: 'right',
-                  },
-                }
-              : {})}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
+            anchorEl={anchorElement}
+            role={undefined}
+            placement={index > 0 ? 'right-start' : 'bottom-start'}
+            transition
+            disablePortal
           >
-            {(anchors.options[index] || []).map((option) => (
-              <MenuItem
-                key={option.value}
-                onClick={() => {
-                  if (!option.nestedOptions) {
-                    handleClose(0);
-                  }
-                }}
-                onMouseEnter={(event) => {
-                  if (option.nestedOptions) {
-                    handleClick(event, option.menuLevel + 1, option.nestedOptions);
-                  }
-                }}
-                onKeyDown={(event) => {
-                  if (option.nestedOptions) {
-                    if (event.key === 'ArrowRight') {
-                      handleClick(event, option.menuLevel + 1, option.nestedOptions);
-                    }
-                  }
-                  if (event.key === 'ArrowLeft' && option.menuLevel > 0) {
-                    handleClose(option.menuLevel);
-                  }
+            {({ TransitionProps }) => (
+              <Grow
+                {...TransitionProps}
+                style={{
+                  transformOrigin: 'right top',
                 }}
               >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    width: '100%',
-                  }}
-                >
-                  <Typography>{option.value}</Typography>
-                  {option.nestedOptions ? (
-                    <Icon>
-                      <ChevronRightIcon />
-                    </Icon>
-                  ) : null}
-                </Box>
-              </MenuItem>
-            ))}
-          </Menu>
+                <Paper>
+                  <ClickAwayListener onClickAway={() => handleClose(0)}>
+                    <MenuList
+                      sx={{ zIndex: 999 }}
+                      autoFocusItem={Boolean(anchorElement)}
+                      id="composition-menu"
+                      aria-labelledby="composition-button"
+                    >
+                      {(anchors.options[index] || []).map((option) => (
+                        <MenuItem
+                          key={option.value}
+                          onClick={() => {
+                            if (!option.nestedOptions) {
+                              handleClose(0);
+                            }
+                          }}
+                          onMouseEnter={(event) => {
+                            if (option.nestedOptions) {
+                              handleClick(
+                                event,
+                                option.menuLevel + 1,
+                                option.nestedOptions,
+                              );
+                            } else {
+                              handleClose(option.menuLevel + 1);
+                            }
+                          }}
+                          onKeyDown={(event) => {
+                            if (option.nestedOptions) {
+                              if (event.key === 'ArrowRight') {
+                                handleClick(
+                                  event,
+                                  option.menuLevel + 1,
+                                  option.nestedOptions,
+                                );
+                              }
+                            }
+                            if (event.key === 'ArrowLeft' && option.menuLevel > 0) {
+                              handleClose(option.menuLevel);
+                            }
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              width: '100%',
+                            }}
+                          >
+                            <Typography>{option.value}</Typography>
+                            {option.nestedOptions ? (
+                              <Icon>
+                                <ChevronRightIcon />
+                              </Icon>
+                            ) : null}
+                          </Box>
+                        </MenuItem>
+                      ))}
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
         ) : null,
       )}
     </React.Fragment>
