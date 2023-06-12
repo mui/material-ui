@@ -129,8 +129,6 @@ Use the CSS variable `--ButtonGroup-connected` to control when border radius of 
 
 To create a Figma-like button group where the buttons are connected when users hover on any of the buttons, set the `--ButtonGroup-connected` to `0` and change to `1` on hover.
 
-Note that the `--ButtonGroup-separatorSize` is set to `0` to remove the separator.
-
 {{"demo": "FigmaButtonGroup.js"}}
 
 ### Pill button group

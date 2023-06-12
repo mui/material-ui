@@ -13,13 +13,13 @@ export default function ButtonUsage() {
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'solid',
+          defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'primary',
+          defaultValue: 'neutral',
         },
         {
           propName: 'disabled',

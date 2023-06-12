@@ -13,7 +13,6 @@ export default function FigmaButtonGroup() {
     itemIndex === index ? 'soft' : 'plain';
   return (
     <ButtonGroup
-      variant="plain"
       aria-label="figma button group"
       sx={{
         '--ButtonGroup-radius': '3px',

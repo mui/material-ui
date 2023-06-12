@@ -38,8 +38,6 @@ const ButtonGroupRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => {
-  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  const shouldHaveBorder = !variantStyle?.border; // need to check for border to avoid overriding it with a separator.
   const firstChildRadius =
     ownerState.orientation === 'vertical'
       ? 'var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius) var(--unstable_childRadius)'
@@ -76,6 +74,13 @@ const ButtonGroupRoot = styled('div', {
           '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[400],
         }),
       }),
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.color !== 'context' && {
+          '&:hover': {
+            '--ButtonGroup-separatorColor':
+              theme.vars.palette[ownerState.color!]?.outlinedHoverBorder,
+          },
+        }),
       '--ButtonGroup-radius': theme.vars.radius.sm,
       '--Divider-inset': '0.5rem',
       '--unstable_childRadius':
@@ -88,45 +93,37 @@ const ButtonGroupRoot = styled('div', {
       [`& > [data-first-child]`]: {
         '--Button-radius': firstChildRadius,
         '--IconButton-radius': firstChildRadius,
-        ...(shouldHaveBorder &&
-          ownerState.orientation === 'horizontal' && {
-            borderRight: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-          }),
-        ...(shouldHaveBorder &&
-          ownerState.orientation === 'vertical' && {
-            borderBottom:
-              'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-          }),
+        ...(ownerState.orientation === 'horizontal' && {
+          borderRight: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+        }),
+        ...(ownerState.orientation === 'vertical' && {
+          borderBottom: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+        }),
       },
       // middle Buttons or IconButtons
       [`& > :not([data-first-child]):not([data-last-child])`]: {
         '--Button-radius': 'var(--unstable_childRadius)',
         '--IconButton-radius': 'var(--unstable_childRadius)',
         borderRadius: 'var(--unstable_childRadius)',
-        ...(shouldHaveBorder &&
-          ownerState.orientation === 'horizontal' && {
-            borderLeft: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-            borderRight: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-          }),
-        ...(shouldHaveBorder &&
-          ownerState.orientation === 'vertical' && {
-            borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-            borderBottom:
-              'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-          }),
+        ...(ownerState.orientation === 'horizontal' && {
+          borderLeft: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+          borderRight: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+        }),
+        ...(ownerState.orientation === 'vertical' && {
+          borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+          borderBottom: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+        }),
       },
       // last Button or IconButton
       [`& > [data-last-child]`]: {
         '--Button-radius': lastChildRadius,
         '--IconButton-radius': lastChildRadius,
-        ...(shouldHaveBorder &&
-          ownerState.orientation === 'horizontal' && {
-            borderLeft: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-          }),
-        ...(shouldHaveBorder &&
-          ownerState.orientation === 'vertical' && {
-            borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-          }),
+        ...(ownerState.orientation === 'horizontal' && {
+          borderLeft: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+        }),
+        ...(ownerState.orientation === 'vertical' && {
+          borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+        }),
       },
       [`& > :not([data-first-child])`]: {
         '--Button-margin': margin,
