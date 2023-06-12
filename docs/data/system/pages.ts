@@ -58,6 +58,10 @@ const pages = [
         pathname: '/system/experimental-api/configure-the-sx-prop',
         title: 'Configure the sx prop',
       },
+      {
+        pathname: '/system/experimental-api/css-theme-variables',
+        title: 'CSS Theme Variables',
+      },
     ],
   },
   {
