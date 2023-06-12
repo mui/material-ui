@@ -54,6 +54,42 @@ Standard form attributes are supported e.g. `required`, `disabled`, etc.
 
 {{"demo": "TextareaFormProps.js"}}
 
+### Focused ring
+
+Provide these CSS variables to `sx` prop to control the focused ring appearance:
+
+- `--Textarea-focusedInset`: the focused ring's **position**, either inside(`inset`) or outside(`var(--any, )`) of the Textarea.
+- `--Textarea-focusedThickness`: the **size** of the focused ring.
+- `--Textarea-focusedHighlight`: the **color** of the focused ring.
+
+{{"demo": "FocusedRingTextarea.js"}}
+
+:::success
+To get full control of the focused ring, customize the `box-shadow` of the `::before` pseudo element directly
+
+```js
+<Textarea sx={{ '&:focus-within::before': { boxShadow: '...your custom value' } }} />
+```
+
+:::
+
+#### Debugging the focus ring
+
+To display the Textarea's focus ring by simulating user's focus, inspect the Textarea element and toggle the [pseudostate panel](https://developer.chrome.com/docs/devtools/css/#pseudostates).
+
+- If you inspect the Textarea's root element, with `.MuiTextarea-root` class, you have to toggle on the `:focus-within` state.
+- If you inspect the `<input>` element, you have to toggle on the `:focus` state.
+
+### Triggering the focus ring
+
+To trigger the focus ring programmatically, set the CSS variable `--Textarea-focused: 1`.
+
+{{"demo": "TriggerFocusTextarea.js"}}
+
+:::info
+💡 The focus ring still appear on focus even though you set `--Textarea-focused: 0`.
+:::
+
 ### Validation
 
 To toggle the error state, use the `error` prop.
@@ -101,6 +137,22 @@ Alternatively, you can do it manually by targeting the textarea slot:
 ```
 
 ## Common examples
+
+### Focus outline
+
+This example shows how to replace the default focus ring appearance with CSS outline.
+
+{{"demo": "FocusOutlineTextarea.js"}}
+
+### Floating label
+
+To create a floating label textarea, a custom component (combination of `<textarea>` and `<label>`) is required to replace the default textarea slot.
+
+{{"demo": "FloatingLabelTextarea.js"}}
+
+### Underline input
+
+{{"demo": "UnderlineTextarea.js"}}
 
 ### Comment box
 

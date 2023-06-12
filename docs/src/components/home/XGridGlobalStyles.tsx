@@ -24,7 +24,6 @@ export default function XGridGlobalStyles({
               '& .MuiDataGrid-toolbarContainer': {
                 flexShrink: 0,
                 padding: theme.spacing(1, 1, 0.5, 1),
-                overflow: 'auto',
                 '& > button': {
                   flexShrink: 0,
                   border: '1px solid',
@@ -54,11 +53,7 @@ export default function XGridGlobalStyles({
                 fontSize: '1rem',
               },
               '& .MuiDataGrid-columnHeaders': {
-                borderBottom: '1px solid',
                 borderColor: (theme.vars || theme).palette.grey[200],
-              },
-              '& .MuiDataGrid-columnHeaderTitleContainer': {
-                padding: 0,
               },
               '& .MuiDataGrid-columnSeparator': {
                 color: (theme.vars || theme).palette.grey[200],
@@ -67,12 +62,9 @@ export default function XGridGlobalStyles({
                 },
                 ...(!pro && { display: 'none' }),
               },
-              '& .MuiDataGrid-columnHeaderTitle': {
-                flexGrow: 1,
-              },
               // -------------------------------
               // table body elements
-              '& .MuiDataGrid-viewport': {
+              '& .MuiDataGrid-virtualScroller': {
                 backgroundColor: (theme.vars || theme).palette.grey[50],
               },
               '& .MuiDataGrid-cell': {
@@ -149,7 +141,7 @@ export default function XGridGlobalStyles({
               },
               // -------------------------------
               // table body elements
-              '& .MuiDataGrid-viewport': {
+              '& .MuiDataGrid-virtualScroller': {
                 backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               },
               '& .MuiDataGrid-cell': {

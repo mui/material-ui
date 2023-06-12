@@ -65,10 +65,18 @@ function AppSettingsDrawer(props) {
     setMode(paletteMode);
 
     if (paletteMode === 'system') {
-      localStorage.setItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      try {
+        localStorage.setItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      } catch (error) {
+        // thrown when cookies are disabled.
+      }
       changeTheme({ paletteMode: preferredMode });
     } else {
-      localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      try {
+        localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      } catch (error) {
+        // thrown when cookies are disabled.
+      }
       changeTheme({ paletteMode });
     }
   };

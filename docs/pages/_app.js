@@ -152,8 +152,8 @@ function AppWrapper(props) {
 
     if (product === 'material-ui') {
       return {
-        name: 'Material UI',
         metadata: 'MUI Core',
+        name: 'Material UI',
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
           {
@@ -170,16 +170,16 @@ function AppWrapper(props) {
 
     if (product === 'joy-ui') {
       return {
-        name: 'Joy UI',
         metadata: 'MUI Core',
+        name: 'Joy UI',
         versions: [{ text: `v${joyPkgJson.version}`, current: true }],
       };
     }
 
     if (product === 'system') {
       return {
-        name: 'MUI System',
         metadata: 'MUI Core',
+        name: 'MUI System',
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
@@ -193,13 +193,36 @@ function AppWrapper(props) {
 
     if (product === 'base') {
       return {
-        name: 'MUI Base',
         metadata: 'MUI Core',
+        name: 'Base UI',
         versions: [{ text: `v${basePkgJson.version}`, current: true }],
       };
     }
 
-    return null; // The identifier for X and Toolpad is handled by their own site
+    if (product === 'core') {
+      return {
+        metadata: '',
+        name: 'MUI Core',
+        versions: [
+          { text: `v${materialPkgJson.version}`, current: true },
+          {
+            text: 'View all versions',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    return {
+      metadata: '',
+      name: 'Docs-infra',
+      versions: [
+        {
+          text: 'v0.0.0',
+          href: `https://mui.com${languagePrefix}/versions/`,
+        },
+      ],
+    };
   }, [pageProps.userLanguage, product]);
 
   const pageContextValue = React.useMemo(() => {
