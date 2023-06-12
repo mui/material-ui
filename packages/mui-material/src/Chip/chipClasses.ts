@@ -148,7 +148,7 @@ const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'deleteIconFilledColorPrimary',
   'deleteIconFilledColorSecondary',
   'focusVisible',
-  'rounded'
+  'rounded',
 ]);
 
 export default chipClasses;

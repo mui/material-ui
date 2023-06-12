@@ -13,7 +13,8 @@ import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, size, color, iconColor, onDelete, clickable, variant, rounded } = ownerState;
+  const { classes, disabled, size, color, iconColor, onDelete, clickable, variant, rounded } =
+    ownerState;
 
   const slots = {
     root: [
@@ -27,7 +28,7 @@ const useUtilityClasses = (ownerState) => {
       onDelete && 'deletable',
       onDelete && `deletableColor${capitalize(color)}`,
       `${variant}${capitalize(color)}`,
-      rounded && 'rounded'
+      rounded && 'rounded',
     ],
     label: ['label', `label${capitalize(size)}`],
     avatar: ['avatar', `avatar${capitalize(size)}`, `avatarColor${capitalize(color)}`],
@@ -38,7 +39,7 @@ const useUtilityClasses = (ownerState) => {
       `deleteIconColor${capitalize(color)}`,
       `deleteIcon${capitalize(variant)}Color${capitalize(color)}`,
     ],
-    rounded: ['rounded', `rounded`]
+    rounded: ['rounded', `rounded`],
   };
 
   return composeClasses(slots, getChipUtilityClass, classes);
@@ -404,7 +405,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     onDelete: !!onDelete,
     clickable,
     variant,
-    rounded
+    rounded,
   };
 
   const classes = useUtilityClasses(ownerState);

@@ -682,7 +682,7 @@ describe('<Chip />', () => {
     });
 
     it('should render the chip with rounded class', () => {
-      const { container } = render(<Chip rounded/>);
+      const { container } = render(<Chip rounded />);
 
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.rounded);
