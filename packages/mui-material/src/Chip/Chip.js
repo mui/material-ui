@@ -61,11 +61,11 @@ const ChipRoot = styled('div', {
       { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconColor${capitalize(color)}`] },
-      { [`& .${chipClasses.rounded}`]: styles.rounded },
       {
         [`& .${chipClasses.deleteIcon}`]:
           styles[`deleteIcon${capitalize(variant)}Color${capitalize(color)}`],
       },
+      { [`& .${chipClasses.rounded}`]: styles.rounded },
       styles.root,
       styles[`size${capitalize(size)}`],
       styles[`color${capitalize(color)}`],
