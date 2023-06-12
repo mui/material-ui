@@ -17,7 +17,7 @@
     "@mdx-js/react": "^2.3.0",
     "@mui/material": "^5.13.5",
     "@mui/styles": "^5.13.2",
-    "@mui/system": "^5.13.3",
+    "@mui/system": "^5.13.5",
     "@styled-system/css": "^5.1.5",
     "benchmark": "^2.1.4",
     "playwright": "^1.33.0",
