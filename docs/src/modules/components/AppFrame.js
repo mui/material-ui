@@ -24,7 +24,7 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { debounce } from '@mui/material/utils';
 import NextLink from 'next/link';
-import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 
 const nProgressStart = debounce(() => {
@@ -200,7 +200,7 @@ export default function AppFrame(props) {
               aria-label={t('goToHome')}
               sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
             >
-              <SvgMuiLogo width={30} />
+              <SvgMuiLogomark width={30} />
             </Box>
           </NextLink>
           <GrowingDiv />

@@ -164,16 +164,16 @@ export default function MarkdownDocsV2(props) {
 
   const isJoy = canonicalAs.startsWith('/joy-ui/');
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
+
   const Wrapper = isJoy ? BrandingProvider : React.Fragment;
+  const wrapperProps = {
+    ...(isJoy && { mode: theme.palette.mode }),
+  };
 
   const commonElements = [];
 
   let i = 0;
   let done = false;
-
-  const wrapperProps = {
-    ...(isJoy && { mode: theme.palette.mode }),
-  };
 
   // process the elements before the tabs component
   while (i < rendered.length && !done) {
@@ -186,8 +186,8 @@ export default function MarkdownDocsV2(props) {
         srcComponents={srcComponents}
         renderedMarkdownOrDemo={renderedMarkdownOrDemo}
         WrapperComponent={Wrapper}
-        key={`common-elements-${i}`}
         wrapperProps={wrapperProps}
+        key={`common-elements-${i}`}
         localizedDoc={localizedDoc}
         demos={demos}
         location={location}
