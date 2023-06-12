@@ -21,11 +21,17 @@ export interface MD3Tones {
   99: string;
   100: string;
 }
+
+export interface MD3NeutralTones extends MD3Tones {
+  17: string;
+  22: string;
+  92: string;
+}
 export interface MD3Palettes {
   primary: MD3Tones;
   secondary: MD3Tones;
   tertiary: MD3Tones;
-  neutral: MD3Tones & { 17: string; 22: string; 92: string };
+  neutral: MD3NeutralTones;
   neutralVariant: MD3Tones;
   error: MD3Tones;
   common: {
