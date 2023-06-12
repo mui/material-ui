@@ -38,21 +38,23 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import GetStartedButtons2 from '../home/GetStartedButtons2';
 import CodeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
+import heroVariables from 'docs/src/components/productBaseUI/heroVariables';
 
 const Panel = styled('div')({
   width: 340,
   backgroundColor: 'var(--muidocs-palette-background-paper)',
-  borderRadius: 'var(--border-radius)',
+  borderRadius: 'min(var(--border-radius), 12px)',
   border: 'var(--border-width) solid',
   borderColor: 'var(--border-color)',
-  boxShadow: '0 4px 40px 0 rgba(62, 80, 96, 0.15)',
+  boxShadow: 'var(--Panel-shadow)',
   overflow: 'hidden',
 });
 
 const StyledLabel = styled('label')({
   fontSize: 12,
   fontWeight: 600,
-  color: 'text.tertiary',
+  color: 'var(--muidocs-palette-text-secondary)',
+  margin: '0.25rem 0',
 });
 
 const StyledParagraph = styled('p')({
@@ -64,7 +66,8 @@ const StyledParagraph = styled('p')({
 
 const StyledTabsList = styled('div')({
   display: 'flex',
-  borderBottom: '1px solid var(--border-color)',
+  borderBottom: 'var(--border-width) solid var(--border-color)',
+  backgroundColor: 'var(--TabsList-background)',
 });
 
 const StyledTab = styled('button')({
@@ -87,10 +90,10 @@ const StyledTab = styled('button')({
     '&::after': {
       content: '""',
       display: 'block',
-      height: 2,
+      height: 'max(2px, var(--border-width, 0px))',
       left: 2,
       right: 2,
-      bottom: '-1px',
+      bottom: 'calc(-1 * max(2px, var(--border-width, 0px)) + 1px)',
       position: 'absolute',
       backgroundColor: 'var(--color-primary)',
     },
@@ -100,11 +103,11 @@ const StyledTab = styled('button')({
 const StyledSelectButton = styled('button')({
   width: '100%',
   maxWidth: '100%',
-  border: '1px solid',
-  borderColor: 'var(--muidocs-palette-grey-200)',
-  borderRadius: 'var(--Select-radius)',
+  border: 'var(--border-width, 1px) solid',
+  borderColor: 'var(--Select-ringColor, var(--border-color))',
+  borderRadius: 'var(--border-radius)',
   padding: '8px 12px',
-  backgroundColor: 'var(--muidocs-palette-background-paper)',
+  backgroundColor: 'var(--Select-background)',
   display: 'flex',
   color: 'var(--muidocs-palette-text-secondary)',
   alignItems: 'center',
@@ -132,7 +135,7 @@ const StyledModalButton = styled('button')({
   backgroundColor: 'var(--muidocs-palette-primary-50)',
   border: '1px solid',
   borderColor: 'var(--muidocs-palette-primary-100)',
-  borderRadius: '8px',
+  borderRadius: 'var(--border-radius)',
   boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.3), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
@@ -154,7 +157,7 @@ const StyledSnackbarButton = styled('button')({
   backgroundColor: 'var(--muidocs-palette-grey-50)',
   border: '1px solid',
   borderColor: 'var(--muidocs-palette-grey-200)',
-  borderRadius: '8px',
+  borderRadius: 'var(--border-radius)',
   boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.3), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
@@ -177,7 +180,7 @@ const StyledViewCode = styled('button')({
   cursor: 'pointer',
   backgroundColor: 'var(--muidocs-palette-grey-800)',
   border: 'none',
-  borderRadius: '8px',
+  borderRadius: 'var(--border-radius)',
   boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.2), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
@@ -191,12 +194,13 @@ const StyledPopper = styled(Popper)({
 });
 
 const StyledListbox = styled('ul')({
+  '--_listbox-radius': 'min(var(--border-radius), 20px)',
   width: 'calc(320px - 1rem)',
   display: 'flex',
   flexDirection: 'column',
-  border: '1px solid',
-  borderColor: 'var(--muidocs-palette-grey-200)',
-  borderRadius: 'var(--Select-radius)',
+  border: 'var(--border-width) solid',
+  borderColor: 'var(--Select-ringColor, var(--border-color))',
+  borderRadius: 'var(--_listbox-radius)',
   backgroundColor: 'var(--muidocs-palette-background-paper)',
   boxShadow: '0px 4px 40px rgba(62, 80, 96, 0.1)',
   padding: 'calc(var(--Select-spacing) * 0.5)',
@@ -204,7 +208,7 @@ const StyledListbox = styled('ul')({
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
   lineHeight: 21 / 14,
-  margin: 'var(--Select-spacing) 0',
+  margin: '6px 0',
   '& li': {
     display: 'flex',
     borderRadius: '6px',
@@ -227,21 +231,21 @@ const StyledListbox = styled('ul')({
     },
     '&[role="option"]': {
       boxSizing: 'border-box',
-      border: '1px solid transparent',
+      border: 'var(--border-width) solid transparent',
       padding: 'calc(var(--Select-spacing) * 0.5)',
       fontSize: '0.875rem',
       fontWeight: 500,
       color: 'var(--muidocs-palette-text-secondary)',
       alignItems: 'center',
       cursor: 'pointer',
-      borderRadius: 'calc(var(--Select-radius) - var(--Select-spacing) / 2)',
+      borderRadius: 'calc(var(--_listbox-radius) - var(--Select-spacing) * 0.5)',
       '&:hover, &.MuiOption-highlighted': {
         backgroundColor: 'var(--muidocs-palette-grey-50)',
         color: 'var(--muidocs-palette-text-primary)',
       },
       '&.Mui-selected': {
-        backgroundColor: 'var(--muidocs-palette-grey-50)',
-        borderColor: 'var(--muidocs-palette-grey-100)',
+        backgroundColor: 'var(--Option-selectedBackground, var(--muidocs-palette-grey-50))',
+        borderColor: 'var(--border-color)',
         color: 'var(--muidocs-palette-text-primary)',
       },
       '& svg:first-child': {
@@ -277,10 +281,13 @@ function valuetext(value: number) {
 }
 
 const StyledSlider = styled(Slider)(`
+  --_margin: 4px;
   color: var(--color-primary);
   height: 8px;
   width: 100%;
+  max-width: calc(100% - var(--_margin));
   padding: 16px 0;
+  margin: 0 var(--_margin);
   display: inline-block;
   position: relative;
   cursor: pointer;
@@ -353,6 +360,12 @@ const StyledSlider = styled(Slider)(`
     top: 20px;
     transform: translateX(-50%);
     margin-top: 8px;
+    &[data-index="0"] {
+      transform: translateX(calc(-1 * var(--_margin)));
+    }
+    &[data-index="3"] {
+      transform: translate(-100%);
+    }
   }
 `);
 
@@ -371,7 +384,7 @@ const StyledSwitch = styled('span')(`
 
   & .${switchClasses.track} {
     background: var(--muidocs-palette-grey-400);
-    border-radius: 16px;
+    border-radius: max(2px, var(--border-radius));
     display: block;
     height: 100%;
     width: 100%;
@@ -384,11 +397,11 @@ const StyledSwitch = styled('span')(`
     height: 14px;
     top: 3px;
     left: 3px;
-    border-radius: 16px;
+    border-radius: max(2px, var(--border-radius));
     background-color: #fff;
     position: relative;
     
-    transition-property: all;
+    transition-property: left;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 120ms;
   }
@@ -463,19 +476,21 @@ const StyledBadge = styled(Badge)(
   
 
   & .${badgeClasses.badge} {
+    --_scale: 1.5em;
     z-index: auto;
     position: absolute;
     top: 0;
     right: 0;
-    width: 18px;
-    height: 18px;
+    font-size: 0.75rem;
+    border-radius: var(--_scale);
+    line-height: var(--_scale);
+    width: var(--_scale);
+    height: var(--_scale);
     color: #fff;
     font-weight: 600;
-    font-size: 12px;
     white-space: nowrap;
     text-align: center;
-    border-radius: 12px;
-    background: var(--muidocs-palette-primary-500);
+    background: var(--color-primary);
     box-shadow: 0px 2px 24px ${
       theme.palette.mode === 'dark'
         ? 'var(--muidocs-palette-primary-900)'
@@ -578,6 +593,7 @@ const StyledMenuButton = styled(Button)`
 
 export default function BaseUIHero() {
   const [customized, setCustomized] = React.useState(true);
+  const [design, setDesign] = React.useState(0);
   // Modal
   const [openModal, setOpenModal] = React.useState(false);
   const handleOpenModal = () => setOpenModal(true);
@@ -709,25 +725,19 @@ export default function BaseUIHero() {
             padding: '16px',
             display: 'flex',
             '& > div': { margin: 'auto' },
-            // variables for the demo
-            '--color-primary': 'var(--muidocs-palette-primary-main)',
-            '--border-width': '1px',
-            '--border-color': 'var(--muidocs-palette-grey-200)',
-            '--border-radius': '12px',
-            '--Select-radius': '12px',
-            '--Select-spacing': '12px',
+            ...heroVariables[design],
           }}
         >
           <Panel>
-            <Tabs defaultValue={1}>
+            <Tabs value={design} onChange={(event, newValue) => setDesign(newValue)}>
               <TabsList slots={{ root: StyledTabsList }}>
-                <Tab slots={{ root: StyledTab }} value={1}>
+                <Tab slots={{ root: StyledTab }} value={0}>
                   Sleek
                 </Tab>
-                <Tab slots={{ root: StyledTab }} value={2}>
+                <Tab slots={{ root: StyledTab }} value={1}>
                   Retro
                 </Tab>
-                <Tab slots={{ root: StyledTab }} value={3}>
+                <Tab slots={{ root: StyledTab }} value={2}>
                   Playful
                 </Tab>
               </TabsList>
@@ -739,7 +749,7 @@ export default function BaseUIHero() {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 p: '1rem',
-                borderBottom: '1px solid var(--border-color)',
+                borderBottom: 'var(--border-width) solid var(--border-color)',
               }}
             >
               <StyledParagraph>Notifications</StyledParagraph>
@@ -784,41 +794,13 @@ export default function BaseUIHero() {
                 <StyledMenuItem onClick={createHandleMenuClick('Log out')}>Log out</StyledMenuItem>
               </Menu>
             </Box>
-            {/* Autocomplete component */}
-            <Box
-              sx={{
-                p: '1rem 1rem 1.5rem 1rem',
-                display: 'flex',
-                flexDirection: 'column',
-                borderBottom: '1px solid var(--border-color)',
-              }}
-            >
-              <StyledLabel>Search for a hook</StyledLabel>
-              <Select
-                defaultValue={10}
-                slots={{
-                  root: StyledSelectButton,
-                  popper: StyledPopper,
-                  listbox: StyledListbox,
-                }}
-                slotProps={{
-                  popper: {
-                    disablePortal: true,
-                  },
-                }}
-              >
-                <Option value={10}>Ten</Option>
-                <Option value={20}>Twenty</Option>
-                <Option value={30}>Thirty</Option>
-              </Select>
-            </Box>
             {/* Select component */}
             <Box
               sx={{
                 p: '1rem 1rem 1.5rem 1rem',
                 display: 'flex',
                 flexDirection: 'column',
-                borderBottom: '1px solid var(--border-color)',
+                borderBottom: 'var(--border-width) solid var(--border-color)',
               }}
             >
               <StyledLabel>Select a component</StyledLabel>
@@ -846,7 +828,7 @@ export default function BaseUIHero() {
                 px: '1rem',
                 pt: '1rem',
                 pb: '1.5rem',
-                borderBottom: '1px solid var(--border-color)',
+                borderBottom: 'var(--border-width) solid var(--border-color)',
               }}
             >
               <StyledLabel>Choose a temperature</StyledLabel>
@@ -864,7 +846,7 @@ export default function BaseUIHero() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1rem',
-                borderBottom: '1px solid var(--border-color)',
+                borderBottom: 'var(--border-width) solid var(--border-color)',
               }}
             >
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -898,7 +880,7 @@ export default function BaseUIHero() {
                 display: 'flex',
                 p: '1rem',
                 gap: '0.5rem',
-                borderBottom: '1px solid var(--border-color)',
+                borderBottom: 'var(--border-width) solid var(--border-color)',
                 '& > button': { flex: 1 },
               }}
             >
