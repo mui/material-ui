@@ -10,7 +10,7 @@ type RegExpMatchArrayWithGroups<T> = (RegExpMatchArray & RegExpMatchArrayWithGro
 export default function SandboxDependencies(
   demo: {
     raw: string;
-    product?: 'joy-ui' | 'base';
+    product?: 'joy-ui' | 'base-ui';
     codeVariant: keyof typeof CODE_VARIANTS;
   },
   options?: { commitRef?: string },

@@ -88,7 +88,7 @@ They feature the same robust engineering but without any default styling solutio
 
 Base UI includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
 
-Get started in the [Base UI docs](/base/getting-started/overview/).
+Get started in the [Base UI docs](/base-ui/getting-started/overview/).
 
 #### Key features
 

@@ -195,11 +195,11 @@ function doesSupportTouchActionNone() {
  *
  * Demos:
  *
- * - [Slider](https://mui.com/base/react-slider/#hook)
+ * - [Slider](https://mui.com/base-ui/react-slider/#hook)
  *
  * API:
  *
- * - [useSlider API](https://mui.com/base/react-slider/hooks-api/#use-slider)
+ * - [useSlider API](https://mui.com/base-ui/react-slider/hooks-api/#use-slider)
  */
 export default function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
   const {

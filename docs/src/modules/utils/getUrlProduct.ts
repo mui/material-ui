@@ -3,5 +3,5 @@ export default function getUrlProduct(asPath: string) {
   if (urlWithoutLang.startsWith('/x')) {
     return urlWithoutLang.replace('/x/react-', '').replace(/\/.*/, '');
   }
-  return urlWithoutLang.replace(/^\/([^/]+)\/.*/, '$1');
+  return urlWithoutLang.replace('base-ui', 'base').replace(/^\/([^/]+)\/.*/, '$1');
 }

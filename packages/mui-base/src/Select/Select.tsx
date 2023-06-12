@@ -87,11 +87,11 @@ function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Select](https://mui.com/base-ui/react-select/)
  *
  * API:
  *
- * - [Select API](https://mui.com/base/react-select/components-api/#select)
+ * - [Select API](https://mui.com/base-ui/react-select/components-api/#select)
  */
 const Select = React.forwardRef(function Select<
   OptionValue extends {},
