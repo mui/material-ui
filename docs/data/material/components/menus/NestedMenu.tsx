@@ -136,10 +136,10 @@ export default function BasicMenu() {
                   <ClickAwayListener onClickAway={() => handleClose(0)}>
                     <MenuList
                       autoFocusItem={Boolean(anchorElement)}
-                      id="composition-menu"
-                      aria-labelledby="composition-button"
+                      id="nested-menu"
+                      aria-labelledby="nested-button"
                     >
-                      {(anchors.options[index] || []).map((option) => (
+                      {(anchors.options[index] ?? []).map((option) => (
                         <MenuItem
                           key={option.value}
                           onClick={() => {
