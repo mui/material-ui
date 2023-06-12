@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import IconButton from '@mui/joy/IconButton';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
@@ -11,7 +12,7 @@ export default function FigmaButtonGroup() {
   const getVariant = (itemIndex) => (itemIndex === index ? 'soft' : 'plain');
   return (
     <ButtonGroup
-      aria-label="radius button group"
+      aria-label="figma button group"
       sx={{
         '--ButtonGroup-radius': '3px',
         '--ButtonGroup-separatorSize': '0px',
