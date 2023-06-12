@@ -13,138 +13,138 @@ function components() {
       description:
         'The Autocomplete component is a text input enhanced by a panel of suggested options.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/dashboard/',
+      href: '/base/react-autocomplete/',
     },
     {
       title: 'Badge',
       description:
         'The Badge component generates a small label that is attached to its child element.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sign-in/',
+      href: '/base/react-badge/',
     },
     {
       title: 'Button',
       description: 'Buttons let users take actions and make choices with a single tap.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sign-in-side/',
+      href: '/base/react-button/',
     },
     {
       title: 'Click-Away Listener',
       description:
         'The Click-Away Listener component detects when a click event happens outside of its child element.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sign-up/',
+      href: '/base/react-click-away-listener/',
     },
     {
       title: 'Focus Trap',
       description:
         'The Focus Trap component prevents the user&apos;s focus from escaping its children components.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/blog/',
+      href: '/base/react-focus-trap/',
     },
     {
       title: 'Form Control',
       description:
         'The Form Control component is a utility that lets you associate a form input with auxiliary components, such as labels, error indicators, or helper text.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/checkout/',
+      href: '/base/react-form-control/',
     },
     {
       title: 'Input',
       description: 'The Input component provides users with a field to enter and edit text.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/album/',
+      href: '/base/react-input/',
     },
     {
       title: 'Menu',
       description:
         'The Menu components provide your users with a list of options on temporary surfaces.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/pricing/',
+      href: '/base/react-menu/',
     },
     {
       title: 'Modal',
       description:
         'The Modal component lets you create dialogs, popovers, lightboxes, and other elements that force the user to take action before continuing.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sticky-footer/',
+      href: '/base/react-modal/',
     },
     {
       title: 'No-SSR',
       description:
         'The No-SSR component defers the rendering of children components from the server to the client.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sticky-footer/',
+      href: '/base/react-no-ssr/',
     },
     {
       title: 'Popper',
       description:
         'The Popper component lets you create tooltips and popovers that display information about an element on the page.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sticky-footer/',
+      href: '/base/react-popper/',
     },
     {
       title: 'Portal',
       description:
         'The Portal component lets you render its children into a DOM node that exists outside of the Portal&apos;s own DOM hierarchy.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sticky-footer/',
+      href: '/base/react-portal/',
     },
     {
       title: 'Select',
       description:
         'The Select components let you create lists of options for users to choose from.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sticky-footer/',
+      href: '/base/react-select/',
     },
     {
       title: 'Slider',
       description:
         'A slider is a UI element that lets users select a single value or a range of values along a bar. ',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sticky-footer/',
+      href: '/base/react-slider/',
     },
     {
       title: 'Snackbar',
       description:
         'The Snackbar component informs users that an action has been or will be performed by the app.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sticky-footer/',
+      href: '/base/react-snackbar/',
     },
     {
       title: 'Switch',
       description:
         'Switches are UI elements that let users choose between two states—most commonly on/off.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sticky-footer/',
+      href: '/base/react-switch/',
     },
     {
       title: 'Table Pagination',
       description:
         'Table Pagination is an interface tool for splitting up large amounts of data to make it easier for users to navigate.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sticky-footer/',
+      href: '/base/react-table-pagination/',
     },
     {
       title: 'Tabs',
       description:
         'Tabs are UI elements for organizing and navigating between groups of related content.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sticky-footer/',
+      href: '/base/react-tabs/',
     },
     {
       title: 'Textarea Autosize',
       description:
         'The Textarea Autosize component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sticky-footer/',
+      href: '/base/react-textarea-autosize/',
     },
     {
       title: 'What more?',
       description:
         'The Textarea Autosize component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.',
       src: '/static/images/base-ui-components/slider.png',
-      href: '/material-ui/getting-started/templates/sticky-footer/',
+      href: '/base/react-autocomplete/',
     },
   ];
 }
