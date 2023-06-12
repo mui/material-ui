@@ -1,6 +1,6 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -164,9 +164,7 @@ function BaseUIComponents() {
               height: '100%',
               display: 'flex',
               flexDirection: 'column',
-              gap: 1.5,
               borderRadius: 1,
-
               borderColor: 'divider',
               ...theme.applyDarkStyles({
                 backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.3)}`,
@@ -179,7 +177,6 @@ function BaseUIComponents() {
               alt={component.title}
               image={component.src}
               sx={(theme) => ({
-                height: '100%',
                 background: `linear-gradient(180deg, ${theme.palette.grey[50]} 20%, #FFF 100%)`,
                 color: 'divider',
                 borderBottom: '1px solid',
@@ -190,14 +187,14 @@ function BaseUIComponents() {
                 }),
               })}
             />
-            <CardContent sx={{ flexGrow: 1, px: 2, py: 0.5 }}>
+            <Box sx={{ p: 2 }}>
               <Typography component="h2" variant="body1" fontWeight={600} gutterBottom>
                 {component.title}
               </Typography>
               <Typography component="p" variant="body2" color="text.secondary">
                 {component.description}
               </Typography>
-            </CardContent>
+            </Box>
           </Card>
         </Grid>
       ))}
