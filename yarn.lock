@@ -1956,23 +1956,21 @@
     prop-types "^15.8.1"
     reselect "^4.1.8"
 
-"@mui/x-date-pickers-pro@6.7.0":
+"@mui/x-date-pickers-pro@https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-date-pickers-pro":
   version "6.7.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers-pro/-/x-date-pickers-pro-6.7.0.tgz#63cecb0bc585a5e4cc05691533fdb6cf29c190bf"
-  integrity sha512-1IkRqsxS2I4GN5wrIK76v/VoeTdG/J6RQygDUVaz3cDZwC1BnsL4iLlwqsOcXV8abVk3lF805XJgr2uLLnsW/A==
+  resolved "https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-date-pickers-pro#46a819c228f3afe8c4f87995bf46a5af9221a57b"
   dependencies:
     "@babel/runtime" "^7.21.0"
     "@mui/utils" "^5.13.1"
-    "@mui/x-date-pickers" "6.7.0"
-    "@mui/x-license-pro" "6.6.0"
+    "@mui/x-date-pickers" "https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-date-pickers"
+    "@mui/x-license-pro" "https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-license-pro"
     clsx "^1.2.1"
     prop-types "^15.8.1"
     react-transition-group "^4.4.5"
 
-"@mui/x-date-pickers@6.7.0":
+"@mui/x-date-pickers@https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-date-pickers":
   version "6.7.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers/-/x-date-pickers-6.7.0.tgz#3e6d8cddbf4b59cb7d762e2bc52925abce60afdc"
-  integrity sha512-Nf1wpBKp1DHS4gSrPXbxUfEBSVeqxVuZqJRh8oqreBG4ogZ8Sas3QpWIMGehpjmBjMXGyeWl0RUlTyUwMwhdng==
+  resolved "https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-date-pickers#cdf01c14b7da580ec2d9a65232eb634c7d90311a"
   dependencies:
     "@babel/runtime" "^7.21.0"
     "@mui/utils" "^5.13.1"
@@ -1985,6 +1983,13 @@
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/@mui/x-license-pro/-/x-license-pro-6.6.0.tgz#8341bfb222dfbc8d70d1ed7304841ec09ffc2997"
   integrity sha512-jLmAAQJdKWzcGjpw/gm1ZBdzig9y4sJjgfzO0RpDg2mPK25uZfDKGt6ZRwv8IkJHa6ulwOdudJx5YgvQM9Jj0Q==
+  dependencies:
+    "@babel/runtime" "^7.21.0"
+    "@mui/utils" "^5.13.1"
+
+"@mui/x-license-pro@https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-license-pro":
+  version "6.6.0"
+  resolved "https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-license-pro#0e3d7c6e04d2b1b5d0a255ea3a8fb29af3377563"
   dependencies:
     "@babel/runtime" "^7.21.0"
     "@mui/utils" "^5.13.1"
