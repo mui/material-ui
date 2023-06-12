@@ -8,9 +8,9 @@ materialDesign: https://m2.material.io/components/navigation-drawer
 
 # Drawer
 
-<p class="description">Navigation drawers provide access to destinations in your app. Side sheets are surfaces containing supplementary content that are anchored to the left or right edge of the screen.</p>
+<p class="description">The navigation drawers (or "sidebars") provide ergonomic access to destinations in a site or app functionality such as switching accounts.</p>
 
-Navigation drawers (or "sidebars") provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
+A navigation drawer can either be permanently on-screen or controlled by a navigation menu icon.
 
 [Side sheets](https://m2.material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop.
 

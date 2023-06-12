@@ -3,7 +3,7 @@ product: material-ui
 title: React Popper（弹出提示）组件
 components: Popper
 githubLabel: 'component: Popper'
-unstyled: /base/react-popper/
+unstyled: /base-ui/react-popper/
 ---
 
 # Popper 弹出提示

@@ -81,7 +81,7 @@ function getStyles({ theme }: { theme: Theme }) {
 /*
  * The style function argument is completely identical for the unstyled component
  * and the hook, though each have different pro and cons.
- * More about unstyled components vs hooks here: https://mui.com/base/getting-started/usage/#components-vs-hooks
+ * More about unstyled components vs hooks here: https://mui.com/base-ui/getting-started/usage/#components-vs-hooks
  */
 
 const GithubButtonComponent = styled(Button)(getStyles);
