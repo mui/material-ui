@@ -10,141 +10,117 @@ function components() {
   return [
     {
       title: 'Autocomplete',
-      description:
-        'The Autocomplete component is a text input enhanced by a panel of suggested options.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/autocomplete-light.png',
+      srcDark: '/static/images/base-ui-components/autocomplete-dark.png',
       href: '/base/react-autocomplete/',
     },
     {
       title: 'Badge',
-      description:
-        'The Badge component generates a small label that is attached to its child element.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/badge-light.png',
+      srcDark: '/static/images/base-ui-components/badge-dark.png',
       href: '/base/react-badge/',
     },
     {
       title: 'Button',
-      description: 'Buttons let users take actions and make choices with a single tap.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/button-light.png',
+      srcDark: '/static/images/base-ui-components/button-dark.png',
       href: '/base/react-button/',
     },
     {
       title: 'Click-Away Listener',
-      description:
-        'The Click-Away Listener component detects when a click event happens outside of its child element.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/click-away-light.png',
+      srcDark: '/static/images/base-ui-components/click-away-dark.png',
       href: '/base/react-click-away-listener/',
     },
     {
       title: 'Focus Trap',
-      description:
-        'The Focus Trap component prevents the user&apos;s focus from escaping its children components.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/focus-trap-light.png',
+      srcDark: '/static/images/base-ui-components/focus-trap-dark.png',
       href: '/base/react-focus-trap/',
     },
     {
       title: 'Form Control',
-      description:
-        'The Form Control component is a utility that lets you associate a form input with auxiliary components, such as labels, error indicators, or helper text.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/form-control-light.png',
+      srcDark: '/static/images/base-ui-components/form-control-dark.png',
       href: '/base/react-form-control/',
     },
     {
       title: 'Input',
-      description: 'The Input component provides users with a field to enter and edit text.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/input-light.png',
+      srcDark: '/static/images/base-ui-components/input-dark.png',
       href: '/base/react-input/',
     },
     {
       title: 'Menu',
-      description:
-        'The Menu components provide your users with a list of options on temporary surfaces.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/menu-light.png',
+      srcDark: '/static/images/base-ui-components/menu-dark.png',
       href: '/base/react-menu/',
     },
     {
       title: 'Modal',
-      description:
-        'The Modal component lets you create dialogs, popovers, lightboxes, and other elements that force the user to take action before continuing.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/modal-light.png',
+      srcDark: '/static/images/base-ui-components/modal-dark.png',
       href: '/base/react-modal/',
     },
     {
       title: 'No-SSR',
-      description:
-        'The No-SSR component defers the rendering of children components from the server to the client.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/no-ssr-light.png',
+      srcDark: '/static/images/base-ui-components/no-ssr-dark.png',
       href: '/base/react-no-ssr/',
     },
     {
       title: 'Popper',
-      description:
-        'The Popper component lets you create tooltips and popovers that display information about an element on the page.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/popper-light.png',
+      srcDark: '/static/images/base-ui-components/popper-dark.png',
       href: '/base/react-popper/',
     },
     {
       title: 'Portal',
-      description:
-        'The Portal component lets you render its children into a DOM node that exists outside of the Portal&apos;s own DOM hierarchy.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/portal-light.png',
+      srcDark: '/static/images/base-ui-components/portal-dark.png',
       href: '/base/react-portal/',
     },
     {
       title: 'Select',
-      description:
-        'The Select components let you create lists of options for users to choose from.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/select-light.png',
+      srcDark: '/static/images/base-ui-components/select-dark.png',
       href: '/base/react-select/',
     },
     {
       title: 'Slider',
-      description:
-        'A slider is a UI element that lets users select a single value or a range of values along a bar. ',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/slider-light.png',
+      srcDark: '/static/images/base-ui-components/slider-dark.png',
       href: '/base/react-slider/',
     },
     {
       title: 'Snackbar',
-      description:
-        'The Snackbar component informs users that an action has been or will be performed by the app.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/snackbar-light.png',
+      srcDark: '/static/images/base-ui-components/snackbar-dark.png',
       href: '/base/react-snackbar/',
     },
     {
       title: 'Switch',
-      description:
-        'Switches are UI elements that let users choose between two states—most commonly on/off.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/switch-light.png',
+      srcDark: '/static/images/base-ui-components/switch-dark.png',
       href: '/base/react-switch/',
     },
     {
       title: 'Table Pagination',
-      description:
-        'Table Pagination is an interface tool for splitting up large amounts of data to make it easier for users to navigate.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/pagination-light.png',
+      srcDark: '/static/images/base-ui-components/pagination-dark.png',
       href: '/base/react-table-pagination/',
     },
     {
       title: 'Tabs',
-      description:
-        'Tabs are UI elements for organizing and navigating between groups of related content.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/tabs-light.png',
+      srcDark: '/static/images/base-ui-components/tabs-dark.png',
       href: '/base/react-tabs/',
     },
     {
       title: 'Textarea Autosize',
-      description:
-        'The Textarea Autosize component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.',
-      src: '/static/images/base-ui-components/slider.png',
+      srcLight: '/static/images/base-ui-components/textarea-light.png',
+      srcDark: '/static/images/base-ui-components/textarea-dark.png',
       href: '/base/react-textarea-autosize/',
-    },
-    {
-      title: 'What more?',
-      description:
-        'The Textarea Autosize component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.',
-      src: '/static/images/base-ui-components/slider.png',
-      href: '/base/react-autocomplete/',
     },
   ];
 }
@@ -175,26 +151,27 @@ function BaseUIComponents() {
             <CardMedia
               component="img"
               alt={component.title}
-              image={component.src}
+              image={component.srcLight}
               sx={(theme) => ({
-                background: `linear-gradient(180deg, ${theme.palette.grey[50]} 20%, #FFF 100%)`,
-                color: 'divider',
+                background: `linear-gradient(180deg, ${alpha(
+                  theme.palette.grey[50],
+                  0.5,
+                )} 20%, #FFF 100%)`,
                 borderBottom: '1px solid',
                 borderColor: 'divider',
                 ...theme.applyDarkStyles({
-                  background: `linear-gradient(180deg, ${theme.palette.primaryDark[800]} 20%, ${theme.palette.primaryDark[700]} 100%)`,
-                  borderColor: 'grey.900',
+                  content: `url(${component.srcDark})`,
+                  background: `linear-gradient(180deg, ${alpha(
+                    theme.palette.primaryDark[800],
+                    0.5,
+                  )} 20%, ${theme.palette.primaryDark[900]} 100%)`,
+                  borderColor: 'divider',
                 }),
               })}
             />
-            <Box sx={{ p: 2 }}>
-              <Typography component="h2" variant="body1" fontWeight={600} gutterBottom>
-                {component.title}
-              </Typography>
-              <Typography component="p" variant="body2" color="text.secondary">
-                {component.description}
-              </Typography>
-            </Box>
+            <Typography component="h2" variant="body2" fontWeight={600} sx={{ px: 2, py: 1.5 }}>
+              {component.title}
+            </Typography>
           </Card>
         </Grid>
       ))}
