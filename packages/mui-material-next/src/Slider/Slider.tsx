@@ -13,7 +13,6 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
-import SliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderOwnerState, SliderTypeMap, SliderProps } from './Slider.types';
 import { MD3ColorSchemeTokens, MD3State } from '../styles';
@@ -286,7 +285,7 @@ SliderThumb.propTypes /* remove-proptypes */ = {
 
 export { SliderThumb };
 
-const StyledSliderValueLabel = styled(SliderValueLabel, {
+const SliderValueLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
@@ -326,11 +325,11 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
     },
     ...(ownerState.orientation === 'horizontal' && {
       top: ownerState.size === 'small' ? -32 : -36,
-      [`&.${sliderClasses.valueLabel}`]: {
-        transform: 'translateY(50%) rotate(-45deg) scale(0)',
-      },
-      [`& .${sliderClasses.valueLabelCircle}`]: {
+      transform: 'translateY(50%) rotate(-45deg) scale(0)',
+      [`& .${sliderClasses.valueLabelLabel}`]: {
         transform: 'rotate(45deg)',
+        // paddingLeft compensates letter spacing being added only on the right side
+        paddingLeft: letterSpacing,
       },
       [`&.${sliderClasses.valueLabelOpen}`]: {
         transform: 'translateY(0) rotate(-45deg) scale(1)',
@@ -338,10 +337,8 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
     }),
     ...(ownerState.orientation === 'vertical' && {
       left: ownerState.size === 'small' ? -32 : -36,
-      [`&.${sliderClasses.valueLabel}`]: {
-        transform: 'translateX(50%) rotate(225deg) scale(0)',
-      },
-      [`& .${sliderClasses.valueLabelCircle}`]: {
+      transform: 'translateX(50%) rotate(225deg) scale(0)',
+      [`& .${sliderClasses.valueLabelLabel}`]: {
         transform: 'rotate(-225deg)',
       },
       [`&.${sliderClasses.valueLabelOpen}`]: {
@@ -360,7 +357,7 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
   };
 });
 
-StyledSliderValueLabel.propTypes /* remove-proptypes */ = {
+SliderValueLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -371,7 +368,7 @@ StyledSliderValueLabel.propTypes /* remove-proptypes */ = {
   children: PropTypes.element,
 };
 
-export { StyledSliderValueLabel as SliderValueLabel };
+export { SliderValueLabel };
 
 const SliderMark = styled('span', {
   name: 'MuiSlider',
@@ -494,6 +491,8 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
     markLabel: ['markLabel'],
     markLabelActive: ['markLabelActive'],
     valueLabel: ['valueLabel'],
+    valueLabelOpen: ['valueLabelOpen'],
+    valueLabelLabel: ['valueLabelLabel'],
     thumb: [
       'thumb',
       disabled && 'disabled',
@@ -507,8 +506,6 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
 
   return composeClasses(slots, getSliderUtilityClass, classes);
 };
-
-const Forward = ({ children }: { children: React.ReactElement<any> }) => children;
 
 const Slider = React.forwardRef(function Slider<
   BaseComponentType extends React.ElementType = SliderTypeMap['defaultComponent'],
@@ -602,7 +599,7 @@ const Slider = React.forwardRef(function Slider<
   const RailSlot = slots.rail ?? SliderRail;
   const TrackSlot = slots.track ?? SliderTrack;
   const ThumbSlot = slots.thumb ?? SliderThumb;
-  const ValueLabelSlot = slots.valueLabel ?? StyledSliderValueLabel;
+  const ValueLabelSlot = slots.valueLabel ?? SliderValueLabel;
   const MarkSlot = slots.mark ?? SliderMark;
   const MarkLabelSlot = slots.markLabel ?? SliderMarkLabel;
   const InputSlot = slots.input ?? 'input';
@@ -738,51 +735,59 @@ const Slider = React.forwardRef(function Slider<
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
 
-        const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabelSlot;
-
         return (
-          /* TODO v6: Change component structure. It will help in avoiding the complicated React.cloneElement API added in SliderValueLabel component. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure. */
-          <ValueLabelComponent
+          <ThumbSlot
             key={index}
-            {...(!isHostComponent(ValueLabelComponent) && {
-              valueLabelFormat,
-              valueLabelDisplay,
-              value:
-                typeof valueLabelFormat === 'function'
-                  ? valueLabelFormat(scale(value), index)
-                  : valueLabelFormat,
-              index,
-              open: open === index || active === index || valueLabelDisplay === 'on',
-              disabled,
+            data-index={index}
+            {...thumbProps}
+            className={clsx(classes.thumb, thumbProps.className, {
+              [classes.active]: active === index,
+              [classes.focusVisible]: focusedThumbIndex === index,
+              [classes.thumbOverlap]: isOverlapping,
             })}
-            {...valueLabelProps}
+            style={{
+              ...style,
+              pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+              ...thumbProps.style,
+            }}
           >
-            <ThumbSlot
+            <InputSlot
               data-index={index}
-              {...thumbProps}
-              className={clsx(classes.thumb, thumbProps.className, {
-                [classes.active]: active === index,
-                [classes.focusVisible]: focusedThumbIndex === index,
-              })}
-              style={{
-                ...style,
-                pointerEvents: disableSwap && active !== index ? 'none' : undefined,
-                ...thumbProps.style,
-              }}
-            >
-              <InputSlot
-                data-index={index}
-                aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
-                aria-valuenow={scale(value)}
-                aria-labelledby={ariaLabelledby}
-                aria-valuetext={
-                  getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
-                }
-                value={values[index]}
-                {...inputSliderProps}
-              />
-            </ThumbSlot>
-          </ValueLabelComponent>
+              aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
+              aria-valuenow={scale(value)}
+              aria-labelledby={ariaLabelledby}
+              aria-valuetext={
+                getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+              }
+              value={values[index]}
+              {...inputSliderProps}
+            />
+            {valueLabelDisplay !== 'off' ? (
+              <ValueLabelSlot
+                {...(!isHostComponent(ValueLabelSlot) && {
+                  value:
+                    typeof valueLabelFormat === 'function'
+                      ? valueLabelFormat(scale(value), index)
+                      : valueLabelFormat,
+                  index,
+                  open: open === index || active === index || valueLabelDisplay === 'on',
+                  disabled,
+                  isOverlapping,
+                })}
+                {...valueLabelProps}
+                className={clsx(valueLabelProps.className, {
+                  [classes.valueLabelOpen]:
+                    open === index || active === index || valueLabelDisplay === 'on',
+                })}
+              >
+                <span className={classes.valueLabelLabel}>
+                  {typeof valueLabelFormat === 'function'
+                    ? valueLabelFormat(scale(value), index)
+                    : valueLabelFormat}
+                </span>
+              </ValueLabelSlot>
+            ) : null}
+          </ThumbSlot>
         );
       })}
     </RootSlot>
@@ -951,17 +956,7 @@ Slider.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    valueLabel: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        children: PropTypes.element,
-        className: PropTypes.string,
-        open: PropTypes.bool,
-        style: PropTypes.object,
-        value: PropTypes.number,
-        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-      }),
-    ]),
+    valueLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside the Slider.
