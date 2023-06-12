@@ -91,6 +91,18 @@ export interface ModalOwnProps {
     bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
   }['bivarianceHack'];
   /**
+   * Callback function called when a transition enters.
+   *
+   * @returns {void}
+   */
+  onTransitionEnter?: () => void;
+  /**
+   * Callback function called when a transition has exited.
+   *
+   * @returns {void}
+   */
+  onTransitionExited?: () => void;
+  /**
    * If `true`, the component is shown.
    */
   open: boolean;
@@ -108,18 +120,6 @@ export interface ModalOwnProps {
    * @default {}
    */
   slots?: ModalSlots;
-
-  /**
-  Callback function called when a transition enters.
-  @returns {void}
-  */
-  onTransitionEnter?: () => void;
-
-  /**
-  Callback function called when a transition has exited.
-  @returns {void}
-  */
-  onTransitionExited?: () => void;
 }
 
 export interface ModalSlots {
