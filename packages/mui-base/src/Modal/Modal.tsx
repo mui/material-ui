@@ -398,14 +398,12 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   onBackdropClick: PropTypes.func,
   /**
-   * Callback function called when a transition enters.
-   * @returns {void}
-   */
+  * A function called when a transition enters.
+  */
   onTransitionEnter: PropTypes.func,
   /**
-   * Callback function called when a transition has exited.
-   * @returns {void}
-   */
+  * A function called when a transition has exited.
+  */
   onTransitionExited: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
