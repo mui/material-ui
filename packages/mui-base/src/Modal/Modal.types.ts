@@ -108,6 +108,18 @@ export interface ModalOwnProps {
    * @default {}
    */
   slots?: ModalSlots;
+
+  /**
+  Callback function called when a transition enters.
+  @returns {void}
+  */
+  onTransitionEnter?: () => void;
+
+  /**
+  Callback function called when a transition has exited.
+  @returns {void}
+  */
+  onTransitionExited?: () => void;
 }
 
 export interface ModalSlots {
