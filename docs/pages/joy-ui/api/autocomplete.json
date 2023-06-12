@@ -242,13 +242,13 @@
     {
       "name": "startDecorator",
       "description": "The component that renders the start decorator.",
-      "default": "'span'",
+      "default": "'div'",
       "class": ".MuiAutocomplete-startDecorator"
     },
     {
       "name": "endDecorator",
       "description": "The component that renders the end decorator.",
-      "default": "'span'",
+      "default": "'div'",
       "class": ".MuiAutocomplete-endDecorator"
     },
     {
@@ -290,7 +290,7 @@
     {
       "name": "limitTag",
       "description": "The component that renders the limit tag.",
-      "default": "'span'",
+      "default": "'div'",
       "class": ".MuiAutocomplete-limitTag"
     }
   ],

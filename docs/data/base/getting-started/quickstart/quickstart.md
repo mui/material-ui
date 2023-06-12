@@ -46,7 +46,7 @@ This is a quick tutorial that goes through the basics of using and styling Base 
 ### Components and hooks
 
 Base UI provides a `<Button />` component and a `useButton` hook.
-Both can be used to build a button, and each has its own benefits and trade-offs—see [Components vs. hooks](/base/getting-started/usage/#components-vs-hooks) for details.
+Both can be used to build a button, and each has its own benefits and trade-offs—see [Components vs. hooks](/base-ui/getting-started/usage/#components-vs-hooks) for details.
 
 The code snippets below demonstrate the basic implementation of each:
 
@@ -81,7 +81,7 @@ Base UI comes with no styles or styling solution—here's what the Button compon
 
 {{"demo": "BaseButton.js", "defaultCodeOpen": false}}
 
-You can use any styling method of your choice to make fully customizable components for your app. See [Customization](/base/getting-started/customization/) for more details on customization strategies.
+You can use any styling method of your choice to make fully customizable components for your app. See [Customization](/base-ui/getting-started/customization/) for more details on customization strategies.
 
 Here are some styling examples:
 

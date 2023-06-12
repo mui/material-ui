@@ -18,4 +18,4 @@ yarn add @mui/base
 
 <!-- #default-branch-switch -->
 
-[The documentation](https://mui.com/base/getting-started/overview/)
+[The documentation](https://mui.com/base-ui/getting-started/overview/)

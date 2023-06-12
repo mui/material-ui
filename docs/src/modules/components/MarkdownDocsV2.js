@@ -79,7 +79,7 @@ export default function MarkdownDocsV2(props) {
 
   const localizedDoc = docs[userLanguage] || docs.en;
   // Generate the TOC based on the tab
-  const { description, location, rendered, title, toc } = localizedDoc;
+  const { description, location, rendered, title, toc, headers } = localizedDoc;
   const demosToc = toc.filter((item) => item.text !== 'API');
 
   function createHookTocEntry(hookName, sectionName) {
@@ -164,16 +164,16 @@ export default function MarkdownDocsV2(props) {
 
   const isJoy = canonicalAs.startsWith('/joy-ui/');
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
+
   const Wrapper = isJoy ? BrandingProvider : React.Fragment;
+  const wrapperProps = {
+    ...(isJoy && { mode: theme.palette.mode }),
+  };
 
   const commonElements = [];
 
   let i = 0;
   let done = false;
-
-  const wrapperProps = {
-    ...(isJoy && { mode: theme.palette.mode }),
-  };
 
   // process the elements before the tabs component
   while (i < rendered.length && !done) {
@@ -186,8 +186,8 @@ export default function MarkdownDocsV2(props) {
         srcComponents={srcComponents}
         renderedMarkdownOrDemo={renderedMarkdownOrDemo}
         WrapperComponent={Wrapper}
-        key={`common-elements-${i}`}
         wrapperProps={wrapperProps}
+        key={`common-elements-${i}`}
         localizedDoc={localizedDoc}
         demos={demos}
         location={location}
@@ -237,7 +237,8 @@ export default function MarkdownDocsV2(props) {
           {commonElements}
           {activeTab === '' &&
             rendered
-              .slice(i, rendered.length - 1)
+              // for the "hook only" edge case, e.g. Base UI autocomplete
+              .slice(i, rendered.length - (headers.components.length > 0 ? 1 : 0))
               .map((renderedMarkdownOrDemo, index) => (
                 <MarkdownElement
                   key={`demos-section-${index}`}

@@ -1,7 +1,11 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'vertical'"
+    },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
       "default": "{}",

@@ -274,6 +274,7 @@
       "fullWidth",
       "expanded",
       "focused",
+      "focusVisible",
       "tag",
       "tagSizeSmall",
       "tagSizeMedium",
@@ -296,7 +297,11 @@
       "groupLabel",
       "groupUl"
     ],
-    "globalClasses": { "expanded": "Mui-expanded", "focused": "Mui-focused" },
+    "globalClasses": {
+      "expanded": "Mui-expanded",
+      "focused": "Mui-focused",
+      "focusVisible": "Mui-focusVisible"
+    },
     "name": "MuiAutocomplete"
   },
   "spread": true,

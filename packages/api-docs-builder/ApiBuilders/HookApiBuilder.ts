@@ -90,11 +90,11 @@ export interface ReactApi extends ReactDocgenApi {
  * /**
  * * Demos:
  * *
- * * - [Button](https://mui.com/base/react-button/)
+ * * - [Button](https://mui.com/base-ui/react-button/)
  * *
  * * API:
  * *
- * * - [useButton API](https://mui.com/base/api/use-button/)
+ * * - [useButton API](https://mui.com/base-ui/api/use-button/)
  */
 async function annotateHookDefinition(api: ReactApi) {
   const HOST = 'https://mui.com';

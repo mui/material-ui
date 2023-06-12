@@ -88,7 +88,7 @@ export default function ApiPage(props) {
   if (isJoyComponent) {
     slotGuideLink = '/joy-ui/guides/overriding-component-structure/';
   } else if (isBaseComponent) {
-    slotGuideLink = '/base/guides/overriding-component-structure/';
+    slotGuideLink = '/base-ui/guides/overriding-component-structure/';
   }
 
   const {

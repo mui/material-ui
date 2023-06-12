@@ -25,7 +25,7 @@ An input is a UI element that accepts text data from the user. The `InputUnstyle
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import InputUnstyled from '@mui/base/InputUnstyled';
@@ -56,7 +56,7 @@ The `InputUnstyled` component is composed of a root `<div>` slot that houses one
 ### Slot props
 
 :::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+The following props are available on all non-utility Base components. See [Usage](/base-ui/getting-started/usage/) for full details.
 :::
 
 Use the `component` prop to override the root slot with a custom element:
@@ -124,7 +124,7 @@ The `multiline` prop transforms the `<input>` field into a `<textarea>` element,
 
 {{"demo": "InputMultiline.js"}}
 
-If you want the `<textarea>` to grow with the content, you can use the [`TextareaAutosize`](/base/react-textarea-autosize/) component within the input.
+If you want the `<textarea>` to grow with the content, you can use the [`TextareaAutosize`](/base-ui/react-textarea-autosize/) component within the input.
 
 When using `TextareaAutosize`, the height of the `<textarea>` element dynamically matches its content unless you set the `rows` prop. To set minimum and maximum sizes, add the `minRows` and `maxRows` props.
 
