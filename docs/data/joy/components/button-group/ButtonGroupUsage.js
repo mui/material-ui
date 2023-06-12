@@ -13,13 +13,13 @@ export default function ButtonUsage() {
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'solid',
+          defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'primary',
+          defaultValue: 'neutral',
         },
         {
           propName: 'disabled',
@@ -36,6 +36,11 @@ export default function ButtonUsage() {
           knob: 'radio',
           defaultValue: 'horizontal',
           options: ['horizontal', 'vertical'],
+        },
+        {
+          propName: 'spacing',
+          knob: 'number',
+          defaultValue: 0,
         },
         {
           propName: 'children',

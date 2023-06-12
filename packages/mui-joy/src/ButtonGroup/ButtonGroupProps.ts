@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { Breakpoint } from '@mui/system';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+
+type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
 export type ButtonGroupSlot = 'root';
 
@@ -42,11 +45,6 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     color?: OverridableStringUnion<ColorPaletteProp, ButtonGroupPropsColorOverrides>;
     /**
-     * If `true`, the border radius of the buttons are not removed.
-     * @default false
-     */
-    detached?: boolean;
-    /**
      * If `true`, all the buttons will be disabled.
      * @default false
      */
@@ -62,6 +60,12 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      * @default 'md'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', ButtonGroupPropsSizeOverrides>;
+    /**
+     * Defines the space between the type `item` components.
+     * It can only be used on a type `container` component.
+     * @default 0
+     */
+    spacing?: ResponsiveStyleValue<number | string> | undefined;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
