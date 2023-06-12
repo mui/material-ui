@@ -13,7 +13,7 @@ import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, size, color, iconColor, onDelete, clickable, variant } = ownerState;
+  const { classes, disabled, size, color, iconColor, onDelete, clickable, variant, rounded } = ownerState;
 
   const slots = {
     root: [
@@ -27,6 +27,7 @@ const useUtilityClasses = (ownerState) => {
       onDelete && 'deletable',
       onDelete && `deletableColor${capitalize(color)}`,
       `${variant}${capitalize(color)}`,
+      rounded && 'rounded'
     ],
     label: ['label', `label${capitalize(size)}`],
     avatar: ['avatar', `avatar${capitalize(size)}`, `avatarColor${capitalize(color)}`],
@@ -37,6 +38,7 @@ const useUtilityClasses = (ownerState) => {
       `deleteIconColor${capitalize(color)}`,
       `deleteIcon${capitalize(variant)}Color${capitalize(color)}`,
     ],
+    rounded: ['rounded', `rounded`]
   };
 
   return composeClasses(slots, getChipUtilityClass, classes);
@@ -59,6 +61,7 @@ const ChipRoot = styled('div', {
       { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconColor${capitalize(color)}`] },
+      { [`& .${chipClasses.rounded}`]: styles.rounded },
       {
         [`& .${chipClasses.deleteIcon}`]:
           styles[`deleteIcon${capitalize(variant)}Color${capitalize(color)}`],
@@ -171,6 +174,9 @@ const ChipRoot = styled('div', {
       },
       ...(ownerState.size === 'small' && {
         height: 24,
+      }),
+      ...(ownerState.rounded === true && {
+        borderRadius: 32 / 4,
       }),
       ...(ownerState.color !== 'default' && {
         backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
@@ -337,6 +343,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     onDelete,
     onKeyDown,
     onKeyUp,
+    rounded,
     size = 'medium',
     variant = 'filled',
     tabIndex,
@@ -397,6 +404,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     onDelete: !!onDelete,
     clickable,
     variant,
+    rounded
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -549,6 +557,11 @@ Chip.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onKeyUp: PropTypes.func,
+  /**
+   * Makes chips rounded instead of circular default
+   * @default true
+   */
+  rounded: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'medium'

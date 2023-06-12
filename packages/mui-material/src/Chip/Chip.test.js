@@ -680,6 +680,13 @@ describe('<Chip />', () => {
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconSmall);
     });
+
+    it('should render the chip with rounded class', () => {
+      const { container } = render(<Chip rounded/>);
+
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.rounded);
+    });
   });
 
   describe('event: focus', () => {

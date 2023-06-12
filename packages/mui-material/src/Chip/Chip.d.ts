@@ -71,6 +71,11 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The size of the component.
      * @default 'medium'
      */
+    rounded?: boolean;
+    /**
+     * If 'true' the component will be rounded instead of circular
+     * @default true
+     */
     size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     /**
      * If `true`, allows the disabled chip to escape focus.

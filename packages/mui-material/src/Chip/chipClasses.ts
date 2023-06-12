@@ -92,6 +92,8 @@ export interface ChipClasses {
   deleteIconFilledColorSecondary: string;
   /** State class applied to the root element if keyboard focused. */
   focusVisible: string;
+  /** Styles applied to chip if 'rounded=true' */
+  rounded: string;
 }
 
 export type ChipClassKey = keyof ChipClasses;
@@ -146,6 +148,7 @@ const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'deleteIconFilledColorPrimary',
   'deleteIconFilledColorSecondary',
   'focusVisible',
+  'rounded'
 ]);
 
 export default chipClasses;
