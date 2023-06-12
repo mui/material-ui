@@ -115,7 +115,7 @@ const StyledModal = styled(Modal)`
 `;
 
 const StyledBackdrop = styled(Backdrop)`
-  z-index: 1100;
+  z-index: 1200;
   position: fixed;
   right: 0;
   bottom: 0;
