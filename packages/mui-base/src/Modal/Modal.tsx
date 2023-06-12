@@ -398,6 +398,14 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   onBackdropClick: PropTypes.func,
   /**
+   * Callback fired when the component requests to be closed.
+   * The `reason` parameter can optionally be used to control the response to `onClose`.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
+   */
+  onClose: PropTypes.func,
+  /**
    * Callback function called when a transition enters.
    * @returns {void}
    */
@@ -407,14 +415,6 @@ Modal.propTypes /* remove-proptypes */ = {
    * @returns {void}
    */
   onTransitionExited: PropTypes.func,
-  /**
-   * Callback fired when the component requests to be closed.
-   * The `reason` parameter can optionally be used to control the response to `onClose`.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
-   */
-  onClose: PropTypes.func,
   /**
    * If `true`, the component is shown.
    */
