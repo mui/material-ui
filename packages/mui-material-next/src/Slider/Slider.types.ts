@@ -11,7 +11,7 @@ export interface SliderPropsColorOverrides {}
 
 export interface SliderPropsSizeOverrides {}
 
-export interface SliderComponentsPropsOverrides {}
+export interface SliderSlotPropsOverrides {}
 
 export interface SliderOwnerState extends SliderProps {
   dragging: boolean;
@@ -40,47 +40,6 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
      * @default 'primary'
      */
     color?: OverridableStringUnion<'primary' | 'secondary', SliderPropsColorOverrides>;
-    /**
-     * The components used for each slot inside.
-     *
-     * This prop is an alias for the `slots` prop.
-     * It's recommended to use the `slots` prop instead.
-     *
-     * @default {}
-     */
-    components?: {
-      Root?: React.ElementType;
-      Track?: React.ElementType;
-      Rail?: React.ElementType;
-      Thumb?: React.ElementType;
-      Mark?: React.ElementType;
-      MarkLabel?: React.ElementType;
-      ValueLabel?: React.ElementType;
-      Input?: React.ElementType;
-    };
-    /**
-     * The extra props for the slot components.
-     * You can override the existing props or add new ones.
-     *
-     * This prop is an alias for the `slotProps` prop.
-     * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-     *
-     * @default {}
-     */
-    componentsProps?: {
-      root?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-      track?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-      rail?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-      thumb?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-      mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-      markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-      valueLabel?: SlotComponentProps<
-        typeof SliderValueLabelComponent,
-        SliderComponentsPropsOverrides,
-        SliderOwnerState
-      >;
-      input?: SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>;
-    };
     /**
      * Override or extend the styles applied to the component.
      */
@@ -182,18 +141,18 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
      * @default {}
      */
     slotProps?: {
-      root?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-      track?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-      rail?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-      thumb?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-      mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-      markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      root?: SlotComponentProps<'span', SliderSlotPropsOverrides, SliderOwnerState>;
+      track?: SlotComponentProps<'span', SliderSlotPropsOverrides, SliderOwnerState>;
+      rail?: SlotComponentProps<'span', SliderSlotPropsOverrides, SliderOwnerState>;
+      thumb?: SlotComponentProps<'span', SliderSlotPropsOverrides, SliderOwnerState>;
+      mark?: SlotComponentProps<'span', SliderSlotPropsOverrides, SliderOwnerState>;
+      markLabel?: SlotComponentProps<'span', SliderSlotPropsOverrides, SliderOwnerState>;
       valueLabel?: SlotComponentProps<
         typeof SliderValueLabelComponent,
-        SliderComponentsPropsOverrides,
+        SliderSlotPropsOverrides,
         SliderOwnerState
       >;
-      input?: SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>;
+      input?: SlotComponentProps<'input', SliderSlotPropsOverrides, SliderOwnerState>;
     };
     /**
      * The components used for each slot inside the Slider.
@@ -275,12 +234,12 @@ export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElem
   value: number;
 }
 
-type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
-type SliderMarkProps = NonNullable<SliderTypeMap['props']['componentsProps']>['mark'];
-type SliderMarkLabelProps = NonNullable<SliderTypeMap['props']['componentsProps']>['markLabel'];
-type SliderRailProps = NonNullable<SliderTypeMap['props']['componentsProps']>['rail'];
-type SliderTrackProps = NonNullable<SliderTypeMap['props']['componentsProps']>['track'];
-type SliderThumbProps = NonNullable<SliderTypeMap['props']['componentsProps']>['thumb'];
+type SliderRootProps = NonNullable<SliderTypeMap['props']['slotProps']>['root'];
+type SliderMarkProps = NonNullable<SliderTypeMap['props']['slotProps']>['mark'];
+type SliderMarkLabelProps = NonNullable<SliderTypeMap['props']['slotProps']>['markLabel'];
+type SliderRailProps = NonNullable<SliderTypeMap['props']['slotProps']>['rail'];
+type SliderTrackProps = NonNullable<SliderTypeMap['props']['slotProps']>['track'];
+type SliderThumbProps = NonNullable<SliderTypeMap['props']['slotProps']>['thumb'];
 
 export declare const SliderRoot: React.FC<SliderRootProps>;
 export declare const SliderMark: React.FC<SliderMarkProps>;

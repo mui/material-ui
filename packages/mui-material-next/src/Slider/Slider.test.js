@@ -53,7 +53,6 @@ describe('<Slider />', () => {
       testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },
       testVariantProps: { color: 'primary', orientation: 'vertical', size: 'small' },
       testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
-      testLegacyComponentsProp: true,
       ThemeProvider: CssVarsProvider,
       createTheme: extendTheme,
       slots: {
@@ -80,6 +79,7 @@ describe('<Slider />', () => {
         },
       },
       skip: [
+        'componentsProp',
         'slotPropsCallback', // not supported yet
       ],
     }),
@@ -313,7 +313,7 @@ describe('<Slider />', () => {
     it('should focus the slider when dragging', () => {
       const { getByRole, getByTestId, container } = render(
         <Slider
-          componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
+          slotProps={{ thumb: { 'data-testid': 'thumb' } }}
           defaultValue={30}
           step={10}
           marks
@@ -801,7 +801,7 @@ describe('<Slider />', () => {
         <Slider
           valueLabelDisplay="on"
           value={50}
-          componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
+          slotProps={{ thumb: { 'data-testid': 'thumb' } }}
         />,
       );
       expect(document.querySelector(`.${classes.valueLabelOpen}`)).not.to.equal(null);
@@ -818,7 +818,7 @@ describe('<Slider />', () => {
         <Slider
           valueLabelDisplay="auto"
           value={50}
-          componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
+          slotProps={{ thumb: { 'data-testid': 'thumb' } }}
         />,
       );
       const thumb = getByTestId('thumb');
@@ -841,11 +841,7 @@ describe('<Slider />', () => {
       ValueLabelComponent.propTypes = { value: PropTypes.number };
 
       const { setProps } = render(
-        <Slider
-          components={{ ValueLabel: ValueLabelComponent }}
-          valueLabelDisplay="on"
-          value={50}
-        />,
+        <Slider slots={{ valueLabel: ValueLabelComponent }} valueLabelDisplay="on" value={50} />,
       );
 
       expect(screen.queryByTestId('value-label')).to.have.class('open');
@@ -943,7 +939,7 @@ describe('<Slider />', () => {
           <Slider
             value={30}
             onChange={handleChange}
-            componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
+            slotProps={{ thumb: { 'data-testid': 'thumb' } }}
           />
         </CssVarsProvider>,
       );
@@ -1105,7 +1101,7 @@ describe('<Slider />', () => {
       const { getByTestId } = render(
         <Slider
           value={10}
-          components={{ ValueLabel: ValueLabelComponent }}
+          slots={{ valueLabel: ValueLabelComponent }}
           valueLabelDisplay="on"
           valueLabelFormat={(n) => n.toString(2)}
         />,
@@ -1343,7 +1339,7 @@ describe('<Slider />', () => {
     });
   });
 
-  describe('prop: components', () => {
+  describe('prop: slots', () => {
     it('should render custom components if specified', () => {
       // ARRANGE
       const dataTestId = 'slider-input-testid';
@@ -1353,14 +1349,14 @@ describe('<Slider />', () => {
       }
 
       // ACT
-      const { getByTestId } = render(<Slider components={{ Input: CustomInput }} />);
+      const { getByTestId } = render(<Slider slots={{ input: CustomInput }} />);
 
       // ASSERT
       expect(getByTestId(dataTestId).name).to.equal(name);
     });
   });
 
-  describe('prop: componentsProps', () => {
+  describe('prop: slotProps', () => {
     it('should forward the props to their respective components', () => {
       // ARRANGE
       const dataTestId = 'slider-input-testid';
@@ -1368,7 +1364,7 @@ describe('<Slider />', () => {
 
       // ACT
       const { getByTestId } = render(
-        <Slider defaultValue={10} componentsProps={{ input: { 'data-testid': dataTestId, id } }} />,
+        <Slider defaultValue={10} slotProps={{ input: { 'data-testid': dataTestId, id } }} />,
       );
 
       // ASSERT

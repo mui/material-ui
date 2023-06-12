@@ -526,8 +526,6 @@ const Slider = React.forwardRef(function Slider<
     'aria-valuetext': ariaValuetext,
     'aria-labelledby': ariaLabelledby,
     component = 'span',
-    components = {},
-    componentsProps = {},
     color = 'primary',
     classes: classesProp,
     className,
@@ -600,29 +598,19 @@ const Slider = React.forwardRef(function Slider<
 
   const classes = useUtilityClasses(ownerState);
 
-  // support both `slots` and `components` for backward compatibility
-  const RootSlot = slots?.root ?? components.Root ?? SliderRoot;
-  const RailSlot = slots?.rail ?? components.Rail ?? SliderRail;
-  const TrackSlot = slots?.track ?? components.Track ?? SliderTrack;
-  const ThumbSlot = slots?.thumb ?? components.Thumb ?? SliderThumb;
-  const ValueLabelSlot = slots?.valueLabel ?? components.ValueLabel ?? StyledSliderValueLabel;
-  const MarkSlot = slots?.mark ?? components.Mark ?? SliderMark;
-  const MarkLabelSlot = slots?.markLabel ?? components.MarkLabel ?? SliderMarkLabel;
-  const InputSlot = slots?.input ?? components.Input ?? 'input';
-
-  const rootSlotProps = slotProps?.root ?? componentsProps.root;
-  const railSlotProps = slotProps?.rail ?? componentsProps.rail;
-  const trackSlotProps = slotProps?.track ?? componentsProps.track;
-  const thumbSlotProps = slotProps?.thumb ?? componentsProps.thumb;
-  const valueLabelSlotProps = slotProps?.valueLabel ?? componentsProps.valueLabel;
-  const markSlotProps = slotProps?.mark ?? componentsProps.mark;
-  const markLabelSlotProps = slotProps?.markLabel ?? componentsProps.markLabel;
-  const inputSlotProps = slotProps?.input ?? componentsProps.input;
+  const RootSlot = slots?.root ?? SliderRoot;
+  const RailSlot = slots?.rail ?? SliderRail;
+  const TrackSlot = slots?.track ?? SliderTrack;
+  const ThumbSlot = slots?.thumb ?? SliderThumb;
+  const ValueLabelSlot = slots?.valueLabel ?? StyledSliderValueLabel;
+  const MarkSlot = slots?.mark ?? SliderMark;
+  const MarkLabelSlot = slots?.markLabel ?? SliderMarkLabel;
+  const InputSlot = slots?.input ?? 'input';
 
   const rootProps = useSlotProps({
     elementType: RootSlot,
     getSlotProps: getRootProps,
-    externalSlotProps: rootSlotProps,
+    externalSlotProps: slotProps?.root,
     externalForwardedProps: other,
     additionalProps: {
       ...(shouldSpreadAdditionalProps(RootSlot) && {
@@ -635,14 +623,14 @@ const Slider = React.forwardRef(function Slider<
 
   const railProps = useSlotProps({
     elementType: RailSlot,
-    externalSlotProps: railSlotProps,
+    externalSlotProps: slotProps?.rail,
     ownerState,
     className: classes.rail,
   });
 
   const trackProps = useSlotProps({
     elementType: TrackSlot,
-    externalSlotProps: trackSlotProps,
+    externalSlotProps: slotProps?.track,
     additionalProps: {
       style: {
         ...axisProps[axis].offset(trackOffset),
@@ -656,28 +644,28 @@ const Slider = React.forwardRef(function Slider<
   const thumbProps = useSlotProps({
     elementType: ThumbSlot,
     getSlotProps: getThumbProps,
-    externalSlotProps: thumbSlotProps,
+    externalSlotProps: slotProps?.thumb,
     ownerState,
     className: classes.thumb,
   });
 
   const valueLabelProps = useSlotProps({
     elementType: ValueLabelSlot,
-    externalSlotProps: valueLabelSlotProps,
+    externalSlotProps: slotProps?.valueLabel,
     ownerState,
     className: classes.valueLabel,
   });
 
   const markProps = useSlotProps({
     elementType: MarkSlot,
-    externalSlotProps: markSlotProps,
+    externalSlotProps: slotProps?.mark,
     ownerState,
     className: classes.mark,
   });
 
   const markLabelProps = useSlotProps({
     elementType: MarkLabelSlot,
-    externalSlotProps: markLabelSlotProps,
+    externalSlotProps: slotProps?.markLabel,
     ownerState,
     className: classes.markLabel,
   });
@@ -685,7 +673,7 @@ const Slider = React.forwardRef(function Slider<
   const inputSliderProps = useSlotProps({
     elementType: InputSlot,
     getSlotProps: getHiddenInputProps,
-    externalSlotProps: inputSlotProps,
+    externalSlotProps: slotProps?.input,
     ownerState,
   });
 
@@ -856,53 +844,6 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
-  /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Mark: PropTypes.elementType,
-    MarkLabel: PropTypes.elementType,
-    Rail: PropTypes.elementType,
-    Root: PropTypes.elementType,
-    Thumb: PropTypes.elementType,
-    Track: PropTypes.elementType,
-    ValueLabel: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    valueLabel: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        children: PropTypes.element,
-        className: PropTypes.string,
-        open: PropTypes.bool,
-        style: PropTypes.object,
-        value: PropTypes.number,
-        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-      }),
-    ]),
-  }),
   /**
    * If `true`, the component is disabled.
    * @default false
