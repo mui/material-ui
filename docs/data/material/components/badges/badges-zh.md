@@ -3,7 +3,7 @@ product: material-ui
 title: React Badge（徽章）组件
 components: Badge
 githubLabel: 'component: badge'
-unstyled: /base/react-badge/
+unstyled: /base-ui/react-badge/
 ---
 
 # Badge 徽章

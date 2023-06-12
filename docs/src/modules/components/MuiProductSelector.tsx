@@ -75,7 +75,7 @@ const products = [
   {
     name: 'Base UI',
     href: ROUTES.baseDocs,
-    slug: 'base',
+    slug: 'base-ui',
   },
   {
     name: 'MUI System',

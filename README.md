@@ -11,7 +11,7 @@
 
 - [_Joy UI_](https://mui.com/joy-ui/getting-started/overview/) is a beautifully designed library of React UI components.
 
-- [_Base UI_](https://mui.com/base/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+- [_Base UI_](https://mui.com/base-ui/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
 
 - [_MUI System_](https://mui.com/system/getting-started/overview/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
@@ -179,7 +179,7 @@ Our documentation features [a collection of example projects using Material UI](
 
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
 - [Joy UI](https://mui.com/joy-ui/getting-started/overview/)
-- [Base UI](https://mui.com/base/getting-started/overview/)
+- [Base UI](https://mui.com/base-ui/getting-started/overview/)
 - [MUI System](https://mui.com/system/getting-started/overview/)
 
 ## Premium themes

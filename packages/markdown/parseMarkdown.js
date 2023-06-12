@@ -418,7 +418,7 @@ function resolveComponentApiUrl(product, componentPkg, component) {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
   }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
-    return `/base/api/${kebabCase(component)}/`;
+    return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
   }
   return `/${product}/api/${kebabCase(component)}/`;
 }
@@ -485,7 +485,7 @@ function prepareMarkdown(config) {
 ## Unstyled
 
 :::success
-[Base UI](/base/getting-started/overview/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
+[Base UI](/base-ui/getting-started/overview/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
 :::
         `);
       }
