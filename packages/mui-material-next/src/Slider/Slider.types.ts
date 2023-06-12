@@ -105,7 +105,7 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
      *
      * @param {Event} event The event source of the callback.
      * You can pull out the new value by accessing `event.target.value` (any).
-     * **Warning**: This is a generic event not a change event.
+     * **Warning**: This is a generic event, not a change event.
      * @param {number | number[]} value The new value.
      * @param {number} activeThumb Index of the currently moved thumb.
      */
@@ -113,7 +113,7 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
     /**
      * Callback function that is fired when the `mouseup` is triggered.
      *
-     * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
+     * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event, not a change event.
      * @param {number | number[]} value The new value.
      */
     onChangeCommitted?: (event: React.SyntheticEvent | Event, value: number | number[]) => void;
