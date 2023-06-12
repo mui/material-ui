@@ -169,7 +169,7 @@ function DocSearchHit(props) {
     if (pathname.startsWith('/joy-ui/')) {
       text = 'Joy UI';
     }
-    if (pathname.startsWith('/base/')) {
+    if (pathname.startsWith('/base-ui/')) {
       text = 'Base UI';
     }
     return <Chip label={text} size="small" variant="outlined" sx={{ mr: 1 }} />;

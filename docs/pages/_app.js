@@ -190,7 +190,8 @@ function AppWrapper(props) {
       };
     }
 
-    if (product === 'base') {
+    // TODO check if this should be base or base-ui
+    if (product === 'base-ui') {
       return {
         metadata: 'MUI Core',
         name: 'Base UI',
@@ -226,7 +227,7 @@ function AppWrapper(props) {
 
   const pageContextValue = React.useMemo(() => {
     let pages = generalPages;
-    if (product === 'base') {
+    if (product === 'base-ui') {
       pages = basePages;
     } else if (product === 'material-ui') {
       pages = materialPages;

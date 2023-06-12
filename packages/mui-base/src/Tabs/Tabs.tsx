@@ -22,11 +22,11 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/base/react-tabs/)
+ * - [Tabs](https://mui.com/base-ui/react-tabs/)
  *
  * API:
  *
- * - [Tabs API](https://mui.com/base/react-tabs/components-api/#tabs)
+ * - [Tabs API](https://mui.com/base-ui/react-tabs/components-api/#tabs)
  */
 const Tabs = React.forwardRef(function Tabs<RootComponentType extends React.ElementType>(
   props: TabsProps<RootComponentType>,
