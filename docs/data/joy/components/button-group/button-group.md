@@ -29,6 +29,8 @@ The Button Group component can wrap [`Button`](/joy-ui/react-button/) and [`Icon
 
 The Button Group component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `solid`, `soft`, and `plain`.
 
+The `variant` prop is passed to the buttons, not the Button Group itself.
+
 {{"demo": "VariantButtonGroup.js"}}
 
 :::info
@@ -120,6 +122,16 @@ The Button Group component supports arbitrary children that wrap the buttons by 
 {{"demo": "TooltipButtonGroup.js"}}
 
 ## Common examples
+
+### Figma-like button group
+
+Use the CSS variable `--ButtonGroup-connected` to control when border radius of the buttons in-between should be removed.
+
+To create a Figma-like button group where the buttons are connected when users hover on any of the buttons, set the `--ButtonGroup-connected` to `0` and change to `1` on hover.
+
+Note that the `--ButtonGroup-separatorSize` is set to `0` to remove the separator.
+
+{{"demo": "FigmaButtonGroup.js"}}
 
 ### Pill button group
 

@@ -39,7 +39,7 @@ const ButtonGroupRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  const shouldHaveBorder = !variantStyle?.border;
+  const shouldHaveBorder = !variantStyle?.border; // need to check for border to avoid overriding it with a separator.
   const firstChildRadius =
     ownerState.orientation === 'vertical'
       ? 'var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius) var(--unstable_childRadius)'
@@ -50,8 +50,8 @@ const ButtonGroupRoot = styled('div', {
       : 'var(--unstable_childRadius) var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius)';
   const margin =
     ownerState.orientation === 'vertical'
-      ? 'var(--ButtonGroup-separatorSize) 0 0 0'
-      : '0 0 0 var(--ButtonGroup-separatorSize)';
+      ? 'calc(var(--ButtonGroup-separatorSize) * -1) 0 0 0'
+      : '0 0 0 calc(var(--ButtonGroup-separatorSize) * -1)';
   const styles = {};
   traverseBreakpoints<string | number | null>(
     theme.breakpoints,
@@ -60,7 +60,7 @@ const ButtonGroupRoot = styled('div', {
       if (value !== null) {
         appendStyle(styles, {
           // the buttons should be connected if the value is more than 0
-          '--unstable_connected': value.toString().match(/^0(?!\.)/) ? '1' : '0',
+          '--ButtonGroup-connected': value.toString().match(/^0(?!\.)/) ? '1' : '0',
           gap: typeof value === 'string' ? value : theme.spacing?.(value),
         });
       }
@@ -69,7 +69,7 @@ const ButtonGroupRoot = styled('div', {
 
   return [
     {
-      '--ButtonGroup-separatorSize': 'calc(var(--unstable_connected) * -1px)',
+      '--ButtonGroup-separatorSize': 'calc(var(--ButtonGroup-connected) * 1px)',
       ...(ownerState.color !== 'context' && {
         '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.outlinedBorder,
         ...(ownerState.variant === 'solid' && {
@@ -78,10 +78,11 @@ const ButtonGroupRoot = styled('div', {
       }),
       '--ButtonGroup-radius': theme.vars.radius.sm,
       '--Divider-inset': '0.5rem',
-      '--unstable_childBorder': 'calc(var(--unstable_connected) * 1px)',
-      '--unstable_childRadius': 'calc((1 - var(--unstable_connected)) * var(--ButtonGroup-radius))',
+      '--unstable_childRadius':
+        'calc((1 - var(--ButtonGroup-connected)) * var(--ButtonGroup-radius) - var(--variant-borderWidth, 0px))', // for internal usage
       ...styles,
       display: 'flex',
+      borderRadius: 'var(--ButtonGroup-radius)',
       flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
       // first Button or IconButton
       [`& > [data-first-child]`]: {
@@ -89,11 +90,12 @@ const ButtonGroupRoot = styled('div', {
         '--IconButton-radius': firstChildRadius,
         ...(shouldHaveBorder &&
           ownerState.orientation === 'horizontal' && {
-            borderRight: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+            borderRight: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
           }),
         ...(shouldHaveBorder &&
           ownerState.orientation === 'vertical' && {
-            borderBottom: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+            borderBottom:
+              'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
           }),
       },
       // middle Buttons or IconButtons
@@ -103,13 +105,14 @@ const ButtonGroupRoot = styled('div', {
         borderRadius: 'var(--unstable_childRadius)',
         ...(shouldHaveBorder &&
           ownerState.orientation === 'horizontal' && {
-            borderLeft: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
-            borderRight: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+            borderLeft: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+            borderRight: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
           }),
         ...(shouldHaveBorder &&
           ownerState.orientation === 'vertical' && {
-            borderTop: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
-            borderBottom: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+            borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+            borderBottom:
+              'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
           }),
       },
       // last Button or IconButton
@@ -118,11 +121,11 @@ const ButtonGroupRoot = styled('div', {
         '--IconButton-radius': lastChildRadius,
         ...(shouldHaveBorder &&
           ownerState.orientation === 'horizontal' && {
-            borderLeft: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+            borderLeft: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
           }),
         ...(shouldHaveBorder &&
           ownerState.orientation === 'vertical' && {
-            borderTop: 'var(--unstable_childBorder) solid var(--ButtonGroup-separatorColor)',
+            borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
           }),
       },
       [`& > :not([data-first-child])`]: {
