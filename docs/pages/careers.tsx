@@ -158,6 +158,12 @@ const openRolesData = [
           'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
         url: '/careers/accessibility-engineer/',
       },
+      {
+        title: 'React Community Engineer - X',
+        description:
+          "You will provide guidance, remove blockers, and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
+        url: '/careers/react-community-engineer/',
+      },
     ],
   },
   {
@@ -181,12 +187,6 @@ const nextRolesData = [
         description:
           'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
-      },
-      {
-        title: 'React Community Engineer - X',
-        description:
-          'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
-        url: '/careers/react-community-engineer/',
       },
       {
         title: 'React Engineer - X',
