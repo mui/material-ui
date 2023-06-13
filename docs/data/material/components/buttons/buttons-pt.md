@@ -5,7 +5,7 @@ components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://m2.material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base/react-button/
+unstyled: /base-ui/react-button/
 ---
 
 # Button

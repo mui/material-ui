@@ -46,7 +46,7 @@ Material UI is a comprehensive library of components that features our implement
 
 ### Base UI
 
-[Base UI](/base/getting-started/overview/) is our library of "unstyled" components and hooks.
+[Base UI](/base-ui/getting-started/overview/) is our library of "unstyled" components and hooks.
 With Base, you gain complete control over your app's CSS and accessibility features.
 
 The Base package includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
