@@ -8,6 +8,7 @@ import {
 } from '../utils/useControllableReducer.types';
 import { EventHandlers } from '../utils';
 import type { ListContextValue } from './ListContext';
+import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
 
 type ListActionContextRequiredKeys =
   | 'disabledItemsFocusable'
@@ -235,9 +236,8 @@ export interface ListItemState {
 
 interface UseListRootSlotOwnProps {
   'aria-activedescendant'?: React.AriaAttributes['aria-activedescendant'];
-  id?: string;
-  onBlur: React.FocusEventHandler;
-  onKeyDown: React.KeyboardEventHandler;
+  onBlur: MuiCancellableEventHandler<React.FocusEvent<HTMLElement>>;
+  onKeyDown: MuiCancellableEventHandler<React.KeyboardEvent<HTMLElement>>;
   tabIndex: number;
   ref: React.RefCallback<Element> | null;
 }

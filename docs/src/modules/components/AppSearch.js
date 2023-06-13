@@ -37,9 +37,6 @@ const SearchButton = styled('button')(({ theme }) => [
         display: 'none',
       },
     },
-    [theme.breakpoints.up('sm')]: {
-      minWidth: 150,
-    },
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
     backgroundColor: (theme.vars || theme).palette.grey[50],
@@ -172,7 +169,7 @@ function DocSearchHit(props) {
     if (pathname.startsWith('/joy-ui/')) {
       text = 'Joy UI';
     }
-    if (pathname.startsWith('/base/')) {
+    if (pathname.startsWith('/base-ui/')) {
       text = 'Base UI';
     }
     return <Chip label={text} size="small" variant="outlined" sx={{ mr: 1 }} />;
@@ -201,7 +198,7 @@ DocSearchHit.propTypes = {
   hit: PropTypes.object.isRequired,
 };
 
-export default function AppSearch() {
+export default function AppSearch(props) {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
@@ -292,7 +289,7 @@ export default function AppSearch() {
 
   return (
     <React.Fragment>
-      <SearchButton ref={searchButtonRef} onClick={onOpen}>
+      <SearchButton ref={searchButtonRef} onClick={onOpen} {...props}>
         <SearchIcon
           fontSize="small"
           sx={(theme) => ({

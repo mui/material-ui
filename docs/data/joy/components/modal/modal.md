@@ -214,6 +214,14 @@ Therefore, in order to display a modal rendered on the server, disable the porta
 
 {{"demo": "ServerModal.js", "defaultCodeOpen": false}}
 
+## Common examples
+
+### Mobile modal
+
+Use `sx` prop with `theme.breakpoints.only('xs')` to customize the styles of the modal dialog to stick at the bottom in mobile viewport.
+
+{{"demo": "ResponsiveModal.js"}}
+
 ## Limitations
 
 ### Focus trap

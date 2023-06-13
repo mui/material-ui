@@ -44,15 +44,20 @@ const theme = createTheme({
 });
 ```
 
-**WARNING**: `vars` is a private field used for CSS variables support. It will throw an error if you try to use it:
+:::warning
+`vars` is a private field for [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/). It will throw an error if you try to pass a value to it:
 
 ```jsx
 createTheme({
-  vars: { ... },
+  vars: { ... }, // ❌ error
 })
 ```
 
-If you are using TypeScript, you would also need to use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept the above values.
+:::
+
+### TypeScript
+
+You have to use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) to add new variables to the `Theme` and `ThemeOptions`.
 
 ```tsx
 declare module '@mui/material/styles' {
@@ -71,6 +76,8 @@ declare module '@mui/material/styles' {
 ```
 
 {{"demo": "CustomStyles.js"}}
+
+To add extra variables to the `theme.palette`, see [palette customization](/material-ui/customization/palette/).
 
 ## Theme builder
 
