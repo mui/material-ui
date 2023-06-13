@@ -14,7 +14,6 @@
       "additionalPropsInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "detached": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
@@ -44,7 +43,8 @@
         "name": "union",
         "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number<br>&#124;&nbsp;string, md?: number<br>&#124;&nbsp;string, sm?: number<br>&#124;&nbsp;string, xl?: number<br>&#124;&nbsp;string, xs?: number<br>&#124;&nbsp;string }<br>&#124;&nbsp;string"
       },
-      "default": "0"
+      "default": "0",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
