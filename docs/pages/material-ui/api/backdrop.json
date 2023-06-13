@@ -1,29 +1,25 @@
 {
   "props": {
-    "open": { "type": { "name": "bool" }, "required": true, "additionalPropsInfo": {} },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ root?: object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
-    "invisible": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "invisible": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -32,17 +28,12 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "default": "Fade",
-      "additionalPropsInfo": {}
-    },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
-      },
-      "additionalPropsInfo": {}
+      }
     }
   },
   "name": "Backdrop",

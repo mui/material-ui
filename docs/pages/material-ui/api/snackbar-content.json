@@ -1,9 +1,9 @@
 {
   "props": {
-    "action": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "action": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "message": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "role": { "type": { "name": "string" }, "default": "'alert'", "additionalPropsInfo": {} },
+    "message": { "type": { "name": "node" } },
+    "role": { "type": { "name": "string" }, "default": "'alert'" },
     "sx": {
       "type": {
         "name": "union",

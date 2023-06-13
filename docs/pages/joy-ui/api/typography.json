@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "color": {
       "type": {
         "name": "union",
@@ -8,30 +8,27 @@
       },
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "endDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "gutterBottom": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "endDecorator": { "type": { "name": "node" } },
+    "gutterBottom": { "type": { "name": "bool" }, "default": "false" },
     "level": {
       "type": {
         "name": "union",
         "description": "'body1'<br>&#124;&nbsp;'body2'<br>&#124;&nbsp;'body3'<br>&#124;&nbsp;'h1'<br>&#124;&nbsp;'h2'<br>&#124;&nbsp;'h3'<br>&#124;&nbsp;'h4'<br>&#124;&nbsp;'h5'<br>&#124;&nbsp;'h6'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;string"
       },
-      "default": "'body1'",
-      "additionalPropsInfo": {}
+      "default": "'body1'"
     },
     "levelMapping": {
       "type": { "name": "object" },
-      "default": "{\n  h1: 'h1',\n  h2: 'h2',\n  h3: 'h3',\n  h4: 'h4',\n  h5: 'h5',\n  h6: 'h6',\n  body1: 'p',\n  body2: 'p',\n  body3: 'p',\n  inherit: 'p',\n}",
-      "additionalPropsInfo": {}
+      "default": "{\n  h1: 'h1',\n  h2: 'h2',\n  h3: 'h3',\n  h4: 'h4',\n  h5: 'h5',\n  h6: 'h6',\n  body1: 'p',\n  body2: 'p',\n  body3: 'p',\n  inherit: 'p',\n}"
     },
-    "noWrap": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "noWrap": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ endDecorator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {
@@ -41,7 +38,7 @@
       "default": "{}",
       "additionalPropsInfo": { "slotsApi": true }
     },
-    "startDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",
@@ -49,7 +46,7 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "textColor": { "type": { "name": "any" }, "additionalPropsInfo": {} },
+    "textColor": { "type": { "name": "any" } },
     "variant": {
       "type": {
         "name": "union",

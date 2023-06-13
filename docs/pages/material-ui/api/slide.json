@@ -1,40 +1,32 @@
 {
   "props": {
-    "children": {
-      "type": { "name": "custom", "description": "element" },
-      "required": true,
-      "additionalPropsInfo": {}
-    },
-    "addEndListener": { "type": { "name": "func" }, "additionalPropsInfo": {} },
-    "appear": { "type": { "name": "bool" }, "default": "true", "additionalPropsInfo": {} },
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "addEndListener": { "type": { "name": "func" } },
+    "appear": { "type": { "name": "bool" }, "default": "true" },
     "container": {
-      "type": { "name": "custom", "description": "HTML element<br>&#124;&nbsp;func" },
-      "additionalPropsInfo": {}
+      "type": { "name": "custom", "description": "HTML element<br>&#124;&nbsp;func" }
     },
     "direction": {
       "type": {
         "name": "enum",
         "description": "'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'"
       },
-      "default": "'down'",
-      "additionalPropsInfo": {}
+      "default": "'down'"
     },
     "easing": {
       "type": {
         "name": "union",
         "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
       },
-      "default": "{\n  enter: theme.transitions.easing.easeOut,\n  exit: theme.transitions.easing.sharp,\n}",
-      "additionalPropsInfo": {}
+      "default": "{\n  enter: theme.transitions.easing.easeOut,\n  exit: theme.transitions.easing.sharp,\n}"
     },
-    "in": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "in": { "type": { "name": "bool" } },
     "timeout": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}",
-      "additionalPropsInfo": {}
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
     }
   },
   "name": "Slide",

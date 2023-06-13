@@ -1,21 +1,19 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "loading": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "loading": { "type": { "name": "bool" }, "default": "false" },
     "loadingIndicator": {
       "type": { "name": "node" },
-      "default": "<CircularProgress color=\"inherit\" size={16} />",
-      "additionalPropsInfo": {}
+      "default": "<CircularProgress color=\"inherit\" size={16} />"
     },
     "loadingPosition": {
       "type": {
         "name": "custom",
         "description": "'start'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'center'"
       },
-      "default": "'center'",
-      "additionalPropsInfo": {}
+      "default": "'center'"
     },
     "sx": {
       "type": {
@@ -29,8 +27,7 @@
         "name": "union",
         "description": "'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
-      "default": "'text'",
-      "additionalPropsInfo": {}
+      "default": "'text'"
     }
   },
   "name": "LoadingButton",

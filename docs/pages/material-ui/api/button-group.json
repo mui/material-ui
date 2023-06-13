@@ -1,41 +1,30 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'",
-      "additionalPropsInfo": {}
+      "default": "'primary'"
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "disableElevation": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
-    "disableFocusRipple": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
-    "disableRipple": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "fullWidth": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableElevation": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'horizontal'",
-      "additionalPropsInfo": {}
+      "default": "'horizontal'"
     },
     "size": {
       "type": {
         "name": "union",
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'",
-      "additionalPropsInfo": {}
+      "default": "'medium'"
     },
     "sx": {
       "type": {
@@ -49,8 +38,7 @@
         "name": "union",
         "description": "'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
-      "default": "'outlined'",
-      "additionalPropsInfo": {}
+      "default": "'outlined'"
     }
   },
   "name": "ButtonGroup",

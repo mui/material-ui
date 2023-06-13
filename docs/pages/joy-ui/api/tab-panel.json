@@ -1,7 +1,7 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
     "size": {
       "type": {
         "name": "union",
@@ -11,8 +11,7 @@
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
@@ -28,8 +27,7 @@
     },
     "value": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "default": "0",
-      "additionalPropsInfo": {}
+      "default": "0"
     }
   },
   "name": "TabPanel",

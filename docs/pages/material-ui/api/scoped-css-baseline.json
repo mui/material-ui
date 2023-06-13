@@ -1,9 +1,9 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "enableColorScheme": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "enableColorScheme": { "type": { "name": "bool" } },
     "sx": {
       "type": {
         "name": "union",

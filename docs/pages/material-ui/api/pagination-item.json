@@ -6,41 +6,36 @@
         "name": "union",
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
-      "default": "'standard'",
-      "additionalPropsInfo": {}
+      "default": "'standard'"
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
         "name": "shape",
         "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "page": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "selected": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "page": { "type": { "name": "node" } },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
-      "default": "'circular'",
-      "additionalPropsInfo": {}
+      "default": "'circular'"
     },
     "size": {
       "type": {
         "name": "union",
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'",
-      "additionalPropsInfo": {}
+      "default": "'medium'"
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -54,16 +49,14 @@
         "name": "enum",
         "description": "'end-ellipsis'<br>&#124;&nbsp;'first'<br>&#124;&nbsp;'last'<br>&#124;&nbsp;'next'<br>&#124;&nbsp;'page'<br>&#124;&nbsp;'previous'<br>&#124;&nbsp;'start-ellipsis'"
       },
-      "default": "'page'",
-      "additionalPropsInfo": {}
+      "default": "'page'"
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
-      "default": "'text'",
-      "additionalPropsInfo": {}
+      "default": "'text'"
     }
   },
   "name": "PaginationItem",

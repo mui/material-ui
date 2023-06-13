@@ -1,9 +1,9 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "expandIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "focusVisibleClassName": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "expandIcon": { "type": { "name": "node" } },
+    "focusVisibleClassName": { "type": { "name": "string" } },
     "sx": {
       "type": {
         "name": "union",

@@ -5,10 +5,9 @@
         "name": "union",
         "description": "'both'<br>&#124;&nbsp;'bothBetween'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'x'<br>&#124;&nbsp;'xBetween'<br>&#124;&nbsp;'y'<br>&#124;&nbsp;'yBetween'<br>&#124;&nbsp;string"
       },
-      "default": "'xBetween'",
-      "additionalPropsInfo": {}
+      "default": "'xBetween'"
     },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "color": {
       "type": {
         "name": "union",
@@ -17,9 +16,9 @@
       "default": "'neutral'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "hoverRow": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "noWrap": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "hoverRow": { "type": { "name": "bool" }, "default": "false" },
+    "noWrap": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",
@@ -30,22 +29,20 @@
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}",
       "additionalPropsInfo": { "slotsApi": true }
     },
-    "stickyFooter": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "stickyHeader": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "stickyFooter": { "type": { "name": "bool" }, "default": "false" },
+    "stickyHeader": { "type": { "name": "bool" }, "default": "false" },
     "stripe": {
       "type": {
         "name": "union",
         "description": "'odd'<br>&#124;&nbsp;'even'<br>&#124;&nbsp;string"
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "sx": {
       "type": {

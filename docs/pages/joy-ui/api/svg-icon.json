@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "color": {
       "type": {
         "name": "union",
@@ -9,22 +9,20 @@
       "default": "'inherit'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
     "fontSize": {
       "type": {
         "name": "enum",
         "description": "'inherit'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xl2'<br>&#124;&nbsp;'xl3'<br>&#124;&nbsp;'xl4'<br>&#124;&nbsp;'xl5'<br>&#124;&nbsp;'xl6'<br>&#124;&nbsp;'xl7'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;'xs2'<br>&#124;&nbsp;'xs3'"
       },
-      "default": "'xl'",
-      "additionalPropsInfo": {}
+      "default": "'xl'"
     },
-    "htmlColor": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "inheritViewBox": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "shapeRendering": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "htmlColor": { "type": { "name": "string" } },
+    "inheritViewBox": { "type": { "name": "bool" }, "default": "false" },
+    "shapeRendering": { "type": { "name": "string" } },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
@@ -38,8 +36,8 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "titleAccess": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'", "additionalPropsInfo": {} }
+    "titleAccess": { "type": { "name": "string" } },
+    "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'" }
   },
   "name": "SvgIcon",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

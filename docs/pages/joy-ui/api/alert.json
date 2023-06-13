@@ -8,10 +8,10 @@
       "default": "'primary'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "endDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "invertedColors": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "role": { "type": { "name": "string" }, "default": "'alert'", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "endDecorator": { "type": { "name": "node" } },
+    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
+    "role": { "type": { "name": "string" }, "default": "'alert'" },
     "size": {
       "type": {
         "name": "union",
@@ -25,8 +25,7 @@
         "name": "shape",
         "description": "{ endDecorator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {
@@ -36,7 +35,7 @@
       "default": "{}",
       "additionalPropsInfo": { "slotsApi": true }
     },
-    "startDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",

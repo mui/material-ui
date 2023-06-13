@@ -2,22 +2,13 @@
   "props": {
     "position": {
       "type": { "name": "enum", "description": "'end'<br>&#124;&nbsp;'start'" },
-      "required": true,
-      "additionalPropsInfo": {}
+      "required": true
     },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "disablePointerEvents": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
-    "disableTypography": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
+    "component": { "type": { "name": "elementType" } },
+    "disablePointerEvents": { "type": { "name": "bool" }, "default": "false" },
+    "disableTypography": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -29,8 +20,7 @@
       "type": {
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
-      },
-      "additionalPropsInfo": {}
+      }
     }
   },
   "name": "InputAdornment",

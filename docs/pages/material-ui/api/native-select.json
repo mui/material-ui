@@ -1,25 +1,20 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": {
       "type": { "name": "object" },
       "default": "{}",
       "additionalPropsInfo": { "cssApi": true }
     },
-    "IconComponent": {
-      "type": { "name": "elementType" },
-      "default": "ArrowDropDownIcon",
-      "additionalPropsInfo": {}
-    },
-    "input": { "type": { "name": "element" }, "default": "<Input />", "additionalPropsInfo": {} },
-    "inputProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
+    "input": { "type": { "name": "element" }, "default": "<Input />" },
+    "inputProps": { "type": { "name": "object" } },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.ChangeEvent<HTMLSelectElement>) => void",
         "describedArgs": ["event"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "sx": {
       "type": {
@@ -28,13 +23,12 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} },
+    "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
-      },
-      "additionalPropsInfo": {}
+      }
     }
   },
   "name": "NativeSelect",

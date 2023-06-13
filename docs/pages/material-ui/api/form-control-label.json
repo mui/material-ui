@@ -1,38 +1,34 @@
 {
   "props": {
-    "control": { "type": { "name": "element" }, "required": true, "additionalPropsInfo": {} },
-    "checked": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "control": { "type": { "name": "element" }, "required": true },
+    "checked": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ typography?: object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
-    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "disableTypography": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "inputRef": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
-    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" } },
+    "disableTypography": { "type": { "name": "bool" } },
+    "inputRef": { "type": { "name": "custom", "description": "ref" } },
+    "label": { "type": { "name": "node" } },
     "labelPlacement": {
       "type": {
         "name": "enum",
         "description": "'bottom'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;'top'"
       },
-      "default": "'end'",
-      "additionalPropsInfo": {}
+      "default": "'end'"
     },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.SyntheticEvent) => void",
         "describedArgs": ["event"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "required": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "required": { "type": { "name": "bool" } },
     "slotProps": {
       "type": { "name": "shape", "description": "{ typography?: object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -41,7 +37,7 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} }
+    "value": { "type": { "name": "any" } }
   },
   "name": "FormControlLabel",
   "styles": {

@@ -1,14 +1,13 @@
 {
   "props": {
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "label": { "type": { "name": "node" } },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ label?: func<br>&#124;&nbsp;object, list?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {

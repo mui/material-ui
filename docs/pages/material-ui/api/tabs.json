@@ -1,64 +1,50 @@
 {
   "props": {
-    "action": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
-    "allowScrollButtonsMobile": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
-    "aria-label": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "aria-labelledby": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "centered": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "action": { "type": { "name": "custom", "description": "ref" } },
+    "allowScrollButtonsMobile": { "type": { "name": "bool" }, "default": "false" },
+    "aria-label": { "type": { "name": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "centered": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
     "indicatorColor": {
       "type": {
         "name": "union",
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'",
-      "additionalPropsInfo": {}
+      "default": "'primary'"
     },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.SyntheticEvent, value: any) => void",
         "describedArgs": ["event", "value"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'horizontal'",
-      "additionalPropsInfo": {}
+      "default": "'horizontal'"
     },
-    "ScrollButtonComponent": {
-      "type": { "name": "elementType" },
-      "default": "TabScrollButton",
-      "additionalPropsInfo": {}
-    },
+    "ScrollButtonComponent": { "type": { "name": "elementType" }, "default": "TabScrollButton" },
     "scrollButtons": {
       "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;false<br>&#124;&nbsp;true" },
-      "default": "'auto'",
-      "additionalPropsInfo": {}
+      "default": "'auto'"
     },
-    "selectionFollowsFocus": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "selectionFollowsFocus": { "type": { "name": "bool" } },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ EndScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -67,38 +53,24 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "TabIndicatorProps": {
-      "type": { "name": "object" },
-      "default": "{}",
-      "additionalPropsInfo": {}
-    },
-    "TabScrollButtonProps": {
-      "type": { "name": "object" },
-      "default": "{}",
-      "additionalPropsInfo": {}
-    },
+    "TabIndicatorProps": { "type": { "name": "object" }, "default": "{}" },
+    "TabScrollButtonProps": { "type": { "name": "object" }, "default": "{}" },
     "textColor": {
       "type": {
         "name": "enum",
         "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
-      "default": "'primary'",
-      "additionalPropsInfo": {}
+      "default": "'primary'"
     },
-    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} },
+    "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'fullWidth'<br>&#124;&nbsp;'scrollable'<br>&#124;&nbsp;'standard'"
       },
-      "default": "'standard'",
-      "additionalPropsInfo": {}
+      "default": "'standard'"
     },
-    "visibleScrollbar": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    }
+    "visibleScrollbar": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Tabs",
   "styles": {

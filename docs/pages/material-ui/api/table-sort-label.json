@@ -1,19 +1,14 @@
 {
   "props": {
-    "active": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "active": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "direction": {
       "type": { "name": "enum", "description": "'asc'<br>&#124;&nbsp;'desc'" },
-      "default": "'asc'",
-      "additionalPropsInfo": {}
+      "default": "'asc'"
     },
-    "hideSortIcon": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "IconComponent": {
-      "type": { "name": "elementType" },
-      "default": "ArrowDownwardIcon",
-      "additionalPropsInfo": {}
-    },
+    "hideSortIcon": { "type": { "name": "bool" }, "default": "false" },
+    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDownwardIcon" },
     "sx": {
       "type": {
         "name": "union",

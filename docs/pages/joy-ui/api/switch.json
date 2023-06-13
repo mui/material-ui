@@ -1,6 +1,6 @@
 {
   "props": {
-    "checked": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "checked": { "type": { "name": "bool" } },
     "color": {
       "type": {
         "name": "union",
@@ -9,23 +9,19 @@
       "default": "'neutral'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "defaultChecked": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "endDecorator": {
-      "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" },
-      "additionalPropsInfo": {}
-    },
+    "component": { "type": { "name": "elementType" } },
+    "defaultChecked": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "endDecorator": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
         "describedArgs": ["event"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "readOnly": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "required": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "readOnly": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" } },
     "size": {
       "type": {
         "name": "union",
@@ -39,8 +35,7 @@
         "name": "shape",
         "description": "{ action?: func<br>&#124;&nbsp;object, endDecorator?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {
@@ -50,10 +45,7 @@
       "default": "{}",
       "additionalPropsInfo": { "slotsApi": true }
     },
-    "startDecorator": {
-      "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" },
-      "additionalPropsInfo": {}
-    },
+    "startDecorator": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
     "sx": {
       "type": {
         "name": "union",

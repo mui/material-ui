@@ -1,8 +1,8 @@
 {
   "props": {
-    "checked": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "checkedIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "className": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "checked": { "type": { "name": "bool" } },
+    "checkedIcon": { "type": { "name": "node" } },
+    "className": { "type": { "name": "string" } },
     "color": {
       "type": {
         "name": "union",
@@ -11,23 +11,22 @@
       "default": "'neutral'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "defaultChecked": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "disableIcon": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "name": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "defaultChecked": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "disableIcon": { "type": { "name": "bool" }, "default": "false" },
+    "label": { "type": { "name": "node" } },
+    "name": { "type": { "name": "string" } },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
         "describedArgs": ["event"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "overlay": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "readOnly": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "required": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "overlay": { "type": { "name": "bool" }, "default": "false" },
+    "readOnly": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" } },
     "size": {
       "type": {
         "name": "union",
@@ -41,8 +40,7 @@
         "name": "shape",
         "description": "{ action?: func<br>&#124;&nbsp;object, icon?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, radio?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {
@@ -59,8 +57,8 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "uncheckedIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} },
+    "uncheckedIcon": { "type": { "name": "node" } },
+    "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
         "name": "union",

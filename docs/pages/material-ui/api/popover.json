@@ -1,63 +1,47 @@
 {
   "props": {
-    "open": { "type": { "name": "bool" }, "required": true, "additionalPropsInfo": {} },
-    "action": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
-    "anchorEl": {
-      "type": { "name": "custom", "description": "HTML element<br>&#124;&nbsp;func" },
-      "additionalPropsInfo": {}
-    },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "action": { "type": { "name": "custom", "description": "ref" } },
+    "anchorEl": { "type": { "name": "custom", "description": "HTML element<br>&#124;&nbsp;func" } },
     "anchorOrigin": {
       "type": {
         "name": "shape",
         "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;number, vertical: 'bottom'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;number }"
       },
-      "default": "{\n  vertical: 'top',\n  horizontal: 'left',\n}",
-      "additionalPropsInfo": {}
+      "default": "{\n  vertical: 'top',\n  horizontal: 'left',\n}"
     },
     "anchorPosition": {
-      "type": { "name": "shape", "description": "{ left: number, top: number }" },
-      "additionalPropsInfo": {}
+      "type": { "name": "shape", "description": "{ left: number, top: number }" }
     },
     "anchorReference": {
       "type": {
         "name": "enum",
         "description": "'anchorEl'<br>&#124;&nbsp;'anchorPosition'<br>&#124;&nbsp;'none'"
       },
-      "default": "'anchorEl'",
-      "additionalPropsInfo": {}
+      "default": "'anchorEl'"
     },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "container": {
-      "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
-      "additionalPropsInfo": {}
-    },
-    "elevation": {
-      "type": { "name": "custom", "description": "integer" },
-      "default": "8",
-      "additionalPropsInfo": {}
-    },
-    "marginThreshold": { "type": { "name": "number" }, "default": "16", "additionalPropsInfo": {} },
-    "onClose": { "type": { "name": "func" }, "additionalPropsInfo": {} },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
+    "marginThreshold": { "type": { "name": "number" }, "default": "16" },
+    "onClose": { "type": { "name": "func" } },
     "PaperProps": {
       "type": { "name": "shape", "description": "{ component?: element type }" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.paper</code> instead.",
-      "additionalPropsInfo": {}
+      "deprecationInfo": "Use <code>slotProps.paper</code> instead."
     },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ paper?: elementType, root?: elementType }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -71,23 +55,17 @@
         "name": "shape",
         "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;number, vertical: 'bottom'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;number }"
       },
-      "default": "{\n  vertical: 'top',\n  horizontal: 'left',\n}",
-      "additionalPropsInfo": {}
+      "default": "{\n  vertical: 'top',\n  horizontal: 'left',\n}"
     },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "default": "Grow",
-      "additionalPropsInfo": {}
-    },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "'auto'",
-      "additionalPropsInfo": {}
+      "default": "'auto'"
     },
-    "TransitionProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} }
+    "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
   },
   "name": "Popover",
   "styles": { "classes": ["root", "paper"], "globalClasses": {}, "name": "MuiPopover" },

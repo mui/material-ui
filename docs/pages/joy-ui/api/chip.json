@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "color": {
       "type": {
         "name": "union",
@@ -9,10 +9,10 @@
       "default": "'primary'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "endDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "onClick": { "type": { "name": "func" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "endDecorator": { "type": { "name": "node" } },
+    "onClick": { "type": { "name": "func" } },
     "size": {
       "type": {
         "name": "union",
@@ -26,8 +26,7 @@
         "name": "shape",
         "description": "{ action?: func<br>&#124;&nbsp;object, endDecorator?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {
@@ -37,7 +36,7 @@
       "default": "{}",
       "additionalPropsInfo": { "slotsApi": true }
     },
-    "startDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",

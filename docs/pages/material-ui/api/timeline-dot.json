@@ -1,14 +1,13 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'error'<br>&#124;&nbsp;'grey'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'grey'",
-      "additionalPropsInfo": {}
+      "default": "'grey'"
     },
     "sx": {
       "type": {
@@ -22,8 +21,7 @@
         "name": "union",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string"
       },
-      "default": "'filled'",
-      "additionalPropsInfo": {}
+      "default": "'filled'"
     }
   },
   "name": "TimelineDot",

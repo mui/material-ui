@@ -1,9 +1,9 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "disableGutters": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -16,8 +16,7 @@
         "name": "union",
         "description": "'dense'<br>&#124;&nbsp;'regular'<br>&#124;&nbsp;string"
       },
-      "default": "'regular'",
-      "additionalPropsInfo": {}
+      "default": "'regular'"
     }
   },
   "name": "Toolbar",

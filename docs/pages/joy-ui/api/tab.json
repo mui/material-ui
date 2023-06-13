@@ -4,8 +4,7 @@
       "type": {
         "name": "union",
         "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "color": {
       "type": {
@@ -15,18 +14,16 @@
       "default": "'neutral'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "onChange": { "type": { "name": "func" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "onChange": { "type": { "name": "func" } },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'horizontal'",
-      "additionalPropsInfo": {}
+      "default": "'horizontal'"
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
@@ -40,10 +37,7 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "value": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "additionalPropsInfo": {}
-    },
+    "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "variant": {
       "type": {
         "name": "union",

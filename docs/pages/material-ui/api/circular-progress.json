@@ -6,18 +6,12 @@
         "name": "union",
         "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'",
-      "additionalPropsInfo": {}
+      "default": "'primary'"
     },
-    "disableShrink": {
-      "type": { "name": "custom", "description": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
+    "disableShrink": { "type": { "name": "custom", "description": "bool" }, "default": "false" },
     "size": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "default": "40",
-      "additionalPropsInfo": {}
+      "default": "40"
     },
     "sx": {
       "type": {
@@ -26,12 +20,11 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "thickness": { "type": { "name": "number" }, "default": "3.6", "additionalPropsInfo": {} },
-    "value": { "type": { "name": "number" }, "default": "0", "additionalPropsInfo": {} },
+    "thickness": { "type": { "name": "number" }, "default": "3.6" },
+    "value": { "type": { "name": "number" }, "default": "0" },
     "variant": {
       "type": { "name": "enum", "description": "'determinate'<br>&#124;&nbsp;'indeterminate'" },
-      "default": "'indeterminate'",
-      "additionalPropsInfo": {}
+      "default": "'indeterminate'"
     }
   },
   "name": "CircularProgress",

@@ -4,8 +4,7 @@
       "type": {
         "name": "union",
         "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "color": {
       "type": {
@@ -15,23 +14,18 @@
       "default": "'primary'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "endDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "fullWidth": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "loading": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "loadingIndicator": {
-      "type": { "name": "node" },
-      "default": "<CircularProgress />",
-      "additionalPropsInfo": {}
-    },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "endDecorator": { "type": { "name": "node" } },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
+    "loading": { "type": { "name": "bool" }, "default": "false" },
+    "loadingIndicator": { "type": { "name": "node" }, "default": "<CircularProgress />" },
     "loadingPosition": {
       "type": {
         "name": "enum",
         "description": "'center'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'"
       },
-      "default": "'center'",
-      "additionalPropsInfo": {}
+      "default": "'center'"
     },
     "size": {
       "type": {
@@ -46,8 +40,7 @@
         "name": "shape",
         "description": "{ endDecorator?: func<br>&#124;&nbsp;object, loadingIndicatorCenter?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {
@@ -57,7 +50,7 @@
       "default": "{}",
       "additionalPropsInfo": { "slotsApi": true }
     },
-    "startDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",

@@ -7,16 +7,10 @@
       },
       "additionalPropsInfo": { "joy-color": true }
     },
-    "endDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "error": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "maxRows": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "additionalPropsInfo": {}
-    },
-    "minRows": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "additionalPropsInfo": {}
-    },
+    "endDecorator": { "type": { "name": "node" } },
+    "error": { "type": { "name": "bool" } },
+    "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "size": {
       "type": {
         "name": "union",
@@ -24,7 +18,7 @@
       },
       "additionalPropsInfo": { "joy-size": true }
     },
-    "startDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",

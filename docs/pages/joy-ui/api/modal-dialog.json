@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "color": {
       "type": {
         "name": "union",
@@ -9,14 +9,13 @@
       "default": "'neutral'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
     "layout": {
       "type": {
         "name": "union",
         "description": "'center'<br>&#124;&nbsp;'fullscreen'<br>&#124;&nbsp;string"
       },
-      "default": "'center'",
-      "additionalPropsInfo": {}
+      "default": "'center'"
     },
     "size": {
       "type": {
@@ -28,8 +27,7 @@
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },

@@ -1,10 +1,7 @@
 {
   "props": {
-    "actions": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
-    "anchorEl": {
-      "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
-      "additionalPropsInfo": {}
-    },
+    "actions": { "type": { "name": "custom", "description": "ref" } },
+    "anchorEl": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "color": {
       "type": {
         "name": "enum",
@@ -13,19 +10,18 @@
       "default": "'neutral'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "disablePortal": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "invertedColors": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "keepMounted": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "modifiers": {
       "type": {
         "name": "arrayOf",
         "description": "Array&lt;{ data?: object, effect?: func, enabled?: bool, fn?: func, name?: any, options?: object, phase?: 'afterMain'<br>&#124;&nbsp;'afterRead'<br>&#124;&nbsp;'afterWrite'<br>&#124;&nbsp;'beforeMain'<br>&#124;&nbsp;'beforeRead'<br>&#124;&nbsp;'beforeWrite'<br>&#124;&nbsp;'main'<br>&#124;&nbsp;'read'<br>&#124;&nbsp;'write', requires?: Array&lt;string&gt;, requiresIfExists?: Array&lt;string&gt; }&gt;"
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "onClose": { "type": { "name": "func" }, "additionalPropsInfo": {} },
-    "open": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "onClose": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",
@@ -36,8 +32,7 @@
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },

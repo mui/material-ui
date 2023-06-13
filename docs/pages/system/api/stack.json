@@ -1,21 +1,19 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
     "direction": {
       "type": {
         "name": "union",
         "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;Array&lt;'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'&gt;<br>&#124;&nbsp;object"
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "divider": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "divider": { "type": { "name": "node" } },
     "spacing": {
       "type": {
         "name": "union",
         "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "sx": {
       "type": {
@@ -24,7 +22,7 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "useFlexGap": { "type": { "name": "bool" }, "additionalPropsInfo": {} }
+    "useFlexGap": { "type": { "name": "bool" } }
   },
   "name": "Stack",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

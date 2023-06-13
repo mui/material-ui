@@ -1,32 +1,26 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "disableAnimation": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
-    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "error": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "focused": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "margin": { "type": { "name": "enum", "description": "'dense'" }, "additionalPropsInfo": {} },
-    "required": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "shrink": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "disableAnimation": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" } },
+    "focused": { "type": { "name": "bool" } },
+    "margin": { "type": { "name": "enum", "description": "'dense'" } },
+    "required": { "type": { "name": "bool" } },
+    "shrink": { "type": { "name": "bool" } },
     "size": {
       "type": {
         "name": "union",
         "description": "'normal'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       },
-      "default": "'normal'",
-      "additionalPropsInfo": {}
+      "default": "'normal'"
     },
     "sx": {
       "type": {
@@ -39,8 +33,7 @@
       "type": {
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
-      },
-      "additionalPropsInfo": {}
+      }
     }
   },
   "name": "InputLabel",

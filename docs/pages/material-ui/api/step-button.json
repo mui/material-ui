@@ -1,9 +1,9 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "icon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "optional": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "icon": { "type": { "name": "node" } },
+    "optional": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",

@@ -5,26 +5,20 @@
         "name": "enum",
         "description": "'bottom'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top'"
       },
-      "default": "'left'",
-      "additionalPropsInfo": {}
+      "default": "'left'"
     },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "elevation": {
-      "type": { "name": "custom", "description": "integer" },
-      "default": "16",
-      "additionalPropsInfo": {}
-    },
-    "hideBackdrop": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "ModalProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} },
+    "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "16" },
+    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
+    "ModalProps": { "type": { "name": "object" }, "default": "{}" },
     "onClose": {
       "type": { "name": "func" },
-      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] },
-      "additionalPropsInfo": {}
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] }
     },
-    "open": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "PaperProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} },
-    "SlideProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "open": { "type": { "name": "bool" }, "default": "false" },
+    "PaperProps": { "type": { "name": "object" }, "default": "{}" },
+    "SlideProps": { "type": { "name": "object" } },
     "sx": {
       "type": {
         "name": "union",
@@ -37,16 +31,14 @@
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}",
-      "additionalPropsInfo": {}
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
     },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'permanent'<br>&#124;&nbsp;'persistent'<br>&#124;&nbsp;'temporary'"
       },
-      "default": "'temporary'",
-      "additionalPropsInfo": {}
+      "default": "'temporary'"
     }
   },
   "name": "Drawer",

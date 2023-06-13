@@ -1,28 +1,19 @@
 {
   "props": {
-    "children": {
-      "type": { "name": "custom", "description": "node" },
-      "required": true,
-      "additionalPropsInfo": {}
-    },
+    "children": { "type": { "name": "custom", "description": "node" }, "required": true },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "defaultExpanded": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "disableGutters": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "expanded": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "defaultExpanded": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "expanded": { "type": { "name": "bool" } },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.SyntheticEvent, expanded: boolean) => void",
         "describedArgs": ["event", "expanded"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "square": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "square": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -30,12 +21,8 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "default": "Collapse",
-      "additionalPropsInfo": {}
-    },
-    "TransitionProps": { "type": { "name": "object" }, "additionalPropsInfo": {} }
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
+    "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "Accordion",
   "styles": {

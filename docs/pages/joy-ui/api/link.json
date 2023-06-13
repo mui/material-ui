@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "color": {
       "type": {
         "name": "union",
@@ -9,25 +9,23 @@
       "default": "'primary'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "endDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "endDecorator": { "type": { "name": "node" } },
     "level": {
       "type": {
         "name": "union",
         "description": "'body1'<br>&#124;&nbsp;'body2'<br>&#124;&nbsp;'body3'<br>&#124;&nbsp;'h1'<br>&#124;&nbsp;'h2'<br>&#124;&nbsp;'h3'<br>&#124;&nbsp;'h4'<br>&#124;&nbsp;'h5'<br>&#124;&nbsp;'h6'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;string"
       },
-      "default": "'body1'",
-      "additionalPropsInfo": {}
+      "default": "'body1'"
     },
-    "overlay": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "overlay": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ endDecorator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {
@@ -37,7 +35,7 @@
       "default": "{}",
       "additionalPropsInfo": { "slotsApi": true }
     },
-    "startDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",
@@ -45,14 +43,13 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "textColor": { "type": { "name": "any" }, "additionalPropsInfo": {} },
+    "textColor": { "type": { "name": "any" } },
     "underline": {
       "type": {
         "name": "enum",
         "description": "'always'<br>&#124;&nbsp;'hover'<br>&#124;&nbsp;'none'"
       },
-      "default": "'hover'",
-      "additionalPropsInfo": {}
+      "default": "'hover'"
     },
     "variant": {
       "type": {

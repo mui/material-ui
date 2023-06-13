@@ -5,16 +5,14 @@
         "name": "shape",
         "description": "{ horizontal: 'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
       },
-      "default": "{\n  vertical: 'top',\n  horizontal: 'right',\n}",
-      "additionalPropsInfo": {}
+      "default": "{\n  vertical: 'top',\n  horizontal: 'right',\n}"
     },
-    "badgeContent": { "type": { "name": "node" }, "default": "''", "additionalPropsInfo": {} },
+    "badgeContent": { "type": { "name": "node" }, "default": "''" },
     "badgeInset": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "default": "0",
-      "additionalPropsInfo": {}
+      "default": "0"
     },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "color": {
       "type": {
         "name": "union",
@@ -23,10 +21,10 @@
       "default": "'primary'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "invisible": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "max": { "type": { "name": "number" }, "default": "99", "additionalPropsInfo": {} },
-    "showZero": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "invisible": { "type": { "name": "bool" }, "default": "false" },
+    "max": { "type": { "name": "number" }, "default": "99" },
+    "showZero": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",
@@ -40,8 +38,7 @@
         "name": "shape",
         "description": "{ badge?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ badge?: elementType, root?: elementType }" },

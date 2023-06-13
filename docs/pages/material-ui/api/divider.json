@@ -1,15 +1,14 @@
 {
   "props": {
-    "absolute": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "absolute": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "flexItem": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "light": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "flexItem": { "type": { "name": "bool" }, "default": "false" },
+    "light": { "type": { "name": "bool" }, "default": "false" },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'horizontal'",
-      "additionalPropsInfo": {}
+      "default": "'horizontal'"
     },
     "sx": {
       "type": {
@@ -23,16 +22,14 @@
         "name": "enum",
         "description": "'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
-      "default": "'center'",
-      "additionalPropsInfo": {}
+      "default": "'center'"
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'fullWidth'<br>&#124;&nbsp;'inset'<br>&#124;&nbsp;'middle'<br>&#124;&nbsp;string"
       },
-      "default": "'fullWidth'",
-      "additionalPropsInfo": {}
+      "default": "'fullWidth'"
     }
   },
   "name": "Divider",

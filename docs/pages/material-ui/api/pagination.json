@@ -1,81 +1,55 @@
 {
   "props": {
-    "boundaryCount": {
-      "type": { "name": "custom", "description": "integer" },
-      "default": "1",
-      "additionalPropsInfo": {}
-    },
+    "boundaryCount": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
-      "default": "'standard'",
-      "additionalPropsInfo": {}
+      "default": "'standard'"
     },
-    "count": {
-      "type": { "name": "custom", "description": "integer" },
-      "default": "1",
-      "additionalPropsInfo": {}
-    },
-    "defaultPage": {
-      "type": { "name": "custom", "description": "integer" },
-      "default": "1",
-      "additionalPropsInfo": {}
-    },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "count": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "defaultPage": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "getItemAriaLabel": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(type: string, page: number, selected: bool) => string",
         "describedArgs": ["type", "page", "selected"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "hideNextButton": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "hidePrevButton": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "hideNextButton": { "type": { "name": "bool" }, "default": "false" },
+    "hidePrevButton": { "type": { "name": "bool" }, "default": "false" },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.ChangeEvent<unknown>, page: number) => void",
         "describedArgs": ["event", "page"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "page": { "type": { "name": "custom", "description": "integer" }, "additionalPropsInfo": {} },
+    "page": { "type": { "name": "custom", "description": "integer" } },
     "renderItem": {
       "type": { "name": "func" },
       "default": "(item) => <PaginationItem {...item} />",
       "signature": {
         "type": "function(params: PaginationRenderItemParams) => ReactNode",
         "describedArgs": ["params"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
-      "default": "'circular'",
-      "additionalPropsInfo": {}
+      "default": "'circular'"
     },
-    "showFirstButton": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
-    "showLastButton": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "siblingCount": {
-      "type": { "name": "custom", "description": "integer" },
-      "default": "1",
-      "additionalPropsInfo": {}
-    },
+    "showFirstButton": { "type": { "name": "bool" }, "default": "false" },
+    "showLastButton": { "type": { "name": "bool" }, "default": "false" },
+    "siblingCount": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "size": {
       "type": {
         "name": "union",
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'",
-      "additionalPropsInfo": {}
+      "default": "'medium'"
     },
     "sx": {
       "type": {
@@ -89,8 +63,7 @@
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
-      "default": "'text'",
-      "additionalPropsInfo": {}
+      "default": "'text'"
     }
   },
   "name": "Pagination",

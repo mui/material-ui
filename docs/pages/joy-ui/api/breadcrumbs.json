@@ -1,8 +1,8 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "separator": { "type": { "name": "node" }, "default": "'/'", "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
+    "separator": { "type": { "name": "node" }, "default": "'/'" },
     "size": {
       "type": {
         "name": "union",
@@ -16,8 +16,7 @@
         "name": "shape",
         "description": "{ li?: func<br>&#124;&nbsp;object, ol?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, separator?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {

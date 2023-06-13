@@ -1,37 +1,34 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'",
-      "additionalPropsInfo": {}
+      "default": "'primary'"
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "error": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "focused": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "fullWidth": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "hiddenLabel": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "error": { "type": { "name": "bool" }, "default": "false" },
+    "focused": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
+    "hiddenLabel": { "type": { "name": "bool" }, "default": "false" },
     "margin": {
       "type": {
         "name": "enum",
         "description": "'dense'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
       },
-      "default": "'none'",
-      "additionalPropsInfo": {}
+      "default": "'none'"
     },
-    "required": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "required": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'",
-      "additionalPropsInfo": {}
+      "default": "'medium'"
     },
     "sx": {
       "type": {
@@ -45,8 +42,7 @@
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
-      "default": "'outlined'",
-      "additionalPropsInfo": {}
+      "default": "'outlined'"
     }
   },
   "name": "FormControl",

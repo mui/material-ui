@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "sx": {
       "type": {
@@ -9,20 +9,15 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "default": "Collapse",
-      "additionalPropsInfo": {}
-    },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "'auto'",
-      "additionalPropsInfo": {}
+      "default": "'auto'"
     },
-    "TransitionProps": { "type": { "name": "object" }, "additionalPropsInfo": {} }
+    "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "StepContent",
   "styles": {

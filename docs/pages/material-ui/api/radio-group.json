@@ -1,17 +1,16 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "defaultValue": { "type": { "name": "any" }, "additionalPropsInfo": {} },
-    "name": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
+    "defaultValue": { "type": { "name": "any" } },
+    "name": { "type": { "name": "string" } },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.ChangeEvent<HTMLInputElement>, value: string) => void",
         "describedArgs": ["event", "value"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} }
+    "value": { "type": { "name": "any" } }
   },
   "name": "RadioGroup",
   "styles": {

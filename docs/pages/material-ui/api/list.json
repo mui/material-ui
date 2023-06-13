@@ -1,11 +1,11 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "dense": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "disablePadding": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "subheader": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "dense": { "type": { "name": "bool" }, "default": "false" },
+    "disablePadding": { "type": { "name": "bool" }, "default": "false" },
+    "subheader": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",

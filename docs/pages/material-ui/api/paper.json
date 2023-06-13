@@ -1,14 +1,10 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "elevation": {
-      "type": { "name": "custom", "description": "integer" },
-      "default": "1",
-      "additionalPropsInfo": {}
-    },
-    "square": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "square": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -21,8 +17,7 @@
         "name": "union",
         "description": "'elevation'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string"
       },
-      "default": "'elevation'",
-      "additionalPropsInfo": {}
+      "default": "'elevation'"
     }
   },
   "name": "Paper",

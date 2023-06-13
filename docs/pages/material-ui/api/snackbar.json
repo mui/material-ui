@@ -1,40 +1,30 @@
 {
   "props": {
-    "action": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "action": { "type": { "name": "node" } },
     "anchorOrigin": {
       "type": {
         "name": "shape",
         "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
       },
-      "default": "{ vertical: 'bottom', horizontal: 'left' }",
-      "additionalPropsInfo": {}
+      "default": "{ vertical: 'bottom', horizontal: 'left' }"
     },
-    "autoHideDuration": {
-      "type": { "name": "number" },
-      "default": "null",
-      "additionalPropsInfo": {}
-    },
-    "children": { "type": { "name": "element" }, "additionalPropsInfo": {} },
+    "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
+    "children": { "type": { "name": "element" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "ClickAwayListenerProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
-    "ContentProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
-    "disableWindowBlurListener": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
-    "key": { "type": { "name": "custom", "description": "any" }, "additionalPropsInfo": {} },
-    "message": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "ClickAwayListenerProps": { "type": { "name": "object" } },
+    "ContentProps": { "type": { "name": "object" } },
+    "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
+    "key": { "type": { "name": "custom", "description": "any" } },
+    "message": { "type": { "name": "node" } },
     "onClose": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.SyntheticEvent<any> | Event, reason: string) => void",
         "describedArgs": ["event", "reason"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "open": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "resumeHideDuration": { "type": { "name": "number" }, "additionalPropsInfo": {} },
+    "open": { "type": { "name": "bool" } },
+    "resumeHideDuration": { "type": { "name": "number" } },
     "sx": {
       "type": {
         "name": "union",
@@ -42,20 +32,15 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "default": "Grow",
-      "additionalPropsInfo": {}
-    },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}",
-      "additionalPropsInfo": {}
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
     },
-    "TransitionProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} }
+    "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
   },
   "name": "Snackbar",
   "styles": {

@@ -1,25 +1,23 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
     "padding": {
       "type": {
         "name": "enum",
         "description": "'checkbox'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
       },
-      "default": "'normal'",
-      "additionalPropsInfo": {}
+      "default": "'normal'"
     },
     "size": {
       "type": {
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'",
-      "additionalPropsInfo": {}
+      "default": "'medium'"
     },
-    "stickyHeader": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "stickyHeader": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",

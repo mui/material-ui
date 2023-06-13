@@ -1,22 +1,20 @@
 {
   "props": {
-    "actions": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
+    "actions": { "type": { "name": "custom", "description": "ref" } },
     "anchorEl": {
       "type": {
         "name": "union",
         "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "onOpenChange": { "type": { "name": "func" }, "additionalPropsInfo": {} },
-    "open": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "onOpenChange": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ listbox?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ listbox?: elementType, root?: elementType }" },

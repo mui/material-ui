@@ -1,34 +1,17 @@
 {
   "props": {
-    "open": { "type": { "name": "bool" }, "required": true, "additionalPropsInfo": {} },
-    "children": {
-      "type": { "name": "custom", "description": "element" },
-      "additionalPropsInfo": {}
-    },
-    "disableAutoFocus": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
-    "disableEnforceFocus": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
-    "disableRestoreFocus": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "children": { "type": { "name": "custom", "description": "element" } },
+    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
     "getTabbable": {
       "type": { "name": "func" },
-      "signature": { "type": "function(root: HTMLElement) => void", "describedArgs": [] },
-      "additionalPropsInfo": {}
+      "signature": { "type": "function(root: HTMLElement) => void", "describedArgs": [] }
     },
     "isEnabled": {
       "type": { "name": "func" },
-      "default": "function defaultIsEnabled(): boolean {\n  return true;\n}",
-      "additionalPropsInfo": {}
+      "default": "function defaultIsEnabled(): boolean {\n  return true;\n}"
     }
   },
   "name": "FocusTrap",

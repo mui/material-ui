@@ -1,38 +1,34 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'standard'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'standard'",
-      "additionalPropsInfo": {}
+      "default": "'standard'"
     },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "exclusive": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "fullWidth": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "exclusive": { "type": { "name": "bool" }, "default": "false" },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.MouseEvent<HTMLElement>, value: any) => void",
         "describedArgs": ["event", "value"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'horizontal'",
-      "additionalPropsInfo": {}
+      "default": "'horizontal'"
     },
     "size": {
       "type": {
         "name": "union",
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'",
-      "additionalPropsInfo": {}
+      "default": "'medium'"
     },
     "sx": {
       "type": {
@@ -41,7 +37,7 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} }
+    "value": { "type": { "name": "any" } }
   },
   "name": "ToggleButtonGroup",
   "styles": {

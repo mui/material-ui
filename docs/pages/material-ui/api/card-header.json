@@ -1,16 +1,12 @@
 {
   "props": {
-    "action": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "avatar": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "action": { "type": { "name": "node" } },
+    "avatar": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "disableTypography": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
-    "subheader": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "subheaderTypographyProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "disableTypography": { "type": { "name": "bool" }, "default": "false" },
+    "subheader": { "type": { "name": "node" } },
+    "subheaderTypographyProps": { "type": { "name": "object" } },
     "sx": {
       "type": {
         "name": "union",
@@ -18,8 +14,8 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "title": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "titleTypographyProps": { "type": { "name": "object" }, "additionalPropsInfo": {} }
+    "title": { "type": { "name": "node" } },
+    "titleTypographyProps": { "type": { "name": "object" } }
   },
   "name": "CardHeader",
   "styles": {

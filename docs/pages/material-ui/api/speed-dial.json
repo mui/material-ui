@@ -1,37 +1,34 @@
 {
   "props": {
-    "ariaLabel": { "type": { "name": "string" }, "required": true, "additionalPropsInfo": {} },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "ariaLabel": { "type": { "name": "string" }, "required": true },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "direction": {
       "type": {
         "name": "enum",
         "description": "'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'"
       },
-      "default": "'up'",
-      "additionalPropsInfo": {}
+      "default": "'up'"
     },
-    "FabProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} },
-    "hidden": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "icon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "FabProps": { "type": { "name": "object" }, "default": "{}" },
+    "hidden": { "type": { "name": "bool" }, "default": "false" },
+    "icon": { "type": { "name": "node" } },
     "onClose": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: object, reason: string) => void",
         "describedArgs": ["event", "reason"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "onOpen": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: object, reason: string) => void",
         "describedArgs": ["event", "reason"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "open": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "openIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "open": { "type": { "name": "bool" } },
+    "openIcon": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",
@@ -39,20 +36,15 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "default": "Zoom",
-      "additionalPropsInfo": {}
-    },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Zoom" },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}",
-      "additionalPropsInfo": {}
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
     },
-    "TransitionProps": { "type": { "name": "object" }, "additionalPropsInfo": {} }
+    "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "SpeedDial",
   "styles": {

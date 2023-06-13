@@ -1,39 +1,30 @@
 {
   "props": {
-    "avatar": { "type": { "name": "element" }, "additionalPropsInfo": {} },
-    "children": {
-      "type": { "name": "custom", "description": "unsupportedProp" },
-      "additionalPropsInfo": {}
-    },
+    "avatar": { "type": { "name": "element" } },
+    "children": { "type": { "name": "custom", "description": "unsupportedProp" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "clickable": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "clickable": { "type": { "name": "bool" } },
     "color": {
       "type": {
         "name": "union",
         "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'default'",
-      "additionalPropsInfo": {}
+      "default": "'default'"
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "deleteIcon": { "type": { "name": "element" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "icon": { "type": { "name": "element" }, "additionalPropsInfo": {} },
-    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "onDelete": { "type": { "name": "func" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "deleteIcon": { "type": { "name": "element" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "icon": { "type": { "name": "element" } },
+    "label": { "type": { "name": "node" } },
+    "onDelete": { "type": { "name": "func" } },
     "size": {
       "type": {
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'",
-      "additionalPropsInfo": {}
+      "default": "'medium'"
     },
-    "skipFocusWhenDisabled": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
+    "skipFocusWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -46,8 +37,7 @@
         "name": "union",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string"
       },
-      "default": "'filled'",
-      "additionalPropsInfo": {}
+      "default": "'filled'"
     }
   },
   "name": "Chip",

@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "color": {
       "type": {
         "name": "union",
@@ -9,16 +9,15 @@
       "default": "'neutral'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "endAction": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "nested": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "endAction": { "type": { "name": "node" } },
+    "nested": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ endAction?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startAction?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {
@@ -28,8 +27,8 @@
       "default": "{}",
       "additionalPropsInfo": { "slotsApi": true }
     },
-    "startAction": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "sticky": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "startAction": { "type": { "name": "node" } },
+    "sticky": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",

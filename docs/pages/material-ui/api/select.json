@@ -1,53 +1,45 @@
 {
   "props": {
-    "autoWidth": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "autoWidth": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
     "classes": {
       "type": { "name": "object" },
       "default": "{}",
       "additionalPropsInfo": { "cssApi": true }
     },
-    "defaultOpen": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "defaultValue": { "type": { "name": "any" }, "additionalPropsInfo": {} },
-    "displayEmpty": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "IconComponent": {
-      "type": { "name": "elementType" },
-      "default": "ArrowDropDownIcon",
-      "additionalPropsInfo": {}
-    },
-    "id": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "input": { "type": { "name": "element" }, "additionalPropsInfo": {} },
-    "inputProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
-    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "labelId": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "MenuProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
-    "multiple": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "native": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "defaultOpen": { "type": { "name": "bool" }, "default": "false" },
+    "defaultValue": { "type": { "name": "any" } },
+    "displayEmpty": { "type": { "name": "bool" }, "default": "false" },
+    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
+    "id": { "type": { "name": "string" } },
+    "input": { "type": { "name": "element" } },
+    "inputProps": { "type": { "name": "object" } },
+    "label": { "type": { "name": "node" } },
+    "labelId": { "type": { "name": "string" } },
+    "MenuProps": { "type": { "name": "object" } },
+    "multiple": { "type": { "name": "bool" }, "default": "false" },
+    "native": { "type": { "name": "bool" }, "default": "false" },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: SelectChangeEvent<T>, child?: object) => void",
         "describedArgs": ["event", "child"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "onClose": {
       "type": { "name": "func" },
-      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] },
-      "additionalPropsInfo": {}
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] }
     },
     "onOpen": {
       "type": { "name": "func" },
-      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] },
-      "additionalPropsInfo": {}
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] }
     },
-    "open": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "open": { "type": { "name": "bool" } },
     "renderValue": {
       "type": { "name": "func" },
-      "signature": { "type": "function(value: any) => ReactNode", "describedArgs": ["value"] },
-      "additionalPropsInfo": {}
+      "signature": { "type": "function(value: any) => ReactNode", "describedArgs": ["value"] }
     },
-    "SelectDisplayProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "SelectDisplayProps": { "type": { "name": "object" } },
     "sx": {
       "type": {
         "name": "union",
@@ -55,17 +47,13 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "value": {
-      "type": { "name": "union", "description": "''<br>&#124;&nbsp;any" },
-      "additionalPropsInfo": {}
-    },
+    "value": { "type": { "name": "union", "description": "''<br>&#124;&nbsp;any" } },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
-      "default": "'outlined'",
-      "additionalPropsInfo": {}
+      "default": "'outlined'"
     }
   },
   "name": "Select",

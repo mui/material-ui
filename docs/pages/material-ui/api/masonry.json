@@ -1,26 +1,24 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "required": true, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "required": true },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "columns": {
       "type": {
         "name": "union",
         "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
       },
-      "default": "4",
-      "additionalPropsInfo": {}
+      "default": "4"
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "defaultColumns": { "type": { "name": "number" }, "additionalPropsInfo": {} },
-    "defaultHeight": { "type": { "name": "number" }, "additionalPropsInfo": {} },
-    "defaultSpacing": { "type": { "name": "number" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "defaultColumns": { "type": { "name": "number" } },
+    "defaultHeight": { "type": { "name": "number" } },
+    "defaultSpacing": { "type": { "name": "number" } },
     "spacing": {
       "type": {
         "name": "union",
         "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
       },
-      "default": "1",
-      "additionalPropsInfo": {}
+      "default": "1"
     },
     "sx": {
       "type": {

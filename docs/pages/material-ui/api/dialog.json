@@ -1,56 +1,43 @@
 {
   "props": {
-    "open": { "type": { "name": "bool" }, "required": true, "additionalPropsInfo": {} },
-    "aria-describedby": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "aria-labelledby": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "aria-describedby": { "type": { "name": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
     "BackdropComponent": {
       "type": { "name": "elementType" },
       "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slots.backdrop</code> instead. While this prop currently works, it will be removed in the next major version.",
-      "additionalPropsInfo": {}
+      "deprecationInfo": "Use <code>slots.backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
     },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "disableEscapeKeyDown": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    },
-    "fullScreen": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "fullWidth": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
+    "fullScreen": { "type": { "name": "bool" }, "default": "false" },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "maxWidth": {
       "type": {
         "name": "union",
         "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;false<br>&#124;&nbsp;string"
       },
-      "default": "'sm'",
-      "additionalPropsInfo": {}
+      "default": "'sm'"
     },
     "onBackdropClick": {
       "type": { "name": "func" },
       "deprecated": true,
-      "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events.",
-      "additionalPropsInfo": {}
+      "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
     },
     "onClose": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: object, reason: string) => void",
         "describedArgs": ["event", "reason"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "PaperComponent": {
-      "type": { "name": "elementType" },
-      "default": "Paper",
-      "additionalPropsInfo": {}
-    },
-    "PaperProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} },
+    "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
+    "PaperProps": { "type": { "name": "object" }, "default": "{}" },
     "scroll": {
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
-      "default": "'paper'",
-      "additionalPropsInfo": {}
+      "default": "'paper'"
     },
     "sx": {
       "type": {
@@ -59,20 +46,15 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "default": "Fade",
-      "additionalPropsInfo": {}
-    },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}",
-      "additionalPropsInfo": {}
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
     },
-    "TransitionProps": { "type": { "name": "object" }, "additionalPropsInfo": {} }
+    "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "Dialog",
   "styles": {

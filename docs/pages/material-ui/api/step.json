@@ -1,14 +1,14 @@
 {
   "props": {
-    "active": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "active": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "completed": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "expanded": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "index": { "type": { "name": "custom", "description": "integer" }, "additionalPropsInfo": {} },
-    "last": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "completed": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" } },
+    "expanded": { "type": { "name": "bool" }, "default": "false" },
+    "index": { "type": { "name": "custom", "description": "integer" } },
+    "last": { "type": { "name": "bool" } },
     "sx": {
       "type": {
         "name": "union",

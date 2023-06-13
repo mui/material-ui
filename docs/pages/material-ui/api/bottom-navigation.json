@@ -1,17 +1,16 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.SyntheticEvent, value: any) => void",
         "describedArgs": ["event", "value"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "showLabels": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "showLabels": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -19,7 +18,7 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} }
+    "value": { "type": { "name": "any" } }
   },
   "name": "BottomNavigation",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiBottomNavigation" },

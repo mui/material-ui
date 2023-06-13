@@ -1,15 +1,14 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "className": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "className": { "type": { "name": "string" } },
     "position": {
       "type": {
         "name": "enum",
         "description": "'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
-      "default": "'right'",
-      "additionalPropsInfo": {}
+      "default": "'right'"
     },
     "sx": {
       "type": {

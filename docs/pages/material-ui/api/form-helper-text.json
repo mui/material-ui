@@ -1,14 +1,14 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "error": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "filled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "focused": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "margin": { "type": { "name": "enum", "description": "'dense'" }, "additionalPropsInfo": {} },
-    "required": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" } },
+    "filled": { "type": { "name": "bool" } },
+    "focused": { "type": { "name": "bool" } },
+    "margin": { "type": { "name": "enum", "description": "'dense'" } },
+    "required": { "type": { "name": "bool" } },
     "sx": {
       "type": {
         "name": "union",
@@ -20,8 +20,7 @@
       "type": {
         "name": "union",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
-      },
-      "additionalPropsInfo": {}
+      }
     }
   },
   "name": "FormHelperText",

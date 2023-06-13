@@ -8,8 +8,8 @@
       "default": "'primary'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "determinate": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "determinate": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",
@@ -20,8 +20,7 @@
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
@@ -35,12 +34,8 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "thickness": { "type": { "name": "number" }, "additionalPropsInfo": {} },
-    "value": {
-      "type": { "name": "number" },
-      "default": "determinate ? 0 : 25",
-      "additionalPropsInfo": {}
-    },
+    "thickness": { "type": { "name": "number" } },
+    "value": { "type": { "name": "number" }, "default": "determinate ? 0 : 25" },
     "variant": {
       "type": {
         "name": "union",

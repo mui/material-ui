@@ -1,11 +1,7 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "disableColorScheme": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "additionalPropsInfo": {}
-    }
+    "children": { "type": { "name": "node" } },
+    "disableColorScheme": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "CssBaseline",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

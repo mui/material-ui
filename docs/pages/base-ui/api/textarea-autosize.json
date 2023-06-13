@@ -1,13 +1,9 @@
 {
   "props": {
-    "maxRows": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "additionalPropsInfo": {}
-    },
+    "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "minRows": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "default": "1",
-      "additionalPropsInfo": {}
+      "default": "1"
     }
   },
   "name": "TextareaAutosize",

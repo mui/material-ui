@@ -6,8 +6,7 @@
         "name": "union",
         "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'",
-      "additionalPropsInfo": {}
+      "default": "'primary'"
     },
     "sx": {
       "type": {
@@ -16,15 +15,14 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "number" }, "additionalPropsInfo": {} },
-    "valueBuffer": { "type": { "name": "number" }, "additionalPropsInfo": {} },
+    "value": { "type": { "name": "number" } },
+    "valueBuffer": { "type": { "name": "number" } },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'buffer'<br>&#124;&nbsp;'determinate'<br>&#124;&nbsp;'indeterminate'<br>&#124;&nbsp;'query'"
       },
-      "default": "'indeterminate'",
-      "additionalPropsInfo": {}
+      "default": "'indeterminate'"
     }
   },
   "name": "LinearProgress",

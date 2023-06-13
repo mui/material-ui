@@ -1,6 +1,6 @@
 {
   "props": {
-    "className": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "className": { "type": { "name": "string" } },
     "color": {
       "type": {
         "name": "union",
@@ -8,9 +8,9 @@
       },
       "additionalPropsInfo": { "joy-color": true }
     },
-    "endDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "error": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "fullWidth": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "endDecorator": { "type": { "name": "node" } },
+    "error": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" } },
     "size": {
       "type": {
         "name": "union",
@@ -18,7 +18,7 @@
       },
       "additionalPropsInfo": { "joy-size": true }
     },
-    "startDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",

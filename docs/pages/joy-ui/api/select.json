@@ -4,10 +4,9 @@
       "type": {
         "name": "union",
         "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "autoFocus": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "autoFocus": { "type": { "name": "bool" } },
     "color": {
       "type": {
         "name": "union",
@@ -15,21 +14,21 @@
       },
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "defaultListboxOpen": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "defaultValue": { "type": { "name": "any" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "endDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "getSerializedValue": { "type": { "name": "func" }, "additionalPropsInfo": {} },
-    "indicator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "listboxId": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "listboxOpen": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
-    "name": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "onChange": { "type": { "name": "func" }, "additionalPropsInfo": {} },
-    "onClose": { "type": { "name": "func" }, "additionalPropsInfo": {} },
-    "onListboxOpenChange": { "type": { "name": "func" }, "additionalPropsInfo": {} },
-    "placeholder": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "renderValue": { "type": { "name": "func" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "defaultListboxOpen": { "type": { "name": "bool" } },
+    "defaultValue": { "type": { "name": "any" } },
+    "disabled": { "type": { "name": "bool" } },
+    "endDecorator": { "type": { "name": "node" } },
+    "getSerializedValue": { "type": { "name": "func" } },
+    "indicator": { "type": { "name": "node" } },
+    "listboxId": { "type": { "name": "string" } },
+    "listboxOpen": { "type": { "name": "bool" } },
+    "name": { "type": { "name": "string" } },
+    "onChange": { "type": { "name": "func" } },
+    "onClose": { "type": { "name": "func" } },
+    "onListboxOpenChange": { "type": { "name": "func" } },
+    "placeholder": { "type": { "name": "node" } },
+    "renderValue": { "type": { "name": "func" } },
     "size": {
       "type": {
         "name": "union",
@@ -44,7 +43,7 @@
       },
       "additionalPropsInfo": { "slotsApi": true }
     },
-    "startDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",
@@ -52,7 +51,7 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} },
+    "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
         "name": "union",

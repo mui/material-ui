@@ -1,10 +1,10 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "custom", "description": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "image": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "src": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "image": { "type": { "name": "string" } },
+    "src": { "type": { "name": "string" } },
     "sx": {
       "type": {
         "name": "union",

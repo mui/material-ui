@@ -1,13 +1,10 @@
 {
   "props": {
-    "children": {
-      "type": { "name": "custom", "description": "unsupportedProp" },
-      "additionalPropsInfo": {}
-    },
+    "children": { "type": { "name": "custom", "description": "unsupportedProp" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "icon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "showLabel": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "icon": { "type": { "name": "node" } },
+    "label": { "type": { "name": "node" } },
+    "showLabel": { "type": { "name": "bool" } },
     "sx": {
       "type": {
         "name": "union",
@@ -15,7 +12,7 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} }
+    "value": { "type": { "name": "any" } }
   },
   "name": "BottomNavigationAction",
   "styles": {

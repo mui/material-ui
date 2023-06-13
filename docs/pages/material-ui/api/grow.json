@@ -1,27 +1,21 @@
 {
   "props": {
-    "children": {
-      "type": { "name": "custom", "description": "element" },
-      "required": true,
-      "additionalPropsInfo": {}
-    },
-    "addEndListener": { "type": { "name": "func" }, "additionalPropsInfo": {} },
-    "appear": { "type": { "name": "bool" }, "default": "true", "additionalPropsInfo": {} },
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "addEndListener": { "type": { "name": "func" } },
+    "appear": { "type": { "name": "bool" }, "default": "true" },
     "easing": {
       "type": {
         "name": "union",
         "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "in": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "in": { "type": { "name": "bool" } },
     "timeout": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "'auto'",
-      "additionalPropsInfo": {}
+      "default": "'auto'"
     }
   },
   "name": "Grow",

@@ -1,10 +1,10 @@
 {
   "props": {
-    "active": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "active": { "type": { "name": "bool" }, "default": "false" },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "completed": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "error": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "icon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "completed": { "type": { "name": "bool" }, "default": "false" },
+    "error": { "type": { "name": "bool" }, "default": "false" },
+    "icon": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",

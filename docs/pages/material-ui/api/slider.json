@@ -1,121 +1,101 @@
 {
   "props": {
-    "aria-label": {
-      "type": { "name": "custom", "description": "string" },
-      "additionalPropsInfo": {}
-    },
-    "aria-labelledby": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "aria-valuetext": {
-      "type": { "name": "custom", "description": "string" },
-      "additionalPropsInfo": {}
-    },
+    "aria-label": { "type": { "name": "custom", "description": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'",
-      "additionalPropsInfo": {}
+      "default": "'primary'"
     },
     "components": {
       "type": {
         "name": "shape",
         "description": "{ Input?: elementType, Mark?: elementType, MarkLabel?: elementType, Rail?: elementType, Root?: elementType, Thumb?: elementType, Track?: elementType, ValueLabel?: elementType }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "componentsProps": {
       "type": {
         "name": "shape",
         "description": "{ input?: func<br>&#124;&nbsp;object, mark?: func<br>&#124;&nbsp;object, markLabel?: func<br>&#124;&nbsp;object, rail?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object, valueLabel?: func<br>&#124;&nbsp;{ children?: element, className?: string, open?: bool, style?: object, value?: number, valueLabelDisplay?: 'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on' } }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "defaultValue": {
-      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" },
-      "additionalPropsInfo": {}
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "disableSwap": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableSwap": { "type": { "name": "bool" }, "default": "false" },
     "getAriaLabel": {
       "type": { "name": "func" },
-      "signature": { "type": "function(index: number) => string", "describedArgs": ["index"] },
-      "additionalPropsInfo": {}
+      "signature": { "type": "function(index: number) => string", "describedArgs": ["index"] }
     },
     "getAriaValueText": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(value: number, index: number) => string",
         "describedArgs": ["value", "index"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "marks": {
       "type": {
         "name": "union",
         "description": "Array&lt;{ label?: node, value: number }&gt;<br>&#124;&nbsp;bool"
       },
-      "default": "false",
-      "additionalPropsInfo": {}
+      "default": "false"
     },
-    "max": { "type": { "name": "number" }, "default": "100", "additionalPropsInfo": {} },
-    "min": { "type": { "name": "number" }, "default": "0", "additionalPropsInfo": {} },
-    "name": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "max": { "type": { "name": "number" }, "default": "100" },
+    "min": { "type": { "name": "number" }, "default": "0" },
+    "name": { "type": { "name": "string" } },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: Event, value: number | Array<number>, activeThumb: number) => void",
         "describedArgs": ["event", "value", "activeThumb"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "onChangeCommitted": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.SyntheticEvent | Event, value: number | Array<number>) => void",
         "describedArgs": ["event", "value"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'horizontal'",
-      "additionalPropsInfo": {}
+      "default": "'horizontal'"
     },
     "scale": {
       "type": { "name": "func" },
       "default": "function Identity(x) {\n  return x;\n}",
-      "signature": { "type": "function(x: any) => any", "describedArgs": [] },
-      "additionalPropsInfo": {}
+      "signature": { "type": "function(x: any) => any", "describedArgs": [] }
     },
     "size": {
       "type": {
         "name": "union",
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'",
-      "additionalPropsInfo": {}
+      "default": "'medium'"
     },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ input?: func<br>&#124;&nbsp;object, mark?: func<br>&#124;&nbsp;object, markLabel?: func<br>&#124;&nbsp;object, rail?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object, valueLabel?: func<br>&#124;&nbsp;{ children?: element, className?: string, open?: bool, style?: object, value?: number, valueLabelDisplay?: 'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on' } }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ input?: elementType, mark?: elementType, markLabel?: elementType, rail?: elementType, root?: elementType, thumb?: elementType, track?: elementType, valueLabel?: elementType }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
-    "step": { "type": { "name": "number" }, "default": "1", "additionalPropsInfo": {} },
+    "step": { "type": { "name": "number" }, "default": "1" },
     "sx": {
       "type": {
         "name": "union",
@@ -123,28 +103,24 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "tabIndex": { "type": { "name": "number" }, "additionalPropsInfo": {} },
+    "tabIndex": { "type": { "name": "number" } },
     "track": {
       "type": {
         "name": "enum",
         "description": "'inverted'<br>&#124;&nbsp;'normal'<br>&#124;&nbsp;false"
       },
-      "default": "'normal'",
-      "additionalPropsInfo": {}
+      "default": "'normal'"
     },
     "value": {
-      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" },
-      "additionalPropsInfo": {}
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
     "valueLabelDisplay": {
       "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on'" },
-      "default": "'off'",
-      "additionalPropsInfo": {}
+      "default": "'off'"
     },
     "valueLabelFormat": {
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
-      "default": "function Identity(x) {\n  return x;\n}",
-      "additionalPropsInfo": {}
+      "default": "function Identity(x) {\n  return x;\n}"
     }
   },
   "name": "Slider",

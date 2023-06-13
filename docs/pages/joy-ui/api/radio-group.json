@@ -1,6 +1,6 @@
 {
   "props": {
-    "className": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "className": { "type": { "name": "string" } },
     "color": {
       "type": {
         "name": "union",
@@ -9,24 +9,22 @@
       "default": "'neutral'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "defaultValue": { "type": { "name": "any" }, "additionalPropsInfo": {} },
-    "disableIcon": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "name": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "defaultValue": { "type": { "name": "any" } },
+    "disableIcon": { "type": { "name": "bool" }, "default": "false" },
+    "name": { "type": { "name": "string" } },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
         "describedArgs": ["event"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'vertical'",
-      "additionalPropsInfo": {}
+      "default": "'vertical'"
     },
-    "overlay": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "overlay": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",
@@ -37,8 +35,7 @@
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
@@ -52,7 +49,7 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} },
+    "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
         "name": "union",

@@ -1,10 +1,9 @@
 {
   "props": {
-    "actionIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "actionIcon": { "type": { "name": "node" } },
     "actionPosition": {
       "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
-      "default": "'right'",
-      "additionalPropsInfo": {}
+      "default": "'right'"
     },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "position": {
@@ -12,10 +11,9 @@
         "name": "enum",
         "description": "'below'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'top'"
       },
-      "default": "'bottom'",
-      "additionalPropsInfo": {}
+      "default": "'bottom'"
     },
-    "subtitle": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "subtitle": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",
@@ -23,7 +21,7 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "title": { "type": { "name": "node" }, "additionalPropsInfo": {} }
+    "title": { "type": { "name": "node" } }
   },
   "name": "ImageListItemBar",
   "styles": {

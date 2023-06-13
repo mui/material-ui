@@ -1,8 +1,8 @@
 {
   "props": {
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "icon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "openIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "icon": { "type": { "name": "node" } },
+    "openIcon": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",

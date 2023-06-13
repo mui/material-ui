@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" } },
     "color": {
       "type": {
         "name": "enum",
@@ -9,35 +9,26 @@
       "default": "'neutral'",
       "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "maxHeight": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "additionalPropsInfo": {}
-    },
-    "minHeight": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "additionalPropsInfo": {}
-    },
+    "component": { "type": { "name": "elementType" } },
+    "maxHeight": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "minHeight": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "objectFit": {
       "type": {
         "name": "enum",
         "description": "'-moz-initial'<br>&#124;&nbsp;'contain'<br>&#124;&nbsp;'cover'<br>&#124;&nbsp;'fill'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'initial'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'revert-layer'<br>&#124;&nbsp;'revert'<br>&#124;&nbsp;'scale-down'<br>&#124;&nbsp;'unset'"
       },
-      "default": "'cover'",
-      "additionalPropsInfo": {}
+      "default": "'cover'"
     },
     "ratio": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "default": "'16 / 9'",
-      "additionalPropsInfo": {}
+      "default": "'16 / 9'"
     },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ content?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": { "name": "shape", "description": "{ content?: elementType, root?: elementType }" },

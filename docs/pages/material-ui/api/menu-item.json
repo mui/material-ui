@@ -1,14 +1,14 @@
 {
   "props": {
-    "autoFocus": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "dense": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "disableGutters": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "divider": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "focusVisibleClassName": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "selected": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "dense": { "type": { "name": "bool" }, "default": "false" },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "divider": { "type": { "name": "bool" }, "default": "false" },
+    "focusVisibleClassName": { "type": { "name": "string" } },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",

@@ -1,79 +1,64 @@
 {
   "props": {
-    "aria-label": {
-      "type": { "name": "custom", "description": "string" },
-      "additionalPropsInfo": {}
-    },
-    "aria-labelledby": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "aria-valuetext": {
-      "type": { "name": "custom", "description": "string" },
-      "additionalPropsInfo": {}
-    },
+    "aria-label": { "type": { "name": "custom", "description": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
     "defaultValue": {
-      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" },
-      "additionalPropsInfo": {}
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "disableSwap": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableSwap": { "type": { "name": "bool" }, "default": "false" },
     "getAriaLabel": {
       "type": { "name": "func" },
-      "signature": { "type": "function(index: number) => string", "describedArgs": ["index"] },
-      "additionalPropsInfo": {}
+      "signature": { "type": "function(index: number) => string", "describedArgs": ["index"] }
     },
     "getAriaValueText": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(value: number, index: number) => string",
         "describedArgs": ["value", "index"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "isRtl": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "isRtl": { "type": { "name": "bool" }, "default": "false" },
     "marks": {
       "type": {
         "name": "union",
         "description": "Array&lt;{ label?: node, value: number }&gt;<br>&#124;&nbsp;bool"
       },
-      "default": "false",
-      "additionalPropsInfo": {}
+      "default": "false"
     },
-    "max": { "type": { "name": "number" }, "default": "100", "additionalPropsInfo": {} },
-    "min": { "type": { "name": "number" }, "default": "0", "additionalPropsInfo": {} },
-    "name": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "max": { "type": { "name": "number" }, "default": "100" },
+    "min": { "type": { "name": "number" }, "default": "0" },
+    "name": { "type": { "name": "string" } },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: Event, value: number | Array<number>, activeThumb: number) => void",
         "describedArgs": ["event", "value", "activeThumb"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "onChangeCommitted": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.SyntheticEvent | Event, value: number | Array<number>) => void",
         "describedArgs": ["event", "value"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'horizontal'",
-      "additionalPropsInfo": {}
+      "default": "'horizontal'"
     },
     "scale": {
       "type": { "name": "func" },
       "default": "function Identity(x) {\n  return x;\n}",
-      "signature": { "type": "function(x: any) => any", "describedArgs": [] },
-      "additionalPropsInfo": {}
+      "signature": { "type": "function(x: any) => any", "describedArgs": [] }
     },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ input?: func<br>&#124;&nbsp;object, mark?: func<br>&#124;&nbsp;object, markLabel?: func<br>&#124;&nbsp;object, rail?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object, valueLabel?: any<br>&#124;&nbsp;func }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {
@@ -83,24 +68,21 @@
       "default": "{}",
       "additionalPropsInfo": { "slotsApi": true }
     },
-    "step": { "type": { "name": "number" }, "default": "1", "additionalPropsInfo": {} },
-    "tabIndex": { "type": { "name": "number" }, "additionalPropsInfo": {} },
+    "step": { "type": { "name": "number" }, "default": "1" },
+    "tabIndex": { "type": { "name": "number" } },
     "track": {
       "type": {
         "name": "enum",
         "description": "'inverted'<br>&#124;&nbsp;'normal'<br>&#124;&nbsp;false"
       },
-      "default": "'normal'",
-      "additionalPropsInfo": {}
+      "default": "'normal'"
     },
     "value": {
-      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" },
-      "additionalPropsInfo": {}
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
     "valueLabelFormat": {
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
-      "default": "function Identity(x) {\n  return x;\n}",
-      "additionalPropsInfo": {}
+      "default": "function Identity(x) {\n  return x;\n}"
     }
   },
   "name": "Slider",

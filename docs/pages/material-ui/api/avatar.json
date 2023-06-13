@@ -1,13 +1,13 @@
 {
   "props": {
-    "alt": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "alt": { "type": { "name": "string" } },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
-    "imgProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
-    "sizes": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "src": { "type": { "name": "string" }, "additionalPropsInfo": {} },
-    "srcSet": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
+    "imgProps": { "type": { "name": "object" } },
+    "sizes": { "type": { "name": "string" } },
+    "src": { "type": { "name": "string" } },
+    "srcSet": { "type": { "name": "string" } },
     "sx": {
       "type": {
         "name": "union",
@@ -20,8 +20,7 @@
         "name": "union",
         "description": "'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string"
       },
-      "default": "'circular'",
-      "additionalPropsInfo": {}
+      "default": "'circular'"
     }
   },
   "name": "Avatar",

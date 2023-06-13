@@ -1,6 +1,6 @@
 {
   "props": {
-    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "component": { "type": { "name": "elementType" } },
     "sx": {
       "type": {
         "name": "union",

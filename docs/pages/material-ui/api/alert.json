@@ -1,66 +1,58 @@
 {
   "props": {
-    "action": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "action": { "type": { "name": "node" } },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "closeText": { "type": { "name": "string" }, "default": "'Close'", "additionalPropsInfo": {} },
+    "closeText": { "type": { "name": "string" }, "default": "'Close'" },
     "color": {
       "type": {
         "name": "union",
         "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "components": {
       "type": {
         "name": "shape",
         "description": "{ CloseButton?: elementType, CloseIcon?: elementType }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ closeButton?: object, closeIcon?: object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
-    "icon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "icon": { "type": { "name": "node" } },
     "iconMapping": {
       "type": {
         "name": "shape",
         "description": "{ error?: node, info?: node, success?: node, warning?: node }"
-      },
-      "additionalPropsInfo": {}
+      }
     },
     "onClose": {
       "type": { "name": "func" },
       "signature": {
         "type": "function(event: React.SyntheticEvent) => void",
         "describedArgs": ["event"]
-      },
-      "additionalPropsInfo": {}
+      }
     },
-    "role": { "type": { "name": "string" }, "default": "'alert'", "additionalPropsInfo": {} },
+    "role": { "type": { "name": "string" }, "default": "'alert'" },
     "severity": {
       "type": {
         "name": "enum",
         "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
-      "default": "'success'",
-      "additionalPropsInfo": {}
+      "default": "'success'"
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ closeButton?: object, closeIcon?: object }" },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ closeButton?: elementType, closeIcon?: elementType }"
       },
-      "default": "{}",
-      "additionalPropsInfo": {}
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -74,8 +66,7 @@
         "name": "union",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
-      "default": "'standard'",
-      "additionalPropsInfo": {}
+      "default": "'standard'"
     }
   },
   "name": "Alert",

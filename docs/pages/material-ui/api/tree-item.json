@@ -1,24 +1,20 @@
 {
   "props": {
-    "nodeId": { "type": { "name": "string" }, "required": true, "additionalPropsInfo": {} },
-    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "nodeId": { "type": { "name": "string" }, "required": true },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
-    "collapseIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "collapseIcon": { "type": { "name": "node" } },
     "ContentComponent": {
       "type": { "name": "custom", "description": "element type" },
-      "default": "TreeItemContent",
-      "additionalPropsInfo": {}
+      "default": "TreeItemContent"
     },
-    "ContentProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
-    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
-    "endIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "expandIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "icon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
-    "onFocus": {
-      "type": { "name": "custom", "description": "unsupportedProp" },
-      "additionalPropsInfo": {}
-    },
+    "ContentProps": { "type": { "name": "object" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "endIcon": { "type": { "name": "node" } },
+    "expandIcon": { "type": { "name": "node" } },
+    "icon": { "type": { "name": "node" } },
+    "label": { "type": { "name": "node" } },
+    "onFocus": { "type": { "name": "custom", "description": "unsupportedProp" } },
     "sx": {
       "type": {
         "name": "union",
@@ -26,12 +22,8 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "default": "Collapse",
-      "additionalPropsInfo": {}
-    },
-    "TransitionProps": { "type": { "name": "object" }, "additionalPropsInfo": {} }
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
+    "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "TreeItem",
   "styles": {
