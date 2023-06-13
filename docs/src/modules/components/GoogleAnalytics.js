@@ -56,8 +56,6 @@ let boundDataGaListener = false;
  */
 function GoogleAnalytics() {
   React.useEffect(() => {
-    loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
-
     if (!boundDataGaListener) {
       boundDataGaListener = true;
       document.addEventListener('click', handleClick);
