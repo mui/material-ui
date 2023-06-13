@@ -75,13 +75,6 @@ const ButtonGroupRoot = styled('div', {
           '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[400],
         }),
       }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.color !== 'context' && {
-          '&:hover': {
-            '--ButtonGroup-separatorColor':
-              theme.vars.palette[ownerState.color!]?.outlinedHoverBorder,
-          },
-        }),
       '--ButtonGroup-radius': theme.vars.radius.sm,
       '--Divider-inset': '0.5rem',
       '--unstable_childRadius':
@@ -131,9 +124,23 @@ const ButtonGroupRoot = styled('div', {
         '--IconButton-margin': margin,
       },
       [`& .${buttonClasses.root}, & .${iconButtonClasses.root}`]: {
-        [`&:hover, ${theme.focus.selector}`]: {
-          zIndex: 1, // to make borders appear above sibling.
+        '&:not(:disabled)': {
+          zIndex: 1, // to make borders appear above disabled buttons.
         },
+        [`&:hover, ${theme.focus.selector}`]: {
+          zIndex: 2, // to make borders appear above sibling.
+        },
+        ...(ownerState.color !== 'context' &&
+          ownerState.variant === 'outlined' && {
+            '&:hover': {
+              '--ButtonGroup-separatorColor':
+                theme.vars.palette[ownerState.color!]?.outlinedHoverBorder,
+            },
+            '&:disabled': {
+              '--ButtonGroup-separatorColor':
+                theme.vars.palette[ownerState.color!]?.outlinedDisabledBorder,
+            },
+          }),
       },
       ...(ownerState.buttonFlex && {
         [`& > *:not(.${iconButtonClasses.root})`]: {
