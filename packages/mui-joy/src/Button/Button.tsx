@@ -420,4 +420,7 @@ Button.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+// @ts-ignore internal logic for ToggleButtonGroup
+Button.muiName = 'Button';
+
 export default Button;
