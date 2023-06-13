@@ -536,7 +536,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             }
             if (knob === 'input') {
               return (
-                <FormControl key={propName}>
+                <FormControl key={propName} size="sm">
                   <FormLabel>{propName}</FormLabel>
                   <Input
                     size="sm"
@@ -559,7 +559,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             }
             if (knob === 'number') {
               return (
-                <FormControl key={propName}>
+                <FormControl key={propName} size="sm">
                   <FormLabel>{propName}</FormLabel>
                   <Input
                     size="sm"
