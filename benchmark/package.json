@@ -25,7 +25,7 @@
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "react-jss": "^10.10.0",
-    "react-redux": "^8.0.5",
+    "react-redux": "^8.1.0",
     "redux": "^4.2.1",
     "serve-handler": "^6.1.5",
     "styled-components": "^5.3.11",
