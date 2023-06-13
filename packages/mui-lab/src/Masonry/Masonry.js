@@ -286,6 +286,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     let animationFrame;
 
     const resizeObserver = new ResizeObserver(() => {
+      // see https://github.com/mui/material-ui/issues/36909
       animationFrame = window.requestAnimationFrame(handleResize);
     });
 
