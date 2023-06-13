@@ -4,7 +4,14 @@ import SvgIcon from '@mui/material/SvgIcon';
 export default function SvgIconChildren() {
   return (
     <SvgIcon>
-      <svg fill="none" strokeWidth={1.5} stroke="currentColor">
+      {/* credit: plus icon from https://heroicons.com/ */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
