@@ -55,7 +55,6 @@ function GoogleAnalytics() {
       document.addEventListener('click', handleClick);
     }
   }, []);
-  
   const router = useRouter();
   const timeout = React.useRef();
 
