@@ -537,7 +537,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             if (knob === 'input') {
               return (
                 <FormControl key={propName} size="sm">
-                  <FormLabel>{propName}</FormLabel>
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <Input
                     size="sm"
                     value={props[propName] ?? ''}
@@ -560,7 +560,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             if (knob === 'number') {
               return (
                 <FormControl key={propName} size="sm">
-                  <FormLabel>{propName}</FormLabel>
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <Input
                     size="sm"
                     type="number"
