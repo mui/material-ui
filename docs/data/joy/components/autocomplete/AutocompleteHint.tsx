@@ -1,13 +1,49 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import { Box, Typography } from '@mui/material';
+import Autocomplete from '@mui/joy/Autocomplete';
+import { Typography, styled } from '@mui/joy';
+
+const StyledDiv = styled('div')({
+  flex: 1, // stretch to fill the root slot
+  minWidth: 0, // won't push end decorator out of the autocomplete
+  display: 'flex',
+  alignItems: 'center',
+  flexWrap: 'wrap',
+  position: 'relative',
+});
+
+type WrapperProps = {
+  children: JSX.Element;
+  hint: string;
+};
+
+function Wrapper({ children, hint, ...props }: WrapperProps) {
+  return (
+    <StyledDiv {...props}>
+      <Typography sx={{ position: 'absolute', opacity: 0.6 }}>{hint}</Typography>
+      {children}
+    </StyledDiv>
+  );
+}
 
 export default function AutocompleteHint() {
   const hint = React.useRef('');
   const [inputValue, setInputValue] = React.useState('');
   return (
     <Autocomplete
+      onInputChange={(event, value) => {
+        if (!value) {
+          hint.current = '';
+        }
+        const matchingOption = top100Films.find((option) =>
+          option.label.startsWith(value),
+        );
+        if (value && matchingOption) {
+          hint.current = matchingOption.label;
+        } else {
+          hint.current = '';
+        }
+        setInputValue(value);
+      }}
       onKeyDown={(event) => {
         if (event.key === 'Tab') {
           if (hint.current) {
@@ -19,7 +55,6 @@ export default function AutocompleteHint() {
       onBlur={() => {
         hint.current = '';
       }}
-      disablePortal
       inputValue={inputValue}
       filterOptions={(options, state) => {
         const displayOptions = options.filter((option) =>
@@ -29,39 +64,32 @@ export default function AutocompleteHint() {
             .includes(state.inputValue.toLowerCase().trim()),
         );
 
+        const matchingOption = options.find((option) =>
+          option.label.startsWith(state.inputValue),
+        );
+        if (displayOptions.length > 0 && state.inputValue && matchingOption) {
+          hint.current = matchingOption.label;
+        } else {
+          hint.current = '';
+        }
         return displayOptions;
       }}
       id="combo-box-hint-demo"
       options={top100Films}
-      sx={{ width: 300 }}
-      renderInput={(params) => {
-        return (
-          <Box sx={{ position: 'relative' }}>
-            <Typography
-              sx={{ position: 'absolute', color: '#cbd5e1', left: 14, top: 16 }}
-            >
-              {hint.current}
-            </Typography>
-            <TextField
-              {...params}
-              onChange={(e) => {
-                const newValue = e.target.value;
-                setInputValue(newValue);
-                const matchingOption = top100Films.find((option) =>
-                  option.label.startsWith(newValue),
-                );
-
-                if (newValue && matchingOption) {
-                  hint.current = matchingOption.label;
-                } else {
-                  hint.current = '';
-                }
-              }}
-              label="Movie"
-            />
-          </Box>
-        );
+      slots={{
+        wrapper: Wrapper,
       }}
+      slotProps={{
+        wrapper: {
+          hint: hint.current,
+        },
+        input: {
+          sx: {
+            zIndex: 1,
+          },
+        },
+      }}
+      sx={{ width: 300 }}
     />
   );
 }

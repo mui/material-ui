@@ -38,7 +38,7 @@ export default function AutocompleteHint() {
         return (
           <Box sx={{ position: 'relative' }}>
             <Typography
-              sx={{ position: 'absolute', color: '#cbd5e1', left: 14, top: 16 }}
+              sx={{ position: 'absolute', opacity: 0.5, left: 14, top: 16 }}
             >
               {hint.current}
             </Typography>

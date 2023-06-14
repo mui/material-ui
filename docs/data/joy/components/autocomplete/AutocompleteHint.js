@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Autocomplete from '@mui/joy/Autocomplete';
 import { Typography, styled } from '@mui/joy';
 
@@ -11,29 +12,19 @@ const StyledDiv = styled('div')({
   position: 'relative',
 });
 
-type WrapperProps = {
-  children: JSX.Element;
-  hint: string;
-};
-
-function Wrapper({ children, hint, ...props }: WrapperProps) {
+function Wrapper({ children, hint, ...props }) {
   return (
     <StyledDiv {...props}>
-      <Typography
-        sx={{
-          position: 'absolute',
-          color: '#cbd5e1',
-          left: 0,
-          top: 2,
-          lineHeight: 'initial',
-        }}
-      >
-        {hint}
-      </Typography>
+      <Typography sx={{ position: 'absolute', opacity: 0.6 }}>{hint}</Typography>
       {children}
     </StyledDiv>
   );
 }
+
+Wrapper.propTypes = {
+  children: PropTypes.element.isRequired,
+  hint: PropTypes.string.isRequired,
+};
 
 export default function AutocompleteHint() {
   const hint = React.useRef('');
@@ -47,6 +38,7 @@ export default function AutocompleteHint() {
         const matchingOption = top100Films.find((option) =>
           option.label.startsWith(value),
         );
+
         if (value && matchingOption) {
           hint.current = matchingOption.label;
         } else {
@@ -77,6 +69,7 @@ export default function AutocompleteHint() {
         const matchingOption = options.find((option) =>
           option.label.startsWith(state.inputValue),
         );
+
         if (displayOptions.length > 0 && state.inputValue && matchingOption) {
           hint.current = matchingOption.label;
         } else {

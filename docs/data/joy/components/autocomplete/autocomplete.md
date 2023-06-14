@@ -195,12 +195,6 @@ The `size` can also be controlled at the `FormControl`.
 
 {{"demo": "SizeWithLabel.js"}}
 
-## Hint
-
-Following demo shows how to add hinting feature to Autocomplete using `filterOptions` prop.
-
-{{"demo": "Hint.js"}}
-
 ### Custom filter
 
 The component exposes a factory to create a filter method that can be provided to the `filterOptions` prop.
@@ -251,6 +245,12 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 ```
 
 ## Common examples
+
+### Hint
+
+The following demo shows how to add a hint feature to the Autocomplete using the `filterOptions` prop:
+
+{{"demo": "AutocompleteHint.js"}}
 
 ### Highlighting options
 

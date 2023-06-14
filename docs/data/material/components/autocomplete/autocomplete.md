@@ -106,12 +106,6 @@ You could also display a dialog when the user wants to add a new value.
 
 {{"demo": "FreeSoloCreateOptionDialog.js"}}
 
-## Hint
-
-Following demo shows how to add hinting feature to Autocomplete using `renderInput` and `filterOptions` prop.
-
-{{"demo": "Hint.js"}}
-
 ## Grouped
 
 You can group the options with the `groupBy` prop.
@@ -242,6 +236,12 @@ This demo reproduces GitHub's label picker:
 {{"demo": "GitHubLabel.js"}}
 
 Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
+
+### Hint
+
+The following demo shows how to a add hint feature to the Autocomplete using the `renderInput` and `filterOptions` props:
+
+{{"demo": "AutocompleteHint.js"}}
 
 ## Highlights
 
