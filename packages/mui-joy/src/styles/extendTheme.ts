@@ -47,6 +47,7 @@ export type ColorSystemOptions = Partial3Level<
 > & {
   shadowRing?: string;
   shadowChannel?: string;
+  shadowOpacity?: string;
 };
 
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
@@ -238,6 +239,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
     shadowRing: '0 0 #000',
     shadowChannel: '187 187 187',
+    shadowOpacity: '0.2',
   };
   const darkColorSystem = {
     palette: {
@@ -292,6 +294,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
     shadowRing: '0 0 #000',
     shadowChannel: '0 0 0',
+    shadowOpacity: '0.2',
   };
 
   const fontFamilyFallback =
@@ -328,13 +331,19 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   const lineHeight = {
-    xs: 1,
+    xs: 1, // for one-line text. useful for creating component like badge or tag.
     sm: 1.25,
     md: 1.5,
     lg: 1.75,
     ...scalesInput.lineHeight,
   };
 
+  const defaultShadowRing =
+    scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing;
+  const defaultShadowChannel =
+    scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel;
+  const defaultShadowOpacity =
+    scalesInput.colorSchemes?.light?.shadowOpacity ?? lightColorSystem.shadowOpacity;
   const defaultScales = {
     colorSchemes: {
       light: lightColorSystem,
@@ -367,57 +376,48 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
 
     shadow: {
-      xs: `${getCssVar(
-        'shadowRing',
-        scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0px 1px 2px 0px rgba(${getCssVar(
+      xs: `${getCssVar('shadowRing', defaultShadowRing)}, 0px 1px 2px 0px rgba(${getCssVar(
         'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.2)`,
+        defaultShadowChannel,
+      )} / ${getCssVar('shadowOpacity', defaultShadowOpacity)})`,
 
-      sm: `${getCssVar(
-        'shadowRing',
-        scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0px 1px 2px 0px rgba(${getCssVar(
+      sm: `${getCssVar('shadowRing', defaultShadowRing)}, 0px 1px 2px 0px rgba(${getCssVar(
         'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.2), 0px 2px 4px 0px rgba(${getCssVar(
+        defaultShadowChannel,
+      )} / ${getCssVar('shadowOpacity', defaultShadowOpacity)}), 0px 2px 4px 0px rgba(${getCssVar(
         'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.2)`,
+        defaultShadowChannel,
+      )} / ${getCssVar('shadowOpacity', defaultShadowOpacity)})`,
 
-      md: `${getCssVar(
-        'shadowRing',
-        scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0px 2px 8px -2px rgba(${getCssVar(
+      md: `${getCssVar('shadowRing', defaultShadowRing)}, 0px 2px 8px -2px rgba(${getCssVar(
         'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.2), 0px 6px 12px -2px rgba(${getCssVar(
+        defaultShadowChannel,
+      )} / ${getCssVar('shadowOpacity', defaultShadowOpacity)}), 0px 6px 12px -2px rgba(${getCssVar(
         'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.2)`,
+        defaultShadowChannel,
+      )} / ${getCssVar('shadowOpacity', defaultShadowOpacity)})`,
 
-      lg: `${getCssVar(
-        'shadowRing',
-        scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0px 2px 8px -2px rgba(${getCssVar(
+      lg: `${getCssVar('shadowRing', defaultShadowRing)}, 0px 2px 8px -2px rgba(${getCssVar(
         'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.2), 0px 12px 16px -4px rgba(${getCssVar(
+        defaultShadowChannel,
+      )} / ${getCssVar(
+        'shadowOpacity',
+        defaultShadowOpacity,
+      )}), 0px 12px 16px -4px rgba(${getCssVar(
         'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.2)`,
+        defaultShadowChannel,
+      )} / ${getCssVar('shadowOpacity', defaultShadowOpacity)})`,
 
-      xl: `${getCssVar(
-        'shadowRing',
-        scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0px 2px 8px -2px rgba(${getCssVar(
+      xl: `${getCssVar('shadowRing', defaultShadowRing)}, 0px 2px 8px -2px rgba(${getCssVar(
         'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.2), 0px 20px 24px -4px rgba(${getCssVar(
+        defaultShadowChannel,
+      )} / ${getCssVar(
+        'shadowOpacity',
+        defaultShadowOpacity,
+      )}), 0px 20px 24px -4px rgba(${getCssVar(
         'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.2)`,
+        defaultShadowChannel,
+      )} / ${getCssVar('shadowOpacity', defaultShadowOpacity)})`,
     },
 
     zIndex: {
