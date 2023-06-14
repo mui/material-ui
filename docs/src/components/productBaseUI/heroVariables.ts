@@ -14,6 +14,7 @@ const sleek = {
   '--Input-border': 'var(--muidocs-palette-primary-400)',
   '--Input-focus-border': '0 0 0 3px var(--muidocs-palette-primary-200)',
   '--Slider-thumb-focus': 'rgba(0, 127, 255, 0.2)',
+  '--formControl-shadow': '0px 2px 2px rgb(205 210 215 / 5%)',
   '[data-mui-color-scheme="dark"] &': {
     // dark tokens
     '--color-primary': 'var(--muidocs-palette-primary-light)',
