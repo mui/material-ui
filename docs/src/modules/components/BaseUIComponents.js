@@ -149,10 +149,12 @@ function BaseUIComponents() {
           >
             <CardMedia
               component="img"
+              width={256}
+              height={144}
               alt={component.title}
               image={component.srcLight}
               sx={(theme) => ({
-                aspectRatio: '1125 / 645', // based on the image size
+                aspectRatio: '16 / 9',
                 background: `linear-gradient(180deg, ${alpha(
                   theme.palette.grey[50],
                   0.5,
