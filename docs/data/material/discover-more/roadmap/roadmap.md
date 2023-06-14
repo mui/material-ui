@@ -54,7 +54,11 @@ Here are the components we will work on being supported in the MUI ecosystem:
 | Charts                                                                   | MUI X    | ⏳     |
 | [Data Grid](/x/react-data-grid/)                                         | MUI X    | ✅     |
 | [Date Picker](/x/react-date-pickers/date-picker/)                        | MUI X    | ✅     |
+| [Time Picker](/x/react-date-pickers/time-picker/)                        | MUI X    | ✅     |
+| [Date Time Picker](/x/react-date-pickers/date-time-picker/)              | MUI X    | ✅     |
 | [Date Range Picker](/x/react-date-pickers/date-range-picker/)            | MUI X    | ✅     |
+| Time Range Picker                                                        | MUI X    | ⏳     |
+| Date Time Range Picker                                                   | MUI X    | ⏳     |
 | Dropdown                                                                 | MUI Core | ⏳     |
 | Dropzone                                                                 | MUI X    | ⏳     |
 | File Upload                                                              | MUI X    | ⏳     |
