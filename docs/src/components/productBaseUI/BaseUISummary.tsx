@@ -17,7 +17,7 @@ const content = [
     icon: <StyleRoundedIcon color="primary" />,
     title: 'Completely unstyled',
     description:
-      'Bring any style solution you want to add design to these components. Open room for your creativity.',
+      "Use any style solution to add design to these components. They're ready for your creativity.",
     link: '/base/getting-started/overview/#base-ui-vs-material-ui',
   },
   {
