@@ -4,33 +4,34 @@ import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 
 export default function BasicMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const buttonRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false);
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setOpen(false);
   };
 
   return (
     <div>
       <Button
+        ref={buttonRef}
         id="basic-demo-button"
-        aria-controls={open ? 'basic-menu' : undefined}
+        aria-controls={'basic-menu'}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="outlined"
         color="neutral"
-        onClick={handleClick}
+        onClick={() => {
+          if (!open) {
+            setOpen(true);
+          }
+        }}
       >
         Dashboard
       </Button>
       <Menu
         id="basic-menu"
-        anchorEl={anchorEl}
+        anchorEl={buttonRef.current}
         open={open}
         onClose={handleClose}
         aria-labelledby="basic-demo-button"
