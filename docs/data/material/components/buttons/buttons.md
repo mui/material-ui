@@ -5,7 +5,7 @@ components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://m2.material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base/react-button/
+unstyled: /base-ui/react-button/
 ---
 
 # Button
@@ -84,10 +84,6 @@ In addition to using the default button colors, you can add custom ones, or disa
 For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "ButtonSizes.js"}}
-
-## Upload button
-
-{{"demo": "UploadButtons.js"}}
 
 ## Buttons with icons and label
 

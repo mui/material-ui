@@ -61,6 +61,8 @@ export interface SliderClasses {
   sizeMd: string;
   /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Class name applied to the input element. */
+  input: string;
 }
 
 export type SliderClassKey = keyof SliderClasses;
@@ -103,6 +105,7 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'input',
 ]);
 
 export default sliderClasses;

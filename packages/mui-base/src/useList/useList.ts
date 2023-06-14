@@ -22,6 +22,7 @@ import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
 import useLatest from '../utils/useLatest';
 import useTextNavigation from '../utils/useTextNavigation';
+import MuiCancellableEvent from '../utils/muiCancellableEvent';
 
 const EMPTY_OBJECT = {};
 const NOOP = () => {};
@@ -273,10 +274,10 @@ function useList<
 
   const createHandleKeyDown =
     (other: Record<string, React.EventHandler<any>>) =>
-    (event: React.KeyboardEvent<HTMLElement>) => {
+    (event: React.KeyboardEvent<HTMLElement> & MuiCancellableEvent) => {
       other.onKeyDown?.(event);
 
-      if (event.defaultPrevented) {
+      if (event.defaultMuiPrevented) {
         return;
       }
 
@@ -310,10 +311,11 @@ function useList<
     };
 
   const createHandleBlur =
-    (other: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent<HTMLElement>) => {
+    (other: Record<string, React.EventHandler<any>>) =>
+    (event: React.FocusEvent<HTMLElement> & MuiCancellableEvent) => {
       other.onBlur?.(event);
 
-      if (event.defaultPrevented) {
+      if (event.defaultMuiPrevented) {
         return;
       }
 

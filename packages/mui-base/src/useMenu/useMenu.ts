@@ -17,11 +17,11 @@ import menuReducer from './menuReducer';
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base/react-menu/#hooks)
+ * - [Menu](https://mui.com/base-ui/react-menu/#hooks)
  *
  * API:
  *
- * - [useMenu API](https://mui.com/base/react-menu/hooks-api/#use-menu)
+ * - [useMenu API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu)
  */
 export default function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
   const { defaultOpen, listboxRef: listboxRefProp, open: openProp, onOpenChange } = parameters;

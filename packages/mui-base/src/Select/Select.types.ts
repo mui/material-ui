@@ -64,7 +64,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    * Callback fired when an option is selected.
    */
   onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
     value: SelectValue<OptionValue, Multiple>,
   ) => void;
   /**

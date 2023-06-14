@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Modal from '@mui/base/Modal';
-import { Box, styled } from '@mui/system';
+import { Box, styled, Theme } from '@mui/system';
 
 export default function ServerModal() {
   const rootRef = React.useRef<HTMLDivElement>(null);
@@ -52,11 +52,14 @@ const StyledModal = styled(Modal)`
   justify-content: center;
   padding: 8px;
   background: inherit;
+  font-family: IBM Plex Sans, sans-serif;
 `;
 
-const style = {
+const style = (theme: Theme) => ({
   position: 'relative',
   width: 400,
-  border: '2px solid currentColor',
+  borderRadius: '12px',
   padding: '16px 32px 24px 32px',
-};
+  backgroundColor: theme.palette.mode === 'dark' ? '#132F4C' : 'white',
+  boxShadow: `0px 2px 8px ${theme.palette.mode === 'dark' ? '#000' : '#BCBCBC'}`,
+});

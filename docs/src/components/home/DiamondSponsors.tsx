@@ -11,22 +11,19 @@ import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const DIAMONDs = [
   {
-    src: '/static/sponsors/octopus.svg',
-    srcSet: '/static/sponsors/octopus.svg',
+    src: '/static/sponsors/octopus-square.svg',
     name: 'Octopus Deploy',
     description: 'A unified DevOps automation platform for your team.',
     href: 'https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: '/static/sponsors/doit-square.svg',
-    srcSet: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
     description: 'Management platform for Google Cloud and AWS.',
     href: 'https://www.doit.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://brand.zesty.io/zesty-io-logo.svg',
-    srcSet: 'https://brand.zesty.io/zesty-io-logo.svg',
     name: 'Zesty.io',
     description: 'The only Next.js CMS you need.',
     href: 'https://www.zesty.io/integrations/mui-nextjs/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor',

@@ -20,6 +20,10 @@ import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
 import { LicenseInfo } from '@mui/x-data-grid-pro';
+import materialPkgJson from 'packages/mui-material/package.json';
+import joyPkgJson from 'packages/mui-joy/package.json';
+import systemPkgJson from 'packages/mui-system/package.json';
+import basePkgJson from 'packages/mui-base/package.json';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -142,9 +146,88 @@ function AppWrapper(props) {
     }
   }, []);
 
+  const productIdentifier = React.useMemo(() => {
+    const languagePrefix = pageProps.userLanguage === 'en' ? '' : `/${pageProps.userLanguage}`;
+
+    if (product === 'material-ui') {
+      return {
+        metadata: 'MUI Core',
+        name: 'Material UI',
+        versions: [
+          { text: `v${materialPkgJson.version}`, current: true },
+          {
+            text: 'v4',
+            href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
+          },
+          {
+            text: 'View all versions',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    if (product === 'joy-ui') {
+      return {
+        metadata: 'MUI Core',
+        name: 'Joy UI',
+        versions: [{ text: `v${joyPkgJson.version}`, current: true }],
+      };
+    }
+
+    if (product === 'system') {
+      return {
+        metadata: 'MUI Core',
+        name: 'MUI System',
+        versions: [
+          { text: `v${systemPkgJson.version}`, current: true },
+          { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
+          {
+            text: 'View all versions',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    // TODO check if this should be base or base-ui
+    if (product === 'base-ui') {
+      return {
+        metadata: 'MUI Core',
+        name: 'Base UI',
+        versions: [{ text: `v${basePkgJson.version}`, current: true }],
+      };
+    }
+
+    if (product === 'core') {
+      return {
+        metadata: '',
+        name: 'MUI Core',
+        versions: [
+          { text: `v${materialPkgJson.version}`, current: true },
+          {
+            text: 'View all versions',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    return {
+      metadata: '',
+      name: 'Docs-infra',
+      versions: [
+        {
+          text: 'v0.0.0',
+          href: `https://mui.com${languagePrefix}/versions/`,
+        },
+      ],
+    };
+  }, [pageProps.userLanguage, product]);
+
   const pageContextValue = React.useMemo(() => {
     let pages = generalPages;
-    if (product === 'base') {
+    if (product === 'base-ui') {
       pages = basePages;
     } else if (product === 'material-ui') {
       pages = materialPages;
@@ -156,8 +239,8 @@ function AppWrapper(props) {
 
     const { activePage, activePageParents } = findActivePage(pages, router.pathname);
 
-    return { activePage, activePageParents, pages };
-  }, [product, router.pathname]);
+    return { activePage, activePageParents, pages, productIdentifier };
+  }, [product, productIdentifier, router.pathname]);
 
   let fonts = [];
   if (asPathWithoutLang.match(/onepirate/)) {

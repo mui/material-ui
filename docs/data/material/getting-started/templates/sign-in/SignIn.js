@@ -26,7 +26,9 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+// TODO remove, this demo shouldn't need to reset the theme.
+
+const defaultTheme = createTheme();
 
 export default function SignIn() {
   const handleSubmit = (event) => {
@@ -39,7 +41,7 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

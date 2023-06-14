@@ -9,7 +9,7 @@ export default function UnstyledSelectControlled() {
   const [value, setValue] = React.useState(10);
   return (
     <div>
-      <CustomSelect value={value} onChange={(e, newValue) => setValue(newValue)}>
+      <CustomSelect value={value} onChange={(_, newValue) => setValue(newValue)}>
         <StyledOption value={10}>Ten</StyledOption>
         <StyledOption value={20}>Twenty</StyledOption>
         <StyledOption value={30}>Thirty</StyledOption>

@@ -393,6 +393,17 @@ function render() {
 
 You can [follow the server side guide](/material-ui/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets` API documentation](/system/styles/api/#serverstylesheets).
 
+### CSS prefixing
+
+Be aware that some CSS features [require](https://github.com/cssinjs/jss/issues/279) an additional postprocessing step
+that adds vendor-specific prefixes.
+These prefixes are automatically added to the client thanks to [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
+
+The CSS served on this documentation is processed with [`autoprefixer`](https://www.npmjs.com/package/autoprefixer).
+You can use [the documentation implementation](https://github.com/mui/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) as inspiration.
+Be aware that it has an implication with the performance of the page.
+It's a must-do for static pages, but it needs to be put in balance with not doing anything when rendering dynamic pages.
+
 ### Gatsby
 
 There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@mui/styles`.
