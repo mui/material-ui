@@ -75,7 +75,7 @@ const products = [
   {
     name: 'Base UI',
     href: ROUTES.baseDocs,
-    slug: 'base',
+    slug: 'base-ui',
   },
   {
     name: 'MUI System',
@@ -198,7 +198,7 @@ export default function MuiProductSelector() {
             icon={<IconImage name="product-toolpad" />}
             name="MUI Toolpad"
             description="Low-code admin builder."
-            chip={<Chip size="small" label="Alpha" color="primary" variant="outlined" />}
+            chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
           />
         </Link>
       </li>

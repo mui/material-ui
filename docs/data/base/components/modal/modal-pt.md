@@ -42,7 +42,7 @@ A modal [blocks interaction with the rest of the application](https://en.wikiped
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import ModalUnstyled from '@mui/base/ModalUnstyled';
