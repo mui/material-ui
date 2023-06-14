@@ -21,6 +21,7 @@ const sleek = {
     '--border-color': 'var(--muidocs-palette-primaryDark-700)',
     '--formControl-shadow': '0px 2px 2px rgb(0 0 0 / 80%)',
     // dark components
+    '--Panel-shadow': '0 4px 40px 0 rgba(0, 0, 0, 0.15)',
     '--Select-background': 'var(--muidocs-palette-primaryDark-800)',
     '--Tab-hoverBackground': 'var(--muidocs-palette-primaryDark-700)',
     '--Option-selectedBackground': 'var(--muidocs-palette-primaryDark-800)',
