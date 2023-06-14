@@ -35,6 +35,7 @@ export default function menuReducer(
 
   if (action.type === ListActionTypes.blur) {
     if (!action.context.listboxRef.current?.contains(action.event.relatedTarget)) {
+      // check https://github.com/mui/material-ui/pull/36917#issuecomment-1566992698 for explaination
       const listboxId = action.context.listboxRef.current?.getAttribute('id');
       const controlledBy = action.event.relatedTarget?.getAttribute('aria-controls');
       if (listboxId && controlledBy && listboxId === controlledBy) {

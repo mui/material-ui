@@ -169,7 +169,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     }
 
     if (!ariaControls) {
-      console.warn('MUI: anchorEl is exprected to have valid value for aria-controls');
+      console.warn('MUI: anchorEl is expected to have valid value for aria-controls');
     }
   }
 
