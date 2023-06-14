@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { SlotComponentProps } from '@mui/base';
 import { InternalStandardProps as StandardProps } from '..';
-import { PaperProps } from '../Paper';
-import { ModalProps } from '../Modal';
+import Paper, { PaperProps } from '../Paper';
+import Modal, { ModalOwnerState, ModalProps } from '../Modal';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { PopoverClasses } from './popoverClasses';
@@ -19,7 +20,8 @@ export interface PopoverPosition {
 
 export type PopoverReference = 'anchorEl' | 'anchorPosition' | 'none';
 
-export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
+export interface PopoverProps
+  extends StandardProps<Omit<ModalProps, 'slots' | 'slotProps'>, 'children'> {
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.
@@ -88,9 +90,32 @@ export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
   open: boolean;
   /**
    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+   *
+   * This prop is an alias for `slotProps.paper` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.paper` instead.
+   *
    * @default {}
    */
   PaperProps?: Partial<PaperProps>;
+  /**
+   * The components used for each slot inside.
+   *
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    paper?: React.ElementType;
+  };
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<typeof Modal, {}, ModalOwnerState>;
+    paper?: SlotComponentProps<typeof Paper, {}, {}>;
+  };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -139,6 +164,12 @@ export function getOffsetLeft(
   rect: DOMRect,
   horizontal: number | 'center' | 'right' | 'left',
 ): number;
+
+type PopoverRootProps = NonNullable<PopoverProps['slotProps']>['root'];
+type PopoverPaperProps = NonNullable<PopoverProps['slotProps']>['paper'];
+
+export declare const PopoverRoot: React.FC<PopoverRootProps>;
+export declare const PopoverPaper: React.FC<PopoverPaperProps>;
 
 /**
  *

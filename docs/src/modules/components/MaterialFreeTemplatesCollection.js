@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { alpha } from '@mui/material/styles';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 
@@ -82,33 +83,58 @@ function Templates() {
   const t = useTranslate();
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ pt: 2, pb: 4 }}>
       {layouts(t).map((layout) => (
-        <Grid item sm={6} md={4} sx={{ flexGrow: 1 }} key={layout.title}>
+        <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={layout.title}>
           <Card
-            sx={{
+            sx={(theme) => ({
               height: '100%',
               display: 'flex',
               flexDirection: 'column',
-              flexGrow: 1,
-            }}
+              px: 2,
+              pt: 2,
+              pb: 1,
+              gap: 1.5,
+              borderRadius: 1,
+              backgroundColor: `${alpha(theme.palette.grey[50], 0.4)}`,
+              borderColor: 'divider',
+              ...theme.applyDarkStyles({
+                backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.3)}`,
+                borderColor: 'divider',
+              }),
+            })}
+            variant="outlined"
           >
             <CardMedia
               component="a"
               href={layout.href}
-              sx={{ height: 0, pt: '65%' }}
               image={layout.src}
               title={layout.title}
               rel="nofollow"
               target="_blank"
+              sx={(theme) => ({
+                height: 0,
+                pt: '65%',
+                borderRadius: 0.5,
+                bgcolor: 'currentColor',
+                border: '1px solid',
+                borderColor: 'grey.100',
+                color: 'grey.100',
+                ...theme.applyDarkStyles({
+                  borderColor: 'grey.900',
+                  color: 'primaryDark.900',
+                }),
+              })}
             />
-            <CardContent sx={{ flexGrow: 1 }}>
-              <Typography gutterBottom variant="h5" align="left" component="h2">
+            <CardContent sx={{ flexGrow: 1, p: 0 }}>
+              <Typography component="h2" variant="h6" fontWeight={600} gutterBottom>
                 {layout.title}
               </Typography>
-              <Typography component="p">{layout.description}</Typography>
+              <Typography component="p" variant="body2" color="text.secondary">
+                {layout.description}
+              </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions sx={{ p: 0, ml: -1 }}>
               <Button component="a" href={layout.source} size="small">
                 {t('sourceCode')}
               </Button>

@@ -24,7 +24,6 @@ const ROUTES = {
   blog: '/blog/',
   showcase: '/material-ui/discover-more/showcase/',
   roadmap: 'https://github.com/mui/mui-x/projects/1',
-  languages: '/material-ui/discover-more/languages/',
   vision: '/material-ui/discover-more/vision/',
   support: '/material-ui/getting-started/support/#professional-support-premium',
   privacyPolicy: 'https://mui.com/legal/privacy/',
