@@ -809,9 +809,9 @@ export default function BaseUIHero() {
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-core" /> MUI Core{' '}
+            <IconImage width={28} height={28} name="product-core" />{' '}
+            <Link href={ROUTES.productCore}>MUI Core</Link>{' '}
             <Typography component="span" variant="inherit" sx={{ color: 'text.primary' }}>
-              &nbsp;&nbsp;
               <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
                 /
               </Typography>
