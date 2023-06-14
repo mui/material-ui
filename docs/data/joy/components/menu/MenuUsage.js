@@ -9,22 +9,12 @@ import ListDivider from '@mui/joy/ListDivider';
 export default function MenuUsage() {
   const buttonRef = React.useRef(null);
   const menuActions = React.useRef(null);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-    buttonRef.current?.focus();
-  };
+  const [open, setOpen] = React.useState(false);
 
   const handleButtonKeyDown = (event) => {
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
-      setAnchorEl(event.currentTarget);
+      setOpen(true);
       if (event.key === 'ArrowUp') {
         menuActions.current?.highlightLastItem();
       }
@@ -70,12 +60,16 @@ export default function MenuUsage() {
           <Button
             ref={buttonRef}
             id="menu-usage-button"
-            aria-controls={open ? 'menu-usage-demo' : undefined}
+            aria-controls="menu-usage-demo"
             aria-haspopup="menu"
             aria-expanded={open ? 'true' : undefined}
             variant="outlined"
             color="neutral"
-            onClick={handleClick}
+            onClick={() => {
+              if (!open) {
+                setOpen(true);
+              }
+            }}
             onKeyDown={handleButtonKeyDown}
           >
             Format
@@ -83,23 +77,23 @@ export default function MenuUsage() {
           <Menu
             {...props}
             id="menu-usage-demo"
-            anchorEl={anchorEl}
+            anchorEl={buttonRef.current}
             open={open}
-            {...(typeof props.open === 'boolean' && {
-              open: props.open,
-              anchorEl: buttonRef.current,
-            })}
-            onClose={handleClose}
+            onClose={() => setOpen(false)}
             slotProps={{
               listbox: {
                 'aria-labelledby': 'menu-usage-button',
               },
             }}
           >
-            <MenuItem onClick={handleClose}>Add space before paragraph</MenuItem>
-            <MenuItem onClick={handleClose}>Add space after paragraph</MenuItem>
+            <MenuItem onClick={() => setOpen(false)}>
+              Add space before paragraph
+            </MenuItem>
+            <MenuItem onClick={() => setOpen(false)}>
+              Add space after paragraph
+            </MenuItem>
             <ListDivider />
-            <MenuItem onClick={handleClose}>Custom spacing...</MenuItem>
+            <MenuItem onClick={() => setOpen(false)}>Custom spacing...</MenuItem>
           </Menu>
         </Box>
       )}

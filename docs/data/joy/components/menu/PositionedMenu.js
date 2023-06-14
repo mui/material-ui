@@ -9,33 +9,33 @@ import Edit from '@mui/icons-material/Edit';
 import DeleteForever from '@mui/icons-material/DeleteForever';
 
 export default function PositionedMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
-  };
-  const handleClose = (event) => {
-    if (event && event.relatedTarget !== anchorEl) {
-      setAnchorEl(null);
-    }
-  };
+  const buttonRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false);
 
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div>
       <IconButton
+        ref={buttonRef}
         id="positioned-demo-button"
-        aria-controls={open ? 'positioned-demo-menu' : undefined}
+        aria-controls={'positioned-demo-menu'}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="outlined"
         color="neutral"
-        onClick={handleClick}
+        onClick={() => {
+          if (!open) {
+            setOpen(true);
+          }
+        }}
       >
         <MoreVert />
       </IconButton>
       <Menu
         id="positioned-demo-menu"
-        anchorEl={anchorEl}
+        anchorEl={buttonRef.current}
         open={open}
         onClose={handleClose}
         aria-labelledby="positioned-demo-button"

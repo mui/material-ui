@@ -12,34 +12,35 @@ import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 export default function BasicMenu() {
   const SIZES = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large'];
   const [size, setSize] = React.useState('Medium');
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
-  };
-  const handleClose = (event) => {
-    if (event && event.relatedTarget !== anchorEl) {
-      setAnchorEl(null);
-    }
+  const buttonRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
     <div>
       <Button
+        ref={buttonRef}
         id="group-demo-button"
-        aria-controls={open ? 'group-menu' : undefined}
+        aria-controls={'group-menu'}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="outlined"
         color="neutral"
-        onClick={handleClick}
+        onClick={() => {
+          if (!open) {
+            setOpen(true);
+          }
+        }}
         endDecorator={<ArrowDropDown />}
       >
         Size
       </Button>
       <Menu
         id="group-menu"
-        anchorEl={anchorEl}
+        anchorEl={buttonRef.current}
         open={open}
         onClose={handleClose}
         aria-labelledby="group-demo-button"
