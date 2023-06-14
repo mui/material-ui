@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ButtonUnstyled, { ButtonOwnerState, ButtonProps } from '@mui/base/Button';
 
 const Button = React.forwardRef(function Button(

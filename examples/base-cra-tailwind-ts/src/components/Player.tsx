@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from './Button';
 import Slider from './Slider';
 

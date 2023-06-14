@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import SliderUnstyled, { SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
 
 const Thumb = React.forwardRef(function Thumb(

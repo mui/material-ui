@@ -1,4 +1,10 @@
-# Base UI - Create React App example with Tailwind CSS in TypeScript
+# Base UI - Vite React example with Tailwind CSS in TypeScript
+
+[Base UI](https://mui.com/base/getting-started/overview/) is a library of unstyled React UI components which includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
+
+[Vite](https://vitejs.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects, consisting of a dev server and a build command
+
+[Tailwind CSS](https://tailwindcss.com/) is a utility-first CSS framework that provides low-level CSS classes that can be composed to build custom UI designs.
 
 ## How to use
 
@@ -28,5 +34,5 @@ or:
 
 ## The idea behind the example
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Vite](https://vitejs.dev/guide/).
 It shows how you can use Base UI together with [Tailwind CSS](https://tailwindcss.com/) to build your application.
