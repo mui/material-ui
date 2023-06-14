@@ -43,7 +43,7 @@ import heroVariables from 'docs/src/components/productBaseUI/heroVariables';
 const Panel = styled('div')({
   width: 340,
   backgroundColor: 'var(--muidocs-palette-background-paper)',
-  borderRadius: 'min(var(--border-radius), 12px)',
+  borderRadius: 'min(var(--border-radius), 32px)',
   border: 'var(--border-width) solid',
   borderColor: 'var(--border-color)',
   boxShadow: 'var(--Panel-shadow)',
@@ -67,7 +67,6 @@ const StyledParagraph = styled('p')({
 const StyledTabsList = styled('div')({
   display: 'flex',
   borderBottom: 'var(--border-width) solid var(--border-color)',
-  backgroundColor: 'var(--TabsList-background)',
 });
 
 const StyledTab = styled('button')({
@@ -75,13 +74,13 @@ const StyledTab = styled('button')({
   minHeight: 42,
   flex: 1,
   padding: '0.5rem 1rem',
-  background: 'transparent',
+  background: 'var(--Tab-background)',
   border: 'none',
   fontSize: 14,
   fontWeight: 600,
 
-  '&:hover': {
-    background: 'var(--muidocs-palette-grey-50)',
+  '&:hover:not(.Mui-selected)': {
+    background: 'var(--Tab-hoverBackground)',
   },
 
   '&.Mui-selected': {
@@ -93,7 +92,7 @@ const StyledTab = styled('button')({
       height: 'max(2px, var(--border-width, 0px))',
       left: 2,
       right: 2,
-      bottom: 'calc(-1 * max(2px, var(--border-width, 0px)) + 1px)',
+      bottom: 'calc(-1 * min(2px, var(--border-width, 0px)))',
       position: 'absolute',
       backgroundColor: 'var(--color-primary)',
     },
@@ -114,7 +113,7 @@ const StyledSelectButton = styled('button')({
   fontSize: '0.875rem',
   fontFamily: 'var(--muidocs-font-family)',
   lineHeight: 21 / 14,
-  boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.3)',
+  boxShadow: 'var(--formControl-shadow, 0px 2px 2px rgba(205, 210, 215, 0.3))',
   '& svg:last-child': {
     marginLeft: 'auto',
   },
@@ -136,7 +135,7 @@ const StyledModalButton = styled('button')({
   border: '1px solid',
   borderColor: 'var(--muidocs-palette-primary-100)',
   borderRadius: 'var(--border-radius)',
-  boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.3), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
+  boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
   fontWeight: 600,
@@ -145,6 +144,15 @@ const StyledModalButton = styled('button')({
 
   '&:hover': {
     backgroundColor: 'var(--muidocs-palette-primary-100)',
+  },
+
+  '[data-mui-color-scheme="dark"] &': {
+    borderColor: 'var(--muidocs-palette-primary-700)',
+    backgroundColor: 'var(--muidocs-palette-primary-900)',
+    color: 'var(--muidocs-palette-primary-200)',
+    '&:hover': {
+      backgroundColor: 'var(--muidocs-palette-primary-800)',
+    },
   },
 });
 
@@ -158,7 +166,7 @@ const StyledSnackbarButton = styled('button')({
   border: '1px solid',
   borderColor: 'var(--muidocs-palette-grey-200)',
   borderRadius: 'var(--border-radius)',
-  boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.3), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
+  boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
   fontWeight: 600,
@@ -167,6 +175,15 @@ const StyledSnackbarButton = styled('button')({
 
   '&:hover': {
     backgroundColor: 'var(--muidocs-palette-grey-300)',
+  },
+
+  '[data-mui-color-scheme="dark"] &': {
+    borderColor: 'var(--muidocs-palette-grey-700)',
+    backgroundColor: 'var(--muidocs-palette-grey-900)',
+    color: 'var(--muidocs-palette-grey-200)',
+    '&:hover': {
+      backgroundColor: 'var(--muidocs-palette-grey-800)',
+    },
   },
 });
 
@@ -240,7 +257,7 @@ const StyledListbox = styled('ul')({
       cursor: 'pointer',
       borderRadius: 'calc(var(--_listbox-radius) - var(--Select-spacing) * 0.5)',
       '&:hover, &.MuiOption-highlighted': {
-        backgroundColor: 'var(--muidocs-palette-grey-50)',
+        backgroundColor: 'var(--Option-hoverBackground, var(--muidocs-palette-grey-50))',
         color: 'var(--muidocs-palette-text-primary)',
       },
       '&.Mui-selected': {
@@ -303,7 +320,7 @@ const StyledSlider = styled(Slider)(`
     position: absolute;
     width: 100%;
     height: 4px;
-    border-radius: 2px;
+    border-radius: var(--border-radius);
     background-color: currentColor;
     opacity: 0.4;
   }
@@ -312,7 +329,7 @@ const StyledSlider = styled(Slider)(`
     display: block;
     position: absolute;
     height: 4px;
-    border-radius: 2px;
+    border-radius: var(--border-radius);
     background-color: currentColor;
   }
 
@@ -323,7 +340,7 @@ const StyledSlider = styled(Slider)(`
     margin-left: -6px;
     margin-top: -6px;
     box-sizing: border-box;
-    border-radius: 50%;
+    border-radius: var(--border-radius);
     outline: 0;
     border: 3px solid currentColor;
     background-color: #fff;
@@ -342,7 +359,7 @@ const StyledSlider = styled(Slider)(`
     position: absolute;
     width: 8px;
     height: 8px;
-    border-radius: 99%;
+    border-radius: var(--border-radius);
     background-color: var(--color-primary);
     top: 43%;
     transform: translateX(-50%);
@@ -353,7 +370,6 @@ const StyledSlider = styled(Slider)(`
   }
 
   & .${sliderClasses.markLabel} {
-    font-family: IBM Plex Sans;
     font-weight: 600;
     font-size: 12px;
     position: absolute;
@@ -383,7 +399,7 @@ const StyledSwitch = styled('span')(`
   }
 
   & .${switchClasses.track} {
-    background: var(--muidocs-palette-grey-400);
+    background: var(--Switch-background, var(--muidocs-palette-grey-400));
     border-radius: max(2px, var(--border-radius));
     display: block;
     height: 100%;
@@ -509,6 +525,7 @@ const StyledMenuItem = styled(MenuItem)(
   border-radius: 8px;
   cursor: default;
   user-select: none;
+  border-radius: min(var(--border-radius), 8px);
 
   &:last-of-type {
     border-bottom: none;
@@ -532,14 +549,6 @@ const StyledMenuItem = styled(MenuItem)(
     };
   }
 
-  &.${menuItemClasses.disabled} {
-    color: ${
-      theme.palette.mode === 'dark'
-        ? 'var(--muidocs-palette-grey-700)'
-        : 'var(--muidocs-palette-grey-400)'
-    };
-  }
-
   &:hover:not(.${menuItemClasses.disabled}) {
     background-color: ${
       theme.palette.mode === 'dark'
@@ -555,8 +564,7 @@ const StyledMenuItem = styled(MenuItem)(
   `,
 );
 
-const StyledMenuListbox = styled('ul')(
-  ({ theme }) => `
+const StyledMenuListbox = styled('ul')(`
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -566,24 +574,12 @@ const StyledMenuListbox = styled('ul')(
   border-radius: 12px;
   overflow: auto;
   outline: 0px;
-  background: ${theme.palette.mode === 'dark' ? 'var(--muidocs-palette-grey-900)' : '#fff'};
-  border: 1px solid ${
-    theme.palette.mode === 'dark'
-      ? 'var(--muidocs-palette-grey-700)'
-      : 'var(--muidocs-palette-grey-200)'
-  };
-  color: ${
-    theme.palette.mode === 'dark'
-      ? 'var(--muidocs-palette-grey-300)'
-      : 'var(--muidocs-palette-grey-900)'
-  };
-  box-shadow: 0px 2px 16px ${
-    theme.palette.mode === 'dark'
-      ? 'var(--muidocs-palette-grey-900)'
-      : 'var(--muidocs-palette-grey-200)'
-  };
-  `,
-);
+  background-color: var(--muidocs-palette-background-paper);
+  border-radius: min(var(--border-radius), 16px);
+  border: var(--border-width) solid;
+  border-color: var(--border-color);
+  box-shadow: var(--Panel-shadow);
+  `);
 
 const StyledMenuButton = styled(Button)`
   padding: 0;
@@ -785,7 +781,7 @@ export default function BaseUIHero() {
                 }}
                 anchorEl={buttonElement}
                 slots={{ root: StyledPopper, listbox: StyledMenuListbox }}
-                slotProps={{ listbox: { id: 'simple-menu' } }}
+                slotProps={{ root: { disablePortal: true }, listbox: { id: 'simple-menu' } }}
               >
                 <StyledMenuItem onClick={createHandleMenuClick('Profile')}>Profile</StyledMenuItem>
                 <StyledMenuItem onClick={createHandleMenuClick('My account')}>
@@ -870,7 +866,6 @@ export default function BaseUIHero() {
                   slotProps={{
                     input: { 'aria-labelledby': 'Use every component' },
                   }}
-                  defaultChecked
                 />
               </Box>
             </Box>
