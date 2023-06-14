@@ -19,7 +19,12 @@ export default function Core() {
         title="Base UI: Ship accessible & sleek components"
         description='Base UI gives you a set of foundational \"headless\" components that you can build with using any styling solution you choose—no need to override any default style engine or theme.'
         card="/static/blog/introducing-mui-base/card.png"
-      />
+      >
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
       <main id="main-content">
