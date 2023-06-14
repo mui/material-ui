@@ -66,7 +66,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
       gutterBottom?: boolean;
       /**
        * Applies the theme typography styles.
-       * @default 'body1'
+       * @default 'body-md'
        */
       level?: keyof TypographySystem | 'inherit';
       /**
@@ -75,15 +75,14 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        * If you wish to change that mapping, you can provide your own.
        * Alternatively, you can use the `component` prop.
        * @default {
-       *   h1: 'h1',
-       *   h2: 'h2',
-       *   h3: 'h3',
-       *   h4: 'h4',
-       *   h5: 'h5',
-       *   h6: 'h6',
-       *   body1: 'p',
-       *   body2: 'p',
-       *   body3: 'p',
+       *   'title-xl': 'h1',
+       *   'title-lg': 'h1',
+       *   'title-md': 'h2',
+       *   'title-sm': 'h3',
+       *   'title-xs': 'h4',
+       *   'body-lg': 'p',
+       *   'body-md': 'p',
+       *   'body-sm': 'p',
        *   inherit: 'p',
        * }
        */

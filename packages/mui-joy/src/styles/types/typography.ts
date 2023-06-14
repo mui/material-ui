@@ -46,15 +46,14 @@ export interface LineHeight
   extends OverridableRecord<DefaultLineHeight, LineHeightOverrides, string | number> {}
 
 export interface DefaultTypographySystem {
-  display1: CSSObject;
-  display2: CSSObject;
-  h1: CSSObject;
-  h2: CSSObject;
-  h3: CSSObject;
-  h4: CSSObject;
-  body1: CSSObject;
-  body2: CSSObject;
-  body3: CSSObject;
+  'title-xl': CSSObject;
+  'title-lg': CSSObject;
+  'title-md': CSSObject;
+  'title-sm': CSSObject;
+  'title-xs': CSSObject;
+  'body-lg': CSSObject;
+  'body-md': CSSObject;
+  'body-sm': CSSObject;
 }
 export interface TypographySystemOverrides {}
 export interface TypographySystem
