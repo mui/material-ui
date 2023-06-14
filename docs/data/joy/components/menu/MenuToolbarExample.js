@@ -41,7 +41,7 @@ const MenuButton = React.forwardRef(
           color="neutral"
           aria-haspopup="menu"
           aria-expanded={open ? 'true' : undefined}
-          aria-controls={open ? `toolbar-example-menu-${children}` : undefined}
+          aria-controls={`toolbar-example-menu-${children}`}
           onClick={onOpen}
           onKeyDown={handleButtonKeyDown}
         >
@@ -159,7 +159,11 @@ export default function MenuToolbarExample() {
       <ListItem>
         <MenuButton
           open={menuIndex === 0}
-          onOpen={() => setMenuIndex(0)}
+          onOpen={() => {
+            if (menuIndex === null) {
+              setMenuIndex(0);
+            }
+          }}
           onKeyDown={createHandleButtonKeyDown(0)}
           onMouseEnter={() => {
             if (typeof menuIndex === 'number') {
@@ -203,7 +207,11 @@ export default function MenuToolbarExample() {
       <ListItem>
         <MenuButton
           open={menuIndex === 1}
-          onOpen={() => setMenuIndex(1)}
+          onOpen={() => {
+            if (menuIndex === null) {
+              setMenuIndex(1);
+            }
+          }}
           onKeyDown={createHandleButtonKeyDown(1)}
           onMouseEnter={() => {
             if (typeof menuIndex === 'number') {
@@ -243,7 +251,11 @@ export default function MenuToolbarExample() {
       <ListItem>
         <MenuButton
           open={menuIndex === 2}
-          onOpen={() => setMenuIndex(2)}
+          onOpen={() => {
+            if (menuIndex === null) {
+              setMenuIndex(2);
+            }
+          }}
           onKeyDown={createHandleButtonKeyDown(2)}
           onMouseEnter={() => {
             if (typeof menuIndex === 'number') {
