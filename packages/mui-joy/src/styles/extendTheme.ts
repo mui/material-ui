@@ -245,6 +245,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       primary: {
         ...defaultColors.primary,
         ...createDarkModeVariantVariables('primary'),
+        softBg: `rgba(${getCssVar('palette-danger',colorChannel(defaultColors.neutral[900]),)} / 0.8)`,
       },
       neutral: {
         ...defaultColors.neutral,
