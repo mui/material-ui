@@ -3,41 +3,34 @@ import clsx from 'clsx';
 
 // Base UI imports
 import Badge, { badgeClasses } from '@mui/base/Badge';
-import Button, { buttonClasses } from '@mui/base/Button';
+import Button from '@mui/base/Button';
 import Menu, { MenuActions } from '@mui/base/Menu';
 import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
 import Modal from '@mui/base/Modal';
-import Option, { optionClasses } from '@mui/base/Option';
+import Option from '@mui/base/Option';
 import Popper from '@mui/base/Popper';
-import Select, { SelectProps, selectClasses } from '@mui/base/Select';
+import Select from '@mui/base/Select';
 import Slider, { sliderClasses } from '@mui/base/Slider';
 import Snackbar from '@mui/base/Snackbar';
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 import Switch, { switchClasses } from '@mui/base/Switch';
 import Tab from '@mui/base/Tab';
-import TabPanel from '@mui/base/TabPanel';
 import Tabs from '@mui/base/Tabs';
 import TabsList from '@mui/base/TabsList';
 import { ListActionTypes } from '@mui/base/useList';
 
 // Other packages
-import { styled } from '@mui/system';
-import Box, { BoxProps } from '@mui/material/Box';
+import { css, styled, keyframes } from '@mui/system';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
-import ToggleOn from '@mui/icons-material/ToggleOn';
-import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
-import InputRoundedIcon from '@mui/icons-material/InputRounded';
 import LaunchRoundedIcon from '@mui/icons-material/LaunchRounded';
-import PlaylistAddCheckRoundedIcon from '@mui/icons-material/PlaylistAddCheckRounded';
 
 // Local imports
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
-import GetStartedButtons2 from '../home/GetStartedButtons2';
-import CodeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
+import GetStartedButtons2 from 'docs/src/components/home/GetStartedButtons2';
 import heroVariables from 'docs/src/components/productBaseUI/heroVariables';
 
 const Panel = styled('div')({
@@ -174,7 +167,7 @@ const StyledSnackbarButton = styled('button')({
   lineHeight: 21 / 14,
 
   '&:hover': {
-    backgroundColor: 'var(--muidocs-palette-grey-300)',
+    backgroundColor: 'var(--muidocs-palette-grey-200)',
   },
 
   '[data-mui-color-scheme="dark"] &': {
@@ -587,8 +580,50 @@ const StyledMenuButton = styled(Button)`
   background: transparent;
 `;
 
+const snackbarInRight = keyframes`
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+`;
+const StyledSnackbar = styled(Snackbar)(css`
+  background-color: var(--muidocs-palette-background-paper);
+  border-radius: min(var(--border-radius), 32px);
+  border: var(--border-width) solid;
+  border-color: var(--border-color);
+  box-shadow: var(--Panel-shadow);
+  position: fixed;
+  z-index: 5500;
+  display: flex;
+  gap: 0.5rem;
+  right: 16px;
+  bottom: 16px;
+  left: auto;
+  justify-content: start;
+  max-width: 560px;
+  min-width: 300px;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  animation: ${snackbarInRight} 200ms;
+  transition: transform 0.2s ease-out;
+
+  & svg {
+    color: var(--muidocs-palette-success-600);
+  }
+
+  & [data-title] {
+    margin-top: 2px;
+  }
+  & [data-description] {
+    color: var(--muidocs-palette-text-tertiary);
+  }
+`);
+
 export default function BaseUIHero() {
-  const [customized, setCustomized] = React.useState(true);
   const [design, setDesign] = React.useState(0);
   // Modal
   const [openModal, setOpenModal] = React.useState(false);
@@ -651,9 +686,8 @@ export default function BaseUIHero() {
     }
   };
 
-  const createHandleMenuClick = (menuItem: string) => {
+  const createHandleMenuClick = () => {
     return () => {
-      console.log(`Clicked on ${menuItem}`);
       setOpenMenu(false);
       buttonElement?.focus();
     };
@@ -725,7 +759,7 @@ export default function BaseUIHero() {
           }}
         >
           <Panel>
-            <Tabs value={design} onChange={(event, newValue) => setDesign(newValue)}>
+            <Tabs value={design} onChange={(event, newValue) => setDesign(newValue as number)}>
               <TabsList slots={{ root: StyledTabsList }}>
                 <Tab slots={{ root: StyledTab }} value={0}>
                   Sleek
@@ -783,11 +817,9 @@ export default function BaseUIHero() {
                 slots={{ root: StyledPopper, listbox: StyledMenuListbox }}
                 slotProps={{ root: { disablePortal: true }, listbox: { id: 'simple-menu' } }}
               >
-                <StyledMenuItem onClick={createHandleMenuClick('Profile')}>Profile</StyledMenuItem>
-                <StyledMenuItem onClick={createHandleMenuClick('My account')}>
-                  My account
-                </StyledMenuItem>
-                <StyledMenuItem onClick={createHandleMenuClick('Log out')}>Log out</StyledMenuItem>
+                <StyledMenuItem onClick={createHandleMenuClick()}>Profile</StyledMenuItem>
+                <StyledMenuItem onClick={createHandleMenuClick()}>My account</StyledMenuItem>
+                <StyledMenuItem onClick={createHandleMenuClick()}>Log out</StyledMenuItem>
               </Menu>
             </Box>
             {/* Select component */}
@@ -883,23 +915,64 @@ export default function BaseUIHero() {
                 View modal
               </StyledModalButton>
               <StyledModal
+                disablePortal
                 aria-labelledby="unstyled-modal-title"
                 aria-describedby="unstyled-modal-description"
                 open={openModal}
                 onClose={handleCloseModal}
                 slots={{ backdrop: StyledBackdrop }}
               >
-                <Box>
-                  <h2 id="unstyled-modal-title">Text in a modal</h2>
-                  <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
-                </Box>
+                <Panel sx={{ p: 3, textAlign: 'center', outline: 'none', width: 'auto' }}>
+                  <Box
+                    component="img"
+                    src="/static/logo.svg"
+                    alt=""
+                    sx={{ aspectRatio: 1, width: 64, display: 'block', margin: 'auto' }}
+                  />
+                  <Box
+                    component="h2"
+                    id="unstyled-modal-title"
+                    sx={{ mt: 1, mb: 0, fontSize: '1.25rem' }}
+                  >
+                    What a cool modal, huh?
+                  </Box>
+                  <Box
+                    component="p"
+                    id="unstyled-modal-description"
+                    sx={{ m: 0, mb: 2, fontSize: '0.875rem' }}
+                  >
+                    Another Base UI component for you.
+                  </Box>
+                  <StyledSnackbarButton onClick={handleCloseModal}>Close</StyledSnackbarButton>
+                </Panel>
               </StyledModal>
               <StyledSnackbarButton type="button" onClick={handleClickSnackbar}>
                 View snackbar
               </StyledSnackbarButton>
-              <Snackbar open={openSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
-                Hello World
-              </Snackbar>
+              <StyledSnackbar
+                open={openSnackbar}
+                autoHideDuration={5000}
+                onClose={handleCloseSnackbar}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  style={{ width: 24, height: 24 }}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <Box>
+                  <div data-title>This is a Base UI snackbar!</div>
+                  <div data-description>Oh cool, this is nice.</div>
+                </Box>
+              </StyledSnackbar>
             </Box>
             {/* Button "View the code" component */}
             <Box sx={{ display: 'flex', p: '1rem', gap: '0.5rem', '& > button': { flex: 1 } }}>
