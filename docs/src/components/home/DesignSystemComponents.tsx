@@ -38,7 +38,8 @@ function DesignSystemComponents() {
         overline="Production-ready components"
         title={
           <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-            Beautiful and powerful, <GradientText>right out of the box</GradientText>
+            Beautiful and powerful,
+            <br /> <GradientText>right out of the box</GradientText>
           </Typography>
         }
       />
