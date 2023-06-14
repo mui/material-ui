@@ -68,6 +68,7 @@ export default function AppFooter(props: AppFooterProps) {
               Products
             </Typography>
             <Link href={ROUTES.productCore}>MUI Core</Link>
+            <Link href={ROUTES.productBase}>Base UI</Link>
             <Link href={ROUTES.productAdvanced}>MUI X</Link>
             <Link href={ROUTES.productTemplates}>Templates</Link>
             <Link href={ROUTES.productDesignKits}>Design kits</Link>

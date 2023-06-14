@@ -1,5 +1,6 @@
 const ROUTES = {
   productCore: '/core/',
+  productBase: '/base-ui/',
   productAdvanced: '/x/',
   productToolpad: '/toolpad/',
   productTemplates: '/templates/',
