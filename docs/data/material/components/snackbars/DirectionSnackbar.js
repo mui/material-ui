@@ -1,4 +1,6 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Slide from '@mui/material/Slide';
@@ -34,10 +36,24 @@ export default function DirectionSnackbar() {
 
   return (
     <div>
-      <Button onClick={handleClick(TransitionLeft)}>Right</Button>
-      <Button onClick={handleClick(TransitionUp)}>Up</Button>
-      <Button onClick={handleClick(TransitionRight)}>Left</Button>
-      <Button onClick={handleClick(TransitionDown)}>Down</Button>
+      <Box sx={{ width: 300 }}>
+        <Grid container justifyContent="center">
+          <Grid item>
+            <Button onClick={handleClick(TransitionUp)}>Up</Button>
+          </Grid>
+        </Grid>
+        <Grid container justifyContent="center">
+          <Grid item xs={6}>
+            <Button onClick={handleClick(TransitionRight)}>Left</Button>
+          </Grid>
+          <Grid item container xs={6} alignItems="flex-end" direction="column">
+            <Button onClick={handleClick(TransitionLeft)}>Right</Button>
+          </Grid>
+        </Grid>
+        <Grid container justifyContent="center">
+          <Button onClick={handleClick(TransitionDown)}>Down</Button>
+        </Grid>
+      </Box>
       <Snackbar
         open={open}
         onClose={handleClose}
