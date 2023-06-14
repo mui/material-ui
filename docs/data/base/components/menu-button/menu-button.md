@@ -1,7 +1,6 @@
 ---
 product: base
 title: React Menu Button component
-components: Menu Button
 githubLabel: 'component: menu button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 ---

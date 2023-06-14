@@ -1,7 +1,6 @@
 ---
 product: base
 title: React Checkbox component
-components: Checkbox
 githubLabel: 'component: checkbox'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 ---
