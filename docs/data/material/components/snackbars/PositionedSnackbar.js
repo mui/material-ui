@@ -2,6 +2,7 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
+import { Box } from '@mui/material';
 
 export default function PositionedSnackbar() {
   const [state, setState] = React.useState({
@@ -23,29 +24,43 @@ export default function PositionedSnackbar() {
     <React.Fragment>
       <Grid container justifyContent="center">
         <Grid item>
-          <Button onClick={handleClick({ vertical: 'top', horizontal: 'left' })}>
-            Top-Left
-          </Button>
           <Button onClick={handleClick({ vertical: 'top', horizontal: 'center' })}>
             Top-Center
           </Button>
+        </Grid>
+      </Grid>
+
+      <Grid container justifyContent="center">
+        <Grid item xs={6}>
+          <Button onClick={handleClick({ vertical: 'top', horizontal: 'left' })}>
+            Top-Left
+          </Button>
+        </Grid>
+        <Grid item container xs={6} alignItems="flex-end" direction="column">
           <Button onClick={handleClick({ vertical: 'top', horizontal: 'right' })}>
             Top-Right
           </Button>
         </Grid>
       </Grid>
+
       <Grid container justifyContent="center">
-        <Grid item>
+        <Grid item xs={6}>
           <Button onClick={handleClick({ vertical: 'bottom', horizontal: 'left' })}>
             Bottom-Left
           </Button>
+        </Grid>
+        <Grid item container xs={6} alignItems="flex-end" direction="column">
+          <Button onClick={handleClick({ vertical: 'bottom', horizontal: 'right' })}>
+            Bottom-Right
+          </Button>
+        </Grid>
+      </Grid>
+      <Grid container justifyContent="center">
+        <Grid item>
           <Button
             onClick={handleClick({ vertical: 'bottom', horizontal: 'center' })}
           >
             Bottom-Center
-          </Button>
-          <Button onClick={handleClick({ vertical: 'bottom', horizontal: 'right' })}>
-            Bottom-Right
           </Button>
         </Grid>
       </Grid>
@@ -54,7 +69,8 @@ export default function PositionedSnackbar() {
 
   return (
     <div>
-      {buttons}
+      <Box sx={{ width: 500 }}>{buttons}</Box>
+
       <Snackbar
         anchorOrigin={{ vertical, horizontal }}
         open={open}
