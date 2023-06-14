@@ -11,6 +11,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
+import ROUTES from 'docs/src/route';
 
 // switcher icons
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
@@ -92,7 +93,7 @@ export default function BaseUIComponents() {
                 <Item icon={React.cloneElement(icons[name])} title={name} />
               </Highlighter>
             ))}
-            <More />
+            <More href={ROUTES.baseComponents} />
           </Group>
         </Grid>
         <Grid xs={12} md={6}>

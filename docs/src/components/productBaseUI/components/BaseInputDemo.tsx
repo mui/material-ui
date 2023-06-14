@@ -128,7 +128,7 @@ const TailwindFloatingLabelInput = React.forwardRef<
         ref={ref}
         {...props}
         className={clsx(
-          'peer h-full flex-1 border-none bg-transparent px-0 pb-[0.75rem] pt-[--TextInput-paddingTop] font-sans text-base placeholder-transparent focus:outline-none focus:ring-0',
+          'peer h-full flex-1 border-none bg-transparent px-3 pb-[0.75rem] pt-[--TextInput-paddingTop] font-sans text-base placeholder-transparent focus:outline-none focus:ring-0',
           props.className,
         )}
         id={id}
@@ -248,7 +248,7 @@ const FloatingLabelInput = React.forwardRef(
         {...props}
         className={clsx(
           'peer h-full flex-1 border-none bg-transparent 
-          px-0 pb-[0.75rem] pt-[--TextInput-paddingTop] 
+          px-3 pb-[0.75rem] pt-[--TextInput-paddingTop] 
           font-sans text-base placeholder-transparent 
           focus:outline-none focus:ring-0',
           props.className,
