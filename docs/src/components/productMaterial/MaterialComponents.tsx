@@ -131,7 +131,7 @@ const CODES = {
 `,
 };
 
-export default function CoreComponents() {
+export default function MaterialComponents() {
   const [demo, setDemo] = React.useState<(typeof DEMOS)[number]>(DEMOS[0]);
   const [customized, setCustomized] = React.useState(false);
   const icons = {

@@ -204,7 +204,7 @@ const customTheme = extendTheme({
     },
   },
 });
-export default function Hero() {
+export default function MaterialHero() {
   return (
     <HeroContainer
       left={

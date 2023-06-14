@@ -141,7 +141,7 @@ const useResizeHandle = (
   };
 };
 
-export default function CoreStyling() {
+export default function MaterialStyling() {
   const [index, setIndex] = React.useState(0);
   const objectRef = React.useRef<HTMLDivElement | null>(null);
   const { dragging, getDragHandlers } = useResizeHandle(objectRef, { minWidth: '253px' });

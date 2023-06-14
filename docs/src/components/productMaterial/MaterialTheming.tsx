@@ -81,7 +81,7 @@ const code = `
   </Box>
 </Card>`;
 
-export default function CoreTheming() {
+export default function MaterialTheming() {
   const [customized, setCustomized] = React.useState(true);
   return (
     <Section>
