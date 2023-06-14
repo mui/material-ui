@@ -214,8 +214,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
       text: {
         primary: getCssVarColor('palette-neutral-900'),
-        secondary: getCssVarColor('palette-neutral-500'),
-        tertiary: getCssVarColor('palette-neutral-400'),
+        secondary: getCssVarColor('palette-neutral-700'),
+        tertiary: getCssVarColor('palette-neutral-500'),
       },
       background: {
         body: getCssVarColor('palette-common-white'),
@@ -268,8 +268,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
       text: {
         primary: getCssVarColor('palette-neutral-50'),
-        secondary: getCssVarColor('palette-neutral-500'),
-        tertiary: getCssVarColor('palette-neutral-400'),
+        secondary: getCssVarColor('palette-neutral-200'),
+        tertiary: getCssVarColor('palette-neutral-300'),
       },
       background: {
         body: getCssVarColor('palette-common-black'),
