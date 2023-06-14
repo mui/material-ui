@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { TabsContextValue } from '@mui/base';
 
-export interface ScrollableTabsContextValue extends TabsContextValue {
+export interface ScrollableTabsContextValue {
+  tabsListRef: any;
   getScrollButtonProps: any;
 }
 
@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 export function useScrollableTabsContext() {
   const context = React.useContext(Context);
   if (context == null) {
-    throw new Error('No TabsContext provided');
+    throw new Error('No ScrollableTabsContext provided');
   }
 
   return context;

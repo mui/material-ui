@@ -9,6 +9,7 @@ export interface ScrollableTabsOwnProps extends TabsOwnProps {
   hideScrollbar?: boolean;
   scrollableX?: boolean;
   scrollableY?: boolean;
+  visibleScrollbar?: boolean;
 }
 
 type TabsOrientation = 'horizontal' | 'vertical';

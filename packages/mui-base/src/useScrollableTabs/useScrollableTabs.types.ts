@@ -32,6 +32,8 @@ export interface UseScrollableTabsParameters {
 }
 
 export interface UseScrollableTabsReturnValue {
+  contextValue: any;
+  tabsRef: any;
   getStartScrollButtonProps: any;
   getEndScrollButtonProps: any;
 }
