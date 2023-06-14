@@ -23,13 +23,16 @@ export interface ScrollableTabsProviderProps {
  */
 export default function ScrollableTabsProvider(props: ScrollableTabsProviderProps) {
   const { value: valueProp, children } = props;
-  const { tabListRef } = valueProp;
+  const { tabListRef, hideScrollbar, scrollableY, scrollableX } = valueProp;
 
   const scrollableTabsContextValue: ScrollableTabsContextValue = React.useMemo(
     () => ({
       tabListRef,
+      hideScrollbar,
+      scrollableX,
+      scrollableY,
     }),
-    [tabListRef],
+    [tabListRef, hideScrollbar, scrollableX, scrollableY],
   );
 
   return (

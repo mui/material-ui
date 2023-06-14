@@ -26,7 +26,6 @@ function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollab
   // const isRtl = theme.direction === 'rtl';
   const theme = {};
   // TODO -> remove useTheme
-  const isRtl = false;
   const {
     value: valueProp,
     defaultValue,
@@ -34,11 +33,13 @@ function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollab
     orientation,
     direction,
     selectionFollowsFocus,
+    visibleScrollbar,
   } = parameters;
 
   const tabsRef = React.useRef<HTMLDivElement>(null);
   const tabListRef = React.useRef<HTMLDivElement>(null);
 
+  const isRtl = direction === 'rtl';
   const vertical = orientation === 'vertical';
   const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
   const start = vertical ? 'top' : 'left';
@@ -92,7 +93,7 @@ function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollab
 
   const scroll = (scrollValue: number, { animation = true } = {}) => {
     if (animation) {
-      animate(scrollStart, tabsRef.current, scrollValue, {
+      animate(scrollStart, tabListRef.current, scrollValue, {
         duration: 500, // TODO -> theme.transitions.duration.standard,
       });
       // tabsRef.current.scrollLeft += scrollValue;
@@ -211,6 +212,9 @@ function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollab
   return {
     contextValue: {
       tabListRef,
+      hideScrollbar: !visibleScrollbar,
+      scrollableX: !vertical,
+      scrollableY: vertical,
     },
     tabsRef,
     getStartScrollButtonProps,

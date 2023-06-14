@@ -1,6 +1,9 @@
 import * as React from 'react';
 
 export interface ScrollableTabsContextValue {
+  hideScrollbar: boolean;
+  scrollableX: boolean;
+  scrollableY: boolean;
   tabListRef: any;
 }
 
