@@ -26,7 +26,6 @@ const pages = [
           { pathname: '/base-ui/react-button', title: 'Button' },
           { pathname: '/base-ui/react-checkbox', title: 'Checkbox', comingSoon: true },
           { pathname: '/base-ui/react-input', title: 'Input' },
-          { pathname: '/base-ui/react-menu-button', title: 'Menu Button', comingSoon: true },
           { pathname: '/base-ui/react-radio-button', title: 'Radio Button', comingSoon: true },
           { pathname: '/base-ui/react-select', title: 'Select' },
           { pathname: '/base-ui/react-slider', title: 'Slider' },
