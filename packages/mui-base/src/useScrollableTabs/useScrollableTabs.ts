@@ -26,7 +26,7 @@ function useScrollableTabs(parameters: UseScrollableTabsParameters): UseScrollab
   // const isRtl = theme.direction === 'rtl';
   const theme = {};
   // TODO -> remove useTheme
-  const isRtl = true;
+  const isRtl = false;
   const {
     value: valueProp,
     defaultValue,

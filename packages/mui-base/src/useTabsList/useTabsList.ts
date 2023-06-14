@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollableTabsContext } from '@mui/base/ScrollableTabs';
+import { ScrollableTabsContext, useScrollableTabsContext } from '@mui/base/ScrollableTabs';
 import { useTabsContext } from '../Tabs';
 import {
   TabsListActionTypes,
@@ -27,10 +27,11 @@ import tabsListReducer from './tabsListReducer';
 function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue {
   const { rootRef: externalRef } = parameters;
 
-  let tabsListRef: any;
-  const scrollableTabsContext = React.useContext(ScrollableTabsContext);
+  let tabListRef: any;
+  const scrollableTabsContext = useScrollableTabsContext();
+  console.log('scrollableTabsContext', scrollableTabsContext);
   if (scrollableTabsContext) {
-    tabsListRef = scrollableTabsContext.tabsListRef;
+    tabListRef = scrollableTabsContext.tabListRef;
   }
 
   const {
@@ -157,7 +158,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
       'aria-orientation': orientation === 'vertical' ? 'vertical' : undefined,
       role: 'tablist',
       // TODO -> figure out how to do this better (shouldn't overwrite original ref)
-      ref: tabsListRef,
+      ref: tabListRef,
     };
   };
 

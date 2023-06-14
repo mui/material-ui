@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 export interface ScrollableTabsContextValue {
-  tabsListRef: any;
-  getScrollButtonProps: any;
+  tabListRef: any;
 }
 
 /**
@@ -15,12 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export function useScrollableTabsContext() {
-  const context = React.useContext(Context);
-  if (context == null) {
-    throw new Error('No ScrollableTabsContext provided');
-  }
-
-  return context;
+  return React.useContext(Context);
 }
 
 export default Context;

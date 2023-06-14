@@ -60,7 +60,6 @@ const TabsList = React.forwardRef(function TabsList<RootComponentType extends Re
     ownerState,
     className: classes.root,
   });
-
   return (
     <TabsListProvider value={contextValue}>
       <TabsListRoot {...tabsListRootProps}>{children}</TabsListRoot>

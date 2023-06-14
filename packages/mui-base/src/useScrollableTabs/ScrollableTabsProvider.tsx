@@ -3,7 +3,7 @@ import { TabPanelMetadata } from '@mui/base';
 import ScrollableTabsContext, {
   ScrollableTabsContextValue,
 } from '../ScrollableTabs/ScrollableTabsContext';
-import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
+import { CompoundComponentContextValue } from '../utils/useCompound';
 
 export type ScrollableTabsProviderValue = CompoundComponentContextValue<
   string | number,
@@ -23,63 +23,18 @@ export interface ScrollableTabsProviderProps {
  */
 export default function ScrollableTabsProvider(props: ScrollableTabsProviderProps) {
   const { value: valueProp, children } = props;
-  const {
-    direction,
-    getItemIndex,
-    onSelected,
-    orientation,
-    registerItem,
-    registerTabIdLookup,
-    selectionFollowsFocus,
-    totalSubitemCount,
-    value,
-    getTabId,
-    getTabPanelId,
-    getScrollButtonProps,
-  } = valueProp;
-
-  const compoundComponentContextValue: CompoundComponentContextValue<
-    string | number,
-    TabPanelMetadata
-  > = React.useMemo(
-    () => ({
-      getItemIndex,
-      registerItem,
-      totalSubitemCount,
-    }),
-    [registerItem, getItemIndex, totalSubitemCount],
-  );
+  const { tabListRef } = valueProp;
 
   const scrollableTabsContextValue: ScrollableTabsContextValue = React.useMemo(
     () => ({
-      direction,
-      getTabId,
-      getTabPanelId,
-      getScrollButtonProps,
-      onSelected,
-      orientation,
-      registerTabIdLookup,
-      selectionFollowsFocus,
-      value,
+      tabListRef,
     }),
-    [
-      direction,
-      getTabId,
-      getTabPanelId,
-      getScrollButtonProps,
-      onSelected,
-      orientation,
-      registerTabIdLookup,
-      selectionFollowsFocus,
-      value,
-    ],
+    [tabListRef],
   );
 
   return (
-    <CompoundComponentContext.Provider value={compoundComponentContextValue}>
-      <ScrollableTabsContext.Provider value={scrollableTabsContextValue}>
-        {children}
-      </ScrollableTabsContext.Provider>
-    </CompoundComponentContext.Provider>
+    <ScrollableTabsContext.Provider value={scrollableTabsContextValue}>
+      {children}
+    </ScrollableTabsContext.Provider>
   );
 }

@@ -209,6 +209,8 @@ const ScrollableTabs = React.forwardRef(function Tabs(inProps, ref) {
     orientation,
     defaultValue,
   });
+
+  console.log('scrollableTabsC', scrollableTabsContextValue);
   const { contextValue } = useTabs({ ...props, orientation, defaultValue });
 
   // const rootRef = React.useRef<HTMLElement | null>(null);
