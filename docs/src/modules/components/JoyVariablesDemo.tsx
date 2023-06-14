@@ -49,7 +49,6 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
         component="button"
         underline="none"
         fontSize="xs"
-        letterSpacing="md"
         textTransform="uppercase"
         fontWeight="lg"
         endDecorator={

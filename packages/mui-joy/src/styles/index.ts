@@ -41,8 +41,6 @@ export type {
   FontSizeOverrides,
   FontWeight,
   FontWeightOverrides,
-  LetterSpacing,
-  LetterSpacingOverrides,
   LineHeight,
   LineHeightOverrides,
   TypographySystem,

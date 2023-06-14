@@ -335,13 +335,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     ...scalesInput.lineHeight,
   };
 
-  const letterSpacing = {
-    sm: '-0.01em',
-    md: '0.083em',
-    lg: '0.125em',
-    ...scalesInput.letterSpacing,
-  };
-
   const defaultScales = {
     colorSchemes: {
       light: lightColorSystem,
@@ -365,7 +358,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
     },
     lineHeight,
-    letterSpacing,
     radius: {
       xs: '2px',
       sm: '6px',

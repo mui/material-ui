@@ -313,7 +313,6 @@ describe('[Joy] CssVarsProvider', () => {
             <div data-testid="font-family">{JSON.stringify(theme.vars.fontFamily)}</div>
             <div data-testid="font-weight">{JSON.stringify(theme.vars.fontWeight)}</div>
             <div data-testid="line-height">{JSON.stringify(theme.vars.lineHeight)}</div>
-            <div data-testid="letter-spacing">{JSON.stringify(theme.vars.letterSpacing)}</div>
           </div>
         );
       }
@@ -365,13 +364,6 @@ describe('[Joy] CssVarsProvider', () => {
           sm: 'var(--joy-lineHeight-sm)',
           md: 'var(--joy-lineHeight-md)',
           lg: 'var(--joy-lineHeight-lg)',
-        }),
-      );
-      expect(screen.getByTestId('letter-spacing').textContent).to.equal(
-        JSON.stringify({
-          sm: 'var(--joy-letterSpacing-sm)',
-          md: 'var(--joy-letterSpacing-md)',
-          lg: 'var(--joy-letterSpacing-lg)',
         }),
       );
     });

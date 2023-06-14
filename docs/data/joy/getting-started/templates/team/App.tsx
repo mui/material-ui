@@ -261,7 +261,6 @@ export default function TeamExample() {
               fontSize="xs2"
               textColor="text.tertiary"
               textTransform="uppercase"
-              letterSpacing="md"
               fontWeight="lg"
             >
               Filter by

@@ -146,7 +146,6 @@ export default function FontSizeThemeViewer() {
                   <Typography
                     fontSize="xs"
                     fontFamily="code"
-                    letterSpacing="sm"
                     sx={{ cursor: 'zoom-in' }}
                   >
                     {defaultTheme.typography[level].color || '-'}
@@ -170,7 +169,6 @@ export default function FontSizeThemeViewer() {
                   <Typography
                     fontSize="xs"
                     fontFamily="code"
-                    letterSpacing="sm"
                     sx={{ cursor: 'zoom-in' }}
                   >
                     {defaultTheme.typography[level].fontSize || '-'}
@@ -192,7 +190,6 @@ export default function FontSizeThemeViewer() {
                     <Typography
                       fontSize="xs"
                       fontFamily="code"
-                      letterSpacing="sm"
                       textAlign="center"
                       sx={{ cursor: 'zoom-in' }}
                     >

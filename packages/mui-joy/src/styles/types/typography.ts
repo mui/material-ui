@@ -45,15 +45,6 @@ export interface LineHeightOverrides {}
 export interface LineHeight
   extends OverridableRecord<DefaultLineHeight, LineHeightOverrides, string | number> {}
 
-export interface DefaultLetterSpacing {
-  sm: string;
-  md: string;
-  lg: string;
-}
-export interface LetterSpacingOverrides {}
-export interface LetterSpacing
-  extends OverridableRecord<DefaultLetterSpacing, LetterSpacingOverrides, string> {}
-
 export interface DefaultTypographySystem {
   display1: CSSObject;
   display2: CSSObject;
