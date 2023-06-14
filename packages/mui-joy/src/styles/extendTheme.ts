@@ -367,9 +367,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     lineHeight,
     letterSpacing,
     radius: {
-      xs: '4px',
-      sm: '8px',
-      md: '12px',
+      xs: '8px',
+      sm: '12px',
+      md: '16px',
       lg: '32px',
       xl: '40px',
     },
