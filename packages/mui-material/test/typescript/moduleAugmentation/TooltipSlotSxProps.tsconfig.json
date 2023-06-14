@@ -1,4 +1,4 @@
 {
   "extends": "../../../../../tsconfig",
-  "files": ["TooltipSlotSxProps.spec.tsx"]
+  "files": ["tooltipSlotSxProps.spec.tsx"]
 }
