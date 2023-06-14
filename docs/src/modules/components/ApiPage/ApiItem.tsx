@@ -38,7 +38,7 @@ const Root = styled('div')(
       span: {
         fontWeight: theme.typography.fontWeightRegular,
         borderBottom: 'solid 1px',
-        borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+        borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
       },
       '& .MuiApi-item-title': {
         flexShrink: 0,
@@ -81,6 +81,7 @@ const Root = styled('div')(
       },
     },
     '& .MuiAlert-standardWarning': {
+      padding: '6px 12px',
       fontWeight: theme.typography.fontWeightMedium,
       border: '1px solid',
       borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
@@ -130,13 +131,13 @@ const Root = styled('div')(
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       },
     },
-    marginBottom: 40,
+    marginBottom: 36,
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .MuiApi-item-header': {
         '& span': {
-          borderColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         },
         '& .MuiApi-item-title': {
           color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
@@ -168,7 +169,7 @@ const Root = styled('div')(
       '& .MuiAlert-standardWarning': {
         borderColor: alpha(darkTheme.palette.warning[600], 0.2),
         backgroundColor: alpha(darkTheme.palette.warning[800], 0.2),
-        color: `var(--muidocs-palette-warning-300, ${darkTheme.palette.warning[300]})`,
+        color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
         '.MuiAlert-icon svg': {
           fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
         },

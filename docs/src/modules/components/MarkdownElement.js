@@ -55,7 +55,7 @@ const Root = styled('div')(
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
       backgroundColor: alpha(lightTheme.palette.primary.light, 0.1),
       border: '1px solid',
-      borderColor: alpha(lightTheme.palette.primary.light, 0.15),
+      borderColor: alpha(lightTheme.palette.primary.light, 0.1),
       borderRadius: 5,
       fontSize: lightTheme.typography.pxToRem(13),
       direction: 'ltr /*! @noflip */',
