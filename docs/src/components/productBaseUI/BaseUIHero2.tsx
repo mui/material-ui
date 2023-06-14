@@ -920,8 +920,8 @@ export default function BaseUIHero() {
                 slots={{ root: StyledPopper, listbox: StyledMenuListbox }}
                 slotProps={{ root: { disablePortal: true }, listbox: { id: 'simple-menu' } }}
               >
-                <StyledLabelCategory>AVATAR MENU</StyledLabelCategory>
-                <CustomInput aria-label="Demo input" placeholder="Search an option…" />
+                <StyledLabelCategory>Notification menu</StyledLabelCategory>
+                <CustomInput aria-label="Demo input" placeholder="Search for a component…" />
                 <StyledMenuItem onClick={createHandleMenuClick()}>
                   Request a component
                 </StyledMenuItem>
