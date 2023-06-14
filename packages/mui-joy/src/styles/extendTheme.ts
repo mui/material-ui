@@ -219,9 +219,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
       background: {
         body: getCssVarColor('palette-common-white'),
-        surface: getCssVarColor('palette-common-white'),
-        popup: getCssVarColor('palette-common-white'),
-        level1: getCssVarColor('palette-neutral-white'),
+        surface: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.common.white),)} / 0.9)`, //Is there a way to add background blur?
+        popup: getCssVarColor('palette-neutral-50'),
+        level1: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.common.white),)} / 0.9)`,
         level2: getCssVarColor('palette-neutral-50'),
         level3: getCssVarColor('palette-neutral-100'),
         tooltip: getCssVarColor('palette-neutral-800'),
@@ -273,9 +273,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
       background: {
         body: getCssVarColor('palette-common-black'),
-        surface: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.neutral[900]),)} / 0.90)`,
-        popup: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.neutral[900]),)} / 0.90)`,
-        level1: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.neutral[900]),)} / 0.90)`,
+        surface: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.neutral[900]),)} / 0.9)`,
+        popup: getCssVarColor('palette-neutral-900'),
+        level1: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.neutral[900]),)} / 0.9)`,
         level2: getCssVarColor('palette-neutral-900'),
         level3: getCssVarColor('palette-neutral-800'),
         tooltip: getCssVarColor('palette-neutral-600'),
