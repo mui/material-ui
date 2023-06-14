@@ -103,16 +103,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const handleOpenChange = React.useCallback(
-    (
-      event:
-        | React.MouseEvent<Element, Event>
-        | React.KeyboardEvent<Event>
-        | React.FocusEvent
-        | null,
-      isOpen: boolean,
-    ) => {
+    (isOpen: boolean) => {
       if (!isOpen) {
-        onClose?.(event as React.MouseEvent<Element, Event> | React.FocusEvent | null);
+        onClose?.();
       }
     },
     [onClose],
@@ -159,6 +152,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     ],
     [modifiersProp],
   );
+
   if (anchorEl) {
     let ariaControls = null;
     if ('getAttribute' in anchorEl) {

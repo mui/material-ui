@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
 import Popper, { PopperProps } from '../Popper';
-import { UseMenuListboxSlotProps, UseMenuParameters } from '../useMenu';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
+import { UseMenuListboxSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
 
 export interface MenuRootSlotPropsOverrides {}
@@ -31,7 +31,7 @@ export interface MenuOwnProps {
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */
-  onOpenChange?: UseMenuParameters['onOpenChange'];
+  onOpenChange?: (open: boolean) => void;
   /**
    * Controls whether the menu is displayed.
    * @default false

@@ -7,14 +7,7 @@ import { GlobalStyles } from '@mui/system';
 
 const Menu = React.forwardRef(function Menu(
   props: React.ComponentPropsWithoutRef<'ul'> & {
-    onOpenChange: (
-      event:
-        | React.MouseEvent<Element, Event>
-        | React.FocusEvent
-        | React.KeyboardEvent<Event>
-        | null,
-      isOpen: boolean,
-    ) => void;
+    onOpenChange: (isOpen: boolean) => void;
     open: boolean;
   },
   ref: React.Ref<HTMLUListElement>,
@@ -121,7 +114,7 @@ export default function UseMenu() {
       </button>
       <Popper open={isOpen} anchorEl={buttonElement}>
         <Menu
-          onOpenChange={(_, open) => {
+          onOpenChange={(open) => {
             setOpen(open);
           }}
           open={isOpen}
