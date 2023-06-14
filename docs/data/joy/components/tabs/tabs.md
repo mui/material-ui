@@ -63,16 +63,6 @@ A selected `Tab` does not apply `:hover` and `:active` global variant styles.
 
 {{"demo": "TabsVariants.js"}}
 
-### Variants
-
-Both `TabList` and `Tab` accept [global variant](/joy-ui/main-features/global-variants/) values, so you can mix and match to get the desired result.
-
-:::info
-A selected `Tab` does not apply `:hover` and `:active` global variant styles.
-:::
-
-{{"demo": "TabsVariants.js"}}
-
 :::info
 To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 :::
