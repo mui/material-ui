@@ -70,7 +70,7 @@ describe('<SvgIcon />', () => {
     );
 
     expect(container.firstChild).to.have.tagName('svg');
-    expect(container.firstChild.firstChild).to.have.tagName('path');
+    expect(container.firstChild?.firstChild).to.have.tagName('path');
     expect(container.firstChild).to.have.attribute('viewBox', '0 0 48 48');
     expect(container.firstChild).to.have.attribute('stroke-width', '1.5');
   });
