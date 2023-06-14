@@ -116,7 +116,7 @@ export default function UseMenu() {
       </button>
       <Popper open={isOpen} anchorEl={buttonElement}>
         <Menu
-          onOpenChange={(_, open) => {
+          onOpenChange={(open) => {
             setOpen(open);
           }}
           open={isOpen}

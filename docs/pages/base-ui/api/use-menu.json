@@ -6,10 +6,7 @@
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
     "onOpenChange": {
-      "type": {
-        "name": "(event: React.MouseEvent&lt;Element, Event&gt; | React.KeyboardEvent&lt;Event&gt; | React.FocusEvent | null, open: boolean) =&gt; void",
-        "description": "(event: React.MouseEvent&lt;Element, Event&gt; | React.KeyboardEvent&lt;Event&gt; | React.FocusEvent | null, open: boolean) =&gt; void"
-      }
+      "type": { "name": "(open: boolean) =&gt; void", "description": "(open: boolean) =&gt; void" }
     },
     "open": { "type": { "name": "boolean", "description": "boolean" } }
   },

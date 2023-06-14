@@ -15,16 +15,6 @@ export default function SelectedMenu() {
       setSelectedIndex(index);
     }
   };
-  const createHandleClose =
-    (index: number) =>
-    (event: React.MouseEvent<Element, Event> | React.FocusEvent | null) => {
-      if (event && event.relatedTarget !== anchorEl) {
-        setAnchorEl(null);
-      }
-      if (typeof index === 'number') {
-        setSelectedIndex(index);
-      }
-    };
 
   return (
     <div>

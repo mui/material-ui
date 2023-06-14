@@ -90,7 +90,7 @@ export default function WrappedMenuItems() {
       <Menu
         actions={menuActions}
         open={isOpen}
-        onOpenChange={(_, open) => {
+        onOpenChange={(open) => {
           setOpen(open);
         }}
         anchorEl={buttonElement}
