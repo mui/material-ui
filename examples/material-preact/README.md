@@ -20,7 +20,7 @@ npm run start
 
 ## The idea behind the example
 
-The project uses Material UI with [Preact](https://github.com/developit/preact), which is lightweight (3 kb) alternative to React with the same modern API.
+The project uses Material UI with [Preact](https://github.com/developit/preact), which is a lightweight (3 kb) alternative to React with the same modern API.
 
 This example uses CRA with `react-app-rewired` for adding webpack aliases for preact.
 
