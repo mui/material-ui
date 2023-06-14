@@ -42,6 +42,7 @@ Here are the top priorities:
 
 Here are the components we will work on being supported in the MUI ecosystem:
 
+- ✅ Released as stable
 - 🧪 Close to becoming stable, already released as unstable
 - 🛠 Work in progress, will be or already released as unstable
 - ⏳ Planning to build
@@ -51,9 +52,9 @@ Here are the components we will work on being supported in the MUI ecosystem:
 | Advanced Layout            | MUI X    | ⏳     |
 | Carousel                   | MUI X    | ⏳     |
 | Charts                     | MUI X    | ⏳     |
-| Data Grid                  | MUI X    | 🧪     |
-| Date Picker                | MUI X    | 🧪     |
-| Date Range Picker          | MUI X    | 🧪     |
+| Data Grid                  | MUI X    | ✅     |
+| Date Picker                | MUI X    | ✅     |
+| Date Range Picker          | MUI X    | ✅     |
 | Dropdown                   | MUI Core | ⏳     |
 | Dropzone                   | MUI X    | ⏳     |
 | File Upload                | MUI X    | ⏳     |
