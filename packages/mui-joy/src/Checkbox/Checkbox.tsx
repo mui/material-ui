@@ -220,6 +220,9 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     color: colorProp,
     variant: variantProp,
     size: sizeProp = 'md',
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -279,26 +282,27 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: CheckboxRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotCheckbox, checkboxProps] = useSlot('checkbox', {
     className: classes.checkbox,
     elementType: CheckboxCheckbox,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotAction, actionProps] = useSlot('action', {
     className: classes.action,
     elementType: CheckboxAction,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -317,7 +321,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     },
     className: classes.input,
     elementType: CheckboxInput,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getInputProps,
     ownerState,
   });
@@ -328,7 +332,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     },
     className: classes.label,
     elementType: CheckboxLabel,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -389,6 +393,11 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -466,6 +475,28 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default 'md'
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    checkbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    action: PropTypes.elementType,
+    checkbox: PropTypes.elementType,
+    input: PropTypes.elementType,
+    label: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -216,6 +216,9 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     thickness,
     determinate = false,
     value = determinate ? 0 : 25, // `25` is the 1/4 of the circle.
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -233,12 +236,13 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: CircularProgressRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       role: 'progressbar',
@@ -259,21 +263,21 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   const [SlotSvg, svgProps] = useSlot('svg', {
     className: classes.svg,
     elementType: CircularProgressSvg,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotTrack, trackProps] = useSlot('track', {
     className: classes.track,
     elementType: CircularProgressTrack,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotProgress, progressProps] = useSlot('progress', {
     className: classes.progress,
     elementType: CircularProgressProgress,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -310,6 +314,11 @@ CircularProgress.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * The boolean to select a variant.
    * Use indeterminate when there is no progress value.
    * @default false
@@ -324,6 +333,26 @@ CircularProgress.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    progress: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    svg: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    progress: PropTypes.elementType,
+    root: PropTypes.elementType,
+    svg: PropTypes.elementType,
+    track: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

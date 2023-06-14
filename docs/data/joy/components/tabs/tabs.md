@@ -11,6 +11,8 @@ unstyled: /base/react-tabs/
 
 <p class="description">Tabs make it easy to explore and switch between different views.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 Joy UI provides four tabs-related components:
@@ -21,8 +23,6 @@ Joy UI provides four tabs-related components:
 - `TabPanel`: A pane that displays on the screen when its value matches with the selected tab.
 
 {{"demo": "TabsUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -121,7 +121,7 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 ## Common examples
 
-### Underline tabs
+### Underlined tabs
 
 {{"demo": "TabsUnderlineExample.js"}}
 
@@ -129,7 +129,7 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 {{"demo": "TabsPricingExample.js"}}
 
-### Page tabs with chips
+### With counter chips
 
 {{"demo": "TabsPageExample.js"}}
 

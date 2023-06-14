@@ -144,10 +144,6 @@ Once these values are defined as above, you can make use of them directly on ins
 <Button color="tertiary">Tertiary color</Button>
 ```
 
-:::info
-To learn how to extend size properties, check out the [Extend sizes](#extend-sizes) section in this document.
-:::
-
 #### TypeScript
 
 Module augmentation is required to pass the values to the `color` prop of the component.
@@ -211,10 +207,8 @@ Once these values are defined as above, you can make use of them directly on ins
 <Button size="xl">Extra large</Button>
 ```
 
-:::info
 The properties used for extending sizes should only relate to the density or the dimensions of the component.
 To learn how to extend variant properties, check out the [Extend variants](#extend-variants) section in this document.
-:::
 
 #### TypeScript
 

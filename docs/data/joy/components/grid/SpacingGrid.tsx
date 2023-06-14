@@ -40,7 +40,7 @@ export default function SpacingGrid() {
           <Grid container>
             <Grid>
               <FormControl>
-                <FormLabel sx={{ mb: 1.5 }}>spacing</FormLabel>
+                <FormLabel>spacing</FormLabel>
                 <RadioGroup
                   name="spacing"
                   aria-label="spacing"

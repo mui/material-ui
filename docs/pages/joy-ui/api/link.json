@@ -8,6 +8,7 @@
       },
       "default": "'primary'"
     },
+    "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "endDecorator": { "type": { "name": "node" } },
     "level": {
@@ -18,6 +19,20 @@
       "default": "'body1'"
     },
     "overlay": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ endDecorator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ endDecorator?: elementType, root?: elementType, startDecorator?: elementType }"
+      },
+      "default": "{}"
+    },
     "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {

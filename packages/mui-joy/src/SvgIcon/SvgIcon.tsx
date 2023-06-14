@@ -80,6 +80,8 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     inheritViewBox = false,
     titleAccess,
     viewBox = '0 0 24 24',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -94,12 +96,13 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: SvgIconRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       color: htmlColor,
@@ -183,6 +186,20 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * If you are having issues with blurry icons you should investigate this prop.
    */
   shapeRendering: PropTypes.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

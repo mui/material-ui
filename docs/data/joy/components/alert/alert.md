@@ -10,18 +10,18 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 <p class="description">Alerts display brief messages for the user without interrupting their use of the app.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The Alert component can be used to provide important and potentially time-sensitive information in a way that does not interfere with the user's tasks. (Source: [ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/alert/).)
+
+{{"demo": "AlertUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::info
 Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.
 Use the Joy UI [Modal](https://mui.com/joy-ui/react-modal/) if you need the behavior of a dialog.
 :::
-
-{{"demo": "AlertUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 
@@ -68,6 +68,12 @@ The demo below shows how the values for the `color` prop are affected by the glo
 Use the `startDecorator` and `endDecorator` props to append actions and icons to either side of the Alert:
 
 {{"demo": "AlertWithDecorators.js"}}
+
+### Inverted colors
+
+The Alert component supports Joy UI's [color inversion](/joy-ui/main-features/color-inversion/) by using `invertedColors` prop.
+
+{{"demo": "AlertInvertedColors.js"}}
 
 ## Common examples
 

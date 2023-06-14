@@ -10,13 +10,13 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 <p class="description">The autocomplete is a text input enhanced by a panel of suggested options when users start typing.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 `Autocomplete` is an enhanced version of text input that shows suggested options as the users type and also let them select an option from the list.
 
 {{"demo": "Playground.js", "hideToolbar": true}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Usage
 
@@ -254,7 +254,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 ### GitHub's picker
 
-To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a [`PopperUnstyled`](/base/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the `AutocompleteListbox` component.
+To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a Base UI [`Popper`](/base/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the `AutocompleteListbox` component.
 
 {{"demo": "GitHubLabel.js"}}
 

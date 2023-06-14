@@ -139,7 +139,6 @@ export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
     outline: 0, // remove the native input outline
     padding: 0, // remove the native input padding
     flex: 1,
-    alignSelf: 'stretch',
     color: 'inherit',
     backgroundColor: 'transparent',
     fontFamily: 'inherit',
@@ -277,6 +276,9 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     variant = 'outlined',
     startDecorator,
     endDecorator,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = useForwardedInput<InputProps>(props, inputClasses);
 
@@ -309,13 +311,14 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: [classes.root, rootStateClasses],
     elementType: InputRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -330,21 +333,21 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     elementType: InputInput,
     getSlotProps: getInputProps,
     internalForwardedProps: propsToForward,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: InputStartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: InputEndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 

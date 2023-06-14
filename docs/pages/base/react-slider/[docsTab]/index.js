@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/slider/slider.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import SliderUnstyledApiJsonPageContent from '../../api/slider-unstyled.json';
+import SliderApiJsonPageContent from '../../api/slider.json';
 import useSliderApiJsonPageContent from '../../api/use-slider.json';
 
 export default function Page(props) {
@@ -23,12 +23,12 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const SliderUnstyledApiReq = require.context(
-    'docs/translations/api-docs/slider-unstyled',
+  const SliderApiReq = require.context(
+    'docs/translations/api-docs-base/slider',
     false,
-    /slider-unstyled.*.json$/,
+    /slider.*.json$/,
   );
-  const SliderUnstyledApiDescriptions = mapApiPageTranslations(SliderUnstyledApiReq);
+  const SliderApiDescriptions = mapApiPageTranslations(SliderApiReq);
 
   const useSliderApiReq = require.context(
     'docs/translations/api-docs/use-slider',
@@ -39,8 +39,8 @@ export const getStaticProps = () => {
 
   return {
     props: {
-      componentsApiDescriptions: { SliderUnstyled: SliderUnstyledApiDescriptions },
-      componentsApiPageContents: { SliderUnstyled: SliderUnstyledApiJsonPageContent },
+      componentsApiDescriptions: { Slider: SliderApiDescriptions },
+      componentsApiPageContents: { Slider: SliderApiJsonPageContent },
       hooksApiDescriptions: { useSlider: useSliderApiDescriptions },
       hooksApiPageContents: { useSlider: useSliderApiJsonPageContent },
     },

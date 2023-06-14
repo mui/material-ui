@@ -11,17 +11,13 @@ unstyled: /base/react-select/
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The `Select` component is used to trigger a popup that displays a list of `Option` components.
 
 {{"demo": "SelectUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-:::info
-To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
-:::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -135,6 +131,12 @@ To control the placement of the listbox, use `placement`:
 ```
 
 :::
+
+#### Controlling the open state
+
+You can control the open state of the select with the `listboxOpen` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultListboxOpen` prop.
+
+{{"demo": "ControlledOpenSelect.js"}}
 
 ### `Option` component
 

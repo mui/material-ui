@@ -1,12 +1,6 @@
 module.exports = [
-  {
-    pathname: '/base/react-badge/components-api/#badge-unstyled',
-    title: 'BadgeUnstyled',
-  },
-  {
-    pathname: '/base/react-button/components-api/#button-unstyled',
-    title: 'ButtonUnstyled',
-  },
+  { pathname: '/base/react-badge/components-api/#badge', title: 'Badge' },
+  { pathname: '/base/react-button/components-api/#button', title: 'Button' },
   {
     pathname: '/base/react-click-away-listener/components-api/#click-away-listener',
     title: 'ClickAwayListener',
@@ -16,76 +10,33 @@ module.exports = [
     title: 'FocusTrap',
   },
   {
-    pathname: '/base/react-form-control/components-api/#form-control-unstyled',
-    title: 'FormControlUnstyled',
+    pathname: '/base/react-form-control/components-api/#form-control',
+    title: 'FormControl',
   },
-  {
-    pathname: '/base/react-input/components-api/#input-unstyled',
-    title: 'InputUnstyled',
-  },
-  {
-    pathname: '/base/react-menu/components-api/#menu-item-unstyled',
-    title: 'MenuItemUnstyled',
-  },
-  {
-    pathname: '/base/react-menu/components-api/#menu-unstyled',
-    title: 'MenuUnstyled',
-  },
-  {
-    pathname: '/base/react-modal/components-api/#modal-unstyled',
-    title: 'ModalUnstyled',
-  },
+  { pathname: '/base/react-input/components-api/#input', title: 'Input' },
+  { pathname: '/base/react-menu/components-api/#menu', title: 'Menu' },
+  { pathname: '/base/react-menu/components-api/#menu-item', title: 'MenuItem' },
+  { pathname: '/base/react-modal/components-api/#modal', title: 'Modal' },
   { pathname: '/base/react-no-ssr/components-api/#no-ssr', title: 'NoSsr' },
+  { pathname: '/base/react-select/components-api/#option', title: 'Option' },
   {
-    pathname: '/base/react-select/components-api/#option-group-unstyled',
-    title: 'OptionGroupUnstyled',
+    pathname: '/base/react-select/components-api/#option-group',
+    title: 'OptionGroup',
   },
-  {
-    pathname: '/base/react-select/components-api/#option-unstyled',
-    title: 'OptionUnstyled',
-  },
-  {
-    pathname: '/base/react-popper/components-api/#popper-unstyled',
-    title: 'PopperUnstyled',
-  },
+  { pathname: '/base/react-popper/components-api/#popper', title: 'Popper' },
   { pathname: '/base/react-portal/components-api/#portal', title: 'Portal' },
+  { pathname: '/base/react-select/components-api/#select', title: 'Select' },
+  { pathname: '/base/react-slider/components-api/#slider', title: 'Slider' },
+  { pathname: '/base/react-snackbar/components-api/#snackbar', title: 'Snackbar' },
+  { pathname: '/base/react-switch/components-api/#switch', title: 'Switch' },
+  { pathname: '/base/react-tabs/components-api/#tab', title: 'Tab' },
+  { pathname: '/base/react-tabs/components-api/#tab-panel', title: 'TabPanel' },
   {
-    pathname: '/base/react-select/components-api/#select-unstyled',
-    title: 'SelectUnstyled',
+    pathname: '/base/react-table-pagination/components-api/#table-pagination',
+    title: 'TablePagination',
   },
-  {
-    pathname: '/base/react-slider/components-api/#slider-unstyled',
-    title: 'SliderUnstyled',
-  },
-  {
-    pathname: '/base/react-snackbar/components-api/#snackbar-unstyled',
-    title: 'SnackbarUnstyled',
-  },
-  {
-    pathname: '/base/react-switch/components-api/#switch-unstyled',
-    title: 'SwitchUnstyled',
-  },
-  {
-    pathname: '/base/react-tabs/components-api/#tab-panel-unstyled',
-    title: 'TabPanelUnstyled',
-  },
-  {
-    pathname: '/base/react-tabs/components-api/#tab-unstyled',
-    title: 'TabUnstyled',
-  },
-  {
-    pathname:
-      '/base/react-table-pagination/components-api/#table-pagination-unstyled',
-    title: 'TablePaginationUnstyled',
-  },
-  {
-    pathname: '/base/react-tabs/components-api/#tabs-list-unstyled',
-    title: 'TabsListUnstyled',
-  },
-  {
-    pathname: '/base/react-tabs/components-api/#tabs-unstyled',
-    title: 'TabsUnstyled',
-  },
+  { pathname: '/base/react-tabs/components-api/#tabs', title: 'Tabs' },
+  { pathname: '/base/react-tabs/components-api/#tabs-list', title: 'TabsList' },
   {
     pathname: '/base/react-textarea-autosize/components-api/#textarea-autosize',
     title: 'TextareaAutosize',
@@ -93,9 +44,8 @@ module.exports = [
   { pathname: '/base/react-badge/hooks-api/#use-badge', title: 'useBadge' },
   { pathname: '/base/react-button/hooks-api/#use-button', title: 'useButton' },
   {
-    pathname:
-      '/base/react-form-control/hooks-api/#use-form-control-unstyled-context',
-    title: 'useFormControlUnstyledContext',
+    pathname: '/base/react-form-control/hooks-api/#use-form-control-context',
+    title: 'useFormControlContext',
   },
   { pathname: '/base/react-input/hooks-api/#use-input', title: 'useInput' },
   { pathname: '/base/react-menu/hooks-api/#use-menu', title: 'useMenu' },

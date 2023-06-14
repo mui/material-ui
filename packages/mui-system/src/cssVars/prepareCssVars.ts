@@ -38,9 +38,12 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
 
   const generateCssVars = (colorScheme?: string) => {
     if (!colorScheme) {
-      return { css: rootCss, vars: rootVars };
+      return { css: { ...rootCss }, vars: rootVars };
     }
-    return colorSchemesMap[colorScheme];
+    return {
+      css: { ...colorSchemesMap[colorScheme].css },
+      vars: colorSchemesMap[colorScheme].vars,
+    };
   };
 
   return {

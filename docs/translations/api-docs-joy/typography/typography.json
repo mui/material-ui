@@ -9,6 +9,8 @@
     "level": "Applies the theme typography styles.",
     "levelMapping": "The component maps the variant prop to a range of different HTML element types. For instance, body1 to <code>&lt;h6&gt;</code>. If you wish to change that mapping, you can provide your own. Alternatively, you can use the <code>component</code> prop.",
     "noWrap": "If <code>true</code>, the text will not wrap, but instead will truncate with a text overflow ellipsis.<br>Note that text overflow can only happen with block or inline-block level elements (the element needs to have a width in order to overflow).",
+    "slotProps": "The props used for each slot inside.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
     "startDecorator": "Element placed before the children.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "textColor": "The system color.",

@@ -29,7 +29,6 @@ export interface UseSnackbarParameters {
    * If `true`, the component is shown.
    */
   open?: boolean;
-  ref?: React.Ref<any>;
   /**
    * The number of milliseconds to wait before dismissing after user interaction.
    * If `autoHideDuration` prop isn't specified, it does nothing.
@@ -46,7 +45,7 @@ export interface UseSnackbarRootSlotOwnProps {
   onFocus: React.FocusEventHandler;
   onMouseEnter: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
-  ref?: React.Ref<any>;
+  ref?: React.RefCallback<Element>;
   role: React.AriaRole;
 }
 

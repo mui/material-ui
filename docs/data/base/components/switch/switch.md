@@ -1,13 +1,13 @@
 ---
 product: base
-title: Unstyled React Switch component and hook
-components: SwitchUnstyled
+title: React Switch component and hook
+components: Switch
 hooks: useSwitch
 githubLabel: 'component: switch'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 ---
 
-# Unstyled Switch
+# Switch
 
 <p class="description">Switches are UI elements that let users choose between two states—most commonly on/off.</p>
 
@@ -17,7 +17,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 
 ## Introduction
 
-The Unstyled Switch component provides users with a switch for toggling between two mutually exclusive states.
+The Switch component provides users with a switch for toggling between two mutually exclusive states.
 
 {{"demo": "UnstyledSwitchIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
@@ -25,25 +25,25 @@ The Unstyled Switch component provides users with a switch for toggling between 
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import SwitchUnstyled from '@mui/base/SwitchUnstyled';
+import Switch from '@mui/base/Switch';
 
 export default function MyApp() {
-  return <SwitchUnstyled />;
+  return <Switch />;
 }
 ```
 
 ### Basics
 
-The following demo shows how to assign styles and props to the Unstyled Switch component:
+The following demo shows how to assign styles and props to the Switch component:
 
 {{"demo": "UnstyledSwitches.js"}}
 
 ### Anatomy
 
-The Unstyled Switch component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
+The Switch component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
 
 ```html
 <span class="MuiSwitch-root">
@@ -53,34 +53,38 @@ The Unstyled Switch component is composed of a root `<span>` that houses three i
 </span>
 ```
 
-### Slot props
+### Custom structure
+
+Use the `slots` prop to override the root or any other interior slot:
+
+```jsx
+<Switch slots={{ root: 'div', track: 'div' }} />
+```
 
 :::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
-
-```jsx
-<SwitchUnstyled component="div" />
-```
-
-Use the `slots` prop to override any interior slots in addition to the root:
-
-```jsx
-<SwitchUnstyled slots={{ root: 'div', track: 'div' }} />
-```
-
-:::warning
-If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-thumb` to the thumb slot:
 
 ```jsx
-<SwitchUnstyled slotProps={{ thumb: { className: 'my-thumb' } }} />
+<Switch slotProps={{ thumb: { className: 'my-thumb' } }} />
+```
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Switch<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Switch<'input'> slots={{ root: 'input' }} autoFocus={true} />
 ```
 
 ## Hook

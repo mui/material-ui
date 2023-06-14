@@ -38,14 +38,21 @@ function escape(html, encode) {
 }
 
 function checkUrlHealth(href, linkText, context) {
-  // Skip links that are externals to MUI
-  if (!(href[0] === '/' || href.startsWith('https://mui.com/'))) {
+  const url = new URL(href, 'https://mui.com/');
+
+  // External links to MUI, ignore
+  if (url.host !== 'mui.com') {
     return;
   }
 
-  const url = new URL(href, 'https://mui.com/');
-
-  if (url.host === 'mui.com' && url.pathname[url.pathname.length - 1] !== '/') {
+  /**
+   * Break for links like:
+   * /material-ui/customization/theming
+   *
+   * It needs to be:
+   * /material-ui/customization/theming/
+   */
+  if (url.pathname[url.pathname.length - 1] !== '/') {
     throw new Error(
       [
         'Missing trailing slash. The following link:',
@@ -55,6 +62,26 @@ function checkUrlHealth(href, linkText, context) {
         '',
       ].join('\n'),
     );
+  }
+
+  // Relative links
+  if (href[0] !== '#' && !(href.startsWith('https://') || href.startsWith('http://'))) {
+    /**
+     * Break for links like:
+     * material-ui/customization/theming/
+     *
+     * It needs to be:
+     * /material-ui/customization/theming/
+     */
+    if (href[0] !== '/') {
+      throw new Error(
+        [
+          'Missing leading slash. The following link:',
+          `[${linkText}](${href}) in ${context.location} is missing a leading slash, please add it.`,
+          '',
+        ].join('\n'),
+      );
+    }
   }
 }
 
@@ -370,13 +397,15 @@ function createRender(context) {
   return render;
 }
 
+const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
+
 /**
  * @param {string} product
  * @example 'material'
  * @param {string} componentPkg
  * @example 'mui-base'
  * @param {string} component
- * @example 'ButtonUnstyled'
+ * @example 'Button'
  * @returns {string}
  */
 function resolveComponentApiUrl(product, componentPkg, component) {
@@ -386,7 +415,7 @@ function resolveComponentApiUrl(product, componentPkg, component) {
   if (product === 'date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
   }
-  if (componentPkg === 'mui-base') {
+  if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base/api/${kebabCase(component)}/`;
   }
   return `/${product}/api/${kebabCase(component)}/`;

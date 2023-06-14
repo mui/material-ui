@@ -19,6 +19,11 @@ describe('Joy <ListSubheader />', () => {
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<ListSubheader variant="soft" />, {

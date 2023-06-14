@@ -128,6 +128,11 @@ export interface PaletteAvatar {
   defaultBg: string;
 }
 
+export interface PaletteButton {
+  inheritContainedBg: string;
+  inheritContainedHoverBg: string;
+}
+
 export interface PaletteChip {
   defaultBorder: string;
   defaultAvatarColor: string;
@@ -214,6 +219,7 @@ export interface ColorSystemOptions {
     Alert?: Partial<PaletteAlert>;
     AppBar?: Partial<PaletteAppBar>;
     Avatar?: Partial<PaletteAvatar>;
+    Button?: Partial<PaletteButton>;
     Chip?: Partial<PaletteChip>;
     FilledInput?: Partial<PaletteFilledInput>;
     LinearProgress?: Partial<PaletteLinearProgress>;
@@ -247,6 +253,7 @@ export interface CssVarsPalette {
   Alert: PaletteAlert;
   AppBar: PaletteAppBar;
   Avatar: PaletteAvatar;
+  Button: PaletteButton;
   Chip: PaletteChip;
   FilledInput: PaletteFilledInput;
   LinearProgress: PaletteLinearProgress;

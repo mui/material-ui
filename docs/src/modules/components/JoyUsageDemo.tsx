@@ -69,7 +69,8 @@ function createCode(
             typeof prop[1] === 'number' ? `{${prop[1]}}` : `"${prop[1]}"`
           }`;
         }
-      } else {
+      }
+      if (prop[0] === 'children') {
         children = prop[1] as string;
       }
     });

@@ -95,7 +95,7 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
   // If you make any changes to this interface, please make sure to update the
   // `OverridableComponent` type in `mui-material/src/OverridableComponent.d.ts` as well.
   // Also, there are types in Base UI that have a similar shape to this interface
-  // (e.g. SelectUnstyledType, OptionUnstyledType, etc.).
+  // (e.g. SelectType, OptionType, etc.).
   <C extends React.ElementType>(
     props: {
       /**

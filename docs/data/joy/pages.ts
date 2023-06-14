@@ -1,9 +1,10 @@
+import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 import pagesApi from './pagesApi';
 
 const pages = [
   {
     pathname: '/joy-ui/getting-started',
-    icon: 'DescriptionIcon',
+    icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/joy-ui/getting-started/overview' },
       { pathname: '/joy-ui/getting-started/installation' },
@@ -25,7 +26,7 @@ const pages = [
   {
     pathname: '/joy-ui/react-',
     title: 'Components',
-    icon: 'ToggleOnIcon',
+    icon: standardNavIcons.ToggleOnIcon,
     children: [
       {
         pathname: '/joy-ui/components/inputs',
@@ -35,7 +36,7 @@ const pages = [
           { pathname: '/joy-ui/react-button' },
           { pathname: '/joy-ui/react-checkbox' },
           { pathname: '/joy-ui/react-input' },
-          { pathname: '/joy-ui/react-radio-button', title: 'Radio Group' },
+          { pathname: '/joy-ui/react-radio-button', title: 'Radio Button' },
           { pathname: '/joy-ui/react-select' },
           { pathname: '/joy-ui/react-slider' },
           { pathname: '/joy-ui/react-switch' },
@@ -102,14 +103,14 @@ const pages = [
     ],
   },
   {
-    title: 'Component API',
+    title: 'APIs',
     pathname: '/joy-ui/api',
-    icon: 'CodeIcon',
+    icon: standardNavIcons.CodeIcon,
     children: pagesApi,
   },
   {
     pathname: '/joy-ui/customization',
-    icon: 'CreateIcon',
+    icon: standardNavIcons.CreateIcon,
     children: [
       { pathname: '/joy-ui/customization/approaches' },
       { pathname: '/joy-ui/customization/dark-mode' },
@@ -137,8 +138,12 @@ const pages = [
   {
     pathname: '/joy-ui/guides',
     title: 'How-to guides',
-    icon: 'VisibilityIcon',
+    icon: standardNavIcons.VisibilityIcon,
     children: [
+      {
+        pathname: '/joy-ui/guides/overriding-component-structure',
+        title: 'Overriding component structure',
+      },
       {
         pathname: '/joy-ui/guides/using-joy-ui-and-material-ui-together',
         title: 'Joy UI and Material UI together',

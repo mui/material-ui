@@ -24,11 +24,7 @@
   "returnValue": {
     "checked": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
-    "focusVisible": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
+    "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getInputProps": {
       "type": {
         "name": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt;) =&gt; UseSwitchInputSlotProps",
@@ -36,9 +32,16 @@
       },
       "required": true
     },
+    "inputRef": {
+      "type": {
+        "name": "React.RefCallback&lt;HTMLInputElement&gt; | null",
+        "description": "React.RefCallback&lt;HTMLInputElement&gt; | null"
+      },
+      "required": true
+    },
     "readOnly": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
   },
   "name": "useSwitch",
   "filename": "/packages/mui-base/src/useSwitch/useSwitch.ts",
-  "demos": "<ul><li><a href=\"/base/react-switch/#hook\">Unstyled Switch</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-switch/#hook\">Switch</a></li></ul>"
 }

@@ -70,7 +70,7 @@ The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/
 
 ### Positioned menu
 
-The `Menu` is based on the `PopperUnstyled` component, which exposes a few [placement props](/base/react-popper/#placement).
+The `Menu` is based on the Base UI `Popper` component, which exposes a few [placement props](/base/react-popper/#placement).
 For example, this is how you'd go for displaying the menu on the bottom-end of the anchor button.
 
 {{"demo": "PositionedMenu.js"}}
@@ -97,6 +97,12 @@ To keep the list box open for inspecting elements, enable the `Emulate a focused
 You can also access this option by using [command menu and search for it](https://developer.chrome.com/docs/devtools/command-menu/).
 
 ## Common examples
+
+### Apps menu
+
+This example replicates a menu that contain links to other applications.
+
+{{"demo": "AppsMenu.js"}}
 
 ### Menu bar
 

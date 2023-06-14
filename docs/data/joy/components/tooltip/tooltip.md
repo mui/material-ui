@@ -8,13 +8,13 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 # Tooltip
 
-<p class="description">A tooltip .</p>
+<p class="description">Tooltips display informative text when users hover over, focus on, or tap an element.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Introduction
 
 {{"demo": "TooltipUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

@@ -28,12 +28,12 @@ function getContainer(container: PortalProps['container']) {
  */
 const Portal = React.forwardRef(function Portal(
   props: PortalProps,
-  ref: React.ForwardedRef<Element>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const { children, container, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState<ReturnType<typeof getContainer>>(null);
   // @ts-expect-error TODO upstream fix
-  const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, ref);
+  const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, forwardedRef);
 
   useEnhancedEffect(() => {
     if (!disablePortal) {
@@ -43,14 +43,14 @@ const Portal = React.forwardRef(function Portal(
 
   useEnhancedEffect(() => {
     if (mountNode && !disablePortal) {
-      setRef(ref, mountNode);
+      setRef(forwardedRef, mountNode);
       return () => {
-        setRef(ref, null);
+        setRef(forwardedRef, null);
       };
     }
 
     return undefined;
-  }, [ref, mountNode, disablePortal]);
+  }, [forwardedRef, mountNode, disablePortal]);
 
   if (disablePortal) {
     if (React.isValidElement(children)) {

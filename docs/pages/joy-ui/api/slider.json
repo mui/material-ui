@@ -10,6 +10,7 @@
       },
       "default": "'primary'"
     },
+    "component": { "type": { "name": "elementType" } },
     "defaultValue": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
@@ -41,6 +42,20 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: func<br>&#124;&nbsp;object, mark?: func<br>&#124;&nbsp;object, markLabel?: func<br>&#124;&nbsp;object, rail?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object, valueLabel?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: elementType, mark?: elementType, markLabel?: elementType, rail?: elementType, root?: elementType, thumb?: elementType, track?: elementType, valueLabel?: elementType }"
+      },
+      "default": "{}"
     },
     "step": { "type": { "name": "number" }, "default": "1" },
     "sx": {
@@ -125,7 +140,7 @@
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": null
+      "class": ".MuiSlider-input"
     }
   ],
   "classes": {

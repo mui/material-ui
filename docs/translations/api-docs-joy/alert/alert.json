@@ -2,9 +2,13 @@
   "componentDescription": "",
   "propDescriptions": {
     "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "endDecorator": "Element placed after the children.",
+    "invertedColors": "If <code>true</code>, the children with an implicit color prop invert their colors to match the component&#39;s variant and color.",
     "role": "The ARIA role attribute of the element.",
     "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
+    "slotProps": "The props used for each slot inside.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
     "startDecorator": "Element placed before the children.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."

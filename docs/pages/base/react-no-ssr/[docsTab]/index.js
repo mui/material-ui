@@ -22,7 +22,11 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const NoSsrApiReq = require.context('docs/translations/api-docs/no-ssr', false, /no-ssr.*.json$/);
+  const NoSsrApiReq = require.context(
+    'docs/translations/api-docs-base/no-ssr',
+    false,
+    /no-ssr.*.json$/,
+  );
   const NoSsrApiDescriptions = mapApiPageTranslations(NoSsrApiReq);
 
   return {

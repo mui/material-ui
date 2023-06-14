@@ -1,21 +1,44 @@
 import * as React from 'react';
-import { MenuItemMetadata } from '../MenuItemUnstyled/MenuItemUnstyled.types';
-import { MenuUnstyledContextType } from '../MenuUnstyled/MenuUnstyledContext';
-import { UseListboxRootSlotProps } from '../useListbox';
+import { ListAction, ListState, UseListRootSlotProps } from '../useList';
+import { MenuItemMetadata } from '../useMenuItem';
 import { EventHandlers } from '../utils/types';
+import { MenuProviderValue } from './MenuProvider';
 
 export interface UseMenuParameters {
+  /**
+   * If `true`, the menu will be initially open.
+   * @default false
+   */
+  defaultOpen?: boolean;
+  /**
+   * If `true`, the menu will be open.
+   * This is the controlled equivalent of the `defaultOpen` parameter.
+   */
   open?: boolean;
-  onClose?: () => void;
+  /**
+   * Callback fired when the menu is opened or closed.
+   */
+  onOpenChange?: (open: boolean) => void;
+  /**
+   * Id of the menu listbox.
+   */
   listboxId?: string;
-  listboxRef?: React.Ref<any>;
+  /**
+   * Ref of the menu listbox.
+   */
+  listboxRef?: React.Ref<Element>;
 }
 
 export interface UseMenuReturnValue {
   /**
-   * The value for the menu context.
+   * The value to be passed into the MenuProvider.
    */
-  contextValue: MenuUnstyledContextType;
+  contextValue: MenuProviderValue;
+  /**
+   * Action dispatcher for the menu component.
+   * Allows to programmatically control the menu.
+   */
+  dispatch: (action: ListAction<string>) => void;
   /**
    * Resolver for the listbox component's props.
    * @param otherHandlers event handlers for the listbox component
@@ -27,19 +50,19 @@ export interface UseMenuReturnValue {
   /**
    * The highlighted option in the menu listbox.
    */
-  highlightedOption: string | null;
+  highlightedValue: string | null;
   /**
-   * Callback for highlighting the first item in the menu listbox.
+   * The ref to the listbox DOM node.
    */
-  highlightFirstItem: () => void;
-  /**
-   * Callback for highlighting the last item in the menu listbox.
-   */
-  highlightLastItem: () => void;
+  listboxRef: React.RefCallback<Element> | null;
   /**
    * Items in the menu listbox.
    */
-  menuItems: Record<string, MenuItemMetadata>;
+  menuItems: Map<string, MenuItemMetadata>;
+  /**
+   * If `true`, the menu is open.
+   */
+  open: boolean;
 }
 
 interface UseMenuListboxSlotEventHandlers {
@@ -47,9 +70,16 @@ interface UseMenuListboxSlotEventHandlers {
   onKeyDown: React.KeyboardEventHandler;
 }
 
-export type UseMenuListboxSlotProps<TOther = {}> = UseListboxRootSlotProps<
+export type UseMenuListboxSlotProps<TOther = {}> = UseListRootSlotProps<
   Omit<TOther, keyof UseMenuListboxSlotEventHandlers> & UseMenuListboxSlotEventHandlers
 > & {
-  ref: React.Ref<any>;
+  ref: React.RefCallback<Element> | null;
   role: React.AriaRole;
 };
+
+export interface MenuInternalState extends ListState<string> {
+  /**
+   * If `true`, the menu is open.
+   */
+  open: boolean;
+}

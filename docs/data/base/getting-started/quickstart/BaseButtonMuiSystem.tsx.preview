@@ -1,0 +1,5 @@
+<GithubButtonComponent>Create Repository</GithubButtonComponent>
+
+<GithubButtonHook type="button" {...getRootProps()}>
+  Create Repository
+</GithubButtonHook>

@@ -28,25 +28,13 @@
     "value": { "type": { "name": "unknown", "description": "unknown" } }
   },
   "returnValue": {
-    "disabled": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "error": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "focused": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "error": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focused": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "formControlContext": {
       "type": {
-        "name": "FormControlUnstyledState | undefined",
-        "description": "FormControlUnstyledState | undefined"
+        "name": "FormControlState | undefined",
+        "description": "FormControlState | undefined"
       },
       "required": true
     },
@@ -64,14 +52,17 @@
       },
       "required": true
     },
-    "required": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
+    "inputRef": {
+      "type": {
+        "name": "React.RefCallback&lt;HTMLInputElement&gt; | null",
+        "description": "React.RefCallback&lt;HTMLInputElement&gt; | null"
+      },
       "required": true
     },
+    "required": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "value": { "type": { "name": "unknown", "description": "unknown" }, "required": true }
   },
   "name": "useInput",
   "filename": "/packages/mui-base/src/useInput/useInput.ts",
-  "demos": "<ul><li><a href=\"/base/react-input/#hook\">Unstyled Input</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-input/#hook\">Input</a></li></ul>"
 }

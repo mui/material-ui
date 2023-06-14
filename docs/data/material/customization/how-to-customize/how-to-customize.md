@@ -25,7 +25,7 @@ It can be used with all Material UI components.
 
 {{"demo": "SxProp.js" }}
 
-#### Overriding nested component styles
+### Overriding nested component styles
 
 To customize a specific part of a component, you can use the class name provided by Material UI inside the `sx` prop. As an example, let's say you want to change the `Slider` component's thumb from a circle to a square.
 

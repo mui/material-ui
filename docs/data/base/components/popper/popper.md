@@ -1,14 +1,14 @@
 ---
 product: base
-title: Unstyled React Popper component
-components: PopperUnstyled
+title: React Popper component
+components: Popper
 githubLabel: 'component: Popper'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---
 
-# Unstyled Popper
+# Popper
 
-<p class="description">The Unstyled Popper component lets you create tooltips and popovers that display information about an element on the page.</p>
+<p class="description">The Popper component lets you create tooltips and popovers that display information about an element on the page.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -16,20 +16,20 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 ## Introduction
 
-The Unstyled Popper is a utility component for creating various kinds of popups.
+The Popper is a utility component for creating various kinds of popups.
 It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/v2/)) for positioning.
 
 ## Component
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/Popper';
 
 export default function MyApp() {
-  return <PopperUnstyled>{/* the popper's content */}</PopperUnstyled>;
+  return <Popper>{/* the popper's content */}</Popper>;
 }
 ```
 

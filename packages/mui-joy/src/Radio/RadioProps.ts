@@ -11,32 +11,32 @@ export interface RadioSlots {
    * The component that renders the root.
    * @default 'span'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the radio.
    * @default 'span'
    */
-  radio: React.ElementType;
+  radio?: React.ElementType;
   /**
    * The component that renders the icon.
    * @default 'span'
    */
-  icon: React.ElementType;
+  icon?: React.ElementType;
   /**
    * The component that renders the action.
    * @default 'span'
    */
-  action: React.ElementType;
+  action?: React.ElementType;
   /**
    * The component that renders the input.
    * @default 'input'
    */
-  input: React.ElementType;
+  input?: React.ElementType;
   /**
    * The component that renders the label.
    * @default 'label'
    */
-  label: React.ElementType;
+  label?: React.ElementType;
 }
 
 export interface RadioPropsVariantOverrides {}
@@ -59,7 +59,6 @@ export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
-    RadioSlotsAndSlotProps &
     UseSwitchParameters & {
       /**
        * The icon to display when the component is checked.
@@ -115,7 +114,7 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The value of the component. The DOM API casts this to a string.
        */
       value?: unknown;
-    };
+    } & RadioSlotsAndSlotProps;
   defaultComponent: D;
 }
 

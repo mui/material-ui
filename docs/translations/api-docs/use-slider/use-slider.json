@@ -13,7 +13,7 @@
     "onChange": "Callback function that is fired when the slider's value changed.",
     "onChangeCommitted": "Callback function that is fired when the <code>mouseup</code> is triggered.",
     "orientation": "The component orientation.",
-    "ref": "The ref attached to the root of the Slider.",
+    "rootRef": "The ref attached to the root of the Slider.",
     "scale": "A transformation function, to change the scale of the slider.",
     "step": "The granularity with which the slider can step through values. (A \"discrete\" slider.)\nThe <code>min</code> prop serves as the origin for the valid values.\nWe recommend (max - min) to be evenly divisible by the step.\n\nWhen step is <code>null</code>, the thumb can only be slid onto marks provided with the <code>marks</code> prop.",
     "tabIndex": "Tab index attribute of the hidden <code>input</code> element.",
@@ -31,6 +31,7 @@
     "marks": "The marks of the slider. Marks indicate predetermined values to which the user can move the slider.",
     "open": "The thumb index for the current value when in hover state.",
     "range": "If <code>true</code>, the slider is a range slider when the <code>value</code> prop passed is an array.",
+    "rootRef": "Ref to the root slot's DOM node.",
     "trackLeap": "The track leap for the current value of the slider.",
     "trackOffset": "The track offset for the current value of the slider.",
     "values": "The possible values of the slider."

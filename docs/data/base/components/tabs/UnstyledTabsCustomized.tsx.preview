@@ -1,10 +1,10 @@
-<TabsUnstyled defaultValue={0}>
-  <TabsList>
-    <Tab>One</Tab>
-    <Tab>Two</Tab>
-    <Tab>Three</Tab>
-  </TabsList>
-  <TabPanel value={0}>First page</TabPanel>
-  <TabPanel value={1}>Second page</TabPanel>
-  <TabPanel value={2}>Third page</TabPanel>
-</TabsUnstyled>
+<Tabs defaultValue={1}>
+  <StyledTabsList>
+    <StyledTab value={1}>One</StyledTab>
+    <StyledTab value={2}>Two</StyledTab>
+    <StyledTab value={3}>Three</StyledTab>
+  </StyledTabsList>
+  <StyledTabPanel value={1}>First page</StyledTabPanel>
+  <StyledTabPanel value={2}>Second page</StyledTabPanel>
+  <StyledTabPanel value={3}>Third page</StyledTabPanel>
+</Tabs>

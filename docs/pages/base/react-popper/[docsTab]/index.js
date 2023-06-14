@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/popper/popper.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import PopperUnstyledApiJsonPageContent from '../../api/popper-unstyled.json';
+import PopperApiJsonPageContent from '../../api/popper.json';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -22,17 +22,17 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const PopperUnstyledApiReq = require.context(
-    'docs/translations/api-docs/popper-unstyled',
+  const PopperApiReq = require.context(
+    'docs/translations/api-docs-base/popper',
     false,
-    /popper-unstyled.*.json$/,
+    /popper.*.json$/,
   );
-  const PopperUnstyledApiDescriptions = mapApiPageTranslations(PopperUnstyledApiReq);
+  const PopperApiDescriptions = mapApiPageTranslations(PopperApiReq);
 
   return {
     props: {
-      componentsApiDescriptions: { PopperUnstyled: PopperUnstyledApiDescriptions },
-      componentsApiPageContents: { PopperUnstyled: PopperUnstyledApiJsonPageContent },
+      componentsApiDescriptions: { Popper: PopperApiDescriptions },
+      componentsApiPageContents: { Popper: PopperApiJsonPageContent },
       hooksApiDescriptions: {},
       hooksApiPageContents: {},
     },

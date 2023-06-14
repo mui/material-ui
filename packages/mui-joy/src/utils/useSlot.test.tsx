@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/Popper';
 import { ColorPaletteProp, styled, VariantProp } from '../styles';
 import { CreateSlotsAndSlotProps, SlotProps } from './types';
 import useSlot from './useSlot';
@@ -155,7 +155,7 @@ describe('useSlot', () => {
       const [SlotRoot, rootProps] = useSlot('root', {
         ref,
         className: 'root',
-        elementType: PopperUnstyled,
+        elementType: Popper,
         externalForwardedProps: props,
         ownerState: {},
         additionalProps: {
@@ -163,7 +163,7 @@ describe('useSlot', () => {
           anchorEl: () => document.createElement('div'),
         },
         internalForwardedProps: {
-          component: ItemRoot,
+          slots: { root: ItemRoot },
         },
       });
       return <SlotRoot {...rootProps} />;
@@ -228,7 +228,7 @@ describe('useSlot', () => {
       });
       const [SlotListbox, listboxProps] = useSlot('listbox', {
         className: 'listbox',
-        elementType: PopperUnstyled as unknown as 'ul',
+        elementType: Popper as unknown as 'ul',
         externalForwardedProps: props,
         ownerState: {},
         additionalProps: {
@@ -237,7 +237,7 @@ describe('useSlot', () => {
           anchorEl: () => document.createElement('div'),
         },
         internalForwardedProps: {
-          component: ItemListbox,
+          slots: { root: ItemListbox },
         },
       });
       const [SlotOption, optionProps] = useSlot('option', {

@@ -23,7 +23,7 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = () => {
   const ClickAwayListenerApiReq = require.context(
-    'docs/translations/api-docs/click-away-listener',
+    'docs/translations/api-docs-base/click-away-listener',
     false,
     /click-away-listener.*.json$/,
   );

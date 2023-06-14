@@ -8,8 +8,8 @@ describe('getUrlProduct', () => {
   });
 
   it('get base', () => {
-    expect(getUrlProduct('/base/react-button-unstyled/')).to.equal('base');
-    expect(getUrlProduct('/zh/base/react-button-unstyled/')).to.equal('base');
+    expect(getUrlProduct('/base/react-button/')).to.equal('base');
+    expect(getUrlProduct('/zh/base/react-button/')).to.equal('base');
   });
 
   it('get joy-ui', () => {

@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type TabSlot = 'root';
+
+export interface TabSlots {
+  /**
+   * The component that renders the root.
+   * @default 'button'
+   */
+  root?: React.ElementType;
+}
+
+export type TabSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TabSlots,
+  {
+    root: SlotProps<'button', {}, TabOwnerState>;
+  }
+>;
 
 export interface TabPropsColorOverrides {}
 export interface TabPropsVariantOverrides {}
@@ -47,7 +63,7 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, TabPropsVariantOverrides>;
-  };
+  } & TabSlotsAndSlotProps;
   defaultComponent: D;
 }
 

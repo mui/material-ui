@@ -79,10 +79,6 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "ButtonSizes.js"}}
 
-## Botão de upload
-
-{{"demo": "UploadButtons.js"}}
-
 ## Botões com ícones e rótulo
 
 Às vezes você pode querer ter ícones para certos botões para aprimorar a experiência do usuário, pois reconhecem logotipos mais facilmente do que texto. Por exemplo, se você tem um botão com a ação de "deletar", você pode rotulá-lo com o ícone de lata de lixo.
