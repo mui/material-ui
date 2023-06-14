@@ -47,37 +47,37 @@ Here are the components we will work on being supported in the MUI ecosystem:
 - 🛠 Work in progress, will be or already released as unstable
 - ⏳ Planning to build
 
-| Name                                                          | Product  | Status |
-| :------------------------------------------------------------ | :------- | :----- |
-| Advanced Layout                                               | MUI X    | ⏳     |
-| Carousel                                                      | MUI X    | ⏳     |
-| Charts                                                        | MUI X    | ⏳     |
-| [Data Grid](/x/react-data-grid/)                              | MUI X    | ✅     |
-| [Date Picker](/x/react-date-pickers/date-picker/)             | MUI X    | ✅     |
-| [Date Range Picker](/x/react-date-pickers/date-range-picker/) | MUI X    | ✅     |
-| Dropdown                                                      | MUI Core | ⏳     |
-| Dropzone                                                      | MUI X    | ⏳     |
-| File Upload                                                   | MUI X    | ⏳     |
-| Gantt Chart                                                   | MUI X    | ⏳     |
-| Gauge                                                         | MUI X    | ⏳     |
-| Image                                                         | MUI Core | ⏳     |
-| Masonry                                                       | MUI Core | 🧪     |
-| Navbar                                                        | MUI Core | ⏳     |
-| Nested Menu                                                   | MUI X    | ⏳     |
-| NProgress                                                     | MUI Core | ⏳     |
-| Numeric Input                                                 | MUI Core | ⏳     |
-| Rich Text Editor                                              | MUI X    | ⏳     |
-| Scheduler                                                     | MUI X    | ⏳     |
-| Scrollspy                                                     | MUI Core | ⏳     |
-| Sparkline                                                     | MUI X    | ⏳     |
-| Timeline                                                      | MUI Core | 🧪     |
-| Tree select                                                   | MUI X    | ⏳     |
-| Tree View                                                     | MUI X    | 🧪     |
-| Tree View - Checkbox                                          | MUI X    | ⏳     |
-| Tree View - Drag & Drop                                       | MUI X    | ⏳     |
-| Tree View - Multiselect                                       | MUI X    | 🧪     |
-| Tree View - Virtualization                                    | MUI X    | ⏳     |
-| Window Splitter                                               | MUI X    | ⏳     |
+| Name                                                                     | Product  | Status |
+| :----------------------------------------------------------------------- | :------- | :----- |
+| Advanced Layout                                                          | MUI X    | ⏳     |
+| Carousel                                                                 | MUI X    | ⏳     |
+| Charts                                                                   | MUI X    | ⏳     |
+| [Data Grid](/x/react-data-grid/)                                         | MUI X    | ✅     |
+| [Date Picker](/x/react-date-pickers/date-picker/)                        | MUI X    | ✅     |
+| [Date Range Picker](/x/react-date-pickers/date-range-picker/)            | MUI X    | ✅     |
+| Dropdown                                                                 | MUI Core | ⏳     |
+| Dropzone                                                                 | MUI X    | ⏳     |
+| File Upload                                                              | MUI X    | ⏳     |
+| Gantt Chart                                                              | MUI X    | ⏳     |
+| Gauge                                                                    | MUI X    | ⏳     |
+| Image                                                                    | MUI Core | ⏳     |
+| [Masonry](/material-ui/react-masonry/)                                   | MUI Core | 🧪     |
+| Navbar                                                                   | MUI Core | ⏳     |
+| Nested Menu                                                              | MUI X    | ⏳     |
+| NProgress                                                                | MUI Core | ⏳     |
+| Numeric Input                                                            | MUI Core | ⏳     |
+| Rich Text Editor                                                         | MUI X    | ⏳     |
+| Scheduler                                                                | MUI X    | ⏳     |
+| Scrollspy                                                                | MUI Core | ⏳     |
+| Sparkline                                                                | MUI X    | ⏳     |
+| [Timeline](/material-ui/react-timeline/)                                 | MUI Core | 🧪     |
+| Tree select                                                              | MUI X    | ⏳     |
+| [Tree View](/material-ui/react-tree-view/)                               | MUI X    | 🧪     |
+| Tree View - Checkbox                                                     | MUI X    | ⏳     |
+| Tree View - Drag & Drop                                                  | MUI X    | ⏳     |
+| [Tree View - Multiselect](/material-ui/react-tree-view/#multi-selection) | MUI X    | 🧪     |
+| Tree View - Virtualization                                               | MUI X    | ⏳     |
+| Window Splitter                                                          | MUI X    | ⏳     |
 
 :::warning
 **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction, for informational purposes only. We may decide to add or remove new items at any time, depending on our capability to deliver while meeting our quality standards. The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
