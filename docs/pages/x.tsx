@@ -38,7 +38,7 @@ export default function X() {
         <XRoadmap />
         <Divider />
       </main>
-      <AppFooter />
+      <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/mui-x" />
     </BrandingCssVarsProvider>
   );
 }

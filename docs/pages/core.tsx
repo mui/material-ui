@@ -35,7 +35,7 @@ export default function Core() {
         <CoreHeroEnd />
         <Divider />
       </main>
-      <AppFooter />
+      <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/material-ui" />
     </BrandingCssVarsProvider>
   );
 }
