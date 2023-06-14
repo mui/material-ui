@@ -3,6 +3,7 @@ import clsx from 'clsx';
 
 // Base UI imports
 import Badge, { badgeClasses } from '@mui/base/Badge';
+import Input, { InputProps } from '@mui/base/Input';
 import Button from '@mui/base/Button';
 import Menu, { MenuActions } from '@mui/base/Menu';
 import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
@@ -23,7 +24,19 @@ import { ListActionTypes } from '@mui/base/useList';
 import { css, styled, keyframes } from '@mui/system';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import LaunchRoundedIcon from '@mui/icons-material/LaunchRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
+import SmartButtonRounded from '@mui/icons-material/SmartButtonRounded';
+import InputRounded from '@mui/icons-material/InputRounded';
+import PlaylistAddCheckRounded from '@mui/icons-material/PlaylistAddCheckRounded';
+import ToggleonRounded from '@mui/icons-material/ToggleonRounded';
+import LinearScaleRounded from '@mui/icons-material/LinearScaleRounded';
+import CircleNotificationsRounded from '@mui/icons-material/CircleNotificationsRounded';
+import ReportGmailerrorredRounded from '@mui/icons-material/ReportGmailerrorredRounded';
+import MenuOpenRounded from '@mui/icons-material/MenuOpenRounded';
+import FirstPageRounded from '@mui/icons-material/FirstPageRounded';
+import TabRounded from '@mui/icons-material/TabRounded';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 // Local imports
 import HeroContainer from 'docs/src/layouts/HeroContainer';
@@ -32,11 +45,12 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import GetStartedButtons2 from 'docs/src/components/home/GetStartedButtons2';
 import heroVariables from 'docs/src/components/productBaseUI/heroVariables';
+import Link from 'docs/src/modules/components/Link';
 
 const Panel = styled('div')({
   width: 340,
   backgroundColor: 'var(--muidocs-palette-background-paper)',
-  borderRadius: 'min(var(--border-radius), 32px)',
+  borderRadius: 'min(var(--border-radius) * 2, 32px)',
   border: 'var(--border-width) solid',
   borderColor: 'var(--border-color)',
   boxShadow: 'var(--Panel-shadow)',
@@ -48,6 +62,15 @@ const StyledLabel = styled('label')({
   fontWeight: 600,
   color: 'var(--muidocs-palette-text-secondary)',
   margin: '0.25rem 0',
+});
+
+const StyledLabelCategory = styled('label')({
+  fontSize: 10,
+  fontWeight: 700,
+  textTransform: 'uppercase',
+  letterSpacing: '.08rem',
+  color: 'var(--muidocs-palette-text-secondary)',
+  margin: '0.5rem 0.4rem',
 });
 
 const StyledParagraph = styled('p')({
@@ -107,6 +130,10 @@ const StyledSelectButton = styled('button')({
   fontFamily: 'var(--muidocs-font-family)',
   lineHeight: 21 / 14,
   boxShadow: 'var(--formControl-shadow, 0px 2px 2px rgba(205, 210, 215, 0.3))',
+
+  '&:hover': {
+    backgroundColor: 'var(--Tab-hoverBackground)',
+  },
   '& svg:last-child': {
     marginLeft: 'auto',
   },
@@ -143,6 +170,7 @@ const StyledModalButton = styled('button')({
     borderColor: 'var(--muidocs-palette-primary-700)',
     backgroundColor: 'var(--muidocs-palette-primary-900)',
     color: 'var(--muidocs-palette-primary-200)',
+    boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.15)',
     '&:hover': {
       backgroundColor: 'var(--muidocs-palette-primary-800)',
     },
@@ -174,13 +202,14 @@ const StyledSnackbarButton = styled('button')({
     borderColor: 'var(--muidocs-palette-grey-700)',
     backgroundColor: 'var(--muidocs-palette-grey-900)',
     color: 'var(--muidocs-palette-grey-200)',
+    boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.1)',
     '&:hover': {
       backgroundColor: 'var(--muidocs-palette-grey-800)',
     },
   },
 });
 
-const StyledViewCode = styled('button')({
+const StyledViewCode = styled(Link)({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -188,7 +217,7 @@ const StyledViewCode = styled('button')({
   width: '100%',
   padding: '12px 16px',
   cursor: 'pointer',
-  backgroundColor: 'var(--muidocs-palette-grey-800)',
+  backgroundColor: 'var(--muidocs-palette-primaryDark-700)',
   border: 'none',
   borderRadius: 'var(--border-radius)',
   boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.2), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
@@ -197,6 +226,20 @@ const StyledViewCode = styled('button')({
   fontWeight: 600,
   color: 'var(--muidocs-palette-primary-200)',
   lineHeight: 21 / 14,
+
+  '&:hover': {
+    backgroundColor: 'var(--muidocs-palette-primaryDark-800)',
+    color: 'var(--muidocs-palette-primary-100)',
+  },
+
+  '[data-mui-color-scheme="dark"] &': {
+    color: 'var(--muidocs-palette-primary-200)',
+    boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.2), inset 0px 4px 4px rgba(205, 210, 215, 0.08)',
+    '&:hover': {
+      color: 'var(--muidocs-palette-primary-100)',
+      backgroundColor: 'var(--muidocs-palette-primaryDark-800)',
+    },
+  },
 });
 
 const StyledPopper = styled(Popper)({
@@ -206,6 +249,8 @@ const StyledPopper = styled(Popper)({
 const StyledListbox = styled('ul')({
   '--_listbox-radius': 'min(var(--border-radius), 20px)',
   width: 'calc(320px - 1rem)',
+  maxHeight: 'calc(320px - 1rem)',
+  overflow: 'auto',
   display: 'flex',
   flexDirection: 'column',
   border: 'var(--border-width) solid',
@@ -221,7 +266,7 @@ const StyledListbox = styled('ul')({
   margin: '6px 0',
   '& li': {
     display: 'flex',
-    borderRadius: '6px',
+    borderRadius: '12px',
     '&[role="none"]': {
       flexDirection: 'column',
       padding: 0,
@@ -249,15 +294,18 @@ const StyledListbox = styled('ul')({
       alignItems: 'center',
       cursor: 'pointer',
       borderRadius: 'calc(var(--_listbox-radius) - var(--Select-spacing) * 0.5)',
+
       '&:hover, &.MuiOption-highlighted': {
         backgroundColor: 'var(--Option-hoverBackground, var(--muidocs-palette-grey-50))',
         color: 'var(--muidocs-palette-text-primary)',
       },
+
       '&.Mui-selected': {
         backgroundColor: 'var(--Option-selectedBackground, var(--muidocs-palette-grey-50))',
         borderColor: 'var(--border-color)',
         color: 'var(--muidocs-palette-text-primary)',
       },
+
       '& svg:first-child': {
         color: 'var(--muidocs-palette-primary-main)',
         marginRight: 'var(--Select-spacing)',
@@ -273,12 +321,16 @@ const marks = [
     label: '0°C',
   },
   {
-    value: 20,
-    label: '20°C',
+    value: 25,
+    label: '25°C',
   },
   {
-    value: 37,
-    label: '37°C',
+    value: 50,
+    label: '50°C',
+  },
+  {
+    value: 75,
+    label: '75°C',
   },
   {
     value: 100,
@@ -314,8 +366,7 @@ const StyledSlider = styled(Slider)(`
     width: 100%;
     height: 4px;
     border-radius: var(--border-radius);
-    background-color: currentColor;
-    opacity: 0.4;
+    background-color: var(--color-primary-light)
   }
 
   & .${sliderClasses.track} {
@@ -335,16 +386,16 @@ const StyledSlider = styled(Slider)(`
     box-sizing: border-box;
     border-radius: var(--border-radius);
     outline: 0;
-    border: 3px solid currentColor;
+    border: 4px solid currentColor;
     background-color: #fff;
 
     :hover,
     &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 0.25rem;
+      box-shadow: 0 0 0 0.25rem var(--Slider-thumb-focus);
     }
 
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 0.25rem;
+      box-shadow: 0 0 0 0.25rem var(--Slider-thumb-focus);
     }
   }
 
@@ -353,8 +404,8 @@ const StyledSlider = styled(Slider)(`
     width: 8px;
     height: 8px;
     border-radius: var(--border-radius);
-    background-color: var(--color-primary);
-    top: 43%;
+    background-color: var(--color-primary-light);
+    top: 44%;
     transform: translateX(-50%);
   }
 
@@ -364,15 +415,15 @@ const StyledSlider = styled(Slider)(`
 
   & .${sliderClasses.markLabel} {
     font-weight: 600;
-    font-size: 12px;
+    font-size: 10px;
     position: absolute;
-    top: 20px;
+    top: 24px;
     transform: translateX(-50%);
     margin-top: 8px;
     &[data-index="0"] {
       transform: translateX(calc(-1 * var(--_margin)));
     }
-    &[data-index="3"] {
+    &[data-index="4"] {
       transform: translate(-100%);
     }
   }
@@ -393,7 +444,7 @@ const StyledSwitch = styled('span')(`
 
   & .${switchClasses.track} {
     background: var(--Switch-background, var(--muidocs-palette-grey-400));
-    border-radius: max(2px, var(--border-radius));
+    border-radius: max(2px, var(--border-radius) * 4);
     display: block;
     height: 100%;
     width: 100%;
@@ -499,7 +550,10 @@ const StyledBadge = styled(Badge)(
     font-weight: 600;
     white-space: nowrap;
     text-align: center;
-    background: var(--color-primary);
+    background: var(--muidocs-palette-error-main);
+    outline: 3px solid ${
+      theme.palette.mode === 'dark' ? 'var(--muidocs-palette-primaryDark-900)' : '#FFF'
+    };
     box-shadow: 0px 2px 24px ${
       theme.palette.mode === 'dark'
         ? 'var(--muidocs-palette-primary-900)'
@@ -515,6 +569,7 @@ const StyledMenuItem = styled(MenuItem)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
+  margin: 4px 0;
   border-radius: 8px;
   cursor: default;
   user-select: none;
@@ -563,7 +618,7 @@ const StyledMenuListbox = styled('ul')(`
   box-sizing: border-box;
   padding: 6px;
   margin: 12px 0;
-  min-width: 200px;
+  min-width: 230px;
   border-radius: 12px;
   overflow: auto;
   outline: 0px;
@@ -589,6 +644,7 @@ const snackbarInRight = keyframes`
     transform: translateX(0);
   }
 `;
+
 const StyledSnackbar = styled(Snackbar)(css`
   background-color: var(--muidocs-palette-background-paper);
   border-radius: min(var(--border-radius), 32px);
@@ -598,16 +654,15 @@ const StyledSnackbar = styled(Snackbar)(css`
   position: fixed;
   z-index: 5500;
   display: flex;
-  gap: 0.5rem;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
   right: 16px;
   bottom: 16px;
   left: auto;
-  justify-content: start;
   max-width: 560px;
   min-width: 300px;
-  padding: 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 600;
+  padding: 0.75rem 1rem;
   animation: ${snackbarInRight} 200ms;
   transition: transform 0.2s ease-out;
 
@@ -616,12 +671,54 @@ const StyledSnackbar = styled(Snackbar)(css`
   }
 
   & [data-title] {
-    margin-top: 2px;
+    font-size: 0.875rem;
+    font-weight: 600;
   }
+
   & [data-description] {
-    color: var(--muidocs-palette-text-tertiary);
+    color: var(--muidocs-palette-text-secondary);
+    font-size: 0.75rem;
+    font-weight: 500;
   }
 `);
+
+const StyledInputElement = styled('input')({
+  marginTop: '8px',
+  width: '100%',
+  maxWidth: '100%',
+  border: 'var(--border-width, 1px) solid',
+  borderColor: 'var(--Select-ringColor, var(--border-color))',
+  borderRadius: 'var(--border-radius)',
+  padding: '8px 12px',
+  backgroundColor: 'var(--Select-background)',
+  display: 'flex',
+  color: 'var(--muidocs-palette-text-secondary)',
+  alignItems: 'center',
+  fontSize: '0.875rem',
+  fontFamily: 'var(--muidocs-font-family)',
+  lineHeight: 21 / 14,
+  boxShadow: 'var(--formControl-shadow, 0px 2px 2px rgba(205, 210, 215, 0.3))',
+
+  '&:hover': {
+    borderColor: 'var(--Input-border)',
+  },
+  '&:focus': {
+    borderColor: 'var(--Input-border)',
+    boxShadow: 'var(--Input-focus-border)',
+  },
+  '&:focus-visible': {
+    // Firefox
+    outline: 0,
+  },
+});
+
+// Input
+const CustomInput = React.forwardRef(function CustomInput(
+  props: InputProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
+  return <Input slots={{ input: StyledInputElement }} {...props} ref={ref} />;
+});
 
 export default function BaseUIHero() {
   const [design, setDesign] = React.useState(0);
@@ -795,14 +892,20 @@ export default function BaseUIHero() {
               >
                 <StyledBadge badgeContent={5}>
                   <Box
-                    component="span"
+                    component="img"
+                    alt="Michał Dudak, the leading engineer for Base UI."
+                    src="/static/branding/about/michal.png"
                     sx={{
                       display: 'inline-block',
                       verticalAlign: 'middle',
                       height: 32,
                       width: 32,
-                      background: '#202020',
-                      borderRadius: 99,
+                      borderRadius: 'var(--avatar-radius)',
+                      border: 'var(--border-width) solid var(--border-color)',
+                      background: 'var(--color-primary-light)',
+                      '&:hover': {
+                        background: 'var(--color-primary)',
+                      },
                     }}
                   />
                 </StyledBadge>
@@ -817,9 +920,13 @@ export default function BaseUIHero() {
                 slots={{ root: StyledPopper, listbox: StyledMenuListbox }}
                 slotProps={{ root: { disablePortal: true }, listbox: { id: 'simple-menu' } }}
               >
-                <StyledMenuItem onClick={createHandleMenuClick()}>Profile</StyledMenuItem>
-                <StyledMenuItem onClick={createHandleMenuClick()}>My account</StyledMenuItem>
-                <StyledMenuItem onClick={createHandleMenuClick()}>Log out</StyledMenuItem>
+                <StyledLabelCategory>AVATAR MENU</StyledLabelCategory>
+                <CustomInput aria-label="Demo input" placeholder="Search an option…" />
+                <StyledMenuItem onClick={createHandleMenuClick()}>
+                  Request a component
+                </StyledMenuItem>
+                <StyledMenuItem onClick={createHandleMenuClick()}>Get started</StyledMenuItem>
+                <StyledMenuItem onClick={createHandleMenuClick()}>View all</StyledMenuItem>
               </Menu>
             </Box>
             {/* Select component */}
@@ -845,9 +952,54 @@ export default function BaseUIHero() {
                   },
                 }}
               >
-                <Option value={10}>Ten</Option>
-                <Option value={20}>Twenty</Option>
-                <Option value={30}>Thirty</Option>
+                <StyledLabelCategory>Input</StyledLabelCategory>
+                <Option value={10}>
+                  <AutoAwesomeRounded fontSize="small" />
+                  Autocomplete
+                </Option>
+                <Option value={20}>
+                  <SmartButtonRounded fontSize="small" />
+                  Button
+                </Option>
+                <Option value={30}>
+                  <InputRounded fontSize="small" />
+                  Input
+                </Option>
+                <Option value={40}>
+                  <PlaylistAddCheckRounded fontSize="small" />
+                  Select
+                </Option>
+                <Option value={50}>
+                  <ToggleonRounded fontSize="small" />
+                  Switch
+                </Option>
+                <Option value={60}>
+                  <LinearScaleRounded fontSize="small" />
+                  Slider
+                </Option>
+                <StyledLabelCategory>Data display</StyledLabelCategory>
+                <Option value={70}>
+                  <CircleNotificationsRounded fontSize="small" />
+                  Badge
+                </Option>
+                <StyledLabelCategory>Feedback</StyledLabelCategory>
+                <Option value={80}>
+                  <ReportGmailerrorredRounded fontSize="small" />
+                  Snackbar
+                </Option>
+                <StyledLabelCategory>Navigation</StyledLabelCategory>
+                <Option value={90}>
+                  <MenuOpenRounded fontSize="small" />
+                  Menu
+                </Option>
+                <Option value={100}>
+                  <FirstPageRounded fontSize="small" />
+                  Table Pagination
+                </Option>
+                <Option value={110}>
+                  <TabRounded fontSize="small" />
+                  Tabs
+                </Option>
               </Select>
             </Box>
             {/* Slider component */}
@@ -922,26 +1074,19 @@ export default function BaseUIHero() {
                 onClose={handleCloseModal}
                 slots={{ backdrop: StyledBackdrop }}
               >
-                <Panel sx={{ p: 3, textAlign: 'center', outline: 'none', width: 'auto' }}>
-                  <Box
-                    component="img"
-                    src="/static/logo.svg"
-                    alt=""
-                    sx={{ aspectRatio: 1, width: 64, display: 'block', margin: 'auto' }}
-                  />
-                  <Box
-                    component="h2"
-                    id="unstyled-modal-title"
-                    sx={{ mt: 1, mb: 0, fontSize: '1.25rem' }}
-                  >
-                    What a cool modal, huh?
+                <Panel
+                  sx={{ p: 3, textAlign: 'center', outline: 'none', maxWidth: 500, width: 'auto' }}
+                >
+                  <Box component="h2" id="unstyled-modal-title" sx={{ mt: 1, mb: 0.5 }}>
+                    Oh, hey, this is a Base UI modal.
                   </Box>
                   <Box
                     component="p"
                     id="unstyled-modal-description"
-                    sx={{ m: 0, mb: 2, fontSize: '0.875rem' }}
+                    sx={{ m: 0, mb: 4, color: 'text.secondary' }}
                   >
-                    Another Base UI component for you.
+                    Base UI modals manages modal stacking when more than one is needed, creates a
+                    backdrop to disable interaction with the rest of the app, and a lot more.
                   </Box>
                   <StyledSnackbarButton onClick={handleCloseModal}>Close</StyledSnackbarButton>
                 </Panel>
@@ -954,30 +1099,17 @@ export default function BaseUIHero() {
                 autoHideDuration={5000}
                 onClose={handleCloseSnackbar}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  style={{ width: 24, height: 24 }}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+                <CheckCircleRoundedIcon fontSize="small" />
                 <Box>
-                  <div data-title>This is a Base UI snackbar!</div>
-                  <div data-description>Oh cool, this is nice.</div>
+                  <div data-title>This is a Base UI snackbar.</div>
+                  <div data-description>Free to design as you want it.</div>
                 </Box>
               </StyledSnackbar>
             </Box>
-            {/* Button "View the code" component */}
+            {/* Button "View all components" component */}
             <Box sx={{ display: 'flex', p: '1rem', gap: '0.5rem', '& > button': { flex: 1 } }}>
-              <StyledViewCode>
-                View the code <LaunchRoundedIcon fontSize="small" />
+              <StyledViewCode href={ROUTES.baseComponents}>
+                View all components <ChevronRightRoundedIcon fontSize="small" />
               </StyledViewCode>
             </Box>
           </Panel>
