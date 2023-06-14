@@ -25,11 +25,11 @@ function useUtilityClasses(ownerState: MenuOwnerState) {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base/react-menu/)
+ * - [Menu](https://mui.com/base-ui/react-menu/)
  *
  * API:
  *
- * - [Menu API](https://mui.com/base/react-menu/components-api/#menu)
+ * - [Menu API](https://mui.com/base-ui/react-menu/components-api/#menu)
  */
 const Menu = React.forwardRef(function Menu<RootComponentType extends React.ElementType>(
   props: MenuProps<RootComponentType>,

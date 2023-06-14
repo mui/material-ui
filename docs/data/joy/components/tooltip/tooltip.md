@@ -66,7 +66,7 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 The `title` prop can receive a custom React element.
 
-{{"demo": "GithubTooltip.js"}}
+{{"demo": "GitHubTooltip.js"}}
 
 ## Accessibility
 
