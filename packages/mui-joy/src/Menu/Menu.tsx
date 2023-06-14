@@ -152,6 +152,25 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     ],
     [modifiersProp],
   );
+  if (anchorEl) {
+    let ariaControls = null;
+    if ('getAttribute' in anchorEl) {
+      ariaControls = anchorEl.getAttribute('aria-controls');
+    } else if (typeof anchorEl === 'function') {
+      const element = anchorEl();
+      if ('getAttribute' in element) {
+        ariaControls = element.getAttribute('aria-controls');
+      } else {
+        ariaControls = element.contextElement?.getAttribute('aria-controls');
+      }
+    } else {
+      ariaControls = anchorEl.contextElement?.getAttribute('aria-controls');
+    }
+
+    if (!ariaControls) {
+      console.warn('MUI: anchorEl is exprected to have valid value for aria-controls');
+    }
+  }
 
   const rootProps = useSlotProps({
     elementType: MenuRoot,
