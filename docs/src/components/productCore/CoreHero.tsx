@@ -59,6 +59,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { getDesignTokens } from 'docs/src/modules/brandingTheme';
+
 function ToggleButtons() {
   const [alignment, setAlignment] = React.useState('left');
   return (
