@@ -263,6 +263,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ...other
   } = props;
 
+  // to prevent runtime errors, developers will need to provide a child as a React element anyway.
   const children = React.isValidElement(childrenProp) ? childrenProp : <span>{childrenProp}</span>;
 
   const theme = useTheme();
