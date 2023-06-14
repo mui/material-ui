@@ -88,7 +88,7 @@ export function pathnameToLanguage(pathname: string): {
   const userLanguageCandidate = pathname.substring(1, 3);
 
   if (
-    LANGUAGES.indexOf(userLanguageCandidate) !== -1 &&
+    [...LANGUAGES, 'zh'].indexOf(userLanguageCandidate) !== -1 &&
     pathname.indexOf(`/${userLanguageCandidate}/`) === 0
   ) {
     userLanguage = userLanguageCandidate;

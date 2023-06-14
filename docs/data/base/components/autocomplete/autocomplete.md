@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Autocomplete hook
 hooks: useAutocomplete
 githubLabel: 'component: autocomplete'
