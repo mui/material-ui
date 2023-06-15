@@ -13,18 +13,9 @@ function testOnChange() {
 
 <Slider track="inverted" />;
 
-// slotProps and componentsProps as objects
+// slotProps as object
 <Slider
   slotProps={{
-    root: { onMouseDown: () => 'onMouseDown event triggered' },
-    input: { disabled: true },
-    mark: { onClick: () => 'clicked' },
-    markLabel: { className: 'markLabel' },
-    rail: { className: 'rail' },
-    thumb: { className: 'thumb' },
-    valueLabel: { valueLabelDisplay: 'auto' },
-  }}
-  componentsProps={{
     root: { onMouseDown: () => 'onMouseDown event triggered' },
     input: { disabled: true },
     mark: { onClick: () => 'clicked' },
@@ -35,27 +26,9 @@ function testOnChange() {
   }}
 />;
 
-// slotProps and componentsProps as functions
+// slotProps as function
 <Slider
   slotProps={{
-    root: ({ color }: SliderOwnerState) => ({
-      className: color === 'primary' ? 'root_primary' : 'root_secondary',
-    }),
-    input: ({ size }: SliderOwnerState) => ({ disabled: size === 'medium' }),
-    mark: ({ marked }: SliderOwnerState) => ({
-      className: marked ? 'marked' : '',
-    }),
-    markLabel: ({ max }: SliderOwnerState) => ({
-      className: max === 99 ? 'red' : 'normal',
-    }),
-    rail: ({ dragging }: SliderOwnerState) => ({
-      className: dragging ? 'rail' : '',
-    }),
-    thumb: ({ orientation }: SliderOwnerState) => ({
-      className: orientation === 'vertical' ? 'thumb_vertical' : '',
-    }),
-  }}
-  componentsProps={{
     root: ({ color }: SliderOwnerState) => ({
       className: color === 'primary' ? 'root_primary' : 'root_secondary',
     }),
