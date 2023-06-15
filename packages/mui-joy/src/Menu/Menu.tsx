@@ -89,7 +89,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     disablePortal = false,
     keepMounted = false,
     invertedColors = false,
-    id,
     onClose,
     open = false,
     modifiers: modifiersProp,
@@ -114,7 +113,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const { contextValue, getListboxProps, dispatch } = useMenu({
     open,
     onOpenChange: handleOpenChange,
-    listboxId: id,
+    listboxId: props.id,
   });
 
   React.useImperativeHandle(
