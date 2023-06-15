@@ -543,8 +543,8 @@ const Slider = React.forwardRef(function Slider<
     size = 'medium',
     step = 1,
     scale = Identity,
-    slotProps,
-    slots,
+    slotProps = {},
+    slots = {},
     tabIndex,
     track = 'normal',
     value: valueProp,
@@ -598,19 +598,19 @@ const Slider = React.forwardRef(function Slider<
 
   const classes = useUtilityClasses(ownerState);
 
-  const RootSlot = slots?.root ?? SliderRoot;
-  const RailSlot = slots?.rail ?? SliderRail;
-  const TrackSlot = slots?.track ?? SliderTrack;
-  const ThumbSlot = slots?.thumb ?? SliderThumb;
-  const ValueLabelSlot = slots?.valueLabel ?? StyledSliderValueLabel;
-  const MarkSlot = slots?.mark ?? SliderMark;
-  const MarkLabelSlot = slots?.markLabel ?? SliderMarkLabel;
-  const InputSlot = slots?.input ?? 'input';
+  const RootSlot = slots.root ?? SliderRoot;
+  const RailSlot = slots.rail ?? SliderRail;
+  const TrackSlot = slots.track ?? SliderTrack;
+  const ThumbSlot = slots.thumb ?? SliderThumb;
+  const ValueLabelSlot = slots.valueLabel ?? StyledSliderValueLabel;
+  const MarkSlot = slots.mark ?? SliderMark;
+  const MarkLabelSlot = slots.markLabel ?? SliderMarkLabel;
+  const InputSlot = slots.input ?? 'input';
 
   const rootProps = useSlotProps({
     elementType: RootSlot,
     getSlotProps: getRootProps,
-    externalSlotProps: slotProps?.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       ...(shouldSpreadAdditionalProps(RootSlot) && {
@@ -623,14 +623,14 @@ const Slider = React.forwardRef(function Slider<
 
   const railProps = useSlotProps({
     elementType: RailSlot,
-    externalSlotProps: slotProps?.rail,
+    externalSlotProps: slotProps.rail,
     ownerState,
     className: classes.rail,
   });
 
   const trackProps = useSlotProps({
     elementType: TrackSlot,
-    externalSlotProps: slotProps?.track,
+    externalSlotProps: slotProps.track,
     additionalProps: {
       style: {
         ...axisProps[axis].offset(trackOffset),
@@ -644,28 +644,28 @@ const Slider = React.forwardRef(function Slider<
   const thumbProps = useSlotProps({
     elementType: ThumbSlot,
     getSlotProps: getThumbProps,
-    externalSlotProps: slotProps?.thumb,
+    externalSlotProps: slotProps.thumb,
     ownerState,
     className: classes.thumb,
   });
 
   const valueLabelProps = useSlotProps({
     elementType: ValueLabelSlot,
-    externalSlotProps: slotProps?.valueLabel,
+    externalSlotProps: slotProps.valueLabel,
     ownerState,
     className: classes.valueLabel,
   });
 
   const markProps = useSlotProps({
     elementType: MarkSlot,
-    externalSlotProps: slotProps?.mark,
+    externalSlotProps: slotProps.mark,
     ownerState,
     className: classes.mark,
   });
 
   const markLabelProps = useSlotProps({
     elementType: MarkLabelSlot,
-    externalSlotProps: slotProps?.markLabel,
+    externalSlotProps: slotProps.markLabel,
     ownerState,
     className: classes.markLabel,
   });
@@ -673,7 +673,7 @@ const Slider = React.forwardRef(function Slider<
   const inputSliderProps = useSlotProps({
     elementType: InputSlot,
     getSlotProps: getHiddenInputProps,
-    externalSlotProps: slotProps?.input,
+    externalSlotProps: slotProps.input,
     ownerState,
   });
 
