@@ -428,7 +428,8 @@ Popover.propTypes /* remove-proptypes */ = {
    */
   action: refType,
   /**
-   * An HTML element, or a function that returns one.
+   * An HTML element, [PopoverVirtualElement](/material-ui/react-popover/#virtual-element),
+   * or a function that returns either.
    * It's used to set the position of the popover.
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([HTMLElementType, PropTypes.func]), (props) => {
@@ -457,7 +458,7 @@ Popover.propTypes /* remove-proptypes */ = {
         return new Error(
           [
             'MUI: The `anchorEl` prop provided to the component is invalid.',
-            `It should be an Element instance but it's \`${resolvedAnchorEl}\` instead.`,
+            `It should be an Element or PopoverVirtualElement instance but it's \`${resolvedAnchorEl}\` instead.`,
           ].join('\n'),
         );
       }

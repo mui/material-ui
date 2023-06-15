@@ -147,7 +147,6 @@ export default function FontSizeThemeViewer() {
                   <Typography
                     fontSize="xs"
                     fontFamily="code"
-                    letterSpacing="sm"
                     sx={{ cursor: 'zoom-in' }}
                   >
                     {defaultTheme.typography[level].color || '-'}
@@ -171,42 +170,38 @@ export default function FontSizeThemeViewer() {
                   <Typography
                     fontSize="xs"
                     fontFamily="code"
-                    letterSpacing="sm"
                     sx={{ cursor: 'zoom-in' }}
                   >
                     {defaultTheme.typography[level].fontSize || '-'}
                   </Typography>
                 </Tooltip>
               </td>
-              {(['fontWeight', 'lineHeight', 'letterSpacing'] as const).map(
-                (field) => (
-                  <td key={field}>
-                    <Tooltip
-                      size="sm"
-                      arrow
-                      title={
-                        (defaultTheme[field] as Record<string, any>)[
-                          extractFromVar(
-                            defaultTheme.typography[level][field] as string,
-                            field,
-                          )
-                        ] || ''
-                      }
-                      sx={{ pointerEvents: 'none' }}
+              {(['fontWeight', 'lineHeight'] as const).map((field) => (
+                <td key={field}>
+                  <Tooltip
+                    size="sm"
+                    arrow
+                    title={
+                      (defaultTheme[field] as Record<string, any>)[
+                        extractFromVar(
+                          defaultTheme.typography[level][field] as string,
+                          field,
+                        )
+                      ] || ''
+                    }
+                    sx={{ pointerEvents: 'none' }}
+                  >
+                    <Typography
+                      fontSize="xs"
+                      fontFamily="code"
+                      textAlign="center"
+                      sx={{ cursor: 'zoom-in' }}
                     >
-                      <Typography
-                        fontSize="xs"
-                        fontFamily="code"
-                        letterSpacing="sm"
-                        textAlign="center"
-                        sx={{ cursor: 'zoom-in' }}
-                      >
-                        {defaultTheme.typography[level][field] || '-'}
-                      </Typography>
-                    </Tooltip>
-                  </td>
-                ),
-              )}
+                      {defaultTheme.typography[level][field] || '-'}
+                    </Typography>
+                  </Tooltip>
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>

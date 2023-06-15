@@ -202,7 +202,6 @@ export default function PaletteThemeViewer() {
                     fontSize="xs"
                     startDecorator={renderSwatch('light', token)}
                     fontFamily="code"
-                    letterSpacing="sm"
                     textAlign="left"
                     sx={{ alignItems: 'flex-start', cursor: 'copy' }}
                     onClick={() => copy(light[token])}
@@ -218,7 +217,6 @@ export default function PaletteThemeViewer() {
                     fontSize="xs"
                     startDecorator={renderSwatch('dark', token)}
                     fontFamily="code"
-                    letterSpacing="sm"
                     textAlign="left"
                     sx={{ alignItems: 'flex-start', cursor: 'copy' }}
                     onClick={() => copy(dark[token])}

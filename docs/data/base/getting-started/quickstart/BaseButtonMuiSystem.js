@@ -81,23 +81,23 @@ function getStyles({ theme }) {
 /*
  * The style function argument is completely identical for the unstyled component
  * and the hook, though each have different pro and cons.
- * More about unstyled components vs hooks here: https://mui.com/base/getting-started/usage/#components-vs-hooks
+ * More about unstyled components vs hooks here: https://mui.com/base-ui/getting-started/usage/#components-vs-hooks
  */
 
-const GithubButtonComponent = styled(Button)(getStyles);
+const GitHubButtonComponent = styled(Button)(getStyles);
 
-const GithubButtonHook = styled('button')(getStyles);
+const GitHubButtonHook = styled('button')(getStyles);
 
 export default function App() {
   const { getRootProps } = useButton({});
 
   return (
     <Stack spacing={2} direction="row">
-      <GithubButtonComponent>Create Repository</GithubButtonComponent>
+      <GitHubButtonComponent>Create Repository</GitHubButtonComponent>
 
-      <GithubButtonHook type="button" {...getRootProps()}>
+      <GitHubButtonHook type="button" {...getRootProps()}>
         Create Repository
-      </GithubButtonHook>
+      </GitHubButtonHook>
     </Stack>
   );
 }

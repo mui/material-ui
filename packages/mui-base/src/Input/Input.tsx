@@ -40,11 +40,11 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
  *
  * Demos:
  *
- * - [Input](https://mui.com/base/react-input/)
+ * - [Input](https://mui.com/base-ui/react-input/)
  *
  * API:
  *
- * - [Input API](https://mui.com/base/react-input/components-api/#input)
+ * - [Input API](https://mui.com/base-ui/react-input/components-api/#input)
  */
 const Input = React.forwardRef(function Input<RootComponentType extends React.ElementType>(
   props: InputProps<RootComponentType>,

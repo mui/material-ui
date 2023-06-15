@@ -116,7 +116,6 @@ export default function ShadowThemeViewer() {
                   textAlign="left"
                   fontSize="xs"
                   fontFamily="code"
-                  letterSpacing="sm"
                   onClick={() => copy(token)}
                 >
                   {formatShadowLayers(defaultTheme.shadow[token])}

@@ -34,11 +34,11 @@ function preventDefault(event: React.SyntheticEvent) {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/#hooks)
+ * - [Select](https://mui.com/base-ui/react-select/#hooks)
  *
  * API:
  *
- * - [useSelect API](https://mui.com/base/react-select/hooks-api/#use-select)
+ * - [useSelect API](https://mui.com/base-ui/react-select/hooks-api/#use-select)
  */
 function useSelect<OptionValue, Multiple extends boolean = false>(
   props: UseSelectParameters<OptionValue, Multiple>,

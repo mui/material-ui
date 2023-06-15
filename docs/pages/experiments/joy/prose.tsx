@@ -26,10 +26,10 @@ const Prose = styled(Container)(({ theme }) => ({
 
 export default function ProsePage() {
   return (
-    <CssVarsProvider>
+    <CssVarsProvider defaultMode="system">
       <Prose sx={{ maxWidth: '692px !important' }}>
-        <Typography level="body2">Tuesday, Nov 1, 2022</Typography>
-        <Typography level="h1">An introduction to the MUI ecosystem</Typography>
+        <Typography level="body-sm">Tuesday, Nov 1, 2022</Typography>
+        <Typography level="title-lg">An introduction to the MUI ecosystem</Typography>
         <AspectRatio variant="outlined" sx={{ borderRadius: 'sm' }}>
           <img src="/static/blog/mui-product-comparison/ecosystem.png" alt="" />
         </AspectRatio>
@@ -61,7 +61,7 @@ export default function ProsePage() {
         </Typography>
         <Typography>Read on for more details on each of our products.</Typography>
 
-        <Typography level="h2">MUI Core</Typography>
+        <Typography level="title-md">MUI Core</Typography>
 
         <Typography>
           The Core is MUI's foundational product line. It grew out of Material UI, and that
@@ -79,7 +79,7 @@ export default function ProsePage() {
           MUI Core is open-source, and we invite you to contribute wherever you see fit!
         </Typography>
 
-        <Typography level="h3">Material UI</Typography>
+        <Typography level="title-sm">Material UI</Typography>
         <Typography>
           Material UI is an open-source React component library that implements Google's Material
           Design. It includes a comprehensive collection of prebuilt components that are ready for
@@ -93,7 +93,7 @@ export default function ProsePage() {
 
         <Typography>Get started in the Material UI docs.</Typography>
 
-        <Typography level="h4">Key features</Typography>
+        <Typography level="title-xs">Key features</Typography>
         <List sx={{ pl: 2, '& > li': { display: 'list-item', listStyle: 'disc' } }}>
           <ListItem>
             <b>Material Design</b>: Your app will look and feel excellent by default, thanks to our
@@ -114,7 +114,7 @@ export default function ProsePage() {
           </ListItem>
         </List>
 
-        <Typography level="h4">Ideal use cases</Typography>
+        <Typography level="title-xs">Ideal use cases</Typography>
         <List sx={{ pl: 2, '& > li': { display: 'list-item', listStyle: 'disc' } }}>
           <ListItem>User interfaces that adhere closely to Material Design.</ListItem>
           <ListItem>Internal admin tools.</ListItem>

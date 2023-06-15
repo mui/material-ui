@@ -36,7 +36,7 @@ function CssBaseline(props: CssBaselineProps) {
           }
           const defaultTypographyLevel =
             (theme as unknown as { components: Components<Theme> }).components?.JoyTypography
-              ?.defaultProps?.level ?? 'body1';
+              ?.defaultProps?.level ?? 'body-md';
           return {
             html: {
               WebkitFontSmoothing: 'antialiased',

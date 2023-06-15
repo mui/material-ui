@@ -29,7 +29,7 @@ export default function Core() {
         <CoreStyling />
         <CoreHeroEnd />
       </main>
-      <AppFooter />
+      <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/material-ui" />
     </BrandingCssVarsProvider>
   );
 }
