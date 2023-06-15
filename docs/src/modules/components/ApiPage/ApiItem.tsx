@@ -228,7 +228,10 @@ function ApiItem(props: ApiItemProps) {
           dangerouslySetInnerHTML={{
             __html: (description ?? '').replace(/<br>/g, ' '),
           }}
-          title={(description ?? '').replace(/<br>/g, ' ')}
+          title={(description ?? '')
+            .replace(/<br>/g, ' ')
+            .replace(/&nbsp;/g, ' ')
+            .replace(/&#124;/g, '|')}
         />
         {note && <span className="MuiApi-item-note">{note}</span>}
       </div>
