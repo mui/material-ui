@@ -6,7 +6,7 @@ import Link from '@mui/joy/Link';
 import Chip from '@mui/joy/Chip';
 import AdjustIcon from '@mui/icons-material/Adjust';
 
-export default function GithubTooltip() {
+export default function GitHubTooltip() {
   return (
     <Tooltip
       placement="top-end"

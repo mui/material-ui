@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Tabs components
 components: Tabs, Tab, TabPanel, TabsList
 hooks: useTab, useTabPanel, useTabs, useTabsList
