@@ -27,18 +27,20 @@ describe('getProductInfoFromUrl', () => {
   });
 
   it('get data-grid', () => {
-    expect(getProductInfoFromUrl('/x/react-data-grid/components').productId).to.equal('data-grid');
+    expect(getProductInfoFromUrl('/x/react-data-grid/components').productId).to.equal(
+      'x-data-grid',
+    );
     expect(getProductInfoFromUrl('/zh/x/react-data-grid/components').productId).to.equal(
-      'data-grid',
+      'x-data-grid',
     );
   });
 
   it('get date-picker', () => {
     expect(getProductInfoFromUrl('/x/react-date-picker/components').productId).to.equal(
-      'date-picker',
+      'x-date-picker',
     );
     expect(getProductInfoFromUrl('/zh/x/react-date-picker/components').productId).to.equal(
-      'date-picker',
+      'x-date-picker',
     );
   });
 });

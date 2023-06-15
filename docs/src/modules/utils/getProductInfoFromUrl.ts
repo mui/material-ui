@@ -6,8 +6,8 @@ export type MuiProductId =
   | 'material-ui'
   | 'joy-ui'
   | 'system'
-  | 'data-grid'
-  | 'date-pickers';
+  | 'x-data-grid'
+  | 'x-date-picker';
 
 type MuiProductCategoryId = null | 'core' | 'x';
 
@@ -24,7 +24,7 @@ export default function getProductInfoFromUrl(asPath: string): MuiProductInfo {
 
   if (productId === 'x') {
     productCategoryId = 'x';
-    productId = asPathWithoutLang.replace('/x/react-', '').replace(/\/.*/, '');
+    productId = `x-${asPathWithoutLang.replace('/x/react-', '').replace(/\/.*/, '')}`;
   }
 
   if (asPathWithoutLang === '/versions/') {
