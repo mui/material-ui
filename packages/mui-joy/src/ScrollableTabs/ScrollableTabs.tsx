@@ -119,23 +119,6 @@ const TabsScroller = styled('div', {
   display: 'inline-block',
   flex: '1 1 auto',
   whiteSpace: 'nowrap',
-  overflowX: 'hidden',
-  width: '100%',
-  ...(ownerState.hideScrollbar && {
-    // Hide dimensionless scrollbar on macOS
-    scrollbarWidth: 'none', // Firefox
-    '&::-webkit-scrollbar': {
-      display: 'none', // Safari + Chrome
-    },
-  }),
-  ...(ownerState.scrollableX && {
-    overflowX: 'auto',
-    overflowY: 'hidden',
-  }),
-  ...(ownerState.scrollableY && {
-    overflowY: 'auto',
-    overflowX: 'hidden',
-  }),
 }));
 
 const ScrollButton = styled('span', {
