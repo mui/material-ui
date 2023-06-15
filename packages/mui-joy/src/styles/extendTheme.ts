@@ -139,10 +139,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     outlinedDisabledBorder: getCssVarColor(`palette-neutral-200`),
     
     softColor: getCssVarColor(`palette-${color}-500`),
-    softBg: `rgba(${getCssVar('palette-neutral',
-    colorChannel(defaultColors.neutral[500]),)} / 0.1)`,
-    softHoverBg: `rgba(${getCssVar('palette-neutral',
-    colorChannel(defaultColors.neutral[500]),)} / 0.20)`,
+    softBg: `rgba(${getCssVar('palette-neutral', colorChannel(defaultColors.neutral[500]),)} / 0.1)`,
+    softHoverBg: `rgba(${getCssVar('palette-neutral', colorChannel(defaultColors.neutral[500]),)} / 0.20)`,
     softActiveColor: getCssVarColor(`palette-common-white`),
     softActiveBg: getCssVarColor(`palette-${color}-500`),
     softDisabledColor: getCssVarColor(`palette-neutral-400`),
@@ -191,32 +189,38 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   const lightColorSystem = {
     palette: {
       mode: 'light',
+
       primary: {
         ...defaultColors.primary,
         ...createLightModeVariantVariables('primary'),
+
         softColor: getCssVarColor(`palette-primary-500`),
-        softBg: `rgba(${getCssVar('palette-primary',
-        colorChannel(defaultColors.primary[500]),)} / 0.15)`,
-        softHoverBg: `rgba(${getCssVar('palette-primary',
-        colorChannel(defaultColors.primary[500]),)} / 0.20)`,
+        softBg: `rgba(${getCssVar('palette-primary',colorChannel(defaultColors.primary[500]),)} / 0.15)`,
+        softHoverBg: `rgba(${getCssVar('palette-primary',colorChannel(defaultColors.primary[500]),)} / 0.20)`,
         softActiveColor: getCssVarColor(`palette-common-white`),
         softActiveBg: getCssVarColor(`palette-primary-500`),
+
+        
       },
+
       neutral: {
         ...defaultColors.neutral,
         ...createLightModeVariantVariables('neutral'),
         softColor: getCssVarColor(`palette-primary-500`),
       },
+
       danger: {
         ...defaultColors.danger,
         ...createLightModeVariantVariables('danger'),
         softColor: getCssVarColor(`palette-danger-500`),
       },
+
       success: {
         ...defaultColors.success,
         ...createLightModeVariantVariables('success'),
         softColor: getCssVarColor(`palette-success-500`),
       },
+
       warning: {
         ...defaultColors.warning,
         ...createLightModeVariantVariables('warning'),
@@ -224,15 +228,18 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         softColor: getCssVarColor(`palette-warning-700`),
         softActiveColor: getCssVarColor(`palette-common-black`),
       },
+
       common: {
         white: '#fff',
         black: '#000',
       },
+
       text: {
         primary: getCssVarColor('palette-neutral-900'),
         secondary: getCssVarColor('palette-neutral-700'),
         tertiary: getCssVarColor('palette-neutral-500'),
       },
+
       background: {
         body: getCssVarColor('palette-common-white'),
         surface: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.common.white),)} / 0.9)`, //Is there a way to add background blur?
