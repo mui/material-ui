@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Form Control component and hook
 components: FormControl
 hooks: useFormControlContext
