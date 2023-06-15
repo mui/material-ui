@@ -47,21 +47,21 @@ export default function BasicMenu() {
         sx={{ minWidth: 160, '--ListItemDecorator-size': '24px' }}
       >
         <MenuItem
-          onClick={(event) => {
+          onClick={() => {
             const nextIndex = SIZES.indexOf(size) - 1;
             const value = nextIndex < 0 ? SIZES[SIZES.length - 1] : SIZES[nextIndex];
             setSize(value);
-            handleClose(event);
+            handleClose();
           }}
         >
           Smaller
         </MenuItem>
         <MenuItem
-          onClick={(event) => {
+          onClick={() => {
             const nextIndex = SIZES.indexOf(size) + 1;
             const value = nextIndex > SIZES.length - 1 ? SIZES[0] : SIZES[nextIndex];
             setSize(value);
-            handleClose(event);
+            handleClose();
           }}
         >
           Larger
@@ -74,9 +74,9 @@ export default function BasicMenu() {
                 key={item}
                 role="menuitemradio"
                 aria-checked={item === size ? 'true' : 'false'}
-                onClick={(event) => {
+                onClick={() => {
                   setSize(item);
-                  handleClose(event);
+                  handleClose();
                 }}
               >
                 <ListItemDecorator>
