@@ -24,6 +24,10 @@ function fixPathname(pathname: string): string {
       'material-ui',
       'joy-ui',
     );
+  } else if (pathname.startsWith('/base')) {
+    fixedPathname = `${pathname
+      .replace('/base/', '/base-ui/')
+      .replace('/components/', '/react-')}/`;
   } else {
     fixedPathname = `${pathname.replace('/components/', '/react-')}/`;
   }
@@ -222,9 +226,9 @@ export function getMaterialComponentInfo(filename: string): ComponentInfo {
         apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-            : `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'material-ui'}/api/${kebabCase(
-                inheritedComponent.replace(/unstyled/i, ''),
-              )}/`,
+            : `/${
+                inheritedComponent.match(/unstyled/i) ? 'base-ui' : 'material-ui'
+              }/api/${kebabCase(inheritedComponent.replace(/unstyled/i, ''))}/`,
       };
     },
     getDemos: () => {
@@ -350,8 +354,8 @@ export function getBaseComponentInfo(filename: string): ComponentInfo {
     filename,
     name,
     muiName: getMuiName(name),
-    apiPathname: apiPath ?? `/base/api/${kebabCase(name)}/`,
-    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
+    apiPathname: apiPath ?? `/base-ui/api/${kebabCase(name)}/`,
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base-ui/api`),
     isSystemComponent: getSystemComponents().includes(name),
     readFile: () => {
       srcInfo = parseFile(filename);
@@ -366,7 +370,7 @@ export function getBaseComponentInfo(filename: string): ComponentInfo {
         apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-            : `/base/api/${kebabCase(inheritedComponent)}/`,
+            : `/base-ui/api/${kebabCase(inheritedComponent)}/`,
       };
     },
     getDemos: () => demos,
@@ -404,8 +408,8 @@ export function getBaseHookInfo(filename: string): HookInfo {
   const result = {
     filename,
     name,
-    apiPathname: apiPath ?? `/base/api/${kebabCase(name)}/`,
-    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
+    apiPathname: apiPath ?? `/base-ui/api/${kebabCase(name)}/`,
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base-ui/api`),
     readFile: () => {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -443,9 +447,9 @@ export function getJoyComponentInfo(filename: string): ComponentInfo {
       // we remove the suffix here.
       return {
         name: inheritedComponent.replace(/unstyled/i, ''),
-        apiPathname: `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'joy-ui'}/api/${kebabCase(
-          inheritedComponent.replace(/unstyled/i, ''),
-        )}/`,
+        apiPathname: `/${
+          inheritedComponent.match(/unstyled/i) ? 'base-ui' : 'joy-ui'
+        }/api/${kebabCase(inheritedComponent.replace(/unstyled/i, ''))}/`,
       };
     },
     getDemos: () => {
@@ -685,7 +689,7 @@ export const getStaticPaths = () => {
 ${staticProps}
       `;
 
-      const componentPageDirectory = `docs/pages/${productName}/react-${componentName}/`;
+      const componentPageDirectory = `docs/pages/${productName}-ui/react-${componentName}/`;
       if (!fs.existsSync(componentPageDirectory)) {
         fs.mkdirSync(componentPageDirectory, { recursive: true });
       }

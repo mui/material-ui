@@ -75,7 +75,6 @@ export interface UseSwitchReturnValue {
   disabled: boolean;
   /**
    * If `true`, it indicates that the component is being focused using keyboard.
-   * @default false
    */
   focusVisible: boolean;
   /**

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { styled, alpha } from '@mui/material/styles';
@@ -14,19 +13,15 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
-import { pathnameToLanguage, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
-import materialPkgJson from '../../../../packages/mui-material/package.json';
-import joyPkgJson from '../../../../packages/mui-joy/package.json';
-import basePkgJson from '../../../../packages/mui-base/package.json';
-import systemPkgJson from '../../../../packages/mui-system/package.json';
 
 const savedScrollTop = {};
 
@@ -94,7 +89,8 @@ ProductDrawerButton.propTypes = {
   productName: PropTypes.string,
 };
 
-function ProductIdentifier({ name, metadata, versionSelector }) {
+function ProductIdentifier(props) {
+  const { name, metadata, versionSelector } = props;
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Typography
@@ -119,8 +115,8 @@ function ProductIdentifier({ name, metadata, versionSelector }) {
 
 ProductIdentifier.propTypes = {
   metadata: PropTypes.string,
-  name: PropTypes.string,
-  versionSelector: PropTypes.element,
+  name: PropTypes.string.isRequired,
+  versionSelector: PropTypes.element.isRequired,
 };
 
 // To match scrollMarginBottom
@@ -299,17 +295,12 @@ const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigato
 
 export default function AppNavDrawer(props) {
   const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
-  const { activePageParents, pages } = React.useContext(PageContext);
-  const router = useRouter();
+  const { activePageParents, pages, productIdentifier } = React.useContext(PageContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const userLanguage = useUserLanguage();
-  const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
   const t = useTranslate();
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
   const drawer = React.useMemo(() => {
-    const { canonicalAs } = pathnameToLanguage(router.asPath);
-
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
 
     const renderVersionSelector = (versions, sx) => {
@@ -408,129 +399,14 @@ export default function AppNavDrawer(props) {
                 }),
               })}
             >
-              <SvgMuiLogo width={30} />
+              <SvgMuiLogomark width={30} />
             </Box>
           </NextLink>
-          {canonicalAs.startsWith('/material-ui/') && (
-            <ProductIdentifier
-              name="Material UI"
-              metadata="MUI Core"
-              versionSelector={renderVersionSelector([
-                { text: `v${materialPkgJson.version}`, current: true },
-                {
-                  text: 'v4',
-                  href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
-                },
-                {
-                  text: 'View all versions',
-                  href: `https://mui.com${languagePrefix}/versions/`,
-                },
-              ])}
-            />
-          )}
-          {canonicalAs.startsWith('/joy-ui/') && (
-            <ProductIdentifier
-              name="Joy UI"
-              metadata="MUI Core"
-              versionSelector={renderVersionSelector([
-                { text: `v${joyPkgJson.version}`, current: true },
-              ])}
-            />
-          )}
-          {canonicalAs.startsWith('/system/') && (
-            <ProductIdentifier
-              name="MUI System"
-              metadata="MUI Core"
-              versionSelector={renderVersionSelector([
-                { text: `v${systemPkgJson.version}`, current: true },
-                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
-                {
-                  text: 'View all versions',
-                  href: `https://mui.com${languagePrefix}/versions/`,
-                },
-              ])}
-            />
-          )}
-          {canonicalAs.startsWith('/base/') && (
-            <ProductIdentifier
-              name="Base UI"
-              metadata="MUI Core"
-              versionSelector={renderVersionSelector([
-                { text: `v${basePkgJson.version}`, current: true },
-              ])}
-            />
-          )}
-          {canonicalAs.startsWith('/x/introduction/') && (
-            <ProductIdentifier name="Advanced components" metadata="MUI X" />
-          )}
-          {(canonicalAs.startsWith('/x/react-data-grid/') ||
-            canonicalAs.startsWith('/x/api/data-grid/')) && (
-            <ProductIdentifier
-              name="Data Grid"
-              metadata="MUI X"
-              versionSelector={renderVersionSelector([
-                // DATA_GRID_VERSION is set from the X repo
-                {
-                  text: 'v6',
-                  ...(process.env.DATA_GRID_VERSION.startsWith('6')
-                    ? {
-                        text: `v${process.env.DATA_GRID_VERSION}`,
-                        current: true,
-                      }
-                    : {
-                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
-                      }),
-                },
-                {
-                  text: 'v5',
-                  ...(process.env.DATA_GRID_VERSION.startsWith('5')
-                    ? {
-                        text: `v${process.env.DATA_GRID_VERSION}`,
-                        current: true,
-                      }
-                    : {
-                        href: `https://v5.mui.com${languagePrefix}/components/data-grid/`,
-                      }),
-                },
-                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
-              ])}
-            />
-          )}
-          {(canonicalAs.startsWith('/x/react-date-pickers/') ||
-            canonicalAs.startsWith('/x/api/date-pickers/')) && (
-            <ProductIdentifier
-              name="Date pickers"
-              metadata="MUI X"
-              versionSelector={renderVersionSelector([
-                // DATE_PICKERS_VERSION is set from the X repo
-                {
-                  ...(process.env.DATE_PICKERS_VERSION.startsWith('6')
-                    ? {
-                        text: `v${process.env.DATE_PICKERS_VERSION}`,
-                        current: true,
-                      }
-                    : {
-                        text: `v6`,
-                        href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
-                      }),
-                },
-                {
-                  ...(process.env.DATE_PICKERS_VERSION.startsWith('5')
-                    ? {
-                        text: `v${process.env.DATE_PICKERS_VERSION}`,
-                        current: true,
-                      }
-                    : {
-                        text: `v5`,
-                        href: `https://v5.mui.com${languagePrefix}/components/data-grid/`,
-                      }),
-                },
-              ])}
-            />
-          )}
-          {canonicalAs.startsWith('/toolpad/') && (
-            <ProductIdentifier name="Toolpad" metadata="MUI Toolpad" />
-          )}
+          <ProductIdentifier
+            name={productIdentifier.name}
+            metadata={productIdentifier.metadata}
+            versionSelector={renderVersionSelector(productIdentifier.versions)}
+          />
         </ToolbarDiv>
         <Divider
           sx={(theme) => ({
@@ -544,7 +420,16 @@ export default function AppNavDrawer(props) {
         {navItems}
       </React.Fragment>
     );
-  }, [activePageParents, pages, onClose, languagePrefix, t, anchorEl, setAnchorEl, router.asPath]);
+  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (!productIdentifier) {
+      throw new Error('docs-infra: missing productIdentifier in PageContext');
+    }
+    if (!productIdentifier.versions) {
+      throw new Error('docs-infra: missing productIdentifier.versions in PageContext');
+    }
+  }
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>

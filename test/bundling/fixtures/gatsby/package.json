@@ -16,7 +16,7 @@
     "@mui/styles": "5.10.3",
     "@mui/system": "5.10.5",
     "@mui/utils": "5.10.3",
-    "gatsby": "4.23.0",
+    "gatsby": "4.25.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0"
