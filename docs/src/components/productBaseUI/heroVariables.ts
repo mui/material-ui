@@ -14,7 +14,7 @@ const sleek = {
   '--Input-border': 'var(--muidocs-palette-primary-400)',
   '--Input-focus-border': '0 0 0 3px var(--muidocs-palette-primary-200)',
   '--Slider-thumb-focus': 'rgba(0, 127, 255, 0.2)',
-  '--formControl-shadow': '0px 2px 2px rgb(205 210 215 / 5%)',
+  '--formControl-shadow': '0px 2px 2px rgb(205 210 215 / 20%)',
   '[data-mui-color-scheme="dark"] &': {
     // dark tokens
     '--color-primary': 'var(--muidocs-palette-primary-light)',
@@ -78,7 +78,7 @@ const playful = {
   // tokens
   '--color-primary': 'var(--muidocs-palette-primary-main)',
   '--color-primary-light': 'var(--muidocs-palette-primary-100)',
-  '--border-radius': '999px',
+  '--border-radius': '24px',
   '--border-width': '2px',
   '--border-color': 'var(--muidocs-palette-primary-200)',
   '--avatar-radius': '999px',
