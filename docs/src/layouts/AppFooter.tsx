@@ -134,15 +134,20 @@ export default function AppFooter(props: AppFooterProps) {
       <Divider />
       <Box
         sx={{
-          my: 3,
+          my: 6,
           display: { xs: 'block', sm: 'flex' },
           alignItems: { sm: 'center' },
           justifyContent: { sm: 'space-between' },
         }}
       >
-        <Link href="/" aria-label="Go to homepage">
-          <SvgMuiLogotype height={28} width={91} />
-        </Link>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Link href="/" aria-label="Go to homepage">
+            <SvgMuiLogotype height={28} width={91} />
+          </Link>
+          <Typography color="text.tertiary" variant="caption" fontWeight={400}>
+            Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
+          </Typography>
+        </Box>
         <Box sx={{ mt: { xs: 3, sm: 0 } }}>
           <Stack spacing={2} direction="row">
             <IconButton
@@ -210,9 +215,6 @@ export default function AppFooter(props: AppFooterProps) {
           </Stack>
         </Box>
       </Box>
-      <Typography color="text.secondary" variant="body2" sx={{ mb: 4 }}>
-        Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
-      </Typography>
     </Container>
   );
 }

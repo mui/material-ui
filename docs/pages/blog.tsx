@@ -53,12 +53,18 @@ function PostPreview(props: BlogPost) {
                 background: (theme.vars || theme).palette.primary[50],
                 border: '1px solid',
                 borderColor: (theme.vars || theme).palette.primary[100],
+                '&:hover': {
+                  background: (theme.vars || theme).palette.primary[50],
+                },
               }),
               (theme) =>
                 theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[100],
-                  background: alpha(theme.palette.primary[900], 0.5),
+                  background: alpha(theme.palette.primary[900], 0.4),
                   borderColor: alpha(theme.palette.primary[800], 0.5),
+                  '&:hover': {
+                    background: alpha(theme.palette.primary[900], 0.4),
+                  },
                 }),
             ]}
           />
@@ -99,7 +105,7 @@ function PostPreview(props: BlogPost) {
                 width: 28,
                 height: 28,
                 border: 3,
-                borderColor: (theme.vars || theme).palette.grey[100],
+                borderColor: '#FFF',
                 backgroundColor: (theme.vars || theme).palette.grey[100],
                 color: (theme.vars || theme).palette.grey[800],
                 fontSize: theme.typography.pxToRem(13),
@@ -271,7 +277,13 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           })}
         >
           <Section bg="transparent" cozy>
-            <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
+            <Typography
+              variant="body2"
+              color="primary.main"
+              fontWeight="bold"
+              textAlign="center"
+              gutterBottom
+            >
               Blog
             </Typography>
             <Typography
@@ -400,6 +412,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                     <Chip
                       key={tag}
                       variant={selected ? 'filled' : 'outlined'}
+                      color={selected ? 'primary' : undefined}
                       {...(selected
                         ? {
                             label: tag,
