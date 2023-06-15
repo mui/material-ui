@@ -27,9 +27,7 @@ export default function AppsMenu() {
         variant="plain"
         color="neutral"
         onClick={() => {
-          if (!open) {
-            setOpen(true);
-          }
+          setOpen(!open);
         }}
         sx={{ borderRadius: 40 }}
       >

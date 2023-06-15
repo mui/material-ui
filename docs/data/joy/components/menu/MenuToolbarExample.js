@@ -160,9 +160,7 @@ export default function MenuToolbarExample() {
         <MenuButton
           open={menuIndex === 0}
           onOpen={() => {
-            if (menuIndex === null) {
-              setMenuIndex(0);
-            }
+            setMenuIndex((prevMenuIndex) => (prevMenuIndex === null ? 0 : null));
           }}
           onKeyDown={createHandleButtonKeyDown(0)}
           onMouseEnter={() => {
@@ -210,9 +208,7 @@ export default function MenuToolbarExample() {
         <MenuButton
           open={menuIndex === 1}
           onOpen={() => {
-            if (menuIndex === null) {
-              setMenuIndex(1);
-            }
+            setMenuIndex((prevMenuIndex) => (prevMenuIndex === null ? 1 : null));
           }}
           onKeyDown={createHandleButtonKeyDown(1)}
           onMouseEnter={() => {
@@ -256,9 +252,7 @@ export default function MenuToolbarExample() {
         <MenuButton
           open={menuIndex === 2}
           onOpen={() => {
-            if (menuIndex === null) {
-              setMenuIndex(2);
-            }
+            setMenuIndex((prevMenuIndex) => (prevMenuIndex === null ? 2 : null));
           }}
           onKeyDown={createHandleButtonKeyDown(2)}
           onMouseEnter={() => {

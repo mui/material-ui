@@ -27,9 +27,7 @@ export default function SelectedMenu() {
         variant="outlined"
         color="neutral"
         onClick={() => {
-          if (!open) {
-            setOpen(true);
-          }
+          setOpen(!open);
         }}
         startDecorator={<Apps />}
       >

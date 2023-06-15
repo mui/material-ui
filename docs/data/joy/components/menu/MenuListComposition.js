@@ -40,9 +40,7 @@ export default function MenuListComposition() {
         variant="outlined"
         color="neutral"
         onClick={() => {
-          if (!open) {
-            setOpen(true);
-          }
+          setOpen(!open);
         }}
         sx={{ borderRadius: 0 }}
       >

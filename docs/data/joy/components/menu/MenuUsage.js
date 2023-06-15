@@ -66,9 +66,7 @@ export default function MenuUsage() {
             variant="outlined"
             color="neutral"
             onClick={() => {
-              if (!open) {
-                setOpen(true);
-              }
+              setOpen(!open);
             }}
             onKeyDown={handleButtonKeyDown}
           >
