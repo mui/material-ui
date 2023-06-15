@@ -101,6 +101,7 @@ const blue = {
   500: '#007FFF',
   700: '#0059B2',
   800: '#004C99',
+  900: '#003A75',
 };
 
 const TriggerButton = styled('button')(
@@ -113,13 +114,18 @@ const TriggerButton = styled('button')(
   border-radius: 12px;
   padding: 6px 12px;
   line-height: 1.5;
-  background: transparent;
+  background: ${theme.palette.mode === 'dark' ? blue[900] : '#FFF'};
   border: 1px solid ${theme.palette.mode === 'dark' ? blue[800] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
+  box-shadow: ${
+    theme.palette.mode === 'dark'
+      ? '0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px 4px 4px rgba(0, 0, 0, 0.1)'
+      : '0px 2px 2px rgba(205, 210, 215, 0.2), inset 0px 4px 4px rgba(205, 210, 215, 0.1)'
+  };
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+    background: ${theme.palette.mode === 'dark' ? blue[800] : grey[50]};
+    border-color: ${theme.palette.mode === 'dark' ? blue[700] : grey[300]};
   }
 
   &:focus-visible {
