@@ -47,7 +47,6 @@ function PrefetchImages() {
     return {
       loading: 'lazy' as const,
       width: 100,
-      height: 100,
       src: `/static/branding/mui-x/${component}-${mode}${num}.png`,
     };
   }
@@ -56,9 +55,7 @@ function PrefetchImages() {
       sx={{
         width: 0,
         height: 0,
-        position: 'fixed',
-        zIndex: -1,
-        top: -1000,
+        visibility: 'hidden',
         '& > img': {
           position: 'absolute',
         },

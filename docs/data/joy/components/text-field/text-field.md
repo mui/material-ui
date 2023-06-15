@@ -62,7 +62,7 @@ Replace the `TextField` with composition:
 +  <FormLabel>
 +    Label
 +  </FormLabel>
-+  <JoyInput
++  <Input
 +    placeholder="Placeholder"
 +    name="Name"
 +    type="tel"

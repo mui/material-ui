@@ -44,7 +44,7 @@ defaults: &defaults
     AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:14.21
+    - image: cimg/node:18.16
 
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
@@ -261,7 +261,7 @@ jobs:
           name: Tests TypeScript definitions
           command: yarn typescript:ci
       - run:
-          name: Test module augmenation
+          name: Test module augmentation
           command: |
             yarn workspace @mui/material typescript:module-augmentation
             yarn workspace @mui/base typescript:module-augmentation
@@ -672,7 +672,7 @@ jobs:
             DANGER_COMMAND: prepareBundleSizeReport
       - run:
           name: build @mui packages
-          command: yarn lerna run --ignore @mui/icons-material --parallel --scope "@mui/*" build
+          command: yarn lerna run --ignore @mui/icons-material --concurrency 8 --scope "@mui/*" build
       - run:
           name: create @mui/material canary distributable
           command: |
