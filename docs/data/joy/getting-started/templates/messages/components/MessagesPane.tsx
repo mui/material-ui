@@ -13,7 +13,6 @@ type MessagesPaneProps = {
 };
 
 export default function MessagesPane({ chat }: MessagesPaneProps) {
-  const [textAreaHeight, setTextAreaHeight] = React.useState(112);
   const [chatMessages, setChatMessages] = React.useState(chat.messages);
   const [textAreaValue, setTextAreaValue] = React.useState('');
 
@@ -21,14 +20,12 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
     setChatMessages(chat.messages);
   }, [chat.messages]);
 
-  const handleHeightChange = (height: number) => {
-    setTextAreaHeight(height);
-  };
   return (
     <Sheet
       sx={{
         height: { xs: 'calc(100dvh - var(--Header-height))', lg: '100dvh' },
-        overflowY: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
       <MessagesPaneHeader sender={chat.sender} />
@@ -36,9 +33,10 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
       <Box
         sx={{
           display: 'flex',
-          height: `calc(100dvh - ${textAreaHeight}px - 113px - var(--Header-height))`,
-          px: { xs: 2, sm: 3, md: 4 },
-          py: 3,
+          flex: 1,
+          minHeight: 0,
+          px: 2,
+          py: 2.5,
           overflowY: 'scroll',
           flexDirection: 'column-reverse',
         }}
@@ -67,7 +65,6 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
       </Box>
 
       <MessageInput
-        onHeightChange={handleHeightChange}
         textAreaValue={textAreaValue}
         setTextAreaValue={setTextAreaValue}
         onSubmit={() => {

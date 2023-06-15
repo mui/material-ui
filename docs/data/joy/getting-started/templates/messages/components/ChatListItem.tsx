@@ -39,46 +39,41 @@ export default function ChatListItem({
           variant={selected ? 'soft' : 'plain'}
           color="neutral"
           sx={{
-            p: { xs: 1, md: 2 },
+            flexDirection: 'column',
+            alignItems: 'initial',
+            gap: 1,
+            fontWeight: 'normal',
           }}
         >
-          <Stack spacing={{ xs: 1, md: 2 }} flex={1}>
-            <Stack direction="row" justifyContent="space-between" flex={1}>
-              <Stack direction="row">
-                <Box width={20} display="flex" alignItems="center">
-                  {messages[0].unread && (
-                    <CircleIcon sx={{ fontSize: 10 }} color="primary" />
-                  )}
-                </Box>
-
-                <AvatarWithStatus online={sender.online} src={sender.avatar} />
-
-                <Box ml={1.5}>
-                  <Typography fontSize="sm" fontWeight="lg">
-                    {sender.name}
-                  </Typography>
-                  <Typography level="body2">{sender.username}</Typography>
-                </Box>
-              </Stack>
+          <Stack direction="row" spacing={1.5}>
+            <AvatarWithStatus online={sender.online} src={sender.avatar} />
+            <Box sx={{ flex: 1 }}>
+              <Typography fontSize="sm" fontWeight="lg">
+                {sender.name}
+              </Typography>
+              <Typography level="body2">{sender.username}</Typography>
+            </Box>
+            <Box sx={{ lineHeight: 1, textAlign: 'right' }}>
               <Typography level="body2" display={{ xs: 'none', md: 'block' }} noWrap>
                 5 mins ago
               </Typography>
-            </Stack>
-
-            <Typography
-              level="body2"
-              pl={2.5}
-              sx={{
-                display: '-webkit-box',
-                WebkitLineClamp: '2',
-                WebkitBoxOrient: 'vertical',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}
-            >
-              {messages[0].content}
-            </Typography>
+              {messages[0].unread && (
+                <CircleIcon sx={{ fontSize: 10 }} color="primary" />
+              )}
+            </Box>
           </Stack>
+          <Typography
+            level="body2"
+            sx={{
+              display: '-webkit-box',
+              WebkitLineClamp: '2',
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
+            {messages[0].content}
+          </Typography>
         </ListItemButton>
       </ListItem>
       <ListDivider sx={{ margin: 0 }} />

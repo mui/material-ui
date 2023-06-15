@@ -53,6 +53,11 @@ export default extendTheme({
         },
       },
     },
+    JoyStack: {
+      defaultProps: {
+        useFlexGap: true,
+      },
+    },
   },
   fontFamily: {
     display: "'Inter', var(--joy-fontFamily-fallback)",

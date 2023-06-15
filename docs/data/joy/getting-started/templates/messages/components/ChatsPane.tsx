@@ -6,6 +6,7 @@ import { Box, Chip, IconButton, Input } from '@mui/joy';
 import List from '@mui/joy/List';
 import ChatListItem from './ChatListItem';
 import { ChatProps } from '../types';
+import { toggleMessagesPane } from '../utils';
 
 type ChatsPaneProps = {
   chats: ChatProps[];
@@ -27,14 +28,7 @@ export default function ChatsPane({
         overflowY: 'auto',
       }}
     >
-      <Stack
-        direction="row"
-        spacing={2}
-        alignItems="center"
-        justifyContent="space-between"
-        py={{ xs: 1, md: 3 }}
-        px={{ xs: 1, md: 2.5 }}
-      >
+      <Stack direction="row" spacing={1} alignItems="center" p={2} pb={1.5}>
         <Typography
           fontSize={{ xs: 'md', md: 'lg' }}
           fontWeight="lg"
@@ -48,6 +42,7 @@ export default function ChatsPane({
               40
             </Chip>
           }
+          sx={{ mr: 'auto' }}
         >
           Messages
         </Typography>
@@ -55,10 +50,24 @@ export default function ChatsPane({
         <IconButton variant="outlined" aria-label="edit" color="neutral" size="sm">
           <i data-feather="edit" />
         </IconButton>
+
+        <IconButton
+          variant="outlined"
+          aria-label="edit"
+          color="neutral"
+          size="sm"
+          onClick={() => {
+            toggleMessagesPane();
+          }}
+          sx={{ display: { sm: 'none' } }}
+        >
+          <i data-feather="x" />
+        </IconButton>
       </Stack>
 
-      <Box px={{ xs: 1, md: 2 }} pb={1.5}>
+      <Box px={2} pb={1.5}>
         <Input
+          size="sm"
           startDecorator={<i data-feather="search" />}
           placeholder="Search"
           aria-label="Search"
@@ -66,11 +75,9 @@ export default function ChatsPane({
       </Box>
       <List
         sx={{
-          minWidth: '100%',
-          '--ListItemDecorator-size': '48px',
-          '--ListItem-paddingLeft': '1.5rem',
-          '--ListItem-paddingRight': '1rem',
           py: 0,
+          '--ListItem-paddingY': '0.75rem',
+          '--ListItem-paddingX': '1rem',
         }}
       >
         {chats.map((chat) => (

@@ -6,48 +6,31 @@ import Textarea from '@mui/joy/Textarea';
 import { IconButton, Stack } from '@mui/joy';
 
 export type MessageInputProps = {
-  onHeightChange?: (height: number) => void;
   textAreaValue: string;
   setTextAreaValue: (value: string) => void;
   onSubmit: () => void;
 };
 
 export default function MessageInput({
-  onHeightChange,
   textAreaValue,
   setTextAreaValue,
   onSubmit,
 }: MessageInputProps) {
-  const [textAreaHeight, setTextAreaHeight] = React.useState(112);
   const textAreaRef = React.useRef<HTMLDivElement>(null);
-
-  const handleHeightChange = () => {
-    if (textAreaRef.current) {
-      const newHeight = textAreaRef.current.offsetHeight;
-      if (newHeight !== textAreaHeight) {
-        setTextAreaHeight(newHeight);
-        if (onHeightChange) {
-          onHeightChange(newHeight);
-        }
-      }
+  const handleClick = () => {
+    if (textAreaValue.trim() !== '') {
+      onSubmit();
+      setTextAreaValue('');
     }
   };
-
-  React.useEffect(() => {
-    if (textAreaRef.current) {
-      setTextAreaHeight(textAreaRef.current.offsetHeight);
-    }
-  }, []);
-
   return (
-    <Box sx={{ px: 3.25, pb: 3 }}>
+    <Box sx={{ px: 2, pb: 3 }}>
       <FormControl>
         <Textarea
           placeholder="Type something here…"
           aria-label="Message"
           ref={textAreaRef}
           onChange={(e) => {
-            handleHeightChange();
             setTextAreaValue(e.target.value);
           }}
           value={textAreaValue}
@@ -67,18 +50,14 @@ export default function MessageInput({
               <IconButton variant="plain" color="neutral">
                 <i data-feather="more-horizontal" />
               </IconButton>
-              <Button
-                onClick={() => {
-                  if (textAreaValue.trim() !== '') {
-                    onSubmit();
-                    setTextAreaValue('');
-                  }
-                }}
-              >
-                Send
-              </Button>
+              <Button onClick={handleClick}>Send</Button>
             </Stack>
           }
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
+              handleClick();
+            }
+          }}
         />
       </FormControl>
     </Box>

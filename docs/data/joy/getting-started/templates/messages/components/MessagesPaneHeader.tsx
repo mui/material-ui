@@ -22,13 +22,14 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
         borderBottom: '1px solid',
         borderColor: 'divider',
       }}
-      py={{ xs: 2, md: 2.5 }}
-      px={{ xs: 1, md: 3 }}
+      py={{ xs: 2, md: 2 }}
+      px={{ xs: 1, md: 2 }}
     >
       <Stack direction="row" spacing={{ xs: 1, md: 2 }} alignItems="center">
         <IconButton
           variant="plain"
           color="neutral"
+          size="sm"
           sx={{
             display: { xs: 'inline-flex', sm: 'none' },
           }}

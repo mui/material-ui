@@ -5,36 +5,13 @@ import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import CelebrationOutlinedIcon from '@mui/icons-material/CelebrationOutlined';
-import CelebrationIcon from '@mui/icons-material/Celebration';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import FileIcon from './FileIcon';
 import { MessageProps } from '../types';
 
 type ChatBubbleProps = MessageProps & {
   variant: 'sent' | 'received';
 };
-
-function ReactionButton({
-  selected,
-  onClick,
-  children,
-}: {
-  selected: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <IconButton
-      onClick={onClick}
-      color={selected ? 'primary' : 'neutral'}
-      variant="soft"
-      size="sm"
-    >
-      {children}
-    </IconButton>
-  );
-}
 
 export default function ChatBubble({
   content,
@@ -51,14 +28,14 @@ export default function ChatBubble({
     <Box maxWidth="80%" minWidth={attachment ? '80%' : 'auto'}>
       <Stack
         direction="row"
-        spacing={2}
         justifyContent="space-between"
-        alignItems="center"
+        spacing={2}
+        sx={{ mb: 0.25 }}
       >
-        <Typography fontSize="sm">
+        <Typography level="body3">
           {sender === 'You' ? sender : sender.name}
         </Typography>
-        <Typography fontSize="xs">{timestamp}</Typography>
+        <Typography level="body3">{timestamp}</Typography>
       </Stack>
       {attachment ? (
         <Sheet
@@ -66,9 +43,9 @@ export default function ChatBubble({
           sx={{
             px: 1.75,
             py: 1.25,
-            borderRadius: 'sm',
-            borderTopRightRadius: isSent ? 0 : 'sm',
-            borderTopLeftRadius: isSent ? 'sm' : 0,
+            borderRadius: 'lg',
+            borderTopRightRadius: isSent ? 0 : 'lg',
+            borderTopLeftRadius: isSent ? 'lg' : 0,
           }}
         >
           <Stack direction="row" spacing={1.5} alignItems="center">
@@ -89,11 +66,11 @@ export default function ChatBubble({
             color={isSent ? 'primary' : 'neutral'}
             variant={isSent ? 'solid' : 'soft'}
             sx={{
-              px: 1.75,
+              px: 1.25,
               py: 1.25,
-              borderRadius: 'sm',
-              borderTopRightRadius: isSent ? 0 : 'sm',
-              borderTopLeftRadius: isSent ? 'sm' : 0,
+              borderRadius: 'lg',
+              borderTopRightRadius: isSent ? 0 : 'lg',
+              borderTopLeftRadius: isSent ? 'lg' : 0,
             }}
           >
             {content}
@@ -104,26 +81,37 @@ export default function ChatBubble({
               justifyContent={isSent ? 'flex-end' : 'flex-start'}
               spacing={0.5}
               sx={{
-                position: isLiked || isCelebrated ? 'initial' : 'absolute',
-                bottom: -36,
-                right: 0,
-                left: 0,
-                pt: 0.5,
+                position: 'absolute',
+                top: '50%',
+                p: 1.5,
+                ...(isSent
+                  ? {
+                      left: 0,
+                      transform: 'translate(-100%, -50%)',
+                    }
+                  : {
+                      right: 0,
+                      transform: 'translate(100%, -50%)',
+                    }),
               }}
             >
-              <ReactionButton
-                selected={isLiked}
+              <IconButton
+                variant={isLiked ? 'soft' : 'plain'}
+                color={isLiked ? 'danger' : 'neutral'}
+                size="sm"
                 onClick={() => setIsLiked((prevState) => !prevState)}
               >
-                {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-              </ReactionButton>
+                {isLiked ? '❤️' : <FavoriteBorderIcon />}
+              </IconButton>
 
-              <ReactionButton
-                selected={isCelebrated}
+              <IconButton
+                variant={isCelebrated ? 'soft' : 'plain'}
+                color={isCelebrated ? 'warning' : 'neutral'}
+                size="sm"
                 onClick={() => setIsCelebrated((prevState) => !prevState)}
               >
-                {isCelebrated ? <CelebrationIcon /> : <CelebrationOutlinedIcon />}
-              </ReactionButton>
+                {isCelebrated ? '🎉' : <CelebrationOutlinedIcon />}
+              </IconButton>
             </Stack>
           )}
         </Box>
