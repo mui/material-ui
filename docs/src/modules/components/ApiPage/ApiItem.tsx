@@ -58,6 +58,9 @@ const Root = styled('div')(
         padding: '6px 10px',
         paddingBottom: 3,
         flexGrow: 1,
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
       },
       '& .MuiApi-item-note': {
         padding: '2px 6px',
@@ -225,6 +228,7 @@ function ApiItem(props: ApiItemProps) {
           dangerouslySetInnerHTML={{
             __html: (description ?? '').replace(/<br>/g, ' '),
           }}
+          title={(description ?? '').replace(/<br>/g, ' ')}
         />
         {note && <span className="MuiApi-item-note">{note}</span>}
       </div>
