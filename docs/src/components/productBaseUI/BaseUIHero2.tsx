@@ -29,7 +29,7 @@ import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
 import SmartButtonRounded from '@mui/icons-material/SmartButtonRounded';
 import InputRounded from '@mui/icons-material/InputRounded';
 import PlaylistAddCheckRounded from '@mui/icons-material/PlaylistAddCheckRounded';
-import ToggleonRounded from '@mui/icons-material/ToggleonRounded';
+import ToggleOnRoundedIcon from '@mui/icons-material/ToggleOnRounded';
 import LinearScaleRounded from '@mui/icons-material/LinearScaleRounded';
 import CircleNotificationsRounded from '@mui/icons-material/CircleNotificationsRounded';
 import ReportGmailerrorredRounded from '@mui/icons-material/ReportGmailerrorredRounded';
@@ -969,7 +969,7 @@ export default function BaseUIHero() {
                   Select
                 </Option>
                 <Option value={50}>
-                  <ToggleonRounded fontSize="small" />
+                  <ToggleOnRoundedIcon fontSize="small" />
                   Switch
                 </Option>
                 <Option value={60}>
