@@ -177,7 +177,7 @@ export default function TemplateCollection() {
               </AspectRatio>
             </CardOverflow>
             <CardContent>
-              <Box sx={{ display: 'flex', gap: 1 }}>
+              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 1 }}>
                 <Typography
                   component="h3"
                   fontSize="lg"
@@ -205,7 +205,7 @@ export default function TemplateCollection() {
                     ) : null
                   }
                   slotProps={{ endDecorator: { sx: { ml: 'auto' } } }}
-                  sx={{ mb: 1, mr: 'auto' }}
+                  sx={{ mr: 'auto' }}
                 >
                   {startCase(name)}
                 </Typography>
