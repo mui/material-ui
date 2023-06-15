@@ -261,7 +261,7 @@ jobs:
           name: Tests TypeScript definitions
           command: yarn typescript:ci
       - run:
-          name: Test module augmenation
+          name: Test module augmentation
           command: |
             yarn workspace @mui/material typescript:module-augmentation
             yarn workspace @mui/base typescript:module-augmentation
