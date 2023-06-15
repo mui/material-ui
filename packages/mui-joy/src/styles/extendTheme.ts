@@ -136,7 +136,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     outlinedActiveBg: getCssVarColor(`palette-${color}-200`),
     outlinedActiveBorder: getCssVarColor(`palette-${color}-300`),
     outlinedDisabledColor: getCssVarColor(`palette-neutral-700`),
-    outlinedDisabledBorder: getCssVarColor(`palette-${color}-100`),
+    outlinedDisabledBorder: getCssVarColor(`palette-neutral-100`),
 
     softColor: getCssVarColor(`palette-${color}-700`),
     softBg: getCssVarColor(`palette-${color}-100`),
@@ -168,7 +168,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     outlinedActiveBg: getCssVarColor(`palette-${color}-900`),
     outlinedActiveBorder: getCssVarColor(`palette-${color}-700`),
     outlinedDisabledColor: getCssVarColor(`palette-neutral-400`),
-    outlinedDisabledBorder: getCssVarColor(`palette-${color}-800`),
+    outlinedDisabledBorder: getCssVarColor(`palette-neutral-800`),
 
     softColor: getCssVarColor(`palette-${color}-200`),
     softBg: getCssVarColor(`palette-${color}-800`),
