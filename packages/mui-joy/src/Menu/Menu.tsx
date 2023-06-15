@@ -153,7 +153,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     [modifiersProp],
   );
 
-  if (anchorEl) {
+  if (anchorEl && process.env.NODE_ENV === 'development') {
     let ariaControls = null;
     if ('getAttribute' in anchorEl) {
       ariaControls = anchorEl.getAttribute('aria-controls');
