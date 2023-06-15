@@ -4,6 +4,8 @@ import NextLink from 'next/link';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
+import CardOverflow from '@mui/joy/CardOverflow';
 import Chip from '@mui/joy/Chip';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
@@ -116,7 +118,6 @@ export default function TemplateCollection() {
             sx={(theme) => ({
               bgcolor: 'initial',
               boxShadow: 'none',
-              p: 0,
               overflow: 'auto',
               transition: 'border-color 0.3s, transform 0.2s, box-shadow 0.4s',
               '&:hover': {
@@ -130,57 +131,44 @@ export default function TemplateCollection() {
               },
             })}
           >
-            <AspectRatio
-              ratio="2"
-              variant="plain"
-              sx={{
-                borderRadius: 0,
-                borderBottom: '1px solid',
-                borderColor: 'divider',
-              }}
-            >
-              <Box
-                sx={(theme) => ({
-                  background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}.jpg)`,
-                  transition: '0.3s',
-                  [theme.getColorSchemeSelector('dark')]: {
-                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}-dark.jpg)`,
-                  },
-                })}
-              />
-              <NextLink
-                href={`/joy-ui/getting-started/templates/${name}/`}
-                passHref
-                legacyBehavior
-              >
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <Link
-                  tabIndex={-1}
-                  overlay
-                  aria-hidden
-                  data-ga-event-category="joy-template"
-                  data-ga-event-label={name}
-                  data-ga-event-action="preview-img"
-                />
-              </NextLink>
-            </AspectRatio>
-            <Box
-              sx={{
-                p: 2,
-                gap: 0.5,
-                display: 'flex',
-                alignItems: 'start',
-                flexWrap: 'wrap',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Box
+            <CardOverflow>
+              <AspectRatio
+                ratio="2"
+                variant="plain"
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'start',
+                  borderRadius: 0,
+                  borderBottom: '1px solid',
+                  borderColor: 'divider',
                 }}
               >
+                <Box
+                  sx={(theme) => ({
+                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}.jpg)`,
+                    transition: '0.3s',
+                    [theme.getColorSchemeSelector('dark')]: {
+                      background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}-dark.jpg)`,
+                    },
+                  })}
+                />
+                <NextLink
+                  href={`/joy-ui/getting-started/templates/${name}/`}
+                  passHref
+                  legacyBehavior
+                >
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                  <Link
+                    tabIndex={-1}
+                    overlay
+                    aria-hidden
+                    data-ga-event-category="joy-template"
+                    data-ga-event-label={name}
+                    data-ga-event-action="preview-img"
+                  />
+                </NextLink>
+              </AspectRatio>
+            </CardOverflow>
+            <CardContent>
+              <Box sx={{ display: 'flex', gap: 1 }}>
                 <Typography
                   component="h3"
                   fontSize="lg"
@@ -208,17 +196,10 @@ export default function TemplateCollection() {
                     ) : null
                   }
                   slotProps={{ endDecorator: { sx: { ml: 'auto' } } }}
-                  sx={{ mb: 1 }}
+                  sx={{ mb: 1, mr: 'auto' }}
                 >
                   {startCase(name)}
                 </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  gap: 1,
-                }}
-              >
                 <NextLink
                   href={`/joy-ui/getting-started/templates/${name}/`}
                   passHref
@@ -264,7 +245,14 @@ export default function TemplateCollection() {
                   </SvgIcon>
                 </IconButton>
               </Box>
-              <Box sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
+              <Box
+                sx={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                }}
+              >
                 {author && (
                   <Typography level="body2" fontWeight="md">
                     Built by{' '}
@@ -295,7 +283,7 @@ export default function TemplateCollection() {
                   </React.Fragment>
                 )}
               </Box>
-            </Box>
+            </CardContent>
           </Card>
         );
       })}

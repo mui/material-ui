@@ -42,6 +42,11 @@ import {
 } from '../ButtonGroup/ButtonGroupProps';
 import { CardProps, CardOwnerState, CardSlot } from '../Card/CardProps';
 import {
+  CardActionsProps,
+  CardActionsOwnerState,
+  CardActionsSlot,
+} from '../CardActions/CardActionsProps';
+import {
   CardContentProps,
   CardContentOwnerState,
   CardContentSlot,
@@ -254,6 +259,10 @@ export interface Components<Theme = unknown> {
   JoyCard?: {
     defaultProps?: Partial<CardProps>;
     styleOverrides?: OverridesStyleRules<CardSlot, CardOwnerState, Theme>;
+  };
+  JoyCardActions?: {
+    defaultProps?: Partial<CardActionsProps>;
+    styleOverrides?: OverridesStyleRules<CardActionsSlot, CardActionsOwnerState, Theme>;
   };
   JoyCardContent?: {
     defaultProps?: Partial<CardContentProps>;
