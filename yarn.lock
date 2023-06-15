@@ -1956,21 +1956,22 @@
     prop-types "^15.8.1"
     reselect "^4.1.8"
 
-"@mui/x-date-pickers-pro@https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-date-pickers-pro":
+"@mui/x-date-pickers-pro@https://pkg.csb.dev/mui/mui-x/commit/c2c24f1f/@mui/x-date-pickers-pro":
   version "6.7.0"
-  resolved "https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-date-pickers-pro#46a819c228f3afe8c4f87995bf46a5af9221a57b"
+  resolved "https://pkg.csb.dev/mui/mui-x/commit/c2c24f1f/@mui/x-date-pickers-pro#c59a605c16983178b5b2c817efe85339dad8b7a1"
   dependencies:
     "@babel/runtime" "^7.21.0"
     "@mui/utils" "^5.13.1"
-    "@mui/x-date-pickers" "https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-date-pickers"
-    "@mui/x-license-pro" "https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-license-pro"
+    "@mui/x-date-pickers" "https://pkg.csb.dev/mui/mui-x/commit/c2c24f1f/@mui/x-date-pickers"
+    "@mui/x-license-pro" "https://pkg.csb.dev/mui/mui-x/commit/c2c24f1f/@mui/x-license-pro"
     clsx "^1.2.1"
     prop-types "^15.8.1"
     react-transition-group "^4.4.5"
 
-"@mui/x-date-pickers@https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-date-pickers":
+"@mui/x-date-pickers@https://pkg.csb.dev/mui/mui-x/commit/c2c24f1f/@mui/x-date-pickers":
   version "6.7.0"
-  resolved "https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-date-pickers#cdf01c14b7da580ec2d9a65232eb634c7d90311a"
+  uid "5f60f67d1b5f38535009bab73ccce9bd25014934"
+  resolved "https://pkg.csb.dev/mui/mui-x/commit/c2c24f1f/@mui/x-date-pickers#5f60f67d1b5f38535009bab73ccce9bd25014934"
   dependencies:
     "@babel/runtime" "^7.21.0"
     "@mui/utils" "^5.13.1"
@@ -1987,9 +1988,9 @@
     "@babel/runtime" "^7.21.0"
     "@mui/utils" "^5.13.1"
 
-"@mui/x-license-pro@https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-license-pro":
+"@mui/x-license-pro@https://pkg.csb.dev/mui/mui-x/commit/c2c24f1f/@mui/x-license-pro":
   version "6.6.0"
-  resolved "https://pkg.csb.dev/mui/mui-x/commit/ca2ef92e/@mui/x-license-pro#0e3d7c6e04d2b1b5d0a255ea3a8fb29af3377563"
+  resolved "https://pkg.csb.dev/mui/mui-x/commit/c2c24f1f/@mui/x-license-pro#d5d80cf5f32894c0c26d8e616f6e1abcf2a2442d"
   dependencies:
     "@babel/runtime" "^7.21.0"
     "@mui/utils" "^5.13.1"

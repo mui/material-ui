@@ -33,8 +33,8 @@ export default function ThemeDatePicker() {
               '& .MuiDateCalendar-root': {
                 width: '100%',
                 '& .MuiPickersCalendarHeader-root': {
-                  marginLeft: '10px',
-                  marginRight: '10px',
+                  paddingLeft: '24px',
+                  paddingRight: '10px',
                 },
                 '& .MuiYearCalendar-root': {
                   width: '100%',
