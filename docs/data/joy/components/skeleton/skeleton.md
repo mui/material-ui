@@ -13,9 +13,9 @@ githubLabel: 'component: skeleton'
 If you're in need of it, please upvote [**this GitHub issue**](https://github.com/mui/material-ui/issues/36105) to help us prioritize the next batch of new components.
 :::
 
-## Using CSS animation
+## Using CSS animations
 
-In the meantime, you can build your own Skeleton with styled component and CSS animation.
+In the meantime, you can build your own Skeleton with a styled component and CSS animations.
 
 This demo shows how to do it with the existing Joy UI `styled` and emotion `keyframes` APIs.
 
