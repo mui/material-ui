@@ -152,23 +152,19 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     [modifiersProp],
   );
 
-  if (anchorEl && process.env.NODE_ENV === 'development') {
+  if (anchorEl && process.env.NODE_ENV !== 'production') {
     let ariaControls = null;
-    if ('getAttribute' in anchorEl) {
-      ariaControls = anchorEl.getAttribute('aria-controls');
-    } else if (typeof anchorEl === 'function') {
-      const element = anchorEl();
-      if ('getAttribute' in element) {
-        ariaControls = element.getAttribute('aria-controls');
-      } else {
-        ariaControls = element.contextElement?.getAttribute('aria-controls');
-      }
+    const resolvedAnchorEl = typeof anchorEl === 'function' ? anchorEl() : anchorEl;
+    if ('getAttribute' in resolvedAnchorEl) {
+      ariaControls = resolvedAnchorEl.getAttribute('aria-controls');
     } else {
-      ariaControls = anchorEl.contextElement?.getAttribute('aria-controls');
+      ariaControls = resolvedAnchorEl.contextElement?.getAttribute('aria-controls');
     }
 
-    if (!ariaControls) {
-      console.warn('MUI: anchorEl is expected to have valid value for aria-controls');
+    if (props.id && ariaControls && props.id !== ariaControls) {
+      console.error(
+        `MUI: the anchorEl must have [aria-controls="${props.id}"] but got [aria-controls="${ariaControls}"].`,
+      );
     }
   }
 

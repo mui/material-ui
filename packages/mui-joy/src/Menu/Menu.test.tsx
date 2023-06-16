@@ -8,6 +8,7 @@ import {
   screen,
   fireEvent,
   describeJoyColorInversion,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Menu, { menuClasses as classes } from '@mui/joy/Menu';
@@ -48,6 +49,16 @@ describe('Joy <Menu />', () => {
       portalSlot: 'root',
     },
   );
+
+  it("should show warning if `id` does not match the anchorEl's `aria-controls`", () => {
+    expect(() =>
+      render(<Menu id="foo" anchorEl={anchorEl} open data-testid="popover" />),
+    ).toErrorDev([
+      'MUI: the anchorEl must have [aria-controls="foo"] but got [aria-controls="test"].',
+      !strictModeDoubleLoggingSuppressed &&
+        'MUI: the anchorEl must have [aria-controls="foo"] but got [aria-controls="test"].',
+    ]);
+  });
 
   it('should render with `ul` by default', () => {
     render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
