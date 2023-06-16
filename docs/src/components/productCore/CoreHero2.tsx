@@ -29,11 +29,11 @@ export default function HeroPricing() {
         >
           MUI Core
         </Typography>
-        <Typography variant="h2" sx={{ maxWidth: 500, textAlign: 'center' }} gutterBottom>
-          Ready to use components, <br />
+        <Typography variant="h2" sx={{ maxWidth: 700, textAlign: 'center' }} gutterBottom>
+          Ready to use components,
           <GradientText>free forever</GradientText>
         </Typography>
-        <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 500 }}>
+        <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 700 }}>
           Get a growing list of React components, ready-to-use, free forever, and with accessibility
           always in mind. We&apos;ve built the foundational UI blocks for your design system so you
           don&apos;t have to.

@@ -27,14 +27,13 @@ const content = [
     icon: <StyleRoundedIcon color="primary" />,
     title: 'Base UI',
     description:
-      'A library of components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.',
+      'A library of components with production-ready functionality, along with low-level hooks.',
     link: '/base-ui/',
   },
   {
     icon: <StyleRoundedIcon color="primary" />,
     title: 'MUI System',
-    description:
-      'A set of CSS utilities to help you build custom designs more efficiently when working with MUI component libraries.',
+    description: 'A set of CSS utilities to help you build custom designs more efficiently when.',
     link: '/system/getting-started/overview/',
   },
 ];
@@ -42,13 +41,15 @@ const content = [
 export default function BaseUISummary() {
   return (
     <Container>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         {content.map(({ icon, title, description, link }) => (
           <Grid key={title} item xs={12} md={3}>
             <Paper
+              component={Link}
+              href={link}
               variant="outlined"
               sx={(theme) => ({
-                p: 2,
+                p: 2.5,
                 height: '100%',
                 position: 'relative',
                 borderRadius: '12px',
@@ -115,16 +116,10 @@ export default function BaseUISummary() {
               <Typography variant="body2" color="text.secondary" mb={2}>
                 {description}
               </Typography>
-              <Link
-                href={link}
-                sx={{
-                  fontSize: '0.875rem',
-                  '&:after': { content: '""', position: 'absolute', inset: 0 },
-                  '& svg': { fontSize: 20 },
-                }}
-              >
-                Learn more <ArrowForwardRoundedIcon />
-              </Link>
+              <Typography fontWeight="bold" variant="body2" color="primary">
+                Learn more{' '}
+                <ArrowForwardRoundedIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
+              </Typography>
             </Paper>
           </Grid>
         ))}
