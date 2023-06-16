@@ -29,12 +29,13 @@ export default function ProsePage() {
     <CssVarsProvider defaultMode="system">
       <Prose sx={{ maxWidth: '692px !important' }}>
         <Typography level="body-sm">Tuesday, Nov 1, 2022</Typography>
-        <Typography level="title-lg">An introduction to the MUI ecosystem</Typography>
+        <Typography level="h1">An introduction to the MUI ecosystem</Typography>
+        <br />
         <AspectRatio variant="outlined" sx={{ borderRadius: 'sm' }}>
           <img src="/static/blog/mui-product-comparison/ecosystem.png" alt="" />
         </AspectRatio>
 
-        <Typography>MUI is so much more than Material UI!</Typography>
+        <Typography level="body-lg">MUI is so much more than Material UI!</Typography>
         <Typography>
           You'll be forgiven if you thought MUI was merely shorthand for our most popular product.
           In fact, MUI as an organization was founded to meet the growing needs of the Material UI
@@ -60,8 +61,8 @@ export default function ProsePage() {
           interface.
         </Typography>
         <Typography>Read on for more details on each of our products.</Typography>
-
-        <Typography level="title-md">MUI Core</Typography>
+        <br />
+        <Typography level="h2">MUI Core</Typography>
 
         <Typography>
           The Core is MUI's foundational product line. It grew out of Material UI, and that
@@ -78,8 +79,8 @@ export default function ProsePage() {
         <Typography>
           MUI Core is open-source, and we invite you to contribute wherever you see fit!
         </Typography>
-
-        <Typography level="title-sm">Material UI</Typography>
+        <br />
+        <Typography level="h2">Material UI</Typography>
         <Typography>
           Material UI is an open-source React component library that implements Google's Material
           Design. It includes a comprehensive collection of prebuilt components that are ready for
@@ -92,8 +93,8 @@ export default function ProsePage() {
         </Typography>
 
         <Typography>Get started in the Material UI docs.</Typography>
-
-        <Typography level="title-xs">Key features</Typography>
+        <br />
+        <Typography level="h3">Key features</Typography>
         <List sx={{ pl: 2, '& > li': { display: 'list-item', listStyle: 'disc' } }}>
           <ListItem>
             <b>Material Design</b>: Your app will look and feel excellent by default, thanks to our
@@ -113,13 +114,18 @@ export default function ProsePage() {
             today.
           </ListItem>
         </List>
-
-        <Typography level="title-xs">Ideal use cases</Typography>
+        <br />
+        <Typography level="h4">Ideal use cases</Typography>
         <List sx={{ pl: 2, '& > li': { display: 'list-item', listStyle: 'disc' } }}>
           <ListItem>User interfaces that adhere closely to Material Design.</ListItem>
           <ListItem>Internal admin tools.</ListItem>
           <ListItem>Dev teams that need to ship features in hours rather than weeks.</ListItem>
         </List>
+        <Typography level="body-xs">
+          <br />
+          Copyright © 2023 Material UI SAS, trading as MUI.
+          <br />
+        </Typography>
       </Prose>
     </CssVarsProvider>
   );
