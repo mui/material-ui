@@ -20,7 +20,7 @@ In the meantime, you can build your own Drawer using Joy UI [Modal](/joy-ui/reac
 This demo shows how to construct it with the [Modal](/joy-ui/react-modal/) and [Sheet](/joy-ui/react-sheet/) components.
 
 <iframe src="https://codesandbox.io/embed/drawer-joy-ui-2s5f3w?module=%2FDrawer.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:360px; border:0; border-radius: 8px; overflow:hidden;"
+     style="width:100%; height:500px; border:0; border-radius: 8px; overflow:hidden;"
      title="Drawer - Joy UI"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"

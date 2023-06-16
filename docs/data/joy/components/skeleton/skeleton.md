@@ -20,7 +20,7 @@ In the meantime, you can build your own Skeleton with styled component and CSS a
 This demo shows how to construct it with existing Joy UI `styled` and emotion's `keyframes` API.
 
 <iframe src="https://codesandbox.io/embed/skeleton-joy-ui-c96x7d?module=%2FSkeleton.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:360px; border:0; border-radius: 8px; overflow:hidden;"
+     style="width:100%; height:500px; border:0; border-radius: 8px; overflow:hidden;"
      title="Skeleton - Joy UI"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
