@@ -14,28 +14,28 @@ const content = [
     icon: <StyleRoundedIcon color="primary" />,
     title: 'Material UI',
     description: "An open-source React component library that implements Google's Material Design.",
-    link: '/base/getting-started/overview/#base-ui-vs-material-ui',
+    link: '/material-ui/',
   },
   {
     icon: <StyleRoundedIcon color="primary" />,
     title: 'Joy UI',
     description:
       "An open-source React component library that implements MUI's own in-house design principles.",
-    link: '/base/getting-started/usage/#components-vs-hooks',
+    link: '/joy-ui/getting-started/overview/',
   },
   {
     icon: <StyleRoundedIcon color="primary" />,
     title: 'Base UI',
     description:
       'A library of components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.',
-    link: '/base/getting-started/quickstart/#components-and-hooks',
+    link: '/base-ui/',
   },
   {
     icon: <StyleRoundedIcon color="primary" />,
     title: 'MUI System',
     description:
       'A set of CSS utilities to help you build custom designs more efficiently when working with MUI component libraries.',
-    link: '/base/getting-started/quickstart/#components-and-hooks',
+    link: '/system/getting-started/overview/',
   },
 ];
 
@@ -44,11 +44,11 @@ export default function BaseUISummary() {
     <Container>
       <Grid container spacing={3}>
         {content.map(({ icon, title, description, link }) => (
-          <Grid key={title} item xs={12} md={6}>
+          <Grid key={title} item xs={12} md={3}>
             <Paper
               variant="outlined"
               sx={(theme) => ({
-                p: 4,
+                p: 2,
                 height: '100%',
                 position: 'relative',
                 borderRadius: '12px',
