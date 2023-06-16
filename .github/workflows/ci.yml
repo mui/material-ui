@@ -29,10 +29,10 @@ jobs:
         with:
           # fetch all tags which are required for `yarn release:changelog`
           fetch-depth: 0
-      - name: Use Node.js 14.x
+      - name: Use Node.js 18.x
         uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
-          node-version: 14
+          node-version: 18
           cache: 'yarn' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: yarn install
         env:
