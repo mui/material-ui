@@ -16,22 +16,21 @@ const content = [
   {
     icon: <StyleRoundedIcon color="primary" />,
     title: 'Completely unstyled',
-    description:
-      "Use any style solution to add design to these components. They're ready for your creativity.",
+    description: 'Nothing to override—start fresh with any style solution or design system.',
     link: '/base/getting-started/overview/#base-ui-vs-material-ui',
   },
   {
     icon: <PhishingRoundedIcon color="primary" />,
     title: 'Low-level hooks',
     description:
-      'Complete control over the rendered HTML structure and fine grain flexibility for component design.',
+      "When it's time to go fully custom, Base UI has you covered with low-level hooks for fine-grained flexibility in component design.",
     link: '/base/getting-started/usage/#components-vs-hooks',
   },
   {
     icon: <AccessibilityNewRounded color="primary" />,
     title: 'Accessibility',
     description:
-      'We do our best to ensure Base UI components support the latest accessibility conventions and patterns.',
+      'We take accessibility seriously. The Base UI docs are loaded with guidelines and best practices.',
     link: '/base/getting-started/quickstart/#components-and-hooks',
   },
 ];

@@ -233,21 +233,21 @@ export default function BaseUICustomization() {
               <Item
                 icon={<SvgTwinkle />}
                 title="Applying custom CSS rules"
-                description="With MUI Base, you have the freedom to decide how much you want to customize a component's structure and style."
+                description="Your CSS, your rules. With Base UI there are no styles to override, so you can start with a clean slate."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>
               <Item
                 icon={<SvgTwinkle />}
                 title="Overriding subcomponent slots"
-                description='Override the default subcomponents ("slots") using the components and/or component prop to make changes to a component&apos;s rendered HTML structure.'
+                description="Default DOM structure doesn't suit your needs? Replace any node with the element you prefer using the `slots` prop."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
                 icon={<SvgTwinkle />}
                 title="Creating custom components using hooks"
-                description="Make changes to a component's rendered HTML structure."
+                description="Base UI includes low-level hooks for adding functionality to your own fully custom-built components."
               />
             </Highlighter>
           </Group>
