@@ -91,15 +91,11 @@ export interface ModalOwnProps {
     bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
   }['bivarianceHack'];
   /**
-   * Callback function called when a transition enters.
-   *
-   * @returns {void}
+   * A function called when a transition enters.
    */
   onTransitionEnter?: () => void;
   /**
-   * Callback function called when a transition has exited.
-   *
-   * @returns {void}
+   * A function called when a transition has exited.
    */
   onTransitionExited?: () => void;
   /**

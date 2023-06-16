@@ -301,15 +301,11 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   onClose: PropTypes.func,
   /**
-   * Callback function called when a transition enters.
-   *
-   * @returns {void}
+   * A function called when a transition enters.
    */
   onTransitionEnter: PropTypes.func,
   /**
-   * Callback function called when a transition has exited.
-   *
-   * @returns {void}
+   * A function called when a transition has exited.
    */
   onTransitionExited: PropTypes.func,
   /**
