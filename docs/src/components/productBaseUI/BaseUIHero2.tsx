@@ -118,6 +118,7 @@ const StyledTab = styled('button')({
 const StyledSelectButton = styled('button')({
   width: '100%',
   maxWidth: '100%',
+  minHeight: 'calc(2 * var(--border-width, 0px) + 37px)',
   border: 'var(--border-width, 1px) solid',
   borderColor: 'var(--Select-ringColor, var(--border-color))',
   borderRadius: 'var(--border-radius)',
