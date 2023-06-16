@@ -21,6 +21,7 @@ import {
   useKeepGroupedColumnsHidden,
 } from '@mui/x-data-grid-premium';
 import { useDemoData } from '@mui/x-data-grid-generator';
+import LineChart from '../showcase/LineChart';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -258,28 +259,59 @@ export default function XHero() {
               p: { md: 2, lg: 3, xl: 0 },
             }}
           >
-            <Paper
-              sx={(theme) => ({
-                backgroundColor: '#fff',
-                border: '1px solid',
-                borderColor: 'grey.200',
-                boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
-                ...theme.applyDarkStyles({
-                  backgroundColor: 'primaryDark.800',
-                  borderColor: 'primaryDark.600',
-                  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
-                }),
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
                 minWidth: 300,
                 mr: { md: 2, lg: 3, xl: 4 },
                 flexGrow: 1,
-              })}
+                overflow: { md: 'auto', xl: 'unset' },
+              }}
             >
-              <Box sx={{ p: 2 }}>
-                <Typography fontWeight={500}>Cool Project</Typography>
-              </Box>
-              <Divider />
-              <FolderTreeView />
-            </Paper>
+              <Paper
+                sx={(theme) => ({
+                  backgroundColor: '#fff',
+                  border: '1px solid',
+                  borderColor: 'grey.200',
+                  boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+                  ...theme.applyDarkStyles({
+                    backgroundColor: 'primaryDark.800',
+                    borderColor: 'primaryDark.600',
+                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
+                  }),
+                  minWidth: 300,
+                  mb: 2,
+                  flexGrow: 1,
+                })}
+              >
+                <LineChart />
+              </Paper>
+              <Paper
+                sx={(theme) => ({
+                  backgroundColor: '#fff',
+                  border: '1px solid',
+                  borderColor: 'grey.200',
+                  boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+                  ...theme.applyDarkStyles({
+                    backgroundColor: 'primaryDark.800',
+                    borderColor: 'primaryDark.600',
+                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
+                  }),
+
+                  minWidth: 300,
+
+                  flexGrow: 1,
+                })}
+              >
+                <Box sx={{ p: 2 }}>
+                  <Typography fontWeight={500}>Cool Project</Typography>
+                </Box>
+                <Divider />
+                <FolderTreeView />
+              </Paper>
+            </Box>
+
             <Paper
               sx={[
                 {

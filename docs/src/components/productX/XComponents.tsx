@@ -24,9 +24,11 @@ import ROUTES from 'docs/src/route';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import Frame from 'docs/src/components/action/Frame';
 import IconImage from 'docs/src/components/icon/IconImage';
+import XChartsDemo from './XChartsDemo';
 
-const DEMOS = ['Data Grid', 'Date Range Picker', 'Tree View', 'Sparkline', 'Charts'];
-const WIP = DEMOS.slice(2);
+type DemosKeys = 'Data Grid' | 'Date Range Picker' | 'Charts' | 'Tree View' | 'Sparkline';
+const DEMOS: DemosKeys[] = ['Data Grid', 'Date Range Picker', 'Charts', 'Tree View', 'Sparkline'];
+const WIP = DEMOS.slice(3);
 
 const AspectRatioImage = styled('div', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',
@@ -78,13 +80,13 @@ function PrefetchImages() {
 }
 
 export default function XComponents() {
-  const [demo, setDemo] = React.useState(DEMOS[1]);
+  const [demo, setDemo] = React.useState<DemosKeys>(DEMOS[1]);
   const icons = {
-    [DEMOS[0]]: <TableChartRounded fontSize="small" />,
-    [DEMOS[1]]: <DateRangeRounded fontSize="small" />,
-    [DEMOS[2]]: <AccountTreeRounded fontSize="small" />,
-    [DEMOS[3]]: <ShowChartRounded fontSize="small" />,
-    [DEMOS[4]]: <BarChartRounded fontSize="small" />,
+    'Data Grid': <TableChartRounded fontSize="small" />,
+    'Date Range Picker': <DateRangeRounded fontSize="small" />,
+    Charts: <BarChartRounded fontSize="small" />,
+    'Tree View': <ShowChartRounded fontSize="small" />,
+    Sparkline: <AccountTreeRounded fontSize="small" />,
   };
   return (
     <Section bg="comfort">
@@ -115,33 +117,40 @@ export default function XComponents() {
         </Grid>
         <Grid item xs={12} md={6} sx={{ position: 'relative' }}>
           <PrefetchImages />
-          {demo === DEMOS[0] && (
+          {demo === 'Data Grid' && (
             <Fade in timeout={500}>
               <Box sx={{ height: '100%' }}>
                 <XGridFullDemo />
               </Box>
             </Fade>
           )}
-          {demo === DEMOS[1] && (
+          {demo === 'Date Range Picker' && (
             <Fade in timeout={500}>
               <div>
                 <XDateRangeDemo />
               </div>
             </Fade>
           )}
-          {demo === DEMOS[2] && (
+          {demo === 'Tree View' && (
             <Fade in timeout={500}>
               <div>
                 <XTreeViewDemo />
               </div>
             </Fade>
           )}
-          {(demo === DEMOS[3] || demo === DEMOS[4]) && (
+          {demo === 'Charts' && (
+            <Fade in timeout={500}>
+              <div>
+                <XChartsDemo />
+              </div>
+            </Fade>
+          )}
+          {demo === 'Sparkline' && (
             <Fade in timeout={500}>
               <Box sx={{ height: '100%' }}>
                 <Frame sx={{ height: '100%' }}>
                   <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
-                    {demo === DEMOS[3] && (
+                    {demo === 'Sparkline' && (
                       <Grid container justifyContent="space-around" spacing={1}>
                         <Grid item xs={6}>
                           <Box sx={{ maxWidth: 200, ml: 'auto' }}>
@@ -156,42 +165,6 @@ export default function XComponents() {
                             <AspectRatioImage
                               src="/static/branding/mui-x/sparkline-light2.png"
                               ratio={211 / 220}
-                            />
-                          </Box>
-                        </Grid>
-                      </Grid>
-                    )}
-                    {demo === DEMOS[4] && (
-                      <Grid container spacing={1} justifyContent="center">
-                        <Grid item xs={6}>
-                          <Box sx={{ width: { xs: 200, sm: 240 }, maxWidth: '100%', ml: 'auto' }}>
-                            <AspectRatioImage
-                              src="/static/branding/mui-x/chart-light1.png"
-                              ratio={219 / 120}
-                            />
-                          </Box>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Box sx={{ width: { xs: 200, sm: 240 }, maxWidth: '100%', mr: 'auto' }}>
-                            <AspectRatioImage
-                              src="/static/branding/mui-x/chart-light2.png"
-                              ratio={219 / 120}
-                            />
-                          </Box>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Box sx={{ width: { xs: 200, sm: 240 }, maxWidth: '100%', ml: 'auto' }}>
-                            <AspectRatioImage
-                              src="/static/branding/mui-x/chart-light3.png"
-                              ratio={219 / 120}
-                            />
-                          </Box>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Box sx={{ width: { xs: 200, sm: 240 }, maxWidth: '100%', mr: 'auto' }}>
-                            <AspectRatioImage
-                              src="/static/branding/mui-x/chart-light4.png"
-                              ratio={219 / 120}
                             />
                           </Box>
                         </Grid>
