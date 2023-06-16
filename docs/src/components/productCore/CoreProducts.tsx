@@ -55,9 +55,9 @@ export default function BaseUISummary() {
                 border: '1px solid',
                 borderColor: 'grey.100',
                 background: `linear-gradient(to top right, ${alpha(
-                  (theme.vars || theme).palette.primary[50],
+                  theme.palette.primary[50],
                   0.3,
-                )} 40%, ${alpha((theme.vars || theme).palette.grey[50], 0.2)} 100%)`,
+                )} 40%, ${alpha(theme.palette.grey[50], 0.2)} 100%)`,
 
                 '&:hover': {
                   borderColor: 'primary.500',
@@ -69,9 +69,9 @@ export default function BaseUISummary() {
                   bgcolor: 'primaryDark.900',
                   borderColor: 'primaryDark.700',
                   background: `linear-gradient(to top right, ${alpha(
-                    (theme.vars || theme).palette.primary[900],
+                    theme.palette.primary[900],
                     0.1,
-                  )} 40%, ${alpha((theme.vars || theme).palette.primaryDark[800], 0.2)} 100%)`,
+                  )} 40%, ${alpha(theme.palette.primaryDark[800], 0.2)} 100%)`,
 
                   '&:hover': {
                     boxShadow: '0px 1px 6px #0059B3, inset 0px 2px 30px rgba(0, 0, 0, 0.1)',
