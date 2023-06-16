@@ -81,19 +81,21 @@ const Root = styled('div')(
         padding: '2px 6px',
         color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
       },
-      '&:hover, &:target': {
-        '.MuiApi-item-link-visual': {
-          display: 'inline-block',
-        },
-        '.MuiApi-item-title': {
-          marginLeft: 6,
-        },
-        '.MuiApi-item-link-visual:hover': {
-          cursor: 'pointer',
-          backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
-          borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
-          '& svg': {
-            fill: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
+      [theme.breakpoints.up('lg')]: {
+        '&:hover, &:target': {
+          '.MuiApi-item-link-visual': {
+            display: 'inline-block',
+          },
+          '.MuiApi-item-title': {
+            marginLeft: 6,
+          },
+          '.MuiApi-item-link-visual:hover': {
+            cursor: 'pointer',
+            backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
+            borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
+            '& svg': {
+              fill: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
+            },
           },
         },
       },
