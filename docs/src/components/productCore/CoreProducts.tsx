@@ -40,7 +40,7 @@ const content = [
 
 export default function BaseUISummary() {
   return (
-    <Container>
+    <Container sx={{ mb: 4 }}>
       <Grid container spacing={2}>
         {content.map(({ icon, title, description, link }) => (
           <Grid key={title} item xs={12} md={3}>

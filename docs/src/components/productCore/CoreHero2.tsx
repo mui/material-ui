@@ -9,7 +9,8 @@ export default function HeroPricing() {
     <Container>
       <Box
         sx={{
-          height: '40vh',
+          pt: { xs: 6, sm: 8, md: 12 },
+          pb: { xs: 3, sm: 4, md: 8 },
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
