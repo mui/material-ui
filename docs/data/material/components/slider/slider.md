@@ -133,6 +133,15 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 {{"demo": "NonLinearSlider.js"}}
 
+## Thumb Position Control
+
+You can use the `scale` prop to represent the `value` on a different scale.
+
+In the following demo, the value _x_ represents the value _2^x_.
+Increasing _x_ by one increases the represented value by factor _2_.
+
+{{"demo": "ThumbControlSlider.js"}}
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/)
