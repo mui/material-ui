@@ -159,7 +159,7 @@ function getHeaders(markdown) {
 function getContents(markdown) {
   return markdown
     .replace(headerRegExp, '') // Remove header information
-    .split(/^{{("(?:demo|component)":[^}]*)}}$/gm) // Split markdown into an array, separating demos
+    .split(/^\s{{("(?:demo|component)":[^}]*)}}$/gm) // Split markdown into an array, separating demos
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
 }
 
