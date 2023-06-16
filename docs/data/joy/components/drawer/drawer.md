@@ -15,7 +15,7 @@ If you're in need of it, please upvote [**this issue**](https://github.com/mui/m
 
 ## Using Modal
 
-In the meantime, you can still build your own Drawer using Joy UI [Modal](/joy-ui/react-modal/) component as a starting point.
+In the meantime, you can build your own Drawer using Joy UI [Modal](/joy-ui/react-modal/) component as a starting point.
 
 This demo shows how to construct it with the [Modal](/joy-ui/react-modal/) and [Sheet](/joy-ui/react-sheet/) components.
 
