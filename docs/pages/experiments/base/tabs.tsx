@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TabsUnstyled from '@mui/base/TabsUnstyled';
-import TabsListUnstyled from '@mui/base/TabsListUnstyled';
-import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
-import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
+import Tabs from '@mui/base/Tabs';
+import TabsList from '@mui/base/TabsList';
+import TabPanel from '@mui/base/TabPanel';
+import Tab, { tabClasses } from '@mui/base/Tab';
 
 const blue = {
   50: '#F0F7FF',
@@ -31,7 +31,7 @@ const grey = {
   900: '#24292f',
 };
 
-const Tab = styled(TabUnstyled)`
+const StyledTab = styled(Tab)`
   font-family: IBM Plex Sans, sans-serif;
   color: #fff;
   cursor: pointer;
@@ -55,17 +55,17 @@ const Tab = styled(TabUnstyled)`
     outline: 3px solid ${blue[200]};
   }
 
-  &.${tabUnstyledClasses.selected} {
+  &.${tabClasses.selected} {
     background-color: #fff;
     color: ${blue[600]};
   }
 
-  &.${tabUnstyledClasses.disabled} {
+  &.${tabClasses.disabled} {
     opacity: 0.5;
   }
 `;
 
-const TabPanel = styled(TabPanelUnstyled)(
+const StyledTabPanel = styled(TabPanel)(
   ({ theme }) => `
   width: 100%;
   font-family: IBM Plex Sans, sans-serif;
@@ -79,7 +79,7 @@ const TabPanel = styled(TabPanelUnstyled)(
   `,
 );
 
-const TabsList = styled(TabsListUnstyled)(
+const StyledTabsList = styled(TabsList)(
   ({ theme }) => `
   min-width: 400px;
   background-color: ${blue[500]};
@@ -111,7 +111,7 @@ function MoreTabPanels() {
       <TabPanel value="settings">Settings page</TabPanel>
       <TabPanel value="notifications">Notifications page</TabPanel>
       <TabPanel value="nested">
-        <TabsUnstyled defaultValue="my-account">
+        <Tabs defaultValue="my-account">
           <TabsList>
             <Tab value="my-account">My account</Tab>
             <Tab value="profile">Profile</Tab>
@@ -122,7 +122,7 @@ function MoreTabPanels() {
           <TabPanel value="profile">Profile page</TabPanel>
           <TabPanel value="language">Language page</TabPanel>
           <MoreTabPanels />
-        </TabsUnstyled>
+        </Tabs>
       </TabPanel>
     </React.Fragment>
   );
@@ -149,29 +149,29 @@ export default function UnstyledTabsIntroduction() {
         />{' '}
         Selection follows focus
       </label>
-      <TabsUnstyled
+      <Tabs
         value={selectedTab}
         onChange={handleTabChange}
         selectionFollowsFocus={selectionFollowsFocus}
       >
-        <TabsList>
-          <Tab value="my-account">My account</Tab>
-          <Tab value="profile">Profile</Tab>
-          <Tab value="language">Language</Tab>
+        <StyledTabsList>
+          <StyledTab value="my-account">My account</StyledTab>
+          <StyledTab value="profile">Profile</StyledTab>
+          <StyledTab value="language">Language</StyledTab>
           <MoreTabs />
-        </TabsList>
-        <TabPanel value="my-account">My account page</TabPanel>
-        <TabPanel value="profile">Profile page</TabPanel>
-        <TabPanel value="language">Language page</TabPanel>
+        </StyledTabsList>
+        <StyledTabPanel value="my-account">My account page</StyledTabPanel>
+        <StyledTabPanel value="profile">Profile page</StyledTabPanel>
+        <StyledTabPanel value="language">Language page</StyledTabPanel>
         <MoreTabPanels />
 
-        <TabsList>
-          <Tab value="my-account">My account</Tab>
-          <Tab value="profile">Profile</Tab>
-          <Tab value="language">Language</Tab>
+        <StyledTabsList>
+          <StyledTab value="my-account">My account</StyledTab>
+          <StyledTab value="profile">Profile</StyledTab>
+          <StyledTab value="language">Language</StyledTab>
           <MoreTabs />
-        </TabsList>
-      </TabsUnstyled>
+        </StyledTabsList>
+      </Tabs>
     </React.Fragment>
   );
 }

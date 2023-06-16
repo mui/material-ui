@@ -9,7 +9,7 @@ githubLabel: 'component: transitions'
 
 <p class="description">Transitions help to make a UI expressive and easy to use.</p>
 
-MUI provides transitions that can be used to introduce some basic [motion](https://m2.material.io/design/motion/) to your applications.
+Material UI provides transitions that can be used to introduce some basic [motion](https://m2.material.io/design/motion/) to your applications.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -66,7 +66,7 @@ This example also demonstrates how to delay the enter transition.
 
 ## Child requirement
 
-- **Forward the style**: To better support server rendering, MUI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).
+- **Forward the style**: To better support server rendering, Material UI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).
   The `style` prop must be applied to the DOM for the animation to work as expected.
 - **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs)
 - **Single element**: The transition components require only one child element (`React.Fragment` is not allowed).
@@ -74,15 +74,15 @@ This example also demonstrates how to delay the enter transition.
 ```jsx
 // The `props` object contains a `style` prop.
 // You need to provide it to the `div` element as shown here.
-const MyComponent = React.forwardRef((props, ref) {
+const MyComponent = React.forwardRef(function (props, ref) {
   return (
     <div ref={ref} {...props}>
       Fade
     </div>
   );
-})
+});
 
-export default Main() {
+export default function Main() {
   return (
     <Fade>
       {/* MyComponent must be the only child */}
@@ -101,7 +101,7 @@ As components are added or removed, the `in` prop is toggled automatically by `T
 
 ## TransitionComponent prop
 
-Some MUI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition.
+Some Material UI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition.
 You can use any of the above components or your own.
 It should respect the following conditions:
 

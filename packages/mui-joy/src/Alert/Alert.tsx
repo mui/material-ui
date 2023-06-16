@@ -6,7 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
+import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getAlertUtilityClass } from './alertClasses';
 import { AlertProps, AlertOwnerState, AlertTypeMap } from './AlertProps';
@@ -32,46 +32,52 @@ const AlertRoot = styled('div', {
   name: 'JoyAlert',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
-  '--Alert-radius': theme.vars.radius.sm,
-  '--Alert-decoratorChildRadius':
-    'max((var(--Alert-radius) - var(--variant-borderWidth, 0px)) - var(--Alert-padding), min(var(--Alert-padding) + var(--variant-borderWidth, 0px), var(--Alert-radius) / 2))',
-  '--Button-minHeight': 'var(--Alert-decoratorChildHeight)',
-  '--IconButton-size': 'var(--Alert-decoratorChildHeight)',
-  '--Button-radius': 'var(--Alert-decoratorChildRadius)',
-  '--IconButton-radius': 'var(--Alert-decoratorChildRadius)',
-  ...(ownerState.size === 'sm' && {
-    '--Alert-padding': '0.5rem',
-    '--Alert-gap': '0.375rem',
-    '--Alert-decoratorChildHeight': '1.5rem',
-    '--Icon-fontSize': '1.125rem',
-    fontSize: theme.vars.fontSize.sm,
-  }),
-  ...(ownerState.size === 'md' && {
-    '--Alert-padding': '0.75rem',
-    '--Alert-gap': '0.5rem',
-    '--Alert-decoratorChildHeight': '2rem',
-    '--Icon-fontSize': '1.25rem',
-    fontSize: theme.vars.fontSize.sm,
-    fontWeight: theme.vars.fontWeight.md,
-  }),
-  ...(ownerState.size === 'lg' && {
-    '--Alert-padding': '1rem',
-    '--Alert-gap': '0.75rem',
-    '--Alert-decoratorChildHeight': '2.375rem',
-    '--Icon-fontSize': '1.5rem',
-    fontSize: theme.vars.fontSize.md,
-    fontWeight: theme.vars.fontWeight.md,
-  }),
-  fontFamily: theme.vars.fontFamily.body,
-  lineHeight: theme.vars.lineHeight.md,
-  backgroundColor: 'transparent',
-  display: 'flex',
-  alignItems: 'center',
-  padding: `var(--Alert-padding)`,
-  borderRadius: 'var(--Alert-radius)',
-  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-}));
+})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => [
+  {
+    '--Alert-radius': theme.vars.radius.sm,
+    '--Alert-decoratorChildRadius':
+      'max((var(--Alert-radius) - var(--variant-borderWidth, 0px)) - var(--Alert-padding), min(var(--Alert-padding) + var(--variant-borderWidth, 0px), var(--Alert-radius) / 2))',
+    '--Button-minHeight': 'var(--Alert-decoratorChildHeight)',
+    '--IconButton-size': 'var(--Alert-decoratorChildHeight)',
+    '--Button-radius': 'var(--Alert-decoratorChildRadius)',
+    '--IconButton-radius': 'var(--Alert-decoratorChildRadius)',
+    ...(ownerState.size === 'sm' && {
+      '--Alert-padding': '0.5rem',
+      '--Alert-gap': '0.375rem',
+      '--Alert-decoratorChildHeight': '1.5rem',
+      '--Icon-fontSize': '1.125rem',
+      fontSize: theme.vars.fontSize.sm,
+    }),
+    ...(ownerState.size === 'md' && {
+      '--Alert-padding': '0.75rem',
+      '--Alert-gap': '0.5rem',
+      '--Alert-decoratorChildHeight': '2rem',
+      '--Icon-fontSize': '1.25rem',
+      fontSize: theme.vars.fontSize.sm,
+      fontWeight: theme.vars.fontWeight.md,
+    }),
+    ...(ownerState.size === 'lg' && {
+      '--Alert-padding': '1rem',
+      '--Alert-gap': '0.75rem',
+      '--Alert-decoratorChildHeight': '2.375rem',
+      '--Icon-fontSize': '1.5rem',
+      fontSize: theme.vars.fontSize.md,
+      fontWeight: theme.vars.fontWeight.md,
+    }),
+    fontFamily: theme.vars.fontFamily.body,
+    lineHeight: theme.vars.lineHeight.md,
+    backgroundColor: 'transparent',
+    display: 'flex',
+    position: 'relative',
+    alignItems: 'center',
+    padding: `var(--Alert-padding)`,
+    borderRadius: 'var(--Alert-radius)',
+    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+  },
+  ownerState.color !== 'context' &&
+    ownerState.invertedColors &&
+    theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
+]);
 
 const AlertStartDecorator = styled('span', {
   name: 'JoyAlert',
@@ -119,6 +125,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     children,
     className,
     color: colorProp = 'primary',
+    invertedColors = false,
     role = 'alert',
     variant = 'soft',
     size = 'md',
@@ -167,14 +174,24 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     ownerState,
   });
 
-  return (
-    <SlotRoot {...rootProps}>
+  const result = (
+    <React.Fragment>
       {startDecorator && (
         <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
 
       {children}
       {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+    </React.Fragment>
+  );
+
+  return (
+    <SlotRoot {...rootProps}>
+      {invertedColors ? (
+        <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>
+      ) : (
+        result
+      )}
     </SlotRoot>
   );
 }) as OverridableComponent<AlertTypeMap>;
@@ -209,6 +226,11 @@ Alert.propTypes /* remove-proptypes */ = {
    * Element placed after the children.
    */
   endDecorator: PropTypes.node,
+  /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
   /**
    * The ARIA role attribute of the element.
    * @default 'alert'

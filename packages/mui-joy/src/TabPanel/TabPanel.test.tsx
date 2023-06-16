@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer, screen } from 'test/utils';
-import { TabsUnstyledProps } from '@mui/base/TabsUnstyled';
+import { TabsProps } from '@mui/base/Tabs';
 import useTabs, { TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs from '@mui/joy/Tabs';
 import TabPanel, { tabPanelClasses as classes } from '@mui/joy/TabPanel';
 
-function TabsProvider({ children, ...props }: TabsUnstyledProps) {
+function TabsProvider({ children, ...props }: TabsProps) {
   const { contextValue } = useTabs(props);
   return <BaseTabsProvider value={contextValue}>{children}</BaseTabsProvider>;
 }

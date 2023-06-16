@@ -9,13 +9,13 @@ githubLabel: 'component: divider'
 
 <p class="description">A divider is a thin line that groups content in lists and layouts.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 Dividers separate content into clear groups.
 
 {{"demo": "DividerUsage.js", "hideToolbar": "true", "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -33,19 +33,18 @@ export default function MyApp() {
 
 Use the `Divider` to wrap elements that will be added to it.
 
+{{"demo": "DividerText.js"}}
+
 :::warning
 When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` on it to make sure screen readers can announce its content:
 
 ```js
 <Divider component="div" role="presentation">
   {/* any elements nested inside the role="presentation" preserve their semantics. */}
-  <Typography variant="h2">My Heading</Typography>
 </Divider>
 ```
 
 :::
-
-{{"demo": "DividerText.js"}}
 
 ### Vertical divider
 

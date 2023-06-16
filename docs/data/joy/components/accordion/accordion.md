@@ -38,7 +38,7 @@ Animation is created by targeting a CSS variable, `--radix-accordion-content-hei
 - [Accordion component documentation](https://www.radix-ui.com/docs/primitives/components/accordion)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-feat-radix-accordion-4n2p04?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:360px; border:0; border-radius: 8px; overflow:hidden;"
+     style="width:100%; height:360px; border:0; border-radius: 12px; overflow:hidden;"
      title="Joy UI feat. Radix UI Accordion"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
@@ -54,7 +54,7 @@ Headless UI does not provide an API to create animation so you have to use other
 - [Disclosure component documentation](https://headlessui.com/react/disclosure)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-feat-headless-ui-disclosure-g2mqpr?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:360px; border:0; border-radius: 8px; overflow:hidden;"
+     style="width:100%; height:360px; border:0; border-radius: 12px; overflow:hidden;"
      title="Joy UI feat. Headless UI Disclosure"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"

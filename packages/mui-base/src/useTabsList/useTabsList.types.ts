@@ -6,7 +6,7 @@ export interface UseTabsListParameters {
   /**
    * Ref to the root element.
    */
-  ref: React.Ref<unknown>;
+  rootRef: React.Ref<Element>;
 }
 
 export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
@@ -14,34 +14,20 @@ export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
   'aria-labelledby'?: React.AriaAttributes['aria-labelledby'];
   'aria-orientation'?: React.AriaAttributes['aria-orientation'];
   role: React.AriaRole;
-  ref: React.Ref<any>;
+  ref: React.RefCallback<Element> | null;
   onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
 };
 
 export interface UseTabsListReturnValue {
   /**
+   * The value to be passed to the TabListProvider above all the tabs.
+   */
+  contextValue: TabsListProviderValue;
+  /**
    * Action dispatcher for the tabs list component.
    * Allows to programmatically control the tabs list.
    */
   dispatch: (action: ListAction<string | number>) => void;
-  /**
-   * The value of the currently highlighted tab.
-   */
-  highlightedValue: string | number | null;
-  /**
-   * If `true`, it will indicate that the text's direction in right-to-left.
-   * @default false
-   */
-  isRtl: boolean;
-  /**
-   * The component orientation (layout flow direction).
-   * @default 'horizontal'
-   */
-  orientation: 'horizontal' | 'vertical';
-  /**
-   * The value of the currently selected tab.
-   */
-  selectedValue: string | number | null;
   /**
    * Resolver for the root slot's props.
    * @param externalProps props for the root slot
@@ -51,9 +37,22 @@ export interface UseTabsListReturnValue {
     externalProps?: TOther,
   ) => UseTabsListRootSlotProps<TOther>;
   /**
-   * The value to be passed to the TabListProvider above all the tabs.
+   * The value of the currently highlighted tab.
    */
-  contextValue: TabsListProviderValue;
+  highlightedValue: string | number | null;
+  /**
+   * If `true`, it will indicate that the text's direction in right-to-left.
+   */
+  isRtl: boolean;
+  /**
+   * The component orientation (layout flow direction).
+   */
+  orientation: 'horizontal' | 'vertical';
+  rootRef: React.RefCallback<Element> | null;
+  /**
+   * The value of the currently selected tab.
+   */
+  selectedValue: string | number | null;
 }
 
 export const TabsListActionTypes = {

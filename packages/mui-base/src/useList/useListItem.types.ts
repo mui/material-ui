@@ -16,13 +16,14 @@ export interface UseListItemParameters<ItemValue> {
   /**
    * A ref to the list item's DOM element.
    */
-  ref?: React.Ref<HTMLElement>;
+  rootRef?: React.Ref<Element>;
 }
 
 interface UseListItemRootSlotOwnProps {
   id?: string;
   onClick: React.MouseEventHandler;
   onPointerOver: React.PointerEventHandler | undefined;
+  ref: React.RefCallback<Element> | null;
   tabIndex?: number;
 }
 
@@ -52,5 +53,5 @@ export interface UseListItemReturnValue {
   /**
    * The ref to the root element.
    */
-  ref: ((instance: HTMLElement | null) => void) | null;
+  rootRef: React.RefCallback<Element> | null;
 }

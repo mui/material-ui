@@ -26,7 +26,10 @@ export default function BackToTop() {
   });
 
   const handleClick = () => {
-    window.scrollTo({ top: 0 });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const behavior = prefersReducedMotion.matches ? 'auto' : 'smooth';
+
+    window.scrollTo({ top: 0, behavior });
     setOpen(false);
   };
 

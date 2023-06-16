@@ -4,7 +4,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import useTabPanel from '@mui/base/useTabPanel';
-import { useTabsContext } from '@mui/base/TabsUnstyled';
+import { useTabsContext } from '@mui/base/Tabs';
 import { styled, useThemeProps } from '../styles';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabPanelUtilityClass } from './tabPanelClasses';

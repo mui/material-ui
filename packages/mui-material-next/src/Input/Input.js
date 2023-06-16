@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import { styled } from '@mui/material/styles';
 import { shouldForwardProp, useThemeProps } from '@mui/system';
 import {
-  InputUnstyled,
-  inputUnstyledClasses,
+  Input as BaseInput,
+  inputClasses,
   unstable_composeClasses as composeClasses,
   appendOwnerState,
 } from '@mui/base';
@@ -94,7 +94,7 @@ const InputRoot = styled('div', {
     cursor: 'text',
     display: 'inline-flex',
     alignItems: 'center',
-    [`&.${inputUnstyledClasses.disabled}`]: {
+    [`&.${inputClasses.disabled}`]: {
       color: theme.palette.text.disabled,
       cursor: 'default',
     },
@@ -128,10 +128,10 @@ const InputRoot = styled('div', {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      [`&.${inputUnstyledClasses.focused}:after`]: {
+      [`&.${inputClasses.focused}:after`]: {
         transform: 'scaleX(1)',
       },
-      [`&.${inputUnstyledClasses.error}:after`]: {
+      [`&.${inputClasses.error}:after`]: {
         borderBottomColor: theme.palette.error.main,
         transform: 'scaleX(1)', // error is always underlined in red
       },
@@ -148,14 +148,14 @@ const InputRoot = styled('div', {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      [`&:hover:not(.${inputUnstyledClasses.disabled}):before`]: {
+      [`&:hover:not(.${inputClasses.disabled}):before`]: {
         borderBottom: `2px solid ${theme.palette.text.primary}`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           borderBottom: `1px solid ${bottomLineColor}`,
         },
       },
-      [`&.${inputUnstyledClasses.disabled}:before`]: {
+      [`&.${inputClasses.disabled}:before`]: {
         borderBottomStyle: 'dotted',
       },
     }),
@@ -217,7 +217,7 @@ const InputInput = styled('input', {
       WebkitAppearance: 'none',
     },
     // Show and hide the placeholder logic
-    [`label[data-shrink=false] + .${inputUnstyledClasses.formControl} &`]: {
+    [`label[data-shrink=false] + .${inputClasses.formControl} &`]: {
       '&::-webkit-input-placeholder': placeholderHidden,
       '&::-moz-placeholder': placeholderHidden, // Firefox 19+
       '&:-ms-input-placeholder': placeholderHidden, // IE11
@@ -227,7 +227,7 @@ const InputInput = styled('input', {
       '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
       '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
     },
-    [`&.${inputUnstyledClasses.disabled}`]: {
+    [`&.${inputClasses.disabled}`]: {
       opacity: 1, // Reset iOS opacity
       WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
     },
@@ -326,7 +326,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   };
 
   return (
-    <InputUnstyled
+    <BaseInput
       startAdornment={startAdornment}
       endAdornment={endAdornment}
       {...other}

@@ -22,7 +22,7 @@ Stack is ideal for one-dimensional layouts, while Grid is preferable when you ne
 ## Basics
 
 ```jsx
-import Stack from '@mui/joy/Stack';
+import Stack from '@mui/material/Stack';
 ```
 
 The Stack component acts as a generic container, wrapping around the elements to be arranged.

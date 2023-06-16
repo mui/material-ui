@@ -9,17 +9,13 @@ githubLabel: 'component: chip'
 
 <p class="description">Chip generates a compact element that can represent an input, attribute, or action.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 Chips are most frequently used in two main use cases: as pills of informative content or as filtering options.
 
 {{"demo": "ChipUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-:::info
-To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
-:::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

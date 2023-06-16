@@ -6,15 +6,18 @@ import {
   ControllableReducerAction,
   StateChangeCallback,
 } from '../utils/useControllableReducer.types';
+import { EventHandlers } from '../utils';
+import type { ListContextValue } from './ListContext';
+import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
 
 type ListActionContextRequiredKeys =
   | 'disabledItemsFocusable'
   | 'disableListWrap'
   | 'focusManagement'
+  | 'getItemAsString'
   | 'isItemDisabled'
   | 'itemComparer'
   | 'items'
-  | 'itemStringifier'
   | 'orientation'
   | 'pageSize'
   | 'selectionMode';
@@ -135,13 +138,13 @@ export interface UseListParameters<
   /**
    * Ref of the list root DOM element.
    */
-  listRef?: React.Ref<any>;
+  rootRef?: React.Ref<Element>;
   /**
    * Callback fired when the selected value changes.
    * This is a strongly typed convenience event that can be used instead of `onStateChange`.
    */
   onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
     value: ItemValue[],
     reason: string,
   ) => void;
@@ -150,7 +153,7 @@ export interface UseListParameters<
    * This is a strongly typed convenience event that can be used instead of `onStateChange`.
    */
   onHighlightChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
     option: ItemValue | null,
     reason: string,
   ) => void;
@@ -175,7 +178,7 @@ export interface UseListParameters<
    * A function that converts an object to its string representation
    * @default (o) => o
    */
-  itemStringifier?: (option: ItemValue) => string | undefined;
+  getItemAsString?: (option: ItemValue) => string | undefined;
   /**
    * Array of list items.
    */
@@ -233,11 +236,24 @@ export interface ListItemState {
 
 interface UseListRootSlotOwnProps {
   'aria-activedescendant'?: React.AriaAttributes['aria-activedescendant'];
-  id?: string;
-  onBlur: React.FocusEventHandler;
-  onKeyDown: React.KeyboardEventHandler;
+  onBlur: MuiCancellableEventHandler<React.FocusEvent<HTMLElement>>;
+  onKeyDown: MuiCancellableEventHandler<React.KeyboardEvent<HTMLElement>>;
   tabIndex: number;
-  ref: React.Ref<any>;
+  ref: React.RefCallback<Element> | null;
 }
 
 export type UseListRootSlotProps<TOther = {}> = TOther & UseListRootSlotOwnProps;
+
+export interface UseListReturnValue<
+  ItemValue,
+  State extends ListState<ItemValue>,
+  CustomAction extends ControllableReducerAction,
+> {
+  contextValue: ListContextValue<ItemValue>;
+  dispatch: (action: CustomAction | ListAction<ItemValue>) => void;
+  getRootProps: <TOther extends EventHandlers = {}>(
+    otherHandlers?: TOther,
+  ) => UseListRootSlotProps<TOther>;
+  rootRef: React.RefCallback<Element> | null;
+  state: State;
+}

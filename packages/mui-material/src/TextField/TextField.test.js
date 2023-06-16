@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { spy } from 'sinon';
+import { createRenderer, describeConformance, fireEvent } from 'test/utils';
 import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
@@ -151,6 +152,22 @@ describe('<TextField />', () => {
       );
 
       expect(getByTestId('InputComponent')).not.to.equal(null);
+    });
+  });
+
+  describe('prop: disabled', () => {
+    it('should not run click event when disabled', () => {
+      const handleClick = spy();
+      const { getByRole } = render(<TextField disabled onClick={handleClick} />);
+      fireEvent.click(getByRole('textbox'));
+      expect(handleClick.callCount).to.equal(0);
+    });
+
+    it('should not run click event when disabled and when onClick prop is set through InputProps', () => {
+      const handleClick = spy();
+      const { getByRole } = render(<TextField disabled InputProps={{ onClick: handleClick }} />);
+      fireEvent.click(getByRole('textbox'));
+      expect(handleClick.callCount).to.equal(0);
     });
   });
 

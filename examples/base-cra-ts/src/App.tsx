@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import { ButtonUnstyled, buttonUnstyledClasses } from '@mui/base';
+import ButtonUnstyled, { buttonClasses } from '@mui/base/Button';
 
 const Button = styled(ButtonUnstyled)`
   padding-inline: 1rem;
@@ -19,11 +19,11 @@ const Button = styled(ButtonUnstyled)`
     background-color: rgba(0 0 0 / 0.12);
     transform: translateY(2px);
   }
-  &.${buttonUnstyledClasses.focusVisible} {
+  &.${buttonClasses.focusVisible} {
     outline: 3px solid rgba(0 0 0 / 0.3);
     border-color: rgba(0 0 0 / 0.72);
   }
-  &.${buttonUnstyledClasses.disabled} {
+  &.${buttonClasses.disabled} {
     opacity: 0.6;
     cursor: not-allowed;
   }

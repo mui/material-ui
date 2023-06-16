@@ -9,6 +9,8 @@ githubLabel: 'component: Stack'
 
 <p class="description">Stack is a container component for arranging elements vertically or horizontally.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The Stack component manages the layout of its immediate children along the vertical or horizontal axis, with optional spacing and dividers between each child.
@@ -16,8 +18,6 @@ The Stack component manages the layout of its immediate children along the verti
 :::info
 Stack is ideal for one-dimensional layouts, while Grid is preferable when you need both vertical _and_ horizontal arrangement.
 :::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 

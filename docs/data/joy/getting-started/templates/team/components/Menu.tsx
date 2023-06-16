@@ -1,5 +1,5 @@
 import * as React from 'react';
-import JoyMenu, { MenuUnstyledActions } from '@mui/joy/Menu';
+import JoyMenu, { MenuActions } from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import { ListActionTypes } from '@mui/base/useList';
 
@@ -17,7 +17,7 @@ function Menu({
   );
   const [isOpen, setOpen] = React.useState(false);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const menuActions = React.useRef<MenuUnstyledActions>(null);
+  const menuActions = React.useRef<MenuActions>(null);
   const preventReopen = React.useRef(false);
 
   const updateAnchor = React.useCallback((node: HTMLButtonElement | null) => {

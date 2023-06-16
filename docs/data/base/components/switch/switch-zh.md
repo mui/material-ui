@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: Unstyled React Switch component and hook
 components: SwitchUnstyled
 githubLabel: 'component: switch'
@@ -20,7 +20,7 @@ The `SwitchUnstyled` component provides users with a switch for toggling between
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
@@ -51,7 +51,7 @@ The `SwitchUnstyled` component is composed of a root `<span>` that houses three 
 ### Slot props
 
 :::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+The following props are available on all non-utility Base components. See [Usage](/base-ui/getting-started/usage/) for full details.
 :::
 
 Use the `component` prop to override the root slot with a custom element:

@@ -1,25 +1,23 @@
 import * as React from 'react';
-import FormControlUnstyled, {
-  useFormControlUnstyledContext,
-} from '@mui/base/FormControlUnstyled';
-import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
+import FormControl, { useFormControlContext } from '@mui/base/FormControl';
+import Input, { inputClasses } from '@mui/base/Input';
 import { styled } from '@mui/system';
 import clsx from 'clsx';
 
 export default function BasicFormControl() {
   return (
-    <FormControlUnstyled defaultValue="" required>
+    <FormControl defaultValue="" required>
       <Label>Name</Label>
-      <Input />
+      <StyledInput />
       <HelperText />
-    </FormControlUnstyled>
+    </FormControl>
   );
 }
 
-const Input = styled(InputUnstyled)(
+const StyledInput = styled(Input)(
   ({ theme }) => `
   
-  .${inputUnstyledClasses.input} {
+  .${inputClasses.input} {
     width: 320px;
     font-size: 0.875rem;
     font-family: IBM Plex Sans, sans-serif;
@@ -45,7 +43,7 @@ const Input = styled(InputUnstyled)(
 
 const Label = styled(
   ({ children, className }: { children?: React.ReactNode; className?: string }) => {
-    const formControlContext = useFormControlUnstyledContext();
+    const formControlContext = useFormControlContext();
     const [dirty, setDirty] = React.useState(false);
 
     React.useEffect(() => {
@@ -79,7 +77,7 @@ const Label = styled(
 `;
 
 const HelperText = styled((props: {}) => {
-  const formControlContext = useFormControlUnstyledContext();
+  const formControlContext = useFormControlContext();
   const [dirty, setDirty] = React.useState(false);
 
   React.useEffect(() => {

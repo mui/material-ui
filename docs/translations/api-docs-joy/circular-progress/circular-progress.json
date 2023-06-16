@@ -22,11 +22,11 @@
     "svg": { "description": "Class name applied to {{nodeName}}.", "nodeName": "the svg element" },
     "track": {
       "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the `track` element"
+      "nodeName": "the <code>track</code> element"
     },
     "progress": {
       "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the `progress` element"
+      "nodeName": "the <code>progress</code> element"
     },
     "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",

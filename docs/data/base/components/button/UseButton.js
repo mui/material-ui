@@ -7,10 +7,10 @@ import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
 const CustomButton = React.forwardRef(function CustomButton(props, ref) {
-  const { children } = props;
-  const { active, disabled, focusVisible, getRootProps } = useButton({
+  const { children, disabled } = props;
+  const { active, focusVisible, getRootProps } = useButton({
     ...props,
-    ref,
+    rootRef: ref,
   });
 
   const classes = {
@@ -28,6 +28,11 @@ const CustomButton = React.forwardRef(function CustomButton(props, ref) {
 
 CustomButton.propTypes = {
   children: PropTypes.node,
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
 };
 
 export default function UseButton() {

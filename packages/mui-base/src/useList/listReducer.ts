@@ -352,7 +352,7 @@ function handleTextNavigation<ItemValue, State extends ListState<ItemValue>>(
   searchString: string,
   context: ListActionContext<ItemValue>,
 ): State {
-  const { items, isItemDisabled, disabledItemsFocusable, itemStringifier } = context;
+  const { items, isItemDisabled, disabledItemsFocusable, getItemAsString } = context;
 
   const startWithCurrentItem = searchString.length > 1;
 
@@ -367,7 +367,7 @@ function handleTextNavigation<ItemValue, State extends ListState<ItemValue>>(
     }
 
     if (
-      textCriteriaMatches(nextItem, searchString, itemStringifier) &&
+      textCriteriaMatches(nextItem, searchString, getItemAsString) &&
       (!isItemDisabled(nextItem, items.indexOf(nextItem)) || disabledItemsFocusable)
     ) {
       // The nextItem is the element to be highlighted
