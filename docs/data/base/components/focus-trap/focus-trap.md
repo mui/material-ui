@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Focus Trap component
 components: FocusTrap
 githubLabel: 'component: FocusTrap'

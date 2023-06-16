@@ -39,17 +39,17 @@ const AvatarRoot = styled('div', {
       ...(ownerState.size === 'sm' && {
         width: `var(--Avatar-size, 2rem)`,
         height: `var(--Avatar-size, 2rem)`,
-        fontSize: theme.vars.fontSize.sm,
+        fontSize: `calc(var(--Avatar-size, 2rem) * 0.4375)`, // default as 14px
       }),
       ...(ownerState.size === 'md' && {
         width: `var(--Avatar-size, 2.5rem)`,
         height: `var(--Avatar-size, 2.5rem)`,
-        fontSize: theme.vars.fontSize.md,
+        fontSize: `calc(var(--Avatar-size, 2.5rem) * 0.4)`, // default as 16px
       }),
       ...(ownerState.size === 'lg' && {
         width: `var(--Avatar-size, 3rem)`,
         height: `var(--Avatar-size, 3rem)`,
-        fontSize: theme.vars.fontSize.lg,
+        fontSize: `calc(var(--Avatar-size, 3rem) * 0.375)`, // default as 18px
       }),
       marginInlineStart: 'var(--Avatar-marginInlineStart)',
       boxShadow: `var(--Avatar-ring)`,

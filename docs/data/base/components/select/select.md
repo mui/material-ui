@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Select components and hook
 components: Select, Option, OptionGroup
 hooks: useSelect, useOption

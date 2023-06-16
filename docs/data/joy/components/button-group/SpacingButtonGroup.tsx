@@ -8,7 +8,7 @@ export default function SpacingButtonGroup() {
   return (
     <ButtonGroup spacing="0.5rem" aria-label="spacing button group">
       <Button>One</Button>
-      <Button>Two</Button>
+      <Button disabled>Two</Button>
       <Button>Three</Button>
       <IconButton>
         <Settings />

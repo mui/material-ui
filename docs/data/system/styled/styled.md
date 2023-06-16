@@ -40,6 +40,9 @@ It aims to solve the same problem, but also provides the following benefits:
    - `options.skipSx` (_bool_ [optional]): Disables the `sx` prop on the component.
    - The other keys are forwarded to the `options` argument of emotion's [`styled([Component], [options])`](https://emotion.sh/docs/styled).
 
+3. `styles` (_object | `({ ...props, theme }) => object`_ [optional]): A styles object or a function returning a styles object.
+   The function receives the theme and component's props in an object which is its single argument.
+
 #### Returns
 
 `Component`: The new component created.

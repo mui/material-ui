@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from 'test/utils';
-import { unstable_useForkRef as useForkRef } from '.';
+import useForkRef from './useForkRef';
 
 describe('useForkRef', () => {
   const { render } = createRenderer();

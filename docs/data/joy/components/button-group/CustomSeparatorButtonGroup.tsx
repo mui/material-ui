@@ -12,7 +12,7 @@ export default function CustomSeparatorButtonGroup() {
       color="success"
       aria-label="button group"
       sx={{
-        '--ButtonGroup-separatorColor': 'none',
+        '--ButtonGroup-separatorColor': 'none !important',
         '& > span': {
           zIndex: 3,
           background:

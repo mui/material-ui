@@ -1,5 +1,5 @@
 import * as React from 'react';
-import setRef from './setRef';
+import setRef from '../setRef';
 
 export default function useForkRef<Instance>(
   ...refs: Array<React.Ref<Instance> | undefined>

@@ -28,9 +28,9 @@ const CardContentRoot = styled('div', {
   flex: 1, // fill the available space in the Card and also shrink if needed
   zIndex: 1,
   columnGap: 'calc(0.75 * var(--Card-padding))',
-  padding: 'var(--CardContent-padding)',
+  padding: 'var(--unstable_padding)',
   [`.${cardOverflowClasses.root} > &`]: {
-    '--CardContent-padding': 'calc(var(--Card-padding) * 0.75) 0px',
+    '--unstable_padding': 'calc(var(--Card-padding) * 0.75) 0px',
   },
 }));
 /**

@@ -16,7 +16,7 @@
     },
     "expanded": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root `Popper` element and the listbox `ul` element",
+      "nodeName": "the root <code>Popper</code> element and the listbox <code>ul</code> element",
       "conditions": "<code>open={true}</code>"
     }
   },
