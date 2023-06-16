@@ -21,6 +21,14 @@ export interface SelectOptionDefinition<Value> {
 
 export interface UseSelectParameters<OptionValue, Multiple extends boolean = false> {
   /**
+   * A function used to determine if two options' values are equal.
+   * By default, reference equality is used.
+   *
+   * There is a performance impact when using the `areOptionsEqual` prop (proportional to the number of options).
+   * Therefore, it's recommented to use the deault reference equality comparison whenever possible.
+   */
+  areOptionsEqual?: (a: OptionValue, b: OptionValue) => boolean;
+  /**
    * If `true`, the select will be open by default.
    * @default false
    */
