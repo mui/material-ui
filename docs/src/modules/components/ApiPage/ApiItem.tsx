@@ -6,6 +6,8 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { IconButton } from '@mui/material';
 
 const Root = styled('div')(
   ({ theme }) => ({
@@ -14,7 +16,7 @@ const Root = styled('div')(
       fontSize: 13,
       fontFamily: theme.typography.fontFamilyCode,
       display: 'flex',
-      alignItems: 'flex-end',
+      alignItems: 'flex-start',
       position: 'relative',
       marginBottom: 12,
       marginLeft: -32,
@@ -35,15 +37,17 @@ const Root = styled('div')(
           width: '14px',
         },
       },
-      span: {
+      '&>span, &>div': {
         fontWeight: theme.typography.fontWeightRegular,
         borderBottom: 'solid 1px',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
       },
+      '&>*': {
+        height: 26,
+      },
       '& .MuiApi-item-title': {
         flexShrink: 0,
         padding: '2px 6px',
-        height: 'fit-content',
         marginLeft: 32,
         borderWidth: '1px',
         borderStyle: 'solid',
@@ -55,12 +59,23 @@ const Root = styled('div')(
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       },
       '& .MuiApi-item-description': {
-        padding: '6px 10px',
+        padding: '0 10px 6px 10px',
         paddingBottom: 3,
         flexGrow: 1,
         textOverflow: 'ellipsis',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
+
+        '&.MuiApi-item-description-extended': {
+          whiteSpace: 'normal',
+          alignSelf: 'start',
+          height: 'auto',
+        },
+      },
+      '& .MuiApi-item-extend-description': {
+        alignItems: 'center',
+        display: 'flex',
+        placeItems: 'end',
       },
       '& .MuiApi-item-note': {
         padding: '2px 6px',
@@ -139,7 +154,7 @@ const Root = styled('div')(
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .MuiApi-item-header': {
-        '& span': {
+        '&>span, &>div': {
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         },
         '& .MuiApi-item-title': {
@@ -205,6 +220,26 @@ export type ApiItemProps = {
 
 function ApiItem(props: ApiItemProps) {
   const { title, description, note, children, id } = props;
+  const descriptionRef = React.useRef<HTMLSpanElement>(null);
+  const [isOverflow, setIsOverflow] = React.useState(false);
+  const [isExtended, setIsExtended] = React.useState(false);
+
+  React.useEffect(() => {
+    const handler = () => {
+      if (descriptionRef.current === null) {
+        return;
+      }
+      setIsOverflow(descriptionRef.current.scrollWidth > descriptionRef.current.offsetWidth);
+    };
+
+    handler();
+
+    window.addEventListener('resize', handler);
+    return () => {
+      window.removeEventListener('resize', handler);
+    };
+  }, []);
+
   return (
     <Root>
       <div id={id} className="MuiApi-item-header">
@@ -223,16 +258,27 @@ function ApiItem(props: ApiItemProps) {
         </a>
 
         <span className="MuiApi-item-title">{title}</span>
+
         <span
-          className="MuiApi-item-description"
+          className={`MuiApi-item-description${
+            isExtended ? ' MuiApi-item-description-extended' : ''
+          }`}
+          ref={descriptionRef}
           dangerouslySetInnerHTML={{
-            __html: (description ?? '').replace(/<br>/g, ' '),
+            __html: isExtended ? description! : (description ?? '').replace(/<br>/g, ' '),
           }}
           title={(description ?? '')
             .replace(/<br>/g, ' ')
             .replace(/&nbsp;/g, ' ')
             .replace(/&#124;/g, '|')}
         />
+        {isOverflow && (
+          <div className="MuiApi-item-extend-description">
+            <IconButton size="small" onClick={() => setIsExtended((prev) => !prev)}>
+              <KeyboardArrowDownIcon />
+            </IconButton>
+          </div>
+        )}
         {note && <span className="MuiApi-item-note">{note}</span>}
       </div>
       {children}
