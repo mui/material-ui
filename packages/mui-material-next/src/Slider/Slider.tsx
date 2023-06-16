@@ -16,6 +16,7 @@ import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderOwnerState, SliderTypeMap, SliderProps } from './Slider.types';
 import { MD3ColorSchemeTokens, MD3State } from '../styles';
+import useSliderElementsOverlap from './useSliderElementsOverlap';
 
 function Identity<Type>(x: Type): Type {
   return x;
@@ -37,7 +38,11 @@ const SliderRoot = styled('span', {
       ownerState.track === false && styles.trackFalse,
     ];
   },
-})<{ ownerState: SliderOwnerState }>(({ theme: { vars: tokens }, ownerState }) => ({
+})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+
+  return {
+    '--md-comp-slider-thumb-size': ownerState.size === 'small' ? '12px' : '20px',
   borderRadius: tokens.sys.shape.corner.full,
   boxSizing: 'content-box',
   display: 'inline-block',
@@ -78,11 +83,17 @@ const SliderRoot = styled('span', {
     color: tokens.sys.color.outline,
   },
   [`&.${sliderClasses.dragging}`]: {
-    [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
+      [`& .${sliderClasses.track}`]: {
       transition: 'none',
     },
+      [`& .${sliderClasses.thumb}`]: {
+        transition: theme.transitions.create(['border'], {
+          duration: theme.transitions.duration.shortest,
+        }),
   },
-}));
+    },
+  };
+});
 
 SliderRoot.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -188,10 +199,12 @@ export { SliderTrack };
 const SliderThumb = styled('span', {
   name: 'MuiSlider',
   slot: 'Thumb',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'isOverlapping',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
     return [
       styles.thumb,
+      props.isOverlapping && styles.thumbOverlap,
       styles[`thumbColor${capitalize(ownerState.color || 'primary')}`],
       ownerState.size !== 'medium' && styles[`thumbSize${capitalize(ownerState.size)}`],
     ];
@@ -205,21 +218,18 @@ const SliderThumb = styled('span', {
 
   return {
     position: 'absolute',
-    width: 20,
-    height: 20,
+    height: 'var(--md-comp-slider-thumb-size)',
+    width: 'var(--md-comp-slider-thumb-size)',
     boxSizing: 'border-box',
     borderRadius: tokens.sys.shape.corner.full,
     outline: 0,
     backgroundColor: 'currentColor',
+    border: '1px solid currentColor',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
+    transition: theme.transitions.create(['box-shadow', 'left', 'right', 'bottom', 'border'], {
       duration: theme.transitions.duration.shortest,
-    }),
-    ...(ownerState.size === 'small' && {
-      width: 12,
-      height: 12,
     }),
     ...(ownerState.orientation === 'horizontal' && {
       top: '50%',
@@ -229,16 +239,13 @@ const SliderThumb = styled('span', {
       left: '50%',
       transform: 'translate(-50%, 50%)',
     }),
-    '&:before': {
+    '&::before': {
       position: 'absolute',
       content: '""',
       borderRadius: 'inherit',
-      width: '100%',
-      height: '100%',
+      width: 'var(--md-comp-slider-thumb-size)',
+      height: 'var(--md-comp-slider-thumb-size)',
       boxShadow: tokens.sys.elevation[1],
-      ...(ownerState.size === 'small' && {
-        boxShadow: 'none',
-      }),
     },
     '&::after': {
       position: 'absolute',
@@ -251,7 +258,7 @@ const SliderThumb = styled('span', {
       left: '50%',
       transform: 'translate(-50%, -50%)',
     },
-    [`&:hover`]: {
+    '&:hover': {
       boxShadow: getBoxShadow('hover'),
       '@media (hover: none)': {
         boxShadow: 'none',
@@ -262,6 +269,9 @@ const SliderThumb = styled('span', {
     },
     [`&.${sliderClasses.active}`]: {
       boxShadow: getBoxShadow('pressed'),
+    },
+    [`&.${sliderClasses.thumbOverlap}`]: {
+      border: '1px solid white',
     },
     [`&.${sliderClasses.disabled}`]: {
       boxShadow: 'none',
@@ -288,12 +298,27 @@ export { SliderThumb };
 const SliderValueLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'ValueLabel',
-  overridesResolver: (props, styles) => styles.valueLabel,
+  shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'isOverlapping',
+  overridesResolver: (props, styles) => [
+    styles.valueLabel,
+    props.isOverlapping && styles.valueLabelOverlap,
+  ],
 })<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => {
   const { vars: tokens } = theme;
+
   const letterSpacing = `${
     theme.sys.typescale.label.medium.tracking / theme.sys.typescale.label.medium.size
   }rem`;
+
+  const labelStyle = {
+    color: ownerState.disabled
+      ? tokens.sys.color.surface
+      : tokens.sys.color[
+          `on${capitalize(ownerState.color || 'primary')}` as keyof MD3ColorSchemeTokens
+        ],
+    // paddingLeft compensates letter spacing being added only on the right side
+    paddingLeft: letterSpacing,
+  };
 
   return {
     zIndex: 1,
@@ -303,33 +328,29 @@ const SliderValueLabel = styled('span', {
     fontWeight: tokens.sys.typescale.label.medium.weight,
     fontSize: theme.typography.pxToRem(theme.sys.typescale.label.medium.size),
     letterSpacing,
-    transition: theme.transitions.create(['transform'], {
+    transition: theme.transitions.create(['transform', 'border'], {
       duration: theme.transitions.duration.shortest,
     }),
     position: 'absolute',
-    backgroundColor: tokens.sys.color[ownerState.color || 'primary'],
+    backgroundColor: 'currentColor',
     boxShadow: tokens.sys.elevation[0],
     borderRadius: '50% 50% 50% 0',
-    color:
-      tokens.sys.color[
-        `on${capitalize(ownerState.color || 'primary')}` as keyof MD3ColorSchemeTokens
-      ],
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    boxSizing: 'border-box',
+    border: '1px solid currentColor',
     width: 28,
     height: 28,
-    [`& .${sliderClasses.valueLabelLabel}`]: {
-      // compensates letter spacing being added only on the right side
-      paddingLeft: letterSpacing,
+    [`&.${sliderClasses.valueLabelOverlap}`]: {
+      border: '1px solid white',
     },
     ...(ownerState.orientation === 'horizontal' && {
       top: ownerState.size === 'small' ? -32 : -36,
       transform: 'translateY(50%) rotate(-45deg) scale(0)',
       [`& .${sliderClasses.valueLabelLabel}`]: {
         transform: 'rotate(45deg)',
-        // paddingLeft compensates letter spacing being added only on the right side
-        paddingLeft: letterSpacing,
+        ...labelStyle,
       },
       [`&.${sliderClasses.valueLabelOpen}`]: {
         transform: 'translateY(0) rotate(-45deg) scale(1)',
@@ -340,6 +361,7 @@ const SliderValueLabel = styled('span', {
       transform: 'translateX(50%) rotate(225deg) scale(0)',
       [`& .${sliderClasses.valueLabelLabel}`]: {
         transform: 'rotate(-225deg)',
+        ...labelStyle,
       },
       [`&.${sliderClasses.valueLabelOpen}`]: {
         transform: 'translateX(0) rotate(225deg) scale(1)',
@@ -349,10 +371,6 @@ const SliderValueLabel = styled('span', {
       fontSize: theme.typography.pxToRem(theme.sys.typescale.label.small.size),
       width: 24,
       height: 24,
-    }),
-    ...(ownerState.disabled && {
-      backgroundColor: tokens.sys.color.outline,
-      color: tokens.sys.color.surface,
     }),
   };
 });
@@ -493,12 +511,14 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
     valueLabel: ['valueLabel'],
     valueLabelOpen: ['valueLabelOpen'],
     valueLabelLabel: ['valueLabelLabel'],
+    valueLabelOverlap: ['valueLabelOverlap'],
     thumb: [
       'thumb',
       disabled && 'disabled',
       size && `thumbSize${capitalize(size)}`,
       color && `thumbColor${capitalize(color)}`,
     ],
+    thumbOverlap: ['thumbOverlap'],
     active: ['active'],
     disabled: ['disabled'],
     focusVisible: ['focusVisible'],
@@ -595,6 +615,14 @@ const Slider = React.forwardRef(function Slider<
 
   const classes = useUtilityClasses(ownerState);
 
+  const overlapApi = useSliderElementsOverlap(axis);
+  const lastActiveThumbIndexRef = React.useRef<number>(-1);
+  if (focusedThumbIndex !== -1) {
+    lastActiveThumbIndexRef.current = focusedThumbIndex;
+  } else if (active !== -1) {
+    lastActiveThumbIndexRef.current = active;
+  }
+
   const RootSlot = slots.root ?? SliderRoot;
   const RailSlot = slots.rail ?? SliderRail;
   const TrackSlot = slots.track ?? SliderTrack;
@@ -640,7 +668,11 @@ const Slider = React.forwardRef(function Slider<
 
   const thumbProps = useSlotProps({
     elementType: ThumbSlot,
-    getSlotProps: getThumbProps,
+    getSlotProps: () =>
+      getThumbProps({
+        onTransitionEnd: overlapApi.onThumbMoved,
+        onPointerMove: overlapApi.onThumbMoved,
+      }),
     externalSlotProps: slotProps.thumb,
     ownerState,
     className: classes.thumb,
@@ -735,6 +767,14 @@ const Slider = React.forwardRef(function Slider<
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
 
+        const isThumbOverlapping = overlapApi.getIsThumbOverlapping(
+          index,
+          lastActiveThumbIndexRef.current,
+        );
+        const isValueLabelOverlapping =
+          valueLabelDisplay === 'on' &&
+          overlapApi.getIsValueLabelOverlapping(index, lastActiveThumbIndexRef.current);
+
         return (
           <ThumbSlot
             key={index}
@@ -743,13 +783,19 @@ const Slider = React.forwardRef(function Slider<
             className={clsx(classes.thumb, thumbProps.className, {
               [classes.active]: active === index,
               [classes.focusVisible]: focusedThumbIndex === index,
-              [classes.thumbOverlap]: isOverlapping,
+              [classes.thumbOverlap]: isThumbOverlapping,
             })}
             style={{
               ...style,
               pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+              zIndex: isValueLabelOverlapping || isThumbOverlapping ? 2 : undefined,
               ...thumbProps.style,
             }}
+            ref={(thumbRef: HTMLElement) => {
+              thumbProps.ref?.(thumbRef);
+              overlapApi.setThumbRef(index, thumbRef);
+            }}
+            {...(!isHostComponent(ThumbSlot) && { isOverlapping: isThumbOverlapping })}
           >
             <InputSlot
               data-index={index}
@@ -765,20 +811,27 @@ const Slider = React.forwardRef(function Slider<
             {valueLabelDisplay !== 'off' ? (
               <ValueLabelSlot
                 {...(!isHostComponent(ValueLabelSlot) && {
+                  valueLabelFormat,
+                  valueLabelDisplay,
                   value:
                     typeof valueLabelFormat === 'function'
                       ? valueLabelFormat(scale(value), index)
                       : valueLabelFormat,
+                  disabled,
                   index,
                   open: open === index || active === index || valueLabelDisplay === 'on',
-                  disabled,
-                  isOverlapping,
+                  isOverlapping: isValueLabelOverlapping,
                 })}
                 {...valueLabelProps}
                 className={clsx(valueLabelProps.className, {
                   [classes.valueLabelOpen]:
                     open === index || active === index || valueLabelDisplay === 'on',
+                  [classes.valueLabelOverlap]: isValueLabelOverlapping,
                 })}
+                ref={(valueLabelRef: HTMLElement) => {
+                  valueLabelProps.ref?.(valueLabelRef);
+                  overlapApi.setValueLabelRef(index, valueLabelRef);
+                }}
               >
                 <span className={classes.valueLabelLabel}>
                   {typeof valueLabelFormat === 'function'

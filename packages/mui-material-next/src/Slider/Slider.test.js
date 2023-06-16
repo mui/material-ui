@@ -830,14 +830,14 @@ describe('<Slider />', () => {
     });
 
     it('should be respected when using custom value label', () => {
-      function ValueLabelComponent(props) {
+      const ValueLabelComponent = React.forwardRef((props, ref) => {
         const { value, open } = props;
         return (
-          <span data-testid="value-label" className={open ? 'open' : ''}>
+          <span data-testid="value-label" className={open ? 'open' : ''} ref={ref}>
             {value}
           </span>
         );
-      }
+      });
       ValueLabelComponent.propTypes = { value: PropTypes.number };
 
       const { setProps } = render(
@@ -1092,10 +1092,14 @@ describe('<Slider />', () => {
 
   describe('prop: ValueLabelComponent', () => {
     it('receives the formatted value', () => {
-      function ValueLabelComponent(props) {
+      const ValueLabelComponent = React.forwardRef((props, ref) => {
         const { value } = props;
-        return <span data-testid="value-label">{value}</span>;
-      }
+        return (
+          <span data-testid="value-label" ref={ref}>
+            {value}
+          </span>
+        );
+      });
       ValueLabelComponent.propTypes = { value: PropTypes.string };
 
       const { getByTestId } = render(
