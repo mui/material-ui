@@ -153,6 +153,12 @@ export default function XRoadmap() {
                   </React.Fragment>,
                   true,
                 )}
+                {renderList(
+                  <React.Fragment>
+                    <BarChartRounded fontSize="small" />
+                    <b>Charts</b>
+                  </React.Fragment>,
+                )}
               </Paper>
             </Grid>
             <Grid item xs={12} sm={4} lg="auto">
@@ -163,8 +169,6 @@ export default function XRoadmap() {
                   <React.Fragment>
                     <ShowChartRounded fontSize="small" />
                     <b>Sparkline</b>
-                    <BarChartRounded fontSize="small" />
-                    <b>Charts</b>
                     <AccountTreeRounded fontSize="small" />
                     <b>Tree View</b>
                     <FileUploadRounded fontSize="small" />
