@@ -652,7 +652,7 @@ const StyledSnackbar = styled(Snackbar)(css`
   border-color: var(--border-color);
   box-shadow: var(--Panel-shadow);
   position: fixed;
-  z-index: 5500;
+  z-index: 1200;
   display: flex;
   justify-content: start;
   align-items: center;
