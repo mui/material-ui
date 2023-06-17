@@ -135,7 +135,7 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 ## Thumb Position Control
 
-You can use the onChangeCommitted prop to control the position of the thumb
+You can use the onChangeCommitted prop to control the position of the thumb.
 
 {{"demo": "ThumbControlSlider.js"}}
 
