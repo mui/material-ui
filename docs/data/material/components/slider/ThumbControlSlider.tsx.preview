@@ -1,15 +1,9 @@
-<Typography id="non-linear-slider" gutterBottom>
-  Storage: {valueLabelFormat(calculateValue(value))}
-</Typography>
-<Slider
-  value={value}
-  min={5}
-  step={1}
-  max={30}
-  scale={calculateValue}
-  getAriaValueText={valueLabelFormat}
-  valueLabelFormat={valueLabelFormat}
-  onChange={handleChange}
-  valueLabelDisplay="auto"
-  aria-labelledby="non-linear-slider"
-/>
+      <Slider
+        value={value}
+        step={1}
+        min={0}
+        max={10}
+        onChange={handleChange}
+        onChangeCommitted={() => setValue(0)}
+        aria-labelledby="thumb-control-slider"
+      />
