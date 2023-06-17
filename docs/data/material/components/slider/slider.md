@@ -133,6 +133,12 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 {{"demo": "NonLinearSlider.js"}}
 
+## Thumb Position Control
+
+You can use the onChangeCommitted prop to control the position of the thumb.
+
+{{"demo": "ThumbControlSlider.js"}}
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/)
