@@ -4,7 +4,7 @@ import Slider from '@mui/material/Slider';
 import CheckIcon from '@mui/icons-material/Check';
 import { Grid } from "@mui/material";
 
-export default function NonLinearSlider() {
+export default function ThumbControl() {
   const [value, setValue] = React.useState<number>(0);
 
   const handleChange = (event: Event, newValue: number | number[]) => {

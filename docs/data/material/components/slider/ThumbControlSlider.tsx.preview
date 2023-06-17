@@ -1,9 +1,9 @@
-      <Slider
-        value={value}
-        step={1}
-        min={0}
-        max={10}
-        onChange={handleChange}
-        onChangeCommitted={() => setValue(0)}
-        aria-labelledby="thumb-control-slider"
-      />
+    <Slider
+      value={value}
+      step={1}
+      min={0}
+      max={10}
+      onChange={handleChange}
+      onChangeCommitted={() => setValue(0)}
+      aria-labelledby="thumb-control-slider"
+    />
