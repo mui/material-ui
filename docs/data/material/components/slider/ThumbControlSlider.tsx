@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import CheckIcon from '@mui/icons-material/Check';
-import { Grid } from "@mui/material";
+import { Grid } from '@mui/material';
 
 export default function ThumbControl() {
   const [value, setValue] = React.useState<number>(0);
@@ -14,7 +14,7 @@ export default function ThumbControl() {
   };
 
   return (
-    <Box sx={{width: 250}}>
+    <Box sx={{ width: 250 }}>
       <Grid container>
         <Grid item xs={6}>
           <Slider
@@ -28,7 +28,7 @@ export default function ThumbControl() {
           />
         </Grid>
         <Grid item xs={6}>
-          {value > 9 ? <CheckIcon sx={{marginLeft: '1rem'}}/> : <Box />}
+          {value > 9 ? <CheckIcon sx={{ marginLeft: '1rem' }} /> : <Box />}
         </Grid>
       </Grid>
     </Box>
