@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import TreeView from '@mui/lab/TreeView';
 import TreeItem, { TreeItemProps, treeItemClasses } from '@mui/lab/TreeItem';
@@ -28,10 +28,40 @@ type StyledTreeItemProps = TreeItemProps & {
   color?: string;
   colorForDarkMode?: string;
   labelIcon: React.ElementType<SvgIconProps>;
-  iconColorForDarkMode?: string;
   labelInfo?: string;
   labelText: string;
 };
+
+const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  [`& .${treeItemClasses.content}`]: {
+    color: theme.palette.text.secondary,
+    borderTopRightRadius: theme.spacing(2),
+    borderBottomRightRadius: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    fontWeight: theme.typography.fontWeightMedium,
+    '&.Mui-expanded': {
+      fontWeight: theme.typography.fontWeightRegular,
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    '&.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused': {
+      backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
+      color: 'var(--tree-view-color)',
+    },
+    [`& .${treeItemClasses.label}`]: {
+      fontWeight: 'inherit',
+      color: 'inherit',
+    },
+  },
+  [`& .${treeItemClasses.group}`]: {
+    marginLeft: 0,
+    [`& .${treeItemClasses.content}`]: {
+      paddingLeft: theme.spacing(2),
+    },
+  },
+}));
 
 function StyledTreeItem(props: StyledTreeItemProps) {
   const theme = useTheme();
@@ -43,7 +73,6 @@ function StyledTreeItem(props: StyledTreeItemProps) {
     labelText,
     colorForDarkMode,
     bgColorForDarkMode,
-    iconColorForDarkMode,
     ...other
   } = props;
 
@@ -54,7 +83,7 @@ function StyledTreeItem(props: StyledTreeItemProps) {
   };
 
   return (
-    <TreeItem
+    <StyledTreeItemRoot
       label={
         <Box
           sx={{
@@ -62,49 +91,18 @@ function StyledTreeItem(props: StyledTreeItemProps) {
             alignItems: 'center',
             p: 0.5,
             pr: 0,
-            '& .MuiTypography-body2': {
-              fontWeight: 'inherit',
-              flexGrow: 1,
-            },
           }}
         >
           <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} />
-          <Typography variant="body2">{labelText}</Typography>
-          <Typography variant="caption" color="inherit" sx={{ ml: 'auto' }}>
+          <Typography variant="body2" sx={{ fontWeight: 'inherit', flexGrow: 1 }}>
+            {labelText}
+          </Typography>
+          <Typography variant="caption" color="inherit">
             {labelInfo}
           </Typography>
         </Box>
       }
-      sx={{
-        color: 'text.secondary',
-        [`& .${treeItemClasses.content}`]: {
-          borderTopRightRadius: 2,
-          borderBottomRightRadius: 2,
-          paddingRight: 1,
-          fontWeight: theme.typography.fontWeightMedium,
-          '&.Mui-expanded': {
-            fontWeight: theme.typography.fontWeightRegular,
-          },
-          '&:hover': {
-            backgroundColor: 'action.hover',
-          },
-          '&.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused': {
-            backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
-            color: 'var(--tree-view-color)',
-          },
-          [`& .${treeItemClasses.label}`]: {
-            fontWeight: 'inherit',
-            color: 'inherit',
-          },
-        },
-        [`& .${treeItemClasses.group}`]: {
-          marginLeft: 0,
-          [`& .${treeItemClasses.content}`]: {
-            paddingLeft: 2,
-          },
-        },
-        ...styleProps,
-      }}
+      style={styleProps}
       {...other}
     />
   );
@@ -132,7 +130,6 @@ export default function GmailTreeView() {
           bgColor="#e8f0fe"
           colorForDarkMode="#B8E7FB"
           bgColorForDarkMode="#071318"
-          iconColorForDarkMode="#29B6F6"
         />
         <StyledTreeItem
           nodeId="6"
@@ -143,7 +140,6 @@ export default function GmailTreeView() {
           bgColor="#fcefe3"
           colorForDarkMode="#FFE2B7"
           bgColorForDarkMode="#191207"
-          iconColorForDarkMode="#FFA726"
         />
         <StyledTreeItem
           nodeId="7"
@@ -154,7 +150,6 @@ export default function GmailTreeView() {
           bgColor="#f3e8fd"
           colorForDarkMode="#D9B8FB"
           bgColorForDarkMode="#100719"
-          iconColorForDarkMode="#8F29F6"
         />
         <StyledTreeItem
           nodeId="8"
@@ -165,7 +160,6 @@ export default function GmailTreeView() {
           bgColor="#e6f4ea"
           colorForDarkMode="#CCE8CD"
           bgColorForDarkMode="#0C130D"
-          iconColorForDarkMode="#66BB6A"
         />
       </StyledTreeItem>
       <StyledTreeItem nodeId="4" labelText="History" labelIcon={Label} />
