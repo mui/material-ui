@@ -542,7 +542,13 @@ const Button = React.forwardRef(function Button<
       as={ComponentProp}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      {...getRootProps(getRippleHandlers(props) as unknown as EventHandlers)}
+      {...getRootProps({
+        onClick,
+        onFocus,
+        onKeyDown,
+        onKeyUp,
+        ...(getRippleHandlers(props) as unknown as EventHandlers),
+      })}
       {...other}
     >
       {startIcon}

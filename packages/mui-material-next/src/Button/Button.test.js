@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, fireEvent } from 'test/utils';
+import { spy } from 'sinon';
+import { describeConformance, createRenderer, fireEvent, act } from 'test/utils';
 import Button, { buttonClasses as classes } from '@mui/material-next/Button';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
+import { camelCase } from 'lodash';
 
 describe('<Button />', () => {
   const { render, renderToString } = createRenderer();
@@ -178,5 +180,40 @@ describe('<Button />', () => {
     fireEvent.mouseDown(button);
 
     expect(button).to.have.class(classes.active);
+  });
+
+  describe('Event handlers', () => {
+    const events = ['click', 'focus'];
+    const withFocusEvents = ['key-down', 'key-up'];
+
+    const eventHandlers = [
+      ...events.map((event) => ({
+        name: camelCase(`on-${event}`),
+        triggerFunction: fireEvent[camelCase(event)],
+      })),
+      ...withFocusEvents.map((event) => ({
+        name: camelCase(`on-${event}`),
+        triggerFunction: (target) => {
+          target.focus();
+          fireEvent[camelCase(event)](document.activeElement);
+        },
+      })),
+    ];
+
+    eventHandlers.forEach(({ name, triggerFunction }) => {
+      it(`should call ${name} handler`, () => {
+        const handleSpy = spy();
+        const handlerProp = { [name]: handleSpy };
+
+        const { container } = render(<Button {...handlerProp} />);
+        const button = container.querySelector('button');
+
+        act(() => {
+          triggerFunction(button);
+        });
+
+        expect(handleSpy.callCount).to.equal(1);
+      });
+    });
   });
 });
