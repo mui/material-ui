@@ -100,7 +100,7 @@ export default function EmailExample() {
           </Box>
           <Input
             size="sm"
-            variant="soft"
+            variant="outlined"
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
