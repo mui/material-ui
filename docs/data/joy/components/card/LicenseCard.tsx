@@ -18,21 +18,21 @@ export default function LicenseCard() {
         resize: 'horizontal',
       }}
     >
-      <Typography level="body3">Individual License</Typography>
+      <Typography level="body-xs">Individual License</Typography>
       <Typography level="h2">
         $58{' '}
         <Typography fontSize="sm" textColor="text.tertiary">
           /month
         </Typography>
       </Typography>
-      <Typography level="body2">
+      <Typography level="body-sm">
         This license allows you to use the Symbol System Design with unlimited amount
         of personal and commercial projects.
       </Typography>
       <CardActions>
         <Button variant="solid">Purchase Now</Button>
       </CardActions>
-      <Typography level="body2" textAlign="center">
+      <Typography level="body-sm" textAlign="center">
         Compatible with Sketch 55+
       </Typography>
     </Card>

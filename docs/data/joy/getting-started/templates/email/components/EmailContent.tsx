@@ -43,10 +43,10 @@ export default function EmailContent() {
             sx={{ borderRadius: 'sm' }}
           />
           <Box sx={{ ml: 2 }}>
-            <Typography level="body2" textColor="text.primary" mb={0.5}>
+            <Typography level="body-sm" textColor="text.primary" mb={0.5}>
               Alex Jonnold
             </Typography>
-            <Typography level="body3" textColor="text.tertiary">
+            <Typography level="body-xs" textColor="text.tertiary">
               21 Oct 2022
             </Typography>
           </Box>
@@ -69,7 +69,7 @@ export default function EmailContent() {
       <Box
         sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start' }}
       >
-        <Typography level="h5" textColor="text.primary">
+        <Typography level="title-lg" textColor="text.primary">
           Details for our Yosemite Park hike
         </Typography>
         <Box
@@ -84,7 +84,7 @@ export default function EmailContent() {
           <Box>
             <Typography
               component="span"
-              level="body2"
+              level="body-sm"
               sx={{ mr: 1, display: 'inline-block' }}
             >
               From
@@ -96,7 +96,7 @@ export default function EmailContent() {
           <Box>
             <Typography
               component="span"
-              level="body2"
+              level="body-sm"
               sx={{ mr: 1, display: 'inline-block' }}
             >
               to
@@ -108,7 +108,7 @@ export default function EmailContent() {
         </Box>
       </Box>
       <Divider />
-      <Typography level="body2" mt={2} mb={2}>
+      <Typography level="body-sm" mt={2} mb={2}>
         Hello, my friend!
         <br />
         <br />
@@ -175,10 +175,10 @@ export default function EmailContent() {
             </AspectRatio>
           </CardOverflow>
           <Box sx={{ p: { xs: 1, sm: 2 } }}>
-            <Typography level="body2" color="primary">
+            <Typography level="body-sm" color="primary">
               videos-hike.zip
             </Typography>
-            <Typography level="body3">100 MB</Typography>
+            <Typography level="body-xs">100 MB</Typography>
           </Box>
         </Card>
       </Box>

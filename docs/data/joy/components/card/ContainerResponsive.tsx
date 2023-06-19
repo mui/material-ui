@@ -67,7 +67,7 @@ export default function ContainerResponsive() {
                   Yosemite National Park
                 </Link>
               </Typography>
-              <Typography level="body2">California, USA</Typography>
+              <Typography level="body-sm">California, USA</Typography>
             </div>
             <IconButton
               size="sm"
@@ -96,8 +96,8 @@ export default function ContainerResponsive() {
               Y
             </Avatar>
             <div>
-              <Typography level="body2">Designed by</Typography>
-              <Typography fontWeight="lg" level="body2">
+              <Typography level="body-sm">Designed by</Typography>
+              <Typography fontWeight="lg" level="body-sm">
                 Nature itself
               </Typography>
             </div>

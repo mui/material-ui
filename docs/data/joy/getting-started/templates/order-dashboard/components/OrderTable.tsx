@@ -386,12 +386,12 @@ export default function OrderTable() {
                     <div>
                       <Typography
                         fontWeight="lg"
-                        level="body3"
+                        level="body-xs"
                         textColor="text.primary"
                       >
                         {row.customer.name}
                       </Typography>
-                      <Typography level="body3">{row.customer.email}</Typography>
+                      <Typography level="body-xs">{row.customer.email}</Typography>
                     </div>
                   </Box>
                 </td>
@@ -426,7 +426,7 @@ export default function OrderTable() {
         >
           <i data-feather="arrow-left" />
         </IconButton>
-        <Typography level="body2" mx="auto">
+        <Typography level="body-sm" mx="auto">
           Page 1 of 10
         </Typography>
         <IconButton

@@ -23,18 +23,18 @@ export default function OverflowCard() {
         <Typography level="h2" fontSize="md">
           Yosemite National Park
         </Typography>
-        <Typography level="body2" sx={{ mt: 0.5 }}>
+        <Typography level="body-sm" sx={{ mt: 0.5 }}>
           California
         </Typography>
       </CardContent>
       <CardOverflow variant="soft" sx={{ bgcolor: 'background.level1' }}>
         <Divider inset="context" />
         <CardContent orientation="horizontal">
-          <Typography level="body3" fontWeight="md" textColor="text.secondary">
+          <Typography level="body-xs" fontWeight="md" textColor="text.secondary">
             6.3k views
           </Typography>
           <Divider orientation="vertical" />
-          <Typography level="body3" fontWeight="md" textColor="text.secondary">
+          <Typography level="body-xs" fontWeight="md" textColor="text.secondary">
             1 hour ago
           </Typography>
         </CardContent>

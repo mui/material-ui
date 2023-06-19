@@ -26,7 +26,7 @@ export default function RowCard() {
         <Typography fontWeight="md" textColor="success.plainColor" mb={0.5}>
           Yosemite Park
         </Typography>
-        <Typography level="body2">California, USA</Typography>
+        <Typography level="body-sm">California, USA</Typography>
       </CardContent>
       <CardOverflow
         variant="soft"

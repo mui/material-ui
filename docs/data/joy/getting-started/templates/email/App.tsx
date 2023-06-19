@@ -203,7 +203,7 @@ export default function EmailExample() {
           <Box sx={{ py: 10 }}>
             <Typography
               textColor="text.tertiary"
-              level="body2"
+              level="body-sm"
               sx={{ textAlign: 'center' }}
             >
               You&apos;ve read all messages in your inbox.

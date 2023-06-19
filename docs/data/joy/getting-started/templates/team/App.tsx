@@ -277,7 +277,7 @@ export default function TeamExample() {
                 justifyContent: 'space-between',
               }}
             >
-              <Typography level="body2" textColor="text.primary">
+              <Typography level="body-sm" textColor="text.primary">
                 By keywords
               </Typography>
               <IconButton
@@ -342,7 +342,7 @@ export default function TeamExample() {
                 justifyContent: 'space-between',
               }}
             >
-              <Typography level="body2" textColor="text.primary">
+              <Typography level="body-sm" textColor="text.primary">
                 Location
               </Typography>
               <IconButton
@@ -394,7 +394,7 @@ export default function TeamExample() {
                 justifyContent: 'space-between',
               }}
             >
-              <Typography level="body2" textColor="text.primary">
+              <Typography level="body-sm" textColor="text.primary">
                 Education
               </Typography>
               <IconButton
@@ -424,7 +424,7 @@ export default function TeamExample() {
                 justifyContent: 'space-between',
               }}
             >
-              <Typography level="body2" textColor="text.primary">
+              <Typography level="body-sm" textColor="text.primary">
                 Previous experience
               </Typography>
               <IconButton
@@ -465,7 +465,7 @@ export default function TeamExample() {
                   />
                   <Box>
                     <Typography>Andrew Smith</Typography>
-                    <Typography level="body3">UI Designer</Typography>
+                    <Typography level="body-xs">UI Designer</Typography>
                   </Box>
                 </Box>
                 <Divider component="div" sx={{ my: 2 }} />
@@ -491,9 +491,9 @@ export default function TeamExample() {
                     </ListItemDecorator>
                     <ListItemContent>
                       <Typography fontSize="sm">Senior designer</Typography>
-                      <Typography level="body3">Dribbble</Typography>
+                      <Typography level="body-xs">Dribbble</Typography>
                     </ListItemContent>
-                    <Typography level="body2">2015-now</Typography>
+                    <Typography level="body-sm">2015-now</Typography>
                   </ListItem>
                   <ListItem sx={{ alignItems: 'flex-start' }}>
                     <ListItemDecorator>
@@ -505,9 +505,9 @@ export default function TeamExample() {
                     </ListItemDecorator>
                     <ListItemContent>
                       <Typography fontSize="sm">Designer</Typography>
-                      <Typography level="body3">Pinterest</Typography>
+                      <Typography level="body-xs">Pinterest</Typography>
                     </ListItemContent>
-                    <Typography level="body2">2012-2015</Typography>
+                    <Typography level="body-sm">2012-2015</Typography>
                   </ListItem>
                 </List>
                 <Button

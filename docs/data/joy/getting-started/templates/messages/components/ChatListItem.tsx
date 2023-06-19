@@ -51,10 +51,14 @@ export default function ChatListItem({
               <Typography fontSize="sm" fontWeight="lg">
                 {sender.name}
               </Typography>
-              <Typography level="body2">{sender.username}</Typography>
+              <Typography level="body-sm">{sender.username}</Typography>
             </Box>
             <Box sx={{ lineHeight: 1, textAlign: 'right' }}>
-              <Typography level="body2" display={{ xs: 'none', md: 'block' }} noWrap>
+              <Typography
+                level="body-sm"
+                display={{ xs: 'none', md: 'block' }}
+                noWrap
+              >
                 5 mins ago
               </Typography>
               {messages[0].unread && (
@@ -63,7 +67,7 @@ export default function ChatListItem({
             </Box>
           </Stack>
           <Typography
-            level="body2"
+            level="body-sm"
             sx={{
               display: '-webkit-box',
               WebkitLineClamp: '2',

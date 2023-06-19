@@ -61,14 +61,14 @@ export default function EmailList() {
                     mb: 0.5,
                   }}
                 >
-                  <Typography level="body3">{item.name}</Typography>
-                  <Typography level="body3" textColor="text.tertiary">
+                  <Typography level="body-xs">{item.name}</Typography>
+                  <Typography level="body-xs" textColor="text.tertiary">
                     {item.date}
                   </Typography>
                 </Box>
                 <Box>
                   <Typography sx={{ mb: 0.5 }}>{item.title}</Typography>
-                  <Typography level="body2">{item.body}</Typography>
+                  <Typography level="body-sm">{item.body}</Typography>
                 </Box>
               </Box>
             </ListItemButton>

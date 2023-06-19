@@ -77,7 +77,7 @@ export default function ShadowThemeViewer() {
           zIndex: 1,
         }}
       >
-        <Typography level="body3" textColor="inherit" startDecorator={<Check />}>
+        <Typography level="body-xs" textColor="inherit" startDecorator={<Check />}>
           Copied
         </Typography>
       </Sheet>

@@ -22,7 +22,7 @@ export default function BasicCard() {
         </CardCover>
         <CardContent>
           <Typography
-            level="h6"
+            level="body-lg"
             fontWeight="lg"
             textColor="#fff"
             mt={{ xs: 12, sm: 18 }}
@@ -47,7 +47,7 @@ export default function BasicCard() {
         </CardCover>
         <CardContent>
           <Typography
-            level="h6"
+            level="body-lg"
             fontWeight="lg"
             textColor="#fff"
             mt={{ xs: 12, sm: 18 }}

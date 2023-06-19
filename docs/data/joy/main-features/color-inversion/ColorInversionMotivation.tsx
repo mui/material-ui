@@ -39,7 +39,7 @@ export default function ColorInversionMotivation() {
       {/* Left: The global variants are applied to children only */}
       <Box>
         {demo}
-        <Typography level="body3" mt={2} textAlign="center">
+        <Typography level="body-xs" mt={2} textAlign="center">
           <b>One layer</b> <br /> global variants are applied only to the children.
         </Typography>
       </Box>
@@ -50,7 +50,7 @@ export default function ColorInversionMotivation() {
           variant: 'solid',
           color: 'primary',
         })}
-        <Typography level="body3" mt={2} textAlign="center">
+        <Typography level="body-xs" mt={2} textAlign="center">
           <b>Two layers</b>
           <br /> global variants are applied to the card and children.
         </Typography>

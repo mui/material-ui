@@ -45,7 +45,7 @@ export default function ColorInversionNavigation() {
           placeholder={
             <Box>
               <Typography level="inherit">Saleshouse</Typography>
-              <Typography level="body2">general team</Typography>
+              <Typography level="body-sm">general team</Typography>
             </Box>
           }
           startDecorator={

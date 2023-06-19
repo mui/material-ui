@@ -8,7 +8,7 @@ import Typography from '@mui/joy/Typography';
 export default function IconlessCheckbox() {
   return (
     <Box sx={{ width: 343 }}>
-      <Typography id="topping" level="body2" fontWeight="lg" mb={2}>
+      <Typography id="topping" level="body-sm" fontWeight="lg" mb={2}>
         Pizza toppings
       </Typography>
       <Box role="group" aria-labelledby="topping">

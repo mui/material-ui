@@ -14,7 +14,7 @@ export default function BasicCard() {
         <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
           Yosemite National Park
         </Typography>
-        <Typography level="body2">April 24 to May 02, 2021</Typography>
+        <Typography level="body-sm">April 24 to May 02, 2021</Typography>
         <IconButton
           aria-label="bookmark Bahamas Islands"
           variant="plain"
@@ -35,7 +35,7 @@ export default function BasicCard() {
       </AspectRatio>
       <CardContent orientation="horizontal">
         <div>
-          <Typography level="body3">Total price:</Typography>
+          <Typography level="body-xs">Total price:</Typography>
           <Typography fontSize="lg" fontWeight="lg">
             $2,900
           </Typography>

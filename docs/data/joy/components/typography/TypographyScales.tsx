@@ -11,11 +11,11 @@ export default function TypographyScales() {
       <Typography level="h2">h2</Typography>
       <Typography level="h3">h3</Typography>
       <Typography level="h4">h4</Typography>
-      <Typography level="h5">h5</Typography>
-      <Typography level="h6">h6</Typography>
-      <Typography level="body1">body1</Typography>
-      <Typography level="body2">body2</Typography>
-      <Typography level="body3">body3</Typography>
+      <Typography level="title-lg">h5</Typography>
+      <Typography level="body-lg">h6</Typography>
+      <Typography level="body-md">body1</Typography>
+      <Typography level="body-sm">body2</Typography>
+      <Typography level="body-xs">body3</Typography>
       <Typography level="body4">body4</Typography>
       <Typography level="body5">body5</Typography>
     </Box>

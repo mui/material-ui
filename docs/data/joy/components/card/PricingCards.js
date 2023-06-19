@@ -58,7 +58,7 @@ export default function PricingCards() {
         </List>
         <Divider inset="none" />
         <CardActions>
-          <Typography level="h5" sx={{ mr: 'auto' }}>
+          <Typography level="title-lg" sx={{ mr: 'auto' }}>
             3.990€{' '}
             <Typography fontSize="sm" textColor="text.tertiary">
               / month
@@ -128,7 +128,7 @@ export default function PricingCards() {
         </List>
         <Divider inset="none" />
         <CardActions>
-          <Typography level="h5" sx={{ mr: 'auto' }}>
+          <Typography level="title-lg" sx={{ mr: 'auto' }}>
             5.990€{' '}
             <Typography fontSize="sm" textColor="text.tertiary">
               / month

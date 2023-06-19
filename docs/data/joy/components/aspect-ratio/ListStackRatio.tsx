@@ -54,7 +54,7 @@ export default function FlexRowRatio() {
                 </AspectRatio>
                 <ListItemContent>
                   <Typography fontWeight="md">{item.title}</Typography>
-                  <Typography level="body2">{item.description}</Typography>
+                  <Typography level="body-sm">{item.description}</Typography>
                 </ListItemContent>
               </ListItemButton>
             </ListItem>

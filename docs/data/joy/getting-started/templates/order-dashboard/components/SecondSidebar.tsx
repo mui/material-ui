@@ -131,10 +131,10 @@ export default function SecondSidebar() {
         </List>
         <Box sx={{ pl: 1, mt: 'auto', display: 'flex', alignItems: 'center' }}>
           <div>
-            <Typography fontWeight="lg" level="body2">
+            <Typography fontWeight="lg" level="body-sm">
               Olivia Ryhe
             </Typography>
-            <Typography level="body2">olivia@email.com</Typography>
+            <Typography level="body-sm">olivia@email.com</Typography>
           </div>
           <IconButton variant="plain" sx={{ ml: 'auto' }}>
             <i data-feather="log-out" />

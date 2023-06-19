@@ -57,7 +57,7 @@ export default function CarouselRatio() {
           </AspectRatio>
           <Box sx={{ whiteSpace: 'nowrap' }}>
             <Typography fontWeight="md">{item.title}</Typography>
-            <Typography level="body2">{item.description}</Typography>
+            <Typography level="body-sm">{item.description}</Typography>
           </Box>
         </Card>
       ))}

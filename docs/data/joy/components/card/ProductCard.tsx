@@ -23,7 +23,7 @@ export default function ProductCard() {
         </AspectRatio>
       </CardOverflow>
       <CardContent>
-        <Typography level="body3">Bluetooth Headset</Typography>
+        <Typography level="body-xs">Bluetooth Headset</Typography>
         <Link
           href="#product-card"
           fontWeight="xl"
@@ -47,7 +47,7 @@ export default function ProductCard() {
         >
           2,900 THB
         </Typography>
-        <Typography level="body2">
+        <Typography level="body-sm">
           (Only <b>7</b> left in stock!)
         </Typography>
       </CardContent>

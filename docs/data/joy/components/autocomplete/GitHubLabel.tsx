@@ -59,7 +59,7 @@ export default function GitHubLabel() {
           color="neutral"
           component="button"
           underline="none"
-          level="body3"
+          level="body-xs"
           aria-describedby={id}
           onClick={handleClick}
           sx={{
@@ -180,7 +180,7 @@ export default function GitHubLabel() {
                   />
                   <Box sx={{ flexGrow: 1 }}>
                     <Typography fontSize="sm">{option.name}</Typography>
-                    <Typography level="body3" textColor="text.secondary">
+                    <Typography level="body-xs" textColor="text.secondary">
                       {option.description}
                     </Typography>
                   </Box>

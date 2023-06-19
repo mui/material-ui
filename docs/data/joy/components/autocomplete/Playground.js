@@ -57,7 +57,7 @@ export default function Playground() {
         <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 2 }}>
           <Typography
             id="flags-playground"
-            level="body3"
+            level="body-xs"
             sx={{
               textTransform: 'uppercase',
               fontWeight: 'lg',
@@ -71,7 +71,7 @@ export default function Playground() {
             // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <Link
               component="button"
-              level="body2"
+              level="body-sm"
               onClick={() => setFlags([])}
               sx={{ ml: 'auto' }}
             >

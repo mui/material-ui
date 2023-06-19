@@ -48,7 +48,10 @@ export default function ExampleGmailList() {
               <InboxIcon fontSize="lg" />
             </ListItemDecorator>
             <ListItemContent>Inbox</ListItemContent>
-            <Typography level="body2" sx={{ fontWeight: 'bold', color: 'inherit' }}>
+            <Typography
+              level="body-sm"
+              sx={{ fontWeight: 'bold', color: 'inherit' }}
+            >
               1,950
             </Typography>
           </ListItemButton>
@@ -91,7 +94,7 @@ export default function ExampleGmailList() {
                   <People fontSize="lg" />
                 </ListItemDecorator>
                 <ListItemContent>Social</ListItemContent>
-                <Typography level="body2">4,320</Typography>
+                <Typography level="body-sm">4,320</Typography>
               </ListItemButton>
             </ListItem>
             <ListItem>
@@ -105,7 +108,7 @@ export default function ExampleGmailList() {
                   <Info fontSize="lg" />
                 </ListItemDecorator>
                 <ListItemContent>Updates</ListItemContent>
-                <Typography level="body2">22,252</Typography>
+                <Typography level="body-sm">22,252</Typography>
               </ListItemButton>
             </ListItem>
           </List>

@@ -39,7 +39,7 @@ export default function CircularProgressColors() {
         }}
       >
         <Typography
-          level="body2"
+          level="body-sm"
           fontWeight="xl"
           id="variant-label"
           textColor="text.primary"

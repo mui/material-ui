@@ -33,7 +33,7 @@ export default function BioCard() {
         <Typography fontSize="lg" fontWeight="lg" sx={{ mt: 1, mb: 0.5 }}>
           Josephine Blanton
         </Typography>
-        <Typography level="body2" sx={{ maxWidth: '24ch' }}>
+        <Typography level="body-sm" sx={{ maxWidth: '24ch' }}>
           Hello, this is my bio and I am a PRO member of MUI. I am a developer and I
           love to code.
         </Typography>

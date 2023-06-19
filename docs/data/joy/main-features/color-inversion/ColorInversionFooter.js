@@ -107,8 +107,8 @@ export default function ColorInversionFooter() {
             <img alt="" src="/static/blog/mui-product-comparison/ecosystem.png" />
           </AspectRatio>
           <CardContent>
-            <Typography level="body2">Intro to the MUI ecosystem</Typography>
-            <Typography level="body3" sx={{ mb: 0.5 }}>
+            <Typography level="body-sm">Intro to the MUI ecosystem</Typography>
+            <Typography level="body-xs" sx={{ mb: 0.5 }}>
               MUI blog
             </Typography>
           </CardContent>
@@ -216,13 +216,13 @@ export default function ColorInversionFooter() {
         }}
       >
         <Typography
-          level="body2"
+          level="body-sm"
           startDecorator={<Typography textColor="text.tertiary">by</Typography>}
         >
           MUI
         </Typography>
 
-        <Typography level="body3" sx={{ ml: 'auto' }}>
+        <Typography level="body-xs" sx={{ ml: 'auto' }}>
           Copyright 2022
         </Typography>
       </Box>

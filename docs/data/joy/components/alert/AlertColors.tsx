@@ -38,7 +38,7 @@ export default function AlertColors() {
       </Stack>
       <Sheet sx={{ pl: 4, ml: 3, borderLeft: '1px solid', borderColor: 'divider' }}>
         <Typography
-          level="body2"
+          level="body-sm"
           fontWeight="xl"
           id="variant-label"
           textColor="text.primary"

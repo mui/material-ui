@@ -100,7 +100,7 @@ export default function ExampleIOSList() {
               Apple TV+ Free Year Available
             </ListItemButton>
           </ListItem>
-          <Typography id="apple-tv-description" level="body3" aria-hidden>
+          <Typography id="apple-tv-description" level="body-xs" aria-hidden>
             Included with your recent Apple device purchase. Must be accepted within
             90 days of activation.
           </Typography>

@@ -45,7 +45,7 @@ export default function OverlayRadio() {
               }}
             />
             <Avatar alt={`person${num}`} src={`/static/images/avatar/${num}.jpg`} />
-            <Typography level="body2">Person {num}</Typography>
+            <Typography level="body-sm">Person {num}</Typography>
           </Sheet>
         ))}
       </RadioGroup>

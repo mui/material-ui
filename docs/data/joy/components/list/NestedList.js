@@ -16,7 +16,7 @@ export default function NestedList() {
         checked={small}
         onChange={(event) => setSmall(event.target.checked)}
         endDecorator={
-          <Typography level="body2">Toggle small nested list</Typography>
+          <Typography level="body-sm">Toggle small nested list</Typography>
         }
         sx={{ mb: 2 }}
       />

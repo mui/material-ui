@@ -213,28 +213,28 @@ export default function FilesExample() {
                 },
               }}
             >
-              <Typography level="body3" fontWeight="md" noWrap>
+              <Typography level="body-xs" fontWeight="md" noWrap>
                 Folder name
               </Typography>
-              <Typography level="body3" fontWeight="md" noWrap>
+              <Typography level="body-xs" fontWeight="md" noWrap>
                 Date modified
               </Typography>
-              <Typography level="body3" fontWeight="md" noWrap>
+              <Typography level="body-xs" fontWeight="md" noWrap>
                 Size
               </Typography>
-              <Typography level="body3" fontWeight="md" noWrap>
+              <Typography level="body-xs" fontWeight="md" noWrap>
                 Users
               </Typography>
 
               <Typography
-                level="body2"
+                level="body-sm"
                 startDecorator={<FolderOpenIcon color="primary" />}
                 sx={{ alignItems: 'flex-start' }}
               >
                 Travel pictures
               </Typography>
-              <Typography level="body2">21 October 2011, 3PM</Typography>
-              <Typography level="body2" sx={{ color: 'success.600' }}>
+              <Typography level="body-sm">21 October 2011, 3PM</Typography>
+              <Typography level="body-sm" sx={{ color: 'success.600' }}>
                 987.5MB
               </Typography>
               <Box>
@@ -261,14 +261,14 @@ export default function FilesExample() {
                 </AvatarGroup>
               </Box>
               <Typography
-                level="body2"
+                level="body-sm"
                 startDecorator={<FolderOpenIcon color="primary" />}
                 sx={{ alignItems: 'flex-start' }}
               >
                 Important documents
               </Typography>
-              <Typography level="body2">26 May 2010, 7PM</Typography>
-              <Typography level="body2" sx={{ color: 'success.600' }}>
+              <Typography level="body-sm">26 May 2010, 7PM</Typography>
+              <Typography level="body-sm" sx={{ color: 'success.600' }}>
                 123.3KB
               </Typography>
               <Box>
@@ -326,13 +326,13 @@ export default function FilesExample() {
                         }}
                       >
                         <Typography
-                          level="body2"
+                          level="body-sm"
                           startDecorator={<FolderOpenIcon color="primary" />}
                           sx={{ alignItems: 'flex-start' }}
                         >
                           Travel pictures
                         </Typography>
-                        <Typography level="body2" sx={{ color: 'success.600' }}>
+                        <Typography level="body-sm" sx={{ color: 'success.600' }}>
                           987.5MB
                         </Typography>
                       </Box>
@@ -369,7 +369,7 @@ export default function FilesExample() {
                             />
                           </AvatarGroup>
                         </Box>
-                        <Typography level="body2">21 October 2011, 3PM</Typography>
+                        <Typography level="body-sm">21 October 2011, 3PM</Typography>
                       </Box>
                     </ListItemContent>
                   </ListItemButton>
@@ -386,13 +386,13 @@ export default function FilesExample() {
                         }}
                       >
                         <Typography
-                          level="body2"
+                          level="body-sm"
                           startDecorator={<FolderOpenIcon color="primary" />}
                           sx={{ alignItems: 'flex-start' }}
                         >
                           Important documents
                         </Typography>
-                        <Typography level="body2" sx={{ color: 'success.600' }}>
+                        <Typography level="body-sm" sx={{ color: 'success.600' }}>
                           123.3KB
                         </Typography>
                       </Box>
@@ -429,7 +429,7 @@ export default function FilesExample() {
                             />
                           </AvatarGroup>
                         </Box>
-                        <Typography level="body2">26 May 2010, 7PM</Typography>
+                        <Typography level="body-sm">26 May 2010, 7PM</Typography>
                       </Box>
                     </ListItemContent>
                   </ListItemButton>
@@ -465,7 +465,7 @@ export default function FilesExample() {
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
                   <Typography>photos-travel.zip</Typography>
-                  <Typography level="body3" mt={0.5}>
+                  <Typography level="body-xs" mt={0.5}>
                     Added 25 May 2011
                   </Typography>
                 </Box>
@@ -503,7 +503,7 @@ export default function FilesExample() {
                 <Box sx={{ flex: 1 }}>
                   <Typography textColor="#fff">torres-del-paine.png</Typography>
                   <Typography
-                    level="body3"
+                    level="body-xs"
                     mt={0.5}
                     textColor="rgba(255,255,255,0.72)"
                   >
@@ -544,7 +544,7 @@ export default function FilesExample() {
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
                   <Typography>platform_ios.zip</Typography>
-                  <Typography level="body3" mt={0.5}>
+                  <Typography level="body-xs" mt={0.5}>
                     Added 26 May 2011
                   </Typography>
                 </Box>
@@ -597,7 +597,7 @@ export default function FilesExample() {
             />
           </AspectRatio>
           <Box sx={{ p: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
-            <Typography level="body2" mr={1}>
+            <Typography level="body-sm" mr={1}>
               Shared with
             </Typography>
             <AvatarGroup size="sm" sx={{ '--Avatar-size': '24px' }}>
@@ -629,38 +629,38 @@ export default function FilesExample() {
               '& > *:nth-child(odd)': { color: 'text.secondary' },
             }}
           >
-            <Typography level="body2">Type</Typography>
-            <Typography level="body2" textColor="text.primary">
+            <Typography level="body-sm">Type</Typography>
+            <Typography level="body-sm" textColor="text.primary">
               Image
             </Typography>
 
-            <Typography level="body2">Size</Typography>
-            <Typography level="body2" textColor="text.primary">
+            <Typography level="body-sm">Size</Typography>
+            <Typography level="body-sm" textColor="text.primary">
               3,6 MB (3,258,385 bytes)
             </Typography>
 
-            <Typography level="body2">Storage used</Typography>
-            <Typography level="body2" textColor="text.primary">
+            <Typography level="body-sm">Storage used</Typography>
+            <Typography level="body-sm" textColor="text.primary">
               3,6 MB (3,258,385 bytes)
             </Typography>
 
-            <Typography level="body2">Location</Typography>
-            <Typography level="body2" textColor="text.primary">
+            <Typography level="body-sm">Location</Typography>
+            <Typography level="body-sm" textColor="text.primary">
               Travel pictures
             </Typography>
 
-            <Typography level="body2">Owner</Typography>
-            <Typography level="body2" textColor="text.primary">
+            <Typography level="body-sm">Owner</Typography>
+            <Typography level="body-sm" textColor="text.primary">
               Michael Scott
             </Typography>
 
-            <Typography level="body2">Modified</Typography>
-            <Typography level="body2" textColor="text.primary">
+            <Typography level="body-sm">Modified</Typography>
+            <Typography level="body-sm" textColor="text.primary">
               26 October 2016
             </Typography>
 
-            <Typography level="body2">Created</Typography>
-            <Typography level="body2" textColor="text.primary">
+            <Typography level="body-sm">Created</Typography>
+            <Typography level="body-sm" textColor="text.primary">
               5 August 2016
             </Typography>
           </Box>
