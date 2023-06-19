@@ -13,6 +13,7 @@ export default function UserCard() {
       sx={{
         width: '100%',
         position: 'relative',
+        overflow: { xs: 'auto', sm: 'initial' },
       }}
     >
       <Box

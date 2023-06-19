@@ -98,7 +98,7 @@ function AppLayoutDocs(props) {
   let productName = 'MUI';
   if (canonicalAs.startsWith('/material-ui/')) {
     productName = 'Material UI';
-  } else if (canonicalAs.startsWith('/base/')) {
+  } else if (canonicalAs.startsWith('/base-ui/')) {
     productName = 'Base UI';
   } else if (canonicalAs.startsWith('/x/')) {
     productName = 'MUI X';
