@@ -185,7 +185,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
         outlinedColor: getCssVarColor(`palette-neutral-500`),
         outlinedBorder: getCssVarColor(`palette-neutral-300`),
-        outlinedIcon: getCssVarColor(`palette-neutral-400`),
+        outlinedIcon: getCssVarColor(`palette-neutral-500`),
         outlinedHoverBg: getCssVarColor(`palette-neutral-100`),
         outlinedHoverBorder: getCssVarColor(`palette-neutral-300`),
         outlinedHoverIcon: getCssVarColor(`palette-neutral-500`),
@@ -199,7 +199,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
         softColor: getCssVarColor(`palette-neutral-700`),
         softBg: getCssVarColor(`palette-neutral-100`),
-        softIcon: getCssVarColor(`palette-neutral-400`),
+        softIcon: getCssVarColor(`palette-neutral-500`),
         softHoverBg: getCssVarColor(`palette-neutral-200`),
         softHoverIcon: getCssVarColor(`palette-neutral-500`),
         softActiveColor: getCssVarColor(`palette-neutral-800`),
