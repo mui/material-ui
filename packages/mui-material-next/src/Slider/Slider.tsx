@@ -298,7 +298,11 @@ export { SliderThumb };
 const SliderValueLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'ValueLabel',
-  shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'isOverlapping',
+  shouldForwardProp: (prop) =>
+    shouldForwardProp(prop) &&
+    prop !== 'isOverlapping' &&
+    prop !== 'valueLabelDisplay' &&
+    prop !== 'valueLabelFormat',
   overridesResolver: (props, styles) => [
     styles.valueLabel,
     props.isOverlapping && styles.valueLabelOverlap,
