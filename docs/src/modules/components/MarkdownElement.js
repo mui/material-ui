@@ -391,7 +391,7 @@ const Root = styled('div')(
       cursor: 'pointer',
       position: 'absolute',
       top: theme.spacing(1),
-      right: theme.spacing(1),
+      right: theme.spacing(3),
       fontFamily: 'inherit',
       fontSize: lightTheme.typography.pxToRem(13),
       fontWeight: 500,
