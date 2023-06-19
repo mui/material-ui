@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Input component and hook
 components: Input
 hooks: useInput

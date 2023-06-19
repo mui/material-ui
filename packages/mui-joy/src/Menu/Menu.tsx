@@ -4,6 +4,7 @@ import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mu
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import useMenu, { MenuProvider } from '@mui/base/useMenu';
+import { ListActionTypes } from '@mui/base/useList';
 import Popper from '@mui/base/Popper';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
@@ -90,6 +91,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     keepMounted = false,
     invertedColors = false,
     onClose,
+    onItemsChange,
     open = false,
     modifiers: modifiersProp,
     variant = 'outlined',
@@ -114,12 +116,14 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     open,
     onOpenChange: handleOpenChange,
     listboxId: props.id,
+    onItemsChange,
   });
 
   React.useImperativeHandle(
     actions,
     () => ({
       dispatch,
+      resetHighlight: () => dispatch({ type: ListActionTypes.resetHighlight, event: null }),
     }),
     [dispatch],
   );
@@ -310,6 +314,10 @@ Menu.propTypes /* remove-proptypes */ = {
    * Triggered when focus leaves the menu and the menu should close.
    */
   onClose: PropTypes.func,
+  /**
+   * Function called when the items displayed in the menu change.
+   */
+  onItemsChange: PropTypes.func,
   /**
    * Controls whether the menu is displayed.
    * @default false
