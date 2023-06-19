@@ -305,7 +305,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontWeight: 700,
       },
       allVariants: {
-        scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 72px)',
+        scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
       },
     },
     /**
@@ -741,30 +741,6 @@ export function getThemedComponents(): ThemeOptions {
         defaultProps: {
           disableTouchRipple: true,
         },
-        styleOverrides: {
-          root: ({ theme }) => [
-            {
-              padding: theme.spacing(1),
-              marginBottom: theme.spacing(1),
-              marginRight: theme.spacing(1),
-              fontWeight: 600,
-              minHeight: 32,
-              minWidth: 0,
-              borderRadius: 12,
-              '&:hover': {
-                background: (theme.vars || theme).palette.grey[50],
-              },
-            },
-            theme.applyDarkStyles({
-              '&:hover': {
-                background: (theme.vars || theme).palette.primaryDark[700],
-              },
-              '&.Mui-selected': {
-                color: (theme.vars || theme).palette.primary[300],
-              },
-            }),
-          ],
-        },
       },
       MuiPaper: {
         styleOverrides: {
@@ -778,7 +754,7 @@ export function getThemedComponents(): ThemeOptions {
               ...(ownerState.variant === 'outlined' && {
                 display: 'block',
                 borderColor: (theme.vars || theme).palette.grey[200],
-                ':is(a, button)': {
+                ':is(a&), :is(button&)': {
                   '&:hover': {
                     boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
                   },
@@ -790,7 +766,7 @@ export function getThemedComponents(): ThemeOptions {
               ...(ownerState.variant === 'outlined' && {
                 borderColor: (theme.vars || theme).palette.primaryDark[500],
                 backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-                ':is(a, button)': {
+                ':is(a&), :is(button&)': {
                   '&:hover': {
                     boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
                   },
@@ -827,12 +803,15 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiToggleButton: {
         styleOverrides: {
-          root: ({ theme }) => [
+          root: ({ theme, ownerState }) => [
             {
               textTransform: 'none',
               fontWeight: 500,
               color: theme.palette.grey[700],
               borderColor: theme.palette.grey[200],
+              ...(ownerState.size === 'small' && {
+                padding: '0.375rem 0.75rem',
+              }),
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[500],
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,

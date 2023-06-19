@@ -81,6 +81,7 @@ const ChipRoot = styled('div', {
       '--_Chip-paddingBlock':
         'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Chip-decoratorChildHeight)) / 2, 0px)',
       minHeight: 'var(--_Chip-minHeight)',
+      maxWidth: 'max-content', // to prevent Chip from stretching to full width when used with flexbox
       paddingInline: 'var(--Chip-paddingInline)',
       borderRadius: 'var(--_Chip-radius)',
       position: 'relative',
@@ -143,6 +144,7 @@ const ChipAction = styled('button', {
     left: 0,
     bottom: 0,
     right: 0,
+    width: '100%', // To fix Firefox issue (https://github.com/mui/material-ui/issues/36877)
     border: 'none',
     cursor: 'pointer',
     padding: 'initial',
@@ -240,7 +242,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const { focusVisible, getRootProps } = useButton({
     ...resolvedActionProps,
     disabled,
-    ref: actionRef,
+    rootRef: actionRef,
   });
 
   ownerState.focusVisible = focusVisible;

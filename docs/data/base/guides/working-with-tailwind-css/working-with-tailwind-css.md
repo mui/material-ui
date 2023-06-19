@@ -243,7 +243,7 @@ You should now see the player rendered on the page, but the component is not yet
 
 ### Create the Slider component
 
-Let's start by giving life to the slider with the Unstyled Slider component from Base UI.
+Let's start by giving life to the slider with the Slider component from Base UI.
 First, create a new file called `Slider.tsx`.
 Copy and paste the code below into the file:
 
@@ -251,17 +251,14 @@ Copy and paste the code below into the file:
 
 ```tsx
 import * as React from 'react';
-import SliderUnstyled, {
-  SliderUnstyledThumbSlotProps,
-  SliderUnstyledProps,
-} from '@mui/base/SliderUnstyled';
+import Slider, { SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
 
 const Slider = React.forwardRef(function Slider(
-  props: SliderUnstyledProps,
+  props: SliderProps,
   ref: React.ForwardedRef<HTMLSpanElement>,
 ) {
   return (
-    <SliderUnstyled
+    <Slider
       {...props}
       ref={ref}
       slotProps={{
@@ -337,10 +334,10 @@ To do this, it's not enough to just use classes for the thumb—we need also to 
 +++ b/src/Slider.tsx
 @@ -1,6 +1,17 @@
  import * as React from 'react';
- import SliderUnstyled, { SliderUnstyledThumbSlotProps, SliderUnstyledProps } from '@mui/base/SliderUnstyled';
+ import Slider, { SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
 
 +const Thumb = React.forwardRef(function Thumb(
-+  props: SliderUnstyledThumbSlotProps,
++  props: SliderThumbSlotProps,
 +  ref: React.ForwardedRef<HTMLSpanElement>,
 +) {
 +  const { ownerState, className = '', children, ...other } = props;
@@ -351,10 +348,10 @@ To do this, it's not enough to just use classes for the thumb—we need also to 
 +});
 +
  const Slider = React.forwardRef(function Slider(
-   props: SliderUnstyledProps,
+   props: SliderProps,
    ref: React.ForwardedRef<HTMLSpanElement>,
 @@ -8,9 +19,11 @@ const Slider = React.forwardRef(function Slider(
-   return (<SliderUnstyled
+   return (<Slider
      {...props}
      ref={ref}
 +    slots={{
@@ -388,7 +385,7 @@ This is useful if you want to style the component based on some internal state.
 ## Adding a custom focus selector to the buttons
 
 To finish this guide off, let's see how you can add custom styles based on a component's internal state.
-We'll create a custom Button component that uses the `focusVisible` state from the Base UI Unstyled Button to apply a cyan ring around it.
+We'll create a custom Button component that uses the `focusVisible` state from the Base UI Button to apply a cyan ring around it.
 
 This is what it'll look like:
 
@@ -400,20 +397,17 @@ Create a `Button.tsx` file and copy the following code:
 
 ```tsx
 import * as React from 'react';
-import ButtonUnstyled, {
-  ButtonUnstyledOwnerState,
-  ButtonUnstyledProps,
-} from '@mui/base/ButtonUnstyled';
+import Button, { ButtonOwnerState, ButtonProps } from '@mui/base/Button';
 
 const Button = React.forwardRef(function Button(
-  props: ButtonUnstyledProps,
+  props: ButtonProps,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
   return (
-    <ButtonUnstyled
+    <Button
       {...props}
       slotProps={{
-        root: (state: ButtonUnstyledOwnerState) => ({
+        root: (state: ButtonOwnerState) => ({
           className: `hover:text-cyan-500 transition-colors ${
             state.focusVisible ? 'outline-0 ring-2 ring-cyan-500' : ''
           }`,

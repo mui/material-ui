@@ -1,12 +1,42 @@
 import * as React from 'react';
-import SelectUnstyled, {
-  SelectUnstyledProps,
-  selectUnstyledClasses,
-} from '@mui/base/SelectUnstyled';
+import Select, { SelectProps, selectClasses } from '@mui/base/Select';
 import { SelectOption } from '@mui/base/useOption';
-import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Option, { optionClasses } from '@mui/base/Option';
+import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
+
+export default function UnstyledSelectCustomRenderValue() {
+  return (
+    <CustomSelect renderValue={renderValue}>
+      <StyledOption value={10}>Ten</StyledOption>
+      <StyledOption value={20}>Twenty</StyledOption>
+      <StyledOption value={30}>Thirty</StyledOption>
+    </CustomSelect>
+  );
+}
+
+function CustomSelect(props: SelectProps<number, false>) {
+  const slots: SelectProps<number, false>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} slots={slots} />;
+}
+
+function renderValue(option: SelectOption<number> | null) {
+  if (option == null) {
+    return <span>Select an option...</span>;
+  }
+
+  return (
+    <span>
+      {option.label} ({option.value})
+    </span>
+  );
+}
 
 const blue = {
   100: '#DAECFF',
@@ -53,12 +83,12 @@ const StyledButton = styled('button')(
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &.${selectUnstyledClasses.focusVisible} {
+  &.${selectClasses.focusVisible} {
     border-color: ${blue[400]};
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
-  &.${selectUnstyledClasses.expanded} {
+  &.${selectClasses.expanded} {
     &::after {
       content: '▴';
     }
@@ -89,7 +119,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(OptionUnstyled)(
+const StyledOption = styled(Option)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -100,65 +130,32 @@ const StyledOption = styled(OptionUnstyled)(
     border-bottom: none;
   }
 
-  &.${optionUnstyledClasses.selected} {
+  &.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.${optionUnstyledClasses.highlighted} {
+  &.${optionClasses.highlighted} {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
+  &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.${optionUnstyledClasses.disabled} {
+  &.${optionClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
 
-  &:hover:not(.${optionUnstyledClasses.disabled}) {
+  &:hover:not(.${optionClasses.disabled}) {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
   `,
 );
 
-const StyledPopper = styled(PopperUnstyled)`
+const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
-
-function CustomSelect(props: SelectUnstyledProps<number, false>) {
-  const slots: SelectUnstyledProps<number, false>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <SelectUnstyled {...props} slots={slots} />;
-}
-
-function renderValue(option: SelectOption<number> | null) {
-  if (option == null) {
-    return <span>Select an option...</span>;
-  }
-
-  return (
-    <span>
-      {option.label} ({option.value})
-    </span>
-  );
-}
-
-export default function UnstyledSelectCustomRenderValue() {
-  return (
-    <CustomSelect renderValue={renderValue}>
-      <StyledOption value={10}>Ten</StyledOption>
-      <StyledOption value={20}>Twenty</StyledOption>
-      <StyledOption value={30}>Thirty</StyledOption>
-    </CustomSelect>
-  );
-}

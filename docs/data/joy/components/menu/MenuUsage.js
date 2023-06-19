@@ -53,6 +53,14 @@ export default function MenuUsage() {
           defaultValue: 'md',
         },
         {
+          propName: 'open',
+          knob: 'controlled',
+        },
+        {
+          propName: 'invertedColors',
+          knob: 'switch',
+        },
+        {
           propName: 'children',
           defaultValue: '<MenuItem>...</MenuItem>',
         },
@@ -77,6 +85,10 @@ export default function MenuUsage() {
             id="menu-usage-demo"
             anchorEl={anchorEl}
             open={open}
+            {...(typeof props.open === 'boolean' && {
+              open: props.open,
+              anchorEl: buttonRef.current,
+            })}
             onClose={handleClose}
             slotProps={{
               listbox: {

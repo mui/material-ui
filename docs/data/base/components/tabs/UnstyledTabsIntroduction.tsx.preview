@@ -1,10 +1,10 @@
-<TabsUnstyled defaultValue={0}>
-  <TabsList>
-    <Tab value={0}>My account</Tab>
-    <Tab value={1}>Profile</Tab>
-    <Tab value={2}>Language</Tab>
-  </TabsList>
-  <TabPanel value={0}>My account page</TabPanel>
-  <TabPanel value={1}>Profile page</TabPanel>
-  <TabPanel value={2}>Language page</TabPanel>
-</TabsUnstyled>
+<Tabs defaultValue={0}>
+  <StyledTabsList>
+    <StyledTab value={0}>My account</StyledTab>
+    <StyledTab value={1}>Profile</StyledTab>
+    <StyledTab value={2}>Language</StyledTab>
+  </StyledTabsList>
+  <StyledTabPanel value={0}>My account page</StyledTabPanel>
+  <StyledTabPanel value={1}>Profile page</StyledTabPanel>
+  <StyledTabPanel value={2}>Language page</StyledTabPanel>
+</Tabs>

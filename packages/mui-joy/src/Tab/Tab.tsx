@@ -92,11 +92,11 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   const color = getColor(inProps.color, colorProp);
 
   const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
-  const handleRef = useForkRef(tabRef, ref);
+  const handleRef = useForkRef(tabRef, ref) as React.RefCallback<Element>;
 
   const { active, focusVisible, setFocusVisible, selected, getRootProps } = useTab({
     ...props,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   React.useImperativeHandle(

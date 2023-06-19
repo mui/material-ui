@@ -45,6 +45,7 @@ const RadioGroupRoot = styled('div', {
     '--RadioGroup-gap': '1.25rem',
   }),
   display: 'flex',
+  margin: 'var(--unstable_RadioGroup-margin)',
   flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   borderRadius: theme.vars.radius.sm,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -77,7 +78,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     onChange,
     color = 'neutral',
     variant = 'plain',
-    size = 'md',
+    size: sizeProp = 'md',
     orientation = 'vertical',
     role = 'radiogroup',
     slots = {},
@@ -90,6 +91,8 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     default: defaultValue,
     name: 'RadioGroup',
   });
+  const formControl = React.useContext(FormControlContext);
+  const size = inProps.size || formControl?.size || sizeProp;
 
   const ownerState = {
     orientation,
@@ -103,8 +106,6 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const name = useId(nameProp);
-
-  const formControl = React.useContext(FormControlContext);
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
@@ -158,6 +159,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   return (
     <RadioGroupContext.Provider value={contextValue}>
       <SlotRoot {...rootProps}>
+        {/* Prevent radios from getting the FormControl's context because a single FormControl can only have one Radio */}
         <FormControlContext.Provider value={undefined}>
           {React.Children.map(children, (child, index) =>
             React.isValidElement(child)

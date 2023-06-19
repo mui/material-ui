@@ -1,27 +1,27 @@
 import * as React from 'react';
-import FormControlUnstyled from '@mui/base/FormControlUnstyled';
-import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
+import FormControl from '@mui/base/FormControl';
+import Input, { inputClasses } from '@mui/base/Input';
 import { styled } from '@mui/system';
 
 export default function FormControlFunctionChild() {
   return (
-    <FormControlUnstyled defaultValue="" required>
+    <FormControl defaultValue="" required>
       {({ filled, focused }) => (
         <React.Fragment>
-          <Input className={filled ? 'filled' : ''} />
+          <StyledInput className={filled ? 'filled' : ''} />
           {filled && !focused && <OkMark>✔</OkMark>}
         </React.Fragment>
       )}
-    </FormControlUnstyled>
+    </FormControl>
   );
 }
 
-const Input = styled(InputUnstyled)(
+const StyledInput = styled(Input)(
   ({ theme }) => `
   
   display: inline-block;
 
-  .${inputUnstyledClasses.input} {
+  .${inputClasses.input} {
     width: 320px;
     font-size: 0.875rem;
     font-family: IBM Plex Sans, sans-serif;
@@ -43,7 +43,7 @@ const Input = styled(InputUnstyled)(
     }
   }
 
-  &.filled .${inputUnstyledClasses.input} {
+  &.filled .${inputClasses.input} {
     box-shadow: 0 0 2px 2px rgba(125, 200, 0, 0.25);
   }
 `,

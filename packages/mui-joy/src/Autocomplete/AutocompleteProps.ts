@@ -7,7 +7,7 @@ import {
   AutocompleteValue,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
-import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
+import { PopperOwnProps } from '@mui/base/Popper';
 import { OverridableStringUnion } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -44,12 +44,12 @@ export interface AutocompleteSlots {
   input?: React.ElementType;
   /**
    * The component that renders the start decorator.
-   * @default 'span'
+   * @default 'div'
    */
   startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
-   * @default 'span'
+   * @default 'div'
    */
   endDecorator?: React.ElementType;
   /**
@@ -84,7 +84,7 @@ export interface AutocompleteSlots {
   noOptions?: React.ElementType;
   /**
    * The component that renders the limit tag.
-   * @default 'span'
+   * @default 'div'
    */
   limitTag?: React.ElementType;
 }
@@ -154,7 +154,7 @@ export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
         color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
         variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
         size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
-      } & Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>,
+      } & Omit<PopperOwnProps, 'slots' | 'slotProps' | 'open'>,
       AutocompleteOwnerState<any, any, any, any>
     >;
     option: SlotProps<

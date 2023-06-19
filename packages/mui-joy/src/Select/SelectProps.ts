@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
+import { PopperOwnProps } from '@mui/base/Popper';
 import { SelectOption } from '@mui/base/useOption';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -66,7 +66,7 @@ export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
         color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
         variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
         size?: OverridableStringUnion<'sm' | 'md' | 'lg', SelectPropsSizeOverrides>;
-      } & Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>,
+      } & Omit<PopperOwnProps, 'slots' | 'slotProps' | 'open'>,
       SelectOwnerState<any>
     >;
   }
@@ -178,7 +178,7 @@ export type SelectOwnProps<TValue extends {}> = SelectStaticProps &
      * Callback fired when an option is selected.
      */
     onChange?: (
-      e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+      event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
       value: TValue | null,
     ) => void;
     /**

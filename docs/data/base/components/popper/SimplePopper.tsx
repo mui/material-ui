@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/Popper';
 import { styled, Theme } from '@mui/system';
 
 export default function SimplePopper() {
@@ -17,9 +17,9 @@ export default function SimplePopper() {
       <button aria-describedby={id} type="button" onClick={handleClick}>
         Toggle Popper
       </button>
-      <PopperUnstyled id={id} open={open} anchorEl={anchorEl}>
+      <Popper id={id} open={open} anchorEl={anchorEl}>
         <StyledPopperDiv>The content of the Popper.</StyledPopperDiv>
-      </PopperUnstyled>
+      </Popper>
     </div>
   );
 }

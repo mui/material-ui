@@ -58,7 +58,7 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    * // { ..., typography: { body1: { fontSize: 'var(--foo-bar-fontSize-md)' } }, ... }
    *
    * @example <caption>Provides empty string ('') to remove the prefix</caption>
-   * extendTheme({ cssVarPrefix: 'foo-bar' })
+   * extendTheme({ cssVarPrefix: '' })
    * // { ..., typography: { body1: { fontSize: 'var(--fontSize-md)' } }, ... }
    */
   cssVarPrefix?: string;
@@ -356,7 +356,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       background: {
         body: getCssVarColor('palette-neutral-900'),
         surface: getCssVarColor('palette-common-black'),
-        popup: getCssVarColor('palette-neutral-800'),
+        popup: getCssVarColor('palette-neutral-900'),
         level1: getCssVarColor('palette-neutral-800'),
         level2: getCssVarColor('palette-neutral-700'),
         level3: getCssVarColor('palette-neutral-600'),

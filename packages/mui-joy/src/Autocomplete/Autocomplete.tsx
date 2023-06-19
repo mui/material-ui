@@ -12,7 +12,7 @@ import useAutocomplete, {
   AutocompleteGroupedOption,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/Popper';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
@@ -176,13 +176,13 @@ const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
   }),
 }));
 
-const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'span', {
+const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: OwnerState }>({});
 
-const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'span', {
+const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
@@ -200,6 +200,7 @@ const AutocompleteClearIndicator = styled(StyledIconButton as unknown as 'button
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
+  alignSelf: 'center',
   ...(!ownerState.hasPopupIcon && {
     marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
   }),
@@ -212,6 +213,7 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
+  alignSelf: 'center',
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
   ...(ownerState.popupOpen && {
@@ -247,7 +249,7 @@ const AutocompleteNoOptions = styled(ListItem, {
   color: (theme.vars || theme).palette.text.secondary,
 }));
 
-const AutocompleteLimitTag = styled('span', {
+const AutocompleteLimitTag = styled('div', {
   name: 'JoyAutocomplete',
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
@@ -684,10 +686,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             listboxProps.className,
             listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
           )}
-          // @ts-ignore internal logic (too complex to typed PopperUnstyledOwnProps to SlotListbox but this should be removed when we have `usePopper`)
+          // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
           modifiers={modifiers}
           {...(!props.slots?.listbox && {
-            as: PopperUnstyled,
+            as: Popper,
             slots: { root: listboxProps.as || 'ul' },
           })}
         >
@@ -842,6 +844,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * A function that determines the filtered options to be rendered on search.
    *
+   * @default createFilterOptions()
    * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
    * @returns {T[]}

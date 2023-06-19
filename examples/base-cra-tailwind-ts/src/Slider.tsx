@@ -1,11 +1,8 @@
 import * as React from 'react';
-import SliderUnstyled, {
-  SliderUnstyledThumbSlotProps,
-  SliderUnstyledProps,
-} from '@mui/base/SliderUnstyled';
+import SliderUnstyled, { SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
 
 const Thumb = React.forwardRef(function Thumb(
-  props: SliderUnstyledThumbSlotProps,
+  props: SliderThumbSlotProps,
   ref: React.ForwardedRef<HTMLSpanElement>,
 ) {
   const { ownerState, className = '', children, ...other } = props;
@@ -22,7 +19,7 @@ const Thumb = React.forwardRef(function Thumb(
 });
 
 const Slider = React.forwardRef(function Slider(
-  props: SliderUnstyledProps,
+  props: SliderProps,
   ref: React.ForwardedRef<HTMLSpanElement>,
 ) {
   return (

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import SelectUnstyled from '@mui/base/SelectUnstyled';
-import OptionUnstyled from '@mui/base/OptionUnstyled';
+import Select from '@mui/base/Select';
+import Option from '@mui/base/Option';
 
 export default function OrderedListSelect() {
   return (
-    <SelectUnstyled slots={{ listbox: 'ol' }} defaultValue="First option">
-      <OptionUnstyled value="First option">First option</OptionUnstyled>
-      <OptionUnstyled value="Second option">Second option</OptionUnstyled>
-    </SelectUnstyled>
+    <Select slots={{ listbox: 'ol' }} defaultValue="First option">
+      <Option value="First option">First option</Option>
+      <Option value="Second option">Second option</Option>
+    </Select>
   );
 }

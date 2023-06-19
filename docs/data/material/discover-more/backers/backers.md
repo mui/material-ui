@@ -1,8 +1,8 @@
 # Sponsors & Backers
 
-<p class="description">Support MUI core's development through crowdfunding.</p>
+<p class="description">Support the development of new open-source projects from MUI through crowdfunding.</p>
 
-The core of MUI is a crowd-funded open-source project, licensed under the permissive MIT license. Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
+The core of MUI is our crowd-funded open-source projects, licensed under the permissive MIT license. Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
 
 ## MUI's sponsors
 
@@ -32,7 +32,6 @@ via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://ww
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="dialmycalls" href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/96.png" srcset="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/192.png 2x" alt="dialmycalls.com" title="Send text messages, calls & emails to thousands with ease." loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="goread.io" href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/96.png" srcset="https://images.opencollective.com/goread_io/eb6337d/logo/192.png 2x" alt="goread.io" title="Instagram followers, likes, power likes, views, comments, saves in minutes." loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="icons8.com" href="https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/icons8/7fa1641/logo/96.png" srcset="https://images.opencollective.com/icons8/7fa1641/logo/192.png 2x" alt="Icons8" title="We provide the neat icons, photos, illustrations, and music. Developers, use our API to insert all the content we have into your apps." loading="lazy"></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="ridicorp.com" href="https://ridicorp.com?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/ridi-corporation/175dcf3/logo/96.png" srcset="https://images.opencollective.com/ridi-corporation/175dcf3/logo/192.png 2x" alt="RIDI" title="RIDI is a South Korean digital content platform that offers webcomics, webnovels, animations, eBooks, and more." loading="lazy"></a>
 </p>
 
 Gold Sponsors are those who have pledged \$500/month or more to MUI.
@@ -67,21 +66,21 @@ via [OpenCollective](https://opencollective.com/mui)
 
 ## FAQ
 
-### Why is MUI a "crowd-funded open-source project"?
+### Why is Material UI a "crowd-funded open-source project"?
 
-The core of MUI is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To make MUI a project that users can rely on for years to come, it needs to be well directed and financially sustainable.
+Material UI (as well as Base UI and Joy UI) is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To ensure that MUI's component libraries can stand the test of time for our users, they need to be well directed and financially sustainable.
 
-The absolute best way to support MUI's ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving MUI core, which you and other MUI users then benefit from.
+The absolute best way to support MUI's ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving MUI's products, which you and other MUI users then benefit from.
 
 ### How is sponsorship money spent?
 
 Sponsorship money is used to fund software development, testing, documentation, and releases of the MUI software suite.
 
-### Is sponsorship required to use MUI?
+### Is sponsorship required to use MUI's products?
 
-Users are not legally required to give back to the MUI project, but it is in their interest to do so.
+Users are not obligated to give back to MUI, but it is in their interest to do so.
 
-By significantly reducing the amount of work needed to achieve business goals and reducing running costs, MUI results in huge time and money savings for users. We encourage organizations to contribute a portion of these savings back, enabling the project to advance more rapidly and result in even greater savings for your organization.
+By significantly reducing the amount of work needed to achieve business goals and reducing running costs, MUI's libraries result in huge time and money savings for users. We encourage organizations to contribute a portion of these savings back, enabling the project to advance more rapidly and result in even greater savings for your organization.
 
 ### What's the difference between Patreon and OpenCollective?
 

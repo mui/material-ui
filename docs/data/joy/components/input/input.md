@@ -2,20 +2,20 @@
 product: joy-ui
 title: React Input component
 components: FormControl, FormHelperText, FormLabel, Input
-unstyled: /base/react-input/
+unstyled: /base-ui/react-input/
 ---
 
 # Input
 
 <p class="description">The Input component facilitates the entry of text data from the user.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The Input component enhances the functionality of the native HTML `<input>` tag by providing expanded customization options and accessibility features.
 
 {{"demo": "InputUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 
@@ -62,6 +62,42 @@ You can add standard form attributes such as `required` and `disabled` to the In
 
 {{"demo": "InputFormProps.js"}}
 
+### Focused ring
+
+Provide these CSS variables to `sx` prop to control the focused ring appearance:
+
+- `--Input-focusedInset`: the focused ring's **position**, either inside(`inset`) or outside(`var(--any, )`) of the Input.
+- `--Input-focusedThickness`: the **size** of the focused ring.
+- `--Input-focusedHighlight`: the **color** of the focused ring.
+
+{{"demo": "FocusedRingInput.js"}}
+
+:::success
+To get full control of the focused ring, customize the `box-shadow` of the `::before` pseudo element directly
+
+```js
+<Input sx={{ '&:focus-within::before': { boxShadow: '...your custom value' } }} />
+```
+
+:::
+
+#### Debugging the focus ring
+
+To display the Input's focus ring by simulating user's focus, inspect the Input element and toggle the [pseudostate panel](https://developer.chrome.com/docs/devtools/css/#pseudostates).
+
+- If you inspect the Input's root element, with `.MuiInput-root` class, you have to toggle on the `:focus-within` state.
+- If you inspect the `<input>` element, you can toggle with either `:focus` or `:focus-within` states.
+
+### Triggering the focus ring
+
+To trigger the focus ring programmatically, set the CSS variable `--Input-focused: 1`.
+
+{{"demo": "TriggerFocusInput.js"}}
+
+:::info
+💡 The focus ring still appear on focus even though you set `--Input-focused: 0`.
+:::
+
 ### Validation
 
 Use the `error` prop to toggle the error state:
@@ -87,15 +123,35 @@ With inputs, decorators are typically located at the top and/or bottom of the in
 ### Inner HTML input
 
 If you need to pass props to the inner HTML `<input>`, use `slotProps={{ input: { ...props } }}`.
-These props may include HTML attributes such as `min`, `max`, and `autocomplete`.
+These props may include HTML attributes such as `ref`, `min`, `max`, and `autocomplete`.
 
 {{"demo": "InputSlotProps.js"}}
 
 ## Common examples
 
+### Focus outline
+
+This example shows how to replace the default focus ring (using `::before`) with CSS `outline`.
+
+{{"demo": "FocusOutlineInput.js"}}
+
+### Floating label
+
+To create a floating label input, a custom component (combination of `<input>` and `<label>`) is required to replace the default input slot.
+
+{{"demo": "FloatingLabelInput.js"}}
+
+### Underline input
+
+{{"demo": "UnderlineInput.js"}}
+
 ### Newsletter Subscription
 
 {{"demo": "InputSubscription.js"}}
+
+### Password meter
+
+{{"demo": "PasswordMeterInput.js"}}
 
 ## CSS variable playground
 

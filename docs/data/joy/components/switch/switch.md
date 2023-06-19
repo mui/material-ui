@@ -3,12 +3,14 @@ product: joy-ui
 title: React Switch component
 components: Switch
 githubLabel: 'component: switch'
-unstyled: /base/react-switch/
+unstyled: /base-ui/react-switch/
 ---
 
 # Switch
 
 <p class="description">Switches toggle the state of a single setting on or off.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Introduction
 
@@ -17,12 +19,6 @@ The option that the switch controls, as well as the state it's in,
 should be made clear from the corresponding inline label.
 
 {{"demo": "SwitchUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-:::info
-To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
-:::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -115,7 +111,7 @@ You can also find the Material Design switch design, out of the box, in [Materia
 
 {{"demo": "ExampleMaterialSwitch.js"}}
 
-### Fluent
+### Fluent UI
 
 Here's how you'd customize Joy UI's switch to make it look like [Microsoft's Fluent UI](https://developer.microsoft.com/en-us/fluentui#/controls/web/toggle):
 

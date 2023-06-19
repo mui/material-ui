@@ -9,6 +9,7 @@ import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const {
@@ -139,7 +140,11 @@ export const ButtonRoot = styled('button', {
       [theme.focus.selector]: theme.focus.default,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
-    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+    {
+      '&:hover': {
+        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      },
+    },
     { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
     {
       [`&.${buttonClasses.disabled}`]:
@@ -157,6 +162,7 @@ export const ButtonRoot = styled('button', {
  * Demos:
  *
  * - [Button](https://mui.com/joy-ui/react-button/)
+ * - [Button Group](https://mui.com/joy-ui/react-button-group/)
  *
  * API:
  *
@@ -172,30 +178,35 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     children,
     action,
     color: colorProp = 'primary',
-    variant = 'solid',
-    size = 'md',
+    variant: variantProp = 'solid',
+    size: sizeProp = 'md',
     fullWidth = false,
     startDecorator,
     endDecorator,
     loading = false,
     loadingPosition = 'center',
     loadingIndicator: loadingIndicatorProp,
-    disabled,
+    disabled: disabledProp,
     component,
     slots = {},
     slotProps = {},
     ...other
   } = props;
+  const buttonGroup = React.useContext(ButtonGroupContext);
+
+  const variant = inProps.variant || buttonGroup.variant || variantProp;
+  const size = inProps.size || buttonGroup.size || sizeProp;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp || loading);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    disabled: disabled || loading,
-    ref: handleRef,
+    disabled,
+    rootRef: handleRef,
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (
@@ -225,7 +236,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     focusVisible,
     loading,
     loadingPosition,
-    disabled: disabled || loading,
+    disabled,
   };
 
   const classes = useUtilityClasses(ownerState);
