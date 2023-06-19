@@ -128,10 +128,12 @@ function getHeaders(markdown) {
 }
 
 function getContents(markdown) {
-  return markdown
+  const rep = markdown
     .replace(headerRegExp, '') // Remove header information
     .split(/^{{("(?:demo|component)":[^}]*)}}$/gm) // Split markdown into an array, separating demos
+    .flatMap((text) => text.split(/^(<codeblock>.*<\/codeblock>)$/gmsu))
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
+  return rep;
 }
 
 function getTitle(markdown) {
@@ -521,6 +523,20 @@ ${headers.hooks
             console.error(err);
             return null;
           }
+        }
+        if (content.startsWith('<codeblock>')) {
+          const blocks = [...content.matchAll(/^```(\S*) (\S*)\n([^`]*)\n```/gmsu)].map(
+            ([, language, tab, code]) => ({ language, tab, code }),
+          );
+
+          const blocksData = blocks.filter(
+            (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
+          );
+
+          return {
+            type: 'codeblock',
+            data: blocksData,
+          };
         }
 
         return render(content);

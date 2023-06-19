@@ -4,7 +4,20 @@
 
 Run one of the following commands to add Base UI to your project:
 
-{{"component": "components/markdown/Installation", "installation": "@mui/base", "managers": ["yarn", "npm"]}}
+<codeblock>
+```bash npm
+npm install @mui/base
+```
+
+```bash yarn
+yarn add @mui/base
+```
+
+```bash pnpm
+pnpm add @mui/base
+```
+
+</codeblock>
 
 ## Peer dependencies
 

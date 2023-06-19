@@ -7,6 +7,7 @@ import { exactProp } from '@mui/utils';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import HighlightedCodeWithTabs from 'docs/src/modules/components/HighlightedCodeWithTabs';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
@@ -98,6 +99,13 @@ export default function MarkdownDocs(props) {
             return (
               <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
                 <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />
+              </Wrapper>
+            );
+          }
+          if (renderedMarkdownOrDemo.type === 'codeblock') {
+            return (
+              <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
+                <HighlightedCodeWithTabs tabs={renderedMarkdownOrDemo.data} />
               </Wrapper>
             );
           }
