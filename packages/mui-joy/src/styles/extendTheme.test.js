@@ -15,7 +15,6 @@ describe('extendTheme', () => {
         'fontSize',
         'fontFamily',
         'fontWeight',
-        'letterSpacing',
         'lineHeight',
         'getCssVar',
         'spacing',
@@ -48,7 +47,6 @@ describe('extendTheme', () => {
       'fontSize',
       'fontWeight',
       'lineHeight',
-      'letterSpacing',
       'palette',
       'shadowRing',
       'shadowChannel',
@@ -62,25 +60,25 @@ describe('extendTheme', () => {
   it('should have joy default css var prefix', () => {
     const theme = extendTheme();
     expect(theme.cssVarPrefix).to.equal('joy');
-    expect(theme.typography.body1.fontSize).to.equal('var(--joy-fontSize-md, 1rem)');
+    expect(theme.typography['body-md'].fontSize).to.equal('var(--joy-fontSize-md, 1rem)');
   });
 
   it('should have custom css var prefix', () => {
     const theme = extendTheme({ cssVarPrefix: 'foo' });
     expect(theme.cssVarPrefix).to.equal('foo');
-    expect(theme.typography.body1.fontSize).to.equal('var(--foo-fontSize-md, 1rem)');
+    expect(theme.typography['body-md'].fontSize).to.equal('var(--foo-fontSize-md, 1rem)');
   });
 
   it('should have no css var prefix', () => {
     const theme = extendTheme({ cssVarPrefix: '' });
     expect(theme.cssVarPrefix).to.equal('');
-    expect(theme.typography.body1.fontSize).to.equal('var(--fontSize-md, 1rem)');
+    expect(theme.typography['body-md'].fontSize).to.equal('var(--fontSize-md, 1rem)');
   });
 
   it('should accept custom fontSize value', () => {
     const theme = extendTheme({ fontSize: { md: '2rem' } });
     expect(theme.cssVarPrefix).to.equal('joy');
-    expect(theme.typography.body1.fontSize).to.equal('var(--joy-fontSize-md, 2rem)');
+    expect(theme.typography['body-md'].fontSize).to.equal('var(--joy-fontSize-md, 2rem)');
   });
 
   it('should have custom --variant-borderWidth', () => {

@@ -41,7 +41,6 @@ const ListSubheaderRoot = styled('div', {
   fontSize: 'calc(var(--ListItem-fontSize) * 0.75)',
   fontWeight: theme.vars.fontWeight.lg,
   fontFamily: theme.vars.fontFamily.body,
-  letterSpacing: theme.vars.letterSpacing.md,
   textTransform: 'uppercase',
   ...(ownerState.sticky && {
     position: 'sticky',

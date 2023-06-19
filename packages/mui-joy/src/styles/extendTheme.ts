@@ -308,33 +308,33 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   const fontWeight = {
-    sm: 400, //regular
-    md: 500, //medium
-    lg: 600, //semi bold
-    xl: 700, //bold
+    sm: 400, // regular
+    md: 500, // medium
+    lg: 600, // semi bold
+    xl: 700, // bold
     ...scalesInput.fontWeight,
   };
 
   const fontSize = {
     xs: '0.75rem', // 12px
     sm: '0.875rem', // 14px
-    md: '1rem', //16px
+    md: '1rem', // 16px
     lg: '1.125rem', // 18px
     xl: '1.25rem', // 20px
     xl1: '1.5rem', // 24px
-    xl2:'2rem', // 30px
-    xl3:'2.5rem', // 36px
+    xl2: '2rem', // 30px
+    xl3: '2.5rem', // 36px
     ...scalesInput.fontSize,
   };
 
   const lineHeight = {
-    xs: '1.25rem', //20px
-    sm: '1.5rem', //24px
-    md: '1.75rem', //28px
-    lg: '2rem', //32px
-    xl: '2.25rem',//36px
-    xl1: '2.5rem', //40px
-    xl2: '3rem', //48px
+    xs: '1.25rem', // 20px
+    sm: '1.5rem', // 24px
+    md: '1.75rem', // 28px
+    lg: '2rem', // 32px
+    xl: '2.25rem', // 36px
+    xl1: '2.5rem', // 40px
+    xl2: '3rem', // 48px
     ...scalesInput.lineHeight,
   };
 
@@ -429,94 +429,93 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
 
     typography: {
-    h1: {
+      h1: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
         fontSize: getCssVar('fontSize-xl3', fontSize.xl3),
         lineHeight: getCssVar('lineHeight-xl2', lineHeight.xl2.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-    },
+      },
 
-    h2: {
+      h2: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
         fontSize: getCssVar('fontSize-xl2', fontSize.xl2),
         lineHeight: getCssVar('lineHeight-xl1', lineHeight.xl1.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-    },
+      },
 
-    h3: {
+      h3: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
         fontSize: getCssVar('fontSize-xl1', fontSize.xl1),
         lineHeight: getCssVar('lineHeight-xl', lineHeight.xl.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-    },
+      },
 
-    h4: {
+      h4: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
         fontSize: getCssVar('fontSize-xl', fontSize.xl),
         lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-    },
+      },
 
-    'title-lg': {
+      'title-lg': {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-lg', fontSize.lg),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-    },
+      },
 
-    'title-md': {
+      'title-md': {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-md', fontSize.md),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-    },
+      },
 
-    'title-sm': {
+      'title-sm': {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-sm', fontSize.sm),
         lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-    },
+      },
 
-    'body-lg': {
+      'body-lg': {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-lg', fontSize.lg),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
         color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
-    },
+      },
 
-    'body-md': {
+      'body-md': {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-md', fontSize.md),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
-    },
+      },
 
-    'body-sm': {
+      'body-sm': {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-sm', fontSize.sm),
         lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
         color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
-    },
+      },
 
-    'body-xs': {
+      'body-xs': {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-xs', fontSize.xs),
         lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
         color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
-    },
-
+      },
     },
   };
 
