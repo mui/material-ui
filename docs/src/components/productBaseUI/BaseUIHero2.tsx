@@ -802,8 +802,8 @@ export default function BaseUIHero() {
               color: 'primary.600',
               display: 'flex',
               alignItems: 'center',
+              gap: 1,
               justifyContent: { xs: 'center', md: 'flex-start' },
-              '& > *': { mr: 1 },
               ...theme.applyDarkStyles({
                 color: 'primary.300',
               }),
@@ -811,13 +811,14 @@ export default function BaseUIHero() {
           >
             <IconImage width={28} height={28} name="product-core" />{' '}
             <Link href={ROUTES.productCore}>MUI Core</Link>{' '}
+            <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
+              /
+            </Typography>
             <Typography component="span" variant="inherit" sx={{ color: 'text.primary' }}>
-              <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
-                /
-              </Typography>
-              &nbsp;&nbsp;Base UI
+              Base UI
             </Typography>
           </Typography>
+
           <Typography
             variant="h1"
             sx={{
