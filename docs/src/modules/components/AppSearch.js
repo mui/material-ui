@@ -321,6 +321,7 @@ export default function AppSearch(props) {
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
               optionalFilters: [`product:${productId}`],
+              analyticsTags: [facetFilterLanguage, `product:${productId}`],
               hitsPerPage: 40,
             }}
             placeholder={search}
