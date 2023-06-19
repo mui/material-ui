@@ -694,13 +694,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   const lineHeight = {
-    xs: '1.25rem', // 20px
-    sm: '1.5rem', // 24px
-    md: '1.75rem', // 28px
-    lg: '2rem', // 32px
-    xl: '2.25rem', // 36px
-    xl1: '2.5rem', // 40px
-    xl2: '3rem', // 48px
+    xs: '1.33333', // largest font sizes: h1, h2
+    sm: '1.42857rem', // normal font sizes
+    md: '1.5rem', // normal font sizes
+    lg: '1.55556', // large font sizes for components
+    xl: '1.66667', // smallest font sizes
     ...scalesInput.lineHeight,
   };
 
@@ -799,7 +797,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
         fontSize: getCssVar('fontSize-xl3', fontSize.xl3),
-        lineHeight: getCssVar('lineHeight-xl2', lineHeight.xl2.toString()),
+        lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
 
@@ -807,7 +805,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
         fontSize: getCssVar('fontSize-xl2', fontSize.xl2),
-        lineHeight: getCssVar('lineHeight-xl1', lineHeight.xl1.toString()),
+        lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
 
@@ -815,7 +813,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
         fontSize: getCssVar('fontSize-xl1', fontSize.xl1),
-        lineHeight: getCssVar('lineHeight-xl', lineHeight.xl.toString()),
+        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
 
@@ -831,7 +829,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-lg', fontSize.lg),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
+        lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
 
@@ -839,7 +837,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-md', fontSize.md),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
+        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
 
@@ -847,7 +845,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-sm', fontSize.sm),
-        lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
+        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
 
@@ -855,7 +853,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-lg', fontSize.lg),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
+        lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
         color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
       },
 
@@ -871,7 +869,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-sm', fontSize.sm),
-        lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
+        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
       },
 
@@ -879,7 +877,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-xs', fontSize.xs),
-        lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
+        lineHeight: getCssVar('lineHeight-xl', lineHeight.xl.toString()),
         color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
       },
     },
