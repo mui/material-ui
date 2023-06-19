@@ -1,9 +1,14 @@
+export interface Cancelable {
+  clear(): void;
+}
+
 // Corresponds to 10 frames at 60 Hz.
 // A few bytes payload overhead when lodash/debounce is ~3 kB and debounce ~300 B.
-export default function debounce(func, wait = 166) {
-  let timeout;
-  function debounced(...args) {
+export default function debounce<T extends (...args: any[]) => any>(func: T, wait = 166) {
+  let timeout: ReturnType<typeof setTimeout>;
+  function debounced(...args: Parameters<T>) {
     const later = () => {
+      // @ts-ignore
       func.apply(this, args);
     };
     clearTimeout(timeout);
@@ -14,5 +19,5 @@ export default function debounce(func, wait = 166) {
     clearTimeout(timeout);
   };
 
-  return debounced;
+  return debounced as T & Cancelable;
 }

@@ -1,4 +1,4 @@
-import ownerDocument from './ownerDocument';
+import ownerDocument from '../ownerDocument';
 
 export default function ownerWindow(node: Node | undefined): Window {
   const doc = ownerDocument(node);
