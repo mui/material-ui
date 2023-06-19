@@ -59,6 +59,8 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { getDesignTokens } from 'docs/src/modules/brandingTheme';
+import Link from 'docs/src/modules/components/Link';
+import ROUTES from 'docs/src/route';
 
 function ToggleButtons() {
   const [alignment, setAlignment] = React.useState('left');
@@ -216,20 +218,20 @@ export default function MaterialHero() {
               color: 'primary.600',
               display: 'flex',
               alignItems: 'center',
+              gap: 1,
               justifyContent: { xs: 'center', md: 'flex-start' },
-              '& > *': { mr: 1 },
               ...theme.applyDarkStyles({
                 color: 'primary.300',
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-core" /> MUI Core{' '}
+            <IconImage width={28} height={28} name="product-core" />{' '}
+            <Link href={ROUTES.productCore}>MUI Core</Link>{' '}
+            <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
+              /
+            </Typography>
             <Typography component="span" variant="inherit" sx={{ color: 'text.primary' }}>
-              &nbsp;&nbsp;
-              <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
-                /
-              </Typography>
-              &nbsp;&nbsp;Material UI
+              Material UI
             </Typography>
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
