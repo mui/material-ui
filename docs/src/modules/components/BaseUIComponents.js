@@ -149,8 +149,6 @@ function BaseUIComponents() {
           >
             <CardMedia
               component="img"
-              width={256}
-              height={144}
               alt={component.title}
               image={component.srcLight}
               sx={(theme) => ({
