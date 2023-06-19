@@ -15,7 +15,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    * By default, reference equality is used.
    *
    * There is a performance impact when using the `areOptionsEqual` prop (proportional to the number of options).
-   * Therefore, it's recommented to use the deault reference equality comparison whenever possible.
+   * Therefore, it's recommented to use the default reference equality comparison whenever possible.
    */
   areOptionsEqual?: (a: OptionValue, b: OptionValue) => boolean;
   /**

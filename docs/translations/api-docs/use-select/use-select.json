@@ -1,7 +1,7 @@
 {
   "hookDescription": "",
   "parametersDescriptions": {
-    "areOptionsEqual": "A function used to determine if two options&#39; values are equal.\nBy default, reference equality is used.\n\nThere is a performance impact when using the <code>areOptionsEqual</code> prop (proportional to the number of options).\nTherefore, it&#39;s recommented to use the deault reference equality comparison whenever possible.",
+    "areOptionsEqual": "A function used to determine if two options&#39; values are equal.\nBy default, reference equality is used.\n\nThere is a performance impact when using the <code>areOptionsEqual</code> prop (proportional to the number of options).\nTherefore, it&#39;s recommented to use the default reference equality comparison whenever possible.",
     "buttonRef": "The ref of the trigger button element.",
     "defaultOpen": "If <code>true</code>, the select will be open by default.",
     "defaultValue": "The default selected value. Use when the component is not controlled.",
