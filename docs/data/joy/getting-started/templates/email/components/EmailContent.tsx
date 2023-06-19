@@ -19,12 +19,13 @@ import FolderIcon from '@mui/icons-material/Folder';
 export default function EmailContent() {
   return (
     <Sheet
-      variant="outlined"
+      variant="plain"
       sx={{
         minHeight: 500,
         borderRadius: 'sm',
         p: 2,
         mb: 3,
+        boxShadow: 'md',
       }}
     >
       <Box
