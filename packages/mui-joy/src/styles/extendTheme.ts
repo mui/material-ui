@@ -58,7 +58,7 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    * // { ..., typography: { body1: { fontSize: 'var(--foo-bar-fontSize-md)' } }, ... }
    *
    * @example <caption>Provides empty string ('') to remove the prefix</caption>
-   * extendTheme({ cssVarPrefix: 'foo-bar' })
+   * extendTheme({ cssVarPrefix: '' })
    * // { ..., typography: { body1: { fontSize: 'var(--fontSize-md)' } }, ... }
    */
   cssVarPrefix?: string;

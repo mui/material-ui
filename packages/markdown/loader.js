@@ -30,7 +30,7 @@ function moduleIDToJSIdentifier(moduleID) {
 
 const componentPackageMapping = {
   'material-ui': {},
-  base: {},
+  'base-ui': {},
   'joy-ui': {},
 };
 
@@ -44,7 +44,7 @@ const packages = [
     ],
   },
   {
-    product: 'base',
+    product: 'base-ui',
     paths: [path.join(__dirname, '../../packages/mui-base/src')],
   },
   {
