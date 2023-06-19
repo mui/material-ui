@@ -12,6 +12,7 @@ interface DefaultPaletteVariant {
   plainHoverBg: string;
   plainHoverIcon: string;
   plainActiveBg: string;
+  plainActiveIcon: string;
   plainDisabledColor: string;
   plainDisabledIcon: string;
 
@@ -22,6 +23,7 @@ interface DefaultPaletteVariant {
   outlinedHoverBorder: string;
   outlinedHoverIcon: string;
   outlinedActiveBg: string;
+  outlinedActiveIcon: string;
   outlinedDisabledColor: string;
   outlinedDisabledBorder: string;
   outlinedDisabledIcon: string;
@@ -32,6 +34,7 @@ interface DefaultPaletteVariant {
   softHoverBg: string;
   softHoverIcon: string;
   softActiveBg: string;
+  softActiveIcon: string;
   softDisabledColor: string;
   softDisabledBg: string;
   softDisabledIcon: string;
