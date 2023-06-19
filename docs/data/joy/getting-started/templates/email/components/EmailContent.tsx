@@ -43,7 +43,7 @@ export default function EmailContent() {
             sx={{ borderRadius: 'sm' }}
           />
           <Box sx={{ ml: 2 }}>
-            <Typography level="body-sm" textColor="text.primary" mb={0.5}>
+            <Typography level="title-sm" textColor="text.primary" mb={0.5}>
               Alex Jonnold
             </Typography>
             <Typography level="body-xs" textColor="text.tertiary">
@@ -54,13 +54,13 @@ export default function EmailContent() {
         <Box
           sx={{ display: 'flex', height: '32px', flexDirection: 'row', gap: 1.5 }}
         >
-          <Button variant="outlined" color="neutral" size="sm">
+          <Button variant="solid" color="primary" size="sm">
             Reply
           </Button>
           <IconButton size="sm" variant="outlined" color="neutral">
             <ForwardToInboxRoundedIcon />
           </IconButton>
-          <IconButton size="sm" variant="outlined" color="neutral">
+          <IconButton size="sm" variant="outlined" color="danger">
             <DeleteRoundedIcon />
           </IconButton>
         </Box>
@@ -89,7 +89,7 @@ export default function EmailContent() {
             >
               From
             </Typography>
-            <Chip size="sm" variant="outlined" onClick={() => {}}>
+            <Chip size="sm" variant="soft" onClick={() => {}}>
               alex.jonnold@hike.com
             </Chip>
           </Box>
@@ -101,7 +101,7 @@ export default function EmailContent() {
             >
               to
             </Typography>
-            <Chip size="sm" variant="outlined" onClick={() => {}}>
+            <Chip size="sm" variant="soft" onClick={() => {}}>
               steve@mail.com
             </Chip>
           </Box>
@@ -133,7 +133,7 @@ export default function EmailContent() {
         See you soon, Alex Jonnold
       </Typography>
       <Divider />
-      <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
+      <Typography level="title-sm" mt={2} mb={2}>
         Attachments
       </Typography>
       <Box
@@ -174,8 +174,8 @@ export default function EmailContent() {
               </Box>
             </AspectRatio>
           </CardOverflow>
-          <Box sx={{ p: { xs: 1, sm: 2 } }}>
-            <Typography level="body-sm" color="primary">
+          <Box sx={{ py: { xs: 1, sm: 2 }, pr: 2 }}>
+            <Typography level="title-sm" color="primary">
               videos-hike.zip
             </Typography>
             <Typography level="body-xs">100 MB</Typography>

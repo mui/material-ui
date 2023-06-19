@@ -370,7 +370,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         tertiary: getCssVarColor('palette-neutral-500'),
       },
       background: {
-        body: getCssVarColor('palette-common-white'),
+        body: getCssVarColor('palette-neutral-50'),
         surface: getCssVarColor('palette-common-white'),
         popup: getCssVarColor('palette-common-white'),
         level1: getCssVarColor('palette-neutral-50'),
@@ -641,7 +641,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
       background: {
         body: getCssVarColor('palette-common-black'),
-        surface: getCssVarColor('palette-common-black'),
+        surface: getCssVarColor('palette-neutral-900'),
         popup: getCssVarColor('palette-common-black'),
         level1: getCssVarColor('palette-neutral-900'),
         level2: getCssVarColor('palette-neutral-800'),
