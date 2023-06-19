@@ -57,10 +57,10 @@ export default function EmailContent() {
           <Button variant="solid" color="primary" size="sm">
             Reply
           </Button>
-          <IconButton size="sm" variant="outlined" color="neutral">
+          <IconButton size="sm" variant="soft" color="neutral">
             <ForwardToInboxRoundedIcon />
           </IconButton>
-          <IconButton size="sm" variant="outlined" color="danger">
+          <IconButton size="sm" variant="plain" color="danger">
             <DeleteRoundedIcon />
           </IconButton>
         </Box>
