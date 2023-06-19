@@ -42,6 +42,9 @@ export * from './ButtonGroup';
 export { default as Card } from './Card';
 export * from './Card';
 
+export { default as CardActions } from './CardActions';
+export * from './CardActions';
+
 export { default as CardContent } from './CardContent';
 export * from './CardContent';
 

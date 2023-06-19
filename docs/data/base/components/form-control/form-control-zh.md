@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: Unstyled React Form Control component and hook
 components: FormControlUnstyled
 githubLabel: 'component: FormControl'

@@ -96,6 +96,7 @@ const CardOverflowRoot = styled('div', {
           '--AspectRatio-radius': childRadius,
         }),
       [`& > .${buttonClasses.root}:only-child`]: {
+        zIndex: 1, // prevent button from being covered Link overlay. This can be improved in the future with :has() selector
         width: 'calc(100% + -2 * var(--CardOverflow-offset))',
         '--Button-margin': '0 var(--CardOverflow-offset)',
         '--Button-radius': '0 0 var(--CardOverflow-radius) var(--CardOverflow-radius)',

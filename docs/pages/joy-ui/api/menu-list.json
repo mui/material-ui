@@ -1,11 +1,6 @@
 {
   "props": {
-    "actions": {
-      "type": {
-        "name": "union",
-        "description": "func<br>&#124;&nbsp;{ current?: { dispatch: func } }"
-      }
-    },
+    "actions": { "type": { "name": "custom", "description": "ref" } },
     "color": {
       "type": {
         "name": "union",
@@ -14,6 +9,7 @@
       "default": "'neutral'"
     },
     "component": { "type": { "name": "elementType" } },
+    "onItemsChange": { "type": { "name": "func" } },
     "size": {
       "type": {
         "name": "union",
