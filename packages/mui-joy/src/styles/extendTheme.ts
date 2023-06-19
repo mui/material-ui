@@ -660,7 +660,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
     shadowRing: '0 0 #000',
     shadowChannel: '0 0 0',
-    shadowOpacity: '0.2',
+    shadowOpacity: '0.6',
   };
 
   const fontFamilyFallback =
