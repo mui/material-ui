@@ -171,7 +171,7 @@ export const sxChip = (color) => [
   (theme) =>
     theme.applyDarkStyles({
       borderColor: alpha(theme.palette[color][800], 0.5),
-      bgcolor: alpha(theme.palette[color][900], 0.5),
+      bgcolor: alpha(theme.palette[color][800], 0.5),
       color: (theme.vars || theme).palette[color][300],
       '&:hover': {
         bgcolor: alpha(theme.palette[color][900], 0.5),
