@@ -93,6 +93,8 @@ const LinkRoot = styled('a', {
       ...(ownerState.startDecorator && {
         verticalAlign: 'bottom', // to make the link align with the parent's content
       }),
+      textDecorationThickness: 'max(0.08em, 1px)', // steal from https://moderncss.dev/modern-css-for-dynamic-component-based-architecture/#css-reset-additions
+      textUnderlineOffset: '0.15em', // steal from https://moderncss.dev/modern-css-for-dynamic-component-based-architecture/#css-reset-additions
       display: 'inline-flex',
       alignItems: 'center',
       WebkitTapHighlightColor: 'transparent',
@@ -199,7 +201,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     disabled = false,
     onBlur,
     onFocus,
-    level: levelProp = 'body1',
+    level: levelProp = 'body-md',
     overlay = false,
     underline = 'hover',
     endDecorator,
