@@ -128,20 +128,18 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     plainHoverBg: getCssVarColor(`palette-${color}-50`),
     plainHoverIcon: getCssVarColor(`palette-${color}-500`),
     plainActiveBg: getCssVarColor(`palette-${color}-100`),
-    plainDisabledColor: getCssVarColor(`palette-neutral-600`),
+    plainDisabledColor: getCssVarColor(`palette-neutral-400`),
     plainDisabledIcon: getCssVarColor(`palette-neutral-300`),
 
     outlinedColor: getCssVarColor(`palette-${color}-500`),
     outlinedBorder: getCssVarColor(`palette-${color}-300`),
     outlinedIcon: getCssVarColor(`palette-${color}-400`),
     outlinedHoverBg: getCssVarColor(`palette-${color}-100`),
-    outlinedHoverBorder: getCssVarColor(`palette-${color}-300`),
     outlinedActiveColor: getCssVarColor(`palette-${color}-700`),
     outlinedActiveBg: getCssVarColor(`palette-${color}-200`),
     outlinedHoverIcon: getCssVarColor(`palette-${color}-500`),
-    outlinedActiveBorder: getCssVarColor(`palette-${color}-300`),
     outlinedDisabledColor: getCssVarColor(`palette-neutral-400`),
-    outlinedDisabledBorder: getCssVarColor(`palette-neutral-100`),
+    outlinedDisabledBorder: getCssVarColor(`palette-neutral-200`),
     outlinedDisabledIcon: getCssVarColor(`palette-neutral-300`),
 
     softColor: getCssVarColor(`palette-${color}-700`),
@@ -152,7 +150,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     softActiveColor: getCssVarColor(`palette-${color}-800`),
     softActiveBg: getCssVarColor(`palette-${color}-300`),
     softActiveIcon: getCssVarColor(`palette-${color}-500`),
-    softDisabledColor: getCssVarColor(`palette-neutral-600`),
+    softDisabledColor: getCssVarColor(`palette-neutral-400`),
     softDisabledBg: getCssVarColor(`palette-${color}-50`),
     softDisabledIcon: getCssVarColor(`palette-neutral-300`),
 
@@ -162,7 +160,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     solidHoverBg: getCssVarColor(`palette-${color}-600`),
     solidActiveBg: getCssVarColor(`palette-${color}-700`),
     solidActiveIcon: getCssVarColor(`palette-common-white`),
-    solidDisabledColor: getCssVarColor(`palette-neutral-600`),
+    solidDisabledColor: getCssVarColor(`palette-neutral-400`),
     solidDisabledBg: getCssVarColor(`palette-${color}-50`),
     solidDisabledIcon: getCssVarColor(`palette-neutral-300`),
   });
@@ -174,20 +172,18 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     plainHoverIcon: getCssVarColor(`palette-${color}-300`),
     plainActiveBg: getCssVarColor(`palette-${color}-900`),
     plainActiveIcon: getCssVarColor(`palette-${color}-300`),
-    plainDisabledColor: getCssVarColor(`palette-neutral-400`),
+    plainDisabledColor: getCssVarColor(`palette-neutral-500`),
     plainDisabledIcon: getCssVarColor(`palette-neutral-500`),
 
     outlinedColor: getCssVarColor(`palette-${color}-200`),
     outlinedBorder: getCssVarColor(`palette-${color}-700`),
     outlinedIcon: getCssVarColor(`palette-${color}-300`),
     outlinedHoverBg: getCssVarColor(`palette-${color}-800`),
-    outlinedHoverBorder: getCssVarColor(`palette-${color}-700`),
     outlinedHoverIcon: getCssVarColor(`palette-${color}-300`),
     outlinedActiveColor: getCssVarColor(`palette-${color}-300`),
     outlinedActiveBg: getCssVarColor(`palette-${color}-900`),
-    outlinedActiveBorder: getCssVarColor(`palette-${color}-700`),
     outlinedActiveIcon: getCssVarColor(`palette-${color}-300`),
-    outlinedDisabledColor: getCssVarColor(`palette-neutral-400`),
+    outlinedDisabledColor: getCssVarColor(`palette-neutral-500`),
     outlinedDisabledBorder: getCssVarColor(`palette-neutral-800`),
     outlinedDisabledIcon: getCssVarColor(`palette-neutral-500`),
 
@@ -199,7 +195,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     softActiveColor: getCssVarColor(`palette-${color}-100`),
     softActiveBg: getCssVarColor(`palette-${color}-600`),
     softActiveIcon: getCssVarColor(`palette-${color}-300`),
-    softDisabledColor: getCssVarColor(`palette-neutral-400`),
+    softDisabledColor: getCssVarColor(`palette-neutral-500`),
     softDisabledBg: getCssVarColor(`palette-${color}-900`),
     softDisabledIcon: getCssVarColor(`palette-neutral-500`),
 
@@ -209,7 +205,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     solidHoverBg: getCssVarColor(`palette-${color}-700`),
     solidActiveBg: getCssVarColor(`palette-${color}-800`),
     solidActiveIcon: getCssVarColor(`palette-${color}-200`),
-    solidDisabledColor: getCssVarColor(`palette-neutral-400`),
+    solidDisabledColor: getCssVarColor(`palette-neutral-500`),
     solidDisabledBg: getCssVarColor(`palette-${color}-900`),
     solidDisabledIcon: getCssVarColor(`palette-neutral-500`),
   });
@@ -224,6 +220,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       neutral: {
         ...defaultColors.neutral,
         ...createLightModeVariantVariables('neutral'),
+        plainColor: getCssVarColor('palette-neutral-700'),
+        outlinedColor: getCssVarColor('palette-neutral-700'),
+        solidBg: getCssVarColor('palette-neutral-700'),
+        solidHoverBg: getCssVarColor('palette-neutral-600'),
+        solidActiveBg: getCssVarColor('palette-neutral-500'),
       },
       danger: {
         ...defaultColors.danger,
@@ -279,6 +280,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       neutral: {
         ...defaultColors.neutral,
         ...createDarkModeVariantVariables('neutral'),
+        solidBg: getCssVarColor('palette-neutral-500'),
+        solidHoverBg: getCssVarColor('palette-neutral-600'),
+        solidActiveBg: getCssVarColor('palette-neutral-700'),
       },
       danger: {
         ...defaultColors.danger,
