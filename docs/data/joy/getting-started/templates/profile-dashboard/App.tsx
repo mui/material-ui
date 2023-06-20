@@ -4,7 +4,6 @@ import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import useScript from './useScript';
-import customTheme from './theme';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import MyProfile from './components/MyProfile';
@@ -25,7 +24,7 @@ export default function JoyOrderDashboardTemplate() {
   }, [status]);
 
   return (
-    <CssVarsProvider disableTransitionOnChange theme={customTheme}>
+    <CssVarsProvider disableTransitionOnChange>
       <GlobalStyles
         styles={{
           '[data-feather], .feather': {

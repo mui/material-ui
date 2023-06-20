@@ -9,7 +9,6 @@ import Stack from '@mui/joy/Stack';
 import useScript from './useScript';
 import FirstSidebar from './components/FirstSidebar';
 import Header from './components/Header';
-import customTheme from './theme';
 import RentalCard from './components/RentalCard';
 import Main from './components/Main';
 import HeaderSection from './components/HeaderSection';
@@ -34,7 +33,7 @@ export default function RentalDashboard() {
   }, [status]);
 
   return (
-    <CssVarsProvider disableTransitionOnChange theme={customTheme}>
+    <CssVarsProvider disableTransitionOnChange>
       <GlobalStyles
         styles={{
           '[data-feather], .feather': {

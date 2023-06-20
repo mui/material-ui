@@ -1,13 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
 import * as React from 'react';
-import { CssVarsProvider } from '@mui/joy/styles';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
 import Card from '@mui/joy/Card';
 import Container from '@mui/joy/Container';
 import Chip from '@mui/joy/Chip';
+import CssBaseline from '@mui/joy/CssBaseline';
 import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
+import Sheet from '@mui/joy/Sheet';
 import List from '@mui/joy/List';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
@@ -16,11 +19,45 @@ import Option from '@mui/joy/Option';
 
 import Check from '@mui/icons-material/Check';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
+
+function ColorSchemeToggle() {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return <IconButton size="sm" variant="outlined" color="primary" />;
+  }
+  return (
+    <IconButton
+      id="toggle-mode"
+      size="sm"
+      variant="soft"
+      color="neutral"
+      onClick={() => {
+        if (mode === 'light') {
+          setMode('dark');
+        } else {
+          setMode('light');
+        }
+      }}
+      sx={{ position: 'fixed', top: '1rem', right: '1rem', zIndex: 1000 }}
+    >
+      {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
+    </IconButton>
+  );
+}
 
 export default function GlobalVariantsPage() {
   return (
     <CssVarsProvider defaultMode="system">
+      <CssBaseline />
+      <ColorSchemeToggle />
       <Container
+        component={Sheet}
         sx={{
           display: 'grid',
           gridTemplateColumns: 'repeat(5, 1fr)',
@@ -50,6 +87,7 @@ export default function GlobalVariantsPage() {
         )}
       </Container>
       <Container
+        component={Sheet}
         sx={{
           display: 'grid',
           gridTemplateColumns: 'repeat(5, 1fr)',
@@ -77,6 +115,7 @@ export default function GlobalVariantsPage() {
         )}
       </Container>
       <Container
+        component={Sheet}
         maxWidth="xl"
         sx={{
           display: 'grid',

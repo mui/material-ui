@@ -13,7 +13,6 @@ import SecondSidebar from './components/SecondSidebar';
 import OrderTable from './components/OrderTable';
 import Header from './components/Header';
 import ColorSchemeToggle from './components/ColorSchemeToggle';
-import customTheme from './theme';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -31,7 +30,7 @@ export default function JoyOrderDashboardTemplate() {
   }, [status]);
 
   return (
-    <CssVarsProvider disableTransitionOnChange theme={customTheme}>
+    <CssVarsProvider disableTransitionOnChange>
       <GlobalStyles
         styles={{
           '[data-feather], .feather': {

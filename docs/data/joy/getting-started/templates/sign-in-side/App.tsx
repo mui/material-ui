@@ -13,7 +13,6 @@ import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
-import customTheme from './theme';
 import GoogleIcon from './GoogleIcon';
 
 interface FormElements extends HTMLFormControlsCollection {
@@ -61,11 +60,7 @@ function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
  */
 export default function JoySignInSideTemplate() {
   return (
-    <CssVarsProvider
-      defaultMode="dark"
-      disableTransitionOnChange
-      theme={customTheme}
-    >
+    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
       <CssBaseline />
       <GlobalStyles
         styles={{

@@ -38,7 +38,6 @@ import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
-import teamTheme from './theme';
 import Menu from './components/Menu';
 import Layout from './components/Layout';
 
@@ -132,7 +131,7 @@ function TeamNav() {
 export default function TeamExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
-    <CssVarsProvider disableTransitionOnChange theme={teamTheme}>
+    <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
