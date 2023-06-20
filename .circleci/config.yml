@@ -224,7 +224,7 @@ jobs:
           name: '`yarn proptypes` changes committed?'
           command: git diff --exit-code
       - run:
-          name: '`yarn rsc:build` changes committed?'
+          name: '`yarn prepend-use-client-directive` changes committed?'
           command: git diff --exit-code
       - run:
           name: Generate the documentation
