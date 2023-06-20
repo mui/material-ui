@@ -12,7 +12,7 @@ import Check from '@mui/icons-material/Check';
 import Close from '@mui/icons-material/Close';
 import Warning from '@mui/icons-material/Warning';
 
-export default function AlertBasic() {
+export default function AlertInvertedColors() {
   return (
     <Stack spacing={2} sx={{ maxWidth: 400 }}>
       <Alert
@@ -48,14 +48,12 @@ export default function AlertBasic() {
         }
         sx={{ alignItems: 'flex-start', overflow: 'hidden' }}
       >
-        <Box>
-          <Typography level="body-md" fontWeight="lg">
-            Success
-          </Typography>
-          <Typography level="body-xs">
+        <div>
+          <Box fontWeight="lg">Success</Box>
+          <Typography level="body-sm">
             Success is walking from failure to failure with no loss of enthusiam.
           </Typography>
-        </Box>
+        </div>
         <LinearProgress
           variant="soft"
           value={40}

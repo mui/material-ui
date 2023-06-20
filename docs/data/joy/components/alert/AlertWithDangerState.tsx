@@ -11,7 +11,7 @@ export default function AlertWithDangerState() {
   return (
     <Box sx={{ display: 'flex', gap: 2, width: '100%', flexDirection: 'column' }}>
       <Alert
-        startDecorator={<WarningIcon sx={{ mx: 0.5 }} />}
+        startDecorator={<WarningIcon />}
         variant="soft"
         color="danger"
         endDecorator={
@@ -30,7 +30,7 @@ export default function AlertWithDangerState() {
         </Typography>
       </Alert>
       <Alert
-        startDecorator={<WarningIcon sx={{ mx: 0.5 }} />}
+        startDecorator={<WarningIcon />}
         variant="solid"
         color="danger"
         endDecorator={
@@ -50,7 +50,7 @@ export default function AlertWithDangerState() {
       </Alert>
 
       <Alert
-        startDecorator={<WarningIcon sx={{ mx: 0.5 }} />}
+        startDecorator={<WarningIcon />}
         variant="outlined"
         color="danger"
         endDecorator={
