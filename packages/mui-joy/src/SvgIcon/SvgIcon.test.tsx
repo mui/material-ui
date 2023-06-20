@@ -174,17 +174,23 @@ describe('<SvgIcon />', () => {
     expect(container.firstChild).toHaveComputedStyle({ fontSize: '20px' }); // fontSize: xl -> 1.25rem = 20px
   });
 
-  it('should have `fill="currentColor"`', () => {
+  it('should have `fill="currentColor"`', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
     const { container } = render(
       <SvgIcon>
         <path />
       </SvgIcon>,
     );
 
-    expect(container.firstChild).to.have.style('fill', 'currentColor');
+    expect(container.firstChild).toHaveComputedStyle({ fill: 'currentColor' });
   });
 
-  it('should not add `fill` if svg is a direct child', () => {
+  it('should not add `fill` if svg is a direct child', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
     const { container } = render(
       <SvgIcon>
         <svg>
@@ -193,6 +199,6 @@ describe('<SvgIcon />', () => {
       </SvgIcon>,
     );
 
-    expect(container.firstChild).not.to.have.style('fill', 'currentColor');
+    expect(container.firstChild).not.toHaveComputedStyle({ fill: 'currentColor' });
   });
 });
