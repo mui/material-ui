@@ -11,7 +11,7 @@
 
 - [_Joy UI_](https://mui.com/joy-ui/getting-started/overview/) is a beautifully designed library of React UI components.
 
-- [_Base UI_](https://mui.com/base/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+- [_Base UI_](https://mui.com/base-ui/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
 
 - [_MUI System_](https://mui.com/system/getting-started/overview/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
@@ -139,7 +139,6 @@ via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://ww
   <a href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/192.png" alt="goread.io" title="Instagram followers, likes, power likes, views, comments, saves in minutes." loading="lazy" /></a>
   <a href="https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/icons8/7fa1641/logo/192.png" alt="Icons8" title="We provide the neat icons, photos, illustrations, and music. Developers, use our API to insert all the content we have into your apps." loading="lazy"></a>
   <a href="https://ipinfo.ai?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/ipinfoai/04f41d5/logo/192.png" alt="ipinfo.ai" title="We offer various IP data API services, including IP Geolocation Data, ASN Data, Company Data, IP Ranges Data, Abuse Contacts Data, Anonymous Browsing Detection, etc." loading="lazy"></a>
-  <a href="https://ridicorp.com?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/ridi-corporation/175dcf3/logo/192.png" alt="RIDI" title="RIDI is a South Korean digital content platform that offers webcomics, webnovels, animations, eBooks, and more." loading="lazy"></a>
 </p>
 
 Gold Sponsors are those who have pledged \$500/month or more to MUI.
@@ -180,7 +179,7 @@ Our documentation features [a collection of example projects using Material UI](
 
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
 - [Joy UI](https://mui.com/joy-ui/getting-started/overview/)
-- [Base UI](https://mui.com/base/getting-started/overview/)
+- [Base UI](https://mui.com/base-ui/getting-started/overview/)
 - [MUI System](https://mui.com/system/getting-started/overview/)
 
 ## Premium themes

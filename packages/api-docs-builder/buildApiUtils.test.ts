@@ -129,10 +129,10 @@ describe('buildApiUtils', () => {
       );
       sinon.assert.match(info, {
         name: 'Button',
-        apiPathname: '/base/react-button/components-api/#button',
+        apiPathname: '/base-ui/react-button/components-api/#button',
         muiName: 'MuiButton',
         apiPagesDirectory: sinon.match((value) =>
-          value.endsWith(path.join('docs', 'pages', 'base', 'api')),
+          value.endsWith(path.join('docs', 'pages', 'base-ui', 'api')),
         ),
       });
 
@@ -150,7 +150,7 @@ describe('buildApiUtils', () => {
         expect(info.getDemos()).to.deep.equal([
           {
             demoPageTitle: 'Button',
-            demoPathname: '/base/react-button/',
+            demoPathname: '/base-ui/react-button/',
           },
         ]);
       }
@@ -162,7 +162,7 @@ describe('buildApiUtils', () => {
       );
       sinon.assert.match(info, {
         name: 'useButton',
-        apiPathname: '/base/react-button/hooks-api/#use-button',
+        apiPathname: '/base-ui/react-button/hooks-api/#use-button',
       });
 
       info.readFile();
@@ -177,7 +177,7 @@ describe('buildApiUtils', () => {
         expect(info.getDemos()).to.deep.equal([
           {
             demoPageTitle: 'Button',
-            demoPathname: '/base/react-button/#hook',
+            demoPathname: '/base-ui/react-button/#hook',
           },
         ]);
       }

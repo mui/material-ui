@@ -1,5 +1,4 @@
 const ROUTES = {
-  home: '/',
   productCore: '/core/',
   productAdvanced: '/x/',
   productToolpad: '/toolpad/',
@@ -10,7 +9,7 @@ const ROUTES = {
   about: '/about/',
   rssFeed: '/feed/blog/rss.xml',
   handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
-  baseDocs: '/base/getting-started/overview/',
+  baseDocs: '/base-ui/getting-started/overview/',
   materialDocs: '/material-ui/getting-started/overview/',
   joyDocs: '/joy-ui/getting-started/overview/',
   systemDocs: '/system/getting-started/overview/',

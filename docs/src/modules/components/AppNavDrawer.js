@@ -13,7 +13,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
@@ -89,7 +89,8 @@ ProductDrawerButton.propTypes = {
   productName: PropTypes.string,
 };
 
-function ProductIdentifier({ name, metadata, versionSelector }) {
+function ProductIdentifier(props) {
+  const { name, metadata, versionSelector } = props;
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Typography
@@ -114,8 +115,8 @@ function ProductIdentifier({ name, metadata, versionSelector }) {
 
 ProductIdentifier.propTypes = {
   metadata: PropTypes.string,
-  name: PropTypes.string,
-  versionSelector: PropTypes.element,
+  name: PropTypes.string.isRequired,
+  versionSelector: PropTypes.element.isRequired,
 };
 
 // To match scrollMarginBottom
@@ -398,18 +399,14 @@ export default function AppNavDrawer(props) {
                 }),
               })}
             >
-              <SvgMuiLogo width={30} />
+              <SvgMuiLogomark width={30} />
             </Box>
           </NextLink>
-          {productIdentifier && (
-            <ProductIdentifier
-              name={productIdentifier.name}
-              metadata={productIdentifier.metadata}
-              versionSelector={
-                productIdentifier.versions ? renderVersionSelector(productIdentifier.versions) : []
-              }
-            />
-          )}
+          <ProductIdentifier
+            name={productIdentifier.name}
+            metadata={productIdentifier.metadata}
+            versionSelector={renderVersionSelector(productIdentifier.versions)}
+          />
         </ToolbarDiv>
         <Divider
           sx={(theme) => ({
@@ -424,6 +421,15 @@ export default function AppNavDrawer(props) {
       </React.Fragment>
     );
   }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (!productIdentifier) {
+      throw new Error('docs-infra: missing productIdentifier in PageContext');
+    }
+    if (!productIdentifier.versions) {
+      throw new Error('docs-infra: missing productIdentifier.versions in PageContext');
+    }
+  }
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>
