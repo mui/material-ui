@@ -49,10 +49,10 @@ export default function AlertBasic() {
         sx={{ alignItems: 'flex-start', overflow: 'hidden' }}
       >
         <Box>
-          <Typography level="body1" fontWeight="lg">
+          <Typography level="body-md" fontWeight="lg">
             Success
           </Typography>
-          <Typography level="body3">
+          <Typography level="body-xs">
             Success is walking from failure to failure with no loss of enthusiam.
           </Typography>
         </Box>

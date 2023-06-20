@@ -38,7 +38,7 @@ export default function DropZone({ sx, ...props }: CardProps) {
           <i data-feather="upload-cloud" />
         </Box>
       </Box>
-      <Typography level="body2" textAlign="center">
+      <Typography level="body-sm" textAlign="center">
         <Link component="button" overlay>
           Click to upload
         </Link>{' '}

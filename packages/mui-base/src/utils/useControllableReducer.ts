@@ -84,7 +84,13 @@ function useStateChangeDetection<State extends {}>(
       const nextStateItem = nextState[key];
       const previousStateItem = previousState[key];
 
-      if (!stateComparer(nextStateItem, previousStateItem)) {
+      if (
+        (previousStateItem == null && nextStateItem != null) ||
+        (previousStateItem != null && nextStateItem == null) ||
+        (previousStateItem != null &&
+          nextStateItem != null &&
+          !stateComparer(nextStateItem, previousStateItem))
+      ) {
         onStateChange?.(
           lastActionRef.current!.event ?? null,
           key,
@@ -154,7 +160,8 @@ export default function useControllableReducer<
     (state: State, action: ActionWithContext<Action, ActionContext>) => {
       lastActionRef.current = action;
       const controlledState = getControlledState(state, controlledProps);
-      return reducer(controlledState, action);
+      const newState = reducer(controlledState, action);
+      return newState;
     },
     [controlledProps, reducer],
   );

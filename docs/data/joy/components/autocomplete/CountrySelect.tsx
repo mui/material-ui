@@ -32,7 +32,7 @@ export default function CountrySelect() {
           </ListItemDecorator>
           <ListItemContent sx={{ fontSize: 'sm' }}>
             {option.label}
-            <Typography level="body3">
+            <Typography level="body-xs">
               ({option.code}) +{option.phone}
             </Typography>
           </ListItemContent>

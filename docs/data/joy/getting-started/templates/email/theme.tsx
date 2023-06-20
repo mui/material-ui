@@ -5,15 +5,16 @@ export default extendTheme({
     light: {
       palette: {
         background: {
-          body: 'var(--joy-palette-neutral-50)',
+          // body: 'var(--joy-palette-neutral-50)',
+          // surface: 'var(--joy-palette-common-white)',
         },
       },
     },
     dark: {
       palette: {
         background: {
-          body: 'var(--joy-palette-common-black)',
-          surface: 'var(--joy-palette-neutral-900)',
+          // body: 'var(--joy-palette-common-black)',
+          // surface: 'var(--joy-palette-neutral-900)',
         },
       },
     },

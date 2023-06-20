@@ -36,7 +36,7 @@ export default function FlexRowRatio() {
         </AspectRatio>
         <Box>
           <Typography fontWeight="md">Yosemite National Park</Typography>
-          <Typography level="body2">California, USA</Typography>
+          <Typography level="body-sm">California, USA</Typography>
         </Box>
       </Sheet>
       <br />

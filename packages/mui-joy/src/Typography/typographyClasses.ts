@@ -11,16 +11,20 @@ export interface TypographyClasses {
   h3: string;
   /** Class name applied to the root element if `level="h4"`. */
   h4: string;
-  /** Class name applied to the root element if `level="h5"`. */
-  h5: string;
-  /** Class name applied to the root element if `level="h6"`. */
-  h6: string;
-  /** Class name applied to the root element if `level="body1"`. */
-  body1: string;
-  /** Class name applied to the root element if `level="body2"`. */
-  body2: string;
-  /** Class name applied to the root element if `level="body3"`. */
-  body3: string;
+  /** Class name applied to the root element if `level="title-lg"`. */
+  'title-lg': string;
+  /** Class name applied to the root element if `level="title-md"`. */
+  'title-md': string;
+  /** Class name applied to the root element if `level="title-sm"`. */
+  'title-sm': string;
+  /** Class name applied to the root element if `level="body-lg"`. */
+  'body-lg': string;
+  /** Class name applied to the root element if `level="body-md"`. */
+  'body-md': string;
+  /** Class name applied to the root element if `level="body-sm"`. */
+  'body-sm': string;
+  /** Class name applied to the root element if `level="body-xs"`. */
+  'body-xs': string;
   /** Class name applied to the root element if `nowrap={true}`. */
   noWrap: string;
   /** Class name applied to the root element if `gutterBottom={true}`. */
@@ -63,11 +67,13 @@ const typographyClasses: TypographyClasses = generateUtilityClasses('MuiTypograp
   'h2',
   'h3',
   'h4',
-  'h5',
-  'h6',
-  'body1',
-  'body2',
-  'body3',
+  'title-lg',
+  'title-md',
+  'title-sm',
+  'body-lg',
+  'body-md',
+  'body-sm',
+  'body-xs',
   'noWrap',
   'gutterBottom',
   'startDecorator',

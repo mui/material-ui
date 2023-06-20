@@ -11,7 +11,7 @@ export default function TypographyDecorators() {
         The icon automatically adjusts to the scale
       </Typography>
       <Typography
-        level="h6"
+        level="body-lg"
         endDecorator={<Chip size="sm">123</Chip>}
         justifyContent="center"
       >

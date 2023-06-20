@@ -2,6 +2,8 @@
 
 ## 5.13.5
 
+_Jun 12, 2023_
+
 A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
 
 - 💫 Added `ButtonGroup` component in Joy UI (#37407) @siriwatknp.

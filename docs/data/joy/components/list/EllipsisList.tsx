@@ -30,7 +30,7 @@ export default function EllipsisList() {
           </ListItemDecorator>
           <ListItemContent>
             <Typography>Brunch this weekend?</Typography>
-            <Typography level="body2" noWrap>
+            <Typography level="body-sm" noWrap>
               I&apos;ll be in your neighborhood doing errands this Tuesday.
             </Typography>
           </ListItemContent>
@@ -41,7 +41,7 @@ export default function EllipsisList() {
           </ListItemDecorator>
           <ListItemContent>
             <Typography>Summer BBQ</Typography>
-            <Typography level="body2" noWrap>
+            <Typography level="body-sm" noWrap>
               Wish I could come, but I&apos;m out of town this Friday.
             </Typography>
           </ListItemContent>

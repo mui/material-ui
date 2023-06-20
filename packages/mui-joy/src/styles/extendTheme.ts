@@ -124,16 +124,20 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
     plainColor: getCssVarColor(`palette-${color}-500`),
+    plainIcon: getCssVarColor(`palette-${color}-400`),
     plainHoverBg: getCssVarColor(`palette-${color}-50`),
+    plainHoverIcon: getCssVarColor(`palette-${color}-500`),
     plainActiveBg: getCssVarColor(`palette-${color}-100`),
     plainDisabledColor: getCssVarColor(`palette-neutral-400`),
 
     outlinedColor: getCssVarColor(`palette-${color}-500`),
     outlinedBorder: getCssVarColor(`palette-${color}-300`),
+    outlinedIcon: getCssVarColor(`palette-${color}-400`),
     outlinedHoverBg: getCssVarColor(`palette-${color}-100`),
     outlinedHoverBorder: getCssVarColor(`palette-${color}-300`),
     outlinedActiveColor: getCssVarColor(`palette-${color}-700`),
     outlinedActiveBg: getCssVarColor(`palette-${color}-200`),
+    outlinedHoverIcon: getCssVarColor(`palette-${color}-500`),
     outlinedActiveBorder: getCssVarColor(`palette-${color}-300`),
     outlinedDisabledColor: getCssVarColor(`palette-neutral-400`),
     outlinedDisabledBorder: getCssVarColor(`palette-neutral-200`),
@@ -156,34 +160,49 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
     plainColor: getCssVarColor(`palette-${color}-300`),
+    plainIcon: getCssVarColor(`palette-${color}-300`),
     plainHoverBg: getCssVarColor(`palette-${color}-800`),
+    plainHoverIcon: getCssVarColor(`palette-${color}-300`),
     plainActiveBg: getCssVarColor(`palette-${color}-900`),
+    plainActiveIcon: getCssVarColor(`palette-${color}-300`),
     plainDisabledColor: getCssVarColor(`palette-neutral-400`),
+    plainDisabledIcon: getCssVarColor(`palette-neutral-500`),
 
     outlinedColor: getCssVarColor(`palette-${color}-200`),
     outlinedBorder: getCssVarColor(`palette-${color}-700`),
+    outlinedIcon: getCssVarColor(`palette-${color}-300`),
     outlinedHoverBg: getCssVarColor(`palette-${color}-800`),
     outlinedHoverBorder: getCssVarColor(`palette-${color}-700`),
+    outlinedHoverIcon: getCssVarColor(`palette-${color}-300`),
     outlinedActiveColor: getCssVarColor(`palette-${color}-300`),
     outlinedActiveBg: getCssVarColor(`palette-${color}-900`),
     outlinedActiveBorder: getCssVarColor(`palette-${color}-700`),
+    outlinedActiveIcon: getCssVarColor(`palette-${color}-300`),
     outlinedDisabledColor: getCssVarColor(`palette-neutral-400`),
     outlinedDisabledBorder: getCssVarColor(`palette-neutral-800`),
+    outlinedDisabledIcon: getCssVarColor(`palette-neutral-500`),
 
     softColor: getCssVarColor(`palette-${color}-200`),
     softBg: getCssVarColor(`palette-${color}-800`),
+    softIcon: getCssVarColor(`palette-${color}-200`),
     softHoverBg: getCssVarColor(`palette-${color}-700`),
+    softHoverIcon: getCssVarColor(`palette-${color}-200`),
     softActiveColor: getCssVarColor(`palette-${color}-100`),
     softActiveBg: getCssVarColor(`palette-${color}-600`),
+    softActiveIcon: getCssVarColor(`palette-${color}-300`),
     softDisabledColor: getCssVarColor(`palette-neutral-400`),
     softDisabledBg: getCssVarColor(`palette-${color}-900`),
+    softDisabledIcon: getCssVarColor(`palette-neutral-500`),
 
     solidColor: getCssVarColor(`palette-common-white`),
     solidBg: getCssVarColor(`palette-${color}-600`),
+    solidIcon: getCssVarColor(`palette-${color}-200`),
     solidHoverBg: getCssVarColor(`palette-${color}-700`),
     solidActiveBg: getCssVarColor(`palette-${color}-800`),
+    solidActiveIcon: getCssVarColor(`palette-${color}-200`),
     solidDisabledColor: getCssVarColor(`palette-neutral-400`),
     solidDisabledBg: getCssVarColor(`palette-${color}-900`),
+    solidDisabledIcon: getCssVarColor(`palette-neutral-500`),
   });
 
   const lightColorSystem = {
@@ -235,9 +254,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
 
       text: {
-        primary: getCssVarColor('palette-neutral-900'),
+        primary: getCssVarColor('palette-neutral-800'),
         secondary: getCssVarColor('palette-neutral-700'),
-        tertiary: getCssVarColor('palette-neutral-500'),
+        tertiary: getCssVarColor('palette-neutral-600'),
       },
 
       background: {
@@ -317,7 +336,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
     shadowRing: '0 0 #000',
     shadowChannel: '0 0 0',
-    shadowOpacity: '0.2',
+    shadowOpacity: '0.6',
   };
 
   const fontFamilyFallback =
@@ -331,11 +350,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   const fontWeight = {
-    xs: 300,
-    sm: 400,
-    md: 500,
-    lg: 600,
-    xl: 700,
+    sm: 400, // regular
+    md: 500, // medium
+    lg: 600, // semi bold
+    xl: 700, // bold
     ...scalesInput.fontWeight,
   };
 
@@ -354,10 +372,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   const lineHeight = {
-    xs: 1, // for one-line text. useful for creating component like badge or tag.
-    sm: 1.25,
-    md: 1.5,
-    lg: 1.75,
+    xs: '1.33334', // largest font sizes: h1, h2
+    sm: '1.42858', // normal font sizes
+    md: '1.5', // normal font sizes
+    lg: '1.55556', // large font sizes for components
+    xl: '1.66667', // smallest font sizes
     ...scalesInput.lineHeight,
   };
 
@@ -452,24 +471,58 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
 
     typography: {
-      'title-xl': {
+      h1: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-xl5', fontSize.xl5),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
-      'title-lg': {
+
+      h2: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
+        fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
         fontSize: getCssVar('fontSize-xl3', fontSize.xl3),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
+        lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
-      'title-md': {
+
+      h3: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-xl2', fontSize.xl2),
+        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
+        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+      },
+
+      h4: {
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
+        fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
+        fontSize: getCssVar('fontSize-xl', fontSize.xl),
+        lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
+        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+      },
+
+      'title-lg': {
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
+        fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
+        fontSize: getCssVar('fontSize-lg', fontSize.lg),
+        lineHeight: getCssVar('lineHeight-xl', lineHeight.xl.toString()),
+        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+      },
+
+      'title-md': {
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
+        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
+        fontSize: getCssVar('fontSize-md', fontSize.md),
+        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
+        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+      },
+
+      'title-sm': {
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
+        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
+        fontSize: getCssVar('fontSize-sm', fontSize.sm),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
@@ -501,11 +554,20 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
         color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
       },
+
+      'body-md': {
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
+        fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
+        fontSize: getCssVar('fontSize-md', fontSize.md),
+        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
+        color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
+      },
+
       'body-sm': {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-xs', fontSize.xs),
-        lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
+        lineHeight: getCssVar('lineHeight-xl', lineHeight.xl.toString()),
         color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
       },
     },
@@ -524,7 +586,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         // TODO: find a way to abstract SvgIcon out of @mui/material
         MuiSvgIcon: {
           defaultProps: {
-            fontSize: 'xl',
+            fontSize: 'xl2',
           },
           styleOverrides: {
             root: ({ ownerState, theme: themeProp }) => {

@@ -95,7 +95,7 @@ describe('<ButtonGroup />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId, container } = render(
           <ButtonGroup data-testid="root" color={color}>

@@ -9,7 +9,7 @@ export default function DecoratedList() {
     <div>
       <Typography
         id="decorated-list-demo"
-        level="body3"
+        level="body-xs"
         textTransform="uppercase"
         fontWeight="lg"
         mb={1}

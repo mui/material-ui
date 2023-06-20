@@ -37,8 +37,8 @@ function ColorSchemeToggle() {
     <IconButton
       id="toggle-mode"
       size="sm"
-      variant="outlined"
-      color="primary"
+      variant="soft"
+      color="neutral"
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');
@@ -89,7 +89,7 @@ export default function EmailExample() {
             </IconButton>
             <IconButton
               size="sm"
-              variant="solid"
+              variant="soft"
               sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
             >
               <MailRoundedIcon />
@@ -100,11 +100,12 @@ export default function EmailExample() {
           </Box>
           <Input
             size="sm"
+            variant="outlined"
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
-              <IconButton variant="outlined" size="sm" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
+              <IconButton variant="plain" size="sm">
+                <Typography level="body-md" textColor="text.tertiary">
                   /
                 </Typography>
               </IconButton>
@@ -115,21 +116,23 @@ export default function EmailExample() {
                 xs: 'none',
                 sm: 'flex',
               },
+              boxShadow: 'xs',
             }}
           />
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
             <IconButton
               size="sm"
               variant="outlined"
-              color="primary"
+              color="neutral"
               sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
             >
               <SearchRoundedIcon />
             </IconButton>
+
             <IconButton
               size="sm"
-              variant="outlined"
-              color="primary"
+              variant="soft"
+              color="neutral"
               component="a"
               href="/blog/first-look-at-joy/"
             >
@@ -140,8 +143,8 @@ export default function EmailExample() {
               control={
                 <IconButton
                   size="sm"
-                  variant="outlined"
-                  color="primary"
+                  variant="soft"
+                  color="neutral"
                   aria-label="Apps"
                 >
                   <GridViewRoundedIcon />
@@ -180,30 +183,17 @@ export default function EmailExample() {
               justifyContent: 'space-between',
             }}
           >
-            <Typography
-              textColor="neutral.500"
-              fontWeight={700}
-              sx={{
-                fontSize: '10px',
-                textTransform: 'uppercase',
-                letterSpacing: '.1rem',
-              }}
-            >
+            <Typography level="title-sm" textColor="text.tertiary">
               Unread
             </Typography>
-            <IconButton
-              size="sm"
-              variant="plain"
-              color="primary"
-              sx={{ '--IconButton-size': '24px' }}
-            >
+            <IconButton size="sm" variant="plain" color="primary">
               <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
             </IconButton>
           </Box>
           <Box sx={{ py: 10 }}>
             <Typography
               textColor="text.tertiary"
-              level="body2"
+              level="body-sm"
               sx={{ textAlign: 'center' }}
             >
               You&apos;ve read all messages in your inbox.
@@ -217,23 +207,10 @@ export default function EmailExample() {
               justifyContent: 'space-between',
             }}
           >
-            <Typography
-              textColor="neutral.500"
-              fontWeight={700}
-              sx={{
-                fontSize: '10px',
-                textTransform: 'uppercase',
-                letterSpacing: '.1rem',
-              }}
-            >
+            <Typography level="title-sm" textColor="text.tertiary">
               Everything else
             </Typography>
-            <IconButton
-              size="sm"
-              variant="plain"
-              color="primary"
-              sx={{ '--IconButton-size': '24px' }}
-            >
+            <IconButton size="sm" variant="plain" color="primary">
               <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
             </IconButton>
           </Box>

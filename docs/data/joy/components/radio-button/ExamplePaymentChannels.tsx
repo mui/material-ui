@@ -23,7 +23,7 @@ export default function ExamplePaymentChannels() {
       >
         <Typography
           id="example-payment-channel-label"
-          level="body3"
+          level="body-xs"
           textTransform="uppercase"
           fontWeight="xl"
           sx={{ letterSpacing: '0.15rem' }}

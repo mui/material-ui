@@ -14,7 +14,7 @@ export default function PlaceholderAspectRatio() {
       </AspectRatio>
       <div>
         <Typography>Title</Typography>
-        <Typography level="body2">Description of the card.</Typography>
+        <Typography level="body-sm">Description of the card.</Typography>
       </div>
     </Card>
   );
