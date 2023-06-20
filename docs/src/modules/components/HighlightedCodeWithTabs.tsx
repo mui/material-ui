@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import TabsUnstyled, { TabsUnstyledOwnProps } from '@mui/base/TabsUnstyled';
-import TabsListUnstyled from '@mui/base/TabsListUnstyled';
-import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
-import TabUnstyled from '@mui/base/TabUnstyled';
+import Tabs, { TabsOwnProps } from '@mui/base/Tabs';
+import TabsList from '@mui/base/TabsList';
+import TabPanel from '@mui/base/TabPanel';
+import Tab from '@mui/base/Tab';
 import HighlightedCode from './HighlightedCode';
 
 const StyledTabList = styled('div')(({ theme }) => ({
@@ -98,7 +98,7 @@ export default function HighlightedCodeWithTabs({
     setMounted(true);
   }, [availableTabs]);
 
-  const handleChange: TabsUnstyledOwnProps['onChange'] = (event, newValue) => {
+  const handleChange: TabsOwnProps['onChange'] = (event, newValue) => {
     setActiveTab(newValue as string);
     try {
       localStorage.setItem(STORAGE_KEY, newValue as string);
@@ -109,10 +109,10 @@ export default function HighlightedCodeWithTabs({
 
   const ownerState = { mounted };
   return (
-    <TabsUnstyled selectionFollowsFocus value={activeTab} onChange={handleChange}>
-      <TabsListUnstyled slots={{ root: StyledTabList }}>
+    <Tabs selectionFollowsFocus value={activeTab} onChange={handleChange}>
+      <TabsList slots={{ root: StyledTabList }}>
         {tabs.map(({ tab }) => (
-          <TabUnstyled
+          <Tab
             slots={{ root: StyledTab }}
             // @ts-ignore
             slotProps={{ root: { ownerState } }}
@@ -120,12 +120,12 @@ export default function HighlightedCodeWithTabs({
             value={tab}
           >
             {tab}
-          </TabUnstyled>
+          </Tab>
         ))}
         <Box sx={{ ml: 'auto' }} />
-      </TabsListUnstyled>
+      </TabsList>
       {tabs.map(({ tab, language, code }) => (
-        <TabPanelUnstyled
+        <TabPanel
           slots={{ root: StyledTabPanel }}
           // @ts-ignore
           slotProps={{ root: { ownerState } }}
@@ -137,8 +137,8 @@ export default function HighlightedCodeWithTabs({
             language={language || 'bash'}
             code={typeof code === 'function' ? code(tab) : code}
           />
-        </TabPanelUnstyled>
+        </TabPanel>
       ))}
-    </TabsUnstyled>
+    </Tabs>
   );
 }

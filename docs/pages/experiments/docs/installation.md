@@ -2,10 +2,16 @@
 
 <p class="description">Installation component.</p>
 
-## Basic
+## Tabs
 
-{{"component": "components/markdown/Installation", "installation": "@mui/material @emotion/react @emotion/styled"}}
+<codeblock>
 
-## Multiple options
+```bash npm
+npm install @mui/material @emotion/react @emotion/styled
+```
 
-{{"component": "components/markdown/Installation", "installation": "%Plan %DateLibrary", "managers": ["yarn", "npm"], "Plan": [["Community", "@mui/x-date-pickers"], ["Pro", "@mui/x-date-pickers-pro"]], "DateLibrary": ["dayjs", "date-fns", "luxon", "moment"]}}
+```bash yarn
+yarn add @mui/material @emotion/react @emotion/styled
+```
+
+</codeblock>
