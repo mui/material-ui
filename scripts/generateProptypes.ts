@@ -264,7 +264,9 @@ async function generateProptypes(
         const isExternal = filename !== tsFile;
         const implementedByUnstyledVariant =
           filename === unstyledFile || filename === unstyledPropsFile;
-        const implementedBySelfPropsFile = filename === propsFile || filename === propsFileAlternative && filename.indexOf('/base/') === -1;
+        const implementedBySelfPropsFile =
+          filename === propsFile ||
+          (filename === propsFileAlternative && filename.indexOf('/base/') === -1);
         if (!isExternal || implementedByUnstyledVariant || implementedBySelfPropsFile) {
           shouldDocument = true;
         }
