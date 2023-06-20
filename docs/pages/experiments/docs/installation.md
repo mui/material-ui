@@ -15,3 +15,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 ```
 
 </codeblock>
+
+## Component
+
+{{"component": "modules/components/HighlightedCodeWithTabs", "tabs": [{"tab":"JS", "code":"<div>Hello</div>", "language": "jsx"}, {"tab": "TS", "code": "type A = {}"}]}}
