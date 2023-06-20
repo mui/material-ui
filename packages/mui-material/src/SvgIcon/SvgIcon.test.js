@@ -145,4 +145,26 @@ describe('<SvgIcon />', () => {
     const { container } = render(<SvgIcon ownerState={{ fontSize: 'large' }}>{path}</SvgIcon>);
     expect(container.firstChild).toHaveComputedStyle({ fontSize: '24px' }); // fontSize: medium -> 1.5rem = 24px
   });
+
+  it('should have `fill="currentColor"`', () => {
+    const { container } = render(
+      <SvgIcon>
+        <path />
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).to.have.style('fill', 'currentColor');
+  });
+
+  it('should not add `fill` if svg is a direct child', () => {
+    const { container } = render(
+      <SvgIcon>
+        <svg>
+          <path />
+        </svg>
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).not.to.have.style('fill', 'currentColor');
+  });
 });

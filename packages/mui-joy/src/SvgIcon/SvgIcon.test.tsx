@@ -173,4 +173,26 @@ describe('<SvgIcon />', () => {
     );
     expect(container.firstChild).toHaveComputedStyle({ fontSize: '20px' }); // fontSize: xl -> 1.25rem = 20px
   });
+
+  it('should have `fill="currentColor"`', () => {
+    const { container } = render(
+      <SvgIcon>
+        <path />
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).to.have.style('fill', 'currentColor');
+  });
+
+  it('should not add `fill` if svg is a direct child', () => {
+    const { container } = render(
+      <SvgIcon>
+        <svg>
+          <path />
+        </svg>
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).not.to.have.style('fill', 'currentColor');
+  });
 });

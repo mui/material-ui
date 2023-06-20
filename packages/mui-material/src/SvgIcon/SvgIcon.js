@@ -38,6 +38,8 @@ const SvgIconRoot = styled('svg', {
   width: '1em',
   height: '1em',
   display: 'inline-block',
+  // the <svg> will define the property that has `currentColor`
+  // e.g. heroicons uses fill="none" and stroke="currentColor"
   fill: ownerState.hasSvgAsChild ? undefined : 'currentColor',
   flexShrink: 0,
   transition: theme.transitions?.create?.('fill', {
