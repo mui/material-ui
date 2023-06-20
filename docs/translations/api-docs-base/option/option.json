@@ -11,17 +11,17 @@
     "root": { "description": "Class name applied to the root element." },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root `li` element",
+      "nodeName": "the root <code>li</code> element",
       "conditions": "<code>disabled={true}</code>"
     },
     "selected": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root `li` element",
+      "nodeName": "the root <code>li</code> element",
       "conditions": "<code>selected={true}</code>"
     },
     "highlighted": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root `li` element",
+      "nodeName": "the root <code>li</code> element",
       "conditions": "<code>highlighted={true}</code>"
     }
   },

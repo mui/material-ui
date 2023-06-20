@@ -24,7 +24,9 @@ const pages = [
         children: [
           { pathname: '/base-ui/react-autocomplete', title: 'Autocomplete' },
           { pathname: '/base-ui/react-button', title: 'Button' },
+          { pathname: '/base-ui/react-checkbox', title: 'Checkbox', comingSoon: true },
           { pathname: '/base-ui/react-input', title: 'Input' },
+          { pathname: '/base-ui/react-radio-button', title: 'Radio Button', comingSoon: true },
           { pathname: '/base-ui/react-select', title: 'Select' },
           { pathname: '/base-ui/react-slider', title: 'Slider' },
           { pathname: '/base-ui/react-switch', title: 'Switch' },
@@ -47,6 +49,17 @@ const pages = [
           {
             pathname: '/base-ui/react-snackbar',
             title: 'Snackbar',
+          },
+        ],
+      },
+      {
+        pathname: '/base-ui/components/surfaces',
+        subheader: 'surfaces',
+        children: [
+          {
+            pathname: '/base-ui/react-accordion',
+            title: 'Accordion',
+            comingSoon: true,
           },
         ],
       },
