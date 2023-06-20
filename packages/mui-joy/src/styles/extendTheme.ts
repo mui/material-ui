@@ -242,9 +242,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         black: '#09090B',
       },
       text: {
-        primary: getCssVarColor('palette-neutral-900'),
+        primary: getCssVarColor('palette-neutral-800'),
         secondary: getCssVarColor('palette-neutral-700'),
-        tertiary: getCssVarColor('palette-neutral-500'),
+        tertiary: getCssVarColor('palette-neutral-600'),
       },
       background: {
         body: getCssVarColor('palette-neutral-50'),
@@ -349,16 +349,16 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     md: '1rem', // 16px
     lg: '1.125rem', // 18px
     xl: '1.25rem', // 20px
-    xl1: '1.5rem', // 24px
-    xl2: '2rem', // 30px
-    xl3: '2.5rem', // 36px
+    xl2: '1.5rem', // 24px
+    xl3: '1.875rem', // 30px
+    xl4: '2.25rem', // 36px
     ...scalesInput.fontSize,
   };
 
   const lineHeight = {
-    xs: '1.33333', // largest font sizes: h1, h2
-    sm: '1.42857rem', // normal font sizes
-    md: '1.5rem', // normal font sizes
+    xs: '1.33334', // largest font sizes: h1, h2
+    sm: '1.42858', // normal font sizes
+    md: '1.5', // normal font sizes
     lg: '1.55556', // large font sizes for components
     xl: '1.66667', // smallest font sizes
     ...scalesInput.lineHeight,
@@ -458,7 +458,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       h1: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
-        fontSize: getCssVar('fontSize-xl3', fontSize.xl3),
+        fontSize: getCssVar('fontSize-xl4', fontSize.xl4),
         lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
@@ -466,7 +466,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       h2: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
-        fontSize: getCssVar('fontSize-xl2', fontSize.xl2),
+        fontSize: getCssVar('fontSize-xl3', fontSize.xl3),
         lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
@@ -474,7 +474,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       h3: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
-        fontSize: getCssVar('fontSize-xl1', fontSize.xl1),
+        fontSize: getCssVar('fontSize-xl2', fontSize.xl2),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
@@ -489,9 +489,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
       'title-lg': {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
+        fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
         fontSize: getCssVar('fontSize-lg', fontSize.lg),
-        lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
+        lineHeight: getCssVar('lineHeight-xl', lineHeight.xl.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
 
@@ -558,7 +558,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         // TODO: find a way to abstract SvgIcon out of @mui/material
         MuiSvgIcon: {
           defaultProps: {
-            fontSize: 'xl',
+            fontSize: 'xl2',
           },
           styleOverrides: {
             root: ({ ownerState, theme: themeProp }) => {
