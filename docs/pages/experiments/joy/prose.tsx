@@ -13,6 +13,7 @@ import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import IconButton from '@mui/joy/IconButton';
+import SvgIcon from '@mui/joy/SvgIcon';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import CheckCircle from '@mui/icons-material/CheckCircle';
 
@@ -169,6 +170,28 @@ export default function ProsePage() {
               </Typography>
             </div>
           </Sheet>
+
+          <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
+            <CheckCircle />
+            <div>
+              <Typography level="body-sm" lineHeight="xl">
+                Tag of the post
+              </Typography>
+              <Typography>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry
+              </Typography>
+              <Divider sx={{ mt: 1, mb: 1.5 }} />
+              <Typography component="div" sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
+                <Typography level="body-sm" variant="outlined">
+                  Lorem Ipsum
+                </Typography>
+                <Typography level="body-sm" variant="outlined">
+                  Lorem Ipsum
+                </Typography>
+              </Typography>
+            </div>
+          </Sheet>
+
           <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
             <CheckCircle />
             <div>
@@ -205,6 +228,38 @@ export default function ProsePage() {
 
           <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
             <CheckCircle fontSize="xl3" />
+            <div>
+              <Typography lineHeight="xl">Post metadata</Typography>
+              <Typography level="title-lg">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry
+              </Typography>
+              <Divider sx={{ mt: 1.5, mb: 2 }} />
+              <Typography component="div" sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
+                <Typography variant="outlined">Lorem Ipsum</Typography>{' '}
+                <Typography variant="outlined">Lorem Ipsum</Typography>
+              </Typography>
+            </div>
+          </Sheet>
+
+          <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
+            <SvgIcon fontSize="xl3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-alert-circle"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" x2="12" y1="8" y2="12" />
+                <line x1="12" x2="12.01" y1="16" y2="16" />
+              </svg>
+            </SvgIcon>
             <div>
               <Typography level="title-lg">Title topic</Typography>
               <Typography level="body-lg">

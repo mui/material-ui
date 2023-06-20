@@ -297,8 +297,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         black: '#09090B',
       },
       text: {
-        primary: getCssVarColor('palette-neutral-50'),
-        secondary: getCssVarColor('palette-neutral-200'),
+        primary: getCssVarColor('palette-neutral-100'),
+        secondary: getCssVarColor('palette-neutral-300'),
         tertiary: getCssVarColor('palette-neutral-400'),
       },
       background: {
