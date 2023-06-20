@@ -87,14 +87,7 @@ export default function ColorInversionPopup() {
           borderRadius: '50%',
         }}
         onClick={() => {
-          const colors = [
-            'primary',
-            'neutral',
-            'danger',
-            'info',
-            'success',
-            'warning',
-          ];
+          const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
 
           const nextColor = colors.indexOf(color);
           setColor(colors[nextColor + 1] ?? colors[0]);

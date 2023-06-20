@@ -175,7 +175,7 @@ export default function FontSizeThemeViewer() {
                   </Typography>
                 </Tooltip>
               </td>
-              {['fontWeight', 'lineHeight', 'letterSpacing'].map((field) => (
+              {['fontWeight', 'lineHeight'].map((field) => (
                 <td key={field}>
                   <Tooltip
                     size="sm"

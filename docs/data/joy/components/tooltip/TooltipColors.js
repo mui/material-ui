@@ -39,11 +39,6 @@ export default function TooltipColors() {
             Danger
           </Button>
         </Tooltip>
-        <Tooltip title="Delete" color="info" variant={variant}>
-          <Button variant="plain" color="info">
-            Info
-          </Button>
-        </Tooltip>
         <Tooltip title="Delete" color="success" variant={variant}>
           <Button variant="plain" color="success">
             Success
