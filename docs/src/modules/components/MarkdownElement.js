@@ -380,31 +380,31 @@ const Root = styled('div')(
       fontSize: 10,
       '&:hover': {
         '& .MuiCode-copy': {
-          display: 'block',
+          display: 'inline-flex',
+          flexDirection: 'row-reverse',
         },
       },
     },
     '& .MuiCode-copy': {
-      minWidth: 64,
       display: 'none',
-      backgroundColor: alpha(lightTheme.palette.primaryDark[600], 0.5),
+      width: 30,
       cursor: 'pointer',
       position: 'absolute',
       top: theme.spacing(1),
       right: theme.spacing(1),
       fontFamily: 'inherit',
-      fontSize: lightTheme.typography.pxToRem(13),
       fontWeight: 500,
-      padding: theme.spacing(0.5, 1),
-      borderRadius: 4,
+      padding: theme.spacing(0.5),
+      borderRadius: 6,
       border: `1px solid`,
       borderColor: lightTheme.palette.primaryDark[500],
+      backgroundColor: lightTheme.palette.primaryDark[600],
       color: lightTheme.palette.primaryDark[50],
       '&:hover, &:focus': {
         opacity: 1,
         color: '#fff',
-        backgroundColor: alpha(lightTheme.palette.primaryDark[600], 0.7),
-        borderColor: lightTheme.palette.primaryDark[500],
+        backgroundColor: lightTheme.palette.primaryDark[500],
+        borderColor: lightTheme.palette.primaryDark[400],
         '& .MuiCode-copyKeypress': {
           display: 'block',
           // Approximate no hover capabilities with no keyboard
@@ -432,15 +432,11 @@ const Root = styled('div')(
     '& .MuiCode-copyKeypress': {
       pointerEvents: 'none',
       userSelect: 'none',
-      position: 'absolute',
-      left: '50%',
-      top: '100%',
       minWidth: '100%',
-      marginTop: theme.spacing(0.5),
+      marginRight: theme.spacing(4),
       whiteSpace: 'nowrap',
-      transform: 'translateX(-50%)',
       '& > span': {
-        opacity: 0.72,
+        opacity: 0.8,
       },
     },
     '& li': {
