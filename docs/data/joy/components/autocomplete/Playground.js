@@ -73,7 +73,7 @@ export default function Playground() {
               component="button"
               level="body-sm"
               onClick={() => setFlags([])}
-              sx={{ ml: 'auto' }}
+              sx={{ ml: 'auto', mr: 2 }}
             >
               Clear all
             </Link>

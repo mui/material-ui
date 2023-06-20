@@ -179,10 +179,8 @@ export default function GitHubLabel() {
                     }}
                   />
                   <Box sx={{ flexGrow: 1 }}>
-                    <Typography fontSize="sm">{option.name}</Typography>
-                    <Typography level="body-xs" textColor="text.secondary">
-                      {option.description}
-                    </Typography>
+                    <Typography level="title-sm">{option.name}</Typography>
+                    <Typography level="body-xs">{option.description}</Typography>
                   </Box>
                   <CloseIcon sx={{ visibility: selected ? 'visible' : 'hidden' }} />
                 </AutocompleteOption>
