@@ -95,8 +95,9 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           (theme) => ({
             display: 'flex',
             alignItems: 'center',
-            gap: 2,
-            p: 1.5,
+            gap: 1.5,
+            p: 1,
+            mx: 1,
             borderRadius: (theme.vars || theme).shape.borderRadius,
             border: '1px solid',
             borderColor: 'transparent',
@@ -298,7 +299,7 @@ export default function HeaderNavBar() {
                   variant="outlined"
                   sx={[
                     (theme) => ({
-                      p: 1,
+                      pb: 1,
                       minWidth: 498,
                       overflow: 'hidden',
                       borderColor: 'divider',
@@ -321,13 +322,12 @@ export default function HeaderNavBar() {
                   <Typography
                     sx={[
                       (theme) => ({
-                        py: 1,
-                        px: 2,
+                        p: 1.5,
                         fontSize: theme.typography.pxToRem(11),
                         fontWeight: theme.typography.fontWeightBold,
                         textTransform: 'uppercase',
                         letterSpacing: '.08rem',
-                        color: theme.palette.grey[500],
+                        color: theme.palette.grey[600],
                       }),
                     ]}
                   >
@@ -340,9 +340,9 @@ export default function HeaderNavBar() {
                         id={PRODUCT_IDS[0]}
                         role="menuitem"
                         href={ROUTES.productCore}
-                        icon={<IconImage name="product-core" />}
+                        icon={<IconImage name="product-material" />}
                         name="Material UI"
-                        description="Ready-to-use foundational React components, free forever."
+                        description="React components implementing Google’s Material Design."
                         onKeyDown={handleKeyDown}
                       />
                     </li>
@@ -351,9 +351,9 @@ export default function HeaderNavBar() {
                         id={PRODUCT_IDS[0]}
                         role="menuitem"
                         href={ROUTES.productCore}
-                        icon={<IconImage name="product-core" />}
+                        icon={<IconImage name="product-base" />}
                         name="Base UI"
-                        description="Ready-to-use foundational React components, free forever."
+                        description="Unstyled React UI components and low-level hooks."
                         onKeyDown={handleKeyDown}
                       />
                     </li>
@@ -393,7 +393,7 @@ export default function HeaderNavBar() {
                             fontWeight: theme.typography.fontWeightBold,
                             textTransform: 'uppercase',
                             letterSpacing: '.08rem',
-                            color: theme.palette.grey[500],
+                            color: theme.palette.grey[600],
                           }),
                         ]}
                       >
@@ -460,6 +460,7 @@ export default function HeaderNavBar() {
                 <Paper
                   variant="outlined"
                   sx={(theme) => ({
+                    pb: 1,
                     minWidth: 498,
                     overflow: 'hidden',
                     borderColor: 'grey.200',

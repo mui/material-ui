@@ -92,15 +92,11 @@ export default function MuiProductSelector() {
       <Box
         component="li"
         role="none"
-        sx={(theme) => ({
-          p: 2,
-          pr: 3,
-          borderBottom: '1px solid',
-          borderColor: 'grey.100',
-          ...theme.applyDarkStyles({
-            borderColor: alpha(theme.palette.primary[100], 0.08),
-          }),
-        })}
+        sx={{
+          pt: 2,
+          px: 2,
+          pb: 1,
+        }}
       >
         <ProductSubMenu
           role="menuitem"
@@ -108,55 +104,66 @@ export default function MuiProductSelector() {
           name="MUI Core"
           description="Ready-to-use foundational React components, free forever."
         />
-        <Box sx={{ ml: '36px', pl: 2, pt: 1.5, position: 'relative' }}>
-          <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            alignItems="flex-start"
-            spacing={1}
-            sx={{
-              '& > .MuiChip-root': {
-                position: 'initial',
-                '&:hover': {
-                  '& .product-description': {
-                    opacity: 1,
-                  },
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems="flex-start"
+          spacing={1}
+          sx={{
+            ml: '36px',
+            pl: 2,
+            pt: 1.5,
+            position: 'relative',
+            '& > .MuiChip-root': {
+              position: 'initial',
+              '&:hover': {
+                '& .product-description': {
+                  opacity: 1,
                 },
               },
-            }}
-          >
-            {products.map((product) => (
-              <Chip
-                key={product.name}
-                color={routerExtra.product === product.slug ? 'default' : undefined}
-                variant={routerExtra.product === product.slug ? 'filled' : 'outlined'}
-                component={Link}
-                href={product.href}
-                label={product.name}
-                clickable
-                size="small"
-              />
-            ))}
-          </Stack>
-        </Box>
+            },
+          }}
+        >
+          {products.map((product) => (
+            <Chip
+              key={product.name}
+              color={routerExtra.product === product.slug ? 'default' : undefined}
+              variant={routerExtra.product === product.slug ? 'filled' : 'outlined'}
+              component={Link}
+              href={product.href}
+              label={product.name}
+              clickable
+              size="small"
+            />
+          ))}
+        </Stack>
       </Box>
       <li role="none">
         <Link
           href={ROUTES.advancedComponents}
           sx={[
-            {
-              p: 2,
-              pr: 3,
-              borderBottom: '1px solid',
-              borderColor: 'grey.100',
-              width: '100%',
-              '&:hover': {
-                backgroundColor: 'grey.50',
+            (theme) => ({
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5,
+              p: 1,
+              mx: 1,
+              borderRadius: (theme.vars || theme).shape.borderRadius,
+              border: '1px solid',
+              borderColor: 'transparent',
+              '&:hover, &:focus': {
+                borderColor: 'divider',
+                backgroundColor: (theme.vars || theme).palette.grey[50],
+                outline: 0,
+                '@media (hover: none)': {
+                  backgroundColor: 'initial',
+                  outline: 'initial',
+                },
               },
-            },
+            }),
             (theme) =>
               theme.applyDarkStyles({
-                borderColor: alpha(theme.palette.primary[100], 0.08),
-                '&:hover': {
+                '&:hover, &:focus': {
+                  borderColor: 'divider',
                   backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
                 },
               }),
@@ -174,20 +181,29 @@ export default function MuiProductSelector() {
         <Link
           href={ROUTES.toolpadDocs}
           sx={[
-            {
-              p: 2,
-              pr: 3,
-              borderBottom: '1px solid',
-              borderColor: 'grey.100',
-              width: '100%',
-              '&:hover': {
-                backgroundColor: 'grey.50',
+            (theme) => ({
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5,
+              p: 1,
+              mx: 1,
+              borderRadius: (theme.vars || theme).shape.borderRadius,
+              border: '1px solid',
+              borderColor: 'transparent',
+              '&:hover, &:focus': {
+                borderColor: 'divider',
+                backgroundColor: (theme.vars || theme).palette.grey[50],
+                outline: 0,
+                '@media (hover: none)': {
+                  backgroundColor: 'initial',
+                  outline: 'initial',
+                },
               },
-            },
+            }),
             (theme) =>
               theme.applyDarkStyles({
-                borderColor: alpha(theme.palette.primary[100], 0.08),
-                '&:hover': {
+                '&:hover, &:focus': {
+                  borderColor: 'divider',
                   backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
                 },
               }),

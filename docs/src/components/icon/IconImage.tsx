@@ -11,6 +11,8 @@ export type IconImageProps = {
     | 'product-toolpad'
     | 'product-templates'
     | 'product-designkits'
+    | 'product-base'
+    | 'product-material'
     | 'block-green'
     | 'block-blue'
     | 'block-gold'
