@@ -90,7 +90,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     disablePortal = false,
     keepMounted = false,
     invertedColors = false,
-    id,
     onClose,
     onItemsChange,
     open = false,
@@ -116,8 +115,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const { contextValue, getListboxProps, dispatch } = useMenu({
     open,
     onOpenChange: handleOpenChange,
+    listboxId: props.id,
     onItemsChange,
-    listboxId: id,
   });
 
   React.useImperativeHandle(
@@ -156,6 +155,22 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     ],
     [modifiersProp],
   );
+
+  if (anchorEl && process.env.NODE_ENV !== 'production') {
+    let ariaControls = null;
+    const resolvedAnchorEl = typeof anchorEl === 'function' ? anchorEl() : anchorEl;
+    if ('getAttribute' in resolvedAnchorEl) {
+      ariaControls = resolvedAnchorEl.getAttribute('aria-controls');
+    } else {
+      ariaControls = resolvedAnchorEl.contextElement?.getAttribute('aria-controls');
+    }
+
+    if (props.id && ariaControls && props.id !== ariaControls) {
+      console.error(
+        `MUI: the anchorEl must have [aria-controls="${props.id}"] but got [aria-controls="${ariaControls}"].`,
+      );
+    }
+  }
 
   const rootProps = useSlotProps({
     elementType: MenuRoot,

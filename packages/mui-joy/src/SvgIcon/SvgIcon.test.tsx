@@ -60,6 +60,21 @@ describe('<SvgIcon />', () => {
     expect(container.firstChild).to.have.attribute('aria-hidden', 'true');
   });
 
+  it('renders children of provided svg and merge the props', () => {
+    const { container } = render(
+      <SvgIcon>
+        <svg viewBox="0 0 48 48" strokeWidth="1.5">
+          {path}
+        </svg>
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).to.have.tagName('svg');
+    expect(container.firstChild?.firstChild).to.have.tagName('path');
+    expect(container.firstChild).to.have.attribute('viewBox', '0 0 48 48');
+    expect(container.firstChild).to.have.attribute('stroke-width', '1.5');
+  });
+
   describe('prop: titleAccess', () => {
     it('should be able to make an icon accessible', () => {
       const { container, queryByText } = render(<SvgIcon titleAccess="Network">{path}</SvgIcon>);
@@ -157,5 +172,33 @@ describe('<SvgIcon />', () => {
       <SvgIcon ownerState={{ fontSize: 'sm' }}>{path}</SvgIcon>,
     );
     expect(container.firstChild).toHaveComputedStyle({ fontSize: '20px' }); // fontSize: xl -> 1.25rem = 20px
+  });
+
+  it('should have `fill="currentColor"`', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+    const { container } = render(
+      <SvgIcon>
+        <path />
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({ fill: 'currentColor' });
+  });
+
+  it('should not add `fill` if svg is a direct child', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+    const { container } = render(
+      <SvgIcon>
+        <svg>
+          <path />
+        </svg>
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).not.toHaveComputedStyle({ fill: 'currentColor' });
   });
 });
