@@ -21,7 +21,7 @@ describe('getProductInfoFromUrl', () => {
 
   it('get system', () => {
     expect(getProductInfoFromUrl('/system/').productId).to.equal('system');
-    expect(getProductInfoFromUrl('/zh/system/getting-started/overview/').productId).to.equal(
+    expect(getProductInfoFromUrl('/zh/system/getting-started/').productId).to.equal(
       'system',
     );
   });
