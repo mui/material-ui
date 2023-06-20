@@ -95,7 +95,7 @@ module.exports = function getBabelConfig(api) {
     // https://babeljs.io/docs/assumptions
     assumptions: {
       noDocumentAll: true,
-      // With our cose these assumptions are safe, and the
+      // With our case these assumptions are safe, and the
       // resulting behavior is equivalent to spec mode.
       setPublicClassFields: true,
       privateFieldsAsProperties: true,
