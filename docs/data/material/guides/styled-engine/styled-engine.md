@@ -150,7 +150,7 @@ The theme of Material UI will be separated from the other library, so when you u
 Render Material UI's theme provider below Theme UI's provider and assign the material theme to the `THEME_ID` property.
 
 ```js
-import { ThemeProvider as ThemeUIThemeProvider } from 'theme-ui';
+import { ThemeUIProvider } from 'theme-ui';
 import { createTheme as materialCreateTheme, THEME_ID } from '@mui/material/styles';
 
 const themeUITheme = {
@@ -170,11 +170,11 @@ const materialTheme = materialCreateTheme();
 
 function App() {
   return (
-    <ThemeUIThemeProvider theme={themeUITheme}>
+    <ThemeUIProvider theme={themeUITheme}>
       <MaterialThemeProvider theme={{ [THEME_ID]: materialTheme }}>
         Theme UI components and Material UI components
       </MaterialThemeProvider>
-    </ThemeUIThemeProvider>
+    </ThemeUIProvider>
   );
 }
 ```
