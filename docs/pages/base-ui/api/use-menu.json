@@ -1,7 +1,5 @@
 {
   "parameters": {
-    "defaultOpen": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
-    "listboxId": { "type": { "name": "string", "description": "string" } },
     "listboxRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
@@ -10,11 +8,7 @@
         "name": "(items: string[]) =&gt; void",
         "description": "(items: string[]) =&gt; void"
       }
-    },
-    "onOpenChange": {
-      "type": { "name": "(open: boolean) =&gt; void", "description": "(open: boolean) =&gt; void" }
-    },
-    "open": { "type": { "name": "boolean", "description": "boolean" } }
+    }
   },
   "returnValue": {
     "contextValue": {

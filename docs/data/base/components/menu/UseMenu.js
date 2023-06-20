@@ -11,8 +11,6 @@ const Menu = React.forwardRef(function Menu(props, ref) {
 
   const { contextValue, getListboxProps } = useMenu({
     listboxRef: ref,
-    onOpenChange,
-    open,
   });
 
   return (

@@ -7,6 +7,10 @@ module.exports = [
     title: 'ClickAwayListener',
   },
   {
+    pathname: '/base-ui/react-menu/components-api/#dropdown-menu',
+    title: 'DropdownMenu',
+  },
+  {
     pathname: '/base-ui/react-focus-trap/components-api/#focus-trap',
     title: 'FocusTrap',
   },
@@ -16,6 +20,10 @@ module.exports = [
   },
   { pathname: '/base-ui/react-input/components-api/#input', title: 'Input' },
   { pathname: '/base-ui/react-menu/components-api/#menu', title: 'Menu' },
+  {
+    pathname: '/base-ui/react-menu/components-api/#menu-button',
+    title: 'MenuButton',
+  },
   { pathname: '/base-ui/react-menu/components-api/#menu-item', title: 'MenuItem' },
   { pathname: '/base-ui/react-modal/components-api/#modal', title: 'Modal' },
   { pathname: '/base-ui/react-no-ssr/components-api/#no-ssr', title: 'NoSsr' },

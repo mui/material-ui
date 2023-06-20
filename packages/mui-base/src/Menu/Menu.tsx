@@ -1,16 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { HTMLElementType, refType } from '@mui/utils';
+import { refType } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { MenuOwnerState, MenuProps, MenuRootSlotProps, MenuTypeMap } from './Menu.types';
 import { getMenuUtilityClass } from './menuClasses';
 import useMenu from '../useMenu';
+import MenuProvider from '../useMenu/MenuProvider';
 import composeClasses from '../composeClasses';
 import Popper from '../Popper';
 import useSlotProps from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { WithOptionalOwnerState } from '../utils';
-import MenuProvider from '../useMenu/MenuProvider';
+import MenuContext, { MenuContextValue } from '../useMenu/MenuContext';
 import { ListActionTypes } from '../useList';
 
 function useUtilityClasses(ownerState: MenuOwnerState) {
@@ -36,27 +37,21 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
   props: MenuProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
-  const {
-    actions,
-    anchorEl,
-    children,
-    defaultOpen,
-    listboxId,
-    onItemsChange,
-    onOpenChange,
-    open: openProp,
-    slotProps = {},
-    slots = {},
-    ...other
-  } = props;
+  const { actions, children, onItemsChange, slotProps = {}, slots = {}, ...other } = props;
 
-  const { contextValue, getListboxProps, dispatch, open } = useMenu({
-    defaultOpen,
-    open: openProp,
-    onItemsChange,
-    onOpenChange,
-    listboxId,
-  });
+  const menuContext: MenuContextValue = React.useContext(MenuContext) ?? {
+    state: { open: true },
+    triggerElement: null,
+    dispatch: () => {},
+    registerTrigger: () => {},
+  };
+
+  const {
+    state: { open },
+    triggerElement,
+  } = menuContext;
+
+  const { contextValue, getListboxProps, dispatch } = useMenu({ onItemsChange });
 
   React.useImperativeHandle(
     actions,
@@ -77,7 +72,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
     externalForwardedProps: other,
     externalSlotProps: slotProps.root,
     additionalProps: {
-      anchorEl,
+      anchorEl: triggerElement,
       open,
       keepMounted: true,
       role: undefined,
@@ -115,40 +110,13 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   actions: refType,
   /**
-   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
-   * or a function that returns either.
-   * It's used to set the position of the popper.
-   */
-  anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.object,
-    PropTypes.func,
-  ]),
-  /**
    * @ignore
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  defaultOpen: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  listboxId: PropTypes.string,
-  /**
    * Function called when the items displayed in the menu change.
    */
   onItemsChange: PropTypes.func,
-  /**
-   * Triggered when focus leaves the menu and the menu should close.
-   */
-  onOpenChange: PropTypes.func,
-  /**
-   * Controls whether the menu is displayed.
-   * @default false
-   */
-  open: PropTypes.bool,
   /**
    * The props used for each slot inside the Menu.
    * @default {}

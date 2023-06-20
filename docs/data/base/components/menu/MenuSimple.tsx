@@ -76,11 +76,6 @@ export default function UnstyledMenuSimple() {
 
       <Menu
         actions={menuActions}
-        open={isOpen}
-        onOpenChange={(open) => {
-          setOpen(open);
-        }}
-        anchorEl={buttonElement}
         slots={{ root: StyledPopper, listbox: StyledListbox }}
         slotProps={{ listbox: { id: 'simple-menu' } }}
       >

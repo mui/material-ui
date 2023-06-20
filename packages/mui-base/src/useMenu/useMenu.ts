@@ -1,17 +1,22 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
+import menuReducer from './menuReducer';
+import MenuContext, { MenuContextValue } from './MenuContext';
 import useList from '../useList';
-import {
-  MenuInternalState,
-  UseMenuListboxSlotProps,
-  UseMenuParameters,
-  UseMenuReturnValue,
-} from './useMenu.types';
+import { MenuItemMetadata } from '../useMenuItem';
+import { MenuActionTypes } from '../useDropdownMenu';
 import { EventHandlers } from '../utils';
 import { useCompoundParent } from '../utils/useCompound';
-import { MenuItemMetadata } from '../useMenuItem';
-import { StateChangeCallback } from '../utils/useControllableReducer.types';
-import menuReducer from './menuReducer';
+import MuiCancellableEvent from '../utils/muiCancellableEvent';
+import combineHooksSlotProps from '../utils/combineHooksSlotProps';
+
+const FALLBACK_MENU_CONTEXT: MenuContextValue = {
+  state: { open: true },
+  dispatch: () => {},
+  triggerElement: null,
+  registerTrigger: () => {},
+};
 
 /**
  *
@@ -24,16 +29,16 @@ import menuReducer from './menuReducer';
  * - [useMenu API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu)
  */
 export default function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
-  const {
-    defaultOpen,
-    listboxRef: listboxRefProp,
-    open: openProp,
-    onItemsChange,
-    onOpenChange,
-  } = parameters;
+  const { listboxRef: listboxRefProp, onItemsChange } = parameters;
 
   const listboxRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(listboxRef, listboxRefProp);
+
+  const {
+    state: { open },
+    dispatch: menuDispatch,
+    triggerElement,
+  } = React.useContext(MenuContext) ?? FALLBACK_MENU_CONTEXT;
 
   const { subitems, contextValue: compoundComponentContextValue } = useCompoundParent<
     string,
@@ -53,36 +58,19 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     [subitems],
   );
 
-  const controlledProps = React.useMemo(() => ({ open: openProp }), [openProp]);
-
-  const stateChangeHandler: StateChangeCallback<MenuInternalState> = React.useCallback(
-    (event, field, fieldValue, reason, state) => {
-      if (field === 'open') {
-        onOpenChange?.(fieldValue as boolean);
-
-        if (fieldValue === true && state.highlightedValue !== null) {
-          subitems.get(state.highlightedValue)?.ref.current?.focus();
-        }
-      }
-    },
-    [onOpenChange, subitems],
-  );
-
   const {
-    dispatch,
-    getRootProps,
+    dispatch: listDispatch,
+    getRootProps: getListRootProps,
     contextValue: listContextValue,
-    state: { open, highlightedValue },
+    state: { highlightedValue },
     rootRef: mergedListRef,
   } = useList({
-    controlledProps,
     disabledItemsFocusable: true,
     focusManagement: 'DOM',
     getItemDomElement,
     getInitialState: () => ({
       selectedValues: [],
       highlightedValue: null,
-      open: defaultOpen ?? false,
     }),
     isItemDisabled: (id) => subitems?.get(id)?.disabled || false,
     items: subitemKeys,
@@ -90,7 +78,6 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
     rootRef: handleRef,
     onItemsChange,
-    onStateChange: stateChangeHandler,
     reducerActionContext: { listboxRef },
     selectionMode: 'none',
     stateReducer: menuReducer,
@@ -109,13 +96,52 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     }
   }, [highlightedValue, subitems]);
 
+  const createHandleListboxBlur =
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent & MuiCancellableEvent) => {
+      otherHandlers.onBlur?.(event);
+      if (event.defaultMuiPrevented) {
+        return;
+      }
+
+      if (
+        listboxRef.current?.contains(event.relatedTarget as HTMLElement) ||
+        event.relatedTarget === triggerElement
+      ) {
+        return;
+      }
+
+      menuDispatch({
+        type: MenuActionTypes.blur,
+        event,
+      });
+    };
+
+  const createHandleListboxKeyDown =
+    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {
+      otherHandlers.onKeyDown?.(event);
+      if (event.defaultMuiPrevented) {
+        return;
+      }
+
+      if (event.key === 'Escape') {
+        menuDispatch({
+          type: MenuActionTypes.escapeKeyDown,
+          event,
+        });
+      }
+    };
+
+  const getOwnListboxHandlers = (otherHandlers: EventHandlers = {}) => ({
+    onBlur: createHandleListboxBlur(otherHandlers),
+    onKeyDown: createHandleListboxKeyDown(otherHandlers),
+  });
+
   const getListboxProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
   ): UseMenuListboxSlotProps => {
-    const rootProps = getRootProps(otherHandlers);
+    const getRootProps = combineHooksSlotProps(getOwnListboxHandlers, getListRootProps);
     return {
-      ...otherHandlers,
-      ...rootProps,
+      ...getRootProps(otherHandlers),
       role: 'menu',
     };
   };
@@ -127,7 +153,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       ...compoundComponentContextValue,
       ...listContextValue,
     },
-    dispatch,
+    dispatch: listDispatch,
     getListboxProps,
     highlightedValue,
     listboxRef: mergedListRef,

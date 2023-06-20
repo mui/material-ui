@@ -1,0 +1,21 @@
+{
+  "parameters": {
+    "defaultOpen": { "type": { "name": "boolean", "description": "boolean" } },
+    "onOpenChange": {
+      "type": {
+        "name": "(event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, open: boolean) =&gt; void",
+        "description": "(event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, open: boolean) =&gt; void"
+      }
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" } }
+  },
+  "returnValue": {
+    "contextValue": {
+      "type": { "name": "MenuContextValue", "description": "MenuContextValue" },
+      "required": true
+    }
+  },
+  "name": "useDropdownMenu",
+  "filename": "/packages/mui-base/src/useDropdownMenu/useDropdownMenu.ts",
+  "demos": "<ul></ul>"
+}

@@ -1,15 +1,7 @@
 {
   "props": {
     "actions": { "type": { "name": "custom", "description": "ref" } },
-    "anchorEl": {
-      "type": {
-        "name": "union",
-        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
-      }
-    },
     "onItemsChange": { "type": { "name": "func" } },
-    "onOpenChange": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
         "name": "shape",

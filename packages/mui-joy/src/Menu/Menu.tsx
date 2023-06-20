@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import useMenu, { MenuProvider } from '@mui/base/useMenu';
+import useMenu, { MenuProvider, MenuContext } from '@mui/base/useMenu';
 import { ListActionTypes } from '@mui/base/useList';
+import useDropdownMenu from '@mui/base/useDropdownMenu';
 import Popper from '@mui/base/Popper';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
@@ -104,7 +105,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const handleOpenChange = React.useCallback(
-    (isOpen: boolean) => {
+    (event: React.SyntheticEvent | null, isOpen: boolean) => {
       if (!isOpen) {
         onClose?.();
       }
@@ -113,9 +114,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   );
 
   const { contextValue, getListboxProps, dispatch } = useMenu({
-    open,
-    onOpenChange: handleOpenChange,
-    listboxId: props.id,
     onItemsChange,
   });
 
@@ -172,6 +170,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     }
   }
 
+  const { contextValue: dropdownMenuContextValue } = useDropdownMenu({
+    onOpenChange: handleOpenChange,
+    open,
+  });
+
   const rootProps = useSlotProps({
     elementType: MenuRoot,
     getSlotProps: getListboxProps,
@@ -202,17 +205,19 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   }
 
   result = (
-    <MenuRoot
-      {...rootProps}
-      {...(!props.slots?.root && {
-        as: Popper,
-        slots: {
-          root: component || 'ul',
-        },
-      })}
-    >
-      {result}
-    </MenuRoot>
+    <MenuContext.Provider value={dropdownMenuContextValue}>
+      <MenuRoot
+        {...rootProps}
+        {...(!props.slots?.root && {
+          as: Popper,
+          slots: {
+            root: component || 'ul',
+          },
+        })}
+      >
+        {result}
+      </MenuRoot>
+    </MenuContext.Provider>
   );
 
   return disablePortal ? (

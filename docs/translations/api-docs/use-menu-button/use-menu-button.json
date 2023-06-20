@@ -1,0 +1,8 @@
+{
+  "hookDescription": "",
+  "parametersDescriptions": { "rootRef": "The ref to the root element." },
+  "returnValueDescriptions": {
+    "getRootProps": "Resolver for the root slot&#39;s props.",
+    "rootRef": "The ref to the root element."
+  }
+}

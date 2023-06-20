@@ -3,7 +3,9 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/menu/menu.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+import DropdownMenuApiJsonPageContent from '../../api/dropdown-menu.json';
 import MenuApiJsonPageContent from '../../api/menu.json';
+import MenuButtonApiJsonPageContent from '../../api/menu-button.json';
 import MenuItemApiJsonPageContent from '../../api/menu-item.json';
 import useMenuApiJsonPageContent from '../../api/use-menu.json';
 import useMenuItemApiJsonPageContent from '../../api/use-menu-item.json';
@@ -25,8 +27,22 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
+  const DropdownMenuApiReq = require.context(
+    'docs/translations/api-docs-base/dropdown-menu',
+    false,
+    /dropdown-menu.*.json$/,
+  );
+  const DropdownMenuApiDescriptions = mapApiPageTranslations(DropdownMenuApiReq);
+
   const MenuApiReq = require.context('docs/translations/api-docs-base/menu', false, /menu.*.json$/);
   const MenuApiDescriptions = mapApiPageTranslations(MenuApiReq);
+
+  const MenuButtonApiReq = require.context(
+    'docs/translations/api-docs-base/menu-button',
+    false,
+    /menu-button.*.json$/,
+  );
+  const MenuButtonApiDescriptions = mapApiPageTranslations(MenuButtonApiReq);
 
   const MenuItemApiReq = require.context(
     'docs/translations/api-docs-base/menu-item',
@@ -51,9 +67,16 @@ export const getStaticProps = () => {
 
   return {
     props: {
-      componentsApiDescriptions: { Menu: MenuApiDescriptions, MenuItem: MenuItemApiDescriptions },
+      componentsApiDescriptions: {
+        DropdownMenu: DropdownMenuApiDescriptions,
+        Menu: MenuApiDescriptions,
+        MenuButton: MenuButtonApiDescriptions,
+        MenuItem: MenuItemApiDescriptions,
+      },
       componentsApiPageContents: {
+        DropdownMenu: DropdownMenuApiJsonPageContent,
         Menu: MenuApiJsonPageContent,
+        MenuButton: MenuButtonApiJsonPageContent,
         MenuItem: MenuItemApiJsonPageContent,
       },
       hooksApiDescriptions: {

@@ -1,0 +1,22 @@
+{
+  "props": {
+    "label": { "type": { "name": "string" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    }
+  },
+  "name": "MenuButton",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "muiName": "MuiMenuButton",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-base/src/MenuButton/MenuButton.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

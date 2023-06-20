@@ -24,29 +24,12 @@ export interface MenuOwnProps {
    * A ref with imperative actions that can be performed on the menu.
    */
   actions?: React.Ref<MenuActions>;
-  /**
-   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
-   * or a function that returns either.
-   * It's used to set the position of the popper.
-   */
-  anchorEl?: PopperProps['anchorEl'];
   children?: React.ReactNode;
   className?: string;
-  defaultOpen?: boolean;
-  listboxId?: string;
   /**
    * Function called when the items displayed in the menu change.
    */
   onItemsChange?: (items: string[]) => void;
-  /**
-   * Triggered when focus leaves the menu and the menu should close.
-   */
-  onOpenChange?: (open: boolean) => void;
-  /**
-   * Controls whether the menu is displayed.
-   * @default false
-   */
-  open?: boolean;
   /**
    * The props used for each slot inside the Menu.
    * @default {}

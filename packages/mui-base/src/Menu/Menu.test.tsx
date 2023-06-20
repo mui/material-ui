@@ -15,12 +15,7 @@ describe('<Menu />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
-  const defaultProps = {
-    anchorEl: document.createElement('div'),
-    open: true,
-  };
-
-  describeConformanceUnstyled(<Menu {...defaultProps} />, () => ({
+  describeConformanceUnstyled(<Menu />, () => ({
     inheritComponent: 'div',
     render,
     mount,
@@ -50,7 +45,7 @@ describe('<Menu />', () => {
       }, []);
 
       return (
-        <Menu {...defaultProps}>
+        <Menu>
           <MenuItem>1</MenuItem>
           <MenuItem>2</MenuItem>
           <MenuItem>3</MenuItem>
@@ -74,7 +69,7 @@ describe('<Menu />', () => {
   describe('keyboard navigation', () => {
     it('changes the highlighted item using the arrow keys', () => {
       const { getByTestId } = render(
-        <Menu {...defaultProps}>
+        <Menu>
           <MenuItem data-testid="item-1">1</MenuItem>
           <MenuItem data-testid="item-2">2</MenuItem>
           <MenuItem data-testid="item-3">3</MenuItem>
@@ -101,7 +96,7 @@ describe('<Menu />', () => {
 
     it('changes the highlighted item using the Home and End keys', () => {
       const { getByTestId } = render(
-        <Menu {...defaultProps}>
+        <Menu>
           <MenuItem data-testid="item-1">1</MenuItem>
           <MenuItem data-testid="item-2">2</MenuItem>
           <MenuItem data-testid="item-3">3</MenuItem>
@@ -124,7 +119,7 @@ describe('<Menu />', () => {
 
     it('includes disabled items during keyboard navigation', () => {
       const { getByTestId } = render(
-        <Menu {...defaultProps}>
+        <Menu>
           <MenuItem data-testid="item-1">1</MenuItem>
           <MenuItem disabled data-testid="item-2">
             2
@@ -154,7 +149,7 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu {...defaultProps}>
+          <Menu>
             <MenuItem>Aa</MenuItem>
             <MenuItem>Ba</MenuItem>
             <MenuItem>Bb</MenuItem>
@@ -187,7 +182,7 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu {...defaultProps}>
+          <Menu>
             <MenuItem>Aa</MenuItem>
             <MenuItem>Ba</MenuItem>
             <MenuItem>Bb</MenuItem>
@@ -216,7 +211,7 @@ describe('<Menu />', () => {
 
       it('changes the highlighted item using text navigation on label prop', () => {
         const { getAllByRole } = render(
-          <Menu {...defaultProps}>
+          <Menu>
             <MenuItem label="Aa">1</MenuItem>
             <MenuItem label="Ba">2</MenuItem>
             <MenuItem label="Bb">3</MenuItem>
@@ -251,7 +246,7 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu {...defaultProps}>
+          <Menu>
             <MenuItem>Aa</MenuItem>
             <MenuItem>Ba</MenuItem>
             <MenuItem />
@@ -291,7 +286,7 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu {...defaultProps}>
+          <Menu>
             <MenuItem>Aa</MenuItem>
             <MenuItem>Ba</MenuItem>
             <MenuItem>Bb</MenuItem>
@@ -324,7 +319,7 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu {...defaultProps}>
+          <Menu>
             <MenuItem>Aa</MenuItem>
             <MenuItem>ąa</MenuItem>
             <MenuItem>ąb</MenuItem>
@@ -364,7 +359,7 @@ describe('<Menu />', () => {
       const handleItemsChange = spy();
 
       const { setProps } = render(
-        <Menu {...defaultProps} onItemsChange={handleItemsChange}>
+        <Menu onItemsChange={handleItemsChange}>
           <MenuItem key="1">1</MenuItem>
           <MenuItem key="2">2</MenuItem>
         </Menu>,
