@@ -1,5 +1,11 @@
 {
   "parameters": {
+    "areOptionsEqual": {
+      "type": {
+        "name": "(a: OptionValue, b: OptionValue) =&gt; boolean",
+        "description": "(a: OptionValue, b: OptionValue) =&gt; boolean"
+      }
+    },
     "buttonRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },

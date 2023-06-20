@@ -20,6 +20,7 @@
       }
     },
     "onClose": { "type": { "name": "func" } },
+    "onItemsChange": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {

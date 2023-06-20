@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: No SSR React component
 components: NoSsr
 ---

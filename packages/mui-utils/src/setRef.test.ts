@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { unstable_setRef as setRef } from '.';
+import setRef from './setRef';
 
 describe('setRef', () => {
   it('can handle callback refs', () => {
