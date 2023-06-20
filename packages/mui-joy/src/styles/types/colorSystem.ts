@@ -8,51 +8,36 @@ import { MergeDefault, OverridableRecord, OverridableImplicitRecord } from './ut
  */
 interface DefaultPaletteVariant {
   plainColor: string;
-  plainIcon: string;
   plainHoverBg: string;
-  plainHoverIcon: string;
   plainActiveBg: string;
-  plainActiveIcon: string;
   plainDisabledColor: string;
-  plainDisabledIcon: string;
 
   outlinedColor: string;
-  outlinedIcon: string;
   outlinedBorder: string;
   outlinedHoverBg: string;
   outlinedHoverBorder: string;
-  outlinedHoverIcon: string;
   outlinedActiveBg: string;
-  outlinedActiveIcon: string;
   outlinedDisabledColor: string;
   outlinedDisabledBorder: string;
-  outlinedDisabledIcon: string;
 
   softColor: string;
   softBg: string;
-  softIcon: string;
   softHoverBg: string;
-  softHoverIcon: string;
   softActiveBg: string;
-  softActiveIcon: string;
   softDisabledColor: string;
   softDisabledBg: string;
-  softDisabledIcon: string;
 
   solidColor: string;
-  solidIcon: string;
   solidBg: string;
   solidHoverBg: string;
   solidActiveBg: string;
-  solidActiveIcon: string;
   solidDisabledColor: string;
   solidDisabledBg: string;
-  solidDisabledIcon: string;
 }
 
 type DefaultVariant = 'plain' | 'outlined' | 'soft' | 'solid';
 type DefaultState = 'Hover' | 'Active' | 'Disabled';
-type DefaultProperty = 'Color' | 'Bg' | 'Border' | 'Icon';
+type DefaultProperty = 'Color' | 'Bg' | 'Border';
 
 export interface PaletteVariant
   extends Record<

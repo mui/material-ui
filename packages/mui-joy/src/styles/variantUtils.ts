@@ -8,7 +8,7 @@ export const isVariantPalette = (colorPalette: string | number | Record<string, 
   typeof colorPalette === 'object' &&
   Object.keys(colorPalette).some((value) =>
     value.match?.(
-      /^(plain(Hover|Active|Disabled)?(Color|Bg|Icon)|outlined(Hover|Active|Disabled)?(Color|Border|Bg|Icon)|soft(Hover|Active|Disabled)?(Color|Bg|Icon)|solid(Hover|Active|Disabled)?(Color|Bg|Icon))$/,
+      /^(plain(Hover|Active|Disabled)?(Color|Bg)|outlined(Hover|Active|Disabled)?(Color|Border|Bg)|soft(Hover|Active|Disabled)?(Color|Bg)|solid(Hover|Active|Disabled)?(Color|Bg))$/,
     ),
   );
 
@@ -62,15 +62,13 @@ export const createVariantStyle = (
   const result: CSSObject = {};
   (Object.entries(palette || {}) as Array<[keyof PaletteVariant, string]>).forEach(
     ([variantVar, value]) => {
-      if (variantVar.match(new RegExp(`${name}(color|bg|border|icon)`, 'i')) && !!value) {
+      if (variantVar.match(new RegExp(`${name}(color|bg|border)`, 'i')) && !!value) {
         const cssVar = getCssVar ? getCssVar(variantVar) : value;
         if (variantVar.includes('Disabled')) {
           result.pointerEvents = 'none';
           result.cursor = 'default';
         }
-        if (variantVar.endsWith('Icon')) {
-          result['--Icon-color'] = cssVar;
-        } else if (variantVar.match(/(Hover|Active|Disabled)/)) {
+        if (variantVar.match(/(Hover|Active|Disabled)/)) {
           assignCss(result as any, variantVar, cssVar);
         } else {
           // initial state
