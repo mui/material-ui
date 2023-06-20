@@ -149,7 +149,7 @@ const SETTINGS: Settings[] = [
         entryPointPath: 'src/index.d.ts',
       }),
     ],
-    getApiPages: () => findApiPages('docs/pages/base/api'),
+    getApiPages: () => findApiPages('docs/pages/base-ui/api'),
     getComponentInfo: getBaseComponentInfo,
     getHookInfo: getBaseHookInfo,
   },
@@ -211,8 +211,8 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
               // Box's demo isn't ready
               // Container's demo isn't ready
               // Grid has problem with react-docgen
-              // Stack has problem with react-docgen
-              component.filename.match(/(Box|Container|ColorInversion|Grid|Stack)/))
+              component.filename.match(/(Box|Container|ColorInversion|Grid)/)) ||
+            (component.filename.includes('mui-system') && component.filename.match(/GlobalStyles/))
           ) {
             return false;
           }

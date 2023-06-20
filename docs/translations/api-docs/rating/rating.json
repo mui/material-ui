@@ -56,7 +56,7 @@
     "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label elements" },
     "labelEmptyValueActive": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the label of the \"no value\" input",
+      "nodeName": "the label of the &quot;no value&quot; input",
       "conditions": "it is active"
     },
     "icon": {

@@ -3,16 +3,21 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
+import useMenu, { MenuProvider } from '@mui/base/useMenu';
+import { ListActionTypes } from '@mui/base/useList';
+import Popper from '@mui/base/Popper';
 import { useSlotProps } from '@mui/base/utils';
-import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
-import useMenu from '@mui/base/useMenu';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
+import GroupListContext from '../List/GroupListContext';
 import { styled, useThemeProps } from '../styles';
-import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
+import ColorInversion, {
+  ColorInversionProvider,
+  useColorInversion,
+} from '../styles/ColorInversion';
 import { MenuTypeMap, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
+import { ListOwnerState } from '../List';
 
 const useUtilityClasses = (ownerState: MenuOwnerState) => {
   const { open, variant, color, size } = ownerState;
@@ -36,23 +41,29 @@ const MenuRoot = styled(StyledList, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  return {
-    '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
-    '--List-radius': theme.vars.radius.sm,
-    '--ListItem-stickyBackground':
-      variantStyle?.backgroundColor ||
-      variantStyle?.background ||
-      theme.vars.palette.background.popup,
-    '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
-    ...scopedVariables,
-    boxShadow: theme.shadow.md,
-    overflow: 'auto',
-    zIndex: theme.vars.zIndex.popup,
-    ...(!variantStyle?.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.popup,
-    }),
-  };
+  return [
+    {
+      '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
+      '--List-radius': theme.vars.radius.sm,
+      '--ListItem-stickyBackground':
+        variantStyle?.backgroundColor ||
+        variantStyle?.background ||
+        theme.vars.palette.background.popup,
+      '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
+      ...scopedVariables,
+      boxShadow: theme.shadow.md,
+      overflow: 'auto',
+      zIndex: theme.vars.zIndex.popup,
+      ...(!variantStyle?.backgroundColor && {
+        backgroundColor: theme.vars.palette.background.popup,
+      }),
+    },
+    ownerState.color !== 'context' &&
+      ownerState.invertedColors &&
+      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
+  ];
 });
+
 /**
  *
  * Demos:
@@ -62,9 +73,9 @@ const MenuRoot = styled(StyledList, {
  * API:
  *
  * - [Menu API](https://mui.com/joy-ui/api/menu/)
- * - inherits [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
+ * - inherits [Popper API](https://mui.com/base-ui/api/popper/)
  */
-const Menu = React.forwardRef(function Menu(inProps, ref) {
+const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTMLUListElement>) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyMenu',
@@ -74,39 +85,53 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     actions,
     anchorEl,
     children,
-    component,
     color: colorProp = 'neutral',
+    component,
     disablePortal = false,
     keepMounted = false,
-    id,
+    invertedColors = false,
     onClose,
+    onItemsChange,
     open = false,
     modifiers: modifiersProp,
     variant = 'outlined',
     size = 'md',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
-  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      if (!isOpen) {
+        onClose?.();
+      }
+    },
+    [onClose],
+  );
+
+  const { contextValue, getListboxProps, dispatch } = useMenu({
     open,
-    onClose,
-    listboxId: id,
+    onOpenChange: handleOpenChange,
+    listboxId: props.id,
+    onItemsChange,
   });
 
   React.useImperativeHandle(
     actions,
     () => ({
-      highlightFirstItem,
-      highlightLastItem,
+      dispatch,
+      resetHighlight: () => dispatch({ type: ListActionTypes.resetHighlight, event: null }),
     }),
-    [highlightFirstItem, highlightLastItem],
+    [dispatch],
   );
 
   const ownerState = {
     ...props,
     disablePortal,
+    invertedColors,
     color,
     variant,
     size,
@@ -116,24 +141,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-
-  const rootProps = useSlotProps({
-    elementType: MenuRoot,
-    externalForwardedProps: other,
-    getSlotProps: getListboxProps,
-    externalSlotProps: {},
-    additionalProps: {
-      anchorEl,
-      open,
-      disablePortal,
-      keepMounted,
-      ref,
-      component: MenuRoot,
-      as: component, // use `as` to insert the component inside of the MenuRoot
-    },
-    className: classes.root,
-    ownerState,
-  });
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const modifiers = React.useMemo(
     () => [
@@ -148,27 +156,63 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     [modifiersProp],
   );
 
-  const menuContextValue: MenuUnstyledContextType = React.useMemo(
-    () => ({
-      ...contextValue,
+  if (anchorEl && process.env.NODE_ENV !== 'production') {
+    let ariaControls = null;
+    const resolvedAnchorEl = typeof anchorEl === 'function' ? anchorEl() : anchorEl;
+    if ('getAttribute' in resolvedAnchorEl) {
+      ariaControls = resolvedAnchorEl.getAttribute('aria-controls');
+    } else {
+      ariaControls = resolvedAnchorEl.contextElement?.getAttribute('aria-controls');
+    }
+
+    if (props.id && ariaControls && props.id !== ariaControls) {
+      console.error(
+        `MUI: the anchorEl must have [aria-controls="${props.id}"] but got [aria-controls="${ariaControls}"].`,
+      );
+    }
+  }
+
+  const rootProps = useSlotProps({
+    elementType: MenuRoot,
+    getSlotProps: getListboxProps,
+    externalForwardedProps,
+    externalSlotProps: {},
+    ownerState: ownerState as MenuOwnerState & ListOwnerState,
+    additionalProps: {
+      ref,
+      anchorEl,
       open,
-    }),
-    [contextValue, open],
+      disablePortal,
+      keepMounted,
+      modifiers,
+    },
+    className: classes.root,
+  });
+
+  let result = (
+    <MenuProvider value={contextValue}>
+      <GroupListContext.Provider value="menu">
+        <ListProvider nested>{children}</ListProvider>
+      </GroupListContext.Provider>
+    </MenuProvider>
   );
 
-  const result = (
-    <PopperUnstyled {...rootProps} modifiers={modifiers}>
-      <MenuUnstyledContext.Provider value={menuContextValue}>
-        <ListProvider nested>
-          {disablePortal ? (
-            children
-          ) : (
-            // For portal popup, the children should not inherit color inversion from the upper parent.
-            <ColorInversion.Provider value={undefined}>{children}</ColorInversion.Provider>
-          )}
-        </ListProvider>
-      </MenuUnstyledContext.Provider>
-    </PopperUnstyled>
+  if (invertedColors) {
+    result = <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
+  }
+
+  result = (
+    <MenuRoot
+      {...rootProps}
+      {...(!props.slots?.root && {
+        as: Popper,
+        slots: {
+          root: component || 'ul',
+        },
+      })}
+    >
+      {result}
+    </MenuRoot>
   );
 
   return disablePortal ? (
@@ -212,7 +256,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
@@ -222,6 +266,11 @@ Menu.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   id: PropTypes.string,
+  /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
   /**
    * Always keep the children in the DOM.
    * This prop can be useful in SEO situation or
@@ -266,6 +315,10 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   onClose: PropTypes.func,
   /**
+   * Function called when the items displayed in the menu change.
+   */
+  onItemsChange: PropTypes.func,
+  /**
    * Controls whether the menu is displayed.
    * @default false
    */
@@ -278,6 +331,20 @@ Menu.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Router from 'next/router';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
-export function shoudHandleLinkClick(event) {
+export function shouldHandleLinkClick(event) {
   if (
     event.defaultPrevented ||
     event.button !== 0 || // ignore everything but left-click
@@ -37,7 +37,7 @@ function handleClick(event) {
   }
 
   // Ignore click meant for native link handling, e.g. open in new tab
-  if (shoudHandleLinkClick(event)) {
+  if (shouldHandleLinkClick(event)) {
     return;
   }
 

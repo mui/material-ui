@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: Unstyled React Slider component and hook
 components: SliderUnstyled
 githubLabel: 'component: slider'
@@ -23,7 +23,7 @@ Sliders are ideal for interface controls that benefit from a visual representati
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import SliderUnstyled from '@mui/base/SliderUnstyled';
@@ -95,7 +95,7 @@ Both the `mark` and `markLabel` slots have corresponding `*Active` classes that 
 ### Slot props
 
 :::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+The following props are available on all non-utility Base components. See [Usage](/base-ui/getting-started/usage/) for full details.
 :::
 
 Use the `component` prop to override the root slot with a custom element:

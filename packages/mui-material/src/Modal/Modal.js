@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import ModalUnstyled, { modalUnstyledClasses } from '@mui/base/ModalUnstyled';
+import ModalUnstyled, { modalClasses as modalUnstyledClasses } from '@mui/base/Modal';
 import { isHostComponent, resolveComponentProps } from '@mui/base/utils';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import styled from '../styles/styled';
@@ -63,6 +63,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     className,
     closeAfterTransition = false,
     children,
+    container,
     component,
     components = {},
     componentsProps = {},
@@ -74,6 +75,9 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
+    onBackdropClick,
+    onClose,
+    open,
     slotProps,
     slots,
     // eslint-disable-next-line react/prop-types
@@ -84,6 +88,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const [exited, setExited] = React.useState(true);
 
   const commonProps = {
+    container,
     closeAfterTransition,
     disableAutoFocus,
     disableEnforceFocus,
@@ -93,6 +98,9 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock,
     hideBackdrop,
     keepMounted,
+    onBackdropClick,
+    onClose,
+    open,
   };
 
   const ownerState = {
@@ -127,7 +135,11 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         backdrop: () => ({
           ...BackdropProps,
           ...resolveComponentProps(backdropSlotProps, ownerState),
-          className: clsx(backdropSlotProps?.className, classes?.backdrop),
+          className: clsx(
+            backdropSlotProps?.className,
+            BackdropProps?.className,
+            classes?.backdrop,
+          ),
         }),
       }}
       onTransitionEnter={() => setExited(false)}

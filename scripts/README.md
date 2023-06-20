@@ -16,6 +16,7 @@ A typical release goes like this:
    ```sh
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
+4. Generate a GitHub Token at https://github.com/settings/personal-access-tokens/new and add it to your shell rc script (either `.bashrc` or `.zshrc`) as `GITHUB_TOKEN`.
 
 ### Prepare
 
@@ -23,11 +24,16 @@ The following steps must be proposed as a pull request.
 
 1. Generate the changelog with `yarn release:changelog`
    The output must be prepended to the top level `CHANGELOG.md`
-   `yarn release:changelog --help` for more information.
+   `yarn release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
 
-2. Clean the generated changelog, to match the format of https://github.com/mui/material-ui/releases.
+2. Clean the generated changelog:
+   1. Match the format of https://github.com/mui/material-ui/releases.
+   2. Change the packages names casing to be lowercase if applicable, e.g. change `Material` to `material`
 3. Update the root `/package.json`'s version
-4. `yarn release:version` (🔔 manually remove `^` from packages with prerelease version, eg. `-alpha`)
+4. `yarn release:version`, keep in mind:
+   1. Keep the package versions of stable public packages the same as the root `package.json` version.
+   2. Don't bump private packages unless necessary, these have `"private": true` in their `package.json`
+   3. Manually remove `^` from packages with prerelease version, e.g. `-alpha`
 5. Open PR with changes and wait for review and green CI
 6. Merge PR once CI is green and it has been approved
 

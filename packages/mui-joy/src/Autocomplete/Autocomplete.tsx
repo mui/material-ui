@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverridableComponent } from '@mui/types';
 import {
   chainPropTypes,
   integerPropType,
@@ -13,7 +12,7 @@ import useAutocomplete, {
   AutocompleteGroupedOption,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
-import PopperUnstyled, { PopperUnstyledTypeMap } from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/Popper';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
@@ -177,13 +176,13 @@ const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
   }),
 }));
 
-const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'span', {
+const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: OwnerState }>({});
 
-const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'span', {
+const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
@@ -201,6 +200,7 @@ const AutocompleteClearIndicator = styled(StyledIconButton as unknown as 'button
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
+  alignSelf: 'center',
   ...(!ownerState.hasPopupIcon && {
     marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
   }),
@@ -213,6 +213,7 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
+  alignSelf: 'center',
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
   ...(ownerState.popupOpen && {
@@ -248,7 +249,7 @@ const AutocompleteNoOptions = styled(ListItem, {
   color: (theme.vars || theme).palette.text.secondary,
 }));
 
-const AutocompleteLimitTag = styled('span', {
+const AutocompleteLimitTag = styled('div', {
   name: 'JoyAutocomplete',
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
@@ -345,6 +346,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     color: colorProp = 'neutral',
     variant = 'outlined',
     value: valueProp,
+    component,
+    slots = {},
+    slotProps = {},
     ...otherProps
   } = props;
   const other = excludeUseAutocompleteParams(otherProps);
@@ -402,6 +406,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   let selectedOptions;
 
@@ -448,7 +453,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ref: rootRef,
     className: [classes.root, rootStateClasses],
     elementType: AutocompleteRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     getSlotProps: getRootProps,
     additionalProps: {
@@ -466,7 +471,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const [SlotWrapper, wrapperProps] = useSlot('wrapper', {
     className: classes.wrapper,
     elementType: AutocompleteWrapper,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -495,7 +500,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         },
       };
     },
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       autoFocus,
@@ -515,14 +520,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: AutocompleteStartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: AutocompleteEndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -530,7 +535,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     className: classes.clearIndicator,
     elementType: AutocompleteClearIndicator,
     getSlotProps: getClearProps,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
@@ -547,7 +552,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     className: classes.popupIndicator,
     elementType: AutocompletePopupIndicator,
     getSlotProps: getPopupIndicatorProps,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
@@ -564,9 +569,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     className: classes.listbox,
-    elementType: PopperUnstyled as OverridableComponent<PopperUnstyledTypeMap<{}, 'ul'>>,
+    elementType: AutocompleteListbox,
     getSlotProps: getListboxProps,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
@@ -583,22 +588,19 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           }
         : {},
     },
-    internalForwardedProps: {
-      component: AutocompleteListbox,
-    },
   });
 
   const [SlotLoading, loadingProps] = useSlot('loading', {
     className: classes.loading,
     elementType: AutocompleteLoading,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotNoOptions, noOptionsProps] = useSlot('noOptions', {
     className: classes.noOptions,
     elementType: AutocompleteNoOptions,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       role: 'presentation',
@@ -612,7 +614,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const [SlotLimitTag, limitTagProps] = useSlot('limitTag', {
     className: classes.limitTag,
     elementType: AutocompleteLimitTag,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -631,7 +633,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const [SlotOption, baseOptionProps] = useSlot('option', {
     className: classes.option,
     elementType: AutocompleteOption,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       variant: mergedProps.variant || 'plain',
@@ -660,6 +662,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     });
   };
 
+  // Wait for `listboxProps` because `slotProps.listbox` could be a function.
   const modifiers = React.useMemo(
     () => [
       {
@@ -683,7 +686,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             listboxProps.className,
             listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
           )}
+          // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
           modifiers={modifiers}
+          {...(!props.slots?.listbox && {
+            as: Popper,
+            slots: { root: listboxProps.as || 'ul' },
+          })}
         >
           {groupedOptions.map((option, index) => {
             if (groupBy) {
@@ -836,6 +844,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * A function that determines the filtered options to be rendered on search.
    *
+   * @default createFilterOptions()
    * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
    * @returns {T[]}
@@ -1050,6 +1059,42 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    limitTag: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    loading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    noOptions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    option: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    wrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    clearIndicator: PropTypes.elementType,
+    endDecorator: PropTypes.elementType,
+    input: PropTypes.elementType,
+    limitTag: PropTypes.elementType,
+    listbox: PropTypes.elementType,
+    loading: PropTypes.elementType,
+    noOptions: PropTypes.elementType,
+    option: PropTypes.elementType,
+    popupIndicator: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+    wrapper: PropTypes.elementType,
+  }),
   /**
    * Leading adornment for this input.
    */

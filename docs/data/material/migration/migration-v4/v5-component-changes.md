@@ -1,6 +1,6 @@
 # Breaking changes in v5, part two: core components
 
-<p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4. This part covers changes to components.</p>
+<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to components.</p>
 
 ## Material UI v5 migration
 
@@ -565,6 +565,32 @@ If you have customized the color of the border, you will need to update the CSS 
 -  background-color: #f00;
 +  border-color: #f00;
  }
+```
+
+### Support "middle" variant with "vertical" orientation
+
+In v4, using `orientation="vertical"` and `variant="middle"` was adding a left and right margins of `16px` in the component.
+In the v5, to avoid fixed spacing on the component, this margin was removed.
+
+:::info
+If you want to use the previous margin values, this change can be made in your theme with the following code. See the example on [CodeSandbox demo](https://codesandbox.io/s/v5-migration-vertical-alignment-middle-divider-45vepj?file=/src/index.tsx).
+:::
+
+```diff
+ const theme = createTheme({
+  components: {
+   MuiDivider: {
++     styleOverrides: {
++       root: ({ ownerState, theme }) => ({
++         ...(ownerState.orientation === 'vertical' && ownerState.variant === 'middle' && {
++           marginLeft: theme.spacing(2),
++           marginRight: theme.spacing(2),
++         }),
++       })
++     }
+    },
+  },
+ });
 ```
 
 ## ExpansionPanel
@@ -1445,7 +1471,7 @@ This change is meant to encourage composition.
 
 The built-in 24px padding has been removed.
 
-To keep it intact, add the folllowing:
+To keep it intact, add the following:
 
 ```diff
 -<Stepper>

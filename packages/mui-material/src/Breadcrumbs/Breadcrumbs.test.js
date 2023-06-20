@@ -5,7 +5,7 @@ import {
   describeConformance,
   createRenderer,
   screen,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/material/Breadcrumbs';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
@@ -93,7 +93,7 @@ describe('<Breadcrumbs />', () => {
       );
     }).toErrorDev([
       'MUI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
-      !strictModeDoubleLoggingSupressed &&
+      !strictModeDoubleLoggingSuppressed &&
         'MUI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
     ]);
     expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);

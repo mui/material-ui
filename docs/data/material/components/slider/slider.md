@@ -5,7 +5,7 @@ components: Slider
 githubLabel: 'component: slider'
 materialDesign: https://m2.material.io/components/sliders
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
-unstyled: /base/react-slider/
+unstyled: /base-ui/react-slider/
 ---
 
 # Slider
@@ -150,7 +150,7 @@ However, you need to make sure that:
 ### IE 11
 
 The slider's value label is not centered in IE 11.
-The alignement is not handled to make customizations easier with the lastest browsers.
+The alignment is not handled to make customizations easier with the latest browsers.
 You can solve the issue with:
 
 ```css
@@ -158,3 +158,16 @@ You can solve the issue with:
   left: calc(-50% - 4px);
 }
 ```
+
+## Experimental API
+
+### Material You version
+
+The default Slider component follows the Material Design 2 specs.
+For the Material Design 3 ([Material You](https://m3.material.io/)) version, you can use the new experimental `@mui/material-next` package:
+
+```js
+import Slider from '@mui/material-next/Slider';
+```
+
+{{"demo": "SliderMaterialYouPlayground.js", "hideToolbar": true}}

@@ -6,6 +6,12 @@ import Paper from '@mui/material/Paper';
 import Toolbar from '@mui/material/Toolbar';
 
 export default function MaterialUIDefaultDark() {
+  const [, rerender] = React.useState(false);
+  React.useEffect(() => {
+    // Trigger rerender to ensure that the UI does not change after the first render.
+    // To catch bug like https://github.com/mui/material-ui/issues/36452
+    rerender(true);
+  }, []);
   return (
     <CssVarsProvider defaultMode="dark">
       <Box

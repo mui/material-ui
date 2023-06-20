@@ -2,9 +2,9 @@
 
 <p class="description">Configuring your preferred styling library.</p>
 
-The default style library used for generating CSS styles for MUI components is [emotion](https://github.com/emotion-js/emotion).
-All of the MUI components rely on the `styled()` API to inject CSS into the page.
-This API is supported by multiple popular styling libraries, which makes it possible to switch between them in MUI.
+The default style library used for generating CSS styles for Material UI components is [Emotion](https://github.com/emotion-js/emotion).
+All of the Material UI components rely on the `styled()` API to inject CSS into the page.
+This API is supported by multiple popular styling libraries, which makes it possible to switch between them in Material UI.
 
 ## How to switch to styled-components
 
@@ -113,3 +113,94 @@ You can use these `styled-component` examples as a reference:
 :::
 
 This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with Material UI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
+
+## Theme scoping
+
+:::warning
+Having more than one styling libraries could introduce unnecessary complexity to your project. You should have a very good reason to do this.
+:::
+
+Material UI, starting from [v5.12.0](https://github.com/mui/material-ui/releases/tag/v5.12.0), can coexist with other libraries that depend on emotion or styled-components. To do that, render Material UI's `ThemeProvider` as an inner provider and use the `THEME_ID` to store the theme.
+
+```js
+import { ThemeProvider, THEME_ID, createTheme } from '@mui/material/styles';
+import { AnotherThemeProvider } from 'another-ui-library';
+
+const materialTheme = createTheme(…your theme);
+
+function App() {
+  return (
+    <AnotherThemeProvider>
+      <ThemeProvider theme={{ [THEME_ID]: materialTheme }}>
+        …components from another library and Material UI
+      </ThemeProvider>
+    </AnotherThemeProvider>
+  )
+}
+```
+
+The theme of Material UI will be separated from the other library, so when you use APIs such as `styled`, `sx` prop, and `useTheme`, you will be able to access Material UI's theme like you normally would.
+
+### Minimum version
+
+[Theme scoping](https://github.com/mui/material-ui/pull/36664) has been added to Material UI v5.12.0, so be sure you're running at that version or higher.
+
+### Using with [Theme UI](https://theme-ui.com/)
+
+Render Material UI's theme provider below Theme UI's provider and assign the material theme to the `THEME_ID` property.
+
+```js
+import { ThemeProvider as ThemeUIThemeProvider } from 'theme-ui';
+import { createTheme as materialCreateTheme, THEME_ID } from '@mui/material/styles';
+
+const themeUITheme = {
+  fonts: {
+    body: 'system-ui, sans-serif',
+    heading: '"Avenir Next", sans-serif',
+    monospace: 'Menlo, monospace',
+  },
+  colors: {
+    text: '#000',
+    background: '#fff',
+    primary: '#33e',
+  },
+};
+
+const materialTheme = materialCreateTheme();
+
+function App() {
+  return (
+    <ThemeUIThemeProvider theme={themeUITheme}>
+      <MaterialThemeProvider theme={{ [THEME_ID]: materialTheme }}>
+        Theme UI components and Material UI components
+      </MaterialThemeProvider>
+    </ThemeUIThemeProvider>
+  );
+}
+```
+
+### Using with Chakra UI
+
+Render Material UI's theme provider below Chakra UI's provider and assign the material theme to the `THEME_ID` property.
+
+```js
+import { ChakraProvider, extendTheme as chakraExtendTheme } from '@chakra-ui/react';
+import {
+  ThemeProvider as MaterialThemeProvider,
+  createTheme as muiCreateTheme,
+  THEME_ID,
+} from '@mui/material/styles';
+
+const chakraTheme = chakraExtendTheme();
+const materialTheme = muiCreateTheme();
+
+function App() {
+  return (
+    <ChakraProvider theme={chakraTheme} resetCSS>
+      <MaterialThemeProvider theme={{ [THEME_ID]: materialTheme }}>
+        Chakra UI components and Material UI components
+      </MaterialThemeProvider>
+    </ChakraProvider>
+  );
+}
+```

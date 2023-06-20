@@ -32,7 +32,7 @@ From now on, the `Grid` v1 and `Grid` v2 refer to the import as:
 
 ```js
 import Grid from '@mui/material/Grid'; // Grid version 1
-import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
+import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 ```
 
 :::
@@ -48,7 +48,7 @@ The grid system is implemented with the `Grid` component:
 - You can give integer values for each breakpoint, to indicate how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
 - It uses negative margins and padding to create gaps between children, which behave similarly to [the `gap` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap).
 - It does _not_ support row spanning. Children elements cannot span multiple rows. We recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) if you need this functionality.
-- It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Auto-placement_in_CSS_Grid_Layout) instead.
+- It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Auto-placement_in_grid_layout) instead.
 
 :::warning
 The `Grid` component is a _layout_ grid, not a _data_ grid.
@@ -130,20 +130,33 @@ The demo below shows how this works:
 
 ## Nested grid
 
-The grid container that renders inside another grid container is a nested grid that inherits its [`columns`](#columns) and [`spacing`](#spacing) from the top level.
+The grid container that renders as a **direct child** inside another grid container is a nested grid that inherits its [`columns`](#columns) and [`spacing`](#spacing) from the top level.
 It will also inherit the props of the top-level grid if it receives those props.
 
-### Inheriting columns
+:::success
 
-A nested grid container will inherits the columns from its parent unless the `columns` prop is specified to the instance.
+Note that a nested grid container should be a direct child of another grid container. If there are non-grid elements in between, the grid container will start as the new root container.
 
-{{"demo": "NestedGridColumns.js", "bg": true}}
+```js
+<Grid container>
+  <Grid container> // A nested grid container that inherits columns and spacing from above.
+    <div>
+      <Grid container> // A new root grid container with its own variables scope.
+```
+
+:::
 
 ### Inheriting spacing
 
 A nested grid container will inherits the row and column spacing from its parent unless the `spacing` prop is specified to the instance.
 
 {{"demo": "NestedGrid.js", "bg": true}}
+
+### Inheriting columns
+
+A nested grid container will inherits the columns from its parent unless the `columns` prop is specified to the instance.
+
+{{"demo": "NestedGridColumns.js", "bg": true}}
 
 ## Columns
 

@@ -442,7 +442,7 @@ describe('<Select />', () => {
       expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
-    specify('ARIA 1.2: aria-expanded="false" if the listbox isnt displayed', () => {
+    specify('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
       const { getByRole } = render(<Select value="" />);
 
       expect(getByRole('button')).to.have.attribute('aria-expanded', 'false');
@@ -563,6 +563,62 @@ describe('<Select />', () => {
           expect(options[5]).to.have.attribute('aria-selected', 'true');
         });
       });
+
+      describe('when the second child is null', () => {
+        it('first selectable option is focused to use the arrow', () => {
+          const { getAllByRole } = render(
+            <Select defaultValue="" open>
+              <ListSubheader>Category 1</ListSubheader>
+              {null}
+              <MenuItem value={1}>Option 1</MenuItem>
+              <MenuItem value={2}>Option 2</MenuItem>
+              <ListSubheader>Category 2</ListSubheader>
+              <MenuItem value={3}>Option 3</MenuItem>
+              <MenuItem value={4}>Option 4</MenuItem>
+            </Select>,
+          );
+
+          const options = getAllByRole('option');
+          expect(options[1]).to.have.attribute('tabindex', '0');
+
+          act(() => {
+            fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+            fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+            fireEvent.keyDown(options[4], { key: 'Enter' });
+          });
+
+          expect(options[4]).to.have.attribute('aria-selected', 'true');
+        });
+      });
+
+      ['', 0, false, undefined, NaN].forEach((value) =>
+        describe(`when the second child is conditionally rendering with "${value}"`, () => {
+          it('first selectable option is focused to use the arrow', () => {
+            const { getAllByRole } = render(
+              <Select defaultValue="" open>
+                <ListSubheader>Category 1</ListSubheader>
+                {value && <MenuItem value={1}>One</MenuItem>}
+                <MenuItem value={1}>Option 1</MenuItem>
+                <MenuItem value={2}>Option 2</MenuItem>
+                <ListSubheader>Category 2</ListSubheader>
+                <MenuItem value={3}>Option 3</MenuItem>
+                <MenuItem value={4}>Option 4</MenuItem>
+              </Select>,
+            );
+
+            const options = getAllByRole('option');
+            expect(options[1]).to.have.attribute('tabindex', '0');
+
+            act(() => {
+              fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+              fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+              fireEvent.keyDown(options[4], { key: 'Enter' });
+            });
+
+            expect(options[4]).to.have.attribute('aria-selected', 'true');
+          });
+        }),
+      );
     });
 
     describe('when the first child is a ListSubheader wrapped in a custom component', () => {
@@ -999,7 +1055,7 @@ describe('<Select />', () => {
       }).not.to.throw();
     });
 
-    it('selects value based on their stringified equality when theyre not objects', () => {
+    it("selects value based on their stringified equality when they're not objects", () => {
       const { getAllByRole } = render(
         <Select multiple open value={['10', '20']}>
           <MenuItem value={10}>Ten</MenuItem>
@@ -1014,7 +1070,7 @@ describe('<Select />', () => {
       expect(options[2]).not.to.have.attribute('aria-selected', 'true');
     });
 
-    it('selects values based on strict equlity if theyre objects', () => {
+    it("selects values based on strict equality if they're objects", () => {
       const obj1 = { id: 1 };
       const obj2 = { id: 2 };
       const obj3 = { id: 3 };

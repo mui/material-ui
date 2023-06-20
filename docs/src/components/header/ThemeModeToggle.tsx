@@ -40,7 +40,7 @@ export default function ThemeModeToggle(props: {
 }) {
   const theme = useTheme();
   if (theme.vars) {
-    // Temporaly renders conditionally because `useColorScheme` could not be used in the pages that haven't migrated to CSS theme variables.
+    // Temporarily renders conditionally because `useColorScheme` could not be used in the pages that haven't migrated to CSS theme variables.
     return <CssVarsModeToggle {...props} />;
   }
   return (

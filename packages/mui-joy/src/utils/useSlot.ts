@@ -94,7 +94,7 @@ export default function useSlot<
     ) => SlotOwnerState;
     /**
      * props forward to `T` only if the `slotProps.*.component` is not provided.
-     * e.g. Autocomplete's listbox uses PopperUnstyled + StyledComponent
+     * e.g. Autocomplete's listbox uses Popper + StyledComponent
      */
     internalForwardedProps?: any;
   },

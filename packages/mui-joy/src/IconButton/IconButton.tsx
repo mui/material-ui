@@ -8,6 +8,7 @@ import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, size, variant } = ownerState;
@@ -36,6 +37,9 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
   ({ theme, ownerState }) => [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
+      ...(ownerState.instanceSize && {
+        '--IconButton-size': { sm: '2rem', md: '2.5rem', lg: '3rem' }[ownerState.instanceSize],
+      }),
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
         '--CircularProgress-size': '20px',
@@ -77,7 +81,11 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       [theme.focus.selector]: theme.focus.default,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
-    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+    {
+      '&:hover': {
+        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      },
+    },
     { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
     {
       [`&.${iconButtonClasses.disabled}`]:
@@ -96,6 +104,7 @@ export const IconButtonRoot = styled(StyledIconButton, {
  * Demos:
  *
  * - [Button](https://mui.com/joy-ui/react-button/)
+ * - [Button Group](https://mui.com/joy-ui/react-button-group/)
  *
  * API:
  *
@@ -112,19 +121,27 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     action,
     component = 'button',
     color: colorProp = 'primary',
-    variant = 'soft',
-    size = 'md',
+    disabled: disabledProp,
+    variant: variantProp = 'soft',
+    size: sizeProp = 'md',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
+  const buttonGroup = React.useContext(ButtonGroupContext);
+  const variant = inProps.variant || buttonGroup.variant || variantProp;
+  const size = inProps.size || buttonGroup.size || sizeProp;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    ref: handleRef,
+    disabled,
+    rootRef: handleRef,
   });
 
   React.useImperativeHandle(
@@ -142,19 +159,22 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     ...props,
     component,
     color,
+    disabled,
     variant,
     size,
     focusVisible,
+    instanceSize: inProps.size,
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: IconButtonRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
   });
 
@@ -216,6 +236,20 @@ IconButton.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

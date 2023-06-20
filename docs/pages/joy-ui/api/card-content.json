@@ -2,6 +2,18 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "component": { "type": { "name": "elementType" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'vertical'"
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -11,6 +23,14 @@
   },
   "name": "CardContent",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiCardContent-root"
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyCardContent",

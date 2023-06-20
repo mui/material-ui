@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import { FormHelperTextProps, FormHelperTextTypeMap } from './FormHelperTextProps';
 import { getFormHelperTextUtilityClass } from './formHelperTextClasses';
 import FormControlContext from '../FormControl/FormControlContext';
 import formLabelClasses from '../FormLabel/formLabelClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -50,7 +50,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     name: 'JoyFormHelperText',
   });
 
-  const { children, component, ...other } = props;
+  const { children, component, slots = {}, slotProps = {}, ...other } = props;
   const rootRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(rootRef, ref);
   const formControl = React.useContext(FormControlContext);
@@ -63,26 +63,22 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     };
   }, [setHelperText]);
 
-  const ownerState = {
-    ...props,
-  };
-
   const classes = useUtilityClasses();
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref: handleRef,
     elementType: FormHelperTextRoot,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    ownerState,
+    externalForwardedProps,
+    ownerState: props,
     additionalProps: {
-      ref: handleRef,
       as: component,
       id: formControl?.['aria-describedby'],
     },
     className: classes.root,
   });
 
-  return <FormHelperTextRoot {...rootProps}>{children}</FormHelperTextRoot>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<FormHelperTextTypeMap>;
 
 FormHelperText.propTypes /* remove-proptypes */ = {
@@ -99,6 +95,20 @@ FormHelperText.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

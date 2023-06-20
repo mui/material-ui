@@ -3,6 +3,25 @@ import useInput from '@mui/base/useInput';
 import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 
+const CustomInput = React.forwardRef(function CustomInput(props, ref) {
+  const { getRootProps, getInputProps } = useInput(props);
+
+  const inputProps = getInputProps();
+
+  // Make sure that both the forwarded ref and the ref returned from the getInputProps are applied on the input element
+  inputProps.ref = useForkRef(inputProps.ref, ref);
+
+  return (
+    <div {...getRootProps()}>
+      <StyledInputElement {...props} {...inputProps} />
+    </div>
+  );
+});
+
+export default function UseInput() {
+  return <CustomInput aria-label="Demo input" placeholder="Type something…" />;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#80BFFF',
@@ -53,22 +72,3 @@ const StyledInputElement = styled('input')(
   }
 `,
 );
-
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  const { getRootProps, getInputProps } = useInput(props);
-
-  const inputProps = getInputProps();
-
-  // Make sure that both the forwarded ref and the ref returned from the getInputProps are applied on the input element
-  inputProps.ref = useForkRef(inputProps.ref, ref);
-
-  return (
-    <div {...getRootProps()}>
-      <StyledInputElement {...props} {...inputProps} />
-    </div>
-  );
-});
-
-export default function UseInput() {
-  return <CustomInput aria-label="Demo input" placeholder="Type something…" />;
-}

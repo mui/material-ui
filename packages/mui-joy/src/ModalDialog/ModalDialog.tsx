@@ -14,6 +14,7 @@ import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogOwnerState, ModalDialogTypeMap } from './ModalDialogProps';
 import ModalDialogSizeContext from './ModalDialogSizeContext';
 import ModalDialogVariantColorContext from './ModalDialogVariantColorContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ModalDialogOwnerState) => {
   const { variant, color, size, layout } = ownerState;
@@ -90,7 +91,8 @@ const ModalDialogRoot = styled(SheetRoot, {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    maxWidth: 'calc(100vw - 2 * var(--ModalDialog-padding))',
+    maxWidth:
+      'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-maxWidth, 100vw))',
     maxHeight: 'calc(100% - 2 * var(--ModalDialog-padding))',
   }),
   [`& [id="${ownerState['aria-labelledby']}"]`]: {
@@ -135,6 +137,8 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     variant = 'outlined',
     size = 'md',
     layout = 'center',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -150,24 +154,30 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const contextValue = React.useMemo(
     () => ({ variant, color: color === 'context' ? undefined : color }),
     [color, variant],
   );
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ModalDialogRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role: 'dialog',
+      'aria-modal': 'true',
+    },
+  });
+
   return (
     <ModalDialogSizeContext.Provider value={size}>
       <ModalDialogVariantColorContext.Provider value={contextValue}>
-        <ModalDialogRoot
-          as={component}
-          ownerState={ownerState}
-          className={clsx(classes.root, className)}
-          ref={ref}
-          role="dialog"
-          aria-modal="true"
-          {...other}
-        >
+        <SlotRoot {...rootProps}>
           {React.Children.map(children, (child) => {
             if (!React.isValidElement(child)) {
               return child;
@@ -179,7 +189,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
             }
             return child;
           })}
-        </ModalDialogRoot>
+        </SlotRoot>
       </ModalDialogVariantColorContext.Provider>
     </ModalDialogSizeContext.Provider>
   );
@@ -227,6 +237,20 @@ ModalDialog.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

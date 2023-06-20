@@ -19,7 +19,8 @@ import { LANGUAGES_SSR } from 'docs/config';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import getUrlProduct from 'docs/src/modules/utils/getUrlProduct';
+import PageContext from 'docs/src/modules/components/PageContext';
+import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 
 const SearchButton = styled('button')(({ theme }) => [
   {
@@ -36,9 +37,6 @@ const SearchButton = styled('button')(({ theme }) => [
       '& > *:not(.MuiSvgIcon-root)': {
         display: 'none',
       },
-    },
-    [theme.breakpoints.up('sm')]: {
-      minWidth: 150,
     },
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
@@ -156,27 +154,32 @@ function NewStartScreen() {
   );
 }
 
-function DocSearcHit(props) {
-  const { children, hit } = props;
+const displayTagProductId = {
+  'material-ui': 'Material UI',
+  'joy-ui': 'Joy UI',
+  'base-ui': 'Base UI',
+  x: 'MUI X',
+  system: 'MUI System',
+  toolpad: 'Toolpad',
+};
 
-  function displayTag(pathname) {
-    // does not need to show product label for MUI X because they are grouped by the product name in the search
-    // ie. Data Grid, Date Picker
-    if (!pathname.match(/^\/(material-ui|joy-ui|base)\//)) {
-      return null;
-    }
-    let text = '';
-    if (pathname.startsWith('/material-ui/')) {
-      text = 'Material UI';
-    }
-    if (pathname.startsWith('/joy-ui/')) {
-      text = 'Joy UI';
-    }
-    if (pathname.startsWith('/base/')) {
-      text = 'Base UI';
-    }
-    return <Chip label={text} size="small" variant="outlined" sx={{ mr: 1 }} />;
+function getDisplayTag(pathname) {
+  const productInfo = getProductInfoFromUrl(pathname);
+  const displayTag =
+    displayTagProductId[productInfo.productId] ||
+    displayTagProductId[productInfo.productCategoryId];
+
+  if (!displayTag) {
+    console.error(
+      `getDisplayTag missing mapping for productId: ${productInfo.productId}, pathname: ${pathname}.`,
+    );
   }
+
+  return <Chip label={displayTag} size="small" variant="outlined" sx={{ mr: 1 }} />;
+}
+
+function DocSearchHit(props) {
+  const { children, hit } = props;
 
   if (hit.pathname) {
     return (
@@ -186,7 +189,7 @@ function DocSearcHit(props) {
         sx={{ display: 'flex !important', '& .DocSearch-Hit-Container': { flex: 1, minWidth: 0 } }}
       >
         {children}
-        {displayTag(hit.pathname)}
+        {getDisplayTag(hit.pathname)}
       </Link>
     );
   }
@@ -196,12 +199,12 @@ function DocSearcHit(props) {
   return <Link href={hit.url}>{children}</Link>;
 }
 
-DocSearcHit.propTypes = {
+DocSearchHit.propTypes = {
   children: PropTypes.node,
   hit: PropTypes.object.isRequired,
 };
 
-export default function AppSearch() {
+export default function AppSearch(props) {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
@@ -219,7 +222,7 @@ export default function AppSearch() {
     setIsOpen(true);
   }, [setIsOpen]);
   const router = useRouter();
-  const productSpace = getUrlProduct(router.asPath);
+  const { productId } = React.useContext(PageContext);
 
   const keyboardNavigator = {
     navigate({ item }) {
@@ -292,7 +295,7 @@ export default function AppSearch() {
 
   return (
     <React.Fragment>
-      <SearchButton ref={searchButtonRef} onClick={onOpen}>
+      <SearchButton ref={searchButtonRef} onClick={onOpen} {...props}>
         <SearchIcon
           fontSize="small"
           sx={(theme) => ({
@@ -317,7 +320,8 @@ export default function AppSearch() {
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
-              optionalFilters: [`product:${productSpace}`],
+              optionalFilters: [`product:${productId}`],
+              analyticsTags: [facetFilterLanguage, `product:${productId}`],
               hitsPerPage: 40,
             }}
             placeholder={search}
@@ -340,7 +344,7 @@ export default function AppSearch() {
                 };
               });
             }}
-            hitComponent={DocSearcHit}
+            hitComponent={DocSearchHit}
             initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
             onClose={onClose}
             navigator={keyboardNavigator}

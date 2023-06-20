@@ -9,6 +9,8 @@ githubLabel: 'component: LinearProgress'
 
 <p class="description">Linear Progress indicators, commonly known as loaders, express an unspecified wait time or display the length of a process.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 Progress indicators inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates.
@@ -19,8 +21,6 @@ To actually have it represent how long an operation will take, use the [determin
 The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
 
 {{"demo": "LinearProgressUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-// it's technically not correct since this descripts props the component
+// it's technically not correct since this describes props the component
 // sees not just the one available to the user. We're abusing this to provide
 // some concrete documentation for `key` regarding this component
 export interface SnackBarProps extends React.HTMLAttributes<any> {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SwitchUnstyled, { SwitchUnstyledOwnerState } from '@mui/base/SwitchUnstyled';
+import Switch, { SwitchOwnerState } from '@mui/base/Switch';
 
 const css = `
   .my-switch {
@@ -55,7 +55,7 @@ const css = `
 
 export default function SlotPropsCallback() {
   const slotProps = {
-    root: (ownerState: SwitchUnstyledOwnerState) => ({
+    root: (ownerState: SwitchOwnerState) => ({
       className: `my-switch ${ownerState.checked ? 'on' : 'off'} ${
         ownerState.focusVisible ? 'focused' : ''
       }`,
@@ -68,7 +68,7 @@ export default function SlotPropsCallback() {
     <div>
       <style type="text/css">{css}</style>
 
-      <SwitchUnstyled slotProps={slotProps} />
+      <Switch slotProps={slotProps} />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import MuiError from '@mui/utils/macros/MuiError.macro';
 
-export { css, keyframes, GlobalStyles, StyledEngineProvider } from '@mui/styled-engine';
+export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine';
+export { default as GlobalStyles } from './GlobalStyles';
 export { default as borders } from './borders';
 export * from './borders';
 export { default as breakpoints } from './breakpoints';

@@ -1,6 +1,6 @@
 # Breaking changes in v5, part one: styles and themes
 
-<p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4. This part covers changes to styling and theming.</p>
+<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to styling and theming.</p>
 
 ## Material UI v5 migration
 
@@ -177,7 +177,7 @@ export default function GlobalCssPriority() {
   return (
     {/* Inject Emotion before JSS */}
     <StyledEngineProvider injectFirst>
-      {/* Your component tree. Now you can override MUI's styles. */}
+      {/* Your component tree. Now you can override Material UI's styles. */}
     </StyledEngineProvider>
   );
 }
@@ -316,7 +316,7 @@ The default `theme.palette.success` colors were changed to pass the AA accessibi
 
 ### Change default theme.palette.warning colors
 
-The default `theme.palette.warning` colors were changed to pass the AA accesibility standard contrast ratio in both light and dark modes.
+The default `theme.palette.warning` colors were changed to pass the AA accessibility standard contrast ratio in both light and dark modes.
 
 ```diff
   warning = {

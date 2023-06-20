@@ -23,7 +23,7 @@
     },
     "label": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the label's span element"
+      "nodeName": "the label&#39;s span element"
     }
   }
 }

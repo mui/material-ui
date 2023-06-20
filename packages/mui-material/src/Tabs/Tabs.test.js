@@ -7,7 +7,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
@@ -93,10 +93,10 @@ describe('<Tabs />', () => {
         render(<Tabs value={0} centered variant="scrollable" />);
       }).toErrorDev([
         'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
         'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
       ]);
     });
@@ -375,11 +375,21 @@ describe('<Tabs />', () => {
 
           nodeEnv = process.env.NODE_ENV;
           // We can't use a regular assignment, because it causes a syntax error in Karma
-          Object.defineProperty(process.env, 'NODE_ENV', { value: 'development' });
+          Object.defineProperty(process.env, 'NODE_ENV', {
+            value: 'development',
+            configurable: true,
+            writable: true,
+            enumerable: true,
+          });
         });
 
         after(() => {
-          Object.defineProperty(process.env, 'NODE_ENV', { value: nodeEnv });
+          Object.defineProperty(process.env, 'NODE_ENV', {
+            value: nodeEnv,
+            configurable: true,
+            writable: true,
+            enumerable: true,
+          });
         });
 
         it('should warn if a `Tab` has display: none', function test() {
