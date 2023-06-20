@@ -8,25 +8,27 @@ import MenuItem from '@mui/joy/MenuItem';
 import Apps from '@mui/icons-material/Apps';
 
 export default function AppsMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const buttonRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false);
+
   const handleClose = () => {
-    setAnchorEl(null);
+    setOpen(false);
   };
+
   return (
     <Box>
       <IconButton
+        ref={buttonRef}
         id="apps-menu-demo"
         aria-label="Applications"
-        aria-controls={open ? 'apps-menu' : undefined}
+        aria-controls={'apps-menu'}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="plain"
         color="neutral"
-        onClick={handleClick}
+        onClick={() => {
+          setOpen(!open);
+        }}
         sx={{ borderRadius: 40 }}
       >
         <Apps />
@@ -35,7 +37,7 @@ export default function AppsMenu() {
         id="apps-menu"
         variant="solid"
         invertedColors
-        anchorEl={anchorEl}
+        anchorEl={buttonRef.current}
         open={open}
         onClose={handleClose}
         aria-labelledby="apps-menu-demo"
