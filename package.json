@@ -208,7 +208,7 @@
   "resolutions": {
     "**/@babel/core": "^7.21.4",
     "**/@babel/code-frame": "^7.21.4",
-    "**/@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "**/@babel/plugin-proposal-class-properties": "^7.18.6",
     "**/@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
     "**/@babel/plugin-proposal-numeric-separator": "^7.18.6",
     "**/@babel/plugin-proposal-optional-chaining": "^7.21.0",
