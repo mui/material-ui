@@ -34,6 +34,7 @@ const pages = [
         children: [
           { pathname: '/joy-ui/react-autocomplete' },
           { pathname: '/joy-ui/react-button' },
+          { pathname: '/joy-ui/react-button-group', title: 'Button Group' },
           { pathname: '/joy-ui/react-checkbox' },
           { pathname: '/joy-ui/react-input' },
           { pathname: '/joy-ui/react-radio-button', title: 'Radio Button' },
@@ -68,6 +69,7 @@ const pages = [
           { pathname: '/joy-ui/react-circular-progress', title: 'Circular Progress' },
           { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
+          { pathname: '/joy-ui/react-skeleton', comingSoon: true },
           { pathname: '/joy-ui/react-snackbar', comingSoon: true },
         ],
       },
@@ -85,6 +87,7 @@ const pages = [
         subheader: 'navigation',
         children: [
           { pathname: '/joy-ui/react-breadcrumbs' },
+          { pathname: '/joy-ui/react-drawer', comingSoon: true },
           { pathname: '/joy-ui/react-link' },
           { pathname: '/joy-ui/react-menu' },
           { pathname: '/joy-ui/react-tabs' },

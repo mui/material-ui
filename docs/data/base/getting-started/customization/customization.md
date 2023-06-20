@@ -80,7 +80,7 @@ export default function Switch(props) {
 }
 ```
 
-See our [Working with Tailwind CSS guide](/base/guides/working-with-tailwind-css/) for more information about integrating Base UI and Tailwind CSS.
+See our [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for more information about integrating Base UI and Tailwind CSS.
 
 #### Styled components
 
@@ -110,9 +110,9 @@ See [Disabling default CSS classes](#disabling-default-css-classes) for instruct
 
 ### Overriding subcomponent slots
 
-If you want to make changes to a component's rendered HTML structure, you can override the default subcomponents ("slots") using the `slots` and/or `component` prop—see ["Shared props" on the Base Usage page](/base/getting-started/usage/#shared-props) for more details.
+If you want to make changes to a component's rendered HTML structure, you can override the default subcomponents ("slots") using the `slots` and/or `component` prop—see ["Shared props" on the Base Usage page](/base-ui/getting-started/usage/#shared-props) for more details.
 
-The following demo uses [Switch](/base/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `root`, `thumb`, and `input`.
+The following demo uses [Switch](/base-ui/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `root`, `thumb`, and `input`.
 
 Note that although this demo uses [MUI System](/system/styled/) as a styling solution, you are free to choose any alternative.
 
@@ -180,11 +180,11 @@ In the case of the Select, the additional information includes the `checked`, `d
 If you need complete control over a component's rendered HTML structure, you can build it with hooks.
 
 Hooks give you access to the _logic_ that a component uses, but without any default structure.
-See ["Components vs. hooks" on the Base Usage page](/base/getting-started/usage/#components-vs-hooks) for more details.
+See ["Components vs. hooks" on the Base Usage page](/base-ui/getting-started/usage/#components-vs-hooks) for more details.
 
 Hooks return the current state of the component (e.g. `checked`, `disabled`, `open`, etc.) and provide functions that return props you can apply to your fully custom components.
 
-In the case of [Switch](/base/react-switch/), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
+In the case of [Switch](/base-ui/react-switch/), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
 
 It returns the following object:
 

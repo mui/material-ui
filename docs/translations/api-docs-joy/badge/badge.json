@@ -20,56 +20,56 @@
     "root": { "description": "Class name applied to the root element." },
     "badge": {
       "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the badge `span` element"
+      "nodeName": "the badge <code>span</code> element"
     },
     "anchorOriginTopRight": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
     },
     "anchorOriginBottomRight": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }}</code>"
     },
     "anchorOriginTopLeft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>anchorOrigin={{ 'top', 'left' }}</code>"
     },
     "anchorOriginBottomLeft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>"
     },
     "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>color=\"danger\"</code>"
     },
     "colorInfo": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>color=\"info\"</code>"
     },
     "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>color=\"neutral\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>color=\"success\"</code>"
     },
     "colorWarning": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>color=\"warning\"</code>"
     },
     "colorContext": {
@@ -79,32 +79,32 @@
     },
     "invisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>invisible={true}</code>"
     },
     "locationInside": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>location=\"inside\"</code>"
     },
     "locationOutside": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>location=\"outside\"</code>"
     },
     "sizeSm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>size=\"sm\"</code>"
     },
     "sizeMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>size=\"md\"</code>"
     },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>size=\"lg\"</code>"
     },
     "variantPlain": {
@@ -114,17 +114,17 @@
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantSoft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>variant=\"soft\"</code>"
     },
     "variantSolid": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>variant=\"solid\"</code>"
     }
   },

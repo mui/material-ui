@@ -6,7 +6,7 @@ import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import Divider from '@mui/material/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
 
@@ -27,7 +27,7 @@ export default function TopLayoutCareers(props) {
   const { description, rendered, title } = docs.en;
 
   return (
-    <BrandingProvider>
+    <BrandingCssVarsProvider>
       <AppHeader />
       <Head title={`${title} - MUI`} description={description}>
         <meta name="robots" content="noindex,nofollow" />
@@ -50,7 +50,7 @@ export default function TopLayoutCareers(props) {
         <Divider />
         <AppFooter />
       </StyledDiv>
-    </BrandingProvider>
+    </BrandingCssVarsProvider>
   );
 }
 
