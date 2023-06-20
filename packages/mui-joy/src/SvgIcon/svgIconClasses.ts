@@ -33,10 +33,6 @@ export interface SvgIconClasses {
   fontSizeXl3: string;
   /** Class name applied to the root element if `fontSize="xl4"`. */
   fontSizeXl4: string;
-  /** Class name applied to the root element if `fontSize="xl5"`. */
-  fontSizeXl5: string;
-  /** Class name applied to the root element if `fontSize="xl6"`. */
-  fontSizeXl6: string;
 }
 
 export type SvgIconClassKey = keyof SvgIconClasses;
@@ -62,8 +58,6 @@ const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
   'fontSizeXl2',
   'fontSizeXl3',
   'fontSizeXl4',
-  'fontSizeXl5',
-  'fontSizeXl6',
 ]);
 
 export default svgIconClasses;
