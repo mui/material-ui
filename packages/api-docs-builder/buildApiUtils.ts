@@ -696,12 +696,14 @@ ${staticProps}
       const demosSourcePath = path.join(process.cwd(), `${componentPageDirectory}/index.js`);
       writePrettifiedFile(demosSourcePath, demosSource);
 
-      const docsTabsPagesDirectory = `${componentPageDirectory}/[docsTab]`;
-      if (!fs.existsSync(docsTabsPagesDirectory)) {
-        fs.mkdirSync(docsTabsPagesDirectory, { recursive: true });
+      if (components && components.length > 0 || hooks && hooks.length > 0) {
+        const docsTabsPagesDirectory = `${componentPageDirectory}/[docsTab]`;
+        if (!fs.existsSync(docsTabsPagesDirectory)) {
+          fs.mkdirSync(docsTabsPagesDirectory, { recursive: true });
+        }
+        const tabsApiPath = path.join(process.cwd(), `${docsTabsPagesDirectory}/index.js`);
+        writePrettifiedFile(tabsApiPath, tabsApiSource);
       }
-      const tabsApiPath = path.join(process.cwd(), `${docsTabsPagesDirectory}/index.js`);
-      writePrettifiedFile(tabsApiPath, tabsApiSource);
     }
   });
 }
