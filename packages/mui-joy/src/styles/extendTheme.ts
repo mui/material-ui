@@ -261,7 +261,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
       background: {
         body: getCssVarColor('palette-common-white'),
-        surface: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.common.white),)} / 0.9)`, //Is there a way to add background blur?
+        surface: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.neutral[50]),)} / 0.9)`, //Is there a way to add background blur?
         popup: getCssVarColor('palette-neutral-50'),
         level1: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.common.white),)} / 0.9)`,
         level2: getCssVarColor('palette-neutral-50'),
@@ -520,13 +520,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
 
       'title-sm': {
-        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
-        fontSize: getCssVar('fontSize-sm', fontSize.sm),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-      },
-      'title-sm': {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-xl', fontSize.xl),
@@ -546,13 +539,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontSize: getCssVar('fontSize-md', fontSize.md),
         lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-      },
-      'body-md': {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
-        fontSize: getCssVar('fontSize-sm', fontSize.sm),
-        lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
-        color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
       },
 
       'body-md': {
