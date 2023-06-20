@@ -46,7 +46,7 @@ export default function DirectionSnackbar() {
           <Grid item xs={6}>
             <Button onClick={handleClick(TransitionRight)}>Left</Button>
           </Grid>
-          <Grid item container xs={6} alignItems="flex-end" direction="column">
+          <Grid item xs={6} textAlign="right">
             <Button onClick={handleClick(TransitionLeft)}>Right</Button>
           </Grid>
         </Grid>

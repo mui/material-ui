@@ -2,7 +2,7 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 export interface State extends SnackbarOrigin {
   open: boolean;
@@ -40,7 +40,7 @@ export default function PositionedSnackbar() {
             Top-Left
           </Button>
         </Grid>
-        <Grid item container xs={6} alignItems="flex-end" direction="column">
+        <Grid item xs={6} textAlign="right">
           <Button onClick={handleClick({ vertical: 'top', horizontal: 'right' })}>
             Top-Right
           </Button>
@@ -53,7 +53,7 @@ export default function PositionedSnackbar() {
             Bottom-Left
           </Button>
         </Grid>
-        <Grid item container xs={6} alignItems="flex-end" direction="column">
+        <Grid item xs={6} textAlign="right">
           <Button onClick={handleClick({ vertical: 'bottom', horizontal: 'right' })}>
             Bottom-Right
           </Button>
