@@ -30,11 +30,11 @@
     },
     "primary": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the primary `Typography` component"
+      "nodeName": "the primary <code>Typography</code> component"
     },
     "secondary": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the secondary `Typography` component"
+      "nodeName": "the secondary <code>Typography</code> component"
     }
   }
 }

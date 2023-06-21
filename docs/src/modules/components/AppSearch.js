@@ -19,7 +19,8 @@ import { LANGUAGES_SSR } from 'docs/config';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import getUrlProduct from 'docs/src/modules/utils/getUrlProduct';
+import PageContext from 'docs/src/modules/components/PageContext';
+import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 
 const SearchButton = styled('button')(({ theme }) => [
   {
@@ -153,27 +154,32 @@ function NewStartScreen() {
   );
 }
 
+const displayTagProductId = {
+  'material-ui': 'Material UI',
+  'joy-ui': 'Joy UI',
+  'base-ui': 'Base UI',
+  x: 'MUI X',
+  system: 'MUI System',
+  toolpad: 'Toolpad',
+};
+
+function getDisplayTag(pathname) {
+  const productInfo = getProductInfoFromUrl(pathname);
+  const displayTag =
+    displayTagProductId[productInfo.productId] ||
+    displayTagProductId[productInfo.productCategoryId];
+
+  if (!displayTag) {
+    console.error(
+      `getDisplayTag missing mapping for productId: ${productInfo.productId}, pathname: ${pathname}.`,
+    );
+  }
+
+  return <Chip label={displayTag} size="small" variant="outlined" sx={{ mr: 1 }} />;
+}
+
 function DocSearchHit(props) {
   const { children, hit } = props;
-
-  function displayTag(pathname) {
-    // does not need to show product label for MUI X because they are grouped by the product name in the search
-    // ie. Data Grid, Date Picker
-    if (!pathname.match(/^\/(material-ui|joy-ui|base)\//)) {
-      return null;
-    }
-    let text = '';
-    if (pathname.startsWith('/material-ui/')) {
-      text = 'Material UI';
-    }
-    if (pathname.startsWith('/joy-ui/')) {
-      text = 'Joy UI';
-    }
-    if (pathname.startsWith('/base-ui/')) {
-      text = 'Base UI';
-    }
-    return <Chip label={text} size="small" variant="outlined" sx={{ mr: 1 }} />;
-  }
 
   if (hit.pathname) {
     return (
@@ -183,7 +189,7 @@ function DocSearchHit(props) {
         sx={{ display: 'flex !important', '& .DocSearch-Hit-Container': { flex: 1, minWidth: 0 } }}
       >
         {children}
-        {displayTag(hit.pathname)}
+        {getDisplayTag(hit.pathname)}
       </Link>
     );
   }
@@ -216,7 +222,7 @@ export default function AppSearch(props) {
     setIsOpen(true);
   }, [setIsOpen]);
   const router = useRouter();
-  const productSpace = getUrlProduct(router.asPath);
+  const { productId } = React.useContext(PageContext);
 
   const keyboardNavigator = {
     navigate({ item }) {
@@ -314,7 +320,8 @@ export default function AppSearch(props) {
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
-              optionalFilters: [`product:${productSpace}`],
+              optionalFilters: [`product:${productId}`],
+              analyticsTags: [facetFilterLanguage, `product:${productId}`],
               hitsPerPage: 40,
             }}
             placeholder={search}

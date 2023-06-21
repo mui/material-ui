@@ -16,8 +16,10 @@ import DemoEditorError from 'docs/src/modules/components/DemoEditorError';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
-import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import { useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
+import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import { blue, blueDark, grey } from 'docs/src/modules/brandingTheme';
 
@@ -49,10 +51,13 @@ export function DemoToolbarFallback() {
 }
 
 function getDemoName(location) {
-  return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
+  return location.endsWith('.js') || location.endsWith('.tsx')
+    ? location.replace(/(.+?)(\w+)\.\w+$$/, '$2')
+    : // the demos with multiple styling solution point to directory
+      location.split('/').pop();
 }
 
-function useDemoData(codeVariant, demo, githubLocation) {
+function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
   const userLanguage = useUserLanguage();
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
@@ -70,29 +75,81 @@ function useDemoData(codeVariant, demo, githubLocation) {
       name = 'MUI X';
     }
 
+    let codeOptions = {};
+
+    if (codeStyling === CODE_STYLING.SYSTEM) {
+      if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
+        codeOptions = {
+          codeVariant: CODE_VARIANTS.TS,
+          githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
+          raw: demo.rawTS,
+          Component: demo.tsx,
+          sourceLanguage: 'tsx',
+        };
+      } else {
+        codeOptions = {
+          codeVariant: CODE_VARIANTS.JS,
+          githubLocation,
+          raw: demo.raw,
+          Component: demo.js,
+          sourceLanguage: 'jsx',
+        };
+      }
+    } else if (codeStyling === CODE_STYLING.TAILWIND) {
+      if (codeVariant === CODE_VARIANTS.TS && demo.rawTailwindTS) {
+        codeOptions = {
+          codeVariant: CODE_VARIANTS.TS,
+          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.tsx'),
+          raw: demo.rawTailwindTS,
+          Component: demo.tsxTailwind,
+          sourceLanguage: 'tsx',
+        };
+      } else {
+        codeOptions = {
+          codeVariant: CODE_VARIANTS.JS,
+          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.js'),
+          raw: demo.rawTailwind ?? demo.raw,
+          Component: demo.jsTailwind ?? demo.js,
+          sourceLanguage: 'jsx',
+        };
+      }
+    } else if (codeStyling === CODE_STYLING.CSS) {
+      if (codeVariant === CODE_VARIANTS.TS && demo.rawCSSTS) {
+        codeOptions = {
+          codeVariant: CODE_VARIANTS.TS,
+          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.tsx'),
+          raw: demo.rawCSSTS,
+          Component: demo.tsxCSS,
+          sourceLanguage: 'tsx',
+        };
+      } else {
+        codeOptions = {
+          codeVariant: CODE_VARIANTS.JS,
+          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.js'),
+          raw: demo.rawCSS ?? demo.raw,
+          Component: demo.jsCSS ?? demo.js,
+          sourceLanguage: 'jsx',
+        };
+      }
+    }
+
+    let jsxPreview = demo.jsxPreview;
+    if (codeStyling === CODE_STYLING.TAILWIND && demo.tailwindJsxPreview) {
+      jsxPreview = demo.tailwindJsxPreview;
+    } else if (codeStyling === CODE_STYLING.CSS && demo.cssJsxPreview) {
+      jsxPreview = demo.cssJsxPreview;
+    }
+
     return {
       scope: demo.scope,
-      jsxPreview: demo.jsxPreview,
-      ...(codeVariant === CODE_VARIANTS.TS && demo.rawTS
-        ? {
-            codeVariant: CODE_VARIANTS.TS,
-            githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
-            raw: demo.rawTS,
-            Component: demo.tsx,
-            sourceLanguage: 'tsx',
-          }
-        : {
-            codeVariant: CODE_VARIANTS.JS,
-            githubLocation,
-            raw: demo.raw,
-            Component: demo.js,
-            sourceLanguage: 'jsx',
-          }),
+      jsxPreview,
+      ...codeOptions,
       title: `${getDemoName(githubLocation)} demo — ${name}`,
       product,
       language: userLanguage,
+      codeStyling,
     };
-  }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage]);
+  }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage, codeStyling]);
 }
 
 function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActive }) {
@@ -153,7 +210,7 @@ const DemoRootMaterial = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: 10,
+    borderRadius: '12px 12px 0 0',
     ...(bg === 'outlined' && {
       borderLeftWidth: 1,
       borderRightWidth: 1,
@@ -176,7 +233,7 @@ const DemoRootMaterial = styled('div', {
   }),
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
-    padding: theme.spacing(3),
+    padding: theme.spacing(4),
     backgroundColor: (theme.vars || theme).palette.grey[100],
     ...theme.applyDarkStyles({
       backgroundColor: (theme.vars || theme).palette.grey[900],
@@ -186,7 +243,7 @@ const DemoRootMaterial = styled('div', {
   ...(bg === 'gradient' && {
     padding: theme.spacing(20, 8),
     border: `1px solid`,
-    borderColor: alpha(theme.palette.primary[100], 0.5),
+    borderColor: (theme.vars || theme).palette.divider,
     overflow: 'hidden',
     backgroundColor: alpha(theme.palette.primary[50], 0.5),
     backgroundClip: 'padding-box',
@@ -235,7 +292,7 @@ const DemoRootJoy = joyStyled('div', {
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: 10,
+    borderRadius: '12px 12px 0 0',
     ...(bg === 'outlined' && {
       borderLeftWidth: 1,
       borderRightWidth: 1,
@@ -273,7 +330,7 @@ const DemoRootJoy = joyStyled('div', {
     overflow: 'auto',
     backgroundColor: alpha(blue[50], 0.5),
     border: `1px solid`,
-    borderColor: alpha(blue[100], 0.5),
+    borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
     backgroundImage: `radial-gradient(at 51% 52%, ${alpha(blue[50], 0.5)} 0px, transparent 50%),
       radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
       radial-gradient(at 0% 95%, ${alpha(blue[100], 0.3)}, transparent 40%),
@@ -282,7 +339,7 @@ const DemoRootJoy = joyStyled('div', {
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.03'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
     ...theme.applyDarkStyles({
       backgroundColor: blueDark[800],
-      borderColor: alpha(blueDark[500], 0.7),
+      borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
       backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
         blueDark[700],
         0.5,
@@ -339,7 +396,10 @@ export default function Demo(props) {
     }
   }
 
-  if (!demoOptions.demo.endsWith('.js') && demoOptions.hideToolbar !== true) {
+  if (
+    (demoOptions.demo.endsWith('.ts') || demoOptions.demo.endsWith('.tsx')) &&
+    demoOptions.hideToolbar !== true
+  ) {
     throw new Error(
       [
         `The following demos use TS directly: ${demoOptions.demo}.`,
@@ -355,7 +415,11 @@ export default function Demo(props) {
 
   const t = useTranslate();
   const codeVariant = useCodeVariant();
-  const demoData = useDemoData(codeVariant, demo, githubLocation);
+  const styleSolution = useCodeStyling();
+
+  const demoData = useDemoData(codeVariant, demo, githubLocation, styleSolution);
+
+  const hasNonSystemDemos = demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs;
 
   const [demoHovered, setDemoHovered] = React.useState(false);
   const handleDemoHover = (event) => {
@@ -387,7 +451,7 @@ export default function Demo(props) {
 
   React.useEffect(() => {
     const navigatedDemoName = getDemoName(window.location.hash);
-    if (demoName === navigatedDemoName) {
+    if (navigatedDemoName && demoName === navigatedDemoName) {
       setCodeOpen(true);
     }
   }, [demoName]);
@@ -412,12 +476,12 @@ export default function Demo(props) {
   const Wrapper = demoData.product === 'joy-ui' ? BrandingProvider : React.Fragment;
 
   const isPreview = !codeOpen && showPreview;
+
   const initialEditorCode = isPreview
     ? demoData.jsxPreview
     : // Prettier remove all the leading lines except for the last one, remove it as we don't
       // need it in the live edit view.
       demoData.raw.replace(/\n$/, '');
-
   const [editorCode, setEditorCode] = React.useState({
     value: initialEditorCode,
     isPreview,
@@ -479,6 +543,12 @@ export default function Demo(props) {
           {demoElement}
         </DemoSandbox>
       </DemoRoot>
+      {Object.keys(stylingSolutionMapping).map((key) => (
+        <React.Fragment key={key}>
+          <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
+          <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
+        </React.Fragment>
+      ))}
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
       <Wrapper {...(demoData.product === 'joy-ui' ? { mode } : {})}>
@@ -488,6 +558,7 @@ export default function Demo(props) {
               <DemoToolbar
                 codeOpen={codeOpen}
                 codeVariant={codeVariant}
+                hasNonSystemDemos={hasNonSystemDemos}
                 demo={demo}
                 demoData={demoData}
                 demoHovered={demoHovered}

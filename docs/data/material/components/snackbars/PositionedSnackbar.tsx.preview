@@ -1,4 +1,5 @@
-{buttons}
+<Box sx={{ width: 500 }}>{buttons}</Box>
+
 <Snackbar
   anchorOrigin={{ vertical, horizontal }}
   open={open}

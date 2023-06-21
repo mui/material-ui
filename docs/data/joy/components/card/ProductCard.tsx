@@ -4,7 +4,10 @@ import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
+import Chip from '@mui/joy/Chip';
+import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
 export default function ProductCard() {
   return (
@@ -21,9 +24,27 @@ export default function ProductCard() {
       </CardOverflow>
       <CardContent>
         <Typography level="body3">Bluetooth Headset</Typography>
-        <Typography fontWeight="xl">Super Rockez A400</Typography>
+        <Link
+          href="#product-card"
+          fontWeight="xl"
+          color="neutral"
+          textColor="text.primary"
+          overlay
+          endDecorator={<ArrowOutwardIcon />}
+        >
+          Super Rockez A400
+        </Link>
 
-        <Typography fontSize="xl" fontWeight="xl" sx={{ mt: 1 }}>
+        <Typography
+          fontSize="xl"
+          fontWeight="xl"
+          sx={{ mt: 1 }}
+          endDecorator={
+            <Chip component="span" size="sm" variant="soft" color="success">
+              Lowest price
+            </Chip>
+          }
+        >
           2,900 THB
         </Typography>
         <Typography level="body2">

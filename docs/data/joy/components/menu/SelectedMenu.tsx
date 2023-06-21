@@ -5,14 +5,12 @@ import MenuItem from '@mui/joy/MenuItem';
 import Apps from '@mui/icons-material/Apps';
 
 export default function SelectedMenu() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const buttonRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false);
+
   const createHandleClose = (index: number) => () => {
-    setAnchorEl(null);
+    setOpen(false);
     if (typeof index === 'number') {
       setSelectedIndex(index);
     }
@@ -21,20 +19,23 @@ export default function SelectedMenu() {
   return (
     <div>
       <Button
+        ref={buttonRef}
         id="selected-demo-button"
-        aria-controls={open ? 'selected-demo-menu' : undefined}
+        aria-controls={'selected-demo-menu'}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="outlined"
         color="neutral"
-        onClick={handleClick}
+        onClick={() => {
+          setOpen(!open);
+        }}
         startDecorator={<Apps />}
       >
         Apps
       </Button>
       <Menu
         id="selected-demo-menu"
-        anchorEl={anchorEl}
+        anchorEl={buttonRef.current}
         open={open}
         onClose={createHandleClose(-1)}
         aria-labelledby="selected-demo-button"

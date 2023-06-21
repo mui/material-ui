@@ -1,5 +1,6 @@
 {
   "props": {
+    "areOptionsEqual": { "type": { "name": "func" } },
     "autoFocus": { "type": { "name": "bool" }, "default": "false" },
     "defaultListboxOpen": { "type": { "name": "bool" }, "default": "false" },
     "defaultValue": { "type": { "name": "any" } },
