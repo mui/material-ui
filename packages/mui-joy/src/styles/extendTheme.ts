@@ -499,7 +499,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-md', fontSize.md),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
+        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
         color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
       },
 
