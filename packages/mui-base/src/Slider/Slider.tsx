@@ -120,6 +120,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     values,
     trackOffset,
     trackLeap,
+    getThumbStyle,
   } = useSlider({ ...partialOwnerState, rootRef: forwardedRef });
 
   const ownerState: SliderOwnerState = {
@@ -273,8 +274,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
             })}
             style={{
               ...style,
-              // So the non active thumb doesn't show its label on hover.
-              pointerEvents: active !== -1 && active !== index ? 'none' : undefined,
+              ...getThumbStyle(index),
               ...thumbProps.style,
             }}
           >

@@ -569,6 +569,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     values,
     trackOffset,
     trackLeap,
+    getThumbStyle,
   } = useSlider({ ...ownerState, rootRef: ref });
 
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
@@ -767,9 +768,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
               })}
               style={{
                 ...style,
-                // So the non active thumb doesn't show its label on hover.
-                pointerEvents: active !== -1 && active !== index ? 'none' : undefined,
-                ...thumbProps.style,
+                ...getThumbStyle(index),
               }}
             >
               <InputSlot

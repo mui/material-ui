@@ -657,6 +657,12 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     };
   };
 
+  const getThumbStyle = (index: number) => {
+    return {
+      pointerEvents: active !== -1 && active !== index ? 'none' : undefined,
+    };
+  };
+
   const getHiddenInputProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,
   ): UseSliderHiddenInputProps<TOther> => {
@@ -710,5 +716,6 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     trackLeap,
     trackOffset,
     values,
+    getThumbStyle,
   };
 }
