@@ -16,6 +16,10 @@ export interface UseMenuParameters {
    */
   open?: boolean;
   /**
+   * Callback fired when the menu items change.
+   */
+  onItemsChange?: (items: string[]) => void;
+  /**
    * Callback fired when the menu is opened or closed.
    */
   onOpenChange?: (open: boolean) => void;
@@ -26,7 +30,7 @@ export interface UseMenuParameters {
   /**
    * Ref of the menu listbox.
    */
-  listboxRef?: React.Ref<any>;
+  listboxRef?: React.Ref<Element>;
 }
 
 export interface UseMenuReturnValue {
@@ -52,6 +56,10 @@ export interface UseMenuReturnValue {
    */
   highlightedValue: string | null;
   /**
+   * The ref to the listbox DOM node.
+   */
+  listboxRef: React.RefCallback<Element> | null;
+  /**
    * Items in the menu listbox.
    */
   menuItems: Map<string, MenuItemMetadata>;
@@ -69,7 +77,7 @@ interface UseMenuListboxSlotEventHandlers {
 export type UseMenuListboxSlotProps<TOther = {}> = UseListRootSlotProps<
   Omit<TOther, keyof UseMenuListboxSlotEventHandlers> & UseMenuListboxSlotEventHandlers
 > & {
-  ref: React.Ref<any>;
+  ref: React.RefCallback<Element> | null;
   role: React.AriaRole;
 };
 

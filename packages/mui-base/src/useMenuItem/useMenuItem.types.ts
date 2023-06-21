@@ -22,7 +22,7 @@ export interface UseMenuItemParameters {
   disabled?: boolean;
   id?: string;
   onClick?: React.MouseEventHandler<any>;
-  ref: React.Ref<any>;
+  rootRef: React.Ref<Element>;
   label?: string;
 }
 
@@ -54,7 +54,7 @@ export interface UseMenuItemReturnValue {
   /**
    * The ref to the component's root DOM element.
    */
-  ref: ((instance: unknown) => void) | null;
+  rootRef: React.RefCallback<Element> | null;
   /**
    * Total number of items in the menu.
    */

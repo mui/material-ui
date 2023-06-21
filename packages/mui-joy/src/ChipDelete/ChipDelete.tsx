@@ -106,7 +106,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   const { focusVisible, getRootProps } = useButton({
     ...props,
     disabled,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   const ownerState = {

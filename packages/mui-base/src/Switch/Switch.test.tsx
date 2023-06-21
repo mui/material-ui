@@ -30,6 +30,7 @@ describe('<Switch />', () => {
         isOptional: true,
       },
     },
+    skip: ['componentProp'],
   }));
 
   describe('componentState', () => {

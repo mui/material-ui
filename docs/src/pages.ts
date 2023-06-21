@@ -164,7 +164,7 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
-    title: 'Component API',
+    title: 'APIs',
     pathname: '/api-docs',
     icon: standardNavIcons.CodeIcon,
     children: [
@@ -288,7 +288,7 @@ const pages: readonly MuiPage[] = [
     children: [
       { pathname: '/styles/basics' },
       { pathname: '/styles/advanced' },
-      { pathname: '/styles/api', title: 'API' },
+      { pathname: '/styles/api', title: 'APIs' },
     ],
   },
   {
@@ -301,7 +301,6 @@ const pages: readonly MuiPage[] = [
       { pathname: '/discover-more/backers', title: 'Sponsors & Backers' },
       { pathname: '/discover-more/vision' },
       { pathname: '/discover-more/changelog' },
-      { pathname: '/discover-more/languages' },
       { pathname: '/about', title: 'About us' },
     ],
   },

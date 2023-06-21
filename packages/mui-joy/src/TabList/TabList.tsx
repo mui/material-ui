@@ -74,7 +74,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   const color = getColor(inProps.color, colorProp);
 
   const { isRtl, orientation, getRootProps, contextValue } = useTabsList({
-    ref,
+    rootRef: ref,
   });
 
   const size = sizeProp ?? tabsSize;

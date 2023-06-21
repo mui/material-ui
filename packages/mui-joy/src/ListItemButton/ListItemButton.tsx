@@ -152,7 +152,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   React.useImperativeHandle(

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { OverrideProps, Simplify } from '@mui/types';
+import { Simplify } from '@mui/types';
 import { FormControlState } from '../FormControl';
 import { UseInputParameters, UseInputRootSlotProps } from '../useInput';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface InputRootSlotPropsOverrides {}
 export interface InputInputSlotPropsOverrides {}
@@ -146,20 +146,20 @@ export interface InputSlots {
   textarea?: React.ElementType;
 }
 
-export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & InputOwnProps;
-  defaultComponent: D;
+export interface InputTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'div',
+> {
+  props: InputOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type InputProps<
-  D extends React.ElementType = InputTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<InputTypeMap<P, D>, D> & {
-  component?: D;
-};
+  RootComponentType extends React.ElementType = InputTypeMap['defaultComponent'],
+> = PolymorphicProps<InputTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type InputOwnerState = Simplify<
-  Omit<InputProps, 'component' | 'slots' | 'slotProps'> & {
+  InputOwnProps & {
     formControlContext: FormControlState | undefined;
     focused: boolean;
     type: React.InputHTMLAttributes<HTMLInputElement>['type'] | undefined;

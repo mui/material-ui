@@ -352,7 +352,7 @@ function handleTextNavigation<ItemValue, State extends ListState<ItemValue>>(
   searchString: string,
   context: ListActionContext<ItemValue>,
 ): State {
-  const { items, isItemDisabled, disabledItemsFocusable, itemStringifier } = context;
+  const { items, isItemDisabled, disabledItemsFocusable, getItemAsString } = context;
 
   const startWithCurrentItem = searchString.length > 1;
 
@@ -367,7 +367,7 @@ function handleTextNavigation<ItemValue, State extends ListState<ItemValue>>(
     }
 
     if (
-      textCriteriaMatches(nextItem, searchString, itemStringifier) &&
+      textCriteriaMatches(nextItem, searchString, getItemAsString) &&
       (!isItemDisabled(nextItem, items.indexOf(nextItem)) || disabledItemsFocusable)
     ) {
       // The nextItem is the element to be highlighted
@@ -413,6 +413,16 @@ function handleItemsChange<ItemValue, State extends ListState<ItemValue>>(
   };
 }
 
+function handleResetHighlight<ItemValue, State extends ListState<ItemValue>>(
+  state: State,
+  context: ListActionContext<ItemValue>,
+) {
+  return {
+    ...state,
+    highlightedValue: moveHighlight(null, 'reset', context),
+  };
+}
+
 export default function listReducer<ItemValue, State extends ListState<ItemValue>>(
   state: State,
   action: ListReducerAction<ItemValue> & { context: ListActionContext<ItemValue> },
@@ -430,6 +440,8 @@ export default function listReducer<ItemValue, State extends ListState<ItemValue
       return handleTextNavigation(state, action.searchString, context);
     case ListActionTypes.itemsChange:
       return handleItemsChange(action.items, action.previousItems, state, context);
+    case ListActionTypes.resetHighlight:
+      return handleResetHighlight(state, context);
     default:
       return state;
   }

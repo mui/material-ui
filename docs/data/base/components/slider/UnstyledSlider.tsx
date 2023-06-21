@@ -2,6 +2,15 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import Slider, { sliderClasses } from '@mui/base/Slider';
 
+export default function UnstyledSlider() {
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider defaultValue={10} />
+      <StyledSlider defaultValue={10} disabled />
+    </Box>
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -27,7 +36,7 @@ const grey = {
 
 const StyledSlider = styled(Slider)(
   ({ theme }) => `
-  color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
+  color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 6px;
   width: 100%;
   padding: 16px 0;
@@ -95,12 +104,3 @@ const StyledSlider = styled(Slider)(
   }
 `,
 );
-
-export default function UnstyledSlider() {
-  return (
-    <Box sx={{ width: 300 }}>
-      <StyledSlider defaultValue={10} />
-      <StyledSlider defaultValue={10} disabled />
-    </Box>
-  );
-}

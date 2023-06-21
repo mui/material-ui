@@ -52,19 +52,38 @@ const polymorphicComponentTest = () => {
       {/* @ts-expect-error */}
       <Switch invalidProp={0} />
 
-      <Switch component="a" href="#" />
+      <Switch<'a'>
+        slots={{
+          root: 'a',
+        }}
+        href="#"
+      />
 
-      <Switch component={CustomComponent} stringProp="test" numberProp={0} />
+      <Switch<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+        stringProp="test"
+        numberProp={0}
+      />
       {/* @ts-expect-error */}
-      <Switch component={CustomComponent} />
+      <Switch<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+      />
 
-      <Switch
-        component="button"
+      <Switch<'button'>
+        slots={{
+          root: 'button',
+        }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
       <Switch<'button'>
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}

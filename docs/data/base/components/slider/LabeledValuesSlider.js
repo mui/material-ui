@@ -3,6 +3,26 @@ import PropTypes from 'prop-types';
 import { styled, alpha, Box } from '@mui/system';
 import Slider, { sliderClasses } from '@mui/base/Slider';
 
+export default function LabeledValuesSlider() {
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
+    </Box>
+  );
+}
+
+function SliderValueLabel({ children }) {
+  return (
+    <span className="label">
+      <div className="value">{children}</div>
+    </span>
+  );
+}
+
+SliderValueLabel.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -28,7 +48,7 @@ const grey = {
 
 const StyledSlider = styled(Slider)(
   ({ theme }) => `
-  color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
+  color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 6px;
   width: 100%;
   padding: 16px 0;
@@ -52,8 +72,7 @@ const StyledSlider = styled(Slider)(
     width: 100%;
     height: 4px;
     border-radius: 2px;
-    background-color: currentColor;
-    opacity: 0.4;
+    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
   }
   & .${sliderClasses.track} {
     display: block;
@@ -81,6 +100,9 @@ const StyledSlider = styled(Slider)(
       )};
     }
     & .label {
+        font-family: IBM Plex Sans;
+        font-weight: 600;
+        font-size: 14px;
         background: unset;
         background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
         width: 32px;
@@ -113,23 +135,3 @@ const StyledSlider = styled(Slider)(
   }
 `,
 );
-
-function SliderValueLabel({ children }) {
-  return (
-    <span className="label">
-      <div className="value">{children}</div>
-    </span>
-  );
-}
-
-SliderValueLabel.propTypes = {
-  children: PropTypes.element.isRequired,
-};
-
-export default function LabeledValuesSlider() {
-  return (
-    <Box sx={{ width: 300 }}>
-      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
-    </Box>
-  );
-}

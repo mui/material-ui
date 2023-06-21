@@ -27,17 +27,14 @@ export interface UseBadgeReturnValue {
   badgeContent: React.ReactNode;
   /**
    * If `true`, the component will not be visible.
-   * @default false
    */
   invisible: boolean;
   /**
    * Maximum number to be displayed in the badge.
-   * @default 99
    */
   max: number;
   /**
    * Value to be displayed in the badge. If `badgeContent` is greater than `max`, it will return `max+`.
-   * @default badgeContent
    */
   displayValue: React.ReactNode;
 }

@@ -25,6 +25,7 @@ describe('<OptionGroup />', () => {
       },
     },
     skip: [
+      'componentProp',
       'ownerStatePropagation', // the component does not have its own state
     ],
   }));

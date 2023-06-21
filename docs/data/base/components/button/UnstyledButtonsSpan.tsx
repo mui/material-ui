@@ -2,13 +2,13 @@ import * as React from 'react';
 import Button, { buttonClasses, ButtonTypeMap } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '@mui/base/utils';
 
 export default function UnstyledButtonsSpan() {
   return (
     <Stack spacing={2} direction="row">
-      <CustomButton component="span">Button</CustomButton>
-      <CustomButton component="span" disabled>
+      <CustomButton slots={{ root: 'span' }}>Button</CustomButton>
+      <CustomButton slots={{ root: 'span' }} disabled>
         Disabled
       </CustomButton>
     </Stack>
@@ -50,4 +50,4 @@ const CustomButton = styled(Button)`
     opacity: 0.5;
     cursor: not-allowed;
   }
-` as OverridableComponent<ButtonTypeMap>;
+` as PolymorphicComponent<ButtonTypeMap>;

@@ -26,11 +26,12 @@ describe('<Button />', () => {
         expectedClassName: buttonClasses.root,
       },
     },
+    skip: ['componentProp'],
   }));
 
   describe('role attribute', () => {
     it('is set when the root component is an HTML element other than a button', () => {
-      const { getByRole } = render(<Button component="span" />);
+      const { getByRole } = render(<Button slots={{ root: 'span' }} />);
       expect(getByRole('button')).not.to.equal(null);
     });
 
@@ -42,7 +43,7 @@ describe('<Button />', () => {
         ) => <span role={props.role} ref={ref} />,
       );
 
-      const { getByRole } = render(<Button component={WrappedSpan} />);
+      const { getByRole } = render(<Button slots={{ root: WrappedSpan }} />);
       expect(getByRole('button')).not.to.equal(null);
     });
 
@@ -54,7 +55,7 @@ describe('<Button />', () => {
         ) => <button role={props.role} ref={ref} />,
       );
 
-      const { getByRole } = render(<Button component={WrappedButton} />);
+      const { getByRole } = render(<Button slots={{ root: WrappedButton }} />);
       expect(getByRole('button')).not.to.have.attribute('role');
     });
   });
@@ -103,7 +104,9 @@ describe('<Button />', () => {
 
     describe('as non-button element', () => {
       it('can receive focus when focusableWhenDisabled is set', () => {
-        const { getByRole } = render(<Button component="span" focusableWhenDisabled disabled />);
+        const { getByRole } = render(
+          <Button slots={{ root: 'span' }} focusableWhenDisabled disabled />,
+        );
 
         const button = getByRole('button');
         act(() => {
@@ -114,7 +117,9 @@ describe('<Button />', () => {
       });
 
       it('has aria-disabled and tabIndex attributes set', () => {
-        const { getByRole } = render(<Button component="span" focusableWhenDisabled disabled />);
+        const { getByRole } = render(
+          <Button slots={{ root: 'span' }} focusableWhenDisabled disabled />,
+        );
 
         const button = getByRole('button');
 
@@ -125,7 +130,7 @@ describe('<Button />', () => {
       it('does not respond to user actions when disabled and focused', () => {
         const handleClick = spy();
         const { getByRole } = render(
-          <Button component="span" focusableWhenDisabled disabled onClick={handleClick} />,
+          <Button slots={{ root: 'span' }} focusableWhenDisabled disabled onClick={handleClick} />,
         );
 
         const button = getByRole('button');
@@ -151,7 +156,7 @@ describe('<Button />', () => {
     });
 
     it('renders as the element provided in the "component" prop, even with a "href" prop', () => {
-      const { getByRole } = render(<Button component="h1" href="#" />);
+      const { getByRole } = render(<Button slots={{ root: 'h1' }} href="#" />);
       expect(getByRole('heading')).not.to.equal(null);
     });
 
@@ -168,7 +173,7 @@ describe('<Button />', () => {
     });
 
     it('renders as the element provided in the "component" prop, even with a "to" prop', () => {
-      const { getByRole } = render(<Button component="h1" to="#" />);
+      const { getByRole } = render(<Button slots={{ root: 'h1' }} to="#" />);
       expect(getByRole('heading')).not.to.equal(null);
     });
 

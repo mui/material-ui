@@ -8,7 +8,7 @@ import Badge from '@mui/base/Badge';
 
 <Input component={CustomRoot} />;
 
-<Input component={CustomRoot}></Input>;
+<Input component={CustomRoot} {...others}></Input>;
 
 <Switch
   component={CustomRoot}

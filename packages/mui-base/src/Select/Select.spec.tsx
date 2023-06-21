@@ -93,19 +93,39 @@ const polymorphicComponentTest = () => {
       {/* @ts-expect-error */}
       <Select invalidProp={0} />
 
-      <Select component="a" href="#" />
+      <Select<string, false, 'a'>
+        slots={{
+          root: 'a',
+        }}
+        href="#"
+      />
 
-      <Select component={CustomComponent} stringProp="test" numberProp={0} />
+      <Select<string, false, typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+        stringProp="test"
+        numberProp={0}
+      />
+
       {/* @ts-expect-error */}
-      <Select component={CustomComponent} />
+      <Select<string, false, typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+      />
 
-      <Select
-        component="button"
+      <Select<string, false, 'button'>
+        slots={{
+          root: 'button',
+        }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
-      <Select<string, 'button'>
-        component="button"
+      <Select<string, false, 'button'>
+        slots={{
+          root: 'button',
+        }}
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}

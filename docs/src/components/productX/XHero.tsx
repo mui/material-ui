@@ -18,118 +18,74 @@ import { alpha } from '@mui/material/styles';
 import {
   DataGridPremium,
   useGridApiRef,
-  GridRowGroupingModel,
-  GridAggregationModel,
-  GridColDef,
-  GridColumnVisibilityModel,
+  useKeepGroupedColumnsHidden,
 } from '@mui/x-data-grid-premium';
-import {
-  renderEditProgress,
-  renderEditStatus,
-  renderProgress,
-  renderStatus,
-  renderTotalPrice,
-  useDemoData,
-} from '@mui/x-data-grid-generator';
-import { STATUS_OPTIONS } from '@mui/x-data-grid-generator/services/static-data';
+import { useDemoData } from '@mui/x-data-grid-generator';
 
 const startDate = new Date();
 startDate.setDate(10);
 const endDate = new Date();
 endDate.setDate(endDate.getDate() + 28);
 
+const visibleFields = [
+  'commodity',
+  'unitPrice',
+  'feeRate',
+  'quantity',
+  'filledQuantity',
+  'isFilled',
+  'traderName',
+  'status',
+  'totalPrice',
+];
+
 export default function XHero() {
-  const columns: GridColDef[] = [
-    {
-      field: 'commodity',
-      headerName: 'Commodity',
-      width: 180,
-    },
-    {
-      field: 'unitPrice',
-      headerName: 'Unit Price',
-      type: 'number',
-
-      valueParser: (value: number) => Number(value),
-    },
-    {
-      field: 'feeRate',
-      headerName: 'Fee Rate',
-      type: 'number',
-      width: 80,
-
-      valueParser: (value) => Number(value),
-    },
-    {
-      field: 'quantity',
-      headerName: 'Quantity',
-      type: 'number',
-      width: 140,
-      valueParser: (value: string) => Number(value),
-    },
-    {
-      field: 'filledQuantity',
-      headerName: 'Filled Quantity',
-      renderCell: renderProgress,
-      renderEditCell: renderEditProgress,
-      availableAggregationFunctions: ['min', 'max', 'avg', 'size'],
-      type: 'number',
-      width: 120,
-    },
-    {
-      field: 'isFilled',
-      headerName: 'Is Filled',
-      align: 'center',
-      type: 'boolean',
-      width: 80,
-    },
-    {
-      field: 'traderName',
-      headerName: 'Trader Name',
-      width: 120,
-    },
-    {
-      field: 'status',
-      headerName: 'Status',
-      renderCell: renderStatus,
-      renderEditCell: renderEditStatus,
-      type: 'singleSelect',
-      valueOptions: STATUS_OPTIONS,
-      width: 150,
-    },
-    {
-      field: 'totalPrice',
-      headerName: 'Total in USD',
-      valueGetter: ({ row }) =>
-        row.feeRate == null || row.quantity == null || row.unitPrice == null
-          ? null
-          : row.feeRate + row.quantity * row.unitPrice,
-      renderCell: renderTotalPrice,
-      type: 'number',
-      width: 160,
-    },
-  ];
   const { loading, data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10000,
-    maxColumns: 40,
     editable: true,
-  });
-  const [columnVisibilityModel, setColumnVisibilityModel] =
-    React.useState<GridColumnVisibilityModel>({
-      commodity: false,
-    });
-  const [rowGroupingModel, setRowGroupingModel] = React.useState<GridRowGroupingModel>([
-    'commodity',
-  ]);
-  const [aggregationModel, setAggregationModel] = React.useState<GridAggregationModel>({
-    quantity: 'sum',
-    unitPrice: 'avg',
-    feeRate: 'min',
-    totalPrice: 'max',
+    visibleFields,
   });
   const apiRef = useGridApiRef();
+
+  const sortedColumns = React.useMemo(() => {
+    return [...data.columns].sort((a, b) => {
+      return visibleFields.indexOf(a.field) - visibleFields.indexOf(b.field);
+    });
+  }, [data.columns]);
+
+  const initialState = useKeepGroupedColumnsHidden({
+    apiRef,
+    initialState: {
+      ...data.initialState,
+      rowGrouping: {
+        model: ['commodity'],
+      },
+      aggregation: {
+        model: {
+          quantity: 'sum',
+          unitPrice: 'avg',
+          feeRate: 'min',
+          totalPrice: 'max',
+        },
+      },
+    },
+  });
+
+  const groupingColDef = React.useMemo(
+    () => ({
+      headerClassName: 'grouping-column-header',
+    }),
+    [],
+  );
+
   let rowGroupingCounter = 0;
+  const isGroupExpandedByDefault = React.useCallback(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    rowGroupingCounter += 1;
+    return rowGroupingCounter === 3;
+  }, []);
+
   return (
     <HeroContainer
       left={
@@ -256,6 +212,9 @@ export default function XHero() {
                         color: red[500],
                       },
                     },
+                    '& .grouping-column-header': {
+                      pl: 6,
+                    },
                   },
                 },
                 (theme) =>
@@ -278,26 +237,16 @@ export default function XHero() {
             >
               <DataGridPremium
                 {...data}
-                columns={columns}
+                columns={sortedColumns}
                 apiRef={apiRef}
+                initialState={initialState}
                 disableRowSelectionOnClick
-                groupingColDef={{
-                  renderHeader: (params) => {
-                    return <Box sx={{ pl: 5, fontWeight: 500 }}>{params.colDef.headerName}</Box>;
-                  },
-                }}
+                groupingColDef={groupingColDef}
+                rowHeight={36}
+                columnHeaderHeight={48}
                 hideFooter
                 loading={loading}
-                isGroupExpandedByDefault={() => {
-                  rowGroupingCounter += 1;
-                  return rowGroupingCounter === 3;
-                }}
-                rowGroupingModel={rowGroupingModel}
-                onRowGroupingModelChange={(model) => setRowGroupingModel(model)}
-                aggregationModel={aggregationModel}
-                onAggregationModelChange={(newModel) => setAggregationModel(newModel)}
-                columnVisibilityModel={columnVisibilityModel}
-                onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
+                isGroupExpandedByDefault={isGroupExpandedByDefault}
               />
             </Box>
           </Paper>
