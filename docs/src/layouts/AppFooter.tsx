@@ -15,6 +15,7 @@ import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
+import { alpha } from '@mui/material/styles';
 
 interface AppFooterProps {
   stackOverflowUrl?: string;
@@ -105,18 +106,22 @@ export default function AppFooter(props: AppFooterProps) {
               <Box
                 sx={(theme) => ({
                   px: 0.5,
-                  py: '3px',
+                  py: 0.1,
                   ml: 1,
                   mb: '1px',
-                  borderRadius: 0.5,
-                  fontSize: theme.typography.pxToRem(9),
-                  fontWeight: 700,
+                  fontSize: theme.typography.pxToRem(10),
+                  fontWeight: 'Bold',
                   textTransform: 'uppercase',
-                  color: '#fff',
-                  letterSpacing: '0.1rem',
-                  bgcolor: 'success.main',
+                  letterSpacing: '.04rem',
+                  borderRadius: 8,
+                  border: 1,
+                  borderColor: 'success.300',
+                  bgcolor: alpha(theme.palette.success[100], 0.5),
+                  color: 'success.700',
                   ...theme.applyDarkStyles({
-                    bgcolor: 'success.900',
+                    borderColor: alpha(theme.palette.success[800], 0.5),
+                    bgcolor: alpha(theme.palette.success[800], 0.5),
+                    color: 'success.300',
                   }),
                 })}
               >
