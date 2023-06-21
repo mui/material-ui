@@ -59,7 +59,7 @@ const SwitchRoot = styled('div', {
   return {
     '--variant-borderWidth':
       theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
-    '--Switch-trackRadius': theme.vars.radius.lg,
+    '--Switch-trackRadius': theme.vars.radius.xl,
     '--Switch-thumbShadow':
       ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-trackBackground)', // create border-like if the thumb is bigger than the track
     ...(ownerState.size === 'sm' && {
