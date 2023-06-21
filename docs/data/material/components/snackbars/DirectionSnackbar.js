@@ -35,24 +35,20 @@ export default function DirectionSnackbar() {
   };
 
   return (
-    <div>
-      <Box sx={{ width: 300 }}>
-        <Grid container justifyContent="center">
-          <Grid item>
-            <Button onClick={handleClick(TransitionUp)}>Up</Button>
-          </Grid>
+    <Box sx={{ width: 300 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Button onClick={handleClick(TransitionUp)}>Up</Button>
+      </Box>
+      <Grid container justifyContent="center">
+        <Grid item xs={6}>
+          <Button onClick={handleClick(TransitionRight)}>Left</Button>
         </Grid>
-        <Grid container justifyContent="center">
-          <Grid item xs={6}>
-            <Button onClick={handleClick(TransitionRight)}>Left</Button>
-          </Grid>
-          <Grid item xs={6} textAlign="right">
-            <Button onClick={handleClick(TransitionLeft)}>Right</Button>
-          </Grid>
+        <Grid item xs={6} textAlign="right">
+          <Button onClick={handleClick(TransitionLeft)}>Right</Button>
         </Grid>
-        <Grid container justifyContent="center">
-          <Button onClick={handleClick(TransitionDown)}>Down</Button>
-        </Grid>
+      </Grid>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Button onClick={handleClick(TransitionDown)}>Down</Button>
       </Box>
       <Snackbar
         open={open}
@@ -61,6 +57,6 @@ export default function DirectionSnackbar() {
         message="I love snacks"
         key={transition ? transition.name : ''}
       />
-    </div>
+    </Box>
   );
 }
