@@ -2,7 +2,12 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "position": { "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" } },
+    "position": {
+      "type": {
+        "name": "enum",
+        "description": "'alternate-reverse'<br>&#124;&nbsp;'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
+      }
+    },
     "sx": {
       "type": {
         "name": "union",
