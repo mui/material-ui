@@ -51,12 +51,8 @@ const MenuButton = React.forwardRef(
           open,
           actions: menuActions,
           anchorEl: buttonRef.current,
-          slotProps: {
-            listbox: {
-              id: `toolbar-example-menu-${children}`,
-              'aria-label': children,
-            },
-          },
+          id: `toolbar-example-menu-${children}`,
+          'aria-label': children,
           placement: 'bottom-start',
           disablePortal: false,
           variant: 'soft',
@@ -175,7 +171,7 @@ export default function MenuToolbarExample() {
             <Menu
               onClose={(event) => {
                 menus.current[0]?.focus();
-                if (event.relatedTarget !== menus.current[0]) {
+                if (event?.relatedTarget !== menus.current[0]) {
                   setMenuIndex(null);
                 }
               }}
@@ -223,7 +219,7 @@ export default function MenuToolbarExample() {
             <Menu
               onClose={(event) => {
                 menus.current[1]?.focus();
-                if (event.relatedTarget !== menus.current[1]) {
+                if (event?.relatedTarget !== menus.current[1]) {
                   setMenuIndex(null);
                 }
               }}
@@ -267,7 +263,7 @@ export default function MenuToolbarExample() {
             <Menu
               onClose={(event) => {
                 menus.current[2]?.focus();
-                if (event.relatedTarget !== menus.current[2]) {
+                if (event?.relatedTarget !== menus.current[2]) {
                   setMenuIndex(null);
                 }
               }}
