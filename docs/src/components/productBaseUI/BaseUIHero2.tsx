@@ -255,7 +255,7 @@ const StyledPopper = styled(Popper)({
 });
 
 const StyledListbox = styled('ul')({
-  '--_listbox-radius': 'min(var(--border-radius), 20px)',
+  '--_listbox-radius': 'min(var(--border-radius), 12px)',
   width: 'calc(320px - 1rem)',
   maxHeight: 'calc(320px - 1rem)',
   overflow: 'auto',
@@ -267,7 +267,7 @@ const StyledListbox = styled('ul')({
   backgroundColor: 'var(--muidocs-palette-background-paper)',
   boxShadow: '0px 4px 40px rgba(62, 80, 96, 0.1)',
   padding: 'calc(var(--Select-spacing) * 0.5)',
-  gap: 'calc(var(--Select-spacing) * 0.3)',
+  gap: 'calc(var(--Select-spacing) * 0.2)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
   lineHeight: 21 / 14,
@@ -301,7 +301,7 @@ const StyledListbox = styled('ul')({
       color: 'var(--muidocs-palette-text-secondary)',
       alignItems: 'center',
       cursor: 'pointer',
-      borderRadius: 'calc(var(--_listbox-radius) - var(--Select-spacing) * 0.5)',
+      borderRadius: 'calc(var(--_listbox-radius) - var(--Select-spacing) * 0.05)',
 
       '&:hover, &.MuiOption-highlighted': {
         backgroundColor: 'var(--Option-hoverBackground, var(--muidocs-palette-grey-50))',
@@ -576,12 +576,13 @@ const StyledBadge = styled(Badge)(
 const StyledMenuItem = styled(MenuItem)(
   ({ theme }) => `
   list-style: none;
-  padding: 8px;
+  padding: 6px 8px;
   margin: 4px 0;
   border-radius: 8px;
   cursor: default;
   user-select: none;
   border-radius: min(var(--border-radius), 8px);
+  font-weight: 500;
 
   &:last-of-type {
     border-bottom: none;
