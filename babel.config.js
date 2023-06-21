@@ -40,7 +40,10 @@ module.exports = function getBabelConfig(api) {
         debug: process.env.MUI_BUILD_VERBOSE === 'true',
         modules: useESModules ? false : 'commonjs',
         shippedProposals: api.env('modern'),
-        include: ['@babel/plugin-proposal-class-properties', '@babel/plugin-proposal-object-rest-spread'],
+        include: [
+          '@babel/plugin-proposal-class-properties',
+          '@babel/plugin-proposal-object-rest-spread',
+        ],
       },
     ],
     [
