@@ -39,7 +39,7 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ## Implementing a Button
 
-This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style) as a reference.
+This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style/design/) as a reference.
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
@@ -128,7 +128,7 @@ After installing Tailwind CSS, pass its utility classes to `className`, as shown
 
 The demo below shows how to build the Primer button using Tailwind CSS:
 
-{{"demo": "BaseButtonTailwind.js", "hideToolbar": true}}
+{{"demo": "BaseButtonTailwind.js", "hideToolbar": true, "bg": "inline"}}
 
 ### Styling with MUI System
 
@@ -149,7 +149,7 @@ const theme = {
   },
 };
 
-const GithubButton = styled(Button)(
+const GitHubButton = styled(Button)(
   ({ theme }) => `
     background-color: ${theme.colors.primary /* => 'green' */};
   `,
@@ -157,7 +157,7 @@ const GithubButton = styled(Button)(
 
 render(
   <ThemeProvider theme={theme}>
-    <GithubButton>Create Repository</GithubButton>
+    <GitHubButton>Create Repository</GitHubButton>
   </ThemeProvider>,
 );
 ```
@@ -174,7 +174,7 @@ import * as React from 'react';
 import Button from '@mui/base/Button';
 import { styled } from '@mui/system';
 
-const GithubButton = styled(Button)(
+const GitHubButton = styled(Button)(
   ({ theme }) => `
     background-color: ${theme.palette.mode === 'dark' ? '#238636' : '#1f883d'};
     ${/* ... the rest of the styles */}
@@ -183,7 +183,7 @@ const GithubButton = styled(Button)(
 
 export default function App() {
   return (
-    <GithubButton>Create Repository</GithubButton>
+    <GitHubButton>Create Repository</GitHubButton>
   );
 }
 ```
@@ -195,7 +195,7 @@ import * as React from 'react';
 import useButton from '@mui/base/useButton';
 import { styled } from '@mui/system';
 
-const GithubButton = styled('button')(
+const GitHubButton = styled('button')(
   ({ theme }) => `
     background-color: ${theme.palette.mode === 'dark' ? '#238636' : '#1f883d'};
     ${/* ... the rest of the styles */}
@@ -206,9 +206,9 @@ export default function App() {
   const { getRootProps } = useButton(/* props*/);
 
   return (
-    <GithubButton type="button" {...getRootProps()}>
+    <GitHubButton type="button" {...getRootProps()}>
       Create Repository
-    </GithubButton>
+    </GitHubButton>
   );
 }
 ```
@@ -218,7 +218,7 @@ export default function App() {
 MUI System supports the [`sx` prop](/system/getting-started/the-sx-prop/), which provides a quick way to apply ad-hoc styles using theme-aware values to any component created with `styled`.
 
 ```tsx
-const GithubButton = styled(Button)(
+const GitHubButton = styled(Button)(
   ({ theme }) => `
     background-color: ${theme.palette.mode === 'dark' ? '#238636' : '#1f883d'};
     margin: 0;
@@ -227,9 +227,9 @@ const GithubButton = styled(Button)(
 
 export default function App() {
   return (
-    <GithubButton sx={{ m: 2 /* => margin: 16px */ }}>
+    <GitHubButton sx={{ m: 2 /* => margin: 16px */ }}>
       Create Repository
-    </GithubButton>
+    </GitHubButton>
   );
 }
 ```

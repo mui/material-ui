@@ -1,5 +1,4 @@
 const ROUTES = {
-  home: '/',
   productCore: '/core/',
   productAdvanced: '/x/',
   productToolpad: '/toolpad/',
