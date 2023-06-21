@@ -85,7 +85,8 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
       flexShrink: 0,
       minInlineSize: 0,
-      fontSize: 'var(--ListItem-fontSize)',
+      fontSize: `var(--ListItem-fontSize, ${theme.vars.fontSize.sm})`,
+      lineHeight: `var(--ListItem-lineHeight, ${theme.vars.lineHeight.sm})`,
       fontFamily: theme.vars.fontFamily.body,
       ...(ownerState.selected && {
         fontWeight: theme.vars.fontWeight.md,

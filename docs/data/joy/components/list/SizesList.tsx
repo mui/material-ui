@@ -31,7 +31,6 @@ export default function SizesList() {
               borderRadius: 'sm',
               maxWidth: 300,
               boxShadow: 'sm',
-              bgcolor: 'background.body',
             }}
           >
             <ListItem>

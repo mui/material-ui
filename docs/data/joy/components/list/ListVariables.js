@@ -34,7 +34,6 @@ export default function ListVariables() {
             ...sx,
             width: 300,
             ...theme.variants.outlined.neutral,
-            bgcolor: 'background.body',
           })}
         >
           <ListItem>
