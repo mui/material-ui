@@ -6808,10 +6808,10 @@ dom-accessibility-api@^0.5.9:
   resolved "https://registry.yarnpkg.com/dom-accessibility-api/-/dom-accessibility-api-0.5.16.tgz#5a7429e6066eb3664d911e33fb0e45de8eb08453"
   integrity sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==
 
-dom-accessibility-api@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/dom-accessibility-api/-/dom-accessibility-api-0.6.0.tgz#e2f179be2f8f8abcd9acfbb10e09d5b6124e46d7"
-  integrity sha512-4DeUx7GKaZ2jjPAOzBRhI2NHoVjt3YcTOj1aibPLdH9zhdrRsm0ZMqo2HzpTS2Iygt3NJEPFODJpOPqPs3dQtQ==
+dom-accessibility-api@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/dom-accessibility-api/-/dom-accessibility-api-0.6.1.tgz#630cb063717690fa89a7dca96abae328b987c064"
+  integrity sha512-WbiG8jCZESbcSwxLmbUiv3WZurc6H4opBIbBkBe/I3OSZvWCXXj+wxPueWodM/p4gegM1CqEr0iFY5DqyrncxA==
 
 dom-converter@^0.2.0:
   version "0.2.0"
