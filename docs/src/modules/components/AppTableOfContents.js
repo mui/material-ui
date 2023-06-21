@@ -9,6 +9,7 @@ import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { shouldHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
+import featureToggle from 'docs/src/featureToggle';
 
 const Nav = styled('nav')(({ theme }) => ({
   top: 0,
@@ -131,7 +132,7 @@ function flatten(headings) {
   return itemsWithNode;
 }
 
-const shouldShowJobAd = () => {
+function shouldShowJobAd() {
   const date = new Date();
   const timeZoneOffset = date.getTimezoneOffset();
   // Hide for time zones UT+5.5 - UTC+14 & UTC-8 - UTC-12
@@ -139,13 +140,14 @@ const shouldShowJobAd = () => {
     return false;
   }
   return true;
-};
+}
+
+const showSurveyBanner = false;
+const showJobAd = featureToggle.enable_job_banner && shouldShowJobAd();
 
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
-  const showSurveyBanner = false;
-  const showAddJob = shouldShowJobAd() && !showSurveyBanner;
 
   const items = React.useMemo(() => flatten(toc), [toc]);
   const [activeState, setActiveState] = React.useState(null);
@@ -280,7 +282,7 @@ export default function AppTableOfContents(props) {
             </Typography>
           </Link>
         )}
-        {showAddJob && (
+        {!showSurveyBanner && showJobAd && (
           <Link
             href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
             target="_blank"

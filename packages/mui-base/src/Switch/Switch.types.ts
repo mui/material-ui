@@ -1,5 +1,5 @@
-import { OverrideProps, Simplify } from '@mui/types';
-import { SlotComponentProps } from '../utils';
+import { Simplify } from '@mui/types';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseSwitchInputSlotProps, UseSwitchParameters } from '../useSwitch';
 
 export interface SwitchRootSlotPropsOverrides {}
@@ -63,9 +63,7 @@ export interface SwitchTypeMap<
 
 export type SwitchProps<
   RootComponentType extends React.ElementType = SwitchTypeMap['defaultComponent'],
-> = OverrideProps<SwitchTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<SwitchTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type SwitchOwnerState = Simplify<
   SwitchOwnProps & {

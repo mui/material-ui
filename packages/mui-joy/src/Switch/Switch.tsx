@@ -110,6 +110,7 @@ const SwitchRoot = styled('div', {
       'calc((var(--Switch-thumbSize) / 2) - (var(--Switch-trackHeight) / 2)) calc(-1 * var(--Switch-thumbOffset))',
     backgroundColor: 'initial', // clear background in case `outlined` variant contain background.
     border: 'none',
+    margin: 'var(--unstable_Switch-margin)',
   };
 });
 

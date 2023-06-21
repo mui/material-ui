@@ -2,6 +2,43 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import Slider, { sliderClasses } from '@mui/base/Slider';
 
+export default function DiscreteSliderValues() {
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider
+        aria-label="Temperature"
+        defaultValue={37}
+        getAriaValueText={valuetext}
+        step={null}
+        marks={marks}
+      />
+    </Box>
+  );
+}
+
+const marks = [
+  {
+    value: 0,
+    label: '0°C',
+  },
+  {
+    value: 20,
+    label: '20°C',
+  },
+  {
+    value: 37,
+    label: '37°C',
+  },
+  {
+    value: 100,
+    label: '100°C',
+  },
+];
+
+function valuetext(value) {
+  return `${value}°C`;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -27,7 +64,7 @@ const grey = {
 
 const StyledSlider = styled(Slider)(
   ({ theme }) => `
-  color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
+  color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 6px;
   width: 100%;
   padding: 16px 0;
@@ -76,7 +113,7 @@ const StyledSlider = styled(Slider)(
     border-radius: 50%;
     outline: 0;
     border: 3px solid currentColor;
-    background-color: #fff;
+    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
 
     :hover,
     &.${sliderClasses.focusVisible} {
@@ -96,21 +133,21 @@ const StyledSlider = styled(Slider)(
 
   & .${sliderClasses.mark} {
     position: absolute;
-    width: 4px;
-    height: 4px;
-    border-radius: 2px;
-    background-color: currentColor;
-    top: 50%;
-    opacity: 0.7;
+    width: 8px;
+    height: 8px;
+    border-radius: 99%;
+    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
+    top: 43%;
     transform: translateX(-50%);
   }
 
   & .${sliderClasses.markActive} {
-    background-color: #fff;
+    background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   }
 
   & .${sliderClasses.markLabel} {
     font-family: IBM Plex Sans;
+    font-weight: 600;
     font-size: 12px;
     position: absolute;
     top: 20px;
@@ -119,40 +156,3 @@ const StyledSlider = styled(Slider)(
   }
 `,
 );
-
-const marks = [
-  {
-    value: 0,
-    label: '0°C',
-  },
-  {
-    value: 20,
-    label: '20°C',
-  },
-  {
-    value: 37,
-    label: '37°C',
-  },
-  {
-    value: 100,
-    label: '100°C',
-  },
-];
-
-function valuetext(value) {
-  return `${value}°C`;
-}
-
-export default function DiscreteSliderValues() {
-  return (
-    <Box sx={{ width: 300 }}>
-      <StyledSlider
-        aria-label="Temperature"
-        defaultValue={37}
-        getAriaValueText={valuetext}
-        step={null}
-        marks={marks}
-      />
-    </Box>
-  );
-}

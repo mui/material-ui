@@ -13,11 +13,13 @@ import { TypographyInheritContext } from '../Typography/Typography';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TableOwnerState) => {
-  const { size, variant, color, borderAxis, stickyHeader, noWrap, hoverRow } = ownerState;
+  const { size, variant, color, borderAxis, stickyHeader, stickyFooter, noWrap, hoverRow } =
+    ownerState;
   const slots = {
     root: [
       'root',
       stickyHeader && 'stickyHeader',
+      stickyFooter && 'stickyFooter',
       noWrap && 'noWrap',
       hoverRow && 'hoverRow',
       borderAxis && `borderAxis${capitalize(borderAxis)}`,
@@ -97,6 +99,9 @@ const tableSelector = {
   getFooterCell() {
     return '& tfoot th, & tfoot td';
   },
+  getFooterFirstRowCell() {
+    return `& tfoot tr:not(:last-of-type) th, & tfoot tr:not(:last-of-type) td`;
+  },
 };
 
 const TableRoot = styled('table', {
@@ -132,6 +137,7 @@ const TableRoot = styled('table', {
       width: '100%',
       borderSpacing: '0px',
       borderCollapse: 'separate',
+      borderRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
       color: theme.vars.palette.text.primary,
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '& caption': {
@@ -250,16 +256,28 @@ const TableRoot = styled('table', {
     },
     ownerState.stickyHeader && {
       // The column header
-      [tableSelector.getHeadCell()]: {
+      [tableSelector.getHeaderCell()]: {
         position: 'sticky',
         top: 0,
-      },
-      [tableSelector.getHeaderCell()]: {
         zIndex: theme.vars.zIndex.table,
       },
       [tableSelector.getHeaderCellOfRow(2)]: {
         // support upto 2 rows for the sticky header
         top: 'var(--unstable_TableCell-height)',
+      },
+    },
+    ownerState.stickyFooter && {
+      // The column header
+      [tableSelector.getFooterCell()]: {
+        position: 'sticky',
+        bottom: 0,
+        zIndex: theme.vars.zIndex.table,
+        color: theme.vars.palette.text.secondary,
+        fontWeight: theme.vars.fontWeight.lg,
+      },
+      [tableSelector.getFooterFirstRowCell()]: {
+        // support upto 2 rows for the sticky footer
+        bottom: 'var(--unstable_TableCell-height)',
       },
     },
   ];
@@ -292,6 +310,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     color: colorProp = 'neutral',
     stripe,
     stickyHeader = false,
+    stickyFooter = false,
     slots = {},
     slotProps = {},
     ...other
@@ -310,6 +329,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     variant,
     stripe,
     stickyHeader,
+    stickyFooter,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -401,7 +421,14 @@ Table.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * Set the header sticky.
+   * If `true`, the footer always appear at the bottom of the overflow table.
+   *
+   * ⚠️ It doesn't work with IE11.
+   * @default false
+   */
+  stickyFooter: PropTypes.bool,
+  /**
+   * If `true`, the header always appear at the top of the overflow table.
    *
    * ⚠️ It doesn't work with IE11.
    * @default false

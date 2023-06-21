@@ -36,7 +36,7 @@
     "disabledItemsFocusable": { "type": { "name": "bool" }, "default": "false" },
     "disableListWrap": { "type": { "name": "bool" }, "default": "false" },
     "disablePortal": { "type": { "name": "bool" }, "default": "false" },
-    "filterOptions": { "type": { "name": "func" } },
+    "filterOptions": { "type": { "name": "func" }, "default": "createFilterOptions()" },
     "filterSelectedOptions": { "type": { "name": "bool" }, "default": "false" },
     "forcePopupIcon": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;bool" },
@@ -108,6 +108,7 @@
       "fullWidth",
       "expanded",
       "focused",
+      "focusVisible",
       "tag",
       "tagSizeSmall",
       "tagSizeMedium",
@@ -130,7 +131,11 @@
       "groupLabel",
       "groupUl"
     ],
-    "globalClasses": { "expanded": "Mui-expanded", "focused": "Mui-focused" },
+    "globalClasses": {
+      "expanded": "Mui-expanded",
+      "focused": "Mui-focused",
+      "focusVisible": "Mui-focusVisible"
+    },
     "name": "MuiAutocomplete"
   },
   "spread": true,

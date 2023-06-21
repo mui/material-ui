@@ -92,7 +92,7 @@ const Root = styled('div')(
     font-size: 0.875rem;
     width: 100%;
     background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-    box-shadow: 0px 4px 30px ${
+    box-shadow: 0px 2px 16px ${
       theme.palette.mode === 'dark' ? grey[900] : grey[200]
     };
     border-radius: 12px;
@@ -136,7 +136,7 @@ const CustomTablePagination = styled(TablePagination)(
   }
 
   & .${classes.select}{
-    padding: 2px;
+    padding: 2px 6px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     border-radius: 50px;
     background-color: transparent;
@@ -169,12 +169,12 @@ const CustomTablePagination = styled(TablePagination)(
   & .${classes.actions} > button {
     margin: 0 8px;
     border: transparent;
-    border-radius: 2px;
+    border-radius: 4px;
     background-color: transparent;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
 
     &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     }
 
     &:focus {

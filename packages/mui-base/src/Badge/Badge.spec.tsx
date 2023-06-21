@@ -26,24 +26,48 @@ const polymorphicComponentTest = () => {
       return <div />;
     };
 
+  const CustomRoot = function CustomRoot() {
+    return <div />;
+  };
+
   return (
     <div>
       {/* @ts-expect-error */}
       <Badge invalidProp={0} />
 
-      <Badge component="a" href="#" />
+      <Badge<'a'>
+        slots={{
+          root: 'a',
+        }}
+        href="#"
+      />
 
-      <Badge component={CustomComponent} stringProp="test" numberProp={0} />
-      {/* @ts-expect-error */}
-      <Badge component={CustomComponent} />
+      <Badge<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+        stringProp="test"
+        numberProp={0}
+      />
+
+      {/* @ts-expect-error required props not specified */}
+      <Badge<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+      />
 
       <Badge
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
       <Badge<'button'>
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}
@@ -52,6 +76,8 @@ const polymorphicComponentTest = () => {
           e.currentTarget.checkValidity();
         }}
       />
+
+      <Badge<'svg'> viewBox="" />
     </div>
   );
 };

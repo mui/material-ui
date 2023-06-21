@@ -34,7 +34,7 @@ ReactDOM.createRoot(shadowRootElement).render(
 
 ### 2. Theme
 
-MUI components like `Menu`, `Dialog`, `Popover` and others use [`Portal`](/material-ui/react-portal/) to render a new "subtree" in a container outside of current DOM hierarchy.
+Material UI components like `Menu`, `Dialog`, `Popover` and others use [`Portal`](/material-ui/react-portal/) to render a new "subtree" in a container outside of current DOM hierarchy.
 By default, this container is `document.body`.
 But since the styles are applied only inside of the Shadow DOM, we need to render portals inside the Shadow DOM container as well:
 

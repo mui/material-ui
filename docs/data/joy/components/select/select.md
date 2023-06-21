@@ -4,7 +4,7 @@ title: React Select component
 components: Select, Option
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
-unstyled: /base/react-select/
+unstyled: /base-ui/react-select/
 ---
 
 # Select
@@ -131,6 +131,12 @@ To control the placement of the listbox, use `placement`:
 ```
 
 :::
+
+#### Controlling the open state
+
+You can control the open state of the select with the `listboxOpen` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultListboxOpen` prop.
+
+{{"demo": "ControlledOpenSelect.js"}}
 
 ### `Option` component
 

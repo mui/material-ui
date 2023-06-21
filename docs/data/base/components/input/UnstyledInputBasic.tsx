@@ -2,6 +2,17 @@ import * as React from 'react';
 import Input, { InputProps } from '@mui/base/Input';
 import { styled } from '@mui/system';
 
+const CustomInput = React.forwardRef(function CustomInput(
+  props: InputProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
+  return <Input slots={{ input: StyledInputElement }} {...props} ref={ref} />;
+});
+
+export default function UnstyledInputBasic() {
+  return <CustomInput aria-label="Demo input" placeholder="Type something…" />;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#80BFFF',
@@ -52,14 +63,3 @@ const StyledInputElement = styled('input')(
   }
 `,
 );
-
-const CustomInput = React.forwardRef(function CustomInput(
-  props: InputProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
-  return <Input slots={{ input: StyledInputElement }} {...props} ref={ref} />;
-});
-
-export default function UnstyledInputBasic() {
-  return <CustomInput aria-label="Demo input" placeholder="Type something…" />;
-}

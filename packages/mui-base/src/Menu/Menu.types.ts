@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { OverrideProps, Simplify } from '@mui/types';
+import { Simplify } from '@mui/types';
 import Popper, { PopperProps } from '../Popper';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
 
@@ -9,13 +9,19 @@ export interface MenuRootSlotPropsOverrides {}
 export interface MenuListboxSlotPropsOverrides {}
 
 export interface MenuActions {
+  /**
+   * Dispatches an action that can cause a change to the menu's internal state.
+   */
   dispatch: (action: ListAction<string>) => void;
+  /**
+   * Resets the highlighted item.
+   */
+  resetHighlight: () => void;
 }
 
 export interface MenuOwnProps {
   /**
-   * A ref with imperative actions.
-   * It allows to select the first or last menu item.
+   * A ref with imperative actions that can be performed on the menu.
    */
   actions?: React.Ref<MenuActions>;
   /**
@@ -28,6 +34,10 @@ export interface MenuOwnProps {
   className?: string;
   defaultOpen?: boolean;
   listboxId?: string;
+  /**
+   * Function called when the items displayed in the menu change.
+   */
+  onItemsChange?: (items: string[]) => void;
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */
@@ -76,9 +86,7 @@ export interface MenuTypeMap<
 
 export type MenuProps<
   RootComponentType extends React.ElementType = MenuTypeMap['defaultComponent'],
-> = OverrideProps<MenuTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<MenuTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type MenuOwnerState = Simplify<
   MenuOwnProps & {

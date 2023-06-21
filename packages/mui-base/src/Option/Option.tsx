@@ -25,18 +25,9 @@ const Option = React.forwardRef(function Option<
   OptionValue,
   RootComponentType extends React.ElementType,
 >(props: OptionProps<OptionValue, RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
-  const {
-    children,
-    component,
-    disabled = false,
-    label,
-    slotProps = {},
-    slots = {},
-    value,
-    ...other
-  } = props;
+  const { children, disabled = false, label, slotProps = {}, slots = {}, value, ...other } = props;
 
-  const Root = component || slots.root || 'li';
+  const Root = slots.root ?? 'li';
 
   const optionRef = React.useRef<HTMLElement>(null);
   const combinedRef = useForkRef(optionRef, forwardedRef);
@@ -85,11 +76,6 @@ Option.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * If `true`, the option will be disabled.
    * @default false
    */
@@ -125,10 +111,10 @@ Option.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Select](https://mui.com/base-ui/react-select/)
  *
  * API:
  *
- * - [Option API](https://mui.com/base/react-select/components-api/#option)
+ * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
  */
 export default React.memo(Option) as OptionType;
