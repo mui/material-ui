@@ -400,6 +400,15 @@ const Root = styled('div')(
       borderColor: lightTheme.palette.primaryDark[500],
       backgroundColor: lightTheme.palette.primaryDark[600],
       color: lightTheme.palette.primaryDark[50],
+      '& svg': {
+        userSelect: 'none',
+        width: '1em',
+        height: '1em',
+        display: 'inline-block',
+        fill: 'currentcolor',
+        flexShrink: 0,
+        fontSize: '18px',
+      },
       '&:hover, &:focus': {
         opacity: 1,
         color: '#fff',
@@ -412,6 +421,9 @@ const Root = styled('div')(
           '@media (any-hover: none)': {
             display: 'none',
           },
+          '& .MuiCode-copied-icon': {
+            display: 'none',
+          },
         },
       },
       '& .MuiCode-copyKeypress': {
@@ -422,6 +434,12 @@ const Root = styled('div')(
         borderColor: lightTheme.palette.primary[700],
         color: '#fff',
         backgroundColor: lightTheme.palette.primaryDark[600],
+        '& .MuiCode-copy-icon': {
+          display: 'none',
+        },
+        '& .MuiCode-copied-icon': {
+          display: 'block',
+        },
       },
       '&:focus-visible': {
         outline: '2px solid',
