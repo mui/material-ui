@@ -63,7 +63,6 @@ export default function MyProfile() {
         />
         <TabList
           variant="plain"
-          size="sm"
           sx={(theme) => ({
             '--List-padding': '0px',
             '--ListItem-minHeight': 'var(--Tab-height)',
