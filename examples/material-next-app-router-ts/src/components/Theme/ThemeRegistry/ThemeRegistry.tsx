@@ -9,11 +9,12 @@ import theme from './theme';
 
 export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
-      </NextAppDirEmotionCacheProvider>
-    </React.Fragment>
+    <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    </NextAppDirEmotionCacheProvider>
   );
 }
