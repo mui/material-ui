@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
-import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 interface ProductSubMenuProp extends BoxProps {
   icon: React.ReactNode;
@@ -65,27 +65,27 @@ const products = [
   {
     name: 'Material UI',
     href: ROUTES.materialDocs,
-    slug: 'material-ui',
+    id: 'material-ui',
   },
   {
     name: 'Joy UI',
     href: ROUTES.joyDocs,
-    slug: 'joy-ui',
+    id: 'joy-ui',
   },
   {
     name: 'Base UI',
     href: ROUTES.baseDocs,
-    slug: 'base',
+    id: 'base-ui',
   },
   {
     name: 'MUI System',
     href: ROUTES.systemDocs,
-    slug: 'system',
+    id: 'system',
   },
 ];
 
 export default function MuiProductSelector() {
-  const routerExtra = useRouterExtra();
+  const { productId } = React.useContext(PageContext);
 
   return (
     <React.Fragment>
@@ -127,8 +127,8 @@ export default function MuiProductSelector() {
             {products.map((product) => (
               <Chip
                 key={product.name}
-                color={routerExtra.product === product.slug ? 'default' : undefined}
-                variant={routerExtra.product === product.slug ? 'filled' : 'outlined'}
+                color={productId === product.id ? 'default' : undefined}
+                variant={productId === product.id ? 'filled' : 'outlined'}
                 component={Link}
                 href={product.href}
                 label={product.name}
@@ -198,7 +198,7 @@ export default function MuiProductSelector() {
             icon={<IconImage name="product-toolpad" />}
             name="MUI Toolpad"
             description="Low-code admin builder."
-            chip={<Chip size="small" label="Alpha" color="primary" variant="outlined" />}
+            chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
           />
         </Link>
       </li>
