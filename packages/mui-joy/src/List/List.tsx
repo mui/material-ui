@@ -42,7 +42,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--ListItem-paddingX': '0.5rem',
         '--ListItem-fontSize': theme.vars.fontSize.sm,
         '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
-        '--Icon-fontSize': '1.125rem',
+        '--Icon-fontSize': theme.vars.fontSize.lg,
       };
     }
     if (size === 'md') {
@@ -53,7 +53,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--ListItem-paddingX': '0.75rem',
         '--ListItem-fontSize': theme.vars.fontSize.md,
         '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
-        '--Icon-fontSize': '1.25rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl,
       };
     }
     if (size === 'lg') {
@@ -64,7 +64,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--ListItem-paddingX': '1rem',
         '--ListItem-fontSize': theme.vars.fontSize.md,
         '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
-        '--Icon-fontSize': '1.5rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
       };
     }
     return {};

@@ -16,10 +16,7 @@ export default function DecoratedList() {
       >
         Ingredients
       </Typography>
-      <List
-        aria-labelledby="decorated-list-demo"
-        sx={{ '--ListItemDecorator-size': '32px' }}
-      >
+      <List aria-labelledby="decorated-list-demo">
         <ListItem>
           <ListItemDecorator>🧅</ListItemDecorator> 1 red onion
         </ListItem>
