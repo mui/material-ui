@@ -37,6 +37,9 @@ import MenuOpenRounded from '@mui/icons-material/MenuOpenRounded';
 import FirstPageRounded from '@mui/icons-material/FirstPageRounded';
 import TabRounded from '@mui/icons-material/TabRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import InterestsRoundedIcon from '@mui/icons-material/InterestsRounded';
+import RadioRoundedIcon from '@mui/icons-material/RadioRounded';
+
 
 // Local imports
 import HeroContainer from 'docs/src/layouts/HeroContainer';
@@ -86,14 +89,19 @@ const StyledTabsList = styled('div')({
 });
 
 const StyledTab = styled('button')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 6,
   position: 'relative',
   minHeight: 42,
   flex: 1,
-  padding: '0.5rem 1rem',
+  padding: '0.75rem',
   background: 'var(--Tab-background)',
   border: 'none',
   fontSize: 14,
   fontWeight: 600,
+  color: 'var(--muidocs-palette-text-secondary)',
 
   '&:hover:not(.Mui-selected)': {
     background: 'var(--Tab-hoverBackground)',
@@ -860,12 +868,15 @@ export default function BaseUIHero() {
             <Tabs value={design} onChange={(event, newValue) => setDesign(newValue as number)}>
               <TabsList slots={{ root: StyledTabsList }}>
                 <Tab slots={{ root: StyledTab }} value={0}>
+                  <AutoAwesomeRounded sx={{fontSize: 15}}/>
                   Sleek
                 </Tab>
                 <Tab slots={{ root: StyledTab }} value={1}>
+                <RadioRoundedIcon sx={{fontSize: 15}} />
                   Retro
                 </Tab>
                 <Tab slots={{ root: StyledTab }} value={2}>
+                <InterestsRoundedIcon sx={{fontSize: 15}}/>
                   Playful
                 </Tab>
               </TabsList>
