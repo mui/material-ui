@@ -237,6 +237,12 @@ This demo reproduces GitHub's label picker:
 
 Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
 
+### Hint
+
+The following demo shows how to add a hint feature to the Autocomplete using the `renderInput` and `filterOptions` props:
+
+{{"demo": "AutocompleteHint.js"}}
+
 ## Highlights
 
 The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.

@@ -10,6 +10,7 @@ const timelineClasses = generateUtilityClasses('MuiTimeline', [
   'positionLeft',
   'positionRight',
   'positionAlternate',
+  'positionAlternateReverse',
 ]);
 
 export default timelineClasses;

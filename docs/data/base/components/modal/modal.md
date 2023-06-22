@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Modal component
 components: Modal
 githubLabel: 'component: modal'
@@ -49,7 +49,7 @@ Modal is a lower-level construct that is used in the following Material UI compo
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Modal from '@mui/base/Modal';

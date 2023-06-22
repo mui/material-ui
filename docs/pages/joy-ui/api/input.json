@@ -48,13 +48,13 @@
     {
       "name": "startDecorator",
       "description": "The component that renders the start decorator.",
-      "default": "'span'",
+      "default": "'div'",
       "class": ".MuiInput-startDecorator"
     },
     {
       "name": "endDecorator",
       "description": "The component that renders the end decorator.",
-      "default": "'span'",
+      "default": "'div'",
       "class": ".MuiInput-endDecorator"
     }
   ],
