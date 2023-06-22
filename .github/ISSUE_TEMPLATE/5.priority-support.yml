@@ -1,7 +1,7 @@
 name: 'Priority support: SLA ⏰'
 description: I'm a Premium plan user and I have the priority support add-on, I can't find a solution to my problem with MUI X.
 title: '[question] '
-labels: ['status: needs triage', 'support: commercial', 'support: unknown']
+labels: ['status: needs triage', 'support: unknown']
 body:
   - type: markdown
     attributes:
