@@ -46,7 +46,7 @@ const SvgIconRoot = styled('svg', {
     ownerState.fontSize !== 'inherit' && {
       fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
     }),
-  color: 'var(--Icon-color)',
+  color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
   ...(ownerState.color !== 'inherit' &&
     ownerState.color !== 'context' &&
     theme.vars.palette[ownerState.color!] && {
@@ -77,7 +77,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     className,
     color = 'inherit',
     component = 'svg',
-    fontSize = 'xl',
+    fontSize = 'xl2',
     htmlColor,
     inheritViewBox = false,
     titleAccess,

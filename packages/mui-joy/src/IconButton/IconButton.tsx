@@ -34,64 +34,69 @@ const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
 };
 
 export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerState }>(
-  ({ theme, ownerState }) => [
-    {
-      '--Icon-margin': 'initial', // reset the icon's margin.
-      ...(ownerState.instanceSize && {
-        '--IconButton-size': { sm: '2rem', md: '2.5rem', lg: '3rem' }[ownerState.instanceSize],
-      }),
-      ...(ownerState.size === 'sm' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
-        '--CircularProgress-size': '20px',
-        minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
-        minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
-        fontSize: theme.vars.fontSize.sm,
-        paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)', // 1.5rem by default
-        '--CircularProgress-size': '24px',
-        minWidth: 'var(--IconButton-size, 2.5rem)',
-        minHeight: 'var(--IconButton-size, 2.5rem)',
-        fontSize: theme.vars.fontSize.md,
-        paddingInline: '0.25rem',
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 3rem) / 1.714)', // 1.75rem by default
-        '--CircularProgress-size': '28px',
-        minWidth: 'var(--IconButton-size, 3rem)',
-        minHeight: 'var(--IconButton-size, 3rem)',
-        fontSize: theme.vars.fontSize.lg,
-        paddingInline: '0.375rem',
-      }),
-      WebkitTapHighlightColor: 'transparent',
-      paddingBlock: 0,
-      fontFamily: theme.vars.fontFamily.body,
-      fontWeight: theme.vars.fontWeight.md,
-      margin: `var(--IconButton-margin)`, // to be controlled by other components, eg. Input
-      borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
-      border: 'none',
-      boxSizing: 'border-box',
-      backgroundColor: 'transparent',
-      cursor: 'pointer',
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      [theme.focus.selector]: theme.focus.default,
-    },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    {
-      '&:hover': {
-        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+  ({ theme, ownerState }) => {
+    const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+    return [
+      {
+        '--Icon-margin': 'initial',
+        '--Icon-color': 'inherit',
+        ...(ownerState.instanceSize && {
+          '--IconButton-size': { sm: '2rem', md: '2.5rem', lg: '3rem' }[ownerState.instanceSize],
+        }),
+        ...(ownerState.size === 'sm' && {
+          '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)',
+          '--CircularProgress-size': '20px',
+          minWidth: 'var(--IconButton-size, 2rem)',
+          minHeight: 'var(--IconButton-size, 2rem)',
+          fontSize: theme.vars.fontSize.sm,
+          paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
+        }),
+        ...(ownerState.size === 'md' && {
+          '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)',
+          '--CircularProgress-size': '24px',
+          minWidth: 'var(--IconButton-size, 2.5rem)',
+          minHeight: 'var(--IconButton-size, 2.5rem)',
+          fontSize: theme.vars.fontSize.md,
+          paddingInline: '0.25rem',
+        }),
+        ...(ownerState.size === 'lg' && {
+          '--Icon-fontSize': 'calc(var(--IconButton-size, 3rem) / 1.714)',
+          '--CircularProgress-size': '28px',
+          minWidth: 'var(--IconButton-size, 3rem)',
+          minHeight: 'var(--IconButton-size, 3rem)',
+          fontSize: theme.vars.fontSize.lg,
+          paddingInline: '0.375rem',
+        }),
+        WebkitTapHighlightColor: 'transparent',
+        paddingBlock: 0,
+        fontFamily: theme.vars.fontFamily.body,
+        fontWeight: theme.vars.fontWeight.md,
+        margin: `var(--IconButton-margin)`,
+        borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`,
+        border: 'none',
+        boxSizing: 'border-box',
+        backgroundColor: 'transparent',
+        cursor: 'pointer',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        [theme.focus.selector]: theme.focus.default,
       },
-    },
-    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
-    {
-      [`&.${iconButtonClasses.disabled}`]:
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-  ],
+      variantStyle,
+      {
+        '&:hover': {
+          '@media (hover: hover)':
+            theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        },
+      },
+      { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+      {
+        [`&.${iconButtonClasses.disabled}`]:
+          theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      },
+    ];
+  },
 );
 
 export const IconButtonRoot = styled(StyledIconButton, {

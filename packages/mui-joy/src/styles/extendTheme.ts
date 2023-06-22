@@ -218,6 +218,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         primary: getCssVarColor('palette-neutral-800'),
         secondary: getCssVarColor('palette-neutral-700'),
         tertiary: getCssVarColor('palette-neutral-600'),
+        icon: getCssVarColor('palette-neutral-400'),
       },
       background: {
         body: getCssVarColor('palette-neutral-50'),
@@ -276,6 +277,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         primary: getCssVarColor('palette-neutral-100'),
         secondary: getCssVarColor('palette-neutral-300'),
         tertiary: getCssVarColor('palette-neutral-400'),
+        icon: getCssVarColor('palette-neutral-500'),
       },
       background: {
         body: getCssVarColor('palette-common-black'),
@@ -540,7 +542,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
             root: ({ ownerState, theme: themeProp }) => {
               const instanceFontSize = ownerState.instanceFontSize as 'inherit' | keyof FontSize;
               return {
-                color: 'var(--Icon-color)',
+                color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
                 margin: 'var(--Icon-margin)',
                 ...(ownerState.fontSize &&
                   ownerState.fontSize !== 'inherit' && {

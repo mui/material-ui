@@ -1,8 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import * as React from 'react';
-import { CssVarsProvider, styled } from '@mui/joy/styles';
+import { CssVarsProvider, styled, useColorScheme } from '@mui/joy/styles';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
+import CssBaseline from '@mui/joy/CssBaseline';
 import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 import Link from '@mui/joy/Link';
@@ -16,6 +17,37 @@ import IconButton from '@mui/joy/IconButton';
 import SvgIcon from '@mui/joy/SvgIcon';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import CheckCircle from '@mui/icons-material/CheckCircle';
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
+
+function ColorSchemeToggle() {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return <IconButton size="sm" variant="outlined" color="primary" />;
+  }
+  return (
+    <IconButton
+      id="toggle-mode"
+      size="sm"
+      variant="soft"
+      color="neutral"
+      onClick={() => {
+        if (mode === 'light') {
+          setMode('dark');
+        } else {
+          setMode('light');
+        }
+      }}
+      sx={{ position: 'fixed', top: '1rem', right: '1rem', zIndex: 1000 }}
+    >
+      {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
+    </IconButton>
+  );
+}
 
 const Prose = styled(Box)(({ theme }) => ({
   lineHeight: theme.vars.lineHeight.md,
@@ -37,6 +69,8 @@ const Prose = styled(Box)(({ theme }) => ({
 export default function ProsePage() {
   return (
     <CssVarsProvider defaultMode="system">
+      <CssBaseline />
+      <ColorSchemeToggle />
       <Box
         sx={{
           display: 'flex',
@@ -153,7 +187,21 @@ export default function ProsePage() {
           }}
         >
           <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
-            <CheckCircle fontSize="xl" />
+            <SvgIcon fontSize="xl">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+                />
+              </svg>
+            </SvgIcon>
             <div>
               <Typography level="title-sm">Title topic</Typography>
               <Typography level="body-sm">
@@ -172,11 +220,23 @@ export default function ProsePage() {
           </Sheet>
 
           <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
-            <CheckCircle />
+            <SvgIcon>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+                />
+              </svg>
+            </SvgIcon>
             <div>
-              <Typography level="body-sm" lineHeight="xl">
-                Tag of the post
-              </Typography>
+              <Typography level="body-sm">Tag of the post</Typography>
               <Typography>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry
               </Typography>
@@ -193,7 +253,21 @@ export default function ProsePage() {
           </Sheet>
 
           <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
-            <CheckCircle />
+            <SvgIcon>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+                />
+              </svg>
+            </SvgIcon>
             <div>
               <Typography level="title-md">Title topic</Typography>
               <Typography>
@@ -212,7 +286,21 @@ export default function ProsePage() {
           </Sheet>
 
           <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
-            <CheckCircle fontSize="xl3" />
+            <SvgIcon fontSize="xl3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+                />
+              </svg>
+            </SvgIcon>
             <div>
               <Typography level="title-lg">Title topic</Typography>
               <Typography level="body-md">
@@ -227,7 +315,21 @@ export default function ProsePage() {
           </Sheet>
 
           <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
-            <CheckCircle fontSize="xl3" />
+            <SvgIcon fontSize="xl3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+                />
+              </svg>
+            </SvgIcon>
             <div>
               <Typography lineHeight="xl">Post metadata</Typography>
               <Typography level="title-lg">

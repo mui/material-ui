@@ -76,6 +76,7 @@ interface DefaultPaletteText {
   primary: string;
   secondary: string;
   tertiary: string;
+  icon: string;
 }
 export interface PaletteTextOverrides {}
 export interface PaletteText
