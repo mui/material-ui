@@ -1,3 +1,4 @@
+'use client';
 import { createContainer } from '@mui/system';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
