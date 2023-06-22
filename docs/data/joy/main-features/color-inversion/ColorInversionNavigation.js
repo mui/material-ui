@@ -61,12 +61,12 @@ export default function ColorInversionNavigation() {
               <BubbleChartIcon sx={{ m: 0 }} />
             </Sheet>
           }
-          sx={{ py: 1 }}
           slotProps={{
             listbox: {
               disablePortal: true,
             },
           }}
+          sx={{ py: 1 }}
         >
           <Option value="1">General team</Option>
           <Option value="2">Engineering team</Option>
