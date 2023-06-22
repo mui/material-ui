@@ -46,7 +46,6 @@ function extendTheme({ cssVarPrefix = 'system-demo' } = {}) {
       prefix: cssVarPrefix,
     },
   );
-
   const theme = {
     colorSchemes: {
       light: lightColorScheme,
