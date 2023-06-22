@@ -39,8 +39,8 @@ const TimelineItemRoot = styled('li', {
   ...(ownerState.position === 'left' && {
     flexDirection: 'row-reverse',
   }),
-  ...(ownerState.position === 'alternate' && {
-    '&:nth-of-type(even)': {
+  ...((ownerState.position === 'alternate' || ownerState.position === 'alternate-reverse') && {
+    [`&:nth-of-type(${ownerState.position === 'alternate' ? 'even' : 'odd'})`]: {
       flexDirection: 'row-reverse',
       [`& .${timelineContentClasses.root}`]: {
         textAlign: 'right',
@@ -117,7 +117,7 @@ TimelineItem.propTypes /* remove-proptypes */ = {
   /**
    * The position where the timeline's item should appear.
    */
-  position: PropTypes.oneOf(['left', 'right']),
+  position: PropTypes.oneOf(['alternate-reverse', 'alternate', 'left', 'right']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
