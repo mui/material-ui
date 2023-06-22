@@ -1,12 +1,12 @@
 import * as React from 'react';
 import './index.css';
 
-export default function RowAndColumnSpacing() {
+export default function App() {
   return (
     <div className="box">
       <h1>Base UI + Create React App scaffold (JavaScript)</h1>
       <div className="item">
-        <a href="https://mui.com/base/getting-started/overview/">Base UI</a> is a library of
+        <a href="https://mui.com/base-ui/getting-started/overview/">Base UI</a> is a library of
         unstyled React UI components which includes prebuilt components with production-ready
         functionality, along with low-level hooks for transferring that functionality to other
         components.
