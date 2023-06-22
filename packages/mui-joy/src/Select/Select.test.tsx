@@ -37,12 +37,14 @@ describe('Joy <Select />', () => {
             anchorEl,
             direction,
             disablePortal,
+            keepMounted,
             modifiers,
             open,
             placement,
             popperOptions,
             popperRef,
             TransitionProps,
+            ownerState,
             ...other
           }: T) => other;
           return <ul ref={ref} {...excludePopperProps(props)} data-testid="custom" />;
