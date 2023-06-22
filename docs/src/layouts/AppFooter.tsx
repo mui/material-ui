@@ -145,7 +145,14 @@ export default function AppFooter(props: AppFooterProps) {
           justifyContent: { sm: 'space-between' },
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: { xs: 'start', sm: 'center' },
+            gap: 1.5,
+          }}
+        >
           <Link href="/" aria-label="Go to homepage">
             <SvgMuiLogotype height={28} width={91} />
           </Link>
