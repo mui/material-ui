@@ -544,6 +544,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
               return {
                 color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
                 margin: 'var(--Icon-margin)',
+                opacity: 'var(--Icon-opacity)',
                 ...(ownerState.fontSize &&
                   ownerState.fontSize !== 'inherit' && {
                     fontSize: `var(--Icon-fontSize, ${

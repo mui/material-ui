@@ -90,11 +90,13 @@ export const ButtonRoot = styled('button', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ButtonOwnerState }>(({ theme, ownerState }) => {
-  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
-      '--Icon-color': variantStyle?.color,
+      '--Icon-color': 'currentColor',
+      '&:not(:hover, :active)': {
+        '--Icon-opacity': 0.8,
+      },
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': '1.25rem',
         '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
@@ -141,7 +143,7 @@ export const ButtonRoot = styled('button', {
       }),
       [theme.focus.selector]: theme.focus.default,
     },
-    variantStyle,
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
     {
       '&:hover': {
         '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],

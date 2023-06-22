@@ -4,7 +4,6 @@ import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Alert from '@mui/joy/Alert';
 import IconButton from '@mui/joy/IconButton';
-import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 
 export default function AlertWithDangerState() {
@@ -25,9 +24,7 @@ export default function AlertWithDangerState() {
           </React.Fragment>
         }
       >
-        <Typography color="danger" fontWeight="md">
-          This file was successfully deleted
-        </Typography>
+        This file was successfully deleted
       </Alert>
       <Alert
         startDecorator={<WarningIcon />}
@@ -44,9 +41,7 @@ export default function AlertWithDangerState() {
           </React.Fragment>
         }
       >
-        <Typography sx={{ color: 'white' }} fontWeight="md">
-          This file was successfully deleted
-        </Typography>
+        This file was successfully deleted
       </Alert>
 
       <Alert
@@ -64,9 +59,7 @@ export default function AlertWithDangerState() {
           </React.Fragment>
         }
       >
-        <Typography color="danger" fontWeight="md">
-          This file was successfully deleted
-        </Typography>
+        This file was successfully deleted
       </Alert>
     </Box>
   );

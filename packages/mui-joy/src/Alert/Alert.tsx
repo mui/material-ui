@@ -41,6 +41,7 @@ const AlertRoot = styled('div', {
     '--IconButton-size': 'var(--Alert-decoratorChildHeight)',
     '--Button-radius': 'var(--Alert-decoratorChildRadius)',
     '--IconButton-radius': 'var(--Alert-decoratorChildRadius)',
+    '--Icon-color': 'currentColor',
     ...(ownerState.size === 'sm' && {
       '--Alert-padding': '0.5rem',
       '--Alert-gap': '0.375rem',
@@ -79,28 +80,22 @@ const AlertStartDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>({
   display: 'inherit',
   flex: 'none',
   marginInlineEnd: 'var(--Alert-gap)',
-  ...(ownerState.color !== 'context' && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-  }),
-}));
+});
 
 const AlertEndDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>({
   display: 'inherit',
   flex: 'none',
   marginInlineStart: 'var(--Alert-gap)',
   marginLeft: 'auto',
-  ...(ownerState.color !== 'context' && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-  }),
-}));
+});
 /**
  *
  * Demos:

@@ -51,6 +51,7 @@ const ChipRoot = styled('div', {
       '--Avatar-radius': 'var(--Chip-decoratorChildRadius)',
       '--Avatar-size': 'var(--Chip-decoratorChildHeight)',
       '--Icon-margin': 'initial', // reset the icon's margin.
+      '--Icon-color': 'currentColor',
       '--unstable_actionRadius': 'var(--_Chip-radius)', // to be used with Radio or Checkbox
       ...(ownerState.size === 'sm' && {
         '--Chip-gap': '0.25rem',
@@ -138,6 +139,9 @@ const ChipAction = styled('button', {
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => [
   {
+    '&:not(:hover, :active) ~ *': {
+      '--Icon-opacity': 0.8,
+    },
     position: 'absolute',
     zIndex: 0,
     top: 0,

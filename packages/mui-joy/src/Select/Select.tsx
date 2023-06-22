@@ -88,6 +88,7 @@ const SelectRoot = styled('div', {
       '--Select-radius': theme.vars.radius.sm,
       '--Select-gap': '0.5rem',
       '--Select-placeholderOpacity': 0.5,
+      '--Select-decoratorColor': theme.vars.palette.text.icon,
       '--Select-focusedThickness': theme.vars.focus.thickness,
       ...(ownerState.color === 'context'
         ? {
@@ -174,6 +175,10 @@ const SelectRoot = styled('div', {
       [`&.${selectClasses.disabled}`]: {
         '--Select-indicatorColor': 'inherit',
       },
+      [`&:not(.${selectClasses.expanded}):not(.${selectClasses.focusVisible}):not(:hover) .${selectClasses.indicator}`]:
+        {
+          '--Icon-opacity': 0.6,
+        },
     },
     {
       // apply global variant styles
@@ -256,34 +261,28 @@ const SelectStartDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => ({
+})<{ ownerState: SelectOwnerState<any> }>({
   '--Button-margin': '0 0 0 calc(var(--Select-decoratorChildOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Select-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Select-paddingInline) / -4)',
   display: 'inherit',
   alignItems: 'center',
+  color: 'var(--Select-decoratorColor)',
   marginInlineEnd: 'var(--Select-gap)',
-  color: theme.vars.palette.text.tertiary,
-  ...(ownerState.focusVisible && {
-    color: 'var(--Select-focusedHighlight)',
-  }),
-}));
+});
 
 const SelectEndDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
-  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  return {
-    '--Button-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
-    '--IconButton-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
-    '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
-    display: 'inherit',
-    alignItems: 'center',
-    marginInlineStart: 'var(--Select-gap)',
-    color: variantStyle?.color,
-  };
+})<{ ownerState: SelectOwnerState<any> }>({
+  '--Button-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
+  '--IconButton-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
+  '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
+  display: 'inherit',
+  alignItems: 'center',
+  color: 'var(--Select-decoratorColor)',
+  marginInlineStart: 'var(--Select-gap)',
 });
 
 const SelectIndicator = styled('span', {
@@ -299,7 +298,7 @@ const SelectIndicator = styled('span', {
   ...(ownerState.size === 'lg' && {
     '--Icon-fontSize': '1.5rem',
   }),
-  color: 'var(--Select-indicatorColor)',
+  '--Icon-color': 'currentColor',
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',

@@ -212,14 +212,15 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
-})<{ ownerState: OwnerState }>(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>({
   alignSelf: 'center',
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
-  ...(ownerState.popupOpen && {
+  [`&.${autocompleteClasses.popupIndicatorOpen}`]: {
     transform: 'rotate(180deg)',
-  }),
-}));
+    '--Icon-opacity': 1,
+  },
+});
 
 const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocomplete',

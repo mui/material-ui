@@ -72,6 +72,10 @@ const LinkRoot = styled('a', {
   return [
     {
       '--Icon-fontSize': '1.25em',
+      '--Icon-color': 'currentColor',
+      '&:not(:hover, :focus-visible, :active)': {
+        '--Icon-opacity': 0.8,
+      },
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
       ...(ownerState.level === 'inherit' && {
         fontSize: 'inherit',

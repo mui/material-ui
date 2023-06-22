@@ -42,6 +42,7 @@ const TextareaRoot = styled('div', {
       '--Textarea-gap': '0.5rem',
       '--Textarea-placeholderColor': 'inherit',
       '--Textarea-placeholderOpacity': 0.5,
+      '--Textarea-decoratorColor': theme.vars.palette.text.icon,
       '--Textarea-focused': '0',
       '--Textarea-focusedThickness': theme.vars.focus.thickness,
       ...(ownerState.color === 'context'
@@ -179,27 +180,27 @@ const TextareaStartDecorator = styled('div', {
   name: 'JoyTextarea',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: TextareaOwnerState }>(({ theme }) => ({
+})<{ ownerState: TextareaOwnerState }>({
   display: 'flex',
   marginInlineStart: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
   marginInlineEnd: 'var(--Textarea-paddingBlock)',
   marginBlockEnd: 'var(--Textarea-gap)',
-  color: theme.vars.palette.text.tertiary,
+  color: 'var(--Textarea-decoratorColor)',
   cursor: 'initial',
-}));
+});
 
 const TextareaEndDecorator = styled('div', {
   name: 'JoyTextarea',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: TextareaOwnerState }>(({ theme }) => ({
+})<{ ownerState: TextareaOwnerState }>({
   display: 'flex',
   marginInlineStart: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
   marginInlineEnd: 'var(--Textarea-paddingBlock)',
   marginBlockStart: 'var(--Textarea-gap)',
-  color: theme.vars.palette.text.tertiary,
+  color: 'var(--Textarea-decoratorColor)',
   cursor: 'initial',
-}));
+});
 /**
  *
  * Demos:

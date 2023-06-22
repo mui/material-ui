@@ -35,6 +35,7 @@ const SvgIconRoot = styled('svg', {
     }),
   userSelect: 'none',
   margin: 'var(--Icon-margin)',
+  opacity: 'var(--Icon-opacity, 1)',
   width: '1em',
   height: '1em',
   display: 'inline-block',
