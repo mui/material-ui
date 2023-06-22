@@ -6,6 +6,7 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { IconButton } from '@mui/material';
 
@@ -16,7 +17,7 @@ const Root = styled('div')(
       fontSize: 13,
       fontFamily: theme.typography.fontFamilyCode,
       display: 'flex',
-      alignItems: 'flex-start',
+      alignItems: 'flex-end',
       position: 'relative',
       marginBottom: 12,
       marginLeft: -32,
@@ -277,7 +278,7 @@ function ApiItem(props: ApiItemProps) {
         {isOverflow && (
           <div className="MuiApi-item-extend-description">
             <IconButton size="small" onClick={() => setIsExtended((prev) => !prev)}>
-              <KeyboardArrowDownIcon />
+              {isExtended ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
             </IconButton>
           </div>
         )}
