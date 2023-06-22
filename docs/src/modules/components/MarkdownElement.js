@@ -409,6 +409,9 @@ const Root = styled('div')(
         flexShrink: 0,
         fontSize: '18px',
       },
+      '& .MuiCode-copied-icon': {
+        display: 'none',
+      },
       '&:hover, &:focus': {
         opacity: 1,
         color: '#fff',
@@ -419,9 +422,6 @@ const Root = styled('div')(
           // Approximate no hover capabilities with no keyboard
           // https://github.com/w3c/csswg-drafts/issues/3871
           '@media (any-hover: none)': {
-            display: 'none',
-          },
-          '& .MuiCode-copied-icon': {
             display: 'none',
           },
         },
@@ -450,8 +450,7 @@ const Root = styled('div')(
     '& .MuiCode-copyKeypress': {
       pointerEvents: 'none',
       userSelect: 'none',
-      minWidth: '100%',
-      marginRight: theme.spacing(4),
+      marginRight: theme.spacing(1.5),
       whiteSpace: 'nowrap',
       '& > span': {
         opacity: 0.8,
