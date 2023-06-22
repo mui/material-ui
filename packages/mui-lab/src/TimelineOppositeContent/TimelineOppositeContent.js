@@ -6,13 +6,13 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import Typography from '@mui/material/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineOppositeContentUtilityClass } from './timelineOppositeContentClasses';
-import getTimelinePosition from '../internal/getTimelinePosition';
+import convertTimelinePosition from '../internal/convertTimelinePosition';
 
 const useUtilityClasses = (ownerState) => {
   const { position, classes } = ownerState;
 
   const slots = {
-    root: ['root', `position${getTimelinePosition(position)}`],
+    root: ['root', `position${convertTimelinePosition(position)}`],
   };
 
   return composeClasses(slots, getTimelineOppositeContentUtilityClass, classes);
@@ -23,7 +23,7 @@ const TimelineOppositeContentRoot = styled(Typography, {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    return [styles.root, styles[`position${getTimelinePosition(ownerState.position)}`]];
+    return [styles.root, styles[`position${convertTimelinePosition(ownerState.position)}`]];
   },
 })(({ ownerState }) => ({
   padding: '6px 16px',

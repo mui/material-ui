@@ -8,7 +8,7 @@ import { timelineContentClasses } from '../TimelineContent';
 import { timelineOppositeContentClasses } from '../TimelineOppositeContent';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineItemUtilityClass } from './timelineItemClasses';
-import getTimelinePosition from '../internal/getTimelinePosition';
+import convertTimelinePosition from '../internal/convertTimelinePosition';
 
 const useUtilityClasses = (ownerState) => {
   const { position, classes, hasOppositeContent } = ownerState;
@@ -16,7 +16,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: [
       'root',
-      `position${getTimelinePosition(position)}`,
+      `position${convertTimelinePosition(position)}`,
       !hasOppositeContent && 'missingOppositeContent',
     ],
   };
@@ -30,7 +30,7 @@ const TimelineItemRoot = styled('li', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [styles.root, styles[`position${getTimelinePosition(ownerState.position)}`]];
+    return [styles.root, styles[`position${convertTimelinePosition(ownerState.position)}`]];
   },
 })(({ ownerState }) => ({
   listStyle: 'none',
