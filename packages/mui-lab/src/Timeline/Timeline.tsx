@@ -8,7 +8,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps, Theme } from '@mui/material/styles';
 import TimelineContext from './TimelineContext';
 import { getTimelineUtilityClass } from './timelineClasses';
-import convertTimelinePosition from '../internal/convertTimelinePosition';
+import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
 
 export type TimelineClassKey = keyof NonNullable<TimelineProps['classes']>;
 
@@ -54,7 +54,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
   const { position, classes } = ownerState;
 
   const slots = {
-    root: ['root', position && `position${convertTimelinePosition(position)}`],
+    root: ['root', position && convertTimelinePositionToClass(position)],
   };
 
   return composeClasses(slots, getTimelineUtilityClass, classes);
@@ -68,7 +68,7 @@ const TimelineRoot = styled('ul' as const, {
     return [
       styles.root,
       ownerState.position &&
-        styles[`position${convertTimelinePosition(ownerState.position)}` as TimelineClassKey],
+        styles[convertTimelinePositionToClass(ownerState.position) as TimelineClassKey],
     ];
   },
 })<{ ownerState: OwnerState }>({

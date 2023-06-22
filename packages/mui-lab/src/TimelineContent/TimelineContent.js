@@ -6,13 +6,13 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import Typography from '@mui/material/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineContentUtilityClass } from './timelineContentClasses';
-import convertTimelinePosition from '../internal/convertTimelinePosition';
+import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
 
 const useUtilityClasses = (ownerState) => {
   const { position, classes } = ownerState;
 
   const slots = {
-    root: ['root', `position${convertTimelinePosition(position)}`],
+    root: ['root', convertTimelinePositionToClass(position)],
   };
 
   return composeClasses(slots, getTimelineContentUtilityClass, classes);
@@ -23,7 +23,7 @@ const TimelineContentRoot = styled(Typography, {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    return [styles.root, styles[`position${convertTimelinePosition(ownerState.position)}`]];
+    return [styles.root, styles[convertTimelinePositionToClass(ownerState.position)]];
   },
 })(({ ownerState }) => ({
   flex: 1,
