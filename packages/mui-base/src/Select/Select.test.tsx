@@ -851,6 +851,24 @@ describe('<Select />', () => {
     });
   });
 
+  describe('prop: areOptionsEqual', () => {
+    it('should use the `areOptionsEqual` prop to determine if an option is selected', () => {
+      interface TestValue {
+        id: string;
+      }
+
+      const areOptionsEqual = (a: TestValue, b: TestValue) => a.id === b.id;
+      const { getByRole } = render(
+        <Select defaultValue={{ id: '1' }} areOptionsEqual={areOptionsEqual}>
+          <Option value={{ id: '1' }}>One</Option>
+          <Option value={{ id: '2' }}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One');
+    });
+  });
+
   // according to WAI-ARIA 1.2 (https://www.w3.org/TR/wai-aria-1.2/#combobox)
   describe('a11y attributes', () => {
     it('should have the `combobox` role', () => {

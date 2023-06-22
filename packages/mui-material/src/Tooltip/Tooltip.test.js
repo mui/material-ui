@@ -994,6 +994,12 @@ describe('<Tooltip />', () => {
         'The `children` component of the Tooltip is not forwarding its props correctly.',
       );
     });
+
+    it('should warn when children is a string', () => {
+      expect(() => {
+        render(<Tooltip title="Hello World">Hello World</Tooltip>);
+      }).toErrorDev('Invalid prop `children` of type `string` supplied');
+    });
   });
 
   it('should use the same Popper.js instance between two renders', () => {

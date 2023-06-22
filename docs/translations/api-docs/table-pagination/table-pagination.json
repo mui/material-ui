@@ -36,19 +36,19 @@
     },
     "selectRoot": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Select component `root` element"
+      "nodeName": "the Select component <code>root</code> element"
     },
     "select": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Select component `select` class"
+      "nodeName": "the Select component <code>select</code> class"
     },
     "selectIcon": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Select component `icon` class"
+      "nodeName": "the Select component <code>icon</code> class"
     },
     "input": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Select component `root` element"
+      "nodeName": "the Select component <code>root</code> element"
     },
     "menuItem": {
       "description": "Styles applied to {{nodeName}}.",
@@ -60,7 +60,7 @@
     },
     "actions": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the internal `TablePaginationActions` component"
+      "nodeName": "the internal <code>TablePaginationActions</code> component"
     }
   }
 }

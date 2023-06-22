@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Tabs components
 components: Tabs, Tab, TabPanel, TabsList
 hooks: useTab, useTabPanel, useTabs, useTabsList
@@ -30,7 +30,7 @@ Tabs are implemented using a collection of related components:
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import Tab from '@mui/base/Tab';
@@ -96,7 +96,7 @@ If you provide a non-interactive element such as a `<span>`, the Tab components 
 
 :::info
 The `slots` prop is available on all non-utility Base components.
-See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
 :::
 
 ## Customization
@@ -127,7 +127,7 @@ The same applies for props specific to custom primitive elements:
 
 A common use case for tabs is to implement client-side navigation that doesn't require an HTTP round-trip to the server.
 
-The Tab component provides the `component` prop to handle this use case—see [the Material UI documentation on routing](/material-ui/guides/routing/#tabs) for more details.
+The Tab component provides the [slots](/base-ui/react-tabs/#custom-structure) prop to handle this use case—see [the Material UI documentation on routing](/material-ui/guides/routing/#tabs) for more details.
 
 ## Accessibility
 

@@ -4,6 +4,7 @@ import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mu
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import useMenu, { MenuProvider } from '@mui/base/useMenu';
+import { ListActionTypes } from '@mui/base/useList';
 import Popper from '@mui/base/Popper';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
@@ -72,7 +73,7 @@ const MenuRoot = styled(StyledList, {
  * API:
  *
  * - [Menu API](https://mui.com/joy-ui/api/menu/)
- * - inherits [Popper API](https://mui.com/base/api/popper/)
+ * - inherits [Popper API](https://mui.com/base-ui/api/popper/)
  */
 const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTMLUListElement>) {
   const props = useThemeProps({
@@ -89,8 +90,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     disablePortal = false,
     keepMounted = false,
     invertedColors = false,
-    id,
     onClose,
+    onItemsChange,
     open = false,
     modifiers: modifiersProp,
     variant = 'outlined',
@@ -114,13 +115,15 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const { contextValue, getListboxProps, dispatch } = useMenu({
     open,
     onOpenChange: handleOpenChange,
-    listboxId: id,
+    listboxId: props.id,
+    onItemsChange,
   });
 
   React.useImperativeHandle(
     actions,
     () => ({
       dispatch,
+      resetHighlight: () => dispatch({ type: ListActionTypes.resetHighlight, event: null }),
     }),
     [dispatch],
   );
@@ -152,6 +155,22 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     ],
     [modifiersProp],
   );
+
+  if (anchorEl && process.env.NODE_ENV !== 'production') {
+    let ariaControls = null;
+    const resolvedAnchorEl = typeof anchorEl === 'function' ? anchorEl() : anchorEl;
+    if ('getAttribute' in resolvedAnchorEl) {
+      ariaControls = resolvedAnchorEl.getAttribute('aria-controls');
+    } else {
+      ariaControls = resolvedAnchorEl.contextElement?.getAttribute('aria-controls');
+    }
+
+    if (props.id && ariaControls && props.id !== ariaControls) {
+      console.error(
+        `MUI: the anchorEl must have [aria-controls="${props.id}"] but got [aria-controls="${ariaControls}"].`,
+      );
+    }
+  }
 
   const rootProps = useSlotProps({
     elementType: MenuRoot,
@@ -295,6 +314,10 @@ Menu.propTypes /* remove-proptypes */ = {
    * Triggered when focus leaves the menu and the menu should close.
    */
   onClose: PropTypes.func,
+  /**
+   * Function called when the items displayed in the menu change.
+   */
+  onItemsChange: PropTypes.func,
   /**
    * Controls whether the menu is displayed.
    * @default false

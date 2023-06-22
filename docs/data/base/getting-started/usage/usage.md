@@ -39,21 +39,6 @@ The code snippet below shows how to override this by assigning a `<div>` to the 
 <Badge slots={{ root: 'div' }} />
 ```
 
-### component
-
-The `component` prop provides a shortcut to `slots.root`.
-This is useful if you are only overriding the root element of the component.
-
-The code snippet below shows how to override the root element of the Base UI Badge component using the `component` prop:
-
-```jsx
-<Badge component="div" />
-```
-
-:::warning
-If the root slot is customized with both the `component` and `slots` props, then `component` will take precedence.
-:::
-
 ### slotProps
 
 The `slotProps` prop is an object that contains the props for all slots within a component.
@@ -84,7 +69,7 @@ This does not apply to classes or the `style` prop—they will be merged instead
 
 ### Best practices
 
-If you are customizing a component like the [Button](/base/react-button/) that only has a root slot, you may prefer to use the more succinct `component` prop instead of `slots`.
+If you are customizing a component like the [Button](/base-ui/react-button/) that only has a root slot, you may prefer to use the more succinct `component` prop instead of `slots`.
 
 Overriding with `component` lets you apply the attributes of that element directly to the root.
 For instance, if you replace the Button root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.
