@@ -54,8 +54,8 @@ const StyledButton = styled(Button)`
     display: inline-block;
     position: absolute;
     color: var(--muidocs-palette-primary-main);
-    right: -22px;
-    top: -1px;
+    right: -20px;
+    top: 1px;
     opacity: 0;
     transition-property: opacity;
     transition-duration: 100ms;
@@ -87,9 +87,9 @@ export default function NpmCopyButton({
     >
       <strong>$</strong>&nbsp;{installation}
       {copied ? (
-        <CheckRounded color="primary" fontSize="small" />
+        <CheckRounded color="primary" sx={{ fontSize: 15 }} />
       ) : (
-        <ContentCopyRounded fontSize="small" />
+        <ContentCopyRounded sx={{ fontSize: 15 }} />
       )}
     </Button>
   );
