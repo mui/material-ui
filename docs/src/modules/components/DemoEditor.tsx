@@ -8,7 +8,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
-import { grey, blueDark } from 'docs/src/modules/brandingTheme';
+import { blueDark } from 'docs/src/modules/brandingTheme';
 
 const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
   {
