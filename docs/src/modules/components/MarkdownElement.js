@@ -387,7 +387,7 @@ const Root = styled('div')(
     },
     '& .MuiCode-copy': {
       display: 'none',
-      width: 30,
+      width: 28,
       cursor: 'pointer',
       position: 'absolute',
       top: theme.spacing(1),
@@ -396,10 +396,12 @@ const Root = styled('div')(
       fontWeight: 500,
       padding: theme.spacing(0.5),
       borderRadius: 6,
-      border: `1px solid`,
-      borderColor: lightTheme.palette.primaryDark[500],
-      backgroundColor: lightTheme.palette.primaryDark[600],
+      border: 'none',
+      backgroundColor: 'transparent',
       color: lightTheme.palette.primaryDark[50],
+      transition: theme.transitions.create('background', 'borderColor', 'display', {
+        duration: theme.transitions.duration.shortest,
+      }),
       '& svg': {
         userSelect: 'none',
         width: '1em',
@@ -416,7 +418,6 @@ const Root = styled('div')(
         opacity: 1,
         color: '#fff',
         backgroundColor: lightTheme.palette.primaryDark[500],
-        borderColor: lightTheme.palette.primaryDark[400],
         '& .MuiCode-copyKeypress': {
           display: 'block',
           // Approximate no hover capabilities with no keyboard
@@ -450,7 +451,7 @@ const Root = styled('div')(
     '& .MuiCode-copyKeypress': {
       pointerEvents: 'none',
       userSelect: 'none',
-      marginRight: theme.spacing(1.5),
+      marginRight: theme.spacing(1),
       whiteSpace: 'nowrap',
       '& > span': {
         opacity: 0.8,
