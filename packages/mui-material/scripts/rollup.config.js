@@ -183,7 +183,7 @@ export default [
       format: 'umd',
       name: 'MaterialUI',
       globals,
-      banner: "'use client';",
+      intro: "'use client';",
     },
     external: Object.keys(globals),
     plugins: [
@@ -203,7 +203,7 @@ export default [
       format: 'umd',
       name: 'MaterialUI',
       globals,
-      banner: "'use client';",
+      intro: "'use client';",
     },
     external: Object.keys(globals),
     plugins: [
