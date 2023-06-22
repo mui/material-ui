@@ -40,7 +40,6 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import InterestsRoundedIcon from '@mui/icons-material/InterestsRounded';
 import RadioRoundedIcon from '@mui/icons-material/RadioRounded';
 
-
 // Local imports
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
@@ -869,15 +868,15 @@ export default function BaseUIHero() {
             <Tabs value={design} onChange={(event, newValue) => setDesign(newValue as number)}>
               <TabsList slots={{ root: StyledTabsList }}>
                 <Tab slots={{ root: StyledTab }} value={0}>
-                  <AutoAwesomeRounded sx={{fontSize: 15}}/>
+                  <AutoAwesomeRounded sx={{ fontSize: 15 }} />
                   Sleek
                 </Tab>
                 <Tab slots={{ root: StyledTab }} value={1}>
-                <RadioRoundedIcon sx={{fontSize: 15}} />
+                  <RadioRoundedIcon sx={{ fontSize: 15 }} />
                   Retro
                 </Tab>
                 <Tab slots={{ root: StyledTab }} value={2}>
-                <InterestsRoundedIcon sx={{fontSize: 15}}/>
+                  <InterestsRoundedIcon sx={{ fontSize: 15 }} />
                   Playful
                 </Tab>
               </TabsList>

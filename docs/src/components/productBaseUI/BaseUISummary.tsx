@@ -9,7 +9,7 @@ import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import PhishingRoundedIcon from '@mui/icons-material/PhishingRounded';
-import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import Link from 'docs/src/modules/components/Link';
 
 const content = [
@@ -125,7 +125,7 @@ export default function BaseUISummary() {
                     '& svg': { fontSize: 20 },
                   }}
                 >
-                  Learn more <ArrowForwardRoundedIcon />
+                  Learn more <ChevronRightRoundedIcon />
                 </Link>
               </Paper>
             </Grid>
