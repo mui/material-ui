@@ -62,6 +62,11 @@ export default function ColorInversionNavigation() {
             </Sheet>
           }
           sx={{ py: 1 }}
+          slotProps={{
+            listbox: {
+              disablePortal: true,
+            },
+          }}
         >
           <Option value="1">General team</Option>
           <Option value="2">Engineering team</Option>
