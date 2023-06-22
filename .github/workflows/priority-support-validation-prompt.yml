@@ -1,0 +1,46 @@
+name: Priority Support Validation Prompt
+
+on:
+  issues:
+    types:
+      - labeled
+
+permissions: {}
+
+jobs:
+  comment:
+    name: Create or update comment
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Find Comment
+        uses: peter-evans/create-or-update-comment@5f728c3dae25f329afbe34ee4d08eef25569d79f # v3.0.2
+        id: findComment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: You have created a priority support request
+
+      - name: Create comment
+        if: ${{ steps.findComment.outputs.comment-id == '' && contains(github.event.label.name, 'unknown') }}
+        uses: peter-evans/create-or-update-comment@5f728c3dae25f329afbe34ee4d08eef25569d79f # v3.0.2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            You have created a priority support request ⏰. Please validate your support key using the link below:
+
+            https://tools-public.mui.com/prod/pages/jyhs86t?repo=mui-x&issueId=${{ github.event.issue.number }}
+
+            Do not share you support key in this issue!
+
+            Priority support will only be provided to verified customers. Once you have verified your support key, we will remove the `support: unknown` label and add the `support: priority` label to this issue. Only then the time for the SLA will start counting.
+
+      - name: Update comment
+        if: ${{ steps.findComment.outputs.comment-id != '' && contains(github.event.label.name, 'priority') }}
+        uses: peter-evans/create-or-update-comment@5f728c3dae25f329afbe34ee4d08eef25569d79f # v3.0.2
+        with:
+          comment-id: ${{ steps.findComment.outputs.comment-id }}
+          body: |
+            Thank you for verifying your support key 🔑, your SLA starts now.
