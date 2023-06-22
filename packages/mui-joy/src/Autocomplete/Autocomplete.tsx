@@ -224,7 +224,8 @@ const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
 })<{ ownerState: OwnerState }>(({ theme }) => ({
-  zIndex: theme.zIndex.modal,
+  // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+  zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
 }));
 
 const AutocompleteOption = styled(StyledAutocompleteOption, {
