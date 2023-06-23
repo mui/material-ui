@@ -292,15 +292,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         [propName]: event.target.checked,
                       }))
                     }
-                    sx={{
-                      '--Switch-trackWidth': '32px',
-                      '--Switch-trackBackground': (theme) =>
-                        `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
-                      '&:hover': {
-                        '--Switch-trackBackground': (theme) =>
-                          `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
-                      },
-                    }}
+                    sx={{ '--Switch-trackWidth': '32px' }}
                   />
                 </FormControl>
               );

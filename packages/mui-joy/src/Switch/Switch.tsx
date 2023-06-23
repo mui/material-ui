@@ -4,7 +4,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import useSwitch from '@mui/base/useSwitch';
-import { styled, useThemeProps, Theme } from '../styles';
+import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
@@ -35,83 +35,162 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
   return composeClasses(slots, getSwitchUtilityClass, {});
 };
 
-const switchColorVariables =
-  ({ theme, ownerState }: { theme: Theme; ownerState: SwitchOwnerState }) =>
-  (data: { state?: 'Hover' | 'Disabled' } = {}) => {
-    const styles =
-      theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
-    return {
-      '--Switch-trackBackground': styles.backgroundColor,
-      '--Switch-trackColor': styles.color,
-      '--Switch-trackBorderColor':
-        ownerState.variant === 'outlined' ? styles.borderColor : 'currentColor',
-      '--Switch-thumbBackground': styles.color,
-      '--Switch-thumbColor': styles.backgroundColor,
-    };
-  };
-
 const SwitchRoot = styled('div', {
   name: 'JoySwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchOwnerState }>(({ theme, ownerState }) => {
-  const getColorVariables = switchColorVariables({ theme, ownerState });
-  return {
-    '--variant-borderWidth':
-      theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
-    '--Switch-trackRadius': theme.vars.radius.xl,
-    '--Switch-thumbShadow':
-      ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-trackBackground)', // create border-like if the thumb is bigger than the track
-    ...(ownerState.size === 'sm' && {
-      '--Switch-trackWidth': '40px',
-      '--Switch-trackHeight': '20px',
-      '--Switch-thumbSize': '12px',
-      '--Switch-gap': '6px',
-      fontSize: theme.vars.fontSize.sm,
-    }),
-    ...(ownerState.size === 'md' && {
-      '--Switch-trackWidth': '48px',
-      '--Switch-trackHeight': '24px',
-      '--Switch-thumbSize': '16px',
-      '--Switch-gap': '8px',
-      fontSize: theme.vars.fontSize.md,
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Switch-trackWidth': '64px',
-      '--Switch-trackHeight': '32px',
-      '--Switch-thumbSize': '24px',
-      '--Switch-gap': '12px',
-    }),
-    '--unstable_paddingBlock': `max((var(--Switch-trackHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumbSize)) / 2, 0px)`,
-    '--Switch-thumbRadius': `max(var(--Switch-trackRadius) - var(--unstable_paddingBlock), min(var(--unstable_paddingBlock) / 2, var(--Switch-trackRadius) / 2))`,
-    '--Switch-thumbWidth': 'var(--Switch-thumbSize)',
-    '--Switch-thumbOffset': `max((var(--Switch-trackHeight) - var(--Switch-thumbSize)) / 2, 0px)`,
-    ...getColorVariables(),
-    '&:hover': {
-      ...getColorVariables({ state: 'Hover' }),
+  const styles = theme.variants[ownerState.variant!]?.[ownerState.color!] || {};
+  const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] || {};
+  return [
+    {
+      '--variant-borderWidth':
+        theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
+      '--Switch-trackRadius': theme.vars.radius.xl,
+      '--Switch-thumbShadow':
+        ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-trackBackground)', // create border-like if the thumb is bigger than the track
+      ...(ownerState.size === 'sm' && {
+        '--Switch-trackWidth': '40px',
+        '--Switch-trackHeight': '20px',
+        '--Switch-thumbSize': '12px',
+        '--Switch-gap': '6px',
+        fontSize: theme.vars.fontSize.sm,
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Switch-trackWidth': '48px',
+        '--Switch-trackHeight': '24px',
+        '--Switch-thumbSize': '16px',
+        '--Switch-gap': '8px',
+        fontSize: theme.vars.fontSize.md,
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Switch-trackWidth': '64px',
+        '--Switch-trackHeight': '32px',
+        '--Switch-thumbSize': '24px',
+        '--Switch-gap': '12px',
+      }),
+      '--unstable_paddingBlock': `max((var(--Switch-trackHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumbSize)) / 2, 0px)`,
+      '--Switch-thumbRadius': `max(var(--Switch-trackRadius) - var(--unstable_paddingBlock), min(var(--unstable_paddingBlock) / 2, var(--Switch-trackRadius) / 2))`,
+      '--Switch-thumbWidth': 'var(--Switch-thumbSize)',
+      '--Switch-thumbOffset': `max((var(--Switch-trackHeight) - var(--Switch-thumbSize)) / 2, 0px)`,
+      ...(ownerState.variant === 'solid' && {
+        '--Switch-trackBackground': theme.vars.palette?.neutral?.[300],
+        '--Switch-trackColor': styles.color,
+        '--Switch-thumbBackground': styles.color,
+        '--Switch-thumbColor': styles.backgroundColor,
+        [`&:hover:not(.${switchClasses.checked})`]: {
+          '--Switch-trackBackground': theme.vars.palette?.neutral?.[400],
+        },
+        [`&.${switchClasses.checked}`]: {
+          '--Switch-trackBackground': styles.backgroundColor,
+          '&:hover': {
+            '--Switch-trackBackground': hoverStyles.backgroundColor,
+          },
+        },
+        [`&.${switchClasses.disabled}`]: {
+          '--Switch-trackBackground': theme.vars.palette?.neutral?.[200],
+        },
+        [theme.getColorSchemeSelector('dark')]: {
+          [`&:not(.${switchClasses.checked})`]: {
+            '--Switch-trackBackground': theme.vars.palette?.neutral?.[700],
+          },
+          [`&:hover:not(.${switchClasses.checked})`]: {
+            '--Switch-trackBackground': theme.vars.palette?.neutral?.[600],
+          },
+        },
+      }),
+      ...(ownerState.variant === 'soft' && {
+        '--Switch-trackBackground': theme.vars.palette?.neutral?.[100],
+        '--Switch-trackColor': styles.color,
+        '--Switch-thumbBackground': theme.vars.palette?.neutral?.[400],
+        '--Switch-thumbColor': styles.backgroundColor,
+        [`&:hover:not(.${switchClasses.checked})`]: {
+          '--Switch-trackBackground': theme.vars.palette?.neutral?.[200],
+        },
+        [`&.${switchClasses.checked}`]: {
+          '--Switch-trackBackground': styles.backgroundColor,
+          '--Switch-thumbBackground': styles.color,
+          '&:hover': {
+            '--Switch-trackBackground': hoverStyles.backgroundColor,
+          },
+        },
+        [`&.${switchClasses.disabled}`]: {
+          '--Switch-trackBackground': theme.vars.palette?.neutral?.[50],
+          '--Switch-thumbBackground': theme.vars.palette?.neutral?.[200],
+        },
+        [theme.getColorSchemeSelector('dark')]: {
+          [`&:not(.${switchClasses.checked})`]: {
+            '--Switch-trackBackground': theme.vars.palette?.neutral?.[800],
+            '&:hover': {
+              '--Switch-trackBackground': theme.vars.palette?.neutral?.[700],
+            },
+          },
+          [`&.${switchClasses.disabled}`]: {
+            '--Switch-thumbBackground': theme.vars.palette?.neutral?.[600],
+          },
+        },
+      }),
+      ...(ownerState.variant?.match(/^(outlined|plain)$/) && {
+        ...(ownerState.variant === 'outlined' && {
+          '--Switch-trackBorderColor': theme.vars.palette?.neutral?.[300],
+        }),
+        '--Switch-trackColor': styles.color,
+        '--Switch-thumbBackground': theme.vars.palette?.neutral?.[300],
+        [`&:hover:not(.${switchClasses.checked})`]: {
+          '--Switch-trackBackground': theme.vars.palette?.neutral?.[100],
+        },
+        [`&.${switchClasses.checked}`]: {
+          '--Switch-trackBackground': styles.backgroundColor,
+          ...(ownerState.variant === 'outlined' && {
+            '--Switch-trackBorderColor': styles.borderColor,
+          }),
+          '--Switch-thumbBackground': styles.color,
+          '&:hover': {
+            '--Switch-trackBackground': hoverStyles.backgroundColor,
+          },
+        },
+        [`&.${switchClasses.disabled}`]: {
+          ...(ownerState.variant === 'outlined' && {
+            '--Switch-trackBorderColor': theme.vars.palette?.neutral?.[200],
+          }),
+          '--Switch-thumbBackground': theme.vars.palette?.neutral?.[200],
+        },
+        [theme.getColorSchemeSelector('dark')]: {
+          [`&:not(.${switchClasses.checked})`]: {
+            ...(ownerState.variant === 'outlined' && {
+              '--Switch-trackBorderColor': theme.vars.palette?.neutral?.[700],
+            }),
+            '--Switch-thumbBackground': theme.vars.palette?.neutral?.[400],
+          },
+          [`&:hover:not(.${switchClasses.checked})`]: {
+            '--Switch-trackBackground': theme.vars.palette?.neutral?.[800],
+          },
+          [`&.${switchClasses.disabled}`]: {
+            ...(ownerState.variant === 'outlined' && {
+              '--Switch-trackBorderColor': theme.vars.palette?.neutral?.[800],
+            }),
+            '--Switch-thumbBackground': theme.vars.palette?.neutral?.[700],
+          },
+        },
+      }),
+      display: 'inline-flex',
+      alignItems: 'center',
+      alignSelf: 'center',
+      fontFamily: theme.vars.fontFamily.body,
+      position: 'relative',
+      padding:
+        'calc((var(--Switch-thumbSize) / 2) - (var(--Switch-trackHeight) / 2)) calc(-1 * var(--Switch-thumbOffset))',
+      backgroundColor: 'initial', // clear background in case `outlined` variant contain background.
+      border: 'none',
+      margin: 'var(--unstable_Switch-margin)',
     },
-    [`&.${switchClasses.checked}`]: {
-      ...getColorVariables(),
-      '&:hover': {
-        ...getColorVariables({ state: 'Hover' }),
+    {
+      [`&.${switchClasses.disabled}`]: {
+        pointerEvents: 'none',
+        color: theme.vars.palette.text.tertiary,
       },
     },
-    [`&.${switchClasses.disabled}`]: {
-      pointerEvents: 'none',
-      color: theme.vars.palette.text.tertiary,
-      ...getColorVariables({ state: 'Disabled' }),
-    },
-    display: 'inline-flex',
-    alignItems: 'center',
-    alignSelf: 'center',
-    fontFamily: theme.vars.fontFamily.body,
-    position: 'relative',
-    padding:
-      'calc((var(--Switch-thumbSize) / 2) - (var(--Switch-trackHeight) / 2)) calc(-1 * var(--Switch-thumbOffset))',
-    backgroundColor: 'initial', // clear background in case `outlined` variant contain background.
-    border: 'none',
-    margin: 'var(--unstable_Switch-margin)',
-  };
+  ];
 });
 
 const SwitchAction = styled('div', {
@@ -239,7 +318,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     readOnly: readOnlyProp,
     required,
     id,
-    color: colorProp,
+    color: colorProp = 'primary',
     variant = 'solid',
     size: sizeProp = 'md',
     startDecorator,
@@ -292,7 +371,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     disabled,
     focusVisible,
     readOnly,
-    color: checked ? color || 'primary' : color || 'neutral',
+    color,
     variant,
     size,
   };
