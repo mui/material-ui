@@ -147,14 +147,29 @@ export default function BasicMenu() {
                             }
                           }}
                           onMouseEnter={(event) => {
-                            if (option.nestedOptions) {
+                            if (!option.nestedOptions) {
+                              handleClose(option.menuLevel + 1);
+                            } else if (
+                              option.nestedOptions &&
+                              anchors.options[option.menuLevel + 1] &&
+                              !option.nestedOptions.every(
+                                (val, i) =>
+                                  val.value ===
+                                  anchors.options[option.menuLevel + 1]?.[i].value,
+                              )
+                            ) {
+                              handleClose(option.menuLevel + 1);
                               handleClick(
                                 event,
                                 option.menuLevel + 1,
                                 option.nestedOptions,
                               );
                             } else {
-                              handleClose(option.menuLevel + 1);
+                              handleClick(
+                                event,
+                                option.menuLevel + 1,
+                                option.nestedOptions,
+                              );
                             }
                           }}
                           onKeyDown={(event) => {
