@@ -41,7 +41,6 @@ const SwitchRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchOwnerState }>(({ theme, ownerState }) => {
   const styles = theme.variants[ownerState.variant!]?.[ownerState.color!] || {};
-  const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] || {};
   return [
     {
       '--variant-borderWidth':
@@ -73,29 +72,18 @@ const SwitchRoot = styled('div', {
       '--Switch-thumbRadius': `max(var(--Switch-trackRadius) - var(--unstable_paddingBlock), min(var(--unstable_paddingBlock) / 2, var(--Switch-trackRadius) / 2))`,
       '--Switch-thumbWidth': 'var(--Switch-thumbSize)',
       '--Switch-thumbOffset': `max((var(--Switch-trackHeight) - var(--Switch-thumbSize)) / 2, 0px)`,
+      // for initial and disabled state, uses neutral palette
       ...(ownerState.variant === 'solid' && {
         '--Switch-trackBackground': theme.vars.palette?.neutral?.[300],
         '--Switch-trackColor': styles.color,
         '--Switch-thumbBackground': styles.color,
         '--Switch-thumbColor': styles.backgroundColor,
-        [`&:hover:not(.${switchClasses.checked})`]: {
-          '--Switch-trackBackground': theme.vars.palette?.neutral?.[400],
-        },
-        [`&.${switchClasses.checked}`]: {
-          '--Switch-trackBackground': styles.backgroundColor,
-          '&:hover': {
-            '--Switch-trackBackground': hoverStyles.backgroundColor,
-          },
-        },
         [`&.${switchClasses.disabled}`]: {
           '--Switch-trackBackground': theme.vars.palette?.neutral?.[200],
         },
         [theme.getColorSchemeSelector('dark')]: {
           [`&:not(.${switchClasses.checked})`]: {
             '--Switch-trackBackground': theme.vars.palette?.neutral?.[700],
-          },
-          [`&:hover:not(.${switchClasses.checked})`]: {
-            '--Switch-trackBackground': theme.vars.palette?.neutral?.[600],
           },
         },
       }),
@@ -104,16 +92,6 @@ const SwitchRoot = styled('div', {
         '--Switch-trackColor': styles.color,
         '--Switch-thumbBackground': theme.vars.palette?.neutral?.[400],
         '--Switch-thumbColor': styles.backgroundColor,
-        [`&:hover:not(.${switchClasses.checked})`]: {
-          '--Switch-trackBackground': theme.vars.palette?.neutral?.[200],
-        },
-        [`&.${switchClasses.checked}`]: {
-          '--Switch-trackBackground': styles.backgroundColor,
-          '--Switch-thumbBackground': styles.color,
-          '&:hover': {
-            '--Switch-trackBackground': hoverStyles.backgroundColor,
-          },
-        },
         [`&.${switchClasses.disabled}`]: {
           '--Switch-trackBackground': theme.vars.palette?.neutral?.[50],
           '--Switch-thumbBackground': theme.vars.palette?.neutral?.[200],
@@ -121,9 +99,6 @@ const SwitchRoot = styled('div', {
         [theme.getColorSchemeSelector('dark')]: {
           [`&:not(.${switchClasses.checked})`]: {
             '--Switch-trackBackground': theme.vars.palette?.neutral?.[800],
-            '&:hover': {
-              '--Switch-trackBackground': theme.vars.palette?.neutral?.[700],
-            },
           },
           [`&.${switchClasses.disabled}`]: {
             '--Switch-thumbBackground': theme.vars.palette?.neutral?.[600],
@@ -136,19 +111,6 @@ const SwitchRoot = styled('div', {
         }),
         '--Switch-trackColor': styles.color,
         '--Switch-thumbBackground': theme.vars.palette?.neutral?.[300],
-        [`&:hover:not(.${switchClasses.checked})`]: {
-          '--Switch-trackBackground': theme.vars.palette?.neutral?.[100],
-        },
-        [`&.${switchClasses.checked}`]: {
-          '--Switch-trackBackground': styles.backgroundColor,
-          ...(ownerState.variant === 'outlined' && {
-            '--Switch-trackBorderColor': styles.borderColor,
-          }),
-          '--Switch-thumbBackground': styles.color,
-          '&:hover': {
-            '--Switch-trackBackground': hoverStyles.backgroundColor,
-          },
-        },
         [`&.${switchClasses.disabled}`]: {
           ...(ownerState.variant === 'outlined' && {
             '--Switch-trackBorderColor': theme.vars.palette?.neutral?.[200],
@@ -162,9 +124,6 @@ const SwitchRoot = styled('div', {
             }),
             '--Switch-thumbBackground': theme.vars.palette?.neutral?.[400],
           },
-          [`&:hover:not(.${switchClasses.checked})`]: {
-            '--Switch-trackBackground': theme.vars.palette?.neutral?.[800],
-          },
           [`&.${switchClasses.disabled}`]: {
             ...(ownerState.variant === 'outlined' && {
               '--Switch-trackBorderColor': theme.vars.palette?.neutral?.[800],
@@ -173,6 +132,13 @@ const SwitchRoot = styled('div', {
           },
         },
       }),
+      // checked state uses global variant tokens
+      [`&.${switchClasses.checked}`]: {
+        '--Icon-color': styles.backgroundColor,
+        '--Switch-trackBackground': styles.backgroundColor,
+        '--Switch-trackBorderColor': styles.borderColor,
+        '--Switch-thumbBackground': styles.color,
+      },
       display: 'inline-flex',
       alignItems: 'center',
       alignSelf: 'center',
