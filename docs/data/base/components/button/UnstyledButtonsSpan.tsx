@@ -27,9 +27,9 @@ const CustomButton = styled(Button)`
   line-height: 1.5rem;
   background-color: ${blue[500]};
   color: white;
-  border-radius: 0.5rem;
+  border-radius: 6px;
   font-weight: 600;
-  padding: 0.25rem 0.75rem;
+  padding: 8px 16px;
   cursor: pointer;
   transition: all 150ms ease;
   border: none;

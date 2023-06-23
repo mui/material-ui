@@ -27,18 +27,18 @@ const grey = {
 const CustomButton = styled(Button)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5rem;
   background-color: ${blue[500]};
-  padding: 0.25rem 0.75rem;
-  border-radius: 0.5rem;
+  padding: 8px 16px;
+  border-radius: 6px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
   box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
-
+  
 
   &:hover {
     background-color: ${blue[600]};
