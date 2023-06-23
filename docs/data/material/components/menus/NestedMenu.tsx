@@ -184,6 +184,8 @@ export default function BasicMenu() {
                             }
                             if (event.key === 'ArrowLeft' && option.menuLevel > 0) {
                               handleClose(option.menuLevel);
+
+                              anchors.elements[option.menuLevel]?.focus();
                             }
                           }}
                         >
