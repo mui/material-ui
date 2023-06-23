@@ -6,8 +6,8 @@ _Jun 21, 2023_
 
 A big thanks to the 25 contributors who made this release possible. Here are some highlights ✨:
 
-- 💫 Added `Slider` component using the new Material You design language (#37520) @DiegoAndai.
-- 📚 Added  overview docs page showcasing all Base UI components (#37536) @danilo-leal
+- 💫 Added [Slider](https://mui.com/material-ui/react-slider/#material-you-version) component using the new Material You design language (#37520) @DiegoAndai.
+- 📚 Added [overview docs page](https://mui.com/base-ui/react-components/) showcasing all Base UI components (#37536) @danilo-leal
 
 ### `@mui/material@5.13.6`
 
