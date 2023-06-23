@@ -61,11 +61,8 @@ export default function InputAdornments() {
     <Box
       sx={{
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: { xs: 'column', sm: 'row' },
         gap: 2,
-        '@media (min-width: 600px)': {
-          flexDirection: 'row',
-        },
       }}
     >
       <CustomInput
