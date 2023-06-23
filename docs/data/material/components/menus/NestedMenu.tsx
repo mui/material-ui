@@ -123,7 +123,6 @@ export default function BasicMenu() {
             role={undefined}
             placement={index > 0 ? 'right-start' : 'bottom-start'}
             transition
-            disablePortal
           >
             {({ TransitionProps }) => (
               <Grow
