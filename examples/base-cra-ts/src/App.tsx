@@ -1,34 +1,24 @@
 import * as React from 'react';
-import { styled } from '@mui/system';
-import ButtonUnstyled, { buttonClasses } from '@mui/base/Button';
-
-const Button = styled(ButtonUnstyled)`
-  padding-inline: 1rem;
-  padding-block: 0.5rem;
-  font-size: 1rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  border-radius: 4px;
-  border: 2px solid rgba(0 0 0 / 0.5);
-  background-color: initial;
-  &:hover {
-    background-color: rgba(0 0 0 / 0.08);
-    border-color: rgba(0 0 0 / 0.72);
-  }
-  &:active {
-    background-color: rgba(0 0 0 / 0.12);
-    transform: translateY(2px);
-  }
-  &.${buttonClasses.focusVisible} {
-    outline: 3px solid rgba(0 0 0 / 0.3);
-    border-color: rgba(0 0 0 / 0.72);
-  }
-  &.${buttonClasses.disabled} {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-`;
+import './index.css';
 
 export default function App() {
-  return <Button>Hello from Base UI</Button>;
+  return (
+    <div className="box">
+      <h1>Base UI + Create React App scaffold (TypeScript)</h1>
+      <div className="item">
+        <a href="https://mui.com/base-ui/getting-started/overview/">Base UI</a> is a library of
+        unstyled React UI components which includes prebuilt components with production-ready
+        functionality, along with low-level hooks for transferring that functionality to other
+        components.
+      </div>
+      <div className="item">
+        <a href="https://create-react-app.dev/">Create React App</a> is a framework for quickly
+        creating a new React project without the need to configure complex build tools or
+        development environments.
+      </div>
+      <span>
+        Created with 💙 by <a href="https://mui.com">MUI</a>.
+      </span>
+    </div>
+  );
 }
