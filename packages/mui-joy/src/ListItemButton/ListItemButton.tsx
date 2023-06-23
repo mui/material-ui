@@ -40,71 +40,63 @@ const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
 };
 
 export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOwnerState }>(
-  ({ theme, ownerState }) => [
-    {
-      ...(ownerState.selected && {
-        '--ListItemDecorator-color': 'initial',
-      }),
-      ...(ownerState.disabled && {
-        '--ListItemDecorator-color':
-          theme.variants?.[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
-      }),
-      WebkitTapHighlightColor: 'transparent',
-      boxSizing: 'border-box',
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      alignSelf: 'stretch', // always stretch itself to fill the parent (List|ListItem)
-      ...(ownerState.orientation === 'vertical' && {
-        flexDirection: 'column',
-        justifyContent: 'center',
-      }),
-      textAlign: 'initial',
-      textDecoration: 'initial', // reset native anchor tag
-      backgroundColor: 'initial', // reset button background
-      cursor: 'pointer',
-      // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
-      marginInline: 'var(--ListItemButton-marginInline)',
-      marginBlock: 'var(--ListItemButton-marginBlock)',
-      ...(ownerState['data-first-child'] === undefined && {
-        marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
-        marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
-      }),
-      // account for the border width, so that all of the ListItemButtons content aligned horizontally
-      paddingBlock: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
-      // account for the border width, so that all of the ListItemButtons content aligned vertically
-      paddingInlineStart:
-        'calc(var(--ListItem-paddingLeft) + var(--ListItem-startActionWidth, var(--unstable_startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
-      paddingInlineEnd:
-        'calc(var(--ListItem-paddingRight) + var(--ListItem-endActionWidth, var(--unstable_endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
-      minBlockSize: 'var(--ListItem-minHeight)',
-      border: 'none',
-      borderRadius: 'var(--ListItem-radius)',
-      flexGrow: ownerState.row ? 0 : 1,
-      flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
-      flexShrink: 0,
-      minInlineSize: 0,
-      fontSize: `var(--ListItem-fontSize, ${theme.vars.fontSize.sm})`,
-      lineHeight: `var(--ListItem-lineHeight, ${theme.vars.lineHeight.sm})`,
-      fontFamily: theme.vars.fontFamily.body,
-      ...(ownerState.selected && {
-        fontWeight: theme.vars.fontWeight.md,
-      }),
-      [theme.focus.selector]: theme.focus.default,
+  ({ theme, ownerState }) => ({
+    WebkitTapHighlightColor: 'transparent',
+    boxSizing: 'border-box',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'stretch', // always stretch itself to fill the parent (List|ListItem)
+    ...(ownerState.orientation === 'vertical' && {
+      flexDirection: 'column',
+      justifyContent: 'center',
+    }),
+    textAlign: 'initial',
+    textDecoration: 'initial', // reset native anchor tag
+    backgroundColor: 'initial', // reset button background
+    cursor: 'pointer',
+    // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
+    marginInline: 'var(--ListItemButton-marginInline)',
+    marginBlock: 'var(--ListItemButton-marginBlock)',
+    ...(ownerState['data-first-child'] === undefined && {
+      marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
+      marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
+    }),
+    // account for the border width, so that all of the ListItemButtons content aligned horizontally
+    paddingBlock: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
+    // account for the border width, so that all of the ListItemButtons content aligned vertically
+    paddingInlineStart:
+      'calc(var(--ListItem-paddingLeft) + var(--ListItem-startActionWidth, var(--unstable_startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+    paddingInlineEnd:
+      'calc(var(--ListItem-paddingRight) + var(--ListItem-endActionWidth, var(--unstable_endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+    minBlockSize: 'var(--ListItem-minHeight)',
+    border: 'none',
+    borderRadius: 'var(--ListItem-radius)',
+    flexGrow: ownerState.row ? 0 : 1,
+    flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
+    flexShrink: 0,
+    minInlineSize: 0,
+    fontSize: `var(--ListItem-fontSize, ${theme.vars.fontSize.sm})`,
+    lineHeight: `var(--ListItem-lineHeight, ${theme.vars.lineHeight.sm})`,
+    fontFamily: theme.vars.fontFamily.body,
+    [theme.focus.selector]: theme.focus.default,
+    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    [`&.${listItemButtonClasses.selected}`]: {
+      '--Icon-color': 'currentColor',
+      '--ListItemDecorator-color': 'initial',
+      fontWeight: theme.vars.fontWeight.md,
     },
-    {
-      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-      ...(!ownerState.selected && {
-        '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-      }),
+    [`&:not(.${listItemButtonClasses.selected})`]: {
+      '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
     },
-    {
-      [`&.${listItemButtonClasses.disabled}`]:
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    [`&.${listItemButtonClasses.disabled}`]: {
+      '--Icon-color': 'currentColor',
+      '--ListItemDecorator-color': 'currentColor',
+      ...theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
     },
-  ],
+  }),
 );
 
 const ListItemButtonRoot = styled(StyledListItemButton, {
