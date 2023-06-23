@@ -301,6 +301,14 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   onClose: PropTypes.func,
   /**
+   * A function called when a transition enters.
+   */
+  onTransitionEnter: PropTypes.func,
+  /**
+   * A function called when a transition has exited.
+   */
+  onTransitionExited: PropTypes.func,
+  /**
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
