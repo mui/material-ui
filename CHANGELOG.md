@@ -7,7 +7,7 @@ _Jun 21, 2023_
 A big thanks to the 25 contributors who made this release possible. Here are some highlights ✨:
 
 - 💫 Added [Slider](https://mui.com/material-ui/react-slider/#material-you-version) component using the new Material You design language (#37520) @DiegoAndai.
-- 📚 Added [overview docs page](https://mui.com/base-ui/react-components/) showcasing all Base UI components (#37536) @danilo-leal
+- 📚 Added [example](https://github.com/mui/material-ui/tree/master/examples/material-next-app-router-ts) showcasing how you can use Material UI with next.js's app directory (#37315) @smo043
 
 ### `@mui/material@5.13.6`
 
