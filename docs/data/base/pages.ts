@@ -3,10 +3,11 @@ import pagesApi from 'docs/data/base/pagesApi';
 
 const pages = [
   {
-    pathname: '/base-ui/getting-started',
+    pathname: '/base-ui/getting-started-group',
+    title: 'Getting started',
     icon: standardNavIcons.DescriptionIcon,
     children: [
-      { pathname: '/base-ui/getting-started/overview', title: 'Overview' },
+      { pathname: '/base-ui/getting-started', title: 'Overview' },
       { pathname: '/base-ui/getting-started/quickstart', title: 'Quickstart' },
       { pathname: '/base-ui/getting-started/usage', title: 'Usage' },
       { pathname: '/base-ui/getting-started/customization', title: 'Customization' },

@@ -9,7 +9,7 @@ title: Overview
 ## Introduction
 
 Base UI is a library of unstyled React UI components and low-level hooks.
-These components were extracted from [Material UI](/material-ui/getting-started/overview/), and are now available as a standalone package.
+These components were extracted from [Material UI](/material-ui/getting-started/), and are now available as a standalone package.
 They feature the same robust engineering but without implementing Material Design.
 
 Base UI includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
@@ -34,7 +34,7 @@ Look for the [`package: base-ui`](https://github.com/mui/material-ui/labels/pack
 
 ## Base UI vs. Material UI
 
-Base UI features many of the same components as [Material UI](/material-ui/getting-started/overview/), but without the Material Design implementation.
+Base UI features many of the same components as [Material UI](/material-ui/getting-started/), but without the Material Design implementation.
 
 Base UI is not packaged with any default theme or built-in style engine.
 This makes it a great choice if you need complete control over how your app's CSS is implemented.
