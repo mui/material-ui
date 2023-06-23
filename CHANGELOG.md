@@ -1,5 +1,86 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.13.6
+
+_Jun 21, 2023_
+
+A big thanks to the 25 contributors who made this release possible. Here are some highlights ✨:
+
+- 💫 Added [Slider](https://mui.com/material-ui/react-slider/#material-you-version) component using the new Material You design language (#37520) @DiegoAndai.
+- 📚 Added [examples](https://github.com/mui/material-ui/tree/master/examples/material-next-app-router-ts) showcasing how you can use Material UI with next.js's app directory (#37315) @smo043
+
+### `@mui/material@5.13.6`
+
+- &#8203;<!-- 45 -->[Autocomplete] Fixed autocomplete's existing option selection (#37012) @bencevoros
+- &#8203;<!-- 44 -->[Autocomplete] Add hint demos to Material UI and Joy UI docs (#37496) @sai6855
+- &#8203;<!-- 13 -->[Masonry] Fix ResizeObserver loop limit exceeded error (#37208) @hbjORbj
+- &#8203;<!-- 11 -->[Tooltip][material] Improve warning when Tooltip receives string child (#37530) @DiegoAndai
+- &#8203;<!-- 10 -->[Modal] Add missing members to ModalOwnProps (#37568) @ivp-dev
+- &#8203;<!-- 09 -->[Slider] Arrow keys control does not work with float numbers (#37071) @gitstart
+- &#8203;<!-- 08 -->[SvgIcon] allow `svg` as a child (#37231) @siriwatknp
+- &#8203;<!-- 07 -->[Timeline] Add alternate reverse position (#37311) @abhinavkmrru
+- &#8203;<!-- 06 -->[Tooltip] Fix type of sx prop in `slotProps` (#37550) @SuperKXT
+- &#8203;<!-- 05 -->[TouchRipple] perf: avoid calling `clearTimeout()` (#37512) @romgrk
+
+### `@mui/material-next@6.0.0-alpha.90`
+
+- &#8203;<!-- 12 -->[Material You] Add Slider component with Material You design (#37520) @DiegoAndai
+
+### `@mui/joy@5.0.0-alpha.85`
+
+- &#8203;<!-- 37 -->[ButtonGroup][joy] Missing border when spacing is more than zero (#37577) @siriwatknp
+- &#8203;<!-- 36 -->[CardActions][joy] Add `CardActions` component (#37441) @siriwatknp
+- &#8203;<!-- 14 -->[Menu][joy] Fix closing of `Menu` in demos (#36917) @sai6855
+
+### `@mui/base@5.0.0-beta.5`
+
+- &#8203;<!-- 39 -->[Menu][base] Add the resetHighlight action (#37392) @michaldudak
+- &#8203;<!-- 38 -->[Select][base] Expose the `areOptionsEqual` prop (#37615) @michaldudak
+
+### `@mui/utils@5.13.2`
+
+- &#8203;<!-- 04 -->[utils] Allow nested imports in @mui/utils to speed up build (#37586) @flaviendelangle
+
+### Docs
+
+- &#8203;<!-- 43 -->[docs][base] Improve Base UI all components images (#37590) @danilo-leal
+- &#8203;<!-- 42 -->[docs][base] Add pages for coming soon components (#37575) @danilo-leal
+- &#8203;<!-- 41 -->[docs][base] Add a Snackbar introduction demo (#37602) @danilo-leal
+- &#8203;<!-- 40 -->[docs][base] Add page for all Base UI components (#37536) @danilo-leal
+- &#8203;<!-- 33 -->[docs] Fix scrollbar on snackbar page (#37657) @oliviertassinari
+- &#8203;<!-- 32 -->[docs] Switch order of snackbar buttons in demos (#37389) @Primajin
+- &#8203;<!-- 31 -->[docs] Add support for Tailwind CSS and plain CSS demos (#37319) @mnajdova
+- &#8203;<!-- 30 -->[docs] Tree view color fix for dark mode in Gmail example (#37051) @PunitSoniME
+- &#8203;<!-- 29 -->[docs] Inline the Base UI demo (#37603) @oliviertassinari
+- &#8203;<!-- 28 -->[docs] Fix typo in themed components page (#37598) @vinayr
+- &#8203;<!-- 27 -->[docs] Fix render inline code in CSS description generation (#37448) @alexfauquette
+- &#8203;<!-- 26 -->[docs] Add styles to styled argument list (#37558) @DiegoAndai
+- &#8203;<!-- 25 -->[docs] Improve awkward wording in READMEs of example projects (#37110) @DIWAKARKASHYAP
+- &#8203;<!-- 24 -->[docs] Fix small base -> base-ui migration issue (#37594) @oliviertassinari
+- &#8203;<!-- 23 -->[docs] Fix GitHub typo (#37578) @oliviertassinari
+- &#8203;<!-- 22 -->[docs] Improve release guide (#37547) @DiegoAndai
+- &#8203;<!-- 21 -->[docs] Review fixes to the Material UI's "Example projects" page (#37444) @danilo-leal
+- &#8203;<!-- 17 -->[docs][joy] Add a messages template (#37546) @sernstberger
+- &#8203;<!-- 16 -->[docs][joy] Add pages for coming soon Joy UI components (#36920) @danilo-leal
+- &#8203;<!-- 15 -->[docs][joy] Add design and consistency tweaks to the Playground (#37580) @danilo-leal
+- &#8203;<!-- 37 -->[docs] Add and revise Base UI + Create React App examples (#36825) @samuelsycamore
+- &#8203;<!-- 20 -->[docs-infra] Fix demos border radius (#37658) @oliviertassinari
+- &#8203;<!-- 19 -->[docs-infra] Add analyticsTags to Algolia (#37600) @Janpot
+- &#8203;<!-- 18 -->[docs-infra] Simplify product id handling (#37593) @oliviertassinari
+- &#8203;<!-- 35 -->[CHANGELOG] Add missing release date for v5.13.5 @oliviertassinari
+- &#8203;<!-- 16 -->[examples] Shell command fix in the readme file of material-next-app-router-ts example (#37675) @bablukpik
+- &#8203;<!-- 15 -->[examples] Next.js v13 app router with Material UI (#37315) @smo043
+
+### Core
+
+- &#8203;<!-- 34 -->[core] Update to Node.js v18 for `test-dev` CI (#37604) @ZeeshanTamboli
+- &#8203;<!-- 39 -->[core] Add priority support issue template (#37671) @DanailH
+- &#8203;<!-- 03 -->[website] Update roadmap page (#37587) @cherniavskii
+- &#8203;<!-- 02 -->[website] Add CSP to limit iframes to self @oliviertassinari
+- &#8203;<!-- 01 -->[website] Link mui-x Stack Overflow in footer link (#37509) @richbustos
+
+All contributors of this release in alphabetical order: @abhinavkmrru, @alexfauquette, @bencevoros, @cherniavskii, @danilo-leal, @DiegoAndai, @DIWAKARKASHYAP, @flaviendelangle, @gitstart, @hbjORbj, @ivp-dev, @Janpot, @michaldudak, @mnajdova, @oliviertassinari, @Primajin, @PunitSoniME, @richbustos, @romgrk, @sai6855, @sernstberger, @siriwatknp, @SuperKXT, @vinayr, @ZeeshanTamboli
+
 ## 5.13.5
 
 _Jun 12, 2023_
