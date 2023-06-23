@@ -137,7 +137,7 @@ const Button = styled(MDButton)(({ theme }) => ({
   border: 'none',
   paddingLeft: theme.spacing(1),
   paddingRight: theme.spacing(0.5),
-  fontSize: '0.75rem',
+  fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
   color: theme.palette.primary.main,
   '& svg': {
@@ -173,7 +173,7 @@ const MenuItem = styled(MDMenuItem)(({ theme }) => ({
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
     padding: theme.spacing(0, 1, 0.1, 1),
-    fontSize: '0.75rem',
+    fontSize: theme.typography.pxToRem(13),
     borderRadius: 99,
     borderColor: 'grey.200',
     '&.Mui-disabled': {
