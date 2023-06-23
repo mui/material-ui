@@ -16,7 +16,7 @@ export default function SwitchUsage() {
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'neutral',
+          defaultValue: 'primary',
         },
         {
           propName: 'size',

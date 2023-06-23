@@ -14,7 +14,7 @@ export default function SwitchControl() {
     >
       <Box>
         <FormLabel>Show captions</FormLabel>
-        <FormHelperText sx={{ mt: 0 }}>All languages available.</FormHelperText>
+        <FormHelperText>All languages available.</FormHelperText>
       </Box>
       <Switch
         checked={checked}
