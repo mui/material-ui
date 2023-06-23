@@ -451,7 +451,7 @@ const Root = styled('div')(
     '& .MuiCode-copyKeypress': {
       pointerEvents: 'none',
       userSelect: 'none',
-      marginRight: theme.spacing(1),
+      marginRight: theme.spacing(1.5),
       whiteSpace: 'nowrap',
       '& > span': {
         opacity: 0.8,
