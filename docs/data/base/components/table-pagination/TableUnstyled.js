@@ -46,6 +46,7 @@ export default function UnstyledTable() {
               </td>
             </tr>
           ))}
+
           {emptyRows > 0 && (
             <tr style={{ height: 41 * emptyRows }}>
               <td colSpan={3} />

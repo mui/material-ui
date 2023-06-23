@@ -56,6 +56,7 @@ export default function ShadowThemeViewer() {
           [],
         ),
     );
+
   return (
     <Box sx={{ width: '100%', overflow: 'hidden', position: 'relative' }}>
       <Sheet

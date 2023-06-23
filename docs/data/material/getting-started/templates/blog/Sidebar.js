@@ -25,6 +25,7 @@ function Sidebar(props) {
           {archive.title}
         </Link>
       ))}
+
       <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
         Social
       </Typography>

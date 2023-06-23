@@ -138,6 +138,7 @@ export default function GoogleMaps() {
                     {part.text}
                   </Box>
                 ))}
+
                 <Typography variant="body2" color="text.secondary">
                   {option.structured_formatting.secondary_text}
                 </Typography>

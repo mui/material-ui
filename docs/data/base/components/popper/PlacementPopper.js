@@ -102,6 +102,7 @@ PlacementForm.propTypes = {
 export default function PlacementPopper() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [placement, setPlacement] = React.useState(undefined);
+
   return (
     <div style={{ width: '100%' }}>
       <PlacementForm setPlacement={setPlacement} />

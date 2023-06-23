@@ -46,6 +46,7 @@ export default function GroupedAvatars() {
       {avatars.map((avatar) => (
         <Avatar key={avatar.alt} {...avatar} />
       ))}
+
       {!!surplus && <Avatar>+{surplus}</Avatar>}
     </AvatarGroup>
   );
