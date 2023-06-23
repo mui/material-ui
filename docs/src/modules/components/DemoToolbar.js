@@ -137,7 +137,7 @@ const Button = styled(MDButton)(({ theme }) => ({
   border: 'none',
   paddingLeft: theme.spacing(1),
   paddingRight: theme.spacing(0.5),
-  fontSize: '0.85rem',
+  fontSize: '0.75rem',
   fontWeight: theme.typography.fontWeightMedium,
   color: theme.palette.primary.main,
   '& svg': {
