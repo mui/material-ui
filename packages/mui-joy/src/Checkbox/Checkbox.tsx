@@ -15,7 +15,8 @@ import { TypographyNestedContext } from '../Typography/Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
-  const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
+  const { checked, disabled, disableIcon, focusVisible, color, variant, size, indeterminate } =
+    ownerState;
 
   const slots = {
     root: [
@@ -27,7 +28,12 @@ const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    checkbox: ['checkbox', checked && 'checked', disabled && 'disabled'], // disabled class is necessary for displaying global variant
+    checkbox: [
+      'checkbox',
+      checked && 'checked',
+      indeterminate && 'indeterminate',
+      disabled && 'disabled', // disabled class is necessary for displaying global variant
+    ],
     action: [
       'action',
       checked && 'checked',
@@ -100,6 +106,9 @@ const CheckboxCheckbox = styled('span', {
       ...(ownerState.disableIcon && {
         display: 'contents',
       }),
+      [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
+        '--Icon-color': 'currentColor',
+      },
     },
     ...(!ownerState.disableIcon
       ? [
