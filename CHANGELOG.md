@@ -63,6 +63,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - &#8203;<!-- 17 -->[docs][joy] Add a messages template (#37546) @sernstberger
 - &#8203;<!-- 16 -->[docs][joy] Add pages for coming soon Joy UI components (#36920) @danilo-leal
 - &#8203;<!-- 15 -->[docs][joy] Add design and consistency tweaks to the Playground (#37580) @danilo-leal
+- &#8203;<!-- 37 -->[docs] Add and revise Base UI + Create React App examples (#36825) @samuelsycamore
 - &#8203;<!-- 20 -->[docs-infra] Fix demos border radius (#37658) @oliviertassinari
 - &#8203;<!-- 19 -->[docs-infra] Add analyticsTags to Algolia (#37600) @Janpot
 - &#8203;<!-- 18 -->[docs-infra] Simplify product id handling (#37593) @oliviertassinari
@@ -73,6 +74,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 ### Core
 
 - &#8203;<!-- 34 -->[core] Update to Node.js v18 for `test-dev` CI (#37604) @ZeeshanTamboli
+- &#8203;<!-- 39 -->[core] Add priority support issue template (#37671) @DanailH
 - &#8203;<!-- 03 -->[website] Update roadmap page (#37587) @cherniavskii
 - &#8203;<!-- 02 -->[website] Add CSP to limit iframes to self @oliviertassinari
 - &#8203;<!-- 01 -->[website] Link mui-x Stack Overflow in footer link (#37509) @richbustos
