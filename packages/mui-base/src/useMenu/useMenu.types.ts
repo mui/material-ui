@@ -6,6 +6,10 @@ import { MenuProviderValue } from './MenuProvider';
 
 export interface UseMenuParameters {
   /**
+   * The id of the menu. If not provided, it will be generated.
+   */
+  id?: string;
+  /**
    * Callback fired when the menu items change.
    */
   onItemsChange?: (items: string[]) => void;
@@ -49,6 +53,10 @@ export interface UseMenuReturnValue {
    * If `true`, the menu is open.
    */
   open: boolean;
+  /**
+   * An element that triggers the visibility of the menu.
+   */
+  triggerElement: HTMLElement | null;
 }
 
 interface UseMenuListboxSlotEventHandlers {

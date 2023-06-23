@@ -49,9 +49,13 @@ export default function useDropdownMenu(parameters: UseDropdownMenuParameters = 
     triggerElementRef.current = element;
   }, []);
 
+  const [popupId, setPopupId] = React.useState<string>('');
+
   const contextValue: MenuContextValue = {
     state,
     dispatch,
+    popupId,
+    registerPopup: setPopupId,
     registerTrigger,
     triggerElement: triggerElementRef.current,
   };

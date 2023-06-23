@@ -3,6 +3,8 @@ import { MenuAction, MenuOpenState } from '../useDropdownMenu/useDropdownMenu.ty
 
 export interface MenuContextValue {
   dispatch: React.Dispatch<MenuAction>;
+  popupId: string;
+  registerPopup: (popupId: string) => void;
   registerTrigger: (element: HTMLElement | null) => void;
   state: MenuOpenState;
   triggerElement: HTMLElement | null;

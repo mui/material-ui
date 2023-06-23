@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import {
+  unstable_useForkRef as useForkRef,
+  unstable_useId as useId,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+} from '@mui/utils';
 import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
 import menuReducer from './menuReducer';
 import MenuContext, { MenuContextValue } from './MenuContext';
@@ -12,10 +16,12 @@ import MuiCancellableEvent from '../utils/muiCancellableEvent';
 import combineHooksSlotProps from '../utils/combineHooksSlotProps';
 
 const FALLBACK_MENU_CONTEXT: MenuContextValue = {
-  state: { open: true },
   dispatch: () => {},
-  triggerElement: null,
+  popupId: '',
+  registerPopup: () => {},
   registerTrigger: () => {},
+  state: { open: true },
+  triggerElement: null,
 };
 
 /**
@@ -29,15 +35,18 @@ const FALLBACK_MENU_CONTEXT: MenuContextValue = {
  * - [useMenu API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu)
  */
 export default function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
-  const { listboxRef: listboxRefProp, onItemsChange } = parameters;
+  const { listboxRef: listboxRefProp, onItemsChange, id: idParam } = parameters;
 
   const listboxRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(listboxRef, listboxRefProp);
+
+  const listboxId = useId(idParam) ?? '';
 
   const {
     state: { open },
     dispatch: menuDispatch,
     triggerElement,
+    registerPopup,
   } = React.useContext(MenuContext) ?? FALLBACK_MENU_CONTEXT;
 
   const { subitems, contextValue: compoundComponentContextValue } = useCompoundParent<
@@ -82,6 +91,10 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     selectionMode: 'none',
     stateReducer: menuReducer,
   });
+
+  useEnhancedEffect(() => {
+    registerPopup(listboxId);
+  }, [listboxId, registerPopup]);
 
   React.useEffect(() => {
     if (open && highlightedValue === subitemKeys[0]) {
@@ -142,6 +155,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     const getRootProps = combineHooksSlotProps(getOwnListboxHandlers, getListRootProps);
     return {
       ...getRootProps(otherHandlers),
+      id: listboxId,
       role: 'menu',
     };
   };
@@ -159,5 +173,6 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     listboxRef: mergedListRef,
     menuItems: subitems,
     open,
+    triggerElement,
   };
 }

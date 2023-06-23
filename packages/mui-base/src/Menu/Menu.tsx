@@ -11,7 +11,6 @@ import Popper from '../Popper';
 import useSlotProps from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { WithOptionalOwnerState } from '../utils';
-import MenuContext, { MenuContextValue } from '../useMenu/MenuContext';
 import { ListActionTypes } from '../useList';
 
 function useUtilityClasses(ownerState: MenuOwnerState) {
@@ -39,19 +38,9 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
 ) {
   const { actions, children, onItemsChange, slotProps = {}, slots = {}, ...other } = props;
 
-  const menuContext: MenuContextValue = React.useContext(MenuContext) ?? {
-    state: { open: true },
-    triggerElement: null,
-    dispatch: () => {},
-    registerTrigger: () => {},
-  };
-
-  const {
-    state: { open },
-    triggerElement,
-  } = menuContext;
-
-  const { contextValue, getListboxProps, dispatch } = useMenu({ onItemsChange });
+  const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
+    onItemsChange,
+  });
 
   React.useImperativeHandle(
     actions,

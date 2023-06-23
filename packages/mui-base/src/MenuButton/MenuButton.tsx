@@ -15,11 +15,11 @@ import useMenuButton from '../useMenuButton';
  */
 const MenuButton = React.forwardRef(function MenuButton(
   props: MenuButtonProps,
-  ref: React.ForwardedRef<HTMLButtonElement>,
+  forwardedRef: React.ForwardedRef<HTMLElement>,
 ) {
   const { children, label, slots = {}, slotProps = {}, ...other } = props;
 
-  const { getRootProps, open } = useMenuButton();
+  const { getRootProps, open } = useMenuButton({ rootRef: forwardedRef });
 
   const Root = slots.root || 'button';
   const rootProps = useSlotProps({
@@ -28,7 +28,8 @@ const MenuButton = React.forwardRef(function MenuButton(
     externalForwardedProps: other,
     externalSlotProps: slotProps.root,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
+      type: 'button',
     },
     ownerState: { ...props, open },
   });

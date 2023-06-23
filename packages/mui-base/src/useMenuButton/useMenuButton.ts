@@ -11,7 +11,7 @@ import { MenuActionTypes } from '../useDropdownMenu/useDropdownMenu.types';
  *
  * - [useMenuButton API](https://mui.com/base-ui/api/use-menu-button/)
  */
-export default function useMenuButton(parameters: UseMenuButtonParameters = {}) {
+export default function useMenuButton(parameters: UseMenuButtonParameters) {
   const { rootRef: externalRef } = parameters;
 
   const menuContext = React.useContext(MenuContext);
@@ -19,7 +19,7 @@ export default function useMenuButton(parameters: UseMenuButtonParameters = {}) 
     throw new Error('useMenuButton: no menu context available.');
   }
 
-  const { state, dispatch, registerTrigger } = menuContext;
+  const { state, dispatch, registerTrigger, popupId } = menuContext;
 
   const setTriggerRef = React.useCallback(
     (element: HTMLElement | null) => {
@@ -44,6 +44,9 @@ export default function useMenuButton(parameters: UseMenuButtonParameters = {}) 
     };
 
   const getRootProps = (otherHandlers: EventHandlers = {}) => ({
+    'aria-haspopup': 'menu',
+    'aria-expanded': state.open,
+    'aria-controls': popupId,
     onClick: createHandleClick(otherHandlers),
     ref: handleRef,
   });
