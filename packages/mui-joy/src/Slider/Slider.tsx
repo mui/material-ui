@@ -230,7 +230,13 @@ const SliderThumb = styled('span', {
   boxShadow: 'var(--Slider-thumbShadow)',
   color: 'var(--Slider-thumbColor)',
   backgroundColor: 'var(--Slider-thumbBackground)',
-  [theme.focus.selector]: theme.focus.default,
+  [theme.focus.selector]: {
+    ...theme.focus.default,
+    outlineOffset: 0,
+    ...(ownerState.color !== 'context' && {
+      outlineColor: `rgba(${theme.vars.palette?.[ownerState.color!]?.mainChannel} / 0.2)`,
+    }),
+  },
   ...(ownerState.orientation === 'horizontal' && {
     top: '50%',
     transform: 'translate(-50%, -50%)',
