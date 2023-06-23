@@ -41,7 +41,6 @@ export default function RadioUsage() {
             orientation={orientation}
             defaultValue="1"
             name="radio-button-usage"
-            sx={{ mt: 1 }}
           >
             <Radio label="Regular crust" value="1" {...props} />
             <Radio label="Deep dish" value="2" {...props} />

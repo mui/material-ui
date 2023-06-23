@@ -16,7 +16,7 @@ export default function ExampleProductAttributes() {
           fontWeight: 'xl',
           textTransform: 'uppercase',
           fontSize: 'xs',
-          letterSpacing: '0.15rem',
+          letterSpacing: '0.1em',
         }}
       >
         Color
@@ -78,7 +78,7 @@ export default function ExampleProductAttributes() {
           fontWeight: 'xl',
           textTransform: 'uppercase',
           fontSize: 'xs',
-          letterSpacing: '0.15rem',
+          letterSpacing: '0.1em',
         }}
       >
         Size

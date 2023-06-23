@@ -6,7 +6,7 @@ import ListDivider from '@mui/joy/ListDivider';
 import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Typography from '@mui/joy/Typography';
-import Switch, { switchClasses } from '@mui/joy/Switch';
+import Switch from '@mui/joy/Switch';
 
 export default function ExamplePaymentChannels() {
   const [orientation, setOrientation] =
@@ -26,7 +26,7 @@ export default function ExamplePaymentChannels() {
           level="body-xs"
           textTransform="uppercase"
           fontWeight="xl"
-          sx={{ letterSpacing: '0.15rem' }}
+          sx={{ letterSpacing: '0.1em' }}
         >
           Pay with
         </Typography>
@@ -38,12 +38,6 @@ export default function ExamplePaymentChannels() {
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setOrientation(event.target.checked ? 'horizontal' : 'vertical')
           }
-          sx={{
-            [`&&:not(.${switchClasses.checked})`]: {
-              '--Switch-trackBackground': (theme) =>
-                theme.vars.palette.background.level3,
-            },
-          }}
         />
       </Box>
       <RadioGroup
