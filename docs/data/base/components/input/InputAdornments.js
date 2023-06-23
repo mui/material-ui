@@ -60,7 +60,16 @@ export default function InputAdornments() {
   };
 
   return (
-    <Box sx={{ display: 'flex', '& > * + *': { ml: 1 } }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        '@media (min-width: 600px)': {
+          flexDirection: 'row',
+        },
+      }}
+    >
       <CustomInput
         id="outlined-start-adornment"
         startAdornment={<InputAdornment>kg</InputAdornment>}
