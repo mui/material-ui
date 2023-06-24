@@ -505,11 +505,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       />
     ) : null;
 
-    const scrollButtonsActive = displayStartScroll || displayEndScroll;
-    const showScrollButtons =
-      scrollable && ((scrollButtons === 'auto' && scrollButtonsActive) || scrollButtons === true);
+    const isScrollableButtons = scrollable && (scrollButtons === 'auto' || scrollButtons === true);
 
-    conditionalElements.scrollButtonStart = showScrollButtons ? (
+    conditionalElements.scrollButtonStart = isScrollableButtons ? (
       <ScrollButtonComponent
         slots={{ StartScrollButtonIcon: slots.StartScrollButtonIcon }}
         slotProps={{ startScrollButtonIcon: startScrollButtonIconProps }}
@@ -522,7 +520,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       />
     ) : null;
 
-    conditionalElements.scrollButtonEnd = showScrollButtons ? (
+    conditionalElements.scrollButtonEnd = isScrollableButtons ? (
       <ScrollButtonComponent
         slots={{ EndScrollButtonIcon: slots.EndScrollButtonIcon }}
         slotProps={{
@@ -604,21 +602,21 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       threshold: 1,
     };
 
-    const handleScrollButtonStart = debounce((entries) => {
+    const handleScrollButtonStart = (entries) => {
       let display = false;
       entries.forEach(({ intersectionRatio }) => {
         display = intersectionRatio !== 1;
       });
       setDisplayStartScroll(display);
-    });
+    };
 
-    const handleScrollButtonEnd = debounce((entries) => {
+    const handleScrollButtonEnd = (entries) => {
       let display = false;
       entries.forEach(({ intersectionRatio }) => {
         display = intersectionRatio !== 1;
       });
       setDisplayEndScroll(display);
-    });
+    };
 
     if (
       typeof IntersectionObserver !== 'undefined' &&
@@ -638,8 +636,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     return () => {
       firstObserver?.disconnect();
       lastObserver?.disconnect();
-      handleScrollButtonStart.clear();
-      handleScrollButtonEnd.clear();
     };
   }, [scrollable, scrollButtons, tabsRef, childrenProp]);
 
