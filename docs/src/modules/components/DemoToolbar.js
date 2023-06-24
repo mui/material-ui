@@ -104,12 +104,6 @@ ToggleCodeTooltip.propTypes = {
   showSourceHint: PropTypes.bool,
 };
 
-export function DemoToolbarFallback() {
-  const t = useTranslate();
-
-  return <Root aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
-}
-
 const alwaysTrue = () => true;
 
 const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [

@@ -39,12 +39,15 @@ const DemoToolbarFallbackRoot = styled('div')(({ theme }) => {
   return {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      height: theme.spacing(8),
+      display: 'block',
+      height: 40 + 4 * 2 + 1 * 2,
+      marginTop: -1,
+      marginBottom: 16,
     },
   };
 });
-export function DemoToolbarFallback() {
+
+function DemoToolbarFallback() {
   const t = useTranslate();
 
   return <DemoToolbarFallbackRoot aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
