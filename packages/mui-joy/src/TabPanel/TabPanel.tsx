@@ -27,12 +27,7 @@ const TabPanelRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabPanelOwnerState }>(({ theme, ownerState }) => ({
   display: ownerState.hidden ? 'none' : 'initial',
-  ...(ownerState.orientation === 'horizontal' && {
-    paddingBlockStart: 'var(--Tabs-gap)',
-  }),
-  ...(ownerState.orientation === 'vertical' && {
-    paddingInlineStart: 'var(--Tabs-gap)',
-  }),
+  padding: 'var(--Tabs-gap)',
   ...(ownerState.size === 'sm' && {
     fontSize: theme.vars.fontSize.sm,
   }),
@@ -44,6 +39,7 @@ const TabPanelRoot = styled('div', {
   }),
   flexGrow: 1,
   fontFamily: theme.vars.fontFamily.body,
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
 /**
  *
@@ -68,6 +64,8 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     children,
     value = 0,
     component,
+    color = 'neutral',
+    variant = 'plain',
     size: sizeProp,
     slots = {},
     slotProps = {},
@@ -83,6 +81,8 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     orientation,
     hidden,
     size,
+    color,
+    variant,
   };
 
   const classes = useUtilityClasses(ownerState);

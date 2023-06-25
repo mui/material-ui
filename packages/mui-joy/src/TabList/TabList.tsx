@@ -34,13 +34,20 @@ const TabListRoot = styled(StyledList, {
   name: 'JoyTabList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabListOwnerState }>(({ theme }) => ({
+})<{ ownerState: TabListOwnerState }>(({ theme, ownerState }) => ({
   flexGrow: 'initial',
-  '--List-radius': theme.vars.radius.md, // targets TabList which reuses styles from List.
-  '--List-gap': 'var(--Tabs-gap)',
-  '--List-padding': 'var(--Tabs-gap)',
+  '--List-radius': '0px', // targets TabList which reuses styles from List.
+  '--List-gap': '0px',
+  // '--List-padding': '0px',
+  '--ListItem-paddingX': 'var(--Tabs-gap)',
+  '--ListItem-radius': '0px',
   '--ListDivider-gap': '0px',
   ...scopedVariables,
+  ...(!ownerState.disableUnderline && {
+    boxShadow: `inset ${ownerState.orientation === 'vertical' ? '-1px 0' : '0 -1px'} 0 0 ${
+      theme.vars.palette.divider
+    }`,
+  }),
 }));
 /**
  *
@@ -63,11 +70,12 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   const {
     component = 'div',
     children,
-    variant = 'soft',
+    variant = 'plain',
     color: colorProp = 'neutral',
     size: sizeProp,
     slots = {},
     slotProps = {},
+    disableUnderline,
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);

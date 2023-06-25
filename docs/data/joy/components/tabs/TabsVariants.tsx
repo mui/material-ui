@@ -12,12 +12,18 @@ export default function TabsVariants() {
         aria-label="Plain tabs"
         value={index}
         onChange={(event, value) => setIndex(value as number)}
-        sx={{ borderRadius: 'lg' }}
       >
-        <TabList variant="plain">
-          <Tab variant={index === 0 ? 'outlined' : 'plain'}>First tab</Tab>
-          <Tab variant={index === 1 ? 'outlined' : 'plain'}>Second tab</Tab>
-          <Tab variant={index === 2 ? 'outlined' : 'plain'}>Third tab</Tab>
+        <TabList
+          variant="plain"
+          sx={{
+            '& > button:not([aria-selected="true"])': {
+              borderColor: 'transparent',
+            },
+          }}
+        >
+          <Tab variant="outlined">First tab</Tab>
+          <Tab variant="outlined">Second tab</Tab>
+          <Tab variant="outlined">Third tab</Tab>
         </TabList>
       </Tabs>
 
@@ -25,9 +31,8 @@ export default function TabsVariants() {
         aria-label="Outlined tabs"
         value={index}
         onChange={(event, value) => setIndex(value as number)}
-        sx={{ borderRadius: 'lg' }}
       >
-        <TabList variant="outlined">
+        <TabList variant="outlined" disableUnderline>
           <Tab
             variant={index === 0 ? 'soft' : 'plain'}
             color={index === 0 ? 'primary' : 'neutral'}
@@ -53,25 +58,15 @@ export default function TabsVariants() {
         aria-label="Soft tabs"
         value={index}
         onChange={(event, value) => setIndex(value as number)}
-        sx={{ borderRadius: 'lg' }}
       >
-        <TabList variant="soft">
-          <Tab
-            variant={index === 0 ? 'solid' : 'plain'}
-            color={index === 0 ? 'primary' : 'neutral'}
-          >
+        <TabList>
+          <Tab variant="solid" color="primary">
             First tab
           </Tab>
-          <Tab
-            variant={index === 1 ? 'solid' : 'plain'}
-            color={index === 1 ? 'primary' : 'neutral'}
-          >
+          <Tab variant="solid" color="primary">
             Second tab
           </Tab>
-          <Tab
-            variant={index === 2 ? 'solid' : 'plain'}
-            color={index === 2 ? 'primary' : 'neutral'}
-          >
+          <Tab variant="solid" color="primary">
             Third tab
           </Tab>
         </TabList>

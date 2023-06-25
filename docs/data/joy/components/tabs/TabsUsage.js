@@ -13,7 +13,7 @@ export default function TabsUsage() {
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'outlined',
+          defaultValue: 'plain',
           options: ['plain', 'outlined', 'soft', 'solid'],
           codeBlockDisplay: false,
         },
@@ -37,36 +37,31 @@ export default function TabsUsage() {
       getCodeBlock={(code, props) =>
         code.replace(
           '$children',
-          `<TabList${props.variant ? ` variant="${props.variant}"` : ''}${
+          `<TabList>
+    <Tab${props.variant ? ` variant="${props.variant}"` : ''}${
             props.color ? ` color="${props.color}"` : ''
-          }>
-    <Tab>...</Tab>
+          }>...</Tab>
   </TabList>`,
         )
       }
-      renderDemo={({ size, ...props }) => (
-        <Tabs
-          size={size}
-          value={index}
-          onChange={(event, value) => setIndex(value)}
-          sx={{ borderRadius: 'lg' }}
-        >
+      renderDemo={({ size, variant, color, ...props }) => (
+        <Tabs size={size} value={index} onChange={(event, value) => setIndex(value)}>
           <TabList {...props}>
             <Tab
-              variant={index === 0 ? 'soft' : 'plain'}
-              color={index === 0 ? 'primary' : 'neutral'}
+              variant={index === 0 ? variant : 'plain'}
+              color={index === 0 ? color : 'neutral'}
             >
               Tab A
             </Tab>
             <Tab
-              variant={index === 1 ? 'soft' : 'plain'}
-              color={index === 1 ? 'primary' : 'neutral'}
+              variant={index === 1 ? variant : 'plain'}
+              color={index === 1 ? color : 'neutral'}
             >
               Tab B
             </Tab>
             <Tab
-              variant={index === 2 ? 'soft' : 'plain'}
-              color={index === 2 ? 'primary' : 'neutral'}
+              variant={index === 2 ? variant : 'plain'}
+              color={index === 2 ? color : 'neutral'}
             >
               Tab C
             </Tab>

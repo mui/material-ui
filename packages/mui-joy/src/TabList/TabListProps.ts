@@ -45,6 +45,10 @@ export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     sx?: SxProps;
     /**
+     * If `true`, the TabList's underline will disappear.
+     */
+    disableUnderline?: boolean;
+    /**
      * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'soft'
      */

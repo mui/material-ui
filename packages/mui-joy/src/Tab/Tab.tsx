@@ -8,7 +8,7 @@ import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useColorInversion } from '../styles/ColorInversion';
-import { getTabUtilityClass } from './tabClasses';
+import tabClasses, { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
@@ -41,17 +41,43 @@ const TabRoot = styled(StyledListItemButton, {
   return {
     justifyContent: 'center',
     flexGrow: 1,
+    ...variantStyle,
     ...(!ownerState.row &&
       ownerState.orientation === 'horizontal' && {
         justifyContent: 'flex-start',
       }),
     ...(ownerState.selected && {
-      boxShadow: theme.shadow.sm,
       fontWeight: 'initial',
-      ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
     }),
+    ...(ownerState.row
+      ? {
+          borderBottom: 'var(--Tab-lineSize) solid transparent',
+        }
+      : {
+          borderRight: 'var(--Tab-lineSize) solid transparent',
+        }),
+    '&::after': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      margin: 'auto', // align center if fixed width/height
+      bottom: 'calc(-1 * var(--Tab-lineSize))',
+      left: 'calc(-1 * var(--variant-borderWidth, 0px))',
+      right: 'calc(-1 * var(--variant-borderWidth, 0px))',
+      height: 'var(--Tab-lineSize)',
+      background: 'var(--Tab-lineColor)',
+      ...(!ownerState.row && {
+        width: 'var(--Tab-lineSize)',
+        height: 'unset',
+        left: 'unset',
+        right: 'calc(-1 * var(--Tab-lineSize))',
+        top: 'calc(-1 * var(--variant-borderWidth, 0px))',
+        bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
+      }),
+    },
+    [`&.${tabClasses.selected}::after`]: {
+      '--Tab-lineColor': 'currentColor',
+    },
   };
 });
 /**
