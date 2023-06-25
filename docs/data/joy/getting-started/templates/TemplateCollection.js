@@ -45,6 +45,10 @@ const AUTHORS = {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
   },
+  messages: {
+    name: 'Steve Ernstberger',
+    link: 'https://twitter.com/SteveEberger',
+  },
   'sign-in-side': {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
@@ -83,10 +87,15 @@ const DESIGNS = {
     name: 'Untitled UI',
     link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
   },
+  messages: {
+    name: 'Untitled UI',
+    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+  },
 };
 
 export default function TemplateCollection() {
   const newTemplates = [
+    'messages',
     'rental-dashboard',
     'framesx-web-blocks',
     'profile-dashboard',
@@ -168,7 +177,7 @@ export default function TemplateCollection() {
               </AspectRatio>
             </CardOverflow>
             <CardContent>
-              <Box sx={{ display: 'flex', gap: 1 }}>
+              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 1 }}>
                 <Typography
                   component="h3"
                   fontSize="lg"
@@ -196,7 +205,7 @@ export default function TemplateCollection() {
                     ) : null
                   }
                   slotProps={{ endDecorator: { sx: { ml: 'auto' } } }}
-                  sx={{ mb: 1, mr: 'auto' }}
+                  sx={{ mr: 'auto' }}
                 >
                   {startCase(name)}
                 </Typography>
