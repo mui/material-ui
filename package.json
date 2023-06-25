@@ -153,7 +153,7 @@
     "globby": "^13.1.4",
     "google-auth-library": "^8.8.0",
     "html-webpack-plugin": "^5.5.3",
-    "jsdom": "^21.1.2",
+    "jsdom": "^22.1.0",
     "karma": "^6.4.2",
     "karma-browserstack-launcher": "~1.6.0",
     "karma-chrome-launcher": "^3.2.0",
