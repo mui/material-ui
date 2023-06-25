@@ -78,7 +78,7 @@ export default function BasicMenu() {
     options: new Array(MENU_LEVELS).fill(null),
   });
 
-  const handleClick = (
+  const handleOpen = (
     event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
     level = 0,
     nestedOptions = options,
@@ -109,7 +109,7 @@ export default function BasicMenu() {
     <React.Fragment>
       <Button
         onClick={(event) => {
-          handleClick(event);
+          handleOpen(event);
         }}
       >
         Menu
@@ -159,13 +159,13 @@ export default function BasicMenu() {
                               )
                             ) {
                               handleClose(option.menuLevel + 1);
-                              handleClick(
+                              handleOpen(
                                 event,
                                 option.menuLevel + 1,
                                 option.nestedOptions,
                               );
                             } else {
-                              handleClick(
+                              handleOpen(
                                 event,
                                 option.menuLevel + 1,
                                 option.nestedOptions,
@@ -175,7 +175,7 @@ export default function BasicMenu() {
                           onKeyDown={(event) => {
                             if (option.nestedOptions) {
                               if (event.key === 'ArrowRight') {
-                                handleClick(
+                                handleOpen(
                                   event,
                                   option.menuLevel + 1,
                                   option.nestedOptions,
@@ -184,7 +184,6 @@ export default function BasicMenu() {
                             }
                             if (event.key === 'ArrowLeft' && option.menuLevel > 0) {
                               handleClose(option.menuLevel);
-
                               anchors.elements[option.menuLevel]?.focus();
                             }
                           }}
