@@ -7,41 +7,46 @@ import {
   Stack,
   TextField,
   ThemeProvider,
+  useTheme,
+  Theme,
 } from '@mui/material';
 
-// Theme.ts
-const theme = createTheme({
-  components: {
-    MuiAutocomplete: {
-      defaultProps: {
-        renderOption: (props, option, state, ownerState) => (
-          <Box sx={{ padding: '0 !important' }} component="li" {...props}>
-            <Button
-              sx={{
-                fontSize: '12px',
-                width: '100%',
-                height: '100%',
-                padding: '20px 24px',
-                justifyContent: 'flex-start',
-              }}
-            >
-              {ownerState.getOptionLabel?.(option)}
-            </Button>
-          </Box>
-        ),
+// Theme.tsx
+const customTheme = (outerTheme: Theme) =>
+  createTheme({
+    palette: {
+      mode: outerTheme.palette.mode,
+    },
+    components: {
+      MuiAutocomplete: {
+        defaultProps: {
+          renderOption: (props, option, state, ownerState) => (
+            <Box sx={{ padding: '0 !important' }} component="li" {...props}>
+              <Button
+                sx={{
+                  fontSize: '12px',
+                  width: '100%',
+                  height: '100%',
+                  padding: '20px 24px',
+                  justifyContent: 'flex-start',
+                  textAlign: 'left',
+                }}
+              >
+                {ownerState.getOptionLabel?.(option)}
+              </Button>
+            </Box>
+          ),
+        },
       },
     },
-  },
-  palette: {
-    mode: 'dark',
-    primary: { main: 'rgb(102, 157, 246)' },
-    background: { paper: 'rgb(5, 30, 52)' },
-  },
-});
+  });
 
 export default function GlobalCustomizedOptions() {
+  // useTheme is used to determine wether dark or light mode is currently active.
+  const outerTheme = useTheme();
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme(outerTheme)}>
       <Stack spacing={5} sx={{ width: 300 }}>
         <MovieSelect />
         <CountrySelect />
