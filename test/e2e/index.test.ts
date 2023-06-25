@@ -243,9 +243,9 @@ describe('e2e', () => {
     it('should handle suspense without error', async () => {
       await renderFixture('NestedMenuDemo/MaterialNestedMenu');
 
-      const button = (await screen.getByRole('button'))!;
+      // const button = (await screen.getByRole('button'))!;
 
-      console.log(button);
+      // console.log(button);
     });
   });
   describe('<TextareaAutosize />', () => {
