@@ -10,7 +10,7 @@ import {
   useTheme,
 } from '@mui/material';
 
-// Theme.ts
+// Theme.tsx
 const customTheme = (outerTheme) =>
   createTheme({
     palette: {
@@ -31,7 +31,7 @@ const customTheme = (outerTheme) =>
                   textAlign: 'left',
                 }}
               >
-                {ownerState.getOptionLabel(option)}
+                {ownerState.getOptionLabel?.(option)}
               </Button>
             </Box>
           ),

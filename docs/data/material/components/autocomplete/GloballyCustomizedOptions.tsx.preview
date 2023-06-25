@@ -1,4 +1,4 @@
-<ThemeProvider theme={theme}>
+<ThemeProvider theme={customTheme(outerTheme)}>
   <Stack spacing={5} sx={{ width: 300 }}>
     <MovieSelect />
     <CountrySelect />
