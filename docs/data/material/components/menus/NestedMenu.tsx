@@ -120,6 +120,7 @@ export default function BasicMenu() {
           <Popper
             open={Boolean(anchorElement)}
             anchorEl={anchorElement}
+            key={`${anchorElement.innerText} menu`}
             role={undefined}
             placement={index > 0 ? 'right-start' : 'bottom-start'}
             transition
