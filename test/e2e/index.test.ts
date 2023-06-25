@@ -239,6 +239,15 @@ describe('e2e', () => {
     });
   });
 
+  describe('<MaterialNestedMenu />', () => {
+    it('should handle suspense without error', async () => {
+      await renderFixture('NestedMenuDemo/MaterialNestedMenu');
+
+      const button = (await screen.getByRole('button'))!;
+
+      console.log(button);
+    });
+  });
   describe('<TextareaAutosize />', () => {
     // https://github.com/mui/material-ui/issues/32640
     it('should handle suspense without error', async () => {

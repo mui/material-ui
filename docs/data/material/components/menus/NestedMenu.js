@@ -46,6 +46,7 @@ const options = [
       },
     ],
   },
+
   {
     value: 'Desserts',
     menuLevel: 0,
@@ -74,7 +75,7 @@ export default function BasicMenu() {
     options: new Array(MENU_LEVELS).fill(null),
   });
 
-  const handleClick = (event, level = 0, nestedOptions = options) => {
+  const handleOpen = (event, level = 0, nestedOptions = options) => {
     const target = event.currentTarget;
 
     setAnchors((prevAnchors) => ({
@@ -101,7 +102,7 @@ export default function BasicMenu() {
     <React.Fragment>
       <Button
         onClick={(event) => {
-          handleClick(event);
+          handleOpen(event);
         }}
       >
         Menu
@@ -112,6 +113,7 @@ export default function BasicMenu() {
           <Popper
             open={Boolean(anchorElement)}
             anchorEl={anchorElement}
+            key={`${anchorElement.innerText} menu`}
             role={undefined}
             placement={index > 0 ? 'right-start' : 'bottom-start'}
             transition
@@ -151,13 +153,13 @@ export default function BasicMenu() {
                               )
                             ) {
                               handleClose(option.menuLevel + 1);
-                              handleClick(
+                              handleOpen(
                                 event,
                                 option.menuLevel + 1,
                                 option.nestedOptions,
                               );
                             } else {
-                              handleClick(
+                              handleOpen(
                                 event,
                                 option.menuLevel + 1,
                                 option.nestedOptions,
@@ -167,7 +169,7 @@ export default function BasicMenu() {
                           onKeyDown={(event) => {
                             if (option.nestedOptions) {
                               if (event.key === 'ArrowRight') {
-                                handleClick(
+                                handleOpen(
                                   event,
                                   option.menuLevel + 1,
                                   option.nestedOptions,
@@ -176,7 +178,6 @@ export default function BasicMenu() {
                             }
                             if (event.key === 'ArrowLeft' && option.menuLevel > 0) {
                               handleClose(option.menuLevel);
-
                               anchors.elements[option.menuLevel]?.focus();
                             }
                           }}
