@@ -136,7 +136,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     <Root {...rootProps} sx={{ outline: 'none' }}>
       <Track {...trackProps} />
       <Thumb {...thumbProps} />
-      <Input {...inputProps} />
+      <Input {...inputProps} hidden />
     </Root>
   );
 }) as PolymorphicComponent<SwitchTypeMap>;
