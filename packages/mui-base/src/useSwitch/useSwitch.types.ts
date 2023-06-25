@@ -53,7 +53,6 @@ interface UseSwitchInputSlotOwnProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onFocus: React.FocusEventHandler;
   readOnly?: boolean;
-  ref: React.RefCallback<HTMLInputElement> | null;
   required?: boolean;
   type: React.HTMLInputTypeAttribute;
 }
