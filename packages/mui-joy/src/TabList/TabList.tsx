@@ -38,14 +38,15 @@ const TabListRoot = styled(StyledList, {
   ...(ownerState.orientation === 'vertical' && {
     '--List-orientation': 'var(--List-vertical)',
   }),
-  '--List-radius': '0px', // targets TabList which reuses styles from List.
+  '--List-radius': '0px',
+  '--List-padding': '0px',
   '--List-gap': '0px',
   '--ListItem-paddingX': 'var(--Tabs-gap)',
-  '--ListItem-radius': '0px',
   '--ListDivider-gap': '0px',
   ...scopedVariables,
   flexGrow: 'initial',
   flexDirection: 'var(--left, column) var(--right, column)' as 'initial', // workaround for TS error
+  zIndex: 1, // to be above of the next element.
   ...(!ownerState.disableUnderline && {
     boxShadow: `inset var(--top, 0 -1px) var(--right, 1px 0) var(--bottom, 0 1px) var(--left, -1px 0) ${theme.vars.palette.divider}`,
   }),

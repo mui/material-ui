@@ -11,35 +11,24 @@ export default function TabsPricingExample() {
       size="sm"
       aria-label="Pricing plan"
       defaultValue={0}
-      sx={(theme) => ({
+      variant="outlined"
+      sx={{
         width: 343,
-        '--Tabs-gap': '0px',
         borderRadius: 'lg',
         boxShadow: 'sm',
-        overflow: 'auto',
-        border: `1px solid ${theme.vars.palette.divider}`,
-      })}
+      }}
     >
       <TabList
         sx={{
-          '--ListItem-radius': '0px',
-          borderRadius: 0,
           [`& .${tabClasses.root}`]: {
             fontWeight: 'lg',
             flex: 1,
-            bgcolor: 'background.body',
             position: 'relative',
+            '&:hover, &:active': {
+              bgcolor: 'transparent',
+            },
             [`&.${tabClasses.selected}`]: {
               color: 'primary.500',
-            },
-            [`&.${tabClasses.selected}:before`]: {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              bottom: -1,
-              width: '100%',
-              height: 2,
-              bgcolor: 'primary.400',
             },
             [`&.${tabClasses.focusVisible}`]: {
               outlineOffset: '-3px',
@@ -55,7 +44,7 @@ export default function TabsPricingExample() {
         <Typography level="inherit">
           Get started with the industry-standard React UI library, MIT-licensed.
         </Typography>
-        <Typography textColor="success.400" fontSize="xl3" fontWeight="xl" my={1}>
+        <Typography textColor="success.400" fontSize="xl3" fontWeight="xl" mt={1}>
           $0{' '}
           <Typography fontSize="sm" textColor="text.secondary" fontWeight="md">
             － Free forever
@@ -67,7 +56,7 @@ export default function TabsPricingExample() {
           Best for professional developers building enterprise or data-rich
           applications.
         </Typography>
-        <Typography textColor="primary.400" fontSize="xl3" fontWeight="xl" my={1}>
+        <Typography textColor="primary.400" fontSize="xl3" fontWeight="xl" mt={1}>
           $15{' '}
           <Typography fontSize="sm" textColor="text.secondary" fontWeight="md">
             / dev / month
@@ -79,7 +68,7 @@ export default function TabsPricingExample() {
           The most advanced features for data-rich applications, as well as the
           highest priority for support.
         </Typography>
-        <Typography textColor="primary.400" fontSize="xl3" fontWeight="xl" my={1}>
+        <Typography textColor="primary.400" fontSize="xl3" fontWeight="xl" mt={1}>
           <Typography
             fontSize="xl"
             borderRadius="sm"

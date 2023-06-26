@@ -33,13 +33,12 @@ export default function TabsBottomNavExample() {
           maxWidth: 400,
           mx: 'auto',
           boxShadow: theme.shadow.sm,
-          '--Tabs-gap': '8px',
           '--joy-shadowChannel': theme.vars.palette[colors[index]].darkChannel,
+          '--Tab-selectedLineColor': 'transparent',
           [`& .${tabClasses.root}`]: {
-            boxShadow: 'none',
-            borderRadius: 'lg',
+            borderRadius: 'xl',
             whiteSpace: 'nowrap',
-            transition: '0.3s',
+            transition: 'background 0.3s',
             fontWeight: 'lg',
             flex: 1,
             [`&:not(.${tabClasses.selected}):not(:hover)`]: {

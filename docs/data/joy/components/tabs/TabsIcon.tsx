@@ -10,13 +10,13 @@ export default function TabsIcon() {
   return (
     <Tabs aria-label="Icon tabs" defaultValue={0}>
       <TabList>
-        <Tab>
+        <Tab aria-label="Recent">
           <PhoneIcon />
         </Tab>
-        <Tab>
+        <Tab aria-label="Favorite">
           <FavoriteIcon />
         </Tab>
-        <Tab>
+        <Tab aria-label="Nearby">
           <PersonPinIcon />
         </Tab>
       </TabList>

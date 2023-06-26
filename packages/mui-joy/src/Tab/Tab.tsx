@@ -79,7 +79,7 @@ const TabRoot = styled(StyledListItemButton, {
         'var(--left, var(--offset-block)) var(--top, var(--offset-inline)) var(--bottom, var(--offset-inline))',
     },
     [`&.${tabClasses.selected}::after`]: {
-      '--Tab-lineColor': 'currentColor',
+      '--Tab-lineColor': 'var(--Tab-selectedLineColor, currentColor)',
     },
   };
 });
@@ -117,8 +117,6 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
   const handleRef = useForkRef(tabRef, ref) as React.RefCallback<Element>;
@@ -127,6 +125,8 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     ...props,
     rootRef: handleRef,
   });
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, selected ? 'primary' : colorProp);
 
   React.useImperativeHandle(
     action,
