@@ -242,7 +242,7 @@ export default function MaterialHero() {
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             Material UI is beautiful by design and features a suite of customization options that
-            make it easy to implement your own custom design system on top of our components.
+            make it easy to implement your own custom design system.
           </Typography>
           <GetStartedButtons />
         </Box>
@@ -295,7 +295,7 @@ export default function MaterialHero() {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography variant="body2">
-                      Material UI components work in isolation. They are self-supporting, and will
+                      Material UI components work in isolation. They are self-contained, and will
                       only inject the styles they need to display.
                     </Typography>
                   </AccordionDetails>
@@ -310,8 +310,8 @@ export default function MaterialHero() {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography variant="body2">
-                      Material UI usage experience can be improved with a handful of important
-                      globals that you&apos;ll need to be aware of.
+                      Material UI understands a handful of important globals that you&apos;ll need
+                      to be aware of.
                     </Typography>
                   </AccordionDetails>
                 </Accordion>

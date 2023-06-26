@@ -153,7 +153,7 @@ export default function MaterialComponents() {
                   <GradientText>40+</GradientText> building block components
                 </Typography>
               }
-              description="We're meticulous about our implementation of Material Design, ensuring that every Material UI component meets the highest standards of form and function."
+              description="A meticulous implementation of Material Design; every Material UI component meets the highest standards of form and function."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
