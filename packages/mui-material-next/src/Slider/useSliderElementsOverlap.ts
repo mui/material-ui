@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Axis } from '@mui/base';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 
 function getSliderElementsOverlap(elements: HTMLElement[], axis: Axis, margin: number) {
   if (elements.length === 2) {
@@ -67,10 +68,14 @@ export default function useSliderElementsOverlap(axis: Axis) {
     onMove: onValueLabelMove,
   } = useElementsOverlap(axis, -12);
 
-  const onThumbMoved = () => {
+  const onThumbMoved = React.useCallback(() => {
     onThumbMove();
     onValueLabelMove();
-  };
+  }, [onThumbMove, onValueLabelMove]);
+
+  useEnhancedEffect(() => {
+    onThumbMoved();
+  }, [onThumbMoved]);
 
   return {
     setThumbRef,

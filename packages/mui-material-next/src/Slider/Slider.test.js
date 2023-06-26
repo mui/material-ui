@@ -1441,4 +1441,40 @@ describe('<Slider />', () => {
       width: '10px',
     });
   });
+
+  describe('overlapping state', () => {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    it('should apply thumb overlap classes', () => {
+      render(<Slider sx={{ width: 100 }} value={[0, 0]} />);
+
+      const [firstThumb, lastThumb] = document.querySelectorAll(`.${classes.thumb}`);
+      expect(firstThumb).to.have.class(classes.thumbOverlap);
+      expect(lastThumb).not.to.have.class(classes.thumbOverlap);
+    });
+
+    it('should overlap last active thumb', () => {
+      const { getAllByRole } = render(<Slider sx={{ width: 100 }} value={[0, 0]} />);
+
+      const [firstThumb, lastThumb] = document.querySelectorAll(`.${classes.thumb}`);
+
+      const lastThumbInput = getAllByRole('slider')[1];
+      act(() => {
+        lastThumbInput.focus();
+      });
+
+      expect(firstThumb).not.to.have.class(classes.thumbOverlap);
+      expect(lastThumb).to.have.class(classes.thumbOverlap);
+    });
+
+    it('should apply value label overlap classes', () => {
+      render(<Slider sx={{ width: 100 }} value={[0, 0]} valueLabelDisplay="on" />);
+
+      const [firstValueLabel, lastValueLabel] = document.querySelectorAll(`.${classes.valueLabel}`);
+      expect(firstValueLabel).to.have.class(classes.valueLabelOverlap);
+      expect(lastValueLabel).not.to.have.class(classes.valueLabelOverlap);
+    });
+  });
 });
