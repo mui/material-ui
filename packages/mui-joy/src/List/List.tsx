@@ -105,29 +105,29 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       '--ListItem-endActionTranslateX': 'calc(-0.5 * var(--ListItem-paddingRight))',
       margin: 'initial',
       // --List-padding is not declared to let list uses --ListDivider-gap by default.
-      marginInlineStart: 'var(--horizontal, var(--wrap, calc(-1 * var(--List-gap))))',
-      marginBlockStart: 'var(--horizontal, var(--wrap, calc(-1 * var(--List-gap))))',
+      marginInlineStart: 'var(--List-horizontal, var(--List-wrap, calc(-1 * var(--List-gap))))',
+      marginBlockStart: 'var(--List-horizontal, var(--List-wrap, calc(-1 * var(--List-gap))))',
       paddingInline:
-        'var(--vertical, var(--List-padding)) var(--horizontal, var(--List-padding, var(--nowrap, var(--ListDivider-gap))))',
+        'var(--List-vertical, var(--List-padding)) var(--List-horizontal, var(--List-padding, var(--List-nowrap, var(--ListDivider-gap))))',
       paddingBlock:
-        'var(--vertical, var(--List-padding, var(--nowrap, var(--ListDivider-gap)))) var(--horizontal, var(--List-padding))',
+        'var(--List-vertical, var(--List-padding, var(--List-nowrap, var(--ListDivider-gap)))) var(--List-horizontal, var(--List-padding))',
     },
     {
-      '--orientation': `var(--${ownerState.orientation})`,
-      '--horizontal': 'var(--orientation,)',
-      '--vertical': 'var(--orientation,)',
-      '--flexWrap': 'var(--nowrap)',
-      '--nowrap': 'var(--flexWrap,)',
-      '--wrap': 'var(--flexWrap,)',
+      '--List-orientation': `var(--List-${ownerState.orientation})`,
+      '--List-horizontal': 'var(--List-orientation,)',
+      '--List-vertical': 'var(--List-orientation,)',
+      '--List-flexWrap': 'var(--List-nowrap)',
+      '--List-nowrap': 'var(--List-flexWrap,)',
+      '--List-wrap': 'var(--List-flexWrap,)',
       [`&.${listClasses.wrap}`]: {
-        '--flexWrap': 'var(--wrap)',
+        '--List-flexWrap': 'var(--List-wrap)',
       },
       boxSizing: 'border-box',
       borderRadius: 'var(--List-radius)',
       listStyle: 'none',
       display: 'flex',
-      flexDirection: 'var(--vertical, column)' as 'initial', // workaround for TS error
-      flexWrap: 'var(--wrap, wrap)' as 'initial', // workaround for TS error
+      flexDirection: 'var(--List-vertical, column)' as 'initial', // workaround for TS error
+      flexWrap: 'var(--List-wrap, wrap)' as 'initial', // workaround for TS error
       flexGrow: 1,
       position: 'relative', // for sticky ListItem
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],

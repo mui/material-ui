@@ -110,11 +110,6 @@ export interface ListItemButtonOwnerState extends ApplyColorInversion<ListItemBu
    */
   focusVisible?: boolean;
   /**
-   * If `true`, the element is rendered in a horizontal list.
-   * @internal
-   */
-  row?: boolean;
-  /**
    * @internal
    * The internal prop for controlling CSS margin of the element.
    */

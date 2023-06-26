@@ -13,7 +13,6 @@ import {
 } from './ListItemButtonProps';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
-import RowListContext from '../List/RowListContext';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
@@ -42,6 +41,9 @@ const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
 export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOwnerState }>(
   ({ theme, ownerState }) => [
     {
+      '--ListItemButton-orientation': `var(--ListItemButton-${ownerState.orientation})`,
+      '--ListItemButton-horizontal': 'var(--ListItemButton-orientation,)',
+      '--ListItemButton-vertical': 'var(--ListItemButton-orientation,)',
       ...(ownerState.selected && {
         '--ListItemDecorator-color': 'initial',
       }),
@@ -53,13 +55,10 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       boxSizing: 'border-box',
       position: 'relative',
       display: 'flex',
-      flexDirection: 'row',
       alignItems: 'center',
       alignSelf: 'stretch', // always stretch itself to fill the parent (List|ListItem)
-      ...(ownerState.orientation === 'vertical' && {
-        flexDirection: 'column',
-        justifyContent: 'center',
-      }),
+      flexDirection: 'var(--ListItemButton-vertical, column)' as 'initial',
+      justifyContent: 'var(--ListItemButton-vertical, center)' as 'initial',
       textAlign: 'initial',
       textDecoration: 'initial', // reset native anchor tag
       backgroundColor: 'initial', // reset button background
@@ -67,10 +66,10 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
       marginInline: 'var(--ListItemButton-marginInline)',
       marginBlock: 'var(--ListItemButton-marginBlock)',
-      ...(ownerState['data-first-child'] === undefined && {
-        marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
-        marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
-      }),
+      '&:not([data-first-child])': {
+        marginInlineStart: 'var(--not-first-child, var(--List-horizontal, var(--List-gap)))',
+        marginBlockStart: 'var(--not-first-child, var(--List-vertical, var(--List-gap)))',
+      },
       // account for the border width, so that all of the ListItemButtons content aligned horizontally
       paddingBlock: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
       // account for the border width, so that all of the ListItemButtons content aligned vertically
@@ -81,8 +80,8 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       minBlockSize: 'var(--ListItem-minHeight)',
       border: 'none',
       borderRadius: 'var(--ListItem-radius)',
-      flexGrow: ownerState.row ? 0 : 1,
-      flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
+      flexGrow: 'var(--List-horizontal, 0) var(--List-vertical, 1)',
+      flexBasis: 'var(--List-horizontal, auto) var(--List-vertical, 0%)',
       flexShrink: 0,
       minInlineSize: 0,
       fontSize: 'var(--ListItem-fontSize)',
@@ -127,8 +126,6 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     name: 'JoyListItemButton',
   });
 
-  const row = React.useContext(RowListContext);
-
   const {
     children,
     className,
@@ -172,7 +169,6 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     color,
     focusVisible,
     orientation,
-    row,
     selected,
     variant,
   };
