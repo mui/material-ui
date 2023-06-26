@@ -52,7 +52,8 @@ describe('<TextareaAutosize />', () => {
       },
     ) {
       const lineHeight = typeof lineHeightArg === 'function' ? lineHeightArg : () => lineHeightArg;
-      const scrollHeight = typeof scrollHeightArg === 'function' ? scrollHeightArg : () => scrollHeightArg;
+      const scrollHeight =
+        typeof scrollHeightArg === 'function' ? scrollHeightArg : () => scrollHeightArg;
 
       getComputedStyleStub.set(input, getComputedStyle);
 
@@ -295,20 +296,22 @@ describe('<TextareaAutosize />', () => {
 
     it('should compute the right height if padding right greater than 0px', () => {
       const paddingRight = 50;
-      const { container, forceUpdate } = render(<TextareaAutosize style={{paddingRight}}/>);
+      const { container, forceUpdate } = render(<TextareaAutosize style={{ paddingRight }} />);
       const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
       const shadow = container.querySelector('textarea[aria-hidden=true]')! as HTMLTextAreaElement;
       const contentWidth = 100;
       const lineHeight = 15;
       const width = contentWidth + paddingRight;
       setLayout(input, shadow, {
-        getComputedStyle:{
+        getComputedStyle: {
           boxSizing: 'border-box',
           width: `${width}px`,
         },
         scrollHeight: () => {
           // assuming that the width of the word is 1px, and substract the width of the paddingRight
-          const lineNum = Math.ceil(input.value.length / (width - getStyleValue(shadow.style.paddingRight)));
+          const lineNum = Math.ceil(
+            input.value.length / (width - getStyleValue(shadow.style.paddingRight)),
+          );
           return lineNum * lineHeight;
         },
         lineHeight,
@@ -319,7 +322,9 @@ describe('<TextareaAutosize />', () => {
       });
       const activeElement = document.activeElement!;
       // set the value of the input to be 1 larger than it's content width
-      fireEvent.change(activeElement, { target: { value: new Array(contentWidth + 1).fill('a').join('') } });
+      fireEvent.change(activeElement, {
+        target: { value: new Array(contentWidth + 1).fill('a').join('') },
+      });
       forceUpdate();
 
       // the input should be 2 lines
