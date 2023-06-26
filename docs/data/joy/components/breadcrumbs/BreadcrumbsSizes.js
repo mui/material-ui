@@ -22,7 +22,6 @@ export default function BreadcrumbsSizes() {
             {item}
           </Link>
         ))}
-
         <Typography fontSize="inherit">Dr. Zoidberg</Typography>
       </Breadcrumbs>
       <Breadcrumbs separator="—" aria-label="breadcrumbs" size="md">
@@ -40,7 +39,6 @@ export default function BreadcrumbsSizes() {
             {item}
           </Link>
         ))}
-
         <Typography fontSize="inherit">Dr. Zoidberg</Typography>
       </Breadcrumbs>
       <Breadcrumbs separator="—" aria-label="breadcrumbs" size="lg">
@@ -58,7 +56,6 @@ export default function BreadcrumbsSizes() {
             {item}
           </Link>
         ))}
-
         <Typography fontSize="inherit">Dr. Zoidberg</Typography>
       </Breadcrumbs>
     </Stack>
