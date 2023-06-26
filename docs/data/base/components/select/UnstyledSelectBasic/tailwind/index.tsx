@@ -55,7 +55,7 @@ export default function UnstyledSelectBasic() {
       <Select
         slotProps={{
           root: ({ focusVisible, open }) => ({
-            className: `text-sm box-border h-12 w-80 p-3 rounded-xl text-left leading-normal bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-800 outline-0 ${
+            className: `text-sm box-border h-12 w-80 p-3 rounded-xl text-left leading-normal bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-700 outline-0 ${
               focusVisible ? 'border-purple-400 shadow-outline-purple' : ''
             } ${
               open ? 'after:content-["▴"]' : 'after:content-["▾"]'
