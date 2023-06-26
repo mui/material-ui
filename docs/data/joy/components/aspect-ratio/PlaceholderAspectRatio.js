@@ -12,8 +12,10 @@ export default function PlaceholderAspectRatio() {
           <ImageIcon fontSize="xl5" sx={{ color: 'text.tertiary' }} />
         </div>
       </AspectRatio>
-      <Typography mt={2}>Title</Typography>
-      <Typography level="body2">Description of the card.</Typography>
+      <div>
+        <Typography>Title</Typography>
+        <Typography level="body2">Description of the card.</Typography>
+      </div>
     </Card>
   );
 }

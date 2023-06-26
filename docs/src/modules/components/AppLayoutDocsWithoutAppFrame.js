@@ -77,7 +77,7 @@ const ActionsDiv = styled('div')(({ theme }) => ({
   },
 }));
 
-function AppLayoutDocs(props) {
+function AppLayoutDocsWithoutAppFrame(props) {
   const router = useRouter();
   const {
     children,
@@ -98,7 +98,7 @@ function AppLayoutDocs(props) {
   let productName = 'MUI';
   if (canonicalAs.startsWith('/material-ui/')) {
     productName = 'Material UI';
-  } else if (canonicalAs.startsWith('/base/')) {
+  } else if (canonicalAs.startsWith('/base-ui/')) {
     productName = 'Base UI';
   } else if (canonicalAs.startsWith('/x/')) {
     productName = 'MUI X';
@@ -133,7 +133,7 @@ function AppLayoutDocs(props) {
           */}
           <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
             <ActionsDiv>
-              <EditPage markdownLocation={location} />
+              <EditPage sourceLocation={location} />
             </ActionsDiv>
             {children}
             <NoSsr>
@@ -148,7 +148,7 @@ function AppLayoutDocs(props) {
   );
 }
 
-AppLayoutDocs.propTypes = {
+AppLayoutDocsWithoutAppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,
@@ -160,7 +160,7 @@ AppLayoutDocs.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  AppLayoutDocs.propTypes = exactProp(AppLayoutDocs.propTypes);
+  AppLayoutDocsWithoutAppFrame.propTypes = exactProp(AppLayoutDocsWithoutAppFrame.propTypes);
 }
 
-export default AppLayoutDocs;
+export default AppLayoutDocsWithoutAppFrame;

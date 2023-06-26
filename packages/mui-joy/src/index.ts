@@ -36,8 +36,14 @@ export * from './Breadcrumbs';
 export { default as Button } from './Button';
 export * from './Button';
 
+export { default as ButtonGroup } from './ButtonGroup';
+export * from './ButtonGroup';
+
 export { default as Card } from './Card';
 export * from './Card';
+
+export { default as CardActions } from './CardActions';
+export * from './CardActions';
 
 export { default as CardContent } from './CardContent';
 export * from './CardContent';

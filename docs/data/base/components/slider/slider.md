@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Slider component and hook
 components: Slider
 hooks: useSlider
@@ -28,7 +28,7 @@ Sliders are ideal for interface controls that benefit from a visual representati
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Slider from '@mui/base/Slider';
@@ -108,7 +108,7 @@ Use the `slots` prop to override the root or any other interior slot:
 
 :::info
 The `slots` prop is available on all non-utility Base components.
-See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.
@@ -151,6 +151,14 @@ You may not need to use hooks unless you find that you're limited by the customi
 :::
 
 ## Customization
+
+### Vertical
+
+Slider components can be arranged vertically as well as horizontally.
+
+When vertical, you must set `orientation="vertical"` on the `<Slider />` component so the user can navigate with the up and down arrow keys (rather than the default left-to-right behavior for horizontal sliders).
+
+{{"demo": "VerticalSlider.js"}}
 
 ### Discrete sliders
 

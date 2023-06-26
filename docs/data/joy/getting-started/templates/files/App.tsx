@@ -122,7 +122,7 @@ export default function FilesExample() {
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
-              <IconButton variant="outlined" size="sm" color="neutral">
+              <IconButton variant="outlined" color="neutral">
                 <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
                   /
                 </Typography>
@@ -462,7 +462,7 @@ export default function FilesExample() {
                   </Typography>
                 </AspectRatio>
               </CardOverflow>
-              <Box sx={{ pt: 2, display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
                   <Typography>photos-travel.zip</Typography>
                   <Typography level="body3" mt={0.5}>
@@ -541,7 +541,7 @@ export default function FilesExample() {
                   </Typography>
                 </AspectRatio>
               </CardOverflow>
-              <Box sx={{ pt: 2, display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
                   <Typography>platform_ios.zip</Typography>
                   <Typography level="body3" mt={0.5}>

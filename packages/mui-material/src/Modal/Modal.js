@@ -135,7 +135,11 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         backdrop: () => ({
           ...BackdropProps,
           ...resolveComponentProps(backdropSlotProps, ownerState),
-          className: clsx(backdropSlotProps?.className, classes?.backdrop),
+          className: clsx(
+            backdropSlotProps?.className,
+            BackdropProps?.className,
+            classes?.backdrop,
+          ),
         }),
       }}
       onTransitionEnter={() => setExited(false)}
@@ -296,6 +300,14 @@ Modal.propTypes /* remove-proptypes */ = {
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
+  /**
+   * A function called when a transition enters.
+   */
+  onTransitionEnter: PropTypes.func,
+  /**
+   * A function called when a transition has exited.
+   */
+  onTransitionExited: PropTypes.func,
   /**
    * If `true`, the component is shown.
    */

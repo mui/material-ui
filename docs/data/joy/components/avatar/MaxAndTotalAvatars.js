@@ -46,7 +46,6 @@ export default function MaxAndTotalAvatars() {
       {avatars.map((avatar) => (
         <Avatar key={avatar.alt} {...avatar} />
       ))}
-
       {!!surplus && <Avatar>+{surplus}</Avatar>}
     </AvatarGroup>
   );

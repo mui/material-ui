@@ -35,7 +35,17 @@ import {
   BreadcrumbsSlot,
 } from '../Breadcrumbs/BreadcrumbsProps';
 import { ButtonProps, ButtonOwnerState, ButtonSlot } from '../Button/ButtonProps';
+import {
+  ButtonGroupProps,
+  ButtonGroupOwnerState,
+  ButtonGroupSlot,
+} from '../ButtonGroup/ButtonGroupProps';
 import { CardProps, CardOwnerState, CardSlot } from '../Card/CardProps';
+import {
+  CardActionsProps,
+  CardActionsOwnerState,
+  CardActionsSlot,
+} from '../CardActions/CardActionsProps';
 import {
   CardContentProps,
   CardContentOwnerState,
@@ -234,6 +244,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<ButtonProps>;
     styleOverrides?: OverridesStyleRules<ButtonSlot, ButtonOwnerState, Theme>;
   };
+  JoyButtonGroup?: {
+    defaultProps?: Partial<ButtonGroupProps>;
+    styleOverrides?: OverridesStyleRules<ButtonGroupSlot, ButtonGroupOwnerState, Theme>;
+  };
   JoyBreadcrumbs?: {
     defaultProps?: Partial<BreadcrumbsProps>;
     styleOverrides?: OverridesStyleRules<BreadcrumbsSlot, BreadcrumbsOwnerState, Theme>;
@@ -245,6 +259,10 @@ export interface Components<Theme = unknown> {
   JoyCard?: {
     defaultProps?: Partial<CardProps>;
     styleOverrides?: OverridesStyleRules<CardSlot, CardOwnerState, Theme>;
+  };
+  JoyCardActions?: {
+    defaultProps?: Partial<CardActionsProps>;
+    styleOverrides?: OverridesStyleRules<CardActionsSlot, CardActionsOwnerState, Theme>;
   };
   JoyCardContent?: {
     defaultProps?: Partial<CardContentProps>;
