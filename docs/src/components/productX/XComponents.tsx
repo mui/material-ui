@@ -24,7 +24,9 @@ import ROUTES from 'docs/src/route';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import Frame from 'docs/src/components/action/Frame';
 import IconImage from 'docs/src/components/icon/IconImage';
-import XChartsDemo from './XChartsDemo';
+import dynamic from 'next/dynamic';
+
+const XChartsDemo = dynamic(() => import('./XChartsDemo'), { ssr: false });
 
 type DemosKeys = 'Data Grid' | 'Date Range Picker' | 'Charts' | 'Tree View' | 'Sparkline';
 const DEMOS: DemosKeys[] = ['Data Grid', 'Date Range Picker', 'Charts', 'Tree View', 'Sparkline'];
