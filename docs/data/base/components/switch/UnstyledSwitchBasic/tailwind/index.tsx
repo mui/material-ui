@@ -1,12 +1,20 @@
 import * as React from 'react';
-import { styled } from '@mui/system';
 import Switch from '@mui/base/Switch';
+import { useTheme } from '@mui/system';
+
+function useIsDarkMode() {
+  const theme = useTheme();
+  return theme.palette.mode === 'dark';
+}
 
 export default function UnstyledSwitches() {
   const label = { 'aria-label': 'Demo switch' };
 
+  // Replace this with your app logic for determining dark modes
+  const isDarkMode = useIsDarkMode();
+
   return (
-    <div>
+    <div className={isDarkMode ? 'dark' : ''}>
       <Switch
         slotProps={{
           root: ({ disabled }) => ({
@@ -118,9 +126,3 @@ export default function UnstyledSwitches() {
     </div>
   );
 }
-
-const Root = styled('span')(
-  ({ theme }) => `
-  font-size: 0;
-  `,
-);

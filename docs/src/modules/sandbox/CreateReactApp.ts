@@ -31,7 +31,10 @@ export const getHtml = ({
           extend: {
             boxShadow: {
               'outline-purple': '0 0 0 3px #c084fc',
-            }
+            },
+            cursor: {
+              inherit: 'inherit',
+            },
           }
         }
       }
