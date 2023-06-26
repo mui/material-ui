@@ -73,6 +73,12 @@ To disable a tab, use the `disabled` prop on the `Tab` component.
 
 {{"demo": "TabDisabled.js"}}
 
+### Underline
+
+To remove the subtle underline, use the `disableUnderline={true}` prop on the `TabList` component.
+
+{{"demo": "TabsNoUnderline.js"}}
+
 ### Vertical
 
 To set the tabs orientation to vertical, use the `orientation="vertical"` on the `Tabs` component.
@@ -87,6 +93,12 @@ Since `TabList` uses the same style as the [`List`](/joy-ui/react-list/) compone
 {{"demo": "TabsIcon.js"}}
 
 {{"demo": "TabsIconWithText.js"}}
+
+### Bottom tabs
+
+Use `flip={true}` on the `Tabs` component to display the tabs at the bottom of the screen.
+
+{{"demo": "TabsBottom.js"}}
 
 ### Accessibility
 

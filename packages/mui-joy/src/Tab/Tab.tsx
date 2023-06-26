@@ -41,7 +41,7 @@ const TabRoot = styled(StyledListItemButton, {
   const border = variantStyle?.border ? `${variantStyle.border} ${variantStyle.borderColor}` : '';
   return {
     justifyContent: 'var(--top, center) var(--bottom, center)',
-    flexGrow: 1,
+    flexGrow: 'var(--top, 1) var(--bottom, 1)',
     ...variantStyle,
     ...(ownerState.selected && {
       fontWeight: 'initial',

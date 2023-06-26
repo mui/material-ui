@@ -16,6 +16,11 @@ export default function ListVariables() {
           defaultValue: '4px',
           helperText: "Controls TabList's gap and TabPanel's padding.",
         },
+        {
+          var: '--Tab-lineSize',
+          defaultValue: '2px',
+          helperText: "The line's thickness of the selected Tab.",
+        },
       ]}
       renderDemo={(sx) => (
         <Tabs sx={sx} defaultValue={0}>

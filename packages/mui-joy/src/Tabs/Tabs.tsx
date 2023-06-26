@@ -60,7 +60,6 @@ const TabsRoot = styled(SheetRoot, {
   '--right': 'var(--Tabs-placement,)',
   display: 'flex',
   flexDirection: 'var(--top, column) var(--bottom, column)' as 'initial',
-  alignItems: 'var(--left, flex-start) var(--right, flex-start)' as 'initial',
 }));
 /**
  *
