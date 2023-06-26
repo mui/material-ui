@@ -224,19 +224,19 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
 
 export type SliderValueLabelProps = NonNullable<SliderTypeMap['props']['slotProps']>['valueLabel'] &
   Pick<SliderTypeMap['props'], 'valueLabelFormat' | 'valueLabelDisplay' | 'value' | 'disabled'> & {
-  /**
-   * The index of the value label.
-   * Useful for range sliders.
-   */
-  index: number;
-  /**
-   * If `true`, the value label is visible.
-   */
-  open: boolean;
-  /**
-   * If `true`, the value label is overlaping another value label.
-   */
-  isOverlapping?: boolean;
+    /**
+     * The index of the value label.
+     * Useful for range sliders.
+     */
+    index: number;
+    /**
+     * If `true`, the value label is visible.
+     */
+    open: boolean;
+    /**
+     * If `true`, the value label is overlaping another value label.
+     */
+    isOverlapping?: boolean;
   };
 
 type SliderRootProps = NonNullable<SliderTypeMap['props']['slotProps']>['root'];

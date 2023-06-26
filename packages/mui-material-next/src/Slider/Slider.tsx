@@ -43,54 +43,54 @@ const SliderRoot = styled('span', {
 
   return {
     '--md-comp-slider-thumb-size': ownerState.size === 'small' ? '12px' : '20px',
-  borderRadius: tokens.sys.shape.corner.full,
-  boxSizing: 'content-box',
-  display: 'inline-block',
-  position: 'relative',
-  cursor: 'pointer',
-  touchAction: 'none',
-  color: tokens.sys.color[ownerState.color || 'primary'],
-  WebkitTapHighlightColor: 'transparent',
-  ...(ownerState.orientation === 'horizontal' && {
-    height: 4,
-    width: '100%',
-    // 40px touch target
-    padding: '18px 0',
-    ...(ownerState.size === 'small' && {
-      height: 2,
+    borderRadius: tokens.sys.shape.corner.full,
+    boxSizing: 'content-box',
+    display: 'inline-block',
+    position: 'relative',
+    cursor: 'pointer',
+    touchAction: 'none',
+    color: tokens.sys.color[ownerState.color || 'primary'],
+    WebkitTapHighlightColor: 'transparent',
+    ...(ownerState.orientation === 'horizontal' && {
+      height: 4,
+      width: '100%',
+      // 40px touch target
+      padding: '18px 0',
+      ...(ownerState.size === 'small' && {
+        height: 2,
+      }),
+      ...(ownerState.marked && {
+        marginBottom: 20,
+      }),
     }),
-    ...(ownerState.marked && {
-      marginBottom: 20,
+    ...(ownerState.orientation === 'vertical' && {
+      height: '100%',
+      width: 4,
+      padding: '0 18px',
+      ...(ownerState.size === 'small' && {
+        width: 2,
+      }),
+      ...(ownerState.marked && {
+        marginRight: 44,
+      }),
     }),
-  }),
-  ...(ownerState.orientation === 'vertical' && {
-    height: '100%',
-    width: 4,
-    padding: '0 18px',
-    ...(ownerState.size === 'small' && {
-      width: 2,
-    }),
-    ...(ownerState.marked && {
-      marginRight: 44,
-    }),
-  }),
-  '@media print': {
-    colorAdjust: 'exact',
-  },
-  [`&.${sliderClasses.disabled}`]: {
-    pointerEvents: 'none',
-    cursor: 'default',
-    color: tokens.sys.color.outline,
-  },
-  [`&.${sliderClasses.dragging}`]: {
-      [`& .${sliderClasses.track}`]: {
-      transition: 'none',
+    '@media print': {
+      colorAdjust: 'exact',
     },
+    [`&.${sliderClasses.disabled}`]: {
+      pointerEvents: 'none',
+      cursor: 'default',
+      color: tokens.sys.color.outline,
+    },
+    [`&.${sliderClasses.dragging}`]: {
+      [`& .${sliderClasses.track}`]: {
+        transition: 'none',
+      },
       [`& .${sliderClasses.thumb}`]: {
         transition: theme.transitions.create(['border'], {
           duration: theme.transitions.duration.shortest,
         }),
-  },
+      },
     },
   };
 });
