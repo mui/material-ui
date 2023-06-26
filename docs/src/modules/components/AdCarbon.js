@@ -8,16 +8,22 @@ const CarbonRoot = styled('span')(({ theme }) => {
   const styles = adStylesObject['body-image'](theme);
 
   return {
+    '& > div': {
+      // The isolation logic of carbonads is broken.
+      // Once the script starts loading, it will asynchronous resolve, with no way to stop it.
+      // This leads to duplication of the ad.
+      //
+      // To solve the issue, we only display the #carbonads div
+      display: 'none',
+    },
     '& #carbonads': {
+      display: 'block',
       ...styles.root,
       '& .carbon-img': styles.imgWrapper,
       '& img': styles.img,
       '& a, & a:hover': styles.a,
       '& .carbon-text': styles.description,
       '& .carbon-poweredby': styles.poweredby,
-    },
-    '& [id^=carbonads_]': {
-      display: 'none',
     },
   };
 });
@@ -28,7 +34,9 @@ function AdCarbonImage() {
   React.useEffect(() => {
     // The isolation logic of carbonads is broken.
     // Once the script starts loading, it will asynchronous resolve, with no way to stop it.
-    // This leads to duplication of the ad. To solve the issue, we debounce the load action.
+    // This leads to duplication of the ad.
+    //
+    // To solve the issue, e.g. StrictModel double effect execution, we debounce the load action.
     const load = setTimeout(() => {
       const script = loadScript(
         'https://cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom',
