@@ -9,7 +9,7 @@ import {
 
 describe('parseMarkdown', () => {
   const defaultParams = {
-    pageFilename: '/test',
+    fileRelativeContext: 'test/bar',
     options: {
       env: {},
     },
@@ -439,7 +439,12 @@ authors:
           ...defaultParams,
           translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
         });
-      }).to.throw(/\[foo]\(\/foo\) in \/docs\/test\/index\.md is missing a trailing slash/);
+      }).to.throw(`docs-infra: Missing trailing slash. The following link:
+[foo](/foo) in /test/bar/index.md is missing a trailing slash, please add it.
+
+See https://ahrefs.com/blog/trailing-slash/ for more details.
+
+Please report this to https://github.com/markedjs/marked.`);
     });
 
     it('should report missing leading splashes', () => {
@@ -457,7 +462,10 @@ authors:
           ...defaultParams,
           translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
         });
-      }).to.throw(/\[foo]\(foo\/\) in \/docs\/test\/index\.md is missing a leading slash/);
+      }).to.throw(`docs-infra: Missing leading slash. The following link:
+[foo](foo/) in /test/bar/index.md is missing a leading slash, please add it.
+
+Please report this to https://github.com/markedjs/marked.`);
     });
 
     it('should report title too long', () => {

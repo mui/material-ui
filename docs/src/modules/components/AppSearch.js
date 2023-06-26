@@ -128,7 +128,7 @@ function NewStartScreen() {
         icon: <HandymanRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Overview', href: '/system/getting-started/overview/' },
+        { name: 'Overview', href: '/system/getting-started/' },
         { name: 'Properties', href: '/system/properties/' },
         { name: 'The sx prop', href: '/system/getting-started/the-sx-prop/' },
       ],
@@ -321,6 +321,7 @@ export default function AppSearch(props) {
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
               optionalFilters: [`product:${productId}`],
+              analyticsTags: [facetFilterLanguage, `product:${productId}`],
               hitsPerPage: 40,
             }}
             placeholder={search}
