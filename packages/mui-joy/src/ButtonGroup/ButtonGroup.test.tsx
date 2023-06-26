@@ -180,7 +180,8 @@ describe('<ButtonGroup />', () => {
         <Button>Single</Button>
       </ButtonGroup>,
     );
-    expect(container.querySelector('[data-single-child]')).to.have.text('Single');
+    expect(container.querySelector('[data-single-child]')).to.not.exist;
+    expect(container.querySelector('[data-last-child]')).to.not.exist;
   });
 
   it('pass disabled to buttons', () => {
