@@ -87,16 +87,6 @@ export type ListItemProps<
 
 export interface ListItemOwnerState extends ApplyColorInversion<ListItemProps> {
   /**
-   * If `true`, the element is rendered in a horizontal list.
-   * @internal
-   */
-  row: boolean;
-  /**
-   * If `true`, the element is rendered in a wrapped list.
-   * @internal
-   */
-  wrap: boolean;
-  /**
    * If `true`, the element is rendered in a nested list item.
    */
   nesting: boolean | string;

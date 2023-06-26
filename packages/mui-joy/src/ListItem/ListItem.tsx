@@ -11,10 +11,8 @@ import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
-import { getListItemUtilityClass } from './listItemClasses';
+import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
-import RowListContext from '../List/RowListContext';
-import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
 import ListSubheaderDispatch from '../ListSubheader/ListSubheaderContext';
 import GroupListContext from '../List/GroupListContext';
@@ -41,15 +39,20 @@ const ListItemRoot = styled('li', {
   name: 'JoyListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemOwnerState }>(({ theme, ownerState }) => [
-  !ownerState.nested && {
+})<{ ownerState: ListItemOwnerState }>(({ theme, ownerState }) => ({
+  // using space toggle technique to turn on/off nested styles
+  '--nested': 'var(--unstable_nested,)', // workaround because emotion does not support empty string or space as a value.
+  '--not-first-child': 'var(--unstable_not-first-child,)',
+  [`&:not([data-first-child])`]: {
+    '--not-first-child': 'initial',
+  },
+  [`&:not(.${listItemClasses.nested})`]: {
     // add negative margin to ListItemButton equal to this ListItem padding
     '--ListItemButton-marginInline': `calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))`,
     '--ListItemButton-marginBlock': 'calc(-1 * var(--ListItem-paddingY))',
-    alignItems: 'center',
-    marginInline: 'var(--ListItem-marginInline)',
   },
-  ownerState.nested && {
+  [`&.${listItemClasses.nested}`]: {
+    '--nested': 'initial',
     // add negative margin to NestedList equal to this ListItem padding
     '--NestedList-marginRight': 'calc(-1 * var(--ListItem-paddingRight))',
     '--NestedList-marginLeft': 'calc(-1 * var(--ListItem-paddingLeft))',
@@ -60,54 +63,44 @@ const ListItemRoot = styled('li', {
       'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
     '--ListItem-marginInline':
       'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
-    flexDirection: 'column',
+    '--ListItem-marginInlineStart': 'calc(-1 * var(--ListItem-paddingLeft))',
   },
-  // Base styles
-  {
-    // Integration with control elements, eg. Checkbox, Radio.
-    '--unstable_actionRadius': 'calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px))',
-    ...(ownerState.startAction && {
-      '--unstable_startActionWidth': '2rem', // to add sufficient padding-left on ListItemButton
-    }),
-    ...(ownerState.endAction && {
-      '--unstable_endActionWidth': '2.5rem', // to add sufficient padding-right on ListItemButton
-    }),
-    boxSizing: 'border-box',
-    borderRadius: 'var(--ListItem-radius)',
-    display: 'flex',
-    flex: 'none', // prevent children from shrinking when the List's height is limited.
-    position: 'relative',
-    paddingBlockStart: ownerState.nested ? 0 : 'var(--ListItem-paddingY)',
-    paddingBlockEnd: ownerState.nested ? 0 : 'var(--ListItem-paddingY)',
-    paddingInlineStart: 'var(--ListItem-paddingLeft)',
-    paddingInlineEnd: 'var(--ListItem-paddingRight)',
-    ...(ownerState['data-first-child'] === undefined && {
-      ...(ownerState.row
-        ? {
-            marginInlineStart: 'var(--List-gap)',
-          }
-        : {
-            marginBlockStart: 'var(--List-gap)',
-          }),
-    }),
-    ...(ownerState.row &&
-      ownerState.wrap && {
-        marginInlineStart: 'var(--List-gap)',
-        marginBlockStart: 'var(--List-gap)',
-      }),
-    minBlockSize: 'var(--ListItem-minHeight)',
-    fontSize: 'var(--ListItem-fontSize)',
-    fontFamily: theme.vars.fontFamily.body,
-    ...(ownerState.sticky && {
-      // sticky in list item can be found in grouped options
-      position: 'sticky',
-      top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
-      zIndex: 1,
-      background: 'var(--ListItem-stickyBackground)',
-    }),
-  },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-]);
+  // Integration with control elements, eg. Checkbox, Radio.
+  '--unstable_actionRadius': 'calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px))',
+  ...(ownerState.startAction && {
+    '--unstable_startActionWidth': '2rem', // to add sufficient padding-left on ListItemButton
+  }),
+  ...(ownerState.endAction && {
+    '--unstable_endActionWidth': '2.5rem', // to add sufficient padding-right on ListItemButton
+  }),
+  alignItems: 'var(--nested, initial) center',
+  boxSizing: 'border-box',
+  borderRadius: 'var(--ListItem-radius)',
+  display: 'flex',
+  flexDirection: 'var(--nested, column)' as unknown as 'initial', // workaround for TS error
+  flex: 'none', // prevent children from shrinking when the List's height is limited.
+  position: 'relative',
+  paddingBlockStart: 'var(--nested, 0) var(--ListItem-paddingY)',
+  paddingBlockEnd: 'var(--nested, 0) var(--ListItem-paddingY)',
+  paddingInlineStart: 'var(--ListItem-paddingLeft)',
+  paddingInlineEnd: 'var(--ListItem-paddingRight)',
+  marginInline: 'var(--nested) var(--ListItem-marginInline)',
+  marginInlineStart:
+    'var(--vertical, var(--nested) var(--ListItem-marginInlineStart, var(--ListItem-marginInline))) var(--horizontal, var(--wrap, var(--List-gap))) var(--horizontal, var(--not-first-child, var(--List-gap)))',
+  marginBlockStart:
+    'var(--horizontal, var(--wrap, var(--List-gap))) var(--vertical, var(--not-first-child, var(--List-gap)))',
+  minBlockSize: 'var(--ListItem-minHeight)',
+  fontSize: 'var(--ListItem-fontSize)',
+  fontFamily: theme.vars.fontFamily.body,
+  ...(ownerState.sticky && {
+    // sticky in list item can be found in grouped options
+    position: 'sticky',
+    top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
+    zIndex: 1,
+    background: 'var(--ListItem-stickyBackground)',
+  }),
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+}));
 
 const ListItemStartAction = styled('div', {
   name: 'JoyListItem',
@@ -151,8 +144,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const group = React.useContext(GroupListContext);
   const listComponent = React.useContext(ComponentListContext);
-  const row = React.useContext(RowListContext);
-  const wrap = React.useContext(WrapListContext);
   const nesting = React.useContext(NestedListContext);
 
   const {
@@ -195,8 +186,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     sticky,
     startAction,
     endAction,
-    row,
-    wrap,
     variant,
     color,
     nesting,

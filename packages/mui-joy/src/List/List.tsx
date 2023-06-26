@@ -82,6 +82,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       '--ListItemButton-marginInline': '0px',
       '--ListItem-marginBlock': '0px',
       '--ListItem-marginInline': '0px',
+      '--ListItem-marginInlineStart': '0px',
       padding: 0,
       marginInlineStart: 'var(--NestedList-marginLeft)',
       marginInlineEnd: 'var(--NestedList-marginRight)',
@@ -125,8 +126,8 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       borderRadius: 'var(--List-radius)',
       listStyle: 'none',
       display: 'flex',
-      flexDirection: 'var(--vertical, column)',
-      flexWrap: 'var(--wrap, wrap)',
+      flexDirection: 'var(--vertical, column)' as 'initial', // workaround for TS error
+      flexWrap: 'var(--wrap, wrap)' as 'initial', // workaround for TS error
       flexGrow: 1,
       position: 'relative', // for sticky ListItem
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
