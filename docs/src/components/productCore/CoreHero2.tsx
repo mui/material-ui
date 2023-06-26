@@ -35,9 +35,9 @@ export default function HeroPricing() {
           <GradientText>free forever</GradientText>
         </Typography>
         <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 700 }}>
-          Get a growing list of React components, ready-to-use, free forever, and with accessibility
-          always in mind. We&apos;ve built the foundational UI blocks for your design system so you
-          don&apos;t have to.
+          Get a growing list of React components and utilities, ready-to-use, free forever, and with
+          accessibility always in mind. We&apos;ve built the foundational UI blocks for your design
+          system so you don&apos;t have to.
         </Typography>
       </Box>
     </Container>

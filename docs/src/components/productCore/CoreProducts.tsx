@@ -20,20 +20,20 @@ const content = [
     icon: <StyleRoundedIcon color="primary" />,
     title: 'Joy UI',
     description:
-      "An open-source React component library that implements MUI's own in-house design principles.",
+      "An easy to customize open-source React component library that implements MUI's own in-house design principles by default.",
     link: '/joy-ui/getting-started/overview/',
   },
   {
     icon: <StyleRoundedIcon color="primary" />,
     title: 'Base UI',
     description:
-      'A library of components with production-ready functionality, along with low-level hooks.',
+      'A library of unstyled components with production-ready functionality, along with low-level hooks.',
     link: '/base-ui/',
   },
   {
     icon: <StyleRoundedIcon color="primary" />,
     title: 'MUI System',
-    description: 'A set of CSS utilities to help you build custom designs more efficiently when.',
+    description: 'A set of CSS utilities to help you build custom designs more efficiently.',
     link: '/system/getting-started/overview/',
   },
 ];

@@ -19,7 +19,7 @@ export default function CoreHeroEnd() {
               <SectionHeadline
                 overline="Community"
                 title="Get and give help by joining our contributors community"
-                description="The Core libraries were crafted by many hands, all over the world. Join the community to help us expand it even further!"
+                description="The Core libraries were crafted by many hands, all over the world. Join the community to help us expand them even further!"
               />
               <Button
                 aria-label="Go to documentation"
