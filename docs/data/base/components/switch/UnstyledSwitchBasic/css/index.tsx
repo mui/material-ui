@@ -12,35 +12,35 @@ export default function UnstyledSwitches() {
           root: { className: 'CustomSwitch' },
           input: { ...label, className: 'CustomSwitch-input' },
           thumb: { className: 'CustomSwitch-thumb' },
-          track: { className: 'CustomSwitch-track'}
+          track: { className: 'CustomSwitch-track' },
         }}
         defaultChecked
       />
       <Switch
-                slotProps={{
-                  root: { className: 'CustomSwitch' },
-                  input: { ...label, className: 'CustomSwitch-input' },
-                  thumb: { className: 'CustomSwitch-thumb' },
-                  track: { className: 'CustomSwitch-track'}
-                }}
+        slotProps={{
+          root: { className: 'CustomSwitch' },
+          input: { ...label, className: 'CustomSwitch-input' },
+          thumb: { className: 'CustomSwitch-thumb' },
+          track: { className: 'CustomSwitch-track' },
+        }}
       />
       <Switch
-                slotProps={{
-                  root: { className: 'CustomSwitch' },
-                  input: { ...label, className: 'CustomSwitch-input' },
-                  thumb: { className: 'CustomSwitch-thumb' },
-                  track: { className: 'CustomSwitch-track'}
-                }}
+        slotProps={{
+          root: { className: 'CustomSwitch' },
+          input: { ...label, className: 'CustomSwitch-input' },
+          thumb: { className: 'CustomSwitch-thumb' },
+          track: { className: 'CustomSwitch-track' },
+        }}
         defaultChecked
         disabled
       />
       <Switch
-                slotProps={{
-                  root: { className: 'CustomSwitch' },
-                  input: { ...label, className: 'CustomSwitch-input' },
-                  thumb: { className: 'CustomSwitch-thumb' },
-                  track: { className: 'CustomSwitch-track'}
-                }}
+        slotProps={{
+          root: { className: 'CustomSwitch' },
+          input: { ...label, className: 'CustomSwitch-input' },
+          thumb: { className: 'CustomSwitch-thumb' },
+          track: { className: 'CustomSwitch-track' },
+        }}
         disabled
       />
       <Styles />
@@ -76,7 +76,8 @@ function Styles() {
   const isDarkMode = useIsDarkMode();
 
   return (
-    <style>{`
+    <style>
+      {`
       .CustomSwitch {
         font-size: 0;
         position: relative;
@@ -144,5 +145,6 @@ function Styles() {
       }
     
     `}
-    </style>);
+    </style>
+  );
 }

@@ -6,7 +6,14 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        'outline-switch': '0 0 1px 8px rgba(0, 0, 0, 0.25)',
+      },
+      cursor: {
+        inherit: 'inherit',
+      },
+    },
   },
   corePlugins: {
     // Remove the Tailwind CSS preflight styles so it can use Material UI's preflight instead (CssBaseline).
