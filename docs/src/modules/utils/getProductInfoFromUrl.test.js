@@ -7,6 +7,9 @@ describe('getProductInfoFromUrl', () => {
     expect(getProductInfoFromUrl('/zh/material-ui/react-button/').productId).to.equal(
       'material-ui',
     );
+    expect(
+      getProductInfoFromUrl('/material-ui/react-app-bar/#app-bar-with-responsive-menu').productId,
+    ).to.equal('material-ui');
   });
 
   it('get base-ui', () => {
@@ -40,5 +43,15 @@ describe('getProductInfoFromUrl', () => {
     expect(getProductInfoFromUrl('/zh/x/react-date-picker/components').productId).to.equal(
       'x-date-picker',
     );
+  });
+
+  it('get x', () => {
+    expect(getProductInfoFromUrl('/x/introduction/').productId).to.equal('x');
+  });
+
+  it('get uncategorized', () => {
+    expect(getProductInfoFromUrl('/').productId).to.equal(null);
+    expect(getProductInfoFromUrl('/#foo').productId).to.equal(null);
+    expect(getProductInfoFromUrl('/versions').productId).to.equal(null);
   });
 });

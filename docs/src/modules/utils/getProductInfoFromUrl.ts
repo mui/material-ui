@@ -17,17 +17,21 @@ interface MuiProductInfo {
 }
 
 export default function getProductInfoFromUrl(asPath: string): MuiProductInfo {
-  const asPathWithoutLang = pathnameToLanguage(asPath).canonicalAs;
+  const asPathWithoutLang = pathnameToLanguage(asPath).canonicalAsServer;
   let productCategoryId: string | null = 'core';
   // firstFolder
-  let productId: string | null = asPathWithoutLang.replace(/^\/+([^/]+)\/.*/, '$1');
+  const segments = asPathWithoutLang.split('/').filter(Boolean);
+  let productId: string | null = segments[0] ?? null;
 
   if (productId === 'x') {
     productCategoryId = 'x';
-    productId = `x-${asPathWithoutLang.replace('/x/react-', '').replace(/\/.*/, '')}`;
+    const subCategory = segments.length > 1 ? /^react-(.*)$/.exec(segments[1]) : null;
+    if (subCategory) {
+      productId = `x-${subCategory[1]}`;
+    }
   }
 
-  if (asPathWithoutLang === '/versions/') {
+  if (productId === 'versions') {
     productId = null;
   }
 
