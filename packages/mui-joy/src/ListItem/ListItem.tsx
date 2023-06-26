@@ -63,7 +63,9 @@ const ListItemRoot = styled('li', {
       'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
     '--ListItem-marginInline':
       'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
-    '--ListItem-marginInlineStart': 'calc(-1 * var(--ListItem-paddingLeft))',
+  },
+  [`&.${listItemClasses.nesting}`]: {
+    marginInline: 'var(--ListItem-marginInline)',
   },
   // Integration with control elements, eg. Checkbox, Radio.
   '--unstable_actionRadius': 'calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px))',
@@ -86,7 +88,7 @@ const ListItemRoot = styled('li', {
   paddingInlineEnd: 'var(--ListItem-paddingRight)',
   marginInline: 'var(--nested) var(--ListItem-marginInline)',
   marginInlineStart:
-    'var(--List-vertical, var(--nested) var(--ListItem-marginInlineStart, var(--ListItem-marginInline))) var(--List-horizontal, var(--List-wrap, var(--List-gap))) var(--List-horizontal, var(--not-first-child, var(--List-gap)))',
+    'var(--List-horizontal, var(--List-wrap, var(--List-gap))) var(--List-horizontal, var(--not-first-child, var(--List-gap)))',
   marginBlockStart:
     'var(--List-horizontal, var(--List-wrap, var(--List-gap))) var(--List-vertical, var(--not-first-child, var(--List-gap)))',
   minBlockSize: 'var(--ListItem-minHeight)',
