@@ -15,7 +15,7 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
   return <Select {...props} ref={ref} slots={slots} />;
 });
 
-export default function UnstyledSelectSimple() {
+export default function UnstyledSelectBasic() {
   return (
     <CustomSelect defaultValue={10}>
       <StyledOption value={10}>Ten</StyledOption>

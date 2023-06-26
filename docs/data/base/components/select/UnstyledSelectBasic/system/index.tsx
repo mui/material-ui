@@ -20,7 +20,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<
   props: SelectProps<TValue, Multiple> & React.RefAttributes<HTMLButtonElement>,
 ) => JSX.Element;
 
-export default function UnstyledSelectSimple() {
+export default function UnstyledSelectBasic() {
   return (
     <CustomSelect defaultValue={10}>
       <StyledOption value={10}>Ten</StyledOption>
