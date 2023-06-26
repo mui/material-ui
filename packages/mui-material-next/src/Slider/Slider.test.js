@@ -1443,11 +1443,11 @@ describe('<Slider />', () => {
   });
 
   describe('overlapping state', () => {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
+    it('should apply thumb overlap classes', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
 
-    it('should apply thumb overlap classes', () => {
       render(<Slider sx={{ width: 100 }} value={[0, 0]} />);
 
       const [firstThumb, lastThumb] = document.querySelectorAll(`.${classes.thumb}`);
@@ -1455,7 +1455,11 @@ describe('<Slider />', () => {
       expect(lastThumb).not.to.have.class(classes.thumbOverlap);
     });
 
-    it('should overlap last active thumb', () => {
+    it('should overlap last active thumb', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       const { getAllByRole } = render(<Slider sx={{ width: 100 }} value={[0, 0]} />);
 
       const [firstThumb, lastThumb] = document.querySelectorAll(`.${classes.thumb}`);
@@ -1469,7 +1473,11 @@ describe('<Slider />', () => {
       expect(lastThumb).to.have.class(classes.thumbOverlap);
     });
 
-    it('should apply value label overlap classes', () => {
+    it('should apply value label overlap classes', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       render(<Slider sx={{ width: 100 }} value={[0, 0]} valueLabelDisplay="on" />);
 
       const [firstValueLabel, lastValueLabel] = document.querySelectorAll(`.${classes.valueLabel}`);
