@@ -19,7 +19,7 @@ export default function EditPage(props) {
       component="a"
       href={
         userLanguage === 'en'
-          ? `${process.env.SOURCE_CODE_REPO}/edit/${process.env.DEFAULT_BRANCH}${sourceLocation}`
+          ? `${process.env.SOURCE_CODE_REPO}/edit/${process.env.SOURCE_GITHUB_BRANCH}${sourceLocation}`
           : `${CROWDIN_ROOT_URL}${crowdInLocale}#/${process.env.SOURCE_CODE_ROOT_URL.replace(
               'https://github.com/mui/',
               '',
