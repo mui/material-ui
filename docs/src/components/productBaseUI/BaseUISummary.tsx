@@ -9,7 +9,6 @@ import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import PhishingRoundedIcon from '@mui/icons-material/PhishingRounded';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import Link from 'docs/src/modules/components/Link';
 
 const content = [
@@ -17,7 +16,7 @@ const content = [
     icon: <StyleRoundedIcon color="primary" />,
     title: 'Completely unstyled',
     description: 'Nothing to override—start fresh with any style solution or design system.',
-    link: '/base-ui/getting-started/overview/#base-ui-vs-material-ui',
+    link: '/base-ui/getting-started/',
   },
   {
     icon: <PhishingRoundedIcon color="primary" />,
@@ -54,6 +53,8 @@ export default function BaseUISummary() {
           {content.map(({ icon, title, description, link }) => (
             <Grid key={title} item xs={12} md={4}>
               <Paper
+                component={Link}
+                href={link}
                 variant="outlined"
                 sx={(theme) => ({
                   p: 4,
@@ -114,19 +115,9 @@ export default function BaseUISummary() {
                 >
                   {title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" mb={2}>
+                <Typography variant="body2" color="text.secondary">
                   {description}
                 </Typography>
-                <Link
-                  href={link}
-                  sx={{
-                    fontSize: '0.875rem',
-                    '&:after': { content: '""', position: 'absolute', inset: 0 },
-                    '& svg': { fontSize: 20 },
-                  }}
-                >
-                  Learn more <ChevronRightRoundedIcon />
-                </Link>
               </Paper>
             </Grid>
           ))}
