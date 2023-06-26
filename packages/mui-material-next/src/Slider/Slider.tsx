@@ -775,6 +775,7 @@ const Slider = React.forwardRef(function Slider<
           index,
           lastActiveThumbIndexRef.current,
         );
+
         const isValueLabelOverlapping =
           valueLabelDisplay === 'on' &&
           overlapApi.getIsValueLabelOverlapping(index, lastActiveThumbIndexRef.current);
