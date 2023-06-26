@@ -5,7 +5,6 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
-import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import Link from 'docs/src/modules/components/Link';
 import { alpha } from '@mui/material/styles';
 
@@ -21,7 +20,7 @@ const content = [
     title: 'Joy UI',
     description:
       "An easy to customize open-source React component library that implements MUI's own in-house design principles by default.",
-    link: '/joy-ui/getting-started/overview/',
+    link: '/joy-ui/getting-started/',
   },
   {
     icon: <StyleRoundedIcon color="primary" />,
@@ -34,7 +33,7 @@ const content = [
     icon: <StyleRoundedIcon color="primary" />,
     title: 'MUI System',
     description: 'A set of CSS utilities to help you build custom designs more efficiently.',
-    link: '/system/getting-started/overview/',
+    link: '/system/getting-started/',
   },
 ];
 
@@ -43,7 +42,7 @@ export default function BaseUISummary() {
     <Container sx={{ mb: 4 }}>
       <Grid container spacing={2}>
         {content.map(({ icon, title, description, link }) => (
-          <Grid key={title} item xs={12} md={3}>
+          <Grid key={title} item xs={12} md={6}>
             <Paper
               component={Link}
               href={link}
@@ -113,12 +112,8 @@ export default function BaseUISummary() {
               >
                 {title}
               </Typography>
-              <Typography variant="body2" color="text.secondary" mb={2}>
+              <Typography variant="body2" color="text.secondary">
                 {description}
-              </Typography>
-              <Typography fontWeight="bold" variant="body2" color="primary">
-                Learn more{' '}
-                <ArrowForwardRoundedIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
               </Typography>
             </Paper>
           </Grid>

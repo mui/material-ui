@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
+import IconImage from 'docs/src/components/icon/IconImage';
 
 export default function HeroPricing() {
   return (
@@ -18,23 +19,27 @@ export default function HeroPricing() {
         }}
       >
         <Typography
-          component="h1"
+          fontWeight="bold"
           variant="body2"
           sx={(theme) => ({
             color: 'primary.600',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: { xs: 'center', md: 'flex-start' },
+            mb: { xs: 1, sm: 0 },
+            '& > *': { mr: 1 },
             ...theme.applyDarkStyles({
               color: 'primary.400',
             }),
           })}
-          fontWeight="bold"
         >
-          MUI Core
+          <IconImage width={28} height={28} name="product-core" /> MUI Core
         </Typography>
         <Typography variant="h2" sx={{ maxWidth: 700, textAlign: 'center' }} gutterBottom>
           Ready to use components,
           <GradientText>free forever</GradientText>
         </Typography>
-        <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 700 }}>
+        <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 550 }}>
           Get a growing list of React components and utilities, ready-to-use, free forever, and with
           accessibility always in mind. We&apos;ve built the foundational UI blocks for your design
           system so you don&apos;t have to.
