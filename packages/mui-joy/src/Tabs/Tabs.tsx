@@ -43,6 +43,22 @@ const TabsRoot = styled(SheetRoot, {
     '--Tabs-gap': '1.25rem',
   }),
   '--Tab-lineSize': '2px',
+
+  /**
+   * Cyclic toggles: https://kizu.dev/cyclic-toggles/
+   * The variables below allow child components to switch values based on the parent's placement without using React Context.
+   */
+  ...(ownerState.orientation === 'horizontal' && {
+    '--Tabs-placement': ownerState.flip ? 'var(--bottom)' : 'var(--top)',
+  }),
+  ...(ownerState.orientation === 'vertical' && {
+    '--Tabs-placement': ownerState.flip ? 'var(--right)' : 'var(--left)',
+  }),
+  '--bottom': 'var(--Tabs-placement,)',
+  '--top': 'var(--Tabs-placement,)',
+  '--left': 'var(--Tabs-placement,)',
+  '--right': 'var(--Tabs-placement,)',
+
   display: 'flex',
   flexDirection: 'column',
   ...(ownerState.orientation === 'vertical' && {
@@ -72,6 +88,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     defaultValue: defaultValueProp,
     orientation = 'horizontal',
     direction = 'ltr',
+    flip,
     component,
     onChange,
     selectionFollowsFocus,
@@ -89,6 +106,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const ownerState = {
     ...props,
+    flip,
     orientation,
     direction,
     variant,

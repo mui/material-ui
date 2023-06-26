@@ -38,6 +38,7 @@ const TabRoot = styled(StyledListItemButton, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const border = variantStyle?.border ? `${variantStyle.border} ${variantStyle.borderColor}` : '';
   return {
     justifyContent: 'center',
     flexGrow: 1,
@@ -49,31 +50,37 @@ const TabRoot = styled(StyledListItemButton, {
     ...(ownerState.selected && {
       fontWeight: 'initial',
     }),
-    ...(ownerState.row
-      ? {
-          borderBottom: 'var(--Tab-lineSize) solid transparent',
-        }
-      : {
-          borderRight: 'var(--Tab-lineSize) solid transparent',
-        }),
+    /**
+     * ================= private variables =================
+     */
+    '--border-placeholder': 'var(--Tab-lineSize) solid transparent',
+    '--border-bottom': `var(--top, var(--unknown)) ${border}`,
+    '--border-top': `var(--bottom, var(--unknown)) ${border}`,
+    '--border-left': `var(--right, var(--unknown)) ${border}`,
+    '--border-right': `var(--left, var(--unknown)) ${border}`,
+    '--offset-inline': 'calc(-1 * var(--variant-borderWidth, 0px))',
+    '--offset-block': 'calc(-1 * var(--Tab-lineSize))',
+    /**
+     * =====================================================
+     */
+    borderBottom: 'var(--border-bottom, var(--top, var(--border-placeholder)))',
+    borderRight: 'var(--border-right, var(--left, var(--border-placeholder)))',
+    borderTop: 'var(--border-top, var(--bottom, var(--border-placeholder)))',
+    borderLeft: 'var(--border-left, var(--right, var(--border-placeholder)))',
     '&::after': {
       content: '""',
       display: 'block',
       position: 'absolute',
       margin: 'auto', // align center if fixed width/height
-      bottom: 'calc(-1 * var(--Tab-lineSize))',
-      left: 'calc(-1 * var(--variant-borderWidth, 0px))',
-      right: 'calc(-1 * var(--variant-borderWidth, 0px))',
-      height: 'var(--Tab-lineSize)',
       background: 'var(--Tab-lineColor)',
-      ...(!ownerState.row && {
-        width: 'var(--Tab-lineSize)',
-        height: 'unset',
-        left: 'unset',
-        right: 'calc(-1 * var(--Tab-lineSize))',
-        top: 'calc(-1 * var(--variant-borderWidth, 0px))',
-        bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
-      }),
+      height: 'var(--top, var(--Tab-lineSize)) var(--bottom, var(--Tab-lineSize))',
+      width: 'var(--left, var(--Tab-lineSize)) var(--right, var(--Tab-lineSize))',
+      top: 'var(--bottom, var(--offset-block)) var(--left, var(--offset-inline)) var(--right, var(--offset-inline))',
+      bottom:
+        'var(--top, var(--offset-block)) var(--left, var(--offset-inline)) var(--right, var(--offset-inline))',
+      left: 'var(--right, var(--offset-block)) var(--top, var(--offset-inline)) var(--bottom, var(--offset-inline))',
+      right:
+        'var(--left, var(--offset-block)) var(--top, var(--offset-inline)) var(--bottom, var(--offset-inline))',
     },
     [`&.${tabClasses.selected}::after`]: {
       '--Tab-lineColor': 'currentColor',

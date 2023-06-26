@@ -44,9 +44,7 @@ const TabListRoot = styled(StyledList, {
   '--ListDivider-gap': '0px',
   ...scopedVariables,
   ...(!ownerState.disableUnderline && {
-    boxShadow: `inset ${ownerState.orientation === 'vertical' ? '-1px 0' : '0 -1px'} 0 0 ${
-      theme.vars.palette.divider
-    }`,
+    boxShadow: `inset var(--top, 0 -1px) var(--right, 1px 0) var(--bottom, 0 1px) var(--left, -1px 0) ${theme.vars.palette.divider}`,
   }),
 }));
 /**
