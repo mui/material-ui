@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Select component
 components: Select, NativeSelect
 githubLabel: 'component: select'

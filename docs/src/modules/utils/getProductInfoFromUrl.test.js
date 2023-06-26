@@ -2,43 +2,67 @@ import { expect } from 'chai';
 import getProductInfoFromUrl from './getProductInfoFromUrl';
 
 describe('getProductInfoFromUrl', () => {
-  it('get material-ui', () => {
-    expect(getProductInfoFromUrl('/material-ui/react-button/').productId).to.equal('material-ui');
-    expect(getProductInfoFromUrl('/zh/material-ui/react-button/').productId).to.equal(
-      'material-ui',
-    );
+  it('should handle Material UI', () => {
+    expect(getProductInfoFromUrl('/material-ui/react-button/')).to.deep.equal({
+      productCategoryId: 'core',
+      productId: 'material-ui',
+    });
+    expect(getProductInfoFromUrl('/zh/material-ui/react-button/')).to.deep.equal({
+      productCategoryId: 'core',
+      productId: 'material-ui',
+    });
   });
 
-  it('get base-ui', () => {
-    expect(getProductInfoFromUrl('/base-ui/react-button/').productId).to.equal('base-ui');
-    expect(getProductInfoFromUrl('/zh/base-ui/react-button/').productId).to.equal('base-ui');
+  it('should handle Base UI', () => {
+    expect(getProductInfoFromUrl('/base-ui/react-button/')).to.deep.equal({
+      productCategoryId: 'core',
+      productId: 'base-ui',
+    });
   });
 
-  it('get joy-ui', () => {
-    expect(getProductInfoFromUrl('/joy-ui/react-button/').productId).to.equal('joy-ui');
-    expect(getProductInfoFromUrl('/zh/joy-ui/react-button/').productId).to.equal('joy-ui');
+  it('should handle Joy UI', () => {
+    expect(getProductInfoFromUrl('/joy-ui/react-button/')).to.deep.equal({
+      productCategoryId: 'core',
+      productId: 'joy-ui',
+    });
   });
 
-  it('get system', () => {
-    expect(getProductInfoFromUrl('/system/').productId).to.equal('system');
-    expect(getProductInfoFromUrl('/zh/system/getting-started/').productId).to.equal('system');
+  it('should handle MUI System', () => {
+    expect(getProductInfoFromUrl('/system/')).to.deep.equal({
+      productCategoryId: 'core',
+      productId: 'system',
+    });
   });
 
-  it('get data-grid', () => {
-    expect(getProductInfoFromUrl('/x/react-data-grid/components').productId).to.equal(
-      'x-data-grid',
-    );
-    expect(getProductInfoFromUrl('/zh/x/react-data-grid/components').productId).to.equal(
-      'x-data-grid',
-    );
+  it('should handle MUI X Data Drid', () => {
+    expect(getProductInfoFromUrl('/x/react-data-grid/components')).to.deep.equal({
+      productCategoryId: 'x',
+      productId: 'x-data-grid',
+    });
   });
 
-  it('get date-picker', () => {
-    expect(getProductInfoFromUrl('/x/react-date-picker/components').productId).to.equal(
-      'x-date-picker',
-    );
-    expect(getProductInfoFromUrl('/zh/x/react-date-picker/components').productId).to.equal(
-      'x-date-picker',
-    );
+  it('should handle MUI X Date Pickers', () => {
+    expect(getProductInfoFromUrl('/x/react-date-pickers/components')).to.deep.equal({
+      productCategoryId: 'x',
+      productId: 'x-date-pickers',
+    });
+  });
+
+  it('should handle MUI X', () => {
+    expect(getProductInfoFromUrl('/x/migration/migration-data-grid-v5/')).to.deep.equal({
+      productCategoryId: 'x',
+      // Not smart enough to know it's about the data grid.
+      // Now, it's a none goal to be able to handle this. Either change the URL to be
+      // /x/react-data-grid/migration-v5/
+      // or add the productId header to the markdown of this page.
+      productId: null,
+    });
+  });
+
+  it('should handle MUI Toolpad', () => {
+    expect(getProductInfoFromUrl('/toolpad/getting-started/first-app/')).to.deep.equal({
+      productCategoryId: null,
+      productId: 'toolpad',
+    });
   });
 });

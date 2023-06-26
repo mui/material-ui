@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: 9+ Free React Templates
 ---
 
