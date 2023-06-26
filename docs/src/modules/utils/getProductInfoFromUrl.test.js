@@ -55,13 +55,13 @@ describe('getProductInfoFromUrl', () => {
       // Now, it's a none goal to be able to handle this. Either change the URL to be
       // /x/react-data-grid/migration-v5/
       // or add the productId header to the markdown of this page.
-      productId: null,
+      productId: 'null',
     });
   });
 
   it('should handle MUI Toolpad', () => {
     expect(getProductInfoFromUrl('/toolpad/getting-started/first-app/')).to.deep.equal({
-      productCategoryId: null,
+      productCategoryId: 'null',
       productId: 'toolpad',
     });
   });
