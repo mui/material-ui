@@ -85,8 +85,8 @@ export default function XComponents() {
     'Data Grid': <TableChartRounded fontSize="small" />,
     'Date Range Picker': <DateRangeRounded fontSize="small" />,
     Charts: <BarChartRounded fontSize="small" />,
-    'Tree View': <ShowChartRounded fontSize="small" />,
-    Sparkline: <AccountTreeRounded fontSize="small" />,
+    'Tree View': <AccountTreeRounded fontSize="small" />,
+    Sparkline: <ShowChartRounded fontSize="small" />,
   };
   return (
     <Section bg="comfort">

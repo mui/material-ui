@@ -44,6 +44,7 @@
     "@mui/styles": "^5.13.2",
     "@mui/system": "^5.13.5",
     "@mui/types": "^7.2.4",
+    "@mui/x-charts": "6.0.0-alpha.0",
     "@mui/x-data-grid": "6.7.0",
     "@mui/x-data-grid-generator": "6.7.0",
     "@mui/x-data-grid-pro": "6.7.0",

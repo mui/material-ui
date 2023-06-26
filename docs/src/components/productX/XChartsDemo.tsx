@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Frame from 'docs/src/components/action/Frame';
+import { LineChart } from '@mui/x-charts/LineChart';
 
 export default function XDateRangeDemo() {
   return (
@@ -53,7 +54,7 @@ export default function XDateRangeDemo() {
               }),
           ]}
         >
-          {/* Insert the chart here */}
+          <LineChart series={[{ data: [1, 2, 3, 4, 5] }]} />
         </Paper>
       </Frame.Demo>
       <Frame.Info data-mui-color-scheme="dark">
