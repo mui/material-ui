@@ -9,18 +9,18 @@ export default function UnstyledSelectBasic() {
       <Select
         className="CustomSelect"
         slotProps={{
-          listbox: { className: 'CustomListbox' },
-          popper: { className: 'CustomPopper' },
+          listbox: { className: 'CustomSelect-listbox' },
+          popper: { className: 'CustomSelect-popper' },
         }}
         defaultValue={10}
       >
-        <Option className="CustomOption" value={10}>
+        <Option className="CustomSelect-option" value={10}>
           Ten
         </Option>
-        <Option className="CustomOption" value={20}>
+        <Option className="CustomSelect-option" value={20}>
           Twenty
         </Option>
-        <Option className="CustomOption" value={30}>
+        <Option className="CustomSelect-option" value={30}>
           Thirty
         </Option>
       </Select>
@@ -106,7 +106,7 @@ function Styles() {
           float: right;
         }
       }
-      .CustomListbox {
+      .CustomSelect-listbox {
         font-family: IBM Plex Sans, sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
@@ -121,10 +121,10 @@ function Styles() {
         color: ${isDarkMode ? grey[300] : grey[900]};
         box-shadow: 0px 4px 30px ${isDarkMode ? grey[900] : grey[200]};
       }
-      .CustomPopper {
+      .CustomSelect-popper {
         z-index: 1;
       }
-      .CustomOption {
+      .CustomSelect-option {
         list-style: none;
         padding: 8px;
         border-radius: 8px;
