@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn snowpack build && concurrently --success first --kill-others \"yarn server\" \"node testSnowpackIntegration\"",
-    "server": "serve -s build"
+    "server": "serve -p 5001 -s build"
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
