@@ -47,6 +47,12 @@ module.exports = {
         test: /\.(jpg|gif|png)$/,
         type: 'asset/inline',
       },
+      {
+        test: /\.m?js$/,
+        resolve: {
+          fullySpecified: false,
+        },
+      },
     ],
   },
   resolve: {
