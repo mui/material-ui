@@ -7,7 +7,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
-import { getListUtilityClass } from './listClasses';
+import listClasses, { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
 import ComponentListContext from './ComponentListContext';
 import GroupListContext from './GroupListContext';
@@ -16,7 +16,7 @@ import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListOwnerState) => {
-  const { variant, color, size, nesting, orientation, instanceSize } = ownerState;
+  const { variant, color, size, nesting, orientation, instanceSize, wrap } = ownerState;
   const slots = {
     root: [
       'root',
@@ -26,6 +26,7 @@ const useUtilityClasses = (ownerState: ListOwnerState) => {
       !instanceSize && !nesting && size && `size${capitalize(size)}`,
       instanceSize && `size${capitalize(instanceSize)}`,
       nesting && 'nesting',
+      wrap && 'wrap',
     ],
   };
 
@@ -103,33 +104,29 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       '--ListItem-endActionTranslateX': 'calc(-0.5 * var(--ListItem-paddingRight))',
       margin: 'initial',
       // --List-padding is not declared to let list uses --ListDivider-gap by default.
-      ...(ownerState.orientation === 'horizontal'
-        ? {
-            ...(ownerState.wrap
-              ? {
-                  padding: 'var(--List-padding)', // Fallback is not needed for row-wrap List
-                  marginInlineStart: 'calc(-1 * var(--List-gap))',
-                  marginBlockStart: 'calc(-1 * var(--List-gap))',
-                }
-              : {
-                  paddingInline: 'var(--List-padding, var(--ListDivider-gap))',
-                  paddingBlock: 'var(--List-padding)',
-                }),
-          }
-        : {
-            paddingBlock: 'var(--List-padding, var(--ListDivider-gap))',
-            paddingInline: 'var(--List-padding)',
-          }),
+      marginInlineStart: 'var(--horizontal, var(--wrap, calc(-1 * var(--List-gap))))',
+      marginBlockStart: 'var(--horizontal, var(--wrap, calc(-1 * var(--List-gap))))',
+      paddingInline:
+        'var(--vertical, var(--List-padding)) var(--horizontal, var(--List-padding, var(--nowrap, var(--ListDivider-gap))))',
+      paddingBlock:
+        'var(--vertical, var(--List-padding, var(--nowrap, var(--ListDivider-gap)))) var(--horizontal, var(--List-padding))',
     },
     {
+      '--orientation': `var(--${ownerState.orientation})`,
+      '--horizontal': 'var(--orientation,)',
+      '--vertical': 'var(--orientation,)',
+      '--flexWrap': 'var(--nowrap)',
+      '--nowrap': 'var(--flexWrap,)',
+      '--wrap': 'var(--flexWrap,)',
+      [`&.${listClasses.wrap}`]: {
+        '--flexWrap': 'var(--wrap)',
+      },
       boxSizing: 'border-box',
       borderRadius: 'var(--List-radius)',
       listStyle: 'none',
       display: 'flex',
-      flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-      ...(ownerState.wrap && {
-        flexWrap: 'wrap',
-      }),
+      flexDirection: 'var(--vertical, column)',
+      flexWrap: 'var(--wrap, wrap)',
       flexGrow: 1,
       position: 'relative', // for sticky ListItem
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],

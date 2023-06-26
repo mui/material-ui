@@ -39,6 +39,8 @@ export interface ListClasses {
   horizontal: string;
   /** Class name applied to the root element if `orientation="vertical"`. */
   vertical: string;
+  /** Class name applied to the root element if `orientation="wrap"`. */
+  wrap: string;
 }
 
 export type ListClassKey = keyof ListClasses;
@@ -67,6 +69,7 @@ const listClasses: ListClasses = generateUtilityClasses('MuiList', [
   'variantSolid',
   'horizontal',
   'vertical',
+  'wrap',
 ]);
 
 export default listClasses;
