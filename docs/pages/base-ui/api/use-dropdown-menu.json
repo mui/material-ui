@@ -13,7 +13,8 @@
     "contextValue": {
       "type": { "name": "MenuContextValue", "description": "MenuContextValue" },
       "required": true
-    }
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
   },
   "name": "useDropdownMenu",
   "filename": "/packages/mui-base/src/useDropdownMenu/useDropdownMenu.ts",

@@ -1,5 +1,6 @@
 {
   "parameters": {
+    "id": { "type": { "name": "string", "description": "string" } },
     "listboxRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
@@ -47,7 +48,11 @@
       },
       "required": true
     },
-    "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
+    "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "triggerElement": {
+      "type": { "name": "HTMLElement | null", "description": "HTMLElement | null" },
+      "required": true
+    }
   },
   "name": "useMenu",
   "filename": "/packages/mui-base/src/useMenu/useMenu.ts",

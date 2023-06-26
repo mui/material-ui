@@ -1,6 +1,7 @@
 {
   "hookDescription": "",
   "parametersDescriptions": {
+    "id": "The id of the menu. If not provided, it will be generated.",
     "listboxRef": "Ref of the menu listbox.",
     "onItemsChange": "Callback fired when the menu items change."
   },
@@ -11,6 +12,7 @@
     "highlightedValue": "The highlighted option in the menu listbox.",
     "listboxRef": "The ref to the listbox DOM node.",
     "menuItems": "Items in the menu listbox.",
-    "open": "If <code>true</code>, the menu is open."
+    "open": "If <code>true</code>, the menu is open.",
+    "triggerElement": "An element that triggers the visibility of the menu."
   }
 }

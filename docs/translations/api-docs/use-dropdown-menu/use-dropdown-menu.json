@@ -5,5 +5,8 @@
     "onOpenChange": "Callback fired when the component requests to be opened or closed.",
     "open": "Allows to control whether the menu is open.\nThis is a controlled counterpart of <code>defaultOpen</code>."
   },
-  "returnValueDescriptions": { "contextValue": "The value to be passed into the MenuProvider." }
+  "returnValueDescriptions": {
+    "contextValue": "The value to be passed into the MenuProvider.",
+    "open": "If <code>true</code>, the dropdown is open."
+  }
 }
