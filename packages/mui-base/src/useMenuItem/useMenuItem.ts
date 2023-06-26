@@ -20,10 +20,12 @@ function idGenerator(existingKeys: Set<string>) {
 }
 
 const FALLBACK_MENU_CONTEXT: MenuContextValue = {
-  state: { open: true },
   dispatch: () => {},
-  triggerElement: null,
+  popupId: '',
+  registerPopup: () => {},
   registerTrigger: () => {},
+  state: { open: true },
+  triggerElement: null,
 };
 
 /**
