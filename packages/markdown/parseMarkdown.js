@@ -246,7 +246,7 @@ function createRender(context) {
         .replace(/<\/?[^>]+(>|$)/g, '') // remove HTML
         .trim();
 
-      if (options.iconsToPersistInToC) {
+      if (options?.iconsToPersistInToC) {
         // If the heading contained HTML, it was removed in the previous step.
         // This step adds it back in if it was in the list of icons to persist.
         // This is needed for MUI X where we use icons to indicate the pricing plan.
