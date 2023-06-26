@@ -64,7 +64,7 @@ const ListItemRoot = styled('li', {
     '--ListItem-marginInline':
       'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
   },
-  [`&.${listItemClasses.nesting}`]: {
+  [`&.${listItemClasses.nesting}:not(.${listItemClasses.nested})`]: {
     marginInline: 'var(--ListItem-marginInline)',
   },
   // Integration with control elements, eg. Checkbox, Radio.

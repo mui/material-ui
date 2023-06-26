@@ -40,13 +40,9 @@ const TabRoot = styled(StyledListItemButton, {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   const border = variantStyle?.border ? `${variantStyle.border} ${variantStyle.borderColor}` : '';
   return {
-    justifyContent: 'center',
+    justifyContent: 'var(--top, center) var(--bottom, center)',
     flexGrow: 1,
     ...variantStyle,
-    ...(!ownerState.row &&
-      ownerState.orientation === 'horizontal' && {
-        justifyContent: 'flex-start',
-      }),
     ...(ownerState.selected && {
       fontWeight: 'initial',
     }),

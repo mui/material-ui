@@ -42,7 +42,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--ListItem-paddingY': '0.25rem',
         '--ListItem-paddingX': '0.5rem',
         '--ListItem-fontSize': theme.vars.fontSize.sm,
-        '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
+        '--ListItemDecorator-size': 'var(--List-horizontal, 1.5rem) var(--List-vertical, 2rem)',
         '--Icon-fontSize': '1.125rem',
       };
     }
@@ -53,7 +53,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--ListItem-paddingY': '0.375rem',
         '--ListItem-paddingX': '0.75rem',
         '--ListItem-fontSize': theme.vars.fontSize.md,
-        '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
+        '--ListItemDecorator-size': 'var(--List-horizontal, 1.75rem) var(--List-vertical, 2.5rem)',
         '--Icon-fontSize': '1.25rem',
       };
     }
@@ -64,7 +64,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--ListItem-paddingY': '0.5rem',
         '--ListItem-paddingX': '1rem',
         '--ListItem-fontSize': theme.vars.fontSize.md,
-        '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
+        '--ListItemDecorator-size': 'var(--List-horizontal, 2.25rem) var(--List-vertical, 3rem)',
         '--Icon-fontSize': '1.5rem',
       };
     }
@@ -112,7 +112,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         'var(--List-vertical, var(--List-padding, var(--List-nowrap, var(--ListDivider-gap)))) var(--List-horizontal, var(--List-padding))',
     },
     {
-      '--List-orientation': `var(--List-${ownerState.orientation})`,
+      '--List-orientation': `var(--List-${ownerState.orientation ?? 'vertical'})`,
       '--List-horizontal': 'var(--List-orientation,)',
       '--List-vertical': 'var(--List-orientation,)',
       '--List-flexWrap': 'var(--List-nowrap)',

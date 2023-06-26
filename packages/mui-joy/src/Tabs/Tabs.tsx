@@ -58,13 +58,9 @@ const TabsRoot = styled(SheetRoot, {
   '--top': 'var(--Tabs-placement,)',
   '--left': 'var(--Tabs-placement,)',
   '--right': 'var(--Tabs-placement,)',
-
   display: 'flex',
-  flexDirection: 'column',
-  ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-  }),
+  flexDirection: 'var(--top, column) var(--bottom, column)' as 'initial',
+  alignItems: 'var(--left, flex-start) var(--right, flex-start)' as 'initial',
 }));
 /**
  *
