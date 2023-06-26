@@ -278,4 +278,10 @@ describe('<Avatar />', () => {
       expect(avatar).to.have.class(classes.colorNeutral);
     });
   });
+
+  it('should render first letter of alt when src or srcSet are not available', () => {
+    const { container } = render(<Avatar className="my-avatar" alt="Hello World!" />);
+    const avatar = container.firstChild;
+    expect(avatar).to.have.text('H');
+  });
 });

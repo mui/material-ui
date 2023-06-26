@@ -4,6 +4,10 @@ export interface UseTabPanelParameters {
    */
   id?: string;
   /**
+   * The ref of the TabPanel.
+   */
+  rootRef?: React.Ref<HTMLElement>;
+  /**
    * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.
    */
   value?: number | string;
@@ -13,6 +17,7 @@ export interface UseTabPanelRootSlotProps {
   'aria-labelledby'?: string;
   hidden?: boolean;
   id?: string;
+  ref: React.Ref<HTMLElement>;
 }
 
 export interface UseTabPanelReturnValue {
@@ -24,9 +29,6 @@ export interface UseTabPanelReturnValue {
    * Resolver for the root slot's props.
    * @returns props that should be spread on the root slot
    */
-  getRootProps: () => {
-    'aria-labelledby': string | undefined;
-    hidden: boolean;
-    id: string | undefined;
-  };
+  getRootProps: () => UseTabPanelRootSlotProps;
+  rootRef: React.Ref<HTMLElement>;
 }

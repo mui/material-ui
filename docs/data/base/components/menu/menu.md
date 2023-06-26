@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Menu components and hooks
 components: Menu, MenuItem
 hooks: useMenu, useMenuItem
@@ -29,7 +29,7 @@ These are rendered as `<li>` elements.
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import Menu from '@mui/base/Menu';
@@ -50,7 +50,7 @@ export default function MyApp() {
 The Menu serves as a replacement for the native HTML `<ul>`, and the Menu Item corresponds to the `<li>` tag.
 
 The following demo shows how to create and style a Menu component.
-Click **Dashboard** to view the menu—notice that it uses the built-in [Popper](/base/react-popper/) component to visually break out of its parent container:
+Click **Dashboard** to view the menu—notice that it uses the built-in [Popper](/base-ui/react-popper/) component to visually break out of its parent container:
 
 {{"demo": "MenuSimple.js"}}
 
@@ -78,7 +78,7 @@ Use the `slots` prop to override the root or any other interior slot:
 
 :::info
 The `slots` prop is available on all non-utility Base components.
-See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.

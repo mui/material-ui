@@ -62,9 +62,9 @@ export const replaceAPILinks = (url: string) => {
     .replace(/\/api\/data-grid(.*)/, '/x/api/data-grid$1')
     .replace(
       /\/api\/(unstable-trap-focus|click-away-listener|no-ssr|portal|textarea-autosize)(.*)/,
-      '/base/api/$1$2',
+      '/base-ui/api/$1$2',
     )
-    .replace(/\/api\/([^/]+-unstyled)(.*)/, '/base/api/$1$2');
+    .replace(/\/api\/([^/]+-unstyled)(.*)/, '/base-ui/api/$1$2');
 
   if (isNewLocation(url)) {
     return url;

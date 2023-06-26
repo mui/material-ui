@@ -26,7 +26,7 @@
     },
     "label": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the label element that wraps `children`"
+      "nodeName": "the label element that wraps <code>children</code>"
     },
     "active": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -50,7 +50,7 @@
     },
     "iconContainer": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the `icon` container element"
+      "nodeName": "the <code>icon</code> container element"
     },
     "alternativeLabel": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -59,7 +59,7 @@
     },
     "labelContainer": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the container element which wraps label and `optional`"
+      "nodeName": "the container element which wraps label and <code>optional</code>"
     }
   }
 }

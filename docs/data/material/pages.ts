@@ -4,10 +4,11 @@ import { MuiPage } from 'docs/src/MuiPage';
 
 const pages: MuiPage[] = [
   {
-    pathname: '/material-ui/getting-started',
+    pathname: '/material-ui/getting-started-group',
+    title: 'Getting started',
     icon: standardNavIcons.DescriptionIcon,
     children: [
-      { pathname: '/material-ui/getting-started/overview' },
+      { pathname: '/material-ui/getting-started', title: 'Overview' },
       { pathname: '/material-ui/getting-started/installation' },
       { pathname: '/material-ui/getting-started/usage' },
       { pathname: '/material-ui/getting-started/example-projects' },
@@ -225,10 +226,6 @@ const pages: MuiPage[] = [
           {
             pathname: '/material-ui/experimental-api/css-theme-variables/migration',
             title: 'Migrating to CSS variables',
-          },
-          {
-            pathname: '/material-ui/experimental-api/css-variables',
-            title: 'TODO merge with other pages',
           },
         ],
       },
