@@ -62,5 +62,6 @@ export default function useDropdownMenu(parameters: UseDropdownMenuParameters = 
 
   return {
     contextValue,
+    open: state.open,
   };
 }

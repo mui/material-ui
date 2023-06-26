@@ -2,7 +2,7 @@ import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { EventHandlers } from '../utils';
 import MuiCancellableEvent from '../utils/muiCancellableEvent';
-import { UseMenuButtonParameters } from './useMenuButton.types';
+import { UseMenuButtonParameters, UseMenuButtonReturnValue } from './useMenuButton.types';
 import MenuContext from '../useMenu/MenuContext';
 import { MenuActionTypes } from '../useDropdownMenu/useDropdownMenu.types';
 /**
@@ -11,7 +11,9 @@ import { MenuActionTypes } from '../useDropdownMenu/useDropdownMenu.types';
  *
  * - [useMenuButton API](https://mui.com/base-ui/api/use-menu-button/)
  */
-export default function useMenuButton(parameters: UseMenuButtonParameters) {
+export default function useMenuButton(
+  parameters: UseMenuButtonParameters = {},
+): UseMenuButtonReturnValue {
   const { rootRef: externalRef } = parameters;
 
   const menuContext = React.useContext(MenuContext);
@@ -44,7 +46,7 @@ export default function useMenuButton(parameters: UseMenuButtonParameters) {
     };
 
   const getRootProps = (otherHandlers: EventHandlers = {}) => ({
-    'aria-haspopup': 'menu',
+    'aria-haspopup': 'menu' as const,
     'aria-expanded': state.open,
     'aria-controls': popupId,
     onClick: createHandleClick(otherHandlers),

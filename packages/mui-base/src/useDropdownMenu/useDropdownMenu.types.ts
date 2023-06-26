@@ -24,6 +24,10 @@ export interface UseDropdownMenuReturnValue {
    * The value to be passed into the MenuProvider.
    */
   contextValue: MenuContextValue;
+  /**
+   * If `true`, the dropdown is open.
+   */
+  open: boolean;
 }
 
 export const MenuActionTypes = {

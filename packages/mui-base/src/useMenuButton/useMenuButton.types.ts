@@ -8,6 +8,9 @@ export interface UseMenuButtonParameters {
 }
 
 interface UseMenuButtonRootSlotProps {
+  'aria-haspopup': 'menu';
+  'aria-expanded': boolean;
+  'aria-controls': string;
   /**
    * Callback fired when the button is clicked.
    */
