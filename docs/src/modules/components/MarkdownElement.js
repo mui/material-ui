@@ -399,7 +399,7 @@ const Root = styled('div')(
       border: 'none',
       backgroundColor: 'transparent',
       color: lightTheme.palette.primaryDark[50],
-      transition: theme.transitions.create('background', 'borderColor', 'display', {
+      transition: theme.transitions.create(['background', 'borderColor', 'display'], {
         duration: theme.transitions.duration.shortest,
       }),
       '& svg': {
