@@ -47,29 +47,31 @@ function useIsDarkMode() {
 }
 
 export default function UnstyledSelectBasic() {
+  // Replace this with your app logic for determining dark modes
   const isDarkMode = useIsDarkMode();
+
   return (
-    <Select
-      className={isDarkMode ? 'dark' : ''}
-      slotProps={{
-        root: ({ focusVisible, open }) => ({
-          className: `text-sm box-border h-12 w-80 p-3 rounded-xl text-left leading-normal bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:bg-slate-800 outline-0 ${
-            focusVisible ? 'border-purple-400 shadow-outline-purple' : ''
-          } ${
-            open ? 'after:content-["▴"]' : 'after:content-["▾"]'
-          } after:float-right`,
-        }),
-        listbox: {
-          className:
-            'text-sm box-border p-1.5 mx-3 w-80 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 shadow-md shadow-slate-200 dark:shadow-slate-900',
-        },
-        popper: { className: 'z-10' },
-      }}
-      defaultValue={10}
-    >
-      <Option value={10}>Ten</Option>
-      <Option value={20}>Twenty</Option>
-      <Option value={30}>Thirty</Option>
-    </Select>
+    <div className={isDarkMode ? 'dark' : ''}>
+      <Select
+        slotProps={{
+          root: ({ focusVisible, open }) => ({
+            className: `text-sm box-border h-12 w-80 p-3 rounded-xl text-left leading-normal bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-800 outline-0 ${
+              focusVisible ? 'border-purple-400 shadow-outline-purple' : ''
+            } ${
+              open ? 'after:content-["▴"]' : 'after:content-["▾"]'
+            } after:float-right`,
+          }),
+          listbox: {
+            className: `text-sm box-border p-1.5 my-3 w-80 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 shadow-md shadow-slate-200 dark:shadow-slate-900`,
+          },
+          popper: { className: `${isDarkMode ? 'dark' : ''} z-10` },
+        }}
+        defaultValue={10}
+      >
+        <Option value={10}>Ten</Option>
+        <Option value={20}>Twenty</Option>
+        <Option value={30}>Thirty</Option>
+      </Select>
+    </div>
   );
 }
