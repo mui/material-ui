@@ -18,6 +18,8 @@
       "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
     },
     "onClose": { "type": { "name": "func" } },
+    "onTransitionEnter": { "type": { "name": "func" } },
+    "onTransitionExited": { "type": { "name": "func" } },
     "slotProps": {
       "type": {
         "name": "shape",

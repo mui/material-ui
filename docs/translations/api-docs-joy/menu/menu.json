@@ -10,6 +10,7 @@
     "keepMounted": "Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Popper.",
     "modifiers": "Popper.js is based on a &quot;plugin-like&quot; architecture, most of its features are fully encapsulated &quot;modifiers&quot;.<br>A modifier is a function that is called each time Popper.js needs to compute the position of the popper. For this reason, modifiers should be very performant to avoid bottlenecks. To learn how to create a modifier, <a href=\"https://popper.js.org/docs/v2/modifiers/\">read the modifiers documentation</a>.",
     "onClose": "Triggered when focus leaves the menu and the menu should close.",
+    "onItemsChange": "Function called when the items displayed in the menu change.",
     "open": "Controls whether the menu is displayed.",
     "size": "The size of the component (affect other nested list* components because the <code>Menu</code> inherits <code>List</code>). To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
     "slotProps": "The props used for each slot inside.",

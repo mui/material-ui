@@ -174,7 +174,7 @@ module.exports = withDocsInfra({
       : null,
     LIB_VERSION: pkg.version,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master', // #default-branch-switch
+    SOURCE_GITHUB_BRANCH: 'master', // #default-branch-switch
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: buildOnlyEnglishLocale,
