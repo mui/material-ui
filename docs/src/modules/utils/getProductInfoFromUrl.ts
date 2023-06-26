@@ -31,6 +31,10 @@ export default function getProductInfoFromUrl(asPath: string): MuiProductInfo {
     }
   }
 
+  if (productId === 'toolpad') {
+    productCategoryId = 'toolpad';
+  }
+
   if (productId === 'versions') {
     productId = null;
   }
