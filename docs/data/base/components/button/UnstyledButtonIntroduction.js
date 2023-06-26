@@ -38,7 +38,6 @@ const CustomButton = styled(Button)(
   cursor: pointer;
   border: none;
   box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
-  
 
   &:hover {
     background-color: ${blue[600]};
