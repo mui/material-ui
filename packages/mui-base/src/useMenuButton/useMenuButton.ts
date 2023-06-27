@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { UseMenuButtonParameters, UseMenuButtonReturnValue } from './useMenuButton.types';
-import MenuContext from '../useMenu/MenuContext';
-import { MenuActionTypes } from '../useDropdownMenu/useDropdownMenu.types';
+import DropdownContext from '../useDropdown/DropdownContext';
+import { DropdownActionTypes } from '../useDropdown/useDropdown.types';
 import useButton from '../useButton/useButton';
 import { EventHandlers } from '../utils/types';
 import MuiCancellableEvent from '../utils/muiCancellableEvent';
@@ -10,16 +10,20 @@ import combineHooksSlotProps from '../utils/combineHooksSlotProps';
 
 /**
  *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/base-ui/react-menu/#hooks)
+ *
  * API:
  *
- * - [useMenuButton API](https://mui.com/base-ui/api/use-menu-button/)
+ * - [useMenuButton API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu-button)
  */
 export default function useMenuButton(
   parameters: UseMenuButtonParameters = {},
 ): UseMenuButtonReturnValue {
   const { disabled = false, focusableWhenDisabled, rootRef: externalRef } = parameters;
 
-  const menuContext = React.useContext(MenuContext);
+  const menuContext = React.useContext(DropdownContext);
   if (menuContext === null) {
     throw new Error('useMenuButton: no menu context available.');
   }
@@ -53,7 +57,7 @@ export default function useMenuButton(
       }
 
       dispatch({
-        type: MenuActionTypes.toggle,
+        type: DropdownActionTypes.toggle,
         event,
       });
     };
@@ -68,7 +72,7 @@ export default function useMenuButton(
       if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
         event.preventDefault();
         dispatch({
-          type: MenuActionTypes.open,
+          type: DropdownActionTypes.open,
           event,
         });
       }

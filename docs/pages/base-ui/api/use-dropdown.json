@@ -11,12 +11,12 @@
   },
   "returnValue": {
     "contextValue": {
-      "type": { "name": "MenuContextValue", "description": "MenuContextValue" },
+      "type": { "name": "DropdownContextValue", "description": "DropdownContextValue" },
       "required": true
     },
     "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
   },
-  "name": "useDropdownMenu",
-  "filename": "/packages/mui-base/src/useDropdownMenu/useDropdownMenu.ts",
-  "demos": "<ul></ul>"
+  "name": "useDropdown",
+  "filename": "/packages/mui-base/src/useDropdown/useDropdown.ts",
+  "demos": "<ul><li><a href=\"/base-ui/react-menu/#hooks\">Menu</a></li></ul>"
 }

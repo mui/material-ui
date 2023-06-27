@@ -1,8 +1,8 @@
 ---
 product: base-ui
 title: React Menu components and hooks
-components: Menu, MenuItem, MenuButton, DropdownMenu
-hooks: useMenu, useMenuItem
+components: Menu, MenuItem, MenuButton, Dropdown
+hooks: useMenu, useMenuItem, useMenuButton, useDropdown
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 ---

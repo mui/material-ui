@@ -1,22 +1,26 @@
 import * as React from 'react';
-import { type MenuContextValue } from '../useMenu/MenuContext';
+import { type DropdownContextValue } from './DropdownContext';
 import useControllableReducer from '../utils/useControllableReducer';
 import { StateChangeCallback } from '../utils/useControllableReducer.types';
-import { MenuActionTypes, MenuOpenState, UseDropdownMenuParameters } from './useDropdownMenu.types';
-import dropdownMenuReducer from './dropdownMenuReducer';
+import { DropdownActionTypes, DropdownState, UseDropdownParameters } from './useDropdown.types';
+import dropdownReducer from './dropdownReducer';
 
 /**
  *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/base-ui/react-menu/#hooks)
+ *
  * API:
  *
- * - [useDropdownMenu API](https://mui.com/base-ui/api/use-dropdown-menu/)
+ * - [useDropdown API](https://mui.com/base-ui/react-menu/hooks-api/#use-dropdown)
  */
-export default function useDropdownMenu(parameters: UseDropdownMenuParameters = {}) {
+export default function useDropdown(parameters: UseDropdownParameters = {}) {
   const { defaultOpen, onOpenChange, open: openProp } = parameters;
   const triggerElementRef = React.useRef<HTMLElement | null>(null);
   const lastActionType = React.useRef<string | null>(null);
 
-  const handleStateChange: StateChangeCallback<MenuOpenState> = React.useCallback(
+  const handleStateChange: StateChangeCallback<DropdownState> = React.useCallback(
     (event, field, value, reason) => {
       if (field === 'open') {
         onOpenChange?.(event as React.MouseEvent | React.KeyboardEvent | React.FocusEvent, value);
@@ -36,11 +40,11 @@ export default function useDropdownMenu(parameters: UseDropdownMenuParameters = 
     controlledProps,
     initialState: defaultOpen ? { open: true } : { open: false },
     onStateChange: handleStateChange,
-    reducer: dropdownMenuReducer,
+    reducer: dropdownReducer,
   });
 
   React.useEffect(() => {
-    if (!state.open && lastActionType.current !== MenuActionTypes.blur) {
+    if (!state.open && lastActionType.current !== DropdownActionTypes.blur) {
       triggerElementRef.current?.focus();
     }
   }, [state.open]);
@@ -51,7 +55,7 @@ export default function useDropdownMenu(parameters: UseDropdownMenuParameters = 
 
   const [popupId, setPopupId] = React.useState<string>('');
 
-  const contextValue: MenuContextValue = {
+  const contextValue: DropdownContextValue = {
     state,
     dispatch,
     popupId,

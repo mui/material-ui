@@ -6,16 +6,16 @@ import {
 } from '@mui/utils';
 import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
 import menuReducer from './menuReducer';
-import MenuContext, { MenuContextValue } from './MenuContext';
+import DropdownContext, { DropdownContextValue } from '../useDropdown/DropdownContext';
 import useList from '../useList';
 import { MenuItemMetadata } from '../useMenuItem';
-import { MenuActionTypes } from '../useDropdownMenu';
+import { DropdownActionTypes } from '../useDropdown';
 import { EventHandlers } from '../utils';
 import { useCompoundParent } from '../utils/useCompound';
 import MuiCancellableEvent from '../utils/muiCancellableEvent';
 import combineHooksSlotProps from '../utils/combineHooksSlotProps';
 
-const FALLBACK_MENU_CONTEXT: MenuContextValue = {
+const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
   dispatch: () => {},
   popupId: '',
   registerPopup: () => {},
@@ -47,7 +47,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     dispatch: menuDispatch,
     triggerElement,
     registerPopup,
-  } = React.useContext(MenuContext) ?? FALLBACK_MENU_CONTEXT;
+  } = React.useContext(DropdownContext) ?? FALLBACK_MENU_CONTEXT;
 
   const { subitems, contextValue: compoundComponentContextValue } = useCompoundParent<
     string,
@@ -124,7 +124,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       }
 
       menuDispatch({
-        type: MenuActionTypes.blur,
+        type: DropdownActionTypes.blur,
         event,
       });
     };
@@ -138,7 +138,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
 
       if (event.key === 'Escape') {
         menuDispatch({
-          type: MenuActionTypes.escapeKeyDown,
+          type: DropdownActionTypes.escapeKeyDown,
           event,
         });
       }

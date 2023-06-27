@@ -1,7 +1,12 @@
 {
   "hookDescription": "",
-  "parametersDescriptions": { "rootRef": "The ref to the root element." },
+  "parametersDescriptions": {
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "focusableWhenDisabled": "If <code>true</code>, allows a disabled button to receive focus.",
+    "rootRef": "The ref to the root element."
+  },
   "returnValueDescriptions": {
+    "active": "If <code>true</code>, the component is active (pressed).",
     "getRootProps": "Resolver for the root slot&#39;s props.",
     "rootRef": "The ref to the root element."
   }

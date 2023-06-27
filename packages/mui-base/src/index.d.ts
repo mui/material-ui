@@ -12,8 +12,8 @@ export * from './ClickAwayListener';
 export { default as unstable_composeClasses } from './composeClasses';
 export * from './composeClasses';
 
-export { default as DropdownMenu } from './DropdownMenu';
-export * from './DropdownMenu';
+export { default as Dropdown } from './Dropdown';
+export * from './Dropdown';
 
 export { default as FocusTrap } from './FocusTrap';
 export * from './FocusTrap';
@@ -89,8 +89,8 @@ export * from './useBadge';
 export { default as useButton } from './useButton';
 export * from './useButton';
 
-export { default as useDropdownMenu } from './useDropdownMenu';
-export * from './useDropdownMenu';
+export { default as useDropdown } from './useDropdown';
+export * from './useDropdown';
 
 export { default as useInput } from './useInput';
 export * from './useInput';

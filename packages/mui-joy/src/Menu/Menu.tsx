@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import useMenu, { MenuProvider, MenuContext } from '@mui/base/useMenu';
+import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import { ListActionTypes } from '@mui/base/useList';
-import useDropdownMenu from '@mui/base/useDropdownMenu';
+import useDropdown, { DropdownContext } from '@mui/base/useDropdown';
 import Popper from '@mui/base/Popper';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
@@ -170,7 +170,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     }
   }
 
-  const { contextValue: dropdownMenuContextValue } = useDropdownMenu({
+  const { contextValue: dropdownContextValue } = useDropdown({
     onOpenChange: handleOpenChange,
     open,
   });
@@ -205,7 +205,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   }
 
   result = (
-    <MenuContext.Provider value={dropdownMenuContextValue}>
+    <DropdownContext.Provider value={dropdownContextValue}>
       <MenuRoot
         {...rootProps}
         {...(!props.slots?.root && {
@@ -217,7 +217,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
       >
         {result}
       </MenuRoot>
-    </MenuContext.Provider>
+    </DropdownContext.Provider>
   );
 
   return disablePortal ? (

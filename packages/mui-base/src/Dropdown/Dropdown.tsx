@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { DropdownMenuProps } from './DropdownMenu.types';
-import MenuContext from '../useMenu/MenuContext';
-import useDropdownMenu from '../useDropdownMenu/useDropdownMenu';
+import { DropdownProps } from './Dropdown.types';
+import DropdownContext from '../useDropdown/DropdownContext';
+import useDropdown from '../useDropdown/useDropdown';
 /**
  *
  * Demos:
@@ -11,21 +11,21 @@ import useDropdownMenu from '../useDropdownMenu/useDropdownMenu';
  *
  * API:
  *
- * - [DropdownMenu API](https://mui.com/base-ui/react-menu/components-api/#dropdown-menu)
+ * - [Dropdown API](https://mui.com/base-ui/react-menu/components-api/#dropdown)
  */
-function DropdownMenu(props: DropdownMenuProps) {
+function Dropdown(props: DropdownProps) {
   const { children, open, defaultOpen, onOpenChange } = props;
 
-  const { contextValue } = useDropdownMenu({
+  const { contextValue } = useDropdown({
     defaultOpen,
     onOpenChange,
     open,
   });
 
-  return <MenuContext.Provider value={contextValue}>{children}</MenuContext.Provider>;
+  return <DropdownContext.Provider value={contextValue}>{children}</DropdownContext.Provider>;
 }
 
-DropdownMenu.propTypes /* remove-proptypes */ = {
+Dropdown.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -35,7 +35,7 @@ DropdownMenu.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * If `true`, the menu is initially open.
+   * If `true`, the dropdown is initially open.
    */
   defaultOpen: PropTypes.bool,
   /**
@@ -43,10 +43,10 @@ DropdownMenu.propTypes /* remove-proptypes */ = {
    */
   onOpenChange: PropTypes.func,
   /**
-   * Allows to control whether the menu is open.
+   * Allows to control whether the dropdown is open.
    * This is a controlled counterpart of `defaultOpen`.
    */
   open: PropTypes.bool,
 } as any;
 
-export default DropdownMenu;
+export default Dropdown;

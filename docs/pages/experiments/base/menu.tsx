@@ -2,7 +2,7 @@ import * as React from 'react';
 import Menu from '@mui/base/Menu';
 import MenuButton from '@mui/base/MenuButton';
 import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
-import DropdownMenu from '@mui/base/DropdownMenu';
+import Dropdown from '@mui/base/Dropdown';
 import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
@@ -137,7 +137,7 @@ export default function UnstyledMenuIntroduction() {
 
   return (
     <Page>
-      <DropdownMenu open={isOpen} onOpenChange={handleOpenChange}>
+      <Dropdown open={isOpen} onOpenChange={handleOpenChange}>
         <StyledMenuButton>Create new...</StyledMenuButton>
         <Menu
           slots={{ root: StyledPopper, listbox: StyledListbox }}
@@ -159,7 +159,7 @@ export default function UnstyledMenuIntroduction() {
             New organization
           </StyledMenuItem>
         </Menu>
-      </DropdownMenu>
+      </Dropdown>
     </Page>
   );
 }

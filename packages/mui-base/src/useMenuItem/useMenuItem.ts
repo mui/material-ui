@@ -8,8 +8,8 @@ import {
   UseMenuItemRootSlotProps,
 } from './useMenuItem.types';
 import { useListItem } from '../useList';
-import { MenuActionTypes } from '../useDropdownMenu';
-import MenuContext, { MenuContextValue } from '../useMenu/MenuContext';
+import { DropdownActionTypes } from '../useDropdown';
+import DropdownContext, { DropdownContextValue } from '../useDropdown/DropdownContext';
 import combineHooksSlotProps from '../utils/combineHooksSlotProps';
 import { useCompoundItem } from '../utils/useCompoundItem';
 import MuiCancellableEvent from '../utils/muiCancellableEvent';
@@ -19,7 +19,7 @@ function idGenerator(existingKeys: Set<string>) {
   return `menu-item-${existingKeys.size}`;
 }
 
-const FALLBACK_MENU_CONTEXT: MenuContextValue = {
+const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
   dispatch: () => {},
   popupId: '',
   registerPopup: () => {},
@@ -49,7 +49,7 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
     [disabled, id, label],
   );
 
-  const { dispatch } = React.useContext(MenuContext) ?? FALLBACK_MENU_CONTEXT;
+  const { dispatch } = React.useContext(DropdownContext) ?? FALLBACK_MENU_CONTEXT;
 
   const {
     getRootProps: getListRootProps,
@@ -82,7 +82,7 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
       }
 
       dispatch({
-        type: MenuActionTypes.itemClick,
+        type: DropdownActionTypes.close,
         event,
       });
     };

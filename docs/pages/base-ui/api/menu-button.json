@@ -1,12 +1,8 @@
 {
   "props": {
-    "label": { "type": { "name": "string" } },
+    "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ root?: object }" },
-      "default": "{}"
-    },
-    "slots": {
-      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
     }
   },

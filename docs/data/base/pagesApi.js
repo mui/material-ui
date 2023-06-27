@@ -6,10 +6,7 @@ module.exports = [
       '/base-ui/react-click-away-listener/components-api/#click-away-listener',
     title: 'ClickAwayListener',
   },
-  {
-    pathname: '/base-ui/react-menu/components-api/#dropdown-menu',
-    title: 'DropdownMenu',
-  },
+  { pathname: '/base-ui/react-menu/components-api/#dropdown', title: 'Dropdown' },
   {
     pathname: '/base-ui/react-focus-trap/components-api/#focus-trap',
     title: 'FocusTrap',
@@ -59,12 +56,17 @@ module.exports = [
   },
   { pathname: '/base-ui/react-badge/hooks-api/#use-badge', title: 'useBadge' },
   { pathname: '/base-ui/react-button/hooks-api/#use-button', title: 'useButton' },
+  { pathname: '/base-ui/react-menu/hooks-api/#use-dropdown', title: 'useDropdown' },
   {
     pathname: '/base-ui/react-form-control/hooks-api/#use-form-control-context',
     title: 'useFormControlContext',
   },
   { pathname: '/base-ui/react-input/hooks-api/#use-input', title: 'useInput' },
   { pathname: '/base-ui/react-menu/hooks-api/#use-menu', title: 'useMenu' },
+  {
+    pathname: '/base-ui/react-menu/hooks-api/#use-menu-button',
+    title: 'useMenuButton',
+  },
   { pathname: '/base-ui/react-menu/hooks-api/#use-menu-item', title: 'useMenuItem' },
   { pathname: '/base-ui/react-select/hooks-api/#use-option', title: 'useOption' },
   { pathname: '/base-ui/react-select/hooks-api/#use-select', title: 'useSelect' },

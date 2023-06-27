@@ -1,10 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import useMenu, { MenuContext, MenuProvider } from '@mui/base/useMenu';
+import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import useMenuItem from '@mui/base/useMenuItem';
 import Popper from '@mui/base/Popper';
 import { GlobalStyles } from '@mui/system';
-import useDropdownMenu from '@mui/base/useDropdownMenu';
+import useDropdown, { DropdownContext } from '@mui/base/useDropdown';
 import useMenuButton from '@mui/base/useMenuButton';
 
 const Menu = React.forwardRef(function Menu(
@@ -61,7 +61,7 @@ const MenuButton = React.forwardRef(function MenuButton(
 });
 
 export default function UseMenu() {
-  const { contextValue: dropdownContextValue, open } = useDropdownMenu();
+  const { contextValue: dropdownContextValue, open } = useDropdown();
   const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   const createHandleMenuClick = (menuItem: string) => {
@@ -73,7 +73,7 @@ export default function UseMenu() {
   return (
     <React.Fragment>
       <GlobalStyles styles={styles} />
-      <MenuContext.Provider value={dropdownContextValue}>
+      <DropdownContext.Provider value={dropdownContextValue}>
         <MenuButton ref={buttonRef}>Theme</MenuButton>
         <Popper open={open} anchorEl={buttonRef.current}>
           <Menu id="hooks-menu">
@@ -84,7 +84,7 @@ export default function UseMenu() {
             <MenuItem onClick={createHandleMenuClick('Dark')}>Dark</MenuItem>
           </Menu>
         </Popper>
-      </MenuContext.Provider>
+      </DropdownContext.Provider>
     </React.Fragment>
   );
 }

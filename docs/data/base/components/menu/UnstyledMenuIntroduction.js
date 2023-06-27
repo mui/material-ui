@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DropdownMenu from '@mui/base/DropdownMenu';
+import Dropdown from '@mui/base/Dropdown';
 import Menu from '@mui/base/Menu';
 import MenuButton from '@mui/base/MenuButton';
 import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
@@ -14,7 +14,7 @@ export default function UnstyledMenuIntroduction() {
   };
 
   return (
-    <DropdownMenu>
+    <Dropdown>
       <TriggerButton>My account</TriggerButton>
       <Menu
         slots={{ root: StyledPopper, listbox: StyledListbox }}
@@ -30,7 +30,7 @@ export default function UnstyledMenuIntroduction() {
           Log out
         </StyledMenuItem>
       </Menu>
-    </DropdownMenu>
+    </Dropdown>
   );
 }
 

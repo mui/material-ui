@@ -3,11 +3,13 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/menu/menu.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import DropdownMenuApiJsonPageContent from '../../api/dropdown-menu.json';
+import DropdownApiJsonPageContent from '../../api/dropdown.json';
 import MenuApiJsonPageContent from '../../api/menu.json';
 import MenuButtonApiJsonPageContent from '../../api/menu-button.json';
 import MenuItemApiJsonPageContent from '../../api/menu-item.json';
+import useDropdownApiJsonPageContent from '../../api/use-dropdown.json';
 import useMenuApiJsonPageContent from '../../api/use-menu.json';
+import useMenuButtonApiJsonPageContent from '../../api/use-menu-button.json';
 import useMenuItemApiJsonPageContent from '../../api/use-menu-item.json';
 
 export default function Page(props) {
@@ -27,12 +29,12 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const DropdownMenuApiReq = require.context(
-    'docs/translations/api-docs-base/dropdown-menu',
+  const DropdownApiReq = require.context(
+    'docs/translations/api-docs-base/dropdown',
     false,
-    /dropdown-menu.*.json$/,
+    /dropdown.*.json$/,
   );
-  const DropdownMenuApiDescriptions = mapApiPageTranslations(DropdownMenuApiReq);
+  const DropdownApiDescriptions = mapApiPageTranslations(DropdownApiReq);
 
   const MenuApiReq = require.context('docs/translations/api-docs-base/menu', false, /menu.*.json$/);
   const MenuApiDescriptions = mapApiPageTranslations(MenuApiReq);
@@ -51,12 +53,26 @@ export const getStaticProps = () => {
   );
   const MenuItemApiDescriptions = mapApiPageTranslations(MenuItemApiReq);
 
+  const useDropdownApiReq = require.context(
+    'docs/translations/api-docs/use-dropdown',
+    false,
+    /use-dropdown.*.json$/,
+  );
+  const useDropdownApiDescriptions = mapApiPageTranslations(useDropdownApiReq);
+
   const useMenuApiReq = require.context(
     'docs/translations/api-docs/use-menu',
     false,
     /use-menu.*.json$/,
   );
   const useMenuApiDescriptions = mapApiPageTranslations(useMenuApiReq);
+
+  const useMenuButtonApiReq = require.context(
+    'docs/translations/api-docs/use-menu-button',
+    false,
+    /use-menu-button.*.json$/,
+  );
+  const useMenuButtonApiDescriptions = mapApiPageTranslations(useMenuButtonApiReq);
 
   const useMenuItemApiReq = require.context(
     'docs/translations/api-docs/use-menu-item',
@@ -68,23 +84,27 @@ export const getStaticProps = () => {
   return {
     props: {
       componentsApiDescriptions: {
-        DropdownMenu: DropdownMenuApiDescriptions,
+        Dropdown: DropdownApiDescriptions,
         Menu: MenuApiDescriptions,
         MenuButton: MenuButtonApiDescriptions,
         MenuItem: MenuItemApiDescriptions,
       },
       componentsApiPageContents: {
-        DropdownMenu: DropdownMenuApiJsonPageContent,
+        Dropdown: DropdownApiJsonPageContent,
         Menu: MenuApiJsonPageContent,
         MenuButton: MenuButtonApiJsonPageContent,
         MenuItem: MenuItemApiJsonPageContent,
       },
       hooksApiDescriptions: {
+        useDropdown: useDropdownApiDescriptions,
         useMenu: useMenuApiDescriptions,
+        useMenuButton: useMenuButtonApiDescriptions,
         useMenuItem: useMenuItemApiDescriptions,
       },
       hooksApiPageContents: {
+        useDropdown: useDropdownApiJsonPageContent,
         useMenu: useMenuApiJsonPageContent,
+        useMenuButton: useMenuButtonApiJsonPageContent,
         useMenuItem: useMenuItemApiJsonPageContent,
       },
     },

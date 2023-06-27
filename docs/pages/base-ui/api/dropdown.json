@@ -4,12 +4,12 @@
     "onOpenChange": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } }
   },
-  "name": "DropdownMenu",
+  "name": "Dropdown",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "themeDefaultProps": null,
-  "muiName": "MuiDropdownMenu",
-  "filename": "/packages/mui-base/src/DropdownMenu/DropdownMenu.tsx",
+  "muiName": "MuiDropdown",
+  "filename": "/packages/mui-base/src/Dropdown/Dropdown.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-menu/\">Menu</a></li></ul>",
   "cssComponent": false

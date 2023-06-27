@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import DropdownMenu from '@mui/base/DropdownMenu';
+import Dropdown from '@mui/base/Dropdown';
 import Menu from '@mui/base/Menu';
 import MenuButton from '@mui/base/MenuButton';
 import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
@@ -29,7 +29,7 @@ export default function WrappedMenuItems() {
   };
 
   return (
-    <DropdownMenu>
+    <Dropdown>
       <TriggerButton>Options</TriggerButton>
       <Menu
         slots={{ root: StyledPopper, listbox: StyledListbox }}
@@ -64,7 +64,7 @@ export default function WrappedMenuItems() {
         </MenuSection>
         <li className="helper">Current zoom level: 100%</li>
       </Menu>
-    </DropdownMenu>
+    </Dropdown>
   );
 }
 
