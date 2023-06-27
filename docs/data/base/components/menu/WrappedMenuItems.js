@@ -23,7 +23,6 @@ MenuSection.propTypes = {
 
 export default function WrappedMenuItems() {
   const [buttonElement, setButtonElement] = React.useState(null);
-
   const [isOpen, setOpen] = React.useState(false);
   const menuActions = React.useRef(null);
   const preventReopen = React.useRef(false);

@@ -11,6 +11,7 @@ module.exports = [
   { pathname: '/joy-ui/api/button' },
   { pathname: '/joy-ui/api/button-group' },
   { pathname: '/joy-ui/api/card' },
+  { pathname: '/joy-ui/api/card-actions' },
   { pathname: '/joy-ui/api/card-content' },
   { pathname: '/joy-ui/api/card-cover' },
   { pathname: '/joy-ui/api/card-overflow' },

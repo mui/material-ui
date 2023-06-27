@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Snackbar component and hook
 components: Snackbar
 hooks: useSnackbar
@@ -19,6 +19,8 @@ githubLabel: 'component: snackbar'
 A snackbar provides users with a brief, temporary message about app processes without interrupting their activity or experience.
 
 The Snackbar component is built to appear on-screen to inform users about an action that the app is taking.
+
+{{"demo": "UnstyledSnackbarIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 

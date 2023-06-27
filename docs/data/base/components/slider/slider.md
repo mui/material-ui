@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Slider component and hook
 components: Slider
 hooks: useSlider

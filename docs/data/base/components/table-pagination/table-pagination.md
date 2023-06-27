@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Table Pagination component
 components: TablePagination
 githubLabel: 'component: TablePagination'
