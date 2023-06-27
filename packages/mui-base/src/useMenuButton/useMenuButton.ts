@@ -58,8 +58,25 @@ export default function useMenuButton(
       });
     };
 
+  const createHandleKeyDown =
+    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {
+      otherHandlers.onKeyDown?.(event);
+      if (event.defaultMuiPrevented) {
+        return;
+      }
+
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        dispatch({
+          type: MenuActionTypes.open,
+          event,
+        });
+      }
+    };
+
   const getOwnRootProps = (otherHandlers: EventHandlers = {}) => ({
     onClick: createHandleClick(otherHandlers),
+    onKeyDown: createHandleKeyDown(otherHandlers),
   });
 
   const getRootProps = (otherHandlers: EventHandlers = {}) => {

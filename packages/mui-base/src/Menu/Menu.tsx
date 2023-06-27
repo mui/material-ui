@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { refType } from '@mui/utils';
-import { VirtualElement } from '@popperjs/core';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { MenuOwnerState, MenuProps, MenuRootSlotProps, MenuTypeMap } from './Menu.types';
 import { getMenuUtilityClass } from './menuClasses';
@@ -23,20 +22,6 @@ function useUtilityClasses(ownerState: MenuOwnerState) {
 
   return composeClasses(slots, useClassNamesOverride(getMenuUtilityClass));
 }
-
-const defaultVirtualElement: VirtualElement = {
-  getBoundingClientRect: () => ({
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    width: 0,
-    height: 0,
-    x: 0,
-    y: 0,
-    toJSON: () => '',
-  }),
-};
 
 /**
  *
@@ -77,7 +62,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
     externalForwardedProps: other,
     externalSlotProps: slotProps.root,
     additionalProps: {
-      anchorEl: triggerElement ?? defaultVirtualElement,
+      anchorEl: triggerElement,
       open,
       keepMounted: true,
       role: undefined,
