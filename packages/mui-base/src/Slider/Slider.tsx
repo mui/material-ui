@@ -90,7 +90,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
 
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the variants
-  const partialOwnerState: Omit<SliderOwnerState, 'focusedThumbIndex' | 'marked' | 'dragging'> = {
+  const partialOwnerState: Omit<SliderOwnerState, 'focusedThumbIndex' | 'activeThumbIndex' | 'marked' | 'dragging'> = {
     ...props,
     marks: marksProp,
     disabled,
