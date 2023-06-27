@@ -38,7 +38,8 @@ const Item = styled(
       width: '100%',
       padding: 6,
       justifyContent: 'flex-start',
-      fontWeight: theme.typography.fontWeightSemiBold,
+      fontWeight:
+        depth === 0 ? theme.typography.fontWeightSemiBold : theme.typography.fontWeightMedium,
       transition: theme.transitions.create(['color', 'background-color'], {
         duration: theme.transitions.duration.shortest,
       }),
@@ -54,7 +55,7 @@ const Item = styled(
         height: '100%',
         width: 1,
         opacity: depth === 0 ? 0 : 1,
-        background: alpha(theme.palette.primaryDark[700], 0.6),
+        background: (theme.vars || theme).palette.grey[100],
       },
       ...color,
       ...(subheader && {
@@ -73,7 +74,7 @@ const Item = styled(
           top: 16,
           width: 1,
           opacity: depth === 0 ? 0 : 1,
-          background: alpha(theme.palette.primaryDark[700], 0.6),
+          background: (theme.vars || theme).palette.grey[100],
         },
         '&:after': {
           content: '""',
@@ -85,9 +86,9 @@ const Item = styled(
           width: 8,
           borderRadius: 99,
           opacity: depth === 0 ? 0 : 1,
-          background: alpha(theme.palette.primaryDark[700], 0.6),
+          background: (theme.vars || theme).palette.grey[50],
           border: '1px solid',
-          borderColor: alpha(theme.palette.primaryDark[400], 0.5),
+          borderColor: (theme.vars || theme).palette.grey[200],
         },
       }),
       ...(hasIcon && {
@@ -120,7 +121,7 @@ const Item = styled(
               ),
         },
         '&:before': {
-          background: (theme.vars || theme).palette.primary[600],
+          background: (theme.vars || theme).palette.primary[400],
         },
       },
       '& .MuiChip-root': {
@@ -156,10 +157,25 @@ const Item = styled(
     },
     theme.applyDarkStyles({
       ...color,
+      '&:before': {
+        background: alpha(theme.palette.primaryDark[700], 0.6),
+      },
       '&.app-drawer-active': {
         color: (theme.vars || theme).palette.primary[300],
         backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+        '&:before': {
+          background: (theme.vars || theme).palette.primary[600],
+        },
       },
+      ...(subheader && {
+        '&:before': {
+          background: alpha(theme.palette.primaryDark[700], 0.6),
+        },
+        '&:after': {
+          background: alpha(theme.palette.primaryDark[700], 0.6),
+          borderColor: alpha(theme.palette.primaryDark[400], 0.5),
+        },
+      }),
       ...(!subheader && {
         '&:hover': {
           color: '#fff',
