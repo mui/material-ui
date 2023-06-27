@@ -16,16 +16,16 @@ jobs:
 
     steps:
       - name: Find Comment
-        uses: peter-evans/create-or-update-comment@c6c9a1a66007646a28c153e2a8580a5bad27bcfa # v3.0.2
+        uses: peter-evans/find-comment@v2 # v2.4.0
         id: findComment
         with:
-          issue-number: ${{ github.event.pull_request.number }}
+          issue-number: ${{ github.event.issue.number }}
           comment-author: 'github-actions[bot]'
           body-includes: You have created a priority support request
 
       - name: Create comment
         if: ${{ steps.findComment.outputs.comment-id == '' && contains(github.event.label.name, 'unknown') }}
-        uses: peter-evans/create-or-update-comment@c6c9a1a66007646a28c153e2a8580a5bad27bcfa # v3.0.2
+        uses: peter-evans/create-or-update-comment@5f728c3dae25f329afbe34ee4d08eef25569d79f # v3.0.2
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
@@ -39,8 +39,9 @@ jobs:
 
       - name: Update comment
         if: ${{ steps.findComment.outputs.comment-id != '' && contains(github.event.label.name, 'priority') }}
-        uses: peter-evans/create-or-update-comment@c6c9a1a66007646a28c153e2a8580a5bad27bcfa # v3.0.2
+        uses: peter-evans/create-or-update-comment@5f728c3dae25f329afbe34ee4d08eef25569d79f # v3.0.2
         with:
           comment-id: ${{ steps.findComment.outputs.comment-id }}
           body: |
             Thank you for verifying your support key 🔑, your SLA starts now.
+          edit-mode: replace
