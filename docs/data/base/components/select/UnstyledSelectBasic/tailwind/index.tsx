@@ -14,7 +14,7 @@ const getOptionColorClasses = ({
   } else {
     if (selected) {
       classes +=
-        ' bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100';
+        ' bg-purple-100 dark:bg-purple-950 text-purple-950 dark:text-purple-50';
     } else if (highlighted) {
       classes +=
         ' bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-300';
