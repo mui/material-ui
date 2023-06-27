@@ -108,16 +108,37 @@ const theme = createTheme({
 });
 ```
 
-As in the example above, if the palette color contains custom colors using any of the
-"main", "light", "dark" or "contrastText" keys, these map as follows:
+For the default palette colors (the ones listed in the [Default values section](#default-values) above), only the `main` token is required. If the other tokens are not provided their value is calculated as follows:
 
-- If the "dark" and / or "light" keys are omitted, their value(s) will be calculated from "main",
-  according to the "tonalOffset" value.
-- If "contrastText" is omitted, its value will be calculated to contrast with "main",
-  according to the "contrastThreshold" value.
+- The `dark` and `light` tokens are calculated according to the `tonalOffset` value with the `main` color as a starting point.
+- The `contrastText` token is calculated according to the `contrastThreshold` value to contrast with the `main` color.
 
-Both the "tonalOffset" and "contrastThreshold" values may be customized as needed.
-The "tonalOffset" value can either be a number between 0 and 1, which will apply to both light and dark variants, or an object with light and dark variants specified by the following TypeScript type:
+For custom colors, all tokens (`main`, `light`, `dark` and `contrastText`) are required. **Their values won't be automatically calculated** like for the default palette colors. If you wish to calculate the tokens from the `main` color you can use the palette's `augmentColor` utility, you'll have to create the theme in two steps:
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  // Theme customization here as usual, including tonalOffset and/or
+  // contrastThreshold as the augmentColor util relies on these
+});
+
+const themeWithCustomColor = createTheme(theme, {
+  // Custom colors created with augmentColor here
+  palette: {
+    customColor: theme.palette.augmentColor({
+      color: {
+        main: '#FF5733',
+      },
+      name: 'customColor',
+    }),
+  },
+});
+```
+
+Both the `tonalOffset` and `contrastThreshold` values may be customized as needed.
+
+The `tonalOffset` value can either be a number between 0 and 1, which will apply to both light and dark variants, or an object with light and dark variants specified by the following TypeScript type:
 
 ```ts
 type PaletteTonalOffset =
@@ -128,9 +149,10 @@ type PaletteTonalOffset =
     };
 ```
 
-A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker.
-A higher value for "contrastThreshold" increases the point at which a background color is considered
-light, and given a dark "contrastText". Note that "contrastThreshold" follows a non-linear curve, and
+A higher value for `tonalOffset` will make calculated values for `light` lighter, and `dark` darker.
+
+A higher value for `contrastThreshold` increases the point at which a background color is considered
+light, and given a dark `contrastText`. Note that `contrastThreshold` follows a non-linear curve, and
 starts with a value of 3 (requiring a minimum contrast ratio of 3:1).
 
 ### Accessibility
@@ -170,7 +192,9 @@ const theme = createTheme({
       darker: '#053e85',
     },
     neutral: {
-      main: '#64748B',
+      light: '#838fa2',
+      main: '#64748b',
+      dark: '#465161',
       contrastText: '#fff',
     },
   },
