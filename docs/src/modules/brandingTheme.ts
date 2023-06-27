@@ -794,12 +794,12 @@ export function getThemedComponents(): ThemeOptions {
                   color: (theme.vars || theme).palette.grey[900],
                 },
                 ...theme.applyDarkStyles({
-                  backgroundColor: alpha(theme.palette.grey[700], 0.3),
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
                   color: (theme.vars || theme).palette.grey[300],
-                  borderColor: alpha(theme.palette.grey[100], 0.1),
+                  borderColor: alpha(theme.palette.primaryDark[600], 0.5),
                   '&:hover': {
-                    backgroundColor: (theme.vars || theme).palette.grey[700],
                     color: (theme.vars || theme).palette.grey[300],
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                   },
                 }),
               }),
@@ -946,7 +946,6 @@ export function getThemedComponents(): ThemeOptions {
                 backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
                 ':is(a, button)': {
                   '&:hover': {
-                    borderColor: (theme.vars || theme).palette.primary.light,
                     boxShadow: `0px 4px 24px ${(theme.vars || theme).palette.common.black}`,
                   },
                 },
