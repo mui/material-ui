@@ -142,10 +142,10 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     };
 
   const getInputProps: UseSwitchReturnValue['getInputProps'] = (otherProps = {}) => ({
-    ref: handleInputRef,
     checked: checkedProp,
     defaultChecked,
     disabled,
+    hidden: true,
     readOnly,
     required,
     type: 'checkbox',
