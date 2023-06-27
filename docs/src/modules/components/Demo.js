@@ -362,15 +362,12 @@ const DemoRootJoy = joyStyled('div', {
   }),
 }));
 
-const DemoCodeViewer = styled(HighlightedCode)(({ theme }) => ({
+const DemoCodeViewer = styled(HighlightedCode)(() => ({
   '& pre': {
     margin: 0,
     maxHeight: 'min(68vh, 1000px)',
     maxWidth: 'initial',
     borderRadius: 0,
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: theme.shape.borderRadius,
-    },
   },
 }));
 
@@ -584,7 +581,7 @@ export default function Demo(props) {
             </React.Suspense>
           </NoSsr>
         )}
-        <Collapse in={openDemoSource} unmountOnExit>
+        <Collapse in={openDemoSource} unmountOnExit timeout={150}>
           {/* A limitation from https://github.com/nihgwu/react-runner,
             we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
           {demoOptions.disableLiveEdit ? (

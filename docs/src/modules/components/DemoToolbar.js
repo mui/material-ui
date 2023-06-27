@@ -32,12 +32,11 @@ import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMappin
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
 
-const Root = styled('div')(({ theme }) => [
+const Root = styled(Box)(({ theme }) => [
   {
     display: 'none',
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     marginTop: -1,
-    marginBottom: 16,
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
       top: 0,
@@ -46,7 +45,6 @@ const Root = styled('div')(({ theme }) => [
       paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(0.5),
       backgroundColor: alpha(theme.palette.grey[50], 0.2),
-      borderRadius: '0 0 12px 12px',
       ...(theme.direction === 'rtl' && {
         left: theme.spacing(1),
       }),
@@ -538,7 +536,11 @@ export default function DemoToolbar(props) {
 
   return (
     <React.Fragment>
-      <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
+      <Root
+        aria-label={t('demoToolbarLabel')}
+        {...toolbarProps}
+        sx={{ borderRadius: openDemoSource ? 0 : '0 0 12px 12px' }}
+      >
         {hasNonSystemDemos && (
           <Button
             id="styling-solution"
@@ -587,7 +589,7 @@ export default function DemoToolbar(props) {
             </ToggleButtonGroup>
           </Box>
         </Fade>
-        <Box sx={{ ml: 'auto' }}>
+        <Box sx={{ ml: 'auto', mr: 0.5 }}>
           <ToggleCodeTooltip
             showSourceHint={showSourceHint}
             PopperProps={{ disablePortal: true }}
