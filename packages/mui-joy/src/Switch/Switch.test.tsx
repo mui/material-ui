@@ -78,25 +78,25 @@ describe('<Switch />', () => {
   it('renders a `role="checkbox"` with the Unchecked state by default', () => {
     const { getByRole } = render(<Switch />);
 
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(getByRole('checkbox', { hidden: true })).to.have.property('checked', false);
   });
 
   it('renders a checkbox with the Checked state when checked', () => {
     const { getByRole } = render(<Switch defaultChecked />);
 
-    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(getByRole('checkbox', { hidden: true })).to.have.property('checked', true);
   });
 
   it('the switch can be disabled', () => {
     const { getByRole } = render(<Switch disabled />);
 
-    expect(getByRole('checkbox')).to.have.property('disabled', true);
+    expect(getByRole('checkbox', { hidden: true })).to.have.property('disabled', true);
   });
 
   it('the switch can be readonly', () => {
     const { getByRole } = render(<Switch readOnly />);
 
-    expect(getByRole('checkbox')).to.have.property('readOnly', true);
+    expect(getByRole('checkbox', { hidden: true })).to.have.property('readOnly', true);
   });
 
   it('the Checked state changes after change events', () => {
@@ -104,11 +104,11 @@ describe('<Switch />', () => {
 
     // how a user would trigger it
     act(() => {
-      getByRole('checkbox').click();
-      fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+      getByRole('checkbox', { hidden: true }).click();
+      fireEvent.change(getByRole('checkbox', { hidden: true }), { target: { checked: '' } });
     });
 
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(getByRole('checkbox', { hidden: true })).to.have.property('checked', false);
   });
 
   describe('decorator', () => {
@@ -133,8 +133,8 @@ describe('<Switch />', () => {
 
       // how a user would trigger it
       act(() => {
-        getByRole('checkbox').click();
-        fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+        getByRole('checkbox', { hidden: true }).click();
+        fireEvent.change(getByRole('checkbox', { hidden: true }), { target: { checked: '' } });
       });
 
       expect(getByText('On')).toBeVisible();
@@ -149,8 +149,8 @@ describe('<Switch />', () => {
 
       // how a user would trigger it
       act(() => {
-        getByRole('checkbox').click();
-        fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+        getByRole('checkbox', { hidden: true }).click();
+        fireEvent.change(getByRole('checkbox', { hidden: true }), { target: { checked: '' } });
       });
 
       expect(getByText('On')).toBeVisible();
