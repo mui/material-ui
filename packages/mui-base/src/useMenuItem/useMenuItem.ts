@@ -11,15 +11,19 @@ import {
 import { useListItem } from '../useList';
 import { useCompoundItem } from '../utils/useCompoundItem';
 
+function idGenerator(existingKeys: Set<string>) {
+  return `menu-item-${existingKeys.size}`;
+}
+
 /**
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base/react-menu/#hooks)
+ * - [Menu](https://mui.com/base-ui/react-menu/#hooks)
  *
  * API:
  *
- * - [useMenuItem API](https://mui.com/base/react-menu/hooks-api/#use-menu-item)
+ * - [useMenuItem API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu-item)
  */
 export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnValue {
   const { disabled = false, id: idParam, rootRef: externalRef, label } = params;
@@ -40,7 +44,7 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
     item: id,
   });
 
-  const { index, totalItemCount } = useCompoundItem(id, itemMetadata);
+  const { index, totalItemCount } = useCompoundItem(id ?? idGenerator, itemMetadata);
 
   const {
     getRootProps: getButtonProps,

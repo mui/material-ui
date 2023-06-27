@@ -161,12 +161,14 @@ declare module '@mui/joy/Table' {
 }
 ```
 
-### Sticky header
+### Sticky header and footer
 
-Set the `stickyHeader` prop to true to make the header follow the user as they scroll down the page.
+Set the `stickyHeader` to true to always stick the header at the top as users scroll the table.
+
+Set the `stickyFooter` to true to always stick the footer at the bottom of the table.
 
 :::success
-For `stickyHeader` to work correctly, the Table must be a child of a fixed-height element with overflow `auto` (or `scroll`).
+For `stickyHeader` and `stickyFooter` to work correctly, the Table must be a child of a fixed-height element with overflow `auto` (or `scroll`).
 We recommend wrapping your Table with [Sheet](/joy-ui/react-sheet/) for this purpose.
 See [usage with Sheet](#usage-with-sheet) to learn more.
 :::

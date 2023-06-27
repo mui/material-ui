@@ -164,7 +164,7 @@ export default function useAutocomplete(props) {
   const [focused, setFocused] = React.useState(false);
 
   const resetInputValue = React.useCallback(
-    (event, newValue, reason) => {
+    (event, newValue) => {
       // retain current `inputValue` if new option isn't selected and `clearOnBlur` is false
       // When `multiple` is enabled, `newValue` is an array of all selected items including the newly selected item
       const isOptionSelected = multiple ? value.length < newValue.length : newValue !== null;
@@ -188,7 +188,7 @@ export default function useAutocomplete(props) {
       setInputValueState(newInputValue);
 
       if (onInputChange) {
-        onInputChange(event, newInputValue, reason);
+        onInputChange(event, newInputValue, 'reset');
       }
     },
     [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
@@ -233,6 +233,7 @@ export default function useAutocomplete(props) {
   const previousProps = usePreviousProps({
     filteredOptions,
     value,
+    inputValue,
   });
 
   React.useEffect(() => {
@@ -247,7 +248,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    resetInputValue(null, value, 'reset');
+    resetInputValue(null, value);
   }, [value, resetInputValue, focused, previousProps.value, freeSolo]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
@@ -348,7 +349,10 @@ export default function useAutocomplete(props) {
       prev.classList.remove(`${unstable_classNamePrefix}-focusVisible`);
     }
 
-    const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+    let listboxNode = listboxRef.current;
+    if (listboxRef.current.getAttribute('role') !== 'listbox') {
+      listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+    }
 
     // "No results"
     if (!listboxNode) {
@@ -475,6 +479,7 @@ export default function useAutocomplete(props) {
       highlightedIndexRef.current !== -1 &&
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
+      previousProps.inputValue === inputValue &&
       (multiple
         ? value.length === previousProps.value.length &&
           previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
@@ -500,8 +505,8 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    // Check if the previously highlighted option still exists in the updated filtered options list and if the value hasn't changed
-    // If it exists and the value hasn't changed, return, otherwise continue execution
+    // Check if the previously highlighted option still exists in the updated filtered options list and if the value and inputValue haven't changed
+    // If it exists and the value and the inputValue haven't changed, return, otherwise continue execution
     if (checkHighlightedOptionExists()) {
       return;
     }
@@ -682,7 +687,7 @@ export default function useAutocomplete(props) {
       }
     }
 
-    resetInputValue(event, newValue, reason);
+    resetInputValue(event, newValue);
 
     handleValue(event, newValue, reason, { option });
     if (!disableCloseOnSelect && (!event || (!event.ctrlKey && !event.metaKey))) {
@@ -938,7 +943,7 @@ export default function useAutocomplete(props) {
     } else if (autoSelect && freeSolo && inputValue !== '') {
       selectNewValue(event, inputValue, 'blur', 'freeSolo');
     } else if (clearOnBlur) {
-      resetInputValue(event, value, 'blur');
+      resetInputValue(event, value);
     }
 
     handleClose(event, 'blur');
@@ -1010,13 +1015,21 @@ export default function useAutocomplete(props) {
 
   // Prevent input blur when interacting with the combobox
   const handleMouseDown = (event) => {
+    // Prevent focusing the input if click is anywhere outside the Autocomplete
+    if (!event.currentTarget.contains(event.target)) {
+      return;
+    }
     if (event.target.getAttribute('id') !== id) {
       event.preventDefault();
     }
   };
 
   // Focus the input when interacting with the combobox
-  const handleClick = () => {
+  const handleClick = (event) => {
+    // Prevent focusing the input if click is anywhere outside the Autocomplete
+    if (!event.currentTarget.contains(event.target)) {
+      return;
+    }
     inputRef.current.focus();
 
     if (

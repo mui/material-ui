@@ -49,11 +49,11 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
  *
  * Demos:
  *
- * - [Slider](https://mui.com/base/react-slider/)
+ * - [Slider](https://mui.com/base-ui/react-slider/)
  *
  * API:
  *
- * - [Slider API](https://mui.com/base/react-slider/components-api/#slider)
+ * - [Slider API](https://mui.com/base-ui/react-slider/components-api/#slider)
  */
 const Slider = React.forwardRef(function Slider<RootComponentType extends React.ElementType>(
   props: SliderProps<RootComponentType>,

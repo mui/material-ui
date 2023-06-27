@@ -18,7 +18,7 @@
     "root": { "description": "Styles applied to the root element." },
     "focusVisible": {
       "description": "State class applied to {{nodeName}}.",
-      "nodeName": "the `component`'s `focusVisibleClassName` prop"
+      "nodeName": "the <code>component</code>&#39;s <code>focusVisibleClassName</code> prop"
     },
     "dense": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -32,17 +32,17 @@
     },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the inner `component` element",
+      "nodeName": "the inner <code>component</code> element",
       "conditions": "<code>disabled={true}</code>"
     },
     "divider": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the inner `component` element",
+      "nodeName": "the inner <code>component</code> element",
       "conditions": "<code>divider={true}</code>"
     },
     "gutters": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
-      "nodeName": "the inner `component` element",
+      "nodeName": "the inner <code>component</code> element",
       "conditions": "<code>disableGutters={true}</code>"
     },
     "selected": {

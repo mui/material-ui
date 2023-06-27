@@ -68,21 +68,21 @@
     },
     "label": {
       "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the label `span` element"
+      "nodeName": "the label <code>span</code> element"
     },
     "labelSm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the label `span` element",
+      "nodeName": "the label <code>span</code> element",
       "conditions": "<code>size=\"sm\"</code>"
     },
     "labelMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the label `span` element",
+      "nodeName": "the label <code>span</code> element",
       "conditions": "<code>size=\"md\"</code>"
     },
     "labelLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the label `span` element",
+      "nodeName": "the label <code>span</code> element",
       "conditions": "<code>size=\"lg\"</code>"
     },
     "sizeSm": {

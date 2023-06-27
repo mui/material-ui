@@ -17,45 +17,15 @@ export default function selectReducer<OptionValue>(
     context: { selectionMode },
   } = action;
 
-  switch (action.type) {
-    case SelectActionTypes.buttonClick: {
-      const itemToHighlight =
-        state.selectedValues[0] ?? moveHighlight<OptionValue>(null, 'start', action.context);
+  if (action.type === SelectActionTypes.buttonClick) {
+    const itemToHighlight =
+      state.selectedValues[0] ?? moveHighlight<OptionValue>(null, 'start', action.context);
 
-      return {
-        ...state,
-        open: !open,
-        highlightedValue: !open ? itemToHighlight : null,
-      };
-    }
-
-    case SelectActionTypes.buttonArrowKeyDown:
-      if (action.key === 'ArrowDown') {
-        const itemToHighlight =
-          state.selectedValues[0] ?? moveHighlight<OptionValue>(null, 'start', action.context);
-
-        return {
-          ...state,
-          open: true,
-          highlightedValue: itemToHighlight,
-        };
-      }
-
-      if (action.key === 'ArrowUp') {
-        const itemToHighlight =
-          state.selectedValues[0] ?? moveHighlight<OptionValue>(null, 'end', action.context);
-
-        return {
-          ...state,
-          open: true,
-          highlightedValue: itemToHighlight,
-        };
-      }
-
-      break;
-
-    default:
-      break;
+    return {
+      ...state,
+      open: !open,
+      highlightedValue: !open ? itemToHighlight : null,
+    };
   }
 
   const newState: SelectInternalState<OptionValue> = listReducer(
@@ -65,14 +35,45 @@ export default function selectReducer<OptionValue>(
 
   switch (action.type) {
     case ListActionTypes.keyDown:
-      if (
-        selectionMode === 'single' &&
-        (action.event.key === 'Enter' || action.event.key === ' ' || action.event.key === 'Escape')
-      ) {
-        return {
-          ...newState,
-          open: false,
-        };
+      if (state.open) {
+        if (action.event.key === 'Escape') {
+          return {
+            ...newState,
+            open: false,
+          };
+        }
+
+        if (
+          selectionMode === 'single' &&
+          (action.event.key === 'Enter' || action.event.key === ' ')
+        ) {
+          return {
+            ...newState,
+            open: false,
+          };
+        }
+      } else {
+        if (
+          action.event.key === 'Enter' ||
+          action.event.key === ' ' ||
+          action.event.key === 'ArrowDown'
+        ) {
+          return {
+            ...state,
+            open: true,
+            highlightedValue:
+              state.selectedValues[0] ?? moveHighlight<OptionValue>(null, 'start', action.context),
+          };
+        }
+
+        if (action.event.key === 'ArrowUp') {
+          return {
+            ...state,
+            open: true,
+            highlightedValue:
+              state.selectedValues[0] ?? moveHighlight<OptionValue>(null, 'end', action.context),
+          };
+        }
       }
 
       break;

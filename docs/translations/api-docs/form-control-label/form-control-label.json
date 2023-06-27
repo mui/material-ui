@@ -40,7 +40,7 @@
     },
     "label": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the label's Typography component"
+      "nodeName": "the label&#39;s Typography component"
     },
     "error": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",

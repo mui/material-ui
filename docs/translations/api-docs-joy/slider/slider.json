@@ -88,7 +88,7 @@
     "valueLabelOpen": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb label element",
-      "conditions": "it's open"
+      "conditions": "it&#39;s open"
     },
     "mark": {
       "description": "Class name applied to {{nodeName}}.",
