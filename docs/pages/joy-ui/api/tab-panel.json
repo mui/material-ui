@@ -1,6 +1,13 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
+      },
+      "default": "'neutral'"
+    },
     "component": { "type": { "name": "elementType" } },
     "size": {
       "type": {
@@ -25,6 +32,13 @@
     "value": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "default": "0"
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'"
+      },
+      "default": "'plain'"
     }
   },
   "name": "TabPanel",

@@ -115,6 +115,11 @@ TabPanel.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -153,6 +158,11 @@ TabPanel.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'plain'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default TabPanel;

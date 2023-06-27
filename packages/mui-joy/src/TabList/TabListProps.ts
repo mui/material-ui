@@ -50,7 +50,7 @@ export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
     disableUnderline?: boolean;
     /**
      * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-     * @default 'soft'
+     * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, TabListPropsVariantOverrides>;
   } & TabListSlotsAndSlotProps;

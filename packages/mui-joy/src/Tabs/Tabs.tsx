@@ -43,7 +43,6 @@ const TabsRoot = styled(SheetRoot, {
     '--Tabs-gap': '1.25rem',
   }),
   '--Tab-lineThickness': '2px',
-
   /**
    * Cyclic toggles: https://kizu.dev/cyclic-toggles/
    * The variables below allow child components to switch values
@@ -166,6 +165,10 @@ Tabs.propTypes /* remove-proptypes */ = {
    * @default 'ltr'
    */
   direction: PropTypes.oneOf(['ltr', 'rtl']),
+  /**
+   * @ignore
+   */
+  flip: PropTypes.bool,
   /**
    * Callback invoked when new value is being set.
    */

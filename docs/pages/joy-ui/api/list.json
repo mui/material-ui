@@ -72,7 +72,8 @@
       "variantPlain",
       "variantSoft",
       "variantSolid",
-      "vertical"
+      "vertical",
+      "wrap"
     ],
     "globalClasses": {}
   },

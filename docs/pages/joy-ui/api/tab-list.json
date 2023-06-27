@@ -9,6 +9,7 @@
       "default": "'neutral'"
     },
     "component": { "type": { "name": "elementType" } },
+    "disableUnderline": { "type": { "name": "bool" } },
     "size": {
       "type": {
         "name": "union",
@@ -34,7 +35,7 @@
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'soft'"
+      "default": "'plain'"
     }
   },
   "name": "TabList",
