@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { ChevronRightIcon } from '@mui/icons-material';
 import {
   Box,
   ClickAwayListener,
