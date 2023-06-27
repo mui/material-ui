@@ -56,11 +56,11 @@ const defaultManager = new ModalManager();
  *
  * Demos:
  *
- * - [Modal](https://mui.com/base/react-modal/)
+ * - [Modal](https://mui.com/base-ui/react-modal/)
  *
  * API:
  *
- * - [Modal API](https://mui.com/base/react-modal/components-api/#modal)
+ * - [Modal API](https://mui.com/base-ui/react-modal/components-api/#modal)
  */
 const Modal = React.forwardRef(function Modal<RootComponentType extends React.ElementType>(
   props: ModalProps<RootComponentType>,
@@ -405,6 +405,14 @@ Modal.propTypes /* remove-proptypes */ = {
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
+  /**
+   * A function called when a transition enters.
+   */
+  onTransitionEnter: PropTypes.func,
+  /**
+   * A function called when a transition has exited.
+   */
+  onTransitionExited: PropTypes.func,
   /**
    * If `true`, the component is shown.
    */
