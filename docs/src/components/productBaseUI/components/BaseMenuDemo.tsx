@@ -253,7 +253,7 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwi
               listbox: styling !== 'system' ? undefined : StyledListbox,
             }}
             slotProps={{
-              root: { placement: 'top', className: 'Mui-base' },
+              root: { placement: 'bottom', className: 'Mui-base' },
               listbox: { id: 'simple-menu', className: 'Mui-base' },
             }}
           >
