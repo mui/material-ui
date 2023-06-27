@@ -76,31 +76,31 @@ describe('<Switch />', () => {
   });
 
   it('renders a `role="checkbox"` with the Unchecked state by default', () => {
-    const { getByRole } = render(<Switch />, { hidden: true });
+    const { getByRole } = render(<Switch />);
 
     expect(getByRole('checkbox', { hidden: true })).to.have.property('checked', false);
   });
 
   it('renders a checkbox with the Checked state when checked', () => {
-    const { getByRole } = render(<Switch defaultChecked />, { hidden: true });
+    const { getByRole } = render(<Switch defaultChecked />);
 
     expect(getByRole('checkbox', { hidden: true })).to.have.property('checked', true);
   });
 
   it('the switch can be disabled', () => {
-    const { getByRole } = render(<Switch disabled />, { hidden: true });
+    const { getByRole } = render(<Switch disabled />);
 
     expect(getByRole('checkbox', { hidden: true })).to.have.property('disabled', true);
   });
 
   it('the switch can be readonly', () => {
-    const { getByRole } = render(<Switch readOnly />, { hidden: true });
+    const { getByRole } = render(<Switch readOnly />);
 
     expect(getByRole('checkbox', { hidden: true })).to.have.property('readOnly', true);
   });
 
   it('the Checked state changes after change events', () => {
-    const { getByRole } = render(<Switch defaultChecked />, { hidden: true });
+    const { getByRole } = render(<Switch defaultChecked />);
 
     // how a user would trigger it
     act(() => {
