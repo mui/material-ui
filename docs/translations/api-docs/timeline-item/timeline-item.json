@@ -23,6 +23,11 @@
       "nodeName": "the root element",
       "conditions": "<code>position=\"alternate\"</code>"
     },
+    "positionAlternateReverse": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"alternate-reverse\"</code>"
+    },
     "missingOppositeContent": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
