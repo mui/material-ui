@@ -106,7 +106,7 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.16.18",
     "@types/prettier": "^2.7.3",
-    "@types/react": "^18.2.12",
+    "@types/react": "^18.2.14",
     "@types/react-is": "^18.2.1",
     "@types/react-test-renderer": "^18.0.0",
     "@types/sinon": "^10.0.15",
@@ -225,7 +225,7 @@
     "**/@definitelytyped/header-parser": "^0.0.163",
     "**/@definitelytyped/typescript-versions": "^0.0.163",
     "**/@definitelytyped/utils": "^0.0.163",
-    "**/@types/react": "^18.2.12",
+    "**/@types/react": "^18.2.14",
     "**/cross-fetch": "^3.1.6"
   },
   "nyc": {
