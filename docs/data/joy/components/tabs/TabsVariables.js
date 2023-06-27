@@ -17,7 +17,7 @@ export default function ListVariables() {
           helperText: "Controls TabList's gap and TabPanel's padding.",
         },
         {
-          var: '--Tab-lineSize',
+          var: '--Tab-lineThickness',
           defaultValue: '2px',
           helperText: "The line's thickness of the selected Tab.",
         },

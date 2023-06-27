@@ -12,7 +12,7 @@ export default function TabsUnderlineExample() {
         sx={{
           '--List-padding': '4px',
           '--List-radius': '16px',
-          '--Tab-lineSize': 0,
+          '--Tab-lineThickness': 0,
           [`& .${tabClasses.selected}`]: {
             boxShadow: 'sm',
             bgcolor: 'background.surface',

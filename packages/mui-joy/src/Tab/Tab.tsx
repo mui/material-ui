@@ -48,14 +48,14 @@ const TabRoot = styled(StyledListItemButton, {
     /**
      * ================= private variables =================
      */
-    '--border-placeholder': 'var(--Tab-lineSize) solid transparent',
+    '--border-placeholder': 'var(--Tab-lineThickness) solid transparent',
     // the `var(--_unknown)` is the trick to fallback to the `--border-placeholder` value
     '--border-bottom': `var(--top, var(--_unknown)) ${border}`,
     '--border-top': `var(--bottom, var(--_unknown)) ${border}`,
     '--border-left': `var(--right, var(--_unknown)) ${border}`,
     '--border-right': `var(--left, var(--_unknown)) ${border}`,
     '--offset-inline': 'calc(-1 * var(--variant-borderWidth, 0px))',
-    '--offset-block': 'calc(-1 * var(--Tab-lineSize))',
+    '--offset-block': 'calc(-1 * var(--Tab-lineThickness))',
     /**
      * =====================================================
      */
@@ -72,8 +72,8 @@ const TabRoot = styled(StyledListItemButton, {
       position: 'absolute',
       margin: 'auto', // align center if fixed width/height
       background: 'var(--Tab-lineColor)',
-      height: 'var(--top, var(--Tab-lineSize)) var(--bottom, var(--Tab-lineSize))',
-      width: 'var(--left, var(--Tab-lineSize)) var(--right, var(--Tab-lineSize))',
+      height: 'var(--top, var(--Tab-lineThickness)) var(--bottom, var(--Tab-lineThickness))',
+      width: 'var(--left, var(--Tab-lineThickness)) var(--right, var(--Tab-lineThickness))',
       top: 'var(--bottom, var(--offset-block)) var(--left, var(--offset-inline)) var(--right, var(--offset-inline))',
       bottom:
         'var(--top, var(--offset-block)) var(--left, var(--offset-inline)) var(--right, var(--offset-inline))',

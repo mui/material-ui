@@ -6,7 +6,12 @@ import TabPanel from '@mui/joy/TabPanel';
 
 export default function TabsVertical() {
   return (
-    <Tabs aria-label="Vertical tabs" orientation="vertical" sx={{ minWidth: 300 }}>
+    <Tabs
+      aria-label="Vertical tabs"
+      orientation="vertical"
+      variant="outlined"
+      sx={{ minWidth: 300 }}
+    >
       <TabList>
         <Tab>First tab</Tab>
         <Tab>Second tab</Tab>

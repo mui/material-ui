@@ -42,7 +42,7 @@ const TabsRoot = styled(SheetRoot, {
   ...(ownerState.size === 'lg' && {
     '--Tabs-gap': '1.25rem',
   }),
-  '--Tab-lineSize': '2px',
+  '--Tab-lineThickness': '2px',
 
   /**
    * Cyclic toggles: https://kizu.dev/cyclic-toggles/

@@ -25,7 +25,7 @@ export default function TabsPageExample() {
         aria-label="Pipeline"
         value={index}
         onChange={(event, value) => setIndex(value as number)}
-        sx={{ '--Tab-lineSize': '3px' }}
+        sx={{ '--Tab-lineThickness': '3px' }}
       >
         <TabList
           variant="plain"
