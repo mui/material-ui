@@ -36,7 +36,6 @@ export default function TabsBottomNavExample() {
           '--joy-shadowChannel': theme.vars.palette[colors[index]].darkChannel,
           '--Tab-selectedLineColor': 'transparent',
           [`& .${tabClasses.root}`]: {
-            borderRadius: 'xl',
             whiteSpace: 'nowrap',
             transition: 'background 0.3s',
             fontWeight: 'lg',
@@ -47,7 +46,15 @@ export default function TabsBottomNavExample() {
           },
         })}
       >
-        <TabList variant="plain" sx={{ '--ListItemDecorator-size': '28px' }}>
+        <TabList
+          variant="plain"
+          sx={{
+            '--ListItemDecorator-size': '28px',
+            '--List-padding': '8px',
+            '--List-radius': '20px',
+            '--List-gap': '8px',
+          }}
+        >
           <Tab
             orientation="vertical"
             {...(index === 0 && { variant: 'soft', color: colors[0] })}
