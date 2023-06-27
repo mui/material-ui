@@ -23,7 +23,7 @@
     },
     "list": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the List component via `MenuList`"
+      "nodeName": "the List component via <code>MenuList</code>"
     }
   }
 }

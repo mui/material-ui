@@ -18,12 +18,12 @@ export interface InputSlots {
   input?: React.ElementType;
   /**
    * The component that renders the start decorator.
-   * @default 'span'
+   * @default 'div'
    */
   startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
-   * @default 'span'
+   * @default 'div'
    */
   endDecorator?: React.ElementType;
 }

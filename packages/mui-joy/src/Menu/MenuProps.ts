@@ -55,6 +55,10 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     onClose?: () => void;
     /**
+     * Function called when the items displayed in the menu change.
+     */
+    onItemsChange?: (items: string[]) => void;
+    /**
      * Controls whether the menu is displayed.
      * @default false
      */

@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: Unstyled React Snackbar component and hook
 components: SnackbarUnstyled
 githubLabel: 'component: snackbar'
@@ -21,7 +21,7 @@ The `SnackbarUnstyled` component is built to appear on-screen to inform users ab
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import SnackbarUnstyled from '@mui/base/SnackbarUnstyled';
@@ -38,7 +38,7 @@ export default function MyApp() {
 Use the `autoHideDuration` prop to set the time (in milliseconds) that the snackbar remains on the screen.
 
 :::info
-You may want to implement `SnackbarUnstyled` with [`ClickAwayListener`](/base/react-click-away-listener/), so that the user can choose to dismiss the snackbar before its time is up by clicking anywhere outside of it.
+You may want to implement `SnackbarUnstyled` with [`ClickAwayListener`](/base-ui/react-click-away-listener/), so that the user can choose to dismiss the snackbar before its time is up by clicking anywhere outside of it.
 But this behavior is optional for a snackbar.
 :::
 
@@ -59,7 +59,7 @@ The `SnackbarUnstyled` component is composed of a single root `<div>` slot with 
 
 :::info
 The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
+See [Usage](/base-ui/getting-started/usage/) for full details.
 :::
 
 Use the `component` prop to override the root slot with a custom element:
@@ -101,7 +101,7 @@ It returns props to be placed on the custom component, along with fields represe
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
 
-If you use a [`ClickAwayListener`](/base/react-click-away-listener/) to let the user close the snackbar by clicking outside of it, make sure to pass the `onClickAway` handler returned by this hook to the `ClickAwayListener`.
+If you use a [`ClickAwayListener`](/base-ui/react-click-away-listener/) to let the user close the snackbar by clicking outside of it, make sure to pass the `onClickAway` handler returned by this hook to the `ClickAwayListener`.
 
 Pass the `open` state to the hook and use it to show and hide the snackbar.
 

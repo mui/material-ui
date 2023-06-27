@@ -173,10 +173,10 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
     popper?: Partial<PopperProps> & TooltipComponentsPropsOverrides;
     transition?: TransitionProps & TooltipComponentsPropsOverrides;
     tooltip?: React.HTMLProps<HTMLDivElement> &
-      MUIStyledCommonProps &
+      MUIStyledCommonProps<Theme> &
       TooltipComponentsPropsOverrides;
     arrow?: React.HTMLProps<HTMLSpanElement> &
-      MUIStyledCommonProps &
+      MUIStyledCommonProps<Theme> &
       TooltipComponentsPropsOverrides;
   };
   /**
