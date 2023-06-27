@@ -4,14 +4,18 @@ import plugin from 'tailwindcss/plugin';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ['class', '[data-mui-color-scheme="dark"]'],
   content: [
     './data/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: ['class', '[data-mui-color-scheme="dark"]'],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        'outline-purple': '0 0 0 3px #c084fc',
+      },
+    },
   },
   corePlugins: {
     // Remove the Tailwind CSS preflight styles so it can use Material UI's preflight instead (CssBaseline).
