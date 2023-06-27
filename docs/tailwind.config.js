@@ -13,7 +13,7 @@ module.exports = {
         'outline-purple': '0 0 0 3px #c084fc',
       },
       border: {
-        ['3']: '3px',
+        3: '3px',
       },
     },
   },
