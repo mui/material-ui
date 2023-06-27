@@ -9,7 +9,7 @@
   "version": "2.0.8",
   "bin": "./envinfo.js",
   "dependencies": {
-    "envinfo": "^7.8.1"
+    "envinfo": "^7.10.0"
   },
   "author": "MUI Team",
   "bugs": {
