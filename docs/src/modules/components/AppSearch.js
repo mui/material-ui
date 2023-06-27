@@ -128,7 +128,7 @@ function NewStartScreen() {
         icon: <HandymanRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Overview', href: '/system/getting-started/overview/' },
+        { name: 'Overview', href: '/system/getting-started/' },
         { name: 'Properties', href: '/system/properties/' },
         { name: 'The sx prop', href: '/system/getting-started/the-sx-prop/' },
       ],

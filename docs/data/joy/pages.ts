@@ -3,10 +3,11 @@ import pagesApi from './pagesApi';
 
 const pages = [
   {
-    pathname: '/joy-ui/getting-started',
+    pathname: '/joy-ui/getting-started-group',
+    title: 'Getting started',
     icon: standardNavIcons.DescriptionIcon,
     children: [
-      { pathname: '/joy-ui/getting-started/overview' },
+      { pathname: '/joy-ui/getting-started', title: 'Overview' },
       { pathname: '/joy-ui/getting-started/installation' },
       { pathname: '/joy-ui/getting-started/usage' },
       { pathname: '/joy-ui/getting-started/tutorial' },

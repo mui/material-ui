@@ -1,22 +1,12 @@
 {
-  "name": "base-cra-tailwind-ts",
-  "version": "0.1.0",
+  "name": "base-cra",
+  "version": "5.0.0",
   "private": true,
   "dependencies": {
     "@mui/base": "latest",
-    "@testing-library/jest-dom": "latest",
-    "@testing-library/react": "latest",
-    "@testing-library/user-event": "latest",
-    "@types/jest": "latest",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "autoprefixer": "latest",
-    "postcss": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest",
-    "typescript": "latest"
+    "react-scripts": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,5 +25,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "latest"
   }
 }

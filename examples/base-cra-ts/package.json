@@ -3,10 +3,7 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
     "@mui/base": "latest",
-    "@mui/system": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "react": "latest",
@@ -31,5 +28,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "latest"
   }
 }

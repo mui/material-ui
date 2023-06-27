@@ -58,7 +58,13 @@ export default function InputAdornments() {
   };
 
   return (
-    <Box sx={{ display: 'flex', '& > * + *': { ml: 1 } }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
+        gap: 2,
+      }}
+    >
       <CustomInput
         id="outlined-start-adornment"
         startAdornment={<InputAdornment>kg</InputAdornment>}
