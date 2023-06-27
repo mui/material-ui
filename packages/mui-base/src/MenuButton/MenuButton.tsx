@@ -1,8 +1,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { MenuButtonProps } from './MenuButton.types';
+import { MenuButtonOwnerState, MenuButtonProps } from './MenuButton.types';
 import { useSlotProps } from '../utils';
 import useMenuButton from '../useMenuButton';
+import composeClasses from '../composeClasses';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import { getMenuButtonUtilityClass } from './menuButtonClasses';
+
+const useUtilityClasses = (ownerState: MenuButtonOwnerState) => {
+  const { active, disabled } = ownerState;
+
+  const slots = {
+    root: ['root', disabled && 'disabled', active && 'active'],
+  };
+
+  return composeClasses(slots, useClassNamesOverride(getMenuButtonUtilityClass));
+};
+
 /**
  *
  * Demos:
@@ -17,9 +31,25 @@ const MenuButton = React.forwardRef(function MenuButton(
   props: MenuButtonProps,
   forwardedRef: React.ForwardedRef<HTMLElement>,
 ) {
-  const { children, label, slots = {}, slotProps = {}, ...other } = props;
+  const {
+    children,
+    label,
+    slots = {},
+    slotProps = {},
+    focusableWhenDisabled = false,
+    ...other
+  } = props;
 
-  const { getRootProps, open } = useMenuButton({ rootRef: forwardedRef });
+  const { getRootProps, open, active } = useMenuButton({ rootRef: forwardedRef });
+
+  const ownerState: MenuButtonOwnerState = {
+    ...props,
+    open,
+    active,
+    focusableWhenDisabled,
+  };
+
+  const classes = useUtilityClasses(ownerState);
 
   const Root = slots.root || 'button';
   const rootProps = useSlotProps({
@@ -31,7 +61,8 @@ const MenuButton = React.forwardRef(function MenuButton(
       ref: forwardedRef,
       type: 'button',
     },
-    ownerState: { ...props, open },
+    ownerState,
+    className: classes.root,
   });
 
   return <Root {...rootProps}>{children}</Root>;
@@ -47,7 +78,12 @@ MenuButton.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Label of the button
+   * If `true`, allows a disabled button to receive focus.
+   * @default false
+   */
+  focusableWhenDisabled: PropTypes.bool,
+  /**
+   * @ignore
    */
   label: PropTypes.string,
   /**
@@ -56,11 +92,10 @@ MenuButton.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The props used for each slot inside the MenuButton.
-   * @default {}
+   * @ignore
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

@@ -10,6 +10,16 @@ import {
 } from 'test/utils';
 import Menu, { menuClasses } from '@mui/base/Menu';
 import MenuItem from '@mui/base/MenuItem';
+import { MenuContext, MenuContextValue } from '@mui/base/useMenu';
+
+const testContext: MenuContextValue = {
+  dispatch: () => {},
+  popupId: 'menu-popup',
+  registerPopup: () => {},
+  registerTrigger: () => {},
+  state: { open: true },
+  triggerElement: null,
+};
 
 describe('<Menu />', () => {
   const mount = createMount();
@@ -17,8 +27,15 @@ describe('<Menu />', () => {
 
   describeConformanceUnstyled(<Menu />, () => ({
     inheritComponent: 'div',
-    render,
-    mount,
+    render: (node) => {
+      return render(<MenuContext.Provider value={testContext}>{node}</MenuContext.Provider>);
+    },
+    mount: (node: React.ReactNode) => {
+      const wrapper = mount(
+        <MenuContext.Provider value={testContext}>{node}</MenuContext.Provider>,
+      );
+      return wrapper.childAt(0);
+    },
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiMenu',
     slots: {
@@ -45,11 +62,13 @@ describe('<Menu />', () => {
       }, []);
 
       return (
-        <Menu>
-          <MenuItem>1</MenuItem>
-          <MenuItem>2</MenuItem>
-          <MenuItem>3</MenuItem>
-        </Menu>
+        <MenuContext.Provider value={testContext}>
+          <Menu>
+            <MenuItem>1</MenuItem>
+            <MenuItem>2</MenuItem>
+            <MenuItem>3</MenuItem>
+          </Menu>
+        </MenuContext.Provider>
       );
     }
 
@@ -69,11 +88,13 @@ describe('<Menu />', () => {
   describe('keyboard navigation', () => {
     it('changes the highlighted item using the arrow keys', () => {
       const { getByTestId } = render(
-        <Menu>
-          <MenuItem data-testid="item-1">1</MenuItem>
-          <MenuItem data-testid="item-2">2</MenuItem>
-          <MenuItem data-testid="item-3">3</MenuItem>
-        </Menu>,
+        <MenuContext.Provider value={testContext}>
+          <Menu>
+            <MenuItem data-testid="item-1">1</MenuItem>
+            <MenuItem data-testid="item-2">2</MenuItem>
+            <MenuItem data-testid="item-3">3</MenuItem>
+          </Menu>
+        </MenuContext.Provider>,
       );
 
       const item1 = getByTestId('item-1');
@@ -96,11 +117,13 @@ describe('<Menu />', () => {
 
     it('changes the highlighted item using the Home and End keys', () => {
       const { getByTestId } = render(
-        <Menu>
-          <MenuItem data-testid="item-1">1</MenuItem>
-          <MenuItem data-testid="item-2">2</MenuItem>
-          <MenuItem data-testid="item-3">3</MenuItem>
-        </Menu>,
+        <MenuContext.Provider value={testContext}>
+          <Menu>
+            <MenuItem data-testid="item-1">1</MenuItem>
+            <MenuItem data-testid="item-2">2</MenuItem>
+            <MenuItem data-testid="item-3">3</MenuItem>
+          </Menu>
+        </MenuContext.Provider>,
       );
 
       const item1 = getByTestId('item-1');
@@ -119,12 +142,14 @@ describe('<Menu />', () => {
 
     it('includes disabled items during keyboard navigation', () => {
       const { getByTestId } = render(
-        <Menu>
-          <MenuItem data-testid="item-1">1</MenuItem>
-          <MenuItem disabled data-testid="item-2">
-            2
-          </MenuItem>
-        </Menu>,
+        <MenuContext.Provider value={testContext}>
+          <Menu>
+            <MenuItem data-testid="item-1">1</MenuItem>
+            <MenuItem disabled data-testid="item-2">
+              2
+            </MenuItem>
+          </Menu>
+        </MenuContext.Provider>,
       );
 
       const item1 = getByTestId('item-1');
@@ -149,14 +174,16 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu>
-            <MenuItem>Aa</MenuItem>
-            <MenuItem>Ba</MenuItem>
-            <MenuItem>Bb</MenuItem>
-            <MenuItem>Ca</MenuItem>
-            <MenuItem>Cb</MenuItem>
-            <MenuItem>Cd</MenuItem>
-          </Menu>,
+          <MenuContext.Provider value={testContext}>
+            <Menu>
+              <MenuItem>Aa</MenuItem>
+              <MenuItem>Ba</MenuItem>
+              <MenuItem>Bb</MenuItem>
+              <MenuItem>Ca</MenuItem>
+              <MenuItem>Cb</MenuItem>
+              <MenuItem>Cd</MenuItem>
+            </Menu>
+          </MenuContext.Provider>,
         );
 
         const items = getAllByRole('menuitem');
@@ -182,12 +209,14 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu>
-            <MenuItem>Aa</MenuItem>
-            <MenuItem>Ba</MenuItem>
-            <MenuItem>Bb</MenuItem>
-            <MenuItem>Ca</MenuItem>
-          </Menu>,
+          <MenuContext.Provider value={testContext}>
+            <Menu>
+              <MenuItem>Aa</MenuItem>
+              <MenuItem>Ba</MenuItem>
+              <MenuItem>Bb</MenuItem>
+              <MenuItem>Ca</MenuItem>
+            </Menu>
+          </MenuContext.Provider>,
         );
 
         const items = getAllByRole('menuitem');
@@ -211,12 +240,14 @@ describe('<Menu />', () => {
 
       it('changes the highlighted item using text navigation on label prop', () => {
         const { getAllByRole } = render(
-          <Menu>
-            <MenuItem label="Aa">1</MenuItem>
-            <MenuItem label="Ba">2</MenuItem>
-            <MenuItem label="Bb">3</MenuItem>
-            <MenuItem label="Ca">4</MenuItem>
-          </Menu>,
+          <MenuContext.Provider value={testContext}>
+            <Menu>
+              <MenuItem label="Aa">1</MenuItem>
+              <MenuItem label="Ba">2</MenuItem>
+              <MenuItem label="Bb">3</MenuItem>
+              <MenuItem label="Ca">4</MenuItem>
+            </Menu>
+          </MenuContext.Provider>,
         );
 
         const items = getAllByRole('menuitem');
@@ -246,17 +277,19 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu>
-            <MenuItem>Aa</MenuItem>
-            <MenuItem>Ba</MenuItem>
-            <MenuItem />
-            <MenuItem>
-              <div>Nested Content</div>
-            </MenuItem>
-            <MenuItem>{undefined}</MenuItem>
-            <MenuItem>{null}</MenuItem>
-            <MenuItem>Bc</MenuItem>
-          </Menu>,
+          <MenuContext.Provider value={testContext}>
+            <Menu>
+              <MenuItem>Aa</MenuItem>
+              <MenuItem>Ba</MenuItem>
+              <MenuItem />
+              <MenuItem>
+                <div>Nested Content</div>
+              </MenuItem>
+              <MenuItem>{undefined}</MenuItem>
+              <MenuItem>{null}</MenuItem>
+              <MenuItem>Bc</MenuItem>
+            </Menu>
+          </MenuContext.Provider>,
         );
 
         const items = getAllByRole('menuitem');
@@ -286,12 +319,14 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu>
-            <MenuItem>Aa</MenuItem>
-            <MenuItem>Ba</MenuItem>
-            <MenuItem>Bb</MenuItem>
-            <MenuItem>Bą</MenuItem>
-          </Menu>,
+          <MenuContext.Provider value={testContext}>
+            <Menu>
+              <MenuItem>Aa</MenuItem>
+              <MenuItem>Ba</MenuItem>
+              <MenuItem>Bb</MenuItem>
+              <MenuItem>Bą</MenuItem>
+            </Menu>
+          </MenuContext.Provider>,
         );
 
         const items = getAllByRole('menuitem');
@@ -319,12 +354,14 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu>
-            <MenuItem>Aa</MenuItem>
-            <MenuItem>ąa</MenuItem>
-            <MenuItem>ąb</MenuItem>
-            <MenuItem>ąc</MenuItem>
-          </Menu>,
+          <MenuContext.Provider value={testContext}>
+            <Menu>
+              <MenuItem>Aa</MenuItem>
+              <MenuItem>ąa</MenuItem>
+              <MenuItem>ąb</MenuItem>
+              <MenuItem>ąc</MenuItem>
+            </Menu>
+          </MenuContext.Provider>,
         );
 
         const items = getAllByRole('menuitem');
@@ -359,17 +396,24 @@ describe('<Menu />', () => {
       const handleItemsChange = spy();
 
       const { setProps } = render(
-        <Menu onItemsChange={handleItemsChange}>
-          <MenuItem key="1">1</MenuItem>
-          <MenuItem key="2">2</MenuItem>
-        </Menu>,
+        <MenuContext.Provider value={testContext}>
+          <Menu onItemsChange={handleItemsChange}>
+            <MenuItem key="1">1</MenuItem>
+            <MenuItem key="2">2</MenuItem>
+          </Menu>
+        </MenuContext.Provider>,
       );
 
       // The first call is the initial render.
       expect(handleItemsChange.callCount).to.equal(1);
 
       setProps({
-        children: [<MenuItem key="1">1</MenuItem>, <MenuItem key="3">3</MenuItem>],
+        children: (
+          <Menu onItemsChange={handleItemsChange}>
+            <MenuItem key="1">1</MenuItem>
+            <MenuItem key="3">3</MenuItem>
+          </Menu>
+        ),
       });
 
       expect(handleItemsChange.callCount).to.equal(2);

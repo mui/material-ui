@@ -2,6 +2,16 @@ import { EventHandlers } from '../utils';
 
 export interface UseMenuButtonParameters {
   /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * If `true`, allows a disabled button to receive focus.
+   * @default false
+   */
+  focusableWhenDisabled?: boolean;
+  /**
    * The ref to the root element.
    */
   rootRef?: React.Ref<HTMLElement>;
@@ -22,6 +32,10 @@ interface UseMenuButtonRootSlotProps {
 }
 
 export interface UseMenuButtonReturnValue {
+  /**
+   * If `true`, the component is active (pressed).
+   */
+  active: boolean;
   /**
    * Resolver for the root slot's props.
    */

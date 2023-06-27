@@ -1,4 +1,13 @@
+import { SlotComponentProps } from '../utils/types';
+
+export interface MenuButtonRootSlotPropsOverrides {}
+
 export interface MenuButtonProps {
+  children?: React.ReactNode;
+  /**
+   * The props used for each slot inside the MenuButton.
+   * @default {}
+   */
   /**
    * Class name applied to the root element.
    */
@@ -6,21 +15,38 @@ export interface MenuButtonProps {
   /**
    * Label of the button
    */
-  label?: string;
-  children?: React.ReactNode;
   /**
-   * The props used for each slot inside the MenuButton.
-   * @default {}
+   * If `true`, the component is disabled.
+   * @default false
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  disabled?: boolean;
+  /**
+   * If `true`, allows a disabled button to receive focus.
+   * @default false
+   */
+  focusableWhenDisabled?: boolean;
+  label?: string;
+  slots?: MenuButtonSlots;
   /**
    * The components used for each slot inside the MenuButton.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
   slotProps?: {
-    root?: React.HTMLAttributes<HTMLButtonElement>;
+    root?: SlotComponentProps<'button', MenuButtonRootSlotPropsOverrides, MenuButtonOwnerState>;
   };
 }
+
+export interface MenuButtonSlots {
+  /**
+   * The component that renders the root.
+   * @default 'button'
+   */
+  root?: React.ElementType;
+}
+
+export type MenuButtonOwnerState = MenuButtonProps & {
+  active: boolean;
+  focusableWhenDisabled: boolean;
+  open: boolean;
+};
