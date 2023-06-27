@@ -40,8 +40,8 @@ const TabRoot = styled(StyledListItemButton, {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   const border = variantStyle?.border ? `${variantStyle.border} ${variantStyle.borderColor}` : '';
   return {
-    justifyContent: 'var(--Tabs-top, center) var(--Tabs-bottom, center)',
-    flexGrow: 'var(--Tabs-top, 1) var(--Tabs-bottom, 1)',
+    justifyContent: 'var(--top, center) var(--bottom, center)',
+    flexGrow: 'var(--top, 1) var(--bottom, 1)',
     ...(ownerState.selected && {
       fontWeight: 'initial',
     }),
@@ -50,10 +50,10 @@ const TabRoot = styled(StyledListItemButton, {
      */
     '--border-placeholder': 'var(--Tab-lineSize) solid transparent',
     // the `var(--_unknown)` is the trick to fallback to the `--border-placeholder` value
-    '--border-bottom': `var(--Tabs-top, var(--_unknown)) ${border}`,
-    '--border-top': `var(--Tabs-bottom, var(--_unknown)) ${border}`,
-    '--border-left': `var(--Tabs-right, var(--_unknown)) ${border}`,
-    '--border-right': `var(--Tabs-left, var(--_unknown)) ${border}`,
+    '--border-bottom': `var(--top, var(--_unknown)) ${border}`,
+    '--border-top': `var(--bottom, var(--_unknown)) ${border}`,
+    '--border-left': `var(--right, var(--_unknown)) ${border}`,
+    '--border-right': `var(--left, var(--_unknown)) ${border}`,
     '--offset-inline': 'calc(-1 * var(--variant-borderWidth, 0px))',
     '--offset-block': 'calc(-1 * var(--Tab-lineSize))',
     /**
@@ -61,25 +61,25 @@ const TabRoot = styled(StyledListItemButton, {
      */
     // The value below is to achieve a condition with pure CSS
     // For example, the value of the borderBottom means:
-    // - if `--Tabs-top` ? `var(--border-placeholder)` : `${border}`
-    borderBottom: 'var(--border-bottom, var(--Tabs-top, var(--border-placeholder)))',
-    borderRight: 'var(--border-right, var(--Tabs-left, var(--border-placeholder)))',
-    borderTop: 'var(--border-top, var(--Tabs-bottom, var(--border-placeholder)))',
-    borderLeft: 'var(--border-left, var(--Tabs-right, var(--border-placeholder)))',
+    // - if `--top` ? `var(--border-placeholder)` : `${border}`
+    borderBottom: 'var(--border-bottom, var(--top, var(--border-placeholder)))',
+    borderRight: 'var(--border-right, var(--left, var(--border-placeholder)))',
+    borderTop: 'var(--border-top, var(--bottom, var(--border-placeholder)))',
+    borderLeft: 'var(--border-left, var(--right, var(--border-placeholder)))',
     '&::after': {
       content: '""',
       display: 'block',
       position: 'absolute',
       margin: 'auto', // align center if fixed width/height
       background: 'var(--Tab-lineColor)',
-      height: 'var(--Tabs-top, var(--Tab-lineSize)) var(--Tabs-bottom, var(--Tab-lineSize))',
-      width: 'var(--Tabs-left, var(--Tab-lineSize)) var(--Tabs-right, var(--Tab-lineSize))',
-      top: 'var(--Tabs-bottom, var(--offset-block)) var(--Tabs-left, var(--offset-inline)) var(--Tabs-right, var(--offset-inline))',
+      height: 'var(--top, var(--Tab-lineSize)) var(--bottom, var(--Tab-lineSize))',
+      width: 'var(--left, var(--Tab-lineSize)) var(--right, var(--Tab-lineSize))',
+      top: 'var(--bottom, var(--offset-block)) var(--left, var(--offset-inline)) var(--right, var(--offset-inline))',
       bottom:
-        'var(--Tabs-top, var(--offset-block)) var(--Tabs-left, var(--offset-inline)) var(--Tabs-right, var(--offset-inline))',
-      left: 'var(--Tabs-right, var(--offset-block)) var(--Tabs-top, var(--offset-inline)) var(--Tabs-bottom, var(--offset-inline))',
+        'var(--top, var(--offset-block)) var(--left, var(--offset-inline)) var(--right, var(--offset-inline))',
+      left: 'var(--right, var(--offset-block)) var(--top, var(--offset-inline)) var(--bottom, var(--offset-inline))',
       right:
-        'var(--Tabs-left, var(--offset-block)) var(--Tabs-top, var(--offset-inline)) var(--Tabs-bottom, var(--offset-inline))',
+        'var(--left, var(--offset-block)) var(--top, var(--offset-inline)) var(--bottom, var(--offset-inline))',
     },
     [`&.${tabClasses.selected}::after`]: {
       '--Tab-lineColor': 'var(--Tab-selectedLineColor, currentColor)',
