@@ -76,31 +76,31 @@ describe('<Switch />', () => {
   });
 
   it('renders a `role="checkbox"` with the Unchecked state by default', () => {
-    const { getByRole } = render(<Switch />);
+    const { getByRole } = render(<Switch />, { hidden: true });
 
     expect(getByRole('checkbox', { hidden: true })).to.have.property('checked', false);
   });
 
   it('renders a checkbox with the Checked state when checked', () => {
-    const { getByRole } = render(<Switch defaultChecked />);
+    const { getByRole } = render(<Switch defaultChecked />, { hidden: true });
 
     expect(getByRole('checkbox', { hidden: true })).to.have.property('checked', true);
   });
 
   it('the switch can be disabled', () => {
-    const { getByRole } = render(<Switch disabled />);
+    const { getByRole } = render(<Switch disabled />, { hidden: true });
 
     expect(getByRole('checkbox', { hidden: true })).to.have.property('disabled', true);
   });
 
   it('the switch can be readonly', () => {
-    const { getByRole } = render(<Switch readOnly />);
+    const { getByRole } = render(<Switch readOnly />, { hidden: true });
 
     expect(getByRole('checkbox', { hidden: true })).to.have.property('readOnly', true);
   });
 
   it('the Checked state changes after change events', () => {
-    const { getByRole } = render(<Switch defaultChecked />);
+    const { getByRole } = render(<Switch defaultChecked />, { hidden: true });
 
     // how a user would trigger it
     act(() => {
@@ -127,6 +127,7 @@ describe('<Switch />', () => {
     it('can receive startDecorator as function', () => {
       const { getByText, getByRole } = render(
         <Switch startDecorator={({ checked }) => (checked ? 'On' : 'Off')} />,
+        { hidden: true },
       );
 
       expect(getByText('Off')).toBeVisible();
@@ -143,6 +144,7 @@ describe('<Switch />', () => {
     it('can receive endDecorator as function', () => {
       const { getByText, getByRole } = render(
         <Switch endDecorator={({ checked }) => (checked ? 'On' : 'Off')} />,
+        { hidden: true },
       );
 
       expect(getByText('Off')).toBeVisible();
