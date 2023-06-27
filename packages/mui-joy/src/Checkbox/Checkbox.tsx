@@ -322,7 +322,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     className: classes.input,
     elementType: CheckboxInput,
     externalForwardedProps,
-    getSlotProps: getInputProps,
+    getSlotProps: () => getInputProps({ hidden: false }),
     ownerState,
   });
 

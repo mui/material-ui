@@ -365,7 +365,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     className: classes.input,
     elementType: RadioInput,
     externalForwardedProps,
-    getSlotProps: () => getInputProps({ onChange: radioGroup?.onChange }),
+    getSlotProps: () => getInputProps({ onChange: radioGroup?.onChange, hidden: false }),
     ownerState,
   });
 
