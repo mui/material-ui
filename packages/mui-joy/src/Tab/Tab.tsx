@@ -42,7 +42,6 @@ const TabRoot = styled(StyledListItemButton, {
   return {
     justifyContent: 'var(--top, center) var(--bottom, center)',
     flexGrow: 'var(--top, 1) var(--bottom, 1)',
-    ...variantStyle,
     ...(ownerState.selected && {
       fontWeight: 'initial',
     }),
@@ -50,15 +49,19 @@ const TabRoot = styled(StyledListItemButton, {
      * ================= private variables =================
      */
     '--border-placeholder': 'var(--Tab-lineSize) solid transparent',
-    '--border-bottom': `var(--top, var(--unknown)) ${border}`,
-    '--border-top': `var(--bottom, var(--unknown)) ${border}`,
-    '--border-left': `var(--right, var(--unknown)) ${border}`,
-    '--border-right': `var(--left, var(--unknown)) ${border}`,
+    // the `var(--_unknown)` is the trick to fallback to the `--border-placeholder` value
+    '--border-bottom': `var(--top, var(--_unknown)) ${border}`,
+    '--border-top': `var(--bottom, var(--_unknown)) ${border}`,
+    '--border-left': `var(--right, var(--_unknown)) ${border}`,
+    '--border-right': `var(--left, var(--_unknown)) ${border}`,
     '--offset-inline': 'calc(-1 * var(--variant-borderWidth, 0px))',
     '--offset-block': 'calc(-1 * var(--Tab-lineSize))',
     /**
      * =====================================================
      */
+    // The value below is to achieve a condition with pure CSS
+    // For example, the value of the borderBottom means:
+    // - if `--top` ? `var(--border-placeholder)` : `${border}`
     borderBottom: 'var(--border-bottom, var(--top, var(--border-placeholder)))',
     borderRight: 'var(--border-right, var(--left, var(--border-placeholder)))',
     borderTop: 'var(--border-top, var(--bottom, var(--border-placeholder)))',
