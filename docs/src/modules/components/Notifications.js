@@ -202,18 +202,16 @@ export default function Notifications() {
           >
             <Grow in={open} {...TransitionProps}>
               <Paper
-                sx={{
+                sx={(theme) => ({
                   mt: 0.5,
                   border: '1px solid',
-                  borderColor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                  boxShadow: (theme) =>
-                    `0px 4px 20px ${
-                      theme.palette.mode === 'dark'
-                        ? 'rgba(0, 0, 0, 0.5)'
-                        : 'rgba(170, 180, 190, 0.3)'
-                    }`,
-                }}
+                  borderColor: 'grey.200',
+                  boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                  ...theme.applyDarkStyles({
+                    borderColor: 'primaryDark.700',
+                    boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
+                  }),
+                })}
               >
                 <List>
                   {messageList ? (

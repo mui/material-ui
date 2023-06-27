@@ -16,7 +16,7 @@ export default function SizesList() {
         justifyContent: 'center',
         gap: 6,
         flexWrap: 'wrap',
-        '& > *': { minWidth: 0, flexBasis: 120 },
+        '& > *': { minWidth: 0, flexBasis: 200 },
       }}
     >
       {['sm', 'md', 'lg'].map((size) => (
@@ -27,7 +27,12 @@ export default function SizesList() {
           <List
             size={size}
             variant="outlined"
-            sx={{ borderRadius: 'sm', maxWidth: 240 }}
+            sx={{
+              borderRadius: 'sm',
+              maxWidth: 300,
+              boxShadow: 'sm',
+              bgcolor: 'background.body',
+            }}
           >
             <ListItem>
               <ListItemButton>

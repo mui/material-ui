@@ -1,5 +1,5 @@
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { flushSync } from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import { styled, useThemeProps } from '@mui/material/styles';
 import {
   createUnarySpacing,
@@ -7,7 +7,11 @@ import {
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
-import { deepmerge, unstable_useForkRef as useForkRef } from '@mui/utils';
+import {
+  deepmerge,
+  unstable_useForkRef as useForkRef,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+} from '@mui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -211,6 +215,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     if (!masonryRef.current || !masonryChildren || masonryChildren.length === 0) {
       return;
     }
+
     const masonry = masonryRef.current;
     const masonryFirstChild = masonryRef.current.firstChild;
     const parentWidth = masonry.clientWidth;
@@ -265,30 +270,40 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
       // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
       // Related issue - https://github.com/facebook/react/issues/24331
-      flushSync(() => {
+      ReactDOM.flushSync(() => {
         setMaxColumnHeight(Math.max(...columnHeights));
         setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
       });
     }
   };
 
-  const observer = React.useRef(
-    typeof ResizeObserver === 'undefined' ? undefined : new ResizeObserver(handleResize),
-  );
-
-  React.useEffect(() => {
-    const resizeObserver = observer.current;
+  useEnhancedEffect(() => {
     // IE and old browsers are not supported
-    if (resizeObserver === undefined) {
+    if (typeof ResizeObserver === 'undefined') {
       return undefined;
     }
+
+    let animationFrame;
+
+    const resizeObserver = new ResizeObserver(() => {
+      // see https://github.com/mui/material-ui/issues/36909
+      animationFrame = window.requestAnimationFrame(handleResize);
+    });
 
     if (masonryRef.current) {
       masonryRef.current.childNodes.forEach((childNode) => {
         resizeObserver.observe(childNode);
       });
     }
-    return () => (resizeObserver ? resizeObserver.disconnect() : {});
+
+    return () => {
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+      }
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
   }, [columns, spacing, children]);
 
   const handleRef = useForkRef(ref, masonryRef);

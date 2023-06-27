@@ -25,6 +25,7 @@ describe('<Popper />', () => {
     inheritComponent: 'div',
     render,
     refInstanceof: window.HTMLDivElement,
+    testLegacyComponentsProp: true,
     slots: {
       root: {},
     },
@@ -36,6 +37,7 @@ describe('<Popper />', () => {
       'themeVariants',
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
+      'slotPropsCallback', // not supported yet
     ],
   }));
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ModalDialog, { modalDialogClasses as classes } from '@mui/joy/ModalDialog';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -18,7 +18,14 @@ describe('<ModalDialog />', () => {
     testComponentPropWith: 'header',
     testVariantProps: { variant: 'solid' },
     skip: ['classesRoot', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
+
+  describeJoyColorInversion(<ModalDialog />, { muiName: 'JoyModalDialog', classes });
 
   describe('prop: variant', () => {
     it('plain by default', () => {

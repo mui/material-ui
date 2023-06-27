@@ -24,7 +24,7 @@ export default function ColorBadge() {
         checked={invisible}
         onChange={(event) => setInvisible(event.target.checked)}
         variant={invisible ? 'solid' : 'outlined'}
-        sx={{ '--Switch-track-width': '40px' }}
+        sx={{ '--Switch-trackWidth': '40px' }}
       />
     </Box>
   );

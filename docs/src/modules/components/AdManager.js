@@ -13,17 +13,18 @@ const randomSession = Math.random();
 // 80% body-image
 export const adShape = randomSession < 0.2 ? 'inline' : 'image';
 
-export default function AdManager(props) {
+export default function AdManager({ classSelector = '.description', ...props }) {
   const [portal, setPortal] = React.useState({});
 
   useEnhancedEffect(() => {
-    const description = document.querySelector('.description');
+    const description = document.querySelector(classSelector);
     setPortal({ placement: 'body-top', element: description });
-  }, []);
+  }, [classSelector]);
 
   return <AdContext.Provider value={portal}>{props.children}</AdContext.Provider>;
 }
 
 AdManager.propTypes = {
   children: PropTypes.node,
+  classSelector: PropTypes.string,
 };

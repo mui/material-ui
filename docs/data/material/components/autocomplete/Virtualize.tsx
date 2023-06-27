@@ -28,7 +28,7 @@ function renderRow(props: ListChildComponentProps) {
 
   return (
     <Typography component="li" {...dataSet[0]} noWrap style={inlineStyle}>
-      {dataSet[1]}
+      {`#${dataSet[2] + 1} - ${dataSet[1]}`}
     </Typography>
   );
 }
@@ -146,7 +146,9 @@ export default function Virtualize() {
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
-      renderOption={(props, option) => [props, option] as React.ReactNode}
+      renderOption={(props, option, state) =>
+        [props, option, state.index] as React.ReactNode
+      }
       // TODO: Post React 18 update - validate this conversion, look like a hidden bug
       renderGroup={(params) => params as unknown as React.ReactNode}
     />

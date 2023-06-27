@@ -170,7 +170,7 @@ yarn add @mui/icons-material
 
 ### 日期和时间选择器
 
-日期和时间选择器组件已被移至MUI X。 如果你正在使用`@material-ui/date-pickers`或`@mui/lab`软件包中的挑选器，你将需要迁移到`@mui/x-date-pickers`。 详见[从实验室](https://mui.com/x/react-date-pickers/migration-lab/)迁移。
+日期和时间选择器组件已被移至MUI X。 如果你正在使用`@material-ui/date-pickers`或`@mui/lab`软件包中的挑选器，你将需要迁移到`@mui/x-date-pickers`。 详见[从实验室](https://mui.com/x/migration/migration-pickers-lab/)迁移。
 
 ### 对等依赖关系
 

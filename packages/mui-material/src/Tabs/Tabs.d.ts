@@ -1,13 +1,28 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { SlotComponentProps } from '@mui/base';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
 import ButtonBase from '../ButtonBase';
 import { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TabsClasses } from './tabsClasses';
+import SvgIcon from '../SvgIcon';
 
 export interface TabsPropsIndicatorColorOverrides {}
+
+export interface TabsStartScrollButtonIconSlotPropsOverrides {}
+export interface TabsEndScrollButtonIconSlotPropsOverrides {}
+
+export interface TabsOwnerState extends TabsProps {
+  vertical: boolean;
+  fixed: boolean;
+  hideScrollbar: boolean;
+  scrollableX: boolean;
+  scrollableY: boolean;
+  centered: boolean;
+  scrollButtonsHideMobile: boolean;
+}
 
 export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
   props: P & {
@@ -48,6 +63,31 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<TabsClasses>;
+    /**
+     * The components used for each slot inside.
+     * @default {}
+     */
+    slots?: {
+      StartScrollButtonIcon?: React.ElementType;
+      EndScrollButtonIcon?: React.ElementType;
+    };
+    /**
+     * The extra props for the slot components.
+     * You can override the existing props or add new ones.
+     * @default {}
+     */
+    slotProps?: {
+      startScrollButtonIcon?: SlotComponentProps<
+        typeof SvgIcon,
+        TabsStartScrollButtonIconSlotPropsOverrides,
+        TabsOwnerState
+      >;
+      endScrollButtonIcon?: SlotComponentProps<
+        typeof SvgIcon,
+        TabsEndScrollButtonIconSlotPropsOverrides,
+        TabsOwnerState
+      >;
+    };
     /**
      * Determines the color of the indicator.
      * @default 'primary'

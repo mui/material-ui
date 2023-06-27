@@ -62,6 +62,26 @@ describe('<StepButton />', () => {
     expect(getByRole('button')).to.have.property('disabled', true);
   });
 
+  it('should have `aria-current=step` when active', () => {
+    const { getByRole } = render(
+      <Step active>
+        <StepButton>Step One</StepButton>
+      </Step>,
+    );
+
+    expect(getByRole('button')).to.have.attribute('aria-current', 'step');
+  });
+
+  it('should not have `aria-current` when non-active', () => {
+    const { getByRole } = render(
+      <Step active={false}>
+        <StepButton>Step One</StepButton>
+      </Step>,
+    );
+
+    expect(getByRole('button')).not.to.have.attribute('aria-current', 'step');
+  });
+
   describe('event handlers', () => {
     it('should forward mouseenter, mouseleave and touchstart', function touchTests() {
       // only run in supported browsers

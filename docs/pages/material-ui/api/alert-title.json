@@ -12,6 +12,8 @@
   "name": "AlertTitle",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAlertTitle" },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiAlertTitle",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AlertTitle/AlertTitle.js",
   "inheritance": null,

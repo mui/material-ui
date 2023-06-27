@@ -36,38 +36,43 @@ export type IconImageProps = {
     | 'ebay'
     | 'samsung'
     | 'volvo';
-  sx?: SxProps<Theme>;
+  height?: number;
   ref?: React.Ref<HTMLImageElement>;
+  sx?: SxProps<Theme>;
   title?: string;
+  width?: number;
 } & Omit<JSX.IntrinsicElements['img'], 'ref'>;
 
 const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 
+let neverHydrated = true;
+
 export default function IconImage(props: IconImageProps) {
-  const { name, title, ...other } = props;
+  const { height: heightProp, name, title, width: widthProp, ...other } = props;
   const theme = useTheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
+    neverHydrated = false;
     setMounted(true);
   }, []);
-  let width;
-  let height;
+  let defaultWidth;
+  let defaultHeight;
   let category = '';
   let mode = `-${theme.palette.mode}`;
   if (name.startsWith('product-')) {
-    width = 36;
-    height = 36;
+    defaultWidth = 36;
+    defaultHeight = 36;
   }
   if (name.startsWith('block-')) {
     category = 'pricing/';
     mode = '';
-    width = 13;
-    height = 15;
+    defaultWidth = 13;
+    defaultHeight = 15;
   }
   if (['yes', 'no', 'time'].indexOf(name) !== -1) {
     category = 'pricing/';
-    width = 18;
-    height = 18;
+    defaultWidth = 18;
+    defaultHeight = 18;
   }
   if (
     [
@@ -94,7 +99,10 @@ export default function IconImage(props: IconImageProps) {
   ) {
     category = 'companies/';
   }
-  if (!mounted && !!theme.vars) {
+  const width = widthProp ?? defaultWidth;
+  const height = heightProp ?? defaultHeight;
+
+  if (!mounted && neverHydrated && !!theme.vars) {
     // Prevent hydration mismatch between the light and dark mode image source.
     return <Box component="span" sx={{ width, height, display: 'inline-block' }} />;
   }

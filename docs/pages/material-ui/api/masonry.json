@@ -30,6 +30,8 @@
   "name": "Masonry",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiMasonry" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiMasonry",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/Masonry/Masonry.js",
   "inheritance": null,

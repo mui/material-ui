@@ -439,8 +439,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     if (inputRef.current && event.currentTarget === event.target) {
       inputRef.current.focus();
     }
-
-    if (onClick) {
+    if (onClick && !fcs.disabled) {
       onClick(event);
     }
   };
@@ -520,7 +519,15 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         ref={ref}
         onClick={handleClick}
         {...other}
-        className={clsx(classes.root, rootProps.className, className)}
+        className={clsx(
+          classes.root,
+          {
+            // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
+            'MuiInputBase-readOnly': readOnly,
+          },
+          rootProps.className,
+          className,
+        )}
       >
         {startAdornment}
         <FormControlContext.Provider value={null}>
@@ -549,7 +556,14 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
               ownerState: { ...ownerState, ...inputProps.ownerState },
             })}
             ref={handleInputRef}
-            className={clsx(classes.input, inputProps.className)}
+            className={clsx(
+              classes.input,
+              {
+                // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
+                'MuiInputBase-readOnly': readOnly,
+              },
+              inputProps.className,
+            )}
             onBlur={handleBlur}
             onChange={handleChange}
             onFocus={handleFocus}

@@ -184,7 +184,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
             label != null && label !== '' && fcs.required ? (
               <React.Fragment>
                 {label}
-                &nbsp;{'*'}
+                &thinsp;{'*'}
               </React.Fragment>
             ) : (
               label

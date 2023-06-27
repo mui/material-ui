@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Chip component
+components: Chip, ChipDelete
 githubLabel: 'component: chip'
 ---
 
@@ -8,19 +9,13 @@ githubLabel: 'component: chip'
 
 <p class="description">Chip generates a compact element that can represent an input, attribute, or action.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 Chips are most frequently used in two main use cases: as pills of informative content or as filtering options.
 
-The badge component is most frequently used to signal status (online, offline, busy, etc) and whether there's notifications or not.
-
-{{"demo": "ChipUsage.js", "hideToolbar": true}}
-
-:::success
-To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
-:::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "ChipUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Component
 
@@ -49,7 +44,11 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons to 
 ### Delete button
 
 To add a delete action inside a chip, use the complementary `ChipDelete` component.
-Note that its design will automatically adapt to the parent `Chip`.
+
+The `onDelete` callback is fired on `ChipDelete` either when:
+
+- `Backspace`, `Enter` or `Delete` is pressed.
+- The `ChipDelete` is clicked.
 
 ```jsx
 import ChipDelete from '@mui/joy/ChipDelete';

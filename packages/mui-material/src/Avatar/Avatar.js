@@ -176,7 +176,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <AvatarFallback className={classes.fallback} />;
+    children = <AvatarFallback ownerState={ownerState} className={classes.fallback} />;
   }
 
   return (

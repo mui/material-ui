@@ -8,9 +8,9 @@ import {
 
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.caption,
-  color: theme.palette.text.primary,
+  color: (theme.vars || theme).palette.text.primary,
   '& pre': {
-    backgroundColor: theme.palette.primaryDark[800],
+    backgroundColor: (theme.vars || theme).palette.primaryDark[800],
     color: '#f8f8f2', // fallback color until Prism's theme is loaded
     overflow: 'auto',
     margin: 0,

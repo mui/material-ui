@@ -1,0 +1,105 @@
+{
+  "props": {
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "determinate": { "type": { "name": "bool" }, "default": "false" },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
+      },
+      "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ progress?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, svg?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ progress?: elementType, root?: elementType, svg?: elementType, track?: elementType }"
+      },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
+    "thickness": { "type": { "name": "number" } },
+    "value": { "type": { "name": "number" }, "default": "determinate ? 0 : 25" },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
+      },
+      "default": "'soft'"
+    }
+  },
+  "name": "CircularProgress",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'span'",
+      "class": ".MuiCircularProgress-root"
+    },
+    {
+      "name": "svg",
+      "description": "The component that renders the svg.",
+      "default": "'svg'",
+      "class": ".MuiCircularProgress-svg"
+    },
+    {
+      "name": "track",
+      "description": "The component that renders the track.",
+      "default": "'circle'",
+      "class": ".MuiCircularProgress-track"
+    },
+    {
+      "name": "progress",
+      "description": "The component that renders the progress.",
+      "default": "'circle'",
+      "class": ".MuiCircularProgress-progress"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "determinate",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyCircularProgress",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-joy/src/CircularProgress/CircularProgress.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-circular-progress/\">Circular Progress</a></li></ul>",
+  "cssComponent": false
+}

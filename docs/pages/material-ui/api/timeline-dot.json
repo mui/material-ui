@@ -40,6 +40,8 @@
     "name": "MuiTimelineDot"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTimelineDot",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-lab/src/TimelineDot/TimelineDot.js",
   "inheritance": null,

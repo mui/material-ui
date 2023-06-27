@@ -9,6 +9,15 @@ export * from './Alert';
 export { default as AspectRatio } from './AspectRatio';
 export * from './AspectRatio';
 
+export { default as Autocomplete } from './Autocomplete';
+export * from './Autocomplete';
+
+export { default as AutocompleteListbox } from './AutocompleteListbox';
+export * from './AutocompleteListbox';
+
+export { default as AutocompleteOption } from './AutocompleteOption';
+export * from './AutocompleteOption';
+
 export { default as Avatar } from './Avatar';
 export * from './Avatar';
 
@@ -27,8 +36,14 @@ export * from './Breadcrumbs';
 export { default as Button } from './Button';
 export * from './Button';
 
+export { default as ButtonGroup } from './ButtonGroup';
+export * from './ButtonGroup';
+
 export { default as Card } from './Card';
 export * from './Card';
+
+export { default as CardActions } from './CardActions';
+export * from './CardActions';
 
 export { default as CardContent } from './CardContent';
 export * from './CardContent';
@@ -56,9 +71,6 @@ export * from './Container';
 
 export { default as CssBaseline } from './CssBaseline';
 export * from './CssBaseline';
-
-export { default as ScopedCssBaseline } from './ScopedCssBaseline';
-export * from './ScopedCssBaseline';
 
 export { default as Divider } from './Divider';
 export * from './Divider';
@@ -126,6 +138,9 @@ export * from './ModalClose';
 export { default as ModalDialog } from './ModalDialog';
 export * from './ModalDialog';
 
+export { default as ModalOverflow } from './ModalOverflow';
+export * from './ModalOverflow';
+
 export { default as Option } from './Option';
 export * from './Option';
 
@@ -134,6 +149,9 @@ export * from './Radio';
 
 export { default as RadioGroup } from './RadioGroup';
 export * from './RadioGroup';
+
+export { default as ScopedCssBaseline } from './ScopedCssBaseline';
+export * from './ScopedCssBaseline';
 
 export { default as Select } from './Select';
 export * from './Select';
@@ -156,6 +174,9 @@ export * from './Switch';
 export { default as Tab } from './Tab';
 export * from './Tab';
 
+export { default as Table } from './Table';
+export * from './Table';
+
 export { default as TabList } from './TabList';
 export * from './TabList';
 
@@ -169,7 +190,6 @@ export { default as Textarea } from './Textarea';
 export * from './Textarea';
 
 export { default as TextField } from './TextField';
-export * from './TextField';
 
 export { default as Tooltip } from './Tooltip';
 export * from './Tooltip';

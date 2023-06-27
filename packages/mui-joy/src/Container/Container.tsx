@@ -1,10 +1,10 @@
 import { createContainer } from '@mui/system';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { ContainerTypeMap } from './ContainerProps';
 import { Theme } from '../styles/types/theme';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
+import { ContainerTypeMap } from './ContainerProps';
 
 const Container = createContainer<Theme>({
   componentName: 'JoyContainer',

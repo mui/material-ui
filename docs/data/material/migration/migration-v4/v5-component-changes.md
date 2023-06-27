@@ -1,6 +1,6 @@
 # Breaking changes in v5, part two: core components
 
-<p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4. This part covers changes to components.</p>
+<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to components.</p>
 
 ## Material UI v5 migration
 
@@ -70,7 +70,7 @@ Move the component from the lab to the core. The component is now stable.
 -import Autocomplete from '@mui/lab/Autocomplete';
 -import useAutocomplete  from '@mui/lab/useAutocomplete';
 +import Autocomplete from '@mui/material/Autocomplete';
-+import useAutoComplete from '@mui/material/useAutocomplete';
++import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
 ### Remove debug prop
@@ -394,7 +394,7 @@ This was an exception to Material Design, and was removed from the specification
 +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
 ```
 
-:::warning
+:::error
 If you had previously customized `determinate`, then your customizations are most likely no longer valid.
 Please remove them.
 :::
@@ -565,6 +565,32 @@ If you have customized the color of the border, you will need to update the CSS 
 -  background-color: #f00;
 +  border-color: #f00;
  }
+```
+
+### Support "middle" variant with "vertical" orientation
+
+In v4, using `orientation="vertical"` and `variant="middle"` was adding a left and right margins of `16px` in the component.
+In the v5, to avoid fixed spacing on the component, this margin was removed.
+
+:::info
+If you want to use the previous margin values, this change can be made in your theme with the following code. See the example on [CodeSandbox demo](https://codesandbox.io/s/v5-migration-vertical-alignment-middle-divider-45vepj?file=/src/index.tsx).
+:::
+
+```diff
+ const theme = createTheme({
+  components: {
+   MuiDivider: {
++     styleOverrides: {
++       root: ({ ownerState, theme }) => ({
++         ...(ownerState.orientation === 'vertical' && ownerState.variant === 'middle' && {
++           marginLeft: theme.spacing(2),
++           marginRight: theme.spacing(2),
++         }),
++       })
++     }
+    },
+  },
+ });
 ```
 
 ## ExpansionPanel
@@ -1008,7 +1034,7 @@ Use `onClose` with `reason === "escapeKeyDown"` instead.
 
 Remove the `onRendered` prop.
 
-Depending on your use case, you can either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element, or an effect hook in the child component.
+Depending on your use case, you can either use a [callback ref](https://legacy.reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element, or an effect hook in the child component.
 
 ## NativeSelect
 
@@ -1151,7 +1177,7 @@ Read the [Popper.js migration guide](https://popper.js.org/docs/v2/migration-gui
 
 Remove the `onRendered` prop.
 
-Depending on your use case, you can either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element, or an effect hook in the child component.
+Depending on your use case, you can either use a [callback ref](https://legacy.reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element, or an effect hook in the child component.
 
 ## Radio
 
@@ -1229,7 +1255,7 @@ This component has been removed.
 
 You can get a reference to the underlying DOM node of our components via `ref` prop.
 
-The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
+The component relied on [`ReactDOM.findDOMNode`](https://react.dev/reference/react-dom/findDOMNode) which is [deprecated in `React.StrictMode`](https://react.dev/reference/react/StrictMode#warning-about-deprecated-finddomnode-usage).
 
 :::warning
 This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, but further fixes are required.
@@ -1290,11 +1316,13 @@ The `root` slot is no longer applied to the select, but to the root.
 
 ### Update event type (TypeScript)
 
-The `event` in `onChange` is now typed as a `React.SyntheticEvent` instead of a `React.ChangeEvent`.
+The `event` in `onChange` is now typed as a `SelectChangeEvent<T>` instead of a `React.ChangeEvent`.
 
 ```diff
++ import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 -<Select onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
-+<Select onChange={(event: Event, value: unknown) => {}} />
++<Select onChange={(event: SelectChangeEvent<T>, child: React.ReactNode) => {}} />
 ```
 
 This was necessary to prevent overriding the `event.target` of the events that caused the change.
@@ -1443,7 +1471,7 @@ This change is meant to encourage composition.
 
 The built-in 24px padding has been removed.
 
-To keep it intact, add the folllowing:
+To keep it intact, add the following:
 
 ```diff
 -<Stepper>
@@ -1590,7 +1618,7 @@ This is done to match the most common use cases with Material Design.
 
 ```diff
 -<Tabs />
-+<Tabs indicatorColor="primary" textColor="inherit" />
++<Tabs indicatorColor="secondary" textColor="inherit" />
 ```
 
 ### Update event type (TypeScript)

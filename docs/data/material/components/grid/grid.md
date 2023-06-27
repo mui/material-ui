@@ -16,7 +16,7 @@ Material Design's responsive UI is based on a 12-column grid layout.
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 :::warning
-⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
+The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
 :::
 
 ## How it works
@@ -84,7 +84,7 @@ Responsive values is supported by:
 - all the [other props](#system-props) of the system
 
 :::warning
-⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
+When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
 For instance, this is not working. The grid item misses the value for `md`:
 
 ```jsx

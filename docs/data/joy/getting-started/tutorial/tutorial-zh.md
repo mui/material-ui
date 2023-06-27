@@ -88,13 +88,15 @@ import Typography from '@mui/joy/Typography';
 </Sheet>;
 ```
 
-### 4. Using `TextField` to create user name and password inputs
+### 4. Using `FormControl`, `FormLabel` and `Input` to create user name and password inputs
 
-The `TextField` component is made of the `FormLabel`, `Input` and `FormHelperText` components.
+The `FormControl`, `FormLabel` and `Input` components can be used together to provide you with a sophisticated field for user input.
 
 ```jsx
 // ...other imports
-import TextField from '@mui/joy/TextField';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
 
 <Sheet
   sx={
@@ -104,20 +106,19 @@ import TextField from '@mui/joy/TextField';
   }
 >
   ...typography
-  <TextField
-    // html input attribute
-    name="email"
-    type="email"
-    placeholder="johndoe@email.com"
-    // pass down to FormLabel as children
-    label="Email"
-  />
-  <TextField
-    name="password"
-    type="password"
-    placeholder="password"
-    label="Password"
-  />
+  <FormControl>
+    <FormLabel>Email</FormLabel>
+    <Input
+      // html input attribute
+      name="email"
+      type="email"
+      placeholder="johndoe@email.com"
+    />
+  </FormControl>
+  <FormControl>
+    <FormLabel>Password</FormLabel>
+    <Input name="password" type="password" placeholder="password" />
+  </FormControl>
 </Sheet>;
 ```
 

@@ -11,20 +11,26 @@ export interface TabPanelClasses {
   sizeMd: string;
   /** Classname applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Class name applied to the root element if `orientation="horizontal"`. */
+  horizontal: string;
+  /** Class name applied to the root element if `orientation="vertical"`. */
+  vertical: string;
 }
 
 export type TabPanelClassKey = keyof TabPanelClasses;
 
 export function getTabPanelUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTabPanel', slot);
+  return generateUtilityClass('MuiTabPanel', slot);
 }
 
-const tabListClasses: TabPanelClasses = generateUtilityClasses('JoyTabPanel', [
+const tabListClasses: TabPanelClasses = generateUtilityClasses('MuiTabPanel', [
   'root',
   'hidden',
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'horizontal',
+  'vertical',
 ]);
 
 export default tabListClasses;

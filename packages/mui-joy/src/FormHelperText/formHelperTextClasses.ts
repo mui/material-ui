@@ -1,17 +1,17 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface FormHelperTextClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
 }
 
 export type FormHelperTextClassKey = keyof FormHelperTextClasses;
 
 export function getFormHelperTextUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyFormHelperText', slot);
+  return generateUtilityClass('MuiFormHelperText', slot);
 }
 
-const formHelperTextClasses: FormHelperTextClasses = generateUtilityClasses('JoyFormHelperText', [
+const formHelperTextClasses: FormHelperTextClasses = generateUtilityClasses('MuiFormHelperText', [
   'root',
 ]);
 

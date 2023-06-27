@@ -92,6 +92,16 @@
       "nodeName": "the input element",
       "conditions": "<code>multiline={true}</code>"
     },
+    "inputAdornedStart": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
+      "conditions": "<code>startAdornment</code> is provided"
+    },
+    "inputAdornedEnd": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
+      "conditions": "<code>endAdornment</code> is provided"
+    },
     "inputTypeSearch": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",

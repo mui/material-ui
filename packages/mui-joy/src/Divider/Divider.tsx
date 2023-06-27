@@ -7,20 +7,18 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { DividerOwnerState, DividerTypeMap } from './DividerProps';
 import { getDividerUtilityClass } from './dividerClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: DividerOwnerState) => {
+  const { orientation, inset } = ownerState;
   const slots = {
-    root: [
-      'root',
-      ownerState.orientation === 'vertical' && 'vertical',
-      ownerState.inset && `inset${capitalize(ownerState.inset)}`,
-    ],
+    root: ['root', orientation, inset && `inset${capitalize(inset)}`],
   };
 
   return composeClasses(slots, getDividerUtilityClass, {});
 };
 
-const DividerRoot = styled('hr', {
+export const DividerRoot = styled('hr', {
   name: 'JoyDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -90,7 +88,16 @@ const DividerRoot = styled('hr', {
         blockSize: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
       }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Divider](https://mui.com/joy-ui/react-divider/)
+ *
+ * API:
+ *
+ * - [Divider API](https://mui.com/joy-ui/api/divider/)
+ */
 const Divider = React.forwardRef(function Divider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -104,6 +111,8 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     inset,
     orientation = 'horizontal',
     role = component !== 'hr' ? 'separator' : undefined,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -116,25 +125,27 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  return (
-    <DividerRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      role={role}
-      {...(role === 'separator' &&
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: DividerRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role,
+      ...(role === 'separator' &&
         orientation === 'vertical' && {
           // The implicit aria-orientation of separator is 'horizontal'
           // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role
           'aria-orientation': 'vertical',
-        })}
-      {...other}
-    >
-      {children}
-    </DividerRoot>
-  );
+        }),
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<DividerTypeMap>;
 
 Divider.propTypes /* remove-proptypes */ = {
@@ -147,10 +158,6 @@ Divider.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -160,7 +167,7 @@ Divider.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The styles applied to the divider to shrink or stretch the line based on the orientation.
+   * Class name applied to the divider to shrink or stretch the line based on the orientation.
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['none', 'context']),
@@ -175,6 +182,20 @@ Divider.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

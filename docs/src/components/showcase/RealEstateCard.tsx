@@ -5,19 +5,24 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import InfoRounded from '@mui/icons-material/InfoRounded';
 
-export default function RealEstateCard(props: CardProps) {
+export default function RealEstateCard({ sx, ...props }: CardProps) {
   return (
     <Card
       variant="outlined"
       {...props}
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff'),
-        p: 1,
-        zIndex: 1,
-        ...props.sx,
-      }}
+      sx={[
+        (theme) => ({
+          display: 'flex',
+          flexWrap: 'wrap',
+          bgcolor: '#fff',
+          p: 1,
+          zIndex: 1,
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.800',
+          }),
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <CardMedia
         component="img"
@@ -39,16 +44,20 @@ export default function RealEstateCard(props: CardProps) {
           $280k - $310k
         </Typography>
         <Box
-          sx={{
+          sx={(theme) => ({
             mt: 0.75,
             px: 1,
             py: 0.5,
             typography: 'caption',
             borderRadius: 1,
             display: 'flex',
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primary.900' : 'primary.50'),
-            color: (theme) => (theme.palette.mode === 'dark' ? 'primary.200' : 'primary.700'),
-          }}
+            bgcolor: 'primary.50',
+            color: 'primary.700',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primary.900',
+              color: 'primary.200',
+            }),
+          })}
         >
           <InfoRounded sx={{ fontSize: 16, mr: 0.5, mt: '1px' }} /> Confidence score of 85%
         </Box>

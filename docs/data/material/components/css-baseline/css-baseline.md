@@ -30,7 +30,7 @@ export default function MyApp() {
 
 ## Scoping on children
 
-However, you might be progressively migrating a website to MUI, using a global reset might not be an option.
+However, you might be progressively migrating a website to Material UI, using a global reset might not be an option.
 It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
 
 ```jsx
@@ -71,7 +71,8 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 ### Scrollbars
 
 :::error
-This API is deprecated, consider using [color-scheme](#color-scheme) instead.
+This API is deprecated.
+Consider using [color-scheme](#color-scheme) instead.
 :::
 
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).

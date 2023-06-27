@@ -89,6 +89,8 @@
     "name": "MuiAlert"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAlert",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Alert/Alert.js",
   "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },

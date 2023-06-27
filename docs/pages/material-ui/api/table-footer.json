@@ -13,6 +13,8 @@
   "name": "TableFooter",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableFooter" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTableFooter",
   "forwardsRefTo": "HTMLTableSectionElement",
   "filename": "/packages/mui-material/src/TableFooter/TableFooter.js",
   "inheritance": null,

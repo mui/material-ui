@@ -58,7 +58,7 @@ Visually, there are **three** states a checkbox can be in: checked, unchecked, o
 {{"demo": "IndeterminateCheckbox.js"}}
 
 :::warning
-⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values.
+When indeterminate is set, the value of the `checked` prop only impacts the form submitted values.
 It has no accessibility or UX implications.
 :::
 

@@ -6,7 +6,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Button from '@mui/joy/Button';
-import TextField from '@mui/joy/TextField';
+import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
 
@@ -120,31 +120,33 @@ export default function FreeSoloCreateOptionDialog() {
               Did you miss any film in our list? Please, add it!
             </Typography>
             <Stack spacing={2}>
-              <TextField
-                autoFocus
-                id="name"
-                value={dialogValue.title}
-                onChange={(event) =>
-                  setDialogValue({
-                    ...dialogValue,
-                    title: event.target.value,
-                  })
-                }
-                label="Title"
-                type="text"
-              />
-              <TextField
-                id="year"
-                value={dialogValue.year}
-                onChange={(event) =>
-                  setDialogValue({
-                    ...dialogValue,
-                    year: event.target.value,
-                  })
-                }
-                label="year"
-                type="number"
-              />
+              <FormControl id="name">
+                <FormLabel>Title</FormLabel>
+                <Input
+                  autoFocus
+                  type="text"
+                  value={dialogValue.title}
+                  onChange={(event) =>
+                    setDialogValue({
+                      ...dialogValue,
+                      title: event.target.value,
+                    })
+                  }
+                />
+              </FormControl>
+              <FormControl id="year">
+                <FormLabel>year</FormLabel>
+                <Input
+                  type="number"
+                  value={dialogValue.year}
+                  onChange={(event) =>
+                    setDialogValue({
+                      ...dialogValue,
+                      year: event.target.value,
+                    })
+                  }
+                />
+              </FormControl>
               <Stack direction="row" justifyContent="flex-end" spacing={2}>
                 <Button variant="plain" color="neutral" onClick={handleClose}>
                   Cancel

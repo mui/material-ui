@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import Icon from '@mui/material/Icon';
 import ButtonBase from '@mui/material/ButtonBase';
 
@@ -88,6 +89,16 @@ describe('<IconButton />', () => {
 
       expect(button).to.have.property('disabled', true);
       expect(button).to.have.class(classes.disabled);
+    });
+  });
+
+  describe('prop: color', () => {
+    ['primary', 'secondary', 'error', 'info', 'success', 'warning'].forEach((color) => {
+      it(`should render the ${color} class`, () => {
+        const { getByRole } = render(<IconButton color={color}>Hello World</IconButton>);
+        const button = getByRole('button');
+        expect(button).to.have.class(classes[`color${capitalize(color)}`]);
+      });
     });
   });
 

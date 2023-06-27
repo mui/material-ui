@@ -37,6 +37,8 @@
   "name": "AvatarGroup",
   "styles": { "classes": ["root", "avatar"], "globalClasses": {}, "name": "MuiAvatarGroup" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAvatarGroup",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AvatarGroup/AvatarGroup.js",
   "inheritance": null,

@@ -2,10 +2,28 @@
 
 If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the MUI community. Here are a few guidelines that will help you along the way.
 
+## Summary
+
+- [Code of Conduct](#code-of-conduct)
+- [A large spectrum of contributions](#a-large-spectrum-of-contributions)
+- [Your first Pull Request](#your-first-pull-request)
+- [Sending a Pull Request](#sending-a-pull-request)
+  - [Trying changes on the documentation site](#trying-changes-on-the-documentation-site)
+  - [Trying changes on the playground](#trying-changes-on-the-playground)
+  - [How to increase the chance of being accepted?](#how-to-increase-the-chance-of-being-accepted)
+  - [CI checks and how to fix them](#ci-checks-and-how-to-fix-them)
+  - [Updating the component API documentation](#updating-the-component-api-documentation)
+  - [Coding style](#coding-style)
+- [How to add a new demo in the documentation](#how-to-add-a-new-demo-in-the-documentation)
+- [How can I use a change that wasn't released yet?](#how-can-i-use-a-change-that-wasnt-released-yet)
+- [Translations](#translations)
+- [Roadmap](#roadmap)
+- [License](#license)
+
 ## Code of Conduct
 
 MUI has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it.
-Please read [the full text](https://github.com/mui/.github/blob/master/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+Please read [the full text](https://github.com/mui/.github/blob/master/CODE_OF_CONDUCT.md) to understand what actions will and will not be tolerated.
 
 ## A large spectrum of contributions
 
@@ -19,15 +37,15 @@ Working on your first Pull Request? You can learn how from this free video serie
 
 To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
 
-We also have a list of [good to take issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
+We also have a list of [good to take issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has already been some discussion about the solution, and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
 
 You can also work on any other issue you choose to.
 The "good first" and "good to take" issues are just issues where we have a clear picture about scope and timeline.
 Pull requests working on other issues or completely new problems may take a bit longer to review when they don't fit into our current development cycle.
 
-If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you have started to work on it so other people don't accidentally duplicate your effort.
+If you decide to fix an issue, please make sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you have started to work on it, so other people don't accidentally duplicate your effort.
 
-If somebody claims an issue but doesn't follow up for more than a week, it's fine to take it over but you should still leave a comment.
+If somebody claims an issue but doesn't follow up for more than a week, it's fine to take it over, but you should still leave a comment.
 If there has been no activity on the issue for 7 to 14 days, it is safe to assume that nobody is working on it.
 
 ## Sending a Pull Request
@@ -94,8 +112,8 @@ Changes to the docs will hot reload the site.
 
 ### Trying changes on the playground
 
-While we recommend to try your changes on the documentation site—it's not always ideal.
-You might face following problems:
+While we recommend trying your changes on the documentation site—it's not always ideal.
+You might face the following problems:
 
 - updating the existing demos prevent you to work in isolation on a single instance of the component
 - emptying an existing page to try your changes in isolation lead to a noisy `git diff`
@@ -114,15 +132,15 @@ The new playground will be accessible under: `http://localhost:3000/playground/<
 
 ### How to increase the chance of being accepted?
 
-Continuous Integration (CI) runs a series of checks automatically when a Pull Request is opened. If you're not
-sure if your changes will pass, you can always open a Pull Request and the GitHub UI will display a summary of
-the results. If any of them fail, refer to [Checks and how to fix them](#checks-and-how-to-fix-them).
+Continuous Integration (CI) runs a series of checks automatically when a Pull Request is opened. If you're
+unsure if your changes will pass, you can always open a Pull Request, and the GitHub UI will display a summary
+of the results. If any of them fail, refer to [Checks and how to fix them](#checks-and-how-to-fix-them).
 
 Make sure the following is true:
 
 <!-- #default-branch-switch -->
 
-- The branch is targeted at `master` for ongoing development. We do our best to keep `master` in good shape, with all tests passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
+- The branch is targeted at `master` for ongoing development. All tests are passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
 - If a feature is being added:
   - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
   - If this is a common use case, consider adding an example to the documentation.
@@ -140,13 +158,13 @@ Because we will only merge a Pull Request for which all tests pass. The followin
 - The demos are up-to-date. If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes. See [about writing demos](#3-write-the-content-of-the-demo).
 - The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
-If you have missed a step, don't worry, the Continuous Integration will run a thorough test on your commits and the maintainers of the project can assist.
+If you have missed a step, don't worry, the Continuous Integration will run a thorough test on your commits, and the maintainers of the project can assist.
 
 If your pull request addresses an open issue, make sure to link the PR to that issue.
 Use any [supported GitHub keyword](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) in the PR description to automatically link them.
-This makes it easier to understand where the PR is coming from and also speeds things up as the issue gets closed when the PR is merged.
+This makes it easier to understand where the PR is coming from, and also speeds things up as the issue gets closed when the PR is merged.
 
-#### Checks and how to fix them
+### CI checks and how to fix them
 
 If any of the checks fails click on the _Details_
 link and review the logs of the build to find out why it failed.
@@ -154,57 +172,58 @@ For CircleCI you need to log in first.
 No further permissions are required to view the build logs.
 The following section gives an overview of what each check is responsible for.
 
-##### ci/codesandbox
+#### ci/codesandbox
 
 This task should not fail in isolation. It creates multiple sandboxes on CodeSandbox.com that use the version
 of MUI that was built from this Pull Request. Use it to test more complex scenarios.
 
-##### ci/circleci: checkout
+#### ci/circleci: checkout
 
 A preflight check to see if the dependencies and lockfile are ok. Running `yarn`
 and `yarn deduplicate` should fix most of the issues.
 
-##### ci/circleci: test_static
+#### ci/circleci: test_static
 
 Checks code format, and lints the repository. The log of the failed build should explain
-how to fix the issues.
+how to fix the issues. It also runs commands that generate or change some files
+(like `yarn docs:api` for API documentation). If the CI job fails you might need to run them locally and commit the changes.
 
-##### ci/circleci: test_unit-1
+#### ci/circleci: test_unit-1
 
 Runs the unit tests in a `jsdom` environment. If this fails then `yarn test:unit`
 should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
 If `yarn test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
-##### ci/circleci: test_browser-1
+#### ci/circleci: test_browser-1
 
 Runs the unit tests in multiple browsers (via BrowserStack). The log of the failed
 build should list which browsers failed. If Chrome failed then `yarn test:karma`
 should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
 If `yarn test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
-##### ci/circleci: test_regression-1
+#### ci/circleci: test_regression-1
 
 Renders tests in `test/regressions/tests` and makes screenshots. This step shouldn't
 fail if the others pass. Otherwise, a maintainer will take a look. The screenshots
 are evaluated in another step.
 
-##### ci/circleci: test_types
+#### ci/circleci: test_types
 
 Typechecks the repository. The log of the failed build should list all issues.
 
-##### ci/circleci: test_bundle_size_monitor
+#### ci/circleci: test_bundle_size_monitor
 
 This task is mostly responsible for monitoring the bundle size. It will only report
 the size if the change exceeds a certain threshold. If it fails there's usually
 something wrong with the way the packages or docs were built.
 
-##### argos
+#### argos
 
 Evaluates the screenshots taken in `test/regressions/tests` and fails if it detects
 differences. This doesn't necessarily mean your Pull Request will be rejected as a failure
 might be intended. Clicking on _Details_ will show you the differences.
 
-##### deploy/netlify
+#### deploy/netlify
 
 Renders a preview of the docs with your changes if it succeeds. Otherwise `yarn docs:build`
 or `yarn docs:export` usually fail locally as well.
@@ -284,9 +303,9 @@ In case you missed something, [we have a real example that can be used as a summ
 
 ## How can I use a change that wasn't released yet?
 
-[Codesandbox CI](https://codesandbox.io/docs/ci) is used to publish a working version of the packages for each pull request, "a preview".
+[CodeSandbox CI](https://codesandbox.io/docs/ci) is used to publish a working version of the packages for each pull request, "a preview".
 
-In practice, you can check the Codesandbox CI status of a pull request to get the URL needed to install these preview packages:
+In practice, you can check the CodeSandbox CI status of a pull request to get the URL needed to install these preview packages:
 
 ```diff
 diff --git a//package.json b//package.json
@@ -302,7 +321,7 @@ index 791a7da1f4..a5db13b414 100644
      "@mui/system": "^5.0.0-alpha.16",
 ```
 
-Alternatively, you can open the Netlify preview of the documentation, and open any demo in Codesandbox. The documentation automatically configures the dependencies to use the preview packages.
+Alternatively, you can open the Netlify preview of the documentation, and open any demo in CodeSandbox. The documentation automatically configures the dependencies to use the preview packages.
 
 You can also package and test your changes locally.
 The following example shows how to package `@mui/material`, but you can package any MUI module with this process:
@@ -321,10 +340,10 @@ Copy this file and move it to the project directory you want to test in, then ru
 $test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
 ```
 
-:::info
-If you have already installed this package, your changes will not be reflected when you reinstall it.
-As a quick fix, you can temporarily bump the version number in your `package.json` before running `yarn build`.
-:::
+> **Note**
+>
+> If you have already installed this package, your changes will not be reflected when you reinstall it.
+> As a quick fix, you can temporarily bump the version number in your `package.json` before running `yarn build`.
 
 ## Translations
 

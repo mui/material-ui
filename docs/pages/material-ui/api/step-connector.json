@@ -30,6 +30,8 @@
     "name": "MuiStepConnector"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStepConnector",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/StepConnector/StepConnector.js",
   "inheritance": null,

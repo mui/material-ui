@@ -12,7 +12,7 @@ module.exports = {
       if (line.match('[‘’“”]')) {
         onError({
           lineNumber: lineNumber + 1,
-          details: `For line: ${line}`,
+          detail: `For line: ${line}`,
         });
       }
     });

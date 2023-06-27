@@ -44,8 +44,8 @@ You can also render a divider with content.
 
 {{"demo": "DividerText.js"}}
 
-:::info
-**Accessibility tips**: When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` to the divider to make sure screen readers can announce its content:
+:::warning
+When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` to the divider to make sure screen readers can announce its content:
 
 ```js
 <Divider component="div" role="presentation">

@@ -4,15 +4,15 @@
 
 ## Bundle size matters
 
-The bundle size of MUI is taken very seriously. Size snapshots are taken
+Material UI's maintainers take bundle size very seriously. Size snapshots are taken
 on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot/)).
 Combined with [dangerJS](https://danger.systems/js/) we can inspect
 [detailed bundle size changes](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
 ## When and how to use tree-shaking?
 
-Tree-shaking of MUI works out of the box in modern frameworks.
-MUI exposes its full API on the top-level `@mui` imports.
+Tree-shaking Material UI works out of the box in modern frameworks.
+Material UI exposes its full API on the top-level `@mui` imports.
 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
@@ -59,7 +59,7 @@ import { Button, TextField } from '@mui/material';
 
 This is the option we document in all the demos since it requires no configuration.
 It is encouraged for library authors that are extending the components.
-Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
+Head to [Option 2](#option-two-use-a-babel-plugin) for the approach that yields the best DX and UX.
 
 While importing directly in this manner doesn't use the exports in [the main file of `@mui/material`](https://unpkg.com/@mui/material), this file can serve as a handy reference as to which modules are public.
 
@@ -90,7 +90,7 @@ If you're using `eslint` you can catch problematic imports with the [`no-restric
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
+        "patterns": ["@mui/*/*/*"]
       }
     ]
   }
@@ -147,7 +147,7 @@ Pick one of the following plugins:
   module.exports = { plugins };
   ```
 
-- [babel-plugin-direct-import](https://github.com/umidbekk/babel-plugin-direct-import) with the following configuration:
+- [babel-plugin-direct-import](https://github.com/avocadowastaken/babel-plugin-direct-import) with the following configuration:
 
   `yarn add -D babel-plugin-direct-import`
 

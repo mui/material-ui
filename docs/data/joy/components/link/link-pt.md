@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Link component
+components: Link
 githubLabel: 'component: link'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 ---

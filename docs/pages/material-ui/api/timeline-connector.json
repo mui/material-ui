@@ -12,6 +12,8 @@
   "name": "TimelineConnector",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTimelineConnector" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTimelineConnector",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-lab/src/TimelineConnector/TimelineConnector.js",
   "inheritance": null,

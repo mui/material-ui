@@ -1,8 +1,8 @@
 import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
 import { create, SheetsRegistry } from 'jss';
-import { createMount, strictModeDoubleLoggingSupressed } from 'test/utils';
+import { createMount, strictModeDoubleLoggingSuppressed } from 'test/utils';
 import StylesProvider, { StylesContext } from './StylesProvider';
 import makeStyles from '../makeStyles';
 import createGenerateClassName from '../createGenerateClassName';
@@ -148,7 +148,7 @@ describe('StylesProvider', () => {
         );
       }).toErrorDev([
         'MUI: You cannot use the jss and injectFirst props at the same time',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: You cannot use the jss and injectFirst props at the same time',
       ]);
     });

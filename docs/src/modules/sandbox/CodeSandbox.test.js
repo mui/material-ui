@@ -53,7 +53,7 @@ describe('CodeSandbox', () => {
       },
       'index.js': {
         content:
-          "import * as React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
+          "import * as React from 'react';\nimport * as ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
       },
     });
   });
@@ -101,7 +101,7 @@ describe('CodeSandbox', () => {
       },
       'index.tsx': {
         content:
-          "import * as React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
+          "import * as React from 'react';\nimport * as ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
       },
       'tsconfig.json': {
         content:
@@ -121,5 +121,20 @@ describe('CodeSandbox', () => {
     expect(result.devDependencies).to.deep.equal({
       'react-scripts': 'latest',
     });
+  });
+
+  it('generate the correct index.html result when Tailwind is used', () => {
+    const result = CodeSandbox.createReactApp({
+      title: 'BasicButtons Material Demo',
+      githubLocation:
+        'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
+      codeVariant: 'JS',
+      language: 'en',
+      raw: testCase,
+      codeStyling: 'Tailwind',
+    });
+    expect(result.files['public/index.html'].content).to.contain(
+      '<script src="https://cdn.tailwindcss.com"></script>',
+    );
   });
 });

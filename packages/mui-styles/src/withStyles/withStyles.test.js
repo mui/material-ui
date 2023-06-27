@@ -168,7 +168,10 @@ describe('withStyles', () => {
     });
 
     it('should use theme.props instead of defaultProps', () => {
-      const MuiFoo = ({ foo }) => foo;
+      function MuiFoo({ foo }) {
+        return foo;
+      }
+
       MuiFoo.defaultProps = {
         foo: 'foo',
       };

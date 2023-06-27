@@ -333,7 +333,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
      * }
      *
      * -------------------------------------------------------------------------------------------------
-     * 💡 This util should be used in an array if the styles contain psuedo classes or nested selectors:
+     * 💡 This util should be used in an array if the styles contain pseudo classes or nested selectors:
      *
      * ❌ There is a chance that the upper selectors could be overridden
      * {
@@ -363,7 +363,8 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
      */
     applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
       if ((this as Theme).vars) {
-        // CssVarsProvider is used
+        // If CssVarsProvider is used as a provider,
+        // returns ':where([data-mui-color-scheme="light|dark"]) &'
         const selector = (this as Theme)
           .getColorSchemeSelector('dark')
           .replace(/(\[[^\]]+\])/, ':where($1)');
@@ -570,30 +571,37 @@ export function getThemedComponents(): ThemeOptions {
           underline: 'none',
         },
         styleOverrides: {
-          root: ({ theme }) => [
-            {
-              color: (theme.vars || theme).palette.primary[600],
-              '&:hover': {
-                color: (theme.vars || theme).palette.primary[700],
-              },
-              fontWeight: 700,
-              display: 'inline-flex',
-              alignItems: 'center',
-              '&.MuiTypography-body1 > svg': {
-                marginTop: 2,
-              },
-              '& svg:last-child': {
-                marginLeft: 2,
-              },
+          root: {
+            fontWeight: 700,
+            display: 'inline-flex',
+            alignItems: 'center',
+            '&.MuiTypography-body1 > svg': {
+              marginTop: 2,
             },
-            theme.applyDarkStyles({
-              color: (theme.vars || theme).palette.primary[300],
-              '&:hover': {
-                color: (theme.vars || theme).palette.primary[200],
-              },
-            }),
-          ],
+            '& svg:last-child': {
+              marginLeft: 2,
+            },
+          },
         },
+        variants: [
+          {
+            props: { color: 'primary' },
+            style: ({ theme }) => [
+              {
+                color: (theme.vars || theme).palette.primary[600],
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary[700],
+                },
+              },
+              theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.primary[300],
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary[200],
+                },
+              }),
+            ],
+          },
+        ],
       },
       MuiChip: {
         styleOverrides: {
@@ -601,16 +609,19 @@ export function getThemedComponents(): ThemeOptions {
             fontWeight: 500,
             ...(variant === 'outlined' &&
               color === 'default' && {
-                backgroundColor: 'transparent',
+                backgroundColor: alpha(theme.palette.grey[50], 0.5),
                 color: (theme.vars || theme).palette.grey[900],
                 borderColor: (theme.vars || theme).palette.grey[200],
                 '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.grey[100],
                   color: (theme.vars || theme).palette.grey[900],
                 },
                 ...theme.applyDarkStyles({
+                  backgroundColor: alpha(theme.palette.grey[700], 0.3),
                   color: (theme.vars || theme).palette.grey[300],
                   borderColor: alpha(theme.palette.grey[100], 0.1),
                   '&:hover': {
+                    backgroundColor: (theme.vars || theme).palette.grey[700],
                     color: (theme.vars || theme).palette.grey[300],
                   },
                 }),
@@ -743,7 +754,7 @@ export function getThemedComponents(): ThemeOptions {
               ...(ownerState.variant === 'outlined' && {
                 display: 'block',
                 borderColor: (theme.vars || theme).palette.grey[200],
-                ':is(a, button)': {
+                ':is(a&), :is(button&)': {
                   '&:hover': {
                     boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
                   },
@@ -755,7 +766,7 @@ export function getThemedComponents(): ThemeOptions {
               ...(ownerState.variant === 'outlined' && {
                 borderColor: (theme.vars || theme).palette.primaryDark[500],
                 backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-                ':is(a, button)': {
+                ':is(a&), :is(button&)': {
                   '&:hover': {
                     boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
                   },
@@ -792,12 +803,15 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiToggleButton: {
         styleOverrides: {
-          root: ({ theme }) => [
+          root: ({ theme, ownerState }) => [
             {
               textTransform: 'none',
               fontWeight: 500,
               color: theme.palette.grey[700],
               borderColor: theme.palette.grey[200],
+              ...(ownerState.size === 'small' && {
+                padding: '0.375rem 0.75rem',
+              }),
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[500],
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
@@ -822,7 +836,7 @@ export function getThemedComponents(): ThemeOptions {
       MuiTooltip: {
         styleOverrides: {
           tooltip: {
-            padding: '5px 9px',
+            padding: '6px 12px',
           },
         },
       },

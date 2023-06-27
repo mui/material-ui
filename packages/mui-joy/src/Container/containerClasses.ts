@@ -5,10 +5,10 @@ export type { ContainerClassKey } from '@mui/system';
 export type { ContainerClasses };
 
 export function getContainerUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyContainer', slot);
+  return generateUtilityClass('MuiContainer', slot);
 }
 
-const containerClasses: ContainerClasses = generateUtilityClasses('JoyContainer', [
+const containerClasses: ContainerClasses = generateUtilityClasses('MuiContainer', [
   'root',
   'disableGutters',
   'fixed',

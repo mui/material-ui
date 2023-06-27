@@ -1,6 +1,0 @@
-<TextField
-  label="Label"
-  placeholder="Type in here…"
-  error
-  helperText="You got this wrong. Try again!"
-/>

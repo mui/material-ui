@@ -44,6 +44,8 @@
     "name": "MuiSkeleton"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSkeleton",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Skeleton/Skeleton.js",
   "inheritance": null,

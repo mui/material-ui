@@ -21,6 +21,8 @@
   "name": "Fade",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiFade",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Fade/Fade.js",
   "inheritance": {

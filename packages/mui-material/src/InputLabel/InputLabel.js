@@ -110,7 +110,9 @@ const InputLabelRoot = styled(FormLabel, {
     ...(ownerState.shrink && {
       userSelect: 'none',
       pointerEvents: 'auto',
-      maxWidth: 'calc(133% - 24px)',
+      // Theoretically, we should have (8+5)*2/0.75 = 34px
+      // but it feels a better when it bleeds a bit on the left, so 32px.
+      maxWidth: 'calc(133% - 32px)',
       transform: 'translate(14px, -9px) scale(0.75)',
     }),
   }),
@@ -224,7 +226,10 @@ InputLabel.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'normal'
    */
-  size: PropTypes.oneOf(['normal', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['normal', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

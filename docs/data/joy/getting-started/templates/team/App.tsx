@@ -72,7 +72,7 @@ function ColorSchemeToggle() {
 
 function TeamNav() {
   return (
-    <List size="sm" sx={{ '--List-item-radius': '8px', '--List-gap': '4px' }}>
+    <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
       <ListItem nested>
         <ListSubheader>
           Browse
@@ -470,7 +470,7 @@ export default function TeamExample() {
                   </Box>
                 </Box>
                 <Divider component="div" sx={{ my: 2 }} />
-                <List sx={{ '--List-decorator-size': '48px' }}>
+                <List sx={{ '--ListItemDecorator-size': '48px' }}>
                   <ListItem sx={{ alignItems: 'flex-start' }}>
                     <ListItemDecorator
                       sx={{
@@ -480,14 +480,14 @@ export default function TeamExample() {
                           height: '100%',
                           width: '2px',
                           bgcolor: 'divider',
-                          left: 'calc(var(--List-item-paddingLeft) + 15px)',
+                          left: 'calc(var(--ListItem-paddingLeft) + 15px)',
                           top: '50%',
                         },
                       }}
                     >
                       <Avatar
                         size="sm"
-                        src="https://seeklogo.com/images/D/dribbble-logo-143FF96D65-seeklogo.com.png"
+                        src="https://www.vectorlogo.zone/logos/dribbble/dribbble-icon.svg"
                       />
                     </ListItemDecorator>
                     <ListItemContent>
@@ -500,11 +500,12 @@ export default function TeamExample() {
                     <ListItemDecorator>
                       <Avatar
                         size="sm"
-                        src="https://seeklogo.com/images/P/pinterest-logo-CA98998DCB-seeklogo.com.png"
+                        src="https://www.vectorlogo.zone/logos/pinterest/pinterest-icon.svg"
+                        sx={{ backgroundColor: 'background.body' }}
                       />
                     </ListItemDecorator>
                     <ListItemContent>
-                      <Typography fontSize="sm">Desinger</Typography>
+                      <Typography fontSize="sm">Designer</Typography>
                       <Typography level="body3">Pinterest</Typography>
                     </ListItemContent>
                     <Typography level="body2">2012-2015</Typography>

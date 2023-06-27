@@ -26,13 +26,14 @@ export default function SelectGroupedOptions() {
       <Select
         placeholder="Choose your animal"
         defaultListboxOpen
-        componentsProps={{
+        slotProps={{
           listbox: {
             component: 'div',
             sx: {
               maxHeight: 240,
               overflow: 'auto',
               '--List-padding': '0px',
+              '--ListItem-radius': '0px',
             },
           },
         }}
@@ -41,7 +42,10 @@ export default function SelectGroupedOptions() {
         {Object.entries(group).map(([name, animals], index) => (
           <React.Fragment key={name}>
             {index !== 0 && <ListDivider role="none" />}
-            <List aria-labelledby={`select-group-${name}`} sx={{ '--List-decorator-size': '28px' }}>
+            <List
+              aria-labelledby={`select-group-${name}`}
+              sx={{ '--ListItemDecorator-size': '28px' }}
+            >
               <ListItem id={`select-group-${name}`} sticky>
                 <Typography level="body3" textTransform="uppercase" letterSpacing="md">
                   {name} ({animals.length})
@@ -53,11 +57,7 @@ export default function SelectGroupedOptions() {
                   value={anim}
                   label={
                     <React.Fragment>
-                      <Chip
-                        size="sm"
-                        color={colors[name]}
-                        sx={{ borderRadius: 'xs', mr: 1, ml: -0.5 }}
-                      >
+                      <Chip size="sm" color={colors[name]} sx={{ borderRadius: 'xs', mr: 1 }}>
                         {name}
                       </Chip>{' '}
                       {anim}

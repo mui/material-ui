@@ -12,6 +12,8 @@
   "name": "TimelineSeparator",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTimelineSeparator" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTimelineSeparator",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/TimelineSeparator/TimelineSeparator.js",
   "inheritance": null,

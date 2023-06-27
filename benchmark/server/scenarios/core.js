@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import Benchmark from 'benchmark';
 import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { StylesProvider } from '@mui/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 

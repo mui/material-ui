@@ -4,7 +4,7 @@ title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
 materialDesign: https://m2.material.io/components/dialogs
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
 
 # Dialog
@@ -137,12 +137,14 @@ Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
 
 ## Complementary projects
 
-### Material UI Confirm
+For more advanced use cases you might be able to take advantage of:
 
-![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm)
+### material-ui-confirm
+
+![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm?style=social&label=Star)
 ![npm downloads](https://img.shields.io/npm/dm/material-ui-confirm.svg)
 
-This package provides dialogs for confirming user actions without writing boilerplate code.
+The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui-confirm/) provides dialogs for confirming user actions without writing boilerplate code.
 
 ## Accessibility
 

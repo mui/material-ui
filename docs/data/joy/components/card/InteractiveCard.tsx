@@ -2,6 +2,7 @@ import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Link from '@mui/joy/Link';
 import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
 
@@ -9,10 +10,9 @@ export default function InteractiveCard() {
   return (
     <Card
       variant="outlined"
-      row
+      orientation="horizontal"
       sx={{
         width: 320,
-        gap: 2,
         '&:hover': { boxShadow: 'md', borderColor: 'neutral.outlinedHoverBorder' },
       }}
     >
@@ -24,7 +24,7 @@ export default function InteractiveCard() {
           alt=""
         />
       </AspectRatio>
-      <div>
+      <CardContent>
         <Typography level="h2" fontSize="lg" id="card-description" mb={0.5}>
           Yosemite Park
         </Typography>
@@ -46,7 +46,7 @@ export default function InteractiveCard() {
         >
           Cool weather all day long
         </Chip>
-      </div>
+      </CardContent>
     </Card>
   );
 }

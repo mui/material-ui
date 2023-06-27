@@ -1,15 +1,17 @@
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 import { getAlertUtilityClass } from './alertClasses';
-import { AlertProps, AlertTypeMap } from './AlertProps';
+import { AlertProps, AlertOwnerState, AlertTypeMap } from './AlertProps';
 
-const useUtilityClasses = (ownerState: AlertProps) => {
+const useUtilityClasses = (ownerState: AlertOwnerState) => {
   const { variant, color, size } = ownerState;
 
   const slots = {
@@ -30,70 +32,89 @@ const AlertRoot = styled('div', {
   name: 'JoyAlert',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
-  '--Alert-radius': theme.vars.radius.sm,
-  '--Alert-decorator-childRadius':
-    'max((var(--Alert-radius) - var(--variant-borderWidth)) - var(--Alert-padding), min(var(--Alert-padding) / 2, (var(--Alert-radius) - var(--variant-borderWidth)) / 2))',
-  '--Button-minHeight': 'var(--Alert-decorator-childHeight)',
-  '--IconButton-size': 'var(--Alert-decorator-childHeight)',
-  '--Button-radius': 'var(--Alert-decorator-childRadius)',
-  '--IconButton-radius': 'var(--Alert-decorator-childRadius)',
-  ...(ownerState.size === 'sm' && {
-    '--Alert-padding': '0.5rem',
-    '--Alert-gap': '0.375rem',
-    '--Alert-decorator-childHeight': '1.5rem',
-    '--Icon-fontSize': '1.125rem',
-    fontSize: theme.vars.fontSize.sm,
-  }),
-  ...(ownerState.size === 'md' && {
-    '--Alert-padding': '0.75rem',
-    '--Alert-gap': '0.5rem',
-    '--Alert-decorator-childHeight': '2rem',
-    '--Icon-fontSize': '1.25rem',
-    fontSize: theme.vars.fontSize.sm,
-    fontWeight: theme.vars.fontWeight.md,
-  }),
-  ...(ownerState.size === 'lg' && {
-    '--Alert-padding': '1rem',
-    '--Alert-gap': '0.75rem',
-    '--Alert-decorator-childHeight': '2.375rem',
-    '--Icon-fontSize': '1.5rem',
-    fontSize: theme.vars.fontSize.md,
-    fontWeight: theme.vars.fontWeight.md,
-  }),
-  fontFamily: theme.vars.fontFamily.body,
-  lineHeight: theme.vars.lineHeight.md,
-  backgroundColor: 'transparent',
-  display: 'flex',
-  alignItems: 'center',
-  padding: `var(--Alert-padding)`,
-  borderRadius: 'var(--Alert-radius)',
-  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-}));
+})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => [
+  {
+    '--Alert-radius': theme.vars.radius.sm,
+    '--Alert-decoratorChildRadius':
+      'max((var(--Alert-radius) - var(--variant-borderWidth, 0px)) - var(--Alert-padding), min(var(--Alert-padding) + var(--variant-borderWidth, 0px), var(--Alert-radius) / 2))',
+    '--Button-minHeight': 'var(--Alert-decoratorChildHeight)',
+    '--IconButton-size': 'var(--Alert-decoratorChildHeight)',
+    '--Button-radius': 'var(--Alert-decoratorChildRadius)',
+    '--IconButton-radius': 'var(--Alert-decoratorChildRadius)',
+    ...(ownerState.size === 'sm' && {
+      '--Alert-padding': '0.5rem',
+      '--Alert-gap': '0.375rem',
+      '--Alert-decoratorChildHeight': '1.5rem',
+      '--Icon-fontSize': '1.125rem',
+      fontSize: theme.vars.fontSize.sm,
+    }),
+    ...(ownerState.size === 'md' && {
+      '--Alert-padding': '0.75rem',
+      '--Alert-gap': '0.5rem',
+      '--Alert-decoratorChildHeight': '2rem',
+      '--Icon-fontSize': '1.25rem',
+      fontSize: theme.vars.fontSize.sm,
+      fontWeight: theme.vars.fontWeight.md,
+    }),
+    ...(ownerState.size === 'lg' && {
+      '--Alert-padding': '1rem',
+      '--Alert-gap': '0.75rem',
+      '--Alert-decoratorChildHeight': '2.375rem',
+      '--Icon-fontSize': '1.5rem',
+      fontSize: theme.vars.fontSize.md,
+      fontWeight: theme.vars.fontWeight.md,
+    }),
+    fontFamily: theme.vars.fontFamily.body,
+    lineHeight: theme.vars.lineHeight.md,
+    backgroundColor: 'transparent',
+    display: 'flex',
+    position: 'relative',
+    alignItems: 'center',
+    padding: `var(--Alert-padding)`,
+    borderRadius: 'var(--Alert-radius)',
+    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+  },
+  ownerState.color !== 'context' &&
+    ownerState.invertedColors &&
+    theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
+]);
 
 const AlertStartDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
   display: 'inherit',
   flex: 'none',
   marginInlineEnd: 'var(--Alert-gap)',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  ...(ownerState.color !== 'context' && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  }),
 }));
 
 const AlertEndDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
   display: 'inherit',
   flex: 'none',
   marginInlineStart: 'var(--Alert-gap)',
   marginLeft: 'auto',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  ...(ownerState.color !== 'context' && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Alert](https://mui.com/joy-ui/react-alert/)
+ *
+ * API:
+ *
+ * - [Alert API](https://mui.com/joy-ui/api/alert/)
+ */
 const Alert = React.forwardRef(function Alert(inProps, ref) {
   const props = useThemeProps<typeof inProps & AlertProps>({
     props: inProps,
@@ -103,15 +124,20 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const {
     children,
     className,
-    component = 'div',
-    color = 'primary',
+    color: colorProp = 'primary',
+    invertedColors = false,
     role = 'alert',
     variant = 'soft',
     size = 'md',
     startDecorator,
     endDecorator,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -121,29 +147,52 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  return (
-    <AlertRoot
-      as={component}
-      role={role}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AlertRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      role,
+    },
+  });
+
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
+    className: classes.startDecorator,
+    elementType: AlertStartDecorator,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.endDecorator,
+    elementType: AlertEndDecorator,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const result = (
+    <React.Fragment>
       {startDecorator && (
-        <AlertStartDecorator className={classes.startDecorator} ownerState={ownerState}>
-          {startDecorator}
-        </AlertStartDecorator>
+        <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
 
       {children}
-      {endDecorator && (
-        <AlertEndDecorator className={classes.endDecorator} ownerState={ownerState}>
-          {endDecorator}
-        </AlertEndDecorator>
+      {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+    </React.Fragment>
+  );
+
+  return (
+    <SlotRoot {...rootProps}>
+      {invertedColors ? (
+        <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>
+      ) : (
+        result
       )}
-    </AlertRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<AlertTypeMap>;
 
@@ -178,6 +227,11 @@ Alert.propTypes /* remove-proptypes */ = {
    */
   endDecorator: PropTypes.node,
   /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
+  /**
    * The ARIA role attribute of the element.
    * @default 'alert'
    */
@@ -191,6 +245,24 @@ Alert.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    endDecorator: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+  }),
+  /**
    * Element placed before the children.
    */
   startDecorator: PropTypes.node,
@@ -203,7 +275,7 @@ Alert.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

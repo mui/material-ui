@@ -134,7 +134,7 @@ Finally, you need to provide an implementation of [matchMedia](https://developer
 For instance on the server-side:
 
 ```js
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
 import { ThemeProvider } from '@material-ui/core/styles';

@@ -63,6 +63,8 @@
   "name": "Grid",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiGrid",
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-system/src/Unstable_Grid/Grid.tsx",
   "inheritance": null,

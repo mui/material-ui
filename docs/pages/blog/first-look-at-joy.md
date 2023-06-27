@@ -7,7 +7,7 @@ tags: ['News', 'MUI Core']
 card: true
 ---
 
-<a href="/joy-ui/getting-started/overview/"><img src="/static/blog/first-look-at-joy/card.png" style="width: 692px; aspect-ratio: 2/1; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." /></a>
+<a href="/joy-ui/getting-started/"><img src="/static/blog/first-look-at-joy/card.png" style="width: 692px; aspect-ratio: 2/1; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." /></a>
 
 If you're a close follower of everything MUI, you might be aware that we've been working on a new design system.
 If not, then this post will give you a first look at **Joy UI**－MUI's new starting point for your design system!
@@ -67,7 +67,7 @@ We meticulously constructed the CSS variables for each component so you can seam
 One good example is the input component, where the border radius of the input's children automatically adapts to that of the input.
 These small details mean the components adapt to different scenarios, which saves considerable time when customizing the components by avoiding manual adjustments.
 
-<img src="/static/blog/first-look-at-joy/component-integration.png" style="width: 692px; margin-top: 16px; margin-bottom: 8px;" alt="Screenshot of two text inputs, one being native from Joy UI and another with border-radius customized" />
+<img src="/static/blog/first-look-at-joy/component-integration.png" style="width: 692px; margin-top: 16px;" alt="Screenshot of two text inputs, one being native from Joy UI and another with border-radius customized" />
 
 <p class="blog-description">When customizing the input's border radius, the icon button inside of it adapts automatically.</p>
 

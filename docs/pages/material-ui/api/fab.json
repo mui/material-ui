@@ -10,8 +10,8 @@
       "default": "'default'"
     },
     "component": { "type": { "name": "elementType" } },
-    "disabled": { "type": { "name": "bool" } },
-    "disableFocusRipple": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" } },
     "href": { "type": { "name": "string" } },
     "size": {
@@ -53,6 +53,8 @@
     "name": "MuiFab"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFab",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/Fab/Fab.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

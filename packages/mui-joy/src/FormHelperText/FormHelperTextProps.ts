@@ -1,9 +1,24 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
-import { FormHelperTextClasses } from './formHelperTextClasses';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type FormHelperTextSlot = 'root';
+
+export interface FormHelperTextSlots {
+  /**
+   * The component that renders the root.
+   * @default 'p'
+   */
+  root?: React.ElementType;
+}
+
+export type FormHelperTextSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  FormHelperTextSlots,
+  {
+    root: SlotProps<'p', {}, FormHelperTextOwnerState>;
+  }
+>;
 
 export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'> {
   props: P & {
@@ -12,14 +27,10 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
      */
     children?: React.ReactNode;
     /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<FormHelperTextClasses>;
-    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  };
+  } & FormHelperTextSlotsAndSlotProps;
   defaultComponent: D;
 }
 

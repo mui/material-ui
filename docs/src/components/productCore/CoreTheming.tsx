@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createTheme, useTheme } from '@mui/material/styles';
+import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -14,9 +14,6 @@ import Frame from 'docs/src/components/action/Frame';
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-
-const lightTheme = createTheme();
-const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
 const code = `
 <Card
@@ -86,8 +83,6 @@ const code = `
 
 export default function CoreTheming() {
   const [customized, setCustomized] = React.useState(true);
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
   return (
     <Section>
       <Grid container spacing={2}>
@@ -133,9 +128,13 @@ export default function CoreTheming() {
                 minHeight: 188,
               }}
             >
-              <PlayerCard
-                {...(!customized && { theme: mode === 'dark' ? darkTheme : lightTheme })}
-              />
+              {customized ? (
+                <PlayerCard />
+              ) : (
+                <CssVarsProvider>
+                  <PlayerCard disableTheming />
+                </CssVarsProvider>
+              )}
             </Frame.Demo>
             <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>
               <HighlightedCode

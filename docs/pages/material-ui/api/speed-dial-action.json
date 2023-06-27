@@ -13,7 +13,7 @@
       }
     },
     "TooltipClasses": { "type": { "name": "object" } },
-    "tooltipOpen": { "type": { "name": "bool" } },
+    "tooltipOpen": { "type": { "name": "bool" }, "default": "false" },
     "tooltipPlacement": {
       "type": {
         "name": "enum",
@@ -38,6 +38,8 @@
     "name": "MuiSpeedDialAction"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSpeedDialAction",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/SpeedDialAction/SpeedDialAction.js",
   "inheritance": { "component": "Tooltip", "pathname": "/material-ui/api/tooltip/" },

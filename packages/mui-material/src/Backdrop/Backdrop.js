@@ -45,17 +45,16 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
   const {
     children,
+    className,
     component = 'div',
     components = {},
     componentsProps = {},
-    className,
     invisible = false,
     open,
     slotProps = {},
     slots = {},
-    transitionDuration,
-    // eslint-disable-next-line react/prop-types
     TransitionComponent = Fade,
+    transitionDuration,
     ...other
   } = props;
 
@@ -170,6 +169,12 @@ Backdrop.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The component used for the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Fade
+   */
+  TransitionComponent: PropTypes.elementType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

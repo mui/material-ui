@@ -11,7 +11,8 @@ If this is your first time encountering CSS variables, you should check out [the
 
 ## Introduction
 
-CSS theme variable support is a new feature in Material UI added in [`v5.6.0`](https://github.com/mui/material-ui/releases/tag/v5.6.0) (but not enabled by default). It tells Material UI components to use the generated CSS theme variables instead of raw values.
+CSS theme variable support is a new feature in Material UI added in [`v5.6.0`](https://github.com/mui/material-ui/releases/tag/v5.6.0) (but not enabled by default). It tells Material UI components to use the generated CSS theme variables instead of raw values. This provides significant improvements in developer experience related to theming and customization.
+With these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
 
 ## Advantages
 
@@ -27,9 +28,9 @@ CSS theme variable support is a new feature in Material UI added in [`v5.6.0`](h
 For server-side applications, there are some trade-offs to consider:
 
 |                                                      | Compare to the default method | Reason                                                                                                       |
-| ---------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| HTML size                                            | bigger                        | CSS variables are generated for both light and dark mode at build time.                                      |
-| [First Contentful Paint (FCP)](https://web.dev/fcp/) | larger                        | Since the HTML size is generally bigger, the time to download the HTML before showing the content is longer. |
+| :--------------------------------------------------- | :---------------------------- | :----------------------------------------------------------------------------------------------------------- |
+| HTML size                                            | Bigger                        | CSS variables are generated for both light and dark mode at build time.                                      |
+| [First Contentful Paint (FCP)](https://web.dev/fcp/) | Larger                        | Since the HTML size is generally bigger, the time to download the HTML before showing the content is longer. |
 | [Time to Interactive (TTI)](https://web.dev/tti/)    | Smaller (for dark mode)       | Stylesheets are not regenerated between light and dark mode, so it takes less time for JavaScript to run.    |
 
 :::warning
@@ -80,7 +81,7 @@ createTheme({
     MuiButton: {
       styleOverrides: {
         root: ({ theme }) => ({
-          // use javascript conditional expression
+          // use JavaScript conditional expression
           color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary.main,
         }),
       },

@@ -1,9 +1,9 @@
 ---
-product: base
+product: base-ui
 title: Unstyled React Menu components and hooks
 components: MenuUnstyled, MenuItemUnstyled
 githubLabel: 'component: menu'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 ---
 
 # Unstyled menu
@@ -22,7 +22,7 @@ Use `MenuItemUnstyled` to add items to the menu. These are rendered as `<li>` el
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import MenuUnstyled from '@mui/base/MenuUnstyled';
@@ -42,7 +42,7 @@ export default function MyApp() {
 
 `MenuUnstyled` serves as a replacement for the native HTML `<ul>`, and `MenuItemUnstyled` corresponds to the `<li>` tag.
 
-The following demo shows how to create and style a menu component. Click **Dashboard** to view the menu—notice that it uses the built-in [`PopperUnstyled`](/base/react-popper/) component to visually break out of its parent container:
+The following demo shows how to create and style a menu component. Click **Dashboard** to view the menu—notice that it uses the built-in [`PopperUnstyled`](/base-ui/react-popper/) component to visually break out of its parent container:
 
 {{"demo": "MenuSimple.js"}}
 
@@ -61,7 +61,7 @@ The `MenuUnstyled` component is composed of a root slot that renders a `PopperUn
 ### Slot props
 
 :::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+The following props are available on all non-utility Base components. See [Usage](/base-ui/getting-started/usage/) for full details.
 :::
 
 Use the `component` prop to override the root slot with a custom element:

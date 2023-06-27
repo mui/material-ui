@@ -18,15 +18,15 @@ import NestedListContext from './NestedListContext';
 export const scopedVariables = {
   '--NestedList-marginRight': '0px',
   '--NestedList-marginLeft': '0px',
-  '--NestedList-item-paddingLeft': 'var(--List-item-paddingX)',
+  '--NestedListItem-paddingLeft': 'var(--ListItem-paddingX)',
   // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-  '--List-itemButton-marginBlock': '0px',
-  '--List-itemButton-marginInline': '0px',
-  '--List-item-marginBlock': '0px',
-  '--List-item-marginInline': '0px',
+  '--ListItemButton-marginBlock': '0px',
+  '--ListItemButton-marginInline': '0px',
+  '--ListItem-marginBlock': '0px',
+  '--ListItem-marginInline': '0px',
 };
 
-export interface ListProviderProps {
+interface ListProviderProps {
   /**
    * If `undefined`, there is no effect.
    * If `true` or `false`, affects the nested List styles.
@@ -46,13 +46,11 @@ export interface ListProviderProps {
   wrap?: boolean;
 }
 
-// internal component
-function ListProvider({
-  children,
-  nested,
-  row = false,
-  wrap = false,
-}: React.PropsWithChildren<ListProviderProps>) {
+/**
+ * @ignore - internal component.
+ */
+function ListProvider(props: React.PropsWithChildren<ListProviderProps>) {
+  const { children, nested, row = false, wrap = false } = props;
   const baseProviders = (
     <RowListContext.Provider value={row}>
       <WrapListContext.Provider value={wrap}>

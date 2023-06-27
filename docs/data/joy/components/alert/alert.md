@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Alert component
+components: Alert
 githubLabel: 'component: alert'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 ---
@@ -9,18 +10,18 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 <p class="description">Alerts display brief messages for the user without interrupting their use of the app.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The Alert component can be used to provide important and potentially time-sensitive information in a way that does not interfere with the user's tasks. (Source: [ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/alert/).)
 
-:::warning
+{{"demo": "AlertUsage.js", "hideToolbar": true, "bg": "gradient"}}
+
+:::info
 Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.
 Use the Joy UI [Modal](https://mui.com/joy-ui/react-modal/) if you need the behavior of a dialog.
 :::
-
-{{"demo": "AlertUsage.js", "hideToolbar": true}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 
@@ -40,7 +41,7 @@ The Alert component supports Joy UI's four [global variants](/joy-ui/main-featur
 
 {{"demo": "AlertVariants.js"}}
 
-:::success
+:::info
 To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 Note that you lose the global variants when you add custom variants.
 :::
@@ -50,6 +51,10 @@ Note that you lose the global variants when you add custom variants.
 The Alert component comes in three sizes: `sm`, `md` (default), and `lg`:
 
 {{"demo": "AlertSizes.js"}}
+
+:::info
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
 
 ### Colors
 
@@ -63,6 +68,12 @@ The demo below shows how the values for the `color` prop are affected by the glo
 Use the `startDecorator` and `endDecorator` props to append actions and icons to either side of the Alert:
 
 {{"demo": "AlertWithDecorators.js"}}
+
+### Inverted colors
+
+The Alert component supports Joy UI's [color inversion](/joy-ui/main-features/color-inversion/) by using `invertedColors` prop.
+
+{{"demo": "AlertInvertedColors.js"}}
 
 ## Common examples
 
@@ -90,7 +101,7 @@ Here are some factors to consider to ensure that your Alert is accessible:
 The Alert component is composed of a single root `<div>` element with its `role` set to `alert`:
 
 ```html
-<div role="alert" class="JoyAlert-root">
+<div role="alert" class="MuiAlert-root">
   <!-- Alert contents -->
 </div>
 ```

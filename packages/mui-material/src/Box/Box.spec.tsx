@@ -1,5 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import { Box as SystemBox, createBox } from '@mui/system';
+import { expectType } from '@mui/types';
+import { createTheme } from '@mui/material/styles';
 
 function ThemeValuesCanBeSpread() {
   <Box
@@ -21,3 +24,11 @@ function ThemeValuesCanBeSpread() {
     })}
   />;
 }
+
+// Compatibility with Material UI's Box
+const defaultTheme = createTheme({});
+const CustomBox = createBox({ defaultTheme });
+expectType<typeof Box, typeof CustomBox>(CustomBox);
+
+// @ts-expect-error System's Box has different type than Material UI's Box
+expectType<typeof SystemBox, typeof CustomBox>(CustomBox);

@@ -11,6 +11,8 @@ export interface SliderClasses {
   disabled: string;
   /** State class applied to the root if a thumb is being dragged. */
   dragging: string;
+  /** State class applied to the thumb element if it has keyboard focused. */
+  focusVisible: string;
   /** Class name applied to the rail element. */
   rail: string;
   /** Class name applied to the track element. */
@@ -31,36 +33,49 @@ export interface SliderClasses {
   markActive: string;
   /** Class name applied to the mark label element. */
   markLabel: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
+  /** Class name applied to the root element if `color="info"`. */
   colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `size="sm"`. */
+  /** Class name applied to the root element when color inversion is triggered. */
+  colorContext: string;
+  /** Class name applied to the root element if `variant="plain"`. */
+  variantPlain: string;
+  /** Class name applied to the root element if `variant="outlined"`. */
+  variantOutlined: string;
+  /** Class name applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Class name applied to the root element if `variant="solid"`. */
+  variantSolid: string;
+  /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
-  /** Styles applied to the root element if `size="md"`. */
+  /** Class name applied to the root element if `size="md"`. */
   sizeMd: string;
-  /** Styles applied to the root element if `size="lg"`. */
+  /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Class name applied to the input element. */
+  input: string;
 }
 
 export type SliderClassKey = keyof SliderClasses;
 
 export function getSliderUtilityClass(slot: string): string {
-  return generateUtilityClass('JoySlider', slot);
+  return generateUtilityClass('MuiSlider', slot);
 }
 
-const sliderClasses: SliderClasses = generateUtilityClasses('JoySlider', [
+const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'root',
   'disabled',
   'dragging',
+  'focusVisible',
   'marked',
   'vertical',
   'trackInverted',
@@ -81,10 +96,16 @@ const sliderClasses: SliderClasses = generateUtilityClasses('JoySlider', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
+  'variantPlain',
+  'variantOutlined',
+  'variantSoft',
+  'variantSolid',
   'disabled',
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'input',
 ]);
 
 export default sliderClasses;

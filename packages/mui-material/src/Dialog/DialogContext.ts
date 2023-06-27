@@ -1,10 +1,10 @@
-import { createContext } from 'react';
+import * as React from 'react';
 
 interface DialogContextValue {
   titleId?: string;
 }
 
-const DialogContext = createContext<DialogContextValue>({});
+const DialogContext = React.createContext<DialogContextValue>({});
 
 if (process.env.NODE_ENV !== 'production') {
   DialogContext.displayName = 'DialogContext';

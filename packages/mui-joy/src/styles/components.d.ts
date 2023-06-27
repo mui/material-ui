@@ -35,7 +35,17 @@ import {
   BreadcrumbsSlot,
 } from '../Breadcrumbs/BreadcrumbsProps';
 import { ButtonProps, ButtonOwnerState, ButtonSlot } from '../Button/ButtonProps';
+import {
+  ButtonGroupProps,
+  ButtonGroupOwnerState,
+  ButtonGroupSlot,
+} from '../ButtonGroup/ButtonGroupProps';
 import { CardProps, CardOwnerState, CardSlot } from '../Card/CardProps';
+import {
+  CardActionsProps,
+  CardActionsOwnerState,
+  CardActionsSlot,
+} from '../CardActions/CardActionsProps';
 import {
   CardContentProps,
   CardContentOwnerState,
@@ -131,6 +141,11 @@ import {
   ModalDialogOwnerState,
   ModalDialogSlot,
 } from '../ModalDialog/ModalDialogProps';
+import {
+  ModalOverflowProps,
+  ModalOverflowOwnerState,
+  ModalOverflowSlot,
+} from '../ModalOverflow/ModalOverflowProps';
 import { RadioProps, RadioOwnerState, RadioSlot } from '../Radio/RadioProps';
 import {
   RadioGroupProps,
@@ -148,7 +163,7 @@ import { TabProps, TabOwnerState, TabSlot } from '../Tab/TabProps';
 import { TabListProps, TabListOwnerState, TabListSlot } from '../TabList/TabListProps';
 import { TabPanelProps, TabPanelOwnerState, TabPanelSlot } from '../TabPanel/TabPanelProps';
 import { TabsProps, TabsOwnerState, TabsSlot } from '../Tabs/TabsProps';
-import { TextFieldProps, TextFieldOwnerState, TextFieldSlot } from '../TextField/TextFieldProps';
+import { TableProps, TableOwnerState, TableSlot } from '../Table/TableProps';
 import { TooltipProps, TooltipOwnerState, TooltipSlot } from '../Tooltip/TooltipProps';
 import {
   TypographyProps,
@@ -229,6 +244,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<ButtonProps>;
     styleOverrides?: OverridesStyleRules<ButtonSlot, ButtonOwnerState, Theme>;
   };
+  JoyButtonGroup?: {
+    defaultProps?: Partial<ButtonGroupProps>;
+    styleOverrides?: OverridesStyleRules<ButtonGroupSlot, ButtonGroupOwnerState, Theme>;
+  };
   JoyBreadcrumbs?: {
     defaultProps?: Partial<BreadcrumbsProps>;
     styleOverrides?: OverridesStyleRules<BreadcrumbsSlot, BreadcrumbsOwnerState, Theme>;
@@ -240,6 +259,10 @@ export interface Components<Theme = unknown> {
   JoyCard?: {
     defaultProps?: Partial<CardProps>;
     styleOverrides?: OverridesStyleRules<CardSlot, CardOwnerState, Theme>;
+  };
+  JoyCardActions?: {
+    defaultProps?: Partial<CardActionsProps>;
+    styleOverrides?: OverridesStyleRules<CardActionsSlot, CardActionsOwnerState, Theme>;
   };
   JoyCardContent?: {
     defaultProps?: Partial<CardContentProps>;
@@ -382,6 +405,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<TabsProps>;
     styleOverrides?: OverridesStyleRules<TabsSlot, TabsOwnerState, Theme>;
   };
+  JoyTable?: {
+    defaultProps?: Partial<TableProps>;
+    styleOverrides?: OverridesStyleRules<TableSlot, TableOwnerState, Theme>;
+  };
   JoyTabList?: {
     defaultProps?: Partial<TabListProps>;
     styleOverrides?: OverridesStyleRules<TabListSlot, TabListOwnerState, Theme>;
@@ -397,10 +424,6 @@ export interface Components<Theme = unknown> {
   JoyTextarea?: {
     defaultProps?: Partial<TextareaProps>;
     styleOverrides?: OverridesStyleRules<TextareaSlot, TextareaOwnerState, Theme>;
-  };
-  JoyTextField?: {
-    defaultProps?: Partial<TextFieldProps>;
-    styleOverrides?: OverridesStyleRules<TextFieldSlot, TextFieldOwnerState, Theme>;
   };
   JoyTooltip?: {
     defaultProps?: Partial<TooltipProps>;
@@ -433,5 +456,9 @@ export interface Components<Theme = unknown> {
   JoyModalDialog?: {
     defaultProps?: Partial<ModalDialogProps>;
     styleOverrides?: OverridesStyleRules<ModalDialogSlot, ModalDialogOwnerState, Theme>;
+  };
+  JoyModalOverflow?: {
+    defaultProps?: Partial<ModalOverflowProps>;
+    styleOverrides?: OverridesStyleRules<ModalOverflowSlot, ModalOverflowOwnerState, Theme>;
   };
 }

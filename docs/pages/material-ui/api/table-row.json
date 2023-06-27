@@ -3,8 +3,8 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "hover": { "type": { "name": "bool" } },
-    "selected": { "type": { "name": "bool" } },
+    "hover": { "type": { "name": "bool" }, "default": "false" },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -19,6 +19,8 @@
     "name": "MuiTableRow"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTableRow",
   "forwardsRefTo": "HTMLTableRowElement",
   "filename": "/packages/mui-material/src/TableRow/TableRow.js",
   "inheritance": null,

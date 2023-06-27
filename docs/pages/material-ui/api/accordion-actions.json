@@ -2,7 +2,7 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "disableSpacing": { "type": { "name": "bool" } },
+    "disableSpacing": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -13,6 +13,8 @@
   "name": "AccordionActions",
   "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiAccordionActions" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAccordionActions",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AccordionActions/AccordionActions.js",
   "inheritance": null,

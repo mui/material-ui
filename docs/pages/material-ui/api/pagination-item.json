@@ -16,9 +16,9 @@
       },
       "default": "{}"
     },
-    "disabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "page": { "type": { "name": "node" } },
-    "selected": { "type": { "name": "bool" } },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
       "default": "'circular'"
@@ -88,6 +88,8 @@
     "name": "MuiPaginationItem"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiPaginationItem",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/PaginationItem/PaginationItem.js",
   "inheritance": null,

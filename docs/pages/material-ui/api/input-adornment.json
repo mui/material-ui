@@ -7,8 +7,8 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "disablePointerEvents": { "type": { "name": "bool" } },
-    "disableTypography": { "type": { "name": "bool" } },
+    "disablePointerEvents": { "type": { "name": "bool" }, "default": "false" },
+    "disableTypography": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -39,6 +39,8 @@
     "name": "MuiInputAdornment"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiInputAdornment",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/InputAdornment/InputAdornment.js",
   "inheritance": null,

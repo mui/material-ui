@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Avatar component
+components: Avatar, AvatarGroup, SvgIcon
 githubLabel: 'component: avatar'
 ---
 
@@ -8,13 +9,13 @@ githubLabel: 'component: avatar'
 
 <p class="description">An avatar is a graphical representation of a user's identity.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The Avatar component can be used to display graphical information about a user in places such as menus, tables, and chats.
 
-{{"demo": "AvatarUsage.js", "hideToolbar": true}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "AvatarUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Basics
 
@@ -59,7 +60,7 @@ The Avatar component supports Joy UI's four [global variants](/joy-ui/main-featu
 
 {{"demo": "AvatarVariants.js"}}
 
-:::success
+:::info
 To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 Note that you lose the global variants when you add custom variants.
 :::
@@ -70,7 +71,7 @@ The Avatar component comes in three sizes: `sm`, `md` (default), and `lg`:
 
 {{"demo": "AvatarSizes.js"}}
 
-:::success
+:::info
 To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
@@ -114,7 +115,7 @@ You can reverse the overlapping order by reversing the order of the Avatars and 
 
 To render the Avatar Group vertically, add the CSS `writing-mode: vertical-rl` property and rotate the interior element (if one is present) by -90 degrees.
 
-:::info
+:::success
 This approach is preferable because it preserves the overlapping offset between Avatars; the alternative—`flexDirection: column`—does not.
 :::
 
@@ -142,7 +143,7 @@ You can use these to customize the component with both the `sx` prop and the the
 The Avatar component is composed of a root `<div>` that may wrap around an `<svg>`, an `<img>`, or a string:
 
 ```html
-<div class="JoyAvatar-root">
+<div class="MuiAvatar-root">
   <!-- Avatar contents -->
 </div>
 ```

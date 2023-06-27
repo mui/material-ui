@@ -1,0 +1,52 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
+      }
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
+    "value": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "default": "0"
+    }
+  },
+  "name": "TabPanel",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiTabPanel-root"
+    }
+  ],
+  "classes": {
+    "classes": ["hidden", "horizontal", "sizeLg", "sizeMd", "sizeSm", "vertical"],
+    "globalClasses": {}
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTabPanel",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/TabPanel/TabPanel.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}

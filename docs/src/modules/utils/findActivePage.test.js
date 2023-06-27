@@ -10,7 +10,7 @@ describe('findActivePage', () => {
         children: [{ pathname: '/getting-started/installation' }],
       },
       {
-        pathname: '/components',
+        pathname: '/react-',
         icon: 'ToggleOnIcon',
         children: [
           {
@@ -35,8 +35,9 @@ describe('findActivePage', () => {
         ],
       },
     ];
+
     it('return first level page', () => {
-      expect(findActivePage(pages, '/getting-started')).to.deep.equal({
+      expect(findActivePage(pages, '/getting-started').activePage).to.deep.equal({
         pathname: '/getting-started',
         icon: 'DescriptionIcon',
         children: [{ pathname: '/getting-started/installation' }],
@@ -44,13 +45,13 @@ describe('findActivePage', () => {
     });
 
     it('return nested page', () => {
-      expect(findActivePage(pages, '/getting-started/installation')).to.deep.equal({
+      expect(findActivePage(pages, '/getting-started/installation').activePage).to.deep.equal({
         pathname: '/getting-started/installation',
       });
     });
 
     it('return deep nested page', () => {
-      expect(findActivePage(pages, '/components/radio-buttons')).to.deep.equal({
+      expect(findActivePage(pages, '/components/radio-buttons').activePage).to.deep.equal({
         pathname: '/components/radio-buttons',
         title: 'Radio button',
       });
@@ -60,7 +61,7 @@ describe('findActivePage', () => {
   describe('new structure', () => {
     const pages = [
       {
-        pathname: '/material-ui/components',
+        pathname: '/material-ui/react-',
         icon: 'ToggleOnIcon',
         children: [
           {
@@ -87,7 +88,7 @@ describe('findActivePage', () => {
     ];
 
     it('return deep nested page', () => {
-      expect(findActivePage(pages, '/material-ui/react-radio-buttons')).to.deep.equal({
+      expect(findActivePage(pages, '/material-ui/react-radio-buttons').activePage).to.deep.equal({
         pathname: '/material-ui/react-radio-buttons',
         title: 'Radio button',
       });

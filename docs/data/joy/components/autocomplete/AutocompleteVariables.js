@@ -29,7 +29,7 @@ export default function ButtonVariables() {
               defaultValue: '12px',
             },
             {
-              var: '--Input-decorator-childHeight',
+              var: '--Input-decoratorChildHeight',
               defaultValue: '32px',
             },
           ],
@@ -38,7 +38,7 @@ export default function ButtonVariables() {
           'Autocomplete',
           [
             {
-              var: '--Autocomplete-wrapper-gap',
+              var: '--Autocomplete-wrapperGap',
               defaultValue: '3px',
             },
           ],

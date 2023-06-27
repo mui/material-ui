@@ -22,16 +22,16 @@ export type UseSlotPropsParameters<
   /**
    * The type of the component used in the slot.
    */
-  elementType: ElementType;
+  elementType: ElementType | undefined;
   /**
-   * The `slotProps.*` of the unstyled component.
+   * The `slotProps.*` of the Base UI component.
    */
   externalSlotProps:
     | ExternalSlotProps
     | ((ownerState: OwnerState) => ExternalSlotProps)
     | undefined;
   /**
-   * The ownerState of the unstyled component.
+   * The ownerState of the Base UI component.
    */
   ownerState: OwnerState;
 };
@@ -50,6 +50,7 @@ export type UseSlotPropsResult<
 >;
 
 /**
+ * @ignore - do not document.
  * Builds the props to be passed into the slot of an unstyled component.
  * It merges the internal props of the component with the ones supplied by the user, allowing to customize the behavior.
  * If the slot component is not a host component, it also merges in the `ownerState`.

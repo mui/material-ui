@@ -1,7 +1,7 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface MenuItemClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
   /** State class applied to the `component`'s `focusVisibleClassName` prop. */
   focusVisible: string;
@@ -9,18 +9,20 @@ export interface MenuItemClasses {
   disabled: string;
   /** State class applied to the root element if `selected={true}`. */
   selected: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
+  /** Class name applied to the root element if `color="info"`. */
   colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Class name applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** State class applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** State class applied to the root element if `variant="soft"`. */
@@ -34,10 +36,10 @@ export interface MenuItemClasses {
 export type MenuItemClassKey = keyof MenuItemClasses;
 
 export function getMenuItemUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyMenuItem', slot);
+  return generateUtilityClass('MuiMenuItem', slot);
 }
 
-const menuItemClasses: MenuItemClasses = generateUtilityClasses('JoyMenuItem', [
+const menuItemClasses: MenuItemClasses = generateUtilityClasses('MuiMenuItem', [
   'root',
   'focusVisible',
   'disabled',
@@ -48,6 +50,7 @@ const menuItemClasses: MenuItemClasses = generateUtilityClasses('JoyMenuItem', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantSoft',
   'variantOutlined',

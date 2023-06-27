@@ -1,13 +1,13 @@
 ---
 product: material-ui
-title: Tree view React component
+title: Tree View React component
 components: TreeView, TreeItem
 githubLabel: 'component: tree view'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/treeview/
 packageName: '@mui/lab'
 ---
 
-# Tree view
+# Tree View
 
 <p class="description">A tree view widget presents a hierarchical list.</p>
 

@@ -1,12 +1,14 @@
-import pagesApi from './pagesApi';
-import { MuiPage } from '../../src/MuiPage';
+import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
+import pagesApi from 'docs/data/material/pagesApi';
+import { MuiPage } from 'docs/src/MuiPage';
 
 const pages: MuiPage[] = [
   {
-    pathname: '/material-ui/getting-started',
-    icon: 'DescriptionIcon',
+    pathname: '/material-ui/getting-started-group',
+    title: 'Getting started',
+    icon: standardNavIcons.DescriptionIcon,
     children: [
-      { pathname: '/material-ui/getting-started/overview' },
+      { pathname: '/material-ui/getting-started', title: 'Overview' },
       { pathname: '/material-ui/getting-started/installation' },
       { pathname: '/material-ui/getting-started/usage' },
       { pathname: '/material-ui/getting-started/example-projects' },
@@ -21,14 +23,8 @@ const pages: MuiPage[] = [
   },
   {
     pathname: '/material-ui/react-',
-    scopePathnames: [
-      '/material-ui/icons',
-      '/material-ui/material-icons',
-      '/material-ui/about-the-lab',
-      '/material-ui/transitions',
-    ],
     title: 'Components',
-    icon: 'ToggleOnIcon',
+    icon: standardNavIcons.ToggleOnIcon,
     children: [
       {
         pathname: '/material-ui/components/inputs',
@@ -149,7 +145,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
-          { pathname: '/material-ui/react-tree-view' },
+          { pathname: '/material-ui/react-tree-view', title: 'Tree View' },
         ],
       },
     ],
@@ -157,15 +153,15 @@ const pages: MuiPage[] = [
   {
     title: 'Component API',
     pathname: '/material-ui/api',
-    icon: 'CodeIcon',
+    icon: standardNavIcons.CodeIcon,
     children: pagesApi,
   },
   {
     pathname: '/material-ui/customization',
-    icon: 'CreateIcon',
+    icon: standardNavIcons.CreateIcon,
     children: [
       {
-        pathname: '/material-ui/customization',
+        pathname: '/material-ui/customization/theme',
         subheader: '/material-ui/customization/theme',
         children: [
           { pathname: '/material-ui/customization/theming' },
@@ -178,7 +174,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/customization/z-index', title: 'z-index' },
           { pathname: '/material-ui/customization/transitions' },
           { pathname: '/material-ui/customization/theme-components', title: 'Components' },
-          { pathname: '/material-ui/customization/default-theme' },
+          { pathname: '/material-ui/customization/default-theme', title: 'Default theme viewer' },
         ],
       },
       { pathname: '/material-ui/customization/how-to-customize' },
@@ -187,8 +183,8 @@ const pages: MuiPage[] = [
   },
   {
     pathname: '/material-ui/guides',
-    title: 'How To Guides',
-    icon: 'VisibilityIcon',
+    title: 'How-to guides',
+    icon: standardNavIcons.VisibilityIcon,
     children: [
       { pathname: '/material-ui/guides/api', title: 'API design approach' },
       { pathname: '/material-ui/guides/understand-mui-packages', title: 'Understand MUI packages' },
@@ -208,14 +204,13 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/localization' },
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
-      { pathname: '/material-ui/guides/flow' },
       { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
     ],
   },
   {
     pathname: '/material-ui/experimental-api',
     title: 'Experimental APIs',
-    icon: 'ExperimentIcon',
+    icon: standardNavIcons.ExperimentIcon,
     children: [
       {
         pathname: '/material-ui/experimental-api/classname-generator',
@@ -230,7 +225,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/experimental-api/css-theme-variables/customization' },
           {
             pathname: '/material-ui/experimental-api/css-theme-variables/migration',
-            title: 'Migrating to CSS theme variables',
+            title: 'Migrating to CSS variables',
           },
         ],
       },
@@ -238,7 +233,7 @@ const pages: MuiPage[] = [
   },
   {
     pathname: '/material-ui/discover-more',
-    icon: 'AddIcon',
+    icon: standardNavIcons.AddIcon,
     children: [
       { pathname: '/material-ui/discover-more/showcase' },
       { pathname: '/material-ui/discover-more/related-projects' },
@@ -247,20 +242,19 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/discover-more/backers', title: 'Sponsors & Backers' },
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
-      { pathname: '/material-ui/discover-more/languages' },
     ],
   },
   {
     pathname: '/material-ui/migration',
     title: 'Migration',
-    icon: 'BookIcon',
+    icon: standardNavIcons.BookIcon,
     children: [
       {
         pathname: '/material-ui/migration/migration-grid-v2',
         title: 'Migrating to Grid v2',
       },
       {
-        pathname: '/material-ui/migration',
+        pathname: '/material-ui/migration/v5',
         subheader: 'Upgrade to v5',
         children: [
           {
@@ -286,7 +280,7 @@ const pages: MuiPage[] = [
         ],
       },
       {
-        pathname: '/material-ui/migration',
+        pathname: '/material-ui/migration/earlier',
         subheader: 'Earlier versions',
         children: [
           { pathname: '/material-ui/migration/migration-v3', title: 'Migration from v3 to v4' },
@@ -298,7 +292,7 @@ const pages: MuiPage[] = [
   {
     pathname: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=sidenav',
     title: 'Templates',
-    icon: 'ReaderIcon',
+    icon: standardNavIcons.ReaderIcon,
   },
 ];
 

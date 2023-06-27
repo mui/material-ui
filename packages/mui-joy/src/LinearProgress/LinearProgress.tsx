@@ -1,19 +1,20 @@
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
-import { css, keyframes } from '@mui/system';
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 import {
   LinearProgressOwnerState,
   LinearProgressProps,
   LinearProgressTypeMap,
 } from './LinearProgressProps';
+import useSlot from '../utils/useSlot';
 
 // TODO: replace `left` with `inset-inline-start` in the future to work with writing-mode. https://caniuse.com/?search=inset-inline-start
 //       replace `width` with `inline-size`, not sure why inline-size does not work with animation in Safari.
@@ -53,7 +54,6 @@ const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
       variant && `variant${capitalize(variant)}`,
       size && `size${capitalize(size)}`,
     ],
-    progress: ['progress'],
   };
 
   return composeClasses(slots, getLinearProgressUtilityClass, {});
@@ -101,7 +101,7 @@ const LinearProgressRoot = styled('div', {
     position: 'relative',
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     '--_LinearProgress-padding':
-      'max((var(--LinearProgress-thickness) - 2 * var(--variant-borderWidth) - var(--LinearProgress-progressThickness)) / 2, 0px)',
+      'max((var(--LinearProgress-thickness) - 2 * var(--variant-borderWidth, 0px) - var(--LinearProgress-progressThickness)) / 2, 0px)',
     '&::before': {
       content: '""',
       display: 'block',
@@ -118,7 +118,6 @@ const LinearProgressRoot = styled('div', {
       ? {
           '&::before': {
             left: 'var(--_LinearProgress-padding)',
-            transition: 'inline-size 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
             inlineSize:
               'calc(var(--LinearProgress-percent) * 1% - 2 * var(--_LinearProgress-padding))',
           },
@@ -137,6 +136,14 @@ const LinearProgressRoot = styled('div', {
  * If the progress bar is describing the loading progress of a particular region of a page,
  * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
  * attribute to `true` on that region until it has finished loading.
+ *
+ * Demos:
+ *
+ * - [Linear Progress](https://mui.com/joy-ui/react-linear-progress/)
+ *
+ * API:
+ *
+ * - [LinearProgress API](https://mui.com/joy-ui/api/linear-progress/)
  */
 const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   const props = useThemeProps<typeof inProps & LinearProgressProps>({
@@ -145,20 +152,26 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   });
 
   const {
-    component = 'div',
     children,
     className,
-    color = 'primary',
+    component,
+    color: colorProp = 'primary',
     size = 'md',
     variant = 'soft',
     thickness,
     determinate = false,
     value = determinate ? 0 : 25, // `25` is the 1/4 of the bar.
+    style,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
+    component,
     color,
     size,
     variant,
@@ -169,31 +182,32 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
     elementType: LinearProgressRoot,
-    externalSlotProps: {},
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
-      ref,
       as: component,
       role: 'progressbar',
       style: {
-        // Setting this CSS varaible via inline-style
+        // Setting this CSS variable via inline-style
         // prevents the generation of new CSS every time
         // `value` prop updates
-        '--LinearProgress-percent': value,
+        ...({ '--LinearProgress-percent': value } as React.CSSProperties),
+        ...style,
       },
+      ...(typeof value === 'number' &&
+        determinate && {
+          'aria-valuenow': Math.round(value),
+        }),
     },
-    className: clsx(classes.root, className),
-    ...(typeof value === 'number' &&
-      determinate && {
-        'aria-valuenow': Math.round(value),
-      }),
   });
 
-  return <LinearProgressRoot {...rootProps}>{children}</LinearProgressRoot>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<LinearProgressTypeMap>;
 
 LinearProgress.propTypes /* remove-proptypes */ = {
@@ -238,6 +252,24 @@ LinearProgress.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -253,11 +285,11 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * The value of the progress indicator for the determinate variant.
    * Value between 0 and 100.
    *
-   * For indeterminate, @default 25
+   * @default determinate ? 0 : 25
    */
   value: PropTypes.number,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

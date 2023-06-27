@@ -2,14 +2,14 @@
   "props": {
     "classes": { "type": { "name": "object" } },
     "defaultValue": { "type": { "name": "number" }, "default": "null" },
-    "disabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "emptyIcon": { "type": { "name": "node" }, "default": "<StarBorder fontSize=\"inherit\" />" },
     "emptyLabelText": { "type": { "name": "node" }, "default": "'Empty'" },
     "getLabelText": {
       "type": { "name": "func" },
       "default": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}"
     },
-    "highlightSelectedOnly": { "type": { "name": "bool" } },
+    "highlightSelectedOnly": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" }, "default": "<Star fontSize=\"inherit\" />" },
     "IconContainerComponent": {
       "type": { "name": "elementType" },
@@ -20,7 +20,7 @@
     "onChange": { "type": { "name": "func" } },
     "onChangeActive": { "type": { "name": "func" } },
     "precision": { "type": { "name": "custom", "description": "number" }, "default": "1" },
-    "readOnly": { "type": { "name": "bool" } },
+    "readOnly": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",
@@ -57,10 +57,16 @@
       "iconActive",
       "decimal"
     ],
-    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
+    "globalClasses": {
+      "readOnly": "Mui-readOnly",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    },
     "name": "MuiRating"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiRating",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Rating/Rating.js",
   "inheritance": null,

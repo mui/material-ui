@@ -10,33 +10,41 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
 import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 
-const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => ({
-  '& .scrollContainer': {
-    maxHeight: 'min(68vh, 1000px)',
-    overflow: 'auto',
-    backgroundColor: blueDark[800],
-    colorScheme: 'dark',
-    '&:hover': {
-      boxShadow: `0 0 0 3px ${
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.primary.light
-      }`,
+const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
+  {
+    '& .scrollContainer': {
+      maxHeight: 'min(68vh, 1000px)',
+      overflow: 'auto',
+      backgroundColor: blueDark[800],
+      colorScheme: 'dark',
+      '&:hover': {
+        boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary.light}`,
+      },
+      '&:focus-within': {
+        boxShadow: `0 0 0 2px ${(theme.vars || theme).palette.primary.main}`,
+      },
+      [theme.breakpoints.up('sm')]: {
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+      },
     },
-    '&:focus-within': {
-      boxShadow: `0 0 0 2px ${
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark.main : theme.palette.primary.main
-      }`,
-    },
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: theme.shape.borderRadius,
+    '& pre': {
+      // The scroll container needs to be the parent of the editor, overriding:
+      // https://github.com/mui/material-ui/blob/269c1d0c7572fcb6ae3b270a2622d16c7e40c848/docs/src/modules/components/MarkdownElement.js#L27-L26
+      maxWidth: 'initial',
+      maxHeight: 'initial',
     },
   },
-  '& pre': {
-    // The scroll container needs to be the parent of the editor, overriding:
-    // https://github.com/mui/material-ui/blob/269c1d0c7572fcb6ae3b270a2622d16c7e40c848/docs/src/modules/components/MarkdownElement.js#L27-L26
-    maxWidth: 'initial',
-    maxHeight: 'initial',
-  },
-})) as any;
+  theme.applyDarkStyles({
+    '& .scrollContainer': {
+      '&:hover': {
+        boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primaryDark[400]}`,
+      },
+      '&:focus-within': {
+        boxShadow: `0 0 0 2px ${(theme.vars || theme).palette.primaryDark.main}`,
+      },
+    },
+  }),
+]) as any;
 
 const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   ...theme.typography.body2,
@@ -49,7 +57,7 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   float: 'left',
   minWidth: '100%',
   '& textarea': {
-    outline: 'none',
+    outline: 0,
   },
   '& > textarea, & > pre': {
     // Override inline-style
@@ -57,7 +65,7 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   },
 }));
 
-interface DemoEditorProps {
+interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   copyButtonProps: {};
   id: string;
@@ -67,7 +75,7 @@ interface DemoEditorProps {
 }
 
 export default function DemoEditor(props: DemoEditorProps) {
-  const { language, value, onChange, copyButtonProps, children, id } = props;
+  const { language, value, onChange, copyButtonProps, children, id, ...other } = props;
   const t = useTranslate();
   const contextTheme = useTheme();
   const wrapperRef = React.useRef<HTMLElement | null>(null);
@@ -100,6 +108,7 @@ export default function DemoEditor(props: DemoEditorProps) {
           }
         }
       }}
+      {...other}
     >
       <div className="MuiCode-root" {...handlers}>
         <div className="scrollContainer">
@@ -121,7 +130,7 @@ export default function DemoEditor(props: DemoEditorProps) {
             position: 'absolute',
             top: theme.spacing(1),
             padding: theme.spacing(0.5, 1),
-            outline: 'none',
+            outline: 0,
             left: '50%',
             border: '1px solid',
             borderColor: blue[400],

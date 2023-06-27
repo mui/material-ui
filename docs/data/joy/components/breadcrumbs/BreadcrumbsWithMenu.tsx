@@ -31,7 +31,8 @@ export default function BreadcrumbsWithMenu() {
       </Menu>
       <Breadcrumbs aria-label="breadcrumbs">
         <Link
-          // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+          // `preventDefault` is for demo purposes
+          // and is generally not needed in your app
           onClick={(event) => event.preventDefault()}
           underline="hover"
           color="primary"
@@ -44,7 +45,8 @@ export default function BreadcrumbsWithMenu() {
           •••
         </Button>
         <Link
-          // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+          // `preventDefault` is for demo purposes
+          // and is generally not needed in your app
           onClick={(event) => event.preventDefault()}
           underline="hover"
           color="primary"
@@ -54,7 +56,8 @@ export default function BreadcrumbsWithMenu() {
           Breadcrumb 5
         </Link>
         <Link
-          // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+          // `preventDefault` is for demo purposes
+          // and is generally not needed in your app
           onClick={(event) => event.preventDefault()}
           underline="hover"
           color="primary"

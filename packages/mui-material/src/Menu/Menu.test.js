@@ -3,16 +3,20 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import {
   createRenderer,
+  createMount,
   describeConformance,
   screen,
   fireEvent,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { MenuPaper } from './Menu';
 
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
+  const mount = createMount();
 
   describeConformance(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
     classes,
@@ -24,11 +28,11 @@ describe('<Menu />', () => {
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'menu' },
     skip: [
-      'rootClass', // portal, can't determin the root
+      'rootClass', // portal, can't determine the root
       'componentProp',
       'componentsProp',
       'reactTestRenderer', // react-transition-group issue
-      'themeDefaultProps', // portal, can't determin the root
+      'themeDefaultProps', // portal, can't determine the root
     ],
   }));
 
@@ -110,6 +114,40 @@ describe('<Menu />', () => {
       );
 
       expect(screen.getByTestId('paper')).to.have.class('bar');
+    });
+
+    it('should be able to change the Popover root element style when Menu classes prop is also provided', () => {
+      render(
+        <Menu
+          anchorEl={document.createElement('div')}
+          open
+          data-testid="popover"
+          classes={{ paper: 'bar' }}
+          PopoverClasses={{ root: 'foo' }}
+        />,
+      );
+      expect(screen.getByTestId('popover')).to.have.class('foo');
+    });
+  });
+
+  describe('prop: PaperProps', () => {
+    it('should be passed to the paper component', () => {
+      const customElevation = 12;
+      const customClasses = { rounded: { borderRadius: 12 } };
+      const wrapper = mount(
+        <Menu
+          anchorEl={document.createElement('div')}
+          open
+          PaperProps={{
+            'data-testid': 'paper',
+            elevation: customElevation,
+            classes: customClasses,
+          }}
+        />,
+      );
+
+      expect(wrapper.find(MenuPaper).props().elevation).to.equal(customElevation);
+      expect(wrapper.find(MenuPaper).props().classes).to.contain(customClasses);
     });
   });
 
@@ -255,9 +293,95 @@ describe('<Menu />', () => {
         );
       }).toErrorDev([
         "MUI: The Menu component doesn't accept a Fragment as a child.",
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           "MUI: The Menu component doesn't accept a Fragment as a child.",
       ]);
+    });
+  });
+
+  describe('theme customization', () => {
+    it('should override Menu Paper styles following correct precedence', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const menuPaperOverrides = { borderRadius: 4 };
+      const popoverPaperOverrides = { borderRadius: 8, height: 100 };
+      const rootPaperOverrides = { borderRadius: 16, height: 200, width: 200 };
+
+      const theme = createTheme({
+        components: {
+          MuiMenu: { styleOverrides: { paper: menuPaperOverrides } },
+          MuiPopover: { styleOverrides: { paper: popoverPaperOverrides } },
+          MuiPaper: { styleOverrides: { root: rootPaperOverrides } },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Menu
+            anchorEl={document.createElement('div')}
+            open
+            PaperProps={{
+              'data-testid': 'paper',
+            }}
+          />
+        </ThemeProvider>,
+      );
+
+      const paper = screen.getByTestId('paper');
+      expect(paper).toHaveComputedStyle({
+        borderTopLeftRadius: `${menuPaperOverrides.borderRadius}px`,
+        borderBottomLeftRadius: `${menuPaperOverrides.borderRadius}px`,
+        borderTopRightRadius: `${menuPaperOverrides.borderRadius}px`,
+        borderBottomRightRadius: `${menuPaperOverrides.borderRadius}px`,
+        height: `${popoverPaperOverrides.height}px`,
+        width: `${rootPaperOverrides.width}px`,
+      });
+    });
+
+    it('should override Menu Paper styles using styles in MuiPaper slot', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        components: {
+          MuiPaper: { styleOverrides: { rounded: { borderRadius: 90 } } },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Menu
+            anchorEl={document.createElement('div')}
+            open
+            PaperProps={{
+              'data-testid': 'paper',
+            }}
+          />
+        </ThemeProvider>,
+      );
+
+      const paper = screen.getByTestId('paper');
+      expect(paper).toHaveComputedStyle({
+        borderTopLeftRadius: '90px',
+        borderBottomLeftRadius: '90px',
+        borderTopRightRadius: '90px',
+        borderBottomRightRadius: '90px',
+      });
+    });
+  });
+
+  describe('paper', () => {
+    it('should use MenuPaper component', () => {
+      const wrapper = mount(
+        <Menu anchorEl={document.createElement('div')} open>
+          <div />
+        </Menu>,
+      );
+
+      expect(wrapper.find(MenuPaper)).to.have.length(1);
     });
   });
 });

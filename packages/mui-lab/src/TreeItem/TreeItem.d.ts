@@ -30,6 +30,7 @@ export interface TreeItemProps
   ContentProps?: React.HTMLAttributes<HTMLElement>;
   /**
    * If `true`, the node is disabled.
+   * @default false
    */
   disabled?: boolean;
   /**
@@ -78,7 +79,7 @@ export interface TreeItemProps
  *
  * Demos:
  *
- * - [Tree view](https://mui.com/material-ui/react-tree-view/)
+ * - [Tree View](https://mui.com/material-ui/react-tree-view/)
  *
  * API:
  *

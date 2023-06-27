@@ -42,7 +42,7 @@ describe('<Switch />', () => {
     expect(root.childNodes[1]).to.have.class(classes.track);
   });
 
-  it('renders a `role="checkbox"` with the Unechecked state by default', () => {
+  it('renders a `role="checkbox"` with the Unchecked state by default', () => {
     const { getByRole } = render(<Switch />);
 
     expect(getByRole('checkbox')).to.have.property('checked', false);
@@ -90,6 +90,10 @@ describe('<Switch />', () => {
     });
 
     expect(getByRole('checkbox')).to.have.property('checked', false);
+  });
+
+  it('should not show warnings when custom `type` is provided', () => {
+    expect(() => render(<Switch type="submit" />)).not.toErrorDev();
   });
 
   describe('with FormControl', () => {

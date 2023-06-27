@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider, useColorScheme, extendTheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
+
+const theme = extendTheme({ cssVarPrefix: 'demo' });
 
 function Identifier() {
   const { systemMode } = useColorScheme();
@@ -41,8 +43,11 @@ export default function IdentifySystemMode() {
       // The props below are specific to this demo,
       // you might not need them in your app.
       //
+      theme={theme}
       // the local storage key to use.
       modeStorageKey="demo_identify-system-mode"
+      // set as root provider
+      disableNestedContext
     >
       <Identifier />
     </CssVarsProvider>

@@ -7,11 +7,11 @@ export default function SliderVariables() {
     <JoyVariablesDemo
       componentName="Slider"
       data={[
-        { var: '--Slider-track-size', defaultValue: '6px' },
-        { var: '--Slider-mark-size', defaultValue: '2px' },
-        { var: '--Slider-thumb-size', defaultValue: '14px' },
-        { var: '--Slider-thumb-width', defaultValue: '14px' },
-        { var: '--Slider-valueLabel-arrowSize', defaultValue: '8px' },
+        { var: '--Slider-trackSize', defaultValue: '6px' },
+        { var: '--Slider-markSize', defaultValue: '2px' },
+        { var: '--Slider-thumbSize', defaultValue: '14px' },
+        { var: '--Slider-thumbWidth', defaultValue: '14px' },
+        { var: '--Slider-valueLabelArrowSize', defaultValue: '8px' },
       ]}
       renderDemo={(sx) => (
         <Slider

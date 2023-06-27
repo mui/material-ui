@@ -1,4 +1,4 @@
-export { createFilterOptions } from '@mui/base/AutocompleteUnstyled';
+export { createFilterOptions } from '@mui/base/useAutocomplete';
 export { default } from './Autocomplete';
 export * from './autocompleteClasses';
 export { default as autocompleteClasses } from './autocompleteClasses';

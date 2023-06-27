@@ -1,24 +1,26 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface AutocompleteOptionClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
   /** State class applied to the root element if focused. */
   focused: string;
   /** State class applied to the `component`'s `focusVisibleClassName` prop. */
   focusVisible: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
+  /** Class name applied to the root element if `color="info"`. */
   colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Class name applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** State class applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** State class applied to the root element if `variant="soft"`. */
@@ -32,11 +34,11 @@ export interface AutocompleteOptionClasses {
 export type AutocompleteOptionClassKey = keyof AutocompleteOptionClasses;
 
 export function getAutocompleteOptionUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyAutocompleteOption', slot);
+  return generateUtilityClass('MuiAutocompleteOption', slot);
 }
 
 const autocompleteOptionClasses: AutocompleteOptionClasses = generateUtilityClasses(
-  'JoyAutocompleteOption',
+  'MuiAutocompleteOption',
   [
     'root',
     'focused',
@@ -47,6 +49,7 @@ const autocompleteOptionClasses: AutocompleteOptionClasses = generateUtilityClas
     'colorInfo',
     'colorSuccess',
     'colorWarning',
+    'colorContext',
     'variantPlain',
     'variantSoft',
     'variantOutlined',

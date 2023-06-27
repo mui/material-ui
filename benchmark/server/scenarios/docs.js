@@ -3,7 +3,7 @@ import Benchmark from 'benchmark';
 import fs from 'fs';
 import path from 'path';
 import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Markdown from 'docs/data/material/getting-started/templates/blog/Markdown';
 import { createStore } from 'redux';

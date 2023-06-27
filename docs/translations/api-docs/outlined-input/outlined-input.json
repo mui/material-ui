@@ -99,6 +99,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
       "conditions": "<code>endAdornment</code> is provided"
+    },
+    "inputTypeSearch": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
+      "conditions": "<code>type=\"search\"</code>"
     }
   }
 }

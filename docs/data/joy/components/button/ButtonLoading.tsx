@@ -1,17 +1,22 @@
 import * as React from 'react';
-import Stack from '@mui/joy/Stack';
-import SendIcon from '@mui/icons-material/Send';
+import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 
-export default function ButtonLoading() {
+export default function LoadingButtons() {
   return (
-    <Stack spacing={2} direction="row">
-      <Button loading endDecorator={<SendIcon />} variant="solid">
-        Send
+    <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+      <Button loading variant="solid">
+        Solid
       </Button>
-      <Button loading loadingIndicator="Loading…" variant="outlined">
-        Fetch data
+      <Button loading variant="soft">
+        Soft
       </Button>
-    </Stack>
+      <Button loading variant="outlined">
+        Outlined
+      </Button>
+      <Button loading variant="plain">
+        Plain
+      </Button>
+    </Box>
   );
 }

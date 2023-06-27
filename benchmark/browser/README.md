@@ -12,7 +12,7 @@ You should use these numbers exclusively for comparing performance between diffe
 
 ## Output
 
-For compareable results ask a maintainer to approve the CircleCI job `benchmark`.
+For comparable results ask a maintainer to approve the CircleCI job `benchmark`.
 
 ```sh
 noop (baseline):

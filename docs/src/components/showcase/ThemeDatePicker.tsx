@@ -2,13 +2,11 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import { iconButtonClasses } from '@mui/material/IconButton';
-import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
 export default function ThemeDatePicker() {
-  const [value, setValue] = React.useState<Date | null>(new Date());
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Fade in timeout={700}>
@@ -32,8 +30,11 @@ export default function ThemeDatePicker() {
               '& .MuiPickerStaticWrapper-content': {
                 bgcolor: 'initial',
               },
-              '& .MuiCalendarPicker-root': {
+              '& .MuiDateCalendar-root': {
                 width: '100%',
+                '& .MuiPickersCalendarHeader-root': {
+                  paddingLeft: '18px',
+                },
                 '& .MuiTypography-caption': {
                   color: 'grey.700',
                   height: 24,
@@ -43,16 +44,16 @@ export default function ThemeDatePicker() {
                     padding: 0,
                   },
                 },
-                '& .PrivatePickersSlideTransition-root': {
+                '& .MuiPickersSlideTransition-root': {
                   minHeight: 180,
                 },
-                '& .PrivatePickersYear-yearButton': {
+                '& .MuiPickersYear-yearButton': {
                   fontSize: '0.875rem',
                 },
                 '& [role="row"]': {
                   justifyContent: 'space-around',
                 },
-                '& .MuiCalendarPicker-viewTransitionContainer > div > div': {
+                '& .MuiDateCalendar-viewTransitionContainer > div > div': {
                   justifyContent: 'space-around',
                 },
                 '& .MuiPickersDay-root': {
@@ -85,7 +86,7 @@ export default function ThemeDatePicker() {
                 '& .MuiPickerStaticWrapper-root': {
                   bgcolor: 'primaryDark.800',
                 },
-                '& .MuiCalendarPicker-root': {
+                '& .MuiDateCalendar-root': {
                   '& .MuiTypography-caption': {
                     color: 'grey.600',
                   },
@@ -96,14 +97,7 @@ export default function ThemeDatePicker() {
               }),
           ]}
         >
-          <StaticDatePicker
-            displayStaticWrapperAs="desktop"
-            value={value}
-            onChange={(newValue) => {
-              setValue(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} />}
-          />
+          <StaticDatePicker displayStaticWrapperAs="desktop" />
         </Box>
       </Fade>
     </LocalizationProvider>

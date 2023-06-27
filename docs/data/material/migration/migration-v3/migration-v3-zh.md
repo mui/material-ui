@@ -41,7 +41,7 @@ yarn add @material-ui/core
 
 ### 更新 React 的版本
 
-React的最低要求版本从`react@^16.3.0`增加到`react@^16.8.0`. 这使我们能够依赖[Hooks](https://reactjs.org/docs/hooks-intro.html)（我们不再使用类的API）。
+React的最低要求版本从`react@^16.3.0`增加到`react@^16.8.0`. 这使我们能够依赖[Hooks](https://legacy.reactjs.org/docs/hooks-intro.html)（我们不再使用类的API）。
 
 ### 更新Material UI风格版本
 

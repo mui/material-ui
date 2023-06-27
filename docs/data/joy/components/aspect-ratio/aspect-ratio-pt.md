@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Aspect Ratio component
+components: AspectRatio
 ---
 
 # Aspect ratio

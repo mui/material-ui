@@ -1,36 +1,27 @@
 import * as React from 'react';
-import FormControlUnstyled, {
-  FormControlUnstyledState,
-} from '@mui/base/FormControlUnstyled';
-import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
+import FormControl, { FormControlState } from '@mui/base/FormControl';
+import Input, { inputClasses } from '@mui/base/Input';
 import { styled } from '@mui/system';
 
-const blue = {
-  100: '#DAECFF',
-  200: '#80BFFF',
-  400: '#3399FF',
-  600: '#0072E5',
-};
+export default function FormControlFunctionChild() {
+  return (
+    <FormControl defaultValue="" required>
+      {({ filled, focused }: FormControlState) => (
+        <React.Fragment>
+          <StyledInput className={filled ? 'filled' : ''} />
+          {filled && !focused && <OkMark>✔</OkMark>}
+        </React.Fragment>
+      )}
+    </FormControl>
+  );
+}
 
-const grey = {
-  50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
-};
-
-const Input = styled(InputUnstyled)(
+const StyledInput = styled(Input)(
   ({ theme }) => `
   
   display: inline-block;
 
-  .${inputUnstyledClasses.input} {
+  .${inputClasses.input} {
     width: 320px;
     font-size: 0.875rem;
     font-family: IBM Plex Sans, sans-serif;
@@ -52,7 +43,7 @@ const Input = styled(InputUnstyled)(
     }
   }
 
-  &.filled .${inputUnstyledClasses.input} {
+  &.filled .${inputClasses.input} {
     box-shadow: 0 0 2px 2px rgba(125, 200, 0, 0.25);
   }
 `,
@@ -65,15 +56,22 @@ const OkMark = styled('span')`
   color: rgba(125, 200, 0, 1);
 `;
 
-export default function FormControlFunctionChild() {
-  return (
-    <FormControlUnstyled defaultValue="" required>
-      {({ filled, focused }: FormControlUnstyledState) => (
-        <React.Fragment>
-          <Input className={filled ? 'filled' : ''} />
-          {filled && !focused && <OkMark>✔</OkMark>}
-        </React.Fragment>
-      )}
-    </FormControlUnstyled>
-  );
-}
+const blue = {
+  100: '#DAECFF',
+  200: '#80BFFF',
+  400: '#3399FF',
+  600: '#0072E5',
+};
+
+const grey = {
+  50: '#F3F6F9',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7',
+  400: '#B2BAC2',
+  500: '#A0AAB4',
+  600: '#6F7E8C',
+  700: '#3E5060',
+  800: '#2D3843',
+  900: '#1A2027',
+};

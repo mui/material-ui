@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import {
+  describeConformance,
+  describeJoyColorInversion,
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
@@ -12,16 +19,29 @@ import ListDivider from '@mui/joy/ListDivider';
 describe('Joy <Select />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
-  describeConformance(<Select value="" />, () => ({
+  describeConformance(<Select startDecorator="1" endDecorator="1" />, () => ({
     render,
+    inheritComponent: 'div',
     classes,
     ThemeProvider,
     refInstanceof: window.HTMLDivElement,
     muiName: 'JoySelect',
     testDeepOverrides: { slotName: 'button', slotClassName: classes.button },
     testVariantProps: { variant: 'soft' },
+    slots: {
+      root: { expectedClassName: classes.root },
+      button: { expectedClassName: classes.button },
+      startDecorator: { expectedClassName: classes.startDecorator },
+      endDecorator: { expectedClassName: classes.endDecorator },
+    },
     skip: ['classesRoot', 'propsSpread', 'componentProp', 'componentsProp'],
   }));
+
+  describeJoyColorInversion(<Select listboxOpen />, {
+    muiName: 'JoySelect',
+    classes,
+    portalSlot: 'listbox',
+  });
 
   it('should be able to mount the component', () => {
     render(
@@ -62,7 +82,7 @@ describe('Joy <Select />', () => {
     const { getByRole } = render(
       <Select
         name="blur-testing"
-        componentsProps={{
+        slotProps={{
           button: {
             onBlur: handleBlur,
           },
@@ -103,12 +123,12 @@ describe('Joy <Select />', () => {
     expect(handleClose.callCount).to.equal(1);
   });
 
-  it('should focus list if no selection', () => {
+  it('should focus the trigger button if no selection', () => {
     const { getByRole } = render(<Select value="" autoFocus />);
 
     fireEvent.keyDown(getByRole('combobox'), { key: 'ArrowDown' });
 
-    expect(getByRole('listbox')).toHaveFocus();
+    expect(getByRole('combobox')).toHaveFocus();
   });
 
   describe('prop: onChange', () => {
@@ -273,7 +293,7 @@ describe('Joy <Select />', () => {
       expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
-    specify('ARIA 1.2: aria-expanded="false" if the listbox isnt displayed', () => {
+    specify('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
       const { getByRole } = render(<Select value="" />);
 
       expect(getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
@@ -292,22 +312,10 @@ describe('Joy <Select />', () => {
       expect(getByRole('combobox')).not.to.have.attribute('aria-disabled');
     });
 
-    it('indicates that activating the button displays a listbox', () => {
-      const { getByRole } = render(<Select value="" />);
-
-      expect(getByRole('combobox')).to.have.attribute('aria-haspopup', 'listbox');
-    });
-
     it('renders an element with listbox behavior', () => {
       const { getByRole } = render(<Select defaultListboxOpen value="" />);
 
       expect(getByRole('listbox')).toBeVisible();
-    });
-
-    specify('the listbox is automatically focused on open', () => {
-      const { getByRole } = render(<Select defaultListboxOpen value="" />);
-
-      expect(getByRole('listbox')).toHaveFocus();
     });
 
     it('identifies each selectable element containing an option', () => {
@@ -338,9 +346,10 @@ describe('Joy <Select />', () => {
       it('first selectable option is focused to use the arrow', () => {
         const { getByRole, getAllByRole } = render(
           <Select
+            autoFocus
             defaultValue=""
             defaultListboxOpen
-            componentsProps={{ listbox: { component: 'div' } }}
+            slotProps={{ listbox: { component: 'div' } }}
           >
             <List role="group">
               <ListItem role="presentation">Category 1</ListItem>
@@ -355,12 +364,12 @@ describe('Joy <Select />', () => {
           </Select>,
         );
 
-        const listbox = getByRole('listbox');
+        const combobox = getByRole('combobox');
         const options = getAllByRole('option');
 
-        fireEvent.keyDown(listbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(listbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(listbox, { key: 'Enter' });
+        fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+        fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+        fireEvent.keyDown(combobox, { key: 'Enter' });
 
         expect(options[1]).to.have.attribute('aria-selected', 'true');
       });
@@ -596,33 +605,9 @@ describe('Joy <Select />', () => {
 
   it('should show dropdown if the children of the select button is clicked', () => {
     const { getByTestId, getByRole } = render(
-      <Select defaultValue="1">
-        <Option value="1">
-          <span data-testid="test-element" />
-          Eric
-        </Option>
-      </Select>,
-    );
-    // Fire Click of the avatar
-    act(() => {
-      getByTestId('test-element').click();
-    });
-
-    expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
-  });
-
-  it('should not show dropdown if stop propagation is handled', () => {
-    const handleClick = spy();
-    const { getByTestId, getByRole } = render(
       <Select
         defaultValue="1"
-        startDecorator={
-          <div
-            data-testid="test-element"
-            onMouseDown={(event) => event.stopPropagation()}
-            onClick={handleClick}
-          />
-        }
+        renderValue={(option) => <span data-testid="test-element">{option?.label}</span>}
       >
         <Option value="1">Eric</Option>
       </Select>,
@@ -632,7 +617,12 @@ describe('Joy <Select />', () => {
       getByTestId('test-element').click();
     });
 
+    expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+
+    // click again should close
+    act(() => {
+      getByTestId('test-element').click();
+    });
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
-    expect(handleClick.callCount).to.equal(1);
   });
 });

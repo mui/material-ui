@@ -1,3 +1,4 @@
+export { default as THEME_ID } from './identifier';
 export {
   default as createTheme,
   default as unstable_createMuiStrictModeTheme,
@@ -64,8 +65,10 @@ export {
   ColorObject,
   StyledEngineProvider,
   SxProps,
-  experimental_sx,
 } from '@mui/system';
+// TODO: Remove this function in v6.
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function experimental_sx(): any;
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
@@ -128,4 +131,11 @@ export type {
   ThemeVars,
   ThemeCssVar,
   ThemeCssVarOverrides,
+  ColorSystemOptions,
 } from './experimental_extendTheme';
+export { default as getOverlayAlpha } from './getOverlayAlpha';
+export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
+
+// Private methods for creating parts of the theme
+export { default as private_createTypography } from './createTypography';
+export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';

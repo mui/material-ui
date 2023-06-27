@@ -11,11 +11,19 @@
   },
   "name": "TimelineOppositeContent",
   "styles": {
-    "classes": ["root", "positionRight", "positionLeft", "positionAlternate"],
+    "classes": [
+      "root",
+      "positionRight",
+      "positionLeft",
+      "positionAlternate",
+      "positionAlternateReverse"
+    ],
     "globalClasses": {},
     "name": "MuiTimelineOppositeContent"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTimelineOppositeContent",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/TimelineOppositeContent/TimelineOppositeContent.js",
   "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },

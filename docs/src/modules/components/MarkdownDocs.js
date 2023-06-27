@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import path from 'path';
 import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
+import { exactProp } from '@mui/utils';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { exactProp } from '@mui/utils';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import Ad from 'docs/src/modules/components/Ad';
+import AdGuest from 'docs/src/modules/components/AdGuest';
 
 function noComponent(moduleID) {
   return function NoComponent() {
@@ -32,10 +35,15 @@ JoyModeObserver.propTypes = {
 export default function MarkdownDocs(props) {
   const theme = useTheme();
   const router = useRouter();
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
   const {
     disableAd = false,
     disableToc = false,
+    /**
+     * Some Joy pages, e.g. Joy theme builder, should not be a nested CssVarsProvider to control its own state.
+     * This config will skip the CssVarsProvider at the root of the page.
+     */
+    disableCssVarsProvider = false,
     demos = {},
     docs,
     demoComponents,
@@ -48,7 +56,7 @@ export default function MarkdownDocs(props) {
   const localizedDoc = docs[userLanguage] || docs.en;
   const { description, location, rendered, title, toc } = localizedDoc;
 
-  const isJoy = asPathWithoutLang.startsWith('/joy-ui');
+  const isJoy = canonicalAs.startsWith('/joy-ui/') && !disableCssVarsProvider;
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
   const Wrapper = isJoy ? BrandingProvider : React.Fragment;
 
@@ -62,6 +70,13 @@ export default function MarkdownDocs(props) {
       toc={toc}
     >
       <Provider>
+        {disableAd ? null : (
+          <Wrapper>
+            <AdGuest>
+              <Ad />
+            </AdGuest>
+          </Wrapper>
+        )}
         {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
         {rendered.map((renderedMarkdownOrDemo, index) => {
           if (typeof renderedMarkdownOrDemo === 'string') {
@@ -131,6 +146,7 @@ export default function MarkdownDocs(props) {
                 jsxPreview: demo.jsxPreview,
                 rawTS: demo.rawTS,
                 tsx: demoComponents[demo.moduleTS] ?? null,
+                gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
               }}
               disableAd={disableAd}
               demoOptions={renderedMarkdownOrDemo}
@@ -147,6 +163,7 @@ MarkdownDocs.propTypes = {
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
+  disableCssVarsProvider: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
   srcComponents: PropTypes.object,

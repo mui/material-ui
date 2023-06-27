@@ -212,6 +212,7 @@ const TooltipArrow = styled('span', {
 
 let hystersisOpen = false;
 let hystersisTimer = null;
+let cursorPosition = { x: 0, y: 0 };
 
 export function testReset() {
   hystersisOpen = false;
@@ -232,7 +233,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
-    children,
+    children: childrenProp,
     classes: classesProp,
     components = {},
     componentsProps = {},
@@ -261,6 +262,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     TransitionProps,
     ...other
   } = props;
+
+  // to prevent runtime errors, developers will need to provide a child as a React element anyway.
+  const children = React.isValidElement(childrenProp) ? childrenProp : <span>{childrenProp}</span>;
 
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
@@ -502,7 +506,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     open = false;
   }
 
-  const positionRef = React.useRef({ x: 0, y: 0 });
   const popperRef = React.useRef();
 
   const handleMouseMove = (event) => {
@@ -511,7 +514,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       childrenProps.onMouseMove(event);
     }
 
-    positionRef.current = { x: event.clientX, y: event.clientY };
+    cursorPosition = { x: event.clientX, y: event.clientY };
 
     if (popperRef.current) {
       popperRef.current.update();
@@ -680,10 +683,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           followCursor
             ? {
                 getBoundingClientRect: () => ({
-                  top: positionRef.current.y,
-                  left: positionRef.current.x,
-                  right: positionRef.current.x,
-                  bottom: positionRef.current.y,
+                  top: cursorPosition.y,
+                  left: cursorPosition.x,
+                  right: cursorPosition.x,
+                  bottom: cursorPosition.y,
                   width: 0,
                   height: 0,
                 }),
@@ -703,7 +706,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
             timeout={theme.transitions.duration.shorter}
             {...TransitionPropsInner}
             {...transitionProps}
-            data-foo="bar"
           >
             <TooltipComponent {...tooltipProps}>
               {title}

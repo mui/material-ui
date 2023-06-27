@@ -56,7 +56,7 @@ const linkMapping = {
 };
 const brands = Object.keys(linkMapping) as Array<keyof typeof linkMapping>;
 
-type TemplateBrand = typeof brands[number];
+type TemplateBrand = (typeof brands)[number];
 
 const StoreTemplateLink = React.forwardRef<
   HTMLAnchorElement,
@@ -104,15 +104,15 @@ const StoreTemplateImage = React.forwardRef<
   return (
     <Image
       ref={ref}
-      src={`/static/branding/store-templates/template-light${
+      src={`/static/branding/store-templates/template-${
         Object.keys(linkMapping).indexOf(brand) + 1
-      }.jpeg`}
+      }light.jpg`}
       alt=""
       sx={(theme) =>
         theme.applyDarkStyles({
-          content: `url(/static/branding/store-templates/template-dark${
+          content: `url(/static/branding/store-templates/template-${
             Object.keys(linkMapping).indexOf(brand) + 1
-          }.jpeg)`,
+          }dark.jpg)`,
         })
       }
       {...props}
@@ -126,7 +126,7 @@ export function PrefetchStoreTemplateImages() {
       loading: 'lazy' as const,
       width: '900',
       height: '494',
-      src: `/static/branding/store-templates/template-${mode}${num}.jpeg`,
+      src: `/static/branding/store-templates/template-${num}${mode}.jpg`,
     };
   }
   return (

@@ -1,0 +1,220 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "aria-describedby": "Identifies the element (or elements) that describes the object.",
+    "aria-label": "Defines a string value that labels the current element.",
+    "aria-labelledby": "Identifies the element (or elements) that labels the current element.",
+    "autoFocus": "If <code>true</code>, the <code>input</code> element is focused during the first mount.",
+    "clearIcon": "The icon to display in place of the default clear icon.",
+    "clearText": "Override the default text for the <em>clear</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+    "closeText": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
+    "defaultValue": "The default value. Use when the component is not controlled.",
+    "disableClearable": "If <code>true</code>, the input can&#39;t be cleared.",
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "endDecorator": "Trailing adornment for this input.",
+    "error": "If <code>true</code>, the <code>input</code> will indicate an error. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+    "filterOptions": "A function that determines the filtered options to be rendered on search.<br><br><strong>Signature:</strong><br><code>function(options: Array&lt;T&gt;, state: object) =&gt; Array&lt;T&gt;</code><br><em>options:</em> The options to render.<br><em>state:</em> The state of the component.",
+    "forcePopupIcon": "Force the visibility display of the popup icon.",
+    "freeSolo": "If <code>true</code>, the Autocomplete is free solo, meaning that the user input is not bound to provided options.",
+    "getLimitTagsText": "The label to display when the tags are truncated (<code>limitTags</code>).<br><br><strong>Signature:</strong><br><code>function(more: string | number) =&gt; ReactNode</code><br><em>more:</em> The number of truncated tags.",
+    "getOptionDisabled": "Used to determine the disabled state for a given option.<br><br><strong>Signature:</strong><br><code>function(option: T) =&gt; boolean</code><br><em>option:</em> The option to test.",
+    "getOptionLabel": "Used to determine the string value for a given option. It&#39;s used to fill the input (and the list box options if <code>renderOption</code> is not provided).<br>If used in free solo mode, it must accept both the type of the options and a string.<br><br><strong>Signature:</strong><br><code>function(option: T) =&gt; string</code><br>",
+    "groupBy": "If provided, the options will be grouped under the returned string. The groupBy value is also used as the text for group headings when <code>renderGroup</code> is not provided.<br><br><strong>Signature:</strong><br><code>function(options: T) =&gt; string</code><br><em>options:</em> The options to group.",
+    "id": "This prop is used to help implement the accessibility logic. If you don&#39;t provide an id it will fall back to a randomly generated one.",
+    "inputValue": "The input value.",
+    "isOptionEqualToValue": "Used to determine if the option represents the given value. Uses strict equality by default. ⚠️ Both arguments need to be handled, an option can only match with one value.<br><br><strong>Signature:</strong><br><code>function(option: T, value: T) =&gt; boolean</code><br><em>option:</em> The option to test.<br><em>value:</em> The value to test against.",
+    "limitTags": "The maximum number of tags that will be visible when not focused. Set <code>-1</code> to disable the limit.",
+    "loading": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, e.g. <code>options</code> are empty).",
+    "loadingText": "Text to display when in a loading state.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+    "multiple": "If <code>true</code>, <code>value</code> must be an array and the menu will support multiple selections.",
+    "name": "Name attribute of the <code>input</code> element.",
+    "noOptionsText": "Text to display when there are no options.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+    "onChange": "Callback fired when the value changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, value: T | Array&lt;T&gt;, reason: string, details?: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> The new value of the component.<br><em>reason:</em> One of &quot;createOption&quot;, &quot;selectOption&quot;, &quot;removeOption&quot;, &quot;blur&quot; or &quot;clear&quot;.",
+    "onClose": "Callback fired when the popup requests to be closed. Use in controlled mode (see open).<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>reason:</em> Can be: <code>&quot;toggleInput&quot;</code>, <code>&quot;escape&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>, <code>&quot;blur&quot;</code>.",
+    "onHighlightChange": "Callback fired when the highlight option changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, option: T, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>option:</em> The highlighted option.<br><em>reason:</em> Can be: <code>&quot;keyboard&quot;</code>, <code>&quot;auto&quot;</code>, <code>&quot;mouse&quot;</code>, <code>&quot;touch&quot;</code>.",
+    "onInputChange": "Callback fired when the input value changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, value: string, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> The new value of the text input.<br><em>reason:</em> Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>.",
+    "onOpen": "Callback fired when the popup requests to be opened. Use in controlled mode (see open).<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent) =&gt; void</code><br><em>event:</em> The event source of the callback.",
+    "open": "If <code>true</code>, the component is shown.",
+    "openText": "Override the default text for the <em>open popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+    "options": "Array of options.",
+    "placeholder": "The input placeholder",
+    "popupIcon": "The icon to display in place of the default popup icon.",
+    "readOnly": "If <code>true</code>, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.",
+    "renderGroup": "Render the group.<br><br><strong>Signature:</strong><br><code>function(params: AutocompleteRenderGroupParams) =&gt; ReactNode</code><br><em>params:</em> The group to render.",
+    "renderOption": "Render the option, use <code>getOptionLabel</code> by default.<br><br><strong>Signature:</strong><br><code>function(props: object, option: T, state: object) =&gt; ReactNode</code><br><em>props:</em> The props to apply on the li element.<br><em>option:</em> The option to render.<br><em>state:</em> The state of the component.",
+    "renderTags": "Render the selected value.<br><br><strong>Signature:</strong><br><code>function(value: Array&lt;T&gt;, getTagProps: function, ownerState: object) =&gt; ReactNode</code><br><em>value:</em> The <code>value</code> provided to the component.<br><em>getTagProps:</em> A tag props getter.<br><em>ownerState:</em> The state of the Autocomplete component.",
+    "required": "If <code>true</code>, the <code>input</code> element is required. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
+    "slotProps": "The props used for each slot inside.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
+    "startDecorator": "Leading adornment for this input.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "type": "Type of the <code>input</code> element. It should be <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types\">a valid HTML5 input type</a>.",
+    "value": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>isOptionEqualToValue</code> prop.",
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+  },
+  "classDescriptions": {
+    "root": { "description": "Class name applied to the root element." },
+    "wrapper": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the wrapper element"
+    },
+    "input": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the input element"
+    },
+    "startDecorator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the startDecorator element"
+    },
+    "endDecorator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the endDecorator element"
+    },
+    "formControl": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the component is a descendant of <code>FormControl</code>"
+    },
+    "focused": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the component is focused"
+    },
+    "disabled": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "error": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>error={true}</code>"
+    },
+    "multiple": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the wrapper element",
+      "conditions": "<code>multiple={true}</code>"
+    },
+    "limitTag": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the limitTag element"
+    },
+    "hasPopupIcon": { "description": "Class name applied when the popup icon is rendered." },
+    "hasClearIcon": { "description": "Class name applied when the clear icon is rendered." },
+    "clearIndicator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the clear indicator"
+    },
+    "popupIndicator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the popup indicator"
+    },
+    "popupIndicatorOpen": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the popup indicator",
+      "conditions": "the popup is open"
+    },
+    "listbox": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the listbox component"
+    },
+    "option": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the option component"
+    },
+    "loading": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the loading wrapper"
+    },
+    "noOptions": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the no option wrapper"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorInfo": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "sizeSm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"sm\"</code>"
+    },
+    "sizeMd": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeLg": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"lg\"</code>"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantSoft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
+    }
+  },
+  "slotDescriptions": {
+    "root": "The component that renders the root.",
+    "wrapper": "The component that renders the wrapper.",
+    "input": "The component that renders the input.",
+    "startDecorator": "The component that renders the start decorator.",
+    "endDecorator": "The component that renders the end decorator.",
+    "clearIndicator": "The component that renders the clear indicator.",
+    "popupIndicator": "The component that renders the popup indicator.",
+    "listbox": "The component that renders the listbox.",
+    "option": "The component that renders the option.",
+    "loading": "The component that renders the loading.",
+    "noOptions": "The component that renders the no-options.",
+    "limitTag": "The component that renders the limit tag."
+  }
+}

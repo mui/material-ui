@@ -30,7 +30,7 @@ export default function ChipVariables() {
           defaultValue: '12px',
         },
         {
-          var: '--Chip-decorator-childHeight',
+          var: '--Chip-decoratorChildHeight',
           defaultValue: '24px',
         },
       ]}

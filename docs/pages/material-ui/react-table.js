@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import * as pageProps from 'docs/data/material/components/tables/tables.md?@mui/markdown';
+import * as pageProps from 'docs/data/material/components/table/table.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs {...pageProps} />;

@@ -18,7 +18,8 @@ export default function BreadcrumbsVariables() {
         <Breadcrumbs sx={sx}>
           {['Menu 1', 'Menu 2'].map((item) => (
             <Link
-              // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+              // `preventDefault` is for demo purposes
+              // and is generally not needed in your app
               onClick={(event) => event.preventDefault()}
               key={item}
               underline="hover"
@@ -29,7 +30,6 @@ export default function BreadcrumbsVariables() {
               {item}
             </Link>
           ))}
-
           <Typography fontSize="inherit">Menu 3</Typography>
         </Breadcrumbs>
       )}

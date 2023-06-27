@@ -11,6 +11,8 @@
   "name": "Box",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiBox",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Box/Box.js",
   "inheritance": null,

@@ -1,6 +1,6 @@
 # Right-to-left
 
-<p class="description">Right-to-left languages such as Arabic, Persian, or Hebrew are supported. To change the direction of MUI components you must follow the following steps.</p>
+<p class="description">Right-to-left languages such as Arabic, Persian, or Hebrew are supported. To change the direction of Material UI components you must follow the following steps.</p>
 
 ## Steps
 
@@ -50,7 +50,7 @@ npm install stylis stylis-plugin-rtl
 ```
 
 :::warning
-**Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/material-ui/guides/styled-engine/), make sure to install the correct version.
+Only Emotion is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/material-ui/guides/styled-engine/), make sure to install the correct version.
 :::
 
 In case you are using `jss` (up to v4) or with the legacy `@mui/styles` package, you need [`jss-rtl`](https://github.com/alitaheri/jss-rtl) to flip the styles.
@@ -59,7 +59,7 @@ In case you are using `jss` (up to v4) or with the legacy `@mui/styles` package,
 npm install jss-rtl
 ```
 
-Having installed the plugin in your project, MUI components still require it to be loaded by the style engine instance that you use. Find bellow guides on how you can load it.
+Having installed the plugin in your project, Material UI components still require it to be loaded by the style engine instance that you use. Find bellow guides on how you can load it.
 
 ### 4. Load the rtl plugin
 
