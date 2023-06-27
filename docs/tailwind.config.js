@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        'outline-purple': '0 0 0 3px #c084fc',
+        'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
       },
       border: {
         3: '3px',
