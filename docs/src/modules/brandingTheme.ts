@@ -930,10 +930,11 @@ export function getThemedComponents(): ThemeOptions {
               },
               ...(ownerState.variant === 'outlined' && {
                 display: 'block',
-                borderColor: (theme.vars || theme).palette.grey[200],
-                ':is(a&), :is(button&)': {
+                borderColor: (theme.vars || theme).palette.grey[100],
+                ':is(a, button)': {
                   '&:hover': {
-                    boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                    borderColor: (theme.vars || theme).palette.primary.main,
+                    boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
                   },
                 },
               }),
@@ -942,10 +943,11 @@ export function getThemedComponents(): ThemeOptions {
               backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               ...(ownerState.variant === 'outlined' && {
                 borderColor: (theme.vars || theme).palette.primaryDark[600],
-                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-                ':is(a&), :is(button&)': {
+                backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+                ':is(a, button)': {
                   '&:hover': {
-                    boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
+                    borderColor: (theme.vars || theme).palette.primary.light,
+                    boxShadow: `0px 4px 24px ${(theme.vars || theme).palette.common.black}`,
                   },
                 },
               }),

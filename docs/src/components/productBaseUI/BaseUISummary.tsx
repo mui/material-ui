@@ -55,30 +55,16 @@ export default function BaseUISummary() {
               <Paper
                 component={Link}
                 href={link}
+                noLinkStyle
                 variant="outlined"
                 sx={(theme) => ({
                   p: 4,
                   height: '100%',
-                  position: 'relative',
-                  borderRadius: '12px',
-                  border: '1px solid',
-                  borderColor: 'grey.100',
                   background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
-
-                  '&:hover': {
-                    borderColor: 'primary.500',
-                    boxShadow:
-                      '0px 1px 6px 0px rgba(194, 224, 255, 1), 0px 2px 30px 0px rgba(234, 237, 241, 0.3) inset',
-                  },
-
                   ...theme.applyDarkStyles({
                     bgcolor: 'primaryDark.900',
-                    borderColor: 'primaryDark.700',
                     background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
-
-                    '&:hover': {
-                      boxShadow: '0px 1px 6px #0059B3, inset 0px 2px 30px rgba(0, 0, 0, 0.1)',
-                    },
+                    borderColor: 'primaryDark.700',
                   }),
                 })}
               >
