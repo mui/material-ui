@@ -45,10 +45,10 @@ const TabListRoot = styled(StyledList, {
   '--ListDivider-gap': '0px',
   ...scopedVariables,
   flexGrow: 'initial',
-  flexDirection: 'var(--Tabs-left, column) var(--Tabs-right, column)' as 'initial', // workaround for TS error
+  flexDirection: 'var(--left, column) var(--right, column)' as 'initial', // workaround for TS error
   zIndex: 1, // to be above of the next element.
   ...(!ownerState.disableUnderline && {
-    boxShadow: `inset var(--Tabs-top, 0 -1px) var(--Tabs-right, 1px 0) var(--Tabs-bottom, 0 1px) var(--Tabs-left, -1px 0) ${theme.vars.palette.divider}`,
+    boxShadow: `inset var(--top, 0 -1px) var(--right, 1px 0) var(--bottom, 0 1px) var(--left, -1px 0) ${theme.vars.palette.divider}`,
   }),
 }));
 /**

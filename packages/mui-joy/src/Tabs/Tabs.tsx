@@ -50,17 +50,17 @@ const TabsRoot = styled(SheetRoot, {
    * based on the parent's placement without using React Context.
    */
   ...(ownerState.orientation === 'horizontal' && {
-    '--Tabs-placement': ownerState.flip ? 'var(--Tabs-bottom)' : 'var(--Tabs-top)',
+    '--Tabs-placement': ownerState.flip ? 'var(--bottom)' : 'var(--top)',
   }),
   ...(ownerState.orientation === 'vertical' && {
-    '--Tabs-placement': ownerState.flip ? 'var(--Tabs-right)' : 'var(--Tabs-left)',
+    '--Tabs-placement': ownerState.flip ? 'var(--right)' : 'var(--left)',
   }),
-  '--Tabs-bottom': 'var(--Tabs-placement,)',
-  '--Tabs-top': 'var(--Tabs-placement,)',
-  '--Tabs-left': 'var(--Tabs-placement,)',
-  '--Tabs-right': 'var(--Tabs-placement,)',
+  '--bottom': 'var(--Tabs-placement,)',
+  '--top': 'var(--Tabs-placement,)',
+  '--left': 'var(--Tabs-placement,)',
+  '--right': 'var(--Tabs-placement,)',
   display: 'flex',
-  flexDirection: 'var(--Tabs-top, column) var(--Tabs-bottom, column)' as 'initial',
+  flexDirection: 'var(--top, column) var(--bottom, column)' as 'initial',
 }));
 /**
  *
