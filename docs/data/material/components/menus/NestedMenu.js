@@ -46,7 +46,6 @@ const options = [
       },
     ],
   },
-
   {
     value: 'Desserts',
     menuLevel: 0,
