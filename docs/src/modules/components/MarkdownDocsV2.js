@@ -10,7 +10,7 @@ import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
 import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/modules/components/ApiPage';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElementV2';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocsWithoutAppFrame';
+import AppLayoutDocsWithoutAppFrame from 'docs/src/modules/components/AppLayoutDocsWithoutAppFrame';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import Ad from 'docs/src/modules/components/Ad';
@@ -164,16 +164,16 @@ export default function MarkdownDocsV2(props) {
 
   const isJoy = canonicalAs.startsWith('/joy-ui/');
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
+
   const Wrapper = isJoy ? BrandingProvider : React.Fragment;
+  const wrapperProps = {
+    ...(isJoy && { mode: theme.palette.mode }),
+  };
 
   const commonElements = [];
 
   let i = 0;
   let done = false;
-
-  const wrapperProps = {
-    ...(isJoy && { mode: theme.palette.mode }),
-  };
 
   // process the elements before the tabs component
   while (i < rendered.length && !done) {
@@ -186,8 +186,8 @@ export default function MarkdownDocsV2(props) {
         srcComponents={srcComponents}
         renderedMarkdownOrDemo={renderedMarkdownOrDemo}
         WrapperComponent={Wrapper}
-        key={`common-elements-${i}`}
         wrapperProps={wrapperProps}
+        key={`common-elements-${i}`}
         localizedDoc={localizedDoc}
         demos={demos}
         location={location}
@@ -211,7 +211,7 @@ export default function MarkdownDocsV2(props) {
   }
 
   return (
-    <AppLayoutDocs
+    <AppLayoutDocsWithoutAppFrame
       description={description}
       disableAd={disableAd}
       disableToc={disableToc}
@@ -270,7 +270,7 @@ export default function MarkdownDocsV2(props) {
           )}
         </Provider>
       </div>
-    </AppLayoutDocs>
+    </AppLayoutDocsWithoutAppFrame>
   );
 }
 

@@ -31,19 +31,19 @@
     },
     "selectRoot": {
       "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the Select component `root` element"
+      "nodeName": "the Select component <code>root</code> element"
     },
     "select": {
       "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the Select component `select` class"
+      "nodeName": "the Select component <code>select</code> class"
     },
     "selectIcon": {
       "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the Select component `icon` class"
+      "nodeName": "the Select component <code>icon</code> class"
     },
     "input": {
       "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the Select component `root` element"
+      "nodeName": "the Select component <code>root</code> element"
     },
     "menuItem": {
       "description": "Class name applied to {{nodeName}}.",
@@ -55,7 +55,7 @@
     },
     "actions": {
       "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the internal `TablePaginationActions` component"
+      "nodeName": "the internal <code>TablePaginationActions</code> component"
     }
   },
   "slotDescriptions": {
