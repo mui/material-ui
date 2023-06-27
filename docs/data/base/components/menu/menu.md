@@ -112,7 +112,7 @@ Menu Item can set the following classes:
 
 - `Mui-disabled` - set when the MenuItem has the `disabled` prop
 - `Mui-focusVisible` - set when the MenuItem is highlighted via keyboard navigation.
-  This is a polyfill for the native `:focus-visible` pseudoclass as it's not available in Safari.
+  This is a polyfill for the native `:focus-visible` pseudoclass as it's not available in older versions of Safari.
 
 ## Hooks
 
