@@ -88,9 +88,9 @@ const ListItemRoot = styled('li', {
   paddingInlineEnd: 'var(--ListItem-paddingRight)',
   marginInline: 'var(--nested) var(--ListItem-marginInline)',
   marginInlineStart:
-    'var(--List-horizontal, var(--List-wrap, var(--List-gap))) var(--List-horizontal, var(--not-first-child, var(--List-gap)))',
+    'var(--List-horizontal, var(--List-wrap, var(--List-gap))) var(--List-horizontal, var(--List-nowrap, var(--not-first-child, var(--List-gap))))',
   marginBlockStart:
-    'var(--List-horizontal, var(--List-wrap, var(--List-gap))) var(--List-vertical, var(--not-first-child, var(--List-gap)))',
+    'var(--List-horizontal, var(--List-wrap, var(--List-gap))) var(--List-vertical, var(--List-nowrap, var(--not-first-child, var(--List-gap))))',
   minBlockSize: 'var(--ListItem-minHeight)',
   fontSize: 'var(--ListItem-fontSize)',
   fontFamily: theme.vars.fontFamily.body,

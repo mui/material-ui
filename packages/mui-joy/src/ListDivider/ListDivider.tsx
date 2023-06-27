@@ -32,34 +32,31 @@ const ListDividerRoot = styled(DividerRoot as unknown as 'li', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListDividerOwnerState }>(({ ownerState }) => ({
+  '--first-child': 'initial', // workaround because emotion does not support empty string or space as a value.
+  '--not-first-child': 'var(--unstable_not-first-child,)',
   '--ListDivider-inset': `var(--inset-${ownerState.inset ?? 'context'})`,
   '--inset-context': 'var(--ListDivider-inset,)',
   '--inset-gutter': 'var(--ListDivider-inset,)',
   '--inset-startDecorator': 'var(--ListDivider-inset,)',
   '--inset-startContent': 'var(--ListDivider-inset,)',
-  '--_vertical-marginInlineStart': `
-    var(--List-vertical, var(--inset-context, calc(-1 * var(--List-padding))))
-    var(--List-vertical, var(--inset-gutter, var(--ListItem-paddingLeft)))
-    var(--List-vertical, var(--inset-startDecorator, var(--ListItem-paddingLeft)))
-    var(--List-vertical, var(--inset-startContent, calc(var(--ListItem-paddingLeft) + var(--ListItemDecorator-size))))`,
-  '--_horizontal_marginBlockStart':
-    'var(--List-horizontal, var(--inset-gutter, var(--ListItem-paddingY)))',
   marginInlineStart:
-    'var(--List-horizontal, var(--ListDivider-gap)) var(--_vertical-marginInlineStart)',
+    'var(--List-horizontal, var(--first-child, var(--ListDivider-gap)) var(--not-first-child, calc(var(--List-gap) + var(--ListDivider-gap))))' +
+    ` var(--List-vertical, var(--inset-context, calc(-1 * var(--List-padding))))
+      var(--List-vertical, var(--inset-gutter, var(--ListItem-paddingLeft)))
+      var(--List-vertical, var(--inset-startDecorator, var(--ListItem-paddingLeft)))
+      var(--List-vertical, var(--inset-startContent, calc(var(--ListItem-paddingLeft) + var(--ListItemDecorator-size))))`,
   marginInlineEnd:
-    'var(--List-horizontal, var(--ListItem-paddingY))' +
+    'var(--List-horizontal, var(--ListDivider-gap))' +
     ' var(--List-vertical, var(--inset-context, calc(-1 * var(--List-padding))))' +
     ' var(--List-vertical, var(--inset-gutter, var(--ListItem-paddingRight)))',
-  marginBlockStart: 'var(--_horizontal_marginBlockStart)',
+  marginBlockStart:
+    'var(--List-horizontal, var(--inset-gutter, var(--ListItem-paddingY)))' +
+    ' var(--List-vertical, var(--not-first-child, calc(var(--List-gap) + var(--ListDivider-gap))))',
   marginBlockEnd:
     'var(--List-horizontal, var(--inset-gutter, var(--ListItem-paddingY))) var(--List-vertical, var(--ListDivider-gap))',
   '&:not([data-first-child])': {
-    // by default, the divider line is stretched from edge-to-edge of the List spacing between ListItem can be controlled by `--ListDivider-gap` on the List.
-    // combine --List-gap and --ListDivider-gap to replicate flexbox gap behavior
-    marginInlineStart:
-      'var(--List-horizontal, calc(var(--List-gap) + var(--ListDivider-gap))) var(--_vertical-marginInlineStart)',
-    marginBlockStart:
-      'var(--List-vertical, calc(var(--List-gap) + var(--ListDivider-gap))) var(--_horizontal_marginBlockStart)',
+    '--first-child': 'var(--unstable_first-child,)',
+    '--not-first-child': 'initial',
   },
 }));
 /**
