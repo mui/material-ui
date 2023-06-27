@@ -46,7 +46,8 @@ const TabsRoot = styled(SheetRoot, {
 
   /**
    * Cyclic toggles: https://kizu.dev/cyclic-toggles/
-   * The variables below allow child components to switch values based on the parent's placement without using React Context.
+   * The variables below allow child components to switch values
+   * based on the parent's placement without using React Context.
    */
   ...(ownerState.orientation === 'horizontal' && {
     '--Tabs-placement': ownerState.flip ? 'var(--bottom)' : 'var(--top)',

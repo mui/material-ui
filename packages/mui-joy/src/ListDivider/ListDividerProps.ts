@@ -64,9 +64,4 @@ export interface ListDividerOwnerState extends ListDividerProps {
    * The internal prop for controlling CSS margin of the element.
    */
   'data-first-child'?: boolean;
-  /**
-   * @internal
-   * The divider is wrapped by a horizontal list.
-   */
-  row: boolean;
 }

@@ -31,9 +31,12 @@ export const DividerRoot = styled('hr', {
   ...(ownerState.inset === 'context' && {
     '--_Divider-inset': 'var(--Divider-inset, 0px)',
   }),
+  '--Divider-orientation': `var(--Divider-${ownerState.orientation ?? 'horizontal'})`,
+  '--Divider-horizontal': 'var(--Divider-orientation,)',
+  '--Divider-vertical': 'var(--Divider-orientation,)',
   margin: 'initial', // reset margin for `hr` tag
-  marginInline: ownerState.orientation === 'vertical' ? 'initial' : 'var(--_Divider-inset)',
-  marginBlock: ownerState.orientation === 'vertical' ? 'var(--_Divider-inset)' : 'initial',
+  marginInline: 'var(--Divider-horizontal, var(--_Divider-inset))',
+  marginBlock: 'var(--Divider-vertical, var(--_Divider-inset))',
   position: 'relative',
   alignSelf: 'stretch',
   flexShrink: 0,
@@ -42,7 +45,7 @@ export const DividerRoot = styled('hr', {
         '--Divider-gap': theme.spacing(1),
         '--Divider-childPosition': '50%',
         display: 'flex',
-        flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
+        flexDirection: 'var(--Divider-vertical, column)' as 'initial', // cast type to workaround TS error
         alignItems: 'center',
         whiteSpace: 'nowrap',
         textAlign: 'center',
@@ -51,32 +54,23 @@ export const DividerRoot = styled('hr', {
         fontSize: theme.vars.fontSize.sm,
         '&::before, &::after': {
           position: 'relative',
-          inlineSize:
-            ownerState.orientation === 'vertical' ? 'var(--Divider-thickness)' : 'initial',
-          blockSize: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
+          inlineSize: 'var(--Divider-vertical, var(--Divider-thickness))',
+          blockSize: 'var(--Divider-horizontal, var(--Divider-thickness))',
           backgroundColor: 'var(--Divider-lineColor)', // use logical size + background is better than border because they work with gradient.
           content: '""',
         },
         '&::before': {
           marginInlineEnd:
-            ownerState.orientation === 'vertical'
-              ? 'initial'
-              : 'min(var(--Divider-childPosition) * 999, var(--Divider-gap))',
+            'var(--Divider-horizontal, min(var(--Divider-childPosition) * 999, var(--Divider-gap)))',
           marginBlockEnd:
-            ownerState.orientation === 'vertical'
-              ? 'min(var(--Divider-childPosition) * 999, var(--Divider-gap))'
-              : 'initial',
+            'var(--Divider-vertical, min(var(--Divider-childPosition) * 999, var(--Divider-gap)))',
           flexBasis: 'var(--Divider-childPosition)',
         },
         '&::after': {
           marginInlineStart:
-            ownerState.orientation === 'vertical'
-              ? 'initial'
-              : 'min((100% - var(--Divider-childPosition)) * 999, var(--Divider-gap))',
+            'var(--Divider-horizontal, min((100% - var(--Divider-childPosition)) * 999, var(--Divider-gap)))',
           marginBlockStart:
-            ownerState.orientation === 'vertical'
-              ? 'min((100% - var(--Divider-childPosition)) * 999, var(--Divider-gap))'
-              : 'initial',
+            'var(--Divider-vertical, min((100% - var(--Divider-childPosition)) * 999, var(--Divider-gap)))',
           flexBasis: 'calc(100% - var(--Divider-childPosition))',
         },
       }
@@ -84,8 +78,8 @@ export const DividerRoot = styled('hr', {
         border: 'none', // reset the border for `hr` tag
         listStyle: 'none',
         backgroundColor: 'var(--Divider-lineColor)', // use logical size + background is better than border because they work with gradient.
-        inlineSize: ownerState.orientation === 'vertical' ? 'var(--Divider-thickness)' : 'initial',
-        blockSize: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
+        inlineSize: 'var(--Divider-vertical, var(--Divider-thickness))',
+        blockSize: 'var(--Divider-horizontal, var(--Divider-thickness))',
       }),
 }));
 /**
