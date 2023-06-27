@@ -300,7 +300,12 @@ module.exports = {
     },
     {
       files: ['docs/data/**/*.tsx'],
-      excludedFiles: ['docs/data/joy/getting-started/templates/**/*.tsx'],
+      excludedFiles: [
+        'docs/data/joy/getting-started/templates/**/*.tsx',
+        'docs/data/**/css/*.tsx',
+        'docs/data/**/system/*.tsx',
+        'docs/data/**/tailwind/*.tsx',
+      ],
       rules: {
         'filenames/match-exported': ['error'],
       },
