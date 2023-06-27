@@ -137,8 +137,8 @@ function Styles() {
         }
 
         &.${optionClasses.selected} {
-          background-color: ${isDarkMode ? cyan[900] : cyan[100]};
-          color: ${isDarkMode ? cyan[100] : cyan[900]};
+          background-color: ${isDarkMode ? cyan[700] : cyan[100]};
+          color: ${isDarkMode ? cyan[50] : cyan[900]};
         }
 
         &.${optionClasses.highlighted} {
@@ -147,8 +147,8 @@ function Styles() {
         }
 
         &.${optionClasses.highlighted}.${optionClasses.selected} {
-          background-color: ${isDarkMode ? cyan[900] : cyan[100]};
-          color: ${isDarkMode ? cyan[100] : cyan[900]};
+          background-color: ${isDarkMode ? cyan[700] : cyan[100]};
+          color: ${isDarkMode ? cyan[50] : cyan[900]};
         }
 
         &.${optionClasses.disabled} {
