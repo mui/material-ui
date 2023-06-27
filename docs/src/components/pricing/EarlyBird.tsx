@@ -27,7 +27,7 @@ export default function EarlyBird() {
           ${(theme.vars || theme).palette.primary[50]} 100%)
           `,
           border: '1px solid',
-          borderColor: 'primary.100',
+          borderColor: 'grey.100',
           display: 'flex',
           flexDirection: {
             xs: 'column',
@@ -39,10 +39,10 @@ export default function EarlyBird() {
             sm: 'center',
           },
           ...theme.applyDarkStyles({
-            background: `linear-gradient(180deg, ${alpha(theme.palette.primary[900], 0.7)}  50%, 
-            ${(theme.vars || theme).palette.primary[900]} 100%)
+            background: `linear-gradient(180deg, ${alpha(theme.palette.primary[900], 0.4)}  50%, 
+            ${alpha(theme.palette.primary[800], 0.6)} 100%)
             `,
-            borderColor: 'primary.800',
+            borderColor: 'primaryDark.600',
           }),
         })}
       >
@@ -67,7 +67,7 @@ export default function EarlyBird() {
             py: 1,
             ml: { xs: 0, sm: 2 },
             mt: { xs: 3, sm: 0 },
-            width: { xs: '100%', sm: '50%', md: '15%' },
+            width: { xs: '100%', sm: '50%', md: 'fit-content' },
           }}
         >
           Buy now
