@@ -126,6 +126,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     marked: marks.length > 0 && marks.some((mark) => mark.label),
     dragging,
     focusedThumbIndex,
+    activeThumbIndex: active,
   };
 
   const classes = useUtilityClasses(ownerState);

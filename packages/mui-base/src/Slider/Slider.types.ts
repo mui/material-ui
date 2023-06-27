@@ -12,6 +12,7 @@ export type SliderOwnerState = Simplify<
   SliderOwnProps & {
     disabled: boolean;
     focusedThumbIndex: number;
+    activeThumbIndex: number;
     isRtl: boolean;
     max: number;
     min: number;
