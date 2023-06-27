@@ -251,6 +251,10 @@ interface RenderConfiguration {
    * Set to `true` if the test fails due to [Strict Effects](https://github.com/reactwg/react-18/discussions/19).
    */
   strictEffects?: boolean;
+  /**
+   * If true elements that are normally excluded from the accessibility tree are considered for the query as well
+   */
+  hidden?: boolean;
   wrapper: React.JSXElementConstructor<{ children?: React.ReactNode }>;
 }
 
