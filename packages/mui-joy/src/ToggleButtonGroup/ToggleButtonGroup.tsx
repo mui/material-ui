@@ -43,14 +43,16 @@ const ToggleButtonGroupRoot = styled(StyledButtonGroup as unknown as 'div', {
   '& [aria-pressed="true"], & [aria-pressed="true"]:not([data-first-child]):not([data-last-child])':
     {
       ...(ownerState.color !== 'context' && {
-        backgroundColor: theme.vars.palette?.[ownerState.color!]?.[`${ownerState.variant!}HoverBg`],
+        backgroundColor:
+          theme.vars.palette?.[ownerState.color!]?.[`${ownerState.variant!}ActiveBg`],
         ...(ownerState.variant === 'outlined' && {
           borderColor:
             theme.vars.palette?.[ownerState.color!]?.[`${ownerState.variant!}HoverBorder`],
         }),
-        // boxShadow: `inset 0 0 8px 0 rgba(${
-        //   theme.vars.palette?.[ownerState.color!].darkChannel
-        // } / 0.2)`,
+        '&:hover': {
+          backgroundColor:
+            theme.vars.palette?.[ownerState.color!]?.[`${ownerState.variant!}ActiveBg`],
+        },
         '&:not(:disabled)': {
           zIndex: 2,
         },

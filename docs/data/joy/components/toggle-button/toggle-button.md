@@ -8,6 +8,14 @@ githubLabel: 'component: toggle button'
 
 <p class="description">A toggle is a two-state button that may be part of a group of mutually exclusive options.</p>
 
+## Introduction
+
+To emphasize groups of related Toggle buttons,
+a group should share a common container.
+The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
+
+{{"demo": "ToggleGroupUsage.js", "hideToolbar": true, "bg": "gradient"}}
+
 :::info
 💡 The Joy UI Toggle Button component is still in development.
 If you're in need of it, please upvote [**this GitHub issue**](https://github.com/mui/material-ui/issues/36617) to help us prioritize the next batch of new components.
