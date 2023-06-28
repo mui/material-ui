@@ -1,22 +1,20 @@
 import * as React from 'react';
 import SimpleCodeEditor from 'react-simple-code-editor';
 import Box from '@mui/material/Box';
-import NoSsr from '@mui/base/NoSsr';
 import { styled, useTheme } from '@mui/material/styles';
 import prism from '@mui/markdown/prism';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
 import { blueDark } from 'docs/src/modules/brandingTheme';
+import DemoEditorHeader from './DemoEditorHeader';
 
 const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
   {
-    '& .scrollContainer': {
-      maxHeight: 'min(68vh, 1000px)',
-      overflow: 'auto',
+    '& .demoEditorContainer': {
       backgroundColor: blueDark[800],
       colorScheme: 'dark',
+      maxHeight: 'min(68vh, 1000px)',
       '&:hover': {
         boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary.light}`,
       },
@@ -27,6 +25,10 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
         borderRadius: (theme.vars || theme).shape.borderRadius,
       },
     },
+    '& .scrollContainer': {
+      overflow: 'auto',
+      maxHeight: 'calc(min(68vh, 1000px) - 40px)',
+    },
     '& pre': {
       // The scroll container needs to be the parent of the editor, overriding:
       // https://github.com/mui/material-ui/blob/269c1d0c7572fcb6ae3b270a2622d16c7e40c848/docs/src/modules/components/MarkdownElement.js#L27-L26
@@ -35,7 +37,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
     },
   },
   theme.applyDarkStyles({
-    '& .scrollContainer': {
+    '& .demoEditorContainer': {
       '&:hover': {
         boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primaryDark[300]}`,
       },
@@ -111,16 +113,19 @@ export default function DemoEditor(props: DemoEditorProps) {
       {...other}
     >
       <div className="MuiCode-root" {...handlers}>
-        <div className="scrollContainer">
-          <StyledSimpleCodeEditor
-            padding={contextTheme.spacing(2)}
-            highlight={(code: any) =>
-              `<code class="language-${language}">${prism(code, language)}</code>`
-            }
-            id={id}
-            value={value}
-            onValueChange={onChange}
-          />
+        <div className="demoEditorContainer">
+          <DemoEditorHeader />
+          <div className="scrollContainer">
+            <StyledSimpleCodeEditor
+              padding={contextTheme.spacing(2)}
+              highlight={(code: any) =>
+                `<code class="language-${language}">${prism(code, language)}</code>`
+              }
+              id={id}
+              value={value}
+              onValueChange={onChange}
+            />
+          </div>
         </div>
         <Box
           ref={enterRef}
@@ -159,9 +164,6 @@ export default function DemoEditor(props: DemoEditorProps) {
             __html: t('editorHint'),
           }}
         />
-        <NoSsr>
-          <CodeCopyButton {...copyButtonProps} code={value} />
-        </NoSsr>
         {children}
       </div>
     </StyledMarkdownElement>
