@@ -94,7 +94,7 @@ For the sake of brevity, the rest of the demos throughout this doc will not use 
 ### Multi-select
 
 The Select component lets your users select multiple options from the list.
-In constrast to the single-selection mode, the options popup does not close after an item is selected, allowing users to continue choosing mor e options.
+In contrast to the single-selection mode, the options popup doesn't close after an item is selected, enabling users to continue choosing more options.
 
 Set the `multiple` prop to turn on the multi-selection mode.
 
@@ -113,8 +113,8 @@ In the other case the `defaultValue` can be used to set the initial value of the
 In any case, if you wish to deselect all values pass `null` to the respective prop.
 
 :::warning
-This is one of the differences with Material UI's Select API.
-There, an empty string was used to deselect all values.
+This pattern is where Base UI's Select differs from the equivalent [Material UI component](/material-ui/react-select/).
+The Material UI Select takes an empty string to deselect all values.
 In Base UI, use `null` to achieve this.
 :::
 
