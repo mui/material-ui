@@ -70,7 +70,7 @@ function CurrentRoute() {
   return <RouteDisplay>Current route: {location.pathname}</RouteDisplay>;
 }
 
-export default function TabsRouter() {
+export default function UnstyledTabsRouting() {
   return (
     <Router>
       <div>

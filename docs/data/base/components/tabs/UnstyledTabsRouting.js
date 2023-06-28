@@ -75,7 +75,7 @@ function CurrentRoute() {
   return <RouteDisplay>Current route: {location.pathname}</RouteDisplay>;
 }
 
-export default function TabsRouter() {
+export default function UnstyledTabsRouting() {
   return (
     <Router>
       <div>
@@ -146,17 +146,18 @@ RouterLink.propTypes = {
     rootRef: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({
-        current: function (props, propName) {
+        current(props, propName) {
           if (props[propName] == null) {
             return null;
-          } else if (
+          }
+          if (
             typeof props[propName] !== 'object' ||
             props[propName].nodeType !== 1
           ) {
-            return new Error(
-              "Expected prop '" + propName + "' to be of type Element",
-            );
+            return new Error(`Expected prop '${propName}' to be of type Element`);
           }
+
+          return null;
         },
       }),
     ]),
