@@ -192,11 +192,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       neutral: {
         ...defaultColors.neutral,
         ...createLightModeVariantVariables('neutral'),
-        plainColor: getCssVarColor('palette-neutral-700'),
-        outlinedColor: getCssVarColor('palette-neutral-700'),
-        solidBg: getCssVarColor('palette-neutral-700'),
-        solidHoverBg: getCssVarColor('palette-neutral-600'),
-        solidActiveBg: getCssVarColor('palette-neutral-500'),
+        // plainColor: getCssVarColor('palette-neutral-700'),
+        // outlinedColor: getCssVarColor('palette-neutral-700'),
+        // solidBg: getCssVarColor('palette-neutral-700'),
+        // solidHoverBg: getCssVarColor('palette-neutral-600'),
+        // solidActiveBg: getCssVarColor('palette-neutral-500'),
       },
       danger: {
         ...defaultColors.danger,
