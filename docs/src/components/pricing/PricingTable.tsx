@@ -192,7 +192,7 @@ function ColumnHead({
   nested = false,
   href,
 }: {
-  label: string;
+  label: React.ReactNode;
   metadata?: string;
   tooltip?: string;
   nested?: boolean;
@@ -614,7 +614,12 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'security-questionnaire': (
     <ColumnHead
       {...{
-        label: 'Security questionnaire',
+        label: (
+          <React.Fragment>
+            Security questionnaire & <br />
+            custom agreements
+          </React.Fragment>
+        ),
       }}
     />
   ),
@@ -743,7 +748,12 @@ const proData: Record<string, React.ReactNode> = {
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
-  'security-questionnaire': no,
+  'security-questionnaire': (
+    <Info
+      value="Available from 10+ devs"
+      metadata={'Invalidate the "Capped at 10 licenses" policy'}
+    />
+  ),
 };
 
 const premiumData: Record<string, React.ReactNode> = {
