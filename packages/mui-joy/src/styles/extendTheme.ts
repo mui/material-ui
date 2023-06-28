@@ -138,7 +138,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
     softColor: getCssVarColor(`palette-${color}-700`),
     softBg: getCssVarColor(`palette-${color}-200`),
-    softHoverBg: getCssVarColor(`palette-${color}-200`),
+    softHoverBg: getCssVarColor(`palette-${color}-100`),
     softActiveColor: getCssVarColor(`palette-${color}-800`),
     softActiveBg: getCssVarColor(`palette-${color}-300`),
     softDisabledColor: getCssVarColor(`palette-neutral-400`),
@@ -194,9 +194,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createLightModeVariantVariables('neutral'),
         plainColor: getCssVarColor('palette-neutral-700'),
         outlinedColor: getCssVarColor('palette-neutral-700'),
-        // solidBg: getCssVarColor('palette-neutral-700'),
-        // solidHoverBg: getCssVarColor('palette-neutral-600'),
-        // solidActiveBg: getCssVarColor('palette-neutral-500'),
       },
       danger: {
         ...defaultColors.danger,
