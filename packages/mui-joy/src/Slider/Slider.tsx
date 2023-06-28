@@ -58,9 +58,7 @@ const sliderColorVariables =
     const styles =
       theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      ...(styles.border && {
-        '--variant-borderWidth': styles['--variant-borderWidth'],
-      }),
+      ...(!data.state && { '--variant-borderWidth': styles['--variant-borderWidth'] ?? '0px' }),
       '--Slider-trackColor': styles.color,
       '--Slider-thumbBackground': styles.color,
       '--Slider-thumbColor': styles.backgroundColor || theme.vars.palette.background.surface,
@@ -78,7 +76,6 @@ const SliderRoot = styled('span', {
   const getColorVariables = sliderColorVariables({ theme, ownerState });
   return [
     {
-      '--variant-borderWidth': '0px', // prevent using --variant-borderWidth from the outer scope
       '--Slider-size': 'max(42px, max(var(--Slider-thumbSize), var(--Slider-trackSize)))', // Reach 42px touch target, about ~8mm on screen.
       '--Slider-trackRadius': 'var(--Slider-size)',
       '--Slider-markBackground': theme.vars.palette.text.tertiary,
@@ -233,8 +230,9 @@ const SliderThumb = styled('span', {
   [theme.focus.selector]: {
     ...theme.focus.default,
     outlineOffset: 0,
+    outlineWidth: 'max(4px, var(--Slider-thumbSize) / 3.33333)',
     ...(ownerState.color !== 'context' && {
-      outlineColor: `rgba(${theme.vars.palette?.[ownerState.color!]?.mainChannel} / 0.2)`,
+      outlineColor: `rgba(${theme.vars.palette?.[ownerState.color!]?.mainChannel} / 0.32)`,
     }),
   },
   ...(ownerState.orientation === 'horizontal' && {
