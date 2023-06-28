@@ -134,7 +134,7 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 
 ### Portals
 
-By default, the Select's popup is rendered in a portal and appended to the bottom of the DOM.
+By default, the Select's popup is rendered in a [Portal](https://mui.com/base-ui/react-portal/) and appended to the bottom of the DOM.
 If you wish to render the popup where the component is defined, override the `disablePortal` prop of the underlying Popper:
 
 ```jsx
