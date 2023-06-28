@@ -21,7 +21,7 @@ interface MuiProductInfo {
 // Markdown pages can override this value when the URL patterns they follow are a bit strange,
 // which should stay the rare exception.
 export default function getProductInfoFromUrl(asPath: string): MuiProductInfo {
-  const asPathWithoutLang = pathnameToLanguage(asPath).canonicalAs;
+  const asPathWithoutLang = pathnameToLanguage(asPath).canonicalAsServer;
   const firstFolder = asPathWithoutLang.replace(/^\/+([^/]+)\/.*/, '$1');
 
   // When serialized undefined/null are the same, so we encode null as 'null' to be

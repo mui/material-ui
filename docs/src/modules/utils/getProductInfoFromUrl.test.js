@@ -13,6 +13,15 @@ describe('getProductInfoFromUrl', () => {
     });
   });
 
+  it('should ignore anchor', () => {
+    expect(
+      getProductInfoFromUrl('/material-ui/react-app-bar/#app-bar-with-responsive-menu'),
+    ).to.deep.equal({
+      productCategoryId: 'core',
+      productId: 'material-ui',
+    });
+  });
+
   it('should handle Base UI', () => {
     expect(getProductInfoFromUrl('/base-ui/react-button/')).to.deep.equal({
       productCategoryId: 'core',
