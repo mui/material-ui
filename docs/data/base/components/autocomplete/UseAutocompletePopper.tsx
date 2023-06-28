@@ -51,7 +51,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
   );
 });
 
-export default function UseAutocomplete() {
+export default function UseAutocompletePopper() {
   const [value, setValue] = React.useState<(typeof top100Films)[number] | null>(
     null,
   );
