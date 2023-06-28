@@ -68,6 +68,28 @@ describe('getProductInfoFromUrl', () => {
     });
   });
 
+  it('should return x', () => {
+    expect(getProductInfoFromUrl('/x/introduction/')).to.deep.equal({
+      productCategoryId: 'x',
+      productId: 'null',
+    });
+  });
+
+  it('should return uncategorized', () => {
+    expect(getProductInfoFromUrl('/')).to.deep.equal({
+      productCategoryId: 'null',
+      productId: 'null',
+    });
+    expect(getProductInfoFromUrl('/#foo')).to.deep.equal({
+      productCategoryId: 'null',
+      productId: 'null',
+    });
+    expect(getProductInfoFromUrl('/versions')).to.deep.equal({
+      productCategoryId: 'null',
+      productId: 'null',
+    });
+  });
+
   it('should handle MUI Toolpad', () => {
     expect(getProductInfoFromUrl('/toolpad/getting-started/first-app/')).to.deep.equal({
       productCategoryId: 'null',
