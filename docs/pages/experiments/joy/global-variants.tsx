@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import * as React from 'react';
-import { CssVarsProvider } from '@mui/joy/styles';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
@@ -17,9 +17,66 @@ import Option from '@mui/joy/Option';
 import Check from '@mui/icons-material/Check';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
+function ColorSchemePicker() {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return null;
+  }
+
+  return (
+    <Box
+      sx={(theme) => ({
+        position: 'relative',
+        display: 'inline-flex',
+        alignItems: 'center',
+        border: '1px solid',
+        borderRadius: theme.vars.radius.md,
+        ...theme.variants.outlined.neutral,
+      })}
+    >
+      <Box sx={{ display: 'flex', gap: '8px', p: '4px' }}>
+        {(['light', 'dark'] as const).map((modeId) => {
+          return (
+            <Button
+              key={modeId}
+              size="sm"
+              variant={mode === modeId ? 'solid' : 'plain'}
+              onClick={() => {
+                setMode(modeId);
+              }}
+            >
+              {modeId}
+            </Button>
+          );
+        })}
+      </Box>
+    </Box>
+  );
+}
+
 export default function GlobalVariantsPage() {
   return (
     <CssVarsProvider defaultMode="system">
+      <Box
+        sx={{
+          position: 'sticky',
+          top: 0,
+          minHeight: 56,
+          borderBottom: '1px solid',
+          borderColor: 'neutral.outlinedBorder',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: 'background.body',
+        }}
+      >
+        <ColorSchemePicker />
+      </Box>
+
       <Container
         sx={{
           display: 'grid',
