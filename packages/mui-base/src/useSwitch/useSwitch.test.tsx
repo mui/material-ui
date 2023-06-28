@@ -76,13 +76,13 @@ describe('useSwitch', () => {
       const handleFocus = spy();
       const handleFocusVisible = spy();
       function Switch() {
-        const { getInputProps } = useSwitch({
+        const { getRootProps } = useSwitch({
           onBlur: handleBlur,
           onFocus: handleFocus,
           onFocusVisible: handleFocusVisible,
         });
 
-        return <input {...getInputProps()} />;
+        return <input {...getRootProps()} />;
       }
       render(<Switch />);
       const checkbox = screen.getByRole('checkbox');
