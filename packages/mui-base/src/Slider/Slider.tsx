@@ -94,6 +94,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     ...props,
     marks: marksProp,
     disabled,
+    disableSwap,
     isRtl,
     defaultValue,
     max,
@@ -119,6 +120,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     values,
     trackOffset,
     trackLeap,
+    getThumbStyle,
   } = useSlider({ ...partialOwnerState, rootRef: forwardedRef });
 
   const ownerState: SliderOwnerState = {
@@ -272,7 +274,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
             })}
             style={{
               ...style,
-              pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+              ...getThumbStyle(index),
               ...thumbProps.style,
             }}
           >
