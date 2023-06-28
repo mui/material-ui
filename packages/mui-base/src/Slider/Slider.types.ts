@@ -66,7 +66,12 @@ export interface SliderOwnProps extends Omit<UseSliderParameters, 'ref'> {
     root?: SlotComponentProps<'span', SliderRootSlotPropsOverrides, SliderOwnerState>;
     track?: SlotComponentProps<'span', SliderTrackSlotPropsOverrides, SliderOwnerState>;
     rail?: SlotComponentProps<'span', SliderRailSlotPropsOverrides, SliderOwnerState>;
-    thumb?: SlotComponentProps<'span', SliderThumbSlotPropsOverrides, SliderOwnerState>;
+    thumb?: SlotComponentProps<
+      'span',
+      SliderThumbSlotPropsOverrides,
+      SliderOwnerState,
+      { focused: boolean; active: boolean; index: number }
+    >;
     mark?: SlotComponentProps<'span', SliderMarkSlotPropsOverrides, SliderOwnerState>;
     markLabel?: SlotComponentProps<'span', SliderMarkLabelSlotPropsOverrides, SliderOwnerState>;
     valueLabel?: SlotComponentProps<
