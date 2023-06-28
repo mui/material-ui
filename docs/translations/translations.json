@@ -410,6 +410,7 @@
     "/material-ui/guides/content-security-policy": "Content Security Policy",
     "/material-ui/guides/right-to-left": "Right-to-left",
     "/material-ui/guides/shadow-dom": "Shadow DOM",
+    "/material-ui/guides/next-js-app-router": "Next.js App Router",
     "/material-ui/experimental-api": "Experimental APIs",
     "/material-ui/experimental-api/classname-generator": "ClassName generator",
     "CSS theme variables": "CSS theme variables",
