@@ -121,12 +121,15 @@ module.exports = async function demoLoader() {
       }),
   );
 
-  const pageFilename = this.context
-    .replace(this.rootContext, '')
+  // Use .. as the docs runs from the /docs folder
+  const repositoryRoot = path.join(this.rootContext, '..');
+  const fileRelativeContext = path
+    .relative(repositoryRoot, this.context)
     // win32 to posix
     .replace(/\\/g, '/');
+
   const { docs } = prepareMarkdown({
-    pageFilename,
+    fileRelativeContext,
     translations,
     componentPackageMapping,
     options,
@@ -157,7 +160,7 @@ module.exports = async function demoLoader() {
       // The import paths currently use a completely different format.
       // They should just use relative imports.
       let moduleID = `./${demoName.replace(
-        `pages/${pageFilename.replace(/^\/src\/pages\//, '')}/`,
+        `pages/${fileRelativeContext.replace(/^docs\/src\/pages\//, '')}/`,
         '',
       )}`;
 

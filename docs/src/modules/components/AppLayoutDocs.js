@@ -135,7 +135,7 @@ function AppLayoutDocs(props) {
           */}
           <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
             <ActionsDiv>
-              <EditPage markdownLocation={location} />
+              <EditPage sourceLocation={location} />
             </ActionsDiv>
             {children}
             <NoSsr>
