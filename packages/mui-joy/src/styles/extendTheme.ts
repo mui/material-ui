@@ -137,7 +137,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     outlinedDisabledBorder: getCssVarColor(`palette-neutral-200`),
 
     softColor: getCssVarColor(`palette-${color}-700`),
-    softBg: getCssVarColor(`palette-${color}-100`),
+    softBg: getCssVarColor(`palette-${color}-200`),
     softHoverBg: getCssVarColor(`palette-${color}-200`),
     softActiveColor: getCssVarColor(`palette-${color}-800`),
     softActiveBg: getCssVarColor(`palette-${color}-300`),
@@ -149,7 +149,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     solidHoverBg: getCssVarColor(`palette-${color}-600`),
     solidActiveBg: getCssVarColor(`palette-${color}-700`),
     solidDisabledColor: getCssVarColor(`palette-neutral-400`),
-    solidDisabledBg: getCssVarColor(`palette-${color}-50`),
+    solidDisabledBg: getCssVarColor(`palette-${color}-100`),
   });
 
   const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -175,11 +175,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     softDisabledBg: getCssVarColor(`palette-${color}-900`),
 
     solidColor: getCssVarColor(`palette-common-white`),
-    solidBg: getCssVarColor(`palette-${color}-600`),
-    solidHoverBg: getCssVarColor(`palette-${color}-700`),
-    solidActiveBg: getCssVarColor(`palette-${color}-800`),
+    solidBg: getCssVarColor(`palette-${color}-500`),
+    solidHoverBg: getCssVarColor(`palette-${color}-600`),
+    solidActiveBg: getCssVarColor(`palette-${color}-700`),
     solidDisabledColor: getCssVarColor(`palette-neutral-500`),
-    solidDisabledBg: getCssVarColor(`palette-${color}-900`),
+    solidDisabledBg: getCssVarColor(`palette-${color}-800`),
   });
 
   const lightColorSystem = {
@@ -192,8 +192,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       neutral: {
         ...defaultColors.neutral,
         ...createLightModeVariantVariables('neutral'),
-        // plainColor: getCssVarColor('palette-neutral-700'),
-        // outlinedColor: getCssVarColor('palette-neutral-700'),
+        plainColor: getCssVarColor('palette-neutral-700'),
+        outlinedColor: getCssVarColor('palette-neutral-700'),
         // solidBg: getCssVarColor('palette-neutral-700'),
         // solidHoverBg: getCssVarColor('palette-neutral-600'),
         // solidActiveBg: getCssVarColor('palette-neutral-500'),
@@ -253,9 +253,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       neutral: {
         ...defaultColors.neutral,
         ...createDarkModeVariantVariables('neutral'),
-        solidBg: getCssVarColor('palette-neutral-500'),
-        solidHoverBg: getCssVarColor('palette-neutral-600'),
-        solidActiveBg: getCssVarColor('palette-neutral-700'),
       },
       danger: {
         ...defaultColors.danger,
