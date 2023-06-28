@@ -14,20 +14,20 @@ export default function SwitchControl() {
     >
       <Box>
         <FormLabel>Show captions</FormLabel>
-        <FormHelperText>All languages available.</FormHelperText>
+        <FormHelperText sx={{ mt: 0 }}>All languages available.</FormHelperText>
       </Box>
       <Switch
         checked={checked}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
           setChecked(event.target.checked)
         }
-        color="success"
-        variant="outlined"
+        color={checked ? 'success' : 'neutral'}
+        variant={checked ? 'solid' : 'outlined'}
         endDecorator={checked ? 'On' : 'Off'}
         slotProps={{
           endDecorator: {
             sx: {
-              minWidth: 24, // prevent layout shift from "Off" to "On"
+              minWidth: 24,
             },
           },
         }}

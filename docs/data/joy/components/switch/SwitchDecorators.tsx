@@ -1,33 +1,26 @@
 import * as React from 'react';
-import Switch, { switchClasses } from '@mui/joy/Switch';
+import Switch from '@mui/joy/Switch';
 import LocalFireDepartmentRoundedIcon from '@mui/icons-material/LocalFireDepartmentRounded';
 import WavesRoundedIcon from '@mui/icons-material/WavesRounded';
 
 export default function SwitchDecorators() {
-  const [hot, setHot] = React.useState<boolean>(false);
+  const [dark, setDark] = React.useState<boolean>(false);
   return (
     <Switch
-      slotProps={{ input: { 'aria-label': 'hot mode' } }}
+      color={dark ? 'primary' : 'danger'}
+      slotProps={{ input: { 'aria-label': 'dark mode' } }}
       startDecorator={
         <LocalFireDepartmentRoundedIcon
-          sx={{ color: hot ? 'text.icon' : 'danger.600' }}
+          sx={{ color: dark ? 'text.tertiary' : 'danger.600' }}
         />
       }
       endDecorator={
-        <WavesRoundedIcon sx={{ color: hot ? 'primary.500' : 'text.icon' }} />
+        <WavesRoundedIcon sx={{ color: dark ? 'primary.500' : 'text.tertiary' }} />
       }
-      checked={hot}
+      checked={dark}
       onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-        setHot(event.target.checked)
+        setDark(event.target.checked)
       }
-      sx={(theme) => ({
-        [`&:not(.${switchClasses.checked})`]: {
-          '--Switch-trackBackground': theme.vars.palette.danger[500],
-          '&:hover': {
-            '--Switch-trackBackground': theme.vars.palette.danger[600],
-          },
-        },
-      })}
     />
   );
 }
