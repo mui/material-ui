@@ -165,8 +165,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     plainHoverIcon: getCssVarColor(`palette-${color}-300`),
     plainActiveBg: getCssVarColor(`palette-${color}-900`),
     plainActiveIcon: getCssVarColor(`palette-${color}-300`),
-    plainDisabledColor: getCssVarColor(`palette-neutral-400`),
-    plainDisabledIcon: getCssVarColor(`palette-neutral-500`),
+    plainDisabledColor: getCssVarColor(`palette-neutral-600`),
+    plainDisabledIcon: getCssVarColor(`palette-neutral-700`),
 
     outlinedColor: getCssVarColor(`palette-${color}-200`),
     outlinedBorder: getCssVarColor(`palette-${color}-700`),
@@ -178,9 +178,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     outlinedActiveBg: getCssVarColor(`palette-${color}-900`),
     outlinedActiveBorder: getCssVarColor(`palette-${color}-700`),
     outlinedActiveIcon: getCssVarColor(`palette-${color}-300`),
-    outlinedDisabledColor: getCssVarColor(`palette-neutral-400`),
+    outlinedDisabledColor: getCssVarColor(`palette-neutral-600`),
     outlinedDisabledBorder: getCssVarColor(`palette-neutral-800`),
-    outlinedDisabledIcon: getCssVarColor(`palette-neutral-500`),
+    outlinedDisabledIcon: getCssVarColor(`palette-neutral-700`),
 
     softColor: getCssVarColor(`palette-${color}-200`),
     softBg: getCssVarColor(`palette-${color}-800`),
@@ -190,9 +190,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     softActiveColor: getCssVarColor(`palette-${color}-100`),
     softActiveBg: getCssVarColor(`palette-${color}-600`),
     softActiveIcon: getCssVarColor(`palette-${color}-300`),
-    softDisabledColor: getCssVarColor(`palette-neutral-400`),
+    softDisabledColor: getCssVarColor(`palette-neutral-600`),
     softDisabledBg: getCssVarColor(`palette-neutral-900`),
-    softDisabledIcon: getCssVarColor(`palette-neutral-500`),
+    softDisabledIcon: getCssVarColor(`palette-neutral-700`),
 
     solidColor: getCssVarColor(`palette-common-white`),
     solidBg: getCssVarColor(`palette-${color}-600`),
@@ -200,46 +200,38 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     solidHoverBg: getCssVarColor(`palette-${color}-700`),
     solidActiveBg: getCssVarColor(`palette-${color}-800`),
     solidActiveIcon: getCssVarColor(`palette-${color}-200`),
-    solidDisabledColor: getCssVarColor(`palette-neutral-400`),
+    solidDisabledColor: getCssVarColor(`palette-neutral-600`),
     solidDisabledBg: getCssVarColor(`palette-neutral-900`),
-    solidDisabledIcon: getCssVarColor(`palette-neutral-500`),
+    solidDisabledIcon: getCssVarColor(`palette-neutral-700`),
   });
 
   const lightColorSystem = {
     palette: {
       mode: 'light',
-
       primary: {
         ...defaultColors.primary,
         ...createLightModeVariantVariables('primary'),
-
         softColor: getCssVarColor(`palette-primary-500`),
         softBg: `rgba(${getCssVar('palette-primary',colorChannel(defaultColors.primary[500]),)} / 0.15)`,
         softHoverBg: `rgba(${getCssVar('palette-primary',colorChannel(defaultColors.primary[500]),)} / 0.20)`,
         softActiveColor: getCssVarColor(`palette-common-white`),
         softActiveBg: getCssVarColor(`palette-primary-500`),
-
-        
       },
-
       neutral: {
         ...defaultColors.neutral,
         ...createLightModeVariantVariables('neutral'),
         softColor: getCssVarColor(`palette-primary-500`),
       },
-
       danger: {
         ...defaultColors.danger,
         ...createLightModeVariantVariables('danger'),
         softColor: getCssVarColor(`palette-danger-500`),
       },
-
       success: {
         ...defaultColors.success,
         ...createLightModeVariantVariables('success'),
         softColor: getCssVarColor(`palette-success-600`),
       },
-
       warning: {
         ...defaultColors.warning,
         ...createLightModeVariantVariables('warning'),
@@ -247,18 +239,15 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         softColor: getCssVarColor(`palette-warning-700`),
         softActiveColor: getCssVarColor(`palette-common-black`),
       },
-
       common: {
         white: '#fff',
         black: '#000',
       },
-
       text: {
         primary: getCssVarColor('palette-neutral-800'),
         secondary: getCssVarColor('palette-neutral-700'),
         tertiary: getCssVarColor('palette-neutral-600'),
       },
-
       background: {
         body: getCssVarColor('palette-common-white'),
         surface: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.neutral[50]),)} / 0.8)`, 
@@ -338,7 +327,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     shadowChannel: '0 0 0',
     shadowOpacity: '0.6',
   };
-
   const fontFamilyFallback =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
   const fontFamily = {
