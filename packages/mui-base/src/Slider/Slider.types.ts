@@ -1,6 +1,6 @@
 import { OverridableComponent, OverridableTypeMap, Simplify } from '@mui/types';
 import * as React from 'react';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps, SlotComponentPropsWithSlotState } from '../utils';
 import {
   UseSliderHiddenInputProps,
   UseSliderParameters,
@@ -34,6 +34,12 @@ export interface SliderMarkLabelSlotPropsOverrides {}
 export interface SliderValueLabelSlotPropsOverrides {}
 export interface SliderInputSlotPropsOverrides {}
 
+export interface SliderThumbSlotState {
+  focused: boolean;
+  active: boolean;
+  index: number;
+}
+
 export interface SliderOwnProps extends Omit<UseSliderParameters, 'ref'> {
   /**
    * The label of the slider.
@@ -66,11 +72,11 @@ export interface SliderOwnProps extends Omit<UseSliderParameters, 'ref'> {
     root?: SlotComponentProps<'span', SliderRootSlotPropsOverrides, SliderOwnerState>;
     track?: SlotComponentProps<'span', SliderTrackSlotPropsOverrides, SliderOwnerState>;
     rail?: SlotComponentProps<'span', SliderRailSlotPropsOverrides, SliderOwnerState>;
-    thumb?: SlotComponentProps<
+    thumb?: SlotComponentPropsWithSlotState<
       'span',
       SliderThumbSlotPropsOverrides,
       SliderOwnerState,
-      { focused: boolean; active: boolean; index: number }
+      SliderThumbSlotState
     >;
     mark?: SlotComponentProps<'span', SliderMarkSlotPropsOverrides, SliderOwnerState>;
     markLabel?: SlotComponentProps<'span', SliderMarkLabelSlotPropsOverrides, SliderOwnerState>;
