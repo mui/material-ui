@@ -43,6 +43,7 @@ const TabsRoot = styled(SheetRoot, {
     '--Tabs-gap': '1.25rem',
   }),
   '--Tab-lineThickness': '2px',
+  '--Tab-selectedLineColor': 'currentColor',
   /**
    * Cyclic toggles: https://kizu.dev/cyclic-toggles/
    * The variables below allow child components to switch values
@@ -59,7 +60,8 @@ const TabsRoot = styled(SheetRoot, {
   '--left': 'var(--Tabs-placement,)',
   '--right': 'var(--Tabs-placement,)',
   display: 'flex',
-  flexDirection: 'var(--top, column) var(--bottom, column)' as 'initial',
+  flexDirection:
+    'var(--top, column) var(--bottom, column-reverse) var(--left, row) var(--right, row-reverse)' as 'initial',
 }));
 /**
  *
