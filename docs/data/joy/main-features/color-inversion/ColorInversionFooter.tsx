@@ -171,7 +171,7 @@ export default function ColorInversionFooter() {
                   <Chip
                     variant="soft"
                     size="sm"
-                    sx={{ minHeight: 20, fontSize: 'xs2', ml: 'auto' }}
+                    sx={{ minHeight: 20, fontSize: 'xs', ml: 'auto' }}
                   >
                     BETA
                   </Chip>

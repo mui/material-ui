@@ -330,7 +330,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                           variant="plain"
                           color={checked ? 'primary' : 'neutral'}
                           size="sm"
-                          sx={{ bgcolor: 'background.body' }}
+                          sx={{ bgcolor: 'background.surface' }}
                         >
                           <Radio
                             size="sm"
@@ -383,7 +383,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                           variant="plain"
                           color={checked ? 'primary' : 'neutral'}
                           size="sm"
-                          sx={{ bgcolor: 'background.body' }}
+                          sx={{ bgcolor: 'background.surface' }}
                         >
                           <Radio
                             size="sm"

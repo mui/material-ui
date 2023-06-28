@@ -30,7 +30,7 @@ export default function ExampleFilterMemberCheckbox() {
         id="member"
         sx={{
           textTransform: 'uppercase',
-          fontSize: 'xs2',
+          fontSize: 'xs',
           letterSpacing: 'lg',
           fontWeight: 'lg',
           color: 'text.secondary',

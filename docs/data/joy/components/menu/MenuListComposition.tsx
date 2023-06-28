@@ -65,7 +65,7 @@ export default function MenuListComposition(): JSX.Element {
           <MenuList
             variant="outlined"
             onKeyDown={handleListKeyDown}
-            sx={{ boxShadow: 'md', bgcolor: 'background.body' }}
+            sx={{ boxShadow: 'md' }}
           >
             <MenuItem onClick={handleClose}>Single</MenuItem>
             <MenuItem onClick={handleClose}>1.15</MenuItem>
