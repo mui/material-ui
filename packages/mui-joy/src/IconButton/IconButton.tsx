@@ -84,7 +84,16 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       position: 'relative',
       [theme.focus.selector]: theme.focus.default,
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    {
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color === 'neutral' && {
+          backgroundColor: theme.vars.palette?.neutral?.[800],
+          [theme.getColorSchemeSelector('dark')]: {
+            backgroundColor: theme.vars.palette?.neutral?.[500],
+          },
+        }),
+    },
     {
       '&:hover': {
         '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
