@@ -132,6 +132,15 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 <Select slotProps={{ listbox: { className: 'my-listbox' } }} />
 ```
 
+### Portals
+
+By default, the Select's popup is rendered in a [Portal](https://mui.com/base-ui/react-portal/) and appended to the bottom of the DOM.
+To instead render the popup where the component is defined, override the `disablePortal` prop of the underlying Popper, as shown below:
+
+```jsx
+<Select slotProps={{ popper: { disablePortal: true } }} />
+```
+
 #### Usage with TypeScript
 
 In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:

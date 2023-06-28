@@ -442,6 +442,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     classes: classesProp,
     disabled,
     defaultValue,
+    disableSwap,
     isRtl,
     max,
     min,
@@ -471,6 +472,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     values,
     trackOffset,
     trackLeap,
+    getThumbStyle,
   } = useSlider({ ...ownerState, rootRef: ref });
 
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
@@ -617,7 +619,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
             })}
             style={{
               ...style,
-              pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+              ...getThumbStyle(index),
               ...thumbProps.style,
             }}
           >
