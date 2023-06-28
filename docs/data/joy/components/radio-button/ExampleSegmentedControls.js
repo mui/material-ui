@@ -20,7 +20,7 @@ export default function ExampleSegmentedControls() {
         sx={{
           minHeight: 48,
           padding: '4px',
-          borderRadius: 'md',
+          borderRadius: '12px',
           bgcolor: 'neutral.softBg',
           '--RadioGroup-gap': '4px',
           '--Radio-actionRadius': '8px',
