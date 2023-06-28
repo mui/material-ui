@@ -96,9 +96,6 @@ const ListItemRoot = styled('li', {
         marginBlockStart: 'var(--List-gap)',
       }),
     minBlockSize: 'var(--ListItem-minHeight)',
-    fontSize: `var(--ListItem-fontSize, ${theme.vars.fontSize.sm})`,
-    lineHeight: `var(--ListItem-lineHeight, ${theme.vars.lineHeight.sm})`,
-    fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.sticky && {
       // sticky in list item can be found in grouped options
       position: 'sticky',

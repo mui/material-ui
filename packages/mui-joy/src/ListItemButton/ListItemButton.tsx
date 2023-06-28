@@ -77,9 +77,6 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
     flexShrink: 0,
     minInlineSize: 0,
-    fontSize: `var(--ListItem-fontSize, ${theme.vars.fontSize.sm})`,
-    lineHeight: `var(--ListItem-lineHeight, ${theme.vars.lineHeight.sm})`,
-    fontFamily: theme.vars.fontFamily.body,
     [theme.focus.selector]: theme.focus.default,
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     [`&.${listItemButtonClasses.selected}`]: {
@@ -87,7 +84,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       '--ListItemDecorator-color': 'initial',
       fontWeight: theme.vars.fontWeight.md,
     },
-    [`&:not(.${listItemButtonClasses.selected})`]: {
+    [`&:not(.${listItemButtonClasses.selected}):not([aria-selected="true"])`]: {
       '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
       '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
     },

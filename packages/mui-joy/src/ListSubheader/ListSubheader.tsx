@@ -38,9 +38,8 @@ const ListSubheaderRoot = styled('div', {
   paddingInlineStart: 'var(--ListItem-paddingLeft)',
   paddingInlineEnd: 'var(--ListItem-paddingRight)',
   minBlockSize: 'var(--ListItem-minHeight)',
-  fontSize: 'calc(var(--ListItem-fontSize) * 0.75)',
-  fontWeight: theme.vars.fontWeight.lg,
-  fontFamily: theme.vars.fontFamily.body,
+  ...theme.typography['body-xs'],
+  fontSize: 'max(0.75em, 0.625rem)',
   textTransform: 'uppercase',
   ...(ownerState.sticky && {
     position: 'sticky',

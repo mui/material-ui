@@ -80,13 +80,12 @@ export default function GitHubLabel() {
         <List
           size="sm"
           sx={{
-            '--List-radius': '0px',
             '--List-gap': '3px',
             '--ListItem-minHeight': '20px',
             '--ListItem-paddingX': '4px',
             '--ListItem-paddingY': '0.15em',
             '--ListItem-radius': '2px',
-            '--ListItem-fontSize': '13px',
+            fontSize: '13px',
           }}
         >
           {value.map((label) => (
