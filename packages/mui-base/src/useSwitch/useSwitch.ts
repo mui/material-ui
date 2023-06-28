@@ -157,6 +157,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
 
   const getRootProps: UseSwitchReturnValue['getRootProps'] = (otherProps = {}) => ({
     ref: handleInputRef,
+    role: 'checkbox',
     'aria-readonly': readOnly,
     'aria-disabled': disabled,
     'aria-required': required,
