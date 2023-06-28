@@ -57,13 +57,13 @@ module.exports = {
       '@material-ui/styles': path.resolve(__dirname, '../../packages/mui-styles/src'),
     },
     fallback: {
-      // Exclude polyfill and treat 'fs' as an empty module since it is not required. next -> gzip-file relies on it.
+      // Exclude polyfill and treat 'fs' as an empty module since it is not required. next -> gzip-size relies on it.
       fs: false,
       // needed by enzyme > cheerio
       stream: false,
       // required by enzyme > cheerio > parse5
       util: require.resolve('util/'),
-      // Exclude polyfill and treat 'zlib' as an empty module since it is not required. next -> gzip-file relies on it.
+      // Exclude polyfill and treat 'zlib' as an empty module since it is not required. next -> gzip-size relies on it.
       zlib: false,
     },
   },
