@@ -317,7 +317,7 @@ function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
         {
           py: '16px',
           minHeight: 54,
-          px: 1,
+          px: [1, 2],
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -617,7 +617,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
       {...{
         label: (
           <React.Fragment>
-            Security questionnaire & <Box sx={{ display: ['none', 'block'] }} />
+            Security questionnaire & <Box component="span" sx={{ display: ['none', 'block'] }} />
             custom agreements
           </React.Fragment>
         ),
