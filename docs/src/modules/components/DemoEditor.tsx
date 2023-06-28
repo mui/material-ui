@@ -8,7 +8,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
-import { blue, blueDark } from 'docs/src/modules/brandingTheme';
+import { blueDark } from 'docs/src/modules/brandingTheme';
 
 const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
   {
@@ -37,10 +37,10 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
   theme.applyDarkStyles({
     '& .scrollContainer': {
       '&:hover': {
-        boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primaryDark[400]}`,
+        boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primaryDark[300]}`,
       },
       '&:focus-within': {
-        boxShadow: `0 0 0 2px ${(theme.vars || theme).palette.primaryDark.main}`,
+        boxShadow: `0 0 0 2px ${(theme.vars || theme).palette.primaryDark[400]}`,
       },
     },
   }),
@@ -129,21 +129,30 @@ export default function DemoEditor(props: DemoEditorProps) {
           sx={(theme) => ({
             position: 'absolute',
             top: theme.spacing(1),
-            padding: theme.spacing(0.5, 1),
+            padding: theme.spacing(0.2, 1, 0.5, 1),
             outline: 0,
             left: '50%',
             border: '1px solid',
-            borderColor: blue[400],
-            backgroundColor: blueDark[600],
-            color: blueDark[50],
+            borderColor: blueDark[600],
+            backgroundColor: blueDark[700],
+            color: '#FFF',
             transform: 'translateX(-50%)',
-            borderRadius: '4px',
+            borderRadius: '6px',
             fontSize: theme.typography.pxToRem(13),
             transition: 'all 0.3s',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
             '&:not(:focus)': {
               top: 0,
               opacity: 0,
               pointerEvents: 'none',
+            },
+            '> kbd': {
+              padding: theme.spacing(0.2, 0.4),
+              backgroundColor: blueDark[500],
+              fontSize: theme.typography.pxToRem(11),
+              borderRadius: '6px',
+              border: '1px solid',
+              borderColor: blueDark[400],
             },
           })}
           dangerouslySetInnerHTML={{

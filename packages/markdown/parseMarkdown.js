@@ -426,11 +426,11 @@ function resolveComponentApiUrl(product, componentPkg, component) {
 /**
  * @param {object} config
  * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
- * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
+ * @param {string} config.fileRelativeContext - posix filename relative to repository root directory
  * @param {object} config.options - provided to the webpack loader
  */
 function prepareMarkdown(config) {
-  const { pageFilename, translations, componentPackageMapping = {}, options } = config;
+  const { fileRelativeContext, translations, componentPackageMapping = {}, options } = config;
 
   const demos = {};
   /**
@@ -446,7 +446,7 @@ function prepareMarkdown(config) {
     .forEach((translation) => {
       const { filename, markdown, userLanguage } = translation;
       const headers = getHeaders(markdown);
-      const location = headers.filename || `/docs${pageFilename}/${filename}`;
+      const location = headers.filename || `/${fileRelativeContext}/${filename}`;
       const title = headers.title || getTitle(markdown);
       const description = headers.description || getDescription(markdown);
 
@@ -485,7 +485,7 @@ function prepareMarkdown(config) {
 ## Unstyled
 
 :::success
-[Base UI](/base-ui/getting-started/overview/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
+[Base UI](/base-ui/getting-started/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
 :::
         `);
       }

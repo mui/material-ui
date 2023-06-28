@@ -48,7 +48,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
   );
 });
 
-export default function UseAutocomplete() {
+export default function UseAutocompletePopper() {
   const [value, setValue] = React.useState(null);
 
   const handleChange = (event, newValue) => setValue(newValue);
