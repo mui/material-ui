@@ -235,8 +235,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       warning: {
         ...defaultColors.warning,
         ...createLightModeVariantVariables('warning'),
+        plainColor: getCssVarColor(`palette-warning-700`),
+        outlinedColor: getCssVarColor(`palette-warning-700`),
         solidColor: getCssVarColor(`palette-common-black`),
-        softColor: getCssVarColor(`palette-warning-700`),
+        softColor: getCssVarColor(`palette-warning-800`),
         softActiveColor: getCssVarColor(`palette-common-black`),
       },
       common: {
@@ -294,6 +296,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       warning: {
         ...defaultColors.warning,
         ...createDarkModeVariantVariables('warning'),
+        softColor: getCssVarColor(`palette-common-black`),
+        softActiveColor: getCssVarColor(`palette-common-black`),
+        solidColor: getCssVarColor(`palette-common-black`),
       },
       common: {
         white: '#fff',
