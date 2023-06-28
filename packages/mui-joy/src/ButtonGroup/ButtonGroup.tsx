@@ -71,9 +71,6 @@ const ButtonGroupRoot = styled('div', {
         ownerState.variant === 'outlined' ? '1px' : 'calc(var(--ButtonGroup-connected) * 1px)',
       ...(ownerState.color !== 'context' && {
         '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.outlinedBorder,
-        ...(ownerState.variant === 'solid' && {
-          '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[400],
-        }),
       }),
       '--ButtonGroup-radius': theme.vars.radius.sm,
       '--Divider-inset': '0.5rem',
