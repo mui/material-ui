@@ -104,12 +104,20 @@ Note that in the multiple selection mode, the `value` prop (and `defaultValue`) 
 
 ### Controlled select
 
-Select can be used as an uncontrolled or controlled component:
+Select can be used as an uncontrolled or controlled component.
+
+:::info
+
+- The value is **controlled** when its parent manages it by providing a `value` prop.
+- The value is **uncontrolled** when it is managed by the component's own internal state. This state can be initialized using the `defaultValue` prop.
+
+Learn more about the _Controlled and uncontrolled_ pattern in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 {{"demo": "UnstyledSelectControlled.js", "defaultCodeOpen": false}}
 
 To set the value of the controlled Select, use the `value` prop.
-In the other case the `defaultValue` can be used to set the initial value of the component.
+The uncontrolled component accepts the `defaultValue` that can be used to set the initial value.
 In any case, if you wish to deselect all values pass `null` to the respective prop.
 
 :::warning
