@@ -165,7 +165,7 @@ function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   return (
     <React.Fragment>
       {typeof value === 'string' ? (
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
           {value}
         </Typography>
       ) : (
@@ -315,8 +315,9 @@ function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
       {...props}
       sx={[
         {
-          py: '18px',
-          px: 2,
+          py: '16px',
+          minHeight: 54,
+          px: 1,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -616,7 +617,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
       {...{
         label: (
           <React.Fragment>
-            Security questionnaire & <br />
+            Security questionnaire & <Box sx={{ display: ['none', 'block'] }} />
             custom agreements
           </React.Fragment>
         ),
@@ -750,8 +751,8 @@ const proData: Record<string, React.ReactNode> = {
   'issue-escalation': no,
   'security-questionnaire': (
     <Info
-      value="Available from 10+ devs"
-      metadata={'Not available under the "Capped at 10 licenses" policy'}
+      value="Available from 10+ devs"
+      metadata={'Not available under the "Capped at 10 licenses" policy'}
     />
   ),
 };
