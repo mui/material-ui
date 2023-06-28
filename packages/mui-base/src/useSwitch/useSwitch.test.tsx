@@ -54,7 +54,9 @@ describe('useSwitch', () => {
 
       expect(inputProps!.checked).to.equal(true);
     });
+  });
 
+  describe('getRootProps', () => {
     it('should call onChange if a change event is fired', () => {
       const handleChange = spy();
       function Switch() {
