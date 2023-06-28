@@ -46,7 +46,7 @@ const StyledInputElement = styled('input')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.5rem;
   padding: 8px 12px;
   border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
@@ -76,7 +76,7 @@ const StyledTextareaElement = styled(TextareaAutosize)(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.5rem;
   padding: 8px 12px;
   border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
