@@ -96,7 +96,7 @@ const CheckboxCheckbox = styled('span', {
   return [
     {
       boxSizing: 'border-box',
-      borderRadius: theme.vars.radius.xs,
+      borderRadius: theme.vars.radius.sm,
       width: 'var(--Checkbox-size)',
       height: 'var(--Checkbox-size)',
       display: 'inline-flex',
