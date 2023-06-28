@@ -42,6 +42,7 @@ export default function ProsePage() {
           display: 'flex',
           gap: 2,
           px: 5,
+          bgcolor: 'background.body',
         }}
       >
         <Prose>
