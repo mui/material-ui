@@ -55,20 +55,20 @@ const CheckboxRoot = styled('span', {
   '--Icon-fontSize': 'var(--Checkbox-size)',
   ...(ownerState.size === 'sm' && {
     '--Checkbox-size': '1rem',
-    '--Checkbox-gap': '0.375rem',
-    '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.375rem' },
+    '--Checkbox-gap': '0.5rem',
+    '& ~ *': { '--FormHelperText-margin': '0 0 0 1.5rem' },
     fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'md' && {
     '--Checkbox-size': '1.25rem',
-    '--Checkbox-gap': '0.5rem',
-    '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.75rem' },
+    '--Checkbox-gap': '0.625rem',
+    '& ~ *': { '--FormHelperText-margin': '0.25rem 0 0 1.875rem' },
     fontSize: theme.vars.fontSize.md,
   }),
   ...(ownerState.size === 'lg' && {
     '--Checkbox-size': '1.5rem',
-    '--Checkbox-gap': '0.625rem',
-    '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.125rem' },
+    '--Checkbox-gap': '0.75rem',
+    '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.25rem' },
     fontSize: theme.vars.fontSize.lg,
   }),
   position: ownerState.overlay ? 'initial' : 'relative',
@@ -96,7 +96,7 @@ const CheckboxCheckbox = styled('span', {
   return [
     {
       boxSizing: 'border-box',
-      borderRadius: theme.vars.radius.sm,
+      borderRadius: `min(${theme.vars.radius.sm}, 0.25rem)`,
       width: 'var(--Checkbox-size)',
       height: 'var(--Checkbox-size)',
       display: 'inline-flex',
