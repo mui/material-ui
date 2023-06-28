@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Icon Component
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'

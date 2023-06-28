@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Text Field component
 githubLabel: 'component: text field'
 ---
