@@ -57,14 +57,7 @@ export default function ButtonThemes() {
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 3 }}>
         <Box sx={{ m: 'auto' }}>
-          <List
-            sx={{
-              ...rootPresets[preset],
-              bgcolor: 'background.body',
-              border: '1px solid',
-              borderColor: 'neutral.outlinedBorder',
-            }}
-          >
+          <List variant="outlined" sx={{ ...rootPresets[preset] }}>
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator>

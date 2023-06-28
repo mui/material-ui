@@ -26,7 +26,6 @@ export default function MyProfile() {
   return (
     <Sheet
       sx={{
-        bgcolor: 'background.body',
         flex: 1,
         maxWidth: 1200,
         width: '100%',
@@ -39,7 +38,6 @@ export default function MyProfile() {
       <Tabs
         defaultValue={0}
         sx={{
-          bgcolor: 'background.body',
           '--Tab-height': '48px',
         }}
       >

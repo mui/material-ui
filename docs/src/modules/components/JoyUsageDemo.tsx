@@ -539,12 +539,6 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         [propName]: event.target.value,
                       }))
                     }
-                    sx={{
-                      textTransform: 'capitalize',
-                      [`& .${inputClasses.root}`]: {
-                        bgcolor: 'background.body',
-                      },
-                    }}
                   />
                 </FormControl>
               );
@@ -569,12 +563,6 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                           : event.target.valueAsNumber,
                       }))
                     }
-                    sx={{
-                      textTransform: 'capitalize',
-                      [`& .${inputClasses.root}`]: {
-                        bgcolor: 'background.body',
-                      },
-                    }}
                   />
                 </FormControl>
               );

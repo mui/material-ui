@@ -27,7 +27,7 @@ export default function TabsPricingExample() {
           [`& .${tabClasses.root}`]: {
             fontWeight: 'lg',
             flex: 1,
-            bgcolor: 'background.body',
+
             position: 'relative',
             [`&.${tabClasses.selected}`]: {
               color: 'primary.500',

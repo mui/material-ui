@@ -58,7 +58,6 @@ export default function ModeToggle() {
           p: 2,
           m: -3,
           borderRadius: [0, 'sm'],
-          bgcolor: 'background.body',
         }}
       >
         <ModeSwitcher />

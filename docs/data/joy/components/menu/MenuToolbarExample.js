@@ -146,10 +146,8 @@ export default function MenuToolbarExample() {
       data-joy-color-scheme="dark"
       sx={{
         bgcolor: 'background.body',
-        px: 2,
         borderRadius: '4px',
         maxWidth: 'fit-content',
-        '--ListItem-radius': '8px',
       }}
     >
       <ListItem>

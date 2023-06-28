@@ -14,7 +14,6 @@ export default function TabsPageExample() {
   return (
     <Box
       sx={{
-        bgcolor: 'background.body',
         flexGrow: 1,
         m: -3,
         overflowX: 'hidden',
