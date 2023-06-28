@@ -96,13 +96,9 @@ const TextareaRoot = styled('div', {
       paddingInlineStart: `var(--Textarea-paddingInline)`, // the paddingInlineEnd is added to the textarea. It looks better when the scrollbar appears.
       paddingBlock: 'var(--Textarea-paddingBlock)',
       borderRadius: 'var(--Textarea-radius)',
-      fontFamily: theme.vars.fontFamily.body,
-      fontSize: theme.vars.fontSize.md,
-      lineHeight: theme.vars.lineHeight.md,
-      ...(ownerState.size === 'sm' && {
-        fontSize: theme.vars.fontSize.sm,
-        lineHeight: theme.vars.lineHeight.sm,
-      }),
+      ...theme.typography[`body-${ownerState.size!}`],
+      ...variantStyle,
+      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       '&:before': {
         boxSizing: 'border-box',
         content: '""',
@@ -120,9 +116,6 @@ const TextareaRoot = styled('div', {
       },
     },
     {
-      // variant styles
-      ...variantStyle,
-      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       '&:hover': {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
         backgroundColor: null, // it is not common to change background on hover for Textarea

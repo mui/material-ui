@@ -93,11 +93,9 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         display: 'flex',
         paddingInline: `var(--Input-paddingInline)`,
         borderRadius: 'var(--Input-radius)',
-        fontFamily: theme.vars.fontFamily.body,
-        fontSize: theme.vars.fontSize.md,
-        ...(ownerState.size === 'sm' && {
-          fontSize: theme.vars.fontSize.sm,
-        }),
+        ...theme.typography[`body-${ownerState.size!}`],
+        ...variantStyle,
+        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
         '&:before': {
           boxSizing: 'border-box',
           content: '""',
@@ -115,9 +113,6 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         },
       },
       {
-        // variant styles
-        ...variantStyle,
-        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
         '&:hover': {
           ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
           backgroundColor: null, // it is not common to change background on hover for Input

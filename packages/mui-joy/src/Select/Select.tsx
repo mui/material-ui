@@ -147,11 +147,8 @@ const SelectRoot = styled('div', {
         paddingBlock: { sm: 2, md: 3, lg: 4 }[ownerState.size], // the padding-block act as a minimum spacing between content and root element
       }),
       paddingInline: `var(--Select-paddingInline)`,
-      fontFamily: theme.vars.fontFamily.body,
-      fontSize: theme.vars.fontSize.md,
-      ...(ownerState.size === 'sm' && {
-        fontSize: theme.vars.fontSize.sm,
-      }),
+      ...theme.typography[`body-${ownerState.size!}`],
+      ...variantStyle,
       '&::before': {
         boxSizing: 'border-box',
         content: '""',
@@ -181,8 +178,6 @@ const SelectRoot = styled('div', {
         },
     },
     {
-      // apply global variant styles
-      ...variantStyle,
       '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
       [`&.${selectClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
