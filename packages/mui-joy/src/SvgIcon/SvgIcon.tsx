@@ -11,18 +11,21 @@ import { getSvgIconUtilityClass } from './svgIconClasses';
 import { SvgIconProps, SvgIconTypeMap, SvgIconOwnerState } from './SvgIconProps';
 
 const useUtilityClasses = (ownerState: SvgIconOwnerState) => {
-  const { color, fontSize } = ownerState;
+  const { color, size, fontSize } = ownerState;
 
   const slots = {
     root: [
       'root',
       color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
       fontSize && `fontSize${capitalize(fontSize)}`,
     ],
   };
 
   return composeClasses(slots, getSvgIconUtilityClass, {});
 };
+
+const sizeMap = { sm: 'xl', md: 'xl2', lg: 'xl3' } as const;
 
 const SvgIconRoot = styled('svg', {
   name: 'JoySvgIcon',
@@ -43,6 +46,7 @@ const SvgIconRoot = styled('svg', {
   // e.g. heroicons uses fill="none" and stroke="currentColor"
   fill: ownerState.hasSvgAsChild ? undefined : 'currentColor',
   flexShrink: 0,
+  fontSize: `var(--Icon-fontSize, ${theme.vars.fontSize[sizeMap[ownerState.size!]] || 'unset'})`,
   ...(ownerState.fontSize &&
     ownerState.fontSize !== 'inherit' && {
       fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
@@ -78,11 +82,12 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     className,
     color = 'inherit',
     component = 'svg',
-    fontSize = 'xl2',
+    fontSize,
     htmlColor,
     inheritViewBox = false,
     titleAccess,
     viewBox = '0 0 24 24',
+    size = 'md',
     slots = {},
     slotProps = {},
     ...other
@@ -94,6 +99,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     ...props,
     color,
     component,
+    size,
     fontSize,
     instanceFontSize: inProps.fontSize,
     inheritViewBox,
@@ -193,6 +199,14 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * If you are having issues with blurry icons you should investigate this prop.
    */
   shapeRendering: PropTypes.string,
+  /**
+   * The size of the component.
+   * @default 'md'
+   */
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The props used for each slot inside.
    * @default {}

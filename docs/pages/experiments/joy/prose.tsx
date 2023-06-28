@@ -187,7 +187,7 @@ export default function ProsePage() {
           }}
         >
           <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
-            <SvgIcon fontSize="xl">
+            <SvgIcon size="sm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -286,7 +286,7 @@ export default function ProsePage() {
           </Sheet>
 
           <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
-            <SvgIcon fontSize="xl3">
+            <SvgIcon size="lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -315,7 +315,7 @@ export default function ProsePage() {
           </Sheet>
 
           <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
-            <SvgIcon fontSize="xl3">
+            <SvgIcon size="lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -344,7 +344,7 @@ export default function ProsePage() {
           </Sheet>
 
           <Sheet variant="outlined" sx={{ display: 'flex', gap: 2, p: 2 }}>
-            <SvgIcon fontSize="xl3">
+            <SvgIcon size="lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
