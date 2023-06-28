@@ -191,7 +191,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     softActiveBg: getCssVarColor(`palette-${color}-600`),
     softActiveIcon: getCssVarColor(`palette-${color}-300`),
     softDisabledColor: getCssVarColor(`palette-neutral-400`),
-    softDisabledBg: getCssVarColor(`palette-${color}-900`),
+    softDisabledBg: getCssVarColor(`palette-neutral-900`),
     softDisabledIcon: getCssVarColor(`palette-neutral-500`),
 
     solidColor: getCssVarColor(`palette-common-white`),
@@ -201,7 +201,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     solidActiveBg: getCssVarColor(`palette-${color}-800`),
     solidActiveIcon: getCssVarColor(`palette-${color}-200`),
     solidDisabledColor: getCssVarColor(`palette-neutral-400`),
-    solidDisabledBg: getCssVarColor(`palette-${color}-900`),
+    solidDisabledBg: getCssVarColor(`palette-neutral-900`),
     solidDisabledIcon: getCssVarColor(`palette-neutral-500`),
   });
 
@@ -237,7 +237,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       success: {
         ...defaultColors.success,
         ...createLightModeVariantVariables('success'),
-        softColor: getCssVarColor(`palette-success-500`),
+        softColor: getCssVarColor(`palette-success-600`),
       },
 
       warning: {
