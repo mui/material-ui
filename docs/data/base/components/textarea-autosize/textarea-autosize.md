@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: Textarea Autosize React component
 components: TextareaAutosize
 githubLabel: 'component: TextareaAutosize'
@@ -19,11 +19,13 @@ Textarea Autosize is a utility component that replaces the native `<textarea>` H
 
 The height of the Textarea Autosize component automatically adjusts as a response to keyboard inputs and window resizing events.
 
+{{"demo": "UnstyledTextareaIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+
 ## Component
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import TextareaAutosize from '@mui/base/TextareaAutosize';

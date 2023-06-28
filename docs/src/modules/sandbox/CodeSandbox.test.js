@@ -122,4 +122,19 @@ describe('CodeSandbox', () => {
       'react-scripts': 'latest',
     });
   });
+
+  it('generate the correct index.html result when Tailwind is used', () => {
+    const result = CodeSandbox.createReactApp({
+      title: 'BasicButtons Material Demo',
+      githubLocation:
+        'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
+      codeVariant: 'JS',
+      language: 'en',
+      raw: testCase,
+      codeStyling: 'Tailwind',
+    });
+    expect(result.files['public/index.html'].content).to.contain(
+      '<script src="https://cdn.tailwindcss.com"></script>',
+    );
+  });
 });

@@ -63,7 +63,6 @@ const TooltipRoot = styled('div', {
       fontSize: theme.vars.fontSize.md,
     }),
     zIndex: theme.vars.zIndex.tooltip,
-    pointerEvents: 'none',
     borderRadius: theme.vars.radius.xs,
     boxShadow: theme.shadow.sm,
     fontFamily: theme.vars.fontFamily.body,
@@ -71,10 +70,7 @@ const TooltipRoot = styled('div', {
     lineHeight: theme.vars.lineHeight.sm,
     wordWrap: 'break-word',
     position: 'relative',
-    ...(!ownerState.disableInteractive && {
-      pointerEvents: 'auto',
-    }),
-    ...(!ownerState.open && {
+    ...(ownerState.disableInteractive && {
       pointerEvents: 'none',
     }),
     ...variantStyle,

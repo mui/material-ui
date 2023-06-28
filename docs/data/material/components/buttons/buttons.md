@@ -5,7 +5,7 @@ components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://m2.material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base/react-button/
+unstyled: /base-ui/react-button/
 ---
 
 # Button
@@ -85,10 +85,6 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "ButtonSizes.js"}}
 
-## Upload button
-
-{{"demo": "UploadButtons.js"}}
-
 ## Buttons with icons and label
 
 Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
@@ -130,7 +126,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
 You can take advantage of this lower-level component to build custom interactions.
 
-{{"demo": "ButtonBase.js"}}
+{{"demo": "ButtonBaseDemo.js"}}
 
 ## Third-party routing library
 

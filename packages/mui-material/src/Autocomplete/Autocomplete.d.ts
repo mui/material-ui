@@ -163,6 +163,7 @@ export interface AutocompleteProps<
    */
   ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
     sx?: SxProps<Theme>;
+    ref?: React.Ref<Element>;
   };
   /**
    * If `true`, the component is in a loading state.
@@ -293,4 +294,5 @@ export default function Autocomplete<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
->(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>): JSX.Element;
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+>(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>): JSX.Element;

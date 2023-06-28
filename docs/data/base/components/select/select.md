@@ -1,5 +1,5 @@
 ---
-product: base
+product: base-ui
 title: React Select components and hook
 components: Select, Option, OptionGroup
 hooks: useSelect, useOption
@@ -34,7 +34,7 @@ It also includes Option for creating the options on the list, and Option Group f
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import Select from '@mui/base/Select';
@@ -163,7 +163,7 @@ Use the `slots` prop to override the root or any other interior slot:
 
 :::info
 The `slots` prop is available on all non-utility Base components.
-See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.
@@ -171,6 +171,15 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 
 ```jsx
 <Select slotProps={{ listbox: { className: 'my-listbox' } }} />
+```
+
+### Portals
+
+By default, the Select's popup is rendered in a [Portal](https://mui.com/base-ui/react-portal/) and appended to the bottom of the DOM.
+To instead render the popup where the component is defined, override the `disablePortal` prop of the underlying Popper, as shown below:
+
+```jsx
+<Select slotProps={{ popper: { disablePortal: true } }} />
 ```
 
 #### Usage with TypeScript

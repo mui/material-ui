@@ -26,7 +26,6 @@ const useRovingIndex = (options) => {
     },
   } = options || {};
   const [activeIndex, setActiveIndex] = React.useState(initialActiveIndex);
-
   const targetRefs = React.useRef([]);
   const targets = targetRefs.current;
   const focusNext = () => {

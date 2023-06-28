@@ -33,7 +33,6 @@ export default function BreadcrumbsWithIcon() {
           {item}
         </Link>
       ))}
-
       <Typography fontSize="inherit">Homer</Typography>
     </Breadcrumbs>
   );

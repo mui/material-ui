@@ -34,6 +34,7 @@ module.exports = {
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
+    'filenames',
   ],
   settings: {
     'import/resolver': {
@@ -104,6 +105,7 @@ module.exports = {
 
     // Not sure why it doesn't work
     'import/named': 'off',
+    'import/no-cycle': 'off',
     // Missing yarn workspace support
     'import/no-extraneous-dependencies': 'off',
     // The code is already coupled to webpack. Prefer explicit coupling.
@@ -297,6 +299,18 @@ module.exports = {
       },
     },
     {
+      files: ['docs/data/**/*.tsx'],
+      excludedFiles: [
+        'docs/data/joy/getting-started/templates/**/*.tsx',
+        'docs/data/**/css/*.tsx',
+        'docs/data/**/system/*.tsx',
+        'docs/data/**/tailwind/*.tsx',
+      ],
+      rules: {
+        'filenames/match-exported': ['error'],
+      },
+    },
+    {
       files: ['*.d.ts'],
       rules: {
         'import/export': 'off', // Not sure why it doesn't work
@@ -413,6 +427,7 @@ module.exports = {
             ],
           },
         ],
+        'import/no-cycle': ['error', { ignoreExternal: true }],
       },
     },
     {
