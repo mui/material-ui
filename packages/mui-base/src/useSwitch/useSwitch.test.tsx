@@ -82,7 +82,7 @@ describe('useSwitch', () => {
           onFocusVisible: handleFocusVisible,
         });
 
-        return <input {...getRootProps()} />;
+        return <span tabIndex={1} {...getRootProps()} />;
       }
       render(<Switch />);
       const checkbox = screen.getByRole('checkbox');
