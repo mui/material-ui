@@ -128,17 +128,6 @@ The following demo shows how to use this prop to define custom markup and overri
 
 {{"demo": "DisabledOptions.js"}}
 
-## Globally Customized Options
-
-You can customize the options globally using [Themed components](/material-ui/customization/theme-components/).
-
-To add ripple effects to all the options of the Autocomplete component,
-you can define the `renderOption` property as a `defaultProps` for `Autocomplete` component in the Theme.
-`renderOption` will then receive `ownerState` as the fourth parameter, which are props augmented with internal state of the component.
-With that, your `Autocomplete` components can each have different options with the same styling.
-
-{{"demo": "GloballyCustomizedOptions.js"}}
-
 ## `useAutocomplete`
 
 For advanced customization use cases, a headless `useAutocomplete()` hook is exposed.
@@ -239,6 +228,15 @@ The first argument of this render prop contains props that you need to forward.
 Pay specific attention to the `ref` and `inputProps` keys.
 
 {{"demo": "CustomInputAutocomplete.js"}}
+
+### Globally Customized Options
+
+You can customize the Autocomplete options globally using [theme default props](/material-ui/customization/theme-components/#theme-default-props) for all of your Autocomplete components in your app.
+
+Suppose you want to add ripple effects to all of your Autocomplete component options, you can set the `renderOption` property in the `defaultProps` key in the theme. This property receives `ownerState` as the fourth parameter, which includes props and internal component state. You can use the `getOptionLabel` prop from the `ownerState`.
+This allows each `Autocomplete` component to have different options while maintaining the same styling.
+
+{{"demo": "GloballyCustomizedOptions.js"}}
 
 ### GitHub's picker
 

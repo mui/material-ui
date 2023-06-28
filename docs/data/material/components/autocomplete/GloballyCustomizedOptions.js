@@ -1,15 +1,9 @@
 import * as React from 'react';
-import {
-  Autocomplete,
-  Box,
-  Button,
-  createTheme,
-  Stack,
-  TextField,
-  ThemeProvider,
-  useTheme,
-} from '@mui/material';
-
+import Autocomplete from '@mui/material/Autocomplete';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import { createTheme, useTheme, ThemeProvider } from '@mui/material/styles';
 // Theme.tsx
 const customTheme = (outerTheme) =>
   createTheme({
@@ -21,8 +15,8 @@ const customTheme = (outerTheme) =>
         defaultProps: {
           renderOption: (props, option, state, ownerState) => (
             <Box sx={{ padding: '0 !important' }} component="li" {...props}>
-              <Button
-                sx={{
+              <div
+                style={{
                   fontSize: '12px',
                   width: '100%',
                   height: '100%',
@@ -32,7 +26,7 @@ const customTheme = (outerTheme) =>
                 }}
               >
                 {ownerState.getOptionLabel?.(option)}
-              </Button>
+              </div>
             </Box>
           ),
         },
@@ -41,7 +35,7 @@ const customTheme = (outerTheme) =>
   });
 
 export default function GlobalCustomizedOptions() {
-  // useTheme is used to determine wether dark or light mode is currently active.
+  // useTheme is used to determine the dark or light mode of the docs to maintain the Autocomplete component default styles.
   const outerTheme = useTheme();
 
   return (
@@ -72,10 +66,8 @@ function CountrySelect() {
   return (
     <Autocomplete
       id="country-customized-option-demo"
-      sx={{ width: 300 }}
       options={countries}
       disableCloseOnSelect
-      autoHighlight
       getOptionLabel={(option) =>
         `${option.label} (${option.code}) +${option.phone}`
       }
