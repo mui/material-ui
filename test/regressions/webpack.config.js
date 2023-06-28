@@ -64,7 +64,7 @@ module.exports = {
       // required by enzyme > cheerio > parse5
       util: require.resolve('util/'),
       // Exclude polyfill and treat 'zlib' as an empty module since it is not required. next -> gzip-file relies on it.
-      zlib: false
+      zlib: false,
     },
   },
   // TODO: 'browserslist:modern'
