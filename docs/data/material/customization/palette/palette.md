@@ -110,10 +110,14 @@ const theme = createTheme({
 
 For the default palette colors (the ones listed in the [Default values section](#default-values) above), only the `main` token is required. If the other tokens are not provided their value is calculated as follows:
 
-- The `dark` and `light` tokens are calculated according to the `tonalOffset` value with the `main` color as a starting point.
+- The `light` and `dark` tokens are calculated according to the `tonalOffset` value with the `main` color as a starting point.
 - The `contrastText` token is calculated according to the `contrastThreshold` value to contrast with the `main` color.
 
-For custom colors, all tokens (`main`, `light`, `dark` and `contrastText`) are required. **Their values won't be automatically calculated** like for the default palette colors. If you wish to calculate the tokens from the `main` color you can use the palette's `augmentColor` utility, you'll have to create the theme in two steps:
+**Values for custom palette colors won't be automatically calculated** like for the default palette colors.
+
+You can provide all tokens (`main`, `light`, `dark` and `contrastText`) manually, `@mui/material/styles` provides [a set of utilities](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) for manipulating color values you might find helpful.
+
+Alternatively, you can generate the tokens from a custom `main` color, to do so create the theme in two steps and use the palette's `augmentColor` utility:
 
 ```js
 import { createTheme } from '@mui/material/styles';
