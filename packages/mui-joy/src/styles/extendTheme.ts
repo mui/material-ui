@@ -261,7 +261,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
       background: {
         body: getCssVarColor('palette-common-white'),
-        surface: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.neutral[50]),)} / 0.8)`, //Is there a way to add background blur?
+        surface: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.neutral[50]),)} / 0.8)`, 
         popup: getCssVarColor('palette-neutral-50'),
         level1: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.common.white),)} / 0.8)`,
         level2: getCssVarColor('palette-neutral-50'),
