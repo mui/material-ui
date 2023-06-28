@@ -9,7 +9,7 @@ export default function PlaceholderAspectRatio() {
     <Card variant="outlined" sx={{ width: 300 }}>
       <AspectRatio>
         <div>
-          <ImageIcon sx={{ color: 'text.tertiary', fontSize: '3rem' }} />
+          <ImageIcon sx={{ fontSize: '3rem', opacity: 0.2 }} />
         </div>
       </AspectRatio>
       <div>
