@@ -751,7 +751,7 @@ const proData: Record<string, React.ReactNode> = {
   'security-questionnaire': (
     <Info
       value="Available from 10+ devs"
-      metadata={'Invalidate the "Capped at 10 licenses" policy'}
+      metadata={'Not available under the "Capped at 10 licenses" policy'}
     />
   ),
 };
