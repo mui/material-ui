@@ -137,8 +137,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     outlinedDisabledBorder: getCssVarColor(`palette-neutral-200`),
 
     softColor: getCssVarColor(`palette-${color}-700`),
-    softBg: getCssVarColor(`palette-${color}-200`),
-    softHoverBg: getCssVarColor(`palette-${color}-100`),
+    softBg: getCssVarColor(`palette-${color}-100`),
+    softHoverBg: getCssVarColor(`palette-${color}-200`),
     softActiveColor: getCssVarColor(`palette-${color}-800`),
     softActiveBg: getCssVarColor(`palette-${color}-300`),
     softDisabledColor: getCssVarColor(`palette-neutral-400`),
