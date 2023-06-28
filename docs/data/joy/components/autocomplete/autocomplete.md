@@ -246,6 +246,12 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ## Common examples
 
+### Hint
+
+The following demo shows how to add a hint feature to the Autocomplete using the `filterOptions` prop:
+
+{{"demo": "AutocompleteHint.js"}}
+
 ### Highlighting options
 
 The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.

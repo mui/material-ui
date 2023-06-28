@@ -30,7 +30,6 @@ export default function BreadcrumbsVariables() {
               {item}
             </Link>
           ))}
-
           <Typography fontSize="inherit">Menu 3</Typography>
         </Breadcrumbs>
       )}

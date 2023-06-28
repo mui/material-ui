@@ -72,7 +72,7 @@ function MenuButton({
         color="neutral"
         aria-haspopup="menu"
         aria-expanded={open ? 'true' : undefined}
-        aria-controls={open ? `nav-example-menu-${label}` : undefined}
+        aria-controls={`nav-example-menu-${label}`}
         onMouseDown={() => {
           internalOpen.current = open;
         }}

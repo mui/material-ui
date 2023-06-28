@@ -26,7 +26,7 @@ Mecanismo de toque:
 - Escolhendo uma opção irá imediatamente confirmar a opção e fechar o menu
 - Tocando para sair do diálogo ou pressionando a opção de voltar irá cancelar a ação e fechar o diálogo
 
-{{"demo": "SimpleDialog.js"}}
+{{"demo": "SimpleDialogDemo.js"}}
 
 ## Alertas
 
