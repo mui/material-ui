@@ -79,13 +79,12 @@ const CardRoot = styled('div', {
     borderRadius: 'var(--Card-radius)',
     boxShadow: theme.shadow.sm,
     backgroundColor: theme.vars.palette.background.surface,
-    fontFamily: theme.vars.fontFamily.body,
-    fontSize: theme.vars.fontSize.md,
     position: 'relative',
     display: 'flex',
     flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+    ...theme.typography[`body-${ownerState.size!}`],
+    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
   ownerState.color !== 'context' &&
     ownerState.invertedColors &&
     theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
