@@ -16,14 +16,14 @@ export default function DecoratorExamples() {
       <Link
         href="#common-examples"
         underline="none"
-        variant="soft"
-        color="success"
+        variant="outlined"
+        color="neutral"
         endDecorator={
-          <Chip color="success" size="sm" sx={{ borderRadius: '3px', mr: '2px' }}>
-            HIRING!
+          <Chip color="success" variant="soft" size="sm" sx={{}}>
+            hiring
           </Chip>
         }
-        sx={{ '--Link-gap': '0.5rem', pr: 0, pl: 1 }}
+        sx={{ '--Link-gap': '0.5rem', pl: 1, py: 0.5, borderRadius: 'md' }}
       >
         Careers
       </Link>

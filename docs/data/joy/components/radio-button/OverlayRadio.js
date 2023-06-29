@@ -27,18 +27,16 @@ export default function OverlayRadio() {
               p: 2,
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'start',
+              alignItems: 'center',
               boxShadow: 'sm',
               borderRadius: 'md',
             }}
           >
             <Radio
               value={`person${num}`}
+              variant="soft"
               sx={{
-                mt: -1,
-                mr: -1,
-                mb: 0.5,
-                alignSelf: 'flex-end',
+                mb: 2,
               }}
             />
             <Avatar alt={`person${num}`} src={`/static/images/avatar/${num}.jpg`} />

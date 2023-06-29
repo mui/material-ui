@@ -49,7 +49,7 @@ export default function AlertInvertedColors() {
         sx={{ alignItems: 'flex-start', overflow: 'hidden' }}
       >
         <div>
-          <Box fontWeight="lg">Success</Box>
+          <Typography level="title-lg">Success</Typography>
           <Typography level="body-sm">
             Success is walking from failure to failure with no loss of enthusiam.
           </Typography>
@@ -67,7 +67,6 @@ export default function AlertInvertedColors() {
           })}
         />
       </Alert>
-
       <Alert
         variant="soft"
         color="danger"
@@ -80,15 +79,18 @@ export default function AlertInvertedColors() {
         sx={{ alignItems: 'flex-start', '--Alert-gap': '1rem' }}
       >
         <Box sx={{ flex: 1 }}>
-          <Typography sx={{ mt: 1 }}>
-            Network loss, please recheck your connection.
+          <Typography level="title-md" sx={{ my: 1 }}>
+            Lost connection
+          </Typography>
+          <Typography level="body-md">
+            Please verify your network connection and try again.
           </Typography>
           <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
             <Button variant="outlined" size="sm">
-              Open network setting
+              Open network settings
             </Button>
-            <Button variant="soft" size="sm">
-              Okay
+            <Button variant="solid" size="sm">
+              Try again
             </Button>
           </Box>
         </Box>

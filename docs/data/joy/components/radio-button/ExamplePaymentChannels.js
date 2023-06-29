@@ -22,17 +22,17 @@ export default function ExamplePaymentChannels() {
       >
         <Typography
           id="example-payment-channel-label"
-          level="body-xs"
-          textTransform="uppercase"
+          level="title-md"
+          textColor={'text.secondary'}
           fontWeight="xl"
-          sx={{ letterSpacing: '0.1em' }}
         >
           Pay with
         </Typography>
         <Switch
           component="label"
           size="sm"
-          endDecorator="Row view"
+          startDecorator="List"
+          endDecorator="Row"
           checked={orientation === 'horizontal'}
           onChange={(event) =>
             setOrientation(event.target.checked ? 'horizontal' : 'vertical')

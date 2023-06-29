@@ -42,10 +42,10 @@ export default function BasicCard() {
         </div>
         <Button
           variant="solid"
-          size="sm"
+          size="md"
           color="primary"
           aria-label="Explore Bahamas Islands"
-          sx={{ ml: 'auto', fontWeight: 600 }}
+          sx={{ ml: 'auto', alignSelf: 'center', fontWeight: 600 }}
         >
           Explore
         </Button>
