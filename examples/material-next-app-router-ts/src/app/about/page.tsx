@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Copyright from '@/components/CopyRight';
-import ProTip from '@/components/ProTip';
+import Box from '@mui/material/Box';
 import Link from 'next/link';
+import ProTip from '@/components/ProTip';
+import Copyright from '@/components/CopyRight';
 
-export default function HomePage() {
+export default function AboutPage() {
   return (
     <Container maxWidth="lg">
       <Box
@@ -22,9 +22,9 @@ export default function HomePage() {
           Material UI - Next.js example using App Router in TypeScript
         </Typography>
         <Typography variant="h4" component="h3" gutterBottom>
-          This the Home Page
+          This the About Page
         </Typography>
-        <Link href="/about">Go to the about page</Link>
+        <Link href="/">Go to the main page</Link>
         <ProTip />
         <Copyright />
       </Box>
