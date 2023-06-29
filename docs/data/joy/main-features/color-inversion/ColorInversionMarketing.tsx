@@ -10,6 +10,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 /**
  * Credit: https://flutter.dev/
  */
+
 export default function ColorInversionMarketing() {
   const [color, setColor] = React.useState<ColorPaletteProp>('primary');
   return (
@@ -23,7 +24,7 @@ export default function ColorInversionMarketing() {
         bgcolor: color === 'primary' ? '#042449' : undefined,
         p: { xs: '36px', md: '70px' },
         pt: { xs: '24px', md: '60px' },
-        borderRadius: '40px',
+        borderRadius: 'sm',
         overflow: 'hidden',
         '& button': { borderRadius: 'xl' },
       }}
@@ -47,8 +48,8 @@ export default function ColorInversionMarketing() {
             variant="plain"
             endDecorator={<ArrowForwardIcon fontSize="md" />}
             sx={{
-              '&:hover': { '--Button-gap': '0.75rem' },
-              '& span': { transition: '0.3s' },
+              '&:hover': { '--Button-gap': '0.625rem' },
+              '& span': { transition: '0.15s' },
             }}
           >
             See the docs
