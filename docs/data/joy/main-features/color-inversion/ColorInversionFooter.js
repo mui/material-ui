@@ -55,7 +55,7 @@ export default function ColorInversionFooter() {
             setColor(colors[nextColor + 1] ?? colors[0]);
           }}
         >
-          <img alt="" src="/static/branding/pricing/block-green.svg" />
+          🎨
         </IconButton>
         <Divider orientation="vertical" />
         <IconButton variant="plain">

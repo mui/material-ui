@@ -44,21 +44,14 @@ export default function ColorInversionHeader() {
         variant="soft"
         size="sm"
         onClick={() => {
-          const colors = [
-            'primary',
-            'neutral',
-            'danger',
-            'info',
-            'success',
-            'warning',
-          ];
+          const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
 
           const nextColor = colors.indexOf(color);
           setColor(colors[nextColor + 1] ?? colors[0]);
         }}
         sx={{ borderRadius: '50%' }}
       >
-        <img alt="" src="/static/branding/pricing/block-gold.svg" />
+        🎨
       </IconButton>
       <Box sx={{ flex: 1, display: 'flex', gap: 1, px: 2 }}>
         <Chip
