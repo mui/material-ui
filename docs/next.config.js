@@ -103,6 +103,10 @@ module.exports = withDocsInfra({
                         SOURCE_CODE_REPO: options.config.env.SOURCE_CODE_REPO,
                         LIB_VERSION: options.config.env.LIB_VERSION,
                       },
+                      iconsToPersistInToC: [
+                        '<span class="plan-pro"></span>',
+                        '<span class="plan-premium"></span>',
+                      ],
                     },
                   },
                 ],
