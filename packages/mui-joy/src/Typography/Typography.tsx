@@ -122,7 +122,6 @@ const TypographyRoot = styled('span', {
 });
 
 const defaultVariantMapping: Partial<Record<keyof TypographySystem | 'inherit', string>> = {
-  // @ts-ignore TypographySystem overrides in CssVarsProvider.spec.tsx
   h1: 'h1',
   h2: 'h2',
   h3: 'h3',
