@@ -330,7 +330,7 @@ Link.propTypes /* remove-proptypes */ = {
   endDecorator: PropTypes.node,
   /**
    * Applies the theme typography styles.
-   * @default 'body1'
+   * @default 'body-md'
    */
   level: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['body1', 'body2', 'body3', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'inherit']),

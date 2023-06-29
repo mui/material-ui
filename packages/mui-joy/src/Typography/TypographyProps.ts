@@ -75,14 +75,17 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        * If you wish to change that mapping, you can provide your own.
        * Alternatively, you can use the `component` prop.
        * @default {
-       *   'title-xl': 'h1',
-       *   'title-lg': 'h1',
-       *   'title-md': 'h2',
-       *   'title-sm': 'h3',
-       *   'title-xs': 'h4',
+       *   h1: 'h1',
+       *   h2: 'h2',
+       *   h3: 'h3',
+       *   h4: 'h4',
+       *   'title-lg': 'p',
+       *   'title-md': 'p',
+       *   'title-sm': 'p',
        *   'body-lg': 'p',
        *   'body-md': 'p',
        *   'body-sm': 'p',
+       *   'body-xs': 'span',
        *   inherit: 'p',
        * }
        */

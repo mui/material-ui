@@ -162,25 +162,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The fontSize applied to the icon. Defaults to 1rem, but can be configure to inherit font size.
-   * @default 'xl'
+   * The theme's fontSize applied to the icon that will override the `size` prop.
+   * Use this prop when you want to use a specific font-size from the theme.
    */
-  fontSize: PropTypes.oneOf([
-    'inherit',
-    'lg',
-    'md',
-    'sm',
-    'xl',
-    'xl2',
-    'xl3',
-    'xl4',
-    'xl5',
-    'xl6',
-    'xl7',
-    'xs',
-    'xs2',
-    'xs3',
-  ]),
+  fontSize: PropTypes.oneOf(['inherit', 'lg', 'md', 'sm', 'xl', 'xl2', 'xl3', 'xl4', 'xs']),
   /**
    * Applies a color attribute to the SVG element.
    */

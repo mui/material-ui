@@ -269,10 +269,23 @@ Typography.propTypes /* remove-proptypes */ = {
   gutterBottom: PropTypes.bool,
   /**
    * Applies the theme typography styles.
-   * @default 'body1'
+   * @default 'body-md'
    */
   level: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['body1', 'body2', 'body3', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'inherit']),
+    PropTypes.oneOf([
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'title-lg',
+      'title-md',
+      'title-sm',
+      'body-lg',
+      'body-md',
+      'body-sm',
+      'body-xs',
+      'inherit',
+    ]),
     PropTypes.string,
   ]),
   /**
@@ -285,11 +298,13 @@ Typography.propTypes /* remove-proptypes */ = {
    *   h2: 'h2',
    *   h3: 'h3',
    *   h4: 'h4',
-   *   h5: 'h5',
-   *   h6: 'h6',
-   *   body1: 'p',
-   *   body2: 'p',
-   *   body3: 'p',
+   *   'title-lg': 'p',
+   *   'title-md': 'p',
+   *   'title-sm': 'p',
+   *   'body-lg': 'p',
+   *   'body-md': 'p',
+   *   'body-sm': 'p',
+   *   'body-xs': 'span',
    *   inherit: 'p',
    * }
    */
