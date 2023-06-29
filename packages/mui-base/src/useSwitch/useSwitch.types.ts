@@ -38,6 +38,12 @@ interface UseSwitchRootSlotOwnProps {
   'aria-readonly'?: React.AriaAttributes['aria-readonly'];
   'aria-disabled'?: React.AriaAttributes['aria-disabled'];
   'aria-required'?: React.AriaAttributes['aria-required'];
+  checked?: boolean;
+  defaultChecked?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
+  role: string;
   onBlur: React.FocusEventHandler;
   onFocus: React.FocusEventHandler;
   onClick: React.MouseEventHandler;
@@ -49,9 +55,6 @@ interface UseSwitchInputSlotOwnProps {
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;
-  onBlur: React.FocusEventHandler;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  onFocus: React.FocusEventHandler;
   readOnly?: boolean;
   required?: boolean;
   type: React.HTMLInputTypeAttribute;
@@ -91,9 +94,9 @@ export interface UseSwitchReturnValue {
    */
   getRootProps: (externalProps?: React.HTMLAttributes<HTMLSpanElement>) => UseSwitchRootSlotProps;
   /**
-   * Ref to the input slot's DOM node.
+   * Ref to the root slot's DOM node.
    */
-  inputRef: React.RefCallback<HTMLInputElement> | null;
+  rootRef: React.RefCallback<HTMLSpanElement> | null;
   /**
    * If `true`, the component will be read only.
    */

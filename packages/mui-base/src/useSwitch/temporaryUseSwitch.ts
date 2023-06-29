@@ -37,6 +37,19 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     state: 'checked',
   });
 
+  const createHandleInputChange =
+    (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      // Workaround for https://github.com/facebook/react/issues/9023
+      if (event.nativeEvent.defaultPrevented) {
+        return;
+      }
+
+      setCheckedState(event.target.checked);
+      onChange?.(event);
+      otherProps.onChange?.(event);
+    };
+
   const {
     isFocusVisibleRef,
     onBlur: handleBlurVisible,
@@ -53,18 +66,18 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     isFocusVisibleRef.current = focusVisible;
   }, [focusVisible, isFocusVisibleRef]);
 
-  const rootRef = React.useRef<HTMLInputElement | null>(null);
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
 
   const createHandleFocus =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
     (event: React.FocusEvent<HTMLInputElement>) => {
       // Fix for https://github.com/facebook/react/issues/7769
-      if (!rootRef.current) {
-        rootRef.current = event.currentTarget;
+      if (!inputRef.current) {
+        inputRef.current = event.currentTarget;
       }
 
       handleFocusVisible(event);
-      if (isFocusVisibleRef.current) {
+      if (isFocusVisibleRef.current === true) {
         setFocusVisible(true);
         onFocusVisible?.(event);
       }
@@ -78,7 +91,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     (event: React.FocusEvent<HTMLInputElement>) => {
       handleBlurVisible(event);
 
-      if (!isFocusVisibleRef.current) {
+      if (isFocusVisibleRef.current === false) {
         setFocusVisible(false);
       }
 
@@ -86,75 +99,20 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
       otherProps.onBlur?.(event);
     };
 
-  const handleRootRef = useForkRef(focusVisibleRef, rootRef);
-
-  const createHandleClick =
-    (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
-    (event: React.MouseEvent<HTMLInputElement>) => {
-      setCheckedState((checkedState) => !checkedState);
-      setFocusVisible(false);
-      otherProps.onClick?.(event);
-
-      const nativeEvent = event.nativeEvent || event;
-      // @ts-ignore
-      const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
-
-      Object.defineProperty(clonedEvent, 'target', {
-        writable: true,
-        value: { type: 'checkbox', checked: !checked },
-      });
-      onChange?.(clonedEvent);
-      otherProps.onChange?.(clonedEvent);
-    };
-
-  const createHandleKeyDown =
-    (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
-    (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (event.code === 'Space' && rootRef.current) {
-        event.preventDefault();
-        setCheckedState(!checked);
-        otherProps.onKeyDown?.(event);
-
-        const nativeEvent = event.nativeEvent || event;
-        // @ts-ignore
-        const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
-
-        Object.defineProperty(clonedEvent, 'target', {
-          writable: true,
-          value: { type: 'checkbox', checked: !checked },
-        });
-        onChange?.(clonedEvent);
-        otherProps.onChange?.(clonedEvent);
-      }
-    };
+  const handleInputRef = useForkRef(focusVisibleRef, inputRef);
 
   const getInputProps: UseSwitchReturnValue['getInputProps'] = (otherProps = {}) => ({
     checked: checkedProp,
     defaultChecked,
     disabled,
-    hidden: true,
     readOnly,
+    ref: handleInputRef,
     required,
     type: 'checkbox',
     ...otherProps,
-  });
-
-  const getRootProps: UseSwitchReturnValue['getRootProps'] = (otherProps = {}) => ({
-    ref: handleRootRef,
-    role: 'checkbox',
-    'aria-readonly': readOnly,
-    'aria-disabled': disabled,
-    'aria-required': required,
-    checked: checkedProp,
-    defaultChecked,
-    disabled,
-    readOnly,
-    required,
-    ...otherProps,
+    onChange: createHandleInputChange(otherProps),
     onFocus: createHandleFocus(otherProps),
     onBlur: createHandleBlur(otherProps),
-    onClick: createHandleClick(otherProps),
-    onKeyDown: createHandleKeyDown(otherProps),
   });
 
   return {
@@ -162,8 +120,8 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     disabled: Boolean(disabled),
     focusVisible,
     getInputProps,
-    getRootProps,
-    rootRef: handleRootRef,
+    // @ts-ignore
+    inputRef: handleInputRef,
     readOnly: Boolean(readOnly),
   };
 }

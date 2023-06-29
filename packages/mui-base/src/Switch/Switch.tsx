@@ -86,7 +86,6 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     disabled,
     focusVisible,
     readOnly,
-    name,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -99,6 +98,9 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     externalForwardedProps: other,
     additionalProps: {
       tabIndex: disabled ? null : 0,
+      style: {
+        outline: 'none',
+      },
       ref: forwardedRef,
     },
     getSlotProps: getRootProps,
@@ -135,7 +137,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
   });
 
   return (
-    <Root {...rootProps} sx={{ outline: 'none' }}>
+    <Root {...rootProps}>
       <Track {...trackProps} />
       <Thumb {...thumbProps} />
       <Input {...inputProps} />
