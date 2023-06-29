@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Menu component
 components: Menu, MenuItem, MenuList
 githubLabel: 'component: menu'
