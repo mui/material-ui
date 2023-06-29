@@ -18,7 +18,7 @@ export type NextAppDirEmotionCacheProviderProps = {
 };
 
 // This implementation is taken from https://github.com/garronej/tss-react/blob/main/src/next/appDir.tsx
-export function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionCacheProviderProps) {
+export default function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionCacheProviderProps) {
   const { options, CacheProvider = DefaultCacheProvider, children } = props;
 
   const [{ cache, flush }] = React.useState(() => {
