@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Button component
 components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://m2.material.io/components/buttons
@@ -126,7 +126,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
 You can take advantage of this lower-level component to build custom interactions.
 
-{{"demo": "ButtonBase.js"}}
+{{"demo": "ButtonBaseDemo.js"}}
 
 ## Third-party routing library
 

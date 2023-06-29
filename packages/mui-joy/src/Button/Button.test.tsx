@@ -142,7 +142,7 @@ describe('Joy <Button />', () => {
       expect(container.querySelector(`.${classes.loadingIndicatorCenter}`)).to.have.text(
         'loading..',
       );
-      expect(getByRole('button')).toHaveComputedStyle({ color: 'transparent' });
+      expect(getByRole('button')).toHaveComputedStyle({ color: 'rgba(0, 0, 0, 0)' });
     });
   });
 

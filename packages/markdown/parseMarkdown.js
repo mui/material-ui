@@ -498,10 +498,10 @@ See the documentation below for a complete reference to all of the props and cla
 
 ${headers.components
   .map((component) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkgMap = componentPackageMapping[headers.productId];
     const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
     return `- [\`<${component} />\`](${resolveComponentApiUrl(
-      headers.product,
+      headers.productId,
       componentPkg,
       component,
     )})`;
@@ -509,9 +509,9 @@ ${headers.components
   .join('\n')}
 ${headers.hooks
   .map((hook) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkgMap = componentPackageMapping[headers.productId];
     const componentPkg = componentPkgMap ? componentPkgMap[hook] : null;
-    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.product, componentPkg, hook)})`;
+    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.productId, componentPkg, hook)})`;
   })
   .join('\n')}
   `);

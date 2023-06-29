@@ -36,7 +36,7 @@ const componentPackageMapping = {
 
 const packages = [
   {
-    product: 'material-ui',
+    productId: 'material-ui',
     paths: [
       path.join(__dirname, '../../packages/mui-base/src'),
       path.join(__dirname, '../../packages/mui-lab/src'),
@@ -44,11 +44,11 @@ const packages = [
     ],
   },
   {
-    product: 'base-ui',
+    productId: 'base-ui',
     paths: [path.join(__dirname, '../../packages/mui-base/src')],
   },
   {
-    product: 'joy-ui',
+    productId: 'joy-ui',
     paths: [path.join(__dirname, '../../packages/mui-joy/src')],
   },
 ];
@@ -63,11 +63,11 @@ packages.forEach((pkg) => {
     const filePaths = readdirSync(pkgPath);
     filePaths.forEach((folder) => {
       if (folder.match(/^[A-Z]/)) {
-        if (!componentPackageMapping[pkg.product]) {
-          throw new Error(`componentPackageMapping must have "${pkg.product}" as a key`);
+        if (!componentPackageMapping[pkg.productId]) {
+          throw new Error(`componentPackageMapping must have "${pkg.productId}" as a key`);
         }
         // filename starts with Uppercase = component
-        componentPackageMapping[pkg.product][folder] = packageName;
+        componentPackageMapping[pkg.productId][folder] = packageName;
       }
     });
   });

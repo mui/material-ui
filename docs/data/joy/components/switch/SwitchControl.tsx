@@ -5,7 +5,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Switch from '@mui/joy/Switch';
 
-export default function SwitchLabel() {
+export default function SwitchControl() {
   const [checked, setChecked] = React.useState<boolean>(false);
   return (
     <FormControl

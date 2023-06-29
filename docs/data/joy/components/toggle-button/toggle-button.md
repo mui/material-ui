@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Toggle Button component
 githubLabel: 'component: toggle button'
 ---

@@ -4,7 +4,7 @@ import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import OpenInNew from '@mui/icons-material/OpenInNew';
 
-export default function IconButtons() {
+export default function ButtonLink() {
   return (
     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
       <Button component="a" href="#as-link" startDecorator={<OpenInNew />}>

@@ -25,7 +25,7 @@ module.exports = {
     new webpack.IgnorePlugin({ resourceRegExp: /material-icons\/SearchIcons\.js/ }),
     new webpack.ProvidePlugin({
       // required by enzyme > cheerio > parse5 > util
-      process: 'process/browser',
+      process: 'process/browser.js',
     }),
   ],
   module: {

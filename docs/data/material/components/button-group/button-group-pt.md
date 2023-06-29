@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React para Grupo de botões
 components: Button, ButtonGroup
 githubLabel: 'component: ButtonGroup'
