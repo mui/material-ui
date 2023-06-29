@@ -32,7 +32,7 @@ const examples = [
     src: '/static/images/examples/remix.svg',
   },
   {
-    name: 'Tailwind CSS',
+    name: 'Tailwind CSS + CRA + TypeScript',
     label: 'View example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-cra-tailwind-ts',
     src: '/static/images/examples/tailwindcss.svg',
@@ -98,19 +98,11 @@ export default function ExampleCollection() {
                 border: '1px solid',
                 borderColor: 'grey.200',
                 boxShadow: 'none',
-                '&:hover': {
-                  borderColor: 'grey.300',
-                  boxShadow: '0px 2px 8px rgba(170, 180, 190, 0.2)',
-                },
               },
               (theme) =>
                 theme.applyDarkStyles({
                   bgcolor: 'transparent',
                   borderColor: 'primaryDark.700',
-                  '&:hover': {
-                    borderColor: 'primaryDark.600',
-                    boxShadow: '0px 2px 8px rgba(0, 13, 26, 1)',
-                  },
                 }),
             ]}
           >
@@ -126,7 +118,7 @@ export default function ExampleCollection() {
               alt={example.name}
             />
             <div>
-              <Typography variant="body" fontWeight={600} sx={{ fontFamily: 'IBM Plex Sans' }}>
+              <Typography variant="body" fontWeight="semiBold">
                 {example.name}
               </Typography>
               <Box
@@ -140,7 +132,6 @@ export default function ExampleCollection() {
                   href={example.link}
                   variant="body2"
                   sx={{
-                    fontFamily: 'IBM Plex Sans',
                     fontWeight: 500,
                     display: 'flex',
                     alignItems: 'center',
@@ -155,7 +146,6 @@ export default function ExampleCollection() {
                     <Typography
                       variant="caption"
                       sx={{
-                        fontFamily: 'IBM Plex Sans',
                         display: { xs: 'none', sm: 'block' },
                         opacity: 0.2,
                         mr: 0.75,
@@ -167,7 +157,6 @@ export default function ExampleCollection() {
                       href={example.tsLink}
                       variant="body2"
                       sx={{
-                        fontFamily: 'IBM Plex Sans',
                         fontWeight: 500,
                         display: 'flex',
                         alignItems: 'center',

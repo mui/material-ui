@@ -1,6 +1,6 @@
-# React Community Engineer - X (future role)
+# React Community Engineer - X
 
-<p class="description">You will provide guidance, remove blockers, and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.</p>
+<p class="description">You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.</p>
 
 ## Details of the Role
 
@@ -44,7 +44,7 @@ We face challenges on multiple fronts:
 
 You will be a key member of the Developer Experience's team and will directly impact customer satisfaction and success.
 You will troubleshoot and depending on your bandwidth also fix complex issues related to MUI.
-At MUI a Community Engineer is considered a Developer, it's a person that enjoys optimizing what already exists but is also eager to help our users with features that are requested by the community.
+At MUI a Community Engineer is considered a developer, it's a person that enjoys optimizing what already exists but is also eager to help our users with features that are requested by the community.
 
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
