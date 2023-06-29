@@ -39,14 +39,14 @@
       },
       "required": true
     },
-    "inputRef": {
+    "readOnly": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "rootRef": {
       "type": {
-        "name": "React.RefCallback&lt;HTMLInputElement&gt; | null",
-        "description": "React.RefCallback&lt;HTMLInputElement&gt; | null"
+        "name": "React.RefCallback&lt;HTMLSpanElement&gt; | null",
+        "description": "React.RefCallback&lt;HTMLSpanElement&gt; | null"
       },
       "required": true
-    },
-    "readOnly": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
+    }
   },
   "name": "useSwitch",
   "filename": "/packages/mui-base/src/useSwitch/useSwitch.ts",
