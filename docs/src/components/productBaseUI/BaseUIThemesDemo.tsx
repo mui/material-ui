@@ -517,6 +517,9 @@ const StyledModal = styled(Modal)`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition-property: visibility;
+  transition-delay: ${({ open }) => open ? "0s" : "400ms"};
+  visibility: ${({ open }) => open ? 'visible' : 'hidden'};
 `;
 
 const StyledBackdrop = styled(Backdrop)`
@@ -528,7 +531,31 @@ const StyledBackdrop = styled(Backdrop)`
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-tap-highlight-color: transparent;
+  opacity: ${({ open }) => open ? 1 : 0};
+  transition: opacity 0.3s ease;
 `;
+
+const Dialog = styled('div')({
+  backgroundColor: 'var(--muidocs-palette-background-paper)',
+  borderRadius: 'min(var(--border-radius) * 2, 32px)',
+  border: 'var(--border-width) solid',
+  borderColor: 'var(--border-color)',
+  overflow: 'hidden',
+  padding: '1.5rem',
+  textAlign: 'center',
+  outline: 'none',
+  maxWidth: 500,
+  width: 'auto',
+  transform: 'translateY(8px)',
+  opacity: 0,
+  transition: 'all 0.2s ease-out',
+  '&[data-open="true"]': {
+    transform: 'translateY(0)',
+    opacity: 1,
+    boxShadow: 'var(--Panel-shadow)',
+    transition: 'all 0.3s ease',
+  }
+});
 
 const StyledBadge = styled(Badge)(
   ({ theme }) => `
@@ -1015,23 +1042,22 @@ export default function BaseUIThemesDemo() {
             open={openModal}
             onClose={handleCloseModal}
             slots={{ backdrop: StyledBackdrop }}
+            keepMounted
           >
-            <Panel
-              sx={{ p: 3, textAlign: 'center', outline: 'none', maxWidth: 500, width: 'auto' }}
-            >
-              <Box component="h2" id="unstyled-modal-title" sx={{ mt: 1, mb: 0.5 }}>
+            <Dialog data-open={openModal}>
+              <Box component="h2" id="unstyled-modal-title" sx={{ mt: 1, mb: 0.5, textWrap: 'balance' }}>
                 Oh, hey, this is a Base UI modal.
               </Box>
               <Box
                 component="p"
                 id="unstyled-modal-description"
-                sx={{ m: 0, mb: 4, color: 'text.secondary' }}
+                sx={{ m: 0, mb: 4, color: 'text.secondary', textWrap: 'balance' }}
               >
                 Base UI modals manages modal stacking when more than one is needed, creates a
                 backdrop to disable interaction with the rest of the app, and a lot more.
               </Box>
               <StyledSnackbarButton onClick={handleCloseModal}>Close</StyledSnackbarButton>
-            </Panel>
+            </Dialog>
           </StyledModal>
           <StyledSnackbarButton type="button" onClick={handleClickSnackbar}>
             View snackbar
