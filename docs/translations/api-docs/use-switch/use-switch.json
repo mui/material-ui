@@ -18,8 +18,8 @@
     "focusVisible": {
       "description": "If <code>true</code>, it indicates that the component is being focused using keyboard."
     },
-    "getInputProps": { "description": "Resolver for the input slot's props." },
-    "inputRef": { "description": "Ref to the input slot's DOM node." },
+    "getInputProps": { "description": "Resolver for the input slot&#39;s props." },
+    "inputRef": { "description": "Ref to the input slot&#39;s DOM node." },
     "readOnly": { "description": "If <code>true</code>, the component will be read only." }
   }
 }

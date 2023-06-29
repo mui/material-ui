@@ -8,10 +8,10 @@
     "dispatch": {
       "description": "Action dispatcher for the tabs list component.\nAllows to programmatically control the tabs list."
     },
-    "getRootProps": { "description": "Resolver for the root slot's props." },
+    "getRootProps": { "description": "Resolver for the root slot&#39;s props." },
     "highlightedValue": { "description": "The value of the currently highlighted tab." },
     "isRtl": {
-      "description": "If <code>true</code>, it will indicate that the text's direction in right-to-left."
+      "description": "If <code>true</code>, it will indicate that the text&#39;s direction in right-to-left."
     },
     "orientation": { "description": "The component orientation (layout flow direction)." },
     "selectedValue": { "description": "The value of the currently selected tab." }

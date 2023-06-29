@@ -1,6 +1,12 @@
 {
   "componentDescription": "The foundation for building custom-styled select components.",
   "propDescriptions": {
+    "areOptionsEqual": {
+      "description": "A function used to determine if two options&#39; values are equal. By default, reference equality is used.<br>There is a performance impact when using the <code>areOptionsEqual</code> prop (proportional to the number of options). Therefore, it&#39;s recommented to use the default reference equality comparison whenever possible.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
     "autoFocus": {
       "description": "If <code>true</code>, the select element is focused during the first mount",
       "notes": "",
@@ -110,22 +116,22 @@
     },
     "active": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root `button` element",
+      "nodeName": "the root <code>button</code> element",
       "conditions": "<code>active={true}</code>"
     },
     "expanded": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root `button` element",
+      "nodeName": "the root <code>button</code> element",
       "conditions": "<code>expanded={true}</code>"
     },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root `button` element and the listbox 'ul' element",
+      "nodeName": "the root <code>button</code> element and the listbox &#39;ul&#39; element",
       "conditions": "<code>disabled={true}</code>"
     },
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root `button` element",
+      "nodeName": "the root <code>button</code> element",
       "conditions": "<code>focusVisible={true}</code>"
     }
   },

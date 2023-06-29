@@ -14,8 +14,8 @@
     "focusVisible": {
       "description": "If <code>true</code>, the component is being focused using keyboard."
     },
-    "getRootProps": { "description": "Resolver for the root slot's props." },
-    "rootRef": { "description": "A ref to the component's root DOM element." },
+    "getRootProps": { "description": "Resolver for the root slot&#39;s props." },
+    "rootRef": { "description": "A ref to the component&#39;s root DOM element." },
     "setFocusVisible": {
       "description": "Callback for setting the <code>focusVisible</code> param."
     }

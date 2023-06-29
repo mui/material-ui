@@ -48,6 +48,8 @@
         "describedArgs": ["event", "reason"]
       }
     },
+    "onTransitionEnter": { "type": { "name": "func" } },
+    "onTransitionExited": { "type": { "name": "func" } },
     "slotProps": {
       "type": {
         "name": "shape",

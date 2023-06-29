@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Popover component
 components: Grow, Popover
 githubLabel: 'component: Popover'
@@ -54,9 +54,9 @@ Highlight part of the text to see the popover:
 
 For more information on the virtual element's properties, see the following resources:
 
-- [getBoundingClientRect](https://developer.mozilla.org/docs/Web/API/Element/getBoundingClientRect)
+- [getBoundingClientRect](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
 - [DOMRect](https://drafts.fxtf.org/geometry-1/#domrectreadonly)
-- [Node types](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
+- [Node types](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType)
 
 :::warning
 The usage of a virtual element for the Popover component requires the `nodeType` property.

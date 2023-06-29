@@ -43,10 +43,15 @@
       "nodeName": "the root element",
       "conditions": "<code>position=\"alternate\"</code>"
     },
+    "positionAlternateReverse": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"alternate-reverse\"</code>"
+    },
     "missingOppositeContent": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "TimelineOppositeContent isn't provided"
+      "conditions": "TimelineOppositeContent isn&#39;t provided"
     }
   }
 }

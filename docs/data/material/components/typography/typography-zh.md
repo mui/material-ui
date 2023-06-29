@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Typography（文字铸排）组件
 components: Typography
 githubLabel: 'component: Typography'

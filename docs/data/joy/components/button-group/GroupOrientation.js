@@ -5,7 +5,9 @@ import Stack from '@mui/joy/Stack';
 
 const buttons = [
   <Button key="one">One</Button>,
-  <Button key="two">Two</Button>,
+  <Button key="two" disabled>
+    Two
+  </Button>,
   <Button key="three">Three</Button>,
 ];
 

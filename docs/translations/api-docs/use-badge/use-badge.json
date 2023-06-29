@@ -9,7 +9,7 @@
     }
   },
   "returnValueDescriptions": {
-    "badgeContent": { "description": "Defines the content that's displayed inside the badge." },
+    "badgeContent": { "description": "Defines the content that&#39;s displayed inside the badge." },
     "displayValue": {
       "description": "Value to be displayed in the badge. If <code>badgeContent</code> is greater than <code>max</code>, it will return <code>max+</code>."
     },

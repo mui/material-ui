@@ -3,10 +3,11 @@ import pagesApi from './pagesApi';
 
 const pages = [
   {
-    pathname: '/joy-ui/getting-started',
+    pathname: '/joy-ui/getting-started-group',
+    title: 'Getting started',
     icon: standardNavIcons.DescriptionIcon,
     children: [
-      { pathname: '/joy-ui/getting-started/overview' },
+      { pathname: '/joy-ui/getting-started', title: 'Overview' },
       { pathname: '/joy-ui/getting-started/installation' },
       { pathname: '/joy-ui/getting-started/usage' },
       { pathname: '/joy-ui/getting-started/tutorial' },
@@ -69,6 +70,7 @@ const pages = [
           { pathname: '/joy-ui/react-circular-progress', title: 'Circular Progress' },
           { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
+          { pathname: '/joy-ui/react-skeleton', comingSoon: true },
           { pathname: '/joy-ui/react-snackbar', comingSoon: true },
         ],
       },
@@ -86,6 +88,7 @@ const pages = [
         subheader: 'navigation',
         children: [
           { pathname: '/joy-ui/react-breadcrumbs' },
+          { pathname: '/joy-ui/react-drawer', comingSoon: true },
           { pathname: '/joy-ui/react-link' },
           { pathname: '/joy-ui/react-menu' },
           { pathname: '/joy-ui/react-tabs' },

@@ -118,6 +118,18 @@
         "reason": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>."
       }
     },
+    "onTransitionEnter": {
+      "description": "A function called when a transition enters.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onTransitionExited": {
+      "description": "A function called when a transition has exited.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
     "open": {
       "description": "If <code>true</code>, the component is shown.",
       "notes": "",

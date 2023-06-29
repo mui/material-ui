@@ -12,11 +12,13 @@
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
     "resumeHideDuration": {
-      "description": "The number of milliseconds to wait before dismissing after user interaction.\nIf <code>autoHideDuration</code> prop isn't specified, it does nothing.\nIf <code>autoHideDuration</code> prop is specified but <code>resumeHideDuration</code> isn't,\nwe default to <code>autoHideDuration / 2</code> ms."
+      "description": "The number of milliseconds to wait before dismissing after user interaction.\nIf <code>autoHideDuration</code> prop isn&#39;t specified, it does nothing.\nIf <code>autoHideDuration</code> prop is specified but <code>resumeHideDuration</code> isn&#39;t,\nwe default to <code>autoHideDuration / 2</code> ms."
     }
   },
   "returnValueDescriptions": {
-    "getRootProps": { "description": "Resolver for the root slot's props." },
-    "onClickAway": { "description": "Callback fired when a \"click away\" event is detected." }
+    "getRootProps": { "description": "Resolver for the root slot&#39;s props." },
+    "onClickAway": {
+      "description": "Callback fired when a &quot;click away&quot; event is detected."
+    }
   }
 }

@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Stack component
 components: Stack
 githubLabel: 'component: Stack'

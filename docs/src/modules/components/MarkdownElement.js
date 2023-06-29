@@ -140,7 +140,7 @@ const Root = styled('div')(
         width: 26,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         border: '1px solid',
-        borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+        borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
         borderRadius: 8,
         color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
         cursor: 'pointer',
@@ -161,15 +161,16 @@ const Root = styled('div')(
         display: 'none', // So we can have the comment button opt-in.
         top: 0,
         right: 0,
-        opacity: 0.5,
         transition: theme.transitions.create('opacity', {
           duration: theme.transitions.duration.shortest,
         }),
-        '&:hover': {
-          opacity: 1,
-        },
         '& svg': {
+          opacity: 0.6,
+          marginBottom: 2,
           verticalAlign: 'middle',
+        },
+        '&:hover': {
+          '&>svg': { opacity: 1 },
         },
       },
     },

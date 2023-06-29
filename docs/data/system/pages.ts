@@ -3,10 +3,11 @@ import pagesApi from 'docs/data/system/pagesApi';
 
 const pages = [
   {
-    pathname: '/system/getting-started',
+    pathname: '/system/getting-started-group',
+    title: 'Getting started',
     icon: standardNavIcons.DescriptionIcon,
     children: [
-      { pathname: '/system/getting-started/overview' },
+      { pathname: '/system/getting-started', title: 'Overview' },
       { pathname: '/system/getting-started/installation' },
       { pathname: '/system/getting-started/usage' },
       { pathname: '/system/getting-started/the-sx-prop' },

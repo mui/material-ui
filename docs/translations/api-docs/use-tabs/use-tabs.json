@@ -11,7 +11,7 @@
       "description": "If <code>true</code> the selected tab changes on focus. Otherwise it only\nchanges on activation."
     },
     "value": {
-      "description": "The value of the currently selected <code>Tab</code>.\nIf you don't want any selected <code>Tab</code>, you can set this prop to <code>false</code>."
+      "description": "The value of the currently selected <code>Tab</code>.\nIf you don&#39;t want any selected <code>Tab</code>, you can set this prop to <code>false</code>."
     }
   },
   "returnValueDescriptions": {

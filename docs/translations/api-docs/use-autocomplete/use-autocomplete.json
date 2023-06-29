@@ -14,7 +14,7 @@
       "description": "Control if the input should be blurred when an option is selected:\n\n- <code>false</code> the input is not blurred.\n- <code>true</code> the input is always blurred.\n- <code>touch</code> the input is blurred after a touch event.\n- <code>mouse</code> the input is blurred after a mouse event."
     },
     "clearOnBlur": {
-      "description": "If <code>true</code>, the input's text is cleared on blur if no value is selected.\n\nSet to <code>true</code> if you want to help the user enter a new value.\nSet to <code>false</code> if you want to help the user resume their search."
+      "description": "If <code>true</code>, the input&#39;s text is cleared on blur if no value is selected.\n\nSet to <code>true</code> if you want to help the user enter a new value.\nSet to <code>false</code> if you want to help the user resume their search."
     },
     "clearOnEscape": {
       "description": "If <code>true</code>, clear all values when the user presses escape and the popup is closed."
@@ -25,9 +25,9 @@
     "defaultValue": {
       "description": "The default value. Use when the component is not controlled."
     },
-    "disableClearable": { "description": "If <code>true</code>, the input can't be cleared." },
+    "disableClearable": { "description": "If <code>true</code>, the input can&#39;t be cleared." },
     "disableCloseOnSelect": {
-      "description": "If <code>true</code>, the popup won't close when a value is selected."
+      "description": "If <code>true</code>, the popup won&#39;t close when a value is selected."
     },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "disabledItemsFocusable": {
@@ -49,16 +49,16 @@
       "description": "Used to determine the disabled state for a given option."
     },
     "getOptionLabel": {
-      "description": "Used to determine the string value for a given option.\nIt's used to fill the input (and the list box options if <code>renderOption</code> is not provided).\n\nIf used in free solo mode, it must accept both the type of the options and a string."
+      "description": "Used to determine the string value for a given option.\nIt&#39;s used to fill the input (and the list box options if <code>renderOption</code> is not provided).\n\nIf used in free solo mode, it must accept both the type of the options and a string."
     },
     "groupBy": {
       "description": "If provided, the options will be grouped under the returned string.\nThe groupBy value is also used as the text for group headings when <code>renderGroup</code> is not provided."
     },
     "handleHomeEndKeys": {
-      "description": "If <code>true</code>, the component handles the \"Home\" and \"End\" keys when the popup is open.\nIt should move focus to the first option and last option, respectively."
+      "description": "If <code>true</code>, the component handles the &quot;Home&quot; and &quot;End&quot; keys when the popup is open.\nIt should move focus to the first option and last option, respectively."
     },
     "id": {
-      "description": "This prop is used to help implement the accessibility logic.\nIf you don't provide an id it will fall back to a randomly generated one."
+      "description": "This prop is used to help implement the accessibility logic.\nIf you don&#39;t provide an id it will fall back to a randomly generated one."
     },
     "includeInputInList": {
       "description": "If <code>true</code>, the highlight can move to the input."
@@ -86,7 +86,7 @@
       "description": "If <code>true</code>, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted."
     },
     "selectOnFocus": {
-      "description": "If <code>true</code>, the input's text is selected on focus.\nIt helps the user clear the selected value."
+      "description": "If <code>true</code>, the input&#39;s text is selected on focus.\nIt helps the user clear the selected value."
     },
     "value": {
       "description": "The value of the autocomplete.\n\nThe value must have reference equality with the option in order to be selected.\nYou can customize the equality behavior with the <code>isOptionEqualToValue</code> prop."
@@ -101,17 +101,17 @@
     "focused": { "description": "If <code>true</code>, the component is focused." },
     "focusedTag": { "description": "Index of the focused tag for the component." },
     "getClearProps": {
-      "description": "Resolver for the <code>clear</code> button element's props."
+      "description": "Resolver for the <code>clear</code> button element&#39;s props."
     },
-    "getInputLabelProps": { "description": "Resolver for the input label element's props." },
-    "getInputProps": { "description": "Resolver for the input element's props." },
-    "getListboxProps": { "description": "Resolver for the listbox component's props." },
-    "getOptionProps": { "description": "Resolver for the rendered option element's props." },
-    "getPopupIndicatorProps": { "description": "Resolver for the popup icon's props." },
-    "getRootProps": { "description": "Resolver for the root slot's props." },
+    "getInputLabelProps": { "description": "Resolver for the input label element&#39;s props." },
+    "getInputProps": { "description": "Resolver for the input element&#39;s props." },
+    "getListboxProps": { "description": "Resolver for the listbox component&#39;s props." },
+    "getOptionProps": { "description": "Resolver for the rendered option element&#39;s props." },
+    "getPopupIndicatorProps": { "description": "Resolver for the popup icon&#39;s props." },
+    "getRootProps": { "description": "Resolver for the root slot&#39;s props." },
     "getTagProps": { "description": "A tag props getter." },
     "groupedOptions": {
-      "description": "The options to render. It's either <code>T[]</code> or <code>AutocompleteGroupedOption<T>[]</code> if the groupBy prop is provided."
+      "description": "The options to render. It&#39;s either <code>T[]</code> or <code>AutocompleteGroupedOption&lt;T&gt;[]</code> if the groupBy prop is provided."
     },
     "id": { "description": "Id for the Autocomplete." },
     "inputValue": { "description": "The input value." },

@@ -4,6 +4,7 @@
     "defaultOpen": { "description": "If <code>true</code>, the menu will be initially open." },
     "listboxId": { "description": "Id of the menu listbox." },
     "listboxRef": { "description": "Ref of the menu listbox." },
+    "onItemsChange": { "description": "Callback fired when the menu items change." },
     "onOpenChange": { "description": "Callback fired when the menu is opened or closed." },
     "open": {
       "description": "If <code>true</code>, the menu will be open.\nThis is the controlled equivalent of the <code>defaultOpen</code> parameter."
@@ -14,7 +15,7 @@
     "dispatch": {
       "description": "Action dispatcher for the menu component.\nAllows to programmatically control the menu."
     },
-    "getListboxProps": { "description": "Resolver for the listbox component's props." },
+    "getListboxProps": { "description": "Resolver for the listbox component&#39;s props." },
     "highlightedValue": { "description": "The highlighted option in the menu listbox." },
     "listboxRef": { "description": "The ref to the listbox DOM node." },
     "menuItems": { "description": "Items in the menu listbox." },
