@@ -14,7 +14,7 @@ export default function SizesList() {
         flexGrow: 1,
         display: 'flex',
         justifyContent: 'center',
-        gap: 6,
+        gap: 2,
         flexWrap: 'wrap',
         '& > *': { minWidth: 0, flexBasis: 200 },
       }}
