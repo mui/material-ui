@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componentes React para progresso circular, linear
 components: CircularProgress, LinearProgress
 githubLabel: 'component: CircularProgress'

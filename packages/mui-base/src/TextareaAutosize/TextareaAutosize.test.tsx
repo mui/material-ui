@@ -11,6 +11,10 @@ import {
 } from 'test/utils';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 
+function getStyleValue(value: string) {
+  return parseInt(value, 10) || 0;
+}
+
 describe('<TextareaAutosize />', () => {
   const { clock, render } = createRenderer();
   const mount = createMount();
@@ -39,22 +43,24 @@ describe('<TextareaAutosize />', () => {
       shadow: Element,
       {
         getComputedStyle,
-        scrollHeight,
+        scrollHeight: scrollHeightArg,
         lineHeight: lineHeightArg,
       }: {
         getComputedStyle: Partial<CSSStyleDeclaration>;
-        scrollHeight?: number;
+        scrollHeight?: number | (() => number);
         lineHeight?: number | (() => number);
       },
     ) {
       const lineHeight = typeof lineHeightArg === 'function' ? lineHeightArg : () => lineHeightArg;
+      const scrollHeight =
+        typeof scrollHeightArg === 'function' ? scrollHeightArg : () => scrollHeightArg;
 
       getComputedStyleStub.set(input, getComputedStyle);
 
       let index = 0;
       stub(shadow, 'scrollHeight').get(() => {
         index += 1;
-        return index % 2 === 1 ? scrollHeight : lineHeight();
+        return index % 2 === 1 ? scrollHeight() : lineHeight();
       });
     }
 
@@ -286,6 +292,43 @@ describe('<TextareaAutosize />', () => {
       forceUpdate();
       expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
       expect(input.style).to.have.property('overflow', 'hidden');
+    });
+
+    it('should compute the correct height if padding-right is greater than 0px', () => {
+      const paddingRight = 50;
+      const { container, forceUpdate } = render(<TextareaAutosize style={{ paddingRight }} />);
+      const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
+      const shadow = container.querySelector('textarea[aria-hidden=true]')! as HTMLTextAreaElement;
+      const contentWidth = 100;
+      const lineHeight = 15;
+      const width = contentWidth + paddingRight;
+      setLayout(input, shadow, {
+        getComputedStyle: {
+          boxSizing: 'border-box',
+          width: `${width}px`,
+        },
+        scrollHeight: () => {
+          // assuming that the width of the word is 1px, and substract the width of the paddingRight
+          const lineNum = Math.ceil(
+            input.value.length / (width - getStyleValue(shadow.style.paddingRight)),
+          );
+          return lineNum * lineHeight;
+        },
+        lineHeight,
+      });
+
+      act(() => {
+        input.focus();
+      });
+      const activeElement = document.activeElement!;
+      // set the value of the input to be 1 larger than its content width
+      fireEvent.change(activeElement, {
+        target: { value: new Array(contentWidth + 1).fill('a').join('') },
+      });
+      forceUpdate();
+
+      // the input should be 2 lines
+      expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
     });
 
     describe('warnings', () => {
