@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Chip（纸片）组件
 components: Chip
 githubLabel: 'component: chip'
