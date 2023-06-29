@@ -48,7 +48,6 @@ export default function ColorInversionHeader() {
             'primary',
             'neutral',
             'danger',
-            'info',
             'success',
             'warning',
           ];
@@ -57,7 +56,7 @@ export default function ColorInversionHeader() {
         }}
         sx={{ borderRadius: '50%' }}
       >
-        <img alt="" src="/static/branding/pricing/block-gold.svg" />
+        🎨
       </IconButton>
       <Box sx={{ flex: 1, display: 'flex', gap: 1, px: 2 }}>
         <Chip

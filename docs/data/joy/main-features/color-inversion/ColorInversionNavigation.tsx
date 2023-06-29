@@ -30,7 +30,7 @@ export default function ColorInversionNavigation() {
     <Box sx={{ display: 'flex' }}>
       <Sheet
         variant="solid"
-        color="info"
+        color="neutral"
         invertedColors
         sx={{
           p: 2,
@@ -48,7 +48,7 @@ export default function ColorInversionNavigation() {
           placeholder={
             <Box>
               <Typography level="inherit">Saleshouse</Typography>
-              <Typography level="body2">general team</Typography>
+              <Typography level="body-md">general team</Typography>
             </Box>
           }
           startDecorator={
@@ -88,7 +88,7 @@ export default function ColorInversionNavigation() {
               <SmsIcon />
             </ListItemDecorator>
             Chat
-            <Chip size="sm" color="danger" sx={{ ml: 'auto' }}>
+            <Chip size="sm" color="warning" variant="soft" sx={{ ml: 'auto' }}>
               5
             </Chip>
           </ListItemButton>
@@ -133,7 +133,7 @@ export default function ColorInversionNavigation() {
       </Sheet>
       <Sheet
         variant="soft"
-        color="info"
+        color="neutral"
         invertedColors
         sx={(theme) => ({
           p: 2,
@@ -182,7 +182,6 @@ export default function ColorInversionNavigation() {
               'primary',
               'neutral',
               'danger',
-              'info',
               'success',
               'warning',
             ];
@@ -191,7 +190,7 @@ export default function ColorInversionNavigation() {
           }}
           sx={{ mt: 'auto', height: '40px' }}
         >
-          <img alt="" src="/static/branding/pricing/block-green.svg" />
+          🎨
         </IconButton>
       </Sheet>
     </Box>
