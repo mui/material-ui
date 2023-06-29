@@ -166,7 +166,7 @@ describe('<SvgIcon />', () => {
       // @ts-expect-error
       <SvgIcon ownerState={{ fontSize: 'sm' }}>{path}</SvgIcon>,
     );
-    expect(container.firstChild).toHaveComputedStyle({ fontSize: '20px' }); // fontSize: xl -> 1.25rem = 20px
+    expect(container.firstChild).toHaveComputedStyle({ fontSize: '24px' }); // fontSize: xl2 -> 1.5rem = 24px
   });
 
   it('should have `fill="currentColor"`', function test() {
