@@ -7,7 +7,7 @@ import TabPanel from '@mui/base/TabPanel';
 import Tab from '@mui/base/Tab';
 import HighlightedCode from './HighlightedCode';
 
-const StyledTabList = styled('div')(({ theme }) => ({
+const StyledTabList = styled(TabsList)(({ theme }) => ({
   display: 'flex',
   backgroundColor: (theme.vars || theme).palette.primaryDark[600],
   borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
@@ -17,7 +17,7 @@ const StyledTabList = styled('div')(({ theme }) => ({
   }),
 }));
 
-const StyledTabPanel = styled('div')<{ ownerState: { mounted: boolean } }>(({ ownerState }) => ({
+const StyledTabPanel = styled(TabPanel)<{ ownerState: { mounted: boolean } }>(({ ownerState }) => ({
   '& pre': {
     marginTop: 0,
     borderTopLeftRadius: 0,
@@ -28,7 +28,7 @@ const StyledTabPanel = styled('div')<{ ownerState: { mounted: boolean } }>(({ ow
   },
 }));
 
-const StyledTab = styled('button')<{ ownerState: { mounted: boolean } }>(({ theme, ownerState }) =>
+const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ownerState }) =>
   theme.unstable_sx({
     py: 1.5,
     px: 2,
@@ -41,6 +41,7 @@ const StyledTab = styled('button')<{ ownerState: { mounted: boolean } }>(({ them
     fontFamily: theme.typography.fontFamilyCode,
     outline: 'none',
     minWidth: 80,
+    cursor: 'pointer',
     '&:first-child /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */':
       {
         borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
@@ -68,8 +69,6 @@ const StyledTab = styled('button')<{ ownerState: { mounted: boolean } }>(({ them
   }),
 );
 
-const STORAGE_KEY = 'package-manager';
-
 type TabsConfig = {
   code: string | ((tab: string) => string);
   language: string;
@@ -77,18 +76,23 @@ type TabsConfig = {
 };
 export default function HighlightedCodeWithTabs({
   tabs,
+  storageKey,
 }: {
   tabs: Array<TabsConfig>;
+  storageKey?: string;
 } & Record<string, any>) {
-  const availableTabs = tabs.map(({ tab }) => tab);
+  const availableTabs = React.useMemo(() => tabs.map(({ tab }) => tab), [tabs]);
+  const [activeTab, setActiveTab] = React.useState(availableTabs[0]);
 
-  const [activeTab, setActiveTab] = React.useState(tabs[0]?.tab);
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
     try {
       setActiveTab((prev) => {
-        const storedValues = localStorage.getItem(STORAGE_KEY);
+        if (storageKey === undefined) {
+          return prev;
+        }
+        const storedValues = localStorage.getItem(storageKey);
 
         return storedValues && availableTabs.includes(storedValues) ? storedValues : prev;
       });
@@ -96,12 +100,15 @@ export default function HighlightedCodeWithTabs({
       // ignore error
     }
     setMounted(true);
-  }, [availableTabs]);
+  }, [availableTabs, storageKey]);
 
   const handleChange: TabsOwnProps['onChange'] = (event, newValue) => {
     setActiveTab(newValue as string);
+    if (storageKey === undefined) {
+      return;
+    }
     try {
-      localStorage.setItem(STORAGE_KEY, newValue as string);
+      localStorage.setItem(storageKey, newValue as string);
     } catch (error) {
       // ignore error
     }
@@ -110,34 +117,22 @@ export default function HighlightedCodeWithTabs({
   const ownerState = { mounted };
   return (
     <Tabs selectionFollowsFocus value={activeTab} onChange={handleChange}>
-      <TabsList slots={{ root: StyledTabList }}>
+      <StyledTabList>
         {tabs.map(({ tab }) => (
-          <Tab
-            slots={{ root: StyledTab }}
-            // @ts-ignore
-            slotProps={{ root: { ownerState } }}
-            key={tab}
-            value={tab}
-          >
+          <StyledTab ownerState={ownerState} key={tab} value={tab}>
             {tab}
-          </Tab>
+          </StyledTab>
         ))}
         <Box sx={{ ml: 'auto' }} />
-      </TabsList>
+      </StyledTabList>
       {tabs.map(({ tab, language, code }) => (
-        <TabPanel
-          slots={{ root: StyledTabPanel }}
-          // @ts-ignore
-          slotProps={{ root: { ownerState } }}
-          key={tab}
-          value={tab}
-        >
+        <StyledTabPanel ownerState={ownerState} key={tab} value={tab}>
           <HighlightedCode
             // @ts-ignore
             language={language || 'bash'}
             code={typeof code === 'function' ? code(tab) : code}
           />
-        </TabPanel>
+        </StyledTabPanel>
       ))}
     </Tabs>
   );

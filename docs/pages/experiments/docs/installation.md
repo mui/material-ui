@@ -4,7 +4,7 @@
 
 ## Tabs
 
-<codeblock>
+<codeblock storageKey="package-manager">
 
 ```bash npm
 npm install @mui/material @emotion/react @emotion/styled
@@ -12,6 +12,22 @@ npm install @mui/material @emotion/react @emotion/styled
 
 ```bash yarn
 yarn add @mui/material @emotion/react @emotion/styled
+```
+
+</codeblock>
+
+<codeblock storageKey="license">
+
+```bash MIT
+npm install @mui/data-grid
+```
+
+```bash Pro
+npm install @mui/data-grid-pro
+```
+
+```bash Premium
+npm install @mui/data-grid-premium
 ```
 
 </codeblock>

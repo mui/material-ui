@@ -105,7 +105,13 @@ export default function MarkdownDocs(props) {
           if (renderedMarkdownOrDemo.type === 'codeblock') {
             return (
               <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
-                <HighlightedCodeWithTabs tabs={renderedMarkdownOrDemo.data} />
+                <HighlightedCodeWithTabs
+                  tabs={renderedMarkdownOrDemo.data}
+                  storageKey={
+                    renderedMarkdownOrDemo.storageKey &&
+                    `codeblock-${renderedMarkdownOrDemo.storageKey}`
+                  }
+                />
               </Wrapper>
             );
           }
