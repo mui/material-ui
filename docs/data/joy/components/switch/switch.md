@@ -1,9 +1,9 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Switch component
 components: Switch
 githubLabel: 'component: switch'
-unstyled: /base/react-switch/
+unstyled: /base-ui/react-switch/
 ---
 
 # Switch
@@ -111,7 +111,7 @@ You can also find the Material Design switch design, out of the box, in [Materia
 
 {{"demo": "ExampleMaterialSwitch.js"}}
 
-### Fluent
+### Fluent UI
 
 Here's how you'd customize Joy UI's switch to make it look like [Microsoft's Fluent UI](https://developer.microsoft.com/en-us/fluentui#/controls/web/toggle):
 

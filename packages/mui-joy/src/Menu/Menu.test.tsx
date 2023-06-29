@@ -8,6 +8,7 @@ import {
   screen,
   fireEvent,
   describeJoyColorInversion,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Menu, { menuClasses as classes } from '@mui/joy/Menu';
@@ -37,13 +38,11 @@ describe('Joy <Menu />', () => {
     ],
   }));
 
+  const anchorEl = document.createElement('div');
+  anchorEl.setAttribute('aria-controls', 'test');
+
   describeJoyColorInversion(
-    <Menu
-      open
-      disablePortal
-      anchorEl={() => document.createElement('div')}
-      data-testid="test-element"
-    />,
+    <Menu open disablePortal anchorEl={() => anchorEl} data-testid="test-element" />,
     {
       muiName: 'JoyMenu',
       classes,
@@ -51,15 +50,25 @@ describe('Joy <Menu />', () => {
     },
   );
 
+  it("should show warning if `id` does not match the anchorEl's `aria-controls`", () => {
+    expect(() =>
+      render(<Menu id="foo" anchorEl={anchorEl} open data-testid="popover" />),
+    ).toErrorDev([
+      'MUI: the anchorEl must have [aria-controls="foo"] but got [aria-controls="test"].',
+      !strictModeDoubleLoggingSuppressed &&
+        'MUI: the anchorEl must have [aria-controls="foo"] but got [aria-controls="test"].',
+    ]);
+  });
+
   it('should render with `ul` by default', () => {
-    render(<Menu anchorEl={document.createElement('div')} open data-testid="popover" />);
+    render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
     expect(screen.getByTestId('popover')).to.have.tagName('ul');
   });
 
   it('should pass onClose prop to Popover', () => {
     const handleClose = spy();
     render(
-      <Menu anchorEl={document.createElement('div')} open onClose={handleClose}>
+      <Menu anchorEl={anchorEl} open onClose={handleClose}>
         <MenuItem />
       </Menu>,
     );
@@ -77,7 +86,7 @@ describe('Joy <Menu />', () => {
 
   it('renders its children only when open', () => {
     const { setProps } = render(
-      <Menu anchorEl={document.createElement('div')} open={false}>
+      <Menu anchorEl={anchorEl} open={false}>
         <div data-testid="children" />
       </Menu>,
     );
@@ -90,14 +99,14 @@ describe('Joy <Menu />', () => {
   });
 
   it('should have role="menu"', () => {
-    render(<Menu anchorEl={document.createElement('div')} open data-testid="popover" />);
+    render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
 
     expect(screen.getByTestId('popover')).to.have.attribute('role', 'menu');
   });
 
   it('ignores invalid children', () => {
     render(
-      <Menu anchorEl={document.createElement('div')} open>
+      <Menu anchorEl={anchorEl} open>
         {null}
         <span role="menuitem">hello</span>
         {/* testing conditional rendering */}
@@ -112,23 +121,19 @@ describe('Joy <Menu />', () => {
 
   describe('classnames', () => {
     it('size prop', () => {
-      render(<Menu anchorEl={document.createElement('div')} data-testid="menu" open size="sm" />);
+      render(<Menu anchorEl={anchorEl} data-testid="menu" open size="sm" />);
 
       expect(screen.getByTestId('menu')).to.have.class(classes.sizeSm);
     });
 
     it('variant prop', () => {
-      render(
-        <Menu anchorEl={document.createElement('div')} data-testid="menu" open variant="soft" />,
-      );
+      render(<Menu anchorEl={anchorEl} data-testid="menu" open variant="soft" />);
 
       expect(screen.getByTestId('menu')).to.have.class(classes.variantSoft);
     });
 
     it('color prop', () => {
-      render(
-        <Menu anchorEl={document.createElement('div')} data-testid="menu" open color="primary" />,
-      );
+      render(<Menu anchorEl={anchorEl} data-testid="menu" open color="primary" />);
 
       expect(screen.getByTestId('menu')).to.have.class(classes.colorPrimary);
     });

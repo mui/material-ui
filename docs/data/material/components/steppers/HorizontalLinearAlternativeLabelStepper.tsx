@@ -10,7 +10,7 @@ const steps = [
   'Create an ad',
 ];
 
-export default function HorizontalLabelPositionBelowStepper() {
+export default function HorizontalLinearAlternativeLabelStepper() {
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper activeStep={1} alternativeLabel>

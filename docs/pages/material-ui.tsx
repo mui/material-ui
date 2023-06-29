@@ -9,7 +9,7 @@ import Divider from '@mui/material/Divider';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import Section from 'docs/src/layouts/Section';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -52,7 +52,7 @@ export default function Components() {
     );
   }
   return (
-    <BrandingProvider>
+    <BrandingCssVarsProvider>
       <Head
         title="React Components - Material UI"
         description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design."
@@ -114,6 +114,6 @@ export default function Components() {
       </main>
       <Divider />
       <AppFooter />
-    </BrandingProvider>
+    </BrandingCssVarsProvider>
   );
 }

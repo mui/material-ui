@@ -8,6 +8,7 @@ import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, size, variant } = ownerState;
@@ -80,7 +81,11 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       [theme.focus.selector]: theme.focus.default,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
-    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+    {
+      '&:hover': {
+        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      },
+    },
     { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
     {
       [`&.${iconButtonClasses.disabled}`]:
@@ -99,6 +104,7 @@ export const IconButtonRoot = styled(StyledIconButton, {
  * Demos:
  *
  * - [Button](https://mui.com/joy-ui/react-button/)
+ * - [Button Group](https://mui.com/joy-ui/react-button-group/)
  *
  * API:
  *
@@ -115,20 +121,26 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     action,
     component = 'button',
     color: colorProp = 'primary',
-    variant = 'soft',
-    size = 'md',
+    disabled: disabledProp,
+    variant: variantProp = 'soft',
+    size: sizeProp = 'md',
     slots = {},
     slotProps = {},
     ...other
   } = props;
+  const buttonGroup = React.useContext(ButtonGroupContext);
+  const variant = inProps.variant || buttonGroup.variant || variantProp;
+  const size = inProps.size || buttonGroup.size || sizeProp;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
+    disabled,
     rootRef: handleRef,
   });
 
@@ -147,6 +159,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     ...props,
     component,
     color,
+    disabled,
     variant,
     size,
     focusVisible,

@@ -4,7 +4,7 @@ import Option from '@mui/joy/Option';
 import IconButton from '@mui/joy/IconButton';
 import CloseRounded from '@mui/icons-material/CloseRounded';
 
-export default function SelectBasic() {
+export default function SelectClearable() {
   const [value, setValue] = React.useState<string | null>('dog');
   const action: SelectStaticProps['action'] = React.useRef(null);
   return (

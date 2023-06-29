@@ -79,6 +79,8 @@ function GoogleAnalytics() {
       window.gtag('event', 'page_view', {
         page_title: document.title,
         page_location: canonicalAsServer,
+        productId: document.querySelector('meta[name="mui:productId"]').content,
+        productCategoryId: document.querySelector('meta[name="mui:productCategoryId"]').content,
       });
     });
   }, [router.route]);

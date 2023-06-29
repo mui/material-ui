@@ -421,6 +421,7 @@ export interface CssVarsTheme extends ColorSystem {
   shadows: Theme['shadows'];
   mixins: Theme['mixins'];
   zIndex: Theme['zIndex'];
+  direction: Theme['direction'];
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.

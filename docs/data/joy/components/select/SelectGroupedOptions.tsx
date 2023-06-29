@@ -32,6 +32,7 @@ export default function SelectGroupedOptions() {
             maxHeight: 240,
             overflow: 'auto',
             '--List-padding': '0px',
+            '--ListItem-radius': '0px',
           },
         },
       }}
@@ -58,7 +59,7 @@ export default function SelectGroupedOptions() {
                     <Chip
                       size="sm"
                       color={colors[name as keyof typeof group]}
-                      sx={{ borderRadius: 'xs', mr: 1, ml: -0.5 }}
+                      sx={{ borderRadius: 'xs', mr: 1 }}
                     >
                       {name}
                     </Chip>{' '}

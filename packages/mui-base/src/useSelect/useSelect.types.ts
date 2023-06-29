@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { UseButtonRootSlotProps } from '../useButton';
 import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
 import { EventHandlers } from '../utils/types';
 import { SelectProviderValue } from './SelectProvider';
+import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
 
 export type SelectChangeEventType =
   | React.MouseEvent<Element, MouseEvent>
@@ -20,6 +20,14 @@ export interface SelectOptionDefinition<Value> {
 }
 
 export interface UseSelectParameters<OptionValue, Multiple extends boolean = false> {
+  /**
+   * A function used to determine if two options' values are equal.
+   * By default, reference equality is used.
+   *
+   * There is a performance impact when using the `areOptionsEqual` prop (proportional to the number of options).
+   * Therefore, it's recommented to use the default reference equality comparison whenever possible.
+   */
+  areOptionsEqual?: (a: OptionValue, b: OptionValue) => boolean;
   /**
    * If `true`, the select will be open by default.
    * @default false
@@ -101,26 +109,33 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
 }
 
 interface UseSelectButtonSlotEventHandlers {
-  onClick: React.MouseEventHandler;
-  onKeyDown: React.KeyboardEventHandler;
-  onMouseDown: React.MouseEventHandler<HTMLElement>;
+  onClick: MuiCancellableEventHandler<React.MouseEvent>;
 }
 
-export type UseSelectButtonSlotProps<TOther = {}> = UseButtonRootSlotProps<
-  Omit<TOther, keyof UseSelectButtonSlotEventHandlers> & UseSelectButtonSlotEventHandlers
-> & {
-  'aria-expanded': React.AriaAttributes['aria-expanded'];
-  'aria-haspopup': React.AriaAttributes['aria-haspopup'];
-};
+export type UseSelectButtonSlotProps<TOther = {}> = UseListRootSlotProps<
+  Omit<TOther, keyof UseSelectButtonSlotEventHandlers>
+> &
+  UseSelectButtonSlotEventHandlers & {
+    'aria-expanded': React.AriaAttributes['aria-expanded'];
+    'aria-controls': React.AriaAttributes['aria-controls'];
+    role: React.HTMLAttributes<Element>['role'];
+    ref: React.RefCallback<Element> | null;
+  };
 
 interface UseSelectListboxSlotEventHandlers {
-  onBlur: React.FocusEventHandler;
-  onKeyUp: React.KeyboardEventHandler;
+  onMouseDown: React.MouseEventHandler;
 }
 
-export type UseSelectListboxSlotProps<TOther = {}> = UseListRootSlotProps<
-  Omit<TOther, keyof UseSelectListboxSlotEventHandlers> & UseSelectListboxSlotEventHandlers
->;
+export type UseSelectListboxSlotProps<TOther = {}> = Omit<
+  TOther,
+  keyof UseSelectListboxSlotEventHandlers
+> &
+  UseSelectListboxSlotEventHandlers & {
+    'aria-multiselectable': React.AriaAttributes['aria-multiselectable'];
+    id: string | undefined;
+    ref: React.RefCallback<Element> | null;
+    role: React.HTMLAttributes<Element>['role'];
+  };
 
 export interface UseSelectReturnValue<Value, Multiple> {
   /**
@@ -195,7 +210,6 @@ export interface UseSelectReturnValue<Value, Multiple> {
 
 export const SelectActionTypes = {
   buttonClick: 'buttonClick',
-  buttonArrowKeyDown: 'buttonArrowKeyDown',
 } as const;
 
 export interface ButtonClickAction {
@@ -203,13 +217,7 @@ export interface ButtonClickAction {
   event: React.MouseEvent;
 }
 
-export interface ButtonArrowKeyDownAction {
-  type: typeof SelectActionTypes.buttonArrowKeyDown;
-  key: string;
-  event: React.KeyboardEvent;
-}
-
-export type SelectAction = ButtonClickAction | ButtonArrowKeyDownAction;
+export type SelectAction = ButtonClickAction;
 
 export interface SelectInternalState<OptionValue> extends ListState<OptionValue> {
   open: boolean;

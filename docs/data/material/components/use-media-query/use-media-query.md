@@ -1,12 +1,12 @@
 ---
-product: material-ui
+productId: material-ui
 title: Media queries in React for responsive design
 githubLabel: 'hook: useMediaQuery'
 ---
 
 # useMediaQuery
 
-<p class="description">This is a CSS media query hook for React. It listens for matches to a CSS media query. It allows the rendering of components based on whether the query matches or not.</p>
+<p class="description">This React hook listens for matches to a CSS media query. It allows the rendering of components based on whether the query matches or not.</p>
 
 Some of the key features:
 

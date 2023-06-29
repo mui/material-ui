@@ -1,10 +1,10 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Button component
 components: Button, IconButton
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base/react-button/
+unstyled: /base-ui/react-button/
 ---
 
 # Button

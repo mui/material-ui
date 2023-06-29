@@ -53,4 +53,4 @@ This example demonstrates how to set up Material UI with [Create React App](http
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.

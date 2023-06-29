@@ -5,7 +5,7 @@ import Tabs from '@mui/base/Tabs';
 import Tab, { tabClasses } from '@mui/base/Tab';
 import TabsList from '@mui/base/TabsList';
 
-export default function AccessibleTabs() {
+export default function KeyboardNavigation() {
   return (
     <div>
       <p>Selection following focus:</p>

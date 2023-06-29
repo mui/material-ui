@@ -100,7 +100,7 @@ function AppLayoutDocs(props) {
   let productName = 'MUI';
   if (canonicalAs.startsWith('/material-ui/')) {
     productName = 'Material UI';
-  } else if (canonicalAs.startsWith('/base/')) {
+  } else if (canonicalAs.startsWith('/base-ui/')) {
     productName = 'Base UI';
   } else if (canonicalAs.startsWith('/x/')) {
     productName = 'MUI X';
@@ -135,7 +135,7 @@ function AppLayoutDocs(props) {
           */}
           <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
             <ActionsDiv>
-              <EditPage markdownLocation={location} />
+              <EditPage sourceLocation={location} />
             </ActionsDiv>
             {children}
             <NoSsr>

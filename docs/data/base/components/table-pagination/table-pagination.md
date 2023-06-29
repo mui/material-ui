@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: React Table Pagination component
 components: TablePagination
 githubLabel: 'component: TablePagination'
@@ -31,7 +31,7 @@ See the [Slot props section](#slot-props) for details.
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import TablePagination from '@mui/base/TablePagination';
@@ -109,7 +109,7 @@ Use the `slots` prop to override the root or any other interior slot:
 
 :::info
 The `slots` prop is available on all non-utility Base components.
-See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.

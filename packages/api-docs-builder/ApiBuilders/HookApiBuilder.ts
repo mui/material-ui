@@ -80,11 +80,11 @@ export interface ReactApi extends ReactDocgenApi {
  * /**
  * * Demos:
  * *
- * * - [Button](https://mui.com/base/react-button/)
+ * * - [Button](https://mui.com/base-ui/react-button/)
  * *
  * * API:
  * *
- * * - [useButton API](https://mui.com/base/api/use-button/)
+ * * - [useButton API](https://mui.com/base-ui/api/use-button/)
  */
 async function annotateHookDefinition(api: ReactApi) {
   const HOST = 'https://mui.com';
@@ -264,10 +264,7 @@ const attachTable = (
 };
 
 const generateTranslationDescription = (description: string) => {
-  return description
-    .replace(/\n@default.*$/, '')
-    .replace(/`([a-z]|[A-Z]|\()/g, '<code>$1')
-    .replace(/`/g, '</code>');
+  return renderMarkdownInline(description.replace(/\n@default.*$/, ''));
 };
 
 const attachTranslations = (reactApi: ReactApi) => {

@@ -51,22 +51,22 @@
     "placementLeft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>placement</code> contains \"left\""
+      "conditions": "<code>placement</code> contains &quot;left&quot;"
     },
     "placementRight": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>placement</code> contains \"right\""
+      "conditions": "<code>placement</code> contains &quot;right&quot;"
     },
     "placementTop": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>placement</code> contains \"top\""
+      "conditions": "<code>placement</code> contains &quot;top&quot;"
     },
     "placementBottom": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>placement</code> contains \"bottom\""
+      "conditions": "<code>placement</code> contains &quot;bottom&quot;"
     },
     "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
