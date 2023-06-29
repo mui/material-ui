@@ -40,6 +40,7 @@ const AspectRatioRoot = styled('div', {
     '--AspectRatio-maxHeight': maxHeight || '9999px',
     '--AspectRatio-minHeight': minHeight || '0px',
     '--Icon-color': 'currentColor',
+    '--Icon-opacity': 1,
     borderRadius: 'var(--AspectRatio-radius)',
     flexDirection: 'column',
     margin: 'var(--AspectRatio-margin)',

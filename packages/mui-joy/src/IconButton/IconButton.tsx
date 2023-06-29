@@ -38,7 +38,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
       '--Icon-color': 'currentColor',
-      '&:not(:hover, :active)': {
+      '&:not(:hover, :active, :focus-visible, [aria-pressed="true"])': {
         '--Icon-opacity': 0.8,
       },
       ...(ownerState.instanceSize && {

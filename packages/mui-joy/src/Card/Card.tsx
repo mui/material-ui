@@ -39,6 +39,7 @@ const CardRoot = styled('div', {
   {
     ...(ownerState.variant === 'solid' && {
       '--Icon-color': 'currentColor',
+      '--Icon-opacity': 1,
     }),
     // a context variable for any child component
     '--Card-childRadius':

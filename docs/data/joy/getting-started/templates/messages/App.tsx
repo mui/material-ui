@@ -26,15 +26,16 @@ export default function JoyMessagesTemplate() {
   return (
     <CssVarsProvider disableTransitionOnChange>
       <GlobalStyles
-        styles={{
+        styles={(theme) => ({
           '[data-feather], .feather': {
-            color: 'var(--Icon-color)',
+            color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
+            opacity: 'var(--Icon-opacity)',
             margin: 'var(--Icon-margin)',
-            fontSize: 'var(--Icon-fontSize, 20px)',
+            fontSize: `var(--Icon-fontSize, ${theme.vars.fontSize.xl})`,
             width: '1em',
             height: '1em',
           },
-        }}
+        })}
       />
       <CssBaseline />
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>

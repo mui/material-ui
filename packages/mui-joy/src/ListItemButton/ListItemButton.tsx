@@ -41,10 +41,9 @@ const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
 
 export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOwnerState }>(
   ({ theme, ownerState }) => ({
-    ...(ownerState.color !== 'neutral' && {
-      '--Icon-color': 'currentColor',
-      '--Icon-opacity': 0.72,
-    }),
+    '--Icon-margin': 'initial', // reset the icon's margin.
+    '--Icon-color': 'currentColor',
+    '--Icon-opacity': 0.64,
     WebkitTapHighlightColor: 'transparent',
     boxSizing: 'border-box',
     position: 'relative',
@@ -83,14 +82,13 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     minInlineSize: 0,
     [theme.focus.selector]: theme.focus.default,
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    [`&.${listItemButtonClasses.selected}`]: {
-      '--Icon-color': 'currentColor',
+    '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+    '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+    [`&.${listItemButtonClasses.selected}, &[aria-selected="true"]`]: {
       '--Icon-opacity': 1,
       fontWeight: theme.vars.fontWeight.md,
-    },
-    [`&:not(.${listItemButtonClasses.selected}):not([aria-selected="true"])`]: {
-      '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-      '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      '&:hover': theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
+      '&:active': theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
     },
     [`&.${listItemButtonClasses.disabled}`]: {
       ...theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],

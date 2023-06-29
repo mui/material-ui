@@ -94,8 +94,8 @@ export const ButtonRoot = styled('button', {
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
       '--Icon-color': 'currentColor',
-      '&:not(:hover, :active)': {
-        '--Icon-opacity': 0.8,
+      '&:not(:hover, :active, :focus-visible, [aria-pressed="true"])': {
+        '--Icon-opacity': 0.64,
       },
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': '1.25rem',

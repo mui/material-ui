@@ -50,6 +50,7 @@ export const SheetRoot = styled('div', {
     {
       ...(ownerState.variant === 'solid' && {
         '--Icon-color': 'currentColor',
+        '--Icon-opacity': 1,
       }),
       '--ListItem-stickyBackground': resolvedBg, // for sticky List
       '--Sheet-background': resolvedBg, // for sticky table cell
