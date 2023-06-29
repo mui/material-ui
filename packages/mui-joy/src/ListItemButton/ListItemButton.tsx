@@ -41,6 +41,10 @@ const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
 
 export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOwnerState }>(
   ({ theme, ownerState }) => ({
+    ...(ownerState.color !== 'neutral' && {
+      '--Icon-color': 'currentColor',
+      '--Icon-opacity': 0.72,
+    }),
     WebkitTapHighlightColor: 'transparent',
     boxSizing: 'border-box',
     position: 'relative',
@@ -81,6 +85,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     [`&.${listItemButtonClasses.selected}`]: {
       '--Icon-color': 'currentColor',
+      '--Icon-opacity': 1,
       '--ListItemDecorator-color': 'initial',
       fontWeight: theme.vars.fontWeight.md,
     },
@@ -89,7 +94,6 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
     },
     [`&.${listItemButtonClasses.disabled}`]: {
-      '--Icon-color': 'currentColor',
       '--ListItemDecorator-color': 'currentColor',
       ...theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
     },
