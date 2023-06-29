@@ -52,7 +52,7 @@ function ValueProposition() {
       />
       <Grid container spacing={3}>
         {content.map(({ icon, title, description }) => (
-          <Grid key={title} item xs={12} sm={6}>
+          <Grid key={title} item xs={12} sm={3}>
             <Paper
               variant="outlined"
               sx={(theme) => ({
@@ -94,7 +94,14 @@ function ValueProposition() {
               >
                 {icon}
               </Box>
-              <Typography fontWeight="bold" component="h3" color="text.primary" mt={2} mb={1}>
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                variant="body2"
+                color="text.primary"
+                gutterBottom
+                mt={2}
+              >
                 {title}
               </Typography>
               <Typography variant="body2" color="text.secondary">
