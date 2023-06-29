@@ -73,6 +73,8 @@ const LinkRoot = styled('a', {
     {
       '--Icon-fontSize': '1.25em',
       '--Icon-color': 'currentColor',
+      '--CircularProgress-size': '1.25em',
+      '--CircularProgress-thickness': '3px',
       '&:not(:hover, :focus-visible, :active)': {
         '--Icon-opacity': 0.8,
       },

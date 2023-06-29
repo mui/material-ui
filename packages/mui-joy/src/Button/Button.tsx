@@ -100,6 +100,7 @@ export const ButtonRoot = styled('button', {
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': '1.25rem',
         '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '2px',
         '--Button-gap': '0.375rem',
         minHeight: 'var(--Button-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
@@ -109,6 +110,7 @@ export const ButtonRoot = styled('button', {
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
         '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '3px',
         '--Button-gap': '0.5rem',
         minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
@@ -118,6 +120,7 @@ export const ButtonRoot = styled('button', {
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': '1.75rem',
         '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '4px',
         '--Button-gap': '0.75rem',
         minHeight: 'var(--Button-minHeight, 3rem)',
         fontSize: theme.vars.fontSize.md,
