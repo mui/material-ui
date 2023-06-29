@@ -294,7 +294,7 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', 'hidden');
     });
 
-    it('should compute the right height if padding right greater than 0px', () => {
+    it('should compute the correct height if padding-right is greater than 0px', () => {
       const paddingRight = 50;
       const { container, forceUpdate } = render(<TextareaAutosize style={{ paddingRight }} />);
       const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
@@ -321,7 +321,7 @@ describe('<TextareaAutosize />', () => {
         input.focus();
       });
       const activeElement = document.activeElement!;
-      // set the value of the input to be 1 larger than it's content width
+      // set the value of the input to be 1 larger than its content width
       fireEvent.change(activeElement, {
         target: { value: new Array(contentWidth + 1).fill('a').join('') },
       });
