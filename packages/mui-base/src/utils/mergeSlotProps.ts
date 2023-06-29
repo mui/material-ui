@@ -24,11 +24,11 @@ export interface MergeSlotPropsParameters<
    */
   getSlotProps?: (other: EventHandlers) => WithCommonProps<SlotProps>;
   /**
-   * Props provided to the `slotProps.*` of the unstyled component.
+   * Props provided to the `slotProps.*` of the Base UI component.
    */
   externalSlotProps?: WithCommonProps<ExternalSlotProps>;
   /**
-   * Extra props placed on the unstyled component that should be forwarded to the slot.
+   * Extra props placed on the Base UI component that should be forwarded to the slot.
    * This should usually be used only for the root slot.
    */
   externalForwardedProps?: WithCommonProps<ExternalForwardedProps>;
@@ -63,7 +63,7 @@ export type MergeSlotPropsResult<
  *
  * The merge order is (the latter overrides the former):
  * 1. The internal props (specified as a getter function to work with get*Props hook result)
- * 2. Additional props (specified internally on an unstyled component)
+ * 2. Additional props (specified internally on a Base UI component)
  * 3. External props specified on the owner component. These should only be used on a root slot.
  * 4. External props specified in the `slotProps.*` prop.
  * 5. The `className` prop - combined from all the above.
@@ -137,7 +137,7 @@ export default function mergeSlotProps<
   const internalSlotProps = getSlotProps(eventHandlers);
 
   // The order of classes is important here.
-  // Emotion (that we use in libraries consuming MUI Base) depends on this order
+  // Emotion (that we use in libraries consuming Base UI) depends on this order
   // to properly override style. It requires the most important classes to be last
   // (see https://github.com/mui/material-ui/pull/33205) for the related discussion.
   const joinedClasses = clsx(

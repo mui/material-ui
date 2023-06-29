@@ -190,6 +190,8 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     endDecorator,
     startDecorator,
     variant,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -216,7 +218,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
@@ -319,6 +321,24 @@ Typography.propTypes /* remove-proptypes */ = {
    * @default false
    */
   noWrap: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    endDecorator: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+  }),
   /**
    * Element placed before the children.
    */

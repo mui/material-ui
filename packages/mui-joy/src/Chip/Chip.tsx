@@ -81,6 +81,7 @@ const ChipRoot = styled('div', {
       '--_Chip-paddingBlock':
         'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Chip-decoratorChildHeight)) / 2, 0px)',
       minHeight: 'var(--_Chip-minHeight)',
+      maxWidth: 'max-content', // to prevent Chip from stretching to full width when used with flexbox
       paddingInline: 'var(--Chip-paddingInline)',
       borderRadius: 'var(--_Chip-radius)',
       position: 'relative',
@@ -143,6 +144,7 @@ const ChipAction = styled('button', {
     left: 0,
     bottom: 0,
     right: 0,
+    width: '100%', // To fix Firefox issue (https://github.com/mui/material-ui/issues/36877)
     border: 'none',
     cursor: 'pointer',
     padding: 'initial',
@@ -209,13 +211,15 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     children,
     className,
     color: colorProp = 'primary',
-    slotProps = {},
     onClick,
     disabled = false,
     size = 'md',
     variant = 'solid',
     startDecorator,
     endDecorator,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -238,13 +242,13 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const { focusVisible, getRootProps } = useButton({
     ...resolvedActionProps,
     disabled,
-    ref: actionRef,
+    rootRef: actionRef,
   });
 
   ownerState.focusVisible = focusVisible;
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, slotProps };
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
@@ -337,6 +341,11 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -359,7 +368,8 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * @ignore
+   * The props used for each slot inside.
+   * @default {}
    */
   slotProps: PropTypes.shape({
     action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -367,6 +377,17 @@ Chip.propTypes /* remove-proptypes */ = {
     label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    action: PropTypes.elementType,
+    endDecorator: PropTypes.elementType,
+    label: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
   }),
   /**
    * Element placed before the children.

@@ -1,10 +1,10 @@
 # Working with Tailwind CSS
 
-<p class="description">Learn how to style MUI Base components with Tailwind CSS.</p>
+<p class="description">Learn how to style Base UI components with Tailwind CSS.</p>
 
 ## Getting started
 
-The goal of this guide is to teach you how to style MUI Base components using Tailwind CSS while building an interactive and accessible app.
+The goal of this guide is to teach you how to style Base UI components using Tailwind CSS while building an interactive and accessible app.
 
 ### Prerequisites
 
@@ -240,7 +240,7 @@ You should now see the player rendered on the page, but the component is not yet
 
 ### Create the Slider component
 
-Let's start by giving life to the slider with the `SliderUnstyled` component from MUI Base. First, create a new file called `Slider.tsx`. Copy and paste the code below into the file:
+Let's start by giving life to the slider with the `SliderUnstyled` component from Base UI. First, create a new file called `Slider.tsx`. Copy and paste the code below into the file:
 
 **Slider.tsx**
 
@@ -352,7 +352,7 @@ After refreshing the page, you should see the thumb looking identical to the des
 
 The code above creates a custom component with all the classes and props necessary to serve as the thumb. Since we want to have an additional dot inside the thumb, we need to add new element in the markup of the thumb: a `<span>`. Note that after the thumb, we are still rendering the `children` passed via props. This is important because the `children` in this case contain a hidden `<input>` element which makes the thumb accessible.
 
-This is just one example, but this pattern of building custom components for each slot is possible with all MUI Base components.
+This is just one example, but this pattern of building custom components for each slot is possible with all Base UI components.
 
 :::warning
 When building custom components for the slots, always propagate the props sent from the owner component on the root element.
@@ -363,7 +363,7 @@ Additionally, each of the slots receives an `ownerState` object, which contains 
 
 ## Adding a custom focus selector to the buttons
 
-To finish this guide off, let's see how you can add custom styles based on a component's internal state. We'll create a custom `Button` component that uses the `focusVisible` state from the MUI Base `ButtonUnstyled` to apply a cyan ring around it.
+To finish this guide off, let's see how you can add custom styles based on a component's internal state. We'll create a custom `Button` component that uses the `focusVisible` state from the Base UI `ButtonUnstyled` to apply a cyan ring around it.
 
 This is what it'll look like:
 
@@ -485,8 +485,8 @@ Some classes were slightly changed on some buttons so we have a consistent focus
 
 These are the things we covered in this guide:
 
-✅ How to use Tailwind CSS utility classes to style MUI Base components, using the `componentsProps` prop for targeting specific slots within the component.\
+✅ How to use Tailwind CSS utility classes to style Base UI components, using the `componentsProps` prop for targeting specific slots within the component.\
 ✅ How to create custom components for specific slots in more complex customization scenarios. We used the `component` prop to pass them into the parent component.\
 ✅ How to apply conditional styling based on the owner component's state using a callback as value for the `componentsProps` prop.
 
-Get all the code used in this guide in the [MUI Base with Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/mui-base-with-tailwind-css) example project.
+Get all the code used in this guide in the [Base UI with Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/base-cra-tailwind-ts) example project.

@@ -1,11 +1,6 @@
 {
   "props": {
-    "actions": {
-      "type": {
-        "name": "union",
-        "description": "func<br>&#124;&nbsp;{ current?: { highlightFirstItem: func, highlightLastItem: func } }"
-      }
-    },
+    "actions": { "type": { "name": "custom", "description": "ref" } },
     "color": {
       "type": {
         "name": "union",
@@ -14,12 +9,21 @@
       "default": "'neutral'"
     },
     "component": { "type": { "name": "elementType" } },
+    "onItemsChange": { "type": { "name": "func" } },
     "size": {
       "type": {
         "name": "union",
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -37,6 +41,33 @@
   },
   "name": "MenuList",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'ul'",
+      "class": ".MuiMenuList-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyMenuList",

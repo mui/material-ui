@@ -16,7 +16,7 @@ tags: ['MUI X', 'News']
 - [Data Grid - feature highlights ✨](#data-grid-features-highlights-✨)
   - [ApiRef moved to the MIT (Community) version](#apiref-moved-to-the-mit-community-version)
   - [Improved column menu](#improved-column-menu)
-  - [Row pinning is now stable](#row-pinning-is-now-stable) [<span class="plan-pro"></span>](/x/introduction/licensing/#premium-plan)
+  - [Row pinning is now stable](#row-pinning-is-now-stable) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
   - [Aggregation is now stable](#aggregation-is-now-stable) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
   - [Cell selection](#cell-selection) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
   - [Use web workers to export data to excel files](#use-web-workers-to-export-data-to-excel-files) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
@@ -293,7 +293,7 @@ We have decoupled MUI X's versioning from MUI Core (including `@mui/material`: 
 1. Soften migration pains with a yearly release cycle.\
    The MUI X codebase is dynamic, and the constant development of new features often requires a faster breaking changes pace than MUI Core. With a yearly release, we aim to deliver those in smaller, more digestible sizes, in a time window that you can rely on to make your plans and prepare for updates.
 
-2. We aim to support not only Material UI but also Joy UI and, in the future, MUI Base.
+2. We aim to support not only Material UI but also Joy UI and, in the future, Base UI.
 
 ## Feedback
 

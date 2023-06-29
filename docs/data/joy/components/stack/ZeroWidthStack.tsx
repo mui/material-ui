@@ -10,12 +10,13 @@ const Item = styled(Sheet)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
-  color: theme.vars.palette.text.tertiary,
-  maxWidth: '400px',
+  borderRadius: 4,
+  color: theme.vars.palette.text.secondary,
+  maxWidth: 400,
 }));
 
 const message = `Truncation should be conditionally applicable on this long line of text
- as this is a much longer line than what the container can support. `;
+ as this is a much longer line than what the container can support.`;
 
 export default function ZeroWidthStack() {
   return (

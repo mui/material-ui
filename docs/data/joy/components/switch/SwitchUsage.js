@@ -24,7 +24,7 @@ export default function SwitchUsage() {
           options: ['sm', 'md', 'lg'],
           defaultValue: 'md',
         },
-        { propName: 'checked', knob: 'switch', defaultValue: false },
+        { propName: 'checked', knob: 'controlled' },
         { propName: 'disabled', knob: 'switch' },
       ]}
       renderDemo={(props) => <Switch {...props} />}

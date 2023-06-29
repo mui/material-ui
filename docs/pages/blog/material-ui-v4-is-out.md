@@ -21,7 +21,7 @@ Material UI v4 has finally arrived. We are so excited about this release, as it 
 - [High-level goals for v4](#high-level-goals-for-v4)
 - [What's new?](#whats-new)
 - [What's next?](#whats-next)
-- [Premium themes store](#premium-themes-store)
+- [Premium themes store](#premium-themes-store-✨)
 
 ## High-level goals for v4
 

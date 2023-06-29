@@ -61,7 +61,7 @@ async function attemptGoto(page: playwright.Page, url: string): Promise<boolean>
 }
 
 describe('e2e', () => {
-  const baseUrl = 'http://localhost:3000';
+  const baseUrl = 'http://localhost:5001';
   let browser: playwright.Browser;
   let page: playwright.Page;
   const screen: PlaywrightScreen = {
@@ -190,6 +190,52 @@ describe('e2e', () => {
         'value',
         '5',
       );
+    });
+  });
+
+  describe('<Autocomplete/>', () => {
+    it('[Material Autocomplete] should highlight correct option when initial navigation through options starts from mouse move', async () => {
+      await renderFixture('Autocomplete/HoverMaterialAutocomplete');
+
+      const combobox = (await screen.getByRole('combobox'))!;
+      await combobox.click();
+
+      const firstOption = (await screen.getByText('one'))!;
+
+      const dimensions = (await firstOption.boundingBox())!;
+
+      await page.mouse.move(dimensions.x + 10, dimensions.y + 10); // moves to 1st option
+      await page.keyboard.down('ArrowDown'); // moves to 2nd option
+      await page.keyboard.down('ArrowDown'); // moves to 3rd option
+      await page.keyboard.down('ArrowDown'); // moves to 4th option
+
+      const listbox = (await screen.getByRole('listbox'))!;
+      const focusedOption = (await listbox.$('.Mui-focused'))!;
+      const focusedOptionText = await focusedOption.innerHTML();
+
+      expect(focusedOptionText).to.equal('four');
+    });
+
+    it('[Joy Autocomplete] should highlight correct option when initial navigation through options starts from mouse move', async () => {
+      await renderFixture('Autocomplete/HoverJoyAutocomplete');
+
+      const combobox = (await screen.getByRole('combobox'))!;
+      await combobox.click();
+
+      const firstOption = (await screen.getByText('one'))!;
+
+      const dimensions = (await firstOption.boundingBox())!;
+
+      await page.mouse.move(dimensions.x + 10, dimensions.y + 10); // moves to 1st option
+      await page.keyboard.down('ArrowDown'); // moves to 2nd option
+      await page.keyboard.down('ArrowDown'); // moves to 3rd option
+      await page.keyboard.down('ArrowDown'); // moves to 4th option
+
+      const listbox = (await screen.getByRole('listbox'))!;
+      const focusedOption = (await listbox.$('.Joy-focused'))!;
+      const focusedOptionText = await focusedOption.innerHTML();
+
+      expect(focusedOptionText).to.equal('four');
     });
   });
 

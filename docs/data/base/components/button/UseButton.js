@@ -6,6 +6,44 @@ import useButton from '@mui/base/useButton';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
+const CustomButton = React.forwardRef(function CustomButton(props, ref) {
+  const { children, disabled } = props;
+  const { active, focusVisible, getRootProps } = useButton({
+    ...props,
+    rootRef: ref,
+  });
+
+  const classes = {
+    active,
+    disabled,
+    focusVisible,
+  };
+
+  return (
+    <CustomButtonRoot {...getRootProps()} className={clsx(classes)}>
+      {children}
+    </CustomButtonRoot>
+  );
+});
+
+CustomButton.propTypes = {
+  children: PropTypes.node,
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+};
+
+export default function UseButton() {
+  return (
+    <Stack spacing={2} direction="row">
+      <CustomButton onClick={() => console.log('click!')}>Button</CustomButton>
+      <CustomButton disabled>Disabled</CustomButton>
+    </Stack>
+  );
+}
+
 const blue = {
   500: '#007FFF',
   600: '#0072E5',
@@ -42,36 +80,3 @@ const CustomButtonRoot = styled('button')`
     cursor: not-allowed;
   }
 `;
-
-const CustomButton = React.forwardRef(function CustomButton(props, ref) {
-  const { children } = props;
-  const { active, disabled, focusVisible, getRootProps } = useButton({
-    ...props,
-    ref,
-  });
-
-  const classes = {
-    active,
-    disabled,
-    focusVisible,
-  };
-
-  return (
-    <CustomButtonRoot {...getRootProps()} className={clsx(classes)}>
-      {children}
-    </CustomButtonRoot>
-  );
-});
-
-CustomButton.propTypes = {
-  children: PropTypes.node,
-};
-
-export default function UseButton() {
-  return (
-    <Stack spacing={2} direction="row">
-      <CustomButton onClick={() => console.log('click!')}>Button</CustomButton>
-      <CustomButton disabled>Disabled</CustomButton>
-    </Stack>
-  );
-}

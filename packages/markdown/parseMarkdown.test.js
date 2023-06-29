@@ -8,6 +8,13 @@ import {
 } from './parseMarkdown';
 
 describe('parseMarkdown', () => {
+  const defaultParams = {
+    fileRelativeContext: 'test/bar',
+    options: {
+      env: {},
+    },
+  };
+
   describe('getTitle', () => {
     it('remove backticks', () => {
       expect(
@@ -171,7 +178,7 @@ authors:
           en: { toc },
         },
       } = prepareMarkdown({
-        pageFilename: '/test',
+        ...defaultParams,
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
@@ -205,7 +212,7 @@ authors:
           en: { toc },
         },
       } = prepareMarkdown({
-        pageFilename: '/test',
+        ...defaultParams,
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
@@ -429,10 +436,74 @@ authors:
 
       expect(() => {
         prepareMarkdown({
-          pageFilename: '/test',
+          ...defaultParams,
           translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
         });
-      }).to.throw(/\[foo]\(\/foo\) in \/docs\/test\/index\.md is missing a trailing slash/);
+      }).to.throw(`docs-infra: Missing trailing slash. The following link:
+[foo](/foo) in /test/bar/index.md is missing a trailing slash, please add it.
+
+See https://ahrefs.com/blog/trailing-slash/ for more details.
+
+Please report this to https://github.com/markedjs/marked.`);
+    });
+
+    it('should report missing leading splashes', () => {
+      const markdown = `
+# Localization
+
+<p class="description">Foo</p>
+
+[bar](/bar/)
+[foo](foo/)
+`;
+
+      expect(() => {
+        prepareMarkdown({
+          ...defaultParams,
+          translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
+        });
+      }).to.throw(`docs-infra: Missing leading slash. The following link:
+[foo](foo/) in /test/bar/index.md is missing a leading slash, please add it.
+
+Please report this to https://github.com/markedjs/marked.`);
+    });
+
+    it('should report title too long', () => {
+      const markdown = `
+# Foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+<p class="description">Foo</p>
+
+`;
+
+      expect(() => {
+        prepareMarkdown({
+          ...defaultParams,
+          translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
+        });
+      }).to
+        .throw(`docs-infra: The title "Foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" is too long (117 characters).
+It needs to have fewer than 70 characters—ideally less than 60. For more details, see:
+https://developers.google.com/search/docs/advanced/appearance/title-link`);
+    });
+
+    it('should report description too long', () => {
+      const markdown = `
+# Foo
+
+<p class="description">Fooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</p>
+
+`;
+
+      expect(() => {
+        prepareMarkdown({
+          ...defaultParams,
+          translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
+        });
+      }).to
+        .throw(`docs-infra: The description "Fooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" is too long (188 characters).
+It needs to have fewer than 170 characters—ideally less than 160. For more details, see:
+https://ahrefs.com/blog/meta-description/#4-be-concise`);
     });
   });
 });

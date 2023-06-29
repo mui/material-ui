@@ -7,6 +7,7 @@ export interface NativeSelectInputProps extends React.SelectHTMLAttributes<HTMLS
   IconComponent: React.ElementType;
   inputRef?: React.Ref<HTMLSelectElement>;
   variant?: 'standard' | 'outlined' | 'filled';
+  error?: boolean;
   sx?: SxProps<Theme>;
 }
 

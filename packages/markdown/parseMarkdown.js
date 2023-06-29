@@ -38,23 +38,50 @@ function escape(html, encode) {
 }
 
 function checkUrlHealth(href, linkText, context) {
-  // Skip links that are externals to MUI
-  if (!(href[0] === '/' || href.startsWith('https://mui.com/'))) {
+  const url = new URL(href, 'https://mui.com/');
+
+  // External links to MUI, ignore
+  if (url.host !== 'mui.com') {
     return;
   }
 
-  const url = new URL(href, 'https://mui.com/');
-
-  if (url.host === 'mui.com' && url.pathname[url.pathname.length - 1] !== '/') {
+  /**
+   * Break for links like:
+   * /material-ui/customization/theming
+   *
+   * It needs to be:
+   * /material-ui/customization/theming/
+   */
+  if (url.pathname[url.pathname.length - 1] !== '/') {
     throw new Error(
       [
-        'Missing trailing slash. The following link:',
+        'docs-infra: Missing trailing slash. The following link:',
         `[${linkText}](${href}) in ${context.location} is missing a trailing slash, please add it.`,
         '',
         'See https://ahrefs.com/blog/trailing-slash/ for more details.',
         '',
       ].join('\n'),
     );
+  }
+
+  // Relative links
+  if (href[0] !== '#' && !(href.startsWith('https://') || href.startsWith('http://'))) {
+    /**
+     * Break for links like:
+     * material-ui/customization/theming/
+     *
+     * It needs to be:
+     * /material-ui/customization/theming/
+     */
+    if (href[0] !== '/') {
+      throw new Error(
+        [
+          'docs-infra: Missing leading slash. The following link:',
+          `[${linkText}](${href}) in ${context.location} is missing a leading slash, please add it.`,
+          '',
+        ].join('\n'),
+      );
+    }
   }
 }
 
@@ -123,7 +150,9 @@ function getHeaders(markdown) {
 
     return headers;
   } catch (err) {
-    throw new Error(`${err.message} in getHeader(markdown) with markdown: \n\n${header}`);
+    throw new Error(
+      `docs-infra: ${err.message} in getHeader(markdown) with markdown: \n\n${header}`,
+    );
   }
 }
 
@@ -187,10 +216,10 @@ const noSEOadvantage = [
  * @param {Record<string, string>} context.headingHashes - WILL BE MUTATED
  * @param {TableOfContentsEntry[]} context.toc - WILL BE MUTATED
  * @param {string} context.userLanguage
- * @param {function(string):boolean} context.ignoreLanguagePages
+ * @param {object} context.options
  */
 function createRender(context) {
-  const { headingHashes, toc, userLanguage, ignoreLanguagePages } = context;
+  const { headingHashes, toc, userLanguage, options } = context;
   const headingHashesFallbackTranslated = {};
   let headingIndex = -1;
 
@@ -247,7 +276,7 @@ function createRender(context) {
         });
       } else if (level === 3) {
         if (!toc[toc.length - 1]) {
-          throw new Error(`Missing parent level for: ${headingText}`);
+          throw new Error(`docs-infra: Missing parent level for: ${headingText}`);
         }
 
         toc[toc.length - 1].children.push({
@@ -280,8 +309,19 @@ function createRender(context) {
 
       checkUrlHealth(href, linkText, context);
 
-      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !ignoreLanguagePages(href)) {
+      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !options.ignoreLanguagePages(href)) {
         finalHref = `/${userLanguage}${href}`;
+      }
+
+      // This logic turns link like:
+      // https://github.com/mui/material-ui/blob/-/packages/mui-joy/src/styles/components.d.ts
+      // into a permalink:
+      // https://github.com/mui/material-ui/blob/v5.11.15/packages/mui-joy/src/styles/components.d.ts
+      if (finalHref.startsWith(`${options.env.SOURCE_CODE_REPO}/blob/-/`)) {
+        finalHref = finalHref.replace(
+          `${options.env.SOURCE_CODE_REPO}/blob/-/`,
+          `${options.env.SOURCE_CODE_REPO}/blob/v${options.env.LIB_VERSION}/`,
+        );
       }
 
       return `<a href="${finalHref}"${more}>${linkText}</a>`;
@@ -359,13 +399,15 @@ function createRender(context) {
   return render;
 }
 
+const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
+
 /**
  * @param {string} product
  * @example 'material'
  * @param {string} componentPkg
  * @example 'mui-base'
  * @param {string} component
- * @example 'ButtonUnstyled'
+ * @example 'Button'
  * @returns {string}
  */
 function resolveComponentApiUrl(product, componentPkg, component) {
@@ -375,8 +417,8 @@ function resolveComponentApiUrl(product, componentPkg, component) {
   if (product === 'date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
   }
-  if (componentPkg === 'mui-base') {
-    return `/base/api/${kebabCase(component)}/`;
+  if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
+    return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
   }
   return `/${product}/api/${kebabCase(component)}/`;
 }
@@ -384,11 +426,11 @@ function resolveComponentApiUrl(product, componentPkg, component) {
 /**
  * @param {object} config
  * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
- * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
- * @param {function(string):boolean} config.ignoreLanguagePages
+ * @param {string} config.fileRelativeContext - posix filename relative to repository root directory
+ * @param {object} config.options - provided to the webpack loader
  */
 function prepareMarkdown(config) {
-  const { pageFilename, translations, componentPackageMapping = {}, ignoreLanguagePages } = config;
+  const { fileRelativeContext, translations, componentPackageMapping = {}, options } = config;
 
   const demos = {};
   /**
@@ -404,18 +446,18 @@ function prepareMarkdown(config) {
     .forEach((translation) => {
       const { filename, markdown, userLanguage } = translation;
       const headers = getHeaders(markdown);
-      const location = headers.filename || `/docs${pageFilename}/${filename}`;
+      const location = headers.filename || `/${fileRelativeContext}/${filename}`;
       const title = headers.title || getTitle(markdown);
       const description = headers.description || getDescription(markdown);
 
       if (title == null || title === '') {
-        throw new Error(`Missing title in the page: ${location}`);
+        throw new Error(`docs-infra: Missing title in the page: ${location}`);
       }
 
       if (title.length > 70) {
         throw new Error(
           [
-            `The title "${title}" is too long (${title.length} characters).`,
+            `docs-infra: The title "${title}" is too long (${title.length} characters).`,
             'It needs to have fewer than 70 characters—ideally less than 60. For more details, see:',
             'https://developers.google.com/search/docs/advanced/appearance/title-link',
           ].join('\n'),
@@ -423,7 +465,17 @@ function prepareMarkdown(config) {
       }
 
       if (description == null || description === '') {
-        throw new Error(`Missing description in the page: ${location}`);
+        throw new Error(`docs-infra: Missing description in the page: ${location}`);
+      }
+
+      if (description.length > 170) {
+        throw new Error(
+          [
+            `docs-infra: The description "${description}" is too long (${description.length} characters).`,
+            'It needs to have fewer than 170 characters—ideally less than 160. For more details, see:',
+            'https://ahrefs.com/blog/meta-description/#4-be-concise',
+          ].join('\n'),
+        );
       }
 
       const contents = getContents(markdown);
@@ -433,7 +485,7 @@ function prepareMarkdown(config) {
 ## Unstyled
 
 :::success
-[MUI Base](/base/getting-started/overview/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
+[Base UI](/base-ui/getting-started/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
 :::
         `);
       }
@@ -446,10 +498,10 @@ See the documentation below for a complete reference to all of the props and cla
 
 ${headers.components
   .map((component) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkgMap = componentPackageMapping[headers.productId];
     const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
     return `- [\`<${component} />\`](${resolveComponentApiUrl(
-      headers.product,
+      headers.productId,
       componentPkg,
       component,
     )})`;
@@ -457,9 +509,9 @@ ${headers.components
   .join('\n')}
 ${headers.hooks
   .map((hook) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkgMap = componentPackageMapping[headers.productId];
     const componentPkg = componentPkgMap ? componentPkgMap[hook] : null;
-    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.product, componentPkg, hook)})`;
+    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.productId, componentPkg, hook)})`;
   })
   .join('\n')}
   `);
@@ -471,7 +523,7 @@ ${headers.hooks
         toc,
         userLanguage,
         location,
-        ignoreLanguagePages,
+        options,
       });
 
       const rendered = contents.map((content) => {

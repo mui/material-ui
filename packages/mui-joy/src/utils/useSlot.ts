@@ -18,8 +18,8 @@ type ExtractComponentProps<P> = P extends infer T | ((ownerState: any) => infer 
 /**
  * An internal function to create a Joy UI slot.
  *
- * This is an advanced version of MUI Base `useSlotProps` because Joy UI allows leaf component to be customized via `component` prop
- * while MUI Base does not need to support leaf component customization.
+ * This is an advanced version of Base UI `useSlotProps` because Joy UI allows leaf component to be customized via `component` prop
+ * while Base UI does not need to support leaf component customization.
  *
  * @param {string} name: name of the slot
  * @param {object} parameters
@@ -94,7 +94,7 @@ export default function useSlot<
     ) => SlotOwnerState;
     /**
      * props forward to `T` only if the `slotProps.*.component` is not provided.
-     * e.g. Autocomplete's listbox uses PopperUnstyled + StyledComponent
+     * e.g. Autocomplete's listbox uses Popper + StyledComponent
      */
     internalForwardedProps?: any;
   },

@@ -7,6 +7,7 @@ import { GridTypeMap } from './GridProps';
 const Grid = createGrid({
   createStyledComponent: styled('div', {
     name: 'JoyGrid',
+    slot: 'Root',
     overridesResolver: (props, styles) => styles.root,
   }),
   useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'JoyGrid' }),

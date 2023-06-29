@@ -10,6 +10,7 @@
       },
       "default": "'neutral'"
     },
+    "component": { "type": { "name": "elementType" } },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "disableIcon": { "type": { "name": "bool" }, "default": "false" },
@@ -25,6 +26,20 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: func<br>&#124;&nbsp;object, icon?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, radio?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: elementType, icon?: elementType, input?: elementType, label?: elementType, radio?: elementType, root?: elementType }"
+      },
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -82,12 +97,37 @@
       "class": ".MuiRadio-label"
     }
   ],
+  "classes": {
+    "classes": [
+      "checked",
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyRadio",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Radio/Radio.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-radio-button/\">Radio Group</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-radio-button/\">Radio</a></li></ul>",
   "cssComponent": false
 }

@@ -69,7 +69,8 @@ function createCode(
             typeof prop[1] === 'number' ? `{${prop[1]}}` : `"${prop[1]}"`
           }`;
         }
-      } else {
+      }
+      if (prop[0] === 'children') {
         children = prop[1] as string;
       }
     });
@@ -227,7 +228,9 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           flexShrink: 0,
           gap: 2,
           p: 3,
-          background: (theme) => `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+          borderLeft: '1px solid',
+          borderColor: (theme) => `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+          background: (theme) => `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
           backdropFilter: 'blur(8px)',
           minWidth: '280px',
         }}
@@ -245,8 +248,8 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           </Typography>
           <IconButton
             aria-label="Reset all"
-            variant="outlined"
-            color="neutral"
+            variant="soft"
+            color="primary"
             size="sm"
             onClick={() => setProps(initialProps as T)}
             sx={{
@@ -289,18 +292,8 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         [propName]: event.target.checked,
                       }))
                     }
-                    endDecorator={resolvedValue ? 'True' : 'False'}
-                    slotProps={{
-                      endDecorator: {
-                        sx: {
-                          minWidth: 30,
-                        },
-                      },
-                    }}
                     sx={{
-                      fontSize: 'xs',
-                      color: 'text.secondary',
-                      textTransform: 'capitalize',
+                      '--Switch-trackWidth': '32px',
                       '--Switch-trackBackground': (theme) =>
                         `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
                       '&:hover': {
@@ -443,7 +436,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                             sx={{
                               width: 28,
                               height: 28,
-                              borderRadius: 'sm',
+                              borderRadius: 'lg',
                               textTransform: 'capitalize',
                             }}
                           >
@@ -543,8 +536,8 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             }
             if (knob === 'input') {
               return (
-                <FormControl key={propName}>
-                  <FormLabel>{propName}</FormLabel>
+                <FormControl key={propName} size="sm">
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <Input
                     size="sm"
                     value={props[propName] ?? ''}
@@ -566,8 +559,8 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             }
             if (knob === 'number') {
               return (
-                <FormControl key={propName}>
-                  <FormLabel>{propName}</FormLabel>
+                <FormControl key={propName} size="sm">
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <Input
                     size="sm"
                     type="number"

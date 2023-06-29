@@ -1,5 +1,5 @@
 ---
-product: system
+productId: system
 title: React Box component
 components: Box
 githubLabel: 'component: Box'

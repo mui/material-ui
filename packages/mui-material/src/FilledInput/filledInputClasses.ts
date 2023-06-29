@@ -37,6 +37,8 @@ export interface FilledInputClasses {
   inputAdornedStart: string;
   /** Styles applied to the input element if `endAdornment` is provided. */
   inputAdornedEnd: string;
+  /** Styles applied to the input element if `type="search"`. */
+  inputTypeSearch: string;
 }
 
 export type FilledInputClassKey = keyof FilledInputClasses;

@@ -15,22 +15,22 @@ export interface ButtonSlots {
    * The component that renders the root.
    * @default 'button'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
   /**
    * The component that renders the loading indicator center.
    * @default 'span'
    */
-  loadingIndicatorCenter: React.ElementType;
+  loadingIndicatorCenter?: React.ElementType;
 }
 
 export interface ButtonPropsVariantOverrides {}

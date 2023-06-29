@@ -191,7 +191,7 @@ describe('<Rating />', () => {
     before(function beforeHook() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // JSDOM has issues with form validation for certain elements.
-        // We could adress them individually but that doesn't add much value if we already have a working environment.
+        // We could address them individually but that doesn't add much value if we already have a working environment.
         this.skip();
       }
     });

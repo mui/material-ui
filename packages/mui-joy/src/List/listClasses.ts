@@ -25,7 +25,7 @@ export interface ListClasses {
   colorSuccess: string;
   /** Classname applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element when color inversion is triggered. */
+  /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
   /** Classname applied to the root element if `variant="plain"`. */
   variantPlain: string;
@@ -35,9 +35,9 @@ export interface ListClasses {
   variantSoft: string;
   /** Classname applied to the root element if `variant="solid"`. */
   variantSolid: string;
-  /** Styles applied to the root element if `orientation="horizontal"`. */
+  /** Class name applied to the root element if `orientation="horizontal"`. */
   horizontal: string;
-  /** Styles applied to the root element if `orientation="vertical"`. */
+  /** Class name applied to the root element if `orientation="vertical"`. */
   vertical: string;
 }
 

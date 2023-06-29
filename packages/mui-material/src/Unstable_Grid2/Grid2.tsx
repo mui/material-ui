@@ -7,6 +7,7 @@ import { Grid2TypeMap } from './Grid2Props';
 const Grid2 = createGrid2({
   createStyledComponent: styled('div', {
     name: 'MuiGrid2',
+    slot: 'Root',
     overridesResolver: (props, styles) => styles.root,
   }),
   componentName: 'MuiGrid2',

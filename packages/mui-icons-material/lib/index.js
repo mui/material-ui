@@ -1414,6 +1414,36 @@ Object.defineProperty(exports, "AdminPanelSettingsTwoTone", {
     return _AdminPanelSettingsTwoTone.default;
   }
 });
+Object.defineProperty(exports, "AdsClick", {
+  enumerable: true,
+  get: function () {
+    return _AdsClick.default;
+  }
+});
+Object.defineProperty(exports, "AdsClickOutlined", {
+  enumerable: true,
+  get: function () {
+    return _AdsClickOutlined.default;
+  }
+});
+Object.defineProperty(exports, "AdsClickRounded", {
+  enumerable: true,
+  get: function () {
+    return _AdsClickRounded.default;
+  }
+});
+Object.defineProperty(exports, "AdsClickSharp", {
+  enumerable: true,
+  get: function () {
+    return _AdsClickSharp.default;
+  }
+});
+Object.defineProperty(exports, "AdsClickTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _AdsClickTwoTone.default;
+  }
+});
 Object.defineProperty(exports, "Agriculture", {
   enumerable: true,
   get: function () {
@@ -4598,6 +4628,36 @@ Object.defineProperty(exports, "BabyChangingStationTwoTone", {
   enumerable: true,
   get: function () {
     return _BabyChangingStationTwoTone.default;
+  }
+});
+Object.defineProperty(exports, "BackHand", {
+  enumerable: true,
+  get: function () {
+    return _BackHand.default;
+  }
+});
+Object.defineProperty(exports, "BackHandOutlined", {
+  enumerable: true,
+  get: function () {
+    return _BackHandOutlined.default;
+  }
+});
+Object.defineProperty(exports, "BackHandRounded", {
+  enumerable: true,
+  get: function () {
+    return _BackHandRounded.default;
+  }
+});
+Object.defineProperty(exports, "BackHandSharp", {
+  enumerable: true,
+  get: function () {
+    return _BackHandSharp.default;
+  }
+});
+Object.defineProperty(exports, "BackHandTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _BackHandTwoTone.default;
   }
 });
 Object.defineProperty(exports, "Backpack", {
@@ -10118,6 +10178,66 @@ Object.defineProperty(exports, "CheckTwoTone", {
   enumerable: true,
   get: function () {
     return _CheckTwoTone.default;
+  }
+});
+Object.defineProperty(exports, "Checklist", {
+  enumerable: true,
+  get: function () {
+    return _Checklist.default;
+  }
+});
+Object.defineProperty(exports, "ChecklistOutlined", {
+  enumerable: true,
+  get: function () {
+    return _ChecklistOutlined.default;
+  }
+});
+Object.defineProperty(exports, "ChecklistRounded", {
+  enumerable: true,
+  get: function () {
+    return _ChecklistRounded.default;
+  }
+});
+Object.defineProperty(exports, "ChecklistRtl", {
+  enumerable: true,
+  get: function () {
+    return _ChecklistRtl.default;
+  }
+});
+Object.defineProperty(exports, "ChecklistRtlOutlined", {
+  enumerable: true,
+  get: function () {
+    return _ChecklistRtlOutlined.default;
+  }
+});
+Object.defineProperty(exports, "ChecklistRtlRounded", {
+  enumerable: true,
+  get: function () {
+    return _ChecklistRtlRounded.default;
+  }
+});
+Object.defineProperty(exports, "ChecklistRtlSharp", {
+  enumerable: true,
+  get: function () {
+    return _ChecklistRtlSharp.default;
+  }
+});
+Object.defineProperty(exports, "ChecklistRtlTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _ChecklistRtlTwoTone.default;
+  }
+});
+Object.defineProperty(exports, "ChecklistSharp", {
+  enumerable: true,
+  get: function () {
+    return _ChecklistSharp.default;
+  }
+});
+Object.defineProperty(exports, "ChecklistTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _ChecklistTwoTone.default;
   }
 });
 Object.defineProperty(exports, "Checkroom", {
@@ -16630,6 +16750,36 @@ Object.defineProperty(exports, "DragIndicatorTwoTone", {
     return _DragIndicatorTwoTone.default;
   }
 });
+Object.defineProperty(exports, "Draw", {
+  enumerable: true,
+  get: function () {
+    return _Draw.default;
+  }
+});
+Object.defineProperty(exports, "DrawOutlined", {
+  enumerable: true,
+  get: function () {
+    return _DrawOutlined.default;
+  }
+});
+Object.defineProperty(exports, "DrawRounded", {
+  enumerable: true,
+  get: function () {
+    return _DrawRounded.default;
+  }
+});
+Object.defineProperty(exports, "DrawSharp", {
+  enumerable: true,
+  get: function () {
+    return _DrawSharp.default;
+  }
+});
+Object.defineProperty(exports, "DrawTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _DrawTwoTone.default;
+  }
+});
 Object.defineProperty(exports, "DriveEta", {
   enumerable: true,
   get: function () {
@@ -17146,6 +17296,36 @@ Object.defineProperty(exports, "EditAttributesTwoTone", {
     return _EditAttributesTwoTone.default;
   }
 });
+Object.defineProperty(exports, "EditCalendar", {
+  enumerable: true,
+  get: function () {
+    return _EditCalendar.default;
+  }
+});
+Object.defineProperty(exports, "EditCalendarOutlined", {
+  enumerable: true,
+  get: function () {
+    return _EditCalendarOutlined.default;
+  }
+});
+Object.defineProperty(exports, "EditCalendarRounded", {
+  enumerable: true,
+  get: function () {
+    return _EditCalendarRounded.default;
+  }
+});
+Object.defineProperty(exports, "EditCalendarSharp", {
+  enumerable: true,
+  get: function () {
+    return _EditCalendarSharp.default;
+  }
+});
+Object.defineProperty(exports, "EditCalendarTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _EditCalendarTwoTone.default;
+  }
+});
 Object.defineProperty(exports, "EditLocation", {
   enumerable: true,
   get: function () {
@@ -17204,6 +17384,36 @@ Object.defineProperty(exports, "EditLocationTwoTone", {
   enumerable: true,
   get: function () {
     return _EditLocationTwoTone.default;
+  }
+});
+Object.defineProperty(exports, "EditNote", {
+  enumerable: true,
+  get: function () {
+    return _EditNote.default;
+  }
+});
+Object.defineProperty(exports, "EditNoteOutlined", {
+  enumerable: true,
+  get: function () {
+    return _EditNoteOutlined.default;
+  }
+});
+Object.defineProperty(exports, "EditNoteRounded", {
+  enumerable: true,
+  get: function () {
+    return _EditNoteRounded.default;
+  }
+});
+Object.defineProperty(exports, "EditNoteSharp", {
+  enumerable: true,
+  get: function () {
+    return _EditNoteSharp.default;
+  }
+});
+Object.defineProperty(exports, "EditNoteTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _EditNoteTwoTone.default;
   }
 });
 Object.defineProperty(exports, "EditNotifications", {
@@ -43864,6 +44074,36 @@ Object.defineProperty(exports, "RectangleTwoTone", {
     return _RectangleTwoTone.default;
   }
 });
+Object.defineProperty(exports, "Recycling", {
+  enumerable: true,
+  get: function () {
+    return _Recycling.default;
+  }
+});
+Object.defineProperty(exports, "RecyclingOutlined", {
+  enumerable: true,
+  get: function () {
+    return _RecyclingOutlined.default;
+  }
+});
+Object.defineProperty(exports, "RecyclingRounded", {
+  enumerable: true,
+  get: function () {
+    return _RecyclingRounded.default;
+  }
+});
+Object.defineProperty(exports, "RecyclingSharp", {
+  enumerable: true,
+  get: function () {
+    return _RecyclingSharp.default;
+  }
+});
+Object.defineProperty(exports, "RecyclingTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _RecyclingTwoTone.default;
+  }
+});
 Object.defineProperty(exports, "Reddit", {
   enumerable: true,
   get: function () {
@@ -51518,6 +51758,36 @@ Object.defineProperty(exports, "SpaceBarTwoTone", {
   enumerable: true,
   get: function () {
     return _SpaceBarTwoTone.default;
+  }
+});
+Object.defineProperty(exports, "SpaceDashboard", {
+  enumerable: true,
+  get: function () {
+    return _SpaceDashboard.default;
+  }
+});
+Object.defineProperty(exports, "SpaceDashboardOutlined", {
+  enumerable: true,
+  get: function () {
+    return _SpaceDashboardOutlined.default;
+  }
+});
+Object.defineProperty(exports, "SpaceDashboardRounded", {
+  enumerable: true,
+  get: function () {
+    return _SpaceDashboardRounded.default;
+  }
+});
+Object.defineProperty(exports, "SpaceDashboardSharp", {
+  enumerable: true,
+  get: function () {
+    return _SpaceDashboardSharp.default;
+  }
+});
+Object.defineProperty(exports, "SpaceDashboardTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _SpaceDashboardTwoTone.default;
   }
 });
 Object.defineProperty(exports, "SpatialAudio", {
@@ -61528,6 +61798,36 @@ Object.defineProperty(exports, "WaterDamageTwoTone", {
     return _WaterDamageTwoTone.default;
   }
 });
+Object.defineProperty(exports, "WaterDrop", {
+  enumerable: true,
+  get: function () {
+    return _WaterDrop.default;
+  }
+});
+Object.defineProperty(exports, "WaterDropOutlined", {
+  enumerable: true,
+  get: function () {
+    return _WaterDropOutlined.default;
+  }
+});
+Object.defineProperty(exports, "WaterDropRounded", {
+  enumerable: true,
+  get: function () {
+    return _WaterDropRounded.default;
+  }
+});
+Object.defineProperty(exports, "WaterDropSharp", {
+  enumerable: true,
+  get: function () {
+    return _WaterDropSharp.default;
+  }
+});
+Object.defineProperty(exports, "WaterDropTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _WaterDropTwoTone.default;
+  }
+});
 Object.defineProperty(exports, "WaterOutlined", {
   enumerable: true,
   get: function () {
@@ -61610,6 +61910,36 @@ Object.defineProperty(exports, "WavesTwoTone", {
   enumerable: true,
   get: function () {
     return _WavesTwoTone.default;
+  }
+});
+Object.defineProperty(exports, "WavingHand", {
+  enumerable: true,
+  get: function () {
+    return _WavingHand.default;
+  }
+});
+Object.defineProperty(exports, "WavingHandOutlined", {
+  enumerable: true,
+  get: function () {
+    return _WavingHandOutlined.default;
+  }
+});
+Object.defineProperty(exports, "WavingHandRounded", {
+  enumerable: true,
+  get: function () {
+    return _WavingHandRounded.default;
+  }
+});
+Object.defineProperty(exports, "WavingHandSharp", {
+  enumerable: true,
+  get: function () {
+    return _WavingHandSharp.default;
+  }
+});
+Object.defineProperty(exports, "WavingHandTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _WavingHandTwoTone.default;
   }
 });
 Object.defineProperty(exports, "WbAuto", {
@@ -63563,6 +63893,11 @@ var _AdminPanelSettingsOutlined = _interopRequireDefault(require("./AdminPanelSe
 var _AdminPanelSettingsRounded = _interopRequireDefault(require("./AdminPanelSettingsRounded"));
 var _AdminPanelSettingsSharp = _interopRequireDefault(require("./AdminPanelSettingsSharp"));
 var _AdminPanelSettingsTwoTone = _interopRequireDefault(require("./AdminPanelSettingsTwoTone"));
+var _AdsClick = _interopRequireDefault(require("./AdsClick"));
+var _AdsClickOutlined = _interopRequireDefault(require("./AdsClickOutlined"));
+var _AdsClickRounded = _interopRequireDefault(require("./AdsClickRounded"));
+var _AdsClickSharp = _interopRequireDefault(require("./AdsClickSharp"));
+var _AdsClickTwoTone = _interopRequireDefault(require("./AdsClickTwoTone"));
 var _Agriculture = _interopRequireDefault(require("./Agriculture"));
 var _AgricultureOutlined = _interopRequireDefault(require("./AgricultureOutlined"));
 var _AgricultureRounded = _interopRequireDefault(require("./AgricultureRounded"));
@@ -64094,6 +64429,11 @@ var _BabyChangingStationOutlined = _interopRequireDefault(require("./BabyChangin
 var _BabyChangingStationRounded = _interopRequireDefault(require("./BabyChangingStationRounded"));
 var _BabyChangingStationSharp = _interopRequireDefault(require("./BabyChangingStationSharp"));
 var _BabyChangingStationTwoTone = _interopRequireDefault(require("./BabyChangingStationTwoTone"));
+var _BackHand = _interopRequireDefault(require("./BackHand"));
+var _BackHandOutlined = _interopRequireDefault(require("./BackHandOutlined"));
+var _BackHandRounded = _interopRequireDefault(require("./BackHandRounded"));
+var _BackHandSharp = _interopRequireDefault(require("./BackHandSharp"));
+var _BackHandTwoTone = _interopRequireDefault(require("./BackHandTwoTone"));
 var _Backpack = _interopRequireDefault(require("./Backpack"));
 var _BackpackOutlined = _interopRequireDefault(require("./BackpackOutlined"));
 var _BackpackRounded = _interopRequireDefault(require("./BackpackRounded"));
@@ -65014,6 +65354,16 @@ var _CheckOutlined = _interopRequireDefault(require("./CheckOutlined"));
 var _CheckRounded = _interopRequireDefault(require("./CheckRounded"));
 var _CheckSharp = _interopRequireDefault(require("./CheckSharp"));
 var _CheckTwoTone = _interopRequireDefault(require("./CheckTwoTone"));
+var _Checklist = _interopRequireDefault(require("./Checklist"));
+var _ChecklistOutlined = _interopRequireDefault(require("./ChecklistOutlined"));
+var _ChecklistRounded = _interopRequireDefault(require("./ChecklistRounded"));
+var _ChecklistRtl = _interopRequireDefault(require("./ChecklistRtl"));
+var _ChecklistRtlOutlined = _interopRequireDefault(require("./ChecklistRtlOutlined"));
+var _ChecklistRtlRounded = _interopRequireDefault(require("./ChecklistRtlRounded"));
+var _ChecklistRtlSharp = _interopRequireDefault(require("./ChecklistRtlSharp"));
+var _ChecklistRtlTwoTone = _interopRequireDefault(require("./ChecklistRtlTwoTone"));
+var _ChecklistSharp = _interopRequireDefault(require("./ChecklistSharp"));
+var _ChecklistTwoTone = _interopRequireDefault(require("./ChecklistTwoTone"));
 var _Checkroom = _interopRequireDefault(require("./Checkroom"));
 var _CheckroomOutlined = _interopRequireDefault(require("./CheckroomOutlined"));
 var _CheckroomRounded = _interopRequireDefault(require("./CheckroomRounded"));
@@ -66099,6 +66449,11 @@ var _DragIndicatorOutlined = _interopRequireDefault(require("./DragIndicatorOutl
 var _DragIndicatorRounded = _interopRequireDefault(require("./DragIndicatorRounded"));
 var _DragIndicatorSharp = _interopRequireDefault(require("./DragIndicatorSharp"));
 var _DragIndicatorTwoTone = _interopRequireDefault(require("./DragIndicatorTwoTone"));
+var _Draw = _interopRequireDefault(require("./Draw"));
+var _DrawOutlined = _interopRequireDefault(require("./DrawOutlined"));
+var _DrawRounded = _interopRequireDefault(require("./DrawRounded"));
+var _DrawSharp = _interopRequireDefault(require("./DrawSharp"));
+var _DrawTwoTone = _interopRequireDefault(require("./DrawTwoTone"));
 var _DriveEta = _interopRequireDefault(require("./DriveEta"));
 var _DriveEtaOutlined = _interopRequireDefault(require("./DriveEtaOutlined"));
 var _DriveEtaRounded = _interopRequireDefault(require("./DriveEtaRounded"));
@@ -66185,6 +66540,11 @@ var _EditAttributesOutlined = _interopRequireDefault(require("./EditAttributesOu
 var _EditAttributesRounded = _interopRequireDefault(require("./EditAttributesRounded"));
 var _EditAttributesSharp = _interopRequireDefault(require("./EditAttributesSharp"));
 var _EditAttributesTwoTone = _interopRequireDefault(require("./EditAttributesTwoTone"));
+var _EditCalendar = _interopRequireDefault(require("./EditCalendar"));
+var _EditCalendarOutlined = _interopRequireDefault(require("./EditCalendarOutlined"));
+var _EditCalendarRounded = _interopRequireDefault(require("./EditCalendarRounded"));
+var _EditCalendarSharp = _interopRequireDefault(require("./EditCalendarSharp"));
+var _EditCalendarTwoTone = _interopRequireDefault(require("./EditCalendarTwoTone"));
 var _EditLocation = _interopRequireDefault(require("./EditLocation"));
 var _EditLocationAlt = _interopRequireDefault(require("./EditLocationAlt"));
 var _EditLocationAltOutlined = _interopRequireDefault(require("./EditLocationAltOutlined"));
@@ -66195,6 +66555,11 @@ var _EditLocationOutlined = _interopRequireDefault(require("./EditLocationOutlin
 var _EditLocationRounded = _interopRequireDefault(require("./EditLocationRounded"));
 var _EditLocationSharp = _interopRequireDefault(require("./EditLocationSharp"));
 var _EditLocationTwoTone = _interopRequireDefault(require("./EditLocationTwoTone"));
+var _EditNote = _interopRequireDefault(require("./EditNote"));
+var _EditNoteOutlined = _interopRequireDefault(require("./EditNoteOutlined"));
+var _EditNoteRounded = _interopRequireDefault(require("./EditNoteRounded"));
+var _EditNoteSharp = _interopRequireDefault(require("./EditNoteSharp"));
+var _EditNoteTwoTone = _interopRequireDefault(require("./EditNoteTwoTone"));
 var _EditNotifications = _interopRequireDefault(require("./EditNotifications"));
 var _EditNotificationsOutlined = _interopRequireDefault(require("./EditNotificationsOutlined"));
 var _EditNotificationsRounded = _interopRequireDefault(require("./EditNotificationsRounded"));
@@ -70638,6 +71003,11 @@ var _RectangleOutlined = _interopRequireDefault(require("./RectangleOutlined"));
 var _RectangleRounded = _interopRequireDefault(require("./RectangleRounded"));
 var _RectangleSharp = _interopRequireDefault(require("./RectangleSharp"));
 var _RectangleTwoTone = _interopRequireDefault(require("./RectangleTwoTone"));
+var _Recycling = _interopRequireDefault(require("./Recycling"));
+var _RecyclingOutlined = _interopRequireDefault(require("./RecyclingOutlined"));
+var _RecyclingRounded = _interopRequireDefault(require("./RecyclingRounded"));
+var _RecyclingSharp = _interopRequireDefault(require("./RecyclingSharp"));
+var _RecyclingTwoTone = _interopRequireDefault(require("./RecyclingTwoTone"));
 var _Reddit = _interopRequireDefault(require("./Reddit"));
 var _Redeem = _interopRequireDefault(require("./Redeem"));
 var _RedeemOutlined = _interopRequireDefault(require("./RedeemOutlined"));
@@ -71914,6 +72284,11 @@ var _SpaceBarOutlined = _interopRequireDefault(require("./SpaceBarOutlined"));
 var _SpaceBarRounded = _interopRequireDefault(require("./SpaceBarRounded"));
 var _SpaceBarSharp = _interopRequireDefault(require("./SpaceBarSharp"));
 var _SpaceBarTwoTone = _interopRequireDefault(require("./SpaceBarTwoTone"));
+var _SpaceDashboard = _interopRequireDefault(require("./SpaceDashboard"));
+var _SpaceDashboardOutlined = _interopRequireDefault(require("./SpaceDashboardOutlined"));
+var _SpaceDashboardRounded = _interopRequireDefault(require("./SpaceDashboardRounded"));
+var _SpaceDashboardSharp = _interopRequireDefault(require("./SpaceDashboardSharp"));
+var _SpaceDashboardTwoTone = _interopRequireDefault(require("./SpaceDashboardTwoTone"));
 var _SpatialAudio = _interopRequireDefault(require("./SpatialAudio"));
 var _SpatialAudioOff = _interopRequireDefault(require("./SpatialAudioOff"));
 var _SpatialAudioOffOutlined = _interopRequireDefault(require("./SpatialAudioOffOutlined"));
@@ -73582,6 +73957,11 @@ var _WaterDamageOutlined = _interopRequireDefault(require("./WaterDamageOutlined
 var _WaterDamageRounded = _interopRequireDefault(require("./WaterDamageRounded"));
 var _WaterDamageSharp = _interopRequireDefault(require("./WaterDamageSharp"));
 var _WaterDamageTwoTone = _interopRequireDefault(require("./WaterDamageTwoTone"));
+var _WaterDrop = _interopRequireDefault(require("./WaterDrop"));
+var _WaterDropOutlined = _interopRequireDefault(require("./WaterDropOutlined"));
+var _WaterDropRounded = _interopRequireDefault(require("./WaterDropRounded"));
+var _WaterDropSharp = _interopRequireDefault(require("./WaterDropSharp"));
+var _WaterDropTwoTone = _interopRequireDefault(require("./WaterDropTwoTone"));
 var _WaterOutlined = _interopRequireDefault(require("./WaterOutlined"));
 var _WaterRounded = _interopRequireDefault(require("./WaterRounded"));
 var _WaterSharp = _interopRequireDefault(require("./WaterSharp"));
@@ -73596,6 +73976,11 @@ var _WavesOutlined = _interopRequireDefault(require("./WavesOutlined"));
 var _WavesRounded = _interopRequireDefault(require("./WavesRounded"));
 var _WavesSharp = _interopRequireDefault(require("./WavesSharp"));
 var _WavesTwoTone = _interopRequireDefault(require("./WavesTwoTone"));
+var _WavingHand = _interopRequireDefault(require("./WavingHand"));
+var _WavingHandOutlined = _interopRequireDefault(require("./WavingHandOutlined"));
+var _WavingHandRounded = _interopRequireDefault(require("./WavingHandRounded"));
+var _WavingHandSharp = _interopRequireDefault(require("./WavingHandSharp"));
+var _WavingHandTwoTone = _interopRequireDefault(require("./WavingHandTwoTone"));
 var _WbAuto = _interopRequireDefault(require("./WbAuto"));
 var _WbAutoOutlined = _interopRequireDefault(require("./WbAutoOutlined"));
 var _WbAutoRounded = _interopRequireDefault(require("./WbAutoRounded"));

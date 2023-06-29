@@ -6,7 +6,7 @@ import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import CenterFocusWeak from '@mui/icons-material/CenterFocusWeak';
 
-export default function Links() {
+export default function LinkCard() {
   return (
     <Card
       sx={{

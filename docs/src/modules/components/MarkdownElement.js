@@ -69,6 +69,9 @@ const Root = styled('div')(
     '& .description': {
       ...lightTheme.typography.subtitle1,
       fontWeight: 400,
+      margin: '0 0 28px',
+    },
+    '& .component-tabs': {
       margin: '0 0 40px',
     },
     '& h2': {
@@ -108,6 +111,7 @@ const Root = styled('div')(
     },
     '& h1, & h2, & h3, & h4': {
       position: 'relative',
+      // Reserve space for the end of the line action button
       paddingRight: 26 * 2 + 10,
       '& code': {
         fontSize: 'inherit',
@@ -134,13 +138,15 @@ const Root = styled('div')(
         width: 26,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         border: '1px solid',
-        borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+        borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
         borderRadius: 8,
         color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
         cursor: 'pointer',
         display: 'inline-block',
         '&:hover': {
-          color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+          backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
+          borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
+          color: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
         },
         '& svg': {
           width: '0.875rem',
@@ -153,15 +159,16 @@ const Root = styled('div')(
         display: 'none', // So we can have the comment button opt-in.
         top: 0,
         right: 0,
-        opacity: 0.5,
         transition: theme.transitions.create('opacity', {
           duration: theme.transitions.duration.shortest,
         }),
-        '&:hover': {
-          opacity: 1,
-        },
         '& svg': {
+          opacity: 0.6,
+          marginBottom: 2,
           verticalAlign: 'middle',
+        },
+        '&:hover': {
+          '&>svg': { opacity: 1 },
         },
       },
     },
@@ -340,7 +347,7 @@ const Root = styled('div')(
     },
     '& hr': {
       height: 1,
-      margin: theme.spacing(6, 0),
+      margin: theme.spacing(5, 0),
       border: 0,
       flexShrink: 0,
       backgroundColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
@@ -484,11 +491,13 @@ const Root = styled('div')(
       },
       '& h1, & h2, & h3, & h4': {
         '&:hover .anchor-link, & .comment-link': {
-          color: `var(--muidocs-palette-text-secondary, ${darkTheme.palette.text.secondary})`,
-          backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.3),
-          borderColor: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
+          color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+          borderColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+          backgroundColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
           '&:hover': {
-            color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+            borderColor: `var(--muidocs-palette-primaryDark-400, ${darkTheme.palette.primaryDark[400]})`,
+            backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+            color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
           },
         },
       },

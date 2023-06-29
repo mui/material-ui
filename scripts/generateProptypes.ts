@@ -205,6 +205,8 @@ async function generateProptypes(
 
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
 
+  // If the component inherits the props from some unstyled components
+  // we don't want to add those propTypes again in the Material UI/Joy UI propTypes
   const unstyledFile = getUnstyledFilename(tsFile, true);
   const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
 
@@ -335,7 +337,7 @@ async function run(argv: HandlerArgv) {
       return filePattern.test(filePath);
     });
   // May not be able to understand all files due to mismatch in TS versions.
-  // Check `programm.getSyntacticDiagnostics()` if referenced files could not be compiled.
+  // Check `program.getSyntacticDiagnostics()` if referenced files could not be compiled.
   const program = ttp.createTSProgram(files, tsconfig);
 
   const promises = files.map<Promise<void>>(async (tsFile) => {

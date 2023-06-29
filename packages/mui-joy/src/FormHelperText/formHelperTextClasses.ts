@@ -1,7 +1,7 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface FormHelperTextClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
 }
 

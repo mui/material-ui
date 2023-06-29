@@ -7,6 +7,7 @@ import {
   extractPackageFile,
   getMaterialComponentInfo,
   getBaseComponentInfo,
+  getBaseHookInfo,
 } from './buildApiUtils';
 
 describe('buildApiUtils', () => {
@@ -42,13 +43,11 @@ describe('buildApiUtils', () => {
     });
 
     it('return info if path is a package (base)', () => {
-      const result = extractPackageFile(
-        '/material-ui/packages/mui-base/src/TabUnstyled/TabUnstyled.tsx',
-      );
+      const result = extractPackageFile('/material-ui/packages/mui-base/src/Tab/Tab.tsx');
       sinon.assert.match(result, {
         packagePath: 'mui-base',
         muiPackage: 'mui-base',
-        name: 'TabUnstyled',
+        name: 'Tab',
       });
     });
 
@@ -126,14 +125,14 @@ describe('buildApiUtils', () => {
   describe('getBaseComponentInfo', () => {
     it('return correct info for base component file', () => {
       const info = getBaseComponentInfo(
-        path.join(process.cwd(), `/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx`),
+        path.join(process.cwd(), `/packages/mui-base/src/Button/Button.tsx`),
       );
       sinon.assert.match(info, {
-        name: 'ButtonUnstyled',
-        apiPathname: '/base/api/button-unstyled/',
+        name: 'Button',
+        apiPathname: '/base-ui/react-button/components-api/#button',
         muiName: 'MuiButton',
         apiPagesDirectory: sinon.match((value) =>
-          value.endsWith(path.join('docs', 'pages', 'base', 'api')),
+          value.endsWith(path.join('docs', 'pages', 'base-ui', 'api')),
         ),
       });
 
@@ -150,8 +149,35 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            demoPageTitle: 'Unstyled Button',
-            demoPathname: '/base/react-button/',
+            demoPageTitle: 'Button',
+            demoPathname: '/base-ui/react-button/',
+          },
+        ]);
+      }
+    });
+
+    it('return correct info for base hook file', () => {
+      const info = getBaseHookInfo(
+        path.join(process.cwd(), `/packages/mui-base/src/useButton/useButton.ts`),
+      );
+      sinon.assert.match(info, {
+        name: 'useButton',
+        apiPathname: '/base-ui/react-button/hooks-api/#use-button',
+      });
+
+      info.readFile();
+
+      let existed = false;
+      try {
+        fs.readdirSync(path.join(process.cwd(), 'docs/data'));
+        existed = true;
+        // eslint-disable-next-line no-empty
+      } catch (error) {}
+      if (existed) {
+        expect(info.getDemos()).to.deep.equal([
+          {
+            demoPageTitle: 'Button',
+            demoPathname: '/base-ui/react-button/#hook',
           },
         ]);
       }

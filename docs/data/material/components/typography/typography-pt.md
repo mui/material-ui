@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React de Tipografia
 components: Typography
 githubLabel: 'component: Typography'

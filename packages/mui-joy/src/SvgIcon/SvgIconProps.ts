@@ -1,8 +1,24 @@
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { ColorPaletteProp, FontSize, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type SvgIconSlot = 'root';
+
+export interface SvgIconSlots {
+  /**
+   * The component that renders the root.
+   * @default 'svg'
+   */
+  root?: React.ElementType;
+}
+
+export type SvgIconSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SvgIconSlots,
+  {
+    root: SlotProps<'svg', {}, SvgIconOwnerState>;
+  }
+>;
 
 export interface SvgIconPropsSizeOverrides {}
 export interface SvgIconPropsColorOverrides {}
@@ -60,7 +76,7 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      * @default '0 0 24 24'
      */
     viewBox?: string;
-  };
+  } & SvgIconSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -76,4 +92,8 @@ export interface SvgIconOwnerState extends ApplyColorInversion<SvgIconProps> {
    * The `size` specified explicitly on the instance.
    */
   instanceFontSize: SvgIconProps['fontSize'];
+  /**
+   * The `children` has a `svg` element as a child.
+   */
+  hasSvgAsChild: boolean;
 }

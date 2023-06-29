@@ -71,7 +71,12 @@ function getLinksAndAnchors(fileName) {
     headingHashes,
     toc,
     userLanguage,
-    ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
+    options: {
+      ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
+      env: {
+        SOURCE_CODE_REPO: '',
+      },
+    },
   });
 
   const data = fse.readFileSync(fileName, { encoding: 'utf8' });
@@ -163,7 +168,7 @@ const getAnchor = (link) => {
   return potentialAnchor.includes('#') ? potentialAnchor : '';
 };
 
-// Export usefull method for doing similar checks in other repositories
+// Export useful method for doing similar checks in other repositories
 module.exports = { parseDocFolder, getAnchor };
 
 /**
@@ -201,8 +206,10 @@ if (require.main === module) {
   Object.keys(usedLinks)
     .filter((link) => link.startsWith('/'))
     .filter((link) => !availableLinks[link])
-    // unstyled sections are added by scripts (can not be found in markdown)
-    .filter((link) => !link.includes('#unstyled'))
+    // these url segments are specific to Base UI and added by scripts (can not be found in markdown)
+    .filter((link) =>
+      ['components-api', 'hooks-api', '#unstyled'].every((str) => !link.includes(str)),
+    )
     .filter((link) => UNSUPPORTED_PATHS.every((unsupportedPath) => !link.includes(unsupportedPath)))
     .sort()
     .forEach((linkKey) => {

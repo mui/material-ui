@@ -44,6 +44,10 @@ export default function PropertiesTable(props) {
   const { properties, propertiesDescriptions, showOptionalAbbr = false } = props;
   const t = useTranslate();
 
+  const showDefaultPropColumn = Object.entries(properties).some(
+    ([, propData]) => propData.default != null,
+  );
+
   return (
     <Wrapper>
       <Table>
@@ -51,7 +55,7 @@ export default function PropertiesTable(props) {
           <tr>
             <th align="left">{t('api-docs.name')}</th>
             <th align="left">{t('api-docs.type')}</th>
-            <th align="left">{t('api-docs.default')}</th>
+            {showDefaultPropColumn && <th align="left">{t('api-docs.default')}</th>}
             <th align="left">{t('api-docs.description')}</th>
           </tr>
         </thead>
@@ -85,9 +89,11 @@ export default function PropertiesTable(props) {
                   <td align="left">
                     <span className="prop-type" dangerouslySetInnerHTML={{ __html: typeName }} />
                   </td>
-                  <td align="left">
-                    {propDefault && <span className="prop-default">{propDefault}</span>}
-                  </td>
+                  {showDefaultPropColumn && (
+                    <td align="left">
+                      {propDefault && <span className="prop-default">{propDefault}</span>}
+                    </td>
+                  )}
                   <td align="left">
                     {propData.deprecated && (
                       <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
