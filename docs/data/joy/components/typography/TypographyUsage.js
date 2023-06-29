@@ -30,13 +30,11 @@ export default function TypographyUsages() {
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'neutral',
         },
 
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'plain',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
 
