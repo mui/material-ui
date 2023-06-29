@@ -142,6 +142,7 @@ export default function BasicMenu() {
                       {(anchors.options[index] ?? []).map((option) => (
                         <MenuItem
                           key={option.value}
+                          aria-haspopup={!!option.nestedOptions}
                           onClick={() => {
                             if (!option.nestedOptions) {
                               handleClose(0);
