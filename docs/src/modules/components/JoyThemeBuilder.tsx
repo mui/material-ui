@@ -1015,10 +1015,10 @@ function GlobalVariantForm({
   ].filter((item) => !(tokens as Array<string>).includes(item));
   return (
     <React.Fragment>
-      <Typography component="div" fontWeight="xl" level="h6">
+      <Typography component="div" fontWeight="xl" level="title-md">
         Global variant tokens
       </Typography>
-      <Typography component="div" level="body2" mb={2} mt={0.5}>
+      <Typography component="div" level="body-sm" mb={2} mt={0.5}>
         Pick the specific primitive color, now in CSS variables form already, to correspond to a
         semantic global variant token.
       </Typography>
@@ -1526,36 +1526,34 @@ export default function JoyThemeBuilder() {
             }}
           >
             <ListSubheader sx={{ minHeight: 48 }}>Palette</ListSubheader>
-            {(['primary', 'neutral', 'danger', 'info', 'success', 'warning'] as const).map(
-              (color) => (
-                <React.Fragment key={color}>
-                  <ListItem>
-                    <ListItemButton
-                      {...(colorProp === color && {
-                        variant: 'soft',
-                        selected: true,
-                        color,
-                      })}
-                      onClick={() => setColorProp(color)}
-                    >
-                      <ListItemDecorator>
-                        <Box
-                          sx={{
-                            width: 20,
-                            height: 20,
-                            borderRadius: '50%',
-                            bgcolor: `${color}.500`,
-                          }}
-                        />
-                      </ListItemDecorator>
-                      <ListItemContent sx={{ fontSize: 'sm' }}>{color}</ListItemContent>
-                      <KeyboardArrowRight />
-                    </ListItemButton>
-                  </ListItem>
-                  <ListDivider />
-                </React.Fragment>
-              ),
-            )}
+            {(['primary', 'neutral', 'danger', 'success', 'warning'] as const).map((color) => (
+              <React.Fragment key={color}>
+                <ListItem>
+                  <ListItemButton
+                    {...(colorProp === color && {
+                      variant: 'soft',
+                      selected: true,
+                      color,
+                    })}
+                    onClick={() => setColorProp(color)}
+                  >
+                    <ListItemDecorator>
+                      <Box
+                        sx={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: '50%',
+                          bgcolor: `${color}.500`,
+                        }}
+                      />
+                    </ListItemDecorator>
+                    <ListItemContent sx={{ fontSize: 'sm' }}>{color}</ListItemContent>
+                    <KeyboardArrowRight />
+                  </ListItemButton>
+                </ListItem>
+                <ListDivider />
+              </React.Fragment>
+            ))}
             <ListItem>
               <ListItemButton
                 {...(colorProp === 'etc' && {
@@ -1698,10 +1696,10 @@ export default function JoyThemeBuilder() {
                 </TabList>
                 <Divider />
                 <TabPanel value={0}>
-                  <Typography component="div" fontWeight="xl" level="h6">
+                  <Typography component="div" fontWeight="xl" level="title-md">
                     Customize primitive colors
                   </Typography>
-                  <Typography component="div" level="body2" mb={2} mt={0.5}>
+                  <Typography component="div" level="body-sm" mb={2} mt={0.5}>
                     Add your custom-tailored palette here, inserting each HEX value to the scale, or
                     choose from an available set of popular color palettes.
                   </Typography>
