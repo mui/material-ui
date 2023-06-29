@@ -25,12 +25,12 @@
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "react-jss": "^10.10.0",
-    "react-redux": "^8.1.0",
+    "react-redux": "^8.1.1",
     "redux": "^4.2.1",
     "serve-handler": "^6.1.5",
     "styled-components": "^5.3.11",
     "theme-ui": "^0.16.0",
-    "webpack": "^5.85.0",
+    "webpack": "^5.88.0",
     "webpack-cli": "^4.10.0"
   }
 }

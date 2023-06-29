@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: 应用栏（App bar）React组件
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: app bar'

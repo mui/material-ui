@@ -63,13 +63,13 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
   const { canonicalAs } = pathnameToLanguage(router.asPath);
 
   return React.useMemo(() => {
-    let product;
+    let productId;
     let name = 'Material UI';
     if (canonicalAs.startsWith('/joy-ui/')) {
-      product = 'joy-ui';
+      productId = 'joy-ui';
       name = 'Joy UI';
     } else if (canonicalAs.startsWith('/base-ui/')) {
-      product = 'base-ui';
+      productId = 'base-ui';
       name = 'Base UI';
     } else if (canonicalAs.startsWith('/x/')) {
       name = 'MUI X';
@@ -145,7 +145,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
       jsxPreview,
       ...codeOptions,
       title: `${getDemoName(githubLocation)} demo — ${name}`,
-      product,
+      productId,
       language: userLanguage,
       codeStyling,
     };
@@ -478,8 +478,8 @@ export default function Demo(props) {
   const [showAd, setShowAd] = React.useState(false);
   const adVisibility = showAd && !disableAd && !demoOptions.disableAd;
 
-  const DemoRoot = demoData.product === 'joy-ui' ? DemoRootJoy : DemoRootMaterial;
-  const Wrapper = demoData.product === 'joy-ui' ? BrandingProvider : React.Fragment;
+  const DemoRoot = demoData.productId === 'joy-ui' ? DemoRootJoy : DemoRootMaterial;
+  const Wrapper = demoData.productId === 'joy-ui' ? BrandingProvider : React.Fragment;
 
   const isPreview = !codeOpen && showPreview;
 
@@ -532,7 +532,7 @@ export default function Demo(props) {
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <Wrapper {...(demoData.product === 'joy-ui' && { mode })}>
+        <Wrapper {...(demoData.productId === 'joy-ui' && { mode })}>
           <InitialFocus
             aria-label={t('initialFocusLabel')}
             action={initialFocusRef}
@@ -557,7 +557,7 @@ export default function Demo(props) {
       ))}
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
-      <Wrapper {...(demoData.product === 'joy-ui' ? { mode } : {})}>
+      <Wrapper {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
         {demoOptions.hideToolbar ? null : (
           <NoSsr defer fallback={<DemoToolbarFallback />}>
             <React.Suspense fallback={<DemoToolbarFallback />}>
