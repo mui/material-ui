@@ -16,8 +16,11 @@ function highlight(code, language) {
       break;
 
     case 'js':
-    case 'sh':
       prismLanguage = prism.languages.jsx;
+      break;
+
+    case 'sh':
+      prismLanguage = prism.languages.bash;
       break;
 
     case 'diff':
