@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: React Select components and hook
 components: Select, Option, OptionGroup
 hooks: useSelect, useOption
@@ -130,6 +130,15 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 
 ```jsx
 <Select slotProps={{ listbox: { className: 'my-listbox' } }} />
+```
+
+### Portals
+
+By default, the Select's popup is rendered in a [Portal](https://mui.com/base-ui/react-portal/) and appended to the bottom of the DOM.
+To instead render the popup where the component is defined, override the `disablePortal` prop of the underlying Popper, as shown below:
+
+```jsx
+<Select slotProps={{ popper: { disablePortal: true } }} />
 ```
 
 #### Usage with TypeScript

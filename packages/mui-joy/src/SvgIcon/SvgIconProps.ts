@@ -92,4 +92,8 @@ export interface SvgIconOwnerState extends ApplyColorInversion<SvgIconProps> {
    * The `size` specified explicitly on the instance.
    */
   instanceFontSize: SvgIconProps['fontSize'];
+  /**
+   * The `children` has a `svg` element as a child.
+   */
+  hasSvgAsChild: boolean;
 }

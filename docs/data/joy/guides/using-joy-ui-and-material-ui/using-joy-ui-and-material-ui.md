@@ -15,7 +15,7 @@ Once Joy UI reaches component parity with Material UI, we recommend that you **_
 
 Additionally, keep these in mind when using them together:
 
-- Both of them use [MUI System](/system/getting-started/overview/) as their style engine, which uses React context for theming.
+- Both of them use [MUI System](/system/getting-started/) as their style engine, which uses React context for theming.
 - Theme scoping must be done on one of the libraries.
 
 ## Prerequisite

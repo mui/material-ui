@@ -4,7 +4,7 @@ import Box from '@mui/joy/Box';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
 
-export default function ColorBadge() {
+export default function BadgeVisibility() {
   const [invisible, setInvisible] = React.useState(false);
   return (
     <Box

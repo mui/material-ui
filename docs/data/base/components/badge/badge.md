@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: React Badge component and hook
 components: Badge
 hooks: useBadge

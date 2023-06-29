@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: Componente e Hook do botão React sem estilo
 components: ButtonUnstyled
 githubLabel: 'component: button'

@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Slider component
 components: Slider
 githubLabel: 'component: slider'
@@ -158,3 +158,16 @@ You can solve the issue with:
   left: calc(-50% - 4px);
 }
 ```
+
+## Experimental API
+
+### Material You version
+
+The default Slider component follows the Material Design 2 specs.
+For the Material Design 3 ([Material You](https://m3.material.io/)) version, you can use the new experimental `@mui/material-next` package:
+
+```js
+import Slider from '@mui/material-next/Slider';
+```
+
+{{"demo": "SliderMaterialYouPlayground.js", "hideToolbar": true}}

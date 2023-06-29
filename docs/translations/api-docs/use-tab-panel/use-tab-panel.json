@@ -6,7 +6,7 @@
     "value": "The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected."
   },
   "returnValueDescriptions": {
-    "getRootProps": "Resolver for the root slot's props.",
+    "getRootProps": "Resolver for the root slot&#39;s props.",
     "hidden": "If <code>true</code>, it indicates that the tab panel will be hidden."
   }
 }

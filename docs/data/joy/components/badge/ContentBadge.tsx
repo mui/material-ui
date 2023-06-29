@@ -3,7 +3,7 @@ import Box from '@mui/joy/Box';
 import Badge from '@mui/joy/Badge';
 import Typography from '@mui/joy/Typography';
 
-export default function SimpleBadge() {
+export default function ContentBadge() {
   return (
     <Box sx={{ display: 'flex', gap: 3 }}>
       <Badge badgeContent={4}>

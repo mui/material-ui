@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Tabs component
 components: Tab, TabList, TabPanel, Tabs
 githubLabel: 'component: tabs'

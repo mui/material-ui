@@ -152,8 +152,16 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     };
   };
 
+  const contextValue = React.useMemo(
+    () => ({
+      ...compoundComponentContextValue,
+      ...listContextValue,
+    }),
+    [compoundComponentContextValue, listContextValue],
+  );
+
   return {
-    contextValue: { ...compoundComponentContextValue, ...listContextValue },
+    contextValue,
     dispatch,
     getRootProps,
     highlightedValue,

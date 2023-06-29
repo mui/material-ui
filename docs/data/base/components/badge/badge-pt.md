@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: Unstyled React Badge component and hook
 components: BadgeUnstyled
 githubLabel: 'component: badge'

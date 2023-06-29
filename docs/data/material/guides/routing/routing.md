@@ -1,6 +1,6 @@
 # Routing libraries
 
-<p class="description">By default, the navigation is performed with a native &lt;a&gt; element. You can customize it to use your own router. For instance, using Next.js's Link or react-router.</p>
+<p class="description">By default, the navigation is performed with a native &lt;a&gt; element. You can customize it, for instance, using Next.js's Link or react-router.</p>
 
 ## Navigation components
 

@@ -11,9 +11,9 @@
     "error": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute.",
     "focused": "If <code>true</code>, the <code>input</code> will be focused.",
     "formControlContext": "Return value from the <code>useFormControlContext</code> hook.",
-    "getInputProps": "Resolver for the input slot's props.",
-    "getRootProps": "Resolver for the root slot's props.",
-    "required": "If <code>true</code>, the <code>input</code> will indicate that it's required.",
+    "getInputProps": "Resolver for the input slot&#39;s props.",
+    "getRootProps": "Resolver for the root slot&#39;s props.",
+    "required": "If <code>true</code>, the <code>input</code> will indicate that it&#39;s required.",
     "value": "The <code>value</code> of the <code>input</code> element."
   }
 }
