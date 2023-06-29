@@ -1,4 +1,4 @@
-'use client';
+import 'client-only';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 
 export { default as THEME_ID } from './identifier';
