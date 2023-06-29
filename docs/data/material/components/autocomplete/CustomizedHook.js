@@ -184,7 +184,6 @@ export default function CustomizedHook() {
           {value.map((option, index) => (
             <StyledTag label={option.title} {...getTagProps({ index })} />
           ))}
-
           <input {...getInputProps()} />
         </InputWrapper>
       </div>

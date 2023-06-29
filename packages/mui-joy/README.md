@@ -9,4 +9,4 @@ It features foundational components such as the ones you'd find in Material UI a
 > We're adding new components and features regularly, and you're welcome to contribute!
 > Look for the [`package: joy-ui`](https://github.com/mui/material-ui/labels/package:%20joy-ui) label on open issues and pull requests in the mui/material-ui repository on GitHub to see what other community members are working on, and feel free to submit your own.
 
-Get to know more at [Joy UI's overview page](https://mui.com/joy-ui/getting-started/overview/).
+Get to know more at [Joy UI's overview page](https://mui.com/joy-ui/getting-started/).

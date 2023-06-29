@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Input component and hook
 components: Input
 hooks: useInput
@@ -42,7 +42,7 @@ Input behaves similarly to the native HTML `<input>`, except that it's nested in
 
 The following demo shows how to create and style an input component, including `placeholder` text:
 
-{{"demo": "UnstyledInputBasic.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledInputBasic", "defaultCodeOpen": false}}
 
 ### Anatomy
 

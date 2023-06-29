@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Circular Progress component
 components: CircularProgress
 githubLabel: 'component: CircularProgress'

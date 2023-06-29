@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: Unstyled React Table Pagination component
 components: TablePaginationUnstyled
 githubLabel: 'component: TablePagination'
