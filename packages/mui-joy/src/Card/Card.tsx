@@ -37,6 +37,9 @@ const CardRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => [
   {
+    ...(ownerState.variant === 'solid' && {
+      '--Icon-color': 'currentColor',
+    }),
     // a context variable for any child component
     '--Card-childRadius':
       'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',

@@ -60,7 +60,6 @@ const ChipRoot = styled('div', {
           'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth, 0px))',
         '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.714)', // 0.875rem by default
         '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)',
-        fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
         '--Chip-gap': '0.375rem',
@@ -68,7 +67,6 @@ const ChipRoot = styled('div', {
         '--Chip-decoratorChildHeight': 'min(1.375rem, var(--_Chip-minHeight))',
         '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.778)', // 1.125rem by default
         '--_Chip-minHeight': 'var(--Chip-minHeight, 2rem)',
-        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
         '--Chip-gap': '0.5rem',
@@ -76,7 +74,6 @@ const ChipRoot = styled('div', {
         '--Chip-decoratorChildHeight': 'min(1.75rem, var(--_Chip-minHeight))',
         '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 2)', // 1.25rem by default
         '--_Chip-minHeight': 'var(--Chip-minHeight, 2.5rem)',
-        fontSize: theme.vars.fontSize.md,
       }),
       '--_Chip-radius': 'var(--Chip-radius, 1.5rem)',
       '--_Chip-paddingBlock':
@@ -86,8 +83,6 @@ const ChipRoot = styled('div', {
       paddingInline: 'var(--Chip-paddingInline)',
       borderRadius: 'var(--_Chip-radius)',
       position: 'relative',
-      fontWeight: theme.vars.fontWeight.md,
-      fontFamily: theme.vars.fontFamily.body,
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -95,6 +90,7 @@ const ChipRoot = styled('div', {
       textDecoration: 'none',
       verticalAlign: 'middle',
       boxSizing: 'border-box',
+      ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
       [`&.${chipClasses.disabled}`]: {
         color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       },

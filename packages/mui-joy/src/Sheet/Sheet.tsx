@@ -48,6 +48,9 @@ export const SheetRoot = styled('div', {
     theme.vars.palette.background.surface;
   return [
     {
+      ...(ownerState.variant === 'solid' && {
+        '--Icon-color': 'currentColor',
+      }),
       '--ListItem-stickyBackground': resolvedBg, // for sticky List
       '--Sheet-background': resolvedBg, // for sticky table cell
       // minus the sheet's border width to have consistent radius between sheet and children
@@ -58,7 +61,10 @@ export const SheetRoot = styled('div', {
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
     },
-    variantStyle,
+    {
+      ...theme.typography['body-md'],
+      ...variantStyle,
+    },
     ownerState.color !== 'context' &&
       ownerState.invertedColors &&
       theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
