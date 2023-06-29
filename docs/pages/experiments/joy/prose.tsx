@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import * as React from 'react';
 import { CssVarsProvider, styled, useColorScheme } from '@mui/joy/styles';
 import AspectRatio from '@mui/joy/AspectRatio';
@@ -16,7 +15,6 @@ import CardContent from '@mui/joy/CardContent';
 import IconButton from '@mui/joy/IconButton';
 import SvgIcon from '@mui/joy/SvgIcon';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
-import CheckCircle from '@mui/icons-material/CheckCircle';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 

@@ -50,19 +50,19 @@ const StartDecorator = styled('span', {
   name: 'JoyTypography',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: TypographyOwnerState }>({
   display: 'inline-flex',
   marginInlineEnd: 'clamp(4px, var(--Typography-gap, 0.375em), 0.75rem)',
-}));
+});
 
 const EndDecorator = styled('span', {
   name: 'JoyTypography',
   slot: 'endDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: TypographyOwnerState }>({
   display: 'inline-flex',
   marginInlineStart: 'clamp(4px, var(--Typography-gap, 0.375em), 0.75rem)',
-}));
+});
 
 const TypographyRoot = styled('span', {
   name: 'JoyTypography',

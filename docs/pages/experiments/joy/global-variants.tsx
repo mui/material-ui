@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import * as React from 'react';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';

@@ -7,7 +7,7 @@ import Chip from '@mui/joy/Chip';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
 import IconButton from '@mui/joy/IconButton';
-import Input, { inputClasses } from '@mui/joy/Input';
+import Input from '@mui/joy/Input';
 import ListItemDecorator, { listItemDecoratorClasses } from '@mui/joy/ListItemDecorator';
 import Option, { optionClasses } from '@mui/joy/Option';
 import Radio, { radioClasses } from '@mui/joy/Radio';
