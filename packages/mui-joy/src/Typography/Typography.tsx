@@ -53,11 +53,6 @@ const StartDecorator = styled('span', {
 })<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
   marginInlineEnd: 'clamp(4px, var(--Typography-gap, 0.375em), 0.75rem)',
-  ...(typeof ownerState.startDecorator !== 'string' &&
-    (ownerState.alignItems === 'flex-start' ||
-      (ownerState.sx as any)?.alignItems === 'flex-start') && {
-      marginTop: '2px', // this makes the alignment perfect in most cases
-    }),
 }));
 
 const EndDecorator = styled('span', {
@@ -67,66 +62,65 @@ const EndDecorator = styled('span', {
 })<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
   marginInlineStart: 'clamp(4px, var(--Typography-gap, 0.375em), 0.75rem)',
-  ...(typeof ownerState.endDecorator !== 'string' &&
-    (ownerState.alignItems === 'flex-start' ||
-      (ownerState.sx as any)?.alignItems === 'flex-start') && {
-      marginTop: '2px', // this makes the alignment perfect in most cases
-    }),
 }));
 
 const TypographyRoot = styled('span', {
   name: 'JoyTypography',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TypographyOwnerState }>(({ theme, ownerState }) => ({
-  '--Icon-fontSize': '1.25em',
-  margin: 'var(--Typography-margin, 0px)',
-  ...(ownerState.nesting
-    ? {
-        display: 'inline', // looks better than `inline-block` when using with `variant` prop.
-      }
-    : {
-        fontFamily: theme.vars.fontFamily.body, // for nested typography, the font family will be inheriting.
-        display: 'block', // don't rely on user agent, always `block`.
+})<{ ownerState: TypographyOwnerState }>(({ theme, ownerState }) => {
+  const lineHeight =
+    ownerState.level !== 'inherit' ? theme.typography[ownerState.level!]?.lineHeight : '1';
+  return {
+    '--Icon-fontSize': `calc(1em * ${lineHeight})`,
+    margin: 'var(--Typography-margin, 0px)',
+    ...(ownerState.nesting
+      ? {
+          display: 'inline', // looks better than `inline-block` when using with `variant` prop.
+        }
+      : {
+          fontFamily: theme.vars.fontFamily.body,
+          display: 'block', // don't rely on user agent, always `block`.
+        }),
+    ...((ownerState.startDecorator || ownerState.endDecorator) && {
+      display: 'flex',
+      alignItems: 'center',
+      ...(ownerState.nesting && {
+        display: 'inline-flex',
+        ...(ownerState.startDecorator && {
+          verticalAlign: 'bottom', // to make the text align with the parent's content
+        }),
       }),
-  ...((ownerState.startDecorator || ownerState.endDecorator) && {
-    display: 'flex', // should not be used as a default because it does not work well with `noWrap`.
-    alignItems: 'center',
-    ...(ownerState.nesting && {
-      display: 'inline-flex',
-      ...(ownerState.startDecorator && {
-        verticalAlign: 'bottom', // to make the text align with the parent's content
+    }),
+    ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
+    fontSize: `var(--Typography-fontSize, ${
+      ownerState.level && ownerState.level !== 'inherit'
+        ? theme.typography[ownerState.level]?.fontSize ?? 'inherit'
+        : 'inherit'
+    })`,
+    ...(ownerState.noWrap && {
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    }),
+    ...(ownerState.gutterBottom && {
+      marginBottom: '0.35em',
+    }),
+    ...(ownerState.color &&
+      ownerState.color !== 'context' && {
+        color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
       }),
+    ...(ownerState.variant && {
+      borderRadius: theme.vars.radius.xs,
+      paddingBlock: 'min(0.15em, 4px)',
+      paddingInline: '0.375em',
+      ...(!ownerState.nesting && {
+        marginInline: '-0.375em',
+      }),
+      ...theme.variants[ownerState.variant]?.[ownerState.color!],
     }),
-  }),
-  ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
-  fontSize: `var(--Typography-fontSize, ${
-    ownerState.level && ownerState.level !== 'inherit'
-      ? theme.typography[ownerState.level]?.fontSize ?? 'inherit'
-      : 'inherit'
-  })`,
-  ...(ownerState.noWrap && {
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  }),
-  ...(ownerState.gutterBottom && {
-    marginBottom: '0.35em',
-  }),
-  ...(ownerState.color &&
-    ownerState.color !== 'context' && {
-      color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
-    }),
-  ...(ownerState.variant && {
-    borderRadius: theme.vars.radius.xs,
-    paddingBlock: 'min(0.15em, 4px)',
-    paddingInline: '0.375em', // better than left, right because it also works with writing mode.
-    ...(!ownerState.nesting && {
-      marginInline: '-0.375em',
-    }),
-    ...theme.variants[ownerState.variant]?.[ownerState.color!],
-  }),
-}));
+  };
+});
 
 const defaultVariantMapping: Partial<Record<keyof TypographySystem | 'inherit', string>> = {
   // @ts-ignore TypographySystem overrides in CssVarsProvider.spec.tsx
