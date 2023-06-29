@@ -34,7 +34,6 @@ export default function CondensedBreadcrumbs() {
           {item}
         </Link>
       ))}
-
       <Typography sx={{ display: 'flex', alignItems: 'center' }}>
         <FolderIcon sx={{ mr: 0.5 }} />
         bablo.txt

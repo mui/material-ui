@@ -42,7 +42,6 @@ export default function IconsRadio() {
           variant="outlined"
           sx={{
             borderRadius: 'md',
-
             boxShadow: 'sm',
             display: 'flex',
             flexDirection: 'column',
