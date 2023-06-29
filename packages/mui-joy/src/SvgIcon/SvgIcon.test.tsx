@@ -110,21 +110,16 @@ describe('<SvgIcon />', () => {
     );
   });
 
-  describe('prop: fontSize', function test() {
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
-    it('should render with `xl` by default', () => {
+  describe('prop: size', function test() {
+    it('should render with `md` by default', () => {
       const { container } = render(<SvgIcon>{path}</SvgIcon>);
 
-      expect(container.firstChild).to.have.class(classes.fontSizeXl);
+      expect(container.firstChild).to.have.class(classes.sizeMd);
     });
+  });
 
-    (['inherit', 'xs', 'sm', 'md', 'lg', 'xl', 'xl2', 'xl3', 'xl4', 'xl5', 'xl6'] as const).forEach(
+  describe('prop: fontSize', function test() {
+    (['inherit', 'xs', 'sm', 'md', 'lg', 'xl', 'xl2', 'xl3', 'xl4'] as const).forEach(
       (fontSize) => {
         it(`should render ${fontSize}`, () => {
           const { container } = render(<SvgIcon fontSize={fontSize}>{path}</SvgIcon>);
