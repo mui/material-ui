@@ -222,7 +222,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         level1: getCssVarColor('palette-neutral-50'),
         level2: getCssVarColor('palette-neutral-100'),
         level3: getCssVarColor('palette-neutral-200'),
-        tooltip: getCssVarColor('palette-neutral-800'),
+        tooltip: getCssVarColor('palette-neutral-500'),
         backdrop: `rgba(${getCssVar(
           'palette-neutral-darkChannel',
           colorChannel(defaultColors.neutral[900]), // should be the same index as in `attachColorChannels`
