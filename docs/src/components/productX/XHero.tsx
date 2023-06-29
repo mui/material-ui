@@ -1,7 +1,7 @@
 import * as React from 'react';
+import dynamic from 'next/dynamic';
 import { red } from '@mui/material/colors';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
@@ -21,7 +21,8 @@ import {
   useKeepGroupedColumnsHidden,
 } from '@mui/x-data-grid-premium';
 import { useDemoData } from '@mui/x-data-grid-generator';
-import LineChart from '../showcase/LineChart';
+
+const BarChart = dynamic(() => import('../showcase/BarChart'), { ssr: false });
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -282,10 +283,9 @@ export default function XHero() {
                   }),
                   minWidth: 300,
                   mb: 2,
-                  flexGrow: 1,
                 })}
               >
-                <LineChart />
+                <BarChart />
               </Paper>
               <Paper
                 sx={(theme) => ({
@@ -298,16 +298,10 @@ export default function XHero() {
                     borderColor: 'primaryDark.600',
                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
                   }),
-
                   minWidth: 300,
-
                   flexGrow: 1,
                 })}
               >
-                <Box sx={{ p: 2 }}>
-                  <Typography fontWeight={500}>Cool Project</Typography>
-                </Box>
-                <Divider />
                 <FolderTreeView />
               </Paper>
             </Box>
