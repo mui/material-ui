@@ -108,7 +108,8 @@ const theme = createTheme({
 });
 ```
 
-For the default palette colors (the ones listed in the [Default values section](#default-values) above), only the `main` token is required. If the other tokens are not provided their value is calculated as follows:
+For the default palette colors (the ones listed in the [Default values section](#default-values) above), only the `main` token is required. 
+If the other tokens aren't provided, then their values are calculated as follows:
 
 - The `light` and `dark` tokens are calculated according to the `tonalOffset` value with the `main` color as a starting point.
 - The `contrastText` token is calculated according to the `contrastThreshold` value to contrast with the `main` color.
