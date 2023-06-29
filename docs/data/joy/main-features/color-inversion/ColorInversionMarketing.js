@@ -29,7 +29,7 @@ export default function ColorInversionMarketing() {
       }}
     >
       <Box sx={{ zIndex: 1, position: 'relative' }}>
-        <Typography level="display2">Get started</Typography>
+        <Typography level="h2">Get started</Typography>
         <Typography sx={{ mt: 1, mb: 3 }}>
           Instant access to the power of the React UI library
         </Typography>

@@ -184,7 +184,7 @@ export default function JoyVariablesDemo(props: {
                       endDecorator={
                         <React.Fragment>
                           {typeof resolvedValue === 'string' ? (
-                            <Typography level="body3" mr={0.5}>
+                            <Typography level="body-xs" mr={0.5}>
                               px
                             </Typography>
                           ) : null}
