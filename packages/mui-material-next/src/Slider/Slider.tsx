@@ -271,7 +271,7 @@ const SliderThumb = styled('span', {
       boxShadow: getBoxShadow('pressed'),
     },
     [`&.${sliderClasses.thumbOverlap}`]: {
-      border: '1px solid white',
+      border: `1px solid ${tokens.ref.palette.common.white}`,
     },
     [`&.${sliderClasses.disabled}`]: {
       boxShadow: 'none',
@@ -347,7 +347,7 @@ const SliderValueLabel = styled('span', {
     width: 28,
     height: 28,
     [`&.${sliderClasses.valueLabelOverlap}`]: {
-      border: '1px solid white',
+      border: `1px solid ${tokens.ref.palette.common.white}`,
     },
     ...(ownerState.orientation === 'horizontal' && {
       top: ownerState.size === 'small' ? -32 : -36,
