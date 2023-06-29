@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Button Group component
 components: Button, IconButton, ButtonGroup
 githubLabel: 'component: ButtonGroup'

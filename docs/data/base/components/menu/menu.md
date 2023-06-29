@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Menu components and hooks
 components: Menu, MenuItem, MenuButton, Dropdown
 hooks: useMenu, useMenuItem, useMenuButton, useDropdown

@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Modal component
 components: Modal
 githubLabel: 'component: modal'

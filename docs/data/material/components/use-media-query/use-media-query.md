@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Media queries in React for responsive design
 githubLabel: 'hook: useMediaQuery'
 ---

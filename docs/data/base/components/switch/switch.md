@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Switch component and hook
 components: Switch
 hooks: useSwitch
