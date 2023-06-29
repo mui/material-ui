@@ -57,7 +57,7 @@ ${prependLinesSpace(code, 2)}
               aria-describedby="modal-usage-description"
             >
               <ModalClose />
-              <Typography id="modal-usage-title" component="h2">
+              <Typography id="modal-usage-title" level="h2">
                 Modal title
               </Typography>
               <Typography id="modal-usage-description">

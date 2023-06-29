@@ -44,10 +44,10 @@ export default function SizeModalDialog() {
           size={size}
         >
           <ModalClose />
-          <Typography id="size-modal-title" component="h2">
+          <Typography id="size-modal-title" level="h2">
             Modal Dialog
           </Typography>
-          <Typography id="size-modal-description" level="inherit">
+          <Typography id="size-modal-description">
             This is a `{size}` modal dialog.
           </Typography>
         </ModalDialog>
