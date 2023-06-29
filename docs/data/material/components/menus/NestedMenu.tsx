@@ -105,9 +105,12 @@ export default function BasicMenu() {
     }));
   };
 
+  const buttonRef = React.useRef(null);
+
   return (
     <React.Fragment>
       <Button
+        ref={buttonRef}
         onClick={(event) => {
           handleOpen(event);
         }}
@@ -133,7 +136,22 @@ export default function BasicMenu() {
                 }}
               >
                 <Paper>
-                  <ClickAwayListener onClickAway={() => handleClose(0)}>
+                  <ClickAwayListener
+                    onClickAway={(e) => {
+                      if (e.target === buttonRef.current) {
+                        handleClose(0);
+                        return;
+                      }
+
+                      const optionWithoutSubMenu = anchors.elements.every(
+                        (element) => !e.composedPath().includes(element!),
+                      );
+
+                      if (optionWithoutSubMenu) {
+                        handleClose(0);
+                      }
+                    }}
+                  >
                     <MenuList
                       autoFocusItem={Boolean(anchorElement)}
                       id="nested-menu"
@@ -176,7 +194,10 @@ export default function BasicMenu() {
                           }}
                           onKeyDown={(event) => {
                             if (option.nestedOptions) {
-                              if (event.key === 'ArrowRight') {
+                              if (
+                                event.key === 'ArrowRight' ||
+                                event.key === 'Enter'
+                              ) {
                                 handleOpen(
                                   event,
                                   option.menuLevel + 1,
