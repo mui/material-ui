@@ -81,7 +81,7 @@
     },
     "inputComponent": {
       "description": "The component used for the <code>input</code> element. Either a string to use a HTML element or a component.",
-      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
+      "notes": "⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
       "deprecated": "",
       "typeDescriptions": {}
     },

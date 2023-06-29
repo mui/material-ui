@@ -106,6 +106,7 @@ const Root = styled('div')(
       fontWeight: theme.typography.fontWeightMedium,
       border: '1px solid',
       borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      borderRadius: 8,
       backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
       color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
       marginBottom: 16,
@@ -114,6 +115,17 @@ const Root = styled('div')(
         alignItems: 'center',
         fill: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
       },
+    },
+    '& .prop-list-notes': {
+      ...theme.typography.body2,
+      fontWeight: theme.typography.fontWeightMedium,
+      padding: 12,
+      border: '1px solid',
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      borderRadius: 8,
+      backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
+      color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
+      marginBottom: 16,
     },
     '& .prop-list-default-props': {
       ...theme.typography.body2,
@@ -143,13 +155,13 @@ const Root = styled('div')(
       },
       '&>code': {
         borderRadius: 8,
-        padding: 8,
+        padding: 12,
         width: '100%',
         marginBottom: 8,
-        color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
+        color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[50]})`,
         border: '1px solid',
-        borderColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
-        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+        borderColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
+        backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
       },
     },
     marginBottom: 36,
@@ -188,25 +200,23 @@ const Root = styled('div')(
         },
       },
       '& .MuiAlert-standardWarning': {
-        borderColor: alpha(darkTheme.palette.warning[600], 0.2),
+        borderColor: alpha(darkTheme.palette.grey[800], 0.5),
         backgroundColor: alpha(darkTheme.palette.warning[800], 0.2),
         color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
         '.MuiAlert-icon svg': {
           fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
         },
       },
+      '& .prop-list-notes': {
+        borderColor: alpha(darkTheme.palette.grey[800], 0.5),
+        backgroundColor: alpha(darkTheme.palette.warning[800], 0.2),
+        color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
+      },
       '& .prop-list-default-props': {
         color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
         code: {
           borderColor: `var(--muidocs-palette-grey-800, ${darkTheme.palette.grey[800]})`,
           backgroundColor: alpha(darkTheme.palette.grey[900], 0.5),
-        },
-      },
-      '& .prop-list-signature': {
-        '&>code': {
-          color: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
-          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-          backgroundColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
         },
       },
     },
@@ -278,7 +288,11 @@ function ApiItem(props: ApiItemProps) {
         {isOverflow && (
           <div className="MuiApi-item-extend-description">
             <IconButton size="small" onClick={() => setIsExtended((prev) => !prev)}>
-              {isExtended ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+              {isExtended ? (
+                <KeyboardArrowDownIcon fontSize="small" color="primary" />
+              ) : (
+                <KeyboardArrowUpIcon fontSize="small" color="primary" />
+              )}
             </IconButton>
           </div>
         )}

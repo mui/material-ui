@@ -3,7 +3,7 @@
   "propDescriptions": {
     "children": {
       "description": "The wrapped element.",
-      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
+      "notes": "⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
       "deprecated": "",
       "typeDescriptions": {}
     },
