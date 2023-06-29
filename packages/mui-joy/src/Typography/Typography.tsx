@@ -79,7 +79,6 @@ const TypographyRoot = styled('span', {
           display: 'inline', // looks better than `inline-block` when using with `variant` prop.
         }
       : {
-          fontFamily: theme.vars.fontFamily.body,
           display: 'block', // don't rely on user agent, always `block`.
         }),
     ...((ownerState.startDecorator || ownerState.endDecorator) && {
@@ -345,5 +344,8 @@ Typography.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
+// @ts-ignore internal logic to let communicate with Breadcrumbs
+Typography.muiName = 'Typography';
 
 export default Typography;
