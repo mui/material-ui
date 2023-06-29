@@ -79,16 +79,17 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     flexGrow: ownerState.row ? 0 : 1,
     flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
     flexShrink: 0,
+    fontSize: 'inherit', // prevent user agent style when component="button"
+    lineHeight: 'inherit', // prevent user agent style when component="button"
     minInlineSize: 0,
     [theme.focus.selector]: theme.focus.default,
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-    '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-    [`&.${listItemButtonClasses.selected}, &[aria-selected="true"]`]: {
+    [`&.${listItemButtonClasses.selected}`]: {
       '--Icon-opacity': 1,
-      fontWeight: theme.vars.fontWeight.md,
-      '&:hover': theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
-      '&:active': theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
+    },
+    [`&:not(.${listItemButtonClasses.selected}, [aria-selected="true"])`]: {
+      '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
     },
     [`&.${listItemButtonClasses.disabled}`]: {
       ...theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],

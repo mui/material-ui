@@ -8,7 +8,7 @@ import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useColorInversion } from '../styles/ColorInversion';
-import { getTabUtilityClass } from './tabClasses';
+import tabClasses, { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
@@ -47,10 +47,6 @@ const TabRoot = styled(StyledListItemButton, {
       }),
     ...(ownerState.selected && {
       boxShadow: theme.shadow.sm,
-      fontWeight: 'initial',
-      ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
     }),
   };
 });

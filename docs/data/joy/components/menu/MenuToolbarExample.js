@@ -61,7 +61,7 @@ const MenuButton = React.forwardRef(
             boxShadow: '0 2px 8px 0px rgba(0 0 0 / 0.38)',
             '--List-padding': 'var(--ListDivider-gap)',
             '--ListItem-minHeight': '32px',
-            [`& .${menuItemClasses.root}`]: {
+            [`&& .${menuItemClasses.root}`]: {
               transition: 'none',
               '&:hover': {
                 ...theme.variants.solid.primary,

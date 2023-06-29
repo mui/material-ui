@@ -42,7 +42,6 @@ export default function TabsPageExample() {
               },
               [`&.${tabClasses.selected}`]: {
                 color: 'primary.plainColor',
-                fontWeight: 'lg',
                 '&:before': {
                   content: '""',
                   display: 'block',

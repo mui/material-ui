@@ -40,7 +40,7 @@ export default function TabsBottomNavExample() {
             borderRadius: 'lg',
             whiteSpace: 'nowrap',
             transition: '0.3s',
-            fontWeight: 'lg',
+            fontWeight: 'md',
             flex: 1,
             [`&:not(.${tabClasses.selected}):not(:hover)`]: {
               opacity: 0.72,
