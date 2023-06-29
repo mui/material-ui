@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Button component and hook
 components: Button
 hooks: useButton

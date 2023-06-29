@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 components: Ícone, SvgIcon
 materialDesign: https://m2.material.io/design/iconography/system-icons.html
 packageName: '@mui/icons-material'
