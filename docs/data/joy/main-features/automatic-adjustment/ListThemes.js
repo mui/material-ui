@@ -25,7 +25,6 @@ export default function ButtonThemes() {
       '--ListItem-paddingRight': '5px',
       '--ListItem-paddingY': '0px',
       '--List-nestedInsetStart': '28px',
-      '--ListItemDecorator-color': 'var(--joy-palette-primary-plainColor)',
       fontSize: '14px',
     },
     cozy: {

@@ -450,10 +450,7 @@ function CodeBlockResult({
               </ListItemDecorator>
               theme.js
             </Tab>
-            <Tab
-              value="ts"
-              sx={{ [`&.${tabClasses.selected}`]: { '--ListItemDecorator-color': '#007acc' } }}
-            >
+            <Tab value="ts">
               <ListItemDecorator>
                 <TypeScriptIcon />
               </ListItemDecorator>

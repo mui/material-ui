@@ -87,7 +87,6 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
     !ownerState.nesting && {
       ...applySizeVars(ownerState.size),
       '--List-gap': '0px',
-      '--ListItemDecorator-color': theme.vars.palette.text.tertiary,
       '--List-nestedInsetStart': '0px',
       '--ListItem-paddingLeft': 'var(--ListItem-paddingX)',
       '--ListItem-paddingRight': 'var(--ListItem-paddingX)',

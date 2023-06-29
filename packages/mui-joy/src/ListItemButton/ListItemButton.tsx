@@ -86,7 +86,6 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     [`&.${listItemButtonClasses.selected}`]: {
       '--Icon-color': 'currentColor',
       '--Icon-opacity': 1,
-      '--ListItemDecorator-color': 'initial',
       fontWeight: theme.vars.fontWeight.md,
     },
     [`&:not(.${listItemButtonClasses.selected}):not([aria-selected="true"])`]: {
@@ -94,7 +93,6 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
     },
     [`&.${listItemButtonClasses.disabled}`]: {
-      '--ListItemDecorator-color': 'currentColor',
       ...theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
     },
   }),
