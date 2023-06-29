@@ -90,7 +90,7 @@
     "lz-string": "^1.5.0",
     "markdown-to-jsx": "^7.2.1",
     "material-ui-popup-state": "^5.0.9",
-    "next": "13.1.6",
+    "next": "13.4.7",
     "notistack": "2.0.8",
     "nprogress": "^0.2.0",
     "postcss": "^8.4.24",
