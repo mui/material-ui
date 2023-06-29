@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: Unstyled React Slider component and hook
 components: SliderUnstyled
 githubLabel: 'component: slider'

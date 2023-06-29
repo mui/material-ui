@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Autocomplete component
 components: Autocomplete, AutocompleteListbox, AutocompleteOption
 githubLabel: 'component: autocomplete'
