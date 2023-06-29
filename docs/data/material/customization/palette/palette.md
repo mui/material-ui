@@ -114,7 +114,9 @@ If the other tokens aren't provided, then their values are calculated as follows
 - The `light` and `dark` tokens are calculated according to the `tonalOffset` value, with the `main` color as a starting point.
 - The `contrastText` token is calculated according to the `contrastThreshold` value, to contrast with the `main` color.
 
-**Values for custom palette colors won't be automatically calculated** like for the default palette colors.
+:::warning
+Unlike default palette colors, values for custom palette colors are *not* automatically calculated.
+:::
 
 You can provide all tokens (`main`, `light`, `dark` and `contrastText`) manually, `@mui/material/styles` provides [a set of utilities](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) for manipulating color values you might find helpful.
 
