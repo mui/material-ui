@@ -60,7 +60,7 @@ const Root = styled('div')(
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       },
       '& .MuiApi-item-description': {
-        padding: '0 10px 6px 10px',
+        padding: '2px 10px 2px 10px',
         paddingBottom: 3,
         flexGrow: 1,
         textOverflow: 'ellipsis',
