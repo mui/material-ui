@@ -211,7 +211,6 @@ import { ${pageContent.name} } from '${source}';`}
         <Heading hash="props" />
         <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
         <PropertiesTable properties={componentProps} propertiesDescriptions={propDescriptions} />
-        <br />
         {cssComponent && (
           <React.Fragment>
             <span
@@ -255,7 +254,6 @@ import { ${pageContent.name} } from '${source}';`}
             <Heading hash="css" />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.cssDescription') }} />
             <CSSList componentStyles={componentStyles} classDescriptions={classDescriptions} />
-            <br />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
               dangerouslySetInnerHTML={{
@@ -278,7 +276,6 @@ import { ${pageContent.name} } from '${source}';`}
               />
             )}
             <SlotsList componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
-            <br />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
               dangerouslySetInnerHTML={{
@@ -303,7 +300,6 @@ import { ${pageContent.name} } from '${source}';`}
               componentName={pageContent.name}
               classDescriptions={classDescriptions}
             />
-            <br />
           </React.Fragment>
         ) : null}
       </MarkdownElement>
