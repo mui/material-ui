@@ -11,8 +11,6 @@ export default function HorizontalDividedList() {
       orientation="horizontal"
       variant="outlined"
       sx={{
-        borderRadius: 'sm',
-        boxShadow: 'sm',
         flexGrow: 0,
         mx: 'auto',
         '--ListItemDecorator-size': '48px',
