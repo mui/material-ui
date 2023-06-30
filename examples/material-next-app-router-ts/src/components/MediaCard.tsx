@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 export default function MediaCard({ heading, text }: { heading: string; text: string }) {
   return (
-    <Card sx={{ width: '47.5%' }}>
+    <Card>
       <Image
         alt="Random image"
         src="https://source.unsplash.com/random"
