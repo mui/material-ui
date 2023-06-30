@@ -1,12 +1,5 @@
 {
   "componentDescription": "",
-  "propDescriptions": {
-    "styles": {
-      "description": "The styles you want to apply globally.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    }
-  },
+  "propDescriptions": { "styles": { "description": "The styles you want to apply globally." } },
   "classDescriptions": {}
 }

@@ -1,74 +1,32 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": {
-      "description": "The content of the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "classes": {
-      "description": "Override or extend the styles applied to the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "defaultExpanded": {
-      "description": "If <code>true</code>, expands the accordion by default.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "disabled": {
-      "description": "If <code>true</code>, the component is disabled.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "children": { "description": "The content of the component." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "defaultExpanded": { "description": "If <code>true</code>, expands the accordion by default." },
+    "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "disableGutters": {
-      "description": "If <code>true</code>, it removes the margin between two expanded accordion items and the increase of height.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "If <code>true</code>, it removes the margin between two expanded accordion items and the increase of height."
     },
     "expanded": {
-      "description": "If <code>true</code>, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "If <code>true</code>, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion."
     },
     "onChange": {
       "description": "Callback fired when the expand/collapse state is changed.",
-      "notes": "",
-      "deprecated": "",
       "typeDescriptions": {
         "event": "The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.",
         "expanded": "The <code>expanded</code> state of the accordion."
       }
     },
-    "square": {
-      "description": "If <code>true</code>, rounded corners are disabled.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "square": { "description": "If <code>true</code>, rounded corners are disabled." },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "TransitionComponent": {
-      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
     },
     "TransitionProps": {
-      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
     }
   },
   "classDescriptions": {

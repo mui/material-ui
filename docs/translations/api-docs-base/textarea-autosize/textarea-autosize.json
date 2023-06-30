@@ -1,18 +1,8 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "maxRows": {
-      "description": "Maximum number of rows to display.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "minRows": {
-      "description": "Minimum number of rows to display.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    }
+    "maxRows": { "description": "Maximum number of rows to display." },
+    "minRows": { "description": "Minimum number of rows to display." }
   },
   "classDescriptions": {}
 }

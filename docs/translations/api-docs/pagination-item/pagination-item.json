@@ -1,84 +1,29 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "classes": {
-      "description": "Override or extend the styles applied to the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "classes": { "description": "Override or extend the styles applied to the component." },
     "color": {
-      "description": "The active color. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The active color. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>."
     },
     "component": {
-      "description": "The component used for the root node. Either a string to use a HTML element or a component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
     "components": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead."
     },
-    "disabled": {
-      "description": "If <code>true</code>, the component is disabled.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "page": {
-      "description": "The current page number.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "selected": {
-      "description": "If <code>true</code> the pagination item is selected.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "shape": {
-      "description": "The shape of the pagination item.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "size": {
-      "description": "The size of the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "disabled": { "description": "If <code>true</code>, the component is disabled." },
+    "page": { "description": "The current page number." },
+    "selected": { "description": "If <code>true</code> the pagination item is selected." },
+    "shape": { "description": "The shape of the pagination item." },
+    "size": { "description": "The size of the component." },
     "slots": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future."
     },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
-    "type": {
-      "description": "The type of pagination item.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "variant": {
-      "description": "The variant to use.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    }
+    "type": { "description": "The type of pagination item." },
+    "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

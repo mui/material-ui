@@ -1,12 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": {
-      "description": "A list of <code>&lt;Tab /&gt;</code> elements.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    }
+    "children": { "description": "A list of <code>&lt;Tab /&gt;</code> elements." }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

@@ -1,95 +1,31 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": {
-      "description": "The content of the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "classes": {
-      "description": "Override or extend the styles applied to the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "collapseIcon": {
-      "description": "The icon used to collapse the node.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "children": { "description": "The content of the component." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "collapseIcon": { "description": "The icon used to collapse the node." },
     "ContentComponent": {
       "description": "The component used for the content node.",
-      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>."
     },
-    "ContentProps": {
-      "description": "Props applied to ContentComponent",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "disabled": {
-      "description": "If <code>true</code>, the node is disabled.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "endIcon": {
-      "description": "The icon displayed next to a end node.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "expandIcon": {
-      "description": "The icon used to expand the node.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "icon": {
-      "description": "The icon to display next to the tree node&#39;s label.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "label": {
-      "description": "The tree node label.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "nodeId": {
-      "description": "The id of the node.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "ContentProps": { "description": "Props applied to ContentComponent" },
+    "disabled": { "description": "If <code>true</code>, the node is disabled." },
+    "endIcon": { "description": "The icon displayed next to a end node." },
+    "expandIcon": { "description": "The icon used to expand the node." },
+    "icon": { "description": "The icon to display next to the tree node&#39;s label." },
+    "label": { "description": "The tree node label." },
+    "nodeId": { "description": "The id of the node." },
     "onFocus": {
-      "description": "This prop isn&#39;t supported. Use the <code>onNodeFocus</code> callback on the tree if you need to monitor a node&#39;s focus.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "This prop isn&#39;t supported. Use the <code>onNodeFocus</code> callback on the tree if you need to monitor a node&#39;s focus."
     },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "TransitionComponent": {
-      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
     },
     "TransitionProps": {
-      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
     }
   },
   "classDescriptions": {

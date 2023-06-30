@@ -2,100 +2,44 @@
   "componentDescription": "",
   "propDescriptions": {
     "actions": {
-      "description": "A ref with imperative actions. It allows to select the first or last menu item.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "A ref with imperative actions. It allows to select the first or last menu item."
     },
     "anchorEl": {
-      "description": "An HTML element, <a href=\"https://popper.js.org/docs/v2/virtual-elements/\">virtualElement</a>, or a function that returns either. It&#39;s used to set the position of the popper. The return value will passed as the reference object of the Popper instance.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "An HTML element, <a href=\"https://popper.js.org/docs/v2/virtual-elements/\">virtualElement</a>, or a function that returns either. It&#39;s used to set the position of the popper. The return value will passed as the reference object of the Popper instance."
     },
     "color": {
-      "description": "The color of the component. It supports those theme colors that make sense for this component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The color of the component. It supports those theme colors that make sense for this component."
     },
     "component": {
-      "description": "The component used for the root node. Either a string to use a HTML element or a component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
     "disablePortal": {
-      "description": "The <code>children</code> will be under the DOM hierarchy of the parent component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The <code>children</code> will be under the DOM hierarchy of the parent component."
     },
     "invertedColors": {
-      "description": "If <code>true</code>, the children with an implicit color prop invert their colors to match the component&#39;s variant and color.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "If <code>true</code>, the children with an implicit color prop invert their colors to match the component&#39;s variant and color."
     },
     "keepMounted": {
-      "description": "Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Popper.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Popper."
     },
     "modifiers": {
-      "description": "Popper.js is based on a &quot;plugin-like&quot; architecture, most of its features are fully encapsulated &quot;modifiers&quot;.<br>A modifier is a function that is called each time Popper.js needs to compute the position of the popper. For this reason, modifiers should be very performant to avoid bottlenecks. To learn how to create a modifier, <a href=\"https://popper.js.org/docs/v2/modifiers/\">read the modifiers documentation</a>.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Popper.js is based on a &quot;plugin-like&quot; architecture, most of its features are fully encapsulated &quot;modifiers&quot;.<br>A modifier is a function that is called each time Popper.js needs to compute the position of the popper. For this reason, modifiers should be very performant to avoid bottlenecks. To learn how to create a modifier, <a href=\"https://popper.js.org/docs/v2/modifiers/\">read the modifiers documentation</a>."
     },
-    "onClose": {
-      "description": "Triggered when focus leaves the menu and the menu should close.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "onClose": { "description": "Triggered when focus leaves the menu and the menu should close." },
     "onItemsChange": {
-      "description": "Function called when the items displayed in the menu change.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Function called when the items displayed in the menu change."
     },
-    "open": {
-      "description": "Controls whether the menu is displayed.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "open": { "description": "Controls whether the menu is displayed." },
     "size": {
-      "description": "The size of the component (affect other nested list* components because the <code>Menu</code> inherits <code>List</code>).",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The size of the component (affect other nested list* components because the <code>Menu</code> inherits <code>List</code>)."
     },
-    "slotProps": {
-      "description": "The props used for each slot inside.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "slots": {
-      "description": "The components used for each slot inside.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "variant": {
-      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use."
     }
   },
   "classDescriptions": {

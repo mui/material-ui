@@ -1,47 +1,16 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": {
-      "description": "The content of the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "children": { "description": "The content of the component." },
     "color": {
-      "description": "The color of the component. It supports those theme colors that make sense for this component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The color of the component. It supports those theme colors that make sense for this component."
     },
-    "orientation": {
-      "description": "The content direction flow.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "selected": {
-      "description": "If <code>true</code>, the component is selected.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "slotProps": {
-      "description": "The props used for each slot inside.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "slots": {
-      "description": "The components used for each slot inside.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "orientation": { "description": "The content direction flow." },
+    "selected": { "description": "If <code>true</code>, the component is selected." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "variant": {
-      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use."
     }
   },
   "classDescriptions": {

@@ -1,65 +1,25 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "action": {
-      "description": "The action to display in the card header.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "avatar": {
-      "description": "The Avatar element to display.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "classes": {
-      "description": "Override or extend the styles applied to the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "action": { "description": "The action to display in the card header." },
+    "avatar": { "description": "The Avatar element to display." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
     "component": {
-      "description": "The component used for the root node. Either a string to use a HTML element or a component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
     "disableTypography": {
-      "description": "If <code>true</code>, <code>subheader</code> and <code>title</code> won&#39;t be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the <code>title</code> text, and optional <code>subheader</code> text with the Typography component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "If <code>true</code>, <code>subheader</code> and <code>title</code> won&#39;t be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the <code>title</code> text, and optional <code>subheader</code> text with the Typography component."
     },
-    "subheader": {
-      "description": "The content of the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "subheader": { "description": "The content of the component." },
     "subheaderTypographyProps": {
-      "description": "These props will be forwarded to the subheader (as long as disableTypography is not <code>true</code>).",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "These props will be forwarded to the subheader (as long as disableTypography is not <code>true</code>)."
     },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
-    "title": {
-      "description": "The content of the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "title": { "description": "The content of the component." },
     "titleTypographyProps": {
-      "description": "These props will be forwarded to the title (as long as disableTypography is not <code>true</code>).",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "These props will be forwarded to the title (as long as disableTypography is not <code>true</code>)."
     }
   },
   "classDescriptions": {

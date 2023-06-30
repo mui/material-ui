@@ -1,89 +1,31 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "anchorOrigin": {
-      "description": "The anchor of the badge.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "badgeContent": {
-      "description": "The content rendered within the badge.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "anchorOrigin": { "description": "The anchor of the badge." },
+    "badgeContent": { "description": "The content rendered within the badge." },
     "badgeInset": {
-      "description": "The inset of the badge. Support shorthand syntax as described in <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/inset\">https://developer.mozilla.org/en-US/docs/Web/CSS/inset</a>.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The inset of the badge. Support shorthand syntax as described in <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/inset\">https://developer.mozilla.org/en-US/docs/Web/CSS/inset</a>."
     },
-    "children": {
-      "description": "The badge will be added relative to this node.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "children": { "description": "The badge will be added relative to this node." },
     "color": {
-      "description": "The color of the component. It supports those theme colors that make sense for this component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The color of the component. It supports those theme colors that make sense for this component."
     },
     "component": {
-      "description": "The component used for the root node. Either a string to use a HTML element or a component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
-    "invisible": {
-      "description": "If <code>true</code>, the badge is invisible.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "max": {
-      "description": "Max count to show.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "invisible": { "description": "If <code>true</code>, the badge is invisible." },
+    "max": { "description": "Max count to show." },
     "showZero": {
-      "description": "Controls whether the badge is hidden when <code>badgeContent</code> is zero.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Controls whether the badge is hidden when <code>badgeContent</code> is zero."
     },
-    "size": {
-      "description": "The size of the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "slotProps": {
-      "description": "The props used for each slot inside.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "slots": {
-      "description": "The components used for each slot inside.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "size": { "description": "The size of the component." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "variant": {
-      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use."
     }
   },
   "classDescriptions": {

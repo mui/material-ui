@@ -2,40 +2,21 @@
   "componentDescription": "The Fade transition is used by the [Modal](/material-ui/react-modal/) component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "propDescriptions": {
     "addEndListener": {
-      "description": "Add a custom transition end trigger. Called with the transitioning DOM node and a done callback. Allows for more fine grained transition end logic. Note: Timeouts are still used as a fallback if provided.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Add a custom transition end trigger. Called with the transitioning DOM node and a done callback. Allows for more fine grained transition end logic. Note: Timeouts are still used as a fallback if provided."
     },
     "appear": {
-      "description": "Perform the enter transition when it first mounts if <code>in</code> is also <code>true</code>. Set this to <code>false</code> to disable this behavior.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Perform the enter transition when it first mounts if <code>in</code> is also <code>true</code>. Set this to <code>false</code> to disable this behavior."
     },
     "children": {
       "description": "A single child content element.",
-      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>."
     },
     "easing": {
-      "description": "The transition timing function. You may specify a single easing or a object containing enter and exit values.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The transition timing function. You may specify a single easing or a object containing enter and exit values."
     },
-    "in": {
-      "description": "If <code>true</code>, the component will transition in.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "in": { "description": "If <code>true</code>, the component will transition in." },
     "timeout": {
-      "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
     }
   },
   "classDescriptions": {}

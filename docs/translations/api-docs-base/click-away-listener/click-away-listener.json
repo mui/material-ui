@@ -3,33 +3,19 @@
   "propDescriptions": {
     "children": {
       "description": "The wrapped element.",
-      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>."
     },
     "disableReactTree": {
-      "description": "If <code>true</code>, the React tree is ignored and only the DOM tree is considered. This prop changes how portaled elements are handled.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "If <code>true</code>, the React tree is ignored and only the DOM tree is considered. This prop changes how portaled elements are handled."
     },
     "mouseEvent": {
-      "description": "The mouse event to listen to. You can disable the listener by providing <code>false</code>.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The mouse event to listen to. You can disable the listener by providing <code>false</code>."
     },
     "onClickAway": {
-      "description": "Callback fired when a &quot;click away&quot; event is detected.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Callback fired when a &quot;click away&quot; event is detected."
     },
     "touchEvent": {
-      "description": "The touch event to listen to. You can disable the listener by providing <code>false</code>.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The touch event to listen to. You can disable the listener by providing <code>false</code>."
     }
   },
   "classDescriptions": {}

@@ -1,36 +1,13 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": {
-      "description": "The content of the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "classes": {
-      "description": "Override or extend the styles applied to the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "color": {
-      "description": "The dot can have a different colors.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "children": { "description": "The content of the component." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "color": { "description": "The dot can have a different colors." },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
-    "variant": {
-      "description": "The dot can appear filled or outlined.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    }
+    "variant": { "description": "The dot can appear filled or outlined." }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

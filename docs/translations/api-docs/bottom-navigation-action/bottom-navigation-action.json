@@ -2,46 +2,19 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": {
-      "description": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure."
     },
-    "classes": {
-      "description": "Override or extend the styles applied to the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "icon": {
-      "description": "The icon to display.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "label": {
-      "description": "The label element.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "icon": { "description": "The icon to display." },
+    "label": { "description": "The label element." },
     "showLabel": {
-      "description": "If <code>true</code>, the <code>BottomNavigationAction</code> will show its label. By default, only the selected <code>BottomNavigationAction</code> inside <code>BottomNavigation</code> will show its label.<br>The prop defaults to the value (<code>false</code>) inherited from the parent BottomNavigation component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "If <code>true</code>, the <code>BottomNavigationAction</code> will show its label. By default, only the selected <code>BottomNavigationAction</code> inside <code>BottomNavigation</code> will show its label.<br>The prop defaults to the value (<code>false</code>) inherited from the parent BottomNavigation component."
     },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "value": {
-      "description": "You can provide your own value. Otherwise, we fallback to the child position index.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "You can provide your own value. Otherwise, we fallback to the child position index."
     }
   },
   "classDescriptions": {

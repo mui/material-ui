@@ -1,38 +1,22 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": {
-      "description": "The content of the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "children": { "description": "The content of the component." },
     "defaultValue": {
-      "description": "The default value. Use when the component is not controlled.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The default value. Use when the component is not controlled."
     },
     "name": {
-      "description": "The name used to reference the value of the control. If you don&#39;t provide this prop, it falls back to a randomly generated name.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The name used to reference the value of the control. If you don&#39;t provide this prop, it falls back to a randomly generated name."
     },
     "onChange": {
       "description": "Callback fired when a radio button is selected.",
-      "notes": "",
-      "deprecated": "",
       "typeDescriptions": {
         "event": "The event source of the callback.",
         "value": "The value of the selected radio button. You can pull out the new value by accessing <code>event.target.value</code> (string)."
       }
     },
     "value": {
-      "description": "Value of the selected radio button. The DOM API casts this to a string.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Value of the selected radio button. The DOM API casts this to a string."
     }
   },
   "classDescriptions": {

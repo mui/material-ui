@@ -1,53 +1,17 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": {
-      "description": "The content of the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "classes": {
-      "description": "Override or extend the styles applied to the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "direction": {
-      "description": "The direction the button should indicate.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "disabled": {
-      "description": "If <code>true</code>, the component is disabled.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "orientation": {
-      "description": "The component orientation (layout flow direction).",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "children": { "description": "The content of the component." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "direction": { "description": "The direction the button should indicate." },
+    "disabled": { "description": "If <code>true</code>, the component is disabled." },
+    "orientation": { "description": "The component orientation (layout flow direction)." },
     "slotProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The extra props for the slot components. You can override the existing props or add new ones."
     },
-    "slots": {
-      "description": "The components used for each slot inside.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
   },
   "classDescriptions": {

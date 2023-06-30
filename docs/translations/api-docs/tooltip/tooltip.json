@@ -1,179 +1,79 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "arrow": {
-      "description": "If <code>true</code>, adds an arrow to the tooltip.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "arrow": { "description": "If <code>true</code>, adds an arrow to the tooltip." },
     "children": {
       "description": "Tooltip reference element.",
-      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>."
     },
-    "classes": {
-      "description": "Override or extend the styles applied to the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "classes": { "description": "Override or extend the styles applied to the component." },
     "components": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead."
     },
     "componentsProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>slotProps</code> prop. It&#39;s recommended to use the <code>slotProps</code> prop instead, as <code>componentsProps</code> will be deprecated in the future.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>slotProps</code> prop. It&#39;s recommended to use the <code>slotProps</code> prop instead, as <code>componentsProps</code> will be deprecated in the future."
     },
     "describeChild": {
-      "description": "Set to <code>true</code> if the <code>title</code> acts as an accessible description. By default the <code>title</code> acts as an accessible label for the child.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Set to <code>true</code> if the <code>title</code> acts as an accessible description. By default the <code>title</code> acts as an accessible label for the child."
     },
-    "disableFocusListener": {
-      "description": "Do not respond to focus-visible events.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "disableHoverListener": {
-      "description": "Do not respond to hover events.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "disableFocusListener": { "description": "Do not respond to focus-visible events." },
+    "disableHoverListener": { "description": "Do not respond to hover events." },
     "disableInteractive": {
-      "description": "Makes a tooltip not interactive, i.e. it will close when the user hovers over the tooltip before the <code>leaveDelay</code> is expired.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Makes a tooltip not interactive, i.e. it will close when the user hovers over the tooltip before the <code>leaveDelay</code> is expired."
     },
-    "disableTouchListener": {
-      "description": "Do not respond to long press touch events.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "disableTouchListener": { "description": "Do not respond to long press touch events." },
     "enterDelay": {
-      "description": "The number of milliseconds to wait before showing the tooltip. This prop won&#39;t impact the enter touch delay (<code>enterTouchDelay</code>).",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The number of milliseconds to wait before showing the tooltip. This prop won&#39;t impact the enter touch delay (<code>enterTouchDelay</code>)."
     },
     "enterNextDelay": {
-      "description": "The number of milliseconds to wait before showing the tooltip when one was already recently opened.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The number of milliseconds to wait before showing the tooltip when one was already recently opened."
     },
     "enterTouchDelay": {
-      "description": "The number of milliseconds a user must touch the element before showing the tooltip.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The number of milliseconds a user must touch the element before showing the tooltip."
     },
     "followCursor": {
-      "description": "If <code>true</code>, the tooltip follow the cursor over the wrapped element.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "If <code>true</code>, the tooltip follow the cursor over the wrapped element."
     },
     "id": {
-      "description": "This prop is used to help implement the accessibility logic. If you don&#39;t provide this prop. It falls back to a randomly generated id.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "This prop is used to help implement the accessibility logic. If you don&#39;t provide this prop. It falls back to a randomly generated id."
     },
     "leaveDelay": {
-      "description": "The number of milliseconds to wait before hiding the tooltip. This prop won&#39;t impact the leave touch delay (<code>leaveTouchDelay</code>).",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The number of milliseconds to wait before hiding the tooltip. This prop won&#39;t impact the leave touch delay (<code>leaveTouchDelay</code>)."
     },
     "leaveTouchDelay": {
-      "description": "The number of milliseconds after the user stops touching an element before hiding the tooltip.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The number of milliseconds after the user stops touching an element before hiding the tooltip."
     },
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
-      "notes": "",
-      "deprecated": "",
       "typeDescriptions": { "event": "The event source of the callback." }
     },
     "onOpen": {
       "description": "Callback fired when the component requests to be open.",
-      "notes": "",
-      "deprecated": "",
       "typeDescriptions": { "event": "The event source of the callback." }
     },
-    "open": {
-      "description": "If <code>true</code>, the component is shown.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "placement": {
-      "description": "Tooltip placement.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "PopperComponent": {
-      "description": "The component used for the popper.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "open": { "description": "If <code>true</code>, the component is shown." },
+    "placement": { "description": "Tooltip placement." },
+    "PopperComponent": { "description": "The component used for the popper." },
     "PopperProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/popper/\"><code>Popper</code></a> element.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Props applied to the <a href=\"/material-ui/api/popper/\"><code>Popper</code></a> element."
     },
     "slotProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>componentsProps</code> prop, which will be deprecated in the future.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>componentsProps</code> prop, which will be deprecated in the future."
     },
     "slots": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future."
     },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "title": {
-      "description": "Tooltip title. Zero-length titles string, undefined, null and false are never displayed.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Tooltip title. Zero-length titles string, undefined, null and false are never displayed."
     },
     "TransitionComponent": {
-      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
     },
     "TransitionProps": {
-      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
     }
   },
   "classDescriptions": {

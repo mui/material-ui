@@ -2,58 +2,21 @@
   "componentDescription": "",
   "propDescriptions": {
     "color": {
-      "description": "The color of the component. It supports those theme colors that make sense for this component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The color of the component. It supports those theme colors that make sense for this component."
     },
-    "endDecorator": {
-      "description": "Trailing adornment for this input.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "endDecorator": { "description": "Trailing adornment for this input." },
     "error": {
-      "description": "If <code>true</code>, the <code>input</code> will indicate an error. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "If <code>true</code>, the <code>input</code> will indicate an error. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
     },
-    "maxRows": {
-      "description": "Maximum number of rows to display.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "minRows": {
-      "description": "Minimum number of rows to display.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "size": {
-      "description": "The size of the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "startDecorator": {
-      "description": "Leading adornment for this input.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "maxRows": { "description": "Maximum number of rows to display." },
+    "minRows": { "description": "Minimum number of rows to display." },
+    "size": { "description": "The size of the component." },
+    "startDecorator": { "description": "Leading adornment for this input." },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "variant": {
-      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use."
     }
   },
   "classDescriptions": {

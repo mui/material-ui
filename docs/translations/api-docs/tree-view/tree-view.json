@@ -1,88 +1,33 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": {
-      "description": "The content of the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "classes": {
-      "description": "Override or extend the styles applied to the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "defaultCollapseIcon": {
-      "description": "The default icon used to collapse the node.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "children": { "description": "The content of the component." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "defaultCollapseIcon": { "description": "The default icon used to collapse the node." },
     "defaultEndIcon": {
-      "description": "The default icon displayed next to a end node. This is applied to all tree nodes and can be overridden by the TreeItem <code>icon</code> prop.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The default icon displayed next to a end node. This is applied to all tree nodes and can be overridden by the TreeItem <code>icon</code> prop."
     },
-    "defaultExpanded": {
-      "description": "Expanded node ids. (Uncontrolled)",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "defaultExpandIcon": {
-      "description": "The default icon used to expand the node.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "defaultExpanded": { "description": "Expanded node ids. (Uncontrolled)" },
+    "defaultExpandIcon": { "description": "The default icon used to expand the node." },
     "defaultParentIcon": {
-      "description": "The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem <code>icon</code> prop.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem <code>icon</code> prop."
     },
     "defaultSelected": {
-      "description": "Selected node ids. (Uncontrolled) When <code>multiSelect</code> is true this takes an array of strings; when false (default) a string.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Selected node ids. (Uncontrolled) When <code>multiSelect</code> is true this takes an array of strings; when false (default) a string."
     },
     "disabledItemsFocusable": {
-      "description": "If <code>true</code>, will allow focus on disabled items.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "If <code>true</code>, will allow focus on disabled items."
     },
-    "disableSelection": {
-      "description": "If <code>true</code> selection is disabled.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
-    "expanded": {
-      "description": "Expanded node ids. (Controlled)",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "disableSelection": { "description": "If <code>true</code> selection is disabled." },
+    "expanded": { "description": "Expanded node ids. (Controlled)" },
     "id": {
-      "description": "This prop is used to help implement the accessibility logic. If you don&#39;t provide this prop. It falls back to a randomly generated id.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "This prop is used to help implement the accessibility logic. If you don&#39;t provide this prop. It falls back to a randomly generated id."
     },
     "multiSelect": {
-      "description": "If true <code>ctrl</code> and <code>shift</code> will trigger multiselect.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "If true <code>ctrl</code> and <code>shift</code> will trigger multiselect."
     },
     "onNodeFocus": {
       "description": "Callback fired when tree items are focused.",
-      "notes": "",
-      "deprecated": "",
       "typeDescriptions": {
         "event": "The event source of the callback <strong>Warning</strong>: This is a generic event not a focus event.",
         "value": "of the focused node."
@@ -90,8 +35,6 @@
     },
     "onNodeSelect": {
       "description": "Callback fired when tree items are selected/unselected.",
-      "notes": "",
-      "deprecated": "",
       "typeDescriptions": {
         "event": "The event source of the callback",
         "nodeIds": "Ids of the selected nodes. When <code>multiSelect</code> is true this is an array of strings; when false (default) a string."
@@ -99,24 +42,16 @@
     },
     "onNodeToggle": {
       "description": "Callback fired when tree items are expanded/collapsed.",
-      "notes": "",
-      "deprecated": "",
       "typeDescriptions": {
         "event": "The event source of the callback.",
         "nodeIds": "The ids of the expanded nodes."
       }
     },
     "selected": {
-      "description": "Selected node ids. (Controlled) When <code>multiSelect</code> is true this takes an array of strings; when false (default) a string.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "Selected node ids. (Controlled) When <code>multiSelect</code> is true this takes an array of strings; when false (default) a string."
     },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
   },
   "classDescriptions": { "root": { "description": "Styles applied to the root element." } }

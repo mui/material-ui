@@ -452,9 +452,9 @@ const attachTranslations = (reactApi: ReactApi) => {
 
       translations.propDescriptions[propName] = {
         description: renderMarkdownInline(jsDocText),
-        notes: renderMarkdownInline(notes),
-        deprecated: renderMarkdownInline(deprecated),
-        typeDescriptions,
+        notes: renderMarkdownInline(notes) || undefined,
+        deprecated: renderMarkdownInline(deprecated) || undefined,
+        typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
       };
     }
   });

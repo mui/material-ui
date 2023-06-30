@@ -2,22 +2,11 @@
   "componentDescription": "A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.",
   "propDescriptions": {
     "children": {
-      "description": "The content of the component, normally <code>Icon</code>, <code>SvgIcon</code>, or a <code>@mui/icons-material</code> SVG icon element.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The content of the component, normally <code>Icon</code>, <code>SvgIcon</code>, or a <code>@mui/icons-material</code> SVG icon element."
     },
-    "classes": {
-      "description": "Override or extend the styles applied to the component.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
-    },
+    "classes": { "description": "Override or extend the styles applied to the component." },
     "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
-      "notes": "",
-      "deprecated": "",
-      "typeDescriptions": {}
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
   },
   "classDescriptions": {
