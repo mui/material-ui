@@ -12,6 +12,15 @@ module.exports = {
       boxShadow: {
         'outline-purple': '0 0 0 3px #c084fc',
       },
+      minWidth: {
+        badge: '22px',
+      },
+      minHeight: {
+        badge: '22px',
+      },
+      lineHeight: {
+        5.5: '1.375rem',
+      },
     },
   },
   corePlugins: {
