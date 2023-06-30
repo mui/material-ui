@@ -154,13 +154,13 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
     plainColor: getCssVarColor(`palette-${color}-300`),
     plainHoverBg: getCssVarColor(`palette-${color}-800`),
-    plainActiveBg: getCssVarColor(`palette-${color}-900`),
+    plainActiveBg: getCssVarColor(`palette-${color}-700`),
     plainDisabledColor: getCssVarColor(`palette-neutral-500`),
 
     outlinedColor: getCssVarColor(`palette-${color}-200`),
     outlinedBorder: getCssVarColor(`palette-${color}-700`),
     outlinedHoverBg: getCssVarColor(`palette-${color}-800`),
-    outlinedActiveBg: getCssVarColor(`palette-${color}-900`),
+    outlinedActiveBg: getCssVarColor(`palette-${color}-700`),
     outlinedDisabledColor: getCssVarColor(`palette-neutral-500`),
     outlinedDisabledBorder: getCssVarColor(`palette-neutral-800`),
 

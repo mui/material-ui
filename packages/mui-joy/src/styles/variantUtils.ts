@@ -373,8 +373,8 @@ export const createSolidInversion = (theme: ThemeFragment, addDefaultValues?: bo
           `palette-${color}-darkChannel`,
         )} / 0.6)`,
         [prefixVar('--palette-text-primary')]: getCssVar(`palette-common-white`),
-        [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
-        [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
+        [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-200`),
+        [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-300`),
         [prefixVar('--palette-text-icon')]: getCssVar(`palette-${color}-200`),
         [prefixVar('--palette-divider')]: `rgba(${getCssVar(
           `palette-${color}-lightChannel`,

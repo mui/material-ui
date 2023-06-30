@@ -86,6 +86,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     [`&.${listItemButtonClasses.selected}`]: {
       '--Icon-opacity': 1,
+      ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
     },
     [`&:not(.${listItemButtonClasses.selected}, [aria-selected="true"])`]: {
       '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
@@ -101,7 +102,13 @@ const ListItemButtonRoot = styled(StyledListItemButton, {
   name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({});
+})(({ ownerState, theme }) => ({
+  ...(!ownerState.row && {
+    [`&.${listItemButtonClasses.selected}`]: {
+      fontWeight: theme.vars.fontWeight.md,
+    },
+  }),
+}));
 /**
  *
  * Demos:
@@ -128,7 +135,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     orientation = 'horizontal',
     role,
     selected = false,
-    color: colorProp = selected ? 'primary' : 'neutral',
+    color: colorProp = 'neutral',
     variant = 'plain',
     slots = {},
     slotProps = {},

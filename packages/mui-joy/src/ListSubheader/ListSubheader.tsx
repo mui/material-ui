@@ -41,6 +41,7 @@ const ListSubheaderRoot = styled('div', {
   ...theme.typography['body-xs'],
   fontSize: 'max(0.75em, 0.625rem)',
   textTransform: 'uppercase',
+  letterSpacing: '0.1em',
   ...(ownerState.sticky && {
     position: 'sticky',
     top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
