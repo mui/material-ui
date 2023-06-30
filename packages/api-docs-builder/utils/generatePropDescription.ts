@@ -155,7 +155,7 @@ export default function generatePropDescription(
   let notes = '';
   if (isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type)) {
     notes +=
-      '<br>⚠️ [Needs to be able to hold a ref](/material-ui/guides/composition/#caveat-with-refs).';
+      '⚠️ [Needs to be able to hold a ref](/material-ui/guides/composition/#caveat-with-refs).';
   }
 
   return {

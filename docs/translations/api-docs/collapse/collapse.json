@@ -11,7 +11,7 @@
     },
     "component": {
       "description": "The component used for the root node. Either a string to use a HTML element or a component.",
-      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>."
+      "notes": "⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>."
     },
     "easing": {
       "description": "The transition timing function. You may specify a single easing or a object containing enter and exit values."

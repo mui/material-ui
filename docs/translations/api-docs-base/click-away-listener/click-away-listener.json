@@ -3,7 +3,7 @@
   "propDescriptions": {
     "children": {
       "description": "The wrapped element.",
-      "notes": "<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>."
+      "notes": "⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>."
     },
     "disableReactTree": {
       "description": "If <code>true</code>, the React tree is ignored and only the DOM tree is considered. This prop changes how portaled elements are handled."
