@@ -218,7 +218,7 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
   [`&.${autocompleteClasses.popupIndicatorOpen}`]: {
     transform: 'rotate(180deg)',
-    '--Icon-opacity': 1,
+    '--Icon-color': 'currentColor',
   },
 });
 

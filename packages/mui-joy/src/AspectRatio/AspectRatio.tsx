@@ -39,8 +39,9 @@ const AspectRatioRoot = styled('div', {
     '--AspectRatio-paddingBottom': `clamp(var(--AspectRatio-minHeight), calc(100% / (${ownerState.ratio})), var(--AspectRatio-maxHeight))`,
     '--AspectRatio-maxHeight': maxHeight || '9999px',
     '--AspectRatio-minHeight': minHeight || '0px',
-    '--Icon-color': 'currentColor',
-    '--Icon-opacity': 1,
+    ...(ownerState.color !== 'neutral' && {
+      '--Icon-color': 'currentColor',
+    }),
     borderRadius: 'var(--AspectRatio-radius)',
     flexDirection: 'column',
     margin: 'var(--AspectRatio-margin)',

@@ -93,13 +93,11 @@ export const ButtonRoot = styled('button', {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
-      '--Icon-color': 'currentColor',
-      '--Icon-opacity': 0.64,
-      '&[aria-pressed="true"]': {
-        '--Icon-opacity': 1,
-      },
+      ...(ownerState.color !== 'neutral' && {
+        '--Icon-color': 'currentColor',
+      }),
       ...(ownerState.size === 'sm' && {
-        '--Icon-fontSize': '1.25rem',
+        '--Icon-fontSize': '1.125rem',
         '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--CircularProgress-thickness': '2px',
         '--Button-gap': '0.375rem',
@@ -109,7 +107,7 @@ export const ButtonRoot = styled('button', {
         paddingInline: '0.75rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
+        '--Icon-fontSize': '1.25rem', // control the SvgIcon font-size
         '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--CircularProgress-thickness': '3px',
         '--Button-gap': '0.5rem',
@@ -119,7 +117,7 @@ export const ButtonRoot = styled('button', {
         paddingInline: '1rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': '1.75rem',
+        '--Icon-fontSize': '1.5rem',
         '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--CircularProgress-thickness': '4px',
         '--Button-gap': '0.75rem',

@@ -35,10 +35,9 @@ const ChipDeleteRoot = styled('button', {
 })<{ ownerState: ChipDeleteOwnerState }>(({ theme, ownerState }) => [
   {
     '--Icon-margin': 'initial', // prevent overrides from parent
-    '--Icon-color': 'currentColor',
-    '&:not(:hover, :active)': {
-      '--Icon-opacity': 0.8,
-    },
+    ...(ownerState.color !== 'neutral' && {
+      '--Icon-color': 'currentColor',
+    }),
     pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
     cursor: 'pointer',
     width: 'var(--Chip-deleteSize, 2rem)',

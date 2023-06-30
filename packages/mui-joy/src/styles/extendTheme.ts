@@ -213,7 +213,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         primary: getCssVarColor('palette-neutral-800'),
         secondary: getCssVarColor('palette-neutral-700'),
         tertiary: getCssVarColor('palette-neutral-600'),
-        icon: getCssVarColor('palette-neutral-400'),
+        icon: getCssVarColor('palette-neutral-500'),
       },
       background: {
         body: getCssVarColor('palette-neutral-50'),
@@ -536,7 +536,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
               return {
                 color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
                 margin: 'var(--Icon-margin)',
-                opacity: 'var(--Icon-opacity)',
                 ...(ownerState.fontSize &&
                   ownerState.fontSize !== 'inherit' && {
                     fontSize: `var(--Icon-fontSize, ${

@@ -38,7 +38,6 @@ export default function RentalDashboard() {
         styles={(theme) => ({
           '[data-feather], .feather': {
             color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
-            opacity: 'var(--Icon-opacity)',
             margin: 'var(--Icon-margin)',
             fontSize: `var(--Icon-fontSize, ${theme.vars.fontSize.xl})`,
             width: '1em',

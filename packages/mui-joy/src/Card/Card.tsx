@@ -37,9 +37,8 @@ const CardRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => [
   {
-    ...(ownerState.variant === 'solid' && {
+    ...(ownerState.color !== 'neutral' && {
       '--Icon-color': 'currentColor',
-      '--Icon-opacity': 1,
     }),
     // a context variable for any child component
     '--Card-childRadius':

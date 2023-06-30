@@ -75,9 +75,7 @@ const LinkRoot = styled('a', {
       '--Icon-color': 'currentColor',
       '--CircularProgress-size': '1.25em',
       '--CircularProgress-thickness': '3px',
-      '&:not(:hover, :focus-visible, :active)': {
-        '--Icon-opacity': 0.8,
-      },
+      '--Icon-color': 'currentColor',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
       ...(ownerState.underline === 'none' && {
         textDecoration: 'none',

@@ -172,10 +172,6 @@ const SelectRoot = styled('div', {
       [`&.${selectClasses.disabled}`]: {
         '--Select-indicatorColor': 'inherit',
       },
-      [`&:not(.${selectClasses.expanded}):not(.${selectClasses.focusVisible}):not(:hover) .${selectClasses.indicator}`]:
-        {
-          '--Icon-opacity': 0.6,
-        },
     },
     {
       '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],

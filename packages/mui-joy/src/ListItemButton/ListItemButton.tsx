@@ -42,8 +42,9 @@ const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
 export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOwnerState }>(
   ({ theme, ownerState }) => ({
     '--Icon-margin': 'initial', // reset the icon's margin.
-    '--Icon-color': 'currentColor',
-    '--Icon-opacity': 0.64,
+    ...(ownerState.color !== 'neutral' && {
+      '--Icon-color': 'currentColor',
+    }),
     WebkitTapHighlightColor: 'transparent',
     boxSizing: 'border-box',
     position: 'relative',
@@ -84,10 +85,8 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     minInlineSize: 0,
     [theme.focus.selector]: theme.focus.default,
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    [`&.${listItemButtonClasses.selected}`]: {
-      '--Icon-opacity': 1,
-      ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-    },
+    [`&.${listItemButtonClasses.selected}`]:
+      theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
     [`&:not(.${listItemButtonClasses.selected}, [aria-selected="true"])`]: {
       '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
       '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],

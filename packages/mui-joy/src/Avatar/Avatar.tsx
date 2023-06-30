@@ -34,8 +34,9 @@ const AvatarRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AvatarOwnerState }>(({ theme, ownerState }) => ({
-  '--Icon-color': 'currentColor',
-  '--Icon-opacity': '0.44',
+  ...(ownerState.color !== 'neutral' && {
+    '--Icon-color': 'currentColor',
+  }),
   ...theme.typography[`title-${ownerState.size!}`],
   ...(ownerState.size === 'sm' && {
     width: `var(--Avatar-size, 2rem)`,

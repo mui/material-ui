@@ -37,11 +37,9 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
   ({ theme, ownerState }) => [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
-      '--Icon-color': 'currentColor',
-      '--Icon-opacity': 0.72,
-      '&:hover, &[aria-pressed="true"])': {
-        '--Icon-opacity': 1,
-      },
+      ...(ownerState.color !== 'neutral' && {
+        '--Icon-color': 'currentColor',
+      }),
       ...(ownerState.instanceSize && {
         '--IconButton-size': { sm: '2rem', md: '2.5rem', lg: '3rem' }[ownerState.instanceSize],
       }),
@@ -100,8 +98,9 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
     },
     {
       '&:hover': {
-        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        '--Icon-opacity': 1,
+        '@media (hover: hover)': {
+          ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        },
       },
     },
     { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
