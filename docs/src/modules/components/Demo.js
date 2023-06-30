@@ -306,7 +306,6 @@ const DemoRootJoy = joyStyled('div', {
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
     padding: theme.spacing(3),
-    borderRadius: 0,
     border: `1px solid`,
     borderColor: grey[100],
     borderLeftWidth: 0,
@@ -325,7 +324,7 @@ const DemoRootJoy = joyStyled('div', {
   /* Mostly meant for introduction demos. */
   ...(bg === 'gradient' && {
     [theme.breakpoints.up('sm')]: {
-      borderRadius: '12px',
+      borderRadius: 12,
     },
     borderRadius: 0,
     padding: theme.spacing(0),
