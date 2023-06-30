@@ -36,21 +36,43 @@ const TabRoot = styled(StyledListItemButton, {
   name: 'JoyTab',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabOwnerState }>(({ theme, ownerState }) => {
-  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+})<{ ownerState: TabOwnerState }>(({ ownerState }) => {
   return {
-    justifyContent: 'center',
-    flexGrow: 1,
-    ...(!ownerState.row &&
-      ownerState.orientation === 'horizontal' && {
-        justifyContent: 'flex-start',
-      }),
-    ...(ownerState.selected && {
-      boxShadow: theme.shadow.sm,
-      ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
+    '--unstable_Tab-borderPlaceholder': 'var(--Tab-lineThickness) solid transparent',
+    ...(!ownerState.row && {
+      flexGrow: 1,
+      justifyContent: 'center',
     }),
+    ...(ownerState.row
+      ? // 1px equals to the TabList's underline thickness
+        { borderBottom: '1px solid transparent' }
+      : { borderRight: '1px solid transparent' }),
+    backgroundClip: 'padding-box', // to not cover the TabList's underline when hover, active
+    // using pseudo element for showing active indicator is best for controlling the size and customization, e.g. radius, width
+    // border and box-shadow did not work well.
+    '&::after': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      margin: 'auto', // align center if fixed width/height
+      background: 'var(--Tab-lineColor)',
+      ...(ownerState.row
+        ? {
+            height: 'var(--Tab-lineThickness)',
+            left: 0,
+            right: 0,
+            bottom: -1,
+          }
+        : {
+            width: 'var(--Tab-lineThickness)',
+            top: 0,
+            bottom: 0,
+            right: -1,
+          }),
+    },
+    '&[aria-selected="true"]': {
+      '--Tab-lineColor': 'var(--Tab-selectedLineColor, currentColor)',
+    },
   };
 });
 /**

@@ -37,6 +37,10 @@ export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: React.ReactNode;
     /**
+     * If `true`, the TabList's underline will disappear.
+     */
+    disableUnderline?: boolean;
+    /**
      * The size of the component.
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', TabListPropsSizeOverrides>;

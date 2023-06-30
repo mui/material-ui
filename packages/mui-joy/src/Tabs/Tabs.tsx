@@ -43,10 +43,14 @@ const TabsRoot = styled(SheetRoot, {
     '--Tabs-gap': '1.25rem',
   }),
   '--Tab-lineThickness': '2px',
+  '--Tab-selectedLineColor': 'currentColor',
+  // === private variables ===
+  '--_TabList-direction': ownerState.orientation === 'vertical' ? 'column' : 'row',
+  '--_TabList-underline': ownerState.orientation === 'vertical' ? '-1px 0' : '0 -1px',
   display: 'flex',
-  flexDirection: ownerState.reversed ? 'column-reverse' : 'column',
+  flexDirection: 'column',
   ...(ownerState.orientation === 'vertical' && {
-    flexDirection: ownerState.reversed ? 'row-reverse' : 'row',
+    flexDirection: 'row',
     alignItems: 'flex-start',
   }),
 }));
