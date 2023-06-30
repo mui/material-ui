@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Inter } from 'next/font/google';
+import Link from 'next/link';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -11,8 +12,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import HomeIcon from '@mui/icons-material/Home';
+import StarIcon from '@mui/icons-material/Star';
+import ChecklistIcon from '@mui/icons-material/Checklist';
+import SettingsIcon from '@mui/icons-material/Settings';
+import SupportIcon from '@mui/icons-material/Support';
+import LogoutIcon from '@mui/icons-material/Logout';
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
 
 export const metadata = {
@@ -24,18 +29,27 @@ const inter = Inter({ subsets: ['latin'] });
 
 const DRAWER_WIDTH = 240;
 
+const LINKS = [
+  { text: 'Home', href: '/', icon: HomeIcon },
+  { text: 'Starred', href: '/starred', icon: StarIcon },
+  { text: 'Tasks', href: '/tasks', icon: ChecklistIcon },
+];
+
+const PLACEHOLDER_LINKS = [
+  { text: 'Settings', icon: SettingsIcon },
+  { text: 'Support', icon: SupportIcon },
+  { text: 'Logout', icon: LogoutIcon },
+];
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
         <ThemeRegistry>
-          <AppBar
-            position="fixed"
-            sx={{ width: `calc(100% - ${DRAWER_WIDTH}px)`, ml: `${DRAWER_WIDTH}px` }}
-          >
-            <Toolbar>
-              <Typography variant="h6" noWrap component="div">
-                Next.js 13 + Material UI
+          <AppBar position="fixed" sx={{ zIndex: 2000 }}>
+            <Toolbar sx={{ backgroundColor: 'background.paper' }}>
+              <Typography variant="h6" noWrap component="div" color="black">
+                Next.js App Router
               </Typography>
             </Toolbar>
           </AppBar>
@@ -46,29 +60,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '& .MuiDrawer-paper': {
                 width: DRAWER_WIDTH,
                 boxSizing: 'border-box',
+                top: ['48px', '56px', '64px'],
+                height: 'auto',
+                bottom: 0,
               },
             }}
             variant="permanent"
             anchor="left"
           >
-            <Toolbar />
             <Divider />
             <List>
-              {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              {LINKS.map(({ text, href, icon: Icon }) => (
+                <ListItem key={href} disablePadding>
+                  <ListItemButton component={Link} href={href}>
+                    <ListItemIcon>
+                      <Icon />
+                    </ListItemIcon>
                     <ListItemText primary={text} />
                   </ListItemButton>
                 </ListItem>
               ))}
             </List>
-            <Divider />
+            <Divider sx={{ mt: 'auto' }} />
             <List>
-              {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              {PLACEHOLDER_LINKS.map(({ text, icon: Icon }) => (
                 <ListItem key={text} disablePadding>
                   <ListItemButton>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    <ListItemIcon>
+                      <Icon />
+                    </ListItemIcon>
                     <ListItemText primary={text} />
                   </ListItemButton>
                 </ListItem>
