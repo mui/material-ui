@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { NoSsr } from '@mui/base';
@@ -13,7 +13,7 @@ const Root = styled('div')(({ theme }) => ({
   alignItems: 'center',
   height: 40,
   paddingInline: theme.spacing(2),
-  borderBottom: `1px solid ${theme.palette.primaryDark[500]}`,
+  borderBottom: `1px dashed ${alpha(theme.palette.primary[100], 0.1)}`,
   '& > .MuiCode-copy': {
     display: 'block',
     top: 'unset',
@@ -24,11 +24,12 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-const Text = styled(Typography)(({ theme }) => ({
-  textTransform: 'uppercase',
-  color: blue[100],
-  fontWeight: 500,
+const HeaderText = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.pxToRem(10),
+  fontWeight: theme.typography.fontWeightBold,
+  textTransform: 'uppercase',
+  letterSpacing: '.08rem',
+  color: theme.palette.primary[200],
 }));
 
 function DemoEditorHeader(props) {
@@ -43,7 +44,7 @@ function DemoEditorHeader(props) {
 
   return hideHeader ? null : (
     <Root className="MuiCode-editor-header">
-      {showEditableIndicatorText ? <Text variant="p">{t('editorHeaderText')}</Text> : null}
+      {showEditableIndicatorText ? <HeaderText variant="p">{t('editorHeaderText')}</HeaderText> : null}
       {copyButtonHidden ? null : (
         <NoSsr>
           <CodeCopyButton {...copyButtonProps} code={value} />
