@@ -518,8 +518,8 @@ const StyledModal = styled(Modal)`
   align-items: center;
   justify-content: center;
   transition-property: visibility;
-  transition-delay: ${({ open }) => open ? "0s" : "400ms"};
-  visibility: ${({ open }) => open ? 'visible' : 'hidden'};
+  transition-delay: ${({ open }) => (open ? '0s' : '400ms')};
+  visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
 `;
 
 const StyledBackdrop = styled(Backdrop)`
@@ -531,7 +531,7 @@ const StyledBackdrop = styled(Backdrop)`
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-tap-highlight-color: transparent;
-  opacity: ${({ open }) => open ? 1 : 0};
+  opacity: ${({ open }) => (open ? 1 : 0)};
   transition: opacity 0.3s ease;
 `;
 
@@ -554,7 +554,7 @@ const Dialog = styled('div')({
     opacity: 1,
     boxShadow: 'var(--Panel-shadow)',
     transition: 'all 0.3s ease',
-  }
+  },
 });
 
 const StyledBadge = styled(Badge)(
@@ -1045,7 +1045,11 @@ export default function BaseUIThemesDemo() {
             keepMounted
           >
             <Dialog data-open={openModal}>
-              <Box component="h2" id="unstyled-modal-title" sx={{ mt: 1, mb: 0.5, textWrap: 'balance' }}>
+              <Box
+                component="h2"
+                id="unstyled-modal-title"
+                sx={{ mt: 1, mb: 0.5, textWrap: 'balance' }}
+              >
                 Oh, hey, this is a Base UI modal.
               </Box>
               <Box
