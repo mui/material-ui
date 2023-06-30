@@ -32,7 +32,7 @@ import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMappin
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
 
-const Root = styled(Box)(({ theme }) => [
+const Root = styled('div')(({ theme }) => [
   {
     display: 'none',
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
