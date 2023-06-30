@@ -6,6 +6,7 @@
 
 React Server Components (RSC) is a new feature in React introducing "Server Components".
 In a RSC context such as Next.js, all React components are considered server components unless a "boundary" between server/client is indicated with a `use client` directive at the top of the component.
+
 Currently, all exported components and hooks from MUI libraries (Material UI, Joy UI, Base UI etc) are designated as client components.
 
 ## How to use Material UI with Next.js App Router
@@ -55,7 +56,7 @@ Clone this [example](https://github.com/mui/material-ui/blob/master/examples/mat
 
 #### Theme Registry
 
-In order to
+To set up the theme context, create a `ThemeRegistry` component that composes the Emotion CacheProvider, the Material UI Theme Provider and the `useServerInsertedHTML` hook from `next/navigation` as follows:
 
 ```tsx
 // app/ThemeRegistry.tsx

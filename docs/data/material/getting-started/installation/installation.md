@@ -2,6 +2,14 @@
 
 <p class="description">Install Material UI, the world's most popular React UI framework.</p>
 
+:::warning
+⚗️ Material UI is working on support for React Server Components!
+
+- All components and hooks from MUI libraries are designated as Client Components
+- If you are using the Next.js App Router, see our [guide](/material-ui/guides/next-js-app-router/)
+
+:::
+
 ## Default installation
 
 Run one of the following commands to add Material UI to your project:
