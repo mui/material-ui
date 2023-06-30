@@ -1,4 +1,3 @@
-'use client';
 import PropTypes from 'prop-types';
 import { createGrid as createGrid2 } from '@mui/system/Unstable_Grid';
 import { OverridableComponent } from '@mui/types';
