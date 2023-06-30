@@ -103,7 +103,7 @@ export default function JoyOrderDashboardTemplate() {
               >
                 Dashboard
               </Link>
-              <Typography fontSize="inherit" variant="soft" color="primary">
+              <Typography fontSize="inherit" variant="plain" color="primary">
                 Orders
               </Typography>
             </Breadcrumbs>
