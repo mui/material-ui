@@ -132,7 +132,7 @@ export default function PropertiesTable(props) {
                           <li
                             key={argName}
                             dangerouslySetInnerHTML={{
-                              __html: propertiesDescriptions[propName].typeDescriptions[argName],
+                              __html: `<code>${argName}</code> ${propertiesDescriptions[propName].typeDescriptions[argName]}`,
                             }}
                           />
                         ))}
@@ -143,10 +143,11 @@ export default function PropertiesTable(props) {
                     <p>
                       <span
                         dangerouslySetInnerHTML={{
-                          __html:
+                          __html: `<code>${propData.signature.returned}</code> ${
                             propertiesDescriptions[propName].typeDescriptions[
                               propData.signature.returned
-                            ],
+                            ]
+                          }`,
                         }}
                       />
                     </p>
