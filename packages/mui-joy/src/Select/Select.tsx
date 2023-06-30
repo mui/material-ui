@@ -87,7 +87,7 @@ const SelectRoot = styled('div', {
     {
       '--Select-radius': theme.vars.radius.sm,
       '--Select-gap': '0.5rem',
-      '--Select-placeholderOpacity': 0.5,
+      '--Select-placeholderOpacity': ownerState.variant?.match(/(soft|solid)/) ? 0.7 : 0.5,
       '--Select-decoratorColor': theme.vars.palette.text.icon,
       '--Select-focusedThickness': theme.vars.focus.thickness,
       ...(ownerState.color === 'context'
