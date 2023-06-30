@@ -238,24 +238,8 @@ function createRender(context) {
         return `<h${level}>${headingHtml}</h${level}>`;
       }
 
-      let headingText = headingHtml
-        .replace(
-          /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])\uFE0F?/g,
-          '',
-        ) // remove emojis
-        .replace(/<\/?[^>]+(>|$)/g, '') // remove HTML
-        .trim();
-
-      if (options?.iconsToPersistInToC) {
-        // If the heading contained HTML, it was removed in the previous step.
-        // This step adds it back in if it was in the list of icons to persist.
-        // This is needed for MUI X where we use icons to indicate the pricing plan.
-        options.iconsToPersistInToC.forEach((iconHTML) => {
-          if (headingHtml.includes(iconHTML)) {
-            headingText = `${headingText} ${iconHTML}`;
-          }
-        });
-      }
+      // Remove links to avoid nested links in the TOCs
+      const headingText = headingHtml.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first
