@@ -227,7 +227,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default selected ? 'primary' : 'neutral'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),

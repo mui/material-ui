@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ColorPaletteProp } from '@mui/joy/styles';
+
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
@@ -20,7 +20,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function ColorInversionFooter() {
-  const [color, setColor] = React.useState < ColorPaletteProp > 'neutral';
+  const [color, setColor] = React.useState('neutral');
   return (
     <Sheet
       variant="solid"
@@ -43,6 +43,7 @@ export default function ColorInversionFooter() {
           size="sm"
           onClick={() => {
             const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
+
             const nextColor = colors.indexOf(color);
             setColor(colors[nextColor + 1] ?? colors[0]);
           }}
