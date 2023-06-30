@@ -65,6 +65,7 @@ export default function EarlyBird() {
           endIcon={<KeyboardArrowRightRounded />}
           sx={{
             py: 1,
+            flexShrink: 0,
             ml: { xs: 0, sm: 2 },
             mt: { xs: 3, sm: 0 },
             width: { xs: '100%', sm: '50%', md: 'fit-content' },
