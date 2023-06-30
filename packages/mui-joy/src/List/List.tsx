@@ -34,11 +34,11 @@ const useUtilityClasses = (ownerState: ListOwnerState) => {
 };
 
 export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme, ownerState }) => {
-  const {
-    p,
-    padding,
-    borderRadius = 'var(--Card-radius)',
-  } = resolveSxValue({ theme, ownerState }, ['p', 'padding', 'borderRadius']);
+  const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
+    'p',
+    'padding',
+    'borderRadius',
+  ]);
   function applySizeVars(size: ListProps['size']) {
     if (size === 'sm') {
       return {
