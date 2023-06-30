@@ -44,7 +44,7 @@ const Root = styled('div', {
       marginTop: demoOptions.bg === 'inline' ? theme.spacing(1) : -1,
       display: 'flex',
       top: 0,
-      padding: theme.spacing(0.5, 0.5, 0.5, 1),
+      padding: theme.spacing(0.5, 1),
       backgroundColor: alpha(theme.palette.grey[50], 0.2),
       borderRadius: openDemoSource ? 0 : '0 0 12px 12px',
       transition: theme.transitions.create('border-radius'),
@@ -585,7 +585,7 @@ export default function DemoToolbar(props) {
             </ToggleButtonGroup>
           </Box>
         </Fade>
-        <Box sx={{ ml: 'auto', mr: 0.5 }}>
+        <Box sx={{ ml: 'auto' }}>
           <ToggleCodeTooltip
             showSourceHint={showSourceHint}
             PopperProps={{ disablePortal: true }}
