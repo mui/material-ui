@@ -392,7 +392,9 @@ export default function OrderTable() {
                       >
                         {row.customer.name}
                       </Typography>
-                      <Typography level="body-xs" lineHeight="md">{row.customer.email}</Typography>
+                      <Typography level="body-xs" lineHeight="md">
+                        {row.customer.email}
+                      </Typography>
                     </div>
                   </Box>
                 </td>

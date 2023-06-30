@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { ColorPaletteProp } from '@mui/joy/styles';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
@@ -20,7 +20,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function ColorInversionFooter() {
-  const [color, setColor] = React.useState('neutral');
+  const [color, setColor] = React.useState < ColorPaletteProp > 'neutral';
   return (
     <Sheet
       variant="solid"
@@ -42,15 +42,7 @@ export default function ColorInversionFooter() {
           variant="soft"
           size="sm"
           onClick={() => {
-            const colors = [
-              'primary',
-              'neutral',
-              'danger',
-              'info',
-              'success',
-              'warning',
-            ];
-
+            const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
             const nextColor = colors.indexOf(color);
             setColor(colors[nextColor + 1] ?? colors[0]);
           }}
@@ -105,8 +97,8 @@ export default function ColorInversionFooter() {
             <img alt="" src="/static/blog/mui-product-comparison/ecosystem.png" />
           </AspectRatio>
           <CardContent>
-            <Typography level="body2">Intro to the MUI ecosystem</Typography>
-            <Typography level="body3" sx={{ mb: 0.5 }}>
+            <Typography level="body-sm">Intro to the MUI ecosystem</Typography>
+            <Typography level="body-xs" sx={{ mb: 0.5 }}>
               MUI blog
             </Typography>
           </CardContent>

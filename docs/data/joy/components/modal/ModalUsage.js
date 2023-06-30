@@ -57,10 +57,17 @@ ${prependLinesSpace(code, 2)}
               aria-describedby="modal-usage-description"
             >
               <ModalClose />
-              <Typography id="modal-usage-title" level="h2">
+              <Typography
+                id="modal-usage-title"
+                level="h2"
+                color={props.variant === 'solid' ? 'inherit' : undefined}
+              >
                 Modal title
               </Typography>
-              <Typography id="modal-usage-description">
+              <Typography
+                id="modal-usage-description"
+                color={props.variant === 'solid' ? 'inherit' : undefined}
+              >
                 A description of the dialog should give primary message or purpose of
                 the dialog.
               </Typography>

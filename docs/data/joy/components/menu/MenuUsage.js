@@ -84,14 +84,25 @@ export default function MenuUsage() {
               },
             }}
           >
-            <MenuItem onClick={() => setOpen(false)}>
+            <MenuItem
+              variant={props.variant === 'solid' ? 'solid' : undefined}
+              onClick={() => setOpen(false)}
+            >
               Add space before paragraph
             </MenuItem>
-            <MenuItem onClick={() => setOpen(false)}>
+            <MenuItem
+              variant={props.variant === 'solid' ? 'solid' : undefined}
+              onClick={() => setOpen(false)}
+            >
               Add space after paragraph
             </MenuItem>
             <ListDivider />
-            <MenuItem onClick={() => setOpen(false)}>Custom spacing...</MenuItem>
+            <MenuItem
+              variant={props.variant === 'solid' ? 'solid' : undefined}
+              onClick={() => setOpen(false)}
+            >
+              Custom spacing...
+            </MenuItem>
           </Menu>
         </Box>
       )}

@@ -1,10 +1,10 @@
 import * as React from 'react';
+import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import CardActions from '@mui/joy/CardActions';
+import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
-import Button from '@mui/joy/Button';
-import { Chip, Box } from '@mui/joy';
-import { CardContent } from '@mui/material';
 
 export default function LicenseCard() {
   return (
