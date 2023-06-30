@@ -238,13 +238,8 @@ function createRender(context) {
         return `<h${level}>${headingHtml}</h${level}>`;
       }
 
-      const headingText = headingHtml
-        .replace(
-          /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])\uFE0F?/g,
-          '',
-        ) // remove emojis
-        .replace(/<\/?[^>]+(>|$)/g, '') // remove HTML
-        .trim();
+      // Remove links to avoid nested links in the TOCs
+      const headingText = headingHtml.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first
@@ -498,10 +493,10 @@ See the documentation below for a complete reference to all of the props and cla
 
 ${headers.components
   .map((component) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkgMap = componentPackageMapping[headers.productId];
     const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
     return `- [\`<${component} />\`](${resolveComponentApiUrl(
-      headers.product,
+      headers.productId,
       componentPkg,
       component,
     )})`;
@@ -509,9 +504,9 @@ ${headers.components
   .join('\n')}
 ${headers.hooks
   .map((hook) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkgMap = componentPackageMapping[headers.productId];
     const componentPkg = componentPkgMap ? componentPkgMap[hook] : null;
-    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.product, componentPkg, hook)})`;
+    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.productId, componentPkg, hook)})`;
   })
   .join('\n')}
   `);

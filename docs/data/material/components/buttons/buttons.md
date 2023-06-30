@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Button component
 components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://m2.material.io/components/buttons

@@ -35,6 +35,7 @@ const excludePopperProps = <T extends Record<string, any>>({
   anchorEl,
   direction,
   disablePortal,
+  keepMounted,
   modifiers,
   open,
   placement,

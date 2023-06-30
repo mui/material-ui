@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Tabs component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 githubLabel: 'component: tabs'

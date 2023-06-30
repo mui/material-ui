@@ -138,6 +138,9 @@ function AppWrapper(props) {
   const { children, emotionCache, pageProps } = props;
 
   const router = useRouter();
+  // TODO move productId & productCategoryId resolution to page layout.
+  // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
+  // if not present
   const { productId, productCategoryId } = getProductInfoFromUrl(router.asPath);
 
   React.useEffect(() => {
