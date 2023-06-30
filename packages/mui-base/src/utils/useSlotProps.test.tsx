@@ -261,4 +261,42 @@ describe('useSlotProps', () => {
       foo: 'bar',
     });
   });
+
+  it('should call externalSlotProps with ownerState if skipResolvingSlotProps is not provided', () => {
+    const externalSlotProps = spy();
+    const ownerState = { foo: 'bar' };
+
+    const getSlotProps = () => ({
+      skipResolvingSlotProps: true,
+    });
+
+    callUseSlotProps({
+      elementType: 'div',
+      getSlotProps,
+      externalSlotProps,
+      ownerState,
+    });
+
+    expect(externalSlotProps.callCount).to.not.equal(0);
+    expect(externalSlotProps.args[0][0]).to.deep.equal(ownerState);
+  });
+
+  it('should not call externalSlotProps if skipResolvingSlotProps is true', () => {
+    const externalSlotProps = spy();
+    const externalRef = React.createRef();
+
+    const getSlotProps = () => ({
+      skipResolvingSlotProps: true,
+    });
+
+    callUseSlotProps({
+      elementType: 'div',
+      getSlotProps,
+      externalSlotProps,
+      skipResolvingSlotProps: true,
+      ownerState: undefined,
+    });
+
+    expect(externalSlotProps.callCount).to.equal(0);
+  });
 });
