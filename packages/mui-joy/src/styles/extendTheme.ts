@@ -269,7 +269,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         primary: getCssVarColor('palette-neutral-100'),
         secondary: getCssVarColor('palette-neutral-300'),
         tertiary: getCssVarColor('palette-neutral-400'),
-        icon: getCssVarColor('palette-neutral-500'),
+        icon: getCssVarColor('palette-neutral-400'),
       },
       background: {
         body: getCssVarColor('palette-common-black'),
