@@ -66,9 +66,8 @@ const BreadcrumbsLi = styled('li', {
   slot: 'Li',
   overridesResolver: (props, styles) => styles.li,
 })<{ ownerState: BreadcrumbsOwnerState }>({
-  '& > *': {
-    verticalAlign: 'middle',
-  },
+  display: 'flex',
+  alignItems: 'center',
 });
 
 const BreadcrumbsSeparator = styled('li', {
