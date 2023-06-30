@@ -39,6 +39,7 @@ const ChipRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return [
     {
       // for controlling chip delete margin offset
@@ -98,8 +99,9 @@ const ChipRoot = styled('div', {
     },
     ...(!ownerState.clickable
       ? [
-          theme.variants[ownerState.variant!]?.[ownerState.color!],
           {
+            backgroundColor: theme.vars.palette.background.surface,
+            ...variantStyle,
             [`&.${chipClasses.disabled}`]:
               theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
           },
@@ -107,7 +109,7 @@ const ChipRoot = styled('div', {
       : [
           {
             '--variant-borderWidth': '0px',
-            color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
+            color: variantStyle?.color,
           },
         ]),
   ];
@@ -155,7 +157,10 @@ const ChipAction = styled('button', {
     borderRadius: 'inherit',
     [theme.focus.selector]: theme.focus.default,
   },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
+  {
+    backgroundColor: theme.vars.palette.background.surface,
+    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+  },
   { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
   { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
   {
