@@ -103,9 +103,9 @@ export default function EmailExample() {
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
-              <IconButton variant="plain" size="sm">
-                <Typography level="body-md" textColor="text.tertiary">
-                  /
+              <IconButton variant="outlined" color="neutral">
+                <Typography fontWeight="lg" fontSize="sm" textColor="text.icon">
+                  ⌘ + k
                 </Typography>
               </IconButton>
             }

@@ -36,7 +36,6 @@ export default function ChatListItem({
             setSelectedChat({ id, sender, messages });
           }}
           selected={selected}
-          variant={selected ? 'soft' : 'plain'}
           color="neutral"
           sx={{
             flexDirection: 'column',

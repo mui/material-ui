@@ -105,7 +105,7 @@ export default function SecondSidebar() {
             </ListItemButton>
           </ListItem>
           <ListItem>
-            <ListItemButton selected variant="soft">
+            <ListItemButton selected>
               <ListItemDecorator>
                 <i data-feather="shopping-cart" />
               </ListItemDecorator>

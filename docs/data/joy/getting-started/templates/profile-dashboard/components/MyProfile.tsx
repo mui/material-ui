@@ -10,7 +10,6 @@ import FormHelperText from '@mui/joy/FormHelperText';
 import Input from '@mui/joy/Input';
 import Textarea from '@mui/joy/Textarea';
 import Stack from '@mui/joy/Stack';
-import Sheet from '@mui/joy/Sheet';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Typography from '@mui/joy/Typography';
@@ -24,7 +23,7 @@ import EditorToolbar from './EditorToolbar';
 
 export default function MyProfile() {
   return (
-    <Sheet
+    <Box
       sx={{
         flex: 1,
         maxWidth: 1200,
@@ -39,6 +38,7 @@ export default function MyProfile() {
         defaultValue={0}
         sx={{
           '--Tab-height': '48px',
+          bgcolor: 'transparent',
         }}
       >
         <Box
@@ -300,6 +300,6 @@ export default function MyProfile() {
           </Box>
         </Box>
       </Tabs>
-    </Sheet>
+    </Box>
   );
 }

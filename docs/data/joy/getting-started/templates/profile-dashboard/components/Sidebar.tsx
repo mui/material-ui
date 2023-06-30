@@ -159,7 +159,7 @@ export default function Sidebar() {
             </ListItemButton>
             <List>
               <ListItem>
-                <ListItemButton selected variant="soft" color="primary">
+                <ListItemButton selected color="primary">
                   My Profile
                 </ListItemButton>
               </ListItem>

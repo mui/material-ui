@@ -91,8 +91,8 @@ function TeamNav() {
           }}
         >
           <ListItem>
-            <ListItemButton variant="soft" color="primary">
-              <ListItemDecorator sx={{ color: 'inherit' }}>
+            <ListItemButton selected color="primary">
+              <ListItemDecorator>
                 <PeopleRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>People</ListItemContent>
@@ -179,9 +179,9 @@ export default function TeamExample() {
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
-              <IconButton variant="outlined" size="sm" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
-                  /
+              <IconButton variant="outlined" color="neutral">
+                <Typography fontWeight="lg" fontSize="sm" textColor="text.icon">
+                  ⌘ + k
                 </Typography>
               </IconButton>
             }
@@ -256,14 +256,7 @@ export default function TeamExample() {
               justifyContent: 'space-between',
             }}
           >
-            <Typography
-              fontSize="xs2"
-              textColor="text.tertiary"
-              textTransform="uppercase"
-              fontWeight="lg"
-            >
-              Filter by
-            </Typography>
+            <Typography level="title-sm">Filter by</Typography>
             <Button size="sm" variant="plain" sx={{ fontSize: 'xs', px: 1 }}>
               Clear filters
             </Button>
@@ -277,7 +270,7 @@ export default function TeamExample() {
               }}
             >
               <Typography level="body-sm" textColor="text.primary">
-                By keywords
+                Keywords
               </Typography>
               <IconButton
                 size="sm"

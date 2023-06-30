@@ -42,7 +42,7 @@ export default function EmailList() {
         <React.Fragment key={index}>
           <ListItem>
             <ListItemButton
-              {...(index === 0 && { variant: 'soft', color: 'neutral' })}
+              {...(index === 0 && { selected: true, color: 'neutral' })}
               sx={{ p: 2 }}
             >
               <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
