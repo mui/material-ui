@@ -231,9 +231,10 @@ const DemoRootMaterial = styled('div', {
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
-    backgroundColor: (theme.vars || theme).palette.grey[100],
+    backgroundColor: (theme.vars || theme).palette.grey[50],
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
     ...theme.applyDarkStyles({
-      backgroundColor: (theme.vars || theme).palette.grey[900],
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
     }),
   }),
   /* Mostly meant for introduction demos. */
