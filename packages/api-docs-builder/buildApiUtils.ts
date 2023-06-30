@@ -696,6 +696,11 @@ ${staticProps}
       const demosSourcePath = path.join(process.cwd(), `${componentPageDirectory}/index.js`);
       writePrettifiedFile(demosSourcePath, demosSource);
 
+      if ((components ?? []).length === 0 && (hooks ?? []).length === 0) {
+        // Early return if it's a markdown file without components/hooks.
+        return;
+      }
+
       const docsTabsPagesDirectory = `${componentPageDirectory}/[docsTab]`;
       if (!fs.existsSync(docsTabsPagesDirectory)) {
         fs.mkdirSync(docsTabsPagesDirectory, { recursive: true });
