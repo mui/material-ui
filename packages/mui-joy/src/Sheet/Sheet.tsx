@@ -48,7 +48,7 @@ export const SheetRoot = styled('div', {
     theme.vars.palette.background.surface;
   return [
     {
-      ...(ownerState.color !== 'neutral' && {
+      ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
         '--Icon-color': 'currentColor',
       }),
       '--ListItem-stickyBackground': resolvedBg, // for sticky List

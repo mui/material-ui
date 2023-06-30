@@ -37,7 +37,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
   ({ theme, ownerState }) => [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
-      ...(ownerState.color !== 'neutral' && {
+      ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
         '--Icon-color': 'currentColor',
       }),
       ...(ownerState.instanceSize && {
@@ -84,7 +84,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
-      [theme.focus.selector]: theme.focus.default,
+      [theme.focus.selector]: { '--Icon-color': 'currentColor', ...theme.focus.default },
     },
     {
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -99,6 +99,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
     {
       '&:hover': {
         '@media (hover: hover)': {
+          '--Icon-color': 'currentColor',
           ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
         },
       },

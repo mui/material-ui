@@ -93,7 +93,7 @@ export const ButtonRoot = styled('button', {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
-      ...(ownerState.color !== 'neutral' && {
+      ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
         '--Icon-color': 'currentColor',
       }),
       ...(ownerState.size === 'sm' && {

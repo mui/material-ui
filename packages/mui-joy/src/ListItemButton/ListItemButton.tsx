@@ -42,7 +42,7 @@ const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
 export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOwnerState }>(
   ({ theme, ownerState }) => ({
     '--Icon-margin': 'initial', // reset the icon's margin.
-    ...(ownerState.color !== 'neutral' && {
+    ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
       '--Icon-color': 'currentColor',
     }),
     WebkitTapHighlightColor: 'transparent',

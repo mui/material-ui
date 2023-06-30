@@ -138,7 +138,7 @@ const ChipAction = styled('button', {
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => [
   {
-    ...(ownerState.color !== 'neutral' && {
+    ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
       '--Icon-color': 'currentColor',
     }),
     position: 'absolute',

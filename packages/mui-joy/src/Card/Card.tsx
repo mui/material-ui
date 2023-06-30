@@ -37,7 +37,7 @@ const CardRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => [
   {
-    ...(ownerState.color !== 'neutral' && {
+    ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
       '--Icon-color': 'currentColor',
     }),
     // a context variable for any child component
