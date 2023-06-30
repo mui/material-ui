@@ -24,7 +24,18 @@ export const getHtml = ({
       codeStyling === 'Tailwind'
         ? `
     <!-- Check the Tailwind CSS's installation guide for setting up tailwind: https://tailwindcss.com/docs/installation -->
-    <script src="https://cdn.tailwindcss.com"></script>`
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            boxShadow: {
+              'outline-purple': '0 0 0 3px #c084fc',
+            }
+          }
+        }
+      }
+    </script>`
         : ''
     }
   </head>

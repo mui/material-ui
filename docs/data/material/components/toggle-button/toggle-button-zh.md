@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Toggle button React component
 components: ToggleButton, ToggleButtonGroup
 githubLabel: 'component: toggle button'
