@@ -39,7 +39,6 @@ const Root = styled('div', {
     display: 'none',
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     marginTop: demoOptions.bg === 'inline' ? 8 : -1,
-    marginBottom: 16,
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
       top: 0,
