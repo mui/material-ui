@@ -99,6 +99,13 @@ const Root = styled('div')(
             },
           },
         },
+        '&:target': {
+          '.MuiApi-item-link-visual': {
+            '&>svg': {
+              transform: 'rotate(90deg) translateX(-0.5px) translateY(0.1px)',
+            },
+          },
+        },
       },
     },
     '& .MuiAlert-standardWarning': {
