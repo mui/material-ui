@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
+// TODO: this misses `Grid2.tsx`, is it intentional?
 const componentRegex = /^(Unstable_)?([A-Z][a-z]+)+\.(js|tsx)/;
 
 /**
