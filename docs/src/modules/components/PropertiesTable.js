@@ -119,7 +119,7 @@ export default function PropertiesTable(props) {
 
               {signature && (
                 <div className="prop-list-signature">
-                  <p> {t('api-docs.signature')}</p>
+                  <p>{t('api-docs.signature')}</p>
                   <code
                     dangerouslySetInnerHTML={{
                       __html: signature,
@@ -141,13 +141,13 @@ export default function PropertiesTable(props) {
                   )}
                   {propData.signature.returned && (
                     <p>
+                      {t('api-docs.returns')}
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: `<code>${propData.signature.returned}</code> ${
+                          __html:
                             propertiesDescriptions[propName].typeDescriptions[
                               propData.signature.returned
-                            ]
-                          }`,
+                            ],
                         }}
                       />
                     </p>

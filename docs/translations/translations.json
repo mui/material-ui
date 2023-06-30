@@ -34,6 +34,7 @@
     "pageDescription": "API reference docs for the React {{name}} component. Learn about the props, CSS, and other APIs of this exported module.",
     "props": "Props",
     "parameters": "Parameters",
+    "returns": "Returns: ",
     "returnValue": "Return value",
     "refNotHeld": "The component cannot hold a ref.",
     "refRootElement": "The <code>ref</code> is forwarded to the root element.",
