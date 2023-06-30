@@ -283,7 +283,6 @@ describe('useSlotProps', () => {
 
   it('should not call externalSlotProps if skipResolvingSlotProps is true', () => {
     const externalSlotProps = spy();
-    const externalRef = React.createRef();
 
     const getSlotProps = () => ({
       skipResolvingSlotProps: true,
