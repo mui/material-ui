@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Drawer component
 githubLabel: 'component: drawer'
 ---

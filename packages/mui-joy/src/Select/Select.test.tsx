@@ -31,10 +31,38 @@ describe('Joy <Select />', () => {
     slots: {
       root: { expectedClassName: classes.root },
       button: { expectedClassName: classes.button },
+      listbox: {
+        testWithComponent: React.forwardRef<HTMLUListElement>((props, ref) => {
+          const excludePopperProps = <T extends Record<string, any>>({
+            anchorEl,
+            direction,
+            disablePortal,
+            keepMounted,
+            modifiers,
+            open,
+            placement,
+            popperOptions,
+            popperRef,
+            TransitionProps,
+            ownerState,
+            ...other
+          }: T) => other;
+          return <ul ref={ref} {...excludePopperProps(props)} data-testid="custom" />;
+        }),
+        testWithElement: null,
+        expectedClassName: classes.listbox,
+      },
       startDecorator: { expectedClassName: classes.startDecorator },
       endDecorator: { expectedClassName: classes.endDecorator },
     },
-    skip: ['classesRoot', 'propsSpread', 'componentProp', 'componentsProp'],
+    skip: [
+      'classesRoot',
+      'propsSpread',
+      'componentProp',
+      'componentsProp',
+      // https://github.com/facebook/react/issues/11565
+      'reactTestRenderer',
+    ],
   }));
 
   describeJoyColorInversion(<Select listboxOpen />, {

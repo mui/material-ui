@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Radio Button component
 githubLabel: 'component: radio'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/

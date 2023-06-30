@@ -32,11 +32,14 @@ import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMappin
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
 
-const Root = styled('div')(({ theme }) => [
+const Root = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'demoOptions',
+})(({ theme, demoOptions }) => [
   {
     display: 'none',
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    marginTop: -1,
+    marginTop: demoOptions.bg === 'inline' ? 8 : -1,
+    marginBottom: 16,
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
       top: 0,
@@ -536,11 +539,7 @@ export default function DemoToolbar(props) {
 
   return (
     <React.Fragment>
-      <Root
-        aria-label={t('demoToolbarLabel')}
-        {...toolbarProps}
-        sx={{ borderRadius: openDemoSource ? 0 : '0 0 12px 12px' }}
-      >
+      <Root aria-label={t('demoToolbarLabel')} {...toolbarProps} demoOptions={demoOptions}>
         {hasNonSystemDemos && (
           <Button
             id="styling-solution"

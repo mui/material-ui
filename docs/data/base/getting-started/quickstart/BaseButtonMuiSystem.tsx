@@ -88,7 +88,7 @@ const GitHubButtonComponent = styled(Button)(getStyles);
 
 const GitHubButtonHook = styled('button')(getStyles);
 
-export default function App() {
+export default function BaseButtonMuiSystem() {
   const { getRootProps } = useButton({});
 
   return (

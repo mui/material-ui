@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Slider component
 components: Slider
 githubLabel: 'component: slider'
