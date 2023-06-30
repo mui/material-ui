@@ -34,6 +34,10 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, TabsPropsColorOverrides>;
       /**
+       * If `true`, the Tabs direction is reversed.
+       */
+      reversed?: boolean;
+      /**
        * The size of the component.
        * @default 'md'
        */

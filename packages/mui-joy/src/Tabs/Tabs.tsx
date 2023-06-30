@@ -34,18 +34,19 @@ const TabsRoot = styled(SheetRoot, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabsOwnerState }>(({ ownerState }) => ({
   ...(ownerState.size === 'sm' && {
-    '--Tabs-gap': '3px',
+    '--Tabs-gap': '0.75rem',
   }),
   ...(ownerState.size === 'md' && {
-    '--Tabs-gap': '4px',
+    '--Tabs-gap': '1rem',
   }),
   ...(ownerState.size === 'lg' && {
-    '--Tabs-gap': '0.5rem',
+    '--Tabs-gap': '1.25rem',
   }),
+  '--Tab-lineThickness': '2px',
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: ownerState.reversed ? 'column-reverse' : 'column',
   ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'row',
+    flexDirection: ownerState.reversed ? 'row-reverse' : 'row',
     alignItems: 'flex-start',
   }),
 }));
