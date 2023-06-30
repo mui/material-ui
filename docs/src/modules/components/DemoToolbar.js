@@ -36,6 +36,7 @@ const Root = styled('div', {
   shouldForwardProp: (prop) => prop !== 'demoOptions' && prop !== 'openDemoSource',
 })(({ theme, demoOptions, openDemoSource }) => [
   {
+    display: 'none',
     [theme.breakpoints.up('sm')]: {
       justifyContent: 'space-between',
       alignItems: 'center',
