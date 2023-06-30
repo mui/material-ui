@@ -39,12 +39,14 @@ const DemoToolbarFallbackRoot = styled('div')(({ theme }) => {
   return {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      height: theme.spacing(8),
+      display: 'block',
+      height: 40 + 5 * 2 + 1 * 2,
+      marginTop: -1,
     },
   };
 });
-export function DemoToolbarFallback() {
+
+function DemoToolbarFallback() {
   const t = useTranslate();
 
   return <DemoToolbarFallbackRoot aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
@@ -545,7 +547,8 @@ export default function Demo(props) {
       ))}
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
-      <Wrapper {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
+      {/* TODO: BrandingProvider shouldn't be needed, it should already be at the top of the docs page */}
+      <BrandingProvider {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
         {demoOptions.hideToolbar ? null : (
           <NoSsr defer fallback={<DemoToolbarFallback />}>
             <React.Suspense fallback={<DemoToolbarFallback />}>
@@ -613,7 +616,7 @@ export default function Demo(props) {
           )}
         </Collapse>
         {adVisibility ? <AdCarbonInline /> : null}
-      </Wrapper>
+      </BrandingProvider>
     </Root>
   );
 }

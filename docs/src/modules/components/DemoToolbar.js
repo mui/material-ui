@@ -38,7 +38,7 @@ const Root = styled('div', {
   {
     display: 'none',
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    marginTop: demoOptions.bg === 'inline' ? 8 : -1,
+    marginTop: demoOptions.bg === 'inline' ? theme.spacing(1) : -1,
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
       top: 0,
@@ -103,12 +103,6 @@ function ToggleCodeTooltip(props) {
 ToggleCodeTooltip.propTypes = {
   showSourceHint: PropTypes.bool,
 };
-
-export function DemoToolbarFallback() {
-  const t = useTranslate();
-
-  return <Root aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
-}
 
 const alwaysTrue = () => true;
 
