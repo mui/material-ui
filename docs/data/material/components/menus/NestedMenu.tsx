@@ -121,11 +121,6 @@ export default function BasicMenu() {
       {anchors.elements.map((anchorElement, index) =>
         anchorElement ? (
           <Popper
-            onKeyDown={(event) => {
-              if (event.key === 'Escape') {
-                handleClose(0);
-              }
-            }}
             open={Boolean(anchorElement)}
             anchorEl={anchorElement}
             key={`${anchorElement.innerText} menu`}
@@ -213,6 +208,10 @@ export default function BasicMenu() {
                             if (event.key === 'ArrowLeft' && option.menuLevel > 0) {
                               handleClose(option.menuLevel);
                               anchors.elements[option.menuLevel]?.focus();
+                            }
+
+                            if (event.key === 'Escape') {
+                              handleClose(0);
                             }
                           }}
                         >
