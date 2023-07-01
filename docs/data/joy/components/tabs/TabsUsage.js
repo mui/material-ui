@@ -33,6 +33,19 @@ export default function TabsUsage() {
           defaultValue: 'md',
         },
         {
+          propName: 'orientation',
+          knob: 'radio',
+          options: ['horizontal', 'vertical'],
+          defaultValue: 'horizontal',
+        },
+        {
+          formLabel: 'TabList disable underline',
+          propName: 'disableUnderline',
+          knob: 'switch',
+          defaultValue: false,
+          codeBlockDisplay: false,
+        },
+        {
           propName: 'children',
           defaultValue: '$children',
         },
@@ -40,16 +53,16 @@ export default function TabsUsage() {
       getCodeBlock={(code, props) =>
         code.replace(
           '$children',
-          `<TabList${props.variant ? ` variant="${props.variant}"` : ''}${
+          `<TabList${props.disableUnderline ? ` disableUnderline` : ''}>
+    <Tab${props.variant ? ` variant="${props.variant}"` : ''}${
             props.color ? ` color="${props.color}"` : ''
-          }>
-    <Tab>...</Tab>
+          }>...</Tab>
   </TabList>`,
         )
       }
-      renderDemo={({ size, color, variant }) => (
-        <Tabs size={size} value={index} onChange={(event, value) => setIndex(value)}>
-          <TabList>
+      renderDemo={({ color, variant, disableUnderline, ...props }) => (
+        <Tabs {...props} value={index} onChange={(event, value) => setIndex(value)}>
+          <TabList disableUnderline={disableUnderline}>
             <Tab {...(index === 0 && { color, variant })}>Tab A</Tab>
             <Tab {...(index === 1 && { color, variant })}>Tab B</Tab>
             <Tab {...(index === 2 && { color, variant })}>Tab C</Tab>
