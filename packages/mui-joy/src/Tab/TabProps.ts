@@ -42,6 +42,11 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     disabled?: boolean;
     /**
+     * The indicator's position when the Tab is selected.
+     * If `none`, the indicator will disappear.
+     */
+    indicatorPlacement?: 'none' | 'top' | 'bottom' | 'left' | 'right';
+    /**
      * The content direction flow.
      * @default 'horizontal'
      */

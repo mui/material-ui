@@ -6,16 +6,25 @@ import { OverridableComponent } from '@mui/types';
 import useTabPanel from '@mui/base/useTabPanel';
 import { useTabsContext } from '@mui/base/Tabs';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabPanelOwnerState) => {
-  const { hidden, size, orientation } = ownerState;
+  const { hidden, size, variant, color, orientation } = ownerState;
 
   const slots = {
-    root: ['root', hidden && 'hidden', size && `size${capitalize(size)}`, orientation],
+    root: [
+      'root',
+      hidden && 'hidden',
+      size && `size${capitalize(size)}`,
+      orientation,
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+    ],
   };
 
   return composeClasses(slots, getTabPanelUtilityClass, {});
@@ -27,23 +36,11 @@ const TabPanelRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabPanelOwnerState }>(({ theme, ownerState }) => ({
   display: ownerState.hidden ? 'none' : 'initial',
-  ...(ownerState.orientation === 'horizontal' && {
-    paddingBlockStart: 'var(--Tabs-gap)',
-  }),
-  ...(ownerState.orientation === 'vertical' && {
-    paddingInlineStart: 'var(--Tabs-gap)',
-  }),
-  ...(ownerState.size === 'sm' && {
-    fontSize: theme.vars.fontSize.sm,
-  }),
-  ...(ownerState.size === 'md' && {
-    fontSize: theme.vars.fontSize.md,
-  }),
-  ...(ownerState.size === 'lg' && {
-    fontSize: theme.vars.fontSize.lg,
-  }),
+  padding: 'var(--Tabs-gap)',
   flexGrow: 1,
   fontFamily: theme.vars.fontFamily.body,
+  ...theme.typography[`body-${ownerState.size!}`],
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
 /**
  *
@@ -68,6 +65,8 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     children,
     value = 0,
     component,
+    color: colorProp = 'neutral',
+    variant = 'plain',
     size: sizeProp,
     slots = {},
     slotProps = {},
@@ -77,12 +76,16 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const { hidden, getRootProps } = useTabPanel({ ...props, value });
 
   const size = sizeProp ?? tabsSize;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
     orientation,
     hidden,
     size,
+    color,
+    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -114,6 +117,14 @@ TabPanel.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -153,6 +164,14 @@ TabPanel.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'plain'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default TabPanel;

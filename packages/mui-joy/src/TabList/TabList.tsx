@@ -38,15 +38,15 @@ const TabListRoot = styled(StyledList, {
   '--List-gap': '0px',
   '--ListDivider-gap': '0px',
   '--ListItem-paddingX': 'var(--Tabs-gap)',
+  // the `var(--unknown,)` is a workaround because emotion does not support space toggle.
+  '--_TabList-hasUnderline': ownerState.disableUnderline ? 'var(--unknown,)' : 'initial',
   ...scopedVariables,
   flexGrow: 'initial',
   flexDirection: 'var(--_TabList-direction)' as 'initial',
   borderRadius: `var(--List-radius, 0px)`,
   padding: `var(--List-padding, 0px)`,
   zIndex: 1, // to be above of the next element.
-  ...(!ownerState.disableUnderline && {
-    boxShadow: `inset var(--_TabList-underline) ${theme.vars.palette.divider}`,
-  }),
+  boxShadow: `var(--_TabList-hasUnderline, inset var(--_TabList-underline) ${theme.vars.palette.divider})`,
 }));
 /**
  *

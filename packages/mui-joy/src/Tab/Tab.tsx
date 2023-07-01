@@ -36,45 +36,73 @@ const TabRoot = styled(StyledListItemButton, {
   name: 'JoyTab',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabOwnerState }>(({ ownerState }) => {
-  return {
-    '--unstable_Tab-borderPlaceholder': 'var(--Tab-lineThickness) solid transparent',
+})<{ ownerState: TabOwnerState }>(({ ownerState, theme }) => [
+  {
     ...(!ownerState.row && {
       flexGrow: 1,
       justifyContent: 'center',
     }),
-    ...(ownerState.row
-      ? // 1px equals to the TabList's underline thickness
-        { borderBottom: '1px solid transparent' }
-      : { borderRight: '1px solid transparent' }),
-    backgroundClip: 'padding-box', // to not cover the TabList's underline when hover, active
-    // using pseudo element for showing active indicator is best for controlling the size and customization, e.g. radius, width
-    // border and box-shadow did not work well.
+    '--_offset': 'calc(-1 * var(--variant-borderWidth, 0px))',
+    // using pseudo element for showing active indicator is best for controlling the size and customization.
+    // for example, developers can customize the radius, width or background.
+    // (border and box-shadow are not flexible when it comes to customization).
     '&::after': {
       content: '""',
       display: 'block',
       position: 'absolute',
-      margin: 'auto', // align center if fixed width/height
+      margin: 'auto',
       background: 'var(--Tab-lineColor)',
-      ...(ownerState.row
-        ? {
-            height: 'var(--Tab-lineThickness)',
-            left: 0,
-            right: 0,
-            bottom: -1,
-          }
-        : {
-            width: 'var(--Tab-lineThickness)',
-            top: 0,
-            bottom: 0,
-            right: -1,
-          }),
+    },
+    '&:not([aria-selected="true"]):hover': {
+      '--Tab-lineColor': theme.vars.palette.divider,
+      // private variable to prevent the Tab's background from covering TabList's underline
+      '--_lineThickness':
+        ownerState.variant === 'outlined' ? '0px' : 'var(--_TabList-hasUnderline, 1px)', // this means if TabList has underline, the value will be 1px.
     },
     '&[aria-selected="true"]': {
       '--Tab-lineColor': 'var(--Tab-selectedLineColor, currentColor)',
     },
-  };
-});
+  },
+  // the padding is to account for the indicator's thickness to make the text proportional.
+  ownerState.indicatorPlacement === 'bottom' && {
+    paddingBottom:
+      'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-lineThickness))',
+    '&::after': {
+      height: 'var(--_lineThickness, var(--Tab-lineThickness))',
+      left: 'var(--_offset)',
+      right: 'var(--_offset)',
+      bottom: 'var(--_offset)',
+    },
+  },
+  ownerState.indicatorPlacement === 'top' && {
+    paddingTop:
+      'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-lineThickness))',
+    '&::after': {
+      height: 'var(--_lineThickness, var(--Tab-lineThickness))',
+      left: 'var(--_offset)',
+      right: 'var(--_offset)',
+      top: 'var(--_offset)',
+    },
+  },
+  ownerState.indicatorPlacement === 'right' && {
+    paddingRight: 'calc(var(--ListItem-paddingRight) + var(--Tab-lineThickness))',
+    '&::after': {
+      width: 'var(--_lineThickness, var(--Tab-lineThickness))',
+      top: 'var(--_offset)',
+      bottom: 'var(--_offset)',
+      right: 'var(--_offset)',
+    },
+  },
+  ownerState.indicatorPlacement === 'left' && {
+    paddingLeft: 'calc(var(--ListItem-paddingLeft) + var(--Tab-lineThickness))',
+    '&::after': {
+      width: 'var(--_lineThickness, var(--Tab-lineThickness))',
+      top: 'var(--_offset)',
+      bottom: 'var(--_offset)',
+      left: 'var(--_offset)',
+    },
+  },
+]);
 /**
  *
  * Demos:
@@ -105,6 +133,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     orientation = 'horizontal',
     variant = 'plain',
     color: colorProp = 'neutral',
+    indicatorPlacement = row ? 'bottom' : 'right',
     slots = {},
     slotProps = {},
     ...other
@@ -133,6 +162,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   const ownerState = {
     ...props,
+    indicatorPlacement,
     orientation,
     row,
     active,
