@@ -44,12 +44,6 @@ Notice that the second button cannot be clicked due to the `disabled` prop:
 
 {{"demo": "UnstyledButtonsSimple.js", "defaultCodeOpen": true}}
 
-#### Using links with button
-
-The Button can also be used as a link.
-
-{{"demo": "UnstyledLinkButton.js", "defaultCodeOpen": true}}
-
 ### Anatomy
 
 The Button component is composed of a root `<button>` slot with no interior slots:
@@ -140,6 +134,12 @@ The Button accepts a wide range of custom elements beyond HTML elements.
 You can even use SVGs, as the following demo illustrates:
 
 {{"demo": "UnstyledButtonCustom.js", "defaultCodeOpen": false}}
+
+### Using with links
+
+The following demo illustrates how to use the Button as a link, whether using the Base UI Button itself for the `href`, or with the [Next.js Link component](https://nextjs.org/learn/basics/navigate-between-pages/link-component):
+
+{{"demo": "UnstyledLinkButton.js", "defaultCodeOpen": true}}
 
 ### Focus on disabled buttons
 
