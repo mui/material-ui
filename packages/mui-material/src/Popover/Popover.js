@@ -277,8 +277,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         elemTransformOrigin.horizontal += diff;
       }
 
-      console.log('top', top);
-
       return {
         top: `${Math.round(top)}px`,
         left: `${Math.round(left)}px`,
