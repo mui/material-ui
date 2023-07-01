@@ -152,7 +152,14 @@ export default function BasicMenu() {
                       {(anchors.options[index] ?? []).map((option) => (
                         <MenuItem
                           key={option.value}
-                          aria-haspopup={!!option.nestedOptions}
+                          aria-haspopup={!!option.nestedOptions ?? undefined}
+                          aria-expanded={
+                            option.nestedOptions
+                              ? anchors.elements.some(
+                                  (element) => element?.innerText === option.value,
+                                )
+                              : undefined
+                          }
                           onClick={() => {
                             if (!option.nestedOptions) {
                               handleClose(0);
@@ -200,6 +207,10 @@ export default function BasicMenu() {
                             if (event.key === 'ArrowLeft' && option.menuLevel > 0) {
                               handleClose(option.menuLevel);
                               anchors.elements[option.menuLevel]?.focus();
+                            }
+
+                            if (event.key === 'Escape') {
+                              handleClose(0);
                             }
                           }}
                         >
