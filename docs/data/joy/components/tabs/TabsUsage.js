@@ -45,12 +45,7 @@ export default function TabsUsage() {
         )
       }
       renderDemo={({ size, ...props }) => (
-        <Tabs
-          size={size}
-          value={index}
-          onChange={(event, value) => setIndex(value)}
-          sx={{ borderRadius: 'lg' }}
-        >
+        <Tabs size={size} value={index} onChange={(event, value) => setIndex(value)}>
           <TabList {...props}>
             <Tab
               variant={index === 0 ? 'soft' : 'plain'}

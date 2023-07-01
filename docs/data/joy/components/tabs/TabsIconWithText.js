@@ -36,7 +36,7 @@ export default function TabsIconWithText() {
           </Tab>
         </TabList>
       </Tabs>
-      <Tabs aria-label="Icon tabs" defaultValue={0} sx={{ borderRadius: 'lg' }}>
+      <Tabs aria-label="Icon tabs" defaultValue={0}>
         <TabList>
           <Tab orientation="vertical">
             <ListItemDecorator>
