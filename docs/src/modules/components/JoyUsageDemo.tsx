@@ -1,5 +1,4 @@
 import * as React from 'react';
-import startCase from 'lodash/startCase';
 import Check from '@mui/icons-material/Check';
 import CheckRounded from '@mui/icons-material/CheckRounded';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
@@ -277,14 +276,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           }}
         >
           {data.map(
-            ({
-              propName,
-              formLabel = startCase(propName),
-              knob,
-              options = [],
-              defaultValue,
-              labels,
-            }) => {
+            ({ propName, formLabel = propName, knob, options = [], defaultValue, labels }) => {
               const resolvedValue = props[propName] ?? defaultValue;
               if (!knob) {
                 return null;
@@ -426,7 +418,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
               if (knob === 'color') {
                 return (
                   <FormControl key={propName} sx={{ mb: 1 }} size="sm">
-                    <FormLabel>{formLabel}</FormLabel>
+                    <FormLabel sx={{ textTransform: 'capitalize' }}>{formLabel}</FormLabel>
                     <RadioGroup
                       orientation="horizontal"
                       name={`${componentName}-color`}
@@ -604,7 +596,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
               if (knob === 'placement') {
                 return (
                   <FormControl key={propName}>
-                    <FormLabel>{formLabel}</FormLabel>
+                    <FormLabel sx={{ textTransform: 'capitalize' }}>{formLabel}</FormLabel>
                     <RadioGroup
                       name="placement"
                       value={resolvedValue}
