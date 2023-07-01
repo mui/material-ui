@@ -243,14 +243,13 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const widthThreshold = containerWindow.innerWidth - marginThreshold;
 
       // Check if the vertical axis needs shifting
-      if (top < marginThreshold) {
-        const diff = top - marginThreshold;
-        top -= diff;
-        elemTransformOrigin.vertical += diff;
-      } else if (bottom > heightThreshold) {
-        const diff = bottom - heightThreshold;
-        top -= diff;
-        elemTransformOrigin.vertical += diff;
+      const anchorRect = anchorEl ? anchorEl.getBoundingClientRect() : null;
+      if (bottom > heightThreshold) {
+        top = anchorOffset.top - elemRect.height;
+
+        if (anchorRect) {
+          top -= anchorRect.height + 5;
+        }
       }
 
       if (process.env.NODE_ENV !== 'production') {
@@ -277,6 +276,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         left -= diff;
         elemTransformOrigin.horizontal += diff;
       }
+
+      console.log('top', top);
 
       return {
         top: `${Math.round(top)}px`,
@@ -307,6 +308,20 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     element.style.transformOrigin = positioning.transformOrigin;
     setIsPositioned(true);
   }, [getPositioningStyle]);
+
+  // Recalculate position when user scrolls
+  const [scrollTop, setScrollTop] = React.useState(0);
+  React.useEffect(() => {
+    const onScroll = () => {
+      const containerWindow = ownerWindow(resolveAnchorEl(anchorEl));
+      setScrollTop(containerWindow.scrollY);
+
+      setPositioningStyles();
+    };
+
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [anchorEl, scrollTop, setPositioningStyles]);
 
   const handleEntering = (element, isAppearing) => {
     if (onEntering) {
