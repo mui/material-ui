@@ -51,7 +51,6 @@ const TabsRoot = styled(SheetRoot, {
   flexDirection: 'column',
   ...(ownerState.orientation === 'vertical' && {
     flexDirection: 'row',
-    alignItems: 'flex-start',
   }),
 }));
 /**

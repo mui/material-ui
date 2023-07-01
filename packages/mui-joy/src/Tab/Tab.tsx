@@ -13,6 +13,7 @@ import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
 import useSlot from '../utils/useSlot';
+import listItemDecoratorClasses from '../ListItemDecorator/listItemDecoratorClasses';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {
   const { selected, disabled, focusVisible, variant, color, orientation } = ownerState;
@@ -38,10 +39,9 @@ const TabRoot = styled(StyledListItemButton, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabOwnerState }>(({ ownerState, theme }) => [
   {
-    ...(!ownerState.row && {
-      flexGrow: 1,
-      justifyContent: 'center',
-    }),
+    flexGrow: ownerState.row ? 1 : 0,
+    justifyContent: ownerState.row ? 'center' : 'initial',
+    [`& > .${listItemDecoratorClasses.root}`]: { alignItems: 'center' },
     '--_offset': 'calc(-1 * var(--variant-borderWidth, 0px))',
     // using pseudo element for showing active indicator is best for controlling the size and customization.
     // for example, developers can customize the radius, width or background.
