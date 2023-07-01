@@ -6,17 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/cache": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "@mui/joy": "latest",
-    "next": "13.x",
-    "react": "18.x",
-    "react-dom": "18.x"
+    "@mui/joy": "https://pkg.csb.dev/mui/material-ui/commit/1d01fd6f/@mui/joy/_pkg.tgz",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
