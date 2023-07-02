@@ -52,14 +52,15 @@ const blue = {
 
 const CustomButtonRoot = styled('button')`
   font-family: IBM Plex Sans, sans-serif;
-  font-weight: bold;
   font-size: 0.875rem;
+  line-height: 1.5rem;
   background-color: ${blue[500]};
-  padding: 12px 24px;
-  border-radius: 12px;
   color: white;
-  transition: all 150ms ease;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 8px 16px;
   cursor: pointer;
+  transition: all 150ms ease;
   border: none;
 
   &:hover {

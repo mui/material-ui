@@ -4,13 +4,13 @@ import { useRouter } from 'next/router';
 import kebabCase from 'lodash/kebabCase';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider as JoyCssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiContent';
 import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
 import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/modules/components/ApiPage';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElementV2';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import AppLayoutDocsWithoutAppFrame from 'docs/src/modules/components/AppLayoutDocsWithoutAppFrame';
+import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import Ad from 'docs/src/modules/components/Ad';
@@ -163,7 +163,7 @@ export default function MarkdownDocsV2(props) {
   });
 
   const isJoy = canonicalAs.startsWith('/joy-ui/');
-  const Provider = isJoy ? CssVarsProvider : React.Fragment;
+  const CssVarsProvider = isJoy ? JoyCssVarsProvider : React.Fragment;
 
   const Wrapper = isJoy ? BrandingProvider : React.Fragment;
   const wrapperProps = {
@@ -211,12 +211,13 @@ export default function MarkdownDocsV2(props) {
   }
 
   return (
-    <AppLayoutDocsWithoutAppFrame
+    <AppLayoutDocs
       description={description}
       disableAd={disableAd}
       disableToc={disableToc}
       location={location}
       title={title}
+      disableLayout
       toc={activeToc}
       hasTabs
     >
@@ -225,15 +226,15 @@ export default function MarkdownDocsV2(props) {
           '--MuiDocs-header-height': `${AppFrameHeight + TabsHeight}px`,
         }}
       >
-        <Provider>
-          {isJoy && <JoyModeObserver key="joy-provider" mode={theme.palette.mode} />}
-          {disableAd ? null : (
-            <Wrapper key="add">
-              <AdGuest classSelector=".component-tabs">
-                <Ad />
-              </AdGuest>
-            </Wrapper>
-          )}
+        {disableAd ? null : (
+          <BrandingProvider>
+            <AdGuest classSelector=".component-tabs">
+              <Ad />
+            </AdGuest>
+          </BrandingProvider>
+        )}
+        <CssVarsProvider>
+          {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
           {commonElements}
           {activeTab === '' &&
             rendered
@@ -268,9 +269,9 @@ export default function MarkdownDocsV2(props) {
               pagesContents={hooksApiPageContents}
             />
           )}
-        </Provider>
+        </CssVarsProvider>
       </div>
-    </AppLayoutDocsWithoutAppFrame>
+    </AppLayoutDocs>
   );
 }
 
