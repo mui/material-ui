@@ -1778,10 +1778,10 @@
     query-string "^6.12.1"
     xcase "^2.0.1"
 
-"@googleapis/sheets@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@googleapis/sheets/-/sheets-4.0.2.tgz#8b6218cab8a6a242a45df1d5581e38c46adfdaf2"
-  integrity sha512-6Ik+oHV7/ApbW6Ss/alChUddCdDZpx0Agml8yDidsh01m+urrX0hyS+KvUVytcsrCe0VY4kTfkyCftCxfV8tfQ==
+"@googleapis/sheets@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@googleapis/sheets/-/sheets-5.0.0.tgz#2d2c38a172843863ee8e75fa3135fb679bc4e41c"
+  integrity sha512-7LOHdIwhhA8JY+SMotkV1ZEhb75384/A//U1WzdQZpddDeIk4BLcCkh/GH5pwJe6UMeYU6bzMFYAQ+O2gkdXaQ==
   dependencies:
     googleapis-common "^6.0.3"
 
