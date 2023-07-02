@@ -104,7 +104,7 @@
     "@types/jsdom": "^21.1.1",
     "@types/lodash": "^4.14.195",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.16.18",
+    "@types/node": "^18.16.19",
     "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.14",
     "@types/react-is": "^18.2.1",
