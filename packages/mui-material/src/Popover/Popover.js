@@ -243,13 +243,22 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const widthThreshold = containerWindow.innerWidth - marginThreshold;
 
       // Check if the vertical axis needs shifting
-      const anchorRect = anchorEl ? anchorEl.getBoundingClientRect() : null;
-      if (bottom > heightThreshold) {
-        top = anchorOffset.top - elemRect.height;
+      if (top < marginThreshold) {
+        const diff = top - marginThreshold;
 
-        if (anchorRect) {
-          top -= anchorRect.height + 5;
+        if (top >= -1) {
+          top -= diff;
         }
+
+        elemTransformOrigin.vertical += diff;
+      } else if (bottom > heightThreshold) {
+        const diff = bottom - heightThreshold;
+
+        if (bottom <= window.innerHeight + 1) {
+          top -= diff;
+        }
+
+        elemTransformOrigin.vertical += diff;
       }
 
       if (process.env.NODE_ENV !== 'production') {
