@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Table component
 components: Table
 githubLabel: 'component: table'

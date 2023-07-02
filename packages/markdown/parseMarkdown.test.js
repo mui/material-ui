@@ -9,7 +9,7 @@ import {
 
 describe('parseMarkdown', () => {
   const defaultParams = {
-    pageFilename: '/test',
+    fileRelativeContext: 'test/bar',
     options: {
       env: {},
     },
@@ -161,7 +161,7 @@ authors:
   });
 
   describe('prepareMarkdown', () => {
-    it('returns the table of contents with html and emojis stripped', () => {
+    it('returns the table of contents with html and emojis preserved and <a> tags stripped', () => {
       const markdown = `
 # Support
 
@@ -171,6 +171,7 @@ authors:
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 ### Unofficial 👍
 ### Warning ⚠️
+### Header with Pro plan [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 `;
 
       const {
@@ -185,9 +186,18 @@ authors:
       expect(toc).to.have.deep.ordered.members([
         {
           children: [
-            { hash: 'github', level: 3, text: 'GitHub' },
-            { hash: 'unofficial', level: 3, text: 'Unofficial' },
-            { hash: 'warning', level: 3, text: 'Warning' },
+            {
+              hash: 'github',
+              level: 3,
+              text: 'GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />',
+            },
+            { hash: 'unofficial', level: 3, text: 'Unofficial 👍' },
+            { hash: 'warning', level: 3, text: 'Warning ⚠️' },
+            {
+              hash: 'header-with-pro-plan',
+              level: 3,
+              text: 'Header with Pro plan <span class="plan-pro"></span>',
+            },
           ],
           hash: 'community-help-free',
           level: 2,
@@ -439,7 +449,12 @@ authors:
           ...defaultParams,
           translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
         });
-      }).to.throw(/\[foo]\(\/foo\) in \/docs\/test\/index\.md is missing a trailing slash/);
+      }).to.throw(`docs-infra: Missing trailing slash. The following link:
+[foo](/foo) in /test/bar/index.md is missing a trailing slash, please add it.
+
+See https://ahrefs.com/blog/trailing-slash/ for more details.
+
+Please report this to https://github.com/markedjs/marked.`);
     });
 
     it('should report missing leading splashes', () => {
@@ -457,7 +472,10 @@ authors:
           ...defaultParams,
           translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
         });
-      }).to.throw(/\[foo]\(foo\/\) in \/docs\/test\/index\.md is missing a leading slash/);
+      }).to.throw(`docs-infra: Missing leading slash. The following link:
+[foo](foo/) in /test/bar/index.md is missing a leading slash, please add it.
+
+Please report this to https://github.com/markedjs/marked.`);
     });
 
     it('should report title too long', () => {

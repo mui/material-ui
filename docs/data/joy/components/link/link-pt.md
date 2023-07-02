@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Link component
 components: Link
 githubLabel: 'component: link'

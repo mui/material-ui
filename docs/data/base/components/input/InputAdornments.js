@@ -60,7 +60,13 @@ export default function InputAdornments() {
   };
 
   return (
-    <Box sx={{ display: 'flex', '& > * + *': { ml: 1 } }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
+        gap: 2,
+      }}
+    >
       <CustomInput
         id="outlined-start-adornment"
         startAdornment={<InputAdornment>kg</InputAdornment>}
@@ -111,7 +117,7 @@ const StyledInputRoot = styled('div')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
-  border-radius: 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
@@ -142,13 +148,13 @@ const StyledInputElement = styled('input')(
   font-size: 0.875rem;
   font-family: inherit;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.5rem;
   flex-grow: 1;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: inherit;
   border: none;
   border-radius: inherit;
-  padding: 12px 12px;
+  padding: 8px 12px;
   outline: 0;
 `,
 );

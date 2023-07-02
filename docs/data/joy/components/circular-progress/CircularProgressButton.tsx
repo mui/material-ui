@@ -5,7 +5,7 @@ import Link from '@mui/joy/Link';
 import IconButton from '@mui/joy/IconButton';
 import CircularProgress from '@mui/joy/CircularProgress';
 
-export default function CircularProgressSizes() {
+export default function CircularProgressButton() {
   return (
     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
       <Button startDecorator={<CircularProgress variant="solid" thickness={2} />}>

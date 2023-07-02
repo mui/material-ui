@@ -53,7 +53,8 @@ const MenuRoot = styled(StyledList, {
       ...scopedVariables,
       boxShadow: theme.shadow.md,
       overflow: 'auto',
-      zIndex: theme.vars.zIndex.popup,
+      // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+      zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
       ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.popup,
       }),
@@ -90,7 +91,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     disablePortal = false,
     keepMounted = false,
     invertedColors = false,
-    id,
     onClose,
     onItemsChange,
     open = false,
@@ -116,8 +116,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const { contextValue, getListboxProps, dispatch } = useMenu({
     open,
     onOpenChange: handleOpenChange,
+    listboxId: props.id,
     onItemsChange,
-    listboxId: id,
   });
 
   React.useImperativeHandle(
@@ -156,6 +156,22 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     ],
     [modifiersProp],
   );
+
+  if (anchorEl && process.env.NODE_ENV !== 'production') {
+    let ariaControls = null;
+    const resolvedAnchorEl = typeof anchorEl === 'function' ? anchorEl() : anchorEl;
+    if ('getAttribute' in resolvedAnchorEl) {
+      ariaControls = resolvedAnchorEl.getAttribute('aria-controls');
+    } else {
+      ariaControls = resolvedAnchorEl.contextElement?.getAttribute('aria-controls');
+    }
+
+    if (props.id && ariaControls && props.id !== ariaControls) {
+      console.error(
+        `MUI: the anchorEl must have [aria-controls="${props.id}"] but got [aria-controls="${ariaControls}"].`,
+      );
+    }
+  }
 
   const rootProps = useSlotProps({
     elementType: MenuRoot,

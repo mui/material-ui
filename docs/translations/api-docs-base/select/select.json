@@ -1,6 +1,7 @@
 {
   "componentDescription": "The foundation for building custom-styled select components.",
   "propDescriptions": {
+    "areOptionsEqual": "A function used to determine if two options&#39; values are equal. By default, reference equality is used.<br>There is a performance impact when using the <code>areOptionsEqual</code> prop (proportional to the number of options). Therefore, it&#39;s recommented to use the default reference equality comparison whenever possible.",
     "autoFocus": "If <code>true</code>, the select element is focused during the first mount",
     "defaultListboxOpen": "If <code>true</code>, the select will be initially open.",
     "defaultValue": "The default selected value. Use when the component is not controlled.",

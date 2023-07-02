@@ -102,6 +102,7 @@ const Select = React.forwardRef(function Select<
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
+    areOptionsEqual,
     autoFocus,
     children,
     defaultValue,
@@ -156,6 +157,7 @@ const Select = React.forwardRef(function Select<
     value,
     open,
   } = useSelect({
+    areOptionsEqual,
     buttonRef: handleButtonRef,
     defaultOpen: defaultListboxOpen,
     defaultValue,
@@ -255,6 +257,14 @@ Select.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
+  /**
+   * A function used to determine if two options' values are equal.
+   * By default, reference equality is used.
+   *
+   * There is a performance impact when using the `areOptionsEqual` prop (proportional to the number of options).
+   * Therefore, it's recommented to use the default reference equality comparison whenever possible.
+   */
+  areOptionsEqual: PropTypes.func,
   /**
    * If `true`, the select element is focused during the first mount
    * @default false

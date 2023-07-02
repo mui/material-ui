@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Avatar component
 components: Avatar, AvatarGroup, SvgIcon
 githubLabel: 'component: avatar'

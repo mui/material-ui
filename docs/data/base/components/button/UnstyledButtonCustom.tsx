@@ -100,7 +100,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
     & .content {
       font-size: 0.875rem;
       font-family: IBM Plex Sans, sans-serif;
-      font-weight: 500;
+      font-weight: 600;
       line-height: 1.5;
       height: 100%;
       display: flex;
