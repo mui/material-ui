@@ -93,8 +93,10 @@ const TabRoot = styled(StyledListItemButton, {
         'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness))',
       '&::after': {
         height: 'var(--unstable_indicatorThickness, var(--Tab-indicatorThickness))',
-        left: 'var(--unstable_offset)',
-        right: 'var(--unstable_offset)',
+        left: ownerState.indicatorInset ? 'var(--ListItem-paddingLeft)' : 'var(--unstable_offset)',
+        right: ownerState.indicatorInset
+          ? 'var(--ListItem-paddingRight)'
+          : 'var(--unstable_offset)',
         bottom: 'var(--unstable_offset)',
       },
     },
@@ -104,8 +106,10 @@ const TabRoot = styled(StyledListItemButton, {
         'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness))',
       '&::after': {
         height: 'var(--unstable_indicatorThickness, var(--Tab-indicatorThickness))',
-        left: 'var(--unstable_offset)',
-        right: 'var(--unstable_offset)',
+        left: ownerState.indicatorInset ? 'var(--ListItem-paddingLeft)' : 'var(--unstable_offset)',
+        right: ownerState.indicatorInset
+          ? 'var(--ListItem-paddingRight)'
+          : 'var(--unstable_offset)',
         top: 'var(--unstable_offset)',
       },
     },
@@ -114,8 +118,8 @@ const TabRoot = styled(StyledListItemButton, {
       paddingRight: 'calc(var(--ListItem-paddingRight) + var(--Tab-indicatorThickness))',
       '&::after': {
         width: 'var(--unstable_indicatorThickness, var(--Tab-indicatorThickness))',
-        top: 'var(--unstable_offset)',
-        bottom: 'var(--unstable_offset)',
+        top: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
+        bottom: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
         right: 'var(--unstable_offset)',
       },
     },
@@ -124,8 +128,8 @@ const TabRoot = styled(StyledListItemButton, {
       paddingLeft: 'calc(var(--ListItem-paddingLeft) + var(--Tab-indicatorThickness))',
       '&::after': {
         width: 'var(--unstable_indicatorThickness, var(--Tab-indicatorThickness))',
-        top: 'var(--unstable_offset)',
-        bottom: 'var(--unstable_offset)',
+        top: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
+        bottom: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
         left: 'var(--unstable_offset)',
       },
     },

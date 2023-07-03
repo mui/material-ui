@@ -16,6 +16,9 @@ import IconButton from '@mui/joy/IconButton';
 import Divider from '@mui/joy/Divider';
 import Sheet from '@mui/joy/Sheet';
 import Table from '@mui/joy/Table';
+import Tabs from '@mui/joy/Tabs';
+import TabList from '@mui/joy/TabList';
+import Tab from '@mui/joy/Tab';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
@@ -572,27 +575,12 @@ export default function FilesExample() {
             </IconButton>
           </Box>
           <Divider />
-          <Box sx={{ display: 'flex' }}>
-            <Button
-              variant="soft"
-              sx={{
-                borderRadius: 0,
-                borderBottom: '2px solid',
-                borderColor: 'primary.solidBg',
-                flex: 1,
-                py: '1rem',
-              }}
-            >
-              Details
-            </Button>
-            <Button
-              variant="plain"
-              color="neutral"
-              sx={{ borderRadius: 0, flex: 1, py: '1rem' }}
-            >
-              Activity
-            </Button>
-          </Box>
+          <Tabs>
+            <TabList>
+              <Tab indicatorPlacement="top">Details</Tab>
+              <Tab indicatorPlacement="top">Activity</Tab>
+            </TabList>
+          </Tabs>
           <AspectRatio ratio="21/9">
             <img
               alt=""

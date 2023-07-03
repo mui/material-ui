@@ -57,7 +57,8 @@ export default function TabsUsage() {
     <Tab${props.variant ? ` variant="${props.variant}"` : ''}${
             props.color ? ` color="${props.color}"` : ''
           }>...</Tab>
-  </TabList>`,
+  </TabList>
+  <TabPanel>...</TabPanel>`,
         )
       }
       renderDemo={({ color, variant, disableUnderline, ...props }) => (
