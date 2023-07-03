@@ -86,7 +86,7 @@ const SliderRoot = styled('span', {
       [`& .${sliderClasses.track}`]: {
         transition: 'none',
       },
-      [`& .${sliderClasses.thumb}`]: {
+      [`& .${sliderClasses.thumb}, .${sliderClasses.valueLabel}`]: {
         transition: theme.transitions.create(['border'], {
           duration: theme.transitions.duration.shortest,
         }),
@@ -217,6 +217,7 @@ const SliderThumb = styled('span', {
   }
 
   return {
+    zIndex: 1,
     position: 'absolute',
     height: 'var(--md-comp-slider-thumb-size)',
     width: 'var(--md-comp-slider-thumb-size)',
@@ -268,6 +269,7 @@ const SliderThumb = styled('span', {
       boxShadow: getBoxShadow('focus'),
     },
     [`&.${sliderClasses.active}`]: {
+      zIndex: 2,
       boxShadow: getBoxShadow('pressed'),
     },
     [`&.${sliderClasses.thumbOverlap}`]: {
