@@ -87,7 +87,8 @@ export const Select = React.forwardRef(function Select<TValue extends {}, Multip
         }),
         listbox: {
           ...slotProps.listbox,
-          className: 'text-sm box-border p-0 mb-3 rounded-sm overflow-auto outline-0 bg-[rgb(14,20,27)] border border-solid border-gray-700 text-gray-300 shadow-[0_1px_2px_#a0aab4] max-h-[240px]',
+          className:
+            'text-sm box-border p-0 mb-3 rounded-sm overflow-auto outline-0 bg-[rgb(14,20,27)] border border-solid border-gray-700 text-gray-300 shadow-[0_1px_2px_#a0aab4] max-h-[240px]',
         },
         popper: {
           ...slotProps.popper,
@@ -127,35 +128,27 @@ export const Slider = React.forwardRef(function Slider(
         }),
         rail: {
           ...slotProps.rail,
-          className: clsx(
-            'block absolute w-full h-1.5 rounded-full bg-gray-700 opacity-40',
-          ),
+          className: 'block absolute w-full h-1.5 rounded-full bg-gray-700 opacity-40',
         },
         track: {
           ...slotProps.track,
-          className: clsx(
-            'block absolute h-1.5 rounded-full bg-current',
-          ),
+          className: 'block absolute h-1.5 rounded-full bg-current',
         },
-        thumb: (/* ownerState: SliderOwnerState */) => ({
+        thumb: {
           ...slotProps.thumb,
-          className: clsx(
+          className:
             'absolute w-5 h-5 ml-[-8px] mt-[-7.5px] box-border rounded-[50%] outline-0 bg-white',
-            // TODO: add hover/focusVisible/active box-shadow
-          ),
-        }),
+          // TODO: add hover/focusVisible/active box-shadow
+        },
         // TODO: where does markActive go?
         mark: {
           ...slotProps.mark,
-          className: clsx(
-            'absolute w-1 h-1 rounded-sm bg-current top-2/4 opacity-0',
-          ),
+          className: 'absolute w-1 h-1 rounded-sm bg-current top-2/4 opacity-0',
         },
         markLabel: {
           ...slotProps.markLabel,
-          className: clsx(
+          className:
             'text-[10px] font-extrabold uppercase text-gray-300 absolute top-5 mt-2 data-[index="1"]:translate-x-[-100%]',
-          ),
         },
       }}
       ref={ref}

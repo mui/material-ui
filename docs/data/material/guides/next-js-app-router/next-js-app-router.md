@@ -14,7 +14,7 @@ Don't need a guide? Use one of these example repos and get started:
 - [Material UI](https://github.com/mui/material-ui/blob/master/examples/material-next-app-router-ts)
 - [Joy UI](https://github.com/mui/material-ui/blob/master/examples/joy-next-app-router-ts)
 - [Base UI with Tailwind CSS](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts)
-:::
+  :::
 
 ## Using Material UI with the default theme
 
@@ -202,19 +202,18 @@ export default function Page() {
         slotProps={{
           root: (ownerState: ButtonOwnerState) => ({
             className: ownerState.disabled ? 'bg-gray-400' : 'bg-blue-400',
-          })
+          }),
         }}
       >
         Submit
       </Button>
-
 
       {/* Next.js can render this */}
       <Button
         slotProps={{
           root: {
             className: 'bg-gray-400',
-          }
+          },
         }}
       >
         Return
@@ -222,7 +221,6 @@ export default function Page() {
     </>
   );
 }
-
 ```
 
 However, this will not work since function props are [non-serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
