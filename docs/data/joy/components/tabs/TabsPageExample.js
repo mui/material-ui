@@ -38,8 +38,6 @@ export default function TabsPageExample() {
               [`&.${tabClasses.selected}`]: {
                 color: 'primary.plainColor',
                 '&::after': {
-                  left: 'var(--ListItem-paddingLeft)',
-                  right: 'var(--ListItem-paddingRight)',
                   height: '3px',
                   borderTopLeftRadius: '3px',
                   borderTopRightRadius: '3px',
@@ -49,7 +47,7 @@ export default function TabsPageExample() {
             },
           }}
         >
-          <Tab>
+          <Tab indicatorInset>
             Deals{' '}
             <Chip
               size="sm"
@@ -60,7 +58,7 @@ export default function TabsPageExample() {
               14
             </Chip>
           </Tab>
-          <Tab>
+          <Tab indicatorInset>
             Library{' '}
             <Chip
               size="sm"
@@ -71,7 +69,7 @@ export default function TabsPageExample() {
               24
             </Chip>
           </Tab>
-          <Tab>Search library</Tab>
+          <Tab indicatorInset>Search library</Tab>
         </TabList>
         <Box
           sx={(theme) => ({
