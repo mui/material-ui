@@ -23,12 +23,10 @@ const theme = createTheme({
   },
 });
 
-function OverridesCss() {
+export default function GlobalCss() {
   return (
     <ThemeProvider theme={theme}>
       <Button>Overrides CSS</Button>
     </ThemeProvider>
   );
 }
-
-export default OverridesCss;

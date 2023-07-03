@@ -148,7 +148,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     {
       codeVariant: demo.codeVariant,
       raw: Object.entries(demo.files).reduce((prev, curr) => `${prev}\n${curr}`, ''),
-      product: 'joy-ui',
+      productId: 'joy-ui',
     },
     {
       commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,

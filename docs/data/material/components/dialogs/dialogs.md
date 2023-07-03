@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
@@ -27,7 +27,7 @@ Touch mechanics:
 - Choosing an option immediately commits the option and closes the menu
 - Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
 
-{{"demo": "SimpleDialog.js"}}
+{{"demo": "SimpleDialogDemo.js"}}
 
 ## Alerts
 
