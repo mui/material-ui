@@ -2,26 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer components {
+  /* this is an alternative to using function props and ownerState to style a component, the corresponding Switch component can be rendered in page.tsx without a use-client directive, but you cannot easily import the class names like in JS/TS */
+  .switch {
+    &.Mui-checked {
+      .MuiSwitch-thumb {
+        @apply left-[20px] top-[2.5px] bg-white;
+      }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+      .MuiSwitch-track {
+        @apply bg-blue-400;
+      }
+    }
+
+    &.Mui-focusVisible .MuiSwitch-thumb {
+      @apply shadow-[0_0_1px_8px_rgba(0,0,0,0.25)];
+    }
+
+    &.Mui-disabled {
+      @apply opacity-40 cursor-not-allowed;
+    }
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }

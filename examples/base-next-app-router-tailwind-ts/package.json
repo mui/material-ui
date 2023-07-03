@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mui/base": "https://pkg.csb.dev/mui/material-ui/commit/5b42c974/@mui/base",
+    "clsx": "latest",
     "next": "13.4.7",
     "react": "18.2.0",
     "react-dom": "18.2.0"
