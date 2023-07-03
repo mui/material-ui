@@ -1,5 +1,15 @@
 # @mui/material-next
 
-Material Design components built using @mui/base.
+[Material Design 3](https://m3.material.io/) components built using [@mui/base](https://mui.com/base-ui/getting-started/overview/).
 
 This package is a nursery for components that will ultimately replace the @mui/material ones.
+
+## Material UI v6 changes
+
+Material UI v6's notable changes compared to v5 are:
+
+- Built using [@mui/base](https://mui.com/base-ui/getting-started/overview/)
+- Built with Typescript.
+- Implement [Material Design 3](https://m3.material.io/), known as Material You.
+
+For migration steps when upgrading from v5, follow the [migration guide](/packages/mui-material-next/migration.md).

@@ -1,11 +1,10 @@
-# Breaking changes in v6: core components
+# Migration
 
-<p class="description">This is a reference guide to the breaking changes introduced in Material UI v6, and how to migrate from v5. This part covers changes to components.</p>
+This is a reference guide on how to migrate from Material UI v5 to v6.
 
-## Breaking changes
+## Breaking changes: components
 
-Material UI v6 introduces breaking changes from v5.
-The following document lists all breaking changes related to components in v6 and how to address them.
+This section lists all breaking changes related to components in v6 and how to address them.
 
 ## Slider
 
