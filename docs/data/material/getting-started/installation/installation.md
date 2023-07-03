@@ -5,7 +5,7 @@
 :::warning
 ⚗️ Material UI is working on support for React Server Components!
 
-- All components and hooks from MUI libraries are designated as Client Components
+- All components and hooks from MUI libraries are exported as Client Components with the "use client" directive
 - If you are using the Next.js App Router, see our [guide](/material-ui/guides/next-js-app-router/)
 
 :::

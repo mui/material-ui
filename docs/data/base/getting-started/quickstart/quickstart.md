@@ -3,7 +3,7 @@
 <p class="description">Get started with Base UI, a library of headless ("unstyled") React UI components and low-level hooks.</p>
 
 :::info
-If you're using Next.js 13.4 or later, see our [Next.js App Router guide](/base-ui/guides/next-js-app-router/)
+⚗️ If you are using the Next.js App Router, see our [guide](/material-ui/guides/next-js-app-router/#using-base-ui)
 :::
 
 ## Installation
