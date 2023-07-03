@@ -123,16 +123,30 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 ### Segmented controls
 
+To mimic the iOS segmented controls, add the border-radius to the `sx` prop of the TabList and set the selected Tab's background to `background.surface`.
+
 {{"demo": "TabsSegmentedControls.js"}}
 
+### Browser tabs
+
+In this example, the Tab's variant is set to `outlined` and the indicator is moved to the top via `indicatorPlacement="top"`. The borders of the Tab are set to `transparent` based on the selected state.
+
+{{"demo": "TabsBrowserExample.js"}}
+
 ### Pricing tabs
+
+This example removes the background of the selected Tab by targeting `[aria-selected="true"]` on the `sx` prop.
 
 {{"demo": "TabsPricingExample.js"}}
 
 ### With counter chips
 
+To render tab items at the center of the TabList, use `justifyContent: 'center'` on the `sx` prop of the TabList and set `flex: initial` to each of the Tab to override the default `flex-grow`.
+
 {{"demo": "TabsPageExample.js"}}
 
 ### Mobile bottom navigation
+
+In this example, each Tab's is applied with one of the theme's color palette when it is selected.
 
 {{"demo": "TabsBottomNavExample.js"}}

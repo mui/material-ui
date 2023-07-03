@@ -50,14 +50,16 @@ const SvgIconRoot = styled('svg', {
     ownerState.fontSize !== 'inherit' && {
       fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
     }),
-  color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
-  ...(ownerState.color !== 'inherit' &&
-    ownerState.color !== 'context' &&
-    theme.vars.palette[ownerState.color!] && {
-      color: theme.vars.palette[ownerState.color!].plainColor,
+  ...(!ownerState.htmlColor && {
+    color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
+    ...(ownerState.color !== 'inherit' &&
+      ownerState.color !== 'context' &&
+      theme.vars.palette[ownerState.color!] && {
+        color: theme.vars.palette[ownerState.color!].plainColor,
+      }),
+    ...(ownerState.color === 'context' && {
+      color: theme.variants.plain?.[ownerState.color!]?.color,
     }),
-  ...(ownerState.color === 'context' && {
-    color: theme.variants.plain?.[ownerState.color!]?.color,
   }),
 }));
 /**

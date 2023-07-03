@@ -8,27 +8,28 @@ import Typography from '@mui/joy/Typography';
 export default function TabsPricingExample() {
   return (
     <Tabs
+      variant="outlined"
       aria-label="Pricing plan"
       defaultValue={0}
-      sx={(theme) => ({
+      sx={{
         width: 343,
         borderRadius: 'lg',
         boxShadow: 'sm',
         overflow: 'auto',
-        border: `1px solid ${theme.vars.palette.divider}`,
-      })}
+      }}
     >
       <TabList
+        disableUnderline
         sx={{
           [`& .${tabClasses.root}`]: {
             fontSize: 'sm',
             fontWeight: 'lg',
-            [`&.${tabClasses.selected}`]: {
+            [`&[aria-selected="true"]`]: {
               color: 'primary.500',
               bgcolor: 'background.surface',
             },
             [`&.${tabClasses.focusVisible}`]: {
-              outlineOffset: '-3px',
+              outlineOffset: '-4px',
             },
           },
         }}

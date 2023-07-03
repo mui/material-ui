@@ -26,13 +26,11 @@ export default function TabsPageExample() {
         onChange={(event, value) => setIndex(value as number)}
       >
         <TabList
-          variant="plain"
-          disableUnderline
           sx={{
-            mx: 'auto',
             pt: 2,
-            alignSelf: 'flex-start',
+            justifyContent: 'center',
             [`& .${tabClasses.root}`]: {
+              flex: 'initial',
               bgcolor: 'transparent',
               '&:hover': {
                 bgcolor: 'transparent',
@@ -75,15 +73,6 @@ export default function TabsPageExample() {
           </Tab>
           <Tab>Search library</Tab>
         </TabList>
-        <Box
-          sx={(theme) => ({
-            '--bg': theme.vars.palette.background.level3,
-            height: '1px',
-            background: 'var(--bg)',
-            boxShadow: '0 0 0 100vmax var(--bg)',
-            clipPath: 'inset(0 -100vmax)',
-          })}
-        />
         <Box
           sx={(theme) => ({
             '--bg': theme.vars.palette.background.surface,

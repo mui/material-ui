@@ -44,25 +44,40 @@ const TabRoot = styled(StyledListItemButton, {
     [`& > .${listItemDecoratorClasses.root}`]: { alignItems: 'center' },
     '--unstable_ListItemDecorator-alignItems': 'center',
     '--unstable_offset': 'calc(-1 * var(--variant-borderWidth, 0px))',
-    // using pseudo element for showing active indicator is best for controlling the size and customization.
-    // for example, developers can customize the radius, width or background.
-    // (border and box-shadow are not flexible when it comes to customization).
+    // to prevent the Tab's background from covering TabList's underline when hovered.
+    ...(ownerState.variant !== 'outlined' && {
+      '&::before': {
+        content: '""',
+        display: 'block',
+        position: 'absolute',
+        width: ownerState.row ? '100%' : 1,
+        height: !ownerState.row ? '100%' : 1,
+        bottom: ownerState.row ? 0 : undefined,
+        right: !ownerState.row ? 0 : undefined,
+      },
+      '&:not([aria-selected="true"]):hover::before': {
+        backgroundColor: `var(--unstable_TabList-hasUnderline, ${theme.vars.palette.divider})`,
+      },
+    }),
   },
   !ownerState.disableIndicator && {
-    '&:not([aria-selected="true"]):hover': {
-      // to prevent the Tab's background from covering TabList's underline when hovered.
-      '--Tab-indicatorColor': `var(--unstable_TabList-hasUnderline, ${
-        (ownerState.row && ownerState.indicatorPlacement === 'top') ||
-        (!ownerState.row && ownerState.indicatorPlacement === 'left')
-          ? 'transparent'
-          : theme.vars.palette.divider
-      })`,
-      '--unstable_indicatorThickness':
-        ownerState.variant === 'outlined' ? '0px' : 'var(--unstable_TabList-hasUnderline, 1px)', // this means if TabList has underline, the value will be 1px.
-    },
+    // '&:not([aria-selected="true"]):hover': {
+    //   // to prevent the Tab's background from covering TabList's underline when hovered.
+    //   '--Tab-indicatorColor': `var(--unstable_TabList-hasUnderline, ${
+    //     (ownerState.row && ownerState.indicatorPlacement === 'top') ||
+    //     (!ownerState.row && ownerState.indicatorPlacement === 'left')
+    //       ? 'transparent'
+    //       : theme.vars.palette.divider
+    //   })`,
+    //   '--unstable_indicatorThickness':
+    //     ownerState.variant === 'outlined' ? '0px' : 'var(--unstable_TabList-hasUnderline, 1px)', // this means if TabList has underline, the value will be 1px.
+    // },
     '&[aria-selected="true"]': {
       '--Tab-indicatorColor': 'currentColor',
     },
+    // using pseudo element for showing active indicator is best for controlling the size and customization.
+    // for example, developers can customize the radius, width or background.
+    // (border and box-shadow are not flexible when it comes to customization).
     '&::after': {
       content: '""',
       display: 'block',
