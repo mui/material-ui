@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: Unstyled React Popper component
 components: PopperUnstyled
 githubLabel: 'component: Popper'
@@ -20,7 +20,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import PopperUnstyled from '@mui/base/PopperUnstyled';
@@ -34,14 +34,14 @@ export default function MyApp() {
 
 By default, the popper is mounted to the DOM when its `open` prop is set to `true`, and removed from the DOM when `open` is `false`.
 
-`anchorEl` is passed as the reference object to create a new `Popper.js` instance. The children are placed in a [`Portal`](/base/react-portal/) prepended to the body of the document to avoid rendering problems. You can disable this behavior with `disablePortal` prop.
+`anchorEl` is passed as the reference object to create a new `Popper.js` instance. The children are placed in a [`Portal`](/base-ui/react-portal/) prepended to the body of the document to avoid rendering problems. You can disable this behavior with `disablePortal` prop.
 
 The following demo shows how to create and style a basic popper. Click **Toggle Popper** to see how it behaves:
 
 {{"demo": "SimplePopper.js", "defaultCodeOpen": true}}
 
 :::warning
-By default, clicking outside the popper does not hide it. If you need this behavior, you can use the [`ClickAwayListener`](/base/react-click-away-listener/) component.
+By default, clicking outside the popper does not hide it. If you need this behavior, you can use the [`ClickAwayListener`](/base-ui/react-click-away-listener/) component.
 :::
 
 ## Customization

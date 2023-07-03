@@ -41,7 +41,6 @@ export default function CondensedBreadcrumbs() {
           {item}
         </Link>
       ))}
-
       <Typography fontSize="inherit" sx={{ display: 'flex', alignItems: 'center' }}>
         <FolderIcon sx={{ mr: 0.5 }} fontSize="inherit" />
         bablo.txt

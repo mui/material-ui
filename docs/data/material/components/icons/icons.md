@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Icon Component
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'
@@ -98,16 +98,9 @@ This component extends the native `<svg>` element:
   This can be customized with the `viewBox` attribute.
   To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
 - By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.
+- It supports `<svg>` element as a child so you can copy and paste your SVG directly to `SvgIcon` component.
 
-```jsx
-function HomeIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-    </SvgIcon>
-  );
-}
-```
+{{"demo": "SvgIconChildren.js"}}
 
 ### Color
 
@@ -152,12 +145,27 @@ import { ReactComponent as StarIcon } from './star.svg';
 
 ### createSvgIcon
 
-The `createSvgIcon` utility component is used to create the [Material Icons](#material-icons). It can be used to wrap an SVG path with an SvgIcon component.
+The `createSvgIcon` utility component is used to create the [Material Icons](#material-icons). It can be used to wrap an `<svg>` element or an SVG path which is passed as a child to the [`SvgIcon`](#svgicon) component.
 
 ```jsx
 const HomeIcon = createSvgIcon(
   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />,
   'Home',
+);
+
+// or with custom SVG
+const PlusIcon = createSvgIcon(
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className="h-6 w-6"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+  </svg>,
+  'Plus',
 );
 ```
 

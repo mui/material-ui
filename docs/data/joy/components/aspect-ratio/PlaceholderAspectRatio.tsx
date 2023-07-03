@@ -4,7 +4,7 @@ import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import ImageIcon from '@mui/icons-material/Image';
 
-export default function BasicRatio() {
+export default function PlaceholderAspectRatio() {
   return (
     <Card variant="outlined" sx={{ width: 300 }}>
       <AspectRatio>
@@ -12,8 +12,10 @@ export default function BasicRatio() {
           <ImageIcon fontSize="xl5" sx={{ color: 'text.tertiary' }} />
         </div>
       </AspectRatio>
-      <Typography mt={2}>Title</Typography>
-      <Typography level="body2">Description of the card.</Typography>
+      <div>
+        <Typography>Title</Typography>
+        <Typography level="body2">Description of the card.</Typography>
+      </div>
     </Card>
   );
 }

@@ -331,9 +331,13 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
 };
 /**
  *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/base-ui/react-autocomplete/#hook)
+ *
  * API:
  *
- * - [useAutocomplete API](https://mui.com/base/api/use-autocomplete/)
+ * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
  */
 export default function useAutocomplete<
   T,
@@ -412,22 +416,18 @@ export interface UseAutocompleteReturnValue<
   value: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
   /**
    * If `true`, the component input has some values.
-   * @default false
    */
   dirty: boolean;
   /**
    * If `true`, the listbox is being displayed.
-   * @default false
    */
   expanded: boolean;
   /**
    * If `true`, the popup is open on the component.
-   * @default false
    */
   popupOpen: boolean;
   /**
    * If `true`, the component is focused.
-   * @default false
    */
   focused: boolean;
   /**
@@ -441,7 +441,6 @@ export interface UseAutocompleteReturnValue<
   setAnchorEl: () => void;
   /**
    * Index of the focused tag for the component.
-   * @default -1
    */
   focusedTag: number;
   /**

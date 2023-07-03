@@ -34,16 +34,17 @@ function preventDefault(event: React.SyntheticEvent) {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/#hooks)
+ * - [Select](https://mui.com/base-ui/react-select/#hooks)
  *
  * API:
  *
- * - [useSelect API](https://mui.com/base/react-select/hooks-api/#use-select)
+ * - [useSelect API](https://mui.com/base-ui/react-select/hooks-api/#use-select)
  */
 function useSelect<OptionValue, Multiple extends boolean = false>(
   props: UseSelectParameters<OptionValue, Multiple>,
 ): UseSelectReturnValue<OptionValue, Multiple> {
   const {
+    areOptionsEqual,
     buttonRef: buttonRefProp,
     defaultOpen = false,
     defaultValue: defaultValueProp,
@@ -127,24 +128,40 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
 
   const optionValues = React.useMemo(() => Array.from(options.keys()), [options]);
 
+  const getOptionByValue = React.useCallback(
+    (valueToGet: OptionValue) => {
+      // This can't be simply `options.get(valueToGet)` because of the `areOptionsEqual` prop.
+      // If it's provided, we assume that the user wants to compare the options by value.
+      if (areOptionsEqual !== undefined) {
+        const similarValue = optionValues.find((optionValue) =>
+          areOptionsEqual(optionValue, valueToGet),
+        )!;
+        return options.get(similarValue);
+      }
+
+      return options.get(valueToGet);
+    },
+    [options, areOptionsEqual, optionValues],
+  );
+
   const isItemDisabled = React.useCallback(
     (valueToCheck: OptionValue) => {
-      const option = options.get(valueToCheck);
+      const option = getOptionByValue(valueToCheck);
       return option?.disabled ?? false;
     },
-    [options],
+    [getOptionByValue],
   );
 
   const stringifyOption = React.useCallback(
     (valueToCheck: OptionValue) => {
-      const option = options.get(valueToCheck);
+      const option = getOptionByValue(valueToCheck);
       if (!option) {
         return '';
       }
 
       return getOptionAsString(option);
     },
-    [options, getOptionAsString],
+    [getOptionByValue, getOptionAsString],
   );
 
   const controlledState = React.useMemo(
@@ -217,6 +234,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     }),
     getItemId,
     controlledProps: controlledState,
+    itemComparer: areOptionsEqual,
     isItemDisabled,
     rootRef: mergedButtonRef,
     onChange: handleSelectionChange,
@@ -254,7 +272,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   useEnhancedEffect(() => {
     // Scroll to the currently highlighted option.
     if (highlightedOption != null) {
-      const optionRef = options.get(highlightedOption)?.ref;
+      const optionRef = getOptionByValue(highlightedOption)?.ref;
       if (!listboxRef.current || !optionRef?.current) {
         return;
       }
@@ -268,11 +286,11 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         listboxRef.current.scrollTop += optionClientRect.bottom - listboxClientRect.bottom;
       }
     }
-  }, [highlightedOption, options]);
+  }, [highlightedOption, getOptionByValue]);
 
   const getOptionMetadata = React.useCallback(
-    (optionValue: OptionValue) => options.get(optionValue),
-    [options],
+    (optionValue: OptionValue) => getOptionByValue(optionValue),
+    [getOptionByValue],
   );
 
   const getSelectTriggerProps = <TOther extends EventHandlers>(

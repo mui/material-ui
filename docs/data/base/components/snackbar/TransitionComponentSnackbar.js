@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Transition } from 'react-transition-group';
 import { styled } from '@mui/system';
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import Snackbar from '@mui/base/Snackbar';
 
@@ -58,20 +57,7 @@ export default function TransitionComponentSnackbar() {
               }}
               ref={nodeRef}
             >
-              <CheckRoundedIcon
-                sx={{
-                  flexShrink: 0,
-                  marginRight: '0.75rem',
-                  width: '1.25rem',
-                  height: '1.5rem',
-                }}
-              />
-              <div className="snackbar-message">
-                <div className="snackbar-title">Notifications sent</div>
-                <div className="snackbar-description">
-                  All your notifications were sent to the desired address.
-                </div>
-              </div>
+              <div className="snackbar-title">Hello World</div>
               <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
             </SnackbarContent>
           )}
@@ -132,8 +118,6 @@ const StyledSnackbar = styled(Snackbar)`
   display: flex;
   bottom: 16px;
   right: 16px;
-  max-width: 560px;
-  min-width: 300px;
 `;
 
 const SnackbarContent = styled('div')(
@@ -155,28 +139,13 @@ const SnackbarContent = styled('div')(
   text-align: start;
   position: relative;
 
-  & .snackbar-message {
-    flex: 1 1 0%;
-    max-width: 100%;
-  }
-
   & .snackbar-title {
-    line-height: 1.5rem;
     margin-right: 0.5rem;
-  }
-
-  & .snackbar-description {
-    line-height: 1.5rem;
-    font-weight: 400;
-    color: ${theme.palette.mode === 'dark' ? grey[400] : grey[800]};
   }
 
   & .snackbar-close-icon {
     cursor: pointer;
     font-size: 10px;
-    position: absolute;
-    top: 0.725rem;
-    right: 0.725rem;
     width: 1.25rem;
     height: 1.5rem;
     display: flex;

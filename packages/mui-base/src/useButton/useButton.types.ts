@@ -53,7 +53,6 @@ export interface UseButtonReturnValue {
   ) => UseButtonRootSlotProps<TOther>;
   /**
    * If `true`, the component is being focused using keyboard.
-   * @default false
    */
   focusVisible: boolean;
   /**
@@ -62,7 +61,6 @@ export interface UseButtonReturnValue {
   setFocusVisible: React.Dispatch<React.SetStateAction<boolean>>;
   /**
    * If `true`, the component is active (pressed).
-   * @default false
    */
   active: boolean;
   /**

@@ -1,4 +1,12 @@
-export const getHtml = ({ title, language }: { title: string; language: string }) => {
+export const getHtml = ({
+  title,
+  language,
+  codeStyling,
+}: {
+  title: string;
+  language: string;
+  codeStyling?: 'Tailwind' | 'MUI System';
+}) => {
   return `<!DOCTYPE html>
 <html lang="${language}">
   <head>
@@ -12,7 +20,24 @@ export const getHtml = ({ title, language }: { title: string; language: string }
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
+    />${
+      codeStyling === 'Tailwind'
+        ? `
+    <!-- Check the Tailwind CSS's installation guide for setting up tailwind: https://tailwindcss.com/docs/installation -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            boxShadow: {
+              'outline-purple': '0 0 0 3px #c084fc',
+            }
+          }
+        }
+      }
+    </script>`
+        : ''
+    }
   </head>
   <body>
     <div id="root"></div>
@@ -20,7 +45,7 @@ export const getHtml = ({ title, language }: { title: string; language: string }
 </html>`;
 };
 
-export const getRootIndex = (product?: 'joy-ui' | 'base') => {
+export const getRootIndex = (product?: 'joy-ui' | 'base-ui') => {
   if (product === 'joy-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
@@ -37,7 +62,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </React.StrictMode>
 );`;
   }
-  if (product === 'base') {
+  if (product === 'base-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import Demo from './demo';

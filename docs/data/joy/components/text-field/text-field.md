@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Text Field component
 githubLabel: 'component: text field'
 ---
@@ -62,7 +62,7 @@ Replace the `TextField` with composition:
 +  <FormLabel>
 +    Label
 +  </FormLabel>
-+  <JoyInput
++  <Input
 +    placeholder="Placeholder"
 +    name="Name"
 +    type="tel"
