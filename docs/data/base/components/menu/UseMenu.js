@@ -57,6 +57,7 @@ MenuItem.propTypes = {
 
 export default function UseMenu() {
   const [buttonElement, setButtonElement] = React.useState(null);
+
   const [isOpen, setOpen] = React.useState(false);
   const preventReopen = React.useRef(false);
 

@@ -20,6 +20,7 @@ export default function BasicBreadcrumbs() {
           {item}
         </Link>
       ))}
+
       <Typography fontSize="inherit">Dr. Zoidberg</Typography>
     </Breadcrumbs>
   );

@@ -8,6 +8,7 @@ import { ListActionTypes } from '@mui/base/useList';
 
 export default function UnstyledMenuIntroduction() {
   const [buttonElement, setButtonElement] = React.useState(null);
+
   const [isOpen, setOpen] = React.useState(false);
   const menuActions = React.useRef(null);
   const preventReopen = React.useRef(false);

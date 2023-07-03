@@ -13,6 +13,7 @@ export default function BadgeAlignment() {
     vertical: 'top',
     horizontal: 'right',
   });
+
   const jsx = `
 <Badge
   anchorOrigin={{
