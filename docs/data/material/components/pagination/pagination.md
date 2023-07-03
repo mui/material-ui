@@ -7,7 +7,7 @@ githubLabel: 'component: pagination'
 
 # Pagination
 
-<p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
+<p class="description">The Pagination is a component that enables the user to select a specific page from a range of pages.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
