@@ -14,10 +14,10 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
-    "@mui/material": "https://pkg.csb.dev/mui/material-ui/commit/1d01fd6f/@mui/material",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "@mui/material": "latest",
+    "next": "13.x",
+    "react": "18.x",
+    "react-dom": "18.x"
   },
   "devDependencies": {
     "@types/node": "latest",
