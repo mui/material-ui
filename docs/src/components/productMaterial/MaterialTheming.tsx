@@ -81,7 +81,7 @@ const code = `
   </Box>
 </Card>`;
 
-export default function CoreTheming() {
+export default function MaterialTheming() {
   const [customized, setCustomized] = React.useState(true);
   return (
     <Section>
@@ -95,7 +95,7 @@ export default function CoreTheming() {
                   Build <GradientText>your design system</GradientText> just as you want it to be
                 </Typography>
               }
-              description="Use the advanced theming feature to easily tailor the components to your needs. You can also quickly start with Material Design."
+              description="Start quickly with Material Design or use the advanced theming feature to easily tailor the components to your needs."
             />
           </Box>
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
