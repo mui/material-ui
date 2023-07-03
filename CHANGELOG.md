@@ -7,31 +7,31 @@ _Jul 3, 2023_
 A big thanks to the 20 contributors who made this release possible.
 This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
-### `@mui/material`
+### `@mui/material@5.13.7`
 
 - [OutlinedInput] Fix form control properties in `ownerState` (#37668) @vonagam
 
-### `@mui/system`
+### `@mui/system@5.13.7`
 
 - [Stack] Fix spacing when there are <style> children (#34966) @cmd-johnson
 
-### `@mui/icons-material`
+### `@mui/icons-material@5.13.7`
 
 - [icons] Add Microsoft logo (#37717) @zephyrus21
 
-### `@mui/joy`
+### `@mui/joy@5.0.0-alpha.86`
 
 - [Autocomplete][joy] Fix Autocomplete and Modal components to work together (#37515) @saikathalderr
 - [Menu][Joy] Improve UX of `Menu` usage demo (#37797) @sai6855
 
-### `@mui/base`
+### `@mui/base@5.0.0-beta.6`
 
 - [Slider][base][material][joy] Fix not draggable on the edge when `disableSwap={true}` (#35998) @sai6855
 - [Slider][base] Provide slot state to Slider's thumb slot props callback (#37749) @mnajdova
 - [Tabs] Wrap TabsList context creation in useMemo (#37370) @michaldudak
 - [TextareaAutosize] Fix wrong height measurement (#37185) @bigteech
 
-### `@mui/lab`
+### `@mui/lab@5.0.0-alpha.135`
 
 - [Timeline] Fix position `alternate-reverse` generated classname (#37678) @ZeeshanTamboli
 
