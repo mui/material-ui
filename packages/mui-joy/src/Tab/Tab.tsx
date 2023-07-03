@@ -270,6 +270,10 @@ Tab.propTypes /* remove-proptypes */ = {
    */
   disableIndicator: PropTypes.bool,
   /**
+   * If `true`, the indicator stay within the padding based on the `Tabs` orientation.
+   */
+  indicatorInset: PropTypes.bool,
+  /**
    * The indicator's position when the Tab is selected.
    * @default row ? 'bottom' : 'right'
    */

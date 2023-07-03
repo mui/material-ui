@@ -16,6 +16,7 @@
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableIndicator": { "type": { "name": "bool" }, "default": "false" },
+    "indicatorInset": { "type": { "name": "bool" } },
     "indicatorPlacement": {
       "type": {
         "name": "enum",
