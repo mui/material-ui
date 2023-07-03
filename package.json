@@ -148,7 +148,7 @@
     "eslint-plugin-mocha": "^10.1.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "fast-glob": "^3.2.12",
+    "fast-glob": "^3.3.0",
     "format-util": "^1.0.5",
     "fs-extra": "^11.1.1",
     "globby": "^13.2.1",
