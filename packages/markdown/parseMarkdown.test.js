@@ -161,7 +161,7 @@ authors:
   });
 
   describe('prepareMarkdown', () => {
-    it('returns the table of contents with html and emojis stripped', () => {
+    it('returns the table of contents with html and emojis preserved and <a> tags stripped', () => {
       const markdown = `
 # Support
 
@@ -171,6 +171,7 @@ authors:
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 ### Unofficial 👍
 ### Warning ⚠️
+### Header with Pro plan [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 `;
 
       const {
@@ -185,9 +186,18 @@ authors:
       expect(toc).to.have.deep.ordered.members([
         {
           children: [
-            { hash: 'github', level: 3, text: 'GitHub' },
-            { hash: 'unofficial', level: 3, text: 'Unofficial' },
-            { hash: 'warning', level: 3, text: 'Warning' },
+            {
+              hash: 'github',
+              level: 3,
+              text: 'GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />',
+            },
+            { hash: 'unofficial', level: 3, text: 'Unofficial 👍' },
+            { hash: 'warning', level: 3, text: 'Warning ⚠️' },
+            {
+              hash: 'header-with-pro-plan',
+              level: 3,
+              text: 'Header with Pro plan <span class="plan-pro"></span>',
+            },
           ],
           hash: 'community-help-free',
           level: 2,
