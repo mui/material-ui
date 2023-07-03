@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { createTheme, useTheme, ThemeProvider } from '@mui/material/styles';
 
-// Theme.js
+// Theme.ts
 const customTheme = (outerTheme) =>
   createTheme({
     palette: {
