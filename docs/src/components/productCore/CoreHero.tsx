@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 import IconImage from 'docs/src/components/icon/IconImage';
 
-export default function HeroPricing() {
+export default function CoreHero() {
   return (
     <Container>
       <Box

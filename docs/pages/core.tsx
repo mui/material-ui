@@ -2,7 +2,7 @@ import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import CoreHero2 from 'docs/src/components/productCore/CoreHero2';
+import CoreHero from 'docs/src/components/productCore/CoreHero';
 import CoreProducts from 'docs/src/components/productCore/CoreProducts';
 import MaterialHeroEnd from 'docs/src/components/productMaterial/MaterialHeroEnd';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
@@ -20,7 +20,7 @@ export default function Core() {
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
       <main id="main-content">
-        <CoreHero2 />
+        <CoreHero />
         <CoreProducts />
         <References companies={CORE_CUSTOMERS} />
         <MaterialHeroEnd />
