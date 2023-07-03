@@ -33,7 +33,7 @@ You can check out the [default theme section](/material-ui/customization/default
 
 ### Custom variables
 
-When using Material UI's theme with [MUI System](/system/getting-started/overview/) or [any other styling solution](/material-ui/guides/interoperability/), it can be convenient to add additional variables to the theme so you can use them everywhere.
+When using Material UI's theme with [MUI System](/system/getting-started/) or [any other styling solution](/material-ui/guides/interoperability/), it can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
 ```jsx
@@ -44,15 +44,20 @@ const theme = createTheme({
 });
 ```
 
-**WARNING**: `vars` is a private field used for CSS variables support. It will throw an error if you try to use it:
+:::warning
+`vars` is a private field for [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/). It will throw an error if you try to pass a value to it:
 
 ```jsx
 createTheme({
-  vars: { ... },
+  vars: { ... }, // ❌ error
 })
 ```
 
-If you are using TypeScript, you would also need to use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept the above values.
+:::
+
+### TypeScript
+
+You have to use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) to add new variables to the `Theme` and `ThemeOptions`.
 
 ```tsx
 declare module '@mui/material/styles' {
@@ -71,6 +76,8 @@ declare module '@mui/material/styles' {
 ```
 
 {{"demo": "CustomStyles.js"}}
+
+To add extra variables to the `theme.palette`, see [palette customization](/material-ui/customization/palette/).
 
 ## Theme builder
 

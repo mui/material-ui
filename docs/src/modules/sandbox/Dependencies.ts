@@ -10,7 +10,7 @@ type RegExpMatchArrayWithGroups<T> = (RegExpMatchArray & RegExpMatchArrayWithGro
 export default function SandboxDependencies(
   demo: {
     raw: string;
-    product?: 'joy-ui' | 'base';
+    productId?: 'joy-ui' | 'base-ui';
     codeVariant: keyof typeof CODE_VARIANTS;
   },
   options?: { commitRef?: string },
@@ -168,7 +168,7 @@ export default function SandboxDependencies(
     dependencies.typescript = 'latest';
   }
 
-  if (!demo.product && !dependencies['@mui/material']) {
+  if (!demo.productId && !dependencies['@mui/material']) {
     // The `index.js` imports StyledEngineProvider from '@mui/material', so we need to make sure we have it as a dependency
     const name = '@mui/material';
     const versions = {

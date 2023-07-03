@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'
@@ -236,6 +236,12 @@ This demo reproduces GitHub's label picker:
 {{"demo": "GitHubLabel.js"}}
 
 Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
+
+### Hint
+
+The following demo shows how to add a hint feature to the Autocomplete using the `renderInput` and `filterOptions` props:
+
+{{"demo": "AutocompleteHint.js"}}
 
 ## Highlights
 

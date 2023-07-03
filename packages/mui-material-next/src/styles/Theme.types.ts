@@ -21,11 +21,17 @@ export interface MD3Tones {
   99: string;
   100: string;
 }
+
+export interface MD3NeutralTones extends MD3Tones {
+  17: string;
+  22: string;
+  92: string;
+}
 export interface MD3Palettes {
   primary: MD3Tones;
   secondary: MD3Tones;
   tertiary: MD3Tones;
-  neutral: MD3Tones;
+  neutral: MD3NeutralTones;
   neutralVariant: MD3Tones;
   error: MD3Tones;
   common: {
@@ -62,6 +68,8 @@ export interface MD3ColorSchemeTokens {
   onSurface: string;
   surfaceVariant: string;
   onSurfaceVariant: string;
+  surfaceContainerHigh: string;
+  surfaceContainerHighest: string;
 
   inverseSurface: string;
   inverseOnSurface: string;
@@ -108,10 +116,16 @@ export interface TypescaleValue {
   small: {
     family: string;
     weight: string;
+    lineHeight: number;
+    size: number;
+    tracking: number;
   };
   medium: {
     family: string;
     weight: string;
+    lineHeight: number;
+    size: number;
+    tracking: number;
   };
   large: {
     family: string;

@@ -8,17 +8,9 @@ You can find some example projects in the [GitHub repository](https://github.com
 
 <!-- #default-branch-switch -->
 
-- [Next.js](https://github.com/mui/material-ui/tree/master/examples/material-next) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-next-ts))
-- [Create React App](https://github.com/mui/material-ui/tree/master/examples/material-cra) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-cra-ts))
-- [Remix](https://github.com/mui/material-ui/tree/master/examples/material-remix-ts)
-- [Gatsby](https://github.com/mui/material-ui/tree/master/examples/material-gatsby)
-- [Preact](https://github.com/mui/material-ui/tree/master/examples/material-preact)
-- [CDN](https://github.com/mui/material-ui/tree/master/examples/material-via-cdn)
-- [Express.js (server-rendered)](https://github.com/mui/material-ui/tree/master/examples/material-express-ssr)
-- [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-cra-tailwind-ts)
-- [Vite.js](https://github.com/mui/material-ui/tree/master/examples/material-vite) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-vite-ts))
-- [Use styled-components as style engine](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts))
-- [Next.js + @mui/styles (v4 migration helper)](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration)
+{{"component": "docs/src/modules/components/ExampleCollection.js"}}
+
+<br />
 
 Create React App is an awesome project for learning React.
 Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
@@ -67,6 +59,16 @@ If you want to start with a more complete and real-world example, you could take
   - Fully routed using react-router
   - Lazy loads components to boost performance
   - Components for statistics, text with emoji support, image upload and much more...
+
+- [refine](https://github.com/refinedev/refine):
+
+  - ![stars](https://img.shields.io/github/stars/refinedev/refine.svg?style=social&label=Star)
+  - An open source, headless React-based framework for the rapid development of web applications that supports Vite, Next.js and Remix.
+  - Designed for building data-intensive applications like admin panels, dashboards, and internal tools, but thanks to built-in SSR support, can also power customer-facing applications like storefronts.
+  - Supports Material UI to generate a complete CRUD app that follows the Material Design guidelines and best practices.
+  - Connectors for 15+ backend services, including REST API, GraphQL, NestJS, Airtable, Strapi, Supabase, Appwrite, Firebase, and Hasura.
+  - Out-of-the-box support for live/real-time applications, audit logs, authentication, access control flows and i18n.
+  - Advanced routing with any router library.
 
 ### Paid
 

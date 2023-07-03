@@ -90,7 +90,8 @@ export default function DiamondSponsors() {
           <Box
             component="img"
             height="30px"
-            src={`/static/sponsors/octopus-light.svg`}
+            width="137px"
+            src="/static/sponsors/octopus-light.svg"
             alt="octopus"
             title="Repeatable, reliable deployments"
             loading="lazy"
@@ -112,7 +113,8 @@ export default function DiamondSponsors() {
           <Box
             component="img"
             height="26px"
-            src={`/static/sponsors/doit-light.svg`}
+            width="62px"
+            src="/static/sponsors/doit-light.svg"
             alt="doit"
             title="Management Platform for Google Cloud and AWS"
             loading="lazy"
@@ -134,7 +136,8 @@ export default function DiamondSponsors() {
           <Box
             component="img"
             height="26px"
-            src={'https://brand.zesty.io/zesty-io-logo-horizontal.svg'}
+            width="93px"
+            src="https://brand.zesty.io/zesty-io-logo-horizontal.svg"
             alt="zesty.io"
             title="The only Next.js CMS you need"
             loading="lazy"

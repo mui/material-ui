@@ -72,6 +72,9 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 | Korean                  | ko-KR               | `koKR`      |
 | Kurdish (Central)       | ku-CKB              | `kuCKB`     |
 | Macedonian              | mk-MK               | `mkMK`      |
+| Myanmar                 | my-MY               | `myMY`      |
+| Malay                   | ms-MS               | `msMS`      |
+| Nepali                  | ne-NP               | `neNP`      |
 | Norwegian (bokmål)      | nb-NO               | `nbNO`      |
 | Persian                 | fa-IR               | `faIR`      |
 | Polish                  | pl-PL               | `plPL`      |
@@ -86,6 +89,7 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 | Swedish                 | sv-SE               | `svSE`      |
 | Thai                    | th-TH               | `thTH`      |
 | Turkish                 | tr-TR               | `trTR`      |
+| Tagalog                 | tl-TL               | `tlTL`      |
 | Ukrainian               | uk-UA               | `ukUA`      |
 | Urdu (Pakistan)         | ur-PK               | `urPK`      |
 | Vietnamese              | vi-VN               | `viVN`      |

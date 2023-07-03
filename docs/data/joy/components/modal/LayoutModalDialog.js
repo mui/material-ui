@@ -8,7 +8,6 @@ import Typography from '@mui/joy/Typography';
 
 export default function LayoutModalDialog() {
   const [layout, setLayout] = React.useState(undefined);
-
   return (
     <React.Fragment>
       <Stack direction="row" spacing={1}>

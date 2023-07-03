@@ -1,10 +1,10 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Text Field component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
 materialDesign: https://m2.material.io/components/text-fields
-unstyled: /base/react-input/
+unstyled: /base-ui/react-input/
 ---
 
 # Text Field
@@ -131,7 +131,16 @@ The `color` prop changes the highlight color of the text field when focused.
 Here are some examples of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"demo": "CustomizedInputs.js"}}
+### Using the styled API
+
+{{"demo": "CustomizedInputsStyled.js"}}
+
+### Using the theme style overrides API
+
+Use the `styleOverrides` key to change any style injected by Material UI into the DOM.
+See the [theme style overrides](/material-ui/customization/theme-components/#theme-style-overrides) documentation for further details.
+
+{{"demo": "CustomizedInputsStyleOverrides.js"}}
 
 Customization does not stop at CSS.
 You can use composition to build custom components and give your app a unique feel.

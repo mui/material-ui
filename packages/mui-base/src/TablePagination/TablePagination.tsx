@@ -52,11 +52,11 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Table Pagination](https://mui.com/base/react-table-pagination/)
+ * - [Table Pagination](https://mui.com/base-ui/react-table-pagination/)
  *
  * API:
  *
- * - [TablePagination API](https://mui.com/base/react-table-pagination/components-api/#table-pagination)
+ * - [TablePagination API](https://mui.com/base-ui/react-table-pagination/components-api/#table-pagination)
  */
 const TablePagination = React.forwardRef(function TablePagination<
   RootComponentType extends React.ElementType,
@@ -117,8 +117,8 @@ const TablePagination = React.forwardRef(function TablePagination<
     additionalProps: {
       value: rowsPerPage,
       id: selectId,
-      onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
-        onRowsPerPageChange && onRowsPerPageChange(e),
+      onChange: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
+        onRowsPerPageChange && onRowsPerPageChange(event),
       'aria-label': rowsPerPage.toString(),
       'aria-labelledby': [labelId, selectId].filter(Boolean).join(' ') || undefined,
     },
