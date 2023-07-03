@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 @layer components {
-  /* this is an alternative to using function props and ownerState to style a component, the corresponding Switch component can be rendered in page.tsx without a use-client directive, but you cannot easily import the class names like in JS/TS */
+  /* This is an alternative to using function props and ownerState to style a component, the corresponding Switch component can be rendered in page.tsx without a use-client directive, but you cannot easily import the class names like in JS/TS.
+
+  However this may not be a viable pattern since you'll typically pass other non-serializable props like event handers to components, which means you will have to add your own 'use-client' boundaries in your app anyway. */
   .switch {
     &.Mui-checked {
       .MuiSwitch-thumb {
