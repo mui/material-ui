@@ -39,12 +39,14 @@ const DemoToolbarFallbackRoot = styled('div')(({ theme }) => {
   return {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      height: theme.spacing(8),
+      display: 'block',
+      height: 40 + 5 * 2 + 1 * 2,
+      marginTop: -1,
     },
   };
 });
-export function DemoToolbarFallback() {
+
+function DemoToolbarFallback() {
   const t = useTranslate();
 
   return <DemoToolbarFallbackRoot aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
@@ -304,7 +306,6 @@ const DemoRootJoy = joyStyled('div', {
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
     padding: theme.spacing(3),
-    borderRadius: 0,
     border: `1px solid`,
     borderColor: grey[100],
     borderLeftWidth: 0,
@@ -323,7 +324,7 @@ const DemoRootJoy = joyStyled('div', {
   /* Mostly meant for introduction demos. */
   ...(bg === 'gradient' && {
     [theme.breakpoints.up('sm')]: {
-      borderRadius: '12px',
+      borderRadius: 12,
     },
     borderRadius: 0,
     padding: theme.spacing(0),
@@ -353,15 +354,12 @@ const DemoRootJoy = joyStyled('div', {
   }),
 }));
 
-const DemoCodeViewer = styled(HighlightedCode)(({ theme }) => ({
+const DemoCodeViewer = styled(HighlightedCode)(() => ({
   '& pre': {
     margin: 0,
     maxHeight: 'min(68vh, 1000px)',
     maxWidth: 'initial',
     borderRadius: 0,
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: theme.shape.borderRadius,
-    },
   },
 }));
 
@@ -548,7 +546,8 @@ export default function Demo(props) {
       ))}
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
-      <Wrapper {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
+      {/* TODO: BrandingProvider shouldn't be needed, it should already be at the top of the docs page */}
+      <BrandingProvider {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
         {demoOptions.hideToolbar ? null : (
           <NoSsr defer fallback={<DemoToolbarFallback />}>
             <React.Suspense fallback={<DemoToolbarFallback />}>
@@ -575,7 +574,7 @@ export default function Demo(props) {
             </React.Suspense>
           </NoSsr>
         )}
-        <Collapse in={openDemoSource} unmountOnExit>
+        <Collapse in={openDemoSource} unmountOnExit timeout={150}>
           {/* A limitation from https://github.com/nihgwu/react-runner,
             we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
           {demoOptions.disableLiveEdit ? (
@@ -616,7 +615,7 @@ export default function Demo(props) {
           )}
         </Collapse>
         {adVisibility ? <AdCarbonInline /> : null}
-      </Wrapper>
+      </BrandingProvider>
     </Root>
   );
 }

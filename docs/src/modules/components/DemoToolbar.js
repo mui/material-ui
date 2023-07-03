@@ -33,22 +33,21 @@ import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
 
 const Root = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'demoOptions',
-})(({ theme, demoOptions }) => [
+  shouldForwardProp: (prop) => prop !== 'demoOptions' && prop !== 'openDemoSource',
+})(({ theme, demoOptions, openDemoSource }) => [
   {
     display: 'none',
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    marginTop: demoOptions.bg === 'inline' ? 8 : -1,
-    marginBottom: 16,
     [theme.breakpoints.up('sm')]: {
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      border: `1px solid ${(theme.vars || theme).palette.divider}`,
+      marginTop: demoOptions.bg === 'inline' ? theme.spacing(1) : -1,
       display: 'flex',
       top: 0,
-      paddingTop: theme.spacing(0.5),
-      paddingBottom: theme.spacing(0.5),
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(0.5),
+      padding: theme.spacing(0.5, 1),
       backgroundColor: alpha(theme.palette.grey[50], 0.2),
-      borderRadius: '0 0 12px 12px',
+      borderRadius: openDemoSource ? 0 : '0 0 12px 12px',
+      transition: theme.transitions.create('border-radius'),
       ...(theme.direction === 'rtl' && {
         left: theme.spacing(1),
       }),
@@ -56,8 +55,6 @@ const Root = styled('div', {
         right: theme.spacing(1),
       }),
     },
-    justifyContent: 'space-between',
-    alignItems: 'center',
     '& .MuiSvgIcon-root': {
       fontSize: 16,
       color: (theme.vars || theme).palette.grey[800],
@@ -105,12 +102,6 @@ function ToggleCodeTooltip(props) {
 ToggleCodeTooltip.propTypes = {
   showSourceHint: PropTypes.bool,
 };
-
-export function DemoToolbarFallback() {
-  const t = useTranslate();
-
-  return <Root aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
-}
 
 const alwaysTrue = () => true;
 
@@ -540,7 +531,12 @@ export default function DemoToolbar(props) {
 
   return (
     <React.Fragment>
-      <Root aria-label={t('demoToolbarLabel')} {...toolbarProps} demoOptions={demoOptions}>
+      <Root
+        aria-label={t('demoToolbarLabel')}
+        {...toolbarProps}
+        demoOptions={demoOptions}
+        openDemoSource={openDemoSource}
+      >
         {hasNonSystemDemos && (
           <Button
             id="styling-solution"
