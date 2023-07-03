@@ -8551,10 +8551,10 @@ globby@13.1.4:
     merge2 "^1.4.1"
     slash "^4.0.0"
 
-globby@^13.1.1, globby@^13.2.0:
-  version "13.2.0"
-  resolved "https://registry.yarnpkg.com/globby/-/globby-13.2.0.tgz#7dd5678d765c4680c2e6d106230d86cb727cb1af"
-  integrity sha512-jWsQfayf13NvqKUIL3Ta+CIqMnvlaIDFveWE/dpOZ9+3AMEJozsxDvKA02zync9UuvOM8rOXzsD5GqKP4OnWPQ==
+globby@^13.1.1, globby@^13.2.1:
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/globby/-/globby-13.2.1.tgz#986d44187ba6a9fc4aa9b16caf0ab9a04db94ae9"
+  integrity sha512-DPCBxctI7dN4EeIqjW2KGqgdcUMbrhJ9AzON+PlxCtvppWhubTLD4+a0GFxiym14ZvacUydTPjLPc2DlKz7EIg==
   dependencies:
     dir-glob "^3.0.1"
     fast-glob "^3.2.11"
