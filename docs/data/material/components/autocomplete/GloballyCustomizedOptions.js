@@ -15,19 +15,21 @@ const customTheme = (outerTheme) =>
       MuiAutocomplete: {
         defaultProps: {
           renderOption: (props, option, state, ownerState) => (
-            <Box sx={{ padding: '0 !important' }} component="li" {...props}>
-              <div
-                style={{
+            <Box
+              sx={{
+                '&.MuiAutocomplete-option': {
                   fontSize: '12px',
                   width: '100%',
                   height: '100%',
-                  padding: '20px 24px',
+                  padding: '20px 12px',
                   justifyContent: 'flex-start',
                   textAlign: 'left',
-                }}
-              >
-                {ownerState.getOptionLabel?.(option)}
-              </div>
+                },
+              }}
+              component="li"
+              {...props}
+            >
+              {ownerState.getOptionLabel?.(option)}
             </Box>
           ),
         },
