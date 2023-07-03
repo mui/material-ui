@@ -18,7 +18,7 @@ import PopperUnstyled from '@mui/base/Popper';
 describe('Joy <Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
-  describeConformance(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
+  describeConformance(<Menu />, () => ({
     classes,
     inheritComponent: PopperUnstyled, // `Unstyled` suffix must exist for parser to recognise that this component inherits Base UI component
     render,

@@ -5,7 +5,6 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import { ListActionTypes } from '@mui/base/useList';
-import useDropdown, { DropdownContext } from '@mui/base/useDropdown';
 import Popper from '@mui/base/Popper';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
@@ -85,16 +84,14 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
 
   const {
     actions,
-    anchorEl,
     children,
     color: colorProp = 'neutral',
     component,
     disablePortal = false,
     keepMounted = false,
+    id,
     invertedColors = false,
-    onClose,
     onItemsChange,
-    open = false,
     modifiers: modifiersProp,
     variant = 'outlined',
     size = 'md',
@@ -105,17 +102,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
-  const handleOpenChange = React.useCallback(
-    (event: React.SyntheticEvent | null, isOpen: boolean) => {
-      if (!isOpen) {
-        onClose?.();
-      }
-    },
-    [onClose],
-  );
-
-  const { contextValue, getListboxProps, dispatch } = useMenu({
+  const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     onItemsChange,
+    id,
+    listboxRef: ref,
   });
 
   React.useImperativeHandle(
@@ -155,27 +145,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     [modifiersProp],
   );
 
-  if (anchorEl && process.env.NODE_ENV !== 'production') {
-    let ariaControls = null;
-    const resolvedAnchorEl = typeof anchorEl === 'function' ? anchorEl() : anchorEl;
-    if ('getAttribute' in resolvedAnchorEl) {
-      ariaControls = resolvedAnchorEl.getAttribute('aria-controls');
-    } else {
-      ariaControls = resolvedAnchorEl.contextElement?.getAttribute('aria-controls');
-    }
-
-    if (props.id && ariaControls && props.id !== ariaControls) {
-      console.error(
-        `MUI: the anchorEl must have [aria-controls="${props.id}"] but got [aria-controls="${ariaControls}"].`,
-      );
-    }
-  }
-
-  const { contextValue: dropdownContextValue } = useDropdown({
-    onOpenChange: handleOpenChange,
-    open,
-  });
-
   const rootProps = useSlotProps({
     elementType: MenuRoot,
     getSlotProps: getListboxProps,
@@ -183,8 +152,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     externalSlotProps: {},
     ownerState: ownerState as MenuOwnerState & ListOwnerState,
     additionalProps: {
-      ref,
-      anchorEl,
+      anchorEl: triggerElement,
       open,
       disablePortal,
       keepMounted,
@@ -206,19 +174,17 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   }
 
   result = (
-    <DropdownContext.Provider value={dropdownContextValue}>
-      <MenuRoot
-        {...rootProps}
-        {...(!props.slots?.root && {
-          as: Popper,
-          slots: {
-            root: component || 'ul',
-          },
-        })}
-      >
-        {result}
-      </MenuRoot>
-    </DropdownContext.Provider>
+    <MenuRoot
+      {...rootProps}
+      {...(!props.slots?.root && {
+        as: Popper,
+        slots: {
+          root: component || 'ul',
+        },
+      })}
+    >
+      {result}
+    </MenuRoot>
   );
 
   return disablePortal ? (
