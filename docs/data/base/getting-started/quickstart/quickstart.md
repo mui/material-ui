@@ -2,6 +2,10 @@
 
 <p class="description">Get started with Base UI, a library of headless ("unstyled") React UI components and low-level hooks.</p>
 
+:::info
+⚗️ If you are using the Next.js App Router, see our [guide](/material-ui/guides/next-js-app-router/#using-base-ui)
+:::
+
 ## Installation
 
 `@mui/base` is completely standalone – run one of the following commands to add Base UI to your React project:
