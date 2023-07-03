@@ -348,11 +348,10 @@ function useList<
     };
   };
 
-  const { current: currentSelections = [] } = latestSelectedValues;
   const getItemState = React.useCallback(
     (item: ItemValue): ListItemState => {
       const index = items.findIndex((i) => itemComparer(i, item));
-      const selected = currentSelections.some(
+      const selected = (latestSelectedValues.current ?? []).some(
         (value) => value != null && itemComparer(item, value),
       );
 
@@ -374,7 +373,7 @@ function useList<
       items,
       isItemDisabled,
       itemComparer,
-      currentSelections,
+      latestSelectedValues,
       latestHighlightedValue,
       focusManagement,
     ],

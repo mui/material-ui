@@ -14,12 +14,7 @@ import * as React from 'react';
  * - [useLatest API](https://mui.com/base-ui/api/use-latest/)
  */
 export default function useLatest<T>(value: T, deps?: React.DependencyList) {
-  const ref = React.useRef<T>(value);
-
-  React.useEffect(() => {
-    ref.current = value;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps ?? [value]);
-
-  return ref;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const current = React.useMemo(() => ({ current: value }), deps ?? [value]);
+  return current;
 }

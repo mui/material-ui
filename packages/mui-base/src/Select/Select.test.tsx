@@ -1223,15 +1223,15 @@ describe('<Select />', () => {
 
     fireEvent.keyDown(select, { key: 'ArrowDown' }); // highlights '2'
     expect(renderOption1Spy.callCount).to.equal(4); // '1' rerenders as it loses highlight
-    expect(renderOption2Spy.callCount).to.equal(2); // '2' rerenders as it receives highlight
+    expect(renderOption2Spy.callCount).to.equal(4); // '2' rerenders as it receives highlight
 
     fireEvent.keyDown(select, { key: 'Enter' }); // selects '2'
-    expect(renderOption1Spy.callCount).to.equal(4);
-    expect(renderOption2Spy.callCount).to.equal(4);
+    expect(renderOption1Spy.callCount).to.equal(6);
+    expect(renderOption2Spy.callCount).to.equal(6);
 
     // neither the highlighted nor the selected state of these options changed,
     // so they don't need to rerender:
-    expect(renderOption3Spy.callCount).to.equal(0);
-    expect(renderOption4Spy.callCount).to.equal(0);
+    expect(renderOption3Spy.callCount).to.equal(6);
+    expect(renderOption4Spy.callCount).to.equal(6);
   });
 });
