@@ -120,7 +120,7 @@ function Styles() {
 
       .CustomSwitch.${switchClasses.focusVisible} .CustomSwitch-thumb {
         background-color: ${grey[500]};
-        box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0 1px 8px rgba(13, 84, 99, 0.35);
       }
 
       .CustomSwitch.${switchClasses.checked} .CustomSwitch-thumb {
