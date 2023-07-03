@@ -143,6 +143,10 @@ TabList.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, the TabList's underline will disappear.
+   */
+  disableUnderline: PropTypes.bool,
+  /**
    * The size of the component.
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -173,7 +177,7 @@ TabList.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'soft'
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

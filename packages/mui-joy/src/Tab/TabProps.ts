@@ -43,12 +43,12 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
     disabled?: boolean;
     /**
      * If `true`, the pseudo element indicator is hidden.
+     * @default false
      */
     disableIndicator?: boolean;
     /**
      * The indicator's position when the Tab is selected.
-     * @default 'bottom' for horizontal orientation
-     * @default 'right' for vertical orientation.
+     * @default row ? 'bottom' : 'right'
      */
     indicatorPlacement?: 'top' | 'bottom' | 'left' | 'right';
     /**

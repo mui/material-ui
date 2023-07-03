@@ -25,7 +25,7 @@ export default function TabsVariants() {
         value={index}
         onChange={(event, value) => setIndex(value)}
       >
-        <TabList variant="outlined">
+        <TabList variant="outlined" disableUnderline>
           <Tab
             variant={index === 0 ? 'soft' : 'plain'}
             color={index === 0 ? 'primary' : 'neutral'}

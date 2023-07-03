@@ -38,7 +38,6 @@ export default function ExampleGmailList() {
         <ListItem>
           <ListItemButton
             selected={index === 0}
-            variant="plain"
             color={index === 0 ? 'primary' : undefined}
             onClick={() => setIndex(0)}
           >
@@ -57,7 +56,6 @@ export default function ExampleGmailList() {
         <ListItem>
           <ListItemButton
             selected={index === 1}
-            variant="plain"
             color={index === 1 ? 'neutral' : undefined}
             onClick={() => setIndex(1)}
           >
@@ -70,7 +68,6 @@ export default function ExampleGmailList() {
         <ListItem nested>
           <ListItemButton
             selected={index === 2}
-            variant="plain"
             color={index === 2 ? 'success' : undefined}
             onClick={() => setIndex(2)}
           >
@@ -84,7 +81,6 @@ export default function ExampleGmailList() {
             <ListItem>
               <ListItemButton
                 selected={index === 3}
-                variant="plain"
                 color={index === 3 ? 'primary' : undefined}
                 onClick={() => setIndex(3)}
               >
@@ -98,7 +94,6 @@ export default function ExampleGmailList() {
             <ListItem>
               <ListItemButton
                 selected={index === 4}
-                variant="plain"
                 color={index === 4 ? 'warning' : undefined}
                 onClick={() => setIndex(4)}
               >

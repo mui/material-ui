@@ -98,7 +98,7 @@ function ReactIcon() {
   );
 }
 
-export default function TabsSegmentedControls() {
+export default function TabsBrowserExample() {
   const [index, setIndex] = React.useState(0);
   return (
     <Tabs
@@ -111,8 +111,9 @@ export default function TabsSegmentedControls() {
         sx={{
           [`& .${tabClasses.root}`]: {
             '&:not([aria-selected="true"])': {
-              borderLeft: '1px solid transparent',
-              borderRight: '1px solid transparent',
+              borderTopColor: 'transparent',
+              borderLeftColor: 'transparent',
+              borderRightColor: 'transparent',
             },
             '&[aria-selected="true"]': {
               borderBottomColor: 'transparent',
@@ -121,25 +122,25 @@ export default function TabsSegmentedControls() {
           },
         }}
       >
-        <Tab {...(index === 0 && { variant: 'outlined' })} indicatorPlacement="top">
+        <Tab variant="outlined" indicatorPlacement="top">
           <ListItemDecorator>
             <GoogleIcon />
           </ListItemDecorator>
           Google Search
         </Tab>
-        <Tab {...(index === 1 && { variant: 'outlined' })} indicatorPlacement="top">
+        <Tab variant="outlined" indicatorPlacement="top">
           <ListItemDecorator>
             <TwitterIcon />
           </ListItemDecorator>
           Twitter
         </Tab>
-        <Tab {...(index === 2 && { variant: 'outlined' })} indicatorPlacement="top">
+        <Tab variant="outlined" indicatorPlacement="top">
           <ListItemDecorator>
             <DribbbleIcon />
           </ListItemDecorator>
           Dribbble
         </Tab>
-        <Tab {...(index === 3 && { variant: 'outlined' })} indicatorPlacement="top">
+        <Tab variant="outlined" indicatorPlacement="top">
           <ListItemDecorator>
             <ReactIcon />
           </ListItemDecorator>

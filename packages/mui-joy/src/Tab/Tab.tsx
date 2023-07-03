@@ -261,6 +261,16 @@ Tab.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the pseudo element indicator is hidden.
+   * @default false
+   */
+  disableIndicator: PropTypes.bool,
+  /**
+   * The indicator's position when the Tab is selected.
+   * @default row ? 'bottom' : 'right'
+   */
+  indicatorPlacement: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
+  /**
    * Callback invoked when new value is being set.
    */
   onChange: PropTypes.func,
