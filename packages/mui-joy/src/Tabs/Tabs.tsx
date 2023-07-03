@@ -42,8 +42,7 @@ const TabsRoot = styled(SheetRoot, {
   ...(ownerState.size === 'lg' && {
     '--Tabs-gap': '1.25rem',
   }),
-  '--Tab-lineThickness': '2px',
-  '--Tab-selectedLineColor': 'currentColor',
+  '--Tab-indicatorThickness': '2px',
   // === private variables ===
   '--_TabList-direction': ownerState.orientation === 'vertical' ? 'column' : 'row',
   '--_TabList-underline': ownerState.orientation === 'vertical' ? '-1px 0' : '0 -1px',

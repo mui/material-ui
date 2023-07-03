@@ -35,7 +35,7 @@ const TabPanelRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabPanelOwnerState }>(({ theme, ownerState }) => ({
-  display: ownerState.hidden ? 'none' : 'initial',
+  display: ownerState.hidden ? 'none' : 'block',
   padding: 'var(--Tabs-gap)',
   flexGrow: 1,
   fontFamily: theme.vars.fontFamily.body,

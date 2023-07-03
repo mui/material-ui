@@ -121,9 +121,9 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 ## Common examples
 
-### Underlined tabs
+### Segmented controls
 
-{{"demo": "TabsUnderlineExample.js"}}
+{{"demo": "TabsSegmentedControls.js"}}
 
 ### Pricing tabs
 

@@ -42,66 +42,78 @@ const TabRoot = styled(StyledListItemButton, {
     flexGrow: ownerState.row ? 1 : 0,
     justifyContent: ownerState.row ? 'center' : 'initial',
     [`& > .${listItemDecoratorClasses.root}`]: { alignItems: 'center' },
-    '--_offset': 'calc(-1 * var(--variant-borderWidth, 0px))',
+    '--unstable_ListItemDecorator-alignItems': 'center',
+    '--unstable_offset': 'calc(-1 * var(--variant-borderWidth, 0px))',
     // using pseudo element for showing active indicator is best for controlling the size and customization.
     // for example, developers can customize the radius, width or background.
     // (border and box-shadow are not flexible when it comes to customization).
+  },
+  !ownerState.disableIndicator && {
+    '&:not([aria-selected="true"]):hover': {
+      // to prevent the Tab's background from covering TabList's underline when hovered.
+      '--Tab-indicatorColor': `var(--unstable_TabList-hasUnderline, ${
+        (ownerState.row && ownerState.indicatorPlacement === 'top') ||
+        (!ownerState.row && ownerState.indicatorPlacement === 'left')
+          ? 'transparent'
+          : theme.vars.palette.divider
+      })`,
+      '--unstable_indicatorThickness':
+        ownerState.variant === 'outlined' ? '0px' : 'var(--unstable_TabList-hasUnderline, 1px)', // this means if TabList has underline, the value will be 1px.
+    },
+    '&[aria-selected="true"]': {
+      '--Tab-indicatorColor': 'currentColor',
+    },
     '&::after': {
       content: '""',
       display: 'block',
       position: 'absolute',
       margin: 'auto',
-      background: 'var(--Tab-lineColor)',
-    },
-    '&:not([aria-selected="true"]):hover': {
-      '--Tab-lineColor': theme.vars.palette.divider,
-      // private variable to prevent the Tab's background from covering TabList's underline
-      '--_lineThickness':
-        ownerState.variant === 'outlined' ? '0px' : 'var(--_TabList-hasUnderline, 1px)', // this means if TabList has underline, the value will be 1px.
-    },
-    '&[aria-selected="true"]': {
-      '--Tab-lineColor': 'var(--Tab-selectedLineColor, currentColor)',
+      background: 'var(--Tab-indicatorColor)',
     },
   },
   // the padding is to account for the indicator's thickness to make the text proportional.
-  ownerState.indicatorPlacement === 'bottom' && {
-    paddingBottom:
-      'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-lineThickness))',
-    '&::after': {
-      height: 'var(--_lineThickness, var(--Tab-lineThickness))',
-      left: 'var(--_offset)',
-      right: 'var(--_offset)',
-      bottom: 'var(--_offset)',
+  !ownerState.disableIndicator &&
+    ownerState.indicatorPlacement === 'bottom' && {
+      paddingBottom:
+        'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness))',
+      '&::after': {
+        height: 'var(--unstable_indicatorThickness, var(--Tab-indicatorThickness))',
+        left: 'var(--unstable_offset)',
+        right: 'var(--unstable_offset)',
+        bottom: 'var(--unstable_offset)',
+      },
     },
-  },
-  ownerState.indicatorPlacement === 'top' && {
-    paddingTop:
-      'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-lineThickness))',
-    '&::after': {
-      height: 'var(--_lineThickness, var(--Tab-lineThickness))',
-      left: 'var(--_offset)',
-      right: 'var(--_offset)',
-      top: 'var(--_offset)',
+  !ownerState.disableIndicator &&
+    ownerState.indicatorPlacement === 'top' && {
+      paddingTop:
+        'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness))',
+      '&::after': {
+        height: 'var(--unstable_indicatorThickness, var(--Tab-indicatorThickness))',
+        left: 'var(--unstable_offset)',
+        right: 'var(--unstable_offset)',
+        top: 'var(--unstable_offset)',
+      },
     },
-  },
-  ownerState.indicatorPlacement === 'right' && {
-    paddingRight: 'calc(var(--ListItem-paddingRight) + var(--Tab-lineThickness))',
-    '&::after': {
-      width: 'var(--_lineThickness, var(--Tab-lineThickness))',
-      top: 'var(--_offset)',
-      bottom: 'var(--_offset)',
-      right: 'var(--_offset)',
+  !ownerState.disableIndicator &&
+    ownerState.indicatorPlacement === 'right' && {
+      paddingRight: 'calc(var(--ListItem-paddingRight) + var(--Tab-indicatorThickness))',
+      '&::after': {
+        width: 'var(--unstable_indicatorThickness, var(--Tab-indicatorThickness))',
+        top: 'var(--unstable_offset)',
+        bottom: 'var(--unstable_offset)',
+        right: 'var(--unstable_offset)',
+      },
     },
-  },
-  ownerState.indicatorPlacement === 'left' && {
-    paddingLeft: 'calc(var(--ListItem-paddingLeft) + var(--Tab-lineThickness))',
-    '&::after': {
-      width: 'var(--_lineThickness, var(--Tab-lineThickness))',
-      top: 'var(--_offset)',
-      bottom: 'var(--_offset)',
-      left: 'var(--_offset)',
+  !ownerState.disableIndicator &&
+    ownerState.indicatorPlacement === 'left' && {
+      paddingLeft: 'calc(var(--ListItem-paddingLeft) + var(--Tab-indicatorThickness))',
+      '&::after': {
+        width: 'var(--unstable_indicatorThickness, var(--Tab-indicatorThickness))',
+        top: 'var(--unstable_offset)',
+        bottom: 'var(--unstable_offset)',
+        left: 'var(--unstable_offset)',
+      },
     },
-  },
 ]);
 /**
  *
@@ -133,6 +145,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     orientation = 'horizontal',
     variant = 'plain',
     color: colorProp = 'neutral',
+    disableIndicator = false,
     indicatorPlacement = row ? 'bottom' : 'right',
     slots = {},
     slotProps = {},
@@ -162,6 +175,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   const ownerState = {
     ...props,
+    disableIndicator,
     indicatorPlacement,
     orientation,
     row,

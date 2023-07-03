@@ -42,10 +42,15 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     disabled?: boolean;
     /**
-     * The indicator's position when the Tab is selected.
-     * If `none`, the indicator will disappear.
+     * If `true`, the pseudo element indicator is hidden.
      */
-    indicatorPlacement?: 'none' | 'top' | 'bottom' | 'left' | 'right';
+    disableIndicator?: boolean;
+    /**
+     * The indicator's position when the Tab is selected.
+     * @default 'bottom' for horizontal orientation
+     * @default 'right' for vertical orientation.
+     */
+    indicatorPlacement?: 'top' | 'bottom' | 'left' | 'right';
     /**
      * The content direction flow.
      * @default 'horizontal'

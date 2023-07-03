@@ -24,30 +24,22 @@ export default function TabsPageExample() {
         aria-label="Pipeline"
         value={index}
         onChange={(event, value) => setIndex(value as number)}
-        sx={{ '--Tabs-gap': '0px' }}
       >
         <TabList
           variant="plain"
+          disableUnderline
           sx={{
-            width: '100%',
-            maxWidth: 400,
             mx: 'auto',
             pt: 2,
             alignSelf: 'flex-start',
             [`& .${tabClasses.root}`]: {
               bgcolor: 'transparent',
-              boxShadow: 'none',
               '&:hover': {
                 bgcolor: 'transparent',
               },
               [`&.${tabClasses.selected}`]: {
                 color: 'primary.plainColor',
-                '&:before': {
-                  content: '""',
-                  display: 'block',
-                  position: 'absolute',
-                  zIndex: 1,
-                  bottom: '-1px',
+                '&::after': {
                   left: 'var(--ListItem-paddingLeft)',
                   right: 'var(--ListItem-paddingRight)',
                   height: '3px',
@@ -98,8 +90,6 @@ export default function TabsPageExample() {
             background: 'var(--bg)',
             boxShadow: '0 0 0 100vmax var(--bg)',
             clipPath: 'inset(0 -100vmax)',
-            px: 4,
-            py: 2,
           })}
         >
           <TabPanel value={0}>
@@ -107,7 +97,6 @@ export default function TabsPageExample() {
               level="h2"
               component="div"
               fontSize="lg"
-              mb={2}
               textColor="text.primary"
             >
               Deals panel
@@ -118,7 +107,6 @@ export default function TabsPageExample() {
               level="h2"
               component="div"
               fontSize="lg"
-              mb={2}
               textColor="text.primary"
             >
               Library panel
