@@ -66,18 +66,14 @@ Another major area of difference is being only developer focused. As much as we 
 
 Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favourite IDEs like VS Code. Best of both the worlds!
 
-## What's next?
-
-We'll continue to build on the vision that doesn't pull you out of your pro-code workflows, instead we want to nest ourselves in areas where we can meaningfully improve the maintainability or speed of development.
-
-In terms of upcoming features, you can check out our [public roadmap](https://github.com/orgs/mui/projects/9/views/1). Overall, we want to improve the UI building experience, simplify connecting to data sources, add more components, improve SQL writing experience and more.
-
-Come up with a paid plan that offers roles, granular permissions, audit logs, authentication for teams that need support in further scaling and growth.
-
 ## How can I use Toolpad?
 
 Toolpad is available as an NPM package and can be installed from [here](https://mui.com/toolpad/getting-started/installation/). You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
 
-The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/mui-toolpad) and our public roadmap.
+## What's next?
 
-If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com. You can also engage in conversations in our [Discord](https://discord.gg/hHqtMP9Ckc) server.
+We'll continue to build on the vision that doesn't pull you out of your pro-code workflows, instead we want to nest ourselves in areas where we can meaningfully improve the maintainability or speed of development. We want to optimize for the biggest pains that you face when building admin apps. Your inputs will help us shape the future roadmap.
+
+The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/mui-toolpad) and our [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
+
+If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com. You can also engage in conversations in our [Discord](https://discord.gg/hHqtMP9Ckc) server. If you want to see a demo and discuss your use case, you can schedule it from [this](https://calendly.com/prakhar-mui) Calendly link.
