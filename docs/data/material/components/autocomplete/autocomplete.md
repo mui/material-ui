@@ -231,10 +231,10 @@ Pay specific attention to the `ref` and `inputProps` keys.
 
 ### Globally Customized Options
 
-To globally customize the Autocomplete options for all components in your app, 
-you can use the [theme default props](/material-ui/customization/theme-components/#theme-default-props) and set the `renderOption` property in the `defaultProps` key. 
-The `renderOption` property takes the `ownerState` as the fourth parameter, which includes props and internal component state. 
-To display the label, you can use the `getOptionLabel` prop from the `ownerState`. 
+To globally customize the Autocomplete options for all components in your app,
+you can use the [theme default props](/material-ui/customization/theme-components/#theme-default-props) and set the `renderOption` property in the `defaultProps` key.
+The `renderOption` property takes the `ownerState` as the fourth parameter, which includes props and internal component state.
+To display the label, you can use the `getOptionLabel` prop from the `ownerState`.
 This approach enables different options for each Autocomplete component while keeping the options styling consistent.
 
 {{"demo": "GloballyCustomizedOptions.js"}}
