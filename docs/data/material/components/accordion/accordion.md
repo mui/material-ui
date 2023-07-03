@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: accordion'

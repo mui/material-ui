@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Autocomplete component
 components: Autocomplete, AutocompleteListbox, AutocompleteOption
 githubLabel: 'component: autocomplete'
@@ -245,6 +245,12 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 ```
 
 ## Common examples
+
+### Hint
+
+The following demo shows how to add a hint feature to the Autocomplete using the `filterOptions` prop:
+
+{{"demo": "AutocompleteHint.js"}}
 
 ### Highlighting options
 

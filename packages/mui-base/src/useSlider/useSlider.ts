@@ -329,19 +329,17 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
       let newValue = event.target.valueAsNumber;
 
       if (marks && step == null) {
-        newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
+        const maxMarksValue = marksValues[marksValues.length - 1];
+        if (newValue > maxMarksValue) {
+          newValue = maxMarksValue;
+        } else if (newValue < marksValues[0]) {
+          newValue = marksValues[0];
+        } else {
+          newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
+        }
       }
 
       newValue = clamp(newValue, min, max);
-
-      if (marks && step == null) {
-        const currentMarkIndex = marksValues.indexOf(values[index]);
-
-        newValue =
-          newValue < values[index]
-            ? marksValues[currentMarkIndex - 1]
-            : marksValues[currentMarkIndex + 1];
-      }
 
       if (range) {
         // Bound the new value to the thumb's neighbours.
@@ -659,6 +657,13 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     };
   };
 
+  const getThumbStyle = (index: number) => {
+    return {
+      // So the non active thumb doesn't show its label on hover.
+      pointerEvents: active !== -1 && active !== index ? 'none' : undefined,
+    };
+  };
+
   const getHiddenInputProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,
   ): UseSliderHiddenInputProps<TOther> => {
@@ -683,7 +688,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
       type: 'range',
       min: parameters.min,
       max: parameters.max,
-      step: parameters.step ?? undefined,
+      step: parameters.step === null && parameters.marks ? 'any' : parameters.step ?? undefined,
       disabled,
       ...mergedEventHandlers,
       style: {
@@ -712,5 +717,6 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     trackLeap,
     trackOffset,
     values,
+    getThumbStyle,
   };
 }
