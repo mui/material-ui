@@ -51,8 +51,8 @@ Color inversion has no effect on children that have an **explicit** `color` prop
 
 ## Usage
 
-To enable color inversion, use the `invertedColors` prop on one of the two components that support it, either on the [Sheet](/joy-ui/react-sheet/) or the [Card](/joy-ui/react-card/).
-Note that this prop only works when these components have the `solid` or `soft` global variants applied.
+To enable color inversion, use the `invertedColors` prop on one of the two components that support it: [Sheet](/joy-ui/react-sheet/) or [Card](/joy-ui/react-card/).
+Note that this prop only works when these components have the `solid` or `soft` global variant applied.
 
 ```js
 <Card variant="solid" invertedColors>…</Card>
@@ -76,7 +76,7 @@ The popup slot of the Select component has `disablePortal` set to true by defaul
 ### Parent component
 
 When `invertedColors` is set to true on the surface component, a set of CSS variables is applied to it.
-The values of those variables comes from `theme.colorInversion[variant][color]`, where `variant` and `color` are the component's props.
+The values of those variables come from `theme.colorInversion[variant][color]`, where `variant` and `color` are the component's props.
 The surface component also creates a React context to tell the children to update their styles.
 
 ```jsx
