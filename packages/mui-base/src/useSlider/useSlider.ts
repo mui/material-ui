@@ -657,6 +657,13 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     };
   };
 
+  const getThumbStyle = (index: number) => {
+    return {
+      // So the non active thumb doesn't show its label on hover.
+      pointerEvents: active !== -1 && active !== index ? 'none' : undefined,
+    };
+  };
+
   const getHiddenInputProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,
   ): UseSliderHiddenInputProps<TOther> => {
@@ -710,5 +717,6 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     trackLeap,
     trackOffset,
     values,
+    getThumbStyle,
   };
 }

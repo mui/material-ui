@@ -8,6 +8,7 @@ import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderClasses';
 import useSlider, { valueToPercent } from '../useSlider';
 import useSlotProps from '../utils/useSlotProps';
+import resolveComponentProps from '../utils/resolveComponentProps';
 import { SliderOwnerState, SliderProps, SliderTypeMap } from './Slider.types';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -97,6 +98,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     ...props,
     marks: marksProp,
     disabled,
+    disableSwap,
     isRtl,
     defaultValue,
     max,
@@ -122,6 +124,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     values,
     trackOffset,
     trackLeap,
+    getThumbStyle,
   } = useSlider({ ...partialOwnerState, rootRef: forwardedRef });
 
   const ownerState: SliderOwnerState = {
@@ -172,6 +175,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     getSlotProps: getThumbProps,
     externalSlotProps: slotProps.thumb,
     ownerState,
+    skipResolvingSlotProps: true,
   });
 
   const ValueLabel = slots.valueLabel;
@@ -264,20 +268,26 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
       {values.map((value, index) => {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
-
+        const resolvedSlotProps = resolveComponentProps(slotProps.thumb, ownerState, {
+          index,
+          focused: focusedThumbIndex === index,
+          active: active === index,
+        });
         return (
           <Thumb
             key={index}
             data-index={index}
             {...thumbProps}
-            className={clsx(classes.thumb, thumbProps.className, {
+            {...resolvedSlotProps}
+            className={clsx(classes.thumb, thumbProps.className, resolvedSlotProps?.className, {
               [classes.active]: active === index,
               [classes.focusVisible]: focusedThumbIndex === index,
             })}
             style={{
               ...style,
-              pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+              ...getThumbStyle(index),
               ...thumbProps.style,
+              ...resolvedSlotProps?.style,
             }}
           >
             <Input

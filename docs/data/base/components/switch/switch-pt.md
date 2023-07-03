@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: Unstyled React Switch component and hook
 components: SwitchUnstyled
 githubLabel: 'component: switch'

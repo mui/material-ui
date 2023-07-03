@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Linear Progress component
 components: LinearProgress
 githubLabel: 'component: LinearProgress'

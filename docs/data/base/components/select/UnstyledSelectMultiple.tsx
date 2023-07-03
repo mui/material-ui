@@ -4,7 +4,7 @@ import Option, { optionClasses } from '@mui/base/Option';
 import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
-export default function UnstyledSelectsMultiple() {
+export default function UnstyledSelectMultiple() {
   return (
     <CustomMultiSelect defaultValue={[10, 20]}>
       <StyledOption value={10}>Ten</StyledOption>
