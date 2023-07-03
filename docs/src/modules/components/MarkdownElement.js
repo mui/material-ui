@@ -386,8 +386,8 @@ const Root = styled('div')(
       },
     },
     '& .MuiCode-copy': {
-      display: 'none',
-      width: 28,
+      display: 'block',
+      width: 26,
       cursor: 'pointer',
       position: 'absolute',
       top: theme.spacing(1),
@@ -398,7 +398,8 @@ const Root = styled('div')(
       borderRadius: 6,
       border: 'none',
       backgroundColor: 'transparent',
-      color: lightTheme.palette.primaryDark[50],
+      color: '#FFF',
+      opacity: 0.6,
       transition: theme.transitions.create(['background', 'borderColor', 'display'], {
         duration: theme.transitions.duration.shortest,
       }),
@@ -416,7 +417,6 @@ const Root = styled('div')(
       },
       '&:hover, &:focus': {
         opacity: 1,
-        color: '#fff',
         backgroundColor: lightTheme.palette.primaryDark[500],
         '& .MuiCode-copyKeypress': {
           display: 'block',
@@ -453,9 +453,7 @@ const Root = styled('div')(
       userSelect: 'none',
       marginRight: theme.spacing(1.5),
       whiteSpace: 'nowrap',
-      '& > span': {
-        opacity: 0.8,
-      },
+      opacity: 0.6,
     },
     '& li': {
       // tight lists https://spec.commonmark.org/0.30/#tight
