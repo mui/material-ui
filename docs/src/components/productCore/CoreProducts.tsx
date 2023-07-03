@@ -1,36 +1,37 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import Link from 'docs/src/modules/components/Link';
 import { alpha } from '@mui/material/styles';
 
+// Note: All of the commented code will be put back in once logos for each Core product are done.
+
 const content = [
   {
-    icon: <StyleRoundedIcon color="primary" />,
+    // logo:
     title: 'Material UI',
     description: "An open-source React component library that implements Google's Material Design.",
     link: '/material-ui/',
   },
   {
-    icon: <StyleRoundedIcon color="primary" />,
+    // logo:
     title: 'Joy UI',
     description:
       "An easy to customize open-source React component library that implements MUI's own in-house design principles by default.",
     link: '/joy-ui/getting-started/',
   },
   {
-    icon: <StyleRoundedIcon color="primary" />,
+    // logo:
     title: 'Base UI',
     description:
       'A library of unstyled components with production-ready functionality, along with low-level hooks.',
-    link: '/base-ui/',
+    link: '/base-ui/getting-started/',
   },
   {
-    icon: <StyleRoundedIcon color="primary" />,
+    // logo:
     title: 'MUI System',
     description: 'A set of CSS utilities to help you build custom designs more efficiently.',
     link: '/system/getting-started/',
@@ -41,7 +42,7 @@ export default function BaseUISummary() {
   return (
     <Container sx={{ mb: 4 }}>
       <Grid container spacing={2}>
-        {content.map(({ icon, title, description, link }) => (
+        {content.map(({ title, description, link }) => (
           <Grid key={title} item xs={12} md={6}>
             <Paper
               component={Link}
@@ -79,7 +80,7 @@ export default function BaseUISummary() {
                 }),
               })}
             >
-              <Box
+              {/* <Box
                 sx={(theme) => ({
                   width: 40,
                   height: 40,
@@ -100,14 +101,14 @@ export default function BaseUISummary() {
                   }),
                 })}
               >
-                {icon}
-              </Box>
+                {logo}
+              </Box> */}
               <Typography
                 fontWeight="bold"
                 component="h3"
                 color="text.primary"
                 variant="body1"
-                mt={2}
+                // mt={2}
                 mb={0.5}
               >
                 {title}
