@@ -9,9 +9,15 @@ In a RSC context such as Next.js, all React components are considered server com
 
 Currently, all exported components and hooks from MUI libraries (Material UI, Joy UI, Base UI etc) are designated as client components.
 
-## How to use Material UI with Next.js App Router
+:::info
+Don't need a guide? Use one of these example repos and get started:
 
-### With the default theme
+- [Material UI](https://github.com/mui/material-ui/blob/master/examples/material-next-app-router-ts)
+- [Joy UI](https://github.com/mui/material-ui/blob/master/examples/joy-next-app-router-ts)
+- [Base UI with Tailwind CSS](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts)
+:::
+
+## Using Material UI with the default theme
 
 If you are using the default theme, Material UI components will work out-of-the-box in Next.js routing files such as `layout.js` or `page.js` - which are server components by default.
 
@@ -48,13 +54,9 @@ export default function Home() {
 }
 ```
 
-### With a custom theme
+## Using Material UI with a custom theme
 
-:::info
-Clone this [example](https://github.com/mui/material-ui/blob/master/examples/material-next-app-router-ts) repository for a complete example
-:::
-
-#### Theme Registry
+### Theme Registry
 
 To set up the theme context, create a `ThemeRegistry` component that composes the Emotion CacheProvider, the Material UI Theme Provider and the `useServerInsertedHTML` hook from `next/navigation` as follows:
 
@@ -135,7 +137,7 @@ export default function RootLayout({ children }) {
 }
 ```
 
-#### CSS Injection Order
+### CSS Injection Order
 
 <!-- https://github.com/emotion-js/emotion/issues/3059 -->
 
@@ -167,3 +169,62 @@ Currently `prepend` does not work reliably with the App Router, but you can work
    );
  });
 ```
+
+## Using Joy UI
+
+The set up for Joy UI is the same as [Material UI with a custom theme](#using-material-ui-with-a-custom-theme), except replace Material's `ThemeProvider` with Joy UI's `CssVarsProvider`:
+
+```diff
+ // ThemeRegistry
+-import { ThemeProvider } from '@mui/material/styles';
++import { CssVarsProvider } from '@mui/joy/styles';
+```
+
+See this [example repo](https://github.com/mui/material-ui/blob/master/examples/joy-next-app-router-ts) for a working demo of Joy UI with the Next.js App Router.
+
+## Using Base UI
+
+Base UI is styling-solution-agnostic! If you are using Emotion, follow the same steps above.
+
+If you are using Tailwind CSS, see this [example repo](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts) for a working demo.
+
+### Customizing Base UI with function props
+
+A common customization method in Base UI is to pass a function to slots in `slotProps` in order to apply dynamic props to slots. For example, change the background color by applying a different class when a Button is disabled:
+
+```tsx
+// page.tsx
+
+
+export default function Page() {
+  return (
+    <div>
+      {/* Next.js can render this */}
+      <Button
+        slotProps={{
+          root: {
+            className: 'bg-gray-400',
+          }
+        }}
+      >
+        Return
+      </Button>
+
+      {/* Next.js won't render this button without 'use-client'*/}
+      <Button
+        slotProps={{
+          root: (ownerState: ButtonOwnerState) => ({
+            className: ownerState.disabled ? 'bg-gray-400' : 'bg-blue-400',
+          })
+        }}
+      >
+        Submit
+      </Button>
+    </div>
+  );
+}
+
+```
+
+However, this will not work since function props are [non-serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
+It is recommended that these components be ["moved to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.
