@@ -158,7 +158,7 @@ RouterLink.propTypes = {
 };
 
 const StyledTab = styled(Tab)`
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   color: #fff;
   cursor: pointer;
   font-size: 0.875rem;
@@ -167,7 +167,7 @@ const StyledTab = styled(Tab)`
   background-color: transparent;
   width: 100%;
   padding: 10px 12px;
-  margin: 6px 6px;
+  margin: 6px;
   border: none;
   border-radius: 7px;
   display: flex;
