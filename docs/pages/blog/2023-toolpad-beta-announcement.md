@@ -37,22 +37,15 @@ Toolpad is for full-stack and back-end developers. They build, manage, and integ
 
 MUI Core provides all modern components; a chosen few are currently available inside Toolpad, and we're adding more all the time. MUI X Pro (Data Grid and Date Picker) components are also available for free in Toolpad.
 
+<img alt="Building an application on Toolpad " src="/static/blog/2023-toolpad-beta-announcement/library.png" style="margin-bottom: 16px;" loading="lazy" width="2048" height="1536" />
+
 ### Bring your own components
 
 Toolpad can import [external React components](https://mui.com/toolpad/concepts/custom-components/), ready to be used in its visual designer. Your past effort shouldn't go to waste and you shouldn't be limited by the stock component suite.
 
 ### Bring your own back end
 
-Directly integrate with your Node.js back end and have your data available on the page without writing any REST endpoints or fetch logic.
-
-### Write custom functions in your IDE
-
-Toolpad works with your code editor and lets you write [custom functions](https://mui.com/toolpad/concepts/connecting-to-data/#custom-functions). These functions:
-
-- run on the back end.
-- return the data that is made available on the page without requiring you to set up any endpoints or data-fetching logic.
-- support arguments can be bound directly to page state.
-- can be integrated not only with any node module, but also with your back-end code, such as Prisma models or database connections.
+Directly integrate with your Node.js back end and have your data available on the page without writing any REST endpoints or fetch logic. Need that prisma model on the page? Expose it through a serverless function and Toolpad does the rest.
 
 ### Own your code
 
@@ -76,6 +69,6 @@ We plan to continue to iterate on our vision of helping developers increase the 
 
 The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/mui-toolpad) and our [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
 
-If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com. You can also engage in conversations in our [Discord](https://discord.gg/hHqtMP9Ckc) server. 
+If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com. You can also engage in conversations in our [Discord](https://discord.gg/hHqtMP9Ckc) server.
 
 If you'd like an in-depth demo and discussion of your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).
