@@ -97,7 +97,7 @@ export const ButtonRoot = styled('button', {
         '--Icon-color': 'currentColor',
       }),
       ...(ownerState.size === 'sm' && {
-        '--Icon-fontSize': '1.125rem',
+        '--Icon-fontSize': theme.vars.fontSize.lg,
         '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--CircularProgress-thickness': '2px',
         '--Button-gap': '0.375rem',
@@ -107,7 +107,7 @@ export const ButtonRoot = styled('button', {
         paddingInline: '0.75rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': '1.25rem', // control the SvgIcon font-size
+        '--Icon-fontSize': theme.vars.fontSize.xl,
         '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--CircularProgress-thickness': '3px',
         '--Button-gap': '0.5rem',
@@ -117,7 +117,7 @@ export const ButtonRoot = styled('button', {
         paddingInline: '1rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': '1.5rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
         '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--CircularProgress-thickness': '4px',
         '--Button-gap': '0.75rem',

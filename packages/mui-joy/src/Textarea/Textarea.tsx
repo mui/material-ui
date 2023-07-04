@@ -60,14 +60,14 @@ const TextareaRoot = styled('div', {
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
         '--Textarea-paddingInline': '0.5rem',
         '--Textarea-decoratorChildHeight': 'min(1.5rem, var(--Textarea-minHeight))',
-        '--Icon-fontSize': '1.25rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl,
       }),
       ...(ownerState.size === 'md' && {
         '--Textarea-minHeight': '2.5rem',
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))',
         '--Textarea-paddingInline': '0.75rem',
         '--Textarea-decoratorChildHeight': 'min(2rem, var(--Textarea-minHeight))',
-        '--Icon-fontSize': '1.5rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       ...(ownerState.size === 'lg' && {
         '--Textarea-minHeight': '3rem',
@@ -75,7 +75,7 @@ const TextareaRoot = styled('div', {
         '--Textarea-paddingInline': '1rem',
         '--Textarea-gap': '0.75rem',
         '--Textarea-decoratorChildHeight': 'min(2.375rem, var(--Textarea-minHeight))',
-        '--Icon-fontSize': '1.75rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       // variables for controlling child components
       '--_Textarea-paddingBlock':

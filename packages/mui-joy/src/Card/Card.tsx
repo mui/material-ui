@@ -35,60 +35,65 @@ const CardRoot = styled('div', {
   name: 'JoyCard',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => [
-  {
-    ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
-      '--Icon-color': 'currentColor',
-    }),
-    // a context variable for any child component
-    '--Card-childRadius':
-      'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
-    // AspectRatio integration
-    '--AspectRatio-radius': 'var(--Card-childRadius)',
-    // Link integration
-    '--unstable_actionMargin': 'calc(-1 * var(--variant-borderWidth, 0px))',
-    // Link, Radio, Checkbox integration
-    '--unstable_actionRadius': resolveSxValue(
-      { theme, ownerState },
-      'borderRadius',
-      'var(--Card-radius)',
-    ),
-    // CardCover integration
-    '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
-    // CardOverflow integration
-    '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
-    '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
-    // Divider integration
-    '--Divider-inset': 'calc(-1 * var(--Card-padding))',
-    ...(ownerState.size === 'sm' && {
-      '--Card-radius': theme.vars.radius.sm,
-      '--Card-padding': '0.5rem',
-      gap: '0.375rem 0.5rem',
-    }),
-    ...(ownerState.size === 'md' && {
-      '--Card-radius': theme.vars.radius.md,
-      '--Card-padding': '1rem',
-      gap: '0.75rem 1rem',
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Card-radius': theme.vars.radius.lg,
-      '--Card-padding': '1.5rem',
-      gap: '1rem 1.5rem',
-    }),
-    padding: 'var(--Card-padding)',
-    borderRadius: 'var(--Card-radius)',
-    boxShadow: theme.shadow.sm,
-    backgroundColor: theme.vars.palette.background.surface,
-    position: 'relative',
-    display: 'flex',
-    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-    ...theme.typography[`body-${ownerState.size!}`],
-    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-  },
-  ownerState.color !== 'context' &&
-    ownerState.invertedColors &&
-    theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
-]);
+})<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => {
+  const {
+    p,
+    padding,
+    borderRadius = 'var(--Card-radius)',
+  } = resolveSxValue({ theme, ownerState }, ['p', 'padding', 'borderRadius']);
+  return [
+    {
+      ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
+        '--Icon-color': 'currentColor',
+      }),
+      // a context variable for any child component
+      '--Card-childRadius':
+        'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
+      // AspectRatio integration
+      '--AspectRatio-radius': 'var(--Card-childRadius)',
+      // Link integration
+      '--unstable_actionMargin': 'calc(-1 * var(--variant-borderWidth, 0px))',
+      // Link, Radio, Checkbox integration
+      '--unstable_actionRadius': borderRadius,
+      // CardCover integration
+      '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
+      // CardOverflow integration
+      '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
+      '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
+      // Divider integration
+      '--Divider-inset': 'calc(-1 * var(--Card-padding))',
+      ...(ownerState.size === 'sm' && {
+        '--Card-radius': theme.vars.radius.sm,
+        '--Card-padding': '0.5rem',
+        gap: '0.375rem 0.5rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Card-radius': theme.vars.radius.md,
+        '--Card-padding': '1rem',
+        gap: '0.75rem 1rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Card-radius': theme.vars.radius.lg,
+        '--Card-padding': '1.5rem',
+        gap: '1rem 1.5rem',
+      }),
+      padding: 'var(--Card-padding)',
+      borderRadius: 'var(--Card-radius)',
+      boxShadow: theme.shadow.sm,
+      backgroundColor: theme.vars.palette.background.surface,
+      position: 'relative',
+      display: 'flex',
+      flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+      ...theme.typography[`body-${ownerState.size!}`],
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    },
+    ownerState.color !== 'context' &&
+      ownerState.invertedColors &&
+      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
+    p !== undefined && { '--Card-padding': p },
+    padding !== undefined && { '--Card-padding': padding },
+  ];
+});
 
 /**
  *

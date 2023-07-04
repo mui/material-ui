@@ -1,5 +1,91 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.13.7
+
+<!-- generated comparing v5.13.6..master -->
+
+_Jul 4, 2023_
+
+A big thanks to the 21 contributors who made this release possible.
+This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.13.7`
+
+- [OutlinedInput] Fix form control properties in `ownerState` (#37668) @vonagam
+
+### `@mui/system@5.13.7`
+
+- [Stack] Fix spacing when there are `<style>` children (#34966) @cmd-johnson
+
+### `@mui/icons-material@5.13.7`
+
+- [icons] Add Microsoft logo (#37717) @zephyrus21
+
+### `@mui/joy@5.0.0-alpha.86`
+
+- [Autocomplete][joy] Fix Autocomplete and Modal components to work together (#37515) @saikathalderr
+- [Menu][Joy] Improve UX of `Menu` usage demo (#37797) @sai6855
+
+### `@mui/base@5.0.0-beta.6`
+
+- [Slider][base][material][joy] Fix not draggable on the edge when `disableSwap={true}` (#35998) @sai6855
+- [Slider][base] Provide slot state to Slider's thumb slot props callback (#37749) @mnajdova
+- [Tabs] Wrap TabsList context creation in useMemo (#37370) @michaldudak
+- [TextareaAutosize] Fix wrong height measurement (#37185) @bigteech
+
+### `@mui/lab@5.0.0-alpha.135`
+
+- [Timeline] Fix position `alternate-reverse` generated classname (#37678) @ZeeshanTamboli
+
+### Docs
+
+- [docs][base] Add demo for using the Button as a link (#37317) @AdamSundberg
+- [docs][base] Add Tailwind CSS + plain CSS demo on the Select page (#37725) @mnajdova
+- [docs][base] Make Base UI input demos denser (#37750) @zanivan
+- [docs][base] Make Base UI button demos denser (#37689) @zanivan
+- [docs][base] Add Tailwind CSS & plain CSS demos on the Input page (#37685) @mnajdova
+- [docs][base] Fix horizontal scrolling on the mobile input page (#37688) @zanivan
+- [docs] Improve Base UI index page (#37761) @oliviertassinari
+- [docs] Fix incorrect package URL in README of example material-vite (#37755) @Dlouxgit
+- [docs] Explain how to disable Base Select's portal (#37684) @michaldudak
+- [docs] Shorten overview page URLs (#37660) @oliviertassinari
+- [docs][material] Rename custom tab panel in Tabs demo to prevent confusion with @mui/lab (#37638) @MUK-Dev
+- [docs][tabs] Document how to use routing with Tabs in Base UI (#37369) @michaldudak
+- [docs] Rename product to productId (#37801) @siriwatknp
+- [docs][base] Add Tailwind CSS & plain CSS demo on the Slider page (#37736) @mnajdova
+
+### Core
+
+- [docs–infra] Prevent displaying multiple ads (#37696) @oliviertassinari
+- [blog] Fix mismatch between plan and link @oliviertassinari
+- [core] Update yarn lockfile (#37802) @michaldudak
+- [core] Add bundle size Toolpad app link to PRs (#36311) @Janpot
+- [core] Fix priority support prompt action flow (#37726) @DanailH
+- [core] Fix typo in priority support @oliviertassinari
+- [core][docs] add Eslint rule to ensure main demo component match file… (#37278) @alexfauquette
+- [docs-infra] Fix truncated TOCs scrollbar (#37770) @oliviertassinari
+- [docs-infra] Adjust demo container to be glued to the toolbar (#37744) @danilo-leal
+- [docs-infra] Fix layout shift ad (#37694) @oliviertassinari
+- [docs-infra] Improve demos toolbar (#37762) @oliviertassinari
+- [docs-infra] Make the GitHub link in the nav bar open in a new tab (#37766) @gateremark
+- [docs-infra] Allow to persist icons in ToC (#37731) @cherniavskii
+- [docs-infra] Improve product mapping (#37729) @oliviertassinari
+- [docs-infra] Add design polish to the comment and anchor buttons (#37734) @danilo-leal
+- [docs-infra] Tweak editable code blocks callout design (#37681) @danilo-leal
+- [docs-infra] Improve the edit page experience (#37695) @oliviertassinari
+- [docs-infra] Support rendering markdown outside of docs (#37691) @oliviertassinari
+- [docs-infra] Polish demo toolbar button designs (#37680) @danilo-leal
+- [docs-infra] Adjust demo component container design (#37659) @danilo-leal
+- [test] Fix test:e2e local run (#37719) @oliviertassinari
+- [test] Remove failing test in dev @oliviertassinari
+- [website] Add no-op service worker to fix stale cache issue (#37607) @cherniavskii
+- [website] Transition the Core page to be Material UI instead (#37583) @danilo-leal
+- [website] Update the pricing page to reflect sales (#37751) @oliviertassinari
+- [website] Match Copyright with the rest of the website @oliviertassinari
+- [website] Support deep linking to pricing FAQ @oliviertassinari
+
+All contributors of this release in alphabetical order: @AdamSundberg, @alexfauquette, @bigteech, @cherniavskii, @cmd-johnson, @DanailH, @danilo-leal, @Dlouxgit, @gateremark, @Janpot, @michaldudak, @mnajdova, @MUK-Dev, @oliviertassinari, @sai6855, @saikathalderr, @siriwatknp, @vonagam, @zanivan, @ZeeshanTamboli, @zephyrus21
+
 ## 5.13.6
 
 _Jun 21, 2023_

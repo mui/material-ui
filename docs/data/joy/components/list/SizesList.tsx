@@ -28,9 +28,7 @@ export default function SizesList() {
             size={size}
             variant="outlined"
             sx={{
-              borderRadius: 'sm',
               maxWidth: 300,
-              boxShadow: 'sm',
             }}
           >
             <ListItem>

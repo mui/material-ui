@@ -45,17 +45,17 @@ const TooltipRoot = styled('div', {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     ...(ownerState.size === 'sm' && {
-      '--Icon-fontSize': '1rem',
+      '--Icon-fontSize': theme.vars.fontSize.md,
       '--Tooltip-arrowSize': '8px',
       padding: theme.spacing(0.25, 0.625),
     }),
     ...(ownerState.size === 'md' && {
-      '--Icon-fontSize': '1.125rem',
+      '--Icon-fontSize': theme.vars.fontSize.lg,
       '--Tooltip-arrowSize': '10px',
       padding: theme.spacing(0.5, 0.75),
     }),
     ...(ownerState.size === 'lg' && {
-      '--Icon-fontSize': '1.25rem',
+      '--Icon-fontSize': theme.vars.fontSize.xl,
       '--Tooltip-arrowSize': '12px',
       padding: theme.spacing(0.75, 1),
     }),

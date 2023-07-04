@@ -39,12 +39,14 @@ const DemoToolbarFallbackRoot = styled('div')(({ theme }) => {
   return {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      height: theme.spacing(8),
+      display: 'block',
+      height: 40 + 5 * 2 + 1 * 2,
+      marginTop: -1,
     },
   };
 });
-export function DemoToolbarFallback() {
+
+function DemoToolbarFallback() {
   const t = useTranslate();
 
   return <DemoToolbarFallbackRoot aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
@@ -210,7 +212,7 @@ const DemoRootMaterial = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: '12px 12px 0 0',
+    borderRadius: hiddenToolbar ? 12 : '12px 12px 0 0',
     ...(bg === 'outlined' && {
       borderLeftWidth: 1,
       borderRightWidth: 1,
@@ -218,9 +220,6 @@ const DemoRootMaterial = styled('div', {
     /* Make no difference between the demo and the markdown. */
     ...(bg === 'inline' && {
       padding: theme.spacing(0),
-    }),
-    ...(hiddenToolbar && {
-      paddingTop: theme.spacing(1),
     }),
   },
   /* Isolate the demo with an outline. */
@@ -233,10 +232,11 @@ const DemoRootMaterial = styled('div', {
   }),
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
-    padding: theme.spacing(4),
-    backgroundColor: (theme.vars || theme).palette.grey[100],
+    padding: theme.spacing(3),
+    backgroundColor: (theme.vars || theme).palette.grey[50],
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
     ...theme.applyDarkStyles({
-      backgroundColor: (theme.vars || theme).palette.grey[900],
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
     }),
   }),
   /* Mostly meant for introduction demos. */
@@ -282,9 +282,6 @@ const DemoRootMaterial = styled('div', {
     )} 0px, transparent 50%);`,
     }),
   }),
-  ...(hiddenToolbar && {
-    paddingTop: theme.spacing(2),
-  }),
 }));
 
 const DemoRootJoy = joyStyled('div', {
@@ -296,11 +293,10 @@ const DemoRootJoy = joyStyled('div', {
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: '12px 12px 0 0',
+    borderRadius: hiddenToolbar ? 12 : '12px 12px 0 0',
     ...(bg === 'outlined' && {
       borderLeftWidth: 1,
       borderRightWidth: 1,
-      borderRadius: '12px 12px 0 0',
     }),
     /* Make no difference between the demo and the markdown. */
     ...(bg === 'inline' && {
@@ -310,7 +306,6 @@ const DemoRootJoy = joyStyled('div', {
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
     padding: theme.spacing(3),
-    borderRadius: 0,
     border: `1px solid`,
     borderColor: grey[100],
     borderLeftWidth: 0,
@@ -318,7 +313,7 @@ const DemoRootJoy = joyStyled('div', {
     backgroundColor: alpha(grey[50], 0.2),
     ...theme.applyDarkStyles({
       borderColor: alpha(grey[700], 0.3),
-      backgroundColor: alpha(blueDark[800], 0.2),
+      backgroundColor: '#09090B',
     }),
   }),
   /* Prepare the background to display an inner elevation. */
@@ -329,7 +324,7 @@ const DemoRootJoy = joyStyled('div', {
   /* Mostly meant for introduction demos. */
   ...(bg === 'gradient' && {
     [theme.breakpoints.up('sm')]: {
-      borderRadius: '12px',
+      borderRadius: 12,
     },
     borderRadius: 0,
     padding: theme.spacing(0),
@@ -357,20 +352,14 @@ const DemoRootJoy = joyStyled('div', {
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.15'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
     }),
   }),
-  ...(hiddenToolbar && {
-    paddingTop: theme.spacing(0),
-  }),
 }));
 
-const DemoCodeViewer = styled(HighlightedCode)(({ theme }) => ({
+const DemoCodeViewer = styled(HighlightedCode)(() => ({
   '& pre': {
     margin: 0,
     maxHeight: 'min(68vh, 1000px)',
     maxWidth: 'initial',
     borderRadius: 0,
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: theme.shape.borderRadius,
-    },
   },
 }));
 
@@ -557,7 +546,8 @@ export default function Demo(props) {
       ))}
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
-      <Wrapper {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
+      {/* TODO: BrandingProvider shouldn't be needed, it should already be at the top of the docs page */}
+      <BrandingProvider {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
         {demoOptions.hideToolbar ? null : (
           <NoSsr defer fallback={<DemoToolbarFallback />}>
             <React.Suspense fallback={<DemoToolbarFallback />}>
@@ -584,7 +574,7 @@ export default function Demo(props) {
             </React.Suspense>
           </NoSsr>
         )}
-        <Collapse in={openDemoSource} unmountOnExit>
+        <Collapse in={openDemoSource} unmountOnExit timeout={150}>
           {/* A limitation from https://github.com/nihgwu/react-runner,
             we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
           {demoOptions.disableLiveEdit ? (
@@ -625,7 +615,7 @@ export default function Demo(props) {
           )}
         </Collapse>
         {adVisibility ? <AdCarbonInline /> : null}
-      </Wrapper>
+      </BrandingProvider>
     </Root>
   );
 }

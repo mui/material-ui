@@ -101,7 +101,7 @@ const ListItemRoot = styled('li', {
       position: 'sticky',
       top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
       zIndex: 1,
-      background: 'var(--ListItem-stickyBackground)',
+      background: `var(--ListItem-stickyBackground, ${theme.vars.palette.background.body})`,
     }),
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],

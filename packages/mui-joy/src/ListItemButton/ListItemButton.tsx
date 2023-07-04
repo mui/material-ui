@@ -83,7 +83,10 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     fontSize: 'inherit', // prevent user agent style when component="button"
     lineHeight: 'inherit', // prevent user agent style when component="button"
     minInlineSize: 0,
-    [theme.focus.selector]: theme.focus.default,
+    [theme.focus.selector]: {
+      ...theme.focus.default,
+      zIndex: 1, // to be above of the next element. For example, the first Tab item should be above the second so that the outline is above the second Tab.
+    },
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     [`&.${listItemButtonClasses.selected}`]:
       theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],

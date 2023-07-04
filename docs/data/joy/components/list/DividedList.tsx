@@ -27,11 +27,6 @@ export default function DividedList() {
               variant="outlined"
               sx={{
                 minWidth: 240,
-                borderRadius: 'sm',
-                boxShadow: 'sm',
-                '--ListItemDecorator-size': '48px',
-                '--ListItem-paddingLeft': '1.5rem',
-                '--ListItem-paddingRight': '1rem',
               }}
             >
               <ListItem>

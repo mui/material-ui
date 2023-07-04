@@ -5,6 +5,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
+import { resolveSxValue } from '../styles/styleUtils';
 import { useColorInversion } from '../styles/ColorInversion';
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
@@ -33,6 +34,11 @@ const useUtilityClasses = (ownerState: ListOwnerState) => {
 };
 
 export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme, ownerState }) => {
+  const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
+    'p',
+    'padding',
+    'borderRadius',
+  ]);
   function applySizeVars(size: ListProps['size']) {
     if (size === 'sm') {
       return {
@@ -131,6 +137,11 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       position: 'relative', // for sticky ListItem
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '--unstable_List-borderWidth': 'var(--variant-borderWidth, 0px)', // For children to lookup the List's border width.
+      ...(borderRadius !== undefined && {
+        '--List-radius': borderRadius,
+      }),
+      ...(p !== undefined && { '--List-padding': p }),
+      ...(padding !== undefined && { '--List-padding': padding }),
     },
   ];
 });

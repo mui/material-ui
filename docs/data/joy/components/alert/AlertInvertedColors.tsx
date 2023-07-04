@@ -79,9 +79,7 @@ export default function AlertInvertedColors() {
         sx={{ alignItems: 'flex-start', '--Alert-gap': '1rem' }}
       >
         <Box sx={{ flex: 1 }}>
-          <Typography level="title-md" sx={{ my: 1 }}>
-            Lost connection
-          </Typography>
+          <Typography level="title-md">Lost connection</Typography>
           <Typography level="body-md">
             Please verify your network connection and try again.
           </Typography>

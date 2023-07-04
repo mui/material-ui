@@ -19,8 +19,9 @@ export default function TabsBottomNavExample() {
         m: -3,
         p: 3,
         py: 5,
-        borderRadius: 'sm',
-        bgcolor: `${colors[index]}.600`,
+        borderTopLeftRadius: '12px',
+        borderTopRightRadius: '12px',
+        bgcolor: `${colors[index]}.500`,
       }}
     >
       <Tabs
@@ -29,15 +30,13 @@ export default function TabsBottomNavExample() {
         value={index}
         onChange={(event, value) => setIndex(value)}
         sx={(theme) => ({
-          borderRadius: 'xl',
+          p: 1,
+          borderRadius: '24px',
           maxWidth: 400,
           mx: 'auto',
           boxShadow: theme.shadow.sm,
-          '--Tabs-gap': '8px',
           '--joy-shadowChannel': theme.vars.palette[colors[index]].darkChannel,
           [`& .${tabClasses.root}`]: {
-            boxShadow: 'none',
-            borderRadius: 'lg',
             whiteSpace: 'nowrap',
             transition: '0.3s',
             fontWeight: 'md',
@@ -48,10 +47,11 @@ export default function TabsBottomNavExample() {
           },
         })}
       >
-        <TabList variant="plain" sx={{ '--ListItemDecorator-size': '28px' }}>
+        <TabList variant="plain" disableUnderline sx={{ borderRadius: 'xl', p: 0 }}>
           <Tab
+            disableIndicator
             orientation="vertical"
-            {...(index === 0 && { variant: 'soft', color: colors[0] })}
+            {...(index === 0 && { color: colors[0] })}
           >
             <ListItemDecorator>
               <HomeOutlined />
@@ -59,8 +59,9 @@ export default function TabsBottomNavExample() {
             Home
           </Tab>
           <Tab
+            disableIndicator
             orientation="vertical"
-            {...(index === 1 && { variant: 'soft', color: colors[1] })}
+            {...(index === 1 && { color: colors[1] })}
           >
             <ListItemDecorator>
               <FavoriteBorder />
@@ -68,8 +69,9 @@ export default function TabsBottomNavExample() {
             Likes
           </Tab>
           <Tab
+            disableIndicator
             orientation="vertical"
-            {...(index === 2 && { variant: 'soft', color: colors[2] })}
+            {...(index === 2 && { color: colors[2] })}
           >
             <ListItemDecorator>
               <Search />
@@ -77,8 +79,9 @@ export default function TabsBottomNavExample() {
             Search
           </Tab>
           <Tab
+            disableIndicator
             orientation="vertical"
-            {...(index === 3 && { variant: 'soft', color: colors[3] })}
+            {...(index === 3 && { color: colors[3] })}
           >
             <ListItemDecorator>
               <Person />

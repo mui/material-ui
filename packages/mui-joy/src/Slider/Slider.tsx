@@ -85,19 +85,19 @@ const SliderRoot = styled('span', {
       ...(ownerState.size === 'sm' && {
         '--Slider-markSize': '2px',
         '--Slider-trackSize': '4px',
-        '--Slider-thumbSize': '10px',
+        '--Slider-thumbSize': '14px',
         '--Slider-valueLabelArrowSize': '6px',
       }),
       ...(ownerState.size === 'md' && {
         '--Slider-markSize': '2px',
         '--Slider-trackSize': '6px',
-        '--Slider-thumbSize': '14px',
+        '--Slider-thumbSize': '18px',
         '--Slider-valueLabelArrowSize': '8px',
       }),
       ...(ownerState.size === 'lg' && {
         '--Slider-markSize': '3px',
-        '--Slider-trackSize': '10px',
-        '--Slider-thumbSize': '20px',
+        '--Slider-trackSize': '8px',
+        '--Slider-thumbSize': '24px',
         '--Slider-valueLabelArrowSize': '10px',
       }),
       '--Slider-thumbRadius': 'calc(var(--Slider-thumbSize) / 2)',
@@ -230,7 +230,7 @@ const SliderThumb = styled('span', {
   [theme.focus.selector]: {
     ...theme.focus.default,
     outlineOffset: 0,
-    outlineWidth: 'max(4px, var(--Slider-thumbSize) / 3.33333)',
+    outlineWidth: 'max(4px, var(--Slider-thumbSize) / 3.6)',
     ...(ownerState.color !== 'context' && {
       outlineColor: `rgba(${theme.vars.palette?.[ownerState.color!]?.mainChannel} / 0.32)`,
     }),
