@@ -89,7 +89,7 @@ const Root = styled('span')(
 
   &.${switchClasses.focusVisible} .${switchClasses.thumb} {
     background-color: ${grey[500]};
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 1px 8px rgba(0, 127, 255, 0.35);
   }
 
   &.${switchClasses.checked} {

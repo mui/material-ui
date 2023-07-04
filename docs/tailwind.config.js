@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        'outline-switch': '0 0 1px 8px rgba(0, 0, 0, 0.25)',
+        'outline-switch': '0 0 1px 8px rgba(168, 85, 247, 0.35)',
       },
       cursor: {
         inherit: 'inherit',
