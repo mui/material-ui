@@ -34,19 +34,13 @@ export default function MyProfile() {
       <Typography level="h1" fontSize="xl2" sx={{ mb: 1 }}>
         My profile
       </Typography>
-      <Tabs
-        defaultValue={0}
-        sx={{
-          '--Tab-height': '48px',
-          bgcolor: 'transparent',
-        }}
-      >
+      <Tabs defaultValue={0} sx={{ bgcolor: 'transparent' }}>
         <Box
           sx={{
             '--_shadow-height': '16px',
             height: 0,
             position: 'sticky',
-            top: 'calc(var(--Tab-height) - var(--main-paddingTop, 0px) + var(--Header-height, 0px) - (var(--_shadow-height) / 2))',
+            top: 'calc(48px - var(--main-paddingTop, 0px) + var(--Header-height, 0px) - (var(--_shadow-height) / 2))',
             zIndex: 1,
             '&::before': {
               content: '""',
@@ -60,11 +54,11 @@ export default function MyProfile() {
           }}
         />
         <TabList
+          sticky="top"
           variant="plain"
           sx={(theme) => ({
             '--Chip-minHeight': '20px',
-            bgcolor: 'background.body',
-            position: 'sticky',
+            '--ListItem-minHeight': '48px',
             top: 'calc(-1 * (var(--main-paddingTop, 0px) - var(--Header-height, 0px)))',
             zIndex: 10,
             width: '100%',
@@ -82,7 +76,7 @@ export default function MyProfile() {
               zIndex: 1,
               right: 0,
               borderBottom: '1px solid transparent',
-              background: `linear-gradient(to left, var(--_TabList-bg), rgb(0 0 0 / 0))`,
+              background: `linear-gradient(to left, ${theme.vars.palette.background.body}, rgb(0 0 0 / 0))`,
               backgroundClip: 'content-box',
             },
             '&::-webkit-scrollbar': {

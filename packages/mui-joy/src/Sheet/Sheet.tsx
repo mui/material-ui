@@ -58,8 +58,8 @@ export const SheetRoot = styled('div', {
       ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
         '--Icon-color': 'currentColor',
       }),
-      '--ListItem-stickyBackground': resolvedBg, // for sticky List
-      '--Sheet-background': resolvedBg, // for sticky table cell
+      '--ListItem-stickyBackground': resolvedBg === 'transparent' ? 'initial' : resolvedBg, // for sticky List
+      '--Sheet-background': resolvedBg === 'transparent' ? 'initial' : resolvedBg, // for sticky table cell
       // minus the sheet's border width to have consistent radius between sheet and children
       ...(childRadius !== undefined && {
         '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,

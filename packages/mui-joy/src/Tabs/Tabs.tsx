@@ -62,7 +62,7 @@ const TabsRoot = styled('div', {
     ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
       '--Icon-color': 'currentColor',
     }),
-    '--TabList-stickyBackground': resolvedBg, // for sticky TabList
+    '--TabList-stickyBackground': resolvedBg === 'transparent' ? 'initial' : resolvedBg, // for sticky TabList
     display: 'flex',
     flexDirection: 'column',
     ...(ownerState.orientation === 'vertical' && {
