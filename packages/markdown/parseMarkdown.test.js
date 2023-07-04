@@ -453,8 +453,7 @@ authors:
 [foo](/foo) in /test/bar/index.md is missing a trailing slash, please add it.
 
 See https://ahrefs.com/blog/trailing-slash/ for more details.
-
-Please report this to https://github.com/markedjs/this.`);
+`);
     });
 
     it('should report missing leading splashes', () => {
@@ -474,8 +473,7 @@ Please report this to https://github.com/markedjs/this.`);
         });
       }).to.throw(`docs-infra: Missing leading slash. The following link:
 [foo](foo/) in /test/bar/index.md is missing a leading slash, please add it.
-
-Please report this to https://github.com/markedjs/this.`);
+`);
     });
 
     it('should report title too long', () => {
@@ -494,7 +492,8 @@ Please report this to https://github.com/markedjs/this.`);
       }).to
         .throw(`docs-infra: The title "Foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" is too long (117 characters).
 It needs to have fewer than 70 characters—ideally less than 60. For more details, see:
-https://developers.google.com/search/docs/advanced/appearance/title-link`);
+https://developers.google.com/search/docs/advanced/appearance/title-link
+`);
     });
 
     it('should report description too long', () => {
@@ -513,7 +512,35 @@ https://developers.google.com/search/docs/advanced/appearance/title-link`);
       }).to
         .throw(`docs-infra: The description "Fooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" is too long (188 characters).
 It needs to have fewer than 170 characters—ideally less than 160. For more details, see:
-https://ahrefs.com/blog/meta-description/#4-be-concise`);
+https://ahrefs.com/blog/meta-description/#4-be-concise
+`);
     });
+  });
+
+  it('should not accept sh', () => {
+    const markdown = `
+# Foo
+
+<p class="description">Fo</p>
+
+\`\`\`sh
+npm install @mui/material
+\`\`\`
+
+`;
+
+    expect(() => {
+      prepareMarkdown({
+        ...defaultParams,
+        translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
+      });
+    }).to.throw(`docs-infra: Unsupported language: "sh" in:
+
+\`\`\`sh
+npm install @mui/material
+\`\`\`
+
+Use "bash" instead.
+`);
   });
 });
