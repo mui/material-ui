@@ -38,10 +38,12 @@ export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
     children?: React.ReactNode;
     /**
      * If `true`, the TabList's underline will disappear.
+     * @default false
      */
     disableUnderline?: boolean;
     /**
      * The placement of the TabList's underline.
+     * @default orientation === 'horizontal' ? 'bottom' : 'right'
      */
     underlinePlacement?: 'top' | 'bottom' | 'left' | 'right';
     /**

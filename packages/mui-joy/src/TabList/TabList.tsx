@@ -104,6 +104,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     variant = 'plain',
     color: colorProp = 'neutral',
     size: sizeProp,
+    disableUnderline = false,
     underlinePlacement = orientation === 'horizontal' ? 'bottom' : 'right',
     sticky,
     slots = {},
@@ -124,6 +125,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     size,
     sticky,
     nesting: false,
+    disableUnderline,
     underlinePlacement,
   };
 
@@ -176,6 +178,7 @@ TabList.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * If `true`, the TabList's underline will disappear.
+   * @default false
    */
   disableUnderline: PropTypes.bool,
   /**
@@ -200,6 +203,10 @@ TabList.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
+   * If provided, the TabList will have postion `sticky`.
+   */
+  sticky: PropTypes.oneOf(['bottom', 'top']),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -207,6 +214,11 @@ TabList.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The placement of the TabList's underline.
+   * @default orientation === 'horizontal' ? 'bottom' : 'right'
+   */
+  underlinePlacement: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'

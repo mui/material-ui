@@ -9,7 +9,7 @@
       "default": "'neutral'"
     },
     "component": { "type": { "name": "elementType" } },
-    "disableUnderline": { "type": { "name": "bool" } },
+    "disableUnderline": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",
@@ -24,11 +24,19 @@
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}"
     },
+    "sticky": { "type": { "name": "enum", "description": "'bottom'<br>&#124;&nbsp;'top'" } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       }
+    },
+    "underlinePlacement": {
+      "type": {
+        "name": "enum",
+        "description": "'bottom'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top'"
+      },
+      "default": "orientation === 'horizontal' ? 'bottom' : 'right'"
     },
     "variant": {
       "type": {
