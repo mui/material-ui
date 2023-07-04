@@ -90,11 +90,6 @@ export default function TypographyThemeViewer() {
                 Line height
               </Typography>
             </th>
-            <th>
-              <Typography fontSize="sm" noWrap>
-                Letter spacing
-              </Typography>
-            </th>
           </tr>
         </thead>
         <tbody>
