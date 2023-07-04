@@ -37,7 +37,7 @@ const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ow
     bgcolor: 'primaryDark.800',
     color: 'rgba(255 255 255 / 0.6)',
     fontSize: '0.75rem',
-    fontWeight: 600,
+    fontWeight: 'semiBold',
     fontFamily: theme.typography.fontFamilyCode,
     outline: 'none',
     minWidth: 80,
@@ -53,7 +53,7 @@ const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ow
       borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
     },
     ...(ownerState.mounted && {
-      '&[aria-selected="true"]': {
+      '&.Mui-selected': {
         color: '#fff',
         borderColor: (theme.vars || theme).palette.primary.light,
       },
