@@ -7,7 +7,7 @@ card: true
 tags: ['Product', 'News']
 ---
 
-It's been over a year since we released the first version of Toolpad. Today, we're excited to take the next step on that journey with the release of Toolpad Beta. If you aren't familiar with Toolpad yet, it's an admin panel builder catering to the internal tooling needs of an organization. It's for developers who want to build a functional application quickly. It harnesses the speed of a UI builder for the front-end and closely integrates with your normal development workflow. If this excites you, then read on!
+It's been over a year since we released the first version of Toolpad. Today, we're excited to take the next step on that journey with the release of Toolpad Beta. If you aren't familiar with Toolpad yet, it's an admin panel builder catering to the internal tooling needs of an organization. It's for developers who want to build a functional application quickly. It harnesses the speed of a UI builder for the front-end and closely integrates into your back-end. If this excites you, then read on!
 
 ## Why did we decide to build Toolpad?
 
@@ -19,7 +19,7 @@ A sub-optimal tool means a waste of time and effort for everyone. Maintaining th
 
 ## What is Toolpad exactly?
 
-Toolpad is an open-source, low-code, drag-and-drop admin builder framework. The primary purpose of Toolpad is to create data-intensive React apps faster. Toolpad simplifies writing back-end logic, connecting to a data source, querying and mutating data, and deploying an app. It can quickly convert an API, script, or SQL query into a web UI.
+Toolpad is an open-source, low-code, drag-and-drop admin builder. The primary purpose of Toolpad is to create data-intensive React apps faster. Toolpad simplifies writing back-end logic, connecting to a data source, querying and mutating data, and deploying an app. It can quickly convert an API, script, or SQL query into a web UI.
 
 Toolpad is not ideal for building static web pages, mobile apps, or customer-facing custom-designed front ends. It's for building admin applications, CRUD interfaces, custom internal tools, and analytics dashboards.
 
@@ -63,7 +63,7 @@ Lastly, Toolpad is the only product that offers a drag-and-drop UI builder close
 
 ## How can I use Toolpad?
 
-Toolpad is available as an NPM package—follow the [Installation guide](https://mui.com/toolpad/getting-started/installation/) in our docs to get started. You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
+Toolpad is available as an NPM package. Follow the [Installation guide](https://mui.com/toolpad/getting-started/installation/) in our docs to get started. You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
 
 ## What's next?
 
