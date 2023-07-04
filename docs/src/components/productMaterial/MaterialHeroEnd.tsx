@@ -9,7 +9,7 @@ import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 
-export default function CoreHeroEnd() {
+export default function MaterialHeroEnd() {
   return (
     <Section bg="dim" data-mui-color-scheme="dark">
       <Box>

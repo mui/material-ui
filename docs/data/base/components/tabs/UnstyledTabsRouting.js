@@ -125,40 +125,11 @@ const RouterLink = React.forwardRef(function RouterLink(props, ref) {
 });
 
 RouterLink.propTypes = {
-  ownerState: PropTypes.shape({
-    action: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        current: PropTypes.shape({
-          focusVisible: PropTypes.func.isRequired,
-        }),
-      }),
-    ]),
-    active: PropTypes.bool.isRequired,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    disabled: PropTypes.bool.isRequired,
-    focusableWhenDisabled: PropTypes.bool,
-    highlighted: PropTypes.bool.isRequired,
-    href: PropTypes.string,
-    onChange: PropTypes.func,
-    onFocusVisible: PropTypes.func,
-    selected: PropTypes.bool.isRequired,
-    slotProps: PropTypes.shape({
-      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    }),
-    slots: PropTypes.shape({
-      root: PropTypes.elementType,
-    }),
-    tabIndex: PropTypes.number,
-    to: PropTypes.string,
-    type: PropTypes.oneOf(['button', 'reset', 'submit']),
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  }).isRequired,
+  ownerState: PropTypes.object.isRequired,
 };
 
 const StyledTab = styled(Tab)`
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   color: #fff;
   cursor: pointer;
   font-size: 0.875rem;
@@ -167,7 +138,7 @@ const StyledTab = styled(Tab)`
   background-color: transparent;
   width: 100%;
   padding: 10px 12px;
-  margin: 6px 6px;
+  margin: 6px;
   border: none;
   border-radius: 7px;
   display: flex;
