@@ -7,56 +7,39 @@ import ListDivider from '@mui/joy/ListDivider';
 import MoreVert from '@mui/icons-material/MoreVert';
 import Edit from '@mui/icons-material/Edit';
 import DeleteForever from '@mui/icons-material/DeleteForever';
+import MenuButton from '@mui/joy/MenuButton';
+import Dropdown from '@mui/joy/Dropdown';
 
 export default function PositionedMenu() {
-  const buttonRef = React.useRef(null);
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
-    <div>
-      <IconButton
-        ref={buttonRef}
+    <Dropdown>
+      <MenuButton
         id="positioned-demo-button"
-        aria-controls={'positioned-demo-menu'}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
         variant="outlined"
         color="neutral"
-        onClick={() => {
-          setOpen(!open);
-        }}
+        slots={{ root: IconButton }}
       >
         <MoreVert />
-      </IconButton>
-      <Menu
-        id="positioned-demo-menu"
-        anchorEl={buttonRef.current}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="positioned-demo-button"
-        placement="bottom-end"
-      >
-        <MenuItem onClick={handleClose}>
+      </MenuButton>
+      <Menu id="positioned-demo-menu" placement="bottom-end">
+        <MenuItem>
           <ListItemDecorator>
             <Edit />
           </ListItemDecorator>{' '}
           Edit post
         </MenuItem>
-        <MenuItem disabled onClick={handleClose}>
+        <MenuItem disabled>
           <ListItemDecorator />
           Draft post
         </MenuItem>
         <ListDivider />
-        <MenuItem onClick={handleClose} variant="soft" color="danger">
+        <MenuItem variant="soft" color="danger">
           <ListItemDecorator sx={{ color: 'inherit' }}>
             <DeleteForever />
           </ListItemDecorator>{' '}
           Delete
         </MenuItem>
       </Menu>
-    </div>
+    </Dropdown>
   );
 }

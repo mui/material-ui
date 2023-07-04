@@ -1,26 +1,13 @@
 import * as React from 'react';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
+import MenuButton from '@mui/joy/MenuButton';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import ListDivider from '@mui/joy/ListDivider';
+import Dropdown from '@mui/joy/Dropdown';
 
 export default function MenuUsage() {
-  const buttonRef = React.useRef(null);
-  const menuActions = React.useRef(null);
-  const [open, setOpen] = React.useState(false);
-
-  const handleButtonKeyDown = (event) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setOpen(true);
-      if (event.key === 'ArrowUp') {
-        menuActions.current?.highlightLastItem();
-      }
-    }
-  };
-
   return (
     <JoyUsageDemo
       componentName="Menu"
@@ -57,42 +44,32 @@ export default function MenuUsage() {
       ]}
       renderDemo={(props) => (
         <Box sx={{ pb: 20 }}>
-          <Button
-            ref={buttonRef}
-            id="menu-usage-button"
-            aria-controls="menu-usage-demo"
-            aria-haspopup="menu"
-            aria-expanded={open ? 'true' : undefined}
-            variant="outlined"
-            color="neutral"
-            onClick={() => {
-              setOpen(!open);
-            }}
-            onKeyDown={handleButtonKeyDown}
-          >
-            Format
-          </Button>
-          <Menu
-            {...props}
-            id="menu-usage-demo"
-            anchorEl={buttonRef.current}
-            open={open}
-            onClose={() => setOpen(false)}
-            slotProps={{
-              listbox: {
-                'aria-labelledby': 'menu-usage-button',
-              },
-            }}
-          >
-            <MenuItem onClick={() => setOpen(false)}>
-              Add space before paragraph
-            </MenuItem>
-            <MenuItem onClick={() => setOpen(false)}>
-              Add space after paragraph
-            </MenuItem>
-            <ListDivider />
-            <MenuItem onClick={() => setOpen(false)}>Custom spacing...</MenuItem>
-          </Menu>
+          <Dropdown open={props.open}>
+            <MenuButton
+              slotProps={{
+                root: {
+                  variant: props.variant,
+                  color: props.color,
+                  size: props.size,
+                  invertedColors: props.invertedColors,
+                },
+              }}
+            >
+              Format
+            </MenuButton>
+            <Menu
+              id="menu-usage-demo"
+              variant={props.variant}
+              color={props.color}
+              size={props.size}
+              invertedColors={props.invertedColors}
+            >
+              <MenuItem>Add space before paragraph</MenuItem>
+              <MenuItem>Add space after paragraph</MenuItem>
+              <ListDivider />
+              <MenuItem>Custom spacing...</MenuItem>
+            </Menu>
+          </Dropdown>
         </Box>
       )}
     />
