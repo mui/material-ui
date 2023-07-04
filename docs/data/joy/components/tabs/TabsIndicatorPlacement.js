@@ -24,7 +24,7 @@ export default function TabsIndicatorPlacement() {
         }[placement],
       }}
     >
-      <TabList sticky underlinePlacement={placement}>
+      <TabList underlinePlacement={placement}>
         <Tab indicatorPlacement={placement} value="bottom">
           Bottom
         </Tab>

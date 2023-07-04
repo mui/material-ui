@@ -49,10 +49,9 @@ export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', TabListPropsSizeOverrides>;
     /**
-     * If `true`, the TabList will have postion `sticky`.
-     * @default false
+     * If provided, the TabList will have postion `sticky`.
      */
-    sticky?: boolean;
+    sticky?: 'top' | 'bottom';
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

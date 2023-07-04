@@ -91,6 +91,14 @@ The flex direction of the Tabs component will need to be changed based on each p
 
 {{"demo": "TabsIndicatorPlacement.js"}}
 
+### Sticky
+
+For long content, you can use the `sticky="top"` prop on the `TabList` component to keep the tabs visible while scrolling.
+
+To stick the TabList at the bottom, use `sticky="bottom"` and render the TabList at the end of the Tabs component.
+
+{{"demo": "TabsSticky.js"}}
+
 ### Icon
 
 Since `TabList` uses the same style as the [`List`](/joy-ui/react-list/) component, you can use the icon directly as a child or use `ListItemDecorator` with a text.

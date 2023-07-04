@@ -34,43 +34,49 @@ const TabListRoot = styled(StyledList, {
   name: 'JoyTabList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabListOwnerState }>(({ theme, ownerState }) => ({
-  '--List-gap': '0px',
-  '--ListDivider-gap': '0px',
-  '--ListItem-paddingX': 'var(--Tabs-gap)',
-  // the `var(--unknown,)` is a workaround because emotion does not support space toggle.
-  '--unstable_TabList-hasUnderline': ownerState.disableUnderline ? 'var(--unknown,)' : 'initial',
-  ...scopedVariables,
-  flexGrow: 'initial',
-  flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
-  borderRadius: `var(--List-radius, 0px)`,
-  padding: `var(--List-padding, 0px)`,
-  zIndex: 1, // to be above of the next element.
-  ...(ownerState.sticky && {
-    // sticky in list item can be found in grouped options
-    position: 'sticky',
-    top: 'var(--TabList-stickyTop, 0px)', // integration with Menu and Select.
-    background: 'var(--TabList-stickyBackground)',
-  }),
-  ...(!ownerState.disableUnderline && {
-    ...(ownerState.underlinePlacement === 'bottom' && {
-      '--unstable_TabList-underlineBottom': '0px',
-      boxShadow: `inset 0 -1px ${theme.vars.palette.divider}`,
+})<{ ownerState: TabListOwnerState }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  return {
+    '--List-gap': '0px',
+    '--ListDivider-gap': '0px',
+    '--ListItem-paddingX': 'var(--Tabs-gap)',
+    // the `var(--unknown,)` is a workaround because emotion does not support space toggle.
+    '--unstable_TabList-hasUnderline': ownerState.disableUnderline ? 'var(--unknown,)' : 'initial',
+    ...scopedVariables,
+    flexGrow: 'initial',
+    flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
+    borderRadius: `var(--List-radius, 0px)`,
+    padding: `var(--List-padding, 0px)`,
+    zIndex: 1,
+    ...(ownerState.sticky && {
+      // sticky in list item can be found in grouped options
+      position: 'sticky',
+      top: ownerState.sticky === 'top' ? 'calc(-1 * var(--Tabs-padding, 0px))' : 'initial',
+      bottom: ownerState.sticky === 'bottom' ? 'calc(-1 * var(--Tabs-padding, 0px))' : 'initial',
+      backgroundColor:
+        variantStyle?.backgroundColor ||
+        `var(--TabList-stickyBackground, ${theme.vars.palette.background.surface})`,
     }),
-    ...(ownerState.underlinePlacement === 'top' && {
-      '--unstable_TabList-underlineTop': '0px',
-      boxShadow: `inset 0 1px ${theme.vars.palette.divider}`,
+    ...(!ownerState.disableUnderline && {
+      ...(ownerState.underlinePlacement === 'bottom' && {
+        '--unstable_TabList-underlineBottom': '0px',
+        boxShadow: `inset 0 -1px ${theme.vars.palette.divider}`,
+      }),
+      ...(ownerState.underlinePlacement === 'top' && {
+        '--unstable_TabList-underlineTop': '0px',
+        boxShadow: `inset 0 1px ${theme.vars.palette.divider}`,
+      }),
+      ...(ownerState.underlinePlacement === 'right' && {
+        '--unstable_TabList-underlineRight': '0px',
+        boxShadow: `inset -1px 0 ${theme.vars.palette.divider}`,
+      }),
+      ...(ownerState.underlinePlacement === 'left' && {
+        '--unstable_TabList-underlineLeft': '0px',
+        boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
+      }),
     }),
-    ...(ownerState.underlinePlacement === 'right' && {
-      '--unstable_TabList-underlineRight': '0px',
-      boxShadow: `inset -1px 0 ${theme.vars.palette.divider}`,
-    }),
-    ...(ownerState.underlinePlacement === 'left' && {
-      '--unstable_TabList-underlineLeft': '0px',
-      boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
-    }),
-  }),
-}));
+  };
+});
 /**
  *
  * Demos:
@@ -99,7 +105,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     color: colorProp = 'neutral',
     size: sizeProp,
     underlinePlacement = orientation === 'horizontal' ? 'bottom' : 'right',
-    sticky = false,
+    sticky,
     slots = {},
     slotProps = {},
     ...other

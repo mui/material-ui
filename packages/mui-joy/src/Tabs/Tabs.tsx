@@ -35,11 +35,10 @@ const TabsRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabsOwnerState }>(({ ownerState, theme }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  const { bgcolor, backgroundColor, background } = resolveSxValue({ theme, ownerState }, [
-    'bgcolor',
-    'backgroundColor',
-    'background',
-  ]);
+  const { bgcolor, backgroundColor, background, p, padding } = resolveSxValue(
+    { theme, ownerState },
+    ['bgcolor', 'backgroundColor', 'background', 'p', 'padding'],
+  );
   const resolvedBg =
     (getPath(theme, `palette.${bgcolor}`) as string) ||
     bgcolor ||
@@ -73,6 +72,8 @@ const TabsRoot = styled('div', {
     position: 'relative',
     ...theme.typography[`body-${ownerState.size!}`],
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    ...(p !== undefined && { '--Tabs-padding': p }),
+    ...(padding !== undefined && { '--Tabs-padding': padding }),
   };
 });
 /**

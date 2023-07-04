@@ -39,24 +39,10 @@ export default function TabsUsage() {
           defaultValue: 'horizontal',
         },
         {
-          formLabel: 'TabList underline placement',
-          propName: 'underlinePlacement',
-          knob: 'radio',
-          options: ['top', 'bottom', 'left', 'right'],
-          codeBlockDisplay: false,
-        },
-        {
           formLabel: 'Disable TabList underline',
           propName: 'disableUnderline',
           knob: 'switch',
           defaultValue: false,
-          codeBlockDisplay: false,
-        },
-        {
-          formLabel: 'Tab indicator placement',
-          propName: 'indicatorPlacement',
-          knob: 'radio',
-          options: ['top', 'bottom', 'left', 'right'],
           codeBlockDisplay: false,
         },
         {
@@ -81,11 +67,7 @@ export default function TabsUsage() {
       getCodeBlock={(code, props) =>
         code.replace(
           '$children',
-          `<TabList${props.disableUnderline ? ` disableUnderline` : ''}${
-            props.underlinePlacement
-              ? ` underlinePlacement="${props.underlinePlacement}"`
-              : ''
-          }>
+          `<TabList${props.disableUnderline ? ` disableUnderline` : ''}>
     <Tab${
       props.variant
         ? `
@@ -95,11 +77,6 @@ export default function TabsUsage() {
             props.color
               ? `
       color="${props.color}"`
-              : ''
-          }${
-            props.indicatorPlacement
-              ? `
-      indicatorPlacement="${props.indicatorPlacement}"`
               : ''
           }${
             props.disableIndicator
@@ -119,21 +96,15 @@ export default function TabsUsage() {
       renderDemo={({
         color,
         variant,
-        underlinePlacement,
         disableUnderline,
-        indicatorPlacement,
         indicatorInset,
         disableIndicator,
         ...props
       }) => (
         <Tabs {...props} value={index} onChange={(event, value) => setIndex(value)}>
-          <TabList
-            disableUnderline={disableUnderline}
-            underlinePlacement={underlinePlacement}
-          >
+          <TabList disableUnderline={disableUnderline}>
             <Tab
               indicatorInset={indicatorInset}
-              indicatorPlacement={indicatorPlacement}
               disableIndicator={disableIndicator}
               {...(index === 0 && { color, variant })}
             >
@@ -141,7 +112,6 @@ export default function TabsUsage() {
             </Tab>
             <Tab
               indicatorInset={indicatorInset}
-              indicatorPlacement={indicatorPlacement}
               disableIndicator={disableIndicator}
               {...(index === 1 && { color, variant })}
             >
@@ -149,7 +119,6 @@ export default function TabsUsage() {
             </Tab>
             <Tab
               indicatorInset={indicatorInset}
-              indicatorPlacement={indicatorPlacement}
               disableIndicator={disableIndicator}
               {...(index === 2 && { color, variant })}
             >
