@@ -21,7 +21,6 @@ function highlight(code, language) {
 
     case 'sh':
       throw new Error([`Unsupported language: "sh", "${code}".`, 'Use "bash" instead.'].join('\n'));
-      break;
 
     case 'diff':
       prismLanguage = { ...prism.languages.diff };
