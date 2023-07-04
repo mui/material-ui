@@ -13,71 +13,6 @@ import {
   Typography,
 } from '@mui/material';
 
-const options = [
-  {
-    value: 'Food',
-    menuLevel: 0,
-  },
-  {
-    value: 'Drinks',
-    menuLevel: 0,
-    nestedOptions: [
-      {
-        value: 'Non-Alcoholic',
-        menuLevel: 1,
-        nestedOptions: [
-          {
-            value: 'Soda',
-            menuLevel: 2,
-          },
-          {
-            value: 'Iced Tea',
-            menuLevel: 2,
-          },
-          {
-            value: 'Lemonade',
-            menuLevel: 2,
-          },
-          {
-            value: 'Mocktail',
-            menuLevel: 2,
-          },
-          {
-            value: 'Smoothie',
-            menuLevel: 2,
-          },
-          {
-            value: 'Herbal tea',
-            menuLevel: 2,
-          },
-        ],
-      },
-      {
-        value: 'Alcoholic',
-        menuLevel: 1,
-      },
-    ],
-  },
-  {
-    value: 'Desserts',
-    menuLevel: 0,
-    nestedOptions: [
-      {
-        value: 'Cakes',
-        menuLevel: 1,
-      },
-      {
-        value: 'Ice Cream',
-        menuLevel: 1,
-      },
-      {
-        value: 'Pastries',
-        menuLevel: 1,
-      },
-    ],
-  },
-];
-
 export default function BasicMenu() {
   const MENU_LEVELS = 3;
 
@@ -275,3 +210,69 @@ export default function BasicMenu() {
     </React.Fragment>
   );
 }
+
+const options = [
+  {
+    value: 'Food',
+    menuLevel: 0,
+  },
+  {
+    value: 'Drinks',
+    menuLevel: 0,
+    nestedOptions: [
+      {
+        value: 'Non-Alcoholic',
+        menuLevel: 1,
+        nestedOptions: [
+          {
+            value: 'Soda',
+            menuLevel: 2,
+          },
+          {
+            value: 'Iced Tea',
+            menuLevel: 2,
+          },
+          {
+            value: 'Lemonade',
+            menuLevel: 2,
+          },
+          {
+            value: 'Mocktail',
+            menuLevel: 2,
+          },
+          {
+            value: 'Smoothie',
+            menuLevel: 2,
+          },
+          {
+            value: 'Herbal tea',
+            menuLevel: 2,
+          },
+        ],
+      },
+      {
+        value: 'Alcoholic',
+        menuLevel: 1,
+      },
+    ],
+  },
+
+  {
+    value: 'Desserts',
+    menuLevel: 0,
+    nestedOptions: [
+      {
+        value: 'Cakes',
+        menuLevel: 1,
+      },
+      {
+        value: 'Ice Cream',
+        menuLevel: 1,
+      },
+      {
+        value: 'Pastries',
+        menuLevel: 1,
+      },
+    ],
+  },
+];
