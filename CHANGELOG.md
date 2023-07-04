@@ -4,7 +4,7 @@
 <!-- generated comparing v5.13.6..master -->
 _Jul 3, 2023_
 
-A big thanks to the 20 contributors who made this release possible.
+A big thanks to the 21 contributors who made this release possible.
 This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
 ### `@mui/material@5.13.7`
@@ -13,7 +13,7 @@ This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️
 
 ### `@mui/system@5.13.7`
 
-- [Stack] Fix spacing when there are <style> children (#34966) @cmd-johnson
+- [Stack] Fix spacing when there are `<style>` children (#34966) @cmd-johnson
 
 ### `@mui/icons-material@5.13.7`
 
@@ -49,6 +49,8 @@ This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️
 - [docs] Shorten overview page URLs (#37660) @oliviertassinari
 - [docs][material] Rename custom tab panel in Tabs demo to prevent confusion with @mui/lab (#37638) @MUK-Dev
 - [docs][tabs] Document how to use routing with Tabs in Base UI (#37369) @michaldudak
+- [docs] Rename product to productId (#37801) @siriwatknp
+- [docs][base] Add Tailwind CSS & plain CSS demo on the Slider page (#37736) @mnajdova
 
 ### Core
 
@@ -57,6 +59,7 @@ This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️
 - [core] Update yarn lockfile (#37802) @michaldudak
 - [core] Add bundle size Toolpad app link to PRs (#36311) @Janpot
 - [core] Fix priority support prompt action flow (#37726) @DanailH
+- [core] Fix typo in priority support @oliviertassinari
 - [core][docs] add Eslint rule to ensure main demo component match file… (#37278) @alexfauquette
 - [docs-infra] Fix truncated TOCs scrollbar (#37770) @oliviertassinari
 - [docs-infra] Adjust demo container to be glued to the toolbar (#37744) @danilo-leal
@@ -77,8 +80,9 @@ This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️
 - [website] Transition the Core page to be Material UI instead (#37583) @danilo-leal
 - [website] Update the pricing page to reflect sales (#37751) @oliviertassinari
 - [website] Match Copyright with the rest of the website @oliviertassinari
+- [website] Support deep linking to pricing FAQ @oliviertassinari
 
-All contributors of this release in alphabetical order: @AdamSundberg, @alexfauquette, @bigteech, @cherniavskii, @cmd-johnson, @DanailH, @danilo-leal, @Dlouxgit, @gateremark, @Janpot, @michaldudak, @mnajdova, @MUK-Dev, @oliviertassinari, @sai6855, @saikathalderr, @vonagam, @zanivan, @ZeeshanTamboli, @zephyrus21
+All contributors of this release in alphabetical order: @AdamSundberg, @alexfauquette, @bigteech, @cherniavskii, @cmd-johnson, @DanailH, @danilo-leal, @Dlouxgit, @gateremark, @Janpot, @michaldudak, @mnajdova, @MUK-Dev, @oliviertassinari, @sai6855, @saikathalderr, @siriwatknp, @vonagam, @zanivan, @ZeeshanTamboli, @zephyrus21
 
 ## 5.13.6
 
