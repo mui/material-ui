@@ -86,10 +86,10 @@ function Styles() {
       .CustomBadge--content {
         width: 40px;
         height: 40px;
-        borderRadius: 12px;
+        border-radius: 12px;
         background: ${isDarkMode ? grey[400] : grey[300]};
         display: inline-block;
-        verticalAlign: middle;
+        vertical-align: middle;
       }
       `}
     </style>

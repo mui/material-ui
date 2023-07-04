@@ -28,24 +28,6 @@ export default function UnstyledBadge() {
       >
         <span className="w-10 h-10 rounded-xl bg-slate-300 dark:bg-slate-400 inline-block align-middle" />
       </Badge>
-      {/* <Styles /> */}
     </div>
-  );
-}
-
-function Styles() {
-  return (
-    <style>
-      {`
-      .CustomBadge {
-        font-variant: tabular-nums;
-      }
-
-      .CustomBadge--badge {
-        transform-origin: 100% 0;
-      }
-      
-      `}
-    </style>
   );
 }
