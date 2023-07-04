@@ -243,7 +243,7 @@ With MUI's `styled()` utility, you can use components as selectors, too. When us
 
 First, you should install [`@emotion/babel-plugin`](https://emotion.sh/docs/@emotion/babel-plugin).
 
-```sh
+```bash
 npm install @emotion/babel-plugin
 ```
 

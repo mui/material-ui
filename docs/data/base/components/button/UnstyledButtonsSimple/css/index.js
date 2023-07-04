@@ -37,12 +37,12 @@ function Styles() {
       .CustomButton {
         font-family: IBM Plex Sans,sans-serif;
         font-size: 0.875rem;
-        line-height: 1.25rem;
+        line-height: 1.5rem;
         background-color: ${cyan[500]};
         color: #fff;
-        border-radius: 0.75rem;
-        font-weight: bold;
-        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        padding: 8px 16px;
         cursor: pointer;
         border: none;
       }
