@@ -1,4 +1,5 @@
 const { marked } = require('marked');
+const { markedHighlight } = require('marked-highlight');
 const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
@@ -351,8 +352,13 @@ function createRender(context) {
       sanitize: false,
       smartLists: true,
       smartypants: false,
-      highlight: prism,
-      renderer,
+      headerPrefix: false,
+      headerIds: false,
+      mangle: false,
+      ...markedHighlight({
+        highlight: prism,
+      }),
+      renderer, // Should be after markedHighlight since it overrides `renderer.code`
     };
 
     marked.use({
