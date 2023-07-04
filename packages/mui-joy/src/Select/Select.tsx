@@ -245,7 +245,8 @@ const SelectListbox = styled(StyledList, {
     overflow: 'auto',
     outline: 0,
     boxShadow: theme.shadow.md,
-    zIndex: theme.vars.zIndex.popup,
+    // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+    zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
     }),
@@ -500,7 +501,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     additionalProps: {
       ref: listboxRef,
       anchorEl,
-      disablePortal: true,
       open: listboxOpen,
       placement: 'bottom' as const,
       keepMounted: true,

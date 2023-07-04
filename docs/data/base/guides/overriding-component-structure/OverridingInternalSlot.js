@@ -2,7 +2,7 @@ import * as React from 'react';
 import Select from '@mui/base/Select';
 import Option from '@mui/base/Option';
 
-export default function OrderedListSelect() {
+export default function OverridingInternalSlot() {
   return (
     <Select slots={{ listbox: 'ol' }} defaultValue="First option">
       <Option value="First option">First option</Option>

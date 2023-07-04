@@ -28,6 +28,7 @@
     "getHiddenInputProps": "Resolver for the hidden input slot&#39;s props.",
     "getRootProps": "Resolver for the root slot&#39;s props.",
     "getThumbProps": "Resolver for the thumb slot&#39;s props.",
+    "getThumbStyle": "Resolver for the thumb slot&#39;s style prop.",
     "marks": "The marks of the slider. Marks indicate predetermined values to which the user can move the slider.",
     "open": "The thumb index for the current value when in hover state.",
     "range": "If <code>true</code>, the slider is a range slider when the <code>value</code> prop passed is an array.",

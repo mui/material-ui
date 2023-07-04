@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React List component
 components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 githubLabel: 'component: list'

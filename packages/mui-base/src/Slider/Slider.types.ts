@@ -1,6 +1,6 @@
 import { OverridableComponent, OverridableTypeMap, Simplify } from '@mui/types';
 import * as React from 'react';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps, SlotComponentPropsWithSlotState } from '../utils';
 import {
   UseSliderHiddenInputProps,
   UseSliderParameters,
@@ -12,6 +12,7 @@ export type SliderOwnerState = Simplify<
   SliderOwnProps & {
     disabled: boolean;
     focusedThumbIndex: number;
+    activeThumbIndex: number;
     isRtl: boolean;
     max: number;
     min: number;
@@ -33,6 +34,12 @@ export interface SliderMarkSlotPropsOverrides {}
 export interface SliderMarkLabelSlotPropsOverrides {}
 export interface SliderValueLabelSlotPropsOverrides {}
 export interface SliderInputSlotPropsOverrides {}
+
+export interface SliderThumbSlotState {
+  focused: boolean;
+  active: boolean;
+  index: number;
+}
 
 export interface SliderOwnProps extends Omit<UseSliderParameters, 'ref'> {
   /**
@@ -66,7 +73,12 @@ export interface SliderOwnProps extends Omit<UseSliderParameters, 'ref'> {
     root?: SlotComponentProps<'span', SliderRootSlotPropsOverrides, SliderOwnerState>;
     track?: SlotComponentProps<'span', SliderTrackSlotPropsOverrides, SliderOwnerState>;
     rail?: SlotComponentProps<'span', SliderRailSlotPropsOverrides, SliderOwnerState>;
-    thumb?: SlotComponentProps<'span', SliderThumbSlotPropsOverrides, SliderOwnerState>;
+    thumb?: SlotComponentPropsWithSlotState<
+      'span',
+      SliderThumbSlotPropsOverrides,
+      SliderOwnerState,
+      SliderThumbSlotState
+    >;
     mark?: SlotComponentProps<'span', SliderMarkSlotPropsOverrides, SliderOwnerState>;
     markLabel?: SlotComponentProps<'span', SliderMarkLabelSlotPropsOverrides, SliderOwnerState>;
     valueLabel?: SlotComponentProps<

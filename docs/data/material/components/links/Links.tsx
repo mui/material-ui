@@ -10,7 +10,7 @@ export default function Links() {
     <Box
       sx={{
         typography: 'body1',
-        '& > :not(style) + :not(style)': {
+        '& > :not(style) ~ :not(style)': {
           ml: 2,
         },
       }}

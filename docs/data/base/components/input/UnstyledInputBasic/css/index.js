@@ -58,9 +58,9 @@ function Styles() {
         font-family: IBM Plex Sans, sans-serif;
         font-size: 0.875rem;
         font-weight: 400;
-        line-height: 1.5;
-        padding: 12px;
-        border-radius: 12px;
+        line-height: 1.5rem;
+        padding: 8px 12px;
+        border-radius: 8px;
         color: ${isDarkMode ? grey[300] : grey[900]};
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};

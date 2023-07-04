@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Modal（模态框）组件
 components: Modal
 githubLabel: 'component: modal'
