@@ -10,9 +10,12 @@ The example below (on your right-hand side) shows the problem when the interface
 
 {{"demo": "ColorInversionMotivation.js"}}
 
-On the **left**, the `Button`'s variant is `solid` which is the highest emphasis level compared to other components. This conforms to the visual appearance on the screen.
+On the **left**, the `Button`'s variant is `solid` which is the highest emphasis level compared to other components.
+This conforms to the visual appearance on the screen.
 
-On the **right**, the problem arises when the container's variant becomes `solid`. The button is no longer the highest emphasis element because the it has the same background as the container. Also, the text and the icon button don't have enough contrast to the parent's background.
+On the **right**, the problem arises when the container's variant becomes `solid`.
+The button is no longer the highest emphasis element because the it has the same background as the container.
+Also, the text and the icon button don't have enough contrast to the parent's background.
 
 The color inversion is implemented to solves this issue, keeping the global variants meaningful when multiple layers of global variants are composed together.
 
@@ -96,7 +99,8 @@ The surface component also creates a React context to tell the children to updat
 
 ### Child component
 
-All Joy UI components that support global variants check the React context that contains the color inversion flag. If the flag is true and the child has an implicit color, the internal `color` value will switch to `context` and apply the styles from `theme.variants[variant].context`.
+All Joy UI components that support global variants check the React context that contains the color inversion flag.
+If the flag is true and the child has an implicit color, the internal `color` value will switch to `context` and apply the styles from `theme.variants[variant].context`.
 
 The styles will match the `--variant-*` variables that the parent has.
 
@@ -110,7 +114,8 @@ The styles will match the `--variant-*` variables that the parent has.
 }
 ```
 
-In summary, the parent creates a React context to tell the children that the feature is enabled, and generates CSS variables that will be used by the children. The children with an implicit color switch their default color value to `context` to get the styles from the theme.
+In summary, the parent creates a React context to tell the children that the feature is enabled, and generates CSS variables that will be used by the children.
+The children with an implicit color switch their default color value to `context` to get the styles from the theme.
 
 ## Common examples
 
