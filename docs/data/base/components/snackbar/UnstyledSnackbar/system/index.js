@@ -1,30 +1,35 @@
 import * as React from 'react';
-import { styled, keyframes, css } from '@mui/system';
-import Snackbar from '@mui/base/Snackbar';
+import useSnackbar from '@mui/base/useSnackbar';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { css, keyframes, styled } from '@mui/system';
 
-export default function UnstyledSnackbar() {
+export default function UseSnackbar() {
   const [open, setOpen] = React.useState(false);
 
-  const handleClose = (_, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
+  const handleClose = () => {
     setOpen(false);
   };
 
-  const handleClick = () => {
+  const { getRootProps, onClickAway } = useSnackbar({
+    onClose: handleClose,
+    open,
+    autoHideDuration: 5000,
+  });
+
+  const handleOpen = () => {
     setOpen(true);
   };
 
   return (
     <React.Fragment>
-      <TriggerButton type="button" onClick={handleClick}>
+      <TriggerButton type="button" onClick={handleOpen}>
         Open snackbar
       </TriggerButton>
-      <StyledSnackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-        Hello World
-      </StyledSnackbar>
+      {open ? (
+        <ClickAwayListener onClickAway={onClickAway}>
+          <CustomSnackbar {...getRootProps()}>Hello World</CustomSnackbar>
+        </ClickAwayListener>
+      ) : null}
     </React.Fragment>
   );
 }
@@ -84,7 +89,7 @@ const TriggerButton = styled('button')(
   `,
 );
 
-const StyledSnackbar = styled(Snackbar)(
+const CustomSnackbar = styled('div')(
   ({ theme }) => css`
     position: fixed;
     z-index: 5500;
