@@ -36,7 +36,9 @@ export default function UnstyledSwitches() {
             className: `block w-4 h-4 top-1 ${
               checked ? 'left-5' : 'left-1'
             } rounded-2xl ${
-              focusVisible ? 'bg-slate-500 shadow-outline-switch' : 'bg-white'
+              focusVisible
+                ? `${checked ? 'bg-white' : 'bg-slate-500'} shadow-outline-switch`
+                : 'bg-white'
             } relative transition-all`,
           }),
         }}
