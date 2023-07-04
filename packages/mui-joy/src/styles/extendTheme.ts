@@ -235,8 +235,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
-    shadowChannel: '187 187 187',
-    shadowOpacity: '0.2',
+    shadowChannel: '21 21 21',
+    shadowOpacity: '0.12',
   };
   const darkColorSystem = {
     palette: {
@@ -584,7 +584,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       const channelMapping = {
         main: '500',
         light: '200',
-        dark: '800',
+        dark: '700',
       } as const;
       if (supportedColorScheme === 'dark') {
         // @ts-ignore internal
