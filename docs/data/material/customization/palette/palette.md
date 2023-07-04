@@ -126,7 +126,7 @@ If you need to manipulate colors, then `@mui/material/styles` provides [a set of
 
 {{"demo": "UsingStylesUtils.js" }}
 
-### Generate tokens using `augmentColor`
+### Generate tokens using augmentColor utility
 
 Alternatively, you can generate the `light`, `dark` and `contrastText` tokens using the palette's `augmentColor` utility,
 which is the same function used for the default palette colors.
