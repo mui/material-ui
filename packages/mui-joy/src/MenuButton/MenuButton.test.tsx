@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
+import { ThemeProvider } from '@mui/joy/styles';
 import MenuButton, { menuButtonClasses as classes } from '@mui/joy/MenuButton';
+import Button from '@mui/joy/Button';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useMenu';
-import Button from '../Button';
 
 const testContext: DropdownContextValue = {
   dispatch: () => {},
@@ -14,26 +15,29 @@ const testContext: DropdownContextValue = {
 };
 
 describe('<MenuButton />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
 
   describeConformance(<MenuButton />, () => ({
     classes,
     inheritComponent: Button,
-    mount: (node: React.ReactNode) => {
+    wrapMount: (mount) => (node: React.ReactNode) => {
       const wrapper = mount(
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
       );
       return wrapper.childAt(0);
     },
-    muiName: 'MuiMenu',
+    muiName: 'JoyMenuButton',
     refInstanceof: window.HTMLButtonElement,
     render: (node) => {
       return render(
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
       );
     },
-    skip: ['reactTestRenderer', 'propsSpread', 'componentProp', 'slotsProp'],
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
+    skip: ['reactTestRenderer', 'componentsProp', 'classesRoot'],
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
+    ThemeProvider,
   }));
 });

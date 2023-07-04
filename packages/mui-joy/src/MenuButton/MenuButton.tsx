@@ -1,12 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import useMenuButton from '@mui/base/useMenuButton';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { OverridableComponent } from '@mui/types';
-import { MenuButtonProps, MenuButtonOwnerState, MenuButtonTypeMap } from './MenuButtonProps';
+import {
+  type MenuButtonProps,
+  type MenuButtonOwnerState,
+  type MenuButtonTypeMap,
+} from './MenuButtonProps';
 import { getMenuButtonUtilityClass } from './menuButtonClasses';
 import Button from '../Button';
+import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: MenuButtonOwnerState) => {
   const { active, disabled } = ownerState;
@@ -29,18 +34,21 @@ const useUtilityClasses = (ownerState: MenuButtonOwnerState) => {
  * - [MenuButton API](https://mui.com/base-ui/react-menu/components-api/#menu-button)
  */
 const MenuButton = React.forwardRef(function MenuButton(
-  props: MenuButtonProps,
+  inProps: MenuButtonProps,
   forwardedRef: React.ForwardedRef<HTMLElement>,
 ) {
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+    props: inProps,
+    name: 'JoyMenuButton',
+  });
+
   const {
     children,
-    color,
+    component,
     label,
     slots = {},
     slotProps = {},
-    size,
     focusableWhenDisabled = false,
-    variant,
     ...other
   } = props;
 
@@ -54,24 +62,18 @@ const MenuButton = React.forwardRef(function MenuButton(
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const Root = slots.root || Button;
-  const rootProps = useSlotProps({
-    elementType: Root,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    elementType: Button,
     getSlotProps: getRootProps,
-    externalForwardedProps: other,
-    externalSlotProps: slotProps.root,
-    additionalProps: {
-      ref: forwardedRef,
-      color,
-      size,
-      variant,
-    },
+    externalForwardedProps,
+    ref: forwardedRef,
     ownerState,
     className: classes.root,
   });
 
-  return <Root {...rootProps}>{children}</Root>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<MenuButtonTypeMap>;
 
 MenuButton.propTypes /* remove-proptypes */ = {

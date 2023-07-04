@@ -3,17 +3,14 @@ import {
   MenuButtonProps as BaseMenuButtonProps,
   MenuButtonOwnerState as BaseMenuButtonOwnerState,
 } from '@mui/base/MenuButton';
-import Button, { ButtonProps } from '../Button';
+import Button from '../Button';
+
+export type MenuButtonSlot = 'root';
 
 export interface MenuButtonOwnerState extends BaseMenuButtonOwnerState {}
 
 export interface MenuButtonTypeMap<P = {}, D extends React.ElementType = typeof Button> {
-  props: P &
-    BaseMenuButtonProps & {
-      color?: ButtonProps['color'];
-      size?: ButtonProps['size'];
-      variant?: ButtonProps['variant'];
-    };
+  props: P & BaseMenuButtonProps;
   defaultComponent: D;
 }
 

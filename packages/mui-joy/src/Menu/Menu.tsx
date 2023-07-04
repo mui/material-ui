@@ -153,7 +153,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     ownerState: ownerState as MenuOwnerState & ListOwnerState,
     additionalProps: {
       anchorEl: triggerElement,
-      open,
+      open: open && triggerElement !== null,
       disablePortal,
       keepMounted,
       modifiers,

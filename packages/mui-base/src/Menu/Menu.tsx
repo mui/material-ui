@@ -63,7 +63,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
     externalSlotProps: slotProps.root,
     additionalProps: {
       anchorEl: triggerElement,
-      open,
+      open: open && triggerElement != null,
       keepMounted: true,
       role: undefined,
       ref: forwardedRef,
