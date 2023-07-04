@@ -6,7 +6,7 @@
 
 Run the command below to add Joy UI using **npm** to your project.
 
-```sh
+```bash
 npm install @mui/joy @emotion/react @emotion/styled
 npm start
 ```
@@ -15,7 +15,7 @@ npm start
 
 Run the command below to add Joy UI using **yarn** to your project.
 
-```sh
+```bash
 yarn add @mui/joy @emotion/react @emotion/styled
 yarn start
 ```

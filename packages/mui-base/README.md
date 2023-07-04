@@ -6,7 +6,7 @@ This package hosts unstyled React components and hooks that can be used for crea
 
 Install the package in your project directory with:
 
-```sh
+```bash
 // with npm
 npm install @mui/base
 
