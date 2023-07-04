@@ -51,6 +51,8 @@ Directly integrate with your Node.js back end and have your data available on th
 
 Toolpad runs fully locally. You're not stuck with an online code editor or a suboptimal github integration. All configuration is stored in local files which you can version-control, edit, and deploy in any way you want.
 
+<img alt="Building an application on Toolpad " src="/static/blog/2023-toolpad-beta-announcement/code.png" style="margin-bottom: 16px;" loading="lazy" width="2048" height="1536" />
+
 ## How is Toolpad different from similar products on the market?
 
 Toolpad follows an open-core approach, meaning that the base version is open source. You can build an unlimited number of apps, and the basic service will be free forever. Among similar products like Retool, Appsmith, Budibase, Airplane, and Interval, only some are open source.
