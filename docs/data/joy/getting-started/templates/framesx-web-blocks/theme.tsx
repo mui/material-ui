@@ -12,7 +12,7 @@ export default extendTheme({
           400: '#60A5FA',
           500: '#3479E8',
           600: '#2362EA',
-          700: '1D4FD7',
+          700: '#1D4FD7',
           800: '#1D3FAE',
           900: '#1E3B8A',
           solidBg: 'var(--joy-palette-primary-600)',
