@@ -71,7 +71,7 @@ Note that the documentation [avoids](/material-ui/guides/api/#native-properties)
 
 {{"demo": "ColorButtons.js"}}
 
-Além de usar as cores de botão padrão, você pode adicionar outras personalizadas ou desativar as que não forem necessárias. See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info.
+Além de usar as cores de botão padrão, você pode adicionar outras personalizadas ou desativar as que não forem necessárias. See the [Adding new colors](/material-ui/customization/palette/#custom-colors) examples for more info.
 
 ## Tamanhos
 
