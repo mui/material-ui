@@ -4,7 +4,7 @@ import path from 'path';
 import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider as JoyCssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import HighlightedCodeWithTabs from 'docs/src/modules/components/HighlightedCodeWithTabs';
@@ -41,7 +41,7 @@ export default function MarkdownDocs(props) {
     disableAd = false,
     disableToc = false,
     /**
-     * Some Joy pages, e.g. Joy theme builder, should not be a nested CssVarsProvider to control its own state.
+     * Some pages, e.g. Joy theme builder, should not be a nested CssVarsProvider to control its own state.
      * This config will skip the CssVarsProvider at the root of the page.
      */
     disableCssVarsProvider = false,
@@ -58,7 +58,7 @@ export default function MarkdownDocs(props) {
   const { description, location, rendered, title, toc } = localizedDoc;
 
   const isJoy = canonicalAs.startsWith('/joy-ui/') && !disableCssVarsProvider;
-  const Provider = isJoy ? CssVarsProvider : React.Fragment;
+  const CssVarsProvider = isJoy ? JoyCssVarsProvider : React.Fragment;
   const Wrapper = isJoy ? BrandingProvider : React.Fragment;
 
   return (
@@ -70,14 +70,14 @@ export default function MarkdownDocs(props) {
       title={title}
       toc={toc}
     >
-      <Provider>
-        {disableAd ? null : (
-          <Wrapper>
-            <AdGuest>
-              <Ad />
-            </AdGuest>
-          </Wrapper>
-        )}
+      {disableAd ? null : (
+        <BrandingProvider>
+          <AdGuest>
+            <Ad />
+          </AdGuest>
+        </BrandingProvider>
+      )}
+      <CssVarsProvider>
         {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
         {rendered.map((renderedMarkdownOrDemo, index) => {
           if (typeof renderedMarkdownOrDemo === 'string') {
@@ -168,7 +168,7 @@ export default function MarkdownDocs(props) {
             />
           );
         })}
-      </Provider>
+      </CssVarsProvider>
     </AppLayoutDocs>
   );
 }

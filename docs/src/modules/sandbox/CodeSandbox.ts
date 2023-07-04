@@ -39,7 +39,7 @@ const createReactApp = (demo: {
   raw: string;
   codeVariant: CodeVariant;
   githubLocation: string;
-  product?: Product;
+  productId?: Product;
   codeStyling: CodeStyling;
 }) => {
   const ext = getFileExtension(demo.codeVariant);
@@ -50,7 +50,7 @@ const createReactApp = (demo: {
       content: CRA.getHtml(demo),
     },
     [`index.${ext}`]: {
-      content: CRA.getRootIndex(demo.product),
+      content: CRA.getRootIndex(demo.productId),
     },
     [`demo.${ext}`]: {
       content: demo.raw,
