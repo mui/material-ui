@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {
   Box,
   ClickAwayListener,
@@ -197,9 +196,7 @@ export default function BasicMenu() {
                           >
                             <Typography>{option.value}</Typography>
                             {option.nestedOptions ? (
-                              <Icon>
-                                <ChevronRightIcon />
-                              </Icon>
+                              <Icon>chevron_right</Icon>
                             ) : null}
                           </Box>
                         </MenuItem>
