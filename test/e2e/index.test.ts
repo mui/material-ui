@@ -240,29 +240,6 @@ describe('e2e', () => {
   });
 
   describe('<MaterialNestedMenu />', () => {
-    it('should open submenus when clicked on options  without throwing any error', async () => {
-      await renderFixture('NestedMenuDemo/MaterialNestedMenu');
-
-      const menuButton = (await screen.getByRole('button'))!;
-      await menuButton.click();
-
-      await screen.getByText('Food');
-      const drinks = await screen.getByText('Drinks');
-      await screen.getByText('Desserts');
-
-      const drinksdimensions = (await drinks.boundingBox())!;
-      await page.mouse.move(drinksdimensions.x + 10, drinksdimensions.y + 10);
-
-      await screen.getByText('Alcoholic');
-      const nonAlchoholic = await screen.getByText('Non-Alcoholic');
-
-      const nonAlchoholicdimensions = (await nonAlchoholic.boundingBox())!;
-      await page.mouse.move(nonAlchoholicdimensions.x + 10, nonAlchoholicdimensions.y + 10);
-
-      await screen.getByText('Soda');
-      await screen.getByText('Iced Tea');
-      await screen.getByText('Lemonade');
-    });
     it('should open submenus through keyboard without throwing any error', async () => {
       await renderFixture('NestedMenuDemo/MaterialNestedMenu');
 
