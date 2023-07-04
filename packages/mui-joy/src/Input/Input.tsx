@@ -56,20 +56,20 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           '--Input-minHeight': '2rem',
           '--Input-paddingInline': '0.5rem',
           '--Input-decoratorChildHeight': 'min(1.5rem, var(--Input-minHeight))',
-          '--Icon-fontSize': '1.25rem',
+          '--Icon-fontSize': theme.vars.fontSize.xl,
         }),
         ...(ownerState.size === 'md' && {
           '--Input-minHeight': '2.5rem',
           '--Input-paddingInline': '0.75rem',
           '--Input-decoratorChildHeight': 'min(2rem, var(--Input-minHeight))',
-          '--Icon-fontSize': '1.5rem',
+          '--Icon-fontSize': theme.vars.fontSize.xl2,
         }),
         ...(ownerState.size === 'lg' && {
           '--Input-minHeight': '3rem',
           '--Input-paddingInline': '1rem',
           '--Input-gap': '0.75rem',
           '--Input-decoratorChildHeight': 'min(2.375rem, var(--Input-minHeight))',
-          '--Icon-fontSize': '1.75rem',
+          '--Icon-fontSize': theme.vars.fontSize.xl2,
         }),
         // variables for controlling child components
         '--Input-decoratorChildOffset':

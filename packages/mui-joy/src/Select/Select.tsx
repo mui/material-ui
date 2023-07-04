@@ -107,19 +107,19 @@ const SelectRoot = styled('div', {
         '--Select-minHeight': '2rem',
         '--Select-paddingInline': '0.5rem',
         '--Select-decoratorChildHeight': 'min(1.5rem, var(--Select-minHeight))',
-        '--Icon-fontSize': '1.25rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl,
       }),
       ...(ownerState.size === 'md' && {
         '--Select-minHeight': '2.5rem',
         '--Select-paddingInline': '0.75rem',
         '--Select-decoratorChildHeight': 'min(2rem, var(--Select-minHeight))',
-        '--Icon-fontSize': '1.5rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       ...(ownerState.size === 'lg' && {
         '--Select-minHeight': '3rem',
         '--Select-paddingInline': '1rem',
         '--Select-decoratorChildHeight': 'min(2.375rem, var(--Select-minHeight))',
-        '--Icon-fontSize': '1.75rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       // variables for controlling child components
       '--Select-decoratorChildOffset':
@@ -280,15 +280,15 @@ const SelectEndDecorator = styled('span', {
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
   slot: 'Indicator',
-})<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
+})<{ ownerState: SelectOwnerState<any> }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
-    '--Icon-fontSize': '1.125rem',
+    '--Icon-fontSize': theme.vars.fontSize.lg,
   }),
   ...(ownerState.size === 'md' && {
-    '--Icon-fontSize': '1.25rem',
+    '--Icon-fontSize': theme.vars.fontSize.xl,
   }),
   ...(ownerState.size === 'lg' && {
-    '--Icon-fontSize': '1.5rem',
+    '--Icon-fontSize': theme.vars.fontSize.xl2,
   }),
   '--Icon-color': 'currentColor',
   display: 'inherit',

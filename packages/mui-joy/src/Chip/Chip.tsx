@@ -59,21 +59,21 @@ const ChipRoot = styled('div', {
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decoratorChildHeight':
           'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth, 0px))',
-        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.714)', // 0.875rem by default
+        '--Icon-fontSize': theme.vars.fontSize.sm,
         '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)',
       }),
       ...(ownerState.size === 'md' && {
         '--Chip-gap': '0.375rem',
         '--Chip-paddingInline': '0.75rem',
         '--Chip-decoratorChildHeight': 'min(1.375rem, var(--_Chip-minHeight))',
-        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.778)', // 1.125rem by default
+        '--Icon-fontSize': theme.vars.fontSize.lg,
         '--_Chip-minHeight': 'var(--Chip-minHeight, 2rem)',
       }),
       ...(ownerState.size === 'lg' && {
         '--Chip-gap': '0.5rem',
         '--Chip-paddingInline': '1rem',
         '--Chip-decoratorChildHeight': 'min(1.75rem, var(--_Chip-minHeight))',
-        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 2)', // 1.25rem by default
+        '--Icon-fontSize': theme.vars.fontSize.xl,
         '--_Chip-minHeight': 'var(--Chip-minHeight, 2.5rem)',
       }),
       '--_Chip-radius': 'var(--Chip-radius, 1.5rem)',
