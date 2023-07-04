@@ -38,11 +38,10 @@ const ListSubheaderRoot = styled('div', {
   paddingInlineStart: 'var(--ListItem-paddingLeft)',
   paddingInlineEnd: 'var(--ListItem-paddingRight)',
   minBlockSize: 'var(--ListItem-minHeight)',
-  fontSize: 'calc(var(--ListItem-fontSize) * 0.75)',
-  fontWeight: theme.vars.fontWeight.lg,
-  fontFamily: theme.vars.fontFamily.body,
-  letterSpacing: theme.vars.letterSpacing.md,
+  ...theme.typography['body-xs'],
+  fontSize: 'max(0.75em, 0.625rem)',
   textTransform: 'uppercase',
+  letterSpacing: '0.1em',
   ...(ownerState.sticky && {
     position: 'sticky',
     top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
@@ -137,7 +136,7 @@ ListSubheader.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

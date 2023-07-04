@@ -31,7 +31,7 @@ const FormLabelRoot = styled('label', {
   fontFamily: theme.vars.fontFamily.body,
   fontSize: `var(--FormLabel-fontSize, ${theme.vars.fontSize.sm})`,
   fontWeight: theme.vars.fontWeight.md,
-  lineHeight: theme.vars.lineHeight.md,
+  lineHeight: `var(--FormLabel-lineHeight, ${theme.vars.lineHeight.sm})`,
   color: `var(--FormLabel-color, ${theme.vars.palette.text.primary})`,
   margin: 'var(--FormLabel-margin, 0px)',
 }));

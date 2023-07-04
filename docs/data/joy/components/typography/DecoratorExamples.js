@@ -38,7 +38,7 @@ export default function DecoratorExamples() {
       </Typography>
 
       <Typography
-        level="body2"
+        level="body-sm"
         startDecorator={<InfoOutlined />}
         sx={{ alignItems: 'flex-start', maxWidth: 240, wordBreak: 'break-all' }}
       >

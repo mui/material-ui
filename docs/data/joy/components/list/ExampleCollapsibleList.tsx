@@ -56,7 +56,7 @@ export default function ExampleCollapsibleList() {
       >
         <ListItem nested>
           <ListItem component="div" startAction={<ReceiptLong />}>
-            <Typography level="body3" sx={{ textTransform: 'uppercase' }}>
+            <Typography level="body-xs" sx={{ textTransform: 'uppercase' }}>
               Documentation
             </Typography>
           </ListItem>
@@ -95,7 +95,7 @@ export default function ExampleCollapsibleList() {
             >
               Tutorial
             </Typography>
-            <Typography component="span" level="body3" sx={{ ml: 1 }}>
+            <Typography component="span" level="body-xs" sx={{ ml: 1 }}>
               9
             </Typography>
           </ListItem>
@@ -146,7 +146,7 @@ export default function ExampleCollapsibleList() {
             >
               How-to Guides
             </Typography>
-            <Typography component="span" level="body3" sx={{ ml: 1 }}>
+            <Typography component="span" level="body-xs" sx={{ ml: 1 }}>
               39
             </Typography>
           </ListItem>

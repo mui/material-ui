@@ -53,7 +53,7 @@ describe('<Alert />', () => {
       expect(getByRole('alert')).to.have.class(classes.colorPrimary);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(<Alert color={color} />);
 

@@ -4,12 +4,10 @@ import { Theme, SxProps } from './types';
  * internal utility
  */
 // eslint-disable-next-line import/prefer-default-export
-export const resolveSxValue = (
+export const resolveSxValue = <K extends string>(
   { theme, ownerState }: { theme: Theme; ownerState: { sx?: SxProps } },
-  key: string,
-  defaultValue?: string | number,
-) => {
-  let parsedValue;
+  keys: K[],
+): Record<K, undefined | number | string> => {
   let sxObject: Record<string, any> = {};
   function resolveSx(sxProp: SxProps) {
     if (typeof sxProp === 'function') {
@@ -27,20 +25,29 @@ export const resolveSxValue = (
   }
   if (ownerState.sx) {
     resolveSx(ownerState.sx);
-    const value = sxObject[key];
-    if (typeof value === 'string' || typeof value === 'number') {
-      if (key === 'borderRadius') {
-        if (typeof value === 'number') {
-          return `${value}px`;
+    keys.forEach((key) => {
+      const value = sxObject[key];
+      if (typeof value === 'string' || typeof value === 'number') {
+        if (key === 'borderRadius') {
+          if (typeof value === 'number') {
+            sxObject[key] = `${value}px`;
+          } else {
+            sxObject[key] = theme.vars?.radius[value as keyof typeof theme.vars.radius] || value;
+          }
+        } else if (
+          ['p', 'padding', 'm', 'margin'].indexOf(key) !== -1 &&
+          typeof value === 'number'
+        ) {
+          sxObject[key] = theme.spacing(value);
+        } else {
+          sxObject[key] = value;
         }
-        parsedValue = theme.vars?.radius[value as keyof typeof theme.vars.radius] || value;
+      } else if (typeof value === 'function') {
+        sxObject[key] = value(theme);
       } else {
-        parsedValue = value;
+        sxObject[key] = undefined;
       }
-    }
-    if (typeof value === 'function') {
-      parsedValue = value(theme);
-    }
+    });
   }
-  return parsedValue || defaultValue;
+  return sxObject;
 };

@@ -39,6 +39,7 @@ const ChipRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return [
     {
       // for controlling chip delete margin offset
@@ -51,31 +52,29 @@ const ChipRoot = styled('div', {
       '--Avatar-radius': 'var(--Chip-decoratorChildRadius)',
       '--Avatar-size': 'var(--Chip-decoratorChildHeight)',
       '--Icon-margin': 'initial', // reset the icon's margin.
+      '--Icon-color': 'currentColor',
       '--unstable_actionRadius': 'var(--_Chip-radius)', // to be used with Radio or Checkbox
       ...(ownerState.size === 'sm' && {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decoratorChildHeight':
           'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth, 0px))',
-        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.714)', // 0.875rem by default
+        '--Icon-fontSize': theme.vars.fontSize.sm,
         '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)',
-        fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
         '--Chip-gap': '0.375rem',
         '--Chip-paddingInline': '0.75rem',
         '--Chip-decoratorChildHeight': 'min(1.375rem, var(--_Chip-minHeight))',
-        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.778)', // 1.125rem by default
+        '--Icon-fontSize': theme.vars.fontSize.lg,
         '--_Chip-minHeight': 'var(--Chip-minHeight, 2rem)',
-        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
         '--Chip-gap': '0.5rem',
         '--Chip-paddingInline': '1rem',
         '--Chip-decoratorChildHeight': 'min(1.75rem, var(--_Chip-minHeight))',
-        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 2)', // 1.25rem by default
+        '--Icon-fontSize': theme.vars.fontSize.xl,
         '--_Chip-minHeight': 'var(--Chip-minHeight, 2.5rem)',
-        fontSize: theme.vars.fontSize.md,
       }),
       '--_Chip-radius': 'var(--Chip-radius, 1.5rem)',
       '--_Chip-paddingBlock':
@@ -85,8 +84,6 @@ const ChipRoot = styled('div', {
       paddingInline: 'var(--Chip-paddingInline)',
       borderRadius: 'var(--_Chip-radius)',
       position: 'relative',
-      fontWeight: theme.vars.fontWeight.md,
-      fontFamily: theme.vars.fontFamily.body,
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -94,14 +91,17 @@ const ChipRoot = styled('div', {
       textDecoration: 'none',
       verticalAlign: 'middle',
       boxSizing: 'border-box',
+      ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
+      fontWeight: theme.vars.fontWeight.md,
       [`&.${chipClasses.disabled}`]: {
         color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       },
     },
     ...(!ownerState.clickable
       ? [
-          theme.variants[ownerState.variant!]?.[ownerState.color!],
           {
+            backgroundColor: theme.vars.palette.background.surface,
+            ...variantStyle,
             [`&.${chipClasses.disabled}`]:
               theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
           },
@@ -109,7 +109,7 @@ const ChipRoot = styled('div', {
       : [
           {
             '--variant-borderWidth': '0px',
-            color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
+            color: variantStyle?.color,
           },
         ]),
   ];
@@ -138,6 +138,9 @@ const ChipAction = styled('button', {
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => [
   {
+    ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
+      '--Icon-color': 'currentColor',
+    }),
     position: 'absolute',
     zIndex: 0,
     top: 0,
@@ -154,7 +157,10 @@ const ChipAction = styled('button', {
     borderRadius: 'inherit',
     [theme.focus.selector]: theme.focus.default,
   },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
+  {
+    backgroundColor: theme.vars.palette.background.surface,
+    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+  },
   { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
   { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
   {
@@ -337,7 +343,7 @@ Chip.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

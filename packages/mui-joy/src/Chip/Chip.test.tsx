@@ -90,7 +90,7 @@ describe('<Chip />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorPrimary);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(<Chip data-testid="root" color={color} />);
 

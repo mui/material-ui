@@ -51,12 +51,8 @@ const MenuButton = React.forwardRef(
           open,
           actions: menuActions,
           anchorEl: buttonRef.current,
-          slotProps: {
-            listbox: {
-              id: `toolbar-example-menu-${children}`,
-              'aria-label': children,
-            },
-          },
+          id: `toolbar-example-menu-${children}`,
+          'aria-label': children,
           placement: 'bottom-start',
           disablePortal: false,
           variant: 'soft',
@@ -65,7 +61,7 @@ const MenuButton = React.forwardRef(
             boxShadow: '0 2px 8px 0px rgba(0 0 0 / 0.38)',
             '--List-padding': 'var(--ListDivider-gap)',
             '--ListItem-minHeight': '32px',
-            [`& .${menuItemClasses.root}`]: {
+            [`&& .${menuItemClasses.root}`]: {
               transition: 'none',
               '&:hover': {
                 ...theme.variants.solid.primary,
@@ -86,7 +82,7 @@ export default function MenuToolbarExample() {
   const [menuIndex, setMenuIndex] = React.useState(null);
 
   const renderShortcut = (text) => (
-    <Typography level="body2" textColor="text.tertiary" ml="auto">
+    <Typography level="body-sm" textColor="text.tertiary" ml="auto">
       {text}
     </Typography>
   );
@@ -150,10 +146,8 @@ export default function MenuToolbarExample() {
       data-joy-color-scheme="dark"
       sx={{
         bgcolor: 'background.body',
-        px: 2,
         borderRadius: '4px',
         maxWidth: 'fit-content',
-        '--ListItem-radius': '8px',
       }}
     >
       <ListItem>
@@ -175,7 +169,7 @@ export default function MenuToolbarExample() {
             <Menu
               onClose={(event) => {
                 menus.current[0]?.focus();
-                if (event.relatedTarget !== menus.current[0]) {
+                if (event?.relatedTarget !== menus.current[0]) {
                   setMenuIndex(null);
                 }
               }}
@@ -223,7 +217,7 @@ export default function MenuToolbarExample() {
             <Menu
               onClose={(event) => {
                 menus.current[1]?.focus();
-                if (event.relatedTarget !== menus.current[1]) {
+                if (event?.relatedTarget !== menus.current[1]) {
                   setMenuIndex(null);
                 }
               }}
@@ -267,7 +261,7 @@ export default function MenuToolbarExample() {
             <Menu
               onClose={(event) => {
                 menus.current[2]?.focus();
-                if (event.relatedTarget !== menus.current[2]) {
+                if (event?.relatedTarget !== menus.current[2]) {
                   setMenuIndex(null);
                 }
               }}

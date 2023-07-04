@@ -27,8 +27,8 @@ const FormHelperTextRoot = styled('div', {
   alignItems: 'center',
   fontFamily: theme.vars.fontFamily.body,
   fontSize: `var(--FormHelperText-fontSize, ${theme.vars.fontSize.sm})`,
-  lineHeight: theme.vars.lineHeight.sm,
-  color: `var(--FormHelperText-color, ${theme.vars.palette.text.secondary})`,
+  lineHeight: `var(--FormHelperText-lineHeight, ${theme.vars.lineHeight.sm})`,
+  color: `var(--FormHelperText-color, ${theme.vars.palette.text.tertiary})`,
   margin: 'var(--FormHelperText-margin, 0px)',
   [`.${formLabelClasses.root} + &`]: {
     '--FormHelperText-margin': '0px', // remove the margin if the helper text is next to the form label.

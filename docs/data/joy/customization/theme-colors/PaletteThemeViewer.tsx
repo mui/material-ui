@@ -120,7 +120,7 @@ export default function PaletteThemeViewer() {
           zIndex: 1,
         }}
       >
-        <Typography level="body3" textColor="inherit" startDecorator={<Check />}>
+        <Typography level="body-xs" textColor="inherit" startDecorator={<Check />}>
           Copied
         </Typography>
       </Sheet>
@@ -202,7 +202,6 @@ export default function PaletteThemeViewer() {
                     fontSize="xs"
                     startDecorator={renderSwatch('light', token)}
                     fontFamily="code"
-                    letterSpacing="sm"
                     textAlign="left"
                     sx={{ alignItems: 'flex-start', cursor: 'copy' }}
                     onClick={() => copy(light[token])}
@@ -218,7 +217,6 @@ export default function PaletteThemeViewer() {
                     fontSize="xs"
                     startDecorator={renderSwatch('dark', token)}
                     fontFamily="code"
-                    letterSpacing="sm"
                     textAlign="left"
                     sx={{ alignItems: 'flex-start', cursor: 'copy' }}
                     onClick={() => copy(dark[token])}

@@ -10,7 +10,6 @@ import FormHelperText from '@mui/joy/FormHelperText';
 import Input from '@mui/joy/Input';
 import Textarea from '@mui/joy/Textarea';
 import Stack from '@mui/joy/Stack';
-import Sheet from '@mui/joy/Sheet';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Typography from '@mui/joy/Typography';
@@ -24,9 +23,8 @@ import EditorToolbar from './EditorToolbar';
 
 export default function MyProfile() {
   return (
-    <Sheet
+    <Box
       sx={{
-        bgcolor: 'background.body',
         flex: 1,
         maxWidth: 1200,
         width: '100%',
@@ -36,19 +34,13 @@ export default function MyProfile() {
       <Typography level="h1" fontSize="xl2" sx={{ mb: 1 }}>
         My profile
       </Typography>
-      <Tabs
-        defaultValue={0}
-        sx={{
-          bgcolor: 'background.body',
-          '--Tab-height': '48px',
-        }}
-      >
+      <Tabs defaultValue={0} sx={{ bgcolor: 'transparent' }}>
         <Box
           sx={{
             '--_shadow-height': '16px',
             height: 0,
             position: 'sticky',
-            top: 'calc(var(--Tab-height) - var(--main-paddingTop, 0px) + var(--Header-height, 0px) - (var(--_shadow-height) / 2))',
+            top: 'calc(48px - var(--main-paddingTop, 0px) + var(--Header-height, 0px) - (var(--_shadow-height) / 2))',
             zIndex: 1,
             '&::before': {
               content: '""',
@@ -62,22 +54,16 @@ export default function MyProfile() {
           }}
         />
         <TabList
+          sticky="top"
           variant="plain"
-          size="sm"
           sx={(theme) => ({
-            '--List-padding': '0px',
-            '--ListItem-minHeight': 'var(--Tab-height)',
             '--Chip-minHeight': '20px',
-            '--_TabList-bg': theme.vars.palette.background.body,
-            backgroundColor: 'var(--_TabList-bg)',
-            boxShadow: `inset 0 -1px 0 0 ${theme.vars.palette.divider}`,
-            position: 'sticky',
+            '--ListItem-minHeight': '48px',
             top: 'calc(-1 * (var(--main-paddingTop, 0px) - var(--Header-height, 0px)))',
             zIndex: 10,
             width: '100%',
             overflow: 'auto hidden',
             alignSelf: 'flex-start',
-            borderRadius: 0,
             scrollSnapType: 'inline',
             '&::after': {
               pointerEvents: 'none',
@@ -90,7 +76,7 @@ export default function MyProfile() {
               zIndex: 1,
               right: 0,
               borderBottom: '1px solid transparent',
-              background: `linear-gradient(to left, var(--_TabList-bg), rgb(0 0 0 / 0))`,
+              background: `linear-gradient(to left, ${theme.vars.palette.background.body}, rgb(0 0 0 / 0))`,
               backgroundClip: 'content-box',
             },
             '&::-webkit-scrollbar': {
@@ -98,51 +84,51 @@ export default function MyProfile() {
               display: 'none',
             },
             [`& .${tabClasses.root}`]: {
+              '--focus-outline-offset': '-2px',
               '&:first-of-type': {
                 ml: 'calc(-1 * var(--ListItem-paddingX))',
               },
               scrollSnapAlign: 'start',
               bgcolor: 'transparent',
-              boxShadow: 'none',
               flex: 'none',
               '&:hover': {
                 bgcolor: 'transparent',
               },
               [`&.${tabClasses.selected}`]: {
                 color: 'primary.plainColor',
-                '&:before': {
-                  content: '""',
-                  display: 'block',
-                  position: 'absolute',
-                  zIndex: 1,
-                  bottom: 0,
-                  left: 'var(--ListItem-paddingLeft)',
-                  right: 'var(--ListItem-paddingRight)',
-                  height: '2px',
-                  bgcolor: 'primary.500',
-                },
+                bgcolor: 'transparent',
                 [`& .${chipClasses.root}`]: theme.variants.solid.primary,
               },
             },
           })}
         >
-          <Tab value={0}>Account settings</Tab>
-          <Tab value={1}>
+          <Tab indicatorInset value={0}>
+            Account settings
+          </Tab>
+          <Tab indicatorInset value={1}>
             Team{' '}
             <Chip size="sm" variant="soft" color="neutral" sx={{ ml: 1 }}>
               2
             </Chip>
           </Tab>
-          <Tab value={2}>Plan</Tab>
-          <Tab value={3}>
+          <Tab indicatorInset value={2}>
+            Plan
+          </Tab>
+          <Tab indicatorInset value={3}>
             Billing{' '}
             <Chip size="sm" variant="soft" color="neutral" sx={{ ml: 1 }}>
               4
             </Chip>
           </Tab>
-          <Tab value={4}>Notifications</Tab>
-          <Tab value={5}>Integrations</Tab>
-          <Tab value={6}>API</Tab>
+          <Tab indicatorInset value={4}>
+            Notifications
+          </Tab>
+          <Tab indicatorInset value={5}>
+            Integrations
+          </Tab>
+          <Tab indicatorInset value={6}>
+            API
+          </Tab>
         </TabList>
         <Box
           sx={{
@@ -303,6 +289,6 @@ export default function MyProfile() {
           </Box>
         </Box>
       </Tabs>
-    </Sheet>
+    </Box>
   );
 }

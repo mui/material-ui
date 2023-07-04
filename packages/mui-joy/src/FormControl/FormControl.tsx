@@ -38,20 +38,26 @@ export const FormControlRoot = styled('div', {
   '--FormLabel-asteriskColor': theme.vars.palette.danger[500],
   ...(ownerState.size === 'sm' && {
     '--FormLabel-fontSize': theme.vars.fontSize.xs,
+    '--FormLabel-lineHeight': theme.vars.lineHeight.xl,
     '--FormLabel-margin':
       ownerState.orientation === 'horizontal' ? '0 0.5rem 0 0' : '0 0 0.25rem 0',
     '--FormHelperText-fontSize': theme.vars.fontSize.xs,
+    '--FormHelperText-lineHeight': theme.vars.lineHeight.xl,
   }),
   ...(ownerState.size === 'md' && {
     '--FormLabel-fontSize': theme.vars.fontSize.sm,
+    '--FormLabel-lineHeight': theme.vars.lineHeight.sm,
     '--FormLabel-margin':
-      ownerState.orientation === 'horizontal' ? '0 0.75rem 0 0' : '0 0 0.25rem 0',
+      ownerState.orientation === 'horizontal' ? '0 0.75rem 0 0' : '0 0 0.375rem 0',
     '--FormHelperText-fontSize': theme.vars.fontSize.sm,
+    '--FormHelperText-lineHeight': theme.vars.lineHeight.sm,
   }),
   ...(ownerState.size === 'lg' && {
     '--FormLabel-fontSize': theme.vars.fontSize.md,
-    '--FormLabel-margin': ownerState.orientation === 'horizontal' ? '0 1rem 0 0' : '0 0 0.25rem 0',
+    '--FormLabel-lineHeight': theme.vars.lineHeight.md,
+    '--FormLabel-margin': ownerState.orientation === 'horizontal' ? '0 1rem 0 0' : '0 0 0.5rem 0',
     '--FormHelperText-fontSize': theme.vars.fontSize.sm,
+    '--FormHelperText-lineHeight': theme.vars.lineHeight.sm,
   }),
   ...(ownerState.color &&
     ownerState.color !== 'context' && {
@@ -194,7 +200,7 @@ FormControl.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

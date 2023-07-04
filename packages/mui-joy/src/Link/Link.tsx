@@ -72,12 +72,10 @@ const LinkRoot = styled('a', {
   return [
     {
       '--Icon-fontSize': '1.25em',
+      '--Icon-color': 'currentColor',
+      '--CircularProgress-size': '1.25em',
+      '--CircularProgress-thickness': '3px',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
-      ...(ownerState.level === 'inherit' && {
-        fontSize: 'inherit',
-        fontFamily: 'inherit',
-        lineHeight: 'inherit',
-      }),
       ...(ownerState.underline === 'none' && {
         textDecoration: 'none',
       }),
@@ -93,6 +91,8 @@ const LinkRoot = styled('a', {
       ...(ownerState.startDecorator && {
         verticalAlign: 'bottom', // to make the link align with the parent's content
       }),
+      textDecorationThickness: 'max(0.08em, 1px)', // steal from https://moderncss.dev/modern-css-for-dynamic-component-based-architecture/#css-reset-additions
+      textUnderlineOffset: '0.15em', // steal from https://moderncss.dev/modern-css-for-dynamic-component-based-architecture/#css-reset-additions
       display: 'inline-flex',
       alignItems: 'center',
       WebkitTapHighlightColor: 'transparent',
@@ -199,7 +199,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     disabled = false,
     onBlur,
     onFocus,
-    level: levelProp = 'body1',
+    level: levelProp = 'body-md',
     overlay = false,
     underline = 'hover',
     endDecorator,
@@ -308,7 +308,7 @@ Link.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -327,7 +327,7 @@ Link.propTypes /* remove-proptypes */ = {
   endDecorator: PropTypes.node,
   /**
    * Applies the theme typography styles.
-   * @default 'body1'
+   * @default 'body-md'
    */
   level: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['body1', 'body2', 'body3', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'inherit']),

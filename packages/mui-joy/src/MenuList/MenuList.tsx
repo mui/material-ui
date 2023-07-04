@@ -36,13 +36,13 @@ const MenuListRoot = styled(StyledList, {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
-    '--List-radius': theme.vars.radius.sm,
     '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.surface,
     '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
+    borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
     overflow: 'auto',
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
@@ -157,7 +157,7 @@ MenuList.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

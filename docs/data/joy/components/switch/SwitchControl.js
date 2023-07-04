@@ -20,7 +20,7 @@ export default function SwitchControl() {
         checked={checked}
         onChange={(event) => setChecked(event.target.checked)}
         color={checked ? 'success' : 'neutral'}
-        variant="outlined"
+        variant={checked ? 'solid' : 'outlined'}
         endDecorator={checked ? 'On' : 'Off'}
         slotProps={{
           endDecorator: {

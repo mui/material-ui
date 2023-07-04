@@ -35,6 +35,7 @@ const RadioGroupRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: RadioGroupOwnerState }>(({ ownerState, theme }) => ({
+  '--Icon-color': 'currentColor',
   ...(ownerState.size === 'sm' && {
     '--RadioGroup-gap': '0.625rem',
   }),
@@ -195,7 +196,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

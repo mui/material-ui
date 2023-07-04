@@ -212,14 +212,15 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
-})<{ ownerState: OwnerState }>(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>({
   alignSelf: 'center',
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
-  ...(ownerState.popupOpen && {
+  [`&.${autocompleteClasses.popupIndicatorOpen}`]: {
     transform: 'rotate(180deg)',
-  }),
-}));
+    '--Icon-color': 'currentColor',
+  },
+});
 
 const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocomplete',
@@ -808,7 +809,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null

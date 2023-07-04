@@ -9,12 +9,21 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'neutral'"
     },
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableIndicator": { "type": { "name": "bool" }, "default": "false" },
+    "indicatorInset": { "type": { "name": "bool" } },
+    "indicatorPlacement": {
+      "type": {
+        "name": "enum",
+        "description": "'bottom'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top'"
+      },
+      "default": "row ? 'bottom' : 'right'"
+    },
     "onChange": { "type": { "name": "func" } },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
@@ -57,7 +66,6 @@
     "classes": [
       "colorContext",
       "colorDanger",
-      "colorInfo",
       "colorNeutral",
       "colorPrimary",
       "colorSuccess",

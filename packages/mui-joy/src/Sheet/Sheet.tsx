@@ -33,10 +33,17 @@ export const SheetRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SheetOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  const childRadius = resolveSxValue({ theme, ownerState }, 'borderRadius');
-  const bgcolor = resolveSxValue({ theme, ownerState }, 'bgcolor');
-  const backgroundColor = resolveSxValue({ theme, ownerState }, 'backgroundColor');
-  const background = resolveSxValue({ theme, ownerState }, 'background');
+  const {
+    borderRadius: childRadius,
+    bgcolor,
+    backgroundColor,
+    background,
+  } = resolveSxValue({ theme, ownerState }, [
+    'borderRadius',
+    'bgcolor',
+    'backgroundColor',
+    'background',
+  ]);
   const resolvedBg =
     (getPath(theme, `palette.${bgcolor}`) as string) ||
     bgcolor ||
@@ -48,8 +55,11 @@ export const SheetRoot = styled('div', {
     theme.vars.palette.background.surface;
   return [
     {
-      '--ListItem-stickyBackground': resolvedBg, // for sticky List
-      '--Sheet-background': resolvedBg, // for sticky table cell
+      ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
+        '--Icon-color': 'currentColor',
+      }),
+      '--ListItem-stickyBackground': resolvedBg === 'transparent' ? 'initial' : resolvedBg, // for sticky List
+      '--Sheet-background': resolvedBg === 'transparent' ? 'initial' : resolvedBg, // for sticky table cell
       // minus the sheet's border width to have consistent radius between sheet and children
       ...(childRadius !== undefined && {
         '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
@@ -58,7 +68,10 @@ export const SheetRoot = styled('div', {
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
     },
-    variantStyle,
+    {
+      ...theme.typography['body-md'],
+      ...variantStyle,
+    },
     ownerState.color !== 'context' &&
       ownerState.invertedColors &&
       theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
@@ -138,7 +151,7 @@ Sheet.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

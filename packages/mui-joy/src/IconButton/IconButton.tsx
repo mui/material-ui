@@ -37,12 +37,16 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
   ({ theme, ownerState }) => [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
+      ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
+        '--Icon-color': 'currentColor',
+      }),
       ...(ownerState.instanceSize && {
         '--IconButton-size': { sm: '2rem', md: '2.5rem', lg: '3rem' }[ownerState.instanceSize],
       }),
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
         '--CircularProgress-size': '20px',
+        '--CircularProgress-thickness': '2px',
         minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
         minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
@@ -51,6 +55,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)', // 1.5rem by default
         '--CircularProgress-size': '24px',
+        '--CircularProgress-thickness': '3px',
         minWidth: 'var(--IconButton-size, 2.5rem)',
         minHeight: 'var(--IconButton-size, 2.5rem)',
         fontSize: theme.vars.fontSize.md,
@@ -59,6 +64,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 3rem) / 1.714)', // 1.75rem by default
         '--CircularProgress-size': '28px',
+        '--CircularProgress-thickness': '4px',
         minWidth: 'var(--IconButton-size, 3rem)',
         minHeight: 'var(--IconButton-size, 3rem)',
         fontSize: theme.vars.fontSize.lg,
@@ -78,12 +84,24 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
-      [theme.focus.selector]: theme.focus.default,
+      [theme.focus.selector]: { '--Icon-color': 'currentColor', ...theme.focus.default },
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    {
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color === 'neutral' && {
+          backgroundColor: theme.vars.palette?.neutral?.[800],
+          [theme.getColorSchemeSelector('dark')]: {
+            backgroundColor: theme.vars.palette?.neutral?.[500],
+          },
+        }),
+    },
     {
       '&:hover': {
-        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        '@media (hover: hover)': {
+          '--Icon-color': 'currentColor',
+          ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        },
       },
     },
     { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
@@ -206,7 +224,7 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

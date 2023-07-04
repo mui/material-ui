@@ -38,7 +38,7 @@ export default function CongratCard() {
           }}
         >
           <div>
-            <BakeryDiningIcon sx={{ fontSize: '4rem' }} />
+            <BakeryDiningIcon color="warning" sx={{ fontSize: '4rem' }} />
           </div>
         </AspectRatio>
       </CardOverflow>

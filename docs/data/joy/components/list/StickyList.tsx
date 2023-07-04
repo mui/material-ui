@@ -13,7 +13,6 @@ export default function StickyList() {
         width: 320,
         maxHeight: 300,
         overflow: 'auto',
-        borderRadius: 'sm',
       }}
     >
       <List>

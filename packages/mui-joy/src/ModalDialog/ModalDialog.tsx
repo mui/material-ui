@@ -48,7 +48,6 @@ const ModalDialogRoot = styled(SheetRoot, {
     '--ModalDialog-titleOffset': theme.spacing(0.25),
     '--ModalDialog-descriptionOffset': theme.spacing(0.25),
     '--ModalClose-inset': theme.spacing(1.25),
-    fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'md' && {
     '--ModalDialog-padding': theme.spacing(2.5),
@@ -57,16 +56,14 @@ const ModalDialogRoot = styled(SheetRoot, {
     '--ModalDialog-titleOffset': theme.spacing(0.25),
     '--ModalDialog-descriptionOffset': theme.spacing(0.75),
     '--ModalClose-inset': theme.spacing(1.5),
-    fontSize: theme.vars.fontSize.md,
   }),
   ...(ownerState.size === 'lg' && {
     '--ModalDialog-padding': theme.spacing(3),
     '--ModalDialog-radius': theme.vars.radius.md,
     '--ModalDialog-gap': theme.spacing(2),
-    '--ModalDialog-titleOffset': theme.spacing(0.75),
+    '--ModalDialog-titleOffset': theme.spacing(0.5),
     '--ModalDialog-descriptionOffset': theme.spacing(1),
     '--ModalClose-inset': theme.spacing(1.5),
-    fontSize: theme.vars.fontSize.lg,
   }),
   boxSizing: 'border-box',
   boxShadow: theme.shadow.md,
@@ -213,7 +210,7 @@ ModalDialog.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

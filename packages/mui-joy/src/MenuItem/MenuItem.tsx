@@ -59,7 +59,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     disabled: disabledProp = false,
     component = 'li',
     selected = false,
-    color: colorProp = selected ? 'primary' : 'neutral',
+    color: colorProp = 'neutral',
     orientation = 'horizontal',
     variant = 'plain',
     slots = {},
@@ -116,10 +116,10 @@ MenuItem.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default selected ? 'primary' : 'neutral'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

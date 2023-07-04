@@ -76,6 +76,7 @@ interface DefaultPaletteText {
   primary: string;
   secondary: string;
   tertiary: string;
+  icon: string;
 }
 export interface PaletteTextOverrides {}
 export interface PaletteText
@@ -97,7 +98,7 @@ export interface PaletteBackground
 
 export interface ColorPalettePropOverrides {}
 
-export type DefaultColorPalette = 'primary' | 'neutral' | 'danger' | 'info' | 'success' | 'warning';
+export type DefaultColorPalette = 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
 
 export type ColorPaletteProp = OverridableStringUnion<
   DefaultColorPalette,

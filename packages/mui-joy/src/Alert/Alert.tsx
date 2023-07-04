@@ -41,37 +41,33 @@ const AlertRoot = styled('div', {
     '--IconButton-size': 'var(--Alert-decoratorChildHeight)',
     '--Button-radius': 'var(--Alert-decoratorChildRadius)',
     '--IconButton-radius': 'var(--Alert-decoratorChildRadius)',
+    '--Icon-color': 'currentColor',
     ...(ownerState.size === 'sm' && {
       '--Alert-padding': '0.5rem',
       '--Alert-gap': '0.375rem',
       '--Alert-decoratorChildHeight': '1.5rem',
-      '--Icon-fontSize': '1.125rem',
-      fontSize: theme.vars.fontSize.sm,
+      '--Icon-fontSize': theme.vars.fontSize.xl,
     }),
     ...(ownerState.size === 'md' && {
       '--Alert-padding': '0.75rem',
       '--Alert-gap': '0.5rem',
       '--Alert-decoratorChildHeight': '2rem',
-      '--Icon-fontSize': '1.25rem',
-      fontSize: theme.vars.fontSize.sm,
-      fontWeight: theme.vars.fontWeight.md,
+      '--Icon-fontSize': theme.vars.fontSize.xl,
     }),
     ...(ownerState.size === 'lg' && {
       '--Alert-padding': '1rem',
-      '--Alert-gap': '0.75rem',
+      '--Alert-gap': '0.875rem',
       '--Alert-decoratorChildHeight': '2.375rem',
-      '--Icon-fontSize': '1.5rem',
-      fontSize: theme.vars.fontSize.md,
-      fontWeight: theme.vars.fontWeight.md,
+      '--Icon-fontSize': theme.vars.fontSize.xl2,
     }),
-    fontFamily: theme.vars.fontFamily.body,
-    lineHeight: theme.vars.lineHeight.md,
     backgroundColor: 'transparent',
     display: 'flex',
     position: 'relative',
     alignItems: 'center',
     padding: `var(--Alert-padding)`,
     borderRadius: 'var(--Alert-radius)',
+    ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
+    fontWeight: theme.vars.fontWeight.md,
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   },
   ownerState.color !== 'context' &&
@@ -83,28 +79,22 @@ const AlertStartDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>({
   display: 'inherit',
   flex: 'none',
   marginInlineEnd: 'var(--Alert-gap)',
-  ...(ownerState.color !== 'context' && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-  }),
-}));
+});
 
 const AlertEndDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>({
   display: 'inherit',
   flex: 'none',
   marginInlineStart: 'var(--Alert-gap)',
   marginLeft: 'auto',
-  ...(ownerState.color !== 'context' && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-  }),
-}));
+});
 /**
  *
  * Demos:
@@ -214,7 +204,7 @@ Alert.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
