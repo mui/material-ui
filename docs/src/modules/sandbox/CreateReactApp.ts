@@ -54,8 +54,8 @@ export const getHtml = ({
 </html>`;
 };
 
-export const getRootIndex = (product?: 'joy-ui' | 'base-ui') => {
-  if (product === 'joy-ui') {
+export const getRootIndex = (productId?: 'joy-ui' | 'base-ui') => {
+  if (productId === 'joy-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
@@ -71,7 +71,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </React.StrictMode>
 );`;
   }
-  if (product === 'base-ui') {
+  if (productId === 'base-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import Demo from './demo';
