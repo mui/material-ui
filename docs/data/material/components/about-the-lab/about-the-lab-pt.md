@@ -19,13 +19,13 @@ Para que um componente esteja pronto para ir para o core, são considerados os s
 
 Para instalar e salvar as dependências do seu `pacote.json`, execute o seguinte comando **npm** abaixo:
 
-```sh
+```bash
 npm install @mui/lab @mui/material
 ```
 
 Or **yarn**:
 
-```sh
+```bash
 yarn add @mui/lab @mui/material
 ```
 

@@ -6,7 +6,7 @@ React components that implement Google's Material Design.
 
 Install the package in your project directory with:
 
-```sh
+```bash
 // with npm
 npm install @mui/material
 
