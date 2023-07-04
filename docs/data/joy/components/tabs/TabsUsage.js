@@ -39,14 +39,29 @@ export default function TabsUsage() {
           defaultValue: 'horizontal',
         },
         {
+          formLabel: 'TabList underline placement',
+          propName: 'underlinePlacement',
+          knob: 'radio',
+          options: ['top', 'bottom', 'left', 'right'],
+          codeBlockDisplay: false,
+        },
+        {
+          formLabel: 'Disable TabList underline',
+          propName: 'disableUnderline',
+          knob: 'switch',
+          defaultValue: false,
+          codeBlockDisplay: false,
+        },
+        {
+          formLabel: 'Tab indicator placement',
           propName: 'indicatorPlacement',
           knob: 'radio',
           options: ['top', 'bottom', 'left', 'right'],
           codeBlockDisplay: false,
         },
         {
-          formLabel: 'TabList disable underline',
-          propName: 'disableUnderline',
+          formLabel: 'Tab indicator inset',
+          propName: 'indicatorInset',
           knob: 'switch',
           defaultValue: false,
           codeBlockDisplay: false,
@@ -59,13 +74,6 @@ export default function TabsUsage() {
           codeBlockDisplay: false,
         },
         {
-          formLabel: 'Tab indicator inset',
-          propName: 'indicatorInset',
-          knob: 'switch',
-          defaultValue: false,
-          codeBlockDisplay: false,
-        },
-        {
           propName: 'children',
           defaultValue: '$children',
         },
@@ -73,15 +81,36 @@ export default function TabsUsage() {
       getCodeBlock={(code, props) =>
         code.replace(
           '$children',
-          `<TabList${props.disableUnderline ? ` disableUnderline` : ''}>
-    <Tab${props.variant ? ` variant="${props.variant}"` : ''}${
-            props.color ? ` color="${props.color}"` : ''
+          `<TabList${props.disableUnderline ? ` disableUnderline` : ''}${
+            props.underlinePlacement
+              ? ` underlinePlacement="${props.underlinePlacement}"`
+              : ''
+          }>
+    <Tab${
+      props.variant
+        ? `
+      variant="${props.variant}"`
+        : ''
+    }${
+            props.color
+              ? `
+      color="${props.color}"`
+              : ''
           }${
             props.indicatorPlacement
-              ? ` indicatorPlacement="${props.indicatorPlacement}"`
+              ? `
+      indicatorPlacement="${props.indicatorPlacement}"`
               : ''
-          }${props.disableIndicator ? ` disableIndicator` : ''}${
-            props.indicatorInset ? ` indicatorInset` : ''
+          }${
+            props.disableIndicator
+              ? `
+      disableIndicator`
+              : ''
+          }${
+            props.indicatorInset
+              ? `
+      indicatorInset`
+              : ''
           }>...</Tab>
   </TabList>
   <TabPanel>...</TabPanel>`,
@@ -90,14 +119,18 @@ export default function TabsUsage() {
       renderDemo={({
         color,
         variant,
+        underlinePlacement,
         disableUnderline,
-        disableIndicator,
         indicatorPlacement,
         indicatorInset,
+        disableIndicator,
         ...props
       }) => (
         <Tabs {...props} value={index} onChange={(event, value) => setIndex(value)}>
-          <TabList disableUnderline={disableUnderline}>
+          <TabList
+            disableUnderline={disableUnderline}
+            underlinePlacement={underlinePlacement}
+          >
             <Tab
               indicatorInset={indicatorInset}
               indicatorPlacement={indicatorPlacement}

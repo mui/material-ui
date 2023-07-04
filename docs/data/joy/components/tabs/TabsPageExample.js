@@ -29,7 +29,7 @@ export default function TabsPageExample() {
           sx={{
             pt: 2,
             justifyContent: 'center',
-            [`& .${tabClasses.root}`]: {
+            [`&& .${tabClasses.root}`]: {
               flex: 'initial',
               bgcolor: 'transparent',
               '&:hover': {

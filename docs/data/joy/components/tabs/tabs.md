@@ -80,6 +80,17 @@ Keyboard navigation (e.g. arrow keys) will adapt automatically to the used orien
 
 {{"demo": "TabsVertical.js"}}
 
+### Placement
+
+To change the placement, provide the value of `top`, `bottom`, `left` or `right` to:
+
+- The `underlinePlacement` prop on the `TabList` component.
+- The `indicatorPlacement` prop on the `Tab` component.
+
+The flex direction of the Tabs component will need to be changed based on each placement.
+
+{{"demo": "TabsIndicatorPlacement.js"}}
+
 ### Icon
 
 Since `TabList` uses the same style as the [`List`](/joy-ui/react-list/) component, you can use the icon directly as a child or use `ListItemDecorator` with a text.

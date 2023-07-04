@@ -41,9 +41,18 @@ export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     disableUnderline?: boolean;
     /**
+     * The placement of the TabList's underline.
+     */
+    underlinePlacement?: 'top' | 'bottom' | 'left' | 'right';
+    /**
      * The size of the component.
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', TabListPropsSizeOverrides>;
+    /**
+     * If `true`, the TabList will have postion `sticky`.
+     * @default false
+     */
+    sticky?: boolean;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

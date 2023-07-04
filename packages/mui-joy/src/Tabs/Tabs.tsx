@@ -4,8 +4,9 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import useTabs, { TabsProvider } from '@mui/base/useTabs';
-import { SheetRoot } from '../Sheet/Sheet';
+import { getPath } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
+import { resolveSxValue } from '../styles/styleUtils';
 import { useColorInversion } from '../styles/ColorInversion';
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
@@ -28,30 +29,52 @@ const useUtilityClasses = (ownerState: TabsOwnerState) => {
   return composeClasses(slots, getTabsUtilityClass, {});
 };
 
-const TabsRoot = styled(SheetRoot, {
+const TabsRoot = styled('div', {
   name: 'JoyTabs',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabsOwnerState }>(({ ownerState }) => ({
-  ...(ownerState.size === 'sm' && {
-    '--Tabs-gap': '0.75rem',
-  }),
-  ...(ownerState.size === 'md' && {
-    '--Tabs-gap': '1rem',
-  }),
-  ...(ownerState.size === 'lg' && {
-    '--Tabs-gap': '1.25rem',
-  }),
-  '--Tab-indicatorThickness': '2px',
-  // === private variables ===
-  '--_TabList-direction': ownerState.orientation === 'vertical' ? 'column' : 'row',
-  '--_TabList-underline': ownerState.orientation === 'vertical' ? '-1px 0' : '0 -1px',
-  display: 'flex',
-  flexDirection: 'column',
-  ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'row',
-  }),
-}));
+})<{ ownerState: TabsOwnerState }>(({ ownerState, theme }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const { bgcolor, backgroundColor, background } = resolveSxValue({ theme, ownerState }, [
+    'bgcolor',
+    'backgroundColor',
+    'background',
+  ]);
+  const resolvedBg =
+    (getPath(theme, `palette.${bgcolor}`) as string) ||
+    bgcolor ||
+    (getPath(theme, `palette.${backgroundColor}`) as string) ||
+    backgroundColor ||
+    background ||
+    variantStyle?.backgroundColor ||
+    variantStyle?.background ||
+    theme.vars.palette.background.surface;
+  return {
+    ...(ownerState.size === 'sm' && {
+      '--Tabs-gap': '0.75rem',
+    }),
+    ...(ownerState.size === 'md' && {
+      '--Tabs-gap': '1rem',
+    }),
+    ...(ownerState.size === 'lg' && {
+      '--Tabs-gap': '1.25rem',
+    }),
+    '--Tab-indicatorThickness': '2px',
+    ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
+      '--Icon-color': 'currentColor',
+    }),
+    '--TabList-stickyBackground': resolvedBg, // for sticky TabList
+    display: 'flex',
+    flexDirection: 'column',
+    ...(ownerState.orientation === 'vertical' && {
+      flexDirection: 'row',
+    }),
+    backgroundColor: theme.vars.palette.background.surface,
+    position: 'relative',
+    ...theme.typography[`body-${ownerState.size!}`],
+    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+  };
+});
 /**
  *
  * Demos:

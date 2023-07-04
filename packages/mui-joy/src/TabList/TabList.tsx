@@ -42,11 +42,34 @@ const TabListRoot = styled(StyledList, {
   '--unstable_TabList-hasUnderline': ownerState.disableUnderline ? 'var(--unknown,)' : 'initial',
   ...scopedVariables,
   flexGrow: 'initial',
-  flexDirection: 'var(--_TabList-direction)' as 'initial',
+  flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
   borderRadius: `var(--List-radius, 0px)`,
   padding: `var(--List-padding, 0px)`,
   zIndex: 1, // to be above of the next element.
-  boxShadow: `var(--unstable_TabList-hasUnderline, inset var(--_TabList-underline) ${theme.vars.palette.divider})`,
+  ...(ownerState.sticky && {
+    // sticky in list item can be found in grouped options
+    position: 'sticky',
+    top: 'var(--TabList-stickyTop, 0px)', // integration with Menu and Select.
+    background: 'var(--TabList-stickyBackground)',
+  }),
+  ...(!ownerState.disableUnderline && {
+    ...(ownerState.underlinePlacement === 'bottom' && {
+      '--unstable_TabList-underlineBottom': '0px',
+      boxShadow: `inset 0 -1px ${theme.vars.palette.divider}`,
+    }),
+    ...(ownerState.underlinePlacement === 'top' && {
+      '--unstable_TabList-underlineTop': '0px',
+      boxShadow: `inset 0 1px ${theme.vars.palette.divider}`,
+    }),
+    ...(ownerState.underlinePlacement === 'right' && {
+      '--unstable_TabList-underlineRight': '0px',
+      boxShadow: `inset -1px 0 ${theme.vars.palette.divider}`,
+    }),
+    ...(ownerState.underlinePlacement === 'left' && {
+      '--unstable_TabList-underlineLeft': '0px',
+      boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
+    }),
+  }),
 }));
 /**
  *
@@ -65,6 +88,9 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   });
 
   const tabsSize = React.useContext(SizeTabsContext);
+  const { isRtl, orientation, getRootProps, contextValue } = useTabsList({
+    rootRef: ref,
+  });
 
   const {
     component = 'div',
@@ -72,16 +98,14 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     variant = 'plain',
     color: colorProp = 'neutral',
     size: sizeProp,
+    underlinePlacement = orientation === 'horizontal' ? 'bottom' : 'right',
+    sticky = false,
     slots = {},
     slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
-
-  const { isRtl, orientation, getRootProps, contextValue } = useTabsList({
-    rootRef: ref,
-  });
 
   const size = sizeProp ?? tabsSize;
 
@@ -92,7 +116,9 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     variant,
     color,
     size,
+    sticky,
     nesting: false,
+    underlinePlacement,
   };
 
   const classes = useUtilityClasses(ownerState);

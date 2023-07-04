@@ -13,7 +13,6 @@ import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
 import useSlot from '../utils/useSlot';
-import listItemDecoratorClasses from '../ListItemDecorator/listItemDecoratorClasses';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {
   const { selected, disabled, focusVisible, variant, color, orientation } = ownerState;
@@ -41,7 +40,6 @@ const TabRoot = styled(StyledListItemButton, {
   {
     flexGrow: ownerState.row ? 1 : 0,
     justifyContent: ownerState.row ? 'center' : 'initial',
-    [`& > .${listItemDecoratorClasses.root}`]: { alignItems: 'center' },
     '--unstable_ListItemDecorator-alignItems': 'center',
     '--unstable_offset': 'calc(-1 * var(--variant-borderWidth, 0px))',
     // to prevent the Tab's background from covering TabList's underline when hovered.
@@ -52,8 +50,10 @@ const TabRoot = styled(StyledListItemButton, {
         position: 'absolute',
         width: ownerState.row ? '100%' : 1,
         height: !ownerState.row ? '100%' : 1,
-        bottom: ownerState.row ? 0 : undefined,
-        right: !ownerState.row ? 0 : undefined,
+        bottom: 'var(--unstable_TabList-underlineBottom)',
+        top: 'var(--unstable_TabList-underlineTop)',
+        left: 'var(--unstable_TabList-underlineLeft)',
+        right: 'var(--unstable_TabList-underlineRight)',
       },
       '&:not([aria-selected="true"]):hover::before': {
         backgroundColor: `var(--unstable_TabList-hasUnderline, ${theme.vars.palette.divider})`,
@@ -61,17 +61,6 @@ const TabRoot = styled(StyledListItemButton, {
     }),
   },
   !ownerState.disableIndicator && {
-    // '&:not([aria-selected="true"]):hover': {
-    //   // to prevent the Tab's background from covering TabList's underline when hovered.
-    //   '--Tab-indicatorColor': `var(--unstable_TabList-hasUnderline, ${
-    //     (ownerState.row && ownerState.indicatorPlacement === 'top') ||
-    //     (!ownerState.row && ownerState.indicatorPlacement === 'left')
-    //       ? 'transparent'
-    //       : theme.vars.palette.divider
-    //   })`,
-    //   '--unstable_indicatorThickness':
-    //     ownerState.variant === 'outlined' ? '0px' : 'var(--unstable_TabList-hasUnderline, 1px)', // this means if TabList has underline, the value will be 1px.
-    // },
     '&[aria-selected="true"]': {
       '--Tab-indicatorColor': 'currentColor',
     },
