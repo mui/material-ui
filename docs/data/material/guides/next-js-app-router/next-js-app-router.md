@@ -1,24 +1,25 @@
 # Next.js App Router
 
-<p class="description">Learn how to use MUI libraries with the Next.js App Router</p>
+<p class="description">Learn how to use MUI libraries with the Next.js App Router.</p>
 
 ## Next.js and React Server Components
 
-Next.js's App Router implements React Server Components, which is a [new feature](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#changes-since-v1) in React.
+The Next.js App Router implements React Server Components, a [new feature](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#changes-since-v1) introduced in React 18.
 
-To support the App Router, currently all components and hooks from MUI libraries (Material UI, Joy UI, Base UI etc) are designated as client components and exported with the "use client" directive.
+To support the App Router, currently all components and hooks from MUI libraries (Material UI, Joy UI, Base UI etc) are designated as Client Components and exported with the `"use client"` directive.
 
 :::info
-Don't need a guide? Use one of these example repos and get started:
+Starting fresh on a new App Router-based project?
+Jump right into the code with one of these example repos:
 
-- [Material UI](https://github.com/mui/material-ui/blob/master/examples/material-next-app-router-ts)
-- [Joy UI](https://github.com/mui/material-ui/blob/master/examples/joy-next-app-router-ts)
-- [Base UI with Tailwind CSS](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts)
+- [Material UI - A React UI library that implements Material Design](https://github.com/mui/material-ui/blob/master/examples/material-next-app-router-ts)
+- [Joy UI - Our newest customizable UI library designed to spark joy](https://github.com/mui/material-ui/blob/master/examples/joy-next-app-router-ts)
+- [Base UI – A collection of headless components and hooks](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts)
   :::
 
 ## Using Material UI with the default theme
 
-If you are using the default theme, Material UI components will work out-of-the-box in Next.js routing files such as `layout.js` or `page.js` - which are server components by default.
+If you're using the default theme, you can add Material UI components to Next.js routing files such as `layout.js` or `page.js` (which are Server Components by default) without any additional configuration, as shown below:
 
 <!-- TODO: investigate whether it still needs an explicit <head/> to prevent FOUC https://github.com/mui/material-ui/issues/34905#issuecomment-1332040656 -->
 
@@ -57,7 +58,7 @@ export default function Home() {
 
 ### Theme Registry
 
-To set up the theme context, create a `ThemeRegistry` component that combines the Emotion CacheProvider, the Material UI Theme Provider and the `useServerInsertedHTML` hook from `next/navigation` as follows:
+To set up the theme context, create a custom `ThemeRegistry` component that combines the Emotion `CacheProvider`, the Material UI `ThemeProvider` and the `useServerInsertedHTML` hook from `next/navigation` as follows:
 
 ```tsx
 // app/ThemeRegistry.tsx
@@ -136,15 +137,15 @@ export default function RootLayout({ children }) {
 }
 ```
 
-### CSS Injection Order
+### CSS injection order
 
 <!-- https://github.com/emotion-js/emotion/issues/3059 -->
 
-By default emotion will inject Material UI styles at the bottom of the HTML `<head>`, which gives it precedence over custom styles (e.g. from CSS modules, Tailwind CSS, or even plain CSS).
+By default, Emotion inject Material UI styles at the bottom of the HTML `<head>`, which gives them precedence over custom styles (for example, from CSS modules, Tailwind CSS, or even plain CSS).
 
-In regular client-side React, the `prepend: true` option is passed to `createCache` to reverse the injection order, so custom styles can override Material UI styles without using `!important`.
+In client-side React, the `prepend: true` option is passed to `createCache` to reverse the injection order, so custom styles can override Material UI styles without using `!important`.
 
-Currently `prepend` does not work reliably with the App Router, but you can work around it by wrapping emotion styles in a CSS `@layer` with a modification to the snippet above:
+Currently, `prepend` does not work reliably with the App Router, but you can work around it by wrapping Emotion styles in a CSS `@layer` with a modification to the snippet above:
 
 ```diff
  useServerInsertedHTML(() => {
@@ -171,7 +172,7 @@ Currently `prepend` does not work reliably with the App Router, but you can work
 
 ## Using Joy UI
 
-The set up for Joy UI is the same as [Material UI with a custom theme](#using-material-ui-with-a-custom-theme), except replace Material's `ThemeProvider` with Joy UI's `CssVarsProvider`:
+The setup for Joy UI is the same as [Material UI with a custom theme](#using-material-ui-with-a-custom-theme), except you must replace Material UI's `ThemeProvider` with Joy UI's `CssVarsProvider`:
 
 ```diff
  // ThemeRegistry
@@ -183,13 +184,13 @@ See this [example repo](https://github.com/mui/material-ui/blob/master/examples/
 
 ## Using Base UI
 
-Base UI is styling-solution-agnostic, if you are using Emotion you can follow the same steps above.
+Base UI is styling-agnostic; if you're using Emotion you can follow the same steps outlined for Material UI.
 
-If you are using Tailwind CSS, see this [example repo](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts) for a working demo.
+If you're using Tailwind CSS, see this [example repo](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts) for a working demo.
 
 ### Customizing Base UI with function props
 
-A common customization method in Base UI is to pass a function to slots in `slotProps` in order to apply dynamic props to slots. For example, changing the background color by applying a different class when a Button is disabled:
+A common customization method in Base UI is to pass a function to slots in `slotProps` in order to apply dynamic props to slots. For example, you might want to change the background color by applying a different class when a Button is disabled:
 
 ```tsx
 // page.tsx
@@ -223,5 +224,5 @@ export default function Page() {
 }
 ```
 
-However, this will not work since function props are [non-serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
-It is recommended that these components be ["moved to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.
+Unfortunately, **this will not work** since function props are [non-serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
+Instead, the Next.js team recommends moving components like these ["to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.
