@@ -1,6 +1,6 @@
 ---
 title: Toolpad is now in Beta!
-description: After working on it for more than a year, Toolpad is now in the next stage. Read more about it in this announcement.
+description: Assemble admin panels and internal tools faster than ever before with Toolpad—now in beta.
 date: 2023-07-03T00:00:00.000Z
 authors: ['prakhargupta']
 card: true
