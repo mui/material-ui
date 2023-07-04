@@ -25,6 +25,7 @@ export default function BasicMenu() {
   });
 
   const duration = React.useRef<Record<string, number>>({});
+  const mouseEntered = React.useRef<Record<string, boolean>>({});
 
   const handleOpen = (
     event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
@@ -54,6 +55,10 @@ export default function BasicMenu() {
   };
 
   const buttonRef = React.useRef(null);
+
+  const getId = (option: (typeof options)[0], index: number) => {
+    return `${index}-${option.menuLevel}`;
+  };
 
   return (
     <React.Fragment>
@@ -123,15 +128,15 @@ export default function BasicMenu() {
                           }}
                           onMouseMove={(event) => {
                             if (
-                              duration.current[`${optIndex}-${option.menuLevel}`]
+                              duration.current[getId(option, optIndex)] &&
+                              !mouseEntered.current[getId(option, optIndex)]
                             ) {
                               if (
                                 Date.now() -
-                                  duration.current[
-                                    `${optIndex}-${option.menuLevel}`
-                                  ] >
+                                  duration.current[getId(option, optIndex)] >
                                 50
                               ) {
+                                mouseEntered.current[getId(option, optIndex)] = true;
                                 if (!option.nestedOptions) {
                                   handleClose(option.menuLevel + 1);
                                 } else if (
@@ -161,11 +166,11 @@ export default function BasicMenu() {
                             }
                           }}
                           onMouseLeave={() => {
-                            duration.current[`${optIndex}-${option.menuLevel}`] = 0;
+                            duration.current[getId(option, optIndex)] = 0;
+                            mouseEntered.current[getId(option, optIndex)] = false;
                           }}
                           onMouseEnter={() => {
-                            duration.current[`${optIndex}-${option.menuLevel}`] =
-                              Date.now();
+                            duration.current[getId(option, optIndex)] = Date.now();
                           }}
                           onKeyDown={(event) => {
                             if (option.nestedOptions) {
