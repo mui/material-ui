@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## 5.13.7
+
 <!-- generated comparing v5.13.6..master -->
+
 _Jul 3, 2023_
 
 A big thanks to the 21 contributors who made this release possible.
