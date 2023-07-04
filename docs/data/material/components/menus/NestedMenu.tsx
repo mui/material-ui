@@ -38,6 +38,18 @@ const options = [
             value: 'Lemonade',
             menuLevel: 2,
           },
+          {
+            value: 'Mocktail',
+            menuLevel: 2,
+          },
+          {
+            value: 'Smoothie',
+            menuLevel: 2,
+          },
+          {
+            value: 'Herbal tea',
+            menuLevel: 2,
+          },
         ],
       },
       {
@@ -77,6 +89,8 @@ export default function BasicMenu() {
     elements: new Array(MENU_LEVELS).fill(null),
     options: new Array(MENU_LEVELS).fill(null),
   });
+
+  const duration = React.useRef<Record<string, number>>({});
 
   const handleOpen = (
     event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
@@ -157,7 +171,7 @@ export default function BasicMenu() {
                       id="nested-menu"
                       aria-labelledby="nested-button"
                     >
-                      {(anchors.options[index] ?? []).map((option) => (
+                      {(anchors.options[index] ?? []).map((option, optIndex) => (
                         <MenuItem
                           key={option.value}
                           aria-haspopup={!!option.nestedOptions ?? undefined}
@@ -173,31 +187,47 @@ export default function BasicMenu() {
                               handleClose(0);
                             }
                           }}
-                          onMouseEnter={(event) => {
-                            if (!option.nestedOptions) {
-                              handleClose(option.menuLevel + 1);
-                            } else if (
-                              option.nestedOptions &&
-                              anchors.options[option.menuLevel + 1] &&
-                              !option.nestedOptions.every(
-                                (val, i) =>
-                                  val.value ===
-                                  anchors.options[option.menuLevel + 1]?.[i].value,
-                              )
-                            ) {
-                              handleClose(option.menuLevel + 1);
-                              handleOpen(
-                                event,
-                                option.menuLevel + 1,
-                                option.nestedOptions,
-                              );
-                            } else {
-                              handleOpen(
-                                event,
-                                option.menuLevel + 1,
-                                option.nestedOptions,
-                              );
+                          onMouseMove={(event) => {
+                            if (duration.current[`${optIndex}-${option.menuLevel}`]) {
+                              if (
+                                Date.now() -
+                                  duration.current[`${optIndex}-${option.menuLevel}`] >
+                                50
+                              ) {
+                                if (!option.nestedOptions) {
+                                  handleClose(option.menuLevel + 1);
+                                } else if (
+                                  option.nestedOptions &&
+                                  anchors.options[option.menuLevel + 1] &&
+                                  !option.nestedOptions.every(
+                                    (val, i) =>
+                                      val.value ===
+                                      anchors.options[option.menuLevel + 1]?.[i]
+                                        .value,
+                                  )
+                                ) {
+                                  handleClose(option.menuLevel + 1);
+                                  handleOpen(
+                                    event,
+                                    option.menuLevel + 1,
+                                    option.nestedOptions,
+                                  );
+                                } else {
+                                  handleOpen(
+                                    event,
+                                    option.menuLevel + 1,
+                                    option.nestedOptions,
+                                  );
+                                }
+                              }
                             }
+                          }}
+                          onMouseLeave={() => {
+                            duration.current[`${optIndex}-${option.menuLevel}`] = 0;
+                          }}
+                          onMouseEnter={() => {
+                            duration.current[`${optIndex}-${option.menuLevel}`] =
+                              Date.now();
                           }}
                           onKeyDown={(event) => {
                             if (option.nestedOptions) {
