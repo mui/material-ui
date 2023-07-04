@@ -13,9 +13,9 @@ It's been over a year since we released the first version of Toolpad. Today, we'
 
 Toolpad was created to meet the needs of the MUI community. We conducted surveys, did our market research, and concluded to make an internal tool builder because the idea resonates with MUI's mission of empowering developers to build app faster and more efficiently.
 
-Internal tools are software applications that are developed and used within an organization. They can automate tasks, manage data, and help foster collaboration. Internal tools can be a valuable asset for businesses of all sizes, as they can help to improve efficiency, productivity, and communication.
+Internal tools are software applications that are developed and used within an organization itself. They can automate tasks, manage data, and help foster collaboration. Internal tools are a valuable asset for businesses of all sizes, as they help to improve efficiency, productivity, and communication.
 
-A sub-optimal tool means a waste of time and effort for everyone—maintaining them distracts developers from solving actual business problems. We've all had our fair share of wrestling with lousy internal tools that we hoped we'd never have to use more than once. In recent years, customer-side software has moved quickly and is now flashy and sleek. It's time for internal tools to get this same upgrade.
+A sub-optimal tool means a waste of time and effort for everyone. Maintaining them distracts developers from solving actual business problems. We've all had our fair share of wrestling with lousy internal tools that we hoped we'd never have to use more than once. In recent years, customer-facing software has moved quickly and is now flashy and sleek. It's time for internal tools to get this same upgrade.
 
 ## What is Toolpad exactly?
 
@@ -39,7 +39,7 @@ MUI Core provides all modern components; a chosen few are currently available in
 
 ### Bring your own components
 
-Toolpad supports bringing your [external components](https://mui.com/toolpad/concepts/custom-components/) to the project. Your past effort should not go to waste—we don't believe in a walled garden approach. In the future, we'll also support importing from Storybook and GitHub.
+Toolpad can import [external React components](https://mui.com/toolpad/concepts/custom-components/), ready to be used in its visual designer. Your past effort shouldn't go to waste and you shouldn't be limited by the stock component suite.
 
 ### Bring your own back end
 
@@ -56,7 +56,7 @@ Toolpad works with your code editor and lets you write [custom functions](https:
 
 ### Own your code
 
-Toolpad runs fully locally. All configuration is stored in local files which you can version-control, edit, and deploy any way you want.
+Toolpad runs fully locally. You're not stuck with an online code editor or a suboptimal github integration. All configuration is stored in local files which you can version-control, edit, and deploy in any way you want.
 
 ## How is Toolpad different from similar products on the market?
 
