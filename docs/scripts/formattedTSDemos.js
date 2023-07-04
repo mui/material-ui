@@ -13,6 +13,7 @@ const ignoreList = [
   '/pages.ts',
   'docs/data/joy/getting-started/templates',
   'docs/data/base/components/select/UnstyledSelectIntroduction.tsx',
+  'docs/data/material/customization/palette',
 ];
 
 const fse = require('fs-extra');

@@ -171,6 +171,8 @@ To use the custom color for the `color` prop of a component,
 you'll need to add it to the component's `PropsColorOverrides` interface.
 For example if you need to use it on the `Button` component add it like this:
 
+<!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
+
 ```ts
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
@@ -185,12 +187,12 @@ To add a new [color token](#color-tokens) include it in the color's object as fo
 
 {{"demo": "AddingColorTokens.js" }}
 
-<!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
-
 ### Typescript
 
 If you're using Typescript, then you'll need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme)
 to add the new color token to the `PaletteColor` and `SimplePaletteColorOptions` interfaces as follows:
+
+<!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
 declare module '@mui/material/styles' {
