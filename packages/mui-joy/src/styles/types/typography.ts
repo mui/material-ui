@@ -10,7 +10,6 @@ export interface DefaultFontSize {
   xl2: string;
   xl3: string;
   xl4: string;
-  xl5: string;
 }
 export interface FontSizeOverrides {}
 export interface FontSize extends OverridableRecord<DefaultFontSize, FontSizeOverrides, string> {}
@@ -37,9 +36,11 @@ export interface FontWeight
   extends OverridableRecord<DefaultFontWeight, FontWeightOverrides, string | number> {}
 
 export interface DefaultLineHeight {
+  xs: string | number;
   sm: string | number;
   md: string | number;
   lg: string | number;
+  xl: string | number;
 }
 export interface LineHeightOverrides {}
 export interface LineHeight

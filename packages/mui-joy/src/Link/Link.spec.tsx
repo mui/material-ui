@@ -25,12 +25,13 @@ import { expectType } from '@mui/types';
 <Link level="h2" />;
 <Link level="h3" />;
 <Link level="h4" />;
-<Link level="h5" />;
-<Link level="h6" />;
-<Link level="body1" />;
-<Link level="body2" />;
-<Link level="body3" />;
-<Link level="inherit" />;
+<Link level="title-lg" />;
+<Link level="title-md" />;
+<Link level="title-sm" />;
+<Link level="body-lg" />;
+<Link level="body-md" />;
+<Link level="body-sm" />;
+<Link level="body-xs" />;
 
 // `underline`
 <Link underline="always" />;

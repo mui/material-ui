@@ -7,13 +7,13 @@
 
 **MUI Core** contains foundational React UI component libraries for shipping new features faster.
 
-- [_Material UI_](https://mui.com/material-ui/getting-started/overview/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
+- [_Material UI_](https://mui.com/material-ui/getting-started/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
 
-- [_Joy UI_](https://mui.com/joy-ui/getting-started/overview/) is a beautifully designed library of React UI components.
+- [_Joy UI_](https://mui.com/joy-ui/getting-started/) is a beautifully designed library of React UI components.
 
-- [_Base UI_](https://mui.com/base-ui/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+- [_Base UI_](https://mui.com/base-ui/getting-started/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
 
-- [_MUI System_](https://mui.com/system/getting-started/overview/) is a collection of CSS utilities to help you rapidly lay out custom designs.
+- [_MUI System_](https://mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
 <div align="center">
 
@@ -41,13 +41,13 @@ Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -69,13 +69,13 @@ Base UI is available as an [npm package](https://www.npmjs.com/package/@mui/base
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/base
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/base
 ```
 
@@ -88,13 +88,13 @@ MUI System is available as an [npm package](https://www.npmjs.com/package/@mui/s
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
@@ -102,13 +102,13 @@ Or if you want to use `styled-components` as a styling engine:
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
@@ -177,10 +177,10 @@ Our documentation features [a collection of example projects using Material UI](
 
 ## Documentation
 
-- [Material UI](https://mui.com/material-ui/getting-started/overview/)
-- [Joy UI](https://mui.com/joy-ui/getting-started/overview/)
-- [Base UI](https://mui.com/base-ui/getting-started/overview/)
-- [MUI System](https://mui.com/system/getting-started/overview/)
+- [Material UI](https://mui.com/material-ui/getting-started/)
+- [Joy UI](https://mui.com/joy-ui/getting-started/)
+- [Base UI](https://mui.com/base-ui/getting-started/)
+- [MUI System](https://mui.com/system/getting-started/)
 
 ## Premium themes
 

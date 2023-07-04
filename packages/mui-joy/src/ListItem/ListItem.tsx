@@ -96,14 +96,12 @@ const ListItemRoot = styled('li', {
         marginBlockStart: 'var(--List-gap)',
       }),
     minBlockSize: 'var(--ListItem-minHeight)',
-    fontSize: 'var(--ListItem-fontSize)',
-    fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.sticky && {
       // sticky in list item can be found in grouped options
       position: 'sticky',
       top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
       zIndex: 1,
-      background: 'var(--ListItem-stickyBackground)',
+      background: `var(--ListItem-stickyBackground, ${theme.vars.palette.background.body})`,
     }),
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],

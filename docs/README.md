@@ -4,7 +4,7 @@ This is the documentation website of MUI.
 
 To start the docs site in development mode, from the project root, run:
 
-```sh
+```bash
 yarn && yarn docs:dev
 ```
 

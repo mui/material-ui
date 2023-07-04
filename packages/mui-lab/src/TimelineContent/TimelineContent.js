@@ -1,18 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { capitalize } from '@mui/material/utils';
 import { styled, useThemeProps } from '@mui/material/styles';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import Typography from '@mui/material/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineContentUtilityClass } from './timelineContentClasses';
+import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
 
 const useUtilityClasses = (ownerState) => {
   const { position, classes } = ownerState;
 
   const slots = {
-    root: ['root', `position${capitalize(position)}`],
+    root: ['root', convertTimelinePositionToClass(position)],
   };
 
   return composeClasses(slots, getTimelineContentUtilityClass, classes);
@@ -23,7 +23,7 @@ const TimelineContentRoot = styled(Typography, {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
+    return [styles.root, styles[convertTimelinePositionToClass(ownerState.position)]];
   },
 })(({ ownerState }) => ({
   flex: 1,

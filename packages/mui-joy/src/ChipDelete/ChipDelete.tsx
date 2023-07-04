@@ -35,6 +35,9 @@ const ChipDeleteRoot = styled('button', {
 })<{ ownerState: ChipDeleteOwnerState }>(({ theme, ownerState }) => [
   {
     '--Icon-margin': 'initial', // prevent overrides from parent
+    ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
+      '--Icon-color': 'currentColor',
+    }),
     pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
     cursor: 'pointer',
     width: 'var(--Chip-deleteSize, 2rem)',
@@ -48,7 +51,7 @@ const ChipDeleteRoot = styled('button', {
     border: 'none', // reset user agent stylesheet
     background: 'none', // reset user agent stylesheet
     padding: '0px', // reset user agent stylesheet
-    [theme.focus.selector]: theme.focus.default,
+    [theme.focus.selector]: { '--Icon-color': 'currentColor', ...theme.focus.default },
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
@@ -62,7 +65,7 @@ const ChipDeleteRoot = styled('button', {
 const chipVariantMapping = {
   plain: 'outlined',
   outlined: 'soft',
-  soft: 'solid',
+  soft: 'soft',
   solid: 'solid',
 } as const;
 /**

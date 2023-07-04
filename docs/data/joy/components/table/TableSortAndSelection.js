@@ -329,7 +329,7 @@ export default function TableSortAndSelection() {
         sx={{
           '--TableCell-headBackground': 'transparent',
           '--TableCell-selectedBackground': (theme) =>
-            theme.vars.palette.info.softBg,
+            theme.vars.palette.success.softBg,
           '& thead th:nth-child(1)': {
             width: '40px',
           },

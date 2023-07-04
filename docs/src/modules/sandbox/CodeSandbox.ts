@@ -39,7 +39,7 @@ const createReactApp = (demo: {
   raw: string;
   codeVariant: CodeVariant;
   githubLocation: string;
-  product?: Product;
+  productId?: Product;
   codeStyling: CodeStyling;
 }) => {
   const ext = getFileExtension(demo.codeVariant);
@@ -50,7 +50,7 @@ const createReactApp = (demo: {
       content: CRA.getHtml(demo),
     },
     [`index.${ext}`]: {
-      content: CRA.getRootIndex(demo.product),
+      content: CRA.getRootIndex(demo.productId),
     },
     [`demo.${ext}`]: {
       content: demo.raw,
@@ -148,7 +148,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     {
       codeVariant: demo.codeVariant,
       raw: Object.entries(demo.files).reduce((prev, curr) => `${prev}\n${curr}`, ''),
-      product: 'joy-ui',
+      productId: 'joy-ui',
     },
     {
       commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,

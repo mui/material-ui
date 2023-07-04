@@ -17,7 +17,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
-import emailTheme from './theme';
 import Menu from './components/Menu';
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
@@ -55,7 +54,7 @@ function ColorSchemeToggle() {
 export default function EmailExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
-    <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
+    <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
@@ -104,9 +103,9 @@ export default function EmailExample() {
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
-              <IconButton variant="plain" size="sm">
-                <Typography level="body-md" textColor="text.tertiary">
-                  /
+              <IconButton variant="outlined" color="neutral">
+                <Typography fontWeight="lg" fontSize="sm" textColor="text.icon">
+                  ⌘ + k
                 </Typography>
               </IconButton>
             }

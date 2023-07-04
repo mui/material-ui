@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { styled } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
@@ -18,10 +17,6 @@ import Sheet from '@mui/joy/Sheet';
 import MuiLogo from './MuiLogo';
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { closeSidebar } from '../utils';
-
-const Dropdown = styled('i')(({ theme }) => ({
-  color: theme.vars.palette.text.tertiary,
-}));
 
 export default function Sidebar() {
   return (
@@ -70,7 +65,7 @@ export default function Sidebar() {
           left: 0,
           width: '100vw',
           height: '100vh',
-          bgcolor: 'background.body',
+
           opacity: 'calc(var(--SideNavigation-slideIn, 0) - 0.2)',
           transition: 'opacity 0.4s',
           transform: {
@@ -107,7 +102,7 @@ export default function Sidebar() {
                 <i data-feather="home" />
               </ListItemDecorator>
               <ListItemContent>Home</ListItemContent>
-              <Dropdown data-feather="chevron-down" />
+              <i data-feather="chevron-down" />
             </ListItemButton>
           </ListItem>
           <ListItem>
@@ -116,7 +111,7 @@ export default function Sidebar() {
                 <i data-feather="bar-chart-2" />
               </ListItemDecorator>
               <ListItemContent>Dashboard</ListItemContent>
-              <Dropdown data-feather="chevron-down" />
+              <i data-feather="chevron-down" />
             </ListItemButton>
           </ListItem>
           <ListItem>
@@ -125,7 +120,7 @@ export default function Sidebar() {
                 <i data-feather="layers" />
               </ListItemDecorator>
               <ListItemContent>Projects</ListItemContent>
-              <Dropdown data-feather="chevron-down" />
+              <i data-feather="chevron-down" />
             </ListItemButton>
           </ListItem>
           <ListItem>
@@ -134,7 +129,7 @@ export default function Sidebar() {
                 <i data-feather="check-square" />
               </ListItemDecorator>
               <ListItemContent>Tasks</ListItemContent>
-              <Dropdown data-feather="chevron-down" />
+              <i data-feather="chevron-down" />
             </ListItemButton>
           </ListItem>
           <ListItem>
@@ -143,7 +138,7 @@ export default function Sidebar() {
                 <i data-feather="flag" />
               </ListItemDecorator>
               <ListItemContent>Reporting</ListItemContent>
-              <Dropdown data-feather="chevron-down" />
+              <i data-feather="chevron-down" />
             </ListItemButton>
           </ListItem>
           <ListItem nested>
@@ -156,7 +151,7 @@ export default function Sidebar() {
             </ListItemButton>
             <List>
               <ListItem>
-                <ListItemButton selected variant="soft" color="primary">
+                <ListItemButton selected color="primary">
                   View all
                 </ListItemButton>
               </ListItem>

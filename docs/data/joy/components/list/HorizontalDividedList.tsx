@@ -11,9 +11,6 @@ export default function HorizontalDividedList() {
       orientation="horizontal"
       variant="outlined"
       sx={{
-        bgcolor: 'background.body',
-        borderRadius: 'sm',
-        boxShadow: 'sm',
         flexGrow: 0,
         mx: 'auto',
         '--ListItemDecorator-size': '48px',
@@ -21,21 +18,21 @@ export default function HorizontalDividedList() {
       }}
     >
       <ListItem>
-        <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+        <ListItemDecorator>
           <Avatar size="sm" src="/static/images/avatar/1.jpg" />
         </ListItemDecorator>
         Mabel Boyle
       </ListItem>
       <ListDivider inset="gutter" />
       <ListItem>
-        <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+        <ListItemDecorator>
           <Avatar size="sm" src="/static/images/avatar/2.jpg" />
         </ListItemDecorator>
         Boyd Burt
       </ListItem>
       <ListDivider inset="gutter" />
       <ListItem>
-        <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+        <ListItemDecorator>
           <Avatar size="sm" src="/static/images/avatar/3.jpg" />
         </ListItemDecorator>
         Adam Tris

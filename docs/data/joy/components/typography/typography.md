@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Typography component
 components: Typography
 githubLabel: 'component: Typography'
@@ -24,6 +24,26 @@ import Typography from '@mui/joy/Typography';
 The Typography component wraps around its content, and displays text with specific typographic styles and properties.
 
 {{"demo": "TypographyBasics.js"}}
+
+### Heading
+
+Use `h1` through `h4` to render a headline. The produced HTML element will match the semantic [headings](https://www.w3.org/WAI/tutorials/page-structure/headings/) of the page structure.
+
+{{"demo": "TypographyHeadline.js"}}
+
+:::info
+The `h5` and `h6` levels are not provided by default given that they are not commonly used. However, you can add them by [customizing the theme's typography](#typography-scale).
+:::
+
+### Title and body
+
+The `title-*` and `body-*` are commonly used in components.
+
+We recommend to combine the title and body with the same or lower size when using them together. For example, `title-lg` and `body-lg` or `title-md` and `body-sm`.
+
+Each level are designed to fit perfectly with the same size of the `SvgIcon` component.
+
+{{"demo": "TypographyTitleBody.js"}}
 
 ### Nested Typography
 
@@ -171,11 +191,13 @@ extendTheme({
     h2: undefined,
     h3: undefined,
     h4: undefined,
-    h5: undefined,
-    h6: undefined,
-    body1: undefined,
-    body2: undefined,
-    body3: undefined,
+    'title-lg': undefined,
+    'title-md': undefined,
+    'title-sm': undefined,
+    'body-lg': undefined,
+    'body-md': undefined,
+    'body-sm': undefined,
+    'body-xs': undefined,
     // ...your scale
   },
 });
@@ -187,19 +209,17 @@ When using TypeScript, be sure to also remove the built-in typography tokens fro
 // in your theme or index file
 declare module '@mui/joy/styles' {
   interface TypographySystemOverrides {
-    display1: false;
-    display2: false;
     h1: false;
     h2: false;
     h3: false;
     h4: false;
-    h5: false;
-    h6: false;
-    body1: false;
-    body2: false;
-    body3: false;
-    body4: false;
-    body5: false;
+    'title-lg': false;
+    'title-md': false;
+    'title-sm': false;
+    'body-lg': false;
+    'body-md': false;
+    'body-sm': false;
+    'body-xs': false;
   }
 }
 ```

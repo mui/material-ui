@@ -35,6 +35,7 @@ const excludePopperProps = <T extends Record<string, any>>({
   anchorEl,
   direction,
   disablePortal,
+  keepMounted,
   modifiers,
   open,
   placement,
@@ -50,7 +51,6 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
-    '--List-radius': theme.vars.radius.sm,
     '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
@@ -58,6 +58,7 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
     '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)',
     ...scopedVariables,
     boxShadow: theme.shadow.md,
+    borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
     }),

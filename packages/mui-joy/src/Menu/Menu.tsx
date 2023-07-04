@@ -44,16 +44,17 @@ const MenuRoot = styled(StyledList, {
   return [
     {
       '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
-      '--List-radius': theme.vars.radius.sm,
       '--ListItem-stickyBackground':
         variantStyle?.backgroundColor ||
         variantStyle?.background ||
         theme.vars.palette.background.popup,
       '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
       ...scopedVariables,
+      borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
       boxShadow: theme.shadow.md,
       overflow: 'auto',
-      zIndex: theme.vars.zIndex.popup,
+      // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+      zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
       ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.popup,
       }),

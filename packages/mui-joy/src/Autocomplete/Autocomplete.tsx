@@ -212,20 +212,24 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
-})<{ ownerState: OwnerState }>(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>({
   alignSelf: 'center',
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
-  ...(ownerState.popupOpen && {
+  [`&.${autocompleteClasses.popupIndicatorOpen}`]: {
     transform: 'rotate(180deg)',
-  }),
-}));
+    '--Icon-color': 'currentColor',
+  },
+});
 
 const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})<{ ownerState: OwnerState }>({});
+})<{ ownerState: OwnerState }>(({ theme }) => ({
+  // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+  zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
+}));
 
 const AutocompleteOption = styled(StyledAutocompleteOption, {
   name: 'JoyAutocomplete',

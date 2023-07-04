@@ -108,8 +108,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     success: colors.green,
     warning: colors.yellow,
     common: {
-      white: '#fff',
-      black: '#000',
+      white: '#FCFCFD',
+      black: '#09090B',
     },
   };
 
@@ -124,85 +124,60 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
     plainColor: getCssVarColor(`palette-${color}-500`),
-    plainIcon: getCssVarColor(`palette-${color}-400`),
     plainHoverBg: getCssVarColor(`palette-${color}-50`),
-    plainHoverIcon: getCssVarColor(`palette-${color}-500`),
     plainActiveBg: getCssVarColor(`palette-${color}-100`),
     plainDisabledColor: getCssVarColor(`palette-neutral-400`),
 
     outlinedColor: getCssVarColor(`palette-${color}-500`),
     outlinedBorder: getCssVarColor(`palette-${color}-300`),
-    outlinedIcon: getCssVarColor(`palette-${color}-400`),
     outlinedHoverBg: getCssVarColor(`palette-${color}-100`),
-    outlinedHoverBorder: getCssVarColor(`palette-${color}-300`),
-    outlinedActiveColor: getCssVarColor(`palette-${color}-700`),
     outlinedActiveBg: getCssVarColor(`palette-${color}-200`),
-    outlinedHoverIcon: getCssVarColor(`palette-${color}-500`),
-    outlinedActiveBorder: getCssVarColor(`palette-${color}-300`),
     outlinedDisabledColor: getCssVarColor(`palette-neutral-400`),
     outlinedDisabledBorder: getCssVarColor(`palette-neutral-200`),
-    
-    softColor: getCssVarColor(`palette-${color}-500`),
-    softBg: `rgba(${getCssVar('palette-neutral', colorChannel(defaultColors.neutral[500]),)} / 0.1)`,
-    softHoverBg: `rgba(${getCssVar('palette-neutral', colorChannel(defaultColors.neutral[500]),)} / 0.20)`,
-    softActiveColor: getCssVarColor(`palette-common-white`),
-    softActiveBg: getCssVarColor(`palette-${color}-500`),
+
+    softColor: getCssVarColor(`palette-${color}-700`),
+    softBg: getCssVarColor(`palette-${color}-100`),
+    softHoverBg: getCssVarColor(`palette-${color}-200`),
+    softActiveColor: getCssVarColor(`palette-${color}-800`),
+    softActiveBg: getCssVarColor(`palette-${color}-300`),
     softDisabledColor: getCssVarColor(`palette-neutral-400`),
-    softDisabledBg: getCssVarColor(`palette-neutral-200`),
+    softDisabledBg: getCssVarColor(`palette-${color}-50`),
 
     solidColor: getCssVarColor(`palette-common-white`),
     solidBg: getCssVarColor(`palette-${color}-500`),
-    solidHoverBg: getCssVarColor(`palette-${color}-400`),
-    solidActiveBg: getCssVarColor(`palette-${color}-600`),
+    solidHoverBg: getCssVarColor(`palette-${color}-600`),
+    solidActiveBg: getCssVarColor(`palette-${color}-700`),
     solidDisabledColor: getCssVarColor(`palette-neutral-400`),
-    solidDisabledBg: getCssVarColor(`palette-neutral-200`),
+    solidDisabledBg: getCssVarColor(`palette-${color}-100`),
   });
 
   const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
     plainColor: getCssVarColor(`palette-${color}-300`),
-    plainIcon: getCssVarColor(`palette-${color}-300`),
     plainHoverBg: getCssVarColor(`palette-${color}-800`),
-    plainHoverIcon: getCssVarColor(`palette-${color}-300`),
-    plainActiveBg: getCssVarColor(`palette-${color}-900`),
-    plainActiveIcon: getCssVarColor(`palette-${color}-300`),
-    plainDisabledColor: getCssVarColor(`palette-neutral-600`),
-    plainDisabledIcon: getCssVarColor(`palette-neutral-700`),
+    plainActiveBg: getCssVarColor(`palette-${color}-700`),
+    plainDisabledColor: getCssVarColor(`palette-neutral-500`),
 
     outlinedColor: getCssVarColor(`palette-${color}-200`),
     outlinedBorder: getCssVarColor(`palette-${color}-700`),
-    outlinedIcon: getCssVarColor(`palette-${color}-300`),
     outlinedHoverBg: getCssVarColor(`palette-${color}-800`),
-    outlinedHoverBorder: getCssVarColor(`palette-${color}-700`),
-    outlinedHoverIcon: getCssVarColor(`palette-${color}-300`),
-    outlinedActiveColor: getCssVarColor(`palette-${color}-300`),
-    outlinedActiveBg: getCssVarColor(`palette-${color}-900`),
-    outlinedActiveBorder: getCssVarColor(`palette-${color}-700`),
-    outlinedActiveIcon: getCssVarColor(`palette-${color}-300`),
-    outlinedDisabledColor: getCssVarColor(`palette-neutral-600`),
+    outlinedActiveBg: getCssVarColor(`palette-${color}-700`),
+    outlinedDisabledColor: getCssVarColor(`palette-neutral-500`),
     outlinedDisabledBorder: getCssVarColor(`palette-neutral-800`),
-    outlinedDisabledIcon: getCssVarColor(`palette-neutral-700`),
 
     softColor: getCssVarColor(`palette-${color}-200`),
     softBg: getCssVarColor(`palette-${color}-800`),
-    softIcon: getCssVarColor(`palette-${color}-200`),
     softHoverBg: getCssVarColor(`palette-${color}-700`),
-    softHoverIcon: getCssVarColor(`palette-${color}-200`),
     softActiveColor: getCssVarColor(`palette-${color}-100`),
     softActiveBg: getCssVarColor(`palette-${color}-600`),
-    softActiveIcon: getCssVarColor(`palette-${color}-300`),
-    softDisabledColor: getCssVarColor(`palette-neutral-600`),
-    softDisabledBg: getCssVarColor(`palette-neutral-900`),
-    softDisabledIcon: getCssVarColor(`palette-neutral-700`),
+    softDisabledColor: getCssVarColor(`palette-neutral-500`),
+    softDisabledBg: getCssVarColor(`palette-${color}-900`),
 
     solidColor: getCssVarColor(`palette-common-white`),
-    solidBg: getCssVarColor(`palette-${color}-600`),
-    solidIcon: getCssVarColor(`palette-${color}-200`),
-    solidHoverBg: getCssVarColor(`palette-${color}-700`),
-    solidActiveBg: getCssVarColor(`palette-${color}-800`),
-    solidActiveIcon: getCssVarColor(`palette-${color}-200`),
-    solidDisabledColor: getCssVarColor(`palette-neutral-600`),
-    solidDisabledBg: getCssVarColor(`palette-neutral-900`),
-    solidDisabledIcon: getCssVarColor(`palette-neutral-700`),
+    solidBg: getCssVarColor(`palette-${color}-500`),
+    solidHoverBg: getCssVarColor(`palette-${color}-600`),
+    solidActiveBg: getCssVarColor(`palette-${color}-700`),
+    solidDisabledColor: getCssVarColor(`palette-neutral-500`),
+    solidDisabledBg: getCssVarColor(`palette-${color}-800`),
   });
 
   const lightColorSystem = {
@@ -211,53 +186,43 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       primary: {
         ...defaultColors.primary,
         ...createLightModeVariantVariables('primary'),
-        softColor: getCssVarColor(`palette-primary-500`),
-        softBg: `rgba(${getCssVar('palette-primary',colorChannel(defaultColors.primary[500]),)} / 0.15)`,
-        softHoverBg: `rgba(${getCssVar('palette-primary',colorChannel(defaultColors.primary[500]),)} / 0.20)`,
-        softActiveColor: getCssVarColor(`palette-common-white`),
-        softActiveBg: getCssVarColor(`palette-primary-500`),
       },
       neutral: {
         ...defaultColors.neutral,
         ...createLightModeVariantVariables('neutral'),
-        softColor: getCssVarColor(`palette-primary-500`),
+        plainColor: getCssVarColor('palette-neutral-700'),
+        outlinedColor: getCssVarColor('palette-neutral-700'),
       },
       danger: {
         ...defaultColors.danger,
         ...createLightModeVariantVariables('danger'),
-        softColor: getCssVarColor(`palette-danger-500`),
       },
       success: {
         ...defaultColors.success,
         ...createLightModeVariantVariables('success'),
-        softColor: getCssVarColor(`palette-success-600`),
       },
       warning: {
         ...defaultColors.warning,
         ...createLightModeVariantVariables('warning'),
-        plainColor: getCssVarColor(`palette-warning-700`),
-        outlinedColor: getCssVarColor(`palette-warning-700`),
-        solidColor: getCssVarColor(`palette-common-black`),
-        softColor: getCssVarColor(`palette-warning-800`),
-        softActiveColor: getCssVarColor(`palette-common-black`),
       },
       common: {
-        white: '#fff',
-        black: '#000',
+        white: '#FCFCFD',
+        black: '#09090B',
       },
       text: {
         primary: getCssVarColor('palette-neutral-800'),
         secondary: getCssVarColor('palette-neutral-700'),
         tertiary: getCssVarColor('palette-neutral-600'),
+        icon: getCssVarColor('palette-neutral-500'),
       },
       background: {
-        body: getCssVarColor('palette-common-white'),
-        surface: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.neutral[50]),)} / 0.8)`, 
-        popup: getCssVarColor('palette-neutral-50'),
-        level1: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.common.white),)} / 0.8)`,
-        level2: getCssVarColor('palette-neutral-50'),
-        level3: getCssVarColor('palette-neutral-100'),
-        tooltip: getCssVarColor('palette-neutral-800'),
+        body: getCssVarColor('palette-neutral-50'),
+        surface: getCssVarColor('palette-common-white'),
+        popup: getCssVarColor('palette-common-white'),
+        level1: getCssVarColor('palette-neutral-50'),
+        level2: getCssVarColor('palette-neutral-100'),
+        level3: getCssVarColor('palette-neutral-200'),
+        tooltip: getCssVarColor('palette-neutral-500'),
         backdrop: `rgba(${getCssVar(
           'palette-neutral-darkChannel',
           colorChannel(defaultColors.neutral[900]), // should be the same index as in `attachColorChannels`
@@ -270,8 +235,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
-    shadowChannel: '187 187 187',
-    shadowOpacity: '0.2',
+    shadowChannel: '21 21 21',
+    shadowOpacity: '0.12',
   };
   const darkColorSystem = {
     palette: {
@@ -279,7 +244,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       primary: {
         ...defaultColors.primary,
         ...createDarkModeVariantVariables('primary'),
-        softBg: `rgba(${getCssVar('palette-danger',colorChannel(defaultColors.neutral[900]),)} / 0.8)`,
       },
       neutral: {
         ...defaultColors.neutral,
@@ -296,47 +260,46 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       warning: {
         ...defaultColors.warning,
         ...createDarkModeVariantVariables('warning'),
-        softColor: getCssVarColor(`palette-common-black`),
-        softActiveColor: getCssVarColor(`palette-common-black`),
-        solidColor: getCssVarColor(`palette-common-black`),
       },
       common: {
-        white: '#fff',
-        black: '#000',
+        white: '#FCFCFD',
+        black: '#09090B',
       },
       text: {
-        primary: getCssVarColor('palette-neutral-50'),
-        secondary: getCssVarColor('palette-neutral-200'),
-        tertiary: getCssVarColor('palette-neutral-300'),
+        primary: getCssVarColor('palette-neutral-100'),
+        secondary: getCssVarColor('palette-neutral-300'),
+        tertiary: getCssVarColor('palette-neutral-400'),
+        icon: getCssVarColor('palette-neutral-400'),
       },
       background: {
         body: getCssVarColor('palette-common-black'),
-        surface: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.neutral[900]),)} / 0.8)`,
-        popup: getCssVarColor('palette-neutral-900'),
-        level1: `rgba(${getCssVar('palette-neutral',colorChannel(defaultColors.neutral[900]),)} / 0.8)`,
-        level2: getCssVarColor('palette-neutral-900'),
-        level3: getCssVarColor('palette-neutral-800'),
+        surface: getCssVarColor('palette-neutral-900'),
+        popup: getCssVarColor('palette-common-black'),
+        level1: getCssVarColor('palette-neutral-900'),
+        level2: getCssVarColor('palette-neutral-800'),
+        level3: getCssVarColor('palette-neutral-700'),
         tooltip: getCssVarColor('palette-neutral-600'),
         backdrop: `rgba(${getCssVar(
           'palette-neutral-darkChannel',
-          colorChannel(defaultColors.neutral[500]), // should be the same index as in `attachColorChannels`
+          colorChannel(defaultColors.neutral[50]), // should be the same index as in `attachColorChannels`
         )} / 0.25)`,
       },
       divider: `rgba(${getCssVar(
         'palette-neutral-mainChannel',
         colorChannel(defaultColors.neutral[500]), // should be the same index as in `attachColorChannels`
-      )} / 0.15)`,
+      )} / 0.16)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
     shadowChannel: '0 0 0',
     shadowOpacity: '0.6',
   };
+
   const fontFamilyFallback =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
   const fontFamily = {
-    body: `"Open Sans", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
-    display: `"Open Sans", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
+    body: `"Inter", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
+    display: `"Inter", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
     code: 'Source Code Pro,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
     fallback: fontFamilyFallback,
     ...scalesInput.fontFamily,
@@ -354,13 +317,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     xs: '0.75rem', // 12px
     sm: '0.875rem', // 14px
     md: '1rem', // 16px
-    lg: '1.2rem', // 20px
-    xl: '1.3rem', // 24px
-    xl2: '1.7rem', // 32px
-    xl3: '2rem', // 40px
-    xl4: '2.25rem', // 56px
-    xl5: '3rem', // 64px
-
+    lg: '1.125rem', // 18px
+    xl: '1.25rem', // 20px
+    xl2: '1.5rem', // 24px
+    xl3: '1.875rem', // 30px
+    xl4: '2.25rem', // 36px
     ...scalesInput.fontSize,
   };
 
@@ -403,11 +364,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
     lineHeight,
     radius: {
-      xs: '8px',
-      sm: '12px',
-      md: '16px',
-      lg: '32px',
-      xl: '40px',
+      xs: '2px',
+      sm: '6px',
+      md: '8px',
+      lg: '12px',
+      xl: '16px',
     },
 
     shadow: {
@@ -466,9 +427,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     typography: {
       h1: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
-        fontSize: getCssVar('fontSize-xl5', fontSize.xl5),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
+        fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
+        fontSize: getCssVar('fontSize-xl4', fontSize.xl4),
+        lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
 
@@ -482,7 +443,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
       h3: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
+        fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
         fontSize: getCssVar('fontSize-xl2', fontSize.xl2),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
@@ -513,38 +474,40 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
 
       'title-sm': {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
-        fontSize: getCssVar('fontSize-xl', fontSize.xl),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
+        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
+        fontSize: getCssVar('fontSize-sm', fontSize.sm),
+        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
-      'title-xs': {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
+
+      'body-lg': {
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-lg', fontSize.lg),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-      },
-      'body-lg': {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
-        fontSize: getCssVar('fontSize-md', fontSize.md),
         lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+        color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
       },
 
       'body-md': {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-md', fontSize.md),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
+        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
         color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
       },
 
       'body-sm': {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
+        fontSize: getCssVar('fontSize-sm', fontSize.sm),
+        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
+        color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
+      },
+
+      'body-xs': {
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
+        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-xs', fontSize.xs),
         lineHeight: getCssVar('lineHeight-xl', lineHeight.xl.toString()),
         color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
@@ -571,7 +534,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
             root: ({ ownerState, theme: themeProp }) => {
               const instanceFontSize = ownerState.instanceFontSize as 'inherit' | keyof FontSize;
               return {
-                color: 'var(--Icon-color)',
                 margin: 'var(--Icon-margin)',
                 ...(ownerState.fontSize &&
                   ownerState.fontSize !== 'inherit' && {
@@ -579,14 +541,17 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
                       themeProp.vars.fontSize[ownerState.fontSize]
                     })`,
                   }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' &&
-                  ownerState.color !== 'context' &&
-                  themeProp.vars.palette[ownerState.color!] && {
-                    color: `rgba(${themeProp.vars.palette[ownerState.color]?.mainChannel} / 1)`,
+                ...(!ownerState.htmlColor && {
+                  color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
+                  ...(ownerState.color &&
+                    ownerState.color !== 'inherit' &&
+                    ownerState.color !== 'context' &&
+                    themeProp.vars.palette[ownerState.color!] && {
+                      color: `rgba(${themeProp.vars.palette[ownerState.color]?.mainChannel} / 1)`,
+                    }),
+                  ...(ownerState.color === 'context' && {
+                    color: themeProp.vars.palette.text.secondary,
                   }),
-                ...(ownerState.color === 'context' && {
-                  color: themeProp.vars.palette.text.secondary,
                 }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {
@@ -619,7 +584,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       const channelMapping = {
         main: '500',
         light: '200',
-        dark: '800',
+        dark: '700',
       } as const;
       if (supportedColorScheme === 'dark') {
         // @ts-ignore internal

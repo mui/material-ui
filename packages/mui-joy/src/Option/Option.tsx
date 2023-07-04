@@ -28,7 +28,7 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'li', {
 })<{ ownerState: OptionOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
   return {
-    [`&.${optionClasses.highlighted}`]: {
+    [`&.${optionClasses.highlighted}:not([aria-selected="true"])`]: {
       backgroundColor: variantStyle?.backgroundColor,
     },
   };
@@ -77,7 +77,7 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
   });
 
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, selected ? 'primary' : colorProp);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState: OptionOwnerState = {
     ...props,

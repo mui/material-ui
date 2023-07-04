@@ -32,7 +32,7 @@ export default function FAQCard() {
           px: 'var(--Card-padding)',
         }}
       >
-        <Typography fontSize="xl5" fontWeight="xl" textColor="#fff">
+        <Typography fontSize="xl4" fontWeight="xl" textColor="#fff">
           89
         </Typography>
         <Typography textColor="primary.200">

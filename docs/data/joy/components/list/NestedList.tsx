@@ -25,9 +25,6 @@ export default function NestedList() {
         size={small ? 'sm' : undefined}
         sx={{
           width: 200,
-          bgcolor: 'background.body',
-          borderRadius: 'sm',
-          boxShadow: 'sm',
         }}
       >
         <ListItem nested>

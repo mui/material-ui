@@ -41,12 +41,12 @@ const switchColorVariables =
     const styles =
       theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      '--Switch-trackBackground': styles.backgroundColor,
+      '--Switch-trackBackground': styles.backgroundColor ?? theme.vars.palette.background.surface,
       '--Switch-trackColor': styles.color,
       '--Switch-trackBorderColor':
         ownerState.variant === 'outlined' ? styles.borderColor : 'currentColor',
       '--Switch-thumbBackground': styles.color,
-      '--Switch-thumbColor': styles.backgroundColor,
+      '--Switch-thumbColor': styles.backgroundColor ?? theme.vars.palette.background.surface,
     };
   };
 
@@ -57,9 +57,10 @@ const SwitchRoot = styled('div', {
 })<{ ownerState: SwitchOwnerState }>(({ theme, ownerState }) => {
   const getColorVariables = switchColorVariables({ theme, ownerState });
   return {
+    '--Icon-color': 'currentColor',
     '--variant-borderWidth':
       theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
-    '--Switch-trackRadius': theme.vars.radius.lg,
+    '--Switch-trackRadius': theme.vars.radius.xl,
     '--Switch-thumbShadow':
       ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-trackBackground)', // create border-like if the thumb is bigger than the track
     ...(ownerState.size === 'sm' && {
@@ -404,7 +405,7 @@ Switch.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

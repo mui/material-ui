@@ -12,7 +12,11 @@ export default function TypographyDecorators() {
       </Typography>
       <Typography
         level="body-lg"
-        endDecorator={<Chip size="sm">123</Chip>}
+        endDecorator={
+          <Chip component="span" size="sm">
+            123
+          </Chip>
+        }
         justifyContent="center"
       >
         The display also changes to flexbox

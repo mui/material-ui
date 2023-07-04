@@ -59,12 +59,6 @@ function HomeIcon() {
 <SvgIcon fontSize="xl4">
   <HomeIcon />
 </SvgIcon>;
-<SvgIcon fontSize="xl5">
-  <HomeIcon />
-</SvgIcon>;
-<SvgIcon fontSize="xl6">
-  <HomeIcon />
-</SvgIcon>;
 
 // @ts-expect-error there is no fontSize `small`
 <SvgIcon fontSize="small">

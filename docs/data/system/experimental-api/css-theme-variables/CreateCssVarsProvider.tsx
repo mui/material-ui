@@ -134,7 +134,7 @@ function App() {
   );
 }
 
-export default function Demo() {
+export default function CreateCssVarsProvider() {
   return (
     <CssVarsProvider>
       <App />

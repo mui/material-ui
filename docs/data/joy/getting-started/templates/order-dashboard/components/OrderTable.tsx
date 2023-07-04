@@ -172,6 +172,7 @@ export default function OrderTable() {
       <FormControl size="sm">
         <FormLabel>Status</FormLabel>
         <Select
+          size="md"
           placeholder="Filter by status"
           slotProps={{ button: { sx: { whiteSpace: 'nowrap' } } }}
         >
@@ -184,14 +185,14 @@ export default function OrderTable() {
 
       <FormControl size="sm">
         <FormLabel>Category</FormLabel>
-        <Select placeholder="All">
+        <Select size="md" placeholder="All">
           <Option value="all">All</Option>
         </Select>
       </FormControl>
 
       <FormControl size="sm">
         <FormLabel>Customer</FormLabel>
-        <Select placeholder="All">
+        <Select size="md" placeholder="All">
           <Option value="all">All</Option>
         </Select>
       </FormControl>
@@ -211,7 +212,7 @@ export default function OrderTable() {
         }}
       >
         <Input
-          size="sm"
+          size="md"
           placeholder="Search"
           startDecorator={<i data-feather="search" />}
           sx={{ flexGrow: 1 }}
@@ -261,7 +262,11 @@ export default function OrderTable() {
       >
         <FormControl sx={{ flex: 1 }} size="sm">
           <FormLabel>Search for order</FormLabel>
-          <Input placeholder="Search" startDecorator={<i data-feather="search" />} />
+          <Input
+            size="md"
+            placeholder="Search"
+            startDecorator={<i data-feather="search" />}
+          />
         </FormControl>
 
         {renderFilters()}
@@ -287,6 +292,7 @@ export default function OrderTable() {
             '--Table-headerUnderlineThickness': '1px',
             '--TableRow-hoverBackground': (theme) =>
               theme.vars.palette.background.level1,
+            '--TableCell-paddingY': '12px',
           }}
         >
           <thead>
@@ -388,10 +394,13 @@ export default function OrderTable() {
                         fontWeight="lg"
                         level="body-xs"
                         textColor="text.primary"
+                        lineHeight="md"
                       >
                         {row.customer.name}
                       </Typography>
-                      <Typography level="body-xs">{row.customer.email}</Typography>
+                      <Typography level="body-xs" lineHeight="md">
+                        {row.customer.email}
+                      </Typography>
                     </div>
                   </Box>
                 </td>

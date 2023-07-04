@@ -9,11 +9,11 @@ export default function PlaceholderAspectRatio() {
     <Card variant="outlined" sx={{ width: 300 }}>
       <AspectRatio>
         <div>
-          <ImageIcon fontSize="xl5" sx={{ color: 'text.tertiary' }} />
+          <ImageIcon sx={{ fontSize: '3rem', opacity: 0.2 }} />
         </div>
       </AspectRatio>
       <div>
-        <Typography>Title</Typography>
+        <Typography level="title-md">Title</Typography>
         <Typography level="body-sm">Description of the card.</Typography>
       </div>
     </Card>

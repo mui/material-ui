@@ -72,7 +72,7 @@ export default function Sidebar() {
           left: 0,
           width: '100vw',
           height: '100vh',
-          bgcolor: 'background.body',
+
           opacity: 'calc(var(--SideNavigation-slideIn, 0) - 0.2)',
           transition: 'opacity 0.4s',
           transform: {
@@ -159,7 +159,7 @@ export default function Sidebar() {
             </ListItemButton>
             <List>
               <ListItem>
-                <ListItemButton selected variant="soft" color="primary">
+                <ListItemButton selected color="primary">
                   My Profile
                 </ListItemButton>
               </ListItem>

@@ -15,6 +15,10 @@ import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
 import Divider from '@mui/joy/Divider';
 import Sheet from '@mui/joy/Sheet';
+import Table from '@mui/joy/Table';
+import Tabs from '@mui/joy/Tabs';
+import TabList from '@mui/joy/TabList';
+import Tab from '@mui/joy/Tab';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
@@ -33,7 +37,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
-import filesTheme from './theme';
 import Menu from './components/Menu';
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
@@ -69,7 +72,7 @@ function ColorSchemeToggle() {
 export default function FilesExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
-    <CssVarsProvider disableTransitionOnChange theme={filesTheme}>
+    <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
@@ -123,8 +126,8 @@ export default function FilesExample() {
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
               <IconButton variant="outlined" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
-                  /
+                <Typography fontWeight="lg" fontSize="sm" textColor="text.icon">
+                  ⌘ + k
                 </Typography>
               </IconButton>
             }
@@ -199,102 +202,107 @@ export default function FilesExample() {
           >
             <Sheet
               variant="outlined"
-              sx={{
-                borderRadius: 'sm',
-                gridColumn: '1/-1',
-                display: { xs: 'none', sm: 'grid' },
-                gridTemplateColumns: '1fr 1fr 1fr 1fr',
-                '& > *': {
-                  p: 2,
-                  '&:nth-child(n):not(:nth-last-child(-n+4))': {
-                    borderBottom: '1px solid',
-                    borderColor: 'divider',
-                  },
-                },
-              }}
+              sx={{ borderRadius: 'sm', gridColumn: '1/-1' }}
             >
-              <Typography level="body-xs" fontWeight="md" noWrap>
-                Folder name
-              </Typography>
-              <Typography level="body-xs" fontWeight="md" noWrap>
-                Date modified
-              </Typography>
-              <Typography level="body-xs" fontWeight="md" noWrap>
-                Size
-              </Typography>
-              <Typography level="body-xs" fontWeight="md" noWrap>
-                Users
-              </Typography>
-
-              <Typography
-                level="body-sm"
-                startDecorator={<FolderOpenIcon color="primary" />}
-                sx={{ alignItems: 'flex-start' }}
+              <Table
+                sx={{
+                  '--TableCell-paddingX': '1rem',
+                  '--TableCell-paddingY': '1rem',
+                }}
               >
-                Travel pictures
-              </Typography>
-              <Typography level="body-sm">21 October 2011, 3PM</Typography>
-              <Typography level="body-sm" sx={{ color: 'success.600' }}>
-                987.5MB
-              </Typography>
-              <Box>
-                <AvatarGroup
-                  size="sm"
-                  sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
-                >
-                  <Avatar
-                    src="https://i.pravatar.cc/24?img=6"
-                    srcSet="https://i.pravatar.cc/48?img=6 2x"
-                  />
-                  <Avatar
-                    src="https://i.pravatar.cc/24?img=7"
-                    srcSet="https://i.pravatar.cc/48?img=7 2x"
-                  />
-                  <Avatar
-                    src="https://i.pravatar.cc/24?img=8"
-                    srcSet="https://i.pravatar.cc/48?img=8 2x"
-                  />
-                  <Avatar
-                    src="https://i.pravatar.cc/24?img=9"
-                    srcSet="https://i.pravatar.cc/48?img=9 2x"
-                  />
-                </AvatarGroup>
-              </Box>
-              <Typography
-                level="body-sm"
-                startDecorator={<FolderOpenIcon color="primary" />}
-                sx={{ alignItems: 'flex-start' }}
-              >
-                Important documents
-              </Typography>
-              <Typography level="body-sm">26 May 2010, 7PM</Typography>
-              <Typography level="body-sm" sx={{ color: 'success.600' }}>
-                123.3KB
-              </Typography>
-              <Box>
-                <AvatarGroup
-                  size="sm"
-                  sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
-                >
-                  <Avatar
-                    src="https://i.pravatar.cc/24?img=6"
-                    srcSet="https://i.pravatar.cc/48?img=6 2x"
-                  />
-                  <Avatar
-                    src="https://i.pravatar.cc/24?img=7"
-                    srcSet="https://i.pravatar.cc/48?img=7 2x"
-                  />
-                  <Avatar
-                    src="https://i.pravatar.cc/24?img=8"
-                    srcSet="https://i.pravatar.cc/48?img=8 2x"
-                  />
-                  <Avatar
-                    src="https://i.pravatar.cc/24?img=9"
-                    srcSet="https://i.pravatar.cc/48?img=9 2x"
-                  />
-                </AvatarGroup>
-              </Box>
+                <thead>
+                  <tr>
+                    <th>Folder name</th>
+                    <th>Date modified</th>
+                    <th>Size</th>
+                    <th>Users</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <Typography
+                        level="body-sm"
+                        startDecorator={<FolderOpenIcon color="primary" />}
+                        sx={{ alignItems: 'flex-start' }}
+                      >
+                        Travel pictures
+                      </Typography>
+                    </td>
+                    <td>21 October 2011, 3PM</td>
+                    <td>
+                      <Typography level="body-sm" color="success">
+                        987.5MB
+                      </Typography>
+                    </td>
+                    <td>
+                      <AvatarGroup
+                        size="sm"
+                        sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
+                      >
+                        <Avatar
+                          src="https://i.pravatar.cc/24?img=6"
+                          srcSet="https://i.pravatar.cc/48?img=6 2x"
+                        />
+                        <Avatar
+                          src="https://i.pravatar.cc/24?img=7"
+                          srcSet="https://i.pravatar.cc/48?img=7 2x"
+                        />
+                        <Avatar
+                          src="https://i.pravatar.cc/24?img=8"
+                          srcSet="https://i.pravatar.cc/48?img=8 2x"
+                        />
+                        <Avatar
+                          src="https://i.pravatar.cc/24?img=9"
+                          srcSet="https://i.pravatar.cc/48?img=9 2x"
+                        />
+                      </AvatarGroup>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Typography
+                        level="body-sm"
+                        startDecorator={<FolderOpenIcon color="primary" />}
+                        sx={{ alignItems: 'flex-start' }}
+                      >
+                        Important documents
+                      </Typography>
+                    </td>
+                    <td>26 May 2010, 7PM</td>
+                    <td>
+                      <Typography level="body-sm" color="success">
+                        123.3KB
+                      </Typography>
+                    </td>
+                    <td>
+                      <AvatarGroup
+                        size="sm"
+                        sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
+                      >
+                        <Avatar
+                          src="https://i.pravatar.cc/24?img=6"
+                          srcSet="https://i.pravatar.cc/48?img=6 2x"
+                        />
+                        <Avatar
+                          src="https://i.pravatar.cc/24?img=7"
+                          srcSet="https://i.pravatar.cc/48?img=7 2x"
+                        />
+                        <Avatar
+                          src="https://i.pravatar.cc/24?img=8"
+                          srcSet="https://i.pravatar.cc/48?img=8 2x"
+                        />
+                        <Avatar
+                          src="https://i.pravatar.cc/24?img=9"
+                          srcSet="https://i.pravatar.cc/48?img=9 2x"
+                        />
+                      </AvatarGroup>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
             </Sheet>
+
             <Sheet
               variant="outlined"
               sx={{
@@ -475,6 +483,8 @@ export default function FilesExample() {
               </Box>
             </Card>
             <Card
+              variant="solid"
+              invertedColors
               sx={{
                 '--Card-radius': (theme) => theme.vars.radius.sm,
                 boxShadow: 'none',
@@ -501,16 +511,12 @@ export default function FilesExample() {
                 }}
               >
                 <Box sx={{ flex: 1 }}>
-                  <Typography textColor="#fff">torres-del-paine.png</Typography>
-                  <Typography
-                    level="body-xs"
-                    mt={0.5}
-                    textColor="rgba(255,255,255,0.72)"
-                  >
+                  <Typography>torres-del-paine.png</Typography>
+                  <Typography level="body-xs" mt={0.5}>
                     Added 5 Aug 2016
                   </Typography>
                 </Box>
-                <IconButton variant="plain" color="neutral" sx={{ color: '#fff' }}>
+                <IconButton variant="plain">
                   <EditOutlinedIcon />
                 </IconButton>
               </CardContent>
@@ -569,27 +575,12 @@ export default function FilesExample() {
             </IconButton>
           </Box>
           <Divider />
-          <Box sx={{ display: 'flex' }}>
-            <Button
-              variant="soft"
-              sx={{
-                borderRadius: 0,
-                borderBottom: '2px solid',
-                borderColor: 'primary.solidBg',
-                flex: 1,
-                py: '1rem',
-              }}
-            >
-              Details
-            </Button>
-            <Button
-              variant="plain"
-              color="neutral"
-              sx={{ borderRadius: 0, flex: 1, py: '1rem' }}
-            >
-              Activity
-            </Button>
-          </Box>
+          <Tabs>
+            <TabList>
+              <Tab indicatorPlacement="top">Details</Tab>
+              <Tab indicatorPlacement="top">Activity</Tab>
+            </TabList>
+          </Tabs>
           <AspectRatio ratio="21/9">
             <img
               alt=""

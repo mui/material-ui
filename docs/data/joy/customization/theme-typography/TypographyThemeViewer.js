@@ -44,7 +44,7 @@ const Table = styled('table')(({ theme }) => ({
 const extractFromVar = (value, field) =>
   (value || '').replace(`var(--joy-${field}-`, '').replace(')', '');
 
-export default function FontSizeThemeViewer() {
+export default function TypographyThemeViewer() {
   const levels = Object.keys(defaultTheme.typography);
 
   const renderSwatch = (colorScheme, token) =>
@@ -88,11 +88,6 @@ export default function FontSizeThemeViewer() {
             <th>
               <Typography fontSize="sm" noWrap>
                 Line height
-              </Typography>
-            </th>
-            <th>
-              <Typography fontSize="sm" noWrap>
-                Letter spacing
               </Typography>
             </th>
           </tr>
@@ -175,7 +170,7 @@ export default function FontSizeThemeViewer() {
                   </Typography>
                 </Tooltip>
               </td>
-              {['fontWeight', 'lineHeight', 'letterSpacing'].map((field) => (
+              {['fontWeight', 'lineHeight'].map((field) => (
                 <td key={field}>
                   <Tooltip
                     size="sm"

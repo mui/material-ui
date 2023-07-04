@@ -37,16 +37,30 @@ export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: React.ReactNode;
     /**
+     * If `true`, the TabList's underline will disappear.
+     * @default false
+     */
+    disableUnderline?: boolean;
+    /**
+     * The placement of the TabList's underline.
+     * @default orientation === 'horizontal' ? 'bottom' : 'right'
+     */
+    underlinePlacement?: 'top' | 'bottom' | 'left' | 'right';
+    /**
      * The size of the component.
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', TabListPropsSizeOverrides>;
+    /**
+     * If provided, the TabList will have postion `sticky`.
+     */
+    sticky?: 'top' | 'bottom';
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
     /**
      * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-     * @default 'soft'
+     * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, TabListPropsVariantOverrides>;
   } & TabListSlotsAndSlotProps;

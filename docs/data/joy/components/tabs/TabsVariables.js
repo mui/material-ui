@@ -13,8 +13,12 @@ export default function ListVariables() {
       data={[
         {
           var: '--Tabs-gap',
-          defaultValue: '4px',
+          defaultValue: '16px',
           helperText: "Controls TabList's gap and TabPanel's padding.",
+        },
+        {
+          var: '--Tab-indicatorThickness',
+          defaultValue: '2px',
         },
       ]}
       renderDemo={(sx) => (

@@ -93,9 +93,13 @@ export const ButtonRoot = styled('button', {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
+      ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
+        '--Icon-color': 'currentColor',
+      }),
       ...(ownerState.size === 'sm' && {
-        '--Icon-fontSize': '1.25rem',
+        '--Icon-fontSize': theme.vars.fontSize.lg,
         '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '2px',
         '--Button-gap': '0.375rem',
         minHeight: 'var(--Button-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
@@ -103,8 +107,9 @@ export const ButtonRoot = styled('button', {
         paddingInline: '0.75rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
+        '--Icon-fontSize': theme.vars.fontSize.xl,
         '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '3px',
         '--Button-gap': '0.5rem',
         minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
@@ -112,8 +117,9 @@ export const ButtonRoot = styled('button', {
         paddingInline: '1rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': '1.75rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
         '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '4px',
         '--Button-gap': '0.75rem',
         minHeight: 'var(--Button-minHeight, 3rem)',
         fontSize: theme.vars.fontSize.md,
@@ -139,7 +145,16 @@ export const ButtonRoot = styled('button', {
       }),
       [theme.focus.selector]: theme.focus.default,
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    {
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color === 'neutral' && {
+          backgroundColor: theme.vars.palette?.neutral?.[800],
+          [theme.getColorSchemeSelector('dark')]: {
+            backgroundColor: theme.vars.palette?.neutral?.[500],
+          },
+        }),
+    },
     {
       '&:hover': {
         '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],

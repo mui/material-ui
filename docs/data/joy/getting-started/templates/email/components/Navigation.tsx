@@ -33,8 +33,8 @@ export default function EmailNav() {
           }}
         >
           <ListItem>
-            <ListItemButton variant="soft" color="primary">
-              <ListItemDecorator sx={{ color: 'inherit' }}>
+            <ListItemButton selected>
+              <ListItemDecorator>
                 <InboxRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Inbox</ListItemContent>

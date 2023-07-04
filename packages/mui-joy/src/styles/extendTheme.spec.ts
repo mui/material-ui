@@ -594,7 +594,7 @@ extendTheme({
     },
     JoyLink: {
       defaultProps: {
-        level: 'body2',
+        level: 'body-md',
       },
       styleOverrides: {
         root: ({ ownerState }) => {
@@ -1110,7 +1110,7 @@ extendTheme({
     },
     JoyTypography: {
       defaultProps: {
-        level: 'body2',
+        level: 'body-md',
         variant: 'outlined',
         color: 'neutral',
       },

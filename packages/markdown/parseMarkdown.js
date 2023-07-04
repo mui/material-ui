@@ -1,4 +1,5 @@
 const { marked } = require('marked');
+const { markedHighlight } = require('marked-highlight');
 const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
@@ -157,10 +158,12 @@ function getHeaders(markdown) {
 }
 
 function getContents(markdown) {
-  return markdown
+  const rep = markdown
     .replace(headerRegExp, '') // Remove header information
-    .split(/^{{("(?:demo|component)":[^}]*)}}$/gm) // Split markdown into an array, separating demos
+    .split(/^{{("(?:demo|component)":.*)}}$/gm) // Split markdown into an array, separating demos
+    .flatMap((text) => text.split(/^(<codeblock.*?<\/codeblock>)$/gmsu))
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
+  return rep;
 }
 
 function getTitle(markdown) {
@@ -238,13 +241,8 @@ function createRender(context) {
         return `<h${level}>${headingHtml}</h${level}>`;
       }
 
-      const headingText = headingHtml
-        .replace(
-          /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])\uFE0F?/g,
-          '',
-        ) // remove emojis
-        .replace(/<\/?[^>]+(>|$)/g, '') // remove HTML
-        .trim();
+      // Remove links to avoid nested links in the TOCs
+      const headingText = headingHtml.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first
@@ -354,8 +352,13 @@ function createRender(context) {
       sanitize: false,
       smartLists: true,
       smartypants: false,
-      highlight: prism,
-      renderer,
+      headerPrefix: false,
+      headerIds: false,
+      mangle: false,
+      ...markedHighlight({
+        highlight: prism,
+      }),
+      renderer, // Should be after markedHighlight since it overrides `renderer.code`
     };
 
     marked.use({
@@ -426,11 +429,11 @@ function resolveComponentApiUrl(product, componentPkg, component) {
 /**
  * @param {object} config
  * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
- * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
+ * @param {string} config.fileRelativeContext - posix filename relative to repository root directory
  * @param {object} config.options - provided to the webpack loader
  */
 function prepareMarkdown(config) {
-  const { pageFilename, translations, componentPackageMapping = {}, options } = config;
+  const { fileRelativeContext, translations, componentPackageMapping = {}, options } = config;
 
   const demos = {};
   /**
@@ -446,7 +449,7 @@ function prepareMarkdown(config) {
     .forEach((translation) => {
       const { filename, markdown, userLanguage } = translation;
       const headers = getHeaders(markdown);
-      const location = headers.filename || `/docs${pageFilename}/${filename}`;
+      const location = headers.filename || `/${fileRelativeContext}/${filename}`;
       const title = headers.title || getTitle(markdown);
       const description = headers.description || getDescription(markdown);
 
@@ -485,7 +488,7 @@ function prepareMarkdown(config) {
 ## Unstyled
 
 :::success
-[Base UI](/base-ui/getting-started/overview/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
+[Base UI](/base-ui/getting-started/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
 :::
         `);
       }
@@ -498,10 +501,10 @@ See the documentation below for a complete reference to all of the props and cla
 
 ${headers.components
   .map((component) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkgMap = componentPackageMapping[headers.productId];
     const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
     return `- [\`<${component} />\`](${resolveComponentApiUrl(
-      headers.product,
+      headers.productId,
       componentPkg,
       component,
     )})`;
@@ -509,9 +512,9 @@ ${headers.components
   .join('\n')}
 ${headers.hooks
   .map((hook) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkgMap = componentPackageMapping[headers.productId];
     const componentPkg = componentPkgMap ? componentPkgMap[hook] : null;
-    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.product, componentPkg, hook)})`;
+    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.productId, componentPkg, hook)})`;
   })
   .join('\n')}
   `);
@@ -535,6 +538,22 @@ ${headers.hooks
             console.error(err);
             return null;
           }
+        }
+        if (content.startsWith('<codeblock')) {
+          const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+          const blocks = [...content.matchAll(/^```(\S*) (\S*)\n([^`]*)\n```/gmsu)].map(
+            ([, language, tab, code]) => ({ language, tab, code }),
+          );
+
+          const blocksData = blocks.filter(
+            (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
+          );
+
+          return {
+            type: 'codeblock',
+            data: blocksData,
+            storageKey,
+          };
         }
 
         return render(content);

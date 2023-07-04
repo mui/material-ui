@@ -31,7 +31,7 @@
 
 或者运行
 
-```sh
+```bash
 npm install @material-ui/core
 
 或者
@@ -55,7 +55,7 @@ React的最低要求版本从`react@^16.3.0`增加到`react@^16.8.0`. 这使我�
 
 或者运行
 
-```sh
+```bash
 npm install @material-ui/styles
 
 或者
