@@ -24,10 +24,10 @@ The Joy UI Link component replaces the native HTML `<a>` element, and accepts th
 import Link from '@mui/joy/Link';
 ```
 
-The Joy UI Link behaves similar to the native HTML `<a>`, so it renders by default with an underline and has no background colors on hover.
+The Joy UI Link behaves similar to the native HTML `<a>`, so it renders by default with an underline and has no background color on hover.
 
 The demo below shows the two basic states available to the Link: default and disabled.
-Note that it always needs to have an `href` assigned to it.
+Don't forget to always assign an `href` assigned to it.
 
 {{"demo": "BasicsLink.js"}}
 
@@ -38,7 +38,7 @@ Note that it always needs to have an `href` assigned to it.
 The Link component supports Joy UI's four global variants: plain (default), soft, outlined, and solid.
 
 :::info
-However, even though it has a default variant set, it will render by default without any variant so it adheres to stanrdard link visual design (no background color on hover).
+However, even though it has a default variant set, it will render, by default, without any variant. That is to adhere to stanrdard link visual design on the web (no background color on hover).
 :::
 
 {{"demo": "LinkVariants.js"}}
