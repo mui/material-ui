@@ -31,14 +31,12 @@ export default function ExampleCollapsibleList() {
             '--joy-palette-text-secondary': '#635e69',
             '--joy-palette-primary-plainColor': '#d48cff',
           },
-
           '--List-insetStart': '32px',
           '--ListItem-paddingY': '0px',
           '--ListItem-paddingRight': '16px',
           '--ListItem-paddingLeft': '21px',
           '--ListItem-startActionWidth': '0px',
           '--ListItem-startActionTranslateX': '-50%',
-
           [`& .${listItemButtonClasses.root}`]: {
             borderLeftColor: 'divider',
           },

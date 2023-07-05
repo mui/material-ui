@@ -306,10 +306,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   const fontWeight = {
-    sm: 400, // regular
+    sm: 300, // regular
     md: 500, // medium
-    lg: 600, // semi bold
-    xl: 700, // bold
+    lg: 600, // semi-bold
+    xl: 800, // extra-bold
     ...scalesInput.fontWeight,
   };
 
@@ -483,7 +483,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
       'body-lg': {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-lg', fontSize.lg),
         lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
         color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
@@ -491,7 +490,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
       'body-md': {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-md', fontSize.md),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
         color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
@@ -499,7 +497,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
       'body-sm': {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-sm', fontWeight.sm.toString()),
         fontSize: getCssVar('fontSize-sm', fontSize.sm),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),

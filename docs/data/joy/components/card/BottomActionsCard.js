@@ -37,9 +37,7 @@ export default function BottomActionsCard() {
         </AvatarGroup>
       </Box>
       <CardContent>
-        <Typography level="title-lg" fontWeight="lg">
-          NYC Coders
-        </Typography>
+        <Typography level="title-lg">NYC Coders</Typography>
         <Typography level="body-sm">
           We are a community of developers prepping for coding interviews,
           participate, chat with others and get better at interviewing.

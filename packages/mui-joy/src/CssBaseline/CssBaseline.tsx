@@ -51,7 +51,7 @@ function CssBaseline(props: CssBaselineProps) {
               boxSizing: 'inherit',
             },
             'strong, b': {
-              fontWeight: 'bold',
+              fontWeight: theme.vars.fontWeight.lg,
             },
             body: {
               margin: 0, // Remove the margin in all browsers.

@@ -26,9 +26,7 @@ export default function PricingCards() {
         <Chip size="sm" variant="outlined" color="neutral">
           BASIC
         </Chip>
-        <Typography level="h2" fontSize="xl3">
-          Professional
-        </Typography>
+        <Typography level="h2">Professional</Typography>
         <Divider inset="none" />
         <List size="sm" sx={{ mx: 'calc(-1 * var(--ListItem-paddingX))' }}>
           <ListItem>
@@ -83,9 +81,7 @@ export default function PricingCards() {
         <Chip size="sm" variant="outlined">
           MOST POPULAR
         </Chip>
-        <Typography level="h2" fontSize="xl3">
-          Unlimited
-        </Typography>
+        <Typography level="h2">Unlimited</Typography>
         <Divider inset="none" />
         <List
           size="sm"

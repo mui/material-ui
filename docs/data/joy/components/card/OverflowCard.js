@@ -20,12 +20,8 @@ export default function OverflowCard() {
         </AspectRatio>
       </CardOverflow>
       <CardContent>
-        <Typography level="h2" fontSize="md">
-          Yosemite National Park
-        </Typography>
-        <Typography level="body-sm" sx={{ mt: 0.5 }}>
-          California
-        </Typography>
+        <Typography level="title-md">Yosemite National Park</Typography>
+        <Typography level="body-sm">California</Typography>
       </CardContent>
       <CardOverflow variant="soft" sx={{ bgcolor: 'background.level1' }}>
         <Divider inset="context" />
