@@ -29,7 +29,7 @@ const createReactApp = (demoData: DemoData) => {
     files,
     dependencies,
     devDependencies,
-    openSandbox: (initialFile = 'App') => {
+    openSandbox: (initialFile = `Demo.${ext}`) => {
       const extension = demoData.codeVariant === CODE_VARIANTS.TS ? '.tsx' : '.js';
       // ref: https://developer.stackblitz.com/docs/platform/post-api/
       const form = document.createElement('form');

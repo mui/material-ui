@@ -13,7 +13,7 @@ function compress(object: any) {
     .replace(/=+$/, ''); // Remove ending '='
 }
 
-function openSandbox({ files, codeVariant, initialFile = '/App' }: any) {
+function openSandbox({ files, codeVariant, initialFile }: any) {
   const extension = codeVariant === 'TS' ? '.tsx' : '.js';
   const parameters = compress({ files });
 
@@ -80,10 +80,10 @@ const createReactApp = (demoData: DemoData) => {
     devDependencies,
     /**
      * @param {string} initialFile
-     * @description should start with `/`, e.g. `/demo.tsx`. If the extension is not provided,
+     * @description should start with `/`, e.g. `/Demo.tsx`. If the extension is not provided,
      * it will be appended based on the code variant.
      */
-    openSandbox: (initialFile?: string) =>
+    openSandbox: (initialFile: string = `/Demo.${ext}`) =>
       openSandbox({ files, codeVariant: demoData.codeVariant, initialFile }),
   };
 };
@@ -169,7 +169,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     files,
     dependencies,
     devDependencies,
-    openSandbox: (initialFile?: string) =>
+    openSandbox: (initialFile: string = '/App') =>
       openSandbox({ files, codeVariant: templateData.codeVariant, initialFile }),
   };
 };
