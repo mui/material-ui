@@ -102,7 +102,9 @@ const Listbox = styled('ul')(
   z-index: 1;
   outline: 0px;
   list-style: none;
-  box-shadow: 0px 2px 6px ${theme ? 'rgba(0,0,0, 0.05)' : 'rgba(0,0,0, 0.95)'};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   &.hidden {
     opacity: 0;

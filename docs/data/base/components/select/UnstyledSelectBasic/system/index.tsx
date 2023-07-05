@@ -108,7 +108,7 @@ const StyledListbox = styled('ul')(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   box-shadow: 0px 4px 6px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.95)' : 'rgba(0,0,0, 0.05)'
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
   };
   `,
 );
