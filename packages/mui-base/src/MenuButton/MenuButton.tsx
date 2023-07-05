@@ -83,7 +83,7 @@ MenuButton.propTypes /* remove-proptypes */ = {
    */
   focusableWhenDisabled: PropTypes.bool,
   /**
-   * @ignore
+   * Label of the button
    */
   label: PropTypes.string,
   /**
@@ -95,7 +95,8 @@ MenuButton.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * @ignore
+   * The props used for each slot inside the MenuButton.
+   * @default {}
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

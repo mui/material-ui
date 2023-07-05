@@ -1,7 +1,7 @@
 ---
 productId: joy-ui
 title: React Menu component
-components: Menu, MenuItem, MenuList
+components: Menu, MenuItem, MenuList, MenuButton
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 unstyled: /base-ui/react-menu/

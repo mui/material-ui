@@ -75,6 +75,9 @@ export * from './CssBaseline';
 export { default as Divider } from './Divider';
 export * from './Divider';
 
+export { default as Dropdown } from './Dropdown';
+export * from './Dropdown';
+
 export { default as FormControl } from './FormControl';
 export * from './FormControl';
 
@@ -122,6 +125,9 @@ export * from './ListSubheader';
 
 export { default as Menu } from './Menu';
 export * from './Menu';
+
+export { default as MenuButton } from './MenuButton';
+export * from './MenuButton';
 
 export { default as MenuItem } from './MenuItem';
 export * from './MenuItem';

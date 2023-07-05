@@ -1,0 +1,35 @@
+{
+  "props": {
+    "component": { "type": { "name": "elementType" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    }
+  },
+  "name": "MenuButton",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": ".MuiMenuButton-root"
+    }
+  ],
+  "classes": {
+    "classes": ["active", "disabled"],
+    "globalClasses": { "active": "Mui-active", "disabled": "Mui-disabled" }
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyMenuButton",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-joy/src/MenuButton/MenuButton.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

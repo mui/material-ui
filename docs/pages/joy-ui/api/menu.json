@@ -1,7 +1,6 @@
 {
   "props": {
     "actions": { "type": { "name": "custom", "description": "ref" } },
-    "anchorEl": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "color": {
       "type": {
         "name": "enum",

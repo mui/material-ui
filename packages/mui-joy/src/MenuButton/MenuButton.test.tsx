@@ -2,7 +2,6 @@ import * as React from 'react';
 import { createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuButton, { menuButtonClasses as classes } from '@mui/joy/MenuButton';
-import Button from '@mui/joy/Button';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useMenu';
 
 const testContext: DropdownContextValue = {
@@ -19,7 +18,7 @@ describe('<MenuButton />', () => {
 
   describeConformance(<MenuButton />, () => ({
     classes,
-    inheritComponent: Button,
+    inheritComponent: 'button',
     wrapMount: (mount) => (node: React.ReactNode) => {
       const wrapper = mount(
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,

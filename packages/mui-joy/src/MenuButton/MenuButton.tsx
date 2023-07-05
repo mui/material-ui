@@ -92,11 +92,11 @@ export const MenuButtonRoot = styled('button', {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base-ui/react-menu/)
+ * - [Menu](https://mui.com/joy-ui/react-menu/)
  *
  * API:
  *
- * - [MenuButton API](https://mui.com/base-ui/react-menu/components-api/#menu-button)
+ * - [MenuButton API](https://mui.com/joy-ui/api/menu-button/)
  */
 const MenuButton = React.forwardRef(function MenuButton(
   inProps: MenuButtonProps,
@@ -156,28 +156,40 @@ MenuButton.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * If `true`, allows a disabled button to receive focus.
-   * @default false
+   * @ignore
    */
-  focusableWhenDisabled: PropTypes.bool,
+  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * @ignore
    */
-  label: PropTypes.string,
+  disabled: PropTypes.bool,
   /**
-   * The components used for each slot inside the MenuButton.
-   * Either a string to use a HTML element or a component.
+   * @ignore
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * @ignore
+   * The components used for each slot inside.
+   * @default {}
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,
   }),
+  /**
+   * @ignore
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default MenuButton;

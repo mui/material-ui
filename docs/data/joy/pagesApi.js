@@ -36,6 +36,7 @@ module.exports = [
   { pathname: '/joy-ui/api/list-item-decorator' },
   { pathname: '/joy-ui/api/list-subheader' },
   { pathname: '/joy-ui/api/menu' },
+  { pathname: '/joy-ui/api/menu-button' },
   { pathname: '/joy-ui/api/menu-item' },
   { pathname: '/joy-ui/api/menu-list' },
   { pathname: '/joy-ui/api/modal' },
