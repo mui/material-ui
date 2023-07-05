@@ -1,58 +1,61 @@
 import * as React from 'react';
 import { Axis } from '@mui/base';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import { debounce, isEqual } from 'lodash';
 
-type SliderElements = [HTMLElement?, HTMLElement?];
+const overlapCompareFunctionByAxis = {
+  horizontal: (firstElementRect: DOMRect, secondElementRect: DOMRect, margin: number) =>
+    firstElementRect.right + margin > secondElementRect.left,
+  'horizontal-reverse': (firstElementRect: DOMRect, secondElementRect: DOMRect, margin: number) =>
+    secondElementRect.right + margin > firstElementRect.left,
+  vertical: (firstElementRect: DOMRect, secondElementRect: DOMRect, margin: number) =>
+    secondElementRect.bottom + margin > firstElementRect.top,
+};
 
-function getSliderElementsOverlap(elements: SliderElements, axis: Axis, margin: number) {
-  const [firstElement, secondElement] = elements;
-  if (firstElement && secondElement) {
-    const firstElementRect = firstElement.getBoundingClientRect();
-    const secondElementRect = secondElement.getBoundingClientRect();
-    if (axis === 'horizontal') {
-      return firstElementRect.right + margin > secondElementRect.left;
+function getSliderElementsOverlap(elements: HTMLElement[], axis: Axis, margin: number) {
+  const overlapArray = elements.map(() => false);
+
+  for (let elementIndex = 0; elementIndex < elements.length - 1; elementIndex += 1) {
+    const firstElementRect = elements[elementIndex].getBoundingClientRect();
+    const secondElementRect = elements[elementIndex + 1].getBoundingClientRect();
+
+    if (overlapCompareFunctionByAxis[axis](firstElementRect, secondElementRect, margin)) {
+      overlapArray[elementIndex] = true;
+      overlapArray[elementIndex + 1] = true;
     }
-    if (axis === 'horizontal-reverse') {
-      return secondElementRect.right + margin > firstElementRect.left;
-    }
-    return secondElementRect.bottom + margin > firstElementRect.top;
   }
-  return false;
+  return overlapArray;
 }
 
 function useElementsOverlap(axis: Axis, margin: number = 0) {
-  const elementsRefList = React.useRef<SliderElements>([]);
-  const [elementsOverlap, setThumbsOverlap] = React.useState(false);
+  const elementsRefList = React.useRef<HTMLElement[]>([]);
+  const [elementsOverlapArray, setElementsOverlapArray] = React.useState<boolean[]>([]);
 
   const setRef = React.useCallback((elementIndex: number, ref: HTMLElement) => {
-    if (elementIndex <= 1 && !!ref && elementsRefList.current[elementIndex] !== ref) {
+    if (!!ref && elementsRefList.current[elementIndex] !== ref) {
       elementsRefList.current[elementIndex] = ref;
     }
   }, []);
 
   const getIsOverlapping = React.useCallback(
     (elementIndex: number, lastActiveIndex: number) => {
-      if (elementsRefList.current.length !== 2) {
+      if (elementsRefList.current.length < 2) {
         return false;
       }
 
-      if (lastActiveIndex === -1) {
-        return elementsOverlap && elementIndex === 0;
-      }
-
-      return elementsOverlap && lastActiveIndex === elementIndex;
+      return elementsOverlapArray[elementIndex] && lastActiveIndex === elementIndex;
     },
-    [elementsOverlap],
+    [elementsOverlapArray],
   );
 
   const onMove = React.useCallback(() => {
-    if (elementsRefList.current.length === 2) {
+    if (elementsRefList.current.length > 1) {
       const updatedOverlap = getSliderElementsOverlap(elementsRefList.current, axis, margin);
-      if (updatedOverlap !== elementsOverlap) {
-        setThumbsOverlap(updatedOverlap);
+      if (!isEqual(updatedOverlap, elementsOverlapArray)) {
+        setElementsOverlapArray(updatedOverlap);
       }
     }
-  }, [axis, elementsOverlap, margin]);
+  }, [axis, elementsOverlapArray, margin]);
 
   return { setRef, getIsOverlapping, onMove };
 }
@@ -64,19 +67,20 @@ export default function useSliderElementsOverlap(axis: Axis) {
     onMove: onThumbMove,
   } = useElementsOverlap(axis);
 
+  // ValueLabel -12px margin is required due to how its "inverted water drop"
+  // shape is built with CSS. Might want to allow this to be configurable in the future.
   const {
     setRef: setValueLabelRef,
     getIsOverlapping: getIsValueLabelOverlapping,
     onMove: onValueLabelMove,
   } = useElementsOverlap(axis, -12);
-  // ValueLabel -12px margin is required due to how its "inverted water drop"
-  // shape is built with CSS. Might want to allow this to be configurable
-  // in the future.
 
   const onThumbMoved = React.useCallback(() => {
     onThumbMove();
     onValueLabelMove();
   }, [onThumbMove, onValueLabelMove]);
+
+  const debouncedOnThumbMoved = React.useMemo(() => debounce(onThumbMoved, 50), [onThumbMoved]);
 
   useEnhancedEffect(() => {
     onThumbMoved();
@@ -87,6 +91,6 @@ export default function useSliderElementsOverlap(axis: Axis) {
     setValueLabelRef,
     getIsThumbOverlapping,
     getIsValueLabelOverlapping,
-    onThumbMoved,
+    onThumbMoved: debouncedOnThumbMoved,
   };
 }

@@ -1448,9 +1448,14 @@ describe('<Slider />', () => {
         this.skip();
       }
 
-      render(<Slider sx={{ width: 100 }} value={[0, 0]} />);
+      const { getAllByRole } = render(<Slider sx={{ width: 100 }} value={[0, 0]} />);
 
       const [firstThumb, lastThumb] = document.querySelectorAll(`.${classes.thumb}`);
+      const firstThumbInput = getAllByRole('slider')[0];
+      act(() => {
+        firstThumbInput.focus();
+      });
+
       expect(firstThumb).to.have.class(classes.thumbOverlap);
       expect(lastThumb).not.to.have.class(classes.thumbOverlap);
     });
@@ -1478,9 +1483,16 @@ describe('<Slider />', () => {
         this.skip();
       }
 
-      render(<Slider sx={{ width: 100 }} value={[0, 0]} valueLabelDisplay="on" />);
+      const { getAllByRole } = render(
+        <Slider sx={{ width: 100 }} value={[0, 0]} valueLabelDisplay="on" />,
+      );
 
       const [firstValueLabel, lastValueLabel] = document.querySelectorAll(`.${classes.valueLabel}`);
+      const firstThumbInput = getAllByRole('slider')[0];
+      act(() => {
+        firstThumbInput.focus();
+      });
+
       expect(firstValueLabel).to.have.class(classes.valueLabelOverlap);
       expect(lastValueLabel).not.to.have.class(classes.valueLabelOverlap);
     });
