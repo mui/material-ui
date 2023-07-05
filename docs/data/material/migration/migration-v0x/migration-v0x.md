@@ -30,14 +30,14 @@ taking advantage of this knowledge to address long-standing issues. To name some
 
 With yarn:
 
-```sh
+```bash
 yarn add material-ui
 yarn add @material-ui/core
 ```
 
 Or with npm:
 
-```sh
+```bash
 npm install material-ui
 npm install @material-ui/core
 ```

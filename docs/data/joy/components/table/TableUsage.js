@@ -46,7 +46,7 @@ export default function ButtonUsage() {
         {
           propName: 'stripe',
           knob: 'radio',
-          options: ['odd', 'even'],
+          options: ['undefined', 'odd', 'even'],
         },
       ]}
       getCodeBlock={(code) => `<Sheet>

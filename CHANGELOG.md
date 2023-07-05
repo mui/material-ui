@@ -521,7 +521,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
   There is codemod that you can run in your project to do the transformation:
 
-  ```sh
+  ```bash
   npx @mui/codemod v5.0.0/base-remove-component-prop <path>
   ```
 
@@ -620,7 +620,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
   You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/src/v5.0.0/base-remove-unstyled-suffix.js) to help with the migration:
 
-  ```sh
+  ```bash
   npx @mui/codemod v5.0.0/base-remove-unstyled-suffix <path>
   ```
 
@@ -6265,7 +6265,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
   replace `@material-ui/*` prefix with `@mui/*`:
 
-  ```sh
+  ```bash
   @material-ui/system -> @mui/system
   @material-ui/styles -> @mui/styles
   @material-ui/lab -> @mui/lab
@@ -6278,7 +6278,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
   except these 3 packages that are renamed.
 
-  ```sh
+  ```bash
   @material-ui/core => @mui/material        // represents Material Design components.
   @material-ui/icons => @mui/icons-material // represents Material Design icons.
   @material-ui/unstyled => @mui/base        // fully functional components with minimum styles.
@@ -10973,13 +10973,13 @@ Here are some highlights ✨:
 
   Before:
 
-  ```sh
+  ```bash
   theme.spacing(2) => 16
   ```
 
   After:
 
-  ```sh
+  ```bash
   theme.spacing(2) => '16px'
   ```
 
