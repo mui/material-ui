@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -222,6 +223,7 @@ import { ${pageContent.name} } from '${source}';`}
             <br />
           </React.Fragment>
         )}
+        <Divider />
         <span dangerouslySetInnerHTML={{ __html: refHint }} />
         {inheritance && (
           <React.Fragment>
@@ -235,6 +237,7 @@ import { ${pageContent.name} } from '${source}';`}
                   .replace(/{{name}}/, pageContent.name),
               }}
             />
+            <Divider />
           </React.Fragment>
         )}
         {pageContent.themeDefaultProps && (
@@ -247,6 +250,7 @@ import { ${pageContent.name} } from '${source}';`}
                   .replace(/{{defaultPropsLink}}/, defaultPropsLink),
               }}
             />
+            <Divider />
           </React.Fragment>
         )}
         {Object.keys(componentStyles.classes).length ? (
@@ -285,6 +289,8 @@ import { ${pageContent.name} } from '${source}';`}
                 ),
               }}
             />
+
+            <Divider />
           </React.Fragment>
         ) : null}
         {hasClasses ? (
@@ -300,6 +306,7 @@ import { ${pageContent.name} } from '${source}';`}
               componentName={pageContent.name}
               classDescriptions={classDescriptions}
             />
+            <Divider />
           </React.Fragment>
         ) : null}
       </MarkdownElement>
