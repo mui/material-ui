@@ -5,16 +5,9 @@ export interface MenuButtonRootSlotPropsOverrides {}
 export interface MenuButtonProps {
   children?: React.ReactNode;
   /**
-   * The props used for each slot inside the MenuButton.
-   * @default {}
-   */
-  /**
    * Class name applied to the root element.
    */
   className?: string;
-  /**
-   * Label of the button
-   */
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -25,7 +18,14 @@ export interface MenuButtonProps {
    * @default false
    */
   focusableWhenDisabled?: boolean;
+  /**
+   * Label of the button
+   */
   label?: string;
+  /**
+   * The props used for each slot inside the MenuButton.
+   * @default {}
+   */
   slots?: MenuButtonSlots;
   /**
    * The components used for each slot inside the MenuButton.

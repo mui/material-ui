@@ -1,16 +1,38 @@
 import { OverrideProps } from '@mui/types';
-import {
-  MenuButtonProps as BaseMenuButtonProps,
-  MenuButtonOwnerState as BaseMenuButtonOwnerState,
-} from '@mui/base/MenuButton';
-import Button from '../Button';
+import Button, { ButtonProps } from '../Button';
+import { ApplyColorInversion } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type MenuButtonSlot = 'root';
 
-export interface MenuButtonOwnerState extends BaseMenuButtonOwnerState {}
+export interface MenuButtonSlots {
+  /**
+   * The component that renders the root.
+   * @default 'button'
+   */
+  root?: React.ElementType;
+}
+
+export type MenuButtonSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  MenuButtonSlots,
+  {
+    root: SlotProps<'button', {}, MenuButtonOwnerState>;
+  }
+>;
+
+export interface MenuButtonOwnerState extends ApplyColorInversion<MenuButtonProps> {
+  active: boolean;
+  open: boolean;
+}
 
 export interface MenuButtonTypeMap<P = {}, D extends React.ElementType = typeof Button> {
-  props: P & BaseMenuButtonProps;
+  props: P &
+    MenuButtonSlotsAndSlotProps & {
+      color?: ButtonProps['color'];
+      disabled?: boolean;
+      size?: ButtonProps['size'];
+      variant?: ButtonProps['variant'];
+    };
   defaultComponent: D;
 }
 

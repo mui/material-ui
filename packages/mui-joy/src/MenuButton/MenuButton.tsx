@@ -8,10 +8,10 @@ import {
   type MenuButtonOwnerState,
   type MenuButtonTypeMap,
 } from './MenuButtonProps';
-import { getMenuButtonUtilityClass } from './menuButtonClasses';
-import Button from '../Button';
+import menuButtonClasses, { getMenuButtonUtilityClass } from './menuButtonClasses';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
+import { styled } from '../styles';
 
 const useUtilityClasses = (ownerState: MenuButtonOwnerState) => {
   const { active, disabled } = ownerState;
@@ -22,6 +22,71 @@ const useUtilityClasses = (ownerState: MenuButtonOwnerState) => {
 
   return composeClasses(slots, getMenuButtonUtilityClass);
 };
+
+export const MenuButtonRoot = styled('button', {
+  name: 'JoyButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: MenuButtonOwnerState }>(({ theme, ownerState }) => {
+  return [
+    {
+      '--Icon-margin': 'initial', // reset the icon's margin.
+      ...(ownerState.size === 'sm' && {
+        '--Icon-fontSize': '1.25rem',
+        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--Button-gap': '0.375rem',
+        minHeight: 'var(--Button-minHeight, 2rem)',
+        fontSize: theme.vars.fontSize.sm,
+        paddingBlock: '2px',
+        paddingInline: '0.75rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
+        '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--Button-gap': '0.5rem',
+        minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
+        fontSize: theme.vars.fontSize.sm,
+        paddingBlock: '0.25rem', // the padding-block act as a minimum spacing between content and root element
+        paddingInline: '1rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Icon-fontSize': '1.75rem',
+        '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--Button-gap': '0.75rem',
+        minHeight: 'var(--Button-minHeight, 3rem)',
+        fontSize: theme.vars.fontSize.md,
+        paddingBlock: '0.375rem',
+        paddingInline: '1.5rem',
+      }),
+      WebkitTapHighlightColor: 'transparent',
+      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
+      margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
+      border: 'none',
+      backgroundColor: 'transparent',
+      cursor: 'pointer',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'relative',
+      textDecoration: 'none', // prevent user agent underline when used as anchor
+      fontFamily: theme.vars.fontFamily.body,
+      fontWeight: theme.vars.fontWeight.lg,
+      lineHeight: 1,
+      [theme.focus.selector]: theme.focus.default,
+    },
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    {
+      '&:hover': {
+        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      },
+    },
+    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+    {
+      [`&.${menuButtonClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    },
+  ];
+});
 
 /**
  *
@@ -44,11 +109,13 @@ const MenuButton = React.forwardRef(function MenuButton(
 
   const {
     children,
+    color = 'primary',
     component,
-    label,
-    slots = {},
+    disabled = false,
+    size = 'md',
     slotProps = {},
-    focusableWhenDisabled = false,
+    slots = {},
+    variant = 'solid',
     ...other
   } = props;
 
@@ -56,16 +123,19 @@ const MenuButton = React.forwardRef(function MenuButton(
 
   const ownerState: MenuButtonOwnerState = {
     ...props,
-    open,
     active,
-    focusableWhenDisabled,
+    color,
+    disabled,
+    open,
+    size,
+    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
-    elementType: Button,
+    elementType: MenuButtonRoot,
     getSlotProps: getRootProps,
     externalForwardedProps,
     ref: forwardedRef,
