@@ -88,10 +88,9 @@ function Styles() {
       font-size: 0.875rem;
       font-weight: 600;
       box-sizing: border-box;
-      min-height: calc(1.5em + 22px);
       border-radius: 8px;
       padding: 8px 16px;
-      line-height: 1.5;
+      line-height: 1.5rem;
       background: transparent;
       border: 1px solid ${isDarkMode ? cyan[600] : cyan[300]};
       color: ${isDarkMode ? cyan[300] : cyan[500]};
