@@ -35,9 +35,15 @@ export default function UseSnackbar() {
 }
 
 const blue = {
+  50: '#F0F7FF',
   200: '#99CCF3',
+  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
+  600: '#0072E5',
+  700: '#0059B2',
+  800: '#004C99',
+  900: '#003A75',
 };
 
 const grey = {
@@ -69,17 +75,16 @@ const TriggerButton = styled('button')(
   font-size: 0.875rem;
   font-weight: 600;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 6px 12px;
-  line-height: 1.5;
+  border-radius: 8px;
+  padding: 8px 16px;
+  line-height: 1.5rem;
   background: transparent;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
+  border: 1px solid ${theme.palette.mode === 'dark' ? blue[900] : blue[300]};
+  color: ${theme.palette.mode === 'dark' ? blue[200] : blue[700]};
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    border-color: ${theme.palette.mode === 'dark' ? blue[800] : blue[500]};
   }
 
   &:focus-visible {
@@ -104,12 +109,12 @@ const CustomSnackbar = styled('div')(
     border-radius: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: ${theme.palette.mode === 'dark'
-      ? `0 2px 8px rgb(0 0 0 / 0.5)`
-      : `0 2px 8px ${grey[200]}`};
+      ? `0 4px 8px rgb(0 0 0 / 0.7)`
+      : `0 4px 8px rgb(0 0 0 / 0.1)`};
     padding: 0.75rem;
-    color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
+    color: ${theme.palette.mode === 'dark' ? blue[200] : blue[700]};
     font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     animation: ${snackbarInRight} 200ms;
     transition: transform 0.2s ease-out;
   `,

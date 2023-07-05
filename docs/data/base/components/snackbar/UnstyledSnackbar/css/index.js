@@ -88,17 +88,16 @@ function Styles() {
       font-size: 0.875rem;
       font-weight: 600;
       box-sizing: border-box;
-      min-height: calc(1.5em + 22px);
-      border-radius: 12px;
-      padding: 6px 12px;
-      line-height: 1.5;
+      border-radius: 8px;
+      padding: 8px 16px;
+      line-height: 1.5rem;
       background: transparent;
-      border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-      color: ${isDarkMode ? grey[100] : grey[900]};
+      border: 1px solid ${isDarkMode ? cyan[600] : cyan[300]};
+      color: ${isDarkMode ? cyan[300] : cyan[500]};
 
       &:hover {
-        background: ${isDarkMode ? grey[800] : grey[50]};
-        border-color: ${isDarkMode ? grey[600] : grey[300]};
+        background: ${isDarkMode ? grey[900] : grey[50]};
+        border-color: ${isDarkMode ? cyan[500] : cyan[400]};
       }
 
       &:focus-visible {
@@ -121,12 +120,12 @@ function Styles() {
       border-radius: 8px;
       border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
       box-shadow: ${
-        isDarkMode ? `0 2px 8px rgb(0 0 0 / 0.5)` : `0 2px 8px ${grey[200]}`
+        isDarkMode ? `0 4px 8px rgb(0 0 0 / 0.7)` : `0 4px 8px rgb(0 0 0 / 0.1)`
       };
       padding: 0.75rem;
-      color: ${isDarkMode ? grey[50] : grey[900]};
+      color: ${isDarkMode ? cyan[100] : cyan[700]};
       font-family: 'IBM Plex Sans', sans-serif;
-      font-weight: 600;
+      font-weight: 500;
       animation: in-right 200ms;
       transition: transform 0.2s ease-out;
       }
