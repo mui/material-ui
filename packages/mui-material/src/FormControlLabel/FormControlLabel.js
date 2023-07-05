@@ -164,14 +164,16 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       {...other}
     >
       {React.cloneElement(control, controlProps)}
-      <Stack direction="row">
-        {label}
-        {required && (
+      {required ? (
+        <Stack direction="row">
+          {label}
           <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
             &thinsp;{'*'}
           </AsteriskComponent>
-        )}
-      </Stack>
+        </Stack>
+      ) : (
+        label
+      )}
     </FormControlLabelRoot>
   );
 });
