@@ -18,7 +18,7 @@ const pages = [
     title: 'Components',
     icon: standardNavIcons.ToggleOnIcon,
     children: [
-      { pathname: '/base-ui/react-all-components', title: 'All components' },
+      { pathname: '/base-ui/all-components', title: 'All components' },
       {
         pathname: '/base-ui/components/inputs',
         subheader: 'inputs',
