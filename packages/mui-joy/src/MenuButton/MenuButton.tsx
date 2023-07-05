@@ -11,7 +11,7 @@ import {
 import menuButtonClasses, { getMenuButtonUtilityClass } from './menuButtonClasses';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
-import { styled } from '../styles';
+import { styled, useColorInversion } from '../styles';
 
 const useUtilityClasses = (ownerState: MenuButtonOwnerState) => {
   const { active, disabled } = ownerState;
@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: MenuButtonOwnerState) => {
 };
 
 export const MenuButtonRoot = styled('button', {
-  name: 'JoyButton',
+  name: 'JoyMenuButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuButtonOwnerState }>(({ theme, ownerState }) => {
@@ -109,15 +109,20 @@ const MenuButton = React.forwardRef(function MenuButton(
 
   const {
     children,
-    color = 'primary',
+    color: colorProp = 'primary',
     component,
     disabled = false,
-    size = 'md',
+    size: sizeProp = 'md',
     slotProps = {},
     slots = {},
-    variant = 'solid',
+    variant: variantProp = 'solid',
     ...other
   } = props;
+
+  const variant = inProps.variant || variantProp;
+  const size = inProps.size || sizeProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const { getRootProps, open, active } = useMenuButton({ rootRef: forwardedRef });
 

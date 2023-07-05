@@ -3,7 +3,6 @@ import Dropdown from '@mui/base/Dropdown';
 import Menu from '@mui/base/Menu';
 import MenuButton from '@mui/base/MenuButton';
 import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
-import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 export default function UnstyledMenuIntroduction() {
@@ -17,8 +16,8 @@ export default function UnstyledMenuIntroduction() {
     <Dropdown>
       <TriggerButton>My account</TriggerButton>
       <Menu
-        slots={{ root: StyledPopper, listbox: StyledListbox }}
-        slotProps={{ listbox: { id: 'simple-menu' } }}
+        slots={{ root: StyledListbox }}
+        slotProps={{ root: { id: 'simple-menu' } }}
       >
         <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
           Profile
@@ -71,6 +70,7 @@ const StyledListbox = styled('ul')(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  z-index: 1;
   `,
 );
 
@@ -132,7 +132,3 @@ const TriggerButton = styled(MenuButton)(
   }
   `,
 );
-
-const StyledPopper = styled(Popper)`
-  z-index: 1;
-`;

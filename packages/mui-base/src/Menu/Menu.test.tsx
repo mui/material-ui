@@ -38,15 +38,12 @@ describe('<Menu />', () => {
       );
       return wrapper.childAt(0);
     },
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLUListElement,
     muiName: 'MuiMenu',
     slots: {
       root: {
         expectedClassName: menuClasses.root,
         testWithElement: null,
-      },
-      listbox: {
-        expectedClassName: menuClasses.listbox,
       },
     },
     skip: ['reactTestRenderer', 'propsSpread', 'componentProp', 'slotsProp'],

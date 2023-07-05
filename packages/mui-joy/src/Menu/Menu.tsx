@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
+import { unstable_capitalize as capitalize, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import useMenu, { MenuProvider } from '@mui/base/useMenu';
@@ -102,10 +102,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
-  const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
+  const { contextValue, getRootProps, dispatch, open, triggerElement } = useMenu({
     onItemsChange,
     id,
-    listboxRef: ref,
+    rootRef: ref,
   });
 
   React.useImperativeHandle(
@@ -147,7 +147,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
 
   const rootProps = useSlotProps({
     elementType: MenuRoot,
-    getSlotProps: getListboxProps,
+    getSlotProps: getRootProps,
     externalForwardedProps,
     externalSlotProps: {},
     ownerState: ownerState as MenuOwnerState & ListOwnerState,

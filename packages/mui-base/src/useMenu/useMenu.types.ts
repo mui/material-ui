@@ -16,7 +16,7 @@ export interface UseMenuParameters {
   /**
    * Ref of the menu listbox.
    */
-  listboxRef?: React.Ref<Element>;
+  rootRef?: React.Ref<Element>;
 }
 
 export interface UseMenuReturnValue {
@@ -30,13 +30,11 @@ export interface UseMenuReturnValue {
    */
   dispatch: (action: ListAction<string>) => void;
   /**
-   * Resolver for the listbox component's props.
-   * @param otherHandlers event handlers for the listbox component
-   * @returns props that should be spread on the listbox component
+   * Resolver for the root slot's props.
+   * @param otherHandlers event handlers for the root component
+   * @returns props that should be spread on the root component
    */
-  getListboxProps: <TOther extends EventHandlers>(
-    otherHandlers?: TOther,
-  ) => UseMenuListboxSlotProps;
+  getRootProps: <TOther extends EventHandlers>(otherHandlers?: TOther) => UseMenuRootSlotProps;
   /**
    * The highlighted option in the menu listbox.
    */
@@ -44,7 +42,7 @@ export interface UseMenuReturnValue {
   /**
    * The ref to the listbox DOM node.
    */
-  listboxRef: React.RefCallback<Element> | null;
+  rootRef: React.RefCallback<Element> | null;
   /**
    * Items in the menu listbox.
    */
@@ -59,13 +57,13 @@ export interface UseMenuReturnValue {
   triggerElement: HTMLElement | null;
 }
 
-interface UseMenuListboxSlotEventHandlers {
+interface UseMenuRootSlotEventHandlers {
   onBlur: React.FocusEventHandler;
   onKeyDown: React.KeyboardEventHandler;
 }
 
-export type UseMenuListboxSlotProps<TOther = {}> = UseListRootSlotProps<
-  Omit<TOther, keyof UseMenuListboxSlotEventHandlers> & UseMenuListboxSlotEventHandlers
+export type UseMenuRootSlotProps<TOther = {}> = UseListRootSlotProps<
+  Omit<TOther, keyof UseMenuRootSlotEventHandlers> & UseMenuRootSlotEventHandlers
 > & {
   ref: React.RefCallback<Element> | null;
   role: React.AriaRole;

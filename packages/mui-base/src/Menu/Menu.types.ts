@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
-import Popper, { PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
-import { UseMenuListboxSlotProps } from '../useMenu';
+import { UseMenuRootSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
+import Popper from '../Popper';
 
 export interface MenuRootSlotPropsOverrides {}
 export interface MenuListboxSlotPropsOverrides {}
@@ -35,8 +35,8 @@ export interface MenuOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<typeof Popper, MenuRootSlotPropsOverrides, MenuOwnerState>;
-    listbox?: SlotComponentProps<'ul', MenuListboxSlotPropsOverrides, MenuOwnerState>;
+    root?: SlotComponentProps<'ul', MenuRootSlotPropsOverrides, MenuOwnerState> &
+      Partial<React.ComponentPropsWithoutRef<typeof Popper>>;
   };
   /**
    * The components used for each slot inside the Menu.
@@ -78,16 +78,13 @@ export type MenuOwnerState = Simplify<
 >;
 
 export type MenuRootSlotProps = {
-  anchorEl: PopperProps['anchorEl'];
   children?: React.ReactNode;
   className?: string;
-  keepMounted: PopperProps['keepMounted'];
-  open: boolean;
   ownerState: MenuOwnerState;
   ref: React.Ref<any>;
 };
 
-export type MenuListboxSlotProps = UseMenuListboxSlotProps & {
+export type MenuListboxSlotProps = UseMenuRootSlotProps & {
   className: string | undefined;
   ownerState: MenuOwnerState;
 };
