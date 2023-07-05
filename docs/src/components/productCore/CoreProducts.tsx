@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 // import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Link from 'docs/src/modules/components/Link';
-import { alpha } from '@mui/material/styles';
 
 // Note: All of the commented code will be put back in once logos for each Core product are done.
 
@@ -38,7 +38,7 @@ const content = [
   },
 ];
 
-export default function BaseUISummary() {
+export default function CoreProducts() {
   return (
     <Container sx={{ mb: 4 }}>
       <Grid container spacing={2}>
