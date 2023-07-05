@@ -74,6 +74,13 @@ Use the `disabled` prop to disable interaction and focus:
 
 {{"demo": "LinkDisabled.js"}}
 
+### Overlay prop
+
+Use the `overlay` prop to make an entire component clickable as a link.
+The demo below shows how to use that with the Card component, ensuring proper accessibility.
+
+{{"demo": "LinkCard.js"}}
+
 ### As a button
 
 To use the Link component as a button, assign the `button` value to the `component` prop.
@@ -99,12 +106,6 @@ The Link component can be used as a child of the [Typography](/joy-ui/react-typo
 In that case, the Link will inherit the typographic level scale from its Typography parent, unless a value for the `level` prop is specified.
 
 {{"demo": "LinkAndTypography.js"}}
-
-### With a card
-
-Using the Link component as a card title, with the `overlay` prop, ensures proper accessibility when the whole card is clickable.
-
-{{"demo": "LinkCard.js"}}
 
 ## Third-party routing library
 
