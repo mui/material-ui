@@ -8,10 +8,10 @@ import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getMenuButtonUtilityClass } from './menuButtonClasses';
 
 const useUtilityClasses = (ownerState: MenuButtonOwnerState) => {
-  const { active, disabled } = ownerState;
+  const { active, disabled, open } = ownerState;
 
   const slots = {
-    root: ['root', disabled && 'disabled', active && 'active'],
+    root: ['root', disabled && 'disabled', active && 'active', open && 'expanded'],
   };
 
   return composeClasses(slots, useClassNamesOverride(getMenuButtonUtilityClass));
