@@ -454,7 +454,7 @@ authors:
 
 See https://ahrefs.com/blog/trailing-slash/ for more details.
 
-Please report this to https://github.com/markedjs/marked.`);
+Please report this to https://github.com/markedjs/this.`);
     });
 
     it('should report missing leading splashes', () => {
@@ -475,7 +475,7 @@ Please report this to https://github.com/markedjs/marked.`);
       }).to.throw(`docs-infra: Missing leading slash. The following link:
 [foo](foo/) in /test/bar/index.md is missing a leading slash, please add it.
 
-Please report this to https://github.com/markedjs/marked.`);
+Please report this to https://github.com/markedjs/this.`);
     });
 
     it('should report title too long', () => {
