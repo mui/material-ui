@@ -427,6 +427,8 @@ const Root = styled('div')(
       },
       '& .MuiCode-copyKeypress': {
         display: 'none',
+        position: 'absolute',
+        right: 26,
       },
       '&[data-copied]': {
         // style of the button when it is in copied state.
