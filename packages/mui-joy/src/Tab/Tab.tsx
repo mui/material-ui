@@ -41,15 +41,15 @@ const TabRoot = styled(StyledListItemButton, {
     flexGrow: ownerState.row ? 1 : 0,
     justifyContent: ownerState.row ? 'center' : 'initial',
     '--unstable_ListItemDecorator-alignItems': 'center',
-    '--unstable_offset': 'calc(-1 * var(--variant-borderWidth, 0px))',
+    '--unstable_offset': 'min(calc(-1 * var(--variant-borderWidth, 0px)), -1px)',
     // to prevent the Tab's background from covering TabList's underline when hovered.
     ...(ownerState.variant !== 'outlined' && {
       '&::before': {
         content: '""',
         display: 'block',
         position: 'absolute',
-        width: ownerState.row ? '100%' : 1,
-        height: !ownerState.row ? '100%' : 1,
+        width: ownerState.row ? 'calc(100% + 2px)' : 1, // +2px to account for the border placeholder in ListItemButton
+        height: !ownerState.row ? 'calc(100% + 2px)' : 1, // +2px to account for the border placeholder in ListItemButton
         bottom: 'var(--unstable_TabList-underlineBottom)',
         top: 'var(--unstable_TabList-underlineTop)',
         left: 'var(--unstable_TabList-underlineLeft)',
