@@ -378,15 +378,11 @@ const Root = styled('div')(
       position: 'relative',
       // Font size reset to fix a bug with Safari 16.0 when letterSpacing is set
       fontSize: 10,
-      '&:hover': {
-        '& .MuiCode-copy': {
-          display: 'inline-flex',
-          flexDirection: 'row-reverse',
-          alignItems: 'center',
-        },
-      },
     },
     '& .MuiCode-copy': {
+      display: 'inline-flex',
+      flexDirection: 'row-reverse',
+      alignItems: 'center',
       width: 26,
       height: 26,
       cursor: 'pointer',
