@@ -3,7 +3,6 @@ import Menu from '@mui/base/Menu';
 import MenuButton from '@mui/base/MenuButton';
 import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
 import Dropdown from '@mui/base/Dropdown';
-import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 const blue = {
@@ -43,6 +42,7 @@ const StyledListbox = styled('ul')(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   box-shadow: 0 1px 3px rgba(31,35,40,0.12), 0 8px 24px rgba(66,74,83,0.12);
+  z-index: 1
   `,
 );
 
@@ -98,10 +98,6 @@ const StyledMenuButton = styled(MenuButton)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
-  z-index: 1;
-`;
-
 const Page = styled('div')(`
   max-width: 800px;
   min-height: calc(100vh - 40px);
@@ -140,8 +136,8 @@ export default function UnstyledMenuIntroduction() {
       <Dropdown open={isOpen} onOpenChange={handleOpenChange}>
         <StyledMenuButton>Create new...</StyledMenuButton>
         <Menu
-          slots={{ root: StyledPopper, listbox: StyledListbox }}
-          slotProps={{ root: { placement: 'bottom-start' }, listbox: { id: 'simple-menu' } }}
+          slots={{ root: StyledListbox }}
+          slotProps={{ root: { placement: 'bottom-start', id: 'simple-menu' } }}
         >
           <StyledMenuItem onClick={createHandleMenuClick('New repository')}>
             New repository
