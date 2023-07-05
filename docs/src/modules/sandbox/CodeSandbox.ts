@@ -44,7 +44,7 @@ const createReactApp = (demoData: DemoData) => {
     [`index.${ext}`]: {
       content: CRA.getRootIndex(demoData),
     },
-    [`demo.${ext}`]: {
+    [`Demo.${ext}`]: {
       content: demoData.raw,
     },
     ...(demoData.codeVariant === 'TS' && {

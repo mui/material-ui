@@ -12,7 +12,7 @@ const createReactApp = (demoData: DemoData) => {
   const files: Record<string, string> = {
     'index.html': CRA.getHtml(demoData),
     [`index.${ext}`]: CRA.getRootIndex(demoData),
-    [`demo.${ext}`]: demoData.raw,
+    [`Demo.${ext}`]: demoData.raw,
     ...(demoData.codeVariant === 'TS' && {
       'tsconfig.json': CRA.getTsconfig(),
     }),

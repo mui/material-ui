@@ -55,7 +55,7 @@ export function getRootIndex(demoData: DemoData) {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
-import Demo from './demo';
+import Demo from './Demo';
 
 ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   <React.StrictMode>
@@ -70,7 +70,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   if (demoData.productId === 'base-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import Demo from './demo';
+import Demo from './Demo';
 
 ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   <React.StrictMode>
@@ -81,7 +81,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
-import Demo from './demo';
+import Demo from './Demo';
 
 ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   <React.StrictMode>
