@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import {
   elementTypeAcceptingRef,
   refType,
@@ -534,7 +533,7 @@ const Button = React.forwardRef(function Button<
       as: ComponentProp,
     },
     ownerState,
-    className: clsx(classes.root, className),
+    className: [classes.root, className],
   });
 
   const startIcon = startIconProp && (
