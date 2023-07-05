@@ -8,7 +8,7 @@ import {
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
 import useButton from '@mui/base/useButton';
-import { EventHandlers } from '@mui/base/utils';
+import { EventHandlers, useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
 import TouchRipple from './TouchRipple';
@@ -431,13 +431,9 @@ const Button = React.forwardRef(function Button<
     fullWidth = false,
     LinkComponent = 'a',
     onBlur,
-    onClick,
     onContextMenu,
     onDragLeave,
-    onFocus,
     onFocusVisible,
-    onKeyDown,
-    onKeyUp,
     onMouseDown,
     onMouseLeave,
     onMouseUp,
@@ -525,6 +521,22 @@ const Button = React.forwardRef(function Button<
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootProps = useSlotProps({
+    elementType: ButtonRoot,
+    getSlotProps: (otherHandlers: EventHandlers) =>
+      getRootProps({
+        ...otherHandlers,
+        ...getRippleHandlers(props),
+      }),
+    externalForwardedProps: other,
+    externalSlotProps: {},
+    additionalProps: {
+      as: ComponentProp,
+    },
+    ownerState,
+    className: clsx(classes.root, className),
+  });
+
   const startIcon = startIconProp && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
       {startIconProp}
@@ -538,19 +550,7 @@ const Button = React.forwardRef(function Button<
   );
 
   return (
-    <ButtonRoot
-      as={ComponentProp}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...getRootProps({
-        onClick,
-        onFocus,
-        onKeyDown,
-        onKeyUp,
-        ...(getRippleHandlers(props) as unknown as EventHandlers),
-      })}
-      {...other}
-    >
+    <ButtonRoot {...rootProps}>
       {startIcon}
       {children}
       {endIcon}
