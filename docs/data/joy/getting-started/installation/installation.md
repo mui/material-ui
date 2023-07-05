@@ -62,6 +62,6 @@ To install the Inter font in your project using the Google Web Fonts CDN, add th
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inter:wght@300;400;500;600;800&display=swap"
+  href="https://fonts.googleapis.com/css?family=Inter:wght@300;400;500;600;700&display=swap"
 />
 ```

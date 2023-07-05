@@ -309,7 +309,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     sm: 300, // regular
     md: 500, // medium
     lg: 600, // semi-bold
-    xl: 800, // extra-bold
+    xl: 700, // bold
     ...scalesInput.fontWeight,
   };
 
@@ -430,6 +430,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
         fontSize: getCssVar('fontSize-xl4', fontSize.xl4),
         lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
+        letterSpacing: '-0.025em',
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
 
@@ -438,6 +439,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
         fontSize: getCssVar('fontSize-xl3', fontSize.xl3),
         lineHeight: getCssVar('lineHeight-xs', lineHeight.xs.toString()),
+        letterSpacing: '-0.025em',
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
 
@@ -446,6 +448,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
         fontSize: getCssVar('fontSize-xl2', fontSize.xl2),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
+        letterSpacing: '-0.025em',
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
 
@@ -454,6 +457,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
         fontSize: getCssVar('fontSize-xl', fontSize.xl),
         lineHeight: getCssVar('lineHeight-lg', lineHeight.lg.toString()),
+        letterSpacing: '-0.025em',
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
 
