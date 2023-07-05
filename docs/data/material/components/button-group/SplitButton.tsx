@@ -21,7 +21,7 @@ export default function SplitButton() {
   };
 
   const handleMenuItemClick = (
-    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
+    event: React.MouseEvent<HTMLLIElement>,
     index: number,
   ) => {
     setSelectedIndex(index);
