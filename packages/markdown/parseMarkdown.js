@@ -417,7 +417,7 @@ function resolveComponentApiUrl(product, componentPkg, component) {
   if (!product) {
     return `/api/${kebabCase(component)}/`;
   }
-  if (product === 'date-pickers') {
+  if (product === 'x-date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
   }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
