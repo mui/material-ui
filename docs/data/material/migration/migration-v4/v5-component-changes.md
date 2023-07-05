@@ -1615,7 +1615,8 @@ The `input` key is applied on another element.
 Change the default `indicatorColor` and `textColor` prop values to "primary".
 
 This is done to match the most common use cases with Material Design.
-Here is how to keep previouse colors.
+
+If you'd prefer to keep the v4 color styles, use `"secondary"` and `"inherit"`, respectively, as shown below:
 
 ```diff
 -<Tabs />
