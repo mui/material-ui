@@ -39,7 +39,7 @@ export default function MultipleInteractionCard() {
         </IconButton>
       </CardOverflow>
       <CardContent>
-        <Typography level="h2" fontSize="md">
+        <Typography level="title-md">
           <Link href="#multiple-actions" overlay underline="none">
             Yosemite National Park
           </Link>

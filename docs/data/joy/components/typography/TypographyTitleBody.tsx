@@ -108,7 +108,7 @@ export default function TypographyTitleBody() {
         </SvgIcon>
         <div>
           <Typography level="title-md">
-            <i>title-lg</i>: Title of the component
+            <i>title-md</i>: Title of the component
           </Typography>
           <Typography level="body-md">
             <i>body-md</i>: This is the description of the component that contain
@@ -138,14 +138,14 @@ export default function TypographyTitleBody() {
         </SvgIcon>
         <div>
           <Typography level="title-sm">
-            <i>title-lg</i>: Title of the component
+            <i>title-sm</i>: Title of the component
           </Typography>
           <Typography level="body-sm">
-            <i>body-md</i>: This is the description of the component that contain
+            <i>body-sm</i>: This is the description of the component that contain
             some information of it.
           </Typography>
           <Typography level="body-xs">
-            <i>body-sm</i>: Metadata, e.g. a date.
+            <i>body-xs</i>: Metadata, e.g. a date.
           </Typography>
         </div>
       </Stack>

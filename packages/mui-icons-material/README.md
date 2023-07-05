@@ -8,7 +8,7 @@ Install the package in your project directory with:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 // with npm
 npm install @mui/icons-material
 
@@ -22,7 +22,7 @@ These components use the Material UI's [SvgIcon](https://mui.com/material-ui/api
 
 If you are not already using Material UI in your project, you can add it with:
 
-```sh
+```bash
 // with npm
 npm install @mui/material
 

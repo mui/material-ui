@@ -47,9 +47,7 @@ export default function FAQCard() {
           />
         </AspectRatio>
         <CardContent>
-          <Typography level="h2" fontSize="xl">
-            Need Some Help?
-          </Typography>
+          <Typography level="title-lg">Need Some Help?</Typography>
           <Typography fontSize="sm" sx={{ mt: 0.5 }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
             tempor.

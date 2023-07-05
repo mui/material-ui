@@ -75,7 +75,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     paddingInlineEnd:
       'calc(var(--ListItem-paddingRight) + var(--ListItem-endActionWidth, var(--unstable_endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
     minBlockSize: 'var(--ListItem-minHeight)',
-    border: 'none',
+    border: '1px solid transparent', // use `transparent` as a placeholder to prevent the button from jumping when switching to `outlined` variant
     borderRadius: 'var(--ListItem-radius)',
     flexGrow: ownerState.row ? 0 : 1,
     flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.

@@ -147,24 +147,13 @@ export const ButtonRoot = styled('button', {
     },
     {
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-      ...(ownerState.variant === 'solid' &&
-        ownerState.color === 'neutral' && {
-          backgroundColor: theme.vars.palette?.neutral?.[800],
-          [theme.getColorSchemeSelector('dark')]: {
-            backgroundColor: theme.vars.palette?.neutral?.[500],
-          },
-        }),
-    },
-    {
       '&:hover': {
         '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
       },
-    },
-    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
-    {
-      [`&.${buttonClasses.disabled}`]:
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      '&:disabled': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       ...(ownerState.loadingPosition === 'center' && {
+        // this has to come after the variant styles to take effect.
         [`&.${buttonClasses.loading}`]: {
           color: 'transparent',
         },

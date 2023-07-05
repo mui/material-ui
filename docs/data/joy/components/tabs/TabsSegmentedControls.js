@@ -10,10 +10,11 @@ export default function TabsSegmentedControls() {
         disableUnderline
         sx={{
           p: 0.5,
+          gap: 0.5,
           borderRadius: 'xl',
           bgcolor: 'background.level1',
           [`& .${tabClasses.root}[aria-selected="true"]`]: {
-            boxShadow: 'md',
+            boxShadow: 'sm',
             bgcolor: 'background.surface',
           },
         }}

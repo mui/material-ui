@@ -27,13 +27,16 @@ export default function BioCard() {
           size="sm"
           variant="soft"
           color="primary"
-          sx={{ mt: -1, border: '3px solid', borderColor: 'background.surface' }}
+          sx={{
+            mt: -1,
+            mb: 1,
+            border: '3px solid',
+            borderColor: 'background.surface',
+          }}
         >
           PRO
         </Chip>
-        <Typography fontSize="lg" fontWeight="lg" sx={{ mt: 1, mb: 0.5 }}>
-          Josephine Blanton
-        </Typography>
+        <Typography level="title-lg">Josephine Blanton</Typography>
         <Typography level="body-sm" sx={{ maxWidth: '24ch' }}>
           Hello, this is my bio and I am a PRO member of MUI. I am a developer and I
           love to code.

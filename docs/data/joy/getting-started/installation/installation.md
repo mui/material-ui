@@ -6,13 +6,13 @@ Run one of the following commands to add Joy UI to your project:
 
 ## npm
 
-```sh
+```bash
 npm install @mui/joy @emotion/react @emotion/styled
 ```
 
 ## yarn
 
-```sh
+```bash
 yarn add @mui/joy @emotion/react @emotion/styled
 ```
 
@@ -37,13 +37,13 @@ You may add it to your project with npm or yarn via [Fontsource](https://fontsou
 
 ### npm
 
-```sh
+```bash
 npm install @fontsource/inter
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @fontsource/inter
 ```
 
@@ -58,8 +58,10 @@ import '@fontsource/inter';
 To install the Inter font in your project using the Google Web Fonts CDN, add the following code snippet inside your project's `<head />` tag:
 
 ```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inter&display=swap"
+  href="https://fonts.googleapis.com/css?family=Inter:wght@300;400;500;600;700&display=swap"
 />
 ```
