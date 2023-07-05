@@ -22,7 +22,6 @@ export default function LinkUsage() {
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'plain',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
