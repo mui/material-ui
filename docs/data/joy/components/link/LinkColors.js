@@ -20,7 +20,7 @@ export default function LinkColors() {
         sx={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-          gap: 1,
+          gap: 2,
         }}
       >
         <Link href="#colors" variant={variant} color="primary">
