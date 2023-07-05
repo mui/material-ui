@@ -34,6 +34,10 @@ const PROJECTS = [
     name: 'styled-engine',
     rootPath: path.join(process.cwd(), 'packages/mui-styled-engine'),
   },
+  {
+    name: 'utils',
+    rootPath: path.join(process.cwd(), 'packages/mui-utils'),
+  },
 ];
 
 async function processFile(component: { filename: string }, lineToPrepend = `'use client';${EOL}`) {
