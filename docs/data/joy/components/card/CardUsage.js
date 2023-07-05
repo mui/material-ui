@@ -1,6 +1,5 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
-import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
@@ -33,7 +32,7 @@ export default function CardUsage() {
           propName: 'orientation',
           knob: 'radio',
           defaultValue: 'vertical',
-          options: ['horizontal', 'vertical'],
+          options: ['vertical', 'horizontal'],
         },
         { propName: 'invertedColors', knob: 'switch' },
       ]}
@@ -42,10 +41,10 @@ export default function CardUsage() {
           {...props}
           sx={{
             m: 1,
-            mb: 4
+            mb: 4,
           }}
         >
-          <AspectRatio ratio="1" sx={{ width: 160 }}>
+          <AspectRatio ratio="16/9" sx={{ width: 160 }}>
             <img
               src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
               srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
@@ -54,10 +53,12 @@ export default function CardUsage() {
             />
           </AspectRatio>
           <CardContent>
-            <Typography level="h4">Yosemite</Typography>
+            <Typography fontWeight="lg" textColor="inherit">
+              Yosemite
+            </Typography>
             <Typography level="body2">April 24 to May 02, 2021</Typography>
             <CardActions>
-              <Button>Explore</Button>
+              <Button size="sm">Explore</Button>
             </CardActions>
           </CardContent>
         </Card>
