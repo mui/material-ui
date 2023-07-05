@@ -9,7 +9,7 @@ export default function SwitchUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           options: ['plain', 'outlined', 'soft', 'solid'],
           defaultValue: 'solid',
         },
