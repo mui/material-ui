@@ -29,7 +29,7 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            You have created a priority support request ⏰. Please validate your support key using the link below:
+            You have created a support request under the paid ["Priority plan"](https://mui.com/legal/technical-support-sla/#priority-plan) ⏰. Please validate your support key using the link below:
 
             https://tools-public.mui.com/prod/pages/jyhs86t?repo=mui-x&issueId=${{ github.event.issue.number }}
 
