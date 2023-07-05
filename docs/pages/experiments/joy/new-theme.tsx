@@ -165,6 +165,7 @@ const newTheme = extendTheme({
         }),
       },
     },
+    JoySheet: {},
   },
 });
 

@@ -41,6 +41,10 @@ const AUTHORS = {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
   },
+  'files-new-theme': {
+    name: 'MUI',
+    link: 'https://twitter.com/MUI_hq',
+  },
   email: {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
