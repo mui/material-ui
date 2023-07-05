@@ -41,8 +41,7 @@ async function processFile(component: { filename: string }, lineToPrepend = `'us
 
   const contents = await fse.readFile(filename, 'utf8');
 
-  const truncatedContents = contents.split(EOL).slice(1).join(EOL);
-
+  const truncatedContents = contents.split(/\r?\n/).slice(1).join('\n');
   const newContents = `${lineToPrepend}${truncatedContents}`;
 
   await fse.writeFile(filename, newContents);
