@@ -11,7 +11,7 @@ const createReactApp = (demo: {
   raw: string;
   codeVariant: CodeVariant;
   githubLocation: string;
-  product?: Product;
+  productId?: Product;
   codeStyling?: CodeStyling;
 }) => {
   const ext = getFileExtension(demo.codeVariant);
@@ -19,7 +19,7 @@ const createReactApp = (demo: {
 
   const files: Record<string, string> = {
     'index.html': CRA.getHtml(demo),
-    [`index.${ext}`]: CRA.getRootIndex(demo.product),
+    [`index.${ext}`]: CRA.getRootIndex(demo.productId),
     [`demo.${ext}`]: demo.raw,
     ...(demo.codeVariant === 'TS' && {
       'tsconfig.json': CRA.getTsconfig(),

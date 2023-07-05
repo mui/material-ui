@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import Slider, { sliderClasses } from '@mui/base/Slider';
 
-export default function UnstyledSlider() {
+export default function UnstyledSliderIntroduction() {
   return (
     <Box sx={{ width: 320 }}>
       <StyledSlider defaultValue={50} />

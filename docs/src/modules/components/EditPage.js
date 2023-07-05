@@ -10,7 +10,7 @@ export default function EditPage(props) {
   const { sourceLocation } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
-  const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
+  const CROWDIN_ROOT_URL = 'https://crowdin.com/project/material-ui-docs/';
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
   const crowdInPath = sourceLocation.substring(0, sourceLocation.lastIndexOf('/'));
 
@@ -19,7 +19,7 @@ export default function EditPage(props) {
       component="a"
       href={
         userLanguage === 'en'
-          ? `${process.env.SOURCE_CODE_ROOT_URL}${sourceLocation}`
+          ? `${process.env.SOURCE_CODE_REPO}/edit/${process.env.SOURCE_GITHUB_BRANCH}${sourceLocation}`
           : `${CROWDIN_ROOT_URL}${crowdInLocale}#/${process.env.SOURCE_CODE_ROOT_URL.replace(
               'https://github.com/mui/',
               '',

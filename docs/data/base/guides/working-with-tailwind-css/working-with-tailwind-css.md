@@ -31,7 +31,7 @@ We'll use [`create-react-app` with typescript](https://create-react-app.dev/docs
 After you have created the project, follow the instructions given on the [Tailwind CSS installation page](https://tailwindcss.com/docs/guides/create-react-app) in order to configure `tailwind`.
 Next, install `@mui/base` in the project:
 
-```sh
+```bash
 npm install @mui/base
 ```
 
@@ -318,7 +318,7 @@ Let's add the `Slider` into the `Player` component now:
 
 You should see this:
 
-<img src="/static/base/with-tailwind-css/player-slider.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" style="margin-top: 8px; margin-bottom: 8px;" width="1490" height="760" />
+<img src="/static/base-ui/with-tailwind-css/player-slider.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" style="margin-top: 8px; margin-bottom: 8px;" width="1490" height="760" />
 
 ### Customize the slider thumb
 
@@ -389,7 +389,7 @@ We'll create a custom Button component that uses the `focusVisible` state from t
 
 This is what it'll look like:
 
-<img src="/static/base/with-tailwind-css/player-buttons.png" alt="Screenshot of a button used as example in the guide, designed by the Tailwind Labs team" style="margin-top: 8px; margin-bottom: 8px;" width="1490" height="760" />
+<img src="/static/base-ui/with-tailwind-css/player-buttons.png" alt="Screenshot of a button used as example in the guide, designed by the Tailwind Labs team" style="margin-top: 8px; margin-bottom: 8px;" width="1490" height="760" />
 
 Create a `Button.tsx` file and copy the following code:
 

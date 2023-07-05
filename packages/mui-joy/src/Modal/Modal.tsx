@@ -50,6 +50,11 @@ const ModalRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalOwnerState }>(({ ownerState, theme }) => ({
+  '--unstable_popup-zIndex': `calc(${theme.vars.zIndex.modal} + 1)`,
+  '& ~ [role="listbox"]': {
+    // target all the listbox (Autocomplete, Menu, Select, etc.) that uses portal
+    '--unstable_popup-zIndex': `calc(${theme.vars.zIndex.modal} + 1)`,
+  },
   position: 'fixed',
   zIndex: theme.vars.zIndex.modal,
   right: 0,

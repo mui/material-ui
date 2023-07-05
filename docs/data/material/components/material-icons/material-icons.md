@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 components: Icon, SvgIcon
 materialDesign: https://m2.material.io/design/iconography/system-icons.html
 packageName: '@mui/icons-material'
@@ -18,7 +18,7 @@ includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?ico
 It depends on `@mui/material`, which requires Emotion packages.
 Use the following command to install it:
 
-```sh
+```bash
 npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 

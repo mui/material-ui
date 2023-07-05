@@ -10,26 +10,26 @@
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-```sh
+```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/base-vite-tailwind
 cd base-vite-tailwind
 ```
 
 Install dependencies:
 
-```sh
+```bash
 yarn
 ```
 
 Start the dev server:
 
-```sh
+```bash
 yarn start
 ```
 
 [Build](https://vitejs.dev/guide/build.html) a production bundle:
 
-```sh
+```bash
 yarn build
 ```
 
