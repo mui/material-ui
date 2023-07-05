@@ -1,14 +1,14 @@
 {
   "parameters": {
     "id": { "type": { "name": "string", "description": "string" } },
-    "listboxRef": {
-      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
-    },
     "onItemsChange": {
       "type": {
         "name": "(items: string[]) =&gt; void",
         "description": "(items: string[]) =&gt; void"
       }
+    },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     }
   },
   "returnValue": {
@@ -23,22 +23,15 @@
       },
       "required": true
     },
-    "getListboxProps": {
+    "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers&gt;(otherHandlers?: TOther) =&gt; UseMenuListboxSlotProps",
-        "description": "&lt;TOther extends EventHandlers&gt;(otherHandlers?: TOther) =&gt; UseMenuListboxSlotProps"
+        "name": "&lt;TOther extends EventHandlers&gt;(otherHandlers?: TOther) =&gt; UseMenuRootSlotProps",
+        "description": "&lt;TOther extends EventHandlers&gt;(otherHandlers?: TOther) =&gt; UseMenuRootSlotProps"
       },
       "required": true
     },
     "highlightedValue": {
       "type": { "name": "string | null", "description": "string | null" },
-      "required": true
-    },
-    "listboxRef": {
-      "type": {
-        "name": "React.RefCallback&lt;Element&gt; | null",
-        "description": "React.RefCallback&lt;Element&gt; | null"
-      },
       "required": true
     },
     "menuItems": {
@@ -49,6 +42,13 @@
       "required": true
     },
     "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
     "triggerElement": {
       "type": { "name": "HTMLElement | null", "description": "HTMLElement | null" },
       "required": true
