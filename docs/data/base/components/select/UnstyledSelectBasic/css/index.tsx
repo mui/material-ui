@@ -71,10 +71,9 @@ function Styles() {
         font-family: IBM Plex Sans, sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
-        min-height: calc(1.5em + 22px);
         min-width: 320px;
-        padding: 12px;
-        border-radius: 12px;
+        padding: 8px 12px;
+        border-radius: 8px;
         text-align: left;
         line-height: 1.5;
         background: ${isDarkMode ? grey[900] : '#fff'};
