@@ -405,7 +405,7 @@ function createRender(context) {
 const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
 
 /**
- * @param {string} product
+ * @param {string} productId
  * @example 'material'
  * @param {string} componentPkg
  * @example 'mui-base'
@@ -413,17 +413,17 @@ const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'Tex
  * @example 'Button'
  * @returns {string}
  */
-function resolveComponentApiUrl(product, componentPkg, component) {
-  if (!product) {
+function resolveComponentApiUrl(productId, componentPkg, component) {
+  if (!productId) {
     return `/api/${kebabCase(component)}/`;
   }
-  if (product === 'x-date-pickers') {
+  if (productId === 'x-date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
   }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
   }
-  return `/${product}/api/${kebabCase(component)}/`;
+  return `/${productId}/api/${kebabCase(component)}/`;
 }
 
 /**
