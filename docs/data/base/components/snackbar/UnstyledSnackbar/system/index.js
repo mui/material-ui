@@ -77,14 +77,15 @@ const TriggerButton = styled('button')(
   box-sizing: border-box;
   border-radius: 8px;
   padding: 8px 16px;
-  line-height: 1.5rem;
+  line-height: 1.5;
   background: transparent;
-  border: 1px solid ${theme.palette.mode === 'dark' ? blue[900] : blue[300]};
-  color: ${theme.palette.mode === 'dark' ? blue[200] : blue[700]};
+  cursor: pointer;
+  border: 1px solid ${theme.palette.mode === 'dark' ? blue[300] : blue[600]};
+  color: ${theme.palette.mode === 'dark' ? blue[300] : blue[600]};
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-    border-color: ${theme.palette.mode === 'dark' ? blue[800] : blue[500]};
+    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
+    border-color: ${theme.palette.mode === 'dark' ? blue[200] : blue[400]};
   }
 
   &:focus-visible {

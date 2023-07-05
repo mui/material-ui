@@ -90,14 +90,15 @@ function Styles() {
       box-sizing: border-box;
       border-radius: 8px;
       padding: 8px 16px;
-      line-height: 1.5rem;
+      line-height: 1.5;
       background: transparent;
-      border: 1px solid ${isDarkMode ? cyan[600] : cyan[300]};
-      color: ${isDarkMode ? cyan[300] : cyan[500]};
+      cursor: pointer;
+      border: 1px solid ${isDarkMode ? cyan[300] : cyan[400]};
+      color: ${isDarkMode ? cyan[300] : cyan[400]};
 
       &:hover {
-        background: ${isDarkMode ? grey[900] : grey[50]};
-        border-color: ${isDarkMode ? cyan[500] : cyan[400]};
+        background: ${isDarkMode ? grey[900] : grey[100]};
+        border-color: ${isDarkMode ? cyan[200] : cyan[400]};
       }
 
       &:focus-visible {
