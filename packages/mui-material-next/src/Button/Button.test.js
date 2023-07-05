@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
 import { describeConformance, createRenderer, fireEvent, act } from 'test/utils';
 import Button, { buttonClasses as classes } from '@mui/material-next/Button';
+import * as useTouchRipple from '@mui/material-next/Button/useTouchRipple';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import { camelCase } from 'lodash';
 
@@ -183,7 +184,7 @@ describe('<Button />', () => {
   });
 
   describe('Event handlers', () => {
-    const events = ['click', 'focus'];
+    const events = ['click', 'focus', 'mouse-down', 'mouse-up'];
     const withFocusEvents = ['key-down', 'key-up'];
 
     const eventHandlers = [
@@ -214,6 +215,25 @@ describe('<Button />', () => {
 
         expect(handleSpy.callCount).to.equal(1);
       });
+    });
+  });
+
+  describe('Ripple', () => {
+    it('should call ripple mouse down handler', () => {
+      const mouseDownSpy = spy();
+      stub(useTouchRipple, 'default').returns({
+        enableTouchRipple: true,
+        getRippleHandlers: () => ({
+          onMouseDown: mouseDownSpy,
+        }),
+      });
+      const { getByRole } = render(<Button>Hello World</Button>);
+
+      expect(mouseDownSpy.callCount).to.equal(0);
+
+      fireEvent.mouseDown(getByRole('button'));
+
+      expect(mouseDownSpy.callCount).to.equal(1);
     });
   });
 });
