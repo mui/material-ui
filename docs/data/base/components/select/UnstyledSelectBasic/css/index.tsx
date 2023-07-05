@@ -118,8 +118,8 @@ function Styles() {
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         color: ${isDarkMode ? grey[300] : grey[900]};
-        box-shadow: 0px 4px 30px ${
-          isDarkMode ? 'rgba(0,0,0, 0.95)' : 'rgba(0,0,0, 0.15)'
+        box-shadow: 0px 4px 6px ${
+          isDarkMode ? 'rgba(0,0,0, 0.95)' : 'rgba(0,0,0, 0.05)'
         };
       }
       .CustomSelect-popper {

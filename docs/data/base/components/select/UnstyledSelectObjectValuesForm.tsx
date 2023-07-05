@@ -178,6 +178,7 @@ const StyledListbox = styled('ul')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
   outline: 0px;
+  box-shadow: 0px 2px 6px ${theme ? 'rgba(0,0,0, 0.05)' : 'rgba(0,0,0, 0.95)'};
   `,
 );
 
