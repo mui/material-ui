@@ -71,10 +71,9 @@ function Styles() {
         font-family: IBM Plex Sans, sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
-        min-height: calc(1.5em + 22px);
         min-width: 320px;
-        padding: 12px;
-        border-radius: 12px;
+        padding: 8px 12px;
+        border-radius: 8px;
         text-align: left;
         line-height: 1.5;
         background: ${isDarkMode ? grey[900] : '#fff'};
@@ -119,8 +118,8 @@ function Styles() {
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         color: ${isDarkMode ? grey[300] : grey[900]};
-        box-shadow: 0px 4px 30px ${
-          isDarkMode ? 'rgba(0,0,0, 0.95)' : 'rgba(0,0,0, 0.15)'
+        box-shadow: 0px 4px 6px ${
+          isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
         };
       }
       .CustomSelect-popper {
