@@ -25,6 +25,11 @@ Toolpad is not ideal for building static web pages, mobile apps, or customer-fac
 
 <img alt="Building an application on Toolpad " src="/static/blog/2023-toolpad-beta-announcement/toolpad.png" style="margin-bottom: 16px;" loading="lazy" width="2048" height="1536" />
 
+<iframe style="width:100%; height:350px; border:0; border-radius: 10px; overflow:hidden; margin-bottom: 24px"
+src="https://codesandbox.io/p/sandbox/github/mui/mui-toolpad/tree/master/examples/npm-stats?embed=1"
+title="Demo of a Toolpad app"
+></iframe>
+
 ## Who is Toolpad for?
 
 Before the arrival of Toolpad, MUI primarily catered to the front-end needs of the development process. Our products were mostly useful for React engineers or designers. We saw many full-stack engineers use our advanced components for data-intensive apps. These highly customizable components are well-suited for complex apps, but not all apps require the same level of customization: for example, internal tools just need basic theming.
