@@ -33,6 +33,7 @@ const MenuButton = React.forwardRef(function MenuButton(
 ) {
   const {
     children,
+    disabled = false,
     label,
     slots = {},
     slotProps = {},
@@ -40,12 +41,17 @@ const MenuButton = React.forwardRef(function MenuButton(
     ...other
   } = props;
 
-  const { getRootProps, open, active } = useMenuButton({ rootRef: forwardedRef });
+  const { getRootProps, open, active } = useMenuButton({
+    disabled,
+    focusableWhenDisabled,
+    rootRef: forwardedRef,
+  });
 
   const ownerState: MenuButtonOwnerState = {
     ...props,
     open,
     active,
+    disabled,
     focusableWhenDisabled,
   };
 
@@ -77,6 +83,11 @@ MenuButton.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
   /**
    * If `true`, allows a disabled button to receive focus.
    * @default false
