@@ -80,7 +80,9 @@ const Root = styled('div')(
       },
       '& .MuiApi-item-note': {
         padding: '2px 6px',
+        fontSize: 12,
         color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
+        fontWeight: theme.typography.fontWeightBold,
       },
       [theme.breakpoints.up('lg')]: {
         '&:hover, &:target': {
@@ -96,6 +98,13 @@ const Root = styled('div')(
             borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
             '& svg': {
               fill: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
+            },
+          },
+        },
+        '&:target': {
+          '.MuiApi-item-link-visual': {
+            '&>svg': {
+              transform: 'rotate(90deg) translateX(-0.5px) translateY(0.1px)',
             },
           },
         },
@@ -196,7 +205,7 @@ const Root = styled('div')(
           color: `var(--muidocs-palette-grey-500, ${darkTheme.palette.grey[500]})`,
         },
         '& .MuiApi-item-note': {
-          color: `var(--muidocs-palette-success-500, ${darkTheme.palette.success[400]})`,
+          color: `var(--muidocs-palette-success-400, ${darkTheme.palette.success[400]})`,
         },
       },
       '& .MuiAlert-standardWarning': {

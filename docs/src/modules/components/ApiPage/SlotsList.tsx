@@ -25,14 +25,14 @@ export default function SlotsList(props: SlotsListProps) {
             note="Required"
           >
             {className && (
-              <p>
-                <em>{t('api-docs.globalClass')}:</em>{' '}
+              <p className="prop-list-default-props">
+                <span>{t('api-docs.globalClass')}:</span>{' '}
                 <code dangerouslySetInnerHTML={{ __html: className }} />
               </p>
             )}
             {slotDescriptions[name] && (
-              <p>
-                <em>{t('api-docs.description')}:</em>{' '}
+              <p className="prop-list-default-props">
+                <span>{t('api-docs.description')}:</span>{' '}
                 <span
                   dangerouslySetInnerHTML={{
                     __html: slotDescriptions[name] || '',
