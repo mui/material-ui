@@ -25,7 +25,7 @@
     "import": "Import",
     "importDifference": "Learn about the difference by <a href=\"/material-ui/guides/minimizing-bundle-size/\">reading this guide on minimizing bundle size</a>.",
     "inheritance": "Inheritance",
-    "inheritanceDescription": "While not explicitly documented above, the props of the <a href=\"{{pathname}}\">{{component}}</a> component{{suffix}} are also available on {{name}}. You can take advantage of this to <a href=\"/material-ui/guides/api/#spread\">target nested components</a>.",
+    "inheritanceDescription": "While not explicitly documented above, the props of the <a href=\"{{pathname}}\">{{component}}</a> component{{suffix}} are also available in {{name}}. You can take advantage of this to <a href=\"/material-ui/guides/api/#spread\">target nested components</a>.",
     "inheritanceSuffixTransition": " from react-transition-group",
     "name": "Name",
     "nativeElement": "native",
