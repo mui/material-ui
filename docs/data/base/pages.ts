@@ -108,6 +108,10 @@ const pages = [
         pathname: '/base-ui/guides/overriding-component-structure',
         title: 'Overriding component structure',
       },
+      {
+        pathname: '/base-ui/guides/next-js-app-router',
+        title: 'Integrating with Next.js App Router',
+      },
     ],
   },
 ];

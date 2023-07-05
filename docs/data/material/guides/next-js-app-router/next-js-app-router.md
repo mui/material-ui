@@ -1,6 +1,6 @@
 # Next.js App Router
 
-<p class="description">Learn how to use MUI libraries with the Next.js App Router.</p>
+<p class="description">Learn how to use Material UI with the Next.js App Router.</p>
 
 ## Next.js and React Server Components
 
@@ -141,9 +141,9 @@ export default function RootLayout({ children }) {
 
 <!-- https://github.com/emotion-js/emotion/issues/3059 -->
 
-By default, Emotion inject Material UI styles at the bottom of the HTML `<head>`, which gives them precedence over custom styles (for example, from CSS modules, Tailwind CSS, or even plain CSS).
+By default, Emotion inject Material UI styles at the bottom of the HTML `<head>`, which gives them precedence over custom styles – for example if you are customizing Material UI with CSS modules, Tailwind CSS, or even plain CSS.
 
-In client-side React, the `prepend: true` option is passed to `createCache` to reverse the injection order, so custom styles can override Material UI styles without using `!important`.
+Emotion provides the `prepend: true` option for `createCache` to reverse the injection order, so custom styles can override Material UI styles without using `!important`.
 
 Currently, `prepend` does not work reliably with the App Router, but you can work around it by wrapping Emotion styles in a CSS `@layer` with a modification to the snippet above:
 
@@ -170,59 +170,58 @@ Currently, `prepend` does not work reliably with the App Router, but you can wor
  });
 ```
 
-## Using Joy UI
+## Function props
 
-The setup for Joy UI is the same as [Material UI with a custom theme](#using-material-ui-with-a-custom-theme), except you must replace Material UI's `ThemeProvider` with Joy UI's `CssVarsProvider`:
+Props passed from server components - for example `page.js` or other routing files - must be [serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
 
-```diff
- // ThemeRegistry
--import { ThemeProvider } from '@mui/material/styles';
-+import { CssVarsProvider } from '@mui/joy/styles';
-```
+This works without any additional directives:
 
-See this [example repo](https://github.com/mui/material-ui/blob/master/examples/joy-next-app-router-ts) for a working demo of Joy UI with the Next.js App Router.
-
-## Using Base UI
-
-Base UI is styling-agnostic; if you're using Emotion you can follow the same steps outlined for Material UI.
-
-If you're using Tailwind CSS, see this [example repo](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts) for a working demo.
-
-### Customizing Base UI with function props
-
-A common customization method in Base UI is to pass a function to slots in `slotProps` in order to apply dynamic props to slots. For example, you might want to change the background color by applying a different class when a Button is disabled:
-
-```tsx
-// page.tsx
+```jsx
+// app/page.tsx
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
 export default function Page() {
   return (
     <>
-      {/* Next.js won't render this button without 'use-client'*/}
-      <Button
-        slotProps={{
-          root: (ownerState: ButtonOwnerState) => ({
-            className: ownerState.disabled ? 'bg-gray-400' : 'bg-blue-400',
-          }),
-        }}
-      >
-        Submit
-      </Button>
-
-      {/* Next.js can render this */}
-      <Button
-        slotProps={{
-          root: {
-            className: 'bg-gray-400',
-          },
-        }}
-      >
-        Return
-      </Button>
+      <Container maxWidth="lg">
+        <Box>
+          <Card raised>
+            <Typography variant="h2">Hello World</Typography>
+          </Card>
+        </Box>
+      </Container>
     </>
   );
 }
 ```
 
-Unfortunately, **this will not work** since function props are [non-serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
+However, function props such as event handlers or render props are **non-serializable** - this won't work without an additional `"use client"` directive:
+
+```tsx
+// page.tsx
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+
+export default function Page() {
+  return (
+    <>
+      <Container maxWidth="lg">
+        {/* Next.js won't render this button without 'use-client' */}
+        <Button
+          variant="text"
+          onClick={() => {
+            console.log('handle click');
+          }}
+        >
+          Submit
+        </Button>
+      </Container>
+    </>
+  );
+}
+```
+
 Instead, the Next.js team recommends moving components like these ["to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.
