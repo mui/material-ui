@@ -20,6 +20,10 @@ import useSlot from '../utils/useSlot';
 import { StyledButtonGroup } from '../ButtonGroup/ButtonGroup';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
+interface InternalChangeEventHandler<Value> {
+  (event: React.MouseEvent, value: Value | Array<Value> | null): void;
+}
+
 const useUtilityClasses = (ownerState: ToggleButtonGroupOwnerState<any>) => {
   const { size, variant, color, orientation } = ownerState;
   const slots = {
@@ -124,26 +128,23 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup<
   );
 
   const handleChange = React.useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>, buttonValue: string | undefined) => {
+    (event: React.MouseEvent<HTMLButtonElement>, buttonValue: any) => {
       if (!onChange || buttonValue === undefined) {
         return;
       }
       if (Array.isArray(value)) {
-        const index = value && value.indexOf(buttonValue);
-        let newValue;
-
-        if (value && index >= 0) {
-          newValue = value.slice();
-          newValue.splice(index, 1);
+        const set = new Set(value);
+        if (set.has(buttonValue)) {
+          set.delete(buttonValue);
         } else {
-          newValue = value ? value.concat(buttonValue) : [buttonValue];
+          set.add(buttonValue);
         }
-
-        // @ts-ignore
-        onChange(event, newValue);
+        (onChange as InternalChangeEventHandler<TValue>)(event, Array.from(set));
       } else {
-        // @ts-ignore
-        onChange(event, value === buttonValue ? null : buttonValue);
+        (onChange as InternalChangeEventHandler<TValue>)(
+          event,
+          value === buttonValue ? null : buttonValue,
+        );
       }
     },
     [value, onChange],

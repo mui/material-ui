@@ -10,52 +10,95 @@ githubLabel: 'component: toggle button'
 
 ## Introduction
 
-To emphasize groups of related Toggle buttons,
+To emphasize groups of related toggle buttons,
 a group should share a common container.
 The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
 
 {{"demo": "ToggleGroupUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
+## Basics
+
+```jsx
+import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
+```
+
+### Toggle button
+
+Joy UI does not provide a `ToggleButton` component because we think it is better to just use Button or IconButton components with `aria-pressed` according to [WAI ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/).
+
+The demo below shows how to create a toggle button from Joy UI Button and IconButton components.
+
+{{"demo": "ToggleButtons.js"}}
+
+### Toggle group
+
+Provide a `value` as an array to ToggleButtonGroup. When the button is in pressed state, the ToggleButtonGroup's `onChange` prop is called with the new array.
+
+The ToggleButtonGroup uses the same styles as the [ButtonGroup](/joy-ui/react-button-group/) component to connect each button together.
+
+{{"demo": "ToggleGroup.js"}}
+
+### Exclusive selection
+
+When the `value` is not an array, the ToggleButtonGroup will render in exclusive selection mode. In this mode, only one button may be selected at a time.
+
+{{"demo": "ExclusiveSelection.js"}}
+
+## Customization
+
+### Variants
+
+The ToggleButtonGroup component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `plain`, `soft`, and `solid`.
+
+{{"demo": "ToggleGroupVariants.js"}}
+
 :::info
-💡 The Joy UI Toggle Button component is still in development.
-If you're in need of it, please upvote [**this GitHub issue**](https://github.com/mui/material-ui/issues/36617) to help us prioritize the next batch of new components.
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
 :::
 
-## Integration with headless UI libraries
+### Sizes
 
-In the meantime, you can still adopt Joy UI today for building a toggle button!
+The ToggleButtonGroup component comes in three sizes: `sm`, `md` (default), and `lg`.
 
-This document shows how to do it with existing Joy UI components combined with popular headless UI libraries.
+{{"demo": "ToggleGroupSizes.js"}}
 
-### Parting from the Icon Button component
+:::info
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
 
-Joy UI's [Icon Button](/joy-ui/react-button/#icon-button) component is perfect for building a toggle button because it already produces a square button with an icon inside.
+### Colors
 
-### With Radix UI
+Every palette included in the theme is available via the `color` prop.
+Play around combining different colors with different variants.
 
-Using Joy UI's Icon Buton component as a starting point, pass Radix UI's Toggle Button to the `component` prop.
-Radix will enhance the functionalities by preserving the styles of Joy UI components.
+{{"demo": "ToggleGroupColors.js"}}
 
-- [Install Radix UI's Toggle](https://www.radix-ui.com/docs/primitives/components/toggle)
-- [Install Radix UI's Toggle Group](https://www.radix-ui.com/docs/primitives/components/toggle-group)
+### Spacing
 
-<iframe src="https://codesandbox.io/embed/toggle-button-joy-ui-feat-radix-f2wbct?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:360px; border:2; border-radius: 8px; overflow:hidden;"
-     title="Toggle button - Joy UI feat. Radix"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+When `spacing` is more than `0`, the buttons are disconnected with the given gap equals to `theme.spacing(<value>)`.
 
-### With React Aria
+{{"demo": "ToggleGroupSpacing.js"}}
 
-React Aria provides a `useToggleButton` hook that can be used with Joy UI's Icon Button component.
+The value can be an object or an array to create responsive spacing.
 
-- [Install React Aria's toggle button](https://react-spectrum.adobe.com/react-aria/useToggleButton.html)
-- [Toggle button component documentation](https://react-spectrum.adobe.com/react-aria/useToggleButton.html#features)
+```js
+<ToggleButtonGroup spacing={{ xs: 0, md: 2, lg: 3 }}>…</ToggleButtonGroup>
+```
 
-<iframe src="https://codesandbox.io/embed/toggle-button-joy-ui-feat-react-aria-56iex7?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:360px; border:2; border-radius: 8px; overflow:hidden;"
-     title="Toggle button - Joy UI feat. React Aria"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+## Common examples
+
+### Editor toolbar
+
+{{"demo": "ToggleGroupToolbar.js"}}
+
+## Accessibility
+
+### ARIA
+
+- ToggleButtonGroup has `role="group"`. You should provide an accessible label with `aria-label="label"`, `aria-labelledby="id"` or `<label>`.
+- For the toggle button, sets `aria-pressed="<bool>"` according to the button state. You should label an icon button with `aria-label`.
+
+### Keyboard
+
+At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.

@@ -82,8 +82,7 @@ export interface ToggleButtonGroupStaticProps {
 export interface ToggleButtonGroupOwnProps<TValue extends SupportedValue>
   extends ToggleButtonGroupStaticProps {
   /**
-   * The currently selected value within the group or an array of selected
-   * values when `exclusive` is false.
+   * The currently selected value within the group or an array of selected values.
    *
    * The value must have reference equality with the option in order to be selected.
    */
