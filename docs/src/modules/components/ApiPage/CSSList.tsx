@@ -26,12 +26,12 @@ export default function CSSList(props: CSSListProps) {
 
   const hashPrefix = componentName ? `${componentName}-` : '';
   return (
-    <React.Fragment>
+    <div className="MuiApi-css-list">
       {componentStyles.classes.map((className) => {
         const isGlobalStateClass = !!componentStyles.globalClasses[className];
         return (
           <ApiItem
-            id={`${hashPrefix}classes-${className}`}
+            id={`${hashPrefix}css-${className}`}
             key={className}
             description={`${className}${isGlobalStateClass ? ' (State)' : ''}`}
             title={`.${
@@ -57,7 +57,7 @@ export default function CSSList(props: CSSListProps) {
           </ApiItem>
         );
       })}
-    </React.Fragment>
+    </div>
   );
 }
 

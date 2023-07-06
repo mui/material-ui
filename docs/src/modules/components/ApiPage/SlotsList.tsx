@@ -14,11 +14,11 @@ export default function SlotsList(props: SlotsListProps) {
 
   const hashPrefix = componentName ? `${componentName}-` : '';
   return (
-    <div>
+    <div className="MuiApi-slot-list">
       {componentSlots.map(({ class: className, name, default: defaultValue }) => {
         return (
           <ApiItem
-            id={`${hashPrefix}classes-${className}`}
+            id={`${hashPrefix}slots-${className}`}
             key={className}
             description={defaultValue}
             title={name}

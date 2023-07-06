@@ -32,7 +32,7 @@ export default function ClassesList(props: ClassesListProps) {
 
   const hashPrefix = componentName ? `${componentName}-` : '';
   return (
-    <React.Fragment>
+    <div className='MuiApi-classes-list'>
       {list
         .sort((a, b) => a.className.localeCompare(b.className))
         .map((item) => {
@@ -57,7 +57,7 @@ export default function ClassesList(props: ClassesListProps) {
             </ApiItem>
           );
         })}
-    </React.Fragment>
+    </div>
   );
 }
 
