@@ -2,6 +2,7 @@
 productId: joy-ui
 title: React Toggle Button component
 githubLabel: 'component: toggle button'
+components: ToggleButtonGroup, Button, IconButton
 ---
 
 # Toggle Button

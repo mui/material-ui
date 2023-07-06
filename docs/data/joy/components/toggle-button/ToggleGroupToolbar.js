@@ -15,7 +15,7 @@ import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 
-export default function ToggleGroup() {
+export default function ToggleGroupToolbar() {
   const [alignment, setAlignment] = React.useState('left');
   const [formats, setFormats] = React.useState(() => ['italic']);
   const [color, setColor] = React.useState('#ff5252');
@@ -28,7 +28,6 @@ export default function ToggleGroup() {
         variant="plain"
         spacing={0.5}
         value={alignment}
-        exclusive
         onChange={(event, newAlignment) => {
           setAlignment(newAlignment);
         }}

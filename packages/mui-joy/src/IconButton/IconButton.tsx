@@ -105,6 +105,7 @@ export const IconButtonRoot = styled(StyledIconButton, {
  *
  * - [Button](https://mui.com/joy-ui/react-button/)
  * - [Button Group](https://mui.com/joy-ui/react-button-group/)
+ * - [Toggle Button](https://mui.com/joy-ui/react-toggle-button/)
  *
  * API:
  *

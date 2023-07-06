@@ -16,7 +16,11 @@ export default function ToggleGroupColors() {
   const [color, setColor] = React.useState('neutral');
   return (
     <Stack spacing={2}>
-      <ToggleButtonGroup variant={variant} color={color} value="pressed">
+      <ToggleButtonGroup
+        variant={variant || undefined}
+        color={color || undefined}
+        value="pressed"
+      >
         <Button value="pressed">I&apos;m pressed</Button>
         <IconButton value="bold">
           <FormatBoldIcon />

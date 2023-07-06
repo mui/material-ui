@@ -58,6 +58,7 @@ module.exports = [
   { pathname: '/joy-ui/api/tab-panel' },
   { pathname: '/joy-ui/api/tabs' },
   { pathname: '/joy-ui/api/textarea' },
+  { pathname: '/joy-ui/api/toggle-button-group' },
   { pathname: '/joy-ui/api/tooltip' },
   { pathname: '/joy-ui/api/typography' },
 ];

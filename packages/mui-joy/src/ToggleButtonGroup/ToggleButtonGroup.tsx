@@ -68,11 +68,11 @@ const ToggleButtonGroupRoot = styled(StyledButtonGroup as unknown as 'div', {
  *
  * Demos:
  *
- * - [Card](https://mui.com/joy-ui/react-card/)
+ * - [Toggle Button](https://mui.com/joy-ui/react-toggle-button/)
  *
  * API:
  *
- * - [ToggleButtonGroup API](https://mui.com/joy-ui/api/card-content/)
+ * - [ToggleButtonGroup API](https://mui.com/joy-ui/api/toggle-button-group/)
  */
 const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup<
   TValue extends SupportedValue,
@@ -213,7 +213,12 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * Used to render icon or text elements inside the ToggleButtonGroup if `src` is not set.
+   * The flex value of the button.
+   * @example buttonFlex={1} will set flex: '1 1 auto' on each button (stretch the button to equally fill the available space).
+   */
+  buttonFlex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * Used to render icon or text elements inside the ButtonGroup if `src` is not set.
    * This can be an element, or just a string.
    */
   children: PropTypes.node,
@@ -222,15 +227,43 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, all the buttons will be disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+   * @param {any} value of the selected buttons. When `exclusive` is true
+   * this is a single value; when false an array of selected values. If no value
+   * is selected and `exclusive` is true the value is null; when false an empty array.
+   */
+  onChange: PropTypes.func,
+  /**
    * The component orientation.
-   * @default 'vertical'
+   * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * The size of the component.
+   * It accepts theme values between 'sm' and 'lg'.
+   * @default 'md'
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * The props used for each slot inside.
    * @default {}
@@ -246,12 +279,43 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
+   * Defines the space between the type `item` components.
+   * It can only be used on a type `container` component.
+   * @default 0
+   */
+  spacing: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.shape({
+      lg: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      md: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      sm: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      xl: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      xs: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    }),
+    PropTypes.string,
+  ]),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
+  ]),
+  /**
+   * The currently selected value within the group or an array of selected values.
+   *
+   * The value must have reference equality with the option in order to be selected.
+   */
+  value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'outlined'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
   ]),
 } as any;
 
