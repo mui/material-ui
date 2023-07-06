@@ -82,7 +82,9 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
       '& .MuiApi-item-note': {
         padding: '2px 6px',
-        fontSize: 12,
+        fontSize: 11,
+        letterSpacing: '1px',
+        textTransform: 'uppercase',
         color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
         fontWeight: theme.typography.fontWeightBold,
       },
