@@ -24,13 +24,13 @@ You will need to repeat this command to create a table for production, for examp
 
 For on-demand throughput, replace:
 
-```sh
+```bash
   --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=1 \
 ```
 
 with:
 
-```sh
+```bash
   --billing-mode PAY_PER_REQUEST \
 ```
 
@@ -101,7 +101,7 @@ curl <API-URL>/feedback/average
 
 Create the file `docs/.env.local` containing an environment variable `FEEDBACK_URL` with your API URL without the version. For example:
 
-```sh
+```bash
 FEEDBACK_URL=https://abcd123ef4.execute-api.us-east-1.amazonaws.com
 ```
 

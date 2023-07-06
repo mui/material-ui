@@ -19,13 +19,13 @@ For a component to be ready to move to the core, the following criteria are cons
 
 To install and save in your `package.json` dependencies, run the command below using **npm**:
 
-```sh
+```bash
 npm install @mui/lab @mui/material
 ```
 
 Or **yarn**:
 
-```sh
+```bash
 yarn add @mui/lab @mui/material
 ```
 

@@ -10,7 +10,7 @@ export default function LinearProgressUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },

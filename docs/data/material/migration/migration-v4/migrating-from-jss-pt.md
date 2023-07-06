@@ -36,7 +36,7 @@ Normally you wouldn't write styles like this. But this is the best transformatio
 If you want to refine them later, you can refer to the examples shown in the sections below.
 :::
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/jss-to-styled <path>
 ```
 
@@ -197,13 +197,13 @@ In order to use it, you'll need to add it to your project's dependencies:
 
 With npm:
 
-```sh
+```bash
 npm install tss-react
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add tss-react
 ```
 
@@ -211,7 +211,7 @@ yarn add tss-react
 
 We provide [a codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-tss-react) to help migrate JSS styles to the `tss-react` API.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/jss-to-tss-react <path>
 ```
 
@@ -447,13 +447,13 @@ Once you migrate all of the styling, remove unnecessary `@mui/styles` by uninsta
 
 With npm:
 
-```sh
+```bash
 npm uninstall @mui/styles
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn remove @mui/styles
 ```
 

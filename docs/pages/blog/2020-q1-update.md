@@ -89,7 +89,7 @@ We'll do our best, no guarantee!
 
   <img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="max-width: 160px; margin-bottom: 24px;" />
 
-- 🇨🇳 We will translate 100% of the documentation to Chinese. We are collaborating with [Danica Shen](https://github.com/DDDDDanica), a native speaker, to complete the effort. So far, we have translated 73% of the documentation and peer-reviewed 39%. You can help us out on [Crowdin](https://translate.mui.com/).
+- 🇨🇳 We will translate 100% of the documentation to Chinese. We are collaborating with [Danica Shen](https://github.com/DDDDDanica), a native speaker, to complete the effort. So far, we have translated 73% of the documentation and peer-reviewed 39%. You can help us out on [Crowdin](https://crowdin.com/project/material-ui-docs).
 
   <img src="/static/blog/2020-q1-update/chinese.png" alt="chinese" style="max-width: 134px; margin-bottom: 24px;" />
 
