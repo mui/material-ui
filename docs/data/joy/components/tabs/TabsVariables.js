@@ -12,7 +12,7 @@ export default function ListVariables() {
       childrenAccepted
       data={[
         {
-          var: '--Tabs-gap',
+          var: '--Tabs-spacing',
           defaultValue: '16px',
           helperText: "Controls TabList's gap and TabPanel's padding.",
         },

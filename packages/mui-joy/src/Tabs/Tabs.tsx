@@ -50,13 +50,13 @@ const TabsRoot = styled('div', {
     theme.vars.palette.background.surface;
   return {
     ...(ownerState.size === 'sm' && {
-      '--Tabs-gap': '0.75rem',
+      '--Tabs-spacing': '0.75rem',
     }),
     ...(ownerState.size === 'md' && {
-      '--Tabs-gap': '1rem',
+      '--Tabs-spacing': '1rem',
     }),
     ...(ownerState.size === 'lg' && {
-      '--Tabs-gap': '1.25rem',
+      '--Tabs-spacing': '1.25rem',
     }),
     '--Tab-indicatorThickness': '2px',
     ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
