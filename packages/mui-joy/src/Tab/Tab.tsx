@@ -66,6 +66,7 @@ const TabRoot = styled(StyledListItemButton, {
         'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness) - 1px)',
       '&::after': {
         height: 'var(--Tab-indicatorThickness)',
+        width: 'var(--Tab-indicatorSize)',
         left: ownerState.indicatorInset ? 'var(--ListItem-paddingLeft)' : 'var(--unstable_offset)',
         right: ownerState.indicatorInset
           ? 'var(--ListItem-paddingRight)'
@@ -79,6 +80,7 @@ const TabRoot = styled(StyledListItemButton, {
         'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness) - 1px)',
       '&::after': {
         height: 'var(--Tab-indicatorThickness)',
+        width: 'var(--Tab-indicatorSize)',
         left: ownerState.indicatorInset ? 'var(--ListItem-paddingLeft)' : 'var(--unstable_offset)',
         right: ownerState.indicatorInset
           ? 'var(--ListItem-paddingRight)'
@@ -90,6 +92,7 @@ const TabRoot = styled(StyledListItemButton, {
     ownerState.indicatorPlacement === 'right' && {
       paddingRight: 'calc(var(--ListItem-paddingRight) + var(--Tab-indicatorThickness) - 1px)',
       '&::after': {
+        height: 'var(--Tab-indicatorSize)',
         width: 'var(--Tab-indicatorThickness)',
         top: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
         bottom: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
@@ -100,6 +103,7 @@ const TabRoot = styled(StyledListItemButton, {
     ownerState.indicatorPlacement === 'left' && {
       paddingLeft: 'calc(var(--ListItem-paddingLeft) + var(--Tab-indicatorThickness) - 1px)',
       '&::after': {
+        height: 'var(--Tab-indicatorSize)',
         width: 'var(--Tab-indicatorThickness)',
         top: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
         bottom: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
