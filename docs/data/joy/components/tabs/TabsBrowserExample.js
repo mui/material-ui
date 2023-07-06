@@ -34,25 +34,25 @@ export default function TabsBrowserExample() {
           },
         }}
       >
-        <Tab variant="outlined" indicatorPlacement="top">
+        <Tab indicatorPlacement="top">
           <ListItemDecorator>
             <GoogleIcon />
           </ListItemDecorator>
           Google Search
         </Tab>
-        <Tab variant="outlined" indicatorPlacement="top">
+        <Tab indicatorPlacement="top">
           <ListItemDecorator>
             <TwitterIcon />
           </ListItemDecorator>
           Twitter
         </Tab>
-        <Tab variant="outlined" indicatorPlacement="top">
+        <Tab indicatorPlacement="top">
           <ListItemDecorator>
             <DribbbleIcon />
           </ListItemDecorator>
           Dribbble
         </Tab>
-        <Tab variant="outlined" indicatorPlacement="top">
+        <Tab indicatorPlacement="top">
           <ListItemDecorator>
             <ReactIcon />
           </ListItemDecorator>
