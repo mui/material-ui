@@ -21,6 +21,10 @@ export default function ListVariables() {
           defaultValue: '2px',
         },
         {
+          var: '--Tab-indicatorSize',
+          defaultValue: '0px',
+        },
+        {
           var: '--Tab-indicatorRadius',
           defaultValue: '0px',
         },

@@ -17,14 +17,19 @@ export default function TabsBrowserExample() {
         variant="soft"
         sx={{
           [`& .${tabClasses.root}`]: {
-            '&:not([aria-selected="true"])': {
-              borderTopColor: 'transparent',
-              borderLeftColor: 'transparent',
-              borderRightColor: 'transparent',
-            },
             '&[aria-selected="true"]': {
-              borderBottomColor: 'transparent',
               bgcolor: 'background.surface',
+              borderColor: 'divider',
+              '&::before': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                height: 2,
+                bottom: -2,
+                left: 0,
+                right: 0,
+                bgcolor: 'background.surface',
+              },
             },
           },
         }}
