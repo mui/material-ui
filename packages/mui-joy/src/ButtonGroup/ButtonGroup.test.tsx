@@ -180,7 +180,7 @@ describe('<ButtonGroup />', () => {
         <Button>Single</Button>
       </ButtonGroup>,
     );
-    expect(container.querySelector('[data-single-child]')).to.equal(null);
+    expect(container.querySelector('[data-first-child]')).to.equal(null);
     expect(container.querySelector('[data-last-child]')).to.equal(null);
   });
 
