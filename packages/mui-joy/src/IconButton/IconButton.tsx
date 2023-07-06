@@ -6,7 +6,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
-import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
+import { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
@@ -88,26 +88,14 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
     },
     {
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-      ...(ownerState.variant === 'solid' &&
-        ownerState.color === 'neutral' && {
-          backgroundColor: theme.vars.palette?.neutral?.[800],
-          [theme.getColorSchemeSelector('dark')]: {
-            backgroundColor: theme.vars.palette?.neutral?.[500],
-          },
-        }),
-    },
-    {
       '&:hover': {
         '@media (hover: hover)': {
           '--Icon-color': 'currentColor',
           ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
         },
       },
-    },
-    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
-    {
-      [`&.${iconButtonClasses.disabled}`]:
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      '&:disabled': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
     },
   ],
 );

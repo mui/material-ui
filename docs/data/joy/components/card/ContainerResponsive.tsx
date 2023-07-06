@@ -54,7 +54,7 @@ export default function ContainerResponsive() {
         >
           <Box sx={{ display: 'flex' }}>
             <div>
-              <Typography level="h2" sx={{ fontSize: 'md' }} mb={0.5}>
+              <Typography level="title-lg">
                 <Link
                   href="#container-responsive"
                   overlay
@@ -96,10 +96,8 @@ export default function ContainerResponsive() {
               Y
             </Avatar>
             <div>
-              <Typography level="body-sm">Designed by</Typography>
-              <Typography fontWeight="lg" level="body-sm">
-                Nature itself
-              </Typography>
+              <Typography level="body-xs">Designed by</Typography>
+              <Typography level="body-sm">Nature itself</Typography>
             </div>
           </Box>
         </Box>

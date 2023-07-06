@@ -11,16 +11,14 @@ export default function BasicCard() {
   return (
     <Card variant="outlined" sx={{ width: 320 }}>
       <div>
-        <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
-          Yosemite National Park
-        </Typography>
+        <Typography level="title-lg">Yosemite National Park</Typography>
         <Typography level="body-sm">April 24 to May 02, 2021</Typography>
         <IconButton
           aria-label="bookmark Bahamas Islands"
           variant="plain"
           color="neutral"
           size="sm"
-          sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}
+          sx={{ position: 'absolute', top: '0.875rem', right: '0.5rem' }}
         >
           <BookmarkAdd />
         </IconButton>

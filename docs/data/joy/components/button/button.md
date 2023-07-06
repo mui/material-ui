@@ -50,9 +50,7 @@ See [Loading indicator](#loading-indicator) and [Loading position](#loading-posi
 
 ### Variants
 
-The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
-
-The background of the neutral solid Button does not follow the global variant token to have higher contrast.
+The Button component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "ButtonVariants.js"}}
 

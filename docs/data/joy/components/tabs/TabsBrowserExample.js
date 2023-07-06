@@ -5,6 +5,59 @@ import Tab, { tabClasses } from '@mui/joy/Tab';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import SvgIcon from '@mui/joy/SvgIcon';
 
+export default function TabsBrowserExample() {
+  const [index, setIndex] = React.useState(0);
+  return (
+    <Tabs
+      aria-label="tabs"
+      value={index}
+      onChange={(event, newValue) => setIndex(newValue)}
+    >
+      <TabList
+        variant="soft"
+        sx={{
+          [`& .${tabClasses.root}`]: {
+            '&:not([aria-selected="true"])': {
+              borderTopColor: 'transparent',
+              borderLeftColor: 'transparent',
+              borderRightColor: 'transparent',
+            },
+            '&[aria-selected="true"]': {
+              borderBottomColor: 'transparent',
+              bgcolor: 'background.surface',
+            },
+          },
+        }}
+      >
+        <Tab variant="outlined" indicatorPlacement="top">
+          <ListItemDecorator>
+            <GoogleIcon />
+          </ListItemDecorator>
+          Google Search
+        </Tab>
+        <Tab variant="outlined" indicatorPlacement="top">
+          <ListItemDecorator>
+            <TwitterIcon />
+          </ListItemDecorator>
+          Twitter
+        </Tab>
+        <Tab variant="outlined" indicatorPlacement="top">
+          <ListItemDecorator>
+            <DribbbleIcon />
+          </ListItemDecorator>
+          Dribbble
+        </Tab>
+        <Tab variant="outlined" indicatorPlacement="top">
+          <ListItemDecorator>
+            <ReactIcon />
+          </ListItemDecorator>
+          React
+        </Tab>
+      </TabList>
+    </Tabs>
+  );
+}
+
 function GoogleIcon() {
   return (
     <SvgIcon>
@@ -95,58 +148,5 @@ function ReactIcon() {
         </g>
       </svg>
     </SvgIcon>
-  );
-}
-
-export default function TabsBrowserExample() {
-  const [index, setIndex] = React.useState(0);
-  return (
-    <Tabs
-      aria-label="tabs"
-      value={index}
-      onChange={(event, newValue) => setIndex(newValue)}
-    >
-      <TabList
-        variant="soft"
-        sx={{
-          [`& .${tabClasses.root}`]: {
-            '&:not([aria-selected="true"])': {
-              borderTopColor: 'transparent',
-              borderLeftColor: 'transparent',
-              borderRightColor: 'transparent',
-            },
-            '&[aria-selected="true"]': {
-              borderBottomColor: 'transparent',
-              bgcolor: 'background.surface',
-            },
-          },
-        }}
-      >
-        <Tab variant="outlined" indicatorPlacement="top">
-          <ListItemDecorator>
-            <GoogleIcon />
-          </ListItemDecorator>
-          Google Search
-        </Tab>
-        <Tab variant="outlined" indicatorPlacement="top">
-          <ListItemDecorator>
-            <TwitterIcon />
-          </ListItemDecorator>
-          Twitter
-        </Tab>
-        <Tab variant="outlined" indicatorPlacement="top">
-          <ListItemDecorator>
-            <DribbbleIcon />
-          </ListItemDecorator>
-          Dribbble
-        </Tab>
-        <Tab variant="outlined" indicatorPlacement="top">
-          <ListItemDecorator>
-            <ReactIcon />
-          </ListItemDecorator>
-          React
-        </Tab>
-      </TabList>
-    </Tabs>
   );
 }
