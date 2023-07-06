@@ -151,8 +151,8 @@ const Root = styled('div')(
         fontWeight: theme.typography.fontWeightRegular,
         padding: '2px 4px',
         border: '1px solid',
-        borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
-        backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+        borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
+        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       },
     },
     '& .prop-list-signature': {
