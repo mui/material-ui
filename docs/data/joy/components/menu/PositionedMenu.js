@@ -13,15 +13,10 @@ import Dropdown from '@mui/joy/Dropdown';
 export default function PositionedMenu() {
   return (
     <Dropdown>
-      <MenuButton
-        id="positioned-demo-button"
-        variant="outlined"
-        color="neutral"
-        slots={{ root: IconButton }}
-      >
+      <MenuButton variant="outlined" color="neutral" slots={{ root: IconButton }}>
         <MoreVert />
       </MenuButton>
-      <Menu id="positioned-demo-menu" placement="bottom-end">
+      <Menu placement="bottom-end">
         <MenuItem>
           <ListItemDecorator>
             <Edit />

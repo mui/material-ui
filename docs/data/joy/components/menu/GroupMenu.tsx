@@ -16,18 +16,8 @@ export default function GroupMenu() {
 
   return (
     <Dropdown>
-      <MenuButton
-        id="group-demo-button"
-        variant="outlined"
-        color="neutral"
-        endDecorator={<ArrowDropDown />}
-      >
-        Size
-      </MenuButton>
-      <Menu
-        id="group-menu"
-        sx={{ minWidth: 160, '--ListItemDecorator-size': '24px' }}
-      >
+      <MenuButton endDecorator={<ArrowDropDown />}>Size</MenuButton>
+      <Menu sx={{ minWidth: 160, '--ListItemDecorator-size': '24px' }}>
         <MenuItem
           onClick={() => {
             const nextIndex = SIZES.indexOf(size) - 1;

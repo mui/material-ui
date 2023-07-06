@@ -10,10 +10,8 @@ import Check from '@mui/icons-material/Check';
 export default function SizeMenu() {
   return (
     <Dropdown>
-      <MenuButton id="size-demo-button" variant="outlined" color="neutral">
-        Format
-      </MenuButton>
-      <Menu id="size-demo-menu" size="sm">
+      <MenuButton size="sm">Format</MenuButton>
+      <Menu size="sm">
         <MenuItem>
           <ListItemDecorator /> Single
         </MenuItem>

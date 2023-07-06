@@ -51,7 +51,7 @@ export interface MenuButtonTypeMap<P = {}, D extends React.ElementType = 'button
     MenuButtonSlotsAndSlotProps & {
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
-       * @default 'primary'
+       * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, MenuButtonPropsColorOverrides>;
       /**
@@ -87,7 +87,7 @@ export interface MenuButtonTypeMap<P = {}, D extends React.ElementType = 'button
       tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
       /**
        * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-       * @default 'solid'
+       * @default 'outlined'
        */
       variant?: OverridableStringUnion<VariantProp, MenuButtonPropsVariantOverrides>;
       /**

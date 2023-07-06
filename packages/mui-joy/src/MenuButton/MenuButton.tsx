@@ -235,9 +235,35 @@ MenuButton.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * @ignore
+   * If `true`, the component is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * Element placed after the children.
+   */
+  endDecorator: PropTypes.node,
+  /**
+   * If `true`, the button will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * If `true`, the loading indicator is shown.
+   * @default false
+   */
+  loading: PropTypes.bool,
+  /**
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default we render a `CircularProgress` that is labelled by the button itself.
+   * @default <CircularProgress />
+   */
+  loadingIndicator: PropTypes.node,
+  /**
+   * The loading indicator can be positioned on the start, end, or the center of the button.
+   * @default 'center'
+   */
+  loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
    * The size of the component.
    * @default 'md'
@@ -251,15 +277,37 @@ MenuButton.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    loadingIndicatorCenter: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
+    endDecorator: PropTypes.elementType,
+    loadingIndicatorCenter: PropTypes.elementType,
     root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
   }),
+  /**
+   * Element placed before the children.
+   */
+  startDecorator: PropTypes.node,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * @default 0
+   */
+  tabIndex: PropTypes.number,
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'

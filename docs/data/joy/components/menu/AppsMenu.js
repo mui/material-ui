@@ -15,7 +15,6 @@ export default function AppsMenu() {
       <Dropdown>
         <MenuButton
           slots={{ root: IconButton }}
-          id="apps-menu-demo"
           variant="plain"
           color="neutral"
           sx={{ borderRadius: 40 }}
@@ -23,7 +22,6 @@ export default function AppsMenu() {
           <Apps />
         </MenuButton>
         <Menu
-          id="apps-menu"
           variant="solid"
           invertedColors
           aria-labelledby="apps-menu-demo"

@@ -16,15 +16,8 @@ export default function SelectedMenu() {
 
   return (
     <Dropdown>
-      <MenuButton
-        id="selected-demo-button"
-        variant="outlined"
-        color="neutral"
-        startDecorator={<Apps />}
-      >
-        Apps
-      </MenuButton>
-      <Menu id="selected-demo-menu">
+      <MenuButton startDecorator={<Apps />}>Apps</MenuButton>
+      <Menu>
         <MenuItem
           {...(selectedIndex === 0 && { selected: true, variant: 'soft' })}
           onClick={createHandleClose(0)}

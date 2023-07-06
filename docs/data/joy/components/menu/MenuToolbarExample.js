@@ -24,7 +24,6 @@ const MenuBarButton = React.forwardRef(
           ref={ref}
           role="menuitem"
           variant={open ? 'soft' : 'plain'}
-          color="neutral"
         >
           {children}
         </MenuButton>

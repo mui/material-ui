@@ -7,10 +7,8 @@ import MenuItem from '@mui/joy/MenuItem';
 export default function BasicMenu() {
   return (
     <Dropdown>
-      <MenuButton id="basic-demo-button" variant="outlined" color="neutral">
-        Dashboard...
-      </MenuButton>
-      <Menu id="basic-menu">
+      <MenuButton>Dashboard...</MenuButton>
+      <Menu>
         <MenuItem>Profile</MenuItem>
         <MenuItem>My account</MenuItem>
         <MenuItem>Logout</MenuItem>
