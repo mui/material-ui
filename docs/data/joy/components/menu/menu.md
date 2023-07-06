@@ -15,6 +15,7 @@ unstyled: /base-ui/react-menu/
 
 Joy UI provides three menu-related components:
 
+- `MenuButton`: A button that opens a menu. It reuses the styles from [`Button`](/joy-ui/react-button/).
 - `Menu`: A listbox popup for wrapping the menu items which reuses the styles from [`List`](/joy-ui/react-list/).
 - `MenuItem`: A menu item which reuses the styles from [`ListItemButton`](/joy-ui/react-list/).
 - `MenuList`: A standalone listbox for composition usage. It also reuses the styles from [`List`](/joy-ui/react-list/).

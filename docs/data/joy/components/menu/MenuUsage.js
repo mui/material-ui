@@ -13,7 +13,13 @@ export default function MenuUsage() {
       componentName="Menu"
       data={[
         {
-          propName: 'variant',
+          propName: 'menuButtonVariant',
+          knob: 'select',
+          defaultValue: 'outlined',
+          options: ['plain', 'outlined', 'soft', 'solid'],
+        },
+        {
+          propName: 'menuVariant',
           knob: 'select',
           defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
@@ -39,30 +45,73 @@ export default function MenuUsage() {
         },
         {
           propName: 'children',
-          defaultValue: '<MenuItem>...</MenuItem>',
+          defaultValue: '$children',
         },
       ]}
-      renderDemo={(props) => (
+      getCodeBlock={(code, props) => {
+        return `<Dropdown${props.open ? ` open` : ''}>
+  <MenuButton${
+    props.menuButtonVariant !== 'outlined'
+      ? `
+    variant="${props.menuButtonVariant}"`
+      : ''
+  }${
+          props.color !== 'neutral'
+            ? `
+    color="${props.color}"`
+            : ''
+        }${
+          props.size !== 'md'
+            ? `
+    size="${props.size}"`
+            : ''
+        }>
+    Format
+  </MenuButton>
+  <Menu${
+    props.invertedColors
+      ? `
+    invertedColors`
+      : ''
+  }${
+          props.menuVariant !== 'outlined'
+            ? `
+    variant="${props.menuVariant}"`
+            : ''
+        }${
+          props.color !== 'neutral'
+            ? `
+    color="${props.color}"`
+            : ''
+        }${
+          props.size !== 'md'
+            ? `
+    size="${props.size}"`
+            : ''
+        }>
+    <MenuItem>…</MenuItem>
+    …
+  </Menu>
+</Dropdown>`;
+      }}
+      renderDemo={({
+        menuButtonVariant,
+        menuVariant,
+        color,
+        open,
+        size,
+        invertedColors,
+      }) => (
         <Box sx={{ pb: 20 }}>
-          <Dropdown open={props.open}>
-            <MenuButton
-              slotProps={{
-                root: {
-                  variant: props.variant,
-                  color: props.color,
-                  size: props.size,
-                  invertedColors: props.invertedColors,
-                },
-              }}
-            >
+          <Dropdown open={open}>
+            <MenuButton variant={menuButtonVariant} color={color} size={size}>
               Format
             </MenuButton>
             <Menu
-              id="menu-usage-demo"
-              variant={props.variant}
-              color={props.color}
-              size={props.size}
-              invertedColors={props.invertedColors}
+              variant={menuVariant}
+              color={color}
+              size={size}
+              invertedColors={invertedColors}
             >
               <MenuItem>Add space before paragraph</MenuItem>
               <MenuItem>Add space after paragraph</MenuItem>

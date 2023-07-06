@@ -3,90 +3,83 @@ import PropTypes from 'prop-types';
 import useMenuButton from '@mui/base/useMenuButton';
 import composeClasses from '@mui/base/composeClasses';
 import { OverridableComponent } from '@mui/types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import {
   type MenuButtonProps,
   type MenuButtonOwnerState,
   type MenuButtonTypeMap,
 } from './MenuButtonProps';
-import menuButtonClasses, { getMenuButtonUtilityClass } from './menuButtonClasses';
+import { getMenuButtonUtilityClass } from './menuButtonClasses';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
+import CircularProgress from '../CircularProgress';
+import { getButtonStyles } from '../Button/Button';
 import { styled, useColorInversion } from '../styles';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState: MenuButtonOwnerState) => {
-  const { active, disabled } = ownerState;
+  const { color, disabled, fullWidth, size, variant, loading } = ownerState;
 
   const slots = {
-    root: ['root', disabled && 'disabled', active && 'active'],
+    root: [
+      'root',
+      disabled && 'disabled',
+      fullWidth && 'fullWidth',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+      loading && 'loading',
+    ],
+    startDecorator: ['startDecorator'],
+    endDecorator: ['endDecorator'],
+    loadingIndicatorCenter: ['loadingIndicatorCenter'],
   };
 
-  return composeClasses(slots, getMenuButtonUtilityClass);
+  return composeClasses(slots, getMenuButtonUtilityClass, {});
 };
 
 export const MenuButtonRoot = styled('button', {
   name: 'JoyMenuButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: MenuButtonOwnerState }>(({ theme, ownerState }) => {
-  return [
-    {
-      '--Icon-margin': 'initial', // reset the icon's margin.
-      ...(ownerState.size === 'sm' && {
-        '--Icon-fontSize': '1.25rem',
-        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
-        '--Button-gap': '0.375rem',
-        minHeight: 'var(--Button-minHeight, 2rem)',
-        fontSize: theme.vars.fontSize.sm,
-        paddingBlock: '2px',
-        paddingInline: '0.75rem',
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
-        '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
-        '--Button-gap': '0.5rem',
-        minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
-        fontSize: theme.vars.fontSize.sm,
-        paddingBlock: '0.25rem', // the padding-block act as a minimum spacing between content and root element
-        paddingInline: '1rem',
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': '1.75rem',
-        '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
-        '--Button-gap': '0.75rem',
-        minHeight: 'var(--Button-minHeight, 3rem)',
-        fontSize: theme.vars.fontSize.md,
-        paddingBlock: '0.375rem',
-        paddingInline: '1.5rem',
-      }),
-      WebkitTapHighlightColor: 'transparent',
-      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
-      margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
-      border: 'none',
-      backgroundColor: 'transparent',
-      cursor: 'pointer',
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      textDecoration: 'none', // prevent user agent underline when used as anchor
-      fontFamily: theme.vars.fontFamily.body,
-      fontWeight: theme.vars.fontWeight.lg,
-      lineHeight: 1,
-      [theme.focus.selector]: theme.focus.default,
-    },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    {
-      '&:hover': {
-        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-      },
-    },
-    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
-    {
-      [`&.${menuButtonClasses.disabled}`]:
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-  ];
+})<{ ownerState: MenuButtonOwnerState }>(getButtonStyles);
+
+const MenuButtonStartDecorator = styled('span', {
+  name: 'JoyMenuButton',
+  slot: 'StartDecorator',
+  overridesResolver: (props, styles) => styles.startDecorator,
+})<{ ownerState: MenuButtonOwnerState }>({
+  '--Icon-margin': '0 0 0 calc(var(--Button-gap) / -2)',
+  '--CircularProgress-margin': '0 0 0 calc(var(--Button-gap) / -2)',
+  display: 'inherit',
+  marginRight: 'var(--Button-gap)',
 });
+
+const MenuButtonEndDecorator = styled('span', {
+  name: 'JoyMenuButton',
+  slot: 'EndDecorator',
+  overridesResolver: (props, styles) => styles.endDecorator,
+})<{ ownerState: MenuButtonOwnerState }>({
+  '--Icon-margin': '0 calc(var(--Button-gap) / -2) 0 0',
+  '--CircularProgress-margin': '0 calc(var(--Button-gap) / -2) 0 0',
+  display: 'inherit',
+  marginLeft: 'var(--Button-gap)',
+});
+
+const MenuButtonLoadingCenter = styled('span', {
+  name: 'JoyMenuButton',
+  slot: 'LoadingCenter',
+  overridesResolver: (props, styles) => styles.loadingIndicatorCenter,
+})<{ ownerState: MenuButtonOwnerState }>(({ theme, ownerState }) => ({
+  display: 'inherit',
+  position: 'absolute',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
+  ...(ownerState.disabled && {
+    color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
+  }),
+}));
 
 /**
  *
@@ -109,22 +102,36 @@ const MenuButton = React.forwardRef(function MenuButton(
 
   const {
     children,
-    color: colorProp = 'primary',
+    color: colorProp = 'neutral',
     component,
-    disabled = false,
+    disabled: disabledProp = false,
+    endDecorator,
+    loading = false,
+    loadingPosition = 'center',
+    loadingIndicator: loadingIndicatorProp,
     size: sizeProp = 'md',
     slotProps = {},
     slots = {},
-    variant: variantProp = 'solid',
+    startDecorator,
+    variant: variantProp = 'outlined',
     ...other
   } = props;
+  const buttonGroup = React.useContext(ButtonGroupContext);
 
-  const variant = inProps.variant || variantProp;
-  const size = inProps.size || sizeProp;
+  const variant = inProps.variant || buttonGroup.variant || variantProp;
+  const size = inProps.size || buttonGroup.size || sizeProp;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp || loading);
 
   const { getRootProps, open, active } = useMenuButton({ rootRef: forwardedRef });
+
+  const loadingIndicator = loadingIndicatorProp ?? (
+    <CircularProgress
+      {...(color !== 'context' && { color })}
+      thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3}
+    />
+  );
 
   const ownerState: MenuButtonOwnerState = {
     ...props,
@@ -148,7 +155,52 @@ const MenuButton = React.forwardRef(function MenuButton(
     className: classes.root,
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
+    className: classes.startDecorator,
+    elementType: MenuButtonStartDecorator,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.endDecorator,
+    elementType: MenuButtonEndDecorator,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [SlotLoadingIndicatorCenter, loadingIndicatorCenterProps] = useSlot(
+    'loadingIndicatorCenter',
+    {
+      className: classes.loadingIndicatorCenter,
+      elementType: MenuButtonLoadingCenter,
+      externalForwardedProps,
+      ownerState,
+    },
+  );
+
+  return (
+    <SlotRoot {...rootProps}>
+      {(startDecorator || (loading && loadingPosition === 'start')) && (
+        <SlotStartDecorator {...startDecoratorProps}>
+          {loading && loadingPosition === 'start' ? loadingIndicator : startDecorator}
+        </SlotStartDecorator>
+      )}
+
+      {children}
+      {loading && loadingPosition === 'center' && (
+        <SlotLoadingIndicatorCenter {...loadingIndicatorCenterProps}>
+          {loadingIndicator}
+        </SlotLoadingIndicatorCenter>
+      )}
+
+      {(endDecorator || (loading && loadingPosition === 'end')) && (
+        <SlotEndDecorator {...endDecoratorProps}>
+          {loading && loadingPosition === 'end' ? loadingIndicator : endDecorator}
+        </SlotEndDecorator>
+      )}
+    </SlotRoot>
+  );
 }) as OverridableComponent<MenuButtonTypeMap>;
 
 MenuButton.propTypes /* remove-proptypes */ = {
@@ -161,9 +213,13 @@ MenuButton.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -174,9 +230,13 @@ MenuButton.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * @ignore
+   * The size of the component.
+   * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The props used for each slot inside.
    * @default {}
@@ -192,9 +252,13 @@ MenuButton.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * @ignore
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'outlined'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default MenuButton;
