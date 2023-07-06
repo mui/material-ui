@@ -207,7 +207,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
       common: {
         white: '#FCFCFD',
-        black: '#09090B',
+        black: '#101014',
       },
       text: {
         primary: getCssVarColor('palette-neutral-800'),
@@ -263,7 +263,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
       common: {
         white: '#FCFCFD',
-        black: '#09090B',
+        black: '#101014',
       },
       text: {
         primary: getCssVarColor('palette-neutral-100'),

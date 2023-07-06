@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider, useColorScheme, extendTheme } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Avatar from '@mui/joy/Avatar';
@@ -40,7 +40,212 @@ import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import Menu from './components/Menu';
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
-import newTheme from './theme';
+
+export const newTheme = extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          50: '#fdf7ef',
+          100: '#fbedd9',
+          200: '#f7d7b1',
+          300: '#f1bc80',
+          400: '#ea974d',
+          500: '#e57928',
+          600: '#d7611f',
+          700: '#8e3c1e',
+          800: '#73341b',
+          900: '#3e180c',
+        },
+        neutral: {
+          50: '#f4f5f7',
+          100: '#e4e8e9',
+          200: '#cbd2d6',
+          300: '#a8b3b8',
+          400: '#7c8c94',
+          500: '#6a7b84',
+          600: '#535f67',
+          700: '#475057',
+          800: '#383d41',
+          900: '#232729',
+        },
+        warning: {
+          50: '#FFFCE5',
+          100: '#FFFACC',
+          200: '#FFF399',
+          300: '#FFEB66',
+          400: '#FFE23F',
+          500: '#ffd500',
+          600: '#DBB300',
+          700: '#B79300',
+          800: '#937300',
+          900: '#937300',
+        },
+        danger: {
+          50: '#FFEFE5',
+          100: '#FFE5D6',
+          200: '#FFC5AD',
+          300: '#FF9F84',
+          400: '#FF7A66',
+          500: '#ff3d33',
+          600: '#DB252B',
+          700: '#B7192C',
+          800: '#93102A',
+          900: '#7A092A',
+        },
+        success: {
+          50: '#effce9',
+          100: '#ddf8cf',
+          200: '#bdf1a5',
+          300: '#92e670',
+          400: '#6cd744',
+          500: '#4cbd25',
+          600: '#379719',
+          700: '#2c7318',
+          800: '#244e19',
+          900: '#0e2b08',
+          solidBg: '#4cbd25',
+        },
+        focusVisible: 'rgba(229, 121, 40, 0.5)',
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          50: '#fdf7ef',
+          100: '#fbedd9',
+          200: '#f7d7b1',
+          300: '#f1bc80',
+          400: '#ea974d',
+          500: '#e57928',
+          600: '#d7611f',
+          700: '#8e3c1e',
+          800: '#73341b',
+          900: '#3e180c',
+        },
+        neutral: {
+          50: '#f4f5f7',
+          100: '#e4e8e9',
+          200: '#cbd2d6',
+          300: '#a8b3b8',
+          400: '#7c8c94',
+          500: '#6a7b84',
+          600: '#535f67',
+          700: '#475057',
+          800: '#383d41',
+          900: '#232729',
+          solidBg: '#232729',
+        },
+        warning: {
+          50: '#FFFCE5',
+          100: '#FFFACC',
+          200: '#FFF399',
+          300: '#FFEB66',
+          400: '#FFE23F',
+          500: '#ffd500',
+          600: '#DBB300',
+          700: '#B79300',
+          800: '#937300',
+          900: '#937300',
+        },
+        danger: {
+          50: '#FFEFE5',
+          100: '#FFE5D6',
+          200: '#FFC5AD',
+          300: '#FF9F84',
+          400: '#FF7A66',
+          500: '#ff3d33',
+          600: '#DB252B',
+          700: '#B7192C',
+          800: '#93102A',
+          900: '#7A092A',
+        },
+        success: {
+          50: '#effce9',
+          100: '#ddf8cf',
+          200: '#bdf1a5',
+          300: '#92e670',
+          400: '#6cd744',
+          500: '#4cbd25',
+          600: '#379719',
+          700: '#2c7318',
+          800: '#244e19',
+          900: '#0e2b08',
+        },
+      },
+    },
+  },
+  focus: {
+    default: {
+      outlineWidth: '2px',
+    },
+  },
+  fontFamily: {
+    body: 'SF Pro Text, var(--gh-fontFamily-fallback)',
+  },
+  components: {
+    JoyButton: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === 'solid' || ownerState.variant === 'soft'
+            ? {
+                boxShadow: '0 1px 0 0 rgba(27, 31, 35, 0.05)',
+              }
+            : {}),
+          ...(ownerState.size === 'md' && {
+            minHeight: '32px',
+            '--Button-paddingInline': '1rem',
+          }),
+          ...(ownerState.variant === 'solid'
+            ? {
+                border: '1px solid rgba(27, 31, 36, 0.15)',
+                boxShadow: 'inset 0px 1px 0px rgba(210, 210, 210, 0.2)',
+                '&:active': {
+                  boxShadow: 'inset 0px 1px 0px rgba(27, 31, 36, 0.2)',
+                },
+              }
+            : {}),
+          ...(ownerState.variant === 'soft' && {
+            boxShadow: 'inset 0px 1px 0px rgba(250, 250, 250, 0.3)',
+          }),
+          ...(ownerState.color === 'neutral' &&
+            ownerState.variant === 'outlined' && {
+              '&:active': {
+                boxShadow: 'none',
+              },
+            }),
+        }),
+      },
+    },
+    JoyList: {
+      styleOverrides: {
+        root: {
+          '--ListItem-radius': '8px',
+        },
+      },
+    },
+    JoyCard: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          boxShadow: 'none',
+          ...(ownerState.variant === 'solid' && {
+            border: '1px solid rgba(27, 31, 36, 0.15)',
+            boxShadow: [
+              'inset 0px 1px 0px rgba(210, 210, 210, 0.2)',
+              'inset 0px -1px 0px rgba(0, 0, 0, 0.08)',
+            ].join(', '),
+          }),
+          ...(ownerState.variant === 'soft' && {
+            boxShadow: 'inset 0px 1px 0px rgba(250, 250, 250, 0.1)',
+          }),
+          ...(ownerState.variant === 'outlined' && {
+            boxShadow: 'inset 0px -1px 0px rgba(0, 0, 0, 0.07)',
+          }),
+        }),
+      },
+    },
+  },
+});
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -161,12 +366,7 @@ export default function FilesNewTheme() {
             <Menu
               id="app-selector"
               control={
-                <IconButton
-                  size="sm"
-                  variant="outlined"
-                  color="primary"
-                  aria-label="Apps"
-                >
+                <IconButton size="sm" variant="outlined" color="primary" aria-label="Apps">
                   <GridViewRoundedIcon />
                 </IconButton>
               }
@@ -201,10 +401,7 @@ export default function FilesNewTheme() {
               gap: 2,
             }}
           >
-            <Sheet
-              variant="outlined"
-              sx={{ borderRadius: 'sm', gridColumn: '1/-1' }}
-            >
+            <Sheet variant="outlined" sx={{ borderRadius: 'sm', gridColumn: '1/-1' }}>
               <Table
                 sx={{
                   '--TableCell-paddingX': '1rem',
@@ -303,7 +500,42 @@ export default function FilesNewTheme() {
                 </tbody>
               </Table>
             </Sheet>
-
+            <Card
+              variant="outlined"
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'start',
+                gap: 1,
+                p: 2,
+                maxHeight: 210,
+              }}
+            >
+              <Button variant="solid" color="primary">
+                Label
+              </Button>
+              <Button variant="soft" color="primary">
+                Label
+              </Button>
+              <Button variant="outlined" color="primary">
+                Label
+              </Button>
+              <Button variant="plain" color="primary">
+                Label
+              </Button>
+              <Button variant="solid" color="neutral">
+                Label
+              </Button>
+              <Button variant="soft" color="neutral">
+                Label
+              </Button>
+              <Button variant="outlined" color="neutral">
+                Label
+              </Button>
+              <Button variant="plain" color="neutral">
+                Label
+              </Button>
+            </Card>
             <Sheet
               variant="outlined"
               sx={{
@@ -445,19 +677,8 @@ export default function FilesNewTheme() {
                 </ListItem>
               </List>
             </Sheet>
-            <Card
-              variant="outlined"
-              sx={{
-                '--Card-radius': (theme) => theme.vars.radius.sm,
-                boxShadow: 'none',
-              }}
-            >
-              <CardOverflow
-                sx={{
-                  borderBottom: '1px solid',
-                  borderColor: 'neutral.outlinedBorder',
-                }}
-              >
+            <Card variant="plain">
+              <CardOverflow>
                 <AspectRatio ratio="16/9" color="primary">
                   <Typography
                     sx={{
@@ -483,14 +704,7 @@ export default function FilesNewTheme() {
                 </IconButton>
               </Box>
             </Card>
-            <Card
-              variant="solid"
-              invertedColors
-              sx={{
-                '--Card-radius': (theme) => theme.vars.radius.sm,
-                boxShadow: 'none',
-              }}
-            >
+            <Card variant="solid" invertedColors>
               <CardCover>
                 <img
                   alt=""
@@ -499,8 +713,7 @@ export default function FilesNewTheme() {
               </CardCover>
               <CardCover
                 sx={{
-                  background:
-                    'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.12))',
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.12))',
                 }}
               />
               <CardContent
@@ -522,32 +735,20 @@ export default function FilesNewTheme() {
                 </IconButton>
               </CardContent>
             </Card>
-            <Card
-              variant="outlined"
-              sx={{
-                '--Card-radius': (theme) => theme.vars.radius.sm,
-                boxShadow: 'none',
-              }}
-            >
-              <CardOverflow
-                sx={{
-                  borderBottom: '1px solid',
-                  borderColor: 'neutral.outlinedBorder',
-                }}
-              >
-                <AspectRatio ratio="16/9" color="primary">
-                  <Typography
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: 'primary.plainColor',
-                    }}
-                  >
-                    .zip
-                  </Typography>
-                </AspectRatio>
-              </CardOverflow>
+            <Card variant="soft">
+              <AspectRatio ratio="16/9" color="primary">
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'primary.plainColor',
+                  }}
+                >
+                  .zip
+                </Typography>
+              </AspectRatio>
+
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
                   <Typography>platform_ios.zip</Typography>
@@ -559,6 +760,12 @@ export default function FilesNewTheme() {
                   <EditOutlinedIcon />
                 </IconButton>
               </Box>
+            </Card>
+            <Card variant="solid" invertedColors>
+              <Typography>platform_ios.zip</Typography>
+              <Typography level="body-xs" mt={0.5}>
+                Added 26 May 2011
+              </Typography>
             </Card>
           </Box>
         </Layout.Main>

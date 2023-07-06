@@ -7,16 +7,18 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
+import Button from '@mui/joy/Button';
 
 // Icons import
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import { Card } from '@mui/material';
 
 export default function Navigation() {
   return (
-    <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
+    <List size="sm" sx={{ '--List-gap': '4px' }}>
       <ListItem nested>
         <ListSubheader>
           Browse
@@ -142,6 +144,54 @@ export default function Navigation() {
           </ListItem>
         </List>
       </ListItem>
+      <Card
+        variant="outlined"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'start',
+          gap: 1,
+          p: 2,
+          mt: 2,
+        }}
+      >
+        <Button variant="solid" color="success">
+          Label
+        </Button>
+        <Button variant="soft" color="success">
+          Label
+        </Button>
+        <Button variant="outlined" color="success">
+          Label
+        </Button>
+        <Button variant="plain" color="success">
+          Label
+        </Button>
+        <Button variant="solid" color="warning">
+          Label
+        </Button>
+        <Button variant="soft" color="warning">
+          Label
+        </Button>
+        <Button variant="outlined" color="warning">
+          Label
+        </Button>
+        <Button variant="plain" color="warning">
+          Label
+        </Button>
+        <Button variant="solid" color="danger">
+          Label
+        </Button>
+        <Button variant="soft" color="danger">
+          Label
+        </Button>
+        <Button variant="outlined" color="danger">
+          Label
+        </Button>
+        <Button variant="plain" color="danger">
+          Label
+        </Button>
+      </Card>
     </List>
   );
 }
