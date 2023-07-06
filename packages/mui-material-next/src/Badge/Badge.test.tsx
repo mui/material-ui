@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import Badge, { badgeClasses as classes } from '@mui/material-next/Badge';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 function findBadgeRoot(container: HTMLElement) {
   return container?.firstChild;
@@ -28,6 +29,8 @@ describe('<Badge />', () => {
       <div />
     </Badge>,
     () => ({
+      ThemeProvider: CssVarsProvider,
+      createTheme: extendTheme,
       classes,
       inheritComponent: 'span',
       render,
