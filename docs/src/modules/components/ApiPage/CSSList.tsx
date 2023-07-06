@@ -33,12 +33,12 @@ export default function CSSList(props: CSSListProps) {
           <ApiItem
             id={`${hashPrefix}css-${className}`}
             key={className}
-            description={`${className}${isGlobalStateClass ? ' (State)' : ''}`}
+            description={className}
             title={`.${
               componentStyles.globalClasses[className] || `${componentStyles.name}-${className}`
             }`}
             note={isGlobalStateClass ? t('api-docs.state') : ''}
-            type='CSS'
+            type="CSS"
           >
             <p
               dangerouslySetInnerHTML={{
