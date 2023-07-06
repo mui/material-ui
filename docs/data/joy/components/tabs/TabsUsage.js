@@ -12,7 +12,7 @@ export default function TabsUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
           codeBlockDisplay: false,
