@@ -174,7 +174,7 @@ describe('<ButtonGroup />', () => {
     expect(container.querySelector('[data-last-child]')).to.have.text('Third');
   });
 
-  it('add data-attribute to single child', () => {
+  it('should not add data-attribute to single child', () => {
     const { container } = render(
       <ButtonGroup>
         <Button>Single</Button>
