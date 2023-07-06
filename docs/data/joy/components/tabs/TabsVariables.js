@@ -20,6 +20,10 @@ export default function ListVariables() {
           var: '--Tab-indicatorThickness',
           defaultValue: '2px',
         },
+        {
+          var: '--Tab-indicatorRadius',
+          defaultValue: '0px',
+        },
       ]}
       renderDemo={(sx) => (
         <Tabs sx={sx} defaultValue={0}>

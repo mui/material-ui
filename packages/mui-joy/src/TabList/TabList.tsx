@@ -59,19 +59,23 @@ const TabListRoot = styled(StyledList, {
     }),
     ...(!ownerState.disableUnderline && {
       ...(ownerState.underlinePlacement === 'bottom' && {
-        '--unstable_TabList-underlineBottom': '-1px',
+        '--unstable_TabList-underlineBottom': '1px',
+        paddingBottom: 1,
         boxShadow: `inset 0 -1px ${theme.vars.palette.divider}`,
       }),
       ...(ownerState.underlinePlacement === 'top' && {
-        '--unstable_TabList-underlineTop': '-1px',
+        '--unstable_TabList-underlineTop': '1px',
+        paddingTop: 1,
         boxShadow: `inset 0 1px ${theme.vars.palette.divider}`,
       }),
       ...(ownerState.underlinePlacement === 'right' && {
-        '--unstable_TabList-underlineRight': '-1px',
+        '--unstable_TabList-underlineRight': '1px',
+        paddingRight: 1,
         boxShadow: `inset -1px 0 ${theme.vars.palette.divider}`,
       }),
       ...(ownerState.underlinePlacement === 'left' && {
-        '--unstable_TabList-underlineLeft': '-1px',
+        '--unstable_TabList-underlineLeft': '1px',
+        paddingLeft: 1,
         boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
       }),
     }),

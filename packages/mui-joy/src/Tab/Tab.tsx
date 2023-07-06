@@ -36,29 +36,12 @@ const TabRoot = styled(StyledListItemButton, {
   name: 'JoyTab',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabOwnerState }>(({ ownerState, theme }) => [
+})<{ ownerState: TabOwnerState }>(({ ownerState }) => [
   {
     flexGrow: ownerState.row ? 1 : 0,
     justifyContent: ownerState.row ? 'center' : 'initial',
     '--unstable_ListItemDecorator-alignItems': 'center',
     '--unstable_offset': 'min(calc(-1 * var(--variant-borderWidth, 0px)), -1px)',
-    // to prevent the Tab's background from covering TabList's underline when hovered.
-    ...(ownerState.variant !== 'outlined' && {
-      '&::before': {
-        content: '""',
-        display: 'block',
-        position: 'absolute',
-        width: ownerState.row ? 'calc(100% + 2px)' : 1, // +2px to account for the border placeholder in ListItemButton
-        height: !ownerState.row ? 'calc(100% + 2px)' : 1, // +2px to account for the border placeholder in ListItemButton
-        bottom: 'var(--unstable_TabList-underlineBottom)',
-        top: 'var(--unstable_TabList-underlineTop)',
-        left: 'var(--unstable_TabList-underlineLeft)',
-        right: 'var(--unstable_TabList-underlineRight)',
-      },
-      '&:not([aria-selected="true"]):hover::before': {
-        backgroundColor: `var(--unstable_TabList-hasUnderline, ${theme.vars.palette.divider})`,
-      },
-    }),
   },
   !ownerState.disableIndicator && {
     '&[aria-selected="true"]': {
@@ -73,53 +56,54 @@ const TabRoot = styled(StyledListItemButton, {
       position: 'absolute',
       margin: 'auto',
       background: 'var(--Tab-indicatorColor)',
+      borderRadius: 'var(--Tab-indicatorRadius)',
     },
   },
   // the padding is to account for the indicator's thickness to make the text proportional.
   !ownerState.disableIndicator &&
     ownerState.indicatorPlacement === 'bottom' && {
       paddingBottom:
-        'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness))',
+        'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness) - 1px)',
       '&::after': {
-        height: 'var(--unstable_indicatorThickness, var(--Tab-indicatorThickness))',
+        height: 'var(--Tab-indicatorThickness)',
         left: ownerState.indicatorInset ? 'var(--ListItem-paddingLeft)' : 'var(--unstable_offset)',
         right: ownerState.indicatorInset
           ? 'var(--ListItem-paddingRight)'
           : 'var(--unstable_offset)',
-        bottom: 'var(--unstable_offset)',
+        bottom: 'calc(-1px - var(--unstable_TabList-underlineBottom, 0px))',
       },
     },
   !ownerState.disableIndicator &&
     ownerState.indicatorPlacement === 'top' && {
       paddingTop:
-        'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness))',
+        'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness) - 1px)',
       '&::after': {
-        height: 'var(--unstable_indicatorThickness, var(--Tab-indicatorThickness))',
+        height: 'var(--Tab-indicatorThickness)',
         left: ownerState.indicatorInset ? 'var(--ListItem-paddingLeft)' : 'var(--unstable_offset)',
         right: ownerState.indicatorInset
           ? 'var(--ListItem-paddingRight)'
           : 'var(--unstable_offset)',
-        top: 'var(--unstable_offset)',
+        top: 'calc(-1px - var(--unstable_TabList-underlineTop, 0px))',
       },
     },
   !ownerState.disableIndicator &&
     ownerState.indicatorPlacement === 'right' && {
-      paddingRight: 'calc(var(--ListItem-paddingRight) + var(--Tab-indicatorThickness))',
+      paddingRight: 'calc(var(--ListItem-paddingRight) + var(--Tab-indicatorThickness) - 1px)',
       '&::after': {
-        width: 'var(--unstable_indicatorThickness, var(--Tab-indicatorThickness))',
+        width: 'var(--Tab-indicatorThickness)',
         top: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
         bottom: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
-        right: 'var(--unstable_offset)',
+        right: 'calc(-1px - var(--unstable_TabList-underlineRight, 0px))',
       },
     },
   !ownerState.disableIndicator &&
     ownerState.indicatorPlacement === 'left' && {
-      paddingLeft: 'calc(var(--ListItem-paddingLeft) + var(--Tab-indicatorThickness))',
+      paddingLeft: 'calc(var(--ListItem-paddingLeft) + var(--Tab-indicatorThickness) - 1px)',
       '&::after': {
-        width: 'var(--unstable_indicatorThickness, var(--Tab-indicatorThickness))',
+        width: 'var(--Tab-indicatorThickness)',
         top: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
         bottom: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
-        left: 'var(--unstable_offset)',
+        left: 'calc(-1px - var(--unstable_TabList-underlineLeft, 0px))',
       },
     },
 ]);
