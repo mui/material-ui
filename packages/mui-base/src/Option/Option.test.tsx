@@ -24,9 +24,7 @@ describe('<Option />', () => {
             dispatch: () => {},
             getItemIndex: () => 0,
             getItemState: dummyGetItemState,
-            registerHighlightChangeHandler: () => () => {},
             registerItem: () => ({ id: 0, deregister: () => {} }),
-            registerSelectionChangeHandler: () => () => {},
             totalSubitemCount: 0,
           }}
         >
@@ -41,9 +39,7 @@ describe('<Option />', () => {
             dispatch: () => {},
             getItemIndex: () => 0,
             getItemState: dummyGetItemState,
-            registerHighlightChangeHandler: () => () => {},
             registerItem: () => ({ id: 0, deregister: () => {} }),
-            registerSelectionChangeHandler: () => () => {},
             totalSubitemCount: 0,
           }}
         >

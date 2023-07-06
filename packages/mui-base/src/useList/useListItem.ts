@@ -1,15 +1,10 @@
 'use client';
 import * as React from 'react';
-import {
-  unstable_useForkRef as useForkRef,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-} from '@mui/utils';
-import { useForcedRerendering } from '../utils/useForcedRerendering';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
 import { UseListItemParameters, UseListItemReturnValue } from './useListItem.types';
 import { ListActionTypes } from './listActions.types';
-import { ListContext } from './ListContext';
 
 /**
  * Contains the logic for an item of a list-like component (e.g. Select, Menu, etc.).
@@ -22,48 +17,17 @@ import { ListContext } from './ListContext';
 export function useListItem<ItemValue>(
   parameters: UseListItemParameters<ItemValue>,
 ): UseListItemReturnValue {
-  const { handlePointerOverEvents = false, item, rootRef: externalRef } = parameters;
+  const {
+    handlePointerOverEvents = false,
+    item,
+    rootRef: externalRef,
+    dispatch,
+    highlighted,
+    focusable,
+  } = parameters;
 
   const itemRef = React.useRef<Element>(null);
   const handleRef = useForkRef(itemRef, externalRef);
-
-  const listContext = React.useContext(ListContext);
-  if (!listContext) {
-    throw new Error('useListItem must be used within a ListProvider');
-  }
-
-  const { dispatch, getItemState, registerHighlightChangeHandler, registerSelectionChangeHandler } =
-    listContext;
-
-  const { highlighted, selected, focusable } = getItemState(item);
-
-  const rerender = useForcedRerendering();
-
-  useEnhancedEffect(() => {
-    function updateHighlightedState(highlightedItem: ItemValue | null) {
-      if (highlightedItem === item && !highlighted) {
-        rerender();
-      } else if (highlightedItem !== item && highlighted) {
-        rerender();
-      }
-    }
-
-    return registerHighlightChangeHandler(updateHighlightedState);
-  });
-
-  useEnhancedEffect(() => {
-    function updateSelectedState(selectedItems: ItemValue[]) {
-      if (!selected) {
-        if (selectedItems.includes(item)) {
-          rerender();
-        }
-      } else if (!selectedItems.includes(item)) {
-        rerender();
-      }
-    }
-
-    return registerSelectionChangeHandler(updateSelectedState);
-  }, [registerSelectionChangeHandler, rerender, selected, item]);
 
   const createHandleClick = React.useCallback(
     (externalHandlers: EventHandlers) => (event: React.MouseEvent) => {
@@ -72,9 +36,20 @@ export function useListItem<ItemValue>(
         return;
       }
 
+      if (process.env.NODE_ENV !== 'production') {
+        if (item === undefined) {
+          throw new Error(
+            [
+              'MUI: The `item` provided to useListItem() is undefined.',
+              'This should happen only during server-side rendering under React 17.',
+            ].join('\n'),
+          );
+        }
+      }
+
       dispatch({
         type: ListActionTypes.itemClick,
-        item,
+        item: item!,
         event,
       });
     },
@@ -88,9 +63,20 @@ export function useListItem<ItemValue>(
         return;
       }
 
+      if (process.env.NODE_ENV !== 'production') {
+        if (item === undefined) {
+          throw new Error(
+            [
+              'MUI: The `item` provided to useListItem() is undefined.',
+              'This should happen only during server-side rendering under React 17.',
+            ].join('\n'),
+          );
+        }
+      }
+
       dispatch({
         type: ListActionTypes.itemHover,
-        item,
+        item: item!,
         event,
       });
     },
@@ -119,8 +105,6 @@ export function useListItem<ItemValue>(
 
   return {
     getRootProps,
-    highlighted,
     rootRef: handleRef,
-    selected,
   };
 }

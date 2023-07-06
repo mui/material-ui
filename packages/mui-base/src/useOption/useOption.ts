@@ -17,15 +17,23 @@ import { useCompoundItem } from '../utils/useCompoundItem';
  * - [useOption API](https://mui.com/base-ui/react-select/hooks-api/#use-option)
  */
 export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
-  const { value, label, disabled, rootRef: optionRefParam, id: idParam } = params;
-
   const {
-    getRootProps: getListItemProps,
-    rootRef: listItemRefHandler,
-    highlighted,
+    value,
+    label,
+    disabled,
+    rootRef: optionRefParam,
+    id: idParam,
+    dispatch,
     selected,
-  } = useListItem({
+    highlighted,
+  } = params;
+
+  const { getRootProps: getListItemProps, rootRef: listItemRefHandler } = useListItem({
+    dispatch,
+    focusable: false,
+    highlighted,
     item: value,
+    selected,
   });
 
   const id = useId(idParam);
@@ -61,9 +69,7 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
         'aria-selected': selected,
       };
     },
-    highlighted,
     index,
-    selected,
     rootRef: handleRef,
   };
 }

@@ -8,6 +8,7 @@ import { getOptionUtilityClass } from './optionClasses';
 import { useSlotProps } from '../utils';
 import { useOption } from '../useOption';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import { ListAction, ListContext } from '../useList';
 
 function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue>) {
   const { disabled, highlighted, selected } = ownerState;
@@ -19,29 +20,33 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
   return composeClasses(slots, useClassNamesOverride(getOptionUtilityClass));
 }
 
-/**
- * An unstyled option to be used within a Select.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base-ui/react-select/)
- *
- * API:
- *
- * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
- */
-const Option = React.memo(
-  React.forwardRef(function Option<OptionValue, RootComponentType extends React.ElementType>(
-    props: OptionProps<OptionValue, RootComponentType>,
+type InnerOptionProps<OptionValue, RootComponentType extends React.ElementType> = OptionProps<
+  OptionValue,
+  RootComponentType
+> & {
+  dispatch: React.Dispatch<ListAction<OptionValue>>;
+  selected: boolean;
+  highlighted: boolean;
+};
+
+const InnerOption = React.memo(
+  React.forwardRef(function InnerOptionImpl<
+    OptionValue,
+    RootComponentType extends React.ElementType,
+  >(
+    props: InnerOptionProps<OptionValue, RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>,
   ) {
     const {
       children,
       disabled = false,
+      dispatch,
       label,
       slotProps = {},
       slots = {},
       value,
+      selected,
+      highlighted,
       ...other
     } = props;
 
@@ -55,8 +60,11 @@ const Option = React.memo(
     const computedLabel =
       label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
 
-    const { getRootProps, selected, highlighted, index } = useOption({
+    const { getRootProps, index } = useOption({
       disabled,
+      dispatch,
+      selected,
+      highlighted,
       label: computedLabel,
       rootRef: combinedRef,
       value,
@@ -83,7 +91,29 @@ const Option = React.memo(
 
     return <Root {...rootProps}>{children}</Root>;
   }),
-) as OptionType;
+);
+
+/**
+ * An unstyled option to be used within a Select.
+ */
+const Option = React.forwardRef(function Option<
+  OptionValue,
+  RootComponentType extends React.ElementType,
+>(props: OptionProps<OptionValue, RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
+  const { dispatch, getItemState } = React.useContext(ListContext)!;
+  const { highlighted, selected, focusable } = getItemState(props.value);
+
+  return (
+    <InnerOption
+      {...props}
+      ref={forwardedRef}
+      selected={selected}
+      highlighted={highlighted}
+      focusable={focusable}
+      dispatch={dispatch}
+    />
+  );
+}) as OptionType;
 
 Option.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -129,4 +159,15 @@ Option.propTypes /* remove-proptypes */ = {
   value: PropTypes.any.isRequired,
 } as any;
 
+/**
+ * An unstyled option to be used within a Select.
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/base-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
+ */
 export { Option };
