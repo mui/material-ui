@@ -174,6 +174,16 @@ describe('<ButtonGroup />', () => {
     expect(container.querySelector('[data-last-child]')).to.have.text('Third');
   });
 
+  it('should not add data-attribute to single child', () => {
+    const { container } = render(
+      <ButtonGroup>
+        <Button>Single</Button>
+      </ButtonGroup>,
+    );
+    expect(container.querySelector('[data-first-child]')).to.equal(null);
+    expect(container.querySelector('[data-last-child]')).to.equal(null);
+  });
+
   it('pass disabled to buttons', () => {
     const { getAllByRole } = render(
       <ButtonGroup disabled>
