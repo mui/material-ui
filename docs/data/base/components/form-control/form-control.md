@@ -97,10 +97,11 @@ Note that even though Form Control supports both controlled and uncontrolled-sty
 This way, you don't have to implement both in your custom input—Form Control does this for you.
 
 :::info
+
 - A component is **controlled** when it's managed by its parent using props.
 - A component is **uncontrolled** when it's managed by its own local state.
 
-Learn more about the *Controlled and uncontrolled pattern* in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+Learn more about the _Controlled and uncontrolled pattern_ in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
 ## Customization

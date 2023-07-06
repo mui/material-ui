@@ -118,14 +118,14 @@ The useAutocomplete hook has two states that can be controlled:
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-
 These two states are isolated, and should be controlled independently.
 
 :::info
+
 - A component is **controlled** when it's managed by its parent using props.
 - A component is **uncontrolled** when it's managed by its own local state.
 
-Learn more about the *Controlled and uncontrolled pattern* in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+Learn more about the _Controlled and uncontrolled pattern_ in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
 {{"demo": "ControlledStates.js"}}

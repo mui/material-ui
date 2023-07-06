@@ -29,6 +29,14 @@ Tree views also support multi-selection.
 
 The tree view also offers a controlled API.
 
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about the _Controlled and uncontrolled pattern_ in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
+
 {{"demo": "ControlledTreeView.js"}}
 
 ## Rich object
