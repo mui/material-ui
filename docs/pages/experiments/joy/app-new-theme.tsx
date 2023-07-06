@@ -224,7 +224,7 @@ export const newTheme = extendTheme({
     },
   },
   fontFamily: {
-    body: 'SF Pro Text, var(--gh-fontFamily-fallback)',
+    body: 'Open Sans, var(--gh-fontFamily-fallback)',
   },
   components: {
     JoyButton: {
