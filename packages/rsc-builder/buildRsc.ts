@@ -40,12 +40,17 @@ const PROJECTS = [
   },
 ];
 
-async function processFile(file: { filename: string }, lineToPrepend = `'use client';${EOL}`) {
-  const { filename } = file;
-
+async function processFile(
+  filename: string,
+  options: {
+    lineToPrepend?: string;
+    truncate?: boolean;
+  } = {},
+) {
+  const { lineToPrepend = `'use client';${EOL}`, truncate = true } = options;
   const contents = await fse.readFile(filename, 'utf8');
 
-  const truncatedContents = contents.split(/\r?\n/).slice(1).join('\n');
+  const truncatedContents = truncate ? contents.split(/\r?\n/).slice(1).join('\n') : contents;
   const newContents = `${lineToPrepend}${truncatedContents}`;
 
   await fse.writeFile(filename, newContents);
@@ -77,7 +82,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
     const indexFile = getIndexFile(projectSrc);
 
     try {
-      processFile(indexFile);
+      processFile(indexFile.filename);
     } catch (error: any) {
       error.message = `${path.relative(process.cwd(), indexFile.filename)}: ${error.message}`;
       throw error;
@@ -92,7 +97,11 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
 
     components.forEach(async (component) => {
       try {
-        processFile(component);
+        processFile(component.filename);
+
+        if (component.indexFilename) {
+          processFile(component.indexFilename);
+        }
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
         throw error;
@@ -108,7 +117,11 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
 
     hooks.forEach(async (hook) => {
       try {
-        processFile(hook);
+        processFile(hook.filename);
+
+        if (hook.indexFilename) {
+          processFile(hook.indexFilename);
+        }
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
         throw error;
