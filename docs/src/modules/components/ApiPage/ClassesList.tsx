@@ -44,7 +44,7 @@ export default function ClassesList(props: ClassesListProps) {
               key={item.className}
               note={isGlobalStateClass ? t('api-docs.state') : ''}
               title={cssClassName}
-              type='classes'
+              type="classes"
             >
               <p
                 dangerouslySetInnerHTML={{
