@@ -80,7 +80,7 @@ export default function generatePropDescription(
   signature?: string;
   signatureArgs?: { name: string; description: string }[];
   signatureReturn?: { name: string; description: string };
-  notes: string;
+  requiresRef?: boolean;
 } {
   const { annotation } = prop;
   const type = prop.type;
@@ -152,11 +152,8 @@ export default function generatePropDescription(
     }
   }
 
-  let notes = '';
-  if (isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type)) {
-    notes +=
-      '⚠️ [Needs to be able to hold a ref](/material-ui/guides/composition/#caveat-with-refs).';
-  }
+  const requiresRef =
+    isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type) || undefined;
 
   return {
     deprecated,
@@ -164,6 +161,6 @@ export default function generatePropDescription(
     signature,
     signatureArgs,
     signatureReturn,
-    notes,
+    requiresRef,
   };
 }
