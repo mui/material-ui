@@ -16,7 +16,7 @@ export default function NestedModal() {
   return (
     <div>
       <TriggerButton onClick={handleOpen}>Open modal</TriggerButton>
-      <Modal
+      <StyledModal
         open={open}
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
@@ -30,7 +30,7 @@ export default function NestedModal() {
           </p>
           <ChildModal />
         </Box>
-      </Modal>
+      </StyledModal>
     </div>
   );
 }
@@ -109,7 +109,7 @@ const StyledModal = styled(Modal)`
 `;
 
 const StyledBackdrop = styled(Backdrop)`
-  z-index: 1200;
+  z-index: -1;
   position: fixed;
   inset: 0;
   background-color: rgb(0 0 0 / 0.5);
@@ -126,7 +126,6 @@ const style = (theme: Theme) => ({
   padding: '16px 32px 24px 32px',
   backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
   boxShadow: `0px 2px 24px ${theme.palette.mode === 'dark' ? '#000' : '#383838'}`,
-  'z-index': 1200,
 });
 
 const TriggerButton = styled(Button)(

@@ -261,8 +261,6 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
           tabbable = getTabbable(rootRef.current as HTMLElement);
         }
 
-        let focusableElem: HTMLElement | null = null;
-
         if (tabbable.length > 0) {
           const isShiftTab = Boolean(
             lastKeydown.current?.shiftKey && lastKeydown.current?.key === 'Tab',
@@ -273,17 +271,13 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
 
           if (typeof focusNext !== 'string' && typeof focusPrevious !== 'string') {
             if (isShiftTab) {
-              focusableElem = focusPrevious;
+              focusPrevious.focus();
             } else {
-              focusableElem = focusNext;
+              focusNext.focus();
             }
           }
         } else {
-          focusableElem = rootElement;
-        }
-
-        if (focusableElem) {
-          focusableElem.focus();
+          rootElement.focus();
         }
       }
     };
