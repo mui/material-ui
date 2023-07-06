@@ -1,10 +1,7 @@
 {
   "componentDescription": "Modal is a lower-level construct that is leveraged by the following components:\n\n*   [Dialog](https://mui.com/material-ui/api/dialog/)\n*   [Drawer](https://mui.com/material-ui/api/drawer/)\n*   [Menu](https://mui.com/material-ui/api/menu/)\n*   [Popover](https://mui.com/material-ui/api/popover/)\n\nIf you are creating a modal dialog, you probably want to use the [Dialog](https://mui.com/material-ui/api/dialog/) component\nrather than directly using Modal.\n\nThis component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).",
   "propDescriptions": {
-    "children": {
-      "description": "A single child content element.",
-      "notes": "⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>."
-    },
+    "children": { "description": "A single child content element.", "requiresRef": true },
     "closeAfterTransition": {
       "description": "When set to true the Modal waits until a nested Transition is completed before closing."
     },
