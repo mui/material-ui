@@ -138,7 +138,7 @@ const Root = styled('div')(
     },
     '& .prop-list-default-props': {
       ...theme.typography.body2,
-      fontWeight: theme.typography.fontWeightMedium,
+      fontWeight: theme.typography.fontWeightSemiBold,
       display: 'flex',
       alignItems: 'center',
       span: {
@@ -159,7 +159,7 @@ const Root = styled('div')(
       marginBottom: 16,
       p: {
         ...theme.typography.body2,
-        fontWeight: theme.typography.fontWeightMedium,
+        fontWeight: theme.typography.fontWeightSemiBold,
         marginBottom: 8,
       },
       '&>code': {
