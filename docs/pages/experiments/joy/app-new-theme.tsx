@@ -261,9 +261,18 @@ export const newTheme = extendTheme({
         },
       },
     },
+    JoySheet: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === 'solid' && {
+            backgroundColor: '#000',
+          }),
+        }),
+      },
+    },
     JoyCard: {
       styleOverrides: {
-        root: ({ ownerState, theme }) => ({
+        root: ({ ownerState }) => ({
           boxShadow: 'none',
           colorSchemes: {
             light: {
@@ -272,7 +281,6 @@ export const newTheme = extendTheme({
           },
           ...(ownerState.variant === 'solid' && {
             border: '1px solid rgba(27, 31, 36, 0.15)',
-            // backgroundColor: '#0e2b08',
             boxShadow: [
               'inset 0px 1px 0px rgba(210, 210, 210, 0.2)',
               'inset 0px -1px 0px rgba(0, 0, 0, 0.08)',
@@ -545,39 +553,77 @@ export default function FilesNewTheme() {
             </Sheet>
             <Card
               variant="outlined"
-              sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                alignItems: 'start',
-                gap: 1,
-                p: 2,
-                maxHeight: 210,
-              }}
+              sx={{ display: 'flex', flexDirection: 'row', alignItems: 'start' }}
             >
-              <Button variant="solid" color="primary">
-                Label
-              </Button>
-              <Button variant="soft" color="primary">
-                Label
-              </Button>
-              <Button variant="outlined" color="primary">
-                Label
-              </Button>
-              <Button variant="plain" color="primary">
-                Label
-              </Button>
-              <Button variant="solid" color="neutral">
-                Label
-              </Button>
-              <Button variant="soft" color="neutral">
-                Label
-              </Button>
-              <Button variant="outlined" color="neutral">
-                Label
-              </Button>
-              <Button variant="plain" color="neutral">
-                Label
-              </Button>
+              <Sheet
+                variant="outlined"
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 2,
+                  p: 1,
+                }}
+              >
+                <Button variant="solid" color="primary">
+                  Label
+                </Button>
+                <Button variant="soft" color="primary">
+                  Label
+                </Button>
+                <Button variant="outlined" color="primary">
+                  Label
+                </Button>
+                <Button variant="plain" color="primary">
+                  Label
+                </Button>
+              </Sheet>
+              <Sheet
+                variant="soft"
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 2,
+                  p: 1,
+                }}
+              >
+                <Button variant="solid" color="primary">
+                  Label
+                </Button>
+                <Button variant="soft" color="primary">
+                  Label
+                </Button>
+                <Button variant="outlined" color="primary">
+                  Label
+                </Button>
+                <Button variant="plain" color="primary">
+                  Label
+                </Button>
+              </Sheet>
+              <Sheet
+                variant="solid"
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 2,
+                  p: 1,
+                }}
+              >
+                <Button variant="solid" color="neutral">
+                  Label
+                </Button>
+                <Button variant="soft" color="neutral">
+                  Label
+                </Button>
+                <Button variant="outlined" color="neutral">
+                  Label
+                </Button>
+                <Button variant="plain" color="neutral">
+                  Label
+                </Button>
+              </Sheet>
             </Card>
             <Sheet
               variant="outlined"
