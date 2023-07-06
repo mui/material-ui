@@ -151,7 +151,7 @@ function getHeaders(markdown) {
     return headers;
   } catch (err) {
     throw new Error(
-      `docs-infra: ${err.message} in getHeader(markdown) with markdown: \n\n${header}`,
+      `docs-infra: ${err.message} in getHeader(markdown) with markdown: \n\n${header}\n`,
     );
   }
 }
@@ -273,7 +273,7 @@ function createRender(context) {
         });
       } else if (level === 3) {
         if (!toc[toc.length - 1]) {
-          throw new Error(`docs-infra: Missing parent level for: ${headingText}`);
+          throw new Error(`docs-infra: Missing parent level for: ${headingText}\n`);
         }
 
         toc[toc.length - 1].children.push({
@@ -457,7 +457,7 @@ function prepareMarkdown(config) {
       const description = headers.description || getDescription(markdown);
 
       if (title == null || title === '') {
-        throw new Error(`docs-infra: Missing title in the page: ${location}`);
+        throw new Error(`docs-infra: Missing title in the page: ${location}\n`);
       }
 
       if (title.length > 70) {
@@ -466,12 +466,13 @@ function prepareMarkdown(config) {
             `docs-infra: The title "${title}" is too long (${title.length} characters).`,
             'It needs to have fewer than 70 characters—ideally less than 60. For more details, see:',
             'https://developers.google.com/search/docs/advanced/appearance/title-link',
+            '',
           ].join('\n'),
         );
       }
 
       if (description == null || description === '') {
-        throw new Error(`docs-infra: Missing description in the page: ${location}`);
+        throw new Error(`docs-infra: Missing description in the page: ${location}\n`);
       }
 
       if (description.length > 170) {
@@ -480,6 +481,7 @@ function prepareMarkdown(config) {
             `docs-infra: The description "${description}" is too long (${description.length} characters).`,
             'It needs to have fewer than 170 characters—ideally less than 160. For more details, see:',
             'https://ahrefs.com/blog/meta-description/#4-be-concise',
+            '',
           ].join('\n'),
         );
       }
