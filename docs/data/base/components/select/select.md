@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Select components and hook
 components: Select, Option, OptionGroup
 hooks: useSelect, useOption
@@ -54,7 +54,7 @@ export default function MyApp() {
 
 The following demo shows how to create and style a Select component.
 
-{{"demo": "UnstyledSelectSimple.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledSelectBasic", "defaultCodeOpen": false}}
 
 #### Form submission
 
@@ -130,6 +130,15 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 
 ```jsx
 <Select slotProps={{ listbox: { className: 'my-listbox' } }} />
+```
+
+### Portals
+
+By default, the Select's popup is rendered in a [Portal](https://mui.com/base-ui/react-portal/) and appended to the bottom of the DOM.
+To instead render the popup where the component is defined, override the `disablePortal` prop of the underlying Popper, as shown below:
+
+```jsx
+<Select slotProps={{ popper: { disablePortal: true } }} />
 ```
 
 #### Usage with TypeScript

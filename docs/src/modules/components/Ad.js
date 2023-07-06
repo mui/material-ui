@@ -111,7 +111,7 @@ class AdErrorBoundary extends React.Component {
   }
 }
 
-function Ad() {
+export default function Ad() {
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
 
@@ -218,7 +218,8 @@ function Ad() {
       sx={{
         position: 'relative',
         display: 'block',
-        m: (theme) => theme.spacing(4, 0, 3),
+        mt: 4,
+        mb: 3,
         ...(adShape === 'image' && {
           minHeight: 126,
         }),
@@ -241,5 +242,3 @@ function Ad() {
     </Box>
   );
 }
-
-export default Ad;

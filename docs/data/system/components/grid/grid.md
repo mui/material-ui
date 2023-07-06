@@ -1,5 +1,5 @@
 ---
-product: system
+productId: system
 title: React Grid component
 githubLabel: 'component: Grid'
 ---

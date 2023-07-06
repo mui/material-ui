@@ -8,19 +8,19 @@
 
 ### With npm
 
-```sh
+```bash
 npm install @mui/base
 ```
 
 ### With yarn
 
-```sh
+```bash
 yarn add @mui/base
 ```
 
 ### With pnpm
 
-```sh
+```bash
 pnpm add @mui/base
 ```
 

@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Select component
 components: Select, NativeSelect
 githubLabel: 'component: select'
@@ -62,7 +62,7 @@ Note that when using FormControl with the outlined variant of the Select, you ne
 As the user experience can be improved on mobile using the native select of the platform,
 we allow such pattern.
 
-{{"demo": "NativeSelect.js"}}
+{{"demo": "NativeSelectDemo.js"}}
 
 ## TextField
 

@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Badge component
 components: Badge
 githubLabel: 'component: badge'

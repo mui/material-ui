@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: Unstyled React Popper component
 components: PopperUnstyled
 githubLabel: 'component: Popper'
