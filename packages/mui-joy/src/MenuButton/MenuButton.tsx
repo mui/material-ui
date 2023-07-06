@@ -144,7 +144,16 @@ const MenuButton = React.forwardRef(function MenuButton(
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component, slots, slotProps };
+  const externalForwardedProps = {
+    ...other,
+    component,
+    slots,
+    slotProps,
+    // spread these instance props to the custom root slot.
+    size: inProps.size,
+    variant: inProps.variant,
+    color: inProps.color,
+  };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     elementType: MenuButtonRoot,
