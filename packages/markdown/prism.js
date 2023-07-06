@@ -20,7 +20,18 @@ function highlight(code, language) {
       break;
 
     case 'sh':
-      throw new Error([`Unsupported language: "sh", "${code}".`, 'Use "bash" instead.'].join('\n'));
+      throw new Error(
+        [
+          `docs-infra: Unsupported language: "sh" in:`,
+          '',
+          '```sh',
+          code,
+          '```',
+          '',
+          'Use "bash" instead.',
+          '',
+        ].join('\n'),
+      );
 
     case 'diff':
       prismLanguage = { ...prism.languages.diff };
