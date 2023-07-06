@@ -563,6 +563,62 @@ describe('<Select />', () => {
           expect(options[5]).to.have.attribute('aria-selected', 'true');
         });
       });
+
+      describe('when the second child is null', () => {
+        it('first selectable option is focused to use the arrow', () => {
+          const { getAllByRole } = render(
+            <Select defaultValue="" open>
+              <ListSubheader>Category 1</ListSubheader>
+              {null}
+              <MenuItem value={1}>Option 1</MenuItem>
+              <MenuItem value={2}>Option 2</MenuItem>
+              <ListSubheader>Category 2</ListSubheader>
+              <MenuItem value={3}>Option 3</MenuItem>
+              <MenuItem value={4}>Option 4</MenuItem>
+            </Select>,
+          );
+
+          const options = getAllByRole('option');
+          expect(options[1]).to.have.attribute('tabindex', '0');
+
+          act(() => {
+            fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+            fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+            fireEvent.keyDown(options[4], { key: 'Enter' });
+          });
+
+          expect(options[4]).to.have.attribute('aria-selected', 'true');
+        });
+      });
+
+      ['', 0, false, undefined, NaN].forEach((value) =>
+        describe(`when the second child is conditionally rendering with "${value}"`, () => {
+          it('first selectable option is focused to use the arrow', () => {
+            const { getAllByRole } = render(
+              <Select defaultValue="" open>
+                <ListSubheader>Category 1</ListSubheader>
+                {value && <MenuItem value={1}>One</MenuItem>}
+                <MenuItem value={1}>Option 1</MenuItem>
+                <MenuItem value={2}>Option 2</MenuItem>
+                <ListSubheader>Category 2</ListSubheader>
+                <MenuItem value={3}>Option 3</MenuItem>
+                <MenuItem value={4}>Option 4</MenuItem>
+              </Select>,
+            );
+
+            const options = getAllByRole('option');
+            expect(options[1]).to.have.attribute('tabindex', '0');
+
+            act(() => {
+              fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+              fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+              fireEvent.keyDown(options[4], { key: 'Enter' });
+            });
+
+            expect(options[4]).to.have.attribute('aria-selected', 'true');
+          });
+        }),
+      );
     });
 
     describe('when the first child is a ListSubheader wrapped in a custom component', () => {

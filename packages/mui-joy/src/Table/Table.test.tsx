@@ -126,4 +126,10 @@ describe('<Table />', () => {
 
     expect(getByRole('table')).to.have.class(classes.stickyHeader);
   });
+
+  it('adds `stickyFooter` class', () => {
+    const { getByRole } = render(<Table stickyFooter />);
+
+    expect(getByRole('table')).to.have.class(classes.stickyFooter);
+  });
 });

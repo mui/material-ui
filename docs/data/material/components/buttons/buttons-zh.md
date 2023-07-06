@@ -5,7 +5,7 @@ components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://m2.material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base/react-button/
+unstyled: /base-ui/react-button/
 ---
 
 # Button 按钮
@@ -78,10 +78,6 @@ Note that the documentation [avoids](/material-ui/guides/api/#native-properties)
 如果需要更大或者更小的按钮，请使用`size`属性。
 
 {{"demo": "ButtonSizes.js"}}
-
-## Upload button 上传按钮
-
-{{"demo": "UploadButtons.js"}}
 
 ## 带有 icons（图标）和 label（标签）的按钮
 
