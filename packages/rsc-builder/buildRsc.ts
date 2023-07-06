@@ -40,8 +40,8 @@ const PROJECTS = [
   },
 ];
 
-async function processFile(component: { filename: string }, lineToPrepend = `'use client';${EOL}`) {
-  const { filename } = component;
+async function processFile(file: { filename: string }, lineToPrepend = `'use client';${EOL}`) {
+  const { filename } = file;
 
   const contents = await fse.readFile(filename, 'utf8');
 
@@ -51,13 +51,39 @@ async function processFile(component: { filename: string }, lineToPrepend = `'us
   await fse.writeFile(filename, newContents);
 }
 
+function getIndexFile(directory: string) {
+  const items = fse.readdirSync(directory);
+
+  const indexFile = items.reduce((prev, curr) => {
+    if (!/^index.(js|ts)/.test(curr)) {
+      return prev;
+    }
+    return curr;
+  }, '');
+
+  return {
+    filename: path.join(directory, indexFile),
+  };
+}
+
 async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
 
   await PROJECTS.reduce(async (resolvedPromise, project) => {
     await resolvedPromise;
 
-    const components = findComponents(path.join(project.rootPath, 'src')).filter((component) => {
+    const projectSrc = path.join(project.rootPath, 'src');
+
+    const indexFile = getIndexFile(projectSrc);
+
+    try {
+      processFile(indexFile);
+    } catch (error: any) {
+      error.message = `${path.relative(process.cwd(), indexFile.filename)}: ${error.message}`;
+      throw error;
+    }
+
+    const components = findComponents(projectSrc).filter((component) => {
       if (grep === null) {
         return true;
       }
@@ -73,18 +99,18 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
       }
     });
 
-    const hooks = findHooks(path.join(project.rootPath, 'src')).filter((hook) => {
+    const hooks = findHooks(projectSrc).filter((hook) => {
       if (grep === null) {
         return true;
       }
       return grep.test(hook.filename);
     });
 
-    hooks.forEach(async (component) => {
+    hooks.forEach(async (hook) => {
       try {
-        processFile(component);
+        processFile(hook);
       } catch (error: any) {
-        error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
+        error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
         throw error;
       }
     });

@@ -1,3 +1,4 @@
+'use client';
 export * from './utils';
 
 export { default as Badge } from './Badge';
