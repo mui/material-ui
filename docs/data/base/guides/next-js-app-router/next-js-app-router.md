@@ -2,16 +2,22 @@
 
 <p class="description">Learn how to use Base UI with the Next.js App Router.</p>
 
+:::info
+Starting fresh on a new App Router-based project?
+
+Jump right into the code with this [example repo](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-ts).
+:::
+
 ## Next.js and React Server Components
 
 The Next.js App Router implements React Server Components, a [new feature](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#changes-since-v1) introduced in React 18.
 
 To support the App Router, currently all components and hooks from Base UI and other MUI libraries are designated as Client Components and exported with the `"use client"` directive.
 
-:::info
-Starting fresh on a new App Router-based project?
+:::warning
+React Server Components does not replace, and is separate from server-side rendering (SSR). Client Components are still server-rendered to HTML.
 
-Jump right into the code with this [example repo](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-ts).
+For more details, see this [explanation](https://github.com/reactwg/server-components/discussions/4) by the React team.
 :::
 
 ## Setting up Base UI with the App Router

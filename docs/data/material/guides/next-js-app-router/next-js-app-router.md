@@ -2,12 +2,6 @@
 
 <p class="description">Learn how to use Material UI with the Next.js App Router.</p>
 
-## Next.js and React Server Components
-
-The Next.js App Router implements React Server Components, a [new feature](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#changes-since-v1) introduced in React 18.
-
-To support the App Router, currently all components and hooks from MUI libraries (Material UI, Joy UI, Base UI etc) are designated as Client Components and exported with the `"use client"` directive.
-
 :::info
 Starting fresh on a new App Router-based project?
 Jump right into the code with one of these example repos:
@@ -16,6 +10,18 @@ Jump right into the code with one of these example repos:
 - [Joy UI - Our newest customizable UI library designed to spark joy](https://github.com/mui/material-ui/blob/master/examples/joy-next-app-router-ts)
 - [Base UI – A collection of headless components and hooks](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts)
   :::
+
+## Next.js and React Server Components
+
+The Next.js App Router implements React Server Components, a [new feature](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#changes-since-v1) introduced in React 18.
+
+To support the App Router, currently all components and hooks from MUI libraries (Material UI, Joy UI, Base UI etc) are designated as Client Components and exported with the `"use client"` directive.
+
+:::warning
+React Server Components does not replace, and is separate from server-side rendering (SSR). Client Components are still server-rendered to HTML.
+
+For more details, see this [explanation](https://github.com/reactwg/server-components/discussions/4) by the React team.
+:::
 
 ## Using Material UI with the default theme
 
