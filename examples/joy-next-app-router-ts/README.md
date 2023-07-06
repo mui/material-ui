@@ -8,14 +8,14 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/joy-next-app-router-ts
 cd joy-next-app-router-ts
 ```
 
 Install dependencies and run:
 
-```sh
+```bash
 # npm
 npm install
 npm run dev
