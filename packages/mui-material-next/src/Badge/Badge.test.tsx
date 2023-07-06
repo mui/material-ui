@@ -2,13 +2,14 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import Badge, { badgeClasses as classes } from '@mui/material-next/Badge';
+import { BadgeBadgeSlotProps, BadgeRootSlotProps } from './Badge.types';
 
-function findBadgeRoot(container) {
-  return container.firstChild;
+function findBadgeRoot(container: HTMLElement) {
+  return container?.firstChild;
 }
 
-function findBadge(container) {
-  return findBadgeRoot(container).querySelector('span');
+function findBadge(container: HTMLElement) {
+  return (findBadgeRoot(container) as HTMLElement)?.querySelector('span') ?? null;
 }
 
 describe('<Badge />', () => {
@@ -284,15 +285,19 @@ describe('<Badge />', () => {
 
   describe('prop: components / slots', () => {
     it('allows overriding the slots using the components prop', () => {
-      const CustomRoot = React.forwardRef((props, ref) => {
-        const { ownerState, ...other } = props;
-        return <span {...other} ref={ref} data-testid="custom-root" />;
-      });
+      const CustomRoot = React.forwardRef(
+        (props: BadgeRootSlotProps, ref: React.ForwardedRef<HTMLSpanElement>) => {
+          const { ownerState, ...other } = props;
+          return <span {...other} ref={ref} data-testid="custom-root" />;
+        },
+      );
 
-      const CustomBadge = React.forwardRef((props, ref) => {
-        const { ownerState, ...other } = props;
-        return <span {...other} ref={ref} data-testid="custom-badge" />;
-      });
+      const CustomBadge = React.forwardRef(
+        (props: BadgeBadgeSlotProps, ref: React.ForwardedRef<HTMLSpanElement>) => {
+          const { ownerState, ...other } = props;
+          return <span {...other} ref={ref} data-testid="custom-badge" />;
+        },
+      );
 
       const { getByTestId } = render(
         <Badge
@@ -307,15 +312,19 @@ describe('<Badge />', () => {
     });
 
     it('allows overriding the slots using the slots prop', () => {
-      const CustomRoot = React.forwardRef((props, ref) => {
-        const { ownerState, ...other } = props;
-        return <span {...other} ref={ref} data-testid="custom-root" />;
-      });
+      const CustomRoot = React.forwardRef(
+        (props: BadgeRootSlotProps, ref: React.ForwardedRef<HTMLSpanElement>) => {
+          const { ownerState, ...other } = props;
+          return <span {...other} ref={ref} data-testid="custom-root" />;
+        },
+      );
 
-      const CustomBadge = React.forwardRef((props, ref) => {
-        const { ownerState, ...other } = props;
-        return <span {...other} ref={ref} data-testid="custom-badge" />;
-      });
+      const CustomBadge = React.forwardRef(
+        (props: BadgeBadgeSlotProps, ref: React.ForwardedRef<HTMLSpanElement>) => {
+          const { ownerState, ...other } = props;
+          return <span {...other} ref={ref} data-testid="custom-badge" />;
+        },
+      );
 
       const { getByTestId } = render(
         <Badge

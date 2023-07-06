@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { usePreviousProps, unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import useBadge from '@mui/base/useBadge';
@@ -8,11 +7,12 @@ import { useSlotProps } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
+import { BadgeOwnerState, BadgeProps, BadgeTypeMap } from './Badge.types';
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: BadgeOwnerState) => {
   const { color, anchorOrigin, invisible, overlap, variant, classes = {} } = ownerState;
 
   const slots = {
@@ -63,7 +63,7 @@ const BadgeBadge = styled('span', {
       ownerState.invisible && styles.invisible,
     ];
   },
-})(({ theme, ownerState }) => ({
+})<{ ownerState: BadgeOwnerState }>(({ theme, ownerState }) => ({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -191,7 +191,9 @@ const BadgeBadge = styled('span', {
   }),
 }));
 
-const Badge = React.forwardRef(function Badge(inProps, ref) {
+const Badge = React.forwardRef(function Badge<
+  BaseComponentType extends React.ElementType = BadgeTypeMap['defaultComponent'],
+>(inProps: BadgeProps<BaseComponentType>, ref: React.ForwardedRef<Element>) {
   const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
   const {
     anchorOrigin: anchorOriginProp = {
@@ -278,14 +280,14 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
       as: component,
     },
     ownerState,
-    className: clsx(rootSlotProps?.className, classes.root, className),
+    className: [classes.root, className],
   });
 
   const badgeProps = useSlotProps({
     elementType: BadgeSlot,
     externalSlotProps: badgeSlotProps,
     ownerState,
-    className: clsx(classes.badge, badgeSlotProps?.className),
+    className: classes.badge,
   });
 
   return (
