@@ -118,7 +118,7 @@ You can control the open state of the select with the `open` prop. Alternatively
 - A component is **controlled** when it's managed by its parent using props.
 - A component is **uncontrolled** when it's managed by its own local state.
 
-Learn more about the _Controlled and uncontrolled pattern_ in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
 {{"demo": "ControlledOpenSelect.js"}}
