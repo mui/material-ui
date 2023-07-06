@@ -203,16 +203,14 @@ const Badge = React.forwardRef(function Badge<
     className,
     classes: classesProp,
     component,
-    components = {},
-    componentsProps = {},
     children,
     overlap: overlapProp = 'rectangular',
     color: colorProp = 'default',
     invisible: invisibleProp = false,
     max: maxProp = 99,
     badgeContent: badgeContentProp,
-    slots,
-    slotProps,
+    slots = {},
+    slotProps = {},
     showZero = false,
     variant: variantProp = 'standard',
     ...other
@@ -264,16 +262,12 @@ const Badge = React.forwardRef(function Badge<
 
   const classes = useUtilityClasses(ownerState);
 
-  // support both `slots` and `components` for backward compatibility
-  const RootSlot = slots?.root ?? components.Root ?? BadgeRoot;
-  const BadgeSlot = slots?.badge ?? components.Badge ?? BadgeBadge;
-
-  const rootSlotProps = slotProps?.root ?? componentsProps.root;
-  const badgeSlotProps = slotProps?.badge ?? componentsProps.badge;
+  const RootSlot = slots.root ?? BadgeRoot;
+  const BadgeSlot = slots.badge ?? BadgeBadge;
 
   const rootProps = useSlotProps({
     elementType: RootSlot,
-    externalSlotProps: rootSlotProps,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       ref,
@@ -285,7 +279,7 @@ const Badge = React.forwardRef(function Badge<
 
   const badgeProps = useSlotProps({
     elementType: BadgeSlot,
-    externalSlotProps: badgeSlotProps,
+    externalSlotProps: slotProps.badge,
     ownerState,
     className: classes.badge,
   });
