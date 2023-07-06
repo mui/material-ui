@@ -10,7 +10,9 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { IconButton } from '@mui/material';
 
-const Root = styled('div')(
+type DescriptionType = 'props' | 'classes' | 'CSS' | 'slots';
+
+const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
   ({ theme }) => ({
     '& .MuiApi-item-header': {
       ...theme.typography.caption,
@@ -237,11 +239,12 @@ export type ApiItemProps = {
   title: string;
   description?: string;
   note?: string;
+  type?: DescriptionType;
   children: React.ReactNode;
 };
 
 function ApiItem(props: ApiItemProps) {
-  const { title, description, note, children, id } = props;
+  const { title, description, note, children, type, id } = props;
   const descriptionRef = React.useRef<HTMLSpanElement>(null);
   const [isOverflow, setIsOverflow] = React.useState(false);
   const [isExtended, setIsExtended] = React.useState(false);
@@ -263,7 +266,7 @@ function ApiItem(props: ApiItemProps) {
   }, []);
 
   return (
-    <Root>
+    <Root ownerState={{ type }}>
       <div id={id} className="MuiApi-item-header">
         <a
           className="MuiApi-item-link-visual"

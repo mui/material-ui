@@ -32,7 +32,7 @@ export default function ClassesList(props: ClassesListProps) {
 
   const hashPrefix = componentName ? `${componentName}-` : '';
   return (
-    <div className='MuiApi-classes-list'>
+    <div>
       {list
         .sort((a, b) => a.className.localeCompare(b.className))
         .map((item) => {
@@ -44,6 +44,7 @@ export default function ClassesList(props: ClassesListProps) {
               key={item.className}
               note={isGlobalStateClass ? t('api-docs.state') : ''}
               title={cssClassName}
+              type='classes'
             >
               <p
                 dangerouslySetInnerHTML={{

@@ -50,6 +50,7 @@ export default function PropertiesTable(props) {
                 (!propData.required && showOptionalAbbr && 'Optional') ||
                 ''
               }
+              type="props"
             >
               {propDescription?.description && (
                 <p

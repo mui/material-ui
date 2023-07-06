@@ -38,6 +38,7 @@ export default function CSSList(props: CSSListProps) {
               componentStyles.globalClasses[className] || `${componentStyles.name}-${className}`
             }`}
             note={isGlobalStateClass ? t('api-docs.state') : ''}
+            type='CSS'
           >
             <p
               dangerouslySetInnerHTML={{

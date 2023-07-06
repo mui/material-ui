@@ -23,6 +23,7 @@ export default function SlotsList(props: SlotsListProps) {
             description={defaultValue}
             title={name}
             note="Required"
+            type="slots"
           >
             {className && (
               <p className="prop-list-default-props">
