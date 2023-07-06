@@ -4,11 +4,11 @@ import clsx from 'clsx';
 import { SxProps } from '@mui/system';
 // eslint-disable-next-line no-restricted-imports -- importing types
 import { InternalStandardProps as StandardProps } from '@mui/material';
-import { capitalize } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps, Theme } from '@mui/material/styles';
 import TimelineContext from './TimelineContext';
 import { getTimelineUtilityClass } from './timelineClasses';
+import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
 
 export type TimelineClassKey = keyof NonNullable<TimelineProps['classes']>;
 
@@ -54,7 +54,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
   const { position, classes } = ownerState;
 
   const slots = {
-    root: ['root', position && `position${capitalize(position)}`],
+    root: ['root', position && convertTimelinePositionToClass(position)],
   };
 
   return composeClasses(slots, getTimelineUtilityClass, classes);
@@ -68,7 +68,7 @@ const TimelineRoot = styled('ul' as const, {
     return [
       styles.root,
       ownerState.position &&
-        styles[`position${capitalize(ownerState.position)}` as TimelineClassKey],
+        styles[convertTimelinePositionToClass(ownerState.position) as TimelineClassKey],
     ];
   },
 })<{ ownerState: OwnerState }>({

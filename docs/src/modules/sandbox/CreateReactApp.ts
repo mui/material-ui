@@ -24,7 +24,18 @@ export const getHtml = ({
       codeStyling === 'Tailwind'
         ? `
     <!-- Check the Tailwind CSS's installation guide for setting up tailwind: https://tailwindcss.com/docs/installation -->
-    <script src="https://cdn.tailwindcss.com"></script>`
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            boxShadow: {
+              'outline-purple': '0 0 0 3px #c084fc',
+            }
+          }
+        }
+      }
+    </script>`
         : ''
     }
   </head>
@@ -34,8 +45,8 @@ export const getHtml = ({
 </html>`;
 };
 
-export const getRootIndex = (product?: 'joy-ui' | 'base-ui') => {
-  if (product === 'joy-ui') {
+export const getRootIndex = (productId?: 'joy-ui' | 'base-ui') => {
+  if (productId === 'joy-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
@@ -51,7 +62,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </React.StrictMode>
 );`;
   }
-  if (product === 'base-ui') {
+  if (productId === 'base-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import Demo from './demo';

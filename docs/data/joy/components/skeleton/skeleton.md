@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Skeleton component
 githubLabel: 'component: skeleton'
 ---

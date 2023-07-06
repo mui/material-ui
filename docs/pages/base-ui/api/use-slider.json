@@ -81,6 +81,13 @@
       },
       "required": true
     },
+    "getThumbStyle": {
+      "type": {
+        "name": "(index: number) =&gt; object",
+        "description": "(index: number) =&gt; object"
+      },
+      "required": true
+    },
     "marks": { "type": { "name": "Mark[]", "description": "Mark[]" }, "required": true },
     "open": { "type": { "name": "number", "description": "number" }, "required": true },
     "range": { "type": { "name": "boolean", "description": "boolean" }, "required": true },

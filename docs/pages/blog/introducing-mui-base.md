@@ -98,13 +98,13 @@ In the future, Base UI will also be used as the foundation for Material UI compo
 
 Give Base UI a try today by installing the package via npm:
 
-```sh
+```bash
 npm install @mui/base
 ```
 
 or yarn:
 
-```sh
+```bash
 yarn add @mui/base
 ```
 

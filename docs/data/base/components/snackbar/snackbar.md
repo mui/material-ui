@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Snackbar component and hook
 components: Snackbar
 hooks: useSnackbar

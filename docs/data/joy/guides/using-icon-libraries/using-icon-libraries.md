@@ -13,7 +13,7 @@ This section assumes that you've already installed Joy UI in your app—see [Ins
 
 #### yarn
 
-```sh
+```bash
 yarn add @mui/icons-material @mui/material
 ```
 
@@ -39,7 +39,7 @@ You can keep track of the progress in [this issue](https://github.com/mui/materi
 
 #### npm
 
-```sh
+```bash
 npm install @mui/icons-material @mui/material
 ```
 
