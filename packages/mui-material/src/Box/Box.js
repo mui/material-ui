@@ -1,7 +1,7 @@
 import { createBox } from '@mui/system';
 import PropTypes from 'prop-types';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '../className';
-import { createTheme } from '../styles';
+import createTheme from '../styles/createTheme';
 import THEME_ID from '../styles/identifier';
 
 const defaultTheme = createTheme();
