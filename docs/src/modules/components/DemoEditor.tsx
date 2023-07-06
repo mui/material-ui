@@ -16,6 +16,8 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       maxHeight: 'min(68vh, 1000px)',
       overflow: 'auto',
       backgroundColor: blueDark[800],
+      marginTop: -1,
+      border: `1px solid ${(theme.vars || theme).palette.divider}`,
       colorScheme: 'dark',
       '&:hover': {
         boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary.light}`,
@@ -24,7 +26,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
         boxShadow: `0 0 0 2px ${(theme.vars || theme).palette.primary.main}`,
       },
       [theme.breakpoints.up('sm')]: {
-        borderRadius: (theme.vars || theme).shape.borderRadius,
+        borderRadius: '0 0 12px 12px',
       },
     },
     '& pre': {

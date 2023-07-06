@@ -6,7 +6,7 @@
     "collapseIcon": { "description": "The icon used to collapse the node." },
     "ContentComponent": {
       "description": "The component used for the content node.",
-      "notes": "⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>."
+      "requiresRef": true
     },
     "ContentProps": { "description": "Props applied to ContentComponent" },
     "disabled": { "description": "If <code>true</code>, the node is disabled." },

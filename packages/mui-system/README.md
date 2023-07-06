@@ -8,7 +8,7 @@ Install the package in your project directory with:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 // with npm
 npm install @mui/system @emotion/react @emotion/styled
 

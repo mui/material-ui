@@ -85,6 +85,15 @@ export default function createTransitions(inputTransitions) {
         console.error('MUI: Argument "delay" must be a number or a string.');
       }
 
+      if (typeof options !== 'object') {
+        console.error(
+          [
+            'MUI: Secong argument of transition.create must be an object.',
+            "Arguments should be either `create('prop1', options)` or `create(['prop1', 'prop2'], options)`",
+          ].join('\n'),
+        );
+      }
+
       if (Object.keys(other).length !== 0) {
         console.error(`MUI: Unrecognized argument(s) [${Object.keys(other).join(',')}].`);
       }

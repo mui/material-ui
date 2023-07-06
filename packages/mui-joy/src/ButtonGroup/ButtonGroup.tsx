@@ -46,6 +46,7 @@ const ButtonGroupRoot = styled('div', {
     ownerState.orientation === 'vertical'
       ? 'var(--unstable_childRadius) var(--unstable_childRadius) var(--ButtonGroup-radius) var(--ButtonGroup-radius)'
       : 'var(--unstable_childRadius) var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius)';
+  const singleChildRadius = 'var(--ButtonGroup-radius)';
   const margin =
     ownerState.orientation === 'vertical'
       ? 'calc(var(--ButtonGroup-separatorSize) * -1) 0 0 0'
@@ -95,7 +96,7 @@ const ButtonGroupRoot = styled('div', {
         }),
       },
       // middle Buttons or IconButtons
-      [`& > :not([data-first-child]):not([data-last-child])`]: {
+      [`& > :not([data-first-child]):not([data-last-child]):not(:only-child)`]: {
         '--Button-radius': 'var(--unstable_childRadius)',
         '--IconButton-radius': 'var(--unstable_childRadius)',
         borderRadius: 'var(--unstable_childRadius)',
@@ -119,7 +120,12 @@ const ButtonGroupRoot = styled('div', {
           borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
         }),
       },
-      [`& > :not([data-first-child])`]: {
+      // single Button or IconButton
+      [`& > :only-child`]: {
+        '--Button-radius': singleChildRadius,
+        '--IconButton-radius': singleChildRadius,
+      },
+      [`& > :not([data-first-child]):not(:only-child)`]: {
         '--Button-margin': margin,
         '--IconButton-margin': margin,
       },
@@ -242,11 +248,13 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
             extraProps.role = 'presentation';
             extraProps.component = 'span';
           }
-          if (index === 0) {
-            extraProps['data-first-child'] = '';
-          }
-          if (index === React.Children.count(children) - 1) {
-            extraProps['data-last-child'] = '';
+          if (React.Children.count(children) > 1) {
+            if (index === 0) {
+              extraProps['data-first-child'] = '';
+            }
+            if (index === React.Children.count(children) - 1) {
+              extraProps['data-last-child'] = '';
+            }
           }
           return React.cloneElement(child, extraProps);
         })}

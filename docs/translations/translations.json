@@ -34,6 +34,7 @@
     "pageDescription": "API reference docs for the React {{name}} component. Learn about the props, CSS, and other APIs of this exported module.",
     "props": "Props",
     "parameters": "Parameters",
+    "requires-ref": "This <a href=\"/material-ui/guides/composition/#caveat-with-refs\">needs to be able to hold a ref</a>.",
     "returns": "Returns: ",
     "returnValue": "Return value",
     "refNotHeld": "The component cannot hold a ref.",

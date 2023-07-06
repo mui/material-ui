@@ -33928,6 +33928,12 @@ Object.defineProperty(exports, "MicTwoTone", {
     return _MicTwoTone.default;
   }
 });
+Object.defineProperty(exports, "Microsoft", {
+  enumerable: true,
+  get: function () {
+    return _Microsoft.default;
+  }
+});
 Object.defineProperty(exports, "Microwave", {
   enumerable: true,
   get: function () {
@@ -69312,6 +69318,7 @@ var _MicOutlined = _interopRequireDefault(require("./MicOutlined"));
 var _MicRounded = _interopRequireDefault(require("./MicRounded"));
 var _MicSharp = _interopRequireDefault(require("./MicSharp"));
 var _MicTwoTone = _interopRequireDefault(require("./MicTwoTone"));
+var _Microsoft = _interopRequireDefault(require("./Microsoft"));
 var _Microwave = _interopRequireDefault(require("./Microwave"));
 var _MicrowaveOutlined = _interopRequireDefault(require("./MicrowaveOutlined"));
 var _MicrowaveRounded = _interopRequireDefault(require("./MicrowaveRounded"));

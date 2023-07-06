@@ -383,33 +383,44 @@ const Root = styled('div')(
       position: 'relative',
       // Font size reset to fix a bug with Safari 16.0 when letterSpacing is set
       fontSize: 10,
-      '&:hover': {
-        '& .MuiCode-copy': {
-          display: 'block',
-        },
-      },
     },
     '& .MuiCode-copy': {
-      minWidth: 64,
-      display: 'none',
-      backgroundColor: alpha(lightTheme.palette.primaryDark[600], 0.5),
+      display: 'inline-flex',
+      flexDirection: 'row-reverse',
+      alignItems: 'center',
+      width: 26,
+      height: 26,
       cursor: 'pointer',
       position: 'absolute',
       top: theme.spacing(1),
       right: theme.spacing(1),
+      padding: theme.spacing(0.5),
       fontFamily: 'inherit',
-      fontSize: lightTheme.typography.pxToRem(13),
       fontWeight: 500,
-      padding: theme.spacing(0.5, 1),
-      borderRadius: 4,
-      border: `1px solid`,
-      borderColor: lightTheme.palette.primaryDark[500],
-      color: lightTheme.palette.primaryDark[50],
+      borderRadius: 6,
+      border: 'none',
+      backgroundColor: 'transparent',
+      color: '#FFF',
+      opacity: 0.6,
+      transition: theme.transitions.create(['background', 'borderColor', 'display'], {
+        duration: theme.transitions.duration.shortest,
+      }),
+      '& svg': {
+        userSelect: 'none',
+        width: theme.typography.pxToRem(16),
+        height: theme.typography.pxToRem(16),
+        display: 'inline-block',
+        fill: 'currentcolor',
+        flexShrink: 0,
+        fontSize: '18px',
+        margin: 'auto',
+      },
+      '& .MuiCode-copied-icon': {
+        display: 'none',
+      },
       '&:hover, &:focus': {
         opacity: 1,
-        color: '#fff',
-        backgroundColor: alpha(lightTheme.palette.primaryDark[600], 0.7),
-        borderColor: lightTheme.palette.primaryDark[500],
+        backgroundColor: lightTheme.palette.primaryDark[500],
         '& .MuiCode-copyKeypress': {
           display: 'block',
           // Approximate no hover capabilities with no keyboard
@@ -421,12 +432,20 @@ const Root = styled('div')(
       },
       '& .MuiCode-copyKeypress': {
         display: 'none',
+        position: 'absolute',
+        right: 26,
       },
       '&[data-copied]': {
         // style of the button when it is in copied state.
         borderColor: lightTheme.palette.primary[700],
         color: '#fff',
         backgroundColor: lightTheme.palette.primaryDark[600],
+        '& .MuiCode-copy-icon': {
+          display: 'none',
+        },
+        '& .MuiCode-copied-icon': {
+          display: 'block',
+        },
       },
       '&:focus-visible': {
         outline: '2px solid',
@@ -437,16 +456,10 @@ const Root = styled('div')(
     '& .MuiCode-copyKeypress': {
       pointerEvents: 'none',
       userSelect: 'none',
-      position: 'absolute',
-      left: '50%',
-      top: '100%',
-      minWidth: '100%',
-      marginTop: theme.spacing(0.5),
+      marginRight: theme.spacing(1.2),
+      marginBottom: theme.spacing(0.2),
       whiteSpace: 'nowrap',
-      transform: 'translateX(-50%)',
-      '& > span': {
-        opacity: 0.72,
-      },
+      opacity: 0.6,
     },
     '& li': {
       // tight lists https://spec.commonmark.org/0.30/#tight

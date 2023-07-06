@@ -75,7 +75,7 @@ export interface ReactApi extends ReactDocgenApi {
     propDescriptions: {
       [key: string]: {
         description: string;
-        notes?: string;
+        requiresRef?: boolean;
         deprecated?: string;
         typeDescriptions?: { [t: string]: string };
       };
@@ -439,7 +439,7 @@ const attachTranslations = (reactApi: ReactApi) => {
       prop = null;
     }
     if (prop) {
-      const { deprecated, jsDocText, signatureArgs, signatureReturn, notes } =
+      const { deprecated, jsDocText, signatureArgs, signatureReturn, requiresRef } =
         generatePropDescription(prop, propName);
       // description = renderMarkdownInline(`${description}`);
 
@@ -452,7 +452,7 @@ const attachTranslations = (reactApi: ReactApi) => {
 
       translations.propDescriptions[propName] = {
         description: renderMarkdownInline(jsDocText),
-        notes: renderMarkdownInline(notes) || undefined,
+        requiresRef: requiresRef || undefined,
         deprecated: renderMarkdownInline(deprecated) || undefined,
         typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
       };

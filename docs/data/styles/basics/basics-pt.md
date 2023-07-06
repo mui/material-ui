@@ -29,7 +29,7 @@ Para instalar e salvar em suas dependências do `package.json`, execute:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 // utilizando o npm
 npm install @material-ui/styles
 
