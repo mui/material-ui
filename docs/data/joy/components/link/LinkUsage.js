@@ -21,12 +21,13 @@ export default function LinkUsage() {
         },
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
+          defaultValue: 'primary',
         },
         { propName: 'disabled', knob: 'switch' },
       ]}
