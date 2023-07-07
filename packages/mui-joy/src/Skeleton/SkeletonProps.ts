@@ -39,6 +39,11 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     height?: number | string;
     /**
+     * If `true`, the skeleton appears.
+     * @default true
+     */
+    loading?: boolean;
+    /**
      * If `true`, the skeleton's position will change to `absolute` to fill the available space of the nearest parent.
      * This prop is useful to create a placeholder that has the element's dimensions.
      * @default false

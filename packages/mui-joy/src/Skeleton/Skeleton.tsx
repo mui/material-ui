@@ -72,6 +72,7 @@ const SkeletonRoot = styled('span', {
         }
       : {
           ...(ownerState.shape === 'overlay' && {
+            borderRadius: 'inherit',
             position: 'absolute',
             width: '100%',
             height: '100%',
@@ -116,7 +117,7 @@ const SkeletonRoot = styled('span', {
       borderRadius: 'inherit',
     },
     [theme.getColorSchemeSelector('dark')]: {
-      '--unstable_wave-bg': 'rgba(255 255 255 / 0.2)',
+      '--unstable_wave-bg': 'rgba(255 255 255 / 0.1)',
     },
   }),
   ({ ownerState, theme }) =>
@@ -159,6 +160,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     children,
     animation = 'pulse',
     overlay = false,
+    loading = true,
     shape = 'overlay',
     height,
     width,
@@ -179,6 +181,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     ...props,
     animation,
     component,
+    loading,
     overlay,
     shape,
     width,
@@ -195,7 +198,11 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     ownerState,
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  return loading ? (
+    <SlotRoot {...rootProps}>{children}</SlotRoot>
+  ) : (
+    <React.Fragment>{children}</React.Fragment>
+  );
 }) as OverridableComponent<SkeletonTypeMap>;
 
 Skeleton.propTypes /* remove-proptypes */ = {
