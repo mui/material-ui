@@ -158,6 +158,17 @@ const pages = [
       },
     ],
   },
+  {
+    pathname: '/joy-ui/migration',
+    title: 'Migration',
+    icon: standardNavIcons.BookIcon,
+    children: [
+      {
+        pathname: '/joy-ui/migration/new-theme',
+        title: 'Migrating to new theme',
+      },
+    ],
+  },
 ];
 
 export default pages;
