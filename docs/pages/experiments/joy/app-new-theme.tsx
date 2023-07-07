@@ -81,8 +81,8 @@ export const newTheme = extendTheme({
           800: '#74470f',
           900: '#442504',
           solidColor: 'var(--joy-palette-warning-800)',
-          outlinedColor: '#a67002',
-          plainColor: '#a67002',
+          outlinedColor: 'var(--joy-palette-warning-700)',
+          plainColor: 'var(--joy-palette-warning-700)',
         },
         danger: {
           50: '#fff2f1',
@@ -107,7 +107,7 @@ export const newTheme = extendTheme({
           700: '#2c7318',
           800: '#244e19',
           900: '#0e2b08',
-          solidBg: '#4cbd25',
+          solidBg: 'var(--joy-palette-success-500)',
         },
         focusVisible: 'rgba(229, 121, 40, 0.5)',
       },
@@ -125,14 +125,14 @@ export const newTheme = extendTheme({
           700: '#8e3c1e',
           800: '#73341b',
           900: '#3e180c',
-          solidBg: '#d7611f', // 600
-          solidHoverBg: '#8e3c1e', // 700
-          solidActiveBg: '#73341b', // 800
-          softActiveBg: '#73341b', // 800
-          outlinedActiveBg: '#73341b', // 800
-          outlinedHoverBg: '#8e3c1e', // 700
-          plainActiveBg: '#73341b', // 800
-          plainHoverBg: '#8e3c1e', // 700
+          solidBg: 'var(--joy-palette-primary-600)',
+          solidHoverBg: 'var(--joy-palette-primary-700)',
+          solidActiveBg: 'var(--joy-palette-primary-800)',
+          softActiveBg: 'var(--joy-palette-primary-800)',
+          outlinedActiveBg: 'var(--joy-palette-primary-800)',
+          outlinedHoverBg: 'var(--joy-palette-primary-700)',
+          plainActiveBg: 'var(--joy-palette-primary-800)',
+          plainHoverBg: 'var(--joy-palette-primary-700)',
         },
         neutral: {
           50: '#f4f5f7',
@@ -145,14 +145,14 @@ export const newTheme = extendTheme({
           700: '#475057',
           800: '#383d41',
           900: '#232729',
-          solidBg: '#535f67', // 600
-          solidHoverBg: '#475057', // 700
-          solidActiveBg: '#383d41', // 800
-          softActiveBg: '#383d41', // 800
-          outlinedActiveBg: '#383d41', // 800
-          outlinedHoverBg: '#475057', // 700
-          plainActiveBg: '#383d41', // 800
-          plainHoverBg: '#475057', // 700
+          solidBg: 'var(--joy-palette-neutral-600)',
+          solidHoverBg: 'var(--joy-palette-neutral-700)',
+          solidActiveBg: 'var(--joy-palette-neutral-800)',
+          softActiveBg: 'var(--joy-palette-neutral-800)',
+          outlinedActiveBg: 'var(--joy-palette-neutral-800)',
+          outlinedHoverBg: 'var(--joy-palette-neutral-700)',
+          plainActiveBg: 'var(--joy-palette-neutral-800)',
+          plainHoverBg: 'var(--joy-palette-neutral-700)',
         },
         warning: {
           50: '#ffffe7',
@@ -165,15 +165,15 @@ export const newTheme = extendTheme({
           700: '#a67002',
           800: '#74470f',
           900: '#442504',
-          solidColor: '#442504', // 900
-          solidBg: '#d19c00', // 600
-          solidHoverBg: '#a67002', // 700
-          solidActiveBg: '#74470f', // 800
-          softActiveBg: '#74470f', // 800
-          outlinedActiveBg: '#74470f', // 800
-          outlinedHoverBg: '#a67002', // 700
-          plainActiveBg: '#74470f', // 800
-          plainHoverBg: '#a67002', // 700
+          solidColor: 'var(--joy-palette-warning-900)',
+          solidBg: 'var(--joy-palette-warning-600)',
+          solidHoverBg: 'var(--joy-palette-warning-700)',
+          solidActiveBg: 'var(--joy-palette-warning-800)',
+          softActiveBg: 'var(--joy-palette-warning-800)',
+          outlinedActiveBg: 'var(--joy-palette-warning-800)',
+          outlinedHoverBg: 'var(--joy-palette-warning-700)',
+          plainActiveBg: 'var(--joy-palette-warning-800)',
+          plainHoverBg: 'var(--joy-palette-warning-700)',
         },
         danger: {
           50: '#fff2f1',
@@ -186,14 +186,14 @@ export const newTheme = extendTheme({
           700: '#c8160d',
           800: '#881a14',
           900: '#4b0704',
-          solidBg: '#ed2015', // 600
-          solidHoverBg: '#c8160d', // 700
-          solidActiveBg: '#881a14', // 800
-          softActiveBg: '#881a14', // 800
-          outlinedActiveBg: '#881a14', // 800
-          outlinedHoverBg: '#c8160d', // 700
-          plainActiveBg: '#881a14', // 800
-          plainHoverBg: '#c8160d', // 700
+          solidBg: 'var(--joy-palette-danger-600)',
+          solidHoverBg: 'var(--joy-palette-danger-700)',
+          solidActiveBg: 'var(--joy-palette-danger-800)',
+          softActiveBg: 'var(--joy-palette-danger-800)',
+          outlinedActiveBg: 'var(--joy-palette-danger-800)',
+          outlinedHoverBg: 'var(--joy-palette-danger-700)',
+          plainActiveBg: 'var(--joy-palette-danger-800)',
+          plainHoverBg: 'var(--joy-palette-danger-700)',
         },
         success: {
           50: '#effce9',
@@ -206,14 +206,14 @@ export const newTheme = extendTheme({
           700: '#2c7318',
           800: '#244e19',
           900: '#0e2b08',
-          solidBg: '#379719', // 600
-          solidHoverBg: '#2c7318', // 700
-          solidActiveBg: '#244e19', // 800
-          softActiveBg: '#244e19', // 800
-          outlinedActiveBg: '#244e19', // 800
-          outlinedHoverBg: '#2c7318', // 700
-          plainActiveBg: '#244e19', // 800
-          plainHoverBg: '#2c7318', // 700
+          solidBg: 'var(--joy-palette-success-600)',
+          solidHoverBg: 'var(--joy-palette-success-700)',
+          solidActiveBg: 'var(--joy-palette-success-800)',
+          softActiveBg: 'var(--joy-palette-success-800)',
+          outlinedActiveBg: 'var(--joy-palette-success-800)',
+          outlinedHoverBg: 'var(--joy-palette-success-700)',
+          plainActiveBg: 'var(--joy-palette-success-800)',
+          plainHoverBg: 'var(--joy-palette-success-700)',
         },
       },
     },
@@ -263,21 +263,40 @@ export const newTheme = extendTheme({
     },
     JoySheet: {
       styleOverrides: {
-        root: ({ ownerState }) => ({
-          ...(ownerState.variant === 'solid' && {
-            backgroundColor: '#000',
-          }),
+        root: ({ theme }) => ({
+          borderColor: 'var(--joy-palette-neutral-200)',
+          [theme.getColorSchemeSelector('dark')]: {
+            borderColor: 'var(--joy-palette-neutral-800)',
+          },
+        }),
+      },
+    },
+    JoyDivider: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          backgroundColor: '1px solid rgba(27, 31, 36, 0.05)',
+          [theme.getColorSchemeSelector('dark')]: {
+            backgroundColor: '1px solid rgba(27, 31, 36, 0.15)',
+          },
         }),
       },
     },
     JoyCard: {
       styleOverrides: {
-        root: ({ ownerState }) => ({
+        root: ({ theme, ownerState }) => ({
           boxShadow: 'none',
-          colorSchemes: {
-            light: {
-              backgroundColor: '#0e2b08',
-            },
+          ...(ownerState.variant === 'solid' && {
+            border: '1px solid rgba(27, 31, 36, 0.15)',
+            backgroundColor: 'var(--joy-palette-neutral-400)',
+            boxShadow: [
+              'inset 0px 1px 0px rgba(210, 210, 210, 0.2)',
+              'inset 0px -1px 0px rgba(0, 0, 0, 0.08)',
+            ].join(', '),
+          }),
+          [theme.getColorSchemeSelector('dark')]: {
+            ...(ownerState.variant === 'solid' && {
+              backgroundColor: 'var(--joy-palette-neutral-900)',
+            }),
           },
           ...(ownerState.variant === 'solid' && {
             border: '1px solid rgba(27, 31, 36, 0.15)',
@@ -290,6 +309,7 @@ export const newTheme = extendTheme({
             boxShadow: 'inset 0px 1px 0px rgba(250, 250, 250, 0.1)',
           }),
           ...(ownerState.variant === 'outlined' && {
+            border: '1px solid rgba(27, 31, 36, 0.15)',
             boxShadow: 'inset 0px -1px 0px rgba(0, 0, 0, 0.07)',
           }),
         }),
