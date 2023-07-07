@@ -84,7 +84,7 @@ const Item = styled(
           left: 8,
           height: 8,
           width: 8,
-          borderRadius: 99,
+          borderRadius: 2,
           opacity: depth === 0 ? 0 : 1,
           background: (theme.vars || theme).palette.grey[50],
           border: '1px solid',
