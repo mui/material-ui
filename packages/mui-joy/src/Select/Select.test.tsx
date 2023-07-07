@@ -642,14 +642,14 @@ describe('Joy <Select />', () => {
     );
     // Fire Click of the avatar
     act(() => {
-      getByTestId('test-element').click();
+      fireEvent.mouseDown(getByTestId('test-element'));
     });
 
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
 
     // click again should close
     act(() => {
-      getByTestId('test-element').click();
+      fireEvent.mouseDown(getByTestId('test-element'));
     });
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
   });

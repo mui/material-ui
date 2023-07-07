@@ -77,7 +77,7 @@ describe('<Select />', () => {
         const select = getByRole('combobox');
         act(() => {
           select.focus();
-          select.click();
+          fireEvent.keyDown(select, { key });
         });
 
         const listbox = getByRole('listbox');
@@ -121,7 +121,7 @@ describe('<Select />', () => {
           const select = getByRole('combobox');
           act(() => {
             select.focus();
-            select.click();
+            fireEvent.mouseDown(select);
           });
 
           userEvent.keyPress(select, { key: 'ArrowDown' }); // highlights '2'
@@ -900,7 +900,7 @@ describe('<Select />', () => {
 
       const select = screen.getByRole('combobox');
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       expect(select).to.have.attribute('aria-expanded', 'true');
@@ -956,7 +956,7 @@ describe('<Select />', () => {
 
       const select = getByRole('combobox');
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       expect(select).to.have.attribute('aria-expanded', 'true');
@@ -971,11 +971,11 @@ describe('<Select />', () => {
 
       const select = getByRole('combobox');
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       expect(select).to.have.attribute('aria-expanded', 'false');
@@ -1215,7 +1215,7 @@ describe('<Select />', () => {
     const select = getByRole('combobox');
     act(() => {
       select.focus();
-      select.click(); // opens and highlights '1'
+      fireEvent.mouseDown(select); // opens and highlights '1'
     });
 
     // React renders twice in strict mode, so we expect twice the number of spy calls
