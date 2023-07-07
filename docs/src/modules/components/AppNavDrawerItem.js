@@ -86,7 +86,7 @@ const Item = styled(
           width: 8,
           borderRadius: 2,
           opacity: depth === 0 ? 0 : 1,
-          background: (theme.vars || theme).palette.grey[50],
+          background: alpha(theme.palette.grey[50], 0.5),
           border: '1px solid',
           borderColor: (theme.vars || theme).palette.grey[200],
         },
@@ -173,7 +173,7 @@ const Item = styled(
         },
         '&:after': {
           background: alpha(theme.palette.primaryDark[700], 0.6),
-          borderColor: alpha(theme.palette.primaryDark[400], 0.5),
+          borderColor: alpha(theme.palette.primaryDark[600], 0.5),
         },
       }),
       ...(!subheader && {
