@@ -2,18 +2,22 @@
 
 <p class="description">This guide explains what's news in the default theme and how to migrate to it</p>
 
+Starting from v5.0.0-alpha.x, Joy UI's default theme has been restructured. Some tokens have been renamed, removed, and some have been added. This guide explains what's news in the default theme and how to migrate to it.
+
 ## Color
 
-### The info color palette has been removed
+### info palette
 
-We recommend to switch the `info` to `neutral`, for example:
+The `info` palette has been removed from the default theme. We recommend to use `neutral` instead.
+
+For example:
 
 ```diff
 - <Chip color="info" variant="soft">
 + <Chip color="neutral" variant="soft">
 ```
 
-However, if you want to keep the info color palette, you can do so by adding the following to your theme:
+However, if you want to keep the `info` color palette, you can do so by adding the following to your theme:
 
 ```js
 import { extendTheme } from '@mui/joy/styles';
@@ -99,7 +103,212 @@ const theme = extendTheme({
       },
     },
   },
+  colorInversion: {
+    soft: {
+      info: {
+        '--Badge-ringColor': 'var(--joy-palette-info-softBg)',
+        '--joy-shadowChannel': 'var(--joy-palette-info-darkChannel)',
+        '&[data-joy-color-scheme="dark"], [data-joy-color-scheme="dark"] &': {
+          '--joy-palette-focusVisible': 'var(--joy-palette-info-300)',
+          '--joy-palette-background-body':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.1)',
+          '--joy-palette-background-surface':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.08)',
+          '--joy-palette-background-level1':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.2)',
+          '--joy-palette-background-level2':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.4)',
+          '--joy-palette-background-level3':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.6)',
+          '--joy-palette-text-primary': 'var(--joy-palette-info-100)',
+          '--joy-palette-text-secondary':
+            'rgba(var(--joy-palette-info-lightChannel) / 0.72)',
+          '--joy-palette-text-tertiary':
+            'rgba(var(--joy-palette-info-lightChannel) / 0.6)',
+          '--joy-palette-text-icon':
+            'rgba(var(--joy-palette-info-lightChannel) / 0.6)',
+          '--joy-palette-divider':
+            'rgba(var(--joy-palette-info-lightChannel) / 0.2)',
+          '--variant-plainColor': 'rgba(var(--joy-palette-info-lightChannel) / 1)',
+          '--variant-plainHoverColor': 'var(--joy-palette-info-50)',
+          '--variant-plainHoverBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.16)',
+          '--variant-plainActiveBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.32)',
+          '--variant-plainDisabledColor':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.72)',
+          '--variant-outlinedColor':
+            'rgba(var(--joy-palette-info-lightChannel) / 1)',
+          '--variant-outlinedHoverColor': 'var(--joy-palette-info-50)',
+          '--variant-outlinedBg': 'initial',
+          '--variant-outlinedBorder':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.4)',
+          '--variant-outlinedHoverBorder': 'var(--joy-palette-info-600)',
+          '--variant-outlinedHoverBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.16)',
+          '--variant-outlinedActiveBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.32)',
+          '--variant-outlinedDisabledColor':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.72)',
+          '--variant-outlinedDisabledBorder':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.2)',
+          '--variant-softColor': 'var(--joy-palette-info-100)',
+          '--variant-softBg': 'rgba(var(--joy-palette-info-mainChannel) / 0.24)',
+          '--variant-softHoverColor': '#fff',
+          '--variant-softHoverBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.32)',
+          '--variant-softActiveBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.48)',
+          '--variant-softDisabledColor':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.72)',
+          '--variant-softDisabledBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.12)',
+          '--variant-solidColor': '#fff',
+          '--variant-solidBg': 'var(--joy-palette-info-500)',
+          '--variant-solidHoverColor': '#fff',
+          '--variant-solidHoverBg': 'var(--joy-palette-info-400)',
+          '--variant-solidActiveBg': 'var(--joy-palette-info-400)',
+          '--variant-solidDisabledColor':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.72)',
+          '--variant-solidDisabledBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.12)',
+        },
+        '&': {
+          '--joy-palette-focusVisible': 'var(--joy-palette-info-500)',
+          '--joy-palette-background-body':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.1)',
+          '--joy-palette-background-surface':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.08)',
+          '--joy-palette-background-level1':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.2)',
+          '--joy-palette-background-level2':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.32)',
+          '--joy-palette-background-level3':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.48)',
+          '--joy-palette-text-primary': 'var(--joy-palette-info-700)',
+          '--joy-palette-text-secondary':
+            'rgba(var(--joy-palette-info-darkChannel) / 0.8)',
+          '--joy-palette-text-tertiary':
+            'rgba(var(--joy-palette-info-darkChannel) / 0.68)',
+          '--joy-palette-text-icon': 'var(--joy-palette-info-400)',
+          '--joy-palette-divider':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.32)',
+          '--variant-plainColor': 'rgba(var(--joy-palette-info-darkChannel) / 0.8)',
+          '--variant-plainHoverColor':
+            'rgba(var(--joy-palette-info-darkChannel) / 1)',
+          '--variant-plainHoverBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.12)',
+          '--variant-plainActiveBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.24)',
+          '--variant-plainDisabledColor':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.6)',
+          '--variant-outlinedColor': 'rgba(var(--joy-palette-info-mainChannel) / 1)',
+          '--variant-outlinedBorder':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.4)',
+          '--variant-outlinedHoverColor': 'var(--joy-palette-info-600)',
+          '--variant-outlinedHoverBorder': 'var(--joy-palette-info-300)',
+          '--variant-outlinedHoverBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.12)',
+          '--variant-outlinedActiveBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.24)',
+          '--variant-outlinedDisabledColor':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.6)',
+          '--variant-outlinedDisabledBorder':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.12)',
+          '--variant-softColor': 'var(--joy-palette-info-600)',
+          '--variant-softBg': 'rgba(var(--joy-palette-info-lightChannel) / 0.8)',
+          '--variant-softHoverColor': 'var(--joy-palette-info-700)',
+          '--variant-softHoverBg': 'var(--joy-palette-info-200)',
+          '--variant-softActiveBg': 'var(--joy-palette-info-300)',
+          '--variant-softDisabledColor':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.6)',
+          '--variant-softDisabledBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.08)',
+          '--variant-solidColor': 'var(--joy-palette-common-white)',
+          '--variant-solidBg': 'var(--joy-palette-info-600)',
+          '--variant-solidHoverColor': 'var(--joy-palette-common-white)',
+          '--variant-solidHoverBg': 'var(--joy-palette-info-500)',
+          '--variant-solidActiveBg': 'var(--joy-palette-info-500)',
+          '--variant-solidDisabledColor':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.6)',
+          '--variant-solidDisabledBg':
+            'rgba(var(--joy-palette-info-mainChannel) / 0.08)',
+        },
+      },
+    },
+    solid: {
+      info: {
+        colorScheme: 'dark',
+        '--Badge-ringColor': 'var(--joy-palette-success-solidBg)',
+        '--joy-shadowChannel': 'var(--joy-palette-success-darkChannel)',
+        '--joy-palette-focusVisible': 'var(--joy-palette-success-200)',
+        '--joy-palette-background-body': 'rgba(0 0 0 / 0.1)',
+        '--joy-palette-background-surface': 'rgba(0 0 0 / 0.06)',
+        '--joy-palette-background-popup': 'var(--joy-palette-success-700)',
+        '--joy-palette-background-level1':
+          'rgba(var(--joy-palette-success-darkChannel) / 0.2)',
+        '--joy-palette-background-level2':
+          'rgba(var(--joy-palette-success-darkChannel) / 0.36)',
+        '--joy-palette-background-level3':
+          'rgba(var(--joy-palette-success-darkChannel) / 0.6)',
+        '--joy-palette-text-primary': 'var(--joy-palette-common-white)',
+        '--joy-palette-text-secondary': 'var(--joy-palette-success-200)',
+        '--joy-palette-text-tertiary': 'var(--joy-palette-success-300)',
+        '--joy-palette-text-icon': 'var(--joy-palette-success-200)',
+        '--joy-palette-divider':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.32)',
+        '--variant-plainColor': 'var(--joy-palette-success-50)',
+        '--variant-plainHoverColor': '#fff',
+        '--variant-plainHoverBg':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.12)',
+        '--variant-plainActiveBg':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.32)',
+        '--variant-plainDisabledColor':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.72)',
+        '--variant-outlinedColor': 'var(--joy-palette-success-50)',
+        '--variant-outlinedBorder':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.5)',
+        '--variant-outlinedHoverColor': '#fff',
+        '--variant-outlinedHoverBorder': 'var(--joy-palette-success-300)',
+        '--variant-outlinedHoverBg':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.12)',
+        '--variant-outlinedActiveBg':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.32)',
+        '--variant-outlinedDisabledColor':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.72)',
+        '--variant-outlinedDisabledBorder': 'rgba(255 255 255 / 0.2)',
+        '--variant-softColor': 'var(--joy-palette-common-white)',
+        '--variant-softHoverColor': 'var(--joy-palette-common-white)',
+        '--variant-softBg': 'rgba(var(--joy-palette-success-lightChannel) / 0.24)',
+        '--variant-softHoverBg':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.36)',
+        '--variant-softActiveBg':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.16)',
+        '--variant-softDisabledColor':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.72)',
+        '--variant-softDisabledBg':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.1)',
+        '--variant-solidColor': 'var(--joy-palette-success-600)',
+        '--variant-solidBg': 'var(--joy-palette-common-white)',
+        '--variant-solidHoverColor': 'var(--joy-palette-success-700)',
+        '--variant-solidHoverBg': 'var(--joy-palette-common-white)',
+        '--variant-solidActiveBg': 'var(--joy-palette-success-100)',
+        '--variant-solidDisabledColor':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.72)',
+        '--variant-solidDisabledBg':
+          'rgba(var(--joy-palette-success-lightChannel) / 0.1)',
+      },
+    },
+  },
 });
+```
+
+Then provide the `theme` to the `CssVarsProvider`:
+
+```js
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
+
+const theme = extendTheme({ … });
 
 function App() {
   return <CssVarsProvider theme={theme}>…</CssVarsProvider>;
