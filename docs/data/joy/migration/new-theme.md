@@ -9,8 +9,8 @@
 We recommend to switch the `info` to `neutral`, for example:
 
 ```diff
-- <Chip variant="soft" color="info">
-+ <Chip variant="soft" color="neutral">
+- <Chip color="info" variant="soft">
++ <Chip color="neutral" variant="soft">
 ```
 
 However, if you want to keep the info color palette, you can do so by adding the following to your theme:
@@ -134,6 +134,165 @@ When we started applying color palettes into contexts, and fleshing out the comp
 
 ## Typography
 
+### Font family
+
+The font family has been changed to [`Inter`](https://fonts.google.com/specimen/Inter?query=inter). Follow the [installation guide](/getting-started/installation/#inter-font) to install it.
+
+If you want to keep the old font family, you can do so by adding the following to your theme:
+
+```js
+extendTheme({
+  fontFamily: {
+    display: '"Public Sans", var(--joy-fontFamily-fallback)',
+    body: '"Public Sans", var(--joy-fontFamily-fallback)',
+  },
+});
+```
+
+### Font size
+
+The font size scale has been reduced to:
+
+```diff
+{
+-  xl7: '4.5rem',
+-  xl6: '3.75rem',
+-  xl5: '3rem',
+  xl4: '2.25rem',
+  xl3: '1.875rem',
+  xl2: '1.5rem',
+  xl: '1.25rem',
+  lg: '1.125rem',
+  md: '1rem',
+  sm: '0.875rem',
+  xs: '0.75rem',
+-  xs2: '0.625rem',
+-  xs3: '0.5rem',
+}
+```
+
+If you want to add the old font sizes back, you can do so by adding the following to your theme:
+
+```js
+extendTheme({
+  fontSize: {
+    xl7: '4.5rem',
+    xl6: '3.75rem',
+    xl5: '3rem',
+    xs2: '0.625rem',
+    xs3: '0.5rem',
+  },
+});
+```
+
+#### TypeScript
+
+You have add the old font sizes to the theme's types via module augmentation:
+
+```ts
+// You can put this to any file that's included in your tsconfig
+declare module '@mui/joy/styles' {
+  interface FontSizeOverrides {
+    xl7: true;
+    xl6: true;
+    xl5: true;
+    xs2: true;
+    xs3: true;
+  }
+}
+```
+
+### Font weight
+
+The font weight scale has been reduced to:
+
+```diff
+{
+-  xs: 200,
+  sm: 300,
+  md: 500,
+  lg: 600,
+  xl: 700,
+-  xl2: 800,
+-  xl3: 900,
+}
+```
+
+If you want to add the old font weights back, you can do so by adding the following to your theme:
+
+```js
+extendTheme({
+  fontWeight: {
+    xs: 200,
+    xl2: 800,
+    xl3: 900,
+  },
+});
+```
+
+#### TypeScript
+
+You have add the old font weights to the theme's types via module augmentation:
+
+```ts
+// You can put this to any file that's included in your tsconfig
+declare module '@mui/joy/styles' {
+  interface FontWeightOverrides {
+    xs: true;
+    xl2: true;
+    xl3: true;
+  }
+}
+```
+
+### Line height
+
+The font size scale has been changed to:
+
+```diff
+{
+-  sm: 1.25,
+-  md: 1.5,
+-  lg: 1.7,
++  xs: 1.33334, // largest font sizes for h1, h2
++  sm: 1.42858, // normal font sizes
++  md: 1.5, // normal font sizes
++  lg: 1.55556, // large font sizes for components
++  xl: 1.66667, // smallest font sizes
+}
+```
+
+### Letter spacing
+
+The letter spacing scale has been removed, if you want to add it back, you can do so by adding the following to your theme:
+
+```js
+extendTheme({
+  letterSpacing: {
+    sm: '-0.01em',
+    md: '0.083em',
+    lg: '0.125em',
+  },
+});
+```
+
+#### TypeScript
+
+You have add the `letterSpacing` to the theme's types via module augmentation:
+
+```ts
+// You can put this to any file that's included in your tsconfig
+declare module '@mui/joy/styles' {
+  interface ThemeScales {
+    letterSpacing: {
+      sm: string;
+      md: string;
+      lg: string;
+    };
+  }
+}
+```
+
 ### Level
 
 The default `theme.typography.*` have been restructured to:
@@ -152,13 +311,38 @@ h4
 + body-xs
 - display1
 - display2
-- h5 // recommend to use title-lg instead
-- h6 // recommend to use title-md instead
-- body1 // recommend to use body-md instead
-- body2 // recommend to use body-sm instead
-- body3 // recommend to use body-xs instead
+- h5 // recommend to use `title-lg` instead
+- h6 // recommend to use `title-md` instead
+- body1 // recommend to use `body-md` instead
+- body2 // recommend to use `body-sm` instead
+- body3 // recommend to use `body-xs` instead
 - body4
 - body5
+```
+
+If you want to add the old levels back, you can do so by adding the following to your theme:
+
+```js
+extendTheme({
+  typography: {
+    display1: {
+      fontFamily: 'var(--joy-fontFamily-display)',
+      fontSize: '4.5rem',
+      fontWeight: 700,
+      lineHeight: 1.25,
+      letterSpacing: '-0.01em',
+      color: 'var(--joy-palette-text-primary)',
+    },
+    display2: {
+      fontFamily: 'var(--joy-fontFamily-display)',
+      fontSize: '3.75rem',
+      fontWeight: 700,
+      lineHeight: 1.5,
+      letterSpacing: '-0.01em',
+      color: 'var(--joy-palette-text-primary)',
+    },
+  },
+});
 ```
 
 The reason behind this restructure is to make the levels more consistent and easier to use. The `h1` through `h4` levels are intended to be used for page headings, while the `title-*` and `body-*` levels are intended to be used as page paragraphs and as texts in components.
@@ -167,18 +351,83 @@ The `title-*` and `body-*` levels are designed to be composable which align perf
 
 {{"demo": "TitleBodyIconExample.js"}}
 
-### Font family
-
-### Font size
-
-### Font weight
-
-### Line height
-
-### Letter spacing
-
 ## Shadow
+
+The shadow scale remains the same but each value has been changed. If you want to add the old shadow scale back, you can do so by adding the following to your theme:
+
+```js
+extendTheme({
+  shadow: {
+    xs: `var(--joy-shadowRing, 0 0 #000),
+        0 1px 2px 0 rgba(var(--joy-shadowChannel, 187 187 187) / 0.12)`,
+    sm: `var(--joy-shadowRing, 0 0 #000),
+        0.3px 0.8px 1.1px rgba(var(--joy-shadowChannel, 187 187 187) / 0.11),
+        0.5px 1.3px 1.8px -0.6px rgba(var(--joy-shadowChannel, 187 187 187) / 0.18),
+        1.1px 2.7px 3.8px -1.2px rgba(var(--joy-shadowChannel, 187 187 187) / 0.26)`,
+    md: `var(--joy-shadowRing, 0 0 #000),
+        0.3px 0.8px 1.1px rgba(var(--joy-shadowChannel, 187 187 187) / 0.12),
+        1.1px 2.8px 3.9px -0.4px rgba(var(--joy-shadowChannel, 187 187 187) / 0.17),
+        2.4px 6.1px 8.6px -0.8px rgba(var(--joy-shadowChannel, 187 187 187) / 0.23),
+        5.3px 13.3px 18.8px -1.2px rgba(var(--joy-shadowChannel, 187 187 187) / 0.29)`,
+    lg: `var(--joy-shadowRing, 0 0 #000),
+        0.3px 0.8px 1.1px rgba(var(--joy-shadowChannel, 187 187 187) / 0.11),
+        1.8px 4.5px 6.4px -0.2px rgba(var(--joy-shadowChannel, 187 187 187) / 0.13),
+        3.2px 7.9px 11.2px -0.4px rgba(var(--joy-shadowChannel, 187 187 187) / 0.16),
+        4.8px 12px 17px -0.5px rgba(var(--joy-shadowChannel, 187 187 187) / 0.19),
+        7px 17.5px 24.7px -0.7px rgba(var(--joy-shadowChannel, 187 187 187) / 0.21)`,
+    xl: `var(--joy-shadowRing, 0 0 #000),
+        0.3px 0.8px 1.1px rgba(var(--joy-shadowChannel, 187 187 187) / 0.11), 
+        1.8px 4.5px 6.4px -0.2px rgba(var(--joy-shadowChannel, 187 187 187) / 0.13), 
+        3.2px 7.9px 11.2px -0.4px rgba(var(--joy-shadowChannel, 187 187 187) / 0.16), 
+        4.8px 12px 17px -0.5px rgba(var(--joy-shadowChannel, 187 187 187) / 0.19), 
+        7px 17.5px 24.7px -0.7px rgba(var(--joy-shadowChannel, 187 187 187) / 0.21), 
+        10.2px 25.5px 36px -0.9px rgba(var(--joy-shadowChannel, 187 187 187) / 0.24), 
+        14.8px 36.8px 52.1px -1.1px rgba(var(--joy-shadowChannel, 187 187 187) / 0.27), 21px 52.3px 74px -1.2px rgba(var(--joy-shadowChannel, 187 187 187) / 0.29)`,
+  },
+});
+```
 
 ## Components
 
 ### Tabs
+
+The [Tabs](/joy-ui/react-tabs/) component has been redesigned due to this [issue](https://github.com/mui/material-ui/issues/36782).
+
+{{"demo": "../components/tabs/TabsBasic.js"}}
+
+If you want to keep the old Tabs design, you can do so by adding the following to your theme:
+
+```js
+extendTheme({
+  components: {
+    JoyTabList: {
+      defaultProps: {
+        variant: 'soft',
+        disableUnderline: true,
+      },
+      styleOverrides: {
+        root: {
+          padding: '0.25rem',
+          gap: '0.25rem',
+          borderRadius: 'var(--joy-radius-xl)',
+          '--List-radius': 'var(--joy-radius-xl)',
+          '--List-padding': '0.25rem',
+        },
+      },
+    },
+    JoyTab: {
+      defaultProps: {
+        disableIndicator: true,
+      },
+      styleOverrides: {
+        root: {
+          '&[aria-selected="true"]': {
+            boxShadow: 'var(--joy-shadow-sm)',
+            backgroundColor: 'var(--joy-palette-background-surface)',
+          },
+        },
+      },
+    },
+  },
+});
+```
