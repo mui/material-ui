@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuButton, { menuButtonClasses as classes } from '@mui/joy/MenuButton';
-import { DropdownContext, DropdownContextValue } from '@mui/base/useMenu';
+import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 
 const testContext: DropdownContextValue = {
   dispatch: () => {},

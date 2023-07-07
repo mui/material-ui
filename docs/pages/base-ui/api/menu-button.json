@@ -14,6 +14,22 @@
   },
   "name": "MenuButton",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": ".MuiMenuButton-root"
+    }
+  ],
+  "classes": {
+    "classes": ["active", "disabled", "expanded"],
+    "globalClasses": {
+      "active": "Mui-active",
+      "disabled": "Mui-disabled",
+      "expanded": "Mui-expanded"
+    }
+  },
   "spread": true,
   "muiName": "MuiMenuButton",
   "forwardsRefTo": "HTMLButtonElement",
