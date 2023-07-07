@@ -8,10 +8,10 @@ export interface BadgeClasses {
   root: string;
   /** Styles applied to the badge `span` element. */
   badge: string;
-  /** Styles applied to the badge `span` element if `variant="dot"`. */
-  dot: string;
-  /** Styles applied to the badge `span` element if `variant="standard"`. */
-  standard: string;
+  /** Styles applied to the badge `span` element if `variant="small"`. */
+  small: string;
+  /** Styles applied to the badge `span` element if `variant="large"`. */
+  large: string;
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`. */
   anchorOriginTopRight: string;
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }}`. */
@@ -22,18 +22,14 @@ export interface BadgeClasses {
   anchorOriginBottomLeft: string;
   /** State class applied to the badge `span` element if `invisible={true}`. */
   invisible: string;
+  /** Styles applied to the badge `span` element if `color="error"`. */
+  colorError: string;
   /** Styles applied to the badge `span` element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the badge `span` element if `color="secondary"`. */
   colorSecondary: string;
-  /** Styles applied to the badge `span` element if `color="error"`. */
-  colorError: string;
-  /** Styles applied to the badge `span` element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the badge `span` element if `color="success"`. */
-  colorSuccess: string;
-  /** Styles applied to the badge `span` element if `color="warning"`. */
-  colorWarning: string;
+  /** Styles applied to the badge `span` element if `color="tertiary"`. */
+  colorTertiary: string;
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
   anchorOriginTopRightRectangular: string;
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
@@ -65,19 +61,17 @@ export function getBadgeUtilityClass(slot: string): string {
 const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'root',
   'badge',
-  'dot',
-  'standard',
+  'small',
+  'large',
   'anchorOriginTopRight',
   'anchorOriginBottomRight',
   'anchorOriginTopLeft',
   'anchorOriginBottomLeft',
   'invisible',
   'colorError',
-  'colorInfo',
   'colorPrimary',
   'colorSecondary',
-  'colorSuccess',
-  'colorWarning',
+  'colorTertiary',
   'overlapRectangular',
   'overlapCircular',
   // TODO: v6 remove the overlap value from these class keys

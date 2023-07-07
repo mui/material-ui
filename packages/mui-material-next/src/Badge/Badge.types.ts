@@ -41,10 +41,10 @@ export type BadgeTypeMap<D extends React.ElementType = 'span', P = {}> = ExtendB
      * The color of the component.
      * It supports both default and custom theme colors, which can be added as shown in the
      * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'default'
+     * @default 'error'
      */
     color?: OverridableStringUnion<
-      'primary' | 'secondary' | 'default' | 'error' | 'info' | 'success' | 'warning',
+      'primary' | 'secondary' | 'tertiary' | 'error',
       BadgePropsColorOverrides
     >;
     /**
@@ -80,9 +80,9 @@ export type BadgeTypeMap<D extends React.ElementType = 'span', P = {}> = ExtendB
     sx?: SxProps<Theme>;
     /**
      * The variant to use.
-     * @default 'standard'
+     * @default 'large'
      */
-    variant?: OverridableStringUnion<'standard' | 'dot', BadgePropsVariantOverrides>;
+    variant?: OverridableStringUnion<'large' | 'small', BadgePropsVariantOverrides>;
   };
   defaultComponent: D;
 }>;

@@ -8,9 +8,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeOwnerState, BadgeProps, BadgeTypeMap } from './Badge.types';
-
-const RADIUS_STANDARD = 10;
-const RADIUS_DOT = 4;
+import { MD3ColorSchemeTokens } from '../styles';
 
 const useUtilityClasses = (ownerState: BadgeOwnerState) => {
   const { color, anchorOrigin, invisible, overlap, variant, classes = {} } = ownerState;
@@ -26,7 +24,7 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
         anchorOrigin.horizontal,
       )}${capitalize(overlap)}`,
       `overlap${capitalize(overlap)}`,
-      color !== 'default' && `color${capitalize(color)}`,
+      `color${capitalize(color)}`,
     ],
   };
 
@@ -63,133 +61,68 @@ const BadgeBadge = styled('span', {
       ownerState.invisible && styles.invisible,
     ];
   },
-})<{ ownerState: BadgeOwnerState }>(({ theme, ownerState }) => ({
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-  alignContent: 'center',
-  alignItems: 'center',
-  position: 'absolute',
-  boxSizing: 'border-box',
-  fontFamily: theme.typography.fontFamily,
-  fontWeight: theme.typography.fontWeightMedium,
-  fontSize: theme.typography.pxToRem(12),
-  minWidth: RADIUS_STANDARD * 2,
-  lineHeight: 1,
-  padding: '0 6px',
-  height: RADIUS_STANDARD * 2,
-  borderRadius: RADIUS_STANDARD,
-  zIndex: 1, // Render the badge on top of potential ripples.
-  transition: theme.transitions.create('transform', {
-    easing: theme.transitions.easing.easeInOut,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  ...(ownerState.color !== 'default' && {
-    backgroundColor: theme.vars.palette[ownerState.color].main,
-    color: theme.vars.palette[ownerState.color].contrastText,
-  }),
-  ...(ownerState.variant === 'dot' && {
-    borderRadius: RADIUS_DOT,
-    height: RADIUS_DOT * 2,
-    minWidth: RADIUS_DOT * 2,
-    padding: 0,
-  }),
-  ...(ownerState.anchorOrigin.vertical === 'top' &&
-    ownerState.anchorOrigin.horizontal === 'right' &&
-    ownerState.overlap === 'rectangular' && {
-      top: 0,
-      right: 0,
-      transform: 'scale(1) translate(50%, -50%)',
-      transformOrigin: '100% 0%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(50%, -50%)',
-      },
+})<{ ownerState: BadgeOwnerState }>(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+
+  const letterSpacing = `${
+    theme.sys.typescale.label.small.tracking / theme.sys.typescale.label.small.size
+  }rem`;
+
+  const verticalPositionProperty = ownerState.anchorOrigin.vertical === 'top' ? 'bottom' : 'top';
+  const horizontalPositionProperty =
+    ownerState.anchorOrigin.horizontal === 'left' ? 'right' : 'left';
+
+  return {
+    '--md-comp-badge-large-size': '16px',
+    '--md-comp-badge-small-size': '6px',
+    '--md-comp-badge-size': 'var(--md-comp-badge-large-size)',
+    '--md-comp-badge-padding-x': '4px',
+    '--md-comp-badge-inset': 'calc(var(--md-comp-badge-size) - 4px)',
+    ...(ownerState.variant === 'small' && {
+      '--md-comp-badge-size': 'var(--md-comp-badge-small-size)',
+      '--md-comp-badge-inset': 'var(--md-comp-badge-size)',
+      '--md-comp-badge-padding-x': '0px',
     }),
-  ...(ownerState.anchorOrigin.vertical === 'bottom' &&
-    ownerState.anchorOrigin.horizontal === 'right' &&
-    ownerState.overlap === 'rectangular' && {
-      bottom: 0,
-      right: 0,
-      transform: 'scale(1) translate(50%, 50%)',
-      transformOrigin: '100% 100%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(50%, 50%)',
-      },
+    ...(ownerState.overlap === 'circular' && {
+      '--md-comp-badge-inset': 'calc(var(--md-comp-badge-size) / 2 + 14%)',
     }),
-  ...(ownerState.anchorOrigin.vertical === 'top' &&
-    ownerState.anchorOrigin.horizontal === 'left' &&
-    ownerState.overlap === 'rectangular' && {
-      top: 0,
-      left: 0,
-      transform: 'scale(1) translate(-50%, -50%)',
-      transformOrigin: '0% 0%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(-50%, -50%)',
-      },
-    }),
-  ...(ownerState.anchorOrigin.vertical === 'bottom' &&
-    ownerState.anchorOrigin.horizontal === 'left' &&
-    ownerState.overlap === 'rectangular' && {
-      bottom: 0,
-      left: 0,
-      transform: 'scale(1) translate(-50%, 50%)',
-      transformOrigin: '0% 100%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(-50%, 50%)',
-      },
-    }),
-  ...(ownerState.anchorOrigin.vertical === 'top' &&
-    ownerState.anchorOrigin.horizontal === 'right' &&
-    ownerState.overlap === 'circular' && {
-      top: '14%',
-      right: '14%',
-      transform: 'scale(1) translate(50%, -50%)',
-      transformOrigin: '100% 0%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(50%, -50%)',
-      },
-    }),
-  ...(ownerState.anchorOrigin.vertical === 'bottom' &&
-    ownerState.anchorOrigin.horizontal === 'right' &&
-    ownerState.overlap === 'circular' && {
-      bottom: '14%',
-      right: '14%',
-      transform: 'scale(1) translate(50%, 50%)',
-      transformOrigin: '100% 100%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(50%, 50%)',
-      },
-    }),
-  ...(ownerState.anchorOrigin.vertical === 'top' &&
-    ownerState.anchorOrigin.horizontal === 'left' &&
-    ownerState.overlap === 'circular' && {
-      top: '14%',
-      left: '14%',
-      transform: 'scale(1) translate(-50%, -50%)',
-      transformOrigin: '0% 0%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(-50%, -50%)',
-      },
-    }),
-  ...(ownerState.anchorOrigin.vertical === 'bottom' &&
-    ownerState.anchorOrigin.horizontal === 'left' &&
-    ownerState.overlap === 'circular' && {
-      bottom: '14%',
-      left: '14%',
-      transform: 'scale(1) translate(-50%, 50%)',
-      transformOrigin: '0% 100%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(-50%, 50%)',
-      },
-    }),
-  ...(ownerState.invisible && {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    boxSizing: 'border-box',
+    fontFamily: tokens.sys.typescale.label.small.family,
+    fontWeight: tokens.sys.typescale.label.small.weight,
+    fontSize: theme.typography.pxToRem(theme.sys.typescale.label.small.size),
+    lineHeight: `calc(${tokens.sys.typescale.label.small.lineHeight} / ${tokens.sys.typescale.label.small.size})`,
+    letterSpacing,
+    backgroundColor: tokens.sys.color[ownerState.color],
+    color: tokens.sys.color[`on${capitalize(ownerState.color)}` as keyof MD3ColorSchemeTokens],
+    minWidth: 'var(--md-comp-badge-size)',
+    height: 'var(--md-comp-badge-size)',
+    padding: '0 var(--md-comp-badge-padding-x)',
+    borderRadius: tokens.sys.shape.corner.full,
+    [verticalPositionProperty]: `calc(100% - var(--md-comp-badge-inset))`,
+    [horizontalPositionProperty]: `calc(100% - var(--md-comp-badge-inset))`,
+    transform: 'scale(1)',
+    transformOrigin: 'calc(var(--md-comp-badge-size) / 2)',
+    zIndex: 1, // Render the badge on top of potential ripples.
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeInOut,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.enteringScreen,
     }),
-  }),
-}));
+    [`&.${badgeClasses.invisible}`]: {
+      transform: 'scale(0)',
+      transition: theme.transitions.create('transform', {
+        easing: theme.transitions.easing.easeInOut,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
+  };
+});
 
 const Badge = React.forwardRef(function Badge<
   BaseComponentType extends React.ElementType = BadgeTypeMap['defaultComponent'],
@@ -205,14 +138,14 @@ const Badge = React.forwardRef(function Badge<
     component,
     children,
     overlap: overlapProp = 'rectangular',
-    color: colorProp = 'default',
+    color: colorProp = 'error',
     invisible: invisibleProp = false,
     max: maxProp = 99,
     badgeContent: badgeContentProp,
     slots = {},
     slotProps = {},
     showZero = false,
-    variant: variantProp = 'standard',
+    variant: variantProp = 'large',
     ...other
   } = props;
 
@@ -236,7 +169,7 @@ const Badge = React.forwardRef(function Badge<
     badgeContent: badgeContentProp,
   });
 
-  const invisible = invisibleFromHook || (badgeContent == null && variantProp !== 'dot');
+  const invisible = invisibleFromHook || (badgeContent == null && variantProp !== 'small');
 
   const {
     color = colorProp,
@@ -245,7 +178,7 @@ const Badge = React.forwardRef(function Badge<
     variant = variantProp,
   } = invisible ? prevProps : props;
 
-  const displayValue = variant !== 'dot' ? displayValueFromHook : undefined;
+  const displayValue = variant !== 'small' ? displayValueFromHook : undefined;
 
   const ownerState = {
     ...props,
@@ -295,7 +228,7 @@ const Badge = React.forwardRef(function Badge<
 Badge.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The anchor of the badge.
@@ -328,42 +261,12 @@ Badge.propTypes /* remove-proptypes */ = {
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-   * @default 'default'
+   * @default 'error'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Badge: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * If `true`, the badge is invisible.
    * @default false
@@ -402,21 +305,13 @@ Badge.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-  /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'large'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['dot', 'standard']),
     PropTypes.string,
   ]),
-};
+} as any;
 
 export default Badge;

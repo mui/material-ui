@@ -36,7 +36,7 @@ describe('<Badge />', () => {
       render,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',
-      testVariantProps: { color: 'secondary', variant: 'dot' },
+      testVariantProps: { color: 'secondary', variant: 'small' },
       slots: {
         root: {
           expectedClassName: classes.root,
@@ -67,7 +67,7 @@ describe('<Badge />', () => {
       anchorOriginTopRightCircular: 'test-anchorOriginTopRightCircular',
       badge: 'test-badge',
       colorSecondary: 'test-colorSecondary',
-      dot: 'test-dot',
+      small: 'test-small',
       invisible: 'test-invisible',
       overlapCircular: 'test-overlapCircular',
     };
@@ -75,7 +75,7 @@ describe('<Badge />', () => {
     const { container } = render(
       <Badge
         {...defaultProps}
-        variant="dot"
+        variant="small"
         overlap="circular"
         invisible
         color="secondary"
@@ -88,7 +88,7 @@ describe('<Badge />', () => {
     expect(findBadge(container)).to.have.class(customClasses.anchorOriginTopRightCircular);
     expect(findBadge(container)).to.have.class(customClasses.badge);
     expect(findBadge(container)).to.have.class(customClasses.colorSecondary);
-    expect(findBadge(container)).to.have.class(customClasses.dot);
+    expect(findBadge(container)).to.have.class(customClasses.small);
     expect(findBadge(container)).to.have.class(customClasses.invisible);
     expect(findBadge(container)).to.have.class(customClasses.overlapCircular);
   });
@@ -133,14 +133,14 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.class(classes.invisible);
     });
 
-    it('should render with the invisible class when empty and not dot', () => {
+    it('should render with the invisible class when empty and not small', () => {
       let container;
       container = render(<Badge {...defaultProps} badgeContent={null} />).container;
       expect(findBadge(container)).to.have.class(classes.invisible);
       container = render(<Badge {...defaultProps} badgeContent={undefined} />).container;
       expect(findBadge(container)).to.have.class(classes.invisible);
       container = render(
-        <Badge {...defaultProps} badgeContent={undefined} variant="dot" />,
+        <Badge {...defaultProps} badgeContent={undefined} variant="small" />,
       ).container;
       expect(findBadge(container)).not.to.have.class(classes.invisible);
     });
@@ -181,22 +181,22 @@ describe('<Badge />', () => {
   });
 
   describe('prop: variant', () => {
-    it('should default to standard', () => {
+    it('should default to large', () => {
       const { container } = render(<Badge {...defaultProps} />);
       expect(findBadge(container)).to.have.class(classes.badge);
-      expect(findBadge(container)).not.to.have.class(classes.dot);
+      expect(findBadge(container)).not.to.have.class(classes.small);
     });
 
-    it('should render with the standard class when variant="standard"', () => {
-      const { container } = render(<Badge {...defaultProps} variant="standard" />);
+    it('should render with the large class when variant="large"', () => {
+      const { container } = render(<Badge {...defaultProps} variant="large" />);
       expect(findBadge(container)).to.have.class(classes.badge);
-      expect(findBadge(container)).not.to.have.class(classes.dot);
+      expect(findBadge(container)).not.to.have.class(classes.small);
     });
 
-    it('should not render badgeContent when variant="dot"', () => {
-      const { container } = render(<Badge {...defaultProps} variant="dot" />);
+    it('should not render badgeContent when variant="small"', () => {
+      const { container } = render(<Badge {...defaultProps} variant="small" />);
       expect(findBadge(container)).to.have.class(classes.badge);
-      expect(findBadge(container)).to.have.class(classes.dot);
+      expect(findBadge(container)).to.have.class(classes.small);
       expect(findBadge(container)).to.have.text('');
     });
   });
@@ -299,13 +299,13 @@ describe('<Badge />', () => {
 
   it('retains anchorOrigin, content, color, max, overlap and variant when invisible is true for consistent disappearing transition', () => {
     const { container, setProps } = render(
-      <Badge {...defaultProps} color="secondary" variant="dot" />,
+      <Badge {...defaultProps} color="secondary" variant="small" />,
     );
 
     setProps({
       badgeContent: 0,
       color: 'primary',
-      variant: 'standard',
+      variant: 'large',
       overlap: 'circular',
       anchorOrigin: {
         vertical: 'bottom',
@@ -315,7 +315,7 @@ describe('<Badge />', () => {
 
     expect(findBadge(container)).to.have.text('');
     expect(findBadge(container)).to.have.class(classes.colorSecondary);
-    expect(findBadge(container)).to.have.class(classes.dot);
+    expect(findBadge(container)).to.have.class(classes.small);
     expect(findBadge(container)).to.have.class(classes.anchorOriginTopRightRectangular);
   });
 });
