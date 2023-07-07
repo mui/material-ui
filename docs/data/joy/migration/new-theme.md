@@ -363,21 +363,21 @@ extendTheme({
 The font size scale has been reduced to:
 
 ```diff
-{
+ {
 -  xl7: '4.5rem',
 -  xl6: '3.75rem',
 -  xl5: '3rem',
-  xl4: '2.25rem',
-  xl3: '1.875rem',
-  xl2: '1.5rem',
-  xl: '1.25rem',
-  lg: '1.125rem',
-  md: '1rem',
-  sm: '0.875rem',
-  xs: '0.75rem',
+   xl4: '2.25rem',
+   xl3: '1.875rem',
+   xl2: '1.5rem',
+   xl: '1.25rem',
+   lg: '1.125rem',
+   md: '1rem',
+   sm: '0.875rem',
+   xs: '0.75rem',
 -  xs2: '0.625rem',
 -  xs3: '0.5rem',
-}
+ }
 ```
 
 If you want to add the old font sizes back, you can do so by adding the following to your theme:
@@ -416,15 +416,15 @@ declare module '@mui/joy/styles' {
 The font weight scale has been reduced to:
 
 ```diff
-{
+ {
 -  xs: 200,
-  sm: 300,
-  md: 500,
-  lg: 600,
-  xl: 700,
+   sm: 300,
+   md: 500,
+   lg: 600,
+   xl: 700,
 -  xl2: 800,
 -  xl3: 900,
-}
+ }
 ```
 
 If you want to add the old font weights back, you can do so by adding the following to your theme:
@@ -459,7 +459,7 @@ declare module '@mui/joy/styles' {
 The font size scale has been changed to:
 
 ```diff
-{
+ {
 -  sm: 1.25,
 -  md: 1.5,
 -  lg: 1.7,
@@ -468,7 +468,7 @@ The font size scale has been changed to:
 +  md: 1.5, // normal font sizes
 +  lg: 1.55556, // large font sizes for components
 +  xl: 1.66667, // smallest font sizes
-}
+ }
 ```
 
 ### Letter spacing
@@ -507,10 +507,10 @@ declare module '@mui/joy/styles' {
 The default `theme.typography.*` have been restructured to:
 
 ```diff
-h1
-h2
-h3
-h4
+  h1
+  h2
+  h3
+  h4
 + title-lg
 + title-md
 + title-sm
