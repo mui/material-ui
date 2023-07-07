@@ -34,7 +34,7 @@ export default function TypographyUsages() {
 
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
 
