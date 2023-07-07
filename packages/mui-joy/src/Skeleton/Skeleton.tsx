@@ -55,29 +55,51 @@ const SkeletonRoot = styled('span', {
   ({ ownerState, theme }) => ({
     display: 'block',
     position: 'relative',
-    ...(ownerState.overlay && {
-      position: 'absolute',
-    }),
-    ...(ownerState.shape === 'rectangular' && {
-      borderRadius: 'min(0.15em, 6px)',
-      ...theme.typography.body1,
-    }),
-    ...(ownerState.shape === 'circular' && {
-      borderRadius: '50%',
-      ...theme.typography.body1,
-      width: '1em',
-      height: '1em',
-    }),
-    ...(!ownerState.animation && {
-      backgroundColor: theme.vars.palette.background.level2,
-    }),
+    ...(ownerState.children
+      ? {
+          position: 'initial',
+          display: 'inline',
+          borderRadius: 'min(0.15em, 6px)',
+          '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
+          '&::before': {
+            position: 'absolute',
+            zIndex: 9,
+            backgroundColor: theme.vars.palette.background.surface,
+            ...(ownerState.animation === 'wave' && {
+              backgroundColor: theme.vars.palette.background.level2,
+            }),
+          },
+        }
+      : {
+          ...(ownerState.shape === 'overlay' && {
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            zIndex: 10,
+            backgroundColor: theme.vars.palette.background.surface,
+          }),
+          ...(ownerState.shape === 'rectangular' && {
+            borderRadius: 'min(0.15em, 6px)',
+            ...theme.typography.body1,
+          }),
+          ...(ownerState.shape === 'circular' && {
+            borderRadius: '50%',
+            ...theme.typography.body1,
+            width: '1em',
+            height: '1em',
+          }),
+          ...(!ownerState.animation && {
+            backgroundColor: theme.vars.palette.background.level2,
+          }),
+          '&::before': {
+            zIndex: 9,
+            borderRadius: 'inherit',
+            height: '1em',
+            display: 'inline-block',
+          },
+        }),
     overflow: 'hidden',
     cursor: 'default',
-    // pointerEvents: 'none',
-    ...(ownerState.shape === 'text' && {
-      position: 'initial',
-      display: 'inline',
-    }),
     '& *': {
       visibility: 'hidden',
     },
@@ -87,13 +109,6 @@ const SkeletonRoot = styled('span', {
       bottom: 0,
       left: 0,
       right: 0,
-    },
-    '&::before': {
-      zIndex: 9,
-      borderRadius: 'inherit',
-      width: '100%',
-      height: '1em',
-      display: 'block',
     },
     '&::after': {
       zIndex: 10,
@@ -144,7 +159,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     children,
     animation = 'pulse',
     overlay = false,
-    shape = 'text',
+    shape = 'overlay',
     height,
     width,
     sx,
