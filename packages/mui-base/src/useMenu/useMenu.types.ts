@@ -14,7 +14,7 @@ export interface UseMenuParameters {
    */
   onItemsChange?: (items: string[]) => void;
   /**
-   * Ref to the menu's root node.
+   * The ref to the menu's root node.
    */
   rootRef?: React.Ref<Element>;
 }
@@ -40,7 +40,7 @@ export interface UseMenuReturnValue {
    */
   highlightedValue: string | null;
   /**
-   * The ref to the listbox DOM node.
+   * The ref to the menu's root node.
    */
   rootRef: React.RefCallback<Element> | null;
   /**

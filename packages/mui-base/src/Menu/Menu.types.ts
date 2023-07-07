@@ -6,7 +6,6 @@ import { ListAction } from '../useList';
 import Popper from '../Popper';
 
 export interface MenuRootSlotPropsOverrides {}
-export interface MenuListboxSlotPropsOverrides {}
 
 export interface MenuActions {
   /**
@@ -49,14 +48,9 @@ export interface MenuOwnProps {
 export interface MenuSlots {
   /**
    * The component that renders the root.
-   * @default Popper
-   */
-  root?: React.ElementType;
-  /**
-   * The component that renders the listbox.
    * @default 'ul'
    */
-  listbox?: React.ElementType;
+  root?: React.ElementType;
 }
 
 export interface MenuTypeMap<
@@ -77,14 +71,9 @@ export type MenuOwnerState = Simplify<
   }
 >;
 
-export type MenuRootSlotProps = {
+export type MenuRootSlotProps = UseMenuRootSlotProps & {
   children?: React.ReactNode;
   className?: string;
   ownerState: MenuOwnerState;
   ref: React.Ref<any>;
-};
-
-export type MenuListboxSlotProps = UseMenuRootSlotProps & {
-  className: string | undefined;
-  ownerState: MenuOwnerState;
 };

@@ -3,7 +3,7 @@
   "parametersDescriptions": {
     "id": "The id of the menu. If not provided, it will be generated.",
     "onItemsChange": "Callback fired when the menu items change.",
-    "rootRef": "Ref to the menu&#39;s root node."
+    "rootRef": "The ref to the menu&#39;s root node."
   },
   "returnValueDescriptions": {
     "contextValue": "The value to be passed into the MenuProvider.",
@@ -12,7 +12,7 @@
     "highlightedValue": "The highlighted option in the menu listbox.",
     "menuItems": "Items in the menu listbox.",
     "open": "If <code>true</code>, the menu is open.",
-    "rootRef": "The ref to the listbox DOM node.",
+    "rootRef": "The ref to the menu&#39;s root node.",
     "triggerElement": "An element that triggers the visibility of the menu."
   }
 }

@@ -26,7 +26,7 @@ describe('<Menu />', () => {
   const { render } = createRenderer();
 
   describeConformanceUnstyled(<Menu />, () => ({
-    inheritComponent: 'div',
+    inheritComponent: 'ul',
     render: (node) => {
       return render(
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
@@ -46,7 +46,7 @@ describe('<Menu />', () => {
         testWithElement: null,
       },
     },
-    skip: ['reactTestRenderer', 'propsSpread', 'componentProp', 'slotsProp'],
+    skip: ['reactTestRenderer', 'componentProp', 'slotsProp'],
   }));
 
   describe('after initialization', () => {

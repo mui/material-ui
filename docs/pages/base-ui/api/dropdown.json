@@ -6,7 +6,7 @@
   },
   "name": "Dropdown",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
-  "spread": true,
+  "spread": false,
   "themeDefaultProps": null,
   "muiName": "MuiDropdown",
   "filename": "/packages/mui-base/src/Dropdown/Dropdown.tsx",

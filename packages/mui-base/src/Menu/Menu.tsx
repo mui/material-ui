@@ -17,7 +17,6 @@ function useUtilityClasses(ownerState: MenuOwnerState) {
   const { open } = ownerState;
   const slots = {
     root: ['root', open && 'expanded'],
-    listbox: ['listbox', open && 'expanded'],
   };
 
   return composeClasses(slots, useClassNamesOverride(getMenuUtilityClass));
@@ -128,8 +127,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Menu.
    * @default {}
    */
-  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  slotProps: PropTypes.shape({
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -138,7 +136,6 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
-    listbox: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
 } as any;
