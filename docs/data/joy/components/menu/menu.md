@@ -32,18 +32,27 @@ After [installation](/joy-ui/getting-started/installation/), you can start build
 
 ```jsx
 import Menu from '@mui/joy/Menu';
+import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
+import Dropdown from '@mui/joy/Dropdown';
 
 export default function MyApp() {
   return (
-    <Menu>
-      <MenuItem>Add item</MenuItem>
-    </Menu>
+    <Dropdown>
+      <MenuButton>Actions</MenuButton>
+      <Menu>
+        <MenuItem>Add item</MenuItem>
+      </Menu>
+    </Dropdown>
   );
 }
 ```
 
 ### Basic usage
+
+Place both the Menu and Menu Button inside a Dropdown component.
+This will wire them together.
+The Menu Button will toggle the visibility of the menu and act as an anchor for the Menu's popup.
 
 The basic version of the menu opens over the anchor element by default.
 You can change this via [specific positioning props](#menu-positioning).
