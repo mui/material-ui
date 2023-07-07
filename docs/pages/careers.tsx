@@ -193,7 +193,7 @@ const nextRolesData = [
       {
         title: 'React Community Engineer - X',
         description:
-          "You will provide guidance, remove blockers, and unwrap potential features from reported issues for the advanced components team. You will directly impact developer satisfaction and success.",
+          'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
         url: '/careers/react-community-engineer/',
       },
     ],
@@ -234,7 +234,7 @@ const nextRolesData = [
       {
         title: 'Support Agent',
         description:
-          "You will provide support for the customers. You will directly impact customer satisfaction and success.",
+          'You will provide support for the customers. You will directly impact customer satisfaction and success.',
       },
     ],
   },
