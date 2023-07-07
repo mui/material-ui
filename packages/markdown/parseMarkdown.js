@@ -188,7 +188,7 @@ function getDescription(markdown) {
  * @param {string} markdown
  */
 function renderInline(markdown) {
-  return marked.parseInline(markdown);
+  return marked.parseInline(markdown, { headerIds: false, mangle: false });
 }
 
 // Help rank mui.com on component searches first.
