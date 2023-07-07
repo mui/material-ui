@@ -30,8 +30,15 @@ export const getHtml = ({
         theme: {
           extend: {
             boxShadow: {
-              'outline-purple': '0 0 0 3px #c084fc',
-            }
+              'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
+              'outline-switch': '0 0 1px 8px rgba(0, 0, 0, 0.25)',
+            },
+            cursor: {
+              inherit: 'inherit',
+            },
+            border: {
+              3: '3px',
+            },
           }
         }
       }
