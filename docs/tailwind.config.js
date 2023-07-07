@@ -10,11 +10,11 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
+        'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
         'outline-switch': '0 0 1px 8px rgba(168, 85, 247, 0.35)',
       },
       cursor: {
         inherit: 'inherit',
-        'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
       },
       border: {
         3: '3px',
