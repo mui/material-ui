@@ -80,7 +80,7 @@ export const newTheme = extendTheme({
           700: '#a67002',
           800: '#74470f',
           900: '#442504',
-          solidColor: '#74470f',
+          solidColor: 'var(--joy-palette-warning-800)',
           outlinedColor: '#a67002',
           plainColor: '#a67002',
         },
@@ -125,14 +125,14 @@ export const newTheme = extendTheme({
           700: '#8e3c1e',
           800: '#73341b',
           900: '#3e180c',
-          solidBg: '#d7611f', //600
-          solidHoverBg: '#8e3c1e', //700
-          solidActiveBg: '#73341b', //800
-          softActiveBg: '#73341b', //800
-          outlinedActiveBg: '#73341b', //800
-          outlinedHoverBg: '#8e3c1e', //700
-          plainActiveBg: '#73341b', //800
-          plainHoverBg: '#8e3c1e', //700
+          solidBg: '#d7611f', // 600
+          solidHoverBg: '#8e3c1e', // 700
+          solidActiveBg: '#73341b', // 800
+          softActiveBg: '#73341b', // 800
+          outlinedActiveBg: '#73341b', // 800
+          outlinedHoverBg: '#8e3c1e', // 700
+          plainActiveBg: '#73341b', // 800
+          plainHoverBg: '#8e3c1e', // 700
         },
         neutral: {
           50: '#f4f5f7',
@@ -145,14 +145,14 @@ export const newTheme = extendTheme({
           700: '#475057',
           800: '#383d41',
           900: '#232729',
-          solidBg: '#535f67', //600
-          solidHoverBg: '#475057', //700
-          solidActiveBg: '#383d41', //800
-          softActiveBg: '#383d41', //800
-          outlinedActiveBg: '#383d41', //800
-          outlinedHoverBg: '#475057', //700
-          plainActiveBg: '#383d41', //800
-          plainHoverBg: '#475057', //700
+          solidBg: '#535f67', // 600
+          solidHoverBg: '#475057', // 700
+          solidActiveBg: '#383d41', // 800
+          softActiveBg: '#383d41', // 800
+          outlinedActiveBg: '#383d41', // 800
+          outlinedHoverBg: '#475057', // 700
+          plainActiveBg: '#383d41', // 800
+          plainHoverBg: '#475057', // 700
         },
         warning: {
           50: '#ffffe7',
@@ -165,15 +165,15 @@ export const newTheme = extendTheme({
           700: '#a67002',
           800: '#74470f',
           900: '#442504',
-          solidColor: '#442504', //900
-          solidBg: '#d19c00', //600
-          solidHoverBg: '#a67002', //700
-          solidActiveBg: '#74470f', //800
-          softActiveBg: '#74470f', //800
-          outlinedActiveBg: '#74470f', //800
-          outlinedHoverBg: '#a67002', //700
-          plainActiveBg: '#74470f', //800
-          plainHoverBg: '#a67002', //700
+          solidColor: '#442504', // 900
+          solidBg: '#d19c00', // 600
+          solidHoverBg: '#a67002', // 700
+          solidActiveBg: '#74470f', // 800
+          softActiveBg: '#74470f', // 800
+          outlinedActiveBg: '#74470f', // 800
+          outlinedHoverBg: '#a67002', // 700
+          plainActiveBg: '#74470f', // 800
+          plainHoverBg: '#a67002', // 700
         },
         danger: {
           50: '#fff2f1',
@@ -186,14 +186,14 @@ export const newTheme = extendTheme({
           700: '#c8160d',
           800: '#881a14',
           900: '#4b0704',
-          solidBg: '#ed2015', //600
-          solidHoverBg: '#c8160d', //700
-          solidActiveBg: '#881a14', //800
-          softActiveBg: '#881a14', //800
-          outlinedActiveBg: '#881a14', //800
-          outlinedHoverBg: '#c8160d', //700
-          plainActiveBg: '#881a14', //800
-          plainHoverBg: '#c8160d', //700
+          solidBg: '#ed2015', // 600
+          solidHoverBg: '#c8160d', // 700
+          solidActiveBg: '#881a14', // 800
+          softActiveBg: '#881a14', // 800
+          outlinedActiveBg: '#881a14', // 800
+          outlinedHoverBg: '#c8160d', // 700
+          plainActiveBg: '#881a14', // 800
+          plainHoverBg: '#c8160d', // 700
         },
         success: {
           50: '#effce9',
@@ -206,14 +206,14 @@ export const newTheme = extendTheme({
           700: '#2c7318',
           800: '#244e19',
           900: '#0e2b08',
-          solidBg: '#379719', //600
-          solidHoverBg: '#2c7318', //700
-          solidActiveBg: '#244e19', //800
-          softActiveBg: '#244e19', //800
-          outlinedActiveBg: '#244e19', //800
-          outlinedHoverBg: '#2c7318', //700
-          plainActiveBg: '#244e19', //800
-          plainHoverBg: '#2c7318', //700
+          solidBg: '#379719', // 600
+          solidHoverBg: '#2c7318', // 700
+          solidActiveBg: '#244e19', // 800
+          softActiveBg: '#244e19', // 800
+          outlinedActiveBg: '#244e19', // 800
+          outlinedHoverBg: '#2c7318', // 700
+          plainActiveBg: '#244e19', // 800
+          plainHoverBg: '#2c7318', // 700
         },
       },
     },
