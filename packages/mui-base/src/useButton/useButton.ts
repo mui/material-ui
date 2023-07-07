@@ -107,16 +107,25 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
   const createHandleMouseDown = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
     if (!disabled) {
       setActive(true);
-      document.addEventListener(
-        'mouseup',
-        () => {
-          setActive(false);
-        },
-        { once: true },
-      );
+      // document.addEventListener(
+      //   'mouseup',
+      //   () => {
+      //     setActive(false);
+      //   },
+      //   { once: true },
+      // );
     }
 
     otherHandlers.onMouseDown?.(event);
+  };
+
+  const createHandleMouseUp = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
+    console.log('IS HANDLING MOUSE UP');
+    if (event.target === event.currentTarget) {
+      setActive(false);
+    }
+
+    otherHandlers.onMouseUp?.(event);
   };
 
   const createHandleKeyDown =
@@ -151,7 +160,6 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
     (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {
       // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
       // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
-
       if (event.target === event.currentTarget) {
         setActive(false);
       }
@@ -227,6 +235,7 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
       onKeyDown: createHandleKeyDown(externalEventHandlers),
       onKeyUp: createHandleKeyUp(externalEventHandlers),
       onMouseDown: createHandleMouseDown(externalEventHandlers),
+      onMouseUp: createHandleMouseUp(externalEventHandlers),
       onMouseLeave: createHandleMouseLeave(externalEventHandlers),
       ref: handleRef,
     };

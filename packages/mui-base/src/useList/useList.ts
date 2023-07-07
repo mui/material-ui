@@ -115,6 +115,7 @@ function useList<
       reason: string,
     ) => {
       onHighlightChange?.(event, value, reason);
+      // console.log('handling highlight change', value);
 
       if (
         focusManagement === 'DOM' &&
