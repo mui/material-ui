@@ -20,7 +20,7 @@ const Root = styled('div')(
       lineHeight: 1.5, // Developers likes when the code is dense.
       margin: theme.spacing(2, 'auto'),
       padding: theme.spacing(2),
-      backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
+      backgroundColor: '#0F1924', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
       color: '#f8f8f2',
       colorScheme: 'dark',
       borderRadius: `var(--muidocs-shape-borderRadius, ${
@@ -61,10 +61,11 @@ const Root = styled('div')(
     '& h1': {
       ...lightTheme.typography.h3,
       fontSize: lightTheme.typography.pxToRem(36),
-      fontFamily: `"PlusJakartaSans-ExtraBold", ${lightTheme.typography.fontFamilySystem}`,
+      fontFamily: `"Lexend", ${lightTheme.typography.fontFamilySystem}`,
       margin: '10px 0',
       color: `var(--muidocs-palette-primaryDark-900, ${lightTheme.palette.primaryDark[900]})`,
-      fontWeight: 800,
+      fontWeight: 600,
+      letterSpacing: -0.2,
     },
     '& .description': {
       ...lightTheme.typography.subtitle1,
