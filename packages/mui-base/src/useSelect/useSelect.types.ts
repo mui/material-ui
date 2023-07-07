@@ -109,7 +109,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
 }
 
 interface UseSelectButtonSlotEventHandlers {
-  onClick: MuiCancellableEventHandler<React.MouseEvent>;
+  onMouseDown: MuiCancellableEventHandler<React.MouseEvent>;
 }
 
 export type UseSelectButtonSlotProps<TOther = {}> = UseListRootSlotProps<

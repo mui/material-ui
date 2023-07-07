@@ -211,7 +211,6 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
 
   const handleStateChange = React.useCallback(
     (event: React.SyntheticEvent | null, field: string, fieldValue: any) => {
-      // console.log('field', field);
       if (field === 'open') {
         onOpenChange?.(fieldValue as boolean);
         if (fieldValue === false && event?.type !== 'blur') {
