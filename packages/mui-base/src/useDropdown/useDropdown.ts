@@ -44,7 +44,11 @@ export default function useDropdown(parameters: UseDropdownParameters = {}) {
   });
 
   React.useEffect(() => {
-    if (!state.open && lastActionType.current !== DropdownActionTypes.blur) {
+    if (
+      !state.open &&
+      lastActionType.current !== null &&
+      lastActionType.current !== DropdownActionTypes.blur
+    ) {
       triggerElementRef.current?.focus();
     }
   }, [state.open]);
