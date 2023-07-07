@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Typography component
 components: Typography
 githubLabel: 'component: Typography'
@@ -12,6 +12,8 @@ githubLabel: 'component: Typography'
 ## Introduction
 
 The Typography component helps maintain a consistent design by providing a limited set of values to choose from and convenient props for building common designs faster.
+
+{{"demo": "TypographyUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Basics
 

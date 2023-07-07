@@ -6,13 +6,13 @@ Run one of the following commands to add Joy UI to your project:
 
 ## npm
 
-```sh
+```bash
 npm install @mui/joy @emotion/react @emotion/styled
 ```
 
 ## yarn
 
-```sh
+```bash
 yarn add @mui/joy @emotion/react @emotion/styled
 ```
 
@@ -20,7 +20,14 @@ yarn add @mui/joy @emotion/react @emotion/styled
 
 <!-- #react-peer-version -->
 
-[`react`](https://www.npmjs.com/package/react) >= 17.0.0 and [`react-dom`](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies too:
+
+```json
+"peerDependencies": {
+  "react": "^17.0.0 || ^18.0.0",
+  "react-dom": "^17.0.0 || ^18.0.0"
+},
+```
 
 ## Public Sans font
 
@@ -30,13 +37,13 @@ You may add it to your project with npm or yarn via [Fontsource](https://fontsou
 
 ### npm
 
-```sh
+```bash
 npm install @fontsource/public-sans
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @fontsource/public-sans
 ```
 

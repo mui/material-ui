@@ -33,6 +33,8 @@ export interface TableClasses {
   sizeLg: string;
   /** Class name applied to the root element if `stickyHeader` is true. */
   stickyHeader: string;
+  /** Class name applied to the root element if `stickyFooter` is true. */
+  stickyFooter: string;
   /** Class name applied to the root element if `noWrap` is true. */
   noWrap: string;
   /** Class name applied to the root element if `hoverRow` is true. */
@@ -56,10 +58,10 @@ export interface TableClasses {
 export type TableClassKey = keyof TableClasses;
 
 export function getTableUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTable', slot);
+  return generateUtilityClass('MuiTable', slot);
 }
 
-const tableClasses: TableClasses = generateUtilityClasses('JoyTable', [
+const tableClasses: TableClasses = generateUtilityClasses('MuiTable', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -76,6 +78,7 @@ const tableClasses: TableClasses = generateUtilityClasses('JoyTable', [
   'sizeMd',
   'sizeLg',
   'stickyHeader',
+  'stickyFooter',
   'noWrap',
   'hoverRow',
   'borderAxisNone',

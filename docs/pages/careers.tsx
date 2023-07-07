@@ -147,6 +147,38 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
+        title: 'Product Engineer - Store',
+        description:
+          'You will lead the technical, product, and operational development of the store.',
+        url: '/careers/product-engineer/',
+      },
+    ],
+  },
+];
+
+const nextRolesData = [
+  {
+    title: 'Engineering',
+    roles: [
+      {
+        title: 'Accessibility Engineer',
+        description:
+          'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
+        url: '/careers/accessibility-engineer/',
+      },
+      {
+        title: 'Full-stack Engineer - Toolpad',
+        description:
+          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
+        url: '/careers/fullstack-engineer/',
+      },
+      {
+        title: 'React Engineer - X',
+        description:
+          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x/',
+      },
+      {
         title: 'React Tech Lead - Core',
         description:
           'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
@@ -159,28 +191,10 @@ const openRolesData = [
         url: '/careers/react-engineer-core/',
       },
       {
-        title: 'React Tech Lead - xGrid',
+        title: 'React Community Engineer - X',
         description:
-          'You will lead the development of the MUI X Data Grid, positioning the component as the next industry standard.',
-        url: '/careers/react-tech-lead-x-grid/',
-      },
-      {
-        title: 'React Engineer - xGrid',
-        description:
-          'You will strengthen the Data Grid team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x-grid/',
-      },
-      {
-        title: 'Product Engineer - Store',
-        description:
-          'You will lead the technical, product, and operational development of the store.',
-        url: '/careers/product-engineer/',
-      },
-      {
-        title: 'Accessibility Engineer',
-        description:
-          'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
-        url: '/careers/accessibility-engineer/',
+          'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
+        url: '/careers/react-community-engineer/',
       },
     ],
   },
@@ -191,47 +205,6 @@ const openRolesData = [
         title: 'Design Engineer',
         description: 'You will focus on design to implement great product experiences.',
         url: '/careers/design-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'Marketing',
-    roles: [
-      {
-        title: 'Product Marketing Manager',
-        description: 'You will own the marketing efforts at MUI.',
-        url: '/careers/product-marketing-manager/',
-      },
-    ],
-  },
-  {
-    title: 'Operations',
-    roles: [
-      {
-        title: 'Head of Operations',
-        description:
-          "You will take ownership of designing, implementing, and overseeing most of the business operations to support MUI's growth.",
-        url: '/careers/head-of-operations/',
-      },
-    ],
-  },
-];
-
-const nextRolesData = [
-  {
-    title: 'Engineering',
-    roles: [
-      {
-        title: 'Full-stack Engineer - Toolpad',
-        description:
-          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
-        url: '/careers/fullstack-engineer/',
-      },
-      {
-        title: 'React Support Engineer - X',
-        description:
-          "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/careers/react-support-engineer/',
       },
     ],
   },
@@ -259,9 +232,19 @@ const nextRolesData = [
     title: 'Support',
     roles: [
       {
-        title: 'Support Agent - Store',
+        title: 'Support Agent',
         description:
-          "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
+          'You will provide support for the customers. You will directly impact customer satisfaction and success.',
+      },
+    ],
+  },
+  {
+    title: 'Marketing',
+    roles: [
+      {
+        title: 'Product Marketing Manager',
+        description: 'You will own the marketing efforts at MUI.',
+        url: '/careers/product-marketing-manager/',
       },
     ],
   },
@@ -355,10 +338,10 @@ function CareersContent() {
               </Typography>
               {[
                 'Customer obsessed. We put our customers front & center.',
+                "Excellence. We're aiming high, and we know it.",
                 'Transparency. Most of our work is public.',
                 'Freedom. We work from anywhere in the world.',
                 'Autonomy. We want to create a safe, high-trust team.',
-                "Excellence. We're aiming high, and we know it.",
               ].map((text) => (
                 <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
                   <IconImage name="yes" />
@@ -391,9 +374,9 @@ function CareersContent() {
                 ],
                 [
                   'Equipment:',
-                  'MUI will provide the hardware of your choice (initial grant of $2,500 USD).',
+                  'We will provide the hardware of your choice (initial grant of $2,500 USD).',
                 ],
-                ['Time off:', 'We provide five weeks of paid time off.'],
+                ['Time off:', 'We provide 33 days of paid time off globally.'],
               ].map((textArray) => (
                 <Box key={textArray[0]} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
                   <IconImage name="yes" />
@@ -475,9 +458,9 @@ function CareersContent() {
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 500 }}>
             The company is bootstrapped (so far). It was incorporated in mid-2019 and is growing
-            fast (x2-3 YoY). We doubled the team in 2020 (6), accelerated in 2021 (15), kept a
-            similar pace in 2022 (25), and we plan to triple it in 2023 (75). We&apos;re looking for
-            help to grow in the following areas:
+            fast (x2 YoY). We doubled the team in 2020 (6), accelerated in 2021 (15), kept a similar
+            pace in 2022 (25), and we plan to double it in 2023 (50). We&apos;re looking for help to
+            grow in the following areas:
           </Typography>
         </div>
         <Divider

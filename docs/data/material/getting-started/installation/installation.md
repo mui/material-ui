@@ -8,13 +8,13 @@ Run one of the following commands to add Material UI to your project:
 
 ### npm
 
-```sh
+```bash
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -25,13 +25,13 @@ If you want to use [styled-components](https://styled-components.com/) instead, 
 
 ### npm
 
-```sh
+```bash
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
@@ -43,7 +43,14 @@ Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more inf
 
 <!-- #react-peer-version -->
 
-[`react`](https://www.npmjs.com/package/react) >= 17.0.0 and [`react-dom`](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies too:
+
+```json
+"peerDependencies": {
+  "react": "^17.0.0 || ^18.0.0",
+  "react-dom": "^17.0.0 || ^18.0.0"
+},
+```
 
 ## Roboto font
 
@@ -53,13 +60,13 @@ You may add it to your project with npm or yarn via [Fontsource](https://fontsou
 
 ### npm
 
-```sh
+```bash
 npm install @fontsource/roboto
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @fontsource/roboto
 ```
 
@@ -94,13 +101,13 @@ You can do so with npm or yarn, or with the Google Web Fonts CDN.
 
 ### npm
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 

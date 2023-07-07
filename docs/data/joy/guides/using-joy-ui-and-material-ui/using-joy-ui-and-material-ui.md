@@ -15,7 +15,7 @@ Once Joy UI reaches component parity with Material UI, we recommend that you **_
 
 Additionally, keep these in mind when using them together:
 
-- Both of them use [MUI System](/system/getting-started/overview/) as their style engine, which uses React context for theming.
+- Both of them use [MUI System](/system/getting-started/) as their style engine, which uses React context for theming.
 - Theme scoping must be done on one of the libraries.
 
 ## Prerequisite
@@ -31,8 +31,8 @@ Render Material UI's `CssVarsProvider` inside Joy UI's provider and use `THEME_I
 import {
   experimental_extendTheme as materialExtendTheme,
   Experimental_CssVarsProvider as MaterialCssVarsProvider,
+  THEME_ID as MATERIAL_THEME_ID,
 } from '@mui/material/styles';
-import colors from '@mui/joy/colors';
 import { CssVarsProvider as JoyCssVarsProvider } from '@mui/joy/styles';
 
 const materialTheme = materialExtendTheme();

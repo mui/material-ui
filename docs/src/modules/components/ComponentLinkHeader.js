@@ -27,7 +27,7 @@ const Root = styled('ul')({
 const defaultPackageNames = {
   'material-ui': '@mui/material',
   'joy-ui': '@mui/joy',
-  base: '@mui/base',
+  'base-ui': '@mui/base',
   system: '@mui/system',
 };
 
@@ -39,7 +39,7 @@ export default function ComponentLinkHeader(props) {
   const t = useTranslate();
 
   const packageName =
-    headers.packageName ?? defaultPackageNames[headers.product] ?? '@mui/material';
+    headers.packageName ?? defaultPackageNames[headers.productId] ?? '@mui/material';
 
   return (
     <Root>

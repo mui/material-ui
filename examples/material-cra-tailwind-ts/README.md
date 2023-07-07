@@ -6,14 +6,14 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-cra-tailwind-ts
 cd material-cra-tailwind-ts
 ```
 
 Install it and run:
 
-```sh
+```bash
 npm install
 npm start
 ```
@@ -40,4 +40,4 @@ It includes `@mui/material` and its peer dependencies, including [Emotion](https
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.

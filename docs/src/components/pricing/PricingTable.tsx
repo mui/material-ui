@@ -165,7 +165,7 @@ function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   return (
     <React.Fragment>
       {typeof value === 'string' ? (
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
           {value}
         </Typography>
       ) : (
@@ -192,7 +192,7 @@ function ColumnHead({
   nested = false,
   href,
 }: {
-  label: string;
+  label: React.ReactNode;
   metadata?: string;
   tooltip?: string;
   nested?: boolean;
@@ -315,8 +315,9 @@ function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
       {...props}
       sx={[
         {
-          py: '18px',
-          px: 2,
+          py: '16px',
+          minHeight: 54,
+          px: [1, 2],
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -453,17 +454,20 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/row-rangeselection': (
     <ColumnHead label="Range selection" nested href="/x/react-data-grid/cell-selection/" />
   ),
-  'data-grid/filter-quick': (
-    <ColumnHead label="Quick filter" nested href="/x/react-data-grid/filtering/#quick-filter" />
-  ),
   'data-grid/filter-column': (
     <ColumnHead label="Column filters" nested href="/x/react-data-grid/filtering/" />
+  ),
+  'data-grid/filter-quick': (
+    <ColumnHead label="Quick filter" nested href="/x/react-data-grid/filtering/quick-filter/" />
+  ),
+  'data-grid/header-filters': (
+    <ColumnHead label="Header filters" nested href="/x/react-data-grid/filtering/header-filters/" />
   ),
   'data-grid/filter-multicolumn': (
     <ColumnHead
       label="Multi-column filtering"
       nested
-      href="/x/react-data-grid/filtering/#single-and-multi-filtering"
+      href="/x/react-data-grid/filtering/multi-filters/"
     />
   ),
   'data-grid/pagination': (
@@ -488,8 +492,15 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/file-print': (
     <ColumnHead label="Print" nested href="/x/react-data-grid/export/#print-export" />
   ),
-  'data-grid/file-clipboard': (
-    <ColumnHead label="Clipboard" nested href="/x/react-data-grid/export/#clipboard" />
+  'data-grid/file-clipboard-copy': (
+    <ColumnHead label="Clipboard copy" nested href="/x/react-data-grid/clipboard/#clipboard-copy" />
+  ),
+  'data-grid/file-clipboard-paste': (
+    <ColumnHead
+      label="Clipboard paste"
+      nested
+      href="/x/react-data-grid/clipboard/#clipboard-paste"
+    />
   ),
   'data-grid/file-excel': (
     <ColumnHead label="Excel export" nested href="/x/react-data-grid/export/#excel-export" />
@@ -604,7 +615,12 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'security-questionnaire': (
     <ColumnHead
       {...{
-        label: 'Security questionnaire',
+        label: (
+          <React.Fragment>
+            Security questionnaire & <Box component="span" sx={{ display: ['none', 'block'] }} />
+            custom agreements
+          </React.Fragment>
+        ),
       }}
     />
   ),
@@ -635,6 +651,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-rangeselection': no,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
+  'data-grid/header-filters': no,
   'data-grid/filter-multicolumn': no,
   'data-grid/column-sorting': yes,
   'data-grid/multi-column-sorting': no,
@@ -644,7 +661,8 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/edit-cell': yes,
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
-  'data-grid/file-clipboard': no,
+  'data-grid/file-clipboard-copy': yes,
+  'data-grid/file-clipboard-paste': no,
   'data-grid/file-excel': no,
   'data-grid/customizable-components': yes,
   'data-grid/virtualize-column': yes,
@@ -694,6 +712,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-rangeselection': no,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
+  'data-grid/header-filters': yes,
   'data-grid/filter-multicolumn': yes,
   'data-grid/column-sorting': yes,
   'data-grid/multi-column-sorting': yes,
@@ -703,7 +722,8 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/edit-cell': yes,
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
-  'data-grid/file-clipboard': pending,
+  'data-grid/file-clipboard-copy': yes,
+  'data-grid/file-clipboard-paste': no,
   'data-grid/file-excel': no,
   'data-grid/customizable-components': yes,
   'data-grid/virtualize-column': yes,
@@ -729,7 +749,12 @@ const proData: Record<string, React.ReactNode> = {
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
-  'security-questionnaire': no,
+  'security-questionnaire': (
+    <Info
+      value="Available from 10+ devs"
+      metadata={'Not available under the "Capped at 10 licenses" policy'}
+    />
+  ),
 };
 
 const premiumData: Record<string, React.ReactNode> = {
@@ -750,9 +775,10 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
-  'data-grid/row-rangeselection': pending,
+  'data-grid/row-rangeselection': yes,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
+  'data-grid/header-filters': yes,
   'data-grid/filter-multicolumn': yes,
   'data-grid/column-sorting': yes,
   'data-grid/multi-column-sorting': yes,
@@ -762,7 +788,8 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/edit-cell': yes,
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
-  'data-grid/file-clipboard': pending,
+  'data-grid/file-clipboard-copy': yes,
+  'data-grid/file-clipboard-paste': yes,
   'data-grid/file-excel': yes,
   'data-grid/customizable-components': yes,
   'data-grid/virtualize-column': yes,
@@ -1154,9 +1181,11 @@ export default function PricingTable({
         {renderRow('data-grid/row-rangeselection')}
         {nestedDivider}
         <RowCategory>Filtering features</RowCategory>
+        {renderRow('data-grid/filter-column')}
+        {nestedDivider}
         {renderRow('data-grid/filter-quick')}
         {nestedDivider}
-        {renderRow('data-grid/filter-column')}
+        {renderRow('data-grid/header-filters')}
         {nestedDivider}
         {renderRow('data-grid/filter-multicolumn')}
         {nestedDivider}
@@ -1182,7 +1211,9 @@ export default function PricingTable({
         {nestedDivider}
         {renderRow('data-grid/file-excel')}
         {nestedDivider}
-        {renderRow('data-grid/file-clipboard')}
+        {renderRow('data-grid/file-clipboard-copy')}
+        {nestedDivider}
+        {renderRow('data-grid/file-clipboard-paste')}
         {nestedDivider}
         <RowCategory>Rendering features</RowCategory>
         {renderRow('data-grid/customizable-components')}

@@ -47,15 +47,17 @@ const StyledAppContainer = styled(AppContainer, {
     ...(!disableAd && {
       ...(!hasTabs && {
         '&& .description': {
-          marginBottom: 198,
+          paddingBottom: 4 * 10 + 126,
+          marginBottom: 3 * 10,
         },
         '&& .description.ad': {
+          paddingBottom: 0,
           marginBottom: 0,
         },
       }),
       ...(hasTabs && {
         '&& .component-tabs .MuiTabs-root': {
-          marginBottom: 198,
+          marginBottom: 4 * 10 + 4 * 10 + 126,
         },
         '&& .component-tabs.ad .MuiTabs-root': {
           marginBottom: 0,
@@ -78,13 +80,16 @@ const ActionsDiv = styled('div')(({ theme }) => ({
   },
 }));
 
-function AppLayoutDocs(props) {
+export default function AppLayoutDocs(props) {
   const router = useRouter();
   const {
     BannerComponent,
     children,
     description,
     disableAd = false,
+    // TODO, disableLayout should be the default, retaining the layout between pages
+    // improves the UX. It's faster to transition, and you don't lose UI states, like scroll.
+    disableLayout = false,
     disableToc = false,
     hasTabs = false,
     location,
@@ -100,7 +105,7 @@ function AppLayoutDocs(props) {
   let productName = 'MUI';
   if (canonicalAs.startsWith('/material-ui/')) {
     productName = 'Material UI';
-  } else if (canonicalAs.startsWith('/base/')) {
+  } else if (canonicalAs.startsWith('/base-ui/')) {
     productName = 'Base UI';
   } else if (canonicalAs.startsWith('/x/')) {
     productName = 'MUI X';
@@ -112,8 +117,11 @@ function AppLayoutDocs(props) {
     productName = 'Joy UI';
   }
 
+  const Layout = disableLayout ? React.Fragment : AppFrame;
+  const layoutProps = disableLayout ? {} : { BannerComponent };
+
   return (
-    <AppFrame BannerComponent={BannerComponent}>
+    <Layout {...layoutProps}>
       <GlobalStyles
         styles={{
           ':root': {
@@ -135,7 +143,7 @@ function AppLayoutDocs(props) {
           */}
           <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
             <ActionsDiv>
-              <EditPage markdownLocation={location} />
+              <EditPage sourceLocation={location} />
             </ActionsDiv>
             {children}
             <NoSsr>
@@ -146,7 +154,7 @@ function AppLayoutDocs(props) {
         </Main>
       </AdManager>
       <BackToTop />
-    </AppFrame>
+    </Layout>
   );
 }
 
@@ -155,6 +163,7 @@ AppLayoutDocs.propTypes = {
   children: PropTypes.node.isRequired,
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,
+  disableLayout: PropTypes.bool,
   disableToc: PropTypes.bool.isRequired,
   hasTabs: PropTypes.bool,
   location: PropTypes.string.isRequired,
@@ -165,5 +174,3 @@ AppLayoutDocs.propTypes = {
 if (process.env.NODE_ENV !== 'production') {
   AppLayoutDocs.propTypes = exactProp(AppLayoutDocs.propTypes);
 }
-
-export default AppLayoutDocs;

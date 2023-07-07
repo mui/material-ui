@@ -1,11 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Select component
 components: Select, NativeSelect
 githubLabel: 'component: select'
 materialDesign: https://m2.material.io/components/menus#exposed-dropdown-menu
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
-unstyled: /base/react-select/
+unstyled: /base-ui/react-select/
 ---
 
 # Select
@@ -62,7 +62,7 @@ Note that when using FormControl with the outlined variant of the Select, you ne
 As the user experience can be improved on mobile using the native select of the platform,
 we allow such pattern.
 
-{{"demo": "NativeSelect.js"}}
+{{"demo": "NativeSelectDemo.js"}}
 
 ## TextField
 

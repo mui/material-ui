@@ -49,12 +49,12 @@ function isEmpty(obj: State) {
  *
  * Demos:
  *
- * - [Textarea Autosize](https://mui.com/base/react-textarea-autosize/)
+ * - [Textarea Autosize](https://mui.com/base-ui/react-textarea-autosize/)
  * - [Textarea Autosize](https://mui.com/material-ui/react-textarea-autosize/)
  *
  * API:
  *
- * - [TextareaAutosize API](https://mui.com/base/react-textarea-autosize/components-api/#textarea-autosize)
+ * - [TextareaAutosize API](https://mui.com/base-ui/react-textarea-autosize/components-api/#textarea-autosize)
  */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,
@@ -263,7 +263,8 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         style={{
           ...styles.shadow,
           ...style,
-          padding: 0,
+          paddingTop: 0,
+          paddingBottom: 0,
         }}
       />
     </React.Fragment>

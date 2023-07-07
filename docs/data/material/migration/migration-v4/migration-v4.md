@@ -79,13 +79,13 @@ If you are using a React version below 17.0.0, update your packages to at least 
 
 With npm:
 
-```sh
-npm update @material-ui/core@^4.11.2 react@^17.0.0
+```bash
+npm install @material-ui/core@^4.11.2 react@^17.0.0
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn upgrade @material-ui/core@^4.11.2 react@^17.0.0
 ```
 
@@ -149,13 +149,13 @@ Install the Material UI v5 packages.
 
 With npm:
 
-```sh
+```bash
 npm install @mui/material @mui/styles
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/material @mui/styles
 ```
 
@@ -165,13 +165,13 @@ If you're using `@material-ui/lab` or `@material-ui/icons`, you will need to ins
 
 With npm:
 
-```sh
+```bash
 npm install @mui/lab
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/lab
 ```
 
@@ -179,13 +179,13 @@ yarn add @mui/lab
 
 With npm:
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 
@@ -201,13 +201,13 @@ Next, add the Emotion packages.
 
 With npm:
 
-```sh
+```bash
 npm install @emotion/react @emotion/styled
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @emotion/react @emotion/styled
 ```
 
@@ -301,7 +301,7 @@ Make sure that your application still runs without errors after running each cod
 
 This codemod contains most of the transformers that are necessary for migration. It should be only applied **once per folder.**
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
@@ -333,7 +333,7 @@ createMuiTheme({
 
 If you want to keep `variant="standard"` in your components, run this codemod or else configure the corresponding default theme props.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/variant-prop <path>
 ```
 
@@ -363,7 +363,7 @@ createMuiTheme({
 
 If you want to keep `underline="hover"`, run this codemod or else configure the corresponding default theme props.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 

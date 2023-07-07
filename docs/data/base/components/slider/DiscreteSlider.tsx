@@ -56,7 +56,7 @@ const grey = {
 
 const StyledSlider = styled(Slider)(
   ({ theme }) => `
-  color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
+  color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 6px;
   width: 100%;
   padding: 16px 0;
@@ -83,8 +83,7 @@ const StyledSlider = styled(Slider)(
     width: 100%;
     height: 4px;
     border-radius: 2px;
-    background-color: currentColor;
-    opacity: 0.4;
+    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
   }
 
   & .${sliderClasses.track} {
@@ -127,24 +126,24 @@ const StyledSlider = styled(Slider)(
 
   & .${sliderClasses.mark} {
     position: absolute;
-    width: 4px;
-    height: 4px;
-    border-radius: 2px;
-    background-color: currentColor;
-    top: 50%;
-    opacity: 0.7;
+    width: 8px;
+    height: 8px;
+    border-radius: 99%;
+    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
+    top: 43%;
     transform: translateX(-50%);
   }
 
   & .${sliderClasses.markActive} {
-    background-color: #fff;
+    background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   }
 
   & .valueLabel {
     font-family: IBM Plex Sans;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 12px;
     position: relative;
-    top: -1em;
+    top: -1.5em;
     text-align: center;
     align-self: center;
   }

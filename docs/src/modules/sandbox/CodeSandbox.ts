@@ -4,6 +4,7 @@ import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import SandboxDependencies from './Dependencies';
 import * as CRA from './CreateReactApp';
 import getFileExtension from './FileExtension';
+import { CodeVariant, Product, CodeStyling } from './types';
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -36,9 +37,10 @@ const createReactApp = (demo: {
   title: string;
   language: string;
   raw: string;
-  codeVariant: 'TS' | 'JS';
+  codeVariant: CodeVariant;
   githubLocation: string;
-  product?: 'joy-ui' | 'base';
+  productId?: Product;
+  codeStyling: CodeStyling;
 }) => {
   const ext = getFileExtension(demo.codeVariant);
   const { title, githubLocation: description } = demo;
@@ -48,7 +50,7 @@ const createReactApp = (demo: {
       content: CRA.getHtml(demo),
     },
     [`index.${ext}`]: {
-      content: CRA.getRootIndex(demo.product),
+      content: CRA.getRootIndex(demo.productId),
     },
     [`demo.${ext}`]: {
       content: demo.raw,
@@ -99,13 +101,18 @@ const createJoyTemplate = (demo: {
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: 'TS' | 'JS';
+  codeStyling?: 'Tailwind' | 'MUI System';
 }) => {
   const ext = getFileExtension(demo.codeVariant);
   const { title, githubLocation: description } = demo;
 
   const files: Record<string, object> = {
     'public/index.html': {
-      content: CRA.getHtml({ title: demo.title, language: 'en' }),
+      content: CRA.getHtml({
+        title: demo.title,
+        language: 'en',
+        codeStyling: demo.codeStyling ?? 'MUI System',
+      }),
     },
     [`index.${ext}`]: {
       content: `import * as React from 'react';
@@ -141,7 +148,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     {
       codeVariant: demo.codeVariant,
       raw: Object.entries(demo.files).reduce((prev, curr) => `${prev}\n${curr}`, ''),
-      product: 'joy-ui',
+      productId: 'joy-ui',
     },
     {
       commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,

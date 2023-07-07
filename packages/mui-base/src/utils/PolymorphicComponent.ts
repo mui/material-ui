@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableTypeMap } from '@mui/types';
+import { DistributiveOmit, OverridableTypeMap } from '@mui/types';
 
 /**
  * A component whose root component can be controlled explicitly with a generic type parameter.
@@ -21,4 +21,5 @@ export type PolymorphicComponent<TypeMap extends OverridableTypeMap> = {
 export type PolymorphicProps<
   TypeMap extends OverridableTypeMap,
   RootComponent extends React.ElementType,
-> = TypeMap['props'] & Omit<React.ComponentPropsWithRef<RootComponent>, keyof TypeMap['props']>;
+> = TypeMap['props'] &
+  DistributiveOmit<React.ComponentPropsWithRef<RootComponent>, keyof TypeMap['props']>;

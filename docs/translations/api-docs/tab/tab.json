@@ -23,17 +23,17 @@
     "textColorInherit": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "the parent [<code>Tabs</code>](/material-ui/api/tabs/) has <code>textColor=\"inherit\"</code>"
+      "conditions": "the parent <a href=\"/material-ui/api/tabs/\"><code>Tabs</code></a> has <code>textColor=\"inherit\"</code>"
     },
     "textColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "the parent [<code>Tabs</code>](/material-ui/api/tabs/) has <code>textColor=\"primary\"</code>"
+      "conditions": "the parent <a href=\"/material-ui/api/tabs/\"><code>Tabs</code></a> has <code>textColor=\"primary\"</code>"
     },
     "textColorSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "the parent [<code>Tabs</code>](/material-ui/api/tabs/) has <code>textColor=\"secondary\"</code>"
+      "conditions": "the parent <a href=\"/material-ui/api/tabs/\"><code>Tabs</code></a> has <code>textColor=\"secondary\"</code>"
     },
     "selected": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -57,7 +57,7 @@
     },
     "iconWrapper": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the wrapper element of `icon`",
+      "nodeName": "the wrapper element of <code>icon</code>",
       "conditions": "<code>icon</code> is provided"
     }
   }
