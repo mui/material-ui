@@ -8,6 +8,7 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
+  waitFor,
 } from 'test/utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
@@ -46,15 +47,6 @@ describe('<Tabs />', () => {
   const isJSDOM = navigator.userAgent === 'node.js';
 
   const { clock, render, renderToString } = createRenderer();
-
-  const delayObserver = 1200;
-  const waitForObserver = (fn, delay = delayObserver) =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        fn();
-        resolve();
-      }, delay);
-    });
 
   before(function beforeHook() {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -502,7 +494,6 @@ describe('<Tabs />', () => {
   });
 
   describe('prop: variant="scrollable"', () => {
-    clock.withFakeTimers();
     const tabs = (
       <Tabs value={0} style={{ width: 200 }} variant="scrollable">
         <Tab style={{ width: 120, minWidth: 'auto' }} />
@@ -519,17 +510,14 @@ describe('<Tabs />', () => {
     });
 
     it('should response to scroll events', async function test() {
-      clock.restore();
-      this.timeout(delayObserver * 2.5);
       if (isJSDOM) {
         this.skip();
       }
-      const { container, forceUpdate, getByRole } = render(tabs);
+      const { container, getByRole } = render(tabs);
       const tablistContainer = getByRole('tablist').parentElement;
 
-      forceUpdate();
       tablistContainer.scrollLeft = 10;
-      await waitForObserver(() => {
+      await waitFor(() => {
         expect(hasLeftScrollButton(container)).to.equal(true);
         expect(hasRightScrollButton(container)).to.equal(true);
       });
@@ -537,7 +525,7 @@ describe('<Tabs />', () => {
       tablistContainer.scrollLeft = 0;
       fireEvent.scroll(container.querySelector(`.${classes.scroller}.${classes.scrollableX}`));
 
-      await waitForObserver(() => {
+      await waitFor(() => {
         expect(hasLeftScrollButton(container)).to.equal(false);
         expect(hasRightScrollButton(container)).to.equal(true);
       });
@@ -613,11 +601,10 @@ describe('<Tabs />', () => {
     });
 
     it('should handle window resize event', async function test() {
-      this.timeout(delayObserver * 2.5);
       if (isJSDOM) {
         this.skip();
       }
-      const { container, forceUpdate, getByRole } = render(
+      const { container, getByRole } = render(
         <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
           <Tab />
           <Tab />
@@ -627,9 +614,8 @@ describe('<Tabs />', () => {
 
       const tablistContainer = getByRole('tablist').parentElement;
 
-      forceUpdate();
       tablistContainer.scrollLeft = 10;
-      await waitForObserver(() => {
+      await waitFor(() => {
         expect(hasLeftScrollButton(container)).to.equal(true);
         expect(hasRightScrollButton(container)).to.equal(true);
       });
@@ -639,7 +625,7 @@ describe('<Tabs />', () => {
         window.dispatchEvent(new window.Event('resize', {}));
       });
 
-      await waitForObserver(() => {
+      await waitFor(() => {
         expect(hasLeftScrollButton(container)).to.equal(false);
         expect(hasRightScrollButton(container)).to.equal(true);
       });
@@ -650,16 +636,14 @@ describe('<Tabs />', () => {
         if (isJSDOM) {
           this.skip();
         }
-        const { container, forceUpdate } = render(
+        const { container } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab style={{ width: 50, minWidth: 'auto' }} />
             <Tab style={{ width: 50, minWidth: 'auto' }} />
           </Tabs>,
         );
 
-        forceUpdate();
-
-        await waitForObserver(() => {
+        await waitFor(() => {
           expect(hasLeftScrollButton(container)).to.equal(false);
           expect(hasRightScrollButton(container)).to.equal(false);
         });
@@ -669,7 +653,7 @@ describe('<Tabs />', () => {
         if (isJSDOM) {
           this.skip();
         }
-        const { container, forceUpdate, getByRole } = render(
+        const { container, getByRole } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab style={{ width: 120, minWidth: 'auto' }} />
             <Tab style={{ width: 120, minWidth: 'auto' }} />
@@ -678,10 +662,9 @@ describe('<Tabs />', () => {
         );
         const tablistContainer = getByRole('tablist').parentElement;
 
-        forceUpdate();
         tablistContainer.scrollLeft = 240;
 
-        await waitForObserver(() => {
+        await waitFor(() => {
           expect(hasLeftScrollButton(container)).to.equal(true);
           expect(hasRightScrollButton(container)).to.equal(false);
         });
@@ -691,7 +674,7 @@ describe('<Tabs />', () => {
         if (isJSDOM) {
           this.skip();
         }
-        const { container, forceUpdate, getByRole } = render(
+        const { container, getByRole } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab />
             <Tab />
@@ -700,10 +683,9 @@ describe('<Tabs />', () => {
         );
         const tablistContainer = getByRole('tablist').parentElement;
 
-        forceUpdate();
         tablistContainer.scrollLeft = 0;
 
-        await waitForObserver(() => {
+        await waitFor(() => {
           expect(hasLeftScrollButton(container)).to.equal(false);
           expect(hasRightScrollButton(container)).to.equal(true);
         });
@@ -713,7 +695,7 @@ describe('<Tabs />', () => {
         if (isJSDOM) {
           this.skip();
         }
-        const { container, forceUpdate, getByRole } = render(
+        const { container, getByRole } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab style={{ width: 120, minWidth: 'auto' }} />
             <Tab style={{ width: 120, minWidth: 'auto' }} />
@@ -721,10 +703,9 @@ describe('<Tabs />', () => {
         );
         const tablistContainer = getByRole('tablist').parentElement;
 
-        forceUpdate();
         tablistContainer.scrollLeft = 5;
 
-        await waitForObserver(() => {
+        await waitFor(() => {
           expect(hasLeftScrollButton(container)).to.equal(true);
           expect(hasRightScrollButton(container)).to.equal(true);
         });
@@ -737,11 +718,10 @@ describe('<Tabs />', () => {
 
     it('should scroll visible items', async function test() {
       clock.restore();
-      this.timeout(delayObserver * 2.5);
       if (isJSDOM) {
         this.skip();
       }
-      const { container, forceUpdate, getByRole } = render(
+      const { container, getByRole } = render(
         <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
           <Tab style={{ width: 100, minWidth: 'auto' }} />
           <Tab style={{ width: 50, minWidth: 'auto' }} />
@@ -750,24 +730,23 @@ describe('<Tabs />', () => {
       );
       const tablistContainer = getByRole('tablist').parentElement;
 
-      forceUpdate();
       tablistContainer.scrollLeft = 20;
 
-      await waitForObserver(() => {
+      await waitFor(() => {
         expect(hasLeftScrollButton(container)).to.equal(true);
         expect(hasRightScrollButton(container)).to.equal(true);
       });
 
       fireEvent.click(findScrollButton(container, 'left'));
-      await waitForObserver(() => {
+      await waitFor(() => {
         expect(tablistContainer.scrollLeft).not.to.be.above(0);
-      }, delayObserver * 0.5);
+      });
 
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
-      await waitForObserver(() => {
+      await waitFor(() => {
         expect(tablistContainer.scrollLeft).equal(100);
-      }, delayObserver * 0.5);
+      });
     });
 
     it('should horizontally scroll by width of partially visible item', () => {
@@ -1413,7 +1392,6 @@ describe('<Tabs />', () => {
 
   describe('dynamic tabs', () => {
     it('should not show scroll buttons if a tab added or removed in auto width', async function test() {
-      this.timeout(delayObserver * 2.5);
       if (isJSDOM) {
         this.skip();
       }
@@ -1442,20 +1420,19 @@ describe('<Tabs />', () => {
 
       fireEvent.click(addButton);
       fireEvent.click(addButton);
-      await waitForObserver(() => {
+      await waitFor(() => {
         expect(hasLeftScrollButton(container)).to.equal(false);
         expect(hasRightScrollButton(container)).to.equal(false);
       });
 
       fireEvent.click(deleteButton);
-      await waitForObserver(() => {
+      await waitFor(() => {
         expect(hasLeftScrollButton(container)).to.equal(false);
         expect(hasRightScrollButton(container)).to.equal(false);
       });
     });
 
     it('should show scroll buttons if a tab added or removed in fixed width', async function test() {
-      this.timeout(delayObserver * 2.5);
       if (isJSDOM) {
         this.skip();
       }
@@ -1483,13 +1460,13 @@ describe('<Tabs />', () => {
       const deleteButton = getByTestId('delete');
 
       fireEvent.click(addButton);
-      await waitForObserver(() => {
+      await waitFor(() => {
         expect(hasLeftScrollButton(container)).to.equal(false);
         expect(hasRightScrollButton(container)).to.equal(true);
       });
 
       fireEvent.click(deleteButton);
-      await waitForObserver(() => {
+      await waitFor(() => {
         expect(hasLeftScrollButton(container)).to.equal(false);
         expect(hasRightScrollButton(container)).to.equal(false);
       });
