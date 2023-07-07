@@ -12,7 +12,7 @@ export default function ButtonUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'plain',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
@@ -46,7 +46,7 @@ export default function ButtonUsage() {
         {
           propName: 'stripe',
           knob: 'radio',
-          options: ['odd', 'even'],
+          options: ['undefined', 'odd', 'even'],
         },
       ]}
       getCodeBlock={(code) => `<Sheet>
