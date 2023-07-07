@@ -8,10 +8,8 @@ import {
   describeConformanceUnstyled,
   fireEvent,
 } from 'test/utils';
-import MenuButton from '@mui/base/MenuButton';
-import { DropdownContext, DropdownContextValue } from '@mui/base/useMenu';
-import menuButtonClasses from './menuButtonClasses';
-import { DropdownActionTypes } from '../useDropdown';
+import MenuButton, { menuButtonClasses } from '@mui/base/MenuButton';
+import { DropdownContext, DropdownContextValue, DropdownActionTypes } from '@mui/base/useDropdown';
 
 const testContext: DropdownContextValue = {
   dispatch: () => {},

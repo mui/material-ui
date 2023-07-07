@@ -22,15 +22,18 @@ function useUtilityClasses(ownerState: MenuOwnerState) {
   return composeClasses(slots, useClassNamesOverride(getMenuUtilityClass));
 }
 
-function ListboxRoot(
-  props: React.PropsWithChildren<{
-    triggerElement: HTMLElement | null;
-    open: boolean;
-    Root: React.ElementType;
-    rootProps: any;
-  }>,
-) {
-  const { triggerElement, open, Root, rootProps, children } = props;
+interface ListboxRootProps {
+  children?: React.ReactNode;
+  open: boolean;
+  rootComponent: React.ElementType;
+  rootProps: WithOptionalOwnerState<MenuRootSlotProps>;
+  triggerElement: HTMLElement | null;
+}
+
+// Renders a Popper with the provided rootComponent only if `triggerElement` is defined.
+// Otherwise, renders a rootComponent directly.
+function ListboxRoot(props: ListboxRootProps) {
+  const { triggerElement, open, rootComponent: Root, rootProps, children } = props;
 
   if (triggerElement != null) {
     return (
@@ -100,7 +103,12 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
   });
 
   return (
-    <ListboxRoot open={open} triggerElement={triggerElement} Root={Root} rootProps={rootProps}>
+    <ListboxRoot
+      open={open}
+      triggerElement={triggerElement}
+      rootComponent={Root}
+      rootProps={rootProps}
+    >
       <MenuProvider value={contextValue}>{children}</MenuProvider>
     </ListboxRoot>
   );

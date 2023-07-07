@@ -10,7 +10,7 @@ import {
 } from 'test/utils';
 import Menu, { menuClasses } from '@mui/base/Menu';
 import MenuItem from '@mui/base/MenuItem';
-import { DropdownContext, DropdownContextValue } from '@mui/base/useMenu';
+import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 
 const testContext: DropdownContextValue = {
   dispatch: () => {},

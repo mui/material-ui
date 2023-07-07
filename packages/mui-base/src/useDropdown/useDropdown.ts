@@ -17,7 +17,8 @@ import dropdownReducer from './dropdownReducer';
  */
 export default function useDropdown(parameters: UseDropdownParameters = {}) {
   const { defaultOpen, onOpenChange, open: openProp } = parameters;
-  const triggerElementRef = React.useRef<HTMLElement | null>(null);
+  const [popupId, setPopupId] = React.useState<string>('');
+  const [triggerElement, setTriggerElement] = React.useState<HTMLElement | null>(null);
   const lastActionType = React.useRef<string | null>(null);
 
   const handleStateChange: StateChangeCallback<DropdownState> = React.useCallback(
@@ -49,23 +50,17 @@ export default function useDropdown(parameters: UseDropdownParameters = {}) {
       lastActionType.current !== null &&
       lastActionType.current !== DropdownActionTypes.blur
     ) {
-      triggerElementRef.current?.focus();
+      triggerElement?.focus();
     }
-  }, [state.open]);
-
-  const registerTrigger = React.useCallback((element: HTMLElement | null) => {
-    triggerElementRef.current = element;
-  }, []);
-
-  const [popupId, setPopupId] = React.useState<string>('');
+  }, [state.open, triggerElement]);
 
   const contextValue: DropdownContextValue = {
     state,
     dispatch,
     popupId,
     registerPopup: setPopupId,
-    registerTrigger,
-    triggerElement: triggerElementRef.current,
+    registerTrigger: setTriggerElement,
+    triggerElement,
   };
 
   return {
