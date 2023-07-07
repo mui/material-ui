@@ -3,7 +3,7 @@
   "parametersDescriptions": {
     "id": "The id of the menu. If not provided, it will be generated.",
     "onItemsChange": "Callback fired when the menu items change.",
-    "rootRef": "Ref of the menu listbox."
+    "rootRef": "Ref to the menu&#39;s root node."
   },
   "returnValueDescriptions": {
     "contextValue": "The value to be passed into the MenuProvider.",

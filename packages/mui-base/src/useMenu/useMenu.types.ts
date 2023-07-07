@@ -14,7 +14,7 @@ export interface UseMenuParameters {
    */
   onItemsChange?: (items: string[]) => void;
   /**
-   * Ref of the menu listbox.
+   * Ref to the menu's root node.
    */
   rootRef?: React.Ref<Element>;
 }
