@@ -134,6 +134,39 @@ When we started applying color palettes into contexts, and fleshing out the comp
 
 ## Typography
 
+### Level
+
+The default `theme.typography.*` have been restructured to:
+
+```diff
+h1
+h2
+h3
+h4
++ title-lg
++ title-md
++ title-sm
++ body-lg
++ body-md
++ body-sm
++ body-xs
+- display1
+- display2
+- h5 // recommend to use title-lg instead
+- h6 // recommend to use title-md instead
+- body1 // recommend to use body-md instead
+- body2 // recommend to use body-sm instead
+- body3 // recommend to use body-xs instead
+- body4
+- body5
+```
+
+The reason behind this restructure is to make the levels more consistent and easier to use. The `h1` through `h4` levels are intended to be used for page headings, while the `title-*` and `body-*` levels are intended to be used as page paragraphs and as texts in components.
+
+The `title-*` and `body-*` levels are designed to be composable which align perfectly with each size of the `SvgIcon` component:
+
+{{"demo": "TitleBodyIconExample.js"}}
+
 ### Font family
 
 ### Font size
