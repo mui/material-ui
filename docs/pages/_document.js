@@ -107,6 +107,15 @@ export default class MyDocument extends Document {
             }}
           />
           <style
+            // Loads Lexend: Regular (400), Medium (500), SemiBold (600), Bold (700), ExtraBold (800)
+            // Official Lexend site: https://www.lexend.com/
+            // use https://cssminifier.com/ to minify
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `@font-face{font-family:'Lexend';src:url(/static/fonts/Lexend-Regular.woff2) format('woff2'),url(/static/fonts/Lexend-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap;font-feature-settings:'ss01'on;}@font-face{font-family:'Lexend';src:url(/static/fonts/Lexend-Medium.woff2) format('woff2'),url(/static/fonts/Lexend-Medium.ttf) format('truetype');font-weight:500;font-style:normal;font-display:swap;font-feature-settings:'ss01'on;}@font-face{font-family:'Lexend';src:url(/static/fonts/Lexend-SemiBold.woff2) format('woff2'),url(/static/fonts/Lexend-SemiBold.ttf) format('truetype');font-weight:600;font-style:normal;font-display:swap;font-feature-settings:'ss01'on;}@font-face{font-family:'Lexend';src:url(/static/fonts/Lexend-Bold.woff2) format('woff2'),url(/static/fonts/Lexend-Bold.ttf) format('truetype');font-weight:700;font-style:normal;font-display:swap;font-feature-settings:'ss01'on;}@font-face{font-family:'Lexend';src:url(/static/fonts/Lexend-ExtraBold.woff2) format('woff2'),url(/static/fonts/Lexend-ExtraBold.ttf) format('truetype');font-weight:800;font-style:normal;font-display:swap;font-feature-settings:'ss01'on;}`,
+            }}
+          />
+          <style
             // Loads IBM Plex Sans: 400,500,700 & IBM Plex Mono: 400, 600
             // use https://cssminifier.com/ to minify
             // eslint-disable-next-line react/no-danger
