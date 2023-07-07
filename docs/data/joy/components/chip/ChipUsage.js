@@ -9,7 +9,7 @@ export default function ChipUsages() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'solid',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },

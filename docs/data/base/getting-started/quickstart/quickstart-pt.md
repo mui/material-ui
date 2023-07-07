@@ -6,13 +6,13 @@
 
 Para instalar e gravar as dependências, no seu `package.json`, execute o seguinte comando **npm**:
 
-```sh
+```bash
 npm install @mui/base
 ```
 
 Com o **yarn**:
 
-```sh
+```bash
 yarn add @mui/base
 ```
 

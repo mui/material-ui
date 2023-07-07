@@ -58,7 +58,7 @@ When in doubt, keep your Pull Requests small. To give a Pull Request the best ch
 
 2. Clone the fork to your local machine and add upstream remote:
 
-```sh
+```bash
 git clone https://github.com/<your username>/material-ui.git
 cd material-ui
 git remote add upstream https://github.com/mui/material-ui.git
@@ -68,26 +68,26 @@ git remote add upstream https://github.com/mui/material-ui.git
 
 3. Synchronize your local `master` branch with the upstream one:
 
-```sh
+```bash
 git checkout master
 git pull upstream master
 ```
 
 4. Install the dependencies with yarn (npm isn't supported):
 
-```sh
+```bash
 yarn install
 ```
 
 5. Create a new topic branch:
 
-```sh
+```bash
 git checkout -b my-topic-branch
 ```
 
 6. Make changes, commit and push to your fork:
 
-```sh
+```bash
 git push -u origin HEAD
 ```
 
@@ -103,7 +103,7 @@ It's the local development environment used by the maintainers.
 
 To get started:
 
-```sh
+```bash
 yarn start
 ```
 
@@ -121,7 +121,7 @@ You might face the following problems:
 
 To solve these problems—you can use the playground:
 
-```sh
+```bash
 yarn docs:create-playground && yarn start
 ```
 
@@ -243,7 +243,7 @@ on _Details_ to find out more about them.
 The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the [JSDoc](https://jsdoc.app/about-getting-started.html) in the TypeScript declarations.
 Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/mui-material/src/Button/Button.d.ts` for `<Button>`) and then run:
 
-```sh
+```bash
 $ yarn proptypes
 $ yarn docs:api
 ```
@@ -265,7 +265,7 @@ If, for example, you want to add new demos for the button component, you have to
 
 In this case, you are going to add the new file to the following directory:
 
-```sh
+```bash
 docs/src/pages/components/buttons/
 ```
 
@@ -326,7 +326,7 @@ Alternatively, you can open the Netlify preview of the documentation, and open a
 You can also package and test your changes locally.
 The following example shows how to package `@mui/material`, but you can package any MUI module with this process:
 
-```sh
+```bash
 $> cd packages/mui-material # or path to any other mui package
 $packages\mui-material> yarn build
 $packages\mui-material> cd ./build
@@ -336,7 +336,7 @@ $packages\mui-material> npm pack
 Navigate to the build folder of your respective package and locate a file with the format `mui-material-x.x.x.tar.gz`.
 Copy this file and move it to the project directory you want to test in, then run:
 
-```sh
+```bash
 $test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
 ```
 

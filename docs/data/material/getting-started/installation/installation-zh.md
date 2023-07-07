@@ -8,13 +8,13 @@ Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/
 
 To install and save in your `package.json` dependencies, run the command below using **npm**:
 
-```sh
+```bash
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
 Or **yarn**:
 
-```sh
+```bash
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -24,11 +24,11 @@ Please note that [react](https://www.npmjs.com/package/react) >= 17.0.0 and [rea
 
 Material UI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. If you want to use [`styled-components`](https://styled-components.com/) instead, run:
 
-```sh
+```bash
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
-```sh
+```bash
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
@@ -66,13 +66,13 @@ In order to use prebuilt SVG Material icons, such as those found in the [icons d
 
 With **npm**:
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 With **yarn**:
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 

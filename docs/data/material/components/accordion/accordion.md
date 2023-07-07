@@ -25,7 +25,15 @@ This component is no longer documented in the [Material Design guidelines](https
 
 ## Controlled accordion
 
-Extend the default behavior to create an accordion with the `Accordion` component.
+The Accordion component can be controlled or uncontrolled.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 {{"demo": "ControlledAccordions.js", "bg": true}}
 

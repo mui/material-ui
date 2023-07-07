@@ -8,13 +8,13 @@ Run one of the following commands to add Material UI to your project:
 
 ### npm
 
-```sh
+```bash
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -25,13 +25,13 @@ If you want to use [styled-components](https://styled-components.com/) instead, 
 
 ### npm
 
-```sh
+```bash
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
@@ -60,13 +60,13 @@ You may add it to your project with npm or yarn via [Fontsource](https://fontsou
 
 ### npm
 
-```sh
+```bash
 npm install @fontsource/roboto
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @fontsource/roboto
 ```
 
@@ -101,13 +101,13 @@ You can do so with npm or yarn, or with the Google Web Fonts CDN.
 
 ### npm
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 

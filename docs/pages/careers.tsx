@@ -153,28 +153,6 @@ const openRolesData = [
           'You will lead the technical, product, and operational development of the store.',
         url: '/careers/product-engineer/',
       },
-      {
-        title: 'Accessibility Engineer',
-        description:
-          'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
-        url: '/careers/accessibility-engineer/',
-      },
-      {
-        title: 'React Community Engineer - X',
-        description:
-          "You will provide guidance, remove blockers, and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/careers/react-community-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'Marketing',
-    roles: [
-      {
-        title: 'Product Marketing Manager',
-        description: 'You will own the marketing efforts at MUI.',
-        url: '/careers/product-marketing-manager/',
-      },
     ],
   },
 ];
@@ -183,6 +161,12 @@ const nextRolesData = [
   {
     title: 'Engineering',
     roles: [
+      {
+        title: 'Accessibility Engineer',
+        description:
+          'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
+        url: '/careers/accessibility-engineer/',
+      },
       {
         title: 'Full-stack Engineer - Toolpad',
         description:
@@ -206,6 +190,12 @@ const nextRolesData = [
         description:
           'You will strengthen the core components team by collaborating with the community to land contributions.',
         url: '/careers/react-engineer-core/',
+      },
+      {
+        title: 'React Community Engineer - X',
+        description:
+          'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
+        url: '/careers/react-community-engineer/',
       },
     ],
   },
@@ -243,9 +233,19 @@ const nextRolesData = [
     title: 'Support',
     roles: [
       {
-        title: 'Support Agent - Store',
+        title: 'Support Agent',
         description:
-          "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
+          'You will provide support for the customers. You will directly impact customer satisfaction and success.',
+      },
+    ],
+  },
+  {
+    title: 'Marketing',
+    roles: [
+      {
+        title: 'Product Marketing Manager',
+        description: 'You will own the marketing efforts at MUI.',
+        url: '/careers/product-marketing-manager/',
       },
     ],
   },
@@ -340,10 +340,10 @@ function CareersContent() {
               </Typography>
               {[
                 'Customer obsessed. We put our customers front & center.',
+                "Excellence. We're aiming high, and we know it.",
                 'Transparency. Most of our work is public.',
                 'Freedom. We work from anywhere in the world.',
                 'Autonomy. We want to create a safe, high-trust team.',
-                "Excellence. We're aiming high, and we know it.",
               ].map((text) => (
                 <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
                   <IconImage name="yes" />
@@ -376,9 +376,9 @@ function CareersContent() {
               ],
               [
                 'Equipment:',
-                'MUI will provide the hardware of your choice (initial grant of $2,500 USD).',
+                'We will provide the hardware of your choice (initial grant of $2,500 USD).',
               ],
-              ['Time off:', 'We provide five weeks of paid time off.'],
+              ['Time off:', 'We provide 33 days of paid time off globally.'],
             ].map((textArray) => (
               <Box key={textArray[0]} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
                 <IconImage name="yes" />
@@ -389,65 +389,28 @@ function CareersContent() {
               </Box>
             ))}
           </Grid>
-          <Grid item xs={12} sm={12} md={6} container spacing={2}>
-            <Grid item xs={12} sm={12} md={6}>
-              <Paper
-                component={Link}
-                href={ROUTES.handbook}
-                noLinkStyle
-                variant="outlined"
-                sx={{ p: 2 }}
+          <Grid item xs={12} sm={12} md={6}>
+            <Paper component={Link} href={ROUTES.blog} noLinkStyle variant="outlined" sx={{ p: 2 }}>
+              <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                Blog
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                Check behind the scenes and news from the company.
+              </Typography>
+              <Typography
+                sx={(theme) => ({
+                  color: 'primary.600',
+                  ...theme.applyDarkStyles({
+                    color: 'primary.400',
+                  }),
+                })}
+                variant="body2"
+                fontWeight="bold"
               >
-                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                  Handbook
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  See how we run the company and the way we work.
-                </Typography>
-                <Typography
-                  sx={(theme) => ({
-                    color: 'primary.600',
-                    ...theme.applyDarkStyles({
-                      color: 'primary.400',
-                    }),
-                  })}
-                  variant="body2"
-                  fontWeight="bold"
-                >
-                  Learn more{' '}
-                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={12} md={6}>
-              <Paper
-                component={Link}
-                href={ROUTES.blog}
-                noLinkStyle
-                variant="outlined"
-                sx={{ p: 2 }}
-              >
-                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                  Blog
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  Check behind the scenes and news from the company.
-                </Typography>
-                <Typography
-                  sx={(theme) => ({
-                    color: 'primary.600',
-                    ...theme.applyDarkStyles({
-                      color: 'primary.400',
-                    }),
-                  })}
-                  variant="body2"
-                  fontWeight="bold"
-                >
-                  Learn more{' '}
-                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                </Typography>
-              </Paper>
-            </Grid>
+                Learn more{' '}
+                <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+              </Typography>
+            </Paper>
           </Grid>
         </Grid>
       </Section>
@@ -460,9 +423,9 @@ function CareersContent() {
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 500 }}>
             The company is bootstrapped (so far). It was incorporated in mid-2019 and is growing
-            fast (x2-3 YoY). We doubled the team in 2020 (6), accelerated in 2021 (15), kept a
-            similar pace in 2022 (25), and we plan to triple it in 2023 (75). We&apos;re looking for
-            help to grow in the following areas:
+            fast (x2 YoY). We doubled the team in 2020 (6), accelerated in 2021 (15), kept a similar
+            pace in 2022 (25), and we plan to double it in 2023 (50). We&apos;re looking for help to
+            grow in the following areas:
           </Typography>
         </div>
         <Divider

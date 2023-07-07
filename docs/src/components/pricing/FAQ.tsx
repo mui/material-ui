@@ -261,7 +261,7 @@ export default function FAQ() {
   }
   return (
     <Section cozy>
-      <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
+      <Typography id="faq" variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>

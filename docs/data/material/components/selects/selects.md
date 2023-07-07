@@ -113,6 +113,14 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 You can control the open state of the select with the `open` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultOpen` prop.
 
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
+
 {{"demo": "ControlledOpenSelect.js"}}
 
 ## With a dialog
