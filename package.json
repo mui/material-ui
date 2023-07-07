@@ -208,7 +208,7 @@
     "webpack-bundle-analyzer": "^4.9.0",
     "webpack-cli": "^4.10.0",
     "yargs": "^17.7.2",
-    "yarn-deduplicate": "^3.1.0"
+    "yarn-deduplicate": "^6.0.2"
   },
   "resolutions": {
     "**/@babel/core": "^7.22.5",
