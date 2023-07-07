@@ -15,6 +15,9 @@ module.exports = {
       border: {
         3: '3px',
       },
+      minWidth: {
+        listbox: '200px',
+      },
     },
   },
   corePlugins: {
