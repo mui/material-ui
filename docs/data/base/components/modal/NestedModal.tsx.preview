@@ -1,5 +1,5 @@
 <TriggerButton onClick={handleOpen}>Open modal</TriggerButton>
-<Modal
+<StyledModal
   open={open}
   onClose={handleClose}
   aria-labelledby="parent-modal-title"
@@ -13,4 +13,4 @@
     </p>
     <ChildModal />
   </Box>
-</Modal>
+</StyledModal>
