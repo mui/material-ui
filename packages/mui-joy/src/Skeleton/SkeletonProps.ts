@@ -48,7 +48,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * The type of content that will be rendered.
      * @default 'text'
      */
-    shape?: 'text' | 'circular' | 'rectangular' | 'rounded';
+    shape?: 'text' | 'circular' | 'rectangular';
     /**
      * Width of the skeleton.
      * Useful when the skeleton is inside an inline element with no width of its own.

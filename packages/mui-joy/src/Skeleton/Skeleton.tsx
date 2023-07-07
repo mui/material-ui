@@ -58,12 +58,15 @@ const SkeletonRoot = styled('span', {
     ...(ownerState.overlay && {
       position: 'absolute',
     }),
-    borderRadius: 'min(0.15em, 6px)',
     ...(ownerState.shape === 'rectangular' && {
-      borderRadius: 0,
+      borderRadius: 'min(0.15em, 6px)',
+      ...theme.typography.body1,
     }),
     ...(ownerState.shape === 'circular' && {
       borderRadius: '50%',
+      ...theme.typography.body1,
+      width: '1em',
+      height: '1em',
     }),
     ...(!ownerState.animation && {
       backgroundColor: theme.vars.palette.background.level2,
@@ -71,10 +74,9 @@ const SkeletonRoot = styled('span', {
     overflow: 'hidden',
     cursor: 'default',
     // pointerEvents: 'none',
-    height: ownerState.height,
-    width: ownerState.width,
     ...(ownerState.shape === 'text' && {
-      ...theme.typography.body1,
+      position: 'initial',
+      display: 'inline',
     }),
     '& *': {
       visibility: 'hidden',
@@ -145,11 +147,18 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     shape = 'text',
     height,
     width,
+    sx,
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const externalForwardedProps = { ...other, component, slots, slotProps };
+  const externalForwardedProps = {
+    ...other,
+    component,
+    slots,
+    slotProps,
+    sx: [{ width, height }, ...(Array.isArray(sx) ? sx : [sx])],
+  };
 
   const ownerState = {
     ...props,
