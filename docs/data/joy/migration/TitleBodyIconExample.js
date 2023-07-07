@@ -6,7 +6,7 @@ import SvgIcon from '@mui/joy/SvgIcon';
 
 export default function TitleBodyIconExample() {
   return (
-    <Box sx={{ '& *': { outline: '1px solid' } }}>
+    <Box sx={{ '& *:not(path, i)': { outline: '1px solid rgb(255 53 53 / 40%)' } }}>
       <Stack spacing={2} sx={{ maxWidth: '60ch' }}>
         <Stack direction="row" spacing={1.5}>
           <SvgIcon size="lg">
