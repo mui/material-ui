@@ -31,12 +31,13 @@ const SelectButton = React.forwardRef(function SelectButton<
 // therefore they are additionally wrapped with 'use client' here
 // https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization
 
-export function SelectOption({
-  slotProps = {
-    root: {},
-  },
-  ...rest
-}: OptionProps<string>) {
+export function SelectOption(props: OptionProps<string>) {
+  const {
+    slotProps = {
+      root: {},
+    },
+    ...rest
+  } = props;
   return (
     <Option
       slotProps={{

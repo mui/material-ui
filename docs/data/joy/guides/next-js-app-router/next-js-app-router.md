@@ -12,7 +12,7 @@ Jump right into the code with this [example repo](https://github.com/mui/materia
 
 The Next.js App Router implements React Server Components, a [new feature](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#changes-since-v1) introduced in React 18.
 
-To support the App Router, currently all components and hooks from Joy UI and other MUI libraries are designated as Client Components and exported with the `"use client"` directive.
+To support the App Router, currently all components and hooks from Joy UI and other MUI libraries are exported with the `"use client"` directive.
 
 :::warning
 React Server Components does not replace, and is separate from server-side rendering (SSR). Client Components are still server-rendered to HTML.
@@ -124,7 +124,7 @@ export default function Page() {
 }
 ```
 
-However, function props such as event handlers or render props are **non-serializable** - this won't work without an additional `"use client"` directive:
+However, function props such as event handlers or render props are **non-serializable** - this won't work in a server component:
 
 ```tsx
 // page.tsx

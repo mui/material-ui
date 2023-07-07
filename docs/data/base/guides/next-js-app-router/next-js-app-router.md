@@ -12,7 +12,7 @@ Jump right into the code with this [example repo](https://github.com/mui/materia
 
 The Next.js App Router implements React Server Components, a [new feature](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#changes-since-v1) introduced in React 18.
 
-To support the App Router, currently all components and hooks from Base UI and other MUI libraries are designated as Client Components and exported with the `"use client"` directive.
+To support the App Router, currently all components and hooks from Base UI and other MUI libraries are exported with the `"use client"` directive.
 
 :::warning
 React Server Components does not replace, and is separate from server-side rendering (SSR). Client Components are still server-rendered to HTML.
@@ -59,7 +59,7 @@ Base UI works with other CSS-in-JS libraries such as `styled-components`, see th
 
 ### Using callbacks for slot props
 
-A common customization method in Base UI is to pass a callback to slots in `slotProps` in order to apply dynamic props to slots. For example, you might want to change the background color by applying a different class when a Button is disabled:
+A common customization method in Base UI is to pass a callback to slots in `slotProps` in order to apply dynamic props. For example, you might want to change the background color by applying a different class when a Button is disabled:
 
 ```tsx
 // page.tsx
@@ -93,5 +93,5 @@ export default function Page() {
 }
 ```
 
-Unfortunately, **this will not work** since function props are [non-serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
+Unfortunately, **this will not work in a server component** since function props are [non-serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
 Instead, the Next.js team recommends moving components like these ["to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.
