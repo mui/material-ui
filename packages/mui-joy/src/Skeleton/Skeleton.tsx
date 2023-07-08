@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { keyframes, css } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { useThemeProps } from '../styles';
+import { useThemeProps, Components, TypographySystem } from '../styles';
 import styled from '../styles/styled';
 import { getSkeletonUtilityClass } from './skeletonClasses';
 import { SkeletonOwnerState, SkeletonProps, SkeletonTypeMap } from './SkeletonProps';
@@ -52,74 +52,90 @@ const SkeletonRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SkeletonOwnerState }>(
-  ({ ownerState, theme }) => ({
-    display: 'block',
-    position: 'relative',
-    ...(ownerState.children
-      ? {
-          position: 'initial',
-          display: 'inline',
-          borderRadius: 'min(0.15em, 6px)',
-          '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
-          '&::before': {
-            position: 'absolute',
-            zIndex: 9,
-            backgroundColor: theme.vars.palette.background.surface,
-            ...(ownerState.animation === 'wave' && {
+  /**
+   * Implementation notes:
+   * 1. The `Skeleton` has 3 parts:
+   *  - the root (span) element as a container
+   *  - the ::before pseudo-element for covering the content
+   *  - the ::after pseudo-element for animation on top of the ::before pseudo-element
+   *
+   * 2. The root element and ::before will change to absolute position when shape="overlay" to cover the parent's content.
+   *
+   * 3. For geometry shape (rectangular, circular), the typography styles are applied to the root element so that width, height can be customized based on the font-size.
+   */
+  ({ ownerState, theme }) => {
+    const defaultLevel = ((theme as { components?: Components<typeof theme> }).components
+      ?.JoyTypography?.defaultProps?.level || 'body1') as keyof TypographySystem;
+    return {
+      display: 'block',
+      position: 'relative',
+      '--unstable_pseudo-zIndex': 9,
+      ...(ownerState.children
+        ? {
+            position: 'initial',
+            display: 'inline',
+            borderRadius: 'min(0.15em, 6px)',
+            '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
+            '&::before': {
+              position: 'absolute',
+              zIndex: 'var(--unstable_pseudo-zIndex)',
+              backgroundColor: theme.vars.palette.background.surface,
+              ...(ownerState.animation === 'wave' && {
+                backgroundColor: theme.vars.palette.background.level2,
+              }),
+            },
+          }
+        : {
+            ...(ownerState.shape === 'overlay' && {
+              borderRadius: 'inherit',
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              zIndex: 'var(--unstable_pseudo-zIndex)',
+              backgroundColor: theme.vars.palette.background.surface,
+            }),
+            ...(ownerState.shape === 'rectangular' && {
+              borderRadius: 'min(0.15em, 6px)',
+              ...theme.typography[defaultLevel],
+            }),
+            ...(ownerState.shape === 'circular' && {
+              borderRadius: '50%',
+              ...theme.typography[defaultLevel],
+              width: '1em',
+              height: '1em',
+            }),
+            ...(!ownerState.animation && {
               backgroundColor: theme.vars.palette.background.level2,
             }),
-          },
-        }
-      : {
-          ...(ownerState.shape === 'overlay' && {
-            borderRadius: 'inherit',
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            zIndex: 10,
-            backgroundColor: theme.vars.palette.background.surface,
+            '&::before': {
+              zIndex: 'var(--unstable_pseudo-zIndex)',
+              borderRadius: 'inherit',
+              height: '1em',
+              display: 'inline-block',
+            },
           }),
-          ...(ownerState.shape === 'rectangular' && {
-            borderRadius: 'min(0.15em, 6px)',
-            ...theme.typography.body1,
-          }),
-          ...(ownerState.shape === 'circular' && {
-            borderRadius: '50%',
-            ...theme.typography.body1,
-            width: '1em',
-            height: '1em',
-          }),
-          ...(!ownerState.animation && {
-            backgroundColor: theme.vars.palette.background.level2,
-          }),
-          '&::before': {
-            zIndex: 9,
-            borderRadius: 'inherit',
-            height: '1em',
-            display: 'inline-block',
-          },
-        }),
-    overflow: 'hidden',
-    cursor: 'default',
-    '& *': {
-      visibility: 'hidden',
-    },
-    '&::before, &::after': {
-      content: '" "',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-    },
-    '&::after': {
-      zIndex: 10,
-      position: 'absolute',
-      borderRadius: 'inherit',
-    },
-    [theme.getColorSchemeSelector('dark')]: {
-      '--unstable_wave-bg': 'rgba(255 255 255 / 0.1)',
-    },
-  }),
+      overflow: 'hidden',
+      cursor: 'default',
+      '& *': {
+        visibility: 'hidden',
+      },
+      '&::before, &::after': {
+        content: '" "',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+      },
+      '&::after': {
+        zIndex: 'var(--unstable_pseudo-zIndex)',
+        position: 'absolute',
+        borderRadius: 'inherit',
+      },
+      [theme.getColorSchemeSelector('dark')]: {
+        '--unstable_wave-bg': 'rgba(255 255 255 / 0.1)',
+      },
+    };
+  },
   ({ ownerState, theme }) =>
     ownerState.animation === 'pulse' &&
     css`
