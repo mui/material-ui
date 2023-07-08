@@ -15,22 +15,20 @@ The Next.js App Router implements React Server Components, a [new feature](https
 To support the App Router, currently all components and hooks from Base UI and other MUI libraries are exported with the `"use client"` directive.
 
 :::warning
-React Server Components does not replace, and is separate from server-side rendering (SSR). Client Components are still server-rendered to HTML.
+React Server Components should not be conflated with the concept of server-side rendering (SSR).
+So-called Client Components are still server-rendered to HTML.
 
-For more details, see this [explanation](https://github.com/reactwg/server-components/discussions/4) by the React team.
+For more details, see this [explanation of Client Components and SSR](https://github.com/reactwg/server-components/discussions/4) from the React Working Group.
 :::
 
 ## Setting up Base UI with the App Router
 
-Base UI is styling-agnostic; setting up a Next.js App Router project largely depends on the styling solution:
-
-### Emotion
-
-If you're using Emotion, or something Emotion-based like MUI System, you can follow the [same steps](/material-ui/guides/next-js-app-router/#using-material-ui-with-a-custom-theme) outlined for Material UI.
+Base UI gives you the freedom to choose your own styling solution, so setting up a Next.js App Router project largely depends on what you choose.
+This guide covers Tailwind CSS, Emotion, and other CSS-in-JS solutions like styled-components.
 
 ### Tailwind CSS
 
-[Install and initialize](https://tailwindcss.com/docs/guides/nextjs) Tailwind CSS, be sure to add the `app` directory and other directories to `tailwind.config.js`
+Follow the [Tailwind CSS guide on working with Next.js](https://tailwindcss.com/docs/guides/nextjs), and be sure to add the `app` directory and other directories to `tailwind.config.js`, as shown below:
 
 ```js
 /** @type {import('tailwindcss').Config} */
@@ -51,9 +49,13 @@ module.exports = {
 
 Refer to this [example repo](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts) for a full working demo of a Next.js 13 app using Base UI and Tailwind CSS.
 
-### Other CSS-in-JS
+### Emotion
 
-Base UI works with other CSS-in-JS libraries such as `styled-components`, see the [Next.js docs](https://nextjs.org/docs/app/building-your-application/styling/css-in-js) for more details.
+If you're using Emotion, or something Emotion-based like MUI System, you can follow the [same steps](/material-ui/guides/next-js-app-router/#using-material-ui-with-a-custom-theme) outlined for Material UI.
+
+### Other CSS-in-JS libraries
+
+To use Next.js with Base UI and styled-components or other CSS-in-JS solutions, follow the [Next.js doc on CSS-in-JS](https://nextjs.org/docs/app/building-your-application/styling/css-in-js).
 
 ## Customization
 
@@ -93,5 +95,5 @@ export default function Page() {
 }
 ```
 
-Unfortunately, **this will not work in a server component** since function props are [non-serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
+Unfortunately, **this does not work in a Server Component** since function props are [non-serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
 Instead, the Next.js team recommends moving components like these ["to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.

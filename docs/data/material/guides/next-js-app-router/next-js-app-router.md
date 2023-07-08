@@ -4,12 +4,9 @@
 
 :::info
 Starting fresh on a new App Router-based project?
-Jump right into the code with one of these example repos:
 
-- [Material UI - A React UI library that implements Material Design](https://github.com/mui/material-ui/blob/master/examples/material-next-app-router-ts)
-- [Joy UI - Our newest customizable UI library designed to spark joy](https://github.com/mui/material-ui/blob/master/examples/joy-next-app-router-ts)
-- [Base UI – A collection of headless components and hooks](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts)
-  :::
+Jump right into the code with this [example repo](https://github.com/mui/material-ui/blob/master/examples/material-next-app-router-ts).
+:::
 
 ## Next.js and React Server Components
 
@@ -18,9 +15,10 @@ The Next.js App Router implements React Server Components, a [new feature](https
 To support the App Router, currently all components and hooks from MUI libraries (Material UI, Joy UI, Base UI etc) are exported with the `"use client"` directive.
 
 :::warning
-React Server Components does not replace, and is separate from server-side rendering (SSR). Client Components are still server-rendered to HTML.
+React Server Components should not be conflated with the concept of server-side rendering (SSR).
+So-called Client Components are still server-rendered to HTML.
 
-For more details, see this [explanation](https://github.com/reactwg/server-components/discussions/4) by the React team.
+For more details, see this [explanation of Client Components and SSR](https://github.com/reactwg/server-components/discussions/4) from the React Working Group.
 :::
 
 ## Using Material UI with the default theme
@@ -64,7 +62,7 @@ export default function Home() {
 
 ### Theme Registry
 
-To set up the theme context, create a custom `ThemeRegistry` component that combines the Emotion `CacheProvider`, the Material UI `ThemeProvider` and the `useServerInsertedHTML` hook from `next/navigation` as follows:
+To set up the theme context, create a custom `ThemeRegistry` component that combines the Emotion `CacheProvider`, the Material UI `ThemeProvider`, and the `useServerInsertedHTML` hook from `next/navigation` as follows:
 
 ```tsx
 // app/ThemeRegistry.tsx
@@ -147,7 +145,7 @@ export default function RootLayout({ children }) {
 
 <!-- https://github.com/emotion-js/emotion/issues/3059 -->
 
-By default, Emotion inject Material UI styles at the bottom of the HTML `<head>`, which gives them precedence over custom styles – for example if you are customizing Material UI with CSS modules, Tailwind CSS, or even plain CSS.
+By default, Emotion injects Material UI styles at the bottom of the HTML `<head>`, which gives them precedence over custom styles—for example if you' ar'e customizing Material UI with CSS modules, Tailwind CSS, or even plain CSS.
 
 Emotion provides the `prepend: true` option for `createCache` to reverse the injection order, so custom styles can override Material UI styles without using `!important`.
 
@@ -178,7 +176,7 @@ Currently, `prepend` does not work reliably with the App Router, but you can wor
 
 ## Function props
 
-Props passed from server components - for example `page.js` or other routing files - must be [serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
+Props passed from Server Components—for example `page.js` or other routing files—must be [serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
 
 This works without any additional directives:
 
@@ -204,7 +202,7 @@ export default function Page() {
 }
 ```
 
-However, function props such as event handlers or render props are **non-serializable** - this won't work in a server component:
+However, function props such as event handlers or render props are **non-serializable**.
 
 ```tsx
 // page.tsx

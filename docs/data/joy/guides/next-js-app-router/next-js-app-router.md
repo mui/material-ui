@@ -15,9 +15,10 @@ The Next.js App Router implements React Server Components, a [new feature](https
 To support the App Router, currently all components and hooks from Joy UI and other MUI libraries are exported with the `"use client"` directive.
 
 :::warning
-React Server Components does not replace, and is separate from server-side rendering (SSR). Client Components are still server-rendered to HTML.
+React Server Components should not be conflated with the concept of server-side rendering (SSR).
+So-called Client Components are still server-rendered to HTML.
 
-For more details, see this [explanation](https://github.com/reactwg/server-components/discussions/4) by the React team.
+For more details, see this [explanation of Client Components and SSR](https://github.com/reactwg/server-components/discussions/4) from the React Working Group.
 :::
 
 ## Using Joy UI with the App Router
@@ -104,7 +105,7 @@ export default function RootLayout({ children }) {
 
 ## Function props
 
-Props passed from server components - for example `page.js` or other routing files - must be [serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
+Props passed from server components—for example `page.js` or other routing files—must be [serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
 
 This works without any additional directives:
 
@@ -124,7 +125,7 @@ export default function Page() {
 }
 ```
 
-However, function props such as event handlers or render props are **non-serializable** - this won't work in a server component:
+However, function props such as event handlers or render props are **non-serializable**.
 
 ```tsx
 // page.tsx
