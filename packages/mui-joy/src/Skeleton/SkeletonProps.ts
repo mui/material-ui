@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/types';
+import { SxProps, TypographySystem } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type SkeletonSlot = 'root';
@@ -39,6 +39,11 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     height?: number | string;
     /**
+     * Applies the theme typography styles.
+     * @default 'inherit'
+     */
+    level?: keyof TypographySystem | 'inherit';
+    /**
      * If `true`, the skeleton appears.
      * @default true
      */
@@ -53,7 +58,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * The type of content that will be rendered.
      * @default 'overlay'
      */
-    shape?: 'overlay' | 'circular' | 'rectangular';
+    variant?: 'overlay' | 'circular' | 'rectangular' | 'text';
     /**
      * Width of the skeleton.
      * Useful when the skeleton is inside an inline element with no width of its own.

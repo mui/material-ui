@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { keyframes, css } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { useThemeProps, Components, TypographySystem } from '../styles';
+import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getSkeletonUtilityClass } from './skeletonClasses';
 import { SkeletonOwnerState, SkeletonProps, SkeletonTypeMap } from './SkeletonProps';
@@ -64,13 +64,11 @@ const SkeletonRoot = styled('span', {
    * 3. For geometry shape (rectangular, circular), the typography styles are applied to the root element so that width, height can be customized based on the font-size.
    */
   ({ ownerState, theme }) => {
-    const defaultLevel = ((theme as { components?: Components<typeof theme> }).components
-      ?.JoyTypography?.defaultProps?.level || 'body1') as keyof TypographySystem;
     return {
       display: 'block',
       position: 'relative',
       '--unstable_pseudo-zIndex': 9,
-      ...(ownerState.children
+      ...(ownerState.variant === 'text'
         ? {
             position: 'initial',
             display: 'inline',
@@ -86,7 +84,7 @@ const SkeletonRoot = styled('span', {
             },
           }
         : {
-            ...(ownerState.shape === 'overlay' && {
+            ...(ownerState.variant === 'overlay' && {
               borderRadius: 'inherit',
               position: 'absolute',
               width: '100%',
@@ -94,13 +92,11 @@ const SkeletonRoot = styled('span', {
               zIndex: 'var(--unstable_pseudo-zIndex)',
               backgroundColor: theme.vars.palette.background.surface,
             }),
-            ...(ownerState.shape === 'rectangular' && {
+            ...(ownerState.variant === 'rectangular' && {
               borderRadius: 'min(0.15em, 6px)',
-              ...theme.typography[defaultLevel],
             }),
-            ...(ownerState.shape === 'circular' && {
+            ...(ownerState.variant === 'circular' && {
               borderRadius: '50%',
-              ...theme.typography[defaultLevel],
               width: '1em',
               height: '1em',
             }),
@@ -114,6 +110,7 @@ const SkeletonRoot = styled('span', {
               display: 'inline-block',
             },
           }),
+      ...(ownerState.level !== 'inherit' && theme.typography[ownerState.level!]),
       overflow: 'hidden',
       cursor: 'default',
       '& *': {
@@ -177,7 +174,8 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     animation = 'pulse',
     overlay = false,
     loading = true,
-    shape = 'overlay',
+    level = 'inherit',
+    variant = 'overlay',
     height,
     width,
     sx,
@@ -197,9 +195,10 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     ...props,
     animation,
     component,
+    level,
     loading,
     overlay,
-    shape,
+    variant,
     width,
     height,
   };
