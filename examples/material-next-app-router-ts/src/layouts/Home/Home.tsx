@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Copyright from '@/components/CopyRight/Copyright';
 import ProTip from '@/components/ProTip/ProTip';
-import Link from 'next/link';
+import Link from '@/components/Link/Link';
 
 export default function Home() {
   return (
