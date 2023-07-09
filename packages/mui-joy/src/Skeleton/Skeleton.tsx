@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { keyframes, css } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
@@ -10,9 +11,11 @@ import { getSkeletonUtilityClass } from './skeletonClasses';
 import { SkeletonOwnerState, SkeletonProps, SkeletonTypeMap } from './SkeletonProps';
 import useSlot from '../utils/useSlot';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: SkeletonOwnerState) => {
+  const { variant } = ownerState;
+
   const slots = {
-    root: ['root'],
+    root: ['root', variant && `variant${capitalize(variant)}`],
   };
 
   return composeClasses(slots, getSkeletonUtilityClass, {});
@@ -208,7 +211,7 @@ const SkeletonRoot = styled('span', {
         },
       },
       ownerState.variant === 'overlay' && {
-        borderRadius: theme.vars.radius.xs,
+        borderRadius: theme.vars.radius.sm,
         position: 'absolute',
         width: '100%',
         height: '100%',
@@ -266,7 +269,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     height,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,

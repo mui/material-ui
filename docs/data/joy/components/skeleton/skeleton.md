@@ -41,6 +41,8 @@ We recommend using the [Avatar](/joy-ui/react-avatar/) to wrap the Skeleton comp
 
 We recommend using the [AspectRatio](/joy-ui/react-aspect-ratio/) to wrap the Skeleton component when displaying an image.
 
+{{"demo": "ImageSkeleton.js"}}
+
 ### Inline with Typography
 
 Insert the Skeleton component between the Typography component and the text to display lines of placeholder.
