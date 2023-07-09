@@ -122,7 +122,7 @@
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
-    "@types/marked": "^4.3.1",
+    "@types/marked": "^5.0.0",
     "@types/recharts": "^2.0.0",
     "cross-fetch": "^3.1.8",
     "gm": "^1.25.0",
