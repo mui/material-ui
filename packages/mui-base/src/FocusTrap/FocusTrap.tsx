@@ -22,6 +22,16 @@ const candidatesSelector = [
   '[contenteditable]:not([contenteditable="false"])',
 ].join(',');
 
+/**
+ * These are the configuration options that bring the element into view, once focussed.
+ * The Node will be rendered in the center of the screen and scroll behavior would be instantaneous.
+ */
+const scrollIntoViewOptions: ScrollIntoViewOptions = {
+  behavior: 'auto',
+  block: 'center',
+  inline: 'center',
+};
+
 interface OrderedTabNode {
   documentOrder: number;
   tabIndex: number;
@@ -187,7 +197,8 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
       }
 
       if (activated.current) {
-        rootRef.current.focus();
+        rootRef.current.scrollIntoView(scrollIntoViewOptions);
+        rootRef.current.focus({ preventScroll: true });
       }
     }
 
@@ -200,7 +211,9 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
         // Once IE11 support is dropped the focus() call can be unconditional.
         if (nodeToRestore.current && (nodeToRestore.current as HTMLElement).focus) {
           ignoreNextEnforceFocus.current = true;
-          (nodeToRestore.current as HTMLElement).focus();
+          const restoredNode = nodeToRestore.current as HTMLElement;
+          restoredNode.scrollIntoView(scrollIntoViewOptions);
+          restoredNode.focus({ preventScroll: true });
         }
 
         nodeToRestore.current = null;
@@ -277,7 +290,12 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
             }
           }
         } else {
-          rootElement.focus();
+          /**
+           * Here we bring the element into view, and then focus it.
+           * In Mozilla, and chrome, the position of element when called with `focus()` is very different. To make that consistent we've done so.
+           */
+          rootElement.scrollIntoView(scrollIntoViewOptions);
+          rootElement.focus({ preventScroll: true });
         }
       }
     };
@@ -296,7 +314,8 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
         // it will try to move the focus back to the rootRef element.
         ignoreNextEnforceFocus.current = true;
         if (sentinelEnd.current) {
-          sentinelEnd.current.focus();
+          sentinelEnd.current.scrollIntoView(scrollIntoViewOptions);
+          sentinelEnd.current.focus({ preventScroll: true });
         }
       }
     };
