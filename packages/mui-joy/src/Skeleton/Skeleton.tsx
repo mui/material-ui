@@ -29,8 +29,8 @@ const pulseKeyframe = keyframes`
   }
 
   50% {
-    opacity: 0.4;
-    background: var(--unstable_pulse-bg, #e9e9e9);
+    opacity: 0.8;
+    background: var(--unstable_pulse-bg);
   }
 
   100% {
@@ -123,6 +123,7 @@ const SkeletonRoot = styled('span', {
         display: 'block',
         position: 'relative',
         '--unstable_pseudo-zIndex': 9,
+        '--unstable_pulse-bg': theme.vars.palette.background.level1,
         overflow: 'hidden',
         cursor: 'default',
         '& *': {
@@ -139,7 +140,6 @@ const SkeletonRoot = styled('span', {
           borderRadius: 'inherit',
         },
         [theme.getColorSchemeSelector('dark')]: {
-          '--unstable_pulse-bg': '#212121',
           '--unstable_wave-bg': 'rgba(255 255 255 / 0.1)',
         },
       },
