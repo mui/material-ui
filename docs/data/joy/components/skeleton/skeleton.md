@@ -8,20 +8,57 @@ githubLabel: 'component: skeleton'
 
 <p class="description">Skeletons are preview placeholders for components that haven't loaded yet, reducing load-time frustration.</p>
 
-:::info
-💡 The Joy UI Skeleton component is still in development.
-If you're in need of it, please upvote [**this GitHub issue**](https://github.com/mui/material-ui/issues/36105) to help us prioritize the next batch of new components.
-:::
+## Introduction
 
-## Using CSS animations
+## Basics
 
-In the meantime, you can build your own Skeleton with a styled component and CSS animations.
+```jsx
+import Skeleton from '@mui/joy/Skeleton';
+```
 
-This demo shows how to do it with the existing Joy UI `styled` and emotion `keyframes` APIs.
+There are two methods of using the Skeleton component:
 
-<iframe src="https://codesandbox.io/embed/skeleton-joy-ui-c96x7d?module=%2FSkeleton.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:2; border-radius: 8px; overflow:hidden;"
-     title="Skeleton - Joy UI"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+- Masking the component (**👍 Recommended**), see [Avatar](#avatar), [Image](#image) and [Typography](#inline-with-typography). The parent components control the layout of the interface which prevent layout shifts when the loading state is no longer exisiting.
+- Custom width and height, see [Geometry](#geometry) and [Text block](#text-block). This method is useful when you have no control of the parent component or you want to separate the loading state from the component itself. This method could cause layout shifts when the component gets bigger or smaller.
+
+### Loading
+
+The Skeleton has `loading` prop set to `true` by default.
+
+Set it to `false` to hide the Skeleton component. If the Skeleton has children, the children will be rendered instead.
+
+{{"demo": "LoadingSkeleton.js"}}
+
+## Customization
+
+### Avatar
+
+We recommend using the [Avatar](/joy-ui/react-avatar/) to wrap the Skeleton component when displaying an avatar.
+
+{{"demo": "AvatarSkeleton.js"}}
+
+### Image
+
+We recommend using the [AspectRatio](/joy-ui/react-aspect-ratio/) to wrap the Skeleton component when displaying an image.
+
+### Inline with Typography
+
+Insert the Skeleton component between the Typography component and the text to display lines of placeholder.
+
+### Geometry
+
+Use the `shape` prop with a value of `circular` or `rectangular` to take full control of the size of the Skeleton component.
+
+Use `width` and `height` prop to adjust the size of the Skeleton component.
+
+<!-- demo circular, rectangular + width, height -->
+
+### Text block
+
+The `rectangular` shape can be used to mimic a block of text by using the `sx` prop to set the typography level based on the theme.
+
+<!-- demo <Skeleton level="h1"> -->
+
+### Animation
+
+### Radius

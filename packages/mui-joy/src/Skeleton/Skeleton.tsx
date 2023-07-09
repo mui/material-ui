@@ -18,6 +18,8 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getSkeletonUtilityClass, {});
 };
 
+// Add solid background for masking the component that has the same background.
+// Otherwise, the pulse animation will not work properly.
 const pulseKeyframe = keyframes`
   0% {
     opacity: 1;
@@ -25,6 +27,7 @@ const pulseKeyframe = keyframes`
 
   50% {
     opacity: 0.4;
+    background: var(--unstable_pulse-bg, #fff);
   }
 
   100% {
@@ -123,6 +126,7 @@ const SkeletonRoot = styled('span', {
           borderRadius: 'inherit',
         },
         [theme.getColorSchemeSelector('dark')]: {
+          '--unstable_pulse-bg': '#000',
           '--unstable_wave-bg': 'rgba(255 255 255 / 0.1)',
         },
       },
@@ -212,6 +216,9 @@ const SkeletonRoot = styled('span', {
         ...(ownerState.level !== 'inherit' && {
           ...theme.typography[ownerState.level!],
         }),
+        '&::before': {
+          position: 'absolute',
+        },
       },
     ];
   },
@@ -230,8 +237,8 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     animation = 'pulse',
     overlay = false,
     loading = true,
-    level = 'inherit',
     variant = 'overlay',
+    level = variant === 'text' ? undefined : 'inherit',
     height,
     width,
     sx,
