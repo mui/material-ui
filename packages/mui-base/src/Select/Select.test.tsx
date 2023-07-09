@@ -1107,7 +1107,7 @@ describe('<Select />', () => {
       const select = getByRole('combobox');
 
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       const listbox = getByRole('listbox');
