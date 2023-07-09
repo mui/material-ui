@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -17,13 +17,10 @@ const customTheme = (outerTheme: Theme) =>
           renderOption: (props, option, state, ownerState) => (
             <Box
               sx={{
-                '&.MuiAutocomplete-option': {
-                  fontSize: '12px',
-                  width: '100%',
-                  height: '100%',
-                  padding: '20px 12px',
-                  justifyContent: 'flex-start',
-                  textAlign: 'left',
+                borderRadius: '8px',
+                margin: '5px',
+                [`&.${autocompleteClasses.option}`]: {
+                  padding: '8px',
                 },
               }}
               component="li"
