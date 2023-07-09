@@ -82,4 +82,41 @@ The value of the `level` prop can be one of the theme's typography. The result o
 
 ### Animation
 
-### Radius
+Use the `animation` prop to control the animation of the Skeleton component. The value of the `animation` prop can be one of the following:
+
+- `pulse` (default): The background of the Skeleton is faded in and out.
+- `wave`: The wave animation from left to right.
+
+The demo below shows the wave animation.
+
+{{"demo": "AnimationSkeleton.js"}}
+
+:::success
+To set the `wave` animation as the default animation for all Skeleton components, set the default props of the Skeleton component to the theme.
+
+```js
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
+
+const theme = extendTheme({
+  components: {
+    JoySkeleton: {
+      defaultProps: {
+        animation: 'wave',
+      },
+    },
+  },
+});
+
+function App() {
+  return (
+    <CssVarsProvider theme={theme}>
+      <Skeleton />{' '}
+      {/* The Skeleton component will have the wave animation by default */}
+    </CssVarsProvider>
+  );
+}
+
+To learn more about this, see [Themed Components](/joy-ui/customization/themed-components/) page.
+```
+
+:::

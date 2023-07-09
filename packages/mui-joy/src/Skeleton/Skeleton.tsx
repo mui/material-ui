@@ -179,7 +179,7 @@ const SkeletonRoot = styled('span', {
           ...theme.typography[ownerState.level || defaultLevel],
           paddingBlockStart: `calc((${
             theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
-          } - 1) * 0.6em)`,
+          } - 1) * 0.7em)`,
           paddingBlockEnd: `calc((${
             theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
           } - 1) * 0.3em)`,
@@ -232,7 +232,7 @@ const SkeletonRoot = styled('span', {
         }),
       },
       ownerState.variant === 'overlay' && {
-        borderRadius: theme.vars.radius.sm,
+        borderRadius: theme.vars.radius.xs,
         position: 'absolute',
         width: '100%',
         height: '100%',
