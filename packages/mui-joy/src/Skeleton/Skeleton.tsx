@@ -179,10 +179,10 @@ const SkeletonRoot = styled('span', {
           ...theme.typography[ownerState.level || defaultLevel],
           paddingBlockStart: `calc((${
             theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
-          } - 1) * 0.7em)`,
+          } - 1) * 0.56em)`,
           paddingBlockEnd: `calc((${
             theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
-          } - 1) * 0.3em)`,
+          } - 1) * 0.44em)`,
           '&::before': {
             height: '1em',
             ...theme.typography[ownerState.level || defaultLevel],
@@ -197,7 +197,7 @@ const SkeletonRoot = styled('span', {
             height: '1em',
             top: `calc((${
               theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
-            } - 1) * 0.7em)`,
+            } - 1) * 0.56em)`,
             ...theme.typography[ownerState.level || defaultLevel],
           },
         }),
