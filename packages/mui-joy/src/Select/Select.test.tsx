@@ -169,7 +169,7 @@ describe('Joy <Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.click(getByRole('combobox'));
+      fireEvent.mouseDown(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -187,7 +187,7 @@ describe('Joy <Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.click(getByRole('combobox'));
+      fireEvent.mouseDown(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -309,7 +309,7 @@ describe('Joy <Select />', () => {
           <Select id="foo-bar" />
         </div>,
       );
-      fireEvent.click(screen.getByLabelText('label'));
+      fireEvent.mouseDown(screen.getByLabelText('label'));
       expect(screen.getByRole('listbox')).toBeVisible();
     });
 

@@ -77,7 +77,7 @@ describe('<Select />', () => {
         const select = getByRole('combobox');
         act(() => {
           select.focus();
-          fireEvent.keyDown(select, { key });
+          fireEvent.mouseDown(select);
         });
 
         const listbox = getByRole('listbox');
@@ -916,7 +916,7 @@ describe('<Select />', () => {
       const select = screen.getByRole('combobox');
 
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       const listbox = screen.getByRole('listbox');
@@ -998,7 +998,7 @@ describe('<Select />', () => {
 
       act(() => {
         select.focus();
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       const listbox = getByRole('listbox');
