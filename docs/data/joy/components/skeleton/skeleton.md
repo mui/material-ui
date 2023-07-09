@@ -86,6 +86,7 @@ Use the `animation` prop to control the animation of the Skeleton component. The
 
 - `pulse` (default): The background of the Skeleton is faded in and out.
 - `wave`: The wave animation from left to right.
+- `false`: Disable the animation.
 
 The demo below shows the wave animation.
 

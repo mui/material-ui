@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { Breakpoint } from '@mui/system';
 import { OverrideProps } from '@mui/types';
 import { SxProps, TypographySystem } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+
+type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
 export type SkeletonSlot = 'root';
 
@@ -37,7 +40,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * Height of the skeleton.
      * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
      */
-    height?: number | string;
+    height?: ResponsiveStyleValue<number | string>;
     /**
      * Applies the theme typography styles.
      * @default 'inherit'
@@ -63,7 +66,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * Width of the skeleton.
      * Useful when the skeleton is inside an inline element with no width of its own.
      */
-    width?: number | string;
+    width?: ResponsiveStyleValue<number | string>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
