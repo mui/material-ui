@@ -74,9 +74,11 @@ The example below shows how to create a Skeleton component with a circular shape
 
 ### Text block
 
-The `rectangular` shape can be used to mimic a block of text by using the `sx` prop to set the typography level based on the theme.
+Use `variant="text"` and `level` props to create a block of skeleton text that follows the theme's typography styles.
 
-<!-- demo <Skeleton level="h1"> -->
+The value of the `level` prop can be one of the theme's typography. The result of the skeleton text will have the same height as the text of the `level` prop.
+
+{{"demo": "TextBlockSkeleton.js"}}
 
 ### Animation
 

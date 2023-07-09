@@ -30,7 +30,7 @@ const pulseKeyframe = keyframes`
 
   50% {
     opacity: 0.4;
-    background: var(--unstable_pulse-bg, #fff);
+    background: var(--unstable_pulse-bg, #e9e9e9);
   }
 
   100% {
@@ -139,7 +139,7 @@ const SkeletonRoot = styled('span', {
           borderRadius: 'inherit',
         },
         [theme.getColorSchemeSelector('dark')]: {
-          '--unstable_pulse-bg': '#000',
+          '--unstable_pulse-bg': '#212121',
           '--unstable_wave-bg': 'rgba(255 255 255 / 0.1)',
         },
       },
@@ -176,12 +176,13 @@ const SkeletonRoot = styled('span', {
         background: 'transparent',
         width: '100%',
         ...(ownerState.level !== 'inherit' && {
+          ...theme.typography[ownerState.level || defaultLevel],
           paddingBlockStart: `calc((${
             theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
-          } - 1) * 0.66em)`,
+          } - 1) * 0.6em)`,
           paddingBlockEnd: `calc((${
             theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
-          } - 1) * 0.34em)`,
+          } - 1) * 0.3em)`,
           '&::before': {
             height: '1em',
             ...theme.typography[ownerState.level || defaultLevel],
@@ -196,7 +197,7 @@ const SkeletonRoot = styled('span', {
             height: '1em',
             top: `calc((${
               theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
-            } - 1) * 0.66em)`,
+            } - 1) * 0.7em)`,
             ...theme.typography[ownerState.level || defaultLevel],
           },
         }),
