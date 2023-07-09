@@ -55,7 +55,22 @@ Use the `shape` prop with a value of `circular` or `rectangular` to take full co
 
 Use `width` and `height` prop to adjust the size of the Skeleton component.
 
-<!-- demo circular, rectangular + width, height -->
+{{"demo": "GeometrySkeleton.js"}}
+
+:::success
+`width` and `height` prop supports object notion for responsive values.
+
+The example below shows how to create a Skeleton component with a circular shape that is 40px wide and 40px high on mobile and 48px wide and 48px high on desktop.
+
+```js
+<Skeleton
+  variant="circular"
+  width={{ xs: 40, md: 48 }}
+  height={{ xs: 40, md: 48 }}
+/>
+```
+
+:::
 
 ### Text block
 
