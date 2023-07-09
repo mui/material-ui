@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Select component
 components: Select, Option
 githubLabel: 'component: select'

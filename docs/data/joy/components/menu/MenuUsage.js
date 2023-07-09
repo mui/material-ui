@@ -27,7 +27,7 @@ export default function MenuUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
@@ -77,7 +77,6 @@ export default function MenuUsage() {
             id="menu-usage-demo"
             anchorEl={buttonRef.current}
             open={open}
-            onClose={() => setOpen(false)}
             slotProps={{
               listbox: {
                 'aria-labelledby': 'menu-usage-button',

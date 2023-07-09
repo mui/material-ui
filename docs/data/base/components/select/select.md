@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Select components and hook
 components: Select, Option, OptionGroup
 hooks: useSelect, useOption
@@ -55,7 +55,7 @@ export default function MyApp() {
 
 The following demo shows how to create and style a Select component.
 
-{{"demo": "UnstyledSelectSimple.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledSelectBasic", "defaultCodeOpen": false}}
 
 #### Form submission
 

@@ -85,7 +85,7 @@ const products = [
 ];
 
 export default function MuiProductSelector() {
-  const { productId } = React.useContext(PageContext);
+  const pageContext = React.useContext(PageContext);
 
   return (
     <React.Fragment>
@@ -127,8 +127,8 @@ export default function MuiProductSelector() {
             {products.map((product) => (
               <Chip
                 key={product.name}
-                color={productId === product.id ? 'default' : undefined}
-                variant={productId === product.id ? 'filled' : 'outlined'}
+                color={pageContext.productId === product.id ? 'default' : undefined}
+                variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
                 component={Link}
                 href={product.href}
                 label={product.name}
