@@ -92,7 +92,7 @@ The demo below shows the wave animation.
 {{"demo": "AnimationSkeleton.js"}}
 
 :::success
-To set the `wave` animation as the default animation for all Skeleton components, set the default props of the Skeleton component to the theme.
+To set the `wave` animation as the default animation for all Skeleton components, use the theme's default props.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -115,8 +115,8 @@ function App() {
     </CssVarsProvider>
   );
 }
+```
 
 To learn more about this, see [Themed Components](/joy-ui/customization/themed-components/) page.
-```
 
 :::

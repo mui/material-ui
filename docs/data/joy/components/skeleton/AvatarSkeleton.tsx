@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -6,21 +7,14 @@ import Skeleton from '@mui/joy/Skeleton';
 import Stack from '@mui/joy/Stack';
 import Switch from '@mui/joy/Switch';
 
-export default function GeometrySkeleton() {
+export default function AvatarSkeleton() {
   const [loading, setLoading] = React.useState(true);
   return (
-    <Stack spacing={2} useFlexGap>
-      <Box sx={{ m: 'auto', display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Skeleton loading={loading} variant="circular" width={48} height={48} />
-        <Box>
-          <Skeleton
-            loading={loading}
-            variant="rectangular"
-            width={200}
-            sx={{ mb: 1 }}
-          />
-          <Skeleton loading={loading} variant="rectangular" width={140} />
-        </Box>
+    <Stack spacing={2} useFlexGap sx={{ width: 200, height: 100 }}>
+      <Box sx={{ m: 'auto' }}>
+        <Avatar src={loading ? '' : '/static/images/avatar/1.jpg'}>
+          <Skeleton loading={loading} />
+        </Avatar>
       </Box>
       <FormControl
         orientation="horizontal"
