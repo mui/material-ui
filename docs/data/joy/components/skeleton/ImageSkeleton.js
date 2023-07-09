@@ -12,7 +12,7 @@ export default function ImageSkeleton() {
   return (
     <Stack spacing={2} useFlexGap>
       <Box sx={{ m: 'auto' }}>
-        <AspectRatio sx={{ width: 300 }}>
+        <AspectRatio variant="plain" sx={{ width: 300 }}>
           <Skeleton loading={loading}>
             <img
               src="https://images.unsplash.com/photo-1686548812883-9d3777f4c137"

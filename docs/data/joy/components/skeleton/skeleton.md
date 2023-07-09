@@ -47,6 +47,8 @@ We recommend using the [AspectRatio](/joy-ui/react-aspect-ratio/) to wrap the Sk
 
 Insert the Skeleton component between the Typography component and the text to display lines of placeholder.
 
+{{"demo": "InlineSkeleton.js"}}
+
 ### Geometry
 
 Use the `shape` prop with a value of `circular` or `rectangular` to take full control of the size of the Skeleton component.

@@ -63,8 +63,18 @@ const SkeletonRoot = styled('span', {
    */
   ({ ownerState, theme }) =>
     ownerState.animation === 'pulse' &&
+    ownerState.variant !== 'inline' &&
     css`
       &::before {
+        animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
+        background: ${theme.vars.palette.background.level2};
+      }
+    `,
+  ({ ownerState, theme }) =>
+    ownerState.animation === 'pulse' &&
+    ownerState.variant === 'inline' &&
+    css`
+      &::after {
         animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
         background: ${theme.vars.palette.background.level2};
       }
@@ -205,10 +215,20 @@ const SkeletonRoot = styled('span', {
         '&::before': {
           position: 'absolute',
           zIndex: 'var(--unstable_pseudo-zIndex)',
-          ...(ownerState.animation === 'wave' && {
-            backgroundColor: theme.vars.palette.background.level2,
-          }),
+          backgroundColor: theme.vars.palette.background.level2,
         },
+        ...(ownerState.animation === 'pulse' && {
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 'var(--unstable_pseudo-zIndex)',
+            backgroundColor: theme.vars.palette.background.level2,
+          },
+        }),
       },
       ownerState.variant === 'overlay' && {
         borderRadius: theme.vars.radius.sm,
