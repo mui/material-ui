@@ -2,7 +2,7 @@
 
 <p class="description">This guide explains what's news in the default theme and how to migrate to it</p>
 
-Starting from v5.0.0-alpha.x, Joy UI's default theme has been restructured. Some tokens have been renamed, removed, and some have been added. This guide explains what's news in the default theme and how to migrate to it.
+With the introduction of v5.0.0-alpha.x, Joy UI's default theme went under significant restructuring and polishing. We've made several changes, including renaming, removing, and adding new tokens. This guide will walk you through the latest updates to the default theme and provide instructions for a smooth migration.
 
 ## Color
 
@@ -16,6 +16,10 @@ For example:
 - <Chip color="info" variant="soft">
 + <Chip color="neutral" variant="soft">
 ```
+
+:::info
+When we started applying color palettes into contexts, and fleshing out the components, we noticed an overlap between the `neutral` and `info` states. To address this, we decided to eliminate the info palette and use the neutral colors for the `info` state instead. This change aligns better with the semantic meaning of an informational state.
+:::
 
 However, if you want to keep the `info` color palette, you can do so by adding the following to your theme:
 
@@ -336,10 +340,6 @@ declare module '@mui/joy/styles' {
   }
 }
 ```
-
-:::info
-When we started applying color palettes into contexts, and fleshing out the components, we realized that there was an overlap between neutral state and info state. For this reason, we decided to remove the info palette, and instead start using the neutral colors as an info state, since it fits better with the semantic of an informational state.
-:::
 
 ## Typography
 
