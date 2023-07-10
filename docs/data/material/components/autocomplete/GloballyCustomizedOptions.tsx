@@ -34,7 +34,7 @@ const customTheme = (outerTheme: Theme) =>
     },
   });
 
-export default function GlobalCustomizedOptions() {
+export default function GloballyCustomizedOptions() {
   // useTheme is used to determine the dark or light mode of the docs to maintain the Autocomplete component default styles.
   const outerTheme = useTheme();
 
