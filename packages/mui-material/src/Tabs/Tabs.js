@@ -597,15 +597,16 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     let firstObserver;
     let lastObserver;
     const { 0: firstTab, length, [length - 1]: lastTab } = Array.from(tabListRef.current.children);
+    const threshold = 0.99;
     const observerOptions = {
       root: tabsRef.current,
-      threshold: 1,
+      threshold,
     };
 
     const handleScrollButtonStart = (entries) => {
       let display = false;
       entries.forEach(({ intersectionRatio }) => {
-        display = intersectionRatio !== 1;
+        display = intersectionRatio < threshold;
       });
       setDisplayStartScroll(display);
     };
@@ -613,7 +614,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     const handleScrollButtonEnd = (entries) => {
       let display = false;
       entries.forEach(({ intersectionRatio }) => {
-        display = intersectionRatio !== 1;
+        display = intersectionRatio < threshold;
       });
       setDisplayEndScroll(display);
     };
