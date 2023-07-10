@@ -51,7 +51,106 @@ Refer to this [example repo](https://github.com/mui/material-ui/blob/master/exam
 
 ### Emotion
 
-If you're using Emotion, or something Emotion-based like MUI System, you can follow the [same steps](/material-ui/guides/next-js-app-router/#using-material-ui-with-a-custom-theme) outlined for Material UI.
+If you're using Emotion, or something Emotion-based like MUI System, create a custom `ThemeRegistry` component that combines the Emotion `CacheProvider`, the Material UI `ThemeProvider`, and the `useServerInsertedHTML` hook from `next/navigation` as follows:
+
+```tsx
+// app/ThemeRegistry.tsx
+'use client';
+import createCache from '@emotion/cache';
+import { useServerInsertedHTML } from 'next/navigation';
+import { CacheProvider, ThemeProvider } from '@emotion/react';
+import theme from '/path/to/your/theme';
+
+// This implementation is from emotion-js
+// https://github.com/emotion-js/emotion/issues/2928#issuecomment-1319747902
+export default function ThemeRegistry(props) {
+  const { options, children } = props;
+
+  const [{ cache, flush }] = React.useState(() => {
+    const cache = createCache(options);
+    cache.compat = true;
+    const prevInsert = cache.insert;
+    let inserted: string[] = [];
+    cache.insert = (...args) => {
+      const serialized = args[1];
+      if (cache.inserted[serialized.name] === undefined) {
+        inserted.push(serialized.name);
+      }
+      return prevInsert(...args);
+    };
+    const flush = () => {
+      const prevInserted = inserted;
+      inserted = [];
+      return prevInserted;
+    };
+    return { cache, flush };
+  });
+
+  useServerInsertedHTML(() => {
+    const names = flush();
+    if (names.length === 0) {
+      return null;
+    }
+    let styles = '';
+    for (const name of names) {
+      styles += cache.inserted[name];
+    }
+    return (
+      <style
+        key={cache.key}
+        data-emotion={`${cache.key} ${names.join(' ')}`}
+        dangerouslySetInnerHTML={{
+          __html: styles,
+        }}
+      />
+    );
+  });
+
+  return (
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </CacheProvider>
+  );
+}
+
+// app/layout.js
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <ThemeRegistry options={{ key: 'mui' }}>{children}</ThemeRegistry>
+      </body>
+    </html>
+  );
+}
+```
+
+If you need to further override theme styles (e.g. using CSS modules), Emotion provides the `prepend: true` option for `createCache` to reverse the injection order, so custom styles can override the theme without using `!important`.
+
+Currently, `prepend` does not work reliably with the App Router, but you can work around it by wrapping Emotion styles in a CSS `@layer` with a modification to the snippet above:
+
+```diff
+ useServerInsertedHTML(() => {
+   const names = flush();
+   if (names.length === 0) {
+     return null;
+   }
+   let styles = '';
+   for (const name of names) {
+     styles += cache.inserted[name];
+   }
+   return (
+     <style
+       key={cache.key}
+       data-emotion={`${cache.key} ${names.join(' ')}`}
+       dangerouslySetInnerHTML={{
+-        __html: styles,
++        __html: options.prepend ? `@layer emotion {${styles}}` : styles,
+       }}
+     />
+   );
+ });
+```
 
 ### Other CSS-in-JS libraries
 
