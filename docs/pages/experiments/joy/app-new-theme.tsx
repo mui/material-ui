@@ -893,7 +893,19 @@ export default function FilesNewTheme() {
           </Box>
           <Divider />
           <Tabs>
-            <TabList>
+            <TabList disableUnderline variant="solid" color="warning">
+              <Tab indicatorPlacement="top">Details</Tab>
+              <Tab indicatorPlacement="top">Activity</Tab>
+            </TabList>
+            <TabList variant="soft" color="warning">
+              <Tab indicatorPlacement="top">Details</Tab>
+              <Tab indicatorPlacement="top">Activity</Tab>
+            </TabList>
+            <TabList variant="outlined" color="warning">
+              <Tab indicatorPlacement="top">Details</Tab>
+              <Tab indicatorPlacement="top">Activity</Tab>
+            </TabList>
+            <TabList variant="plain" color="warning">
               <Tab indicatorPlacement="top">Details</Tab>
               <Tab indicatorPlacement="top">Activity</Tab>
             </TabList>
