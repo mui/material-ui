@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
-import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
+import {
+  SelectPopupSettings,
+  SelectValue,
+  UseSelectButtonSlotProps,
+  UseSelectListboxSlotProps,
+} from '../useSelect';
 import { SelectOption } from '../useOption';
-import Popper, { PopperProps } from '../Popper';
-import { PolymorphicProps, SlotComponentProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface SelectRootSlotPropsOverrides {}
 export interface SelectListboxSlotPropsOverrides {}
-export interface SelectPopperSlotPropsOverrides {}
 
 export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean> {
   /**
@@ -39,6 +42,12 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    * @default false
    */
   disabled?: boolean;
+  /**
+   * If `true`, the listbox will be mounted next to the button DOM node.
+   * Otherwise (and by default), it is placed in a portal appended to the `body` element.
+   * @default false
+   */
+  disablePortal?: boolean;
   /**
    * A function to convert the currently selected value to a string.
    * Used to set a value of a hidden input associated with the select,
@@ -89,6 +98,13 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    */
   getOptionAsString?: (option: SelectOption<OptionValue>) => string;
   /**
+   * Listbox popup rendering settings.
+   * They are passed to the underlying [Floating UI's](https://floating-ui.com/) `useFloating` hook.
+   *
+   * @default {}
+   */
+  popupSettings?: SelectPopupSettings;
+  /**
    * Function that customizes the rendering of the selected value.
    */
   renderValue?: (option: SelectValue<SelectOption<OptionValue>, Multiple>) => React.ReactNode;
@@ -107,18 +123,13 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
       SelectListboxSlotPropsOverrides,
       SelectOwnerState<OptionValue, Multiple>
     >;
-    popper?: SlotComponentProps<
-      typeof Popper,
-      SelectPopperSlotPropsOverrides,
-      SelectOwnerState<OptionValue, Multiple>
-    >;
   };
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: SelectSlots<OptionValue, Multiple>;
+  slots?: SelectSlots;
   /**
    * The selected value.
    * Set to `null` to deselect all options.
@@ -126,7 +137,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
   value?: SelectValue<OptionValue, Multiple>;
 }
 
-export interface SelectSlots<OptionValue extends {}, Multiple extends boolean> {
+export interface SelectSlots {
   /**
    * The component that renders the root.
    * @default 'button'
@@ -137,13 +148,6 @@ export interface SelectSlots<OptionValue extends {}, Multiple extends boolean> {
    * @default 'ul'
    */
   listbox?: React.ElementType;
-  /**
-   * The component that renders the popper.
-   * @default Popper
-   */
-  popper?: React.ComponentType<
-    WithOptionalOwnerState<SelectPopperSlotProps<OptionValue, Multiple>>
-  >;
 }
 
 export interface SelectTypeMap<
@@ -208,13 +212,3 @@ export type SelectListboxSlotProps<OptionValue extends {}, Multiple extends bool
     ownerState: SelectOwnerState<OptionValue, Multiple>;
   }
 >;
-
-export type SelectPopperSlotProps<OptionValue extends {}, Multiple extends boolean> = {
-  anchorEl: PopperProps['anchorEl'];
-  children?: PopperProps['children'];
-  className?: string;
-  keepMounted: PopperProps['keepMounted'];
-  open: boolean;
-  ownerState: SelectOwnerState<OptionValue, Multiple>;
-  placement: PopperProps['placement'];
-};

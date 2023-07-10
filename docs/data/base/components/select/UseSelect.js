@@ -84,8 +84,6 @@ const Listbox = styled('ul')(
   font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
-  min-width: 320px;
-  padding: 12px;
   border-radius: 12px;
   text-align: left;
   line-height: 1.5;
@@ -93,10 +91,13 @@ const Listbox = styled('ul')(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   padding: 5px;
-  margin: 5px 0 0 0;
+  margin: 0;
+  min-width: 320px;
+  width: max-content;
+  left: 0;
+  top: 0;
   position: absolute;
   height: auto;
-  width: 100%;
   overflow: auto;
   z-index: 1;
   outline: 0px;
@@ -184,6 +185,9 @@ function CustomSelect({ options, placeholder }) {
     listboxRef,
     onOpenChange: setListboxVisible,
     open: listboxVisible,
+    popupSettings: {
+      offset: 12,
+    },
   });
 
   React.useEffect(() => {

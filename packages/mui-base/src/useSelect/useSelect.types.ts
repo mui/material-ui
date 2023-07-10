@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Placement, Middleware, Strategy, OffsetOptions } from '@floating-ui/react-dom';
 import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
 import { EventHandlers } from '../utils/types';
@@ -19,6 +20,37 @@ export interface SelectOptionDefinition<Value> {
   label: string;
 }
 
+export interface SelectPopupSettings {
+  /**
+   * Collection of Floating UI middleware to use when positioning the popup.
+   * If not provided, an offset and flip functions will be used.
+   *
+   * @see https://floating-ui.com/docs/computePosition#middleware
+   */
+  middleware?: Array<Middleware | null | undefined | false>;
+  /**
+   * Distance between a popup and the trigger element.
+   *
+   * @default 0
+   * @see https://floating-ui.com/docs/offset
+   */
+  offset?: OffsetOptions;
+  /**
+   * Determines where to place the popup relative to the trigger element.
+   *
+   * @default 'bottom-start'
+   * @see https://floating-ui.com/docs/computePosition#placement
+   */
+  placement?: Placement;
+  /**
+   * The type of CSS position property to use (absolute or fixed).
+   *
+   * @default 'absolute'
+   * @see https://floating-ui.com/docs/computePosition#strategy
+   */
+  strategy?: Strategy;
+}
+
 export interface UseSelectParameters<OptionValue, Multiple extends boolean = false> {
   /**
    * A function used to determine if two options' values are equal.
@@ -28,6 +60,10 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * Therefore, it's recommented to use the default reference equality comparison whenever possible.
    */
   areOptionsEqual?: (a: OptionValue, b: OptionValue) => boolean;
+  /**
+   * The ref of the trigger button element.
+   */
+  buttonRef?: React.Ref<Element>;
   /**
    * If `true`, the select will be open by default.
    * @default false
@@ -43,9 +79,14 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    */
   disabled?: boolean;
   /**
-   * The ref of the trigger button element.
+   * A function used to convert the option label to a string.
+   * This is useful when labels are elements and need to be converted to plain text
+   * to enable keyboard navigation with character keys.
+   *
+   * @default defaultOptionStringifier
    */
-  buttonRef?: React.Ref<Element>;
+  getOptionAsString?: (option: SelectOption<OptionValue>) => string;
+
   /**
    * The `id` attribute of the listbox element.
    */
@@ -94,13 +135,13 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    */
   options?: SelectOptionDefinition<OptionValue>[];
   /**
-   * A function used to convert the option label to a string.
-   * This is useful when labels are elements and need to be converted to plain text
-   * to enable keyboard navigation with character keys.
+   * Listbox popup rendering settings.
+   * They are passed to the underlying [Floating UI's](https://floating-ui.com/) `useFloating` hook.
    *
-   * @default defaultOptionStringifier
+   * @default {}
    */
-  getOptionAsString?: (option: SelectOption<OptionValue>) => string;
+  popupSettings?: SelectPopupSettings;
+
   /**
    * The selected value.
    * Set to `null` to deselect all options.

@@ -37,7 +37,9 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return (
+    <Select popupSettings={{ offset: 12 }} {...props} ref={ref} slots={slots} />
+  );
 });
 
 const blue = {
@@ -110,8 +112,12 @@ const StyledListbox = styled('ul')(
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
-  margin: 12px 0;
+  margin: 0;
   min-width: 320px;
+  width: max-content;
+  position: absolute;
+  left: 0;
+  top: 0;
   border-radius: 12px;
   overflow: auto;
   outline: 0px;

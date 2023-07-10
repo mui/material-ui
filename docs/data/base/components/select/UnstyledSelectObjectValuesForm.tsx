@@ -90,7 +90,7 @@ function CustomSelect<TValue extends {}, Multiple extends boolean = false>(
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
+  return <Select popupSettings={{ offset: 12 }} {...props} slots={slots} />;
 }
 
 interface Character {
@@ -171,8 +171,12 @@ const StyledListbox = styled('ul')(
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 5px;
-  margin: 10px 0;
+  margin: 0;
   min-width: 320px;
+  width: max-content;
+  position: absolute;
+  left: 0;
+  top: 0;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   border-radius: 0.75em;

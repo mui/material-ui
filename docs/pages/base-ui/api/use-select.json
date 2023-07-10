@@ -51,6 +51,10 @@
         "description": "SelectOptionDefinition&lt;OptionValue&gt;[]"
       }
     },
+    "popupSettings": {
+      "type": { "name": "SelectPopupSettings", "description": "SelectPopupSettings" },
+      "default": "{}"
+    },
     "value": {
       "type": {
         "name": "SelectValue&lt;OptionValue, Multiple&gt;",

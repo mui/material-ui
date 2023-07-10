@@ -15,6 +15,7 @@
     "onOpenChange": "Callback fired when the listbox is opened or closed.",
     "open": "Controls the open state of the select&#39;s listbox.\nThis is the controlled equivalent of the <code>defaultOpen</code> prop.",
     "options": "An alternative way to specify the options.\nIf this parameter is set, options defined as JSX children are ignored.",
+    "popupSettings": "Listbox popup rendering settings.\nThey are passed to the underlying <a href=\"https://floating-ui.com/\">Floating UI&#39;s</a> <code>useFloating</code> hook.",
     "value": "The selected value.\nSet to <code>null</code> to deselect all options."
   },
   "returnValueDescriptions": {

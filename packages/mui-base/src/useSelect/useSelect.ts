@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useFloating, autoUpdate, flip, offset } from '@floating-ui/react-dom';
 import {
   unstable_useForkRef as useForkRef,
   unstable_useId as useId,
@@ -57,6 +58,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     onOpenChange,
     open: openProp,
     options: optionsParam,
+    popupSettings = {},
     getOptionAsString = defaultOptionStringifier,
     value: valueProp,
   } = props;
@@ -113,8 +115,6 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
 
     return subitems;
   }, [optionsParam, subitems, listboxId]);
-
-  const handleListboxRef = useForkRef(listboxRefProp, listboxRef);
 
   const {
     getRootProps: getButtonRootProps,
@@ -255,6 +255,25 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     rootRef: mergedListRootRef,
   } = useList(useListParameters);
 
+  const { refs, elements, floatingStyles, update } = useFloating({
+    open,
+    middleware: popupSettings.middleware ?? [offset(popupSettings.offset ?? 0), flip()],
+    placement: popupSettings.placement ?? 'bottom-start',
+    strategy: popupSettings.strategy ?? 'absolute',
+  });
+
+  const handleListboxRef = useForkRef(listboxRefProp, listboxRef, refs.setFloating);
+  const handleMergedButtonRef = useForkRef(mergedListRootRef, refs.setReference);
+
+  useEnhancedEffect(() => {
+    if (open && elements.reference && elements.floating) {
+      const cleanup = autoUpdate(elements.reference, elements.floating, update);
+      return cleanup;
+    }
+
+    return undefined;
+  }, [open, elements, update]);
+
   const createHandleButtonClick =
     (otherHandlers?: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent & MuiCancellableEvent) => {
@@ -299,7 +318,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     return {
       ...otherHandlers,
       onClick: createHandleButtonClick(otherHandlers),
-      ref: mergedListRootRef,
+      ref: handleMergedButtonRef,
       role: 'combobox' as const,
       'aria-expanded': open,
       'aria-controls': listboxId,
@@ -324,6 +343,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
       'aria-multiselectable': multiple ? 'true' : undefined,
       ref: handleListboxRef,
       onMouseDown: preventDefault, // to prevent the button from losing focus when interacting with the listbox
+      style: open ? floatingStyles : { display: 'none' },
     };
   };
 

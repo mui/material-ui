@@ -27,7 +27,7 @@ function CustomSelect(props: SelectProps<number, false>) {
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
+  return <Select popupSettings={{ offset: 12 }} {...props} slots={slots} />;
 }
 
 const blue = {
@@ -100,8 +100,12 @@ const StyledListbox = styled('ul')(
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
-  margin: 12px 0;
+  margin: 0;
   min-width: 320px;
+  width: max-content;
+  position: absolute;
+  left: 0;
+  top: 0;
   border-radius: 12px;
   overflow: auto;
   outline: 0px;

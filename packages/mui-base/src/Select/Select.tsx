@@ -4,20 +4,19 @@ import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import {
   SelectListboxSlotProps,
   SelectOwnerState,
-  SelectPopperSlotProps,
   SelectProps,
   SelectRootSlotProps,
   SelectType,
 } from './Select.types';
 import useSelect, { SelectValue } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import Popper from '../Popper';
 import composeClasses from '../composeClasses';
 import { getSelectUtilityClass } from './selectClasses';
 import defaultOptionStringifier from '../useSelect/defaultOptionStringifier';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { SelectOption } from '../useOption';
 import SelectProvider from '../useSelect/SelectProvider';
+import Portal from '../Portal';
 
 function defaultRenderValue<OptionValue>(
   selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
@@ -105,9 +104,11 @@ const Select = React.forwardRef(function Select<
     areOptionsEqual,
     autoFocus,
     children,
-    defaultValue,
     defaultListboxOpen = false,
+    defaultValue,
     disabled: disabledProp,
+    disablePortal = false,
+    getOptionAsString = defaultOptionStringifier,
     getSerializedValue = defaultFormValueProvider,
     listboxId,
     listboxOpen: listboxOpenProp,
@@ -115,7 +116,7 @@ const Select = React.forwardRef(function Select<
     name,
     onChange,
     onListboxOpenChange,
-    getOptionAsString = defaultOptionStringifier,
+    popupSettings = {},
     renderValue: renderValueProp,
     slotProps = {},
     slots = {},
@@ -131,8 +132,7 @@ const Select = React.forwardRef(function Select<
   const listboxRef = React.useRef<HTMLElement>(null);
 
   const Button = slots.root ?? 'button';
-  const ListboxRoot = slots.listbox ?? 'ul';
-  const PopperComponent = slots.popper ?? Popper;
+  const Listbox = slots.listbox ?? 'ul';
 
   const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
     setButtonDefined(element != null);
@@ -162,12 +162,13 @@ const Select = React.forwardRef(function Select<
     defaultOpen: defaultListboxOpen,
     defaultValue,
     disabled: disabledProp,
+    getOptionAsString,
     listboxId,
     multiple,
-    open: listboxOpenProp,
     onChange,
     onOpenChange: onListboxOpenChange,
-    getOptionAsString,
+    open: listboxOpenProp,
+    popupSettings,
     value: valueProp,
   });
 
@@ -176,6 +177,7 @@ const Select = React.forwardRef(function Select<
     active: buttonActive,
     defaultListboxOpen,
     disabled,
+    disablePortal,
     focusVisible: buttonFocusVisible,
     open,
     multiple,
@@ -197,7 +199,7 @@ const Select = React.forwardRef(function Select<
 
   const listboxProps: WithOptionalOwnerState<SelectListboxSlotProps<OptionValue, Multiple>> =
     useSlotProps({
-      elementType: ListboxRoot,
+      elementType: Listbox,
       getSlotProps: getListboxProps,
       externalSlotProps: slotProps.listbox,
       additionalProps: {
@@ -205,21 +207,6 @@ const Select = React.forwardRef(function Select<
       },
       ownerState,
       className: classes.listbox,
-    });
-
-  const popperProps: WithOptionalOwnerState<SelectPopperSlotProps<OptionValue, Multiple>> =
-    useSlotProps({
-      elementType: PopperComponent,
-      externalSlotProps: slotProps.popper,
-      additionalProps: {
-        anchorEl: buttonRef.current,
-        keepMounted: true,
-        open,
-        placement: 'bottom-start' as const,
-        role: undefined,
-      },
-      ownerState,
-      className: classes.popper,
     });
 
   let selectedOptionsMetadata: SelectValue<SelectOption<OptionValue>, Multiple>;
@@ -238,11 +225,11 @@ const Select = React.forwardRef(function Select<
     <React.Fragment>
       <Button {...buttonProps}>{renderValue(selectedOptionsMetadata)}</Button>
       {buttonDefined && (
-        <PopperComponent {...popperProps}>
-          <ListboxRoot {...listboxProps}>
+        <Portal disablePortal={disablePortal}>
+          <Listbox {...listboxProps}>
             <SelectProvider value={contextValue}>{children}</SelectProvider>
-          </ListboxRoot>
-        </PopperComponent>
+          </Listbox>
+        </Portal>
       )}
 
       {name && (
@@ -289,6 +276,12 @@ Select.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the listbox will be mounted next to the button DOM node.
+   * Otherwise (and by default), it is placed in a portal appended to the `body` element.
+   * @default false
+   */
+  disablePortal: PropTypes.bool,
+  /**
    * A function used to convert the option label to a string.
    * It's useful when labels are elements and need to be converted to plain text
    * to enable navigation using character keys on a keyboard.
@@ -333,6 +326,48 @@ Select.propTypes /* remove-proptypes */ = {
    */
   onListboxOpenChange: PropTypes.func,
   /**
+   * Listbox popup rendering settings.
+   * They are passed to the underlying [Floating UI's](https://floating-ui.com/) `useFloating` hook.
+   *
+   * @default {}
+   */
+  popupSettings: PropTypes.shape({
+    middleware: PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.oneOf([false]),
+        PropTypes.shape({
+          fn: PropTypes.func.isRequired,
+          name: PropTypes.string.isRequired,
+          options: PropTypes.any,
+        }),
+      ]),
+    ),
+    offset: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.number,
+      PropTypes.shape({
+        alignmentAxis: PropTypes.number,
+        crossAxis: PropTypes.number,
+        mainAxis: PropTypes.number,
+      }),
+    ]),
+    placement: PropTypes.oneOf([
+      'bottom-end',
+      'bottom-start',
+      'bottom',
+      'left-end',
+      'left-start',
+      'left',
+      'right-end',
+      'right-start',
+      'right',
+      'top-end',
+      'top-start',
+      'top',
+    ]),
+    strategy: PropTypes.oneOf(['absolute', 'fixed']),
+  }),
+  /**
    * Function that customizes the rendering of the selected value.
    */
   renderValue: PropTypes.func,
@@ -340,9 +375,8 @@ Select.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+  slotProps: PropTypes.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -350,9 +384,8 @@ Select.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+  slots: PropTypes.shape({
     listbox: PropTypes.elementType,
-    popper: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**

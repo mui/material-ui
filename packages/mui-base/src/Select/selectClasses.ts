@@ -6,8 +6,6 @@ export interface SelectClasses {
   root: string;
   /** Class name applied to the listbox element. */
   listbox: string;
-  /** Class name applied to the popper element. */
-  popper: string;
   /** State class applied to the root `button` element if `active={true}`. */
   active: string;
   /** State class applied to the root `button` element if `expanded={true}`. */
@@ -28,7 +26,6 @@ const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
   'root',
   'button',
   'listbox',
-  'popper',
   'active',
   'expanded',
   'disabled',
