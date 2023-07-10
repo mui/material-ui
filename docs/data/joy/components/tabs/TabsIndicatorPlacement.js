@@ -5,43 +5,34 @@ import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 
 export default function TabsIndicatorPlacement() {
-  const [placement, setPlacement] = React.useState('top');
   return (
-    <Tabs
-      variant="outlined"
-      orientation={placement.match(/(left|right)/) ? 'vertical' : 'horizontal'}
-      aria-label="Placement indicator tabs"
-      value={placement}
-      onChange={(event, newValue) => setPlacement(newValue)}
-      sx={{
-        width: 300,
-        height: 180,
-        flexDirection: {
-          top: 'column-reverse',
-          bottom: 'column',
-          left: 'row-reverse',
-          right: 'row',
-        }[placement],
-      }}
-    >
-      <TabList underlinePlacement={placement}>
-        <Tab indicatorPlacement={placement} value="bottom">
-          Bottom
-        </Tab>
-        <Tab indicatorPlacement={placement} value="top">
+    <Tabs variant="soft" defaultValue="top">
+      <TabList underlinePlacement="bottom">
+        <Tab value="top" indicatorPlacement="top">
           Top
         </Tab>
-        <Tab indicatorPlacement={placement} value="left">
-          Left
-        </Tab>
-        <Tab indicatorPlacement={placement} value="right">
+        <Tab value="right" indicatorPlacement="right">
           Right
         </Tab>
+        <Tab value="bottom" indicatorPlacement="bottom">
+          Bottom
+        </Tab>
+        <Tab value="left" indicatorPlacement="left">
+          Left
+        </Tab>
       </TabList>
-      <TabPanel value="top">Top panel</TabPanel>
-      <TabPanel value="bottom">Bottom panel</TabPanel>
-      <TabPanel value="left">Left panel</TabPanel>
-      <TabPanel value="right">Right panel</TabPanel>
+      <TabPanel value="top">
+        IndicatorPlacement <b>Top</b>
+      </TabPanel>
+      <TabPanel value="right">
+        IndicatorPlacement <b>Right</b>
+      </TabPanel>
+      <TabPanel value="bottom">
+        IndicatorPlacement <b>Bottom</b>
+      </TabPanel>
+      <TabPanel value="left">
+        IndicatorPlacement <b>Left</b>
+      </TabPanel>
     </Tabs>
   );
 }
