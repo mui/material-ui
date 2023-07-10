@@ -53,7 +53,7 @@ function Ripple(props: RippleProps) {
   );
 }
 
-Ripple.propTypes = {
+(Ripple as any).propTypes = {
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
@@ -84,6 +84,6 @@ Ripple.propTypes = {
    * exit delay
    */
   timeout: PropTypes.number.isRequired,
-} as any;
+};
 
 export default Ripple;
