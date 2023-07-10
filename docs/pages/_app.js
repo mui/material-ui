@@ -25,7 +25,6 @@ import materialPkgJson from 'packages/mui-material/package.json';
 import joyPkgJson from 'packages/mui-joy/package.json';
 import systemPkgJson from 'packages/mui-system/package.json';
 import basePkgJson from 'packages/mui-base/package.json';
-import './global.css';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import './global.css';
