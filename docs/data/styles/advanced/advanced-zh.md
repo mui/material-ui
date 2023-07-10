@@ -2,7 +2,7 @@
 
 <p class="description">本节包含了 @mui/core/styles 的一些更多的进阶用法。</p>
 
-> ⚠️ `@mui/styles` 是MUI的_**传统**_样式解决方案。 它依赖于[JSS](https://cssinjs.org/)作为样式解决方案，在 `@mui/material `中已经不使用了，在v5中被废弃。 If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/overview/) documentation which is the recommended alternative.
+> ⚠️ `@mui/styles` 是MUI的_**传统**_样式解决方案。 它依赖于[JSS](https://cssinjs.org/)作为样式解决方案，在 `@mui/material `中已经不使用了，在v5中被废弃。 If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/) documentation which is the recommended alternative.
 
 > ⚠️ `@mui/styles` 与  [React.StrictMode](https://react.dev/reference/react/StrictMode) 或 React 18 不兼容。
 

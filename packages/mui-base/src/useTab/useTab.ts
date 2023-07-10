@@ -16,11 +16,11 @@ function tabValueGenerator(otherTabValues: Set<string | number>) {
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/base/react-tabs/#hooks)
+ * - [Tabs](https://mui.com/base-ui/react-tabs/#hooks)
  *
  * API:
  *
- * - [useTab API](https://mui.com/base/react-tabs/hooks-api/#use-tab)
+ * - [useTab API](https://mui.com/base-ui/react-tabs/hooks-api/#use-tab)
  */
 function useTab(parameters: UseTabParameters): UseTabReturnValue {
   const { value: valueParam, rootRef: externalRef, disabled = false, id: idParam } = parameters;
@@ -36,7 +36,7 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
     id: value,
     index,
     totalItemCount: totalTabsCount,
-  } = useCompoundItem<string | number, TabMetadata>(valueParam, tabMetadata, tabValueGenerator);
+  } = useCompoundItem<string | number, TabMetadata>(valueParam ?? tabValueGenerator, tabMetadata);
 
   const {
     getRootProps: getTabProps,

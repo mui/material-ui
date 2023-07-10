@@ -170,7 +170,7 @@ If you are using webpack, you can change the way it will [resolve](https://webpa
 
 One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
 
-```sh
+```bash
 lerna bootstrap --hoist
 ```
 
@@ -228,7 +228,7 @@ The documentation site is using a custom theme. Hence, the color palette is diff
 
 ## Por que as cores que estou vendo são diferentes das que vejo aqui?
 
-Components like the [Portal](/base/api/portal/#props) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. It seems convenient to simply pass a ref object in those props and let MUI access the current value. This works in a simple scenario:
+Components like the [Portal](/base-ui/api/portal/#props) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. It seems convenient to simply pass a ref object in those props and let MUI access the current value. This works in a simple scenario:
 
 ```jsx
 function App() {
@@ -296,7 +296,8 @@ Instead of writing:
 
 return (
   <div
-    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${
+      selected ? 'Mui-selected' : ''
     }`}
   />
 );

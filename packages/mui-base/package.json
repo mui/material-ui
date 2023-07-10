@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-beta.2",
+  "version": "5.0.0-beta.6",
   "private": false,
   "author": "MUI Team",
   "description": "A library of headless ('unstyled') React UI components and low-level hooks.",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/base/getting-started/overview/",
+  "homepage": "https://mui.com/base-ui/getting-started/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
@@ -51,11 +51,11 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.21.0",
+    "@babel/runtime": "^7.22.5",
     "@emotion/is-prop-valid": "^1.2.1",
     "@mui/types": "^7.2.4",
-    "@mui/utils": "^5.13.1",
-    "@popperjs/core": "^2.11.7",
+    "@mui/utils": "^5.13.7",
+    "@popperjs/core": "^2.11.8",
     "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0"

@@ -3,21 +3,23 @@ import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import SandboxDependencies from './Dependencies';
 import * as CRA from './CreateReactApp';
 import getFileExtension from './FileExtension';
+import { CodeVariant, Product, CodeStyling } from './types';
 
 const createReactApp = (demo: {
   title: string;
   language: string;
   raw: string;
-  codeVariant: 'TS' | 'JS';
+  codeVariant: CodeVariant;
   githubLocation: string;
-  product?: 'joy-ui' | 'base';
+  productId?: Product;
+  codeStyling?: CodeStyling;
 }) => {
   const ext = getFileExtension(demo.codeVariant);
   const { title, githubLocation: description } = demo;
 
   const files: Record<string, string> = {
     'index.html': CRA.getHtml(demo),
-    [`index.${ext}`]: CRA.getRootIndex(demo.product),
+    [`index.${ext}`]: CRA.getRootIndex(demo.productId),
     [`demo.${ext}`]: demo.raw,
     ...(demo.codeVariant === 'TS' && {
       'tsconfig.json': CRA.getTsconfig(),

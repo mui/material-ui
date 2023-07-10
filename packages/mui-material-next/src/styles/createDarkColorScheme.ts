@@ -23,6 +23,8 @@ const createDarkColorScheme = (
   onSurface: getCssVar('ref-palette-neutral-90', palette.neutral[90]),
   surfaceVariant: getCssVar('ref-palette-neutralVariant-30', palette.neutralVariant[30]),
   surface: getCssVar('ref-palette-neutral-10', palette.neutral[10]),
+  surfaceContainerHigh: getCssVar('ref-palette-neutral-17', palette.neutral[17]),
+  surfaceContainerHighest: getCssVar('ref-palette-neutral-22', palette.neutral[22]),
   onSecondaryContainer: getCssVar('ref-palette-secondary-90', palette.secondary[90]),
   onSecondary: getCssVar('ref-palette-secondary-20', palette.secondary[20]),
   secondaryContainer: getCssVar('ref-palette-secondary-30', palette.secondary[30]),

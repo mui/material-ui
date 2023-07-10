@@ -1,6 +1,6 @@
 # Breaking changes in v5, part two: core components
 
-<p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4. This part covers changes to components.</p>
+<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to components.</p>
 
 ## Material UI v5 migration
 
@@ -1615,6 +1615,8 @@ The `input` key is applied on another element.
 Change the default `indicatorColor` and `textColor` prop values to "primary".
 
 This is done to match the most common use cases with Material Design.
+
+If you'd prefer to keep the v4 color styles, use `"secondary"` and `"inherit"`, respectively, as shown below:
 
 ```diff
 -<Tabs />

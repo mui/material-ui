@@ -149,7 +149,7 @@ const SETTINGS: Settings[] = [
         entryPointPath: 'src/index.d.ts',
       }),
     ],
-    getApiPages: () => findApiPages('docs/pages/base/api'),
+    getApiPages: () => findApiPages('docs/pages/base-ui/api'),
     getComponentInfo: getBaseComponentInfo,
     getHookInfo: getBaseHookInfo,
   },

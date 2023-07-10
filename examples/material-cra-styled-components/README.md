@@ -6,14 +6,14 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-cra-styled-components
 cd material-cra-styled-components
 ```
 
 Install it and run:
 
-```sh
+```bash
 npm install
 npm start
 ```
@@ -30,11 +30,11 @@ The following link leverages this demo: https://mui.com/guides/interoperability/
 
 ## The idea behind the example
 
-This example demonstrates how you can setup [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application.
+This example demonstrates how you can setup Material UI with [Create React App](https://github.com/facebookincubator/create-react-app), using [styled-components](https://styled-components.com/) as a style engine for your application.
 
 ## What's next?
 
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
