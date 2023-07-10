@@ -13,48 +13,42 @@ export default function TableOfContentsBanner() {
       sx={[
         (theme) => ({
           mb: 2,
+          mx: 0.5,
+          p: 1,
           display: 'flex',
-          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 1.5,
           overflow: 'auto',
           backgroundColor: alpha(theme.palette.grey[50], 0.4),
           border: '1px solid',
-          borderColor: (theme.vars || theme).palette.grey[200],
+          borderColor: (theme.vars || theme).palette.divider,
           borderRadius: 1,
           transitionProperty: 'all',
           transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
           transitionDuration: '150ms',
           '&:hover, &:focus-visible': {
+            backgroundColor: (theme.vars || theme).palette.primary[50],
             borderColor: (theme.vars || theme).palette.primary[200],
           },
         }),
         (theme) =>
           theme.applyDarkStyles({
             backgroundColor: alpha(theme.palette.primary[900], 0.2),
-            borderColor: (theme.vars || theme).palette.primaryDark[700],
+            borderColor: (theme.vars || theme).palette.divider,
             '&:hover, &:focus-visible': {
+              backgroundColor: alpha(theme.palette.primary[900], 0.4),
               borderColor: (theme.vars || theme).palette.primaryDark[500],
             },
           }),
       ]}
     >
-      <Box sx={{ width: '100%' }}>
-        <Box sx={{ height: '12px', backgroundColor: '#0057b7' }} />
-        <Box sx={{ height: '12px', backgroundColor: '#ffd700' }} />
+      <Box sx={{ borderRadius: '3px', overflow: 'auto', width: 'fit-content', flexShrink: 0 }}>
+        <Box sx={{ height: 6, width: 16, backgroundColor: '#0057B7' }} />
+        <Box sx={{ height: 6, width: 16, backgroundColor: '#FFD700' }} />
       </Box>
-      <Box sx={{ p: 1 }}>
-        <Typography
-          component="span"
-          variant="caption"
-          fontWeight="500"
-          color="text.primary"
-          sx={{ mb: 1 }}
-        >
-          MUI stands in solidarity with the Ukrainian people against the Russian invasion.
-        </Typography>
-        <Typography component="span" variant="caption" fontWeight="normal" color="text.secondary">
-          Find out how you can help.
-        </Typography>
-      </Box>
+      <Typography component="span" variant="caption" fontWeight="medium" color="text.secondary">
+        MUI stands in solidarity with the Ukrainian people.
+      </Typography>
     </Link>
   ) : null;
 }

@@ -233,8 +233,8 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
+      <TableOfContentsBanner />
       <NoSsr>
-        <TableOfContentsBanner />
         {showSurveyBanner && (
           <Link
             href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=docs"
