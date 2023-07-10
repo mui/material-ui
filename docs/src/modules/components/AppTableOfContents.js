@@ -13,6 +13,7 @@ import featureToggle from 'docs/src/featureToggle';
 
 const Nav = styled('nav')(({ theme }) => ({
   top: 'var(--MuiDocs-header-height)',
+  marginTop: 'var(--MuiDocs-header-height)',
   paddingLeft: 2, // Fix truncated focus outline style
   position: 'sticky',
   height: 'calc(100vh - var(--MuiDocs-header-height))',
