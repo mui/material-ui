@@ -52,6 +52,9 @@ const Toggle = styled('button')(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   position: relative;
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
