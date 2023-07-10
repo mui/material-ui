@@ -151,6 +151,7 @@ const defaultVariantMapping: Record<string, string> = {
  *
  * Demos:
  *
+ * - [Skeleton](https://mui.com/joy-ui/react-skeleton/)
  * - [Typography](https://mui.com/joy-ui/react-typography/)
  *
  * API:
@@ -251,6 +252,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
         {startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
+
         {isMuiElement(children, ['Skeleton'])
           ? React.cloneElement(children as React.ReactElement, {
               variant: (children as React.ReactElement).props.variant || 'inline',

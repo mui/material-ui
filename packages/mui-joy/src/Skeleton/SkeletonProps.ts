@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Breakpoint } from '@mui/system';
-import { OverrideProps } from '@mui/types';
+import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { SxProps, TypographySystem } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
@@ -23,6 +23,8 @@ export type SkeletonSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
+export interface SkeletonPropsVariantOverrides {}
+
 export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     /**
@@ -43,7 +45,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
     height?: ResponsiveStyleValue<number | string>;
     /**
      * Applies the theme typography styles.
-     * @default 'inherit'
+     * @default variant === 'text' ? 'body1' : 'inherit'
      */
     level?: keyof TypographySystem | 'inherit';
     /**
@@ -61,7 +63,10 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * The type of content that will be rendered.
      * @default 'overlay'
      */
-    variant?: 'overlay' | 'circular' | 'rectangular' | 'text' | 'inline';
+    variant?: OverridableStringUnion<
+      'overlay' | 'circular' | 'rectangular' | 'text' | 'inline',
+      SkeletonPropsVariantOverrides
+    >;
     /**
      * Width of the skeleton.
      * Useful when the skeleton is inside an inline element with no width of its own.

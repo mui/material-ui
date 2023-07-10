@@ -2,6 +2,7 @@
 productId: joy-ui
 title: React Skeleton component
 githubLabel: 'component: skeleton'
+components: Skeleton, AspectRatio, Avatar, Typography
 ---
 
 # Skeleton
@@ -51,14 +52,14 @@ Insert the Skeleton component between the Typography component and the text to d
 
 ### Geometry
 
-Use the `shape` prop with a value of `circular` or `rectangular` to take full control of the size of the Skeleton component.
+Use `variant="circular` or `variant="rectangular"` to take full control of the size of the Skeleton component.
 
-Use `width` and `height` prop to adjust the size of the Skeleton component.
+Use `width` and `height` prop to adjust the dimension of the Skeleton component.
 
 {{"demo": "GeometrySkeleton.js"}}
 
 :::success
-`width` and `height` prop supports object notion for responsive values.
+The `width` and `height` prop support object notation for responsive values.
 
 The example below shows how to create a Skeleton component with a circular shape that is 40px wide and 40px high on mobile and 48px wide and 48px high on desktop.
 

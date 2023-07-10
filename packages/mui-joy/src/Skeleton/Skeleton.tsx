@@ -12,10 +12,14 @@ import { SkeletonOwnerState, SkeletonProps, SkeletonTypeMap } from './SkeletonPr
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: SkeletonOwnerState) => {
-  const { variant } = ownerState;
+  const { variant, level } = ownerState;
 
   const slots = {
-    root: ['root', variant && `variant${capitalize(variant)}`],
+    root: [
+      'root',
+      variant && `variant${capitalize(variant)}`,
+      level && `level${capitalize(level)}`,
+    ],
   };
 
   return composeClasses(slots, getSkeletonUtilityClass, {});
@@ -145,7 +149,7 @@ const SkeletonRoot = styled('span', {
       },
       ownerState.variant === 'rectangular' && {
         borderRadius: 'min(0.15em, 6px)',
-        height: '1em',
+        height: 'auto',
         width: '100%',
         '&::before': {
           position: 'absolute',
@@ -159,8 +163,8 @@ const SkeletonRoot = styled('span', {
       },
       ownerState.variant === 'circular' && {
         borderRadius: '50%',
-        width: '1em',
-        height: '1em',
+        width: '100%',
+        height: '100%',
         '&::before': {
           position: 'absolute',
         },
@@ -250,7 +254,16 @@ const SkeletonRoot = styled('span', {
     ];
   },
 );
-
+/**
+ *
+ * Demos:
+ *
+ * - [Skeleton](https://mui.com/joy-ui/react-skeleton/)
+ *
+ * API:
+ *
+ * - [Skeleton API](https://mui.com/joy-ui/api/skeleton/)
+ */
 const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
   const props = useThemeProps<typeof inProps & SkeletonProps>({
     props: inProps,
@@ -265,7 +278,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     overlay = false,
     loading = true,
     variant = 'overlay',
-    level = variant === 'text' ? undefined : 'inherit',
+    level = variant === 'text' ? 'body1' : 'inherit',
     height,
     width,
     sx,
@@ -322,6 +335,12 @@ Skeleton.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * The animation.
+   * If `false` the animation effect is disabled.
+   * @default 'pulse'
+   */
+  animation: PropTypes.oneOf(['pulse', 'wave', false]),
+  /**
    * Used to render icon or text elements inside the Skeleton if `src` is not set.
    * This can be an element, or just a string.
    */
@@ -336,10 +355,40 @@ Skeleton.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The component orientation.
-   * @default 'vertical'
+   * Height of the skeleton.
+   * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
    */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  height: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.shape({
+      lg: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      md: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      sm: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      xl: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      xs: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    }),
+    PropTypes.string,
+  ]),
+  /**
+   * Applies the theme typography styles.
+   * @default variant === 'text' ? 'body1' : 'inherit'
+   */
+  level: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['body1', 'body2', 'body3', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'inherit']),
+    PropTypes.string,
+  ]),
+  /**
+   * If `true`, the skeleton appears.
+   * @default true
+   */
+  loading: PropTypes.bool,
+  /**
+   * If `true`, the skeleton's position will change to `absolute` to fill the available space of the nearest parent.
+   * This prop is useful to create a placeholder that has the element's dimensions.
+   * @default false
+   */
+  overlay: PropTypes.bool,
   /**
    * The props used for each slot inside.
    * @default {}
@@ -361,6 +410,30 @@ Skeleton.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
+  ]),
+  /**
+   * The type of content that will be rendered.
+   * @default 'overlay'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['circular', 'inline', 'overlay', 'rectangular', 'text']),
+    PropTypes.string,
+  ]),
+  /**
+   * Width of the skeleton.
+   * Useful when the skeleton is inside an inline element with no width of its own.
+   */
+  width: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.shape({
+      lg: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      md: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      sm: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      xl: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      xs: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    }),
+    PropTypes.string,
   ]),
 } as any;
 

@@ -13,7 +13,7 @@ export default function BasicCard() {
     <Card variant="outlined" sx={{ width: 320 }}>
       <div>
         <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
-          Yosemite National Park
+          <Skeleton>Yosemite National Park</Skeleton>
         </Typography>
         <Typography level="body2">
           <Skeleton>April 24 to May 02, 2021</Skeleton>

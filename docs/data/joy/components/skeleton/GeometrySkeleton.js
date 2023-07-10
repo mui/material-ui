@@ -17,9 +17,15 @@ export default function GeometrySkeleton() {
             loading={loading}
             variant="rectangular"
             width={200}
+            height="1em"
             sx={{ mb: 1 }}
           />
-          <Skeleton loading={loading} variant="rectangular" width={140} />
+          <Skeleton
+            loading={loading}
+            variant="rectangular"
+            width={140}
+            height="1em"
+          />
         </Box>
       </Box>
       <FormControl
