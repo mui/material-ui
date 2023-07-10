@@ -523,6 +523,12 @@ export function getThemedComponents(): ThemeOptions {
                   boxShadow:
                     '0px 0px 8px rgba(0, 127, 255, 0.2), inset 0px 4px 8px rgba(102, 178, 255, 0.4)',
                 },
+                ...theme.applyDarkStyles({
+                  boxShadow: `0px 2px 4px ${alpha(
+                    theme.palette.common.black,
+                    0.8,
+                  )}, inset 0px 4px 8px ${alpha(theme.palette.primary[200], 0.4)}`,
+                }),
               }),
           }),
         },
