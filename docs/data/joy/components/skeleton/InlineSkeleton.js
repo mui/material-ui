@@ -17,20 +17,16 @@ export default function InlineSkeleton() {
           level="h1"
           fontSize="xl"
         >
-          <Skeleton loading={loading} variant="inline">
-            A heading
-          </Skeleton>
+          <Skeleton loading={loading}>A heading</Skeleton>
         </Typography>
         <Typography
           level="body3"
           sx={{ mt: 1, mb: 2, position: 'relative', overflow: 'hidden' }}
         >
-          <Skeleton loading={loading} variant="inline">
-            HISTORY, PURPOSE AND USAGE
-          </Skeleton>
+          <Skeleton loading={loading}>HISTORY, PURPOSE AND USAGE</Skeleton>
         </Typography>
         <Typography sx={{ position: 'relative', overflow: 'hidden' }}>
-          <Skeleton loading={loading} variant="inline">
+          <Skeleton loading={loading}>
             <i>Lorem ipsum</i> is placeholder text commonly used in the graphic,
             print, and publishing industries for previewing layouts and visual
             mockups.

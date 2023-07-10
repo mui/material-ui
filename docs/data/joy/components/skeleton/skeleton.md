@@ -121,3 +121,9 @@ function App() {
 To learn more about this, see [Themed Components](/joy-ui/customization/themed-components/) page.
 
 :::
+
+## Common examples
+
+### Basic card
+
+{{"demo": "BasicCardSkeleton.js"}}

@@ -20,7 +20,7 @@ export default function LoadingSkeleton() {
           </Skeleton>
         </AspectRatio>
         <Typography>
-          <Skeleton loading={loading} variant="inline">
+          <Skeleton loading={loading}>
             Lorem ipsum is placeholder text commonly used in the graphic, print, and
             publishing industries.
           </Skeleton>

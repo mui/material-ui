@@ -32,7 +32,7 @@ export default function AnimationSkeleton() {
           </Skeleton>
         </AspectRatio>
         <Typography>
-          <Skeleton animation="wave" variant="inline">
+          <Skeleton animation="wave">
             Lorem ipsum is placeholder text commonly used in the graphic, print, and
             publishing industries.
           </Skeleton>
