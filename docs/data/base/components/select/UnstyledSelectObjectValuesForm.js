@@ -148,6 +148,9 @@ const StyledButton = styled('button')(
   text-align: left;
   line-height: 1.5;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   &:hover {
     background: ${theme.palette.mode === 'dark' ? '' : grey[100]};

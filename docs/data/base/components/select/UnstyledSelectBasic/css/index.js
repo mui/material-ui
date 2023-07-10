@@ -79,6 +79,10 @@ function Styles() {
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         color: ${isDarkMode ? grey[300] : grey[900]};
+        box-shadow: 0px 4px 6px ${
+          isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+        };
+
 
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
