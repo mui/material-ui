@@ -93,7 +93,7 @@ function Styles() {
       line-height: 1.5;
       background: transparent;
       cursor: pointer;
-      border: 1px solid ${isDarkMode ? cyan[300] : cyan[400]};
+      border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
       color: ${isDarkMode ? cyan[300] : cyan[400]};
 
       &:hover {
