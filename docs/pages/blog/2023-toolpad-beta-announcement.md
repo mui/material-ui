@@ -33,25 +33,33 @@ Toolpad is for full-stack and back-end developers. They build, manage, and integ
 
 ## What are the main features available today?
 
-### Use Material UI and MUI X Pro components
+### 1. Drag-and-drop UI builder
 
-MUI Core provides all modern components; a chosen few are currently available inside Toolpad, and we're adding more all the time. MUI X Pro (Data Grid and Date Picker) components are also available for free in Toolpad.
+Build UIs by simply dropping components on the canvas. The set constraints help you build faster.
 
-<img alt="Building an application on Toolpad " src="/static/blog/2023-toolpad-beta-announcement/library.png" style="margin-bottom: 16px;" loading="lazy" width="2048" height="1536" />
+### 2. Query builder UI
 
-### Bring your own components
+Quickly intergrate any REST API using a Postman like query builder. The query output can be directly wired to components through the binding option in Toolpad. It supports writing Javascript.
+
+### 3. Bring your own components
 
 Toolpad can import [external React components](https://mui.com/toolpad/concepts/custom-components/), ready to be used in its visual designer. Your past effort shouldn't go to waste and you shouldn't be limited by the stock component suite.
 
-### Bring your own back-end
+### 4. Bring your own back-end
 
 Directly integrate with your Node.js back-end and have your data available on the page without writing any REST endpoints or fetch logic. Need that prisma model on the page? Expose it through a serverless function and Toolpad does the rest.
 
-### Own your code
+### 5. Own your code
 
 Toolpad runs fully locally. You're not stuck with an online code editor or a suboptimal GitHub integration. All configuration is stored in local files which you can version-control, edit, and deploy in any way you want.
 
 <img alt="Building an application on Toolpad " src="/static/blog/2023-toolpad-beta-announcement/code.png" style="margin-bottom: 16px;" loading="lazy" width="2048" height="1536" />
+
+### 6. A catalogue of components powered by Material UI
+
+MUI Core provides all modern components; a chosen few are currently available inside Toolpad, and we're adding more all the time. MUI X Pro (Data Grid and Date Picker) components are also available for free in Toolpad.
+
+<img alt="Building an application on Toolpad " src="/static/blog/2023-toolpad-beta-announcement/library.png" style="margin-bottom: 16px;" loading="lazy" width="2048" height="1536" />
 
 ## How is Toolpad different from similar products on the market?
 
@@ -71,6 +79,6 @@ We plan to continue to iterate on our vision of helping developers increase the 
 
 The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/mui-toolpad) and our [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
 
-If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com. You can also engage in conversations in our [Discord](https://discord.gg/hHqtMP9Ckc) server.
+If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [Twitter](https://twitter.com/MUI_Toolpad). You can also engage in conversations in our [Discord](https://discord.gg/hHqtMP9Ckc) server.
 
 If you'd like an in-depth demo and discussion of your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).
