@@ -36,6 +36,7 @@ export default function UseSnackbar() {
 
 const blue = {
   50: '#F0F7FF',
+  100: '#C2E0FF',
   200: '#99CCF3',
   300: '#66B2FF',
   400: '#3399FF',
@@ -80,8 +81,8 @@ const TriggerButton = styled('button')(
   line-height: 1.5;
   background: transparent;
   cursor: pointer;
-  border: 1px solid ${theme.palette.mode === 'dark' ? blue[300] : blue[600]};
-  color: ${theme.palette.mode === 'dark' ? blue[300] : blue[600]};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? blue[300] : blue[500]};
 
   &:hover {
     background: ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
