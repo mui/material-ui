@@ -187,7 +187,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         },
         '& .MuiApi-item-title': {
           color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
-          backgroundColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[800]})`,
+          backgroundColor: alpha(darkTheme.palette.primaryDark[700], 0.6),
         },
         '& .MuiApi-item-link-visual': {
           borderColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
@@ -228,8 +228,8 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       '& .prop-list-default-props': {
         color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
         code: {
-          borderColor: `var(--muidocs-palette-grey-800, ${darkTheme.palette.grey[800]})`,
-          backgroundColor: alpha(darkTheme.palette.grey[900], 0.5),
+          borderColor: alpha(darkTheme.palette.primary[800], 0.4),
+          backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
         },
       },
     },
