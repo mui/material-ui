@@ -45,8 +45,8 @@ export default function SliderValueLabel(props: SliderValueLabelProps) {
   );
 }
 
-(SliderValueLabel as any).propTypes = {
+SliderValueLabel.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
   value: PropTypes.node,
-};
+} as any;
