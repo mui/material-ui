@@ -1083,6 +1083,6 @@ Slider.propTypes /* remove-proptypes */ = {
    * }
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-};
+} as any;
 
 export default Slider;
