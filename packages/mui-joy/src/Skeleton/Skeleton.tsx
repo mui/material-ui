@@ -237,6 +237,9 @@ const SkeletonRoot = styled('span', {
         width: '100%',
         height: '100%',
         zIndex: 'var(--unstable_pseudo-zIndex)',
+        ...(ownerState.animation === 'pulse' && {
+          backgroundColor: theme.vars.palette.background.surface,
+        }),
         ...(ownerState.level !== 'inherit' && {
           ...theme.typography[ownerState.level!],
         }),
@@ -360,5 +363,8 @@ Skeleton.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
 } as any;
+
+// @ts-ignore internal usage only with Typography and Link
+Skeleton.muiName = 'Skeleton';
 
 export default Skeleton;

@@ -1,7 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import {
+  unstable_capitalize as capitalize,
+  unstable_isMuiElement as isMuiElement,
+} from '@mui/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import composeClasses from '@mui/base/composeClasses';
 import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
@@ -248,8 +251,11 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
         {startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
-
-        {children}
+        {isMuiElement(children, ['Skeleton'])
+          ? React.cloneElement(children as React.ReactElement, {
+              variant: (children as React.ReactElement).props.variant || 'inline',
+            })
+          : children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
       </SlotRoot>
     </TypographyNestedContext.Provider>
