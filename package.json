@@ -151,7 +151,7 @@
     "fast-glob": "^3.3.0",
     "format-util": "^1.0.5",
     "fs-extra": "^11.1.1",
-    "globby": "^13.2.1",
+    "globby": "^13.2.2",
     "google-auth-library": "^8.9.0",
     "html-webpack-plugin": "^5.5.3",
     "jsdom": "^22.1.0",
