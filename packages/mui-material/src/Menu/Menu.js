@@ -2,7 +2,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses, resolveComponentProps } from '@mui/base';
 import { HTMLElementType } from '@mui/utils';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
@@ -68,6 +68,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const {
     autoFocus = true,
     children,
+    className,
     disableAutoFocusItem = false,
     MenuListProps = {},
     onClose,
@@ -77,6 +78,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     transitionDuration = 'auto',
     TransitionProps: { onEntering, ...TransitionProps } = {},
     variant = 'selectedMenu',
+    slots,
+    slotProps,
     ...other
   } = props;
 
@@ -155,6 +158,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     }
   });
 
+  const PaperSlot = slots?.paper ?? MenuPaper;
+  const paperSlotProps = slotProps?.paper ?? PaperProps;
+
   return (
     <MenuRoot
       onClose={onClose}
@@ -163,24 +169,26 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
         horizontal: isRtl ? 'right' : 'left',
       }}
       transformOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
-      slots={{ paper: MenuPaper }}
+      slots={{
+        paper: PaperSlot,
+        root: slots?.root,
+      }}
       slotProps={{
+        root: {
+          ...resolveComponentProps(slotProps?.root, ownerState),
+          className: clsx(classes?.root, PopoverClasses?.root, className),
+        },
         paper: {
-          ...PaperProps,
-          classes: {
-            ...PaperProps.classes,
-            root: classes.paper,
-          },
+          ...resolveComponentProps(paperSlotProps, ownerState),
+          className: clsx(classes?.paper, PopoverClasses?.paper, paperSlotProps?.classes),
         },
       }}
-      className={classes.root}
       open={open}
       ref={ref}
       transitionDuration={transitionDuration}
       TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
       ownerState={ownerState}
       {...other}
-      classes={PopoverClasses}
     >
       <MenuMenuList
         onKeyDown={handleListKeyDown}
@@ -227,6 +235,10 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * When opening the menu will not focus the active item but the `[role="menu"]`
    * unless `autoFocus` is also set to `false`. Not using the default means not
    * following WAI-ARIA authoring practices. Please be considerate about possible
@@ -258,6 +270,23 @@ Menu.propTypes /* remove-proptypes */ = {
    * `classes` prop applied to the [`Popover`](/material-ui/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
+  /**
+   * The props used for each slot inside the Menu.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Menu.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    paper: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
