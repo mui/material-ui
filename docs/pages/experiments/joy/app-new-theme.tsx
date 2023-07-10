@@ -281,6 +281,40 @@ export const newTheme = extendTheme({
         }),
       },
     },
+    JoyTabs: {
+      styleOverrides: {
+        root: {
+          '--ListItem-radius': '8px',
+        },
+      },
+    },
+    JoyTabList: {
+      styleOverrides: {
+        root: {
+          '--ListItem-radius': '8px',
+          padding: '4px',
+          '&:active': {
+            boxShadow: [
+              'inset 0px 1px 0px rgba(210, 210, 210, 0.2)',
+              'inset 0px -1px 0px rgba(0, 0, 0, 0.08)',
+            ].join(', '),
+          },
+        },
+      },
+    },
+    JoyTab: {
+      styleOverrides: {
+        root: {
+          '--Tab-indicatorThickness': '0',
+          '&:active': {
+            boxShadow: [
+              'inset 0px 1px 0px rgba(210, 210, 210, 0.2)',
+              'inset 0px -1px 0px rgba(0, 0, 0, 0.08)',
+            ].join(', '),
+          },
+        },
+      },
+    },
     JoyCard: {
       styleOverrides: {
         root: ({ theme, ownerState }) => ({
@@ -893,21 +927,27 @@ export default function FilesNewTheme() {
           </Box>
           <Divider />
           <Tabs>
-            <TabList disableUnderline variant="solid" color="warning">
-              <Tab indicatorPlacement="top">Details</Tab>
-              <Tab indicatorPlacement="top">Activity</Tab>
+            <TabList variant="solid" color="primary">
+              <Tab>Details</Tab>
+              <Tab>Activity</Tab>
             </TabList>
-            <TabList variant="soft" color="warning">
-              <Tab indicatorPlacement="top">Details</Tab>
-              <Tab indicatorPlacement="top">Activity</Tab>
+          </Tabs>
+          <Tabs>
+            <TabList variant="soft" color="primary">
+              <Tab>Details</Tab>
+              <Tab>Activity</Tab>
             </TabList>
-            <TabList variant="outlined" color="warning">
-              <Tab indicatorPlacement="top">Details</Tab>
-              <Tab indicatorPlacement="top">Activity</Tab>
+          </Tabs>
+          <Tabs>
+            <TabList variant="outlined" color="primary">
+              <Tab>Details</Tab>
+              <Tab>Activity</Tab>
             </TabList>
-            <TabList variant="plain" color="warning">
-              <Tab indicatorPlacement="top">Details</Tab>
-              <Tab indicatorPlacement="top">Activity</Tab>
+          </Tabs>
+          <Tabs>
+            <TabList variant="plain" color="primary">
+              <Tab>Details</Tab>
+              <Tab>Activity</Tab>
             </TabList>
           </Tabs>
           <AspectRatio ratio="21/9">
