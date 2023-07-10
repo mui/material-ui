@@ -65,7 +65,7 @@ async function main() {
         [
           `${declarationFile} imports from 'prop-types', this is wrong.`,
           "It's likely missing a cast to any on the propTypes declaration:",
-          'ComponentName.propTypes = { /* prop */ } as any;',
+          '(ComponentName as any).propTypes = { /* prop */ };',
         ].join('\n'),
       );
     }
