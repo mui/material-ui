@@ -50,7 +50,7 @@ export default function TemplateDemo() {
                   Upgrade your <GradientText>design workflow</GradientText>
                 </Typography>
               }
-              description="The UI kits contain many of the MUI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date MUI release."
+              description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date Material UI release."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>

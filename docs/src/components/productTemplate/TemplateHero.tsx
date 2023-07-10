@@ -35,8 +35,7 @@ export default function TemplateHero() {
             <IconImage width={28} height={28} name="product-templates" /> Templates
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            <GradientText>Fully built</GradientText> templates
-            <br /> for your app
+            <GradientText>Fully built</GradientText> Material&nbsp;UI templates
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             A collection of 4.5 average rating templates, selected and curated by MUI&apos;s team of
