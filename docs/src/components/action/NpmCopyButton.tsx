@@ -42,14 +42,6 @@ const StyledButton = styled(Button)`
   -webkit-font-smoothing: subpixel-antialiased;
   margin-top: 16px;
 
-  &:hover,
-  &.Mui-focusVisible {
-    color: var(--muidocs-palette-primary-main);
-    & svg {
-      opacity: 1;
-    }
-  }
-
   & svg {
     display: inline-block;
     position: absolute;
@@ -60,6 +52,15 @@ const StyledButton = styled(Button)`
     transition-property: opacity;
     transition-duration: 100ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover,
+  &.Mui-focusVisible {
+    color: var(--muidocs-palette-primary-main);
+
+    & svg {
+      opacity: 1;
+    }
   }
 `;
 
