@@ -18,7 +18,6 @@ export default function TableOfContentsBanner() {
           display: 'flex',
           alignItems: 'center',
           gap: 1.5,
-          overflow: 'auto',
           backgroundColor: alpha(theme.palette.grey[50], 0.4),
           border: '1px solid',
           borderColor: (theme.vars || theme).palette.divider,
@@ -47,7 +46,7 @@ export default function TableOfContentsBanner() {
         <Box sx={{ height: 6, width: 16, backgroundColor: '#FFD700' }} />
       </Box>
       <Typography component="span" variant="caption" fontWeight="medium" color="text.secondary">
-        MUI stands in solidarity with the Ukrainian people.
+        MUI stands in solidarity with Ukraine.
       </Typography>
     </Link>
   ) : null;
