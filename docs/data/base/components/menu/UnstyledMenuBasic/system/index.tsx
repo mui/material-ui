@@ -101,6 +101,7 @@ export default function UnstyledMenuSimple() {
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
+  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
@@ -170,15 +171,16 @@ const StyledMenuItem = styled(MenuItem)(
 const TriggerButton = styled(Button)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
+  font-weight: 600;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 8px 14px;
+  border-radius: 8px;
+  padding: 8px 16px;
   line-height: 1.5;
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  background: transparent;
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? blue[300] : blue[500]};
+  cursor: pointer;
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

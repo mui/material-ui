@@ -193,14 +193,15 @@ function Styles() {
     .TriggerButton {
       font-family: IBM Plex Sans, sans-serif;
       font-size: 0.875rem;
+      font-weight: 600;
       box-sizing: border-box;
-      min-height: calc(1.5em + 22px);
-      border-radius: 12px;
-      padding: 8px 14px;
+      border-radius: 8px;
+      padding: 8px 16px;
       line-height: 1.5;
-      background: ${isDarkMode ? grey[900] : '#fff'};
-      border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
-      color: ${isDarkMode ? grey[300] : grey[900]};
+      background: transparent;
+      cursor: pointer;
+      border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
+      color: ${isDarkMode ? cyan[300] : cyan[400]};
     
       transition-property: all;
       transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
