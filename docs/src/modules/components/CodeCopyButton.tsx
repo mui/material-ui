@@ -1,5 +1,7 @@
 import * as React from 'react';
 import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import LibraryAddCheckRoundedIcon from '@mui/icons-material/LibraryAddCheckRounded';
 
 interface CodeCopyButtonProps {
   code: string;
@@ -24,7 +26,11 @@ export default function CodeCopyButton(props: CodeCopyButtonProps) {
       }}
     >
       {/* material-ui/no-hardcoded-labels */}
-      {isCopied ? 'Copied' : 'Copy'}&nbsp;
+      {isCopied ? (
+        <LibraryAddCheckRoundedIcon sx={{ fontSize: 18 }} />
+      ) : (
+        <ContentCopyRoundedIcon sx={{ fontSize: 18 }} />
+      )}
       <span className="MuiCode-copyKeypress">
         <span>(or</span> {key}C<span>)</span>
       </span>

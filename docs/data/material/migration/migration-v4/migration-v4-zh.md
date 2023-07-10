@@ -128,13 +128,13 @@ function App() {
 
 With npm:
 
-```sh
+```bash
 npm install @mui/material @mui/styles
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/material @mui/styles
 ```
 
@@ -144,13 +144,13 @@ yarn add @mui/material @mui/styles
 
 With npm:
 
-```sh
+```bash
 npm install @mui/lab
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/lab
 ```
 
@@ -158,13 +158,13 @@ yarn add @mui/lab
 
 With npm:
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 
@@ -178,13 +178,13 @@ yarn add @mui/icons-material
 
 With npm:
 
-```sh
+```bash
 npm install @emotion/react @emotion/styled
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @emotion/react @emotion/styled
 ```
 
@@ -278,7 +278,7 @@ const ChipWithGreenIcon = () => (
 
 This codemod contains most of the transformers that are necessary for migration. 它应该只在**每个文件夹**中应用一次。
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
@@ -309,7 +309,7 @@ createMuiTheme({
 
 如果你想在你的组件中保留`variant="standard"`，请运行这个codemod或者配置相应的默认主题props。
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/variant-prop <path>
 ```
 
@@ -339,7 +339,7 @@ createMuiTheme({
 
 如果你想保留`underline="hover"`，请运行这个codemod，否则就配置相应的默认主题props。
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 
