@@ -21,14 +21,9 @@ A sub-optimal tool means a waste of time and effort for everyone. Maintaining th
 
 Toolpad is an open-source, low-code, drag-and-drop admin builder. The primary purpose of Toolpad is to create data-intensive React apps faster. Toolpad simplifies writing back-end logic, connecting to a data source, querying and mutating data, and deploying an app. It can quickly convert an API, script, or SQL query into a web UI.
 
-Toolpad is not ideal for building static web pages, mobile apps, or customer-facing custom-designed front ends. It's for building admin applications, CRUD interfaces, custom internal tools, and analytics dashboards.
+Toolpad is not ideal for building static web pages, mobile apps, or customer-facing custom-designed front-ends. It's for building admin applications, CRUD interfaces, custom internal tools, and analytics dashboards.
 
 <img alt="Building an application on Toolpad " src="/static/blog/2023-toolpad-beta-announcement/toolpad.png" style="margin-bottom: 16px;" loading="lazy" width="2048" height="1536" />
-
-<iframe style="width:100%; height:350px; border:0; border-radius: 10px; overflow:hidden; margin-bottom: 24px"
-src="https://codesandbox.io/p/sandbox/github/mui/mui-toolpad/tree/master/examples/npm-stats?embed=1"
-title="Demo of a Toolpad app"
-></iframe>
 
 ## Who is Toolpad for?
 
@@ -38,7 +33,7 @@ Toolpad is for full-stack and back-end developers. They build, manage, and integ
 
 ## What are the main features available today?
 
-### Use MUI Core and MUI X Pro components
+### Use Material UI and MUI X Pro components
 
 MUI Core provides all modern components; a chosen few are currently available inside Toolpad, and we're adding more all the time. MUI X Pro (Data Grid and Date Picker) components are also available for free in Toolpad.
 
@@ -48,13 +43,13 @@ MUI Core provides all modern components; a chosen few are currently available in
 
 Toolpad can import [external React components](https://mui.com/toolpad/concepts/custom-components/), ready to be used in its visual designer. Your past effort shouldn't go to waste and you shouldn't be limited by the stock component suite.
 
-### Bring your own back end
+### Bring your own back-end
 
-Directly integrate with your Node.js back end and have your data available on the page without writing any REST endpoints or fetch logic. Need that prisma model on the page? Expose it through a serverless function and Toolpad does the rest.
+Directly integrate with your Node.js back-end and have your data available on the page without writing any REST endpoints or fetch logic. Need that prisma model on the page? Expose it through a serverless function and Toolpad does the rest.
 
 ### Own your code
 
-Toolpad runs fully locally. You're not stuck with an online code editor or a suboptimal github integration. All configuration is stored in local files which you can version-control, edit, and deploy in any way you want.
+Toolpad runs fully locally. You're not stuck with an online code editor or a suboptimal GitHub integration. All configuration is stored in local files which you can version-control, edit, and deploy in any way you want.
 
 <img alt="Building an application on Toolpad " src="/static/blog/2023-toolpad-beta-announcement/code.png" style="margin-bottom: 16px;" loading="lazy" width="2048" height="1536" />
 
