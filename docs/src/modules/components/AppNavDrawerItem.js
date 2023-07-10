@@ -283,22 +283,6 @@ export default function AppNavDrawerItem(props) {
   };
 
   const hasIcon = icon && (typeof icon !== 'string' || !!standardNavIcons[icon]);
-  const IconComponent = typeof icon === 'string' ? standardNavIcons[icon] : icon;
-  const iconElement = hasIcon ? (
-    <Box
-      component="span"
-      sx={{
-        '& svg': { fontSize: (theme) => theme.typography.pxToRem(16.5) },
-        display: 'flex',
-        alignItems: 'center',
-        height: '100%',
-        marginRight: 1.5,
-        py: '2px',
-      }}
-    >
-      <IconComponent fontSize="small" color="primary" />
-    </Box>
-  ) : null;
 
   return (
     <StyledLi {...other} depth={depth}>
@@ -315,7 +299,6 @@ export default function AppNavDrawerItem(props) {
         onClick={handleClick}
         {...linkProps}
       >
-        {/* {iconElement} */}
         {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
         {title}
         {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
