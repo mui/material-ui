@@ -118,7 +118,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       padding: '6px 12px',
       fontWeight: theme.typography.fontWeightMedium,
       border: '1px solid',
-      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      borderColor: `var(--muidocs-palette-warning-300, ${lightTheme.palette.warning[300]})`,
       borderRadius: 8,
       backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
       color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
@@ -213,7 +213,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         },
       },
       '& .MuiAlert-standardWarning': {
-        borderColor: alpha(darkTheme.palette.grey[800], 0.5),
+        borderColor: alpha(darkTheme.palette.warning[800], 0.3),
         backgroundColor: alpha(darkTheme.palette.warning[800], 0.2),
         color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
         '.MuiAlert-icon svg': {
