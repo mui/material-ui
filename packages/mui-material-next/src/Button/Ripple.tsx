@@ -84,6 +84,6 @@ Ripple.propTypes = {
    * exit delay
    */
   timeout: PropTypes.number.isRequired,
-};
+} as any;
 
 export default Ripple;
