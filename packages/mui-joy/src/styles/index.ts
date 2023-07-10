@@ -22,8 +22,6 @@ export type {
   PaletteNeutralOverrides,
   PaletteDanger,
   PaletteDangerOverrides,
-  PaletteInfo,
-  PaletteInfoOverrides,
   PaletteSuccess,
   PaletteSuccessOverrides,
   PaletteWarning,

@@ -128,10 +128,6 @@ export interface PaletteDangerOverrides {}
 export interface PaletteDanger
   extends OverridableRecord<PaletteRange, PaletteDangerOverrides, string> {}
 
-export interface PaletteInfoOverrides {}
-export interface PaletteInfo
-  extends OverridableRecord<PaletteRange, PaletteInfoOverrides, string> {}
-
 export interface PaletteSuccessOverrides {}
 export interface PaletteSuccess
   extends OverridableRecord<PaletteRange, PaletteSuccessOverrides, string> {}
@@ -147,7 +143,6 @@ export interface Palette
       primary: PalettePrimary;
       neutral: PaletteNeutral;
       danger: PaletteDanger;
-      info: PaletteInfo;
       success: PaletteSuccess;
       warning: PaletteWarning;
       common: PaletteCommon;
@@ -167,7 +162,6 @@ export type PaletteOptions = MergeDefault<
     primary: DefaultPaletteRange & PaletteVariant;
     neutral: DefaultPaletteRange & PaletteVariant;
     danger: DefaultPaletteRange & PaletteVariant;
-    info: DefaultPaletteRange & PaletteVariant;
     success: DefaultPaletteRange & PaletteVariant;
     warning: DefaultPaletteRange & PaletteVariant;
     background: DefaultPaletteBackground;

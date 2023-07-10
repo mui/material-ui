@@ -39,6 +39,7 @@ export default function LinkUsage() {
         {
           propName: 'color',
           knob: 'color',
+          defaultValue: 'primary',
         },
         { propName: 'disabled', knob: 'switch' },
       ]}
