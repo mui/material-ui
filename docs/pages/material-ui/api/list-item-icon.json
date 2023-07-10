@@ -16,6 +16,8 @@
     "name": "MuiListItemIcon"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListItemIcon",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ListItemIcon/ListItemIcon.js",
   "inheritance": null,

@@ -23,7 +23,7 @@ This could be caused by other dependencies in the app that still rely on Materia
 To check this, run `npm ls @material-ui/core` (or `yarn why @material-ui/core`).
 If your project contains such dependencies, you will see a list that looks something like this:
 
-```sh
+```bash
 $ npm ls @material-ui/core
 project@0.1.0 /path/to/project
 └─┬  @mui/x-data-grid@4.0.0
@@ -86,7 +86,7 @@ export const decorators = [withThemeProvider];
 // ...other storybook exports
 ```
 
-:::warning
+:::info
 
 This solution has been tested on the following versions:
 
@@ -203,7 +203,7 @@ For more details, see [this GitHub issue](https://github.com/mui/material-ui/iss
 
 We recommend using this codemod to fix all imports in your project:
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/optimal-imports <path>
 ```
 

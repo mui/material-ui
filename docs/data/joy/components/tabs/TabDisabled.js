@@ -5,7 +5,7 @@ import Tab from '@mui/joy/Tab';
 
 export default function TabDisabled() {
   return (
-    <Tabs aria-label="Disabled tabs" defaultValue={0}>
+    <Tabs aria-label="Disabled tabs" defaultValue={0} sx={{ borderRadius: 'lg' }}>
       <TabList>
         <Tab>First tab</Tab>
         <Tab disabled>Second tab</Tab>

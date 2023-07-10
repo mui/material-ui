@@ -24,7 +24,7 @@ For example, users can now group orders by buyers, movies by directors, or citie
 These kinds of use cases would usually be dealt with using a new query on the database—which might require a new service end-point, and maybe even a new front-end, along with all the UX challenges this would entail.
 Now this functionality is available to your users with a single click.
 
-<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
+<video autoplay muted loop playsinline controls>
   <source src="/static/blog/premium-plan-release/row-grouping-example.mp4" type="video/mp4" />
 </video>
 
@@ -48,7 +48,7 @@ This is one of the most requested features to date, so we're excited to finally 
 
 In the future we intend to support all of the features impacting visualization of the data grid, but we'd love to hear from you if there's anything in particular you'd like to see in future releases.
 
-<video style="margin-bottom: 24px;" autoplay muted loop playsinline>
+<video autoplay muted loop playsinline>
   <source src="/static/blog/premium-plan-release/excel-export-example.mp4" type="video/mp4" />
 </video>
 
@@ -63,7 +63,7 @@ Expanding on the use cases in the previous examples, users will be able to dynam
 
 Aggregation functions open up an exponential number of new possibilities for organizing data—all with just a few clicks.
 
-<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
+<video autoplay muted loop playsinline controls>
   <source src="/static/blog/premium-plan-release/aggregation-example.mp4" type="video/mp4" />
 </video>
 
@@ -79,7 +79,7 @@ We'd also like to keep it within reach of individuals and small teams, while sti
 Here is a list of everything that has changed:
 
 :::warning
-⚠️ Please note: The following **pricing** changes apply only to **new customers**.
+The following **pricing** changes apply only to **new customers**.
 Existing customers are grandfathered, they can renew their license under the [previous terms](https://mui.com/legal/mui-x-eula-2022-05-08/) once.
 Their last renewal can have a support duration of up to 5 years.
 :::

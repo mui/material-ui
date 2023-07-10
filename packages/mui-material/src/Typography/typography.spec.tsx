@@ -2,7 +2,9 @@ import * as React from 'react';
 import { Typography } from '@mui/material';
 
 const typographyTest = () => {
-  const CustomComponent: React.FC<{ prop1: string; prop2: number }> = () => <div />;
+  const CustomComponent: React.FC<{ prop1: string; prop2: number }> = function CustomComponent() {
+    return <div />;
+  };
   return (
     <div>
       <Typography />

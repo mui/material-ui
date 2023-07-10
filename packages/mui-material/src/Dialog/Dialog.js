@@ -125,7 +125,7 @@ const DialogPaper = styled(Paper, {
     maxWidth:
       theme.breakpoints.unit === 'px'
         ? Math.max(theme.breakpoints.values.xs, 444)
-        : `${theme.breakpoints.values.xs}${theme.breakpoints.unit}`,
+        : `max(${theme.breakpoints.values.xs}${theme.breakpoints.unit}, 444px)`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
@@ -298,8 +298,8 @@ Dialog.propTypes /* remove-proptypes */ = {
   'aria-labelledby': PropTypes.string,
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
-   * @deprecated Use `components.Backdrop` instead. While this prop currently works, it will be removed in the next major version.
-   * Use the `components.Backdrop` prop to make your application ready for the next version of Material UI.
+   * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
+   * Use the `slots.backdrop` prop to make your application ready for the next version of Material UI.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',

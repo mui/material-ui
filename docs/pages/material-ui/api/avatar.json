@@ -29,6 +29,8 @@
     "name": "MuiAvatar"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAvatar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Avatar/Avatar.js",
   "inheritance": null,

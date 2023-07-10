@@ -15,9 +15,11 @@ const FlashCode = styled('div', {
     height: `calc(${lineHeight} * 1.5 * ${endLine - startLine + 1})`,
     transition: '0.3s',
     ...theme.typography.caption,
-    backgroundColor: alpha(theme.palette.primary.main, 0.2),
+    backgroundColor: theme.vars
+      ? `rgba(${theme.vars.palette.primary.mainChannel} / 0.2)`
+      : alpha(theme.palette.primary.main, 0.2),
     border: '1px solid',
-    borderColor: theme.palette.primary.dark,
+    borderColor: (theme.vars || theme).palette.primary.dark,
   }),
 );
 

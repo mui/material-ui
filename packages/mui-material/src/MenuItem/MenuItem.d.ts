@@ -38,7 +38,7 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
      */
     divider?: boolean;
     /**
-     * Use to apply selected styling.
+     * If `true`, the component is selected.
      * @default false
      */
     selected?: boolean;

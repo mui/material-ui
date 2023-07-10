@@ -44,6 +44,8 @@
     "name": "MuiCircularProgress"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCircularProgress",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/CircularProgress/CircularProgress.js",
   "inheritance": null,

@@ -18,13 +18,13 @@ _（调整窗口大小以查看响应的断点）_
 
 To install and save in your `package.json` dependencies, run the command below using **npm**:
 
-```sh
+```bash
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
 Or **yarn**:
 
-```sh
+```bash
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
@@ -32,11 +32,11 @@ Or if you want to use `styled-components` as a styling engine:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npm install @mui/system @mui/styled-engine-sc styled-components
 ```
 
-```sh
+```bash
 yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 

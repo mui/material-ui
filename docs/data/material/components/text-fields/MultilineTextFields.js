@@ -3,12 +3,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function MultilineTextFields() {
-  const [value, setValue] = React.useState('Controlled');
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
   return (
     <Box
       component="form"
@@ -24,8 +18,6 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           maxRows={4}
-          value={value}
-          onChange={handleChange}
         />
         <TextField
           id="outlined-textarea"
@@ -47,8 +39,6 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           maxRows={4}
-          value={value}
-          onChange={handleChange}
           variant="filled"
         />
         <TextField
@@ -73,8 +63,6 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           maxRows={4}
-          value={value}
-          onChange={handleChange}
           variant="standard"
         />
         <TextField

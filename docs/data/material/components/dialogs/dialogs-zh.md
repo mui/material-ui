@@ -1,10 +1,10 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Dialog（对话框）组件
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
-materialDesign: https://material.io/components/dialogs
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
+materialDesign: https://m2.material.io/components/dialogs
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
 
 # Dialog 对话框
@@ -26,7 +26,7 @@ A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in 
 - 选中一个选项则会立刻触发提交选项，并关闭菜单的操作
 - 在对话框外点击，或按下“返回”，将会取消操作并关闭对话框。
 
-{{"demo": "SimpleDialog.js"}}
+{{"demo": "SimpleDialogDemo.js"}}
 
 ## 警告框
 

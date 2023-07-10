@@ -1,11 +1,26 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type TabSlot = 'root';
 
-export interface TabPropsColorOverrides {}
+export interface TabSlots {
+  /**
+   * The component that renders the root.
+   * @default 'button'
+   */
+  root?: React.ElementType;
+}
 
+export type TabSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TabSlots,
+  {
+    root: SlotProps<'button', {}, TabOwnerState>;
+  }
+>;
+
+export interface TabPropsColorOverrides {}
 export interface TabPropsVariantOverrides {}
 
 export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
@@ -36,7 +51,7 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     sx?: SxProps;
     /**
-     * You can provide your own value. Otherwise, we fall back to the child position index.
+     * You can provide your own value. Otherwise, it falls back to the child position index.
      */
     value?: number | string;
     /**
@@ -44,11 +59,11 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     onChange?: (event: React.SyntheticEvent, value: number | string) => void;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, TabPropsVariantOverrides>;
-  };
+  } & TabSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -57,7 +72,7 @@ export type TabProps<
   P = { component?: React.ElementType },
 > = OverrideProps<TabTypeMap<P, D>, D>;
 
-export interface TabOwnerState extends TabProps {
+export interface TabOwnerState extends ApplyColorInversion<TabProps> {
   /**
    * If `true`, the tab is activated by mouse or keyboard.
    */

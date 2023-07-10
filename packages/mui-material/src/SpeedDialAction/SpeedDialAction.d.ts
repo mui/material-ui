@@ -53,7 +53,7 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
  *
  * Demos:
  *
- * - [Speed dial](https://mui.com/material-ui/react-speed-dial/)
+ * - [Speed Dial](https://mui.com/material-ui/react-speed-dial/)
  *
  * API:
  *

@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Timeline（时间轴）组件
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
 githubLabel: 'component: timeline'
@@ -10,7 +10,7 @@ packageName: '@mui/lab'
 
 <p class="description">时间轴组件按时间顺序来展示了一系列的事件。</p>
 
-**请注意：**该组件不再出现在 [Material Design 指南](https://material.io/)中, 但 Material-UI 会继续支持此组件。
+**请注意：**该组件不再出现在 [Material Design 指南](https://m2.material.io/)中, 但 Material-UI 会继续支持此组件。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

@@ -13,6 +13,8 @@
   "name": "TableBody",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableBody" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTableBody",
   "forwardsRefTo": "HTMLTableSectionElement",
   "filename": "/packages/mui-material/src/TableBody/TableBody.js",
   "inheritance": null,

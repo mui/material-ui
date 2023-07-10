@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps } from '..';
+import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { Theme } from '../styles';
@@ -79,11 +80,13 @@ export interface MenuProps extends StandardProps<PopoverProps> {
   variant?: 'menu' | 'selectedMenu';
 }
 
+export declare const MenuPaper: React.FC<PaperProps>;
+
 /**
  *
  * Demos:
  *
- * - [App bar](https://mui.com/material-ui/react-app-bar/)
+ * - [App Bar](https://mui.com/material-ui/react-app-bar/)
  * - [Menu](https://mui.com/material-ui/react-menu/)
  *
  * API:

@@ -219,10 +219,10 @@ describe('makeStyles', () => {
 
     it('should run lifecycles with no theme', () => {
       const useStyles = makeStyles({ root: { display: 'flex' } });
-      const StyledComponent = () => {
+      function StyledComponent() {
         useStyles();
         return <div />;
-      };
+      }
 
       const wrapper = mount(
         <ThemeProvider theme={createTheme()}>
@@ -252,10 +252,10 @@ describe('makeStyles', () => {
       const useStyles = makeStyles((theme) => ({ root: { padding: theme.spacing(1) } }), {
         name: 'MuiTextField',
       });
-      const StyledComponent = () => {
+      function StyledComponent() {
         useStyles();
         return <div />;
-      };
+      }
 
       const wrapper = mount(
         <ThemeProvider theme={createTheme()}>
@@ -289,10 +289,10 @@ describe('makeStyles', () => {
             name: 'MuiTextField',
           },
         );
-        const StyledComponent = () => {
+        function StyledComponent() {
           useStyles();
           return <div />;
-        };
+        }
 
         mount(
           <ThemeProvider
@@ -358,20 +358,22 @@ describe('makeStyles', () => {
       const useStyles = makeStyles({
         root: (props) => ({ margin: 8, padding: props.padding || 8 }),
       });
-      const StyledComponent = (props) => {
+      function StyledComponent(props) {
         const classes = useStyles(props);
         return <div className={classes.root} />;
-      };
+      }
 
-      const Test = (props) => (
-        <StylesProvider
-          sheetsRegistry={sheetsRegistry}
-          sheetsCache={new Map()}
-          generateClassName={generateClassName}
-        >
-          <StyledComponent {...props} />
-        </StylesProvider>
-      );
+      function Test(props) {
+        return (
+          <StylesProvider
+            sheetsRegistry={sheetsRegistry}
+            sheetsCache={new Map()}
+            generateClassName={generateClassName}
+          >
+            <StyledComponent {...props} />
+          </StylesProvider>
+        );
+      }
 
       const wrapper = mount(<Test />);
       expect(sheetsRegistry.registry.length).to.equal(2);
@@ -396,12 +398,14 @@ describe('makeStyles', () => {
   describe('options: disableGeneration', () => {
     it('should not generate the styles', () => {
       const sheetsRegistry = new SheetsRegistry();
-      const Empty = () => <div />;
+      function Empty() {
+        return <div />;
+      }
       const useStyles = makeStyles({ root: { padding: 8 } });
-      const StyledComponent = () => {
+      function StyledComponent() {
         const classes = useStyles();
         return <Empty classes={classes} />;
-      };
+      }
 
       const wrapper = mount(
         <StylesProvider sheetsRegistry={sheetsRegistry} disableGeneration sheetsCache={new Map()}>
@@ -424,16 +428,16 @@ describe('makeStyles', () => {
 
     it('should use the displayName', () => {
       const useStyles1 = makeStyles({ root: { padding: 8 } });
-      const StyledComponent1 = () => {
+      function StyledComponent1() {
         useStyles1();
         return <div />;
-      };
+      }
 
       const useStyles2 = makeStyles({ root: { padding: 8 } }, { name: 'Fooo' });
-      const StyledComponent2 = () => {
+      function StyledComponent2() {
         useStyles2();
         return <div />;
-      };
+      }
 
       mount(
         <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
@@ -483,7 +487,7 @@ describe('makeStyles', () => {
         backgroundColor: PropTypes.string.isRequired,
       };
 
-      StressTest = () => {
+      StressTest = function StressTestComponent() {
         const [backgroundColor, setBackgroundColor] = React.useState('black');
         const handleBackgroundColorChange = (event) => {
           setBackgroundColor(event.target.value);

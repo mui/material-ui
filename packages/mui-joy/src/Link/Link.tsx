@@ -7,13 +7,14 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import { useSlotProps } from '@mui/base/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
-import { TypographyContext } from '../Typography/Typography';
+import { TypographyNestedContext, TypographyInheritContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: LinkOwnerState) => {
   const { level, color, variant, underline, focusVisible, disabled } = ownerState;
@@ -39,19 +40,29 @@ const StartDecorator = styled('span', {
   name: 'JoyLink',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: LinkOwnerState }>({
+})<{ ownerState: LinkOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineEnd: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)',
-});
+  marginInlineEnd: 'clamp(4px, var(--Link-gap, 0.375em), 0.75rem)',
+  ...(typeof ownerState.startDecorator !== 'string' &&
+    (ownerState.alignItems === 'flex-start' ||
+      (ownerState.sx as any)?.alignItems === 'flex-start') && {
+      marginTop: '2px', // this makes the alignment perfect in most cases
+    }),
+}));
 
 const EndDecorator = styled('span', {
   name: 'JoyLink',
   slot: 'endDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: LinkOwnerState }>({
+})<{ ownerState: LinkOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineStart: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)',
-});
+  marginInlineStart: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)', // for end decorator, 0.25em looks better.
+  ...(typeof ownerState.startDecorator !== 'string' &&
+    (ownerState.alignItems === 'flex-start' ||
+      (ownerState.sx as any)?.alignItems === 'flex-start') && {
+      marginTop: '2px', // this makes the alignment perfect in most cases
+    }),
+}));
 
 const LinkRoot = styled('a', {
   name: 'JoyLink',
@@ -61,7 +72,6 @@ const LinkRoot = styled('a', {
   return [
     {
       '--Icon-fontSize': '1.25em',
-      '--CircularProgress-size': '1em',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
       ...(ownerState.level === 'inherit' && {
         fontSize: 'inherit',
@@ -93,22 +103,29 @@ const LinkRoot = styled('a', {
       margin: 0, // Remove the margin in Safari
       borderRadius: theme.vars.radius.xs,
       padding: 0, // Remove the padding in Firefox
-      textDecorationColor: `rgba(${
-        theme.vars.palette[ownerState.color!]?.mainChannel
-      } / var(--Link-underlineOpacity, 0.72))`,
+      cursor: 'pointer',
+      ...(ownerState.color !== 'context' && {
+        textDecorationColor: `rgba(${
+          theme.vars.palette[ownerState.color!]?.mainChannel
+        } / var(--Link-underlineOpacity, 0.72))`,
+      }),
       ...(ownerState.variant
         ? {
-            paddingInline: '0.25em', // better than left, right because it also works with writing mode.
-            ...(!ownerState.nested && {
-              marginInline: '-0.25em',
+            paddingBlock: 'min(0.15em, 4px)',
+            paddingInline: '0.375em', // better than left, right because it also works with writing mode.
+            ...(!ownerState.nesting && {
+              marginInline: '-0.375em',
             }),
           }
         : {
-            color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
-            cursor: 'pointer',
+            ...(ownerState.color !== 'context' && {
+              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
+            }),
             [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
-              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
+              ...(ownerState.color !== 'context' && {
+                color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
+              }),
             },
           }),
       userSelect: 'none',
@@ -128,8 +145,8 @@ const LinkRoot = styled('a', {
               left: 0,
               bottom: 0,
               right: 0,
-              borderRadius: `var(--internal-action-radius, inherit)`,
-              margin: `var(--internal-action-margin)`,
+              borderRadius: `var(--unstable_actionRadius, inherit)`,
+              margin: `var(--unstable_actionMargin)`,
             },
             [`${theme.focus.selector}`]: {
               '&::after': theme.focus.default,
@@ -149,24 +166,35 @@ const LinkRoot = styled('a', {
     },
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Link](https://mui.com/joy-ui/react-link/)
+ *
+ * API:
+ *
+ * - [Link API](https://mui.com/joy-ui/api/link/)
+ */
 const Link = React.forwardRef(function Link(inProps, ref) {
   const {
-    color = 'primary',
+    color: colorProp = 'primary',
     textColor,
+    variant,
     ...themeProps
   } = useThemeProps<typeof inProps & LinkProps>({
     props: inProps,
     name: 'JoyLink',
   });
 
-  const nested = React.useContext(TypographyContext);
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
+  const nesting = React.useContext(TypographyNestedContext);
+  const inheriting = React.useContext(TypographyInheritContext);
 
   const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
 
   const {
-    component = 'a',
-    componentsProps = {},
     children,
     disabled = false,
     onBlur,
@@ -174,13 +202,15 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     level: levelProp = 'body1',
     overlay = false,
     underline = 'hover',
-    variant,
     endDecorator,
     startDecorator,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
-  const level = nested ? inProps.level || 'inherit' : levelProp;
+  const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 
   const {
     isFocusVisibleRef,
@@ -212,53 +242,55 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   const ownerState = {
     ...props,
     color,
-    component,
     disabled,
     focusVisible,
     underline,
     variant,
     level,
     overlay,
-    nested,
+    nesting,
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const rootProps = useSlotProps({
-    elementType: LinkRoot,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
+  const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
-      ref: handleRef,
-      as: component,
       onBlur: handleBlur,
       onFocus: handleFocus,
     },
-    ownerState,
+    ref: handleRef,
     className: classes.root,
+    elementType: LinkRoot,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const startDecoratorProps = useSlotProps({
-    elementType: StartDecorator,
-    externalSlotProps: componentsProps.startDecorator,
-    ownerState,
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
+    elementType: StartDecorator,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const endDecoratorProps = useSlotProps({
-    elementType: EndDecorator,
-    externalSlotProps: componentsProps.endDecorator,
-    ownerState,
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
+    elementType: EndDecorator,
+    externalForwardedProps,
+    ownerState,
   });
 
   return (
-    <LinkRoot {...rootProps}>
-      {startDecorator && <StartDecorator {...startDecoratorProps}>{startDecorator}</StartDecorator>}
+    <TypographyNestedContext.Provider value>
+      <SlotRoot {...rootProps}>
+        {startDecorator && (
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
+        )}
 
-      {children}
-      {endDecorator && <EndDecorator {...endDecoratorProps}>{endDecorator}</EndDecorator>}
-    </LinkRoot>
+        {children}
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+      </SlotRoot>
+    </TypographyNestedContext.Provider>
   );
 }) as OverridableComponent<LinkTypeMap>;
 
@@ -285,15 +317,6 @@ Link.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -319,11 +342,29 @@ Link.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
-   * If `true`, the ::after psuedo element is added to cover the area of interaction.
+   * If `true`, the ::after pseudo element is added to cover the area of interaction.
    * The parent of the overlay Link should have `relative` CSS position.
    * @default false
    */
   overlay: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    endDecorator: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+  }),
   /**
    * Element placed before the children.
    */

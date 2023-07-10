@@ -40,7 +40,7 @@ export default function AlertVariousStates() {
               {title}
             </Typography>
             <Typography fontSize="sm" sx={{ opacity: 0.8 }}>
-              This is a {title} message.
+              This is a time-sensitive {title} Alert.
             </Typography>
           </div>
         </Alert>

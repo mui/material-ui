@@ -16,6 +16,8 @@
     "name": "MuiCardActionArea"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCardActionArea",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/CardActionArea/CardActionArea.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

@@ -141,11 +141,14 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   } = props;
 
   const context = React.useContext(ListContext);
-  const childContext = {
-    dense: dense || context.dense || false,
-    alignItems,
-    disableGutters,
-  };
+  const childContext = React.useMemo(
+    () => ({
+      dense: dense || context.dense || false,
+      alignItems,
+      disableGutters,
+    }),
+    [alignItems, context.dense, dense, disableGutters],
+  );
 
   const listItemRef = React.useRef(null);
   useEnhancedEffect(() => {
@@ -178,7 +181,8 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
       <ListItemButtonRoot
         ref={handleRef}
         href={other.href || other.to}
-        component={(other.href || other.to) && component === 'div' ? 'a' : component}
+        // `ButtonBase` processes `href` or `to` if `component` is set to 'button'
+        component={(other.href || other.to) && component === 'div' ? 'button' : component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         ownerState={ownerState}
         className={clsx(classes.root, className)}

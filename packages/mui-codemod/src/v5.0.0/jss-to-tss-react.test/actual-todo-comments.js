@@ -6,7 +6,7 @@ import clsx from "clsx";
 /*
 Comments that should not be lost when the clsx import comments are preserved.
  */
-import React from "react";
+import * as React from "react";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({

@@ -10,7 +10,7 @@ export default function HeroPricing() {
     <Container>
       <Box
         sx={{
-          height: '40vh',
+          height: '32vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -20,7 +20,12 @@ export default function HeroPricing() {
         <Typography
           component="h1"
           variant="body2"
-          color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
+          sx={(theme) => ({
+            color: 'primary.600',
+            ...theme.applyDarkStyles({
+              color: 'primary.400',
+            }),
+          })}
           fontWeight="bold"
         >
           Pricing

@@ -23,24 +23,34 @@ export default function Section(props: SelectionProps) {
       dark: 'primaryDark.700',
     },
   };
+
   return (
     <Box
       {...other}
-      sx={{
-        ...(bg === 'gradient'
-          ? {
-              background: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
-                  : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
-            }
-          : {
-              bgcolor: (theme) => map[bg][theme.palette.mode],
-            }),
-        py: { xs: 4, sm: 6, md: 8 },
-        overflow: 'hidden',
-        ...sx,
-      }}
+      sx={[
+        (theme) => ({
+          ...(bg === 'gradient'
+            ? {
+                background: `linear-gradient(180deg, ${
+                  (theme.vars || theme).palette.grey[50]
+                } 0%, #FFFFFF 100%)`,
+                ...theme.applyDarkStyles({
+                  background: `linear-gradient(180deg, ${
+                    (theme.vars || theme).palette.primaryDark[900]
+                  } 0%, #001E3C 100%)`,
+                }),
+              }
+            : {
+                bgcolor: map[bg].light,
+                ...theme.applyDarkStyles({
+                  bgcolor: map[bg].dark,
+                }),
+              }),
+          py: { xs: 4, sm: 6, md: 8 },
+          overflow: 'hidden',
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <Container>{children}</Container>
     </Box>

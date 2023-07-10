@@ -2,7 +2,7 @@
 
 <p class="description">Material Design layouts encourage consistency across platforms, environments, and screen sizes by using uniform elements and spacing.</p>
 
-[Responsive layouts](https://material.io/design/layout/responsive-layout-grid.html) in Material Design adapt to any possible screen size.
+[Responsive layouts](https://m2.material.io/design/layout/responsive-layout-grid.html) in Material Design adapt to any possible screen size.
 We provide the following helpers to make the UI responsive:
 
 - [Grid](/material-ui/react-grid/): The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.

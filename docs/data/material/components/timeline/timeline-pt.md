@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React para Linha do tempo
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
 githubLabel: 'component: timeline'
@@ -10,7 +10,7 @@ packageName: '@mui/lab'
 
 <p class="description">A linha do tempo exibe uma lista de eventos em ordem cronológica.</p>
 
-**Observação:** Este componente não está documentado nas [diretrizes do Material Design](https://material.io/), mas o Material-UI o suporta.
+**Observação:** Este componente não está documentado nas [diretrizes do Material Design](https://m2.material.io/), mas o Material-UI o suporta.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

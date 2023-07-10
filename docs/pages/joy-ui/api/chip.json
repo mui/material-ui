@@ -1,0 +1,117 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "endDecorator": { "type": { "name": "node" } },
+    "onClick": { "type": { "name": "func" } },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;string"
+      },
+      "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: func<br>&#124;&nbsp;object, endDecorator?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: elementType, endDecorator?: elementType, label?: elementType, root?: elementType, startDecorator?: elementType }"
+      },
+      "default": "{}"
+    },
+    "startDecorator": { "type": { "name": "node" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
+      },
+      "default": "'solid'"
+    }
+  },
+  "name": "Chip",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiChip-root"
+    },
+    {
+      "name": "label",
+      "description": "The component that renders the label.",
+      "default": "'span'",
+      "class": ".MuiChip-label"
+    },
+    {
+      "name": "action",
+      "description": "The component that renders the action.",
+      "default": "'button'",
+      "class": null
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component that renders the start decorator.",
+      "default": "'span'",
+      "class": ".MuiChip-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": ".MuiChip-endDecorator"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "labelLg",
+      "labelMd",
+      "labelSm",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyChip",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/Chip/Chip.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-chip/\">Chip</a></li></ul>",
+  "cssComponent": false
+}

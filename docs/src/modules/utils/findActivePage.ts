@@ -1,16 +1,54 @@
 import { MuiPage } from 'docs/src/pages';
 
-export default function findActivePage(currentPages: MuiPage[], pathname: string): MuiPage | null {
+export default function findActivePage(
+  currentPages: MuiPage[],
+  currentPathname: string,
+): { activePage: MuiPage | null; activePageParents: MuiPage[] } {
   const map: Record<string, MuiPage> = {};
+  const mapParent: Record<string, MuiPage> = {};
 
-  const traverse = (array: MuiPage[]) => {
-    array.forEach((item) => {
-      map[item.pathname] = item;
-      traverse(item.children || []);
+  const pathname = currentPathname
+    .replace('/[docsTab]', '')
+    .replace('components-api', '')
+    .replace('hooks-api', '');
+
+  const traverse = (parent: MuiPage) => {
+    (parent.children || []).forEach((child) => {
+      const childPathname = child.pathname
+        .replace('/[docsTab]', '')
+        .replace('components-api', '')
+        .replace('hooks-api', '');
+
+      map[childPathname] = child;
+
+      const isChildApiPathname =
+        child.pathname.indexOf('components-api') >= 0 || child.pathname.indexOf('hooks-api') >= 0;
+
+      if (!isChildApiPathname && mapParent[childPathname]) {
+        throw new Error(`Duplicated pathname ${child.pathname} in pages`);
+      }
+
+      if (!isChildApiPathname) {
+        mapParent[childPathname] = parent;
+      }
+      traverse(child);
     });
   };
 
-  traverse(currentPages);
+  traverse({ pathname: '/', children: currentPages });
 
-  return map[pathname] || null;
+  const activePage = map[pathname] || null;
+
+  const activePageParents = [];
+  let traversePage = activePage;
+  while (traversePage && traversePage.pathname !== '/') {
+    const parent = mapParent[traversePage.pathname];
+    activePageParents.push(parent);
+    traversePage = parent;
+  }
+
+  return {
+    activePage,
+    activePageParents,
+  };
 }

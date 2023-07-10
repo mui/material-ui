@@ -4,7 +4,7 @@ import { RadioProps } from '../Radio/RadioProps';
 const RadioGroupContext = React.createContext<
   | undefined
   | (Pick<RadioProps, 'size' | 'disableIcon' | 'overlay'> & {
-      row?: boolean;
+      orientation?: 'horizontal' | 'vertical';
       name?: string;
       value?: unknown;
       onChange?: React.ChangeEventHandler<HTMLInputElement>;

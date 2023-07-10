@@ -36,7 +36,7 @@ v5中最大的变化之一是将JSS替换为[Emotion](https://emotion.sh/docs/in
 如果你以后想完善它们，你可以参考下面几节中的例子。
 :::
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/jss-to-styled <path>
 ```
 
@@ -110,7 +110,6 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
  import Chip from '@mui/material/Chip';
 -import makeStyles from '@mui/styles/makeStyles';
 +import Box from '@mui/material/Box';
-+import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
 -  wrapper: {
@@ -125,7 +124,7 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
  function App() {
 -  const classes = useStyles();
    return (
--    <div>
+-    <div className={classes.wrapper}>
 -      <Chip className={classes.chip} label="Chip" />
 -    </div>
 +    <Box sx={{ display: 'flex' }}>
@@ -197,13 +196,13 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
 
 使用npm：
 
-```sh
+```bash
 npm install tss-react
 ```
 
 用 yarn：
 
-```sh
+```bash
 yarn add tss-react
 ```
 
@@ -211,7 +210,7 @@ yarn add tss-react
 
 我们提供了[一个codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-tss-react)来帮助将JSS样式迁移到`tss-react` API。
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/jss-to-tss-react <path>
 ```
 
@@ -452,7 +451,7 @@ tss-react_不是_由MUI维护的。
 
 
 
-```sh
+```bash
 npm uninstall @mui/styles
 ```
 
@@ -461,7 +460,7 @@ npm uninstall @mui/styles
 
 
 
-```sh
+```bash
 yarn remove @mui/styles
 ```
 

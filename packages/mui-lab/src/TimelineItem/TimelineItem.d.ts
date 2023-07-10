@@ -8,7 +8,7 @@ export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HT
   /**
    * The position where the timeline's item should appear.
    */
-  position?: 'left' | 'right';
+  position?: 'left' | 'right' | 'alternate' | 'alternate-reverse';
   /**
    * The content of the component.
    */

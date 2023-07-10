@@ -22,15 +22,18 @@ export default function TemplateHero() {
           <Typography
             fontWeight="bold"
             variant="body2"
-            color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-            sx={{
+            sx={(theme) => ({
+              color: 'primary.600',
               display: 'flex',
               alignItems: 'center',
               justifyContent: { xs: 'center', md: 'start' },
-              '& > *': { mr: 1, width: 28, height: 28 },
-            }}
+              '& > *': { mr: 1 },
+              ...theme.applyDarkStyles({
+                color: 'primary.400',
+              }),
+            })}
           >
-            <IconImage name="product-designkits" /> Design kits
+            <IconImage width={28} height={28} name="product-designkits" /> Design kits
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             MUI in your favorite
@@ -57,20 +60,21 @@ export default function TemplateHero() {
         <Box sx={{ position: 'relative', height: '100%', perspective: '1000px' }}>
           <DesignKitTools />
           <Box
-            sx={{
+            sx={(theme) => ({
               position: 'absolute',
               top: 0,
               left: 0,
               width: '100%',
               height: '100%',
               zIndex: 1,
-              background: (theme) =>
-                `linear-gradient(90deg, ${theme.palette.primaryDark[900]} 1%, ${alpha(
-                  theme.palette.primaryDark[900],
-                  0.5,
-                )})`,
-              opacity: (theme) => (theme.palette.mode === 'dark' ? 1 : 0),
-            }}
+              background: `linear-gradient(90deg, ${
+                (theme.vars || theme).palette.primaryDark[900]
+              } 1%, ${alpha(theme.palette.primaryDark[900], 0.5)})`,
+              opacity: 0,
+              ...theme.applyDarkStyles({
+                opacity: 1,
+              }),
+            })}
           />
           <Box
             sx={{

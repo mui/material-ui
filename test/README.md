@@ -198,7 +198,7 @@ You can pass the same arguments as you could to `mocha`.
 For example, `yarn test:regressions:run --watch --grep "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
 You can view the screenshots in `test/regressions/screenshots/chrome`.
 
-Alternatively, you might want to open `http://localhost:3000` (while `yarn test:regressions:dev` is running) to view individual views separately.
+Alternatively, you might want to open `http://localhost:5001` (while `yarn test:regressions:dev` is running) to view individual views separately.
 
 ### Caveats
 
@@ -242,7 +242,7 @@ For example, in https://app.circleci.com/pipelines/github/mui/material-ui/32796/
 
 ### Testing multiple versions of React
 
-You can check integration of different versions of React (e.g. different [release channels](https://reactjs.org/docs/release-channels.html) or PRs to React) by running `node scripts/use-react-version <version>`.
+You can check integration of different versions of React (e.g. different [release channels](https://react.dev/community/versioning-policy) or PRs to React) by running `node scripts/useReactVersion.mjs <version>`.
 
 Possible values for `version`:
 

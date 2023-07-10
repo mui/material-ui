@@ -12,7 +12,7 @@ export const easing = {
   sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
 };
 
-// Follow https://material.io/guidelines/motion/duration-easing.html#duration-easing-common-durations
+// Follow https://m2.material.io/guidelines/motion/duration-easing.html#duration-easing-common-durations
 // to learn when use what timing
 export const duration = {
   shortest: 150,
@@ -83,6 +83,15 @@ export default function createTransitions(inputTransitions) {
 
       if (!isNumber(delay) && !isString(delay)) {
         console.error('MUI: Argument "delay" must be a number or a string.');
+      }
+
+      if (typeof options !== 'object') {
+        console.error(
+          [
+            'MUI: Secong argument of transition.create must be an object.',
+            "Arguments should be either `create('prop1', options)` or `create(['prop1', 'prop2'], options)`",
+          ].join('\n'),
+        );
       }
 
       if (Object.keys(other).length !== 0) {

@@ -21,6 +21,8 @@
   "name": "Zoom",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiZoom",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Zoom/Zoom.js",
   "inheritance": {

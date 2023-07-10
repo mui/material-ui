@@ -1,9 +1,9 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Fab（浮动操作按钮）组件
 components: Fab
 githubLabel: 'component: Fab'
-materialDesign: https://material.io/components/buttons-floating-action-button
+materialDesign: https://m2.material.io/components/buttons-floating-action-button
 ---
 
 # Floating action button 浮动操作按钮组件

@@ -2,7 +2,7 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "row": { "type": { "name": "bool" } },
+    "row": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -17,6 +17,8 @@
     "name": "MuiFormGroup"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFormGroup",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/FormGroup/FormGroup.js",
   "inheritance": null,

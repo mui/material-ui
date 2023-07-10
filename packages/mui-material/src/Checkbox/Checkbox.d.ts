@@ -36,10 +36,12 @@ export interface CheckboxProps
   >;
   /**
    * If `true`, the component is disabled.
+   * @default false
    */
   disabled?: SwitchBaseProps['disabled'];
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple?: SwitchBaseProps['disableRipple'];
   /**
@@ -81,6 +83,7 @@ export interface CheckboxProps
   onChange?: SwitchBaseProps['onChange'];
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required?: SwitchBaseProps['required'];
   /**
@@ -105,7 +108,7 @@ export interface CheckboxProps
  * Demos:
  *
  * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
- * - [Transfer list](https://mui.com/material-ui/react-transfer-list/)
+ * - [Transfer List](https://mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *

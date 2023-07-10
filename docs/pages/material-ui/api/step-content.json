@@ -25,6 +25,8 @@
     "name": "MuiStepContent"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStepContent",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/StepContent/StepContent.js",
   "inheritance": null,

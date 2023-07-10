@@ -11,8 +11,8 @@ module.exports = {
       // closing double quote: \xE2\x80\x9D
       if (line.match('[‘’“”]')) {
         onError({
-          lineNumber,
-          details: `For line: ${line}`,
+          lineNumber: lineNumber + 1,
+          detail: `For line: ${line}`,
         });
       }
     });

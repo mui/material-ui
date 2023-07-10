@@ -1,0 +1,52 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
+    "inset": {
+      "type": {
+        "name": "union",
+        "description": "'none'<br>&#124;&nbsp;'context'<br>&#124;&nbsp;string"
+      }
+    },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
+  },
+  "name": "Divider",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'hr'",
+      "class": ".MuiDivider-root"
+    }
+  ],
+  "classes": {
+    "classes": ["horizontal", "insetContext", "insetNone", "vertical"],
+    "globalClasses": {}
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyDivider",
+  "forwardsRefTo": "HTMLHRElement",
+  "filename": "/packages/mui-joy/src/Divider/Divider.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-divider/\">Divider</a></li></ul>",
+  "cssComponent": false
+}

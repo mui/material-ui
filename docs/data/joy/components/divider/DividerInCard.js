@@ -8,17 +8,19 @@ import Typography from '@mui/joy/Typography';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 
 export default function DividerInCard() {
-  const [row, setRow] = React.useState(false);
+  const [orientation, setOrientation] = React.useState('vertical');
   return (
     <Box>
       <Checkbox
         label="horizontal"
-        checked={row}
-        onChange={(event) => setRow(event.target.checked)}
+        checked={orientation === 'horizontal'}
+        onChange={(event) =>
+          setOrientation(event.target.checked ? 'horizontal' : 'vertical')
+        }
         sx={{ mb: 2 }}
       />
       <Card
-        row={row}
+        orientation={orientation}
         variant="outlined"
         sx={{ width: 400, maxWidth: '100%', gap: 1.5 }}
       >
@@ -26,7 +28,7 @@ export default function DividerInCard() {
           Headline
         </Typography>
         <Divider />
-        <Box sx={{ display: row ? 'block' : 'contents' }}>
+        <Box sx={{ display: orientation === 'horizontal' ? 'block' : 'contents' }}>
           <Typography level="body2">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry standard dummy text ever
@@ -37,7 +39,7 @@ export default function DividerInCard() {
             variant="soft"
             color="neutral"
             endDecorator={<ArrowForward />}
-            sx={{ width: '100%', mt: row ? 2 : 0 }}
+            sx={{ width: '100%', mt: orientation === 'horizontal' ? 2 : 0 }}
           >
             See more
           </Button>

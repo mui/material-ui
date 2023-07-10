@@ -1,6 +1,6 @@
 # API design approach
 
-<p class="description">We have learned a great deal regarding how MUI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
+<p class="description">We have learned a great deal regarding how Material UI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
 :::info
 API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
@@ -91,22 +91,37 @@ Nested components inside a component have:
 
 ### Prop naming
 
-The name of a boolean prop should be chosen based on the **default value**. This choice allows:
+- **Boolean**
 
-- the shorthand notation. For example, the `disabled` attribute on an input element, if supplied, defaults to `true`:
+  - The default value of a boolean prop should be `false`. This allows for better shorthand notation. Consider an example of an input that is enabled by default. How should you name the prop that controls this state? It should be called `disabled`:
 
-  ```jsx
-  <Input enabled={false} /> ❌
-  <Input disabled /> ✅
-  ```
+    ```jsx
+    ❌ <Input enabled={false} />
+    ✅ <Input disabled />
+    ```
 
-- developers to know what the default value is from the name of the boolean prop. It's always the opposite.
+  - If the name of the boolean is a single word, it should be an adjective or a noun rather than a verb. This is because props describe _states_ and not _actions_. For example an input prop can be controlled by a state, which wouldn't be described with a verb:
+
+    ```jsx
+    const [disabled, setDisabled] = React.useState(false);
+
+    ❌ <Input disable={disabled} />
+    ✅ <Input disabled={disabled} />
+    ```
 
 ### Controlled components
 
-Most of the controlled component are controlled via the `value` and the `onChange` props,
-however, the `open` / `onClose` / `onOpen` combination is used for display related state.
-In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
+Most controlled components are controlled by the `value` and the `onChange` props.
+The `open` / `onClose` / `onOpen` combination is also used for displaying related state.
+In the cases where there are more events, the noun comes first, and then the verb—for example: `onPageChange`, `onRowsChange`.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 ### boolean vs. enum
 
@@ -140,7 +155,7 @@ For example, let's take a button that has different types. Each option has its p
   bounds the number of props exposed,
   and can easily support new values in the future.
 
-The MUI components use a combination of the two approaches according to the following rules:
+The Material UI components use a combination of the two approaches according to the following rules:
 
 - A _boolean_ is used when **2** possible values are required.
 - An _enum_ is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
@@ -156,7 +171,7 @@ to that component instead.
 
 ## Glossary
 
-- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
+- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://legacy.reactjs.org/docs/implementation-notes.html#mounting-host-elements).
 - **host element**: a DOM node in the context of `react-dom`, e.g. an instance of `window.HTMLDivElement`.
 - **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
 - **root component**: the outermost component that renders a host component.

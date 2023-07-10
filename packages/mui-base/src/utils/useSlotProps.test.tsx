@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { EventHandlers } from '@mui/base';
@@ -107,7 +107,9 @@ describe('useSlotProps', () => {
       id: 'test',
     });
 
-    const TestComponent = (props: any) => <div {...props} />;
+    function TestComponent(props: any) {
+      return <div {...props} />;
+    }
 
     const result = callUseSlotProps({
       elementType: TestComponent,
@@ -160,14 +162,15 @@ describe('useSlotProps', () => {
     const externalClickHandler = spy();
     const externalForwardedClickHandler = spy();
 
-    const createInternalClickHandler = (otherHandlers: EventHandlers) => (e: React.MouseEvent) => {
-      expect(otherHandlers).to.deep.equal({
-        onClick: externalClickHandler,
-      });
+    const createInternalClickHandler =
+      (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
+        expect(otherHandlers).to.deep.equal({
+          onClick: externalClickHandler,
+        });
 
-      otherHandlers.onClick(e);
-      internalClickHandler(e);
-    };
+        otherHandlers.onClick(event);
+        internalClickHandler(event);
+      };
 
     // usually provided by the hook:
     const getSlotProps = (otherHandlers: EventHandlers) => ({
@@ -181,14 +184,14 @@ describe('useSlotProps', () => {
       test: true,
     };
 
-    // provided by the user by appending additonal props on the unstyled component:
+    // provided by the user by appending additional props on the Base UI component:
     const forwardedProps = {
       'data-test': 'externalForwarded',
       className: 'externalForwarded',
       onClick: externalForwardedClickHandler,
     };
 
-    // provided by the user via componentsProps.*:
+    // provided by the user via slotProps.*:
     const componentProps = (os: typeof ownerState) => ({
       'data-fromownerstate': os.test,
       'data-test': 'externalComponentsProps',
@@ -201,13 +204,15 @@ describe('useSlotProps', () => {
       },
     });
 
-    // set in the unstyled component:
+    // set in the Base UI component:
     const additionalProps = {
       className: 'additional',
       ref: additionalRef,
     };
 
-    const TestComponent = (props: any) => <div {...props} />;
+    function TestComponent(props: any) {
+      return <div {...props} />;
+    }
 
     const result = callUseSlotProps({
       elementType: TestComponent,
@@ -222,7 +227,7 @@ describe('useSlotProps', () => {
     // `id` from componentProps overrides the one from getSlotProps
     expect(result).to.haveOwnProperty('id', 'external');
 
-    // `componentsProps` is called with the ownerState
+    // `slotProps` is called with the ownerState
     expect(result).to.haveOwnProperty('data-fromownerstate', true);
 
     // class names are concatenated
@@ -240,20 +245,57 @@ describe('useSlotProps', () => {
     expect(externalRef.current).to.equal('test');
     expect(additionalRef.current).to.equal('test');
 
-    // event handler provided in componentsProps is called
+    // event handler provided in slotProps is called
     result.onClick({} as React.MouseEvent);
     expect(externalClickHandler.calledOnce).to.equal(true);
 
-    // event handler provided in forwardedProps is not called (was overridden by componentsProps)
+    // event handler provided in forwardedProps is not called (was overridden by slotProps)
     expect(externalForwardedClickHandler.notCalled).to.equal(true);
 
     // internal event handler is called
     expect(internalClickHandler.calledOnce).to.equal(true);
 
-    // internal ownerState is merged with the one provided by componentsProps
+    // internal ownerState is merged with the one provided by slotProps
     expect(result.ownerState).to.deep.equal({
       test: true,
       foo: 'bar',
     });
+  });
+
+  it('should call externalSlotProps with ownerState if skipResolvingSlotProps is not provided', () => {
+    const externalSlotProps = spy();
+    const ownerState = { foo: 'bar' };
+
+    const getSlotProps = () => ({
+      skipResolvingSlotProps: true,
+    });
+
+    callUseSlotProps({
+      elementType: 'div',
+      getSlotProps,
+      externalSlotProps,
+      ownerState,
+    });
+
+    expect(externalSlotProps.callCount).to.not.equal(0);
+    expect(externalSlotProps.args[0][0]).to.deep.equal(ownerState);
+  });
+
+  it('should not call externalSlotProps if skipResolvingSlotProps is true', () => {
+    const externalSlotProps = spy();
+
+    const getSlotProps = () => ({
+      skipResolvingSlotProps: true,
+    });
+
+    callUseSlotProps({
+      elementType: 'div',
+      getSlotProps,
+      externalSlotProps,
+      skipResolvingSlotProps: true,
+      ownerState: undefined,
+    });
+
+    expect(externalSlotProps.callCount).to.equal(0);
   });
 });

@@ -1,9 +1,9 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React para Ícones
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'
-materialDesign: https://material.io/design/iconography/system-icons.html
+materialDesign: https://m2.material.io/design/iconography/system-icons.html
 ---
 
 # Ícones
@@ -24,13 +24,13 @@ Google has created over 2,000 official Material icons, each in five different "t
 
 To install and save in your `package.json` dependencies, run the command below using **npm**:
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 Or **yarn**:
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 
@@ -170,7 +170,7 @@ FontAwesomeIcon's `fullWidth` prop can also be used to approximate the correct d
 
 #### MDI
 
-[materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons. For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component, or with `createSvgIcon()`.
+[materialdesignicons.com](https://pictogrammers.com/library/mdi/) provides over 2,000 icons. For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component, or with `createSvgIcon()`.
 
 Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has already wrapped each of these SVG icons with the `SvgIcon` component, so you don't have to do it yourself.
 

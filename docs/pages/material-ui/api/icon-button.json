@@ -9,9 +9,9 @@
       },
       "default": "'default'"
     },
-    "disabled": { "type": { "name": "bool" } },
-    "disableFocusRipple": { "type": { "name": "bool" } },
-    "disableRipple": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "edge": {
       "type": {
         "name": "enum",
@@ -42,6 +42,10 @@
       "colorInherit",
       "colorPrimary",
       "colorSecondary",
+      "colorError",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
       "disabled",
       "sizeSmall",
       "sizeMedium",
@@ -51,6 +55,8 @@
     "name": "MuiIconButton"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiIconButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/IconButton/IconButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

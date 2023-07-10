@@ -1,0 +1,80 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'inherit'"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "fontSize": {
+      "type": {
+        "name": "enum",
+        "description": "'inherit'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xl2'<br>&#124;&nbsp;'xl3'<br>&#124;&nbsp;'xl4'<br>&#124;&nbsp;'xl5'<br>&#124;&nbsp;'xl6'<br>&#124;&nbsp;'xl7'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;'xs2'<br>&#124;&nbsp;'xs3'"
+      },
+      "default": "'xl'"
+    },
+    "htmlColor": { "type": { "name": "string" } },
+    "inheritViewBox": { "type": { "name": "bool" }, "default": "false" },
+    "shapeRendering": { "type": { "name": "string" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
+    "titleAccess": { "type": { "name": "string" } },
+    "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'" }
+  },
+  "name": "SvgIcon",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'svg'",
+      "class": ".MuiSvgIcon-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorDanger",
+      "colorInfo",
+      "colorInherit",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "fontSizeInherit",
+      "fontSizeLg",
+      "fontSizeMd",
+      "fontSizeSm",
+      "fontSizeXl",
+      "fontSizeXl2",
+      "fontSizeXl3",
+      "fontSizeXl4",
+      "fontSizeXl5",
+      "fontSizeXl6",
+      "fontSizeXs"
+    ],
+    "globalClasses": {}
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoySvgIcon",
+  "forwardsRefTo": "SVGSVGElement",
+  "filename": "/packages/mui-joy/src/SvgIcon/SvgIcon.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-avatar/\">Avatar</a></li></ul>",
+  "cssComponent": false
+}

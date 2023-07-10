@@ -166,9 +166,9 @@ Alguns dos componentes precisam acessar o n√≥ DOM. Anteriormente, isso era poss√
 - Qualquer componente do Material-UI
 - Componentes de classe, ou seja, `React. Component` ou `React.</li>
 <li>Componentes DOM (ou hospedeiro), por exemplo, <code>div` ou `button`
-- [Componentes React.forwardRef](https://reactjs.org/docs/react-api.html#reactforwardref)
-- [Componentes React.lazy](https://reactjs.org/docs/react-api.html#reactlazy)
-- [Componentes React.memo](https://reactjs.org/docs/react-api.html#reactmemo)
+- [Componentes React.forwardRef](https://react.dev/reference/react/forwardRef)
+- [Componentes React.lazy](https://react.dev/reference/react/lazy)
+- [Componentes React.memo](https://react.dev/reference/react/memo)
 
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from React in your console similar to:
 
@@ -182,7 +182,7 @@ Note that you will still get this warning for `lazy` and `memo` components if th
 Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 :::
 
-Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
+Only the two most common use cases are covered. For more information see [this section in the official React docs](https://react.dev/reference/react/forwardRef).
 
 ```diff
 -const MyButton = () => <div role="button" />;

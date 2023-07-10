@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useSwitch, UseSwitchParameters } from '@mui/base/SwitchUnstyled';
+import useSwitch, { UseSwitchParameters } from '@mui/base/useSwitch';
 import { styled } from '@mui/system';
 
 const BasicSwitchRoot = styled('span')`
@@ -48,8 +48,8 @@ const BasicSwitchThumb = styled('span')`
   transition: all 200ms ease;
 
   &.Switch-focusVisible {
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+    background-color: rgb(255 255 255 / 1);
+    box-shadow: 0 0 1px 8px rgb(0 0 0 / 0.25);
   }
 
   &.Switch-checked {

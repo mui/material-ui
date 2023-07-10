@@ -1,10 +1,25 @@
-import { GlobalStateSlot } from '@mui/base';
+import { GlobalStateSlot } from '@mui/utils';
 import { CSSInterpolation } from '@mui/system';
 import {
   AspectRatioProps,
   AspectRatioOwnerState,
   AspectRatioSlot,
 } from '../AspectRatio/AspectRatioProps';
+import {
+  AutocompleteProps,
+  AutocompleteOwnerState,
+  AutocompleteSlot,
+} from '../Autocomplete/AutocompleteProps';
+import {
+  AutocompleteListboxProps,
+  AutocompleteListboxOwnerState,
+  AutocompleteListboxSlot,
+} from '../AutocompleteListbox/AutocompleteListboxProps';
+import {
+  AutocompleteOptionProps,
+  AutocompleteOptionOwnerState,
+  AutocompleteOptionSlot,
+} from '../AutocompleteOption/AutocompleteOptionProps';
 import { AvatarProps, AvatarOwnerState, AvatarSlot } from '../Avatar/AvatarProps';
 import {
   AvatarGroupProps,
@@ -20,7 +35,17 @@ import {
   BreadcrumbsSlot,
 } from '../Breadcrumbs/BreadcrumbsProps';
 import { ButtonProps, ButtonOwnerState, ButtonSlot } from '../Button/ButtonProps';
+import {
+  ButtonGroupProps,
+  ButtonGroupOwnerState,
+  ButtonGroupSlot,
+} from '../ButtonGroup/ButtonGroupProps';
 import { CardProps, CardOwnerState, CardSlot } from '../Card/CardProps';
+import {
+  CardActionsProps,
+  CardActionsOwnerState,
+  CardActionsSlot,
+} from '../CardActions/CardActionsProps';
 import {
   CardContentProps,
   CardContentOwnerState,
@@ -69,6 +94,11 @@ import {
   IconButtonSlot,
 } from '../IconButton/IconButtonProps';
 import { InputProps, InputOwnerState, InputSlot } from '../Input/InputProps';
+import {
+  LinearProgressProps,
+  LinearProgressOwnerState,
+  LinearProgressSlot,
+} from '../LinearProgress/LinearProgressProps';
 import { LinkProps, LinkOwnerState, LinkSlot } from '../Link/LinkProps';
 import { ListProps, ListOwnerState, ListSlot } from '../List/ListProps';
 import {
@@ -111,6 +141,11 @@ import {
   ModalDialogOwnerState,
   ModalDialogSlot,
 } from '../ModalDialog/ModalDialogProps';
+import {
+  ModalOverflowProps,
+  ModalOverflowOwnerState,
+  ModalOverflowSlot,
+} from '../ModalOverflow/ModalOverflowProps';
 import { RadioProps, RadioOwnerState, RadioSlot } from '../Radio/RadioProps';
 import {
   RadioGroupProps,
@@ -128,7 +163,7 @@ import { TabProps, TabOwnerState, TabSlot } from '../Tab/TabProps';
 import { TabListProps, TabListOwnerState, TabListSlot } from '../TabList/TabListProps';
 import { TabPanelProps, TabPanelOwnerState, TabPanelSlot } from '../TabPanel/TabPanelProps';
 import { TabsProps, TabsOwnerState, TabsSlot } from '../Tabs/TabsProps';
-import { TextFieldProps, TextFieldOwnerState, TextFieldSlot } from '../TextField/TextFieldProps';
+import { TableProps, TableOwnerState, TableSlot } from '../Table/TableProps';
 import { TooltipProps, TooltipOwnerState, TooltipSlot } from '../Tooltip/TooltipProps';
 import {
   TypographyProps,
@@ -165,6 +200,30 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<AspectRatioProps>;
     styleOverrides?: OverridesStyleRules<AspectRatioSlot, AspectRatioOwnerState, Theme>;
   };
+  JoyAutocomplete?: {
+    defaultProps?: Partial<AutocompleteProps<any, any, any, any>>;
+    styleOverrides?: OverridesStyleRules<
+      AutocompleteSlot,
+      AutocompleteOwnerState<any, any, any, any>,
+      Theme
+    >;
+  };
+  JoyAutocompleteListbox?: {
+    defaultProps?: Partial<AutocompleteListboxProps>;
+    styleOverrides?: OverridesStyleRules<
+      AutocompleteListboxSlot,
+      AutocompleteListboxOwnerState,
+      Theme
+    >;
+  };
+  JoyAutocompleteOption?: {
+    defaultProps?: Partial<AutocompleteOptionProps>;
+    styleOverrides?: OverridesStyleRules<
+      AutocompleteOptionSlot,
+      AutocompleteOptionOwnerState,
+      Theme
+    >;
+  };
   JoyAvatar?: {
     defaultProps?: Partial<AvatarProps>;
     styleOverrides?: OverridesStyleRules<AvatarSlot, AvatarOwnerState, Theme>;
@@ -185,6 +244,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<ButtonProps>;
     styleOverrides?: OverridesStyleRules<ButtonSlot, ButtonOwnerState, Theme>;
   };
+  JoyButtonGroup?: {
+    defaultProps?: Partial<ButtonGroupProps>;
+    styleOverrides?: OverridesStyleRules<ButtonGroupSlot, ButtonGroupOwnerState, Theme>;
+  };
   JoyBreadcrumbs?: {
     defaultProps?: Partial<BreadcrumbsProps>;
     styleOverrides?: OverridesStyleRules<BreadcrumbsSlot, BreadcrumbsOwnerState, Theme>;
@@ -196,6 +259,10 @@ export interface Components<Theme = unknown> {
   JoyCard?: {
     defaultProps?: Partial<CardProps>;
     styleOverrides?: OverridesStyleRules<CardSlot, CardOwnerState, Theme>;
+  };
+  JoyCardActions?: {
+    defaultProps?: Partial<CardActionsProps>;
+    styleOverrides?: OverridesStyleRules<CardActionsSlot, CardActionsOwnerState, Theme>;
   };
   JoyCardContent?: {
     defaultProps?: Partial<CardContentProps>;
@@ -256,6 +323,10 @@ export interface Components<Theme = unknown> {
   JoyInput?: {
     defaultProps?: Partial<InputProps>;
     styleOverrides?: OverridesStyleRules<InputSlot, InputOwnerState, Theme>;
+  };
+  JoyLinearProgress?: {
+    defaultProps?: Partial<LinearProgressProps>;
+    styleOverrides?: OverridesStyleRules<LinearProgressSlot, LinearProgressOwnerState, Theme>;
   };
   JoyLink?: {
     defaultProps?: Partial<LinkProps>;
@@ -334,6 +405,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<TabsProps>;
     styleOverrides?: OverridesStyleRules<TabsSlot, TabsOwnerState, Theme>;
   };
+  JoyTable?: {
+    defaultProps?: Partial<TableProps>;
+    styleOverrides?: OverridesStyleRules<TableSlot, TableOwnerState, Theme>;
+  };
   JoyTabList?: {
     defaultProps?: Partial<TabListProps>;
     styleOverrides?: OverridesStyleRules<TabListSlot, TabListOwnerState, Theme>;
@@ -349,10 +424,6 @@ export interface Components<Theme = unknown> {
   JoyTextarea?: {
     defaultProps?: Partial<TextareaProps>;
     styleOverrides?: OverridesStyleRules<TextareaSlot, TextareaOwnerState, Theme>;
-  };
-  JoyTextField?: {
-    defaultProps?: Partial<TextFieldProps>;
-    styleOverrides?: OverridesStyleRules<TextFieldSlot, TextFieldOwnerState, Theme>;
   };
   JoyTooltip?: {
     defaultProps?: Partial<TooltipProps>;
@@ -385,5 +456,9 @@ export interface Components<Theme = unknown> {
   JoyModalDialog?: {
     defaultProps?: Partial<ModalDialogProps>;
     styleOverrides?: OverridesStyleRules<ModalDialogSlot, ModalDialogOwnerState, Theme>;
+  };
+  JoyModalOverflow?: {
+    defaultProps?: Partial<ModalOverflowProps>;
+    styleOverrides?: OverridesStyleRules<ModalOverflowSlot, ModalOverflowOwnerState, Theme>;
   };
 }

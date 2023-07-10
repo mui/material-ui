@@ -6,13 +6,19 @@ const FrameDemo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameDemo(
     <Box
       ref={ref}
       {...props}
-      sx={{
-        position: 'relative',
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-        border: '1px solid',
-        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200'),
-        ...props.sx,
-      }}
+      sx={[
+        (theme) => ({
+          position: 'relative',
+          border: '1px solid',
+          bgcolor: 'grey.100',
+          borderColor: 'grey.200',
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.700',
+            borderColor: 'primaryDark.600',
+          }),
+        }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
     />
   );
 });
@@ -43,12 +49,12 @@ function Frame(props: BoxProps) {
         display: 'flex',
         flexDirection: 'column',
         '& > div:first-of-type': {
-          borderTopLeftRadius: '10px',
-          borderTopRightRadius: '10px',
+          borderTopLeftRadius: '12px',
+          borderTopRightRadius: '12px',
         },
         '& > div:last-of-type': {
-          borderBottomLeftRadius: '10px',
-          borderBottomRightRadius: '10px',
+          borderBottomLeftRadius: '12px',
+          borderBottomRightRadius: '12px',
         },
         ...props.sx,
       }}

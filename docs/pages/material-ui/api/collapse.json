@@ -40,6 +40,8 @@
     "name": "MuiCollapse"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCollapse",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Collapse/Collapse.js",
   "inheritance": {

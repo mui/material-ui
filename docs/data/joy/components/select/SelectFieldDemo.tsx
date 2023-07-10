@@ -13,11 +13,11 @@ export default function SelectFieldDemo() {
       </FormLabel>
       <Select
         defaultValue="dog"
-        componentsProps={{
+        slotProps={{
           button: {
             id: 'select-field-demo-button',
             // TODO: Material UI set aria-labelledby correctly & automatically
-            // but MUI Base and Joy UI don't yet.
+            // but Base UI and Joy UI don't yet.
             'aria-labelledby': 'select-field-demo-label select-field-demo-button',
           },
         }}

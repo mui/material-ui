@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Theme, styled, alpha } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
+import { Theme, styled, alpha } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
@@ -57,24 +57,26 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     return (
       <Alert
         severity="success"
-        sx={{
-          maxWidth: { sm: 400 },
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark'
-              ? theme.palette.primaryDark[700]
-              : theme.palette.success[50],
-          ...sx,
-        }}
+        sx={[
+          (theme) => ({
+            maxWidth: { sm: 400 },
+            bgcolor: 'success.50',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.700',
+            }),
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
         iconMapping={{
           success: (
             <CheckCircleRoundedIcon
               fontSize="small"
-              sx={{
-                color: (theme: Theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.success[600]
-                    : theme.palette.success[700],
-              }}
+              sx={(theme: Theme) => ({
+                color: 'success.700',
+                ...theme.applyDarkStyles({
+                  color: 'success.600',
+                }),
+              })}
             />
           ),
         }}
@@ -111,74 +113,79 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           value={form.email}
           onChange={(event) => setForm({ email: event.target.value, status: 'initial' })}
           inputProps={{ required: true }}
-          sx={{
-            minWidth: 220,
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
-            boxShadow: (theme) =>
-              theme.palette.mode === 'dark'
-                ? '0 1px 2px 0 rgba(0 0 0 / 1)'
-                : '0 1px 2px 0 rgba(0 0 0 / 0.1)',
-            borderRadius: 1,
-            border: '1px solid',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[500]
-                : theme.palette.grey[300],
-            px: 1,
-            py: 0.5,
-            typography: 'body2',
-            '&:hover': {
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[300]
-                  : theme.palette.grey[400],
-              boxShadow: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? '0 1px 2px 0 rgba(0 0 0 / 1)'
-                  : '0 1px 2px 0 rgba(0 0 0 / 0.2)',
-            },
-            [`&.${inputBaseClasses.focused}`]: {
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[300]
-                  : theme.palette.primary[500],
-              outline: '3px solid',
-              outlineColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[500]
-                  : theme.palette.primary[200],
-            },
-          }}
+          sx={[
+            (theme) => ({
+              minWidth: 220,
+              borderRadius: 1,
+              border: '1px solid',
+              bgcolor: '#fff',
+              boxShadow: '0 1px 2px 0 rgba(0 0 0 / 0.1)',
+              borderColor: 'grey.300',
+              typography: 'body2',
+              '&:hover': {
+                borderColor: 'grey.400',
+                boxShadow: '0 1px 2px 0 rgba(0 0 0 / 0.2)',
+              },
+              [`&.${inputBaseClasses.focused}`]: {
+                boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary[200]}`,
+                borderColor: 'primary.500',
+              },
+              [`& .${inputBaseClasses.input}`]: {
+                borderRadius: `calc(${theme.spacing(1)} - 1px)`,
+                py: '11px',
+                px: 1,
+              },
+            }),
+            (theme) =>
+              theme.applyDarkStyles({
+                bgcolor: 'primaryDark.900',
+                boxShadow: '0 1px 2px 0 rgba(0 0 0 / 1)',
+                borderColor: 'primaryDark.500',
+                '&:hover': {
+                  borderColor: 'primaryDark.300',
+                  boxShadow: '0 1px 2px 0 rgba(0 0 0 / 1)',
+                },
+                [`&.${inputBaseClasses.focused}`]: {
+                  boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primaryDark[500]}`,
+                  borderColor: 'primaryDark.300',
+                },
+              }),
+          ]}
         />
         <Button
           disabled={form.status === 'loading'}
           type="submit"
-          sx={{
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[500]
-                : alpha(theme.palette.primary[100], 0.5),
-            color: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[100]
-                : theme.palette.primary[600],
-            py: 1,
-            px: 1.5,
-            '&:hover': {
-              bgcolor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : alpha(theme.palette.primary[100], 1),
-            },
-          }}
+          sx={[
+            (theme) => ({
+              bgcolor: alpha(theme.palette.primary[100], 0.5),
+              color: 'primary.600',
+              py: 1,
+              px: 1.5,
+              '&:hover': {
+                bgcolor: alpha(theme.palette.primary[100], 1),
+              },
+            }),
+            (theme) =>
+              theme.applyDarkStyles({
+                bgcolor: 'primaryDark.500',
+                color: 'primaryDark.100',
+                '&:hover': {
+                  bgcolor: 'primaryDark.600',
+                },
+              }),
+          ]}
         >
           Subscribe
         </Button>
       </Box>
       {form.status === 'failure' && (
         <FormHelperText
-          sx={{ color: (theme) => (theme.palette.mode === 'dark' ? 'warning.500' : 'warning.800') }}
+          sx={(theme) => ({
+            color: 'warning.800',
+            ...theme.applyDarkStyles({
+              color: 'warning.500',
+            }),
+          })}
         >
           Oops! something went wrong, please try again later.
         </FormHelperText>

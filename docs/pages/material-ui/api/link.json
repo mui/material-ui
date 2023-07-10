@@ -40,6 +40,8 @@
     "name": "MuiLink"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiLink",
   "forwardsRefTo": "HTMLAnchorElement",
   "filename": "/packages/mui-material/src/Link/Link.js",
   "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },

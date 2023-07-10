@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
 interface SectionHeadlineProps {
@@ -11,33 +10,50 @@ interface SectionHeadlineProps {
 
 export default function SectionHeadline(props: SectionHeadlineProps) {
   const { description, id, overline, title } = props;
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
-  const overlineColor = mode === 'dark' ? 'primary.300' : 'primary.600';
-  const titleColor = mode === 'dark' ? 'grey.100' : 'primaryDark.900';
-  const descriptionColor = mode === 'dark' ? 'grey.500' : 'grey.800';
-
   return (
     <React.Fragment>
       <Typography
-        color={overlineColor}
+        id={id}
         component="h2"
         fontWeight="bold"
         variant="body2"
-        sx={{ mb: 1 }}
-        id={id}
+        sx={(theme) => ({
+          mb: 1,
+          color: 'primary.600',
+          ...theme.applyDarkStyles({
+            color: 'primary.300',
+          }),
+        })}
       >
         {overline}
       </Typography>
       {typeof title === 'string' ? (
-        <Typography variant="h2" color={titleColor}>
+        <Typography
+          variant="h2"
+          sx={(theme) => ({
+            color: 'primaryDark.900',
+            ...theme.applyDarkStyles({
+              color: 'grey.100',
+            }),
+          })}
+        >
           {title}
         </Typography>
       ) : (
         title
       )}
       {description && (
-        <Typography color={descriptionColor} sx={{ mt: 1, mb: 2, maxWidth: 450 }}>
+        <Typography
+          sx={(theme) => ({
+            mt: 1,
+            mb: 2,
+            maxWidth: 450,
+            color: 'grey.800',
+            ...theme.applyDarkStyles({
+              color: 'grey.500',
+            }),
+          })}
+        >
           {description}
         </Typography>
       )}

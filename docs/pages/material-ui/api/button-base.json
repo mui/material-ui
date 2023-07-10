@@ -1,14 +1,14 @@
 {
   "props": {
     "action": { "type": { "name": "custom", "description": "ref" } },
-    "centerRipple": { "type": { "name": "bool" } },
+    "centerRipple": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "custom", "description": "element type" } },
-    "disabled": { "type": { "name": "bool" } },
-    "disableRipple": { "type": { "name": "bool" } },
-    "disableTouchRipple": { "type": { "name": "bool" } },
-    "focusRipple": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableTouchRipple": { "type": { "name": "bool" }, "default": "false" },
+    "focusRipple": { "type": { "name": "bool" }, "default": "false" },
     "focusVisibleClassName": { "type": { "name": "string" } },
     "LinkComponent": { "type": { "name": "elementType" }, "default": "'a'" },
     "onFocusVisible": { "type": { "name": "func" } },
@@ -33,6 +33,8 @@
     "name": "MuiButtonBase"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiButtonBase",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/ButtonBase/ButtonBase.js",
   "inheritance": null,

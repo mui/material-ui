@@ -12,6 +12,8 @@
   "name": "DialogTitle",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogTitle" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiDialogTitle",
   "forwardsRefTo": "HTMLHeadingElement",
   "filename": "/packages/mui-material/src/DialogTitle/DialogTitle.js",
   "inheritance": null,

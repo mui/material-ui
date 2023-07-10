@@ -119,12 +119,12 @@ export default function Notifications() {
       if (active) {
         // Permanent notifications
         const filteredNotifications = [
-          {
+          /* {
             id: 0,
             title: "Let's translate!",
-            text: '<a style="color: inherit;" target="_blank" rel="noopener" data-ga-event-category="l10n" data-ga-event-action="notification" data-ga-event-label="zh" href="https://translate.mui.com/">帮助 MUI 将文档翻译成中文</a>. 🇨🇳',
+            text: '<a style="color: inherit;" target="_blank" rel="noopener" data-ga-event-category="l10n" data-ga-event-action="notification" data-ga-event-label="zh" href="https://crowdin.com/project/material-ui-docs">帮助 MUI 将文档翻译成中文</a>. 🇨🇳',
             userLanguage: 'zh',
-          },
+          }, */
           {
             id: 1,
             text: 'You can <a style="color: inherit;" target="_blank" rel="noopener" href="https://twitter.com/MUI_hq">follow us on Twitter</a> or subscribe on <a style="color: inherit;" target="_blank" rel="noopener" href="/blog/">our blog</a> to receive exclusive tips and updates about MUI and the React ecosystem.',
@@ -202,18 +202,16 @@ export default function Notifications() {
           >
             <Grow in={open} {...TransitionProps}>
               <Paper
-                sx={{
+                sx={(theme) => ({
                   mt: 0.5,
                   border: '1px solid',
-                  borderColor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                  boxShadow: (theme) =>
-                    `0px 4px 20px ${
-                      theme.palette.mode === 'dark'
-                        ? 'rgba(0, 0, 0, 0.5)'
-                        : 'rgba(170, 180, 190, 0.3)'
-                    }`,
-                }}
+                  borderColor: 'grey.200',
+                  boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                  ...theme.applyDarkStyles({
+                    borderColor: 'primaryDark.700',
+                    boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
+                  }),
+                })}
               >
                 <List>
                   {messageList ? (

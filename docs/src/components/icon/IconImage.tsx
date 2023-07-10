@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useTheme, styled, Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
+import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 
 export type IconImageProps = {
@@ -35,34 +36,43 @@ export type IconImageProps = {
     | 'ebay'
     | 'samsung'
     | 'volvo';
-  sx?: SxProps<Theme>;
+  height?: number;
   ref?: React.Ref<HTMLImageElement>;
+  sx?: SxProps<Theme>;
   title?: string;
+  width?: number;
 } & Omit<JSX.IntrinsicElements['img'], 'ref'>;
 
 const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 
+let neverHydrated = true;
+
 export default function IconImage(props: IconImageProps) {
-  const { name, title, ...other } = props;
+  const { height: heightProp, name, title, width: widthProp, ...other } = props;
   const theme = useTheme();
-  let width = '';
-  let height = '';
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    neverHydrated = false;
+    setMounted(true);
+  }, []);
+  let defaultWidth;
+  let defaultHeight;
   let category = '';
   let mode = `-${theme.palette.mode}`;
   if (name.startsWith('product-')) {
-    width = '36';
-    height = '36';
+    defaultWidth = 36;
+    defaultHeight = 36;
   }
   if (name.startsWith('block-')) {
     category = 'pricing/';
     mode = '';
-    width = '13';
-    height = '15';
+    defaultWidth = 13;
+    defaultHeight = 15;
   }
   if (['yes', 'no', 'time'].indexOf(name) !== -1) {
     category = 'pricing/';
-    width = '18';
-    height = '18';
+    defaultWidth = 18;
+    defaultHeight = 18;
   }
   if (
     [
@@ -88,6 +98,13 @@ export default function IconImage(props: IconImageProps) {
     ].indexOf(name) !== -1
   ) {
     category = 'companies/';
+  }
+  const width = widthProp ?? defaultWidth;
+  const height = heightProp ?? defaultHeight;
+
+  if (!mounted && neverHydrated && !!theme.vars) {
+    // Prevent hydration mismatch between the light and dark mode image source.
+    return <Box component="span" sx={{ width, height, display: 'inline-block' }} />;
   }
   const element = (
     <Img

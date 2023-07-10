@@ -1,4 +1,4 @@
-// there's probably a broader solution e.g. levering DOMWindow from 'jsodm'
+// there's probably a broader solution e.g. levering DOMWindow from 'jsdom'
 // interface Window extends DOMWindow doesn't work because jsdom typings use
 // triple slash directives. Technical dom.lib.d.ts should already have these properties
 interface Window {

@@ -1,11 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Button component
 components: Button, IconButton, ButtonBase, LoadingButton
-materialDesign: https://material.io/components/buttons
+materialDesign: https://m2.material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base/react-button/
+unstyled: /base-ui/react-button/
 ---
 
 # Button
@@ -29,7 +29,7 @@ The `Button` comes with three variants: text (default), contained, and outlined.
 
 ### Text button
 
-[Text buttons](https://material.io/components/buttons#text-button)
+[Text buttons](https://m2.material.io/components/buttons#text-button)
 are typically used for less-pronounced actions, including those located: in dialogs, in cards.
 In cards, text buttons help maintain an emphasis on card content.
 
@@ -37,7 +37,7 @@ In cards, text buttons help maintain an emphasis on card content.
 
 ### Contained button
 
-[Contained buttons](https://material.io/components/buttons#contained-button)
+[Contained buttons](https://m2.material.io/components/buttons#contained-button)
 are high-emphasis, distinguished by their use of elevation and fill.
 They contain actions that are primary to your app.
 
@@ -49,7 +49,7 @@ You can remove the elevation with the `disableElevation` prop.
 
 ### Outlined button
 
-[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons.
+[Outlined buttons](https://m2.material.io/components/buttons#outlined-button) are medium-emphasis buttons.
 They contain actions that are important but aren't the primary action in an app.
 
 Outlined buttons are also a lower emphasis alternative to contained buttons,
@@ -84,10 +84,6 @@ In addition to using the default button colors, you can add custom ones, or disa
 For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "ButtonSizes.js"}}
-
-## Upload button
-
-{{"demo": "UploadButtons.js"}}
 
 ## Buttons with icons and label
 
@@ -125,22 +121,12 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
 
-## Loading button
-
-The loading buttons can show loading state and disable interactions.
-
-{{"demo": "LoadingButtons.js"}}
-
-Toggle the loading switch to see the transition between the different states.
-
-{{"demo": "LoadingButtonsTransition.js"}}
-
 ## Complex button
 
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
 You can take advantage of this lower-level component to build custom interactions.
 
-{{"demo": "ButtonBase.js"}}
+{{"demo": "ButtonBaseDemo.js"}}
 
 ## Third-party routing library
 
@@ -181,3 +167,39 @@ However:
 ```
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
+
+## Experimental API
+
+### Loading button
+
+[`@mui/lab`](/material-ui/about-the-lab/) offers loading buttons that can show loading state and disable interactions.
+
+{{"demo": "LoadingButtons.js"}}
+
+Toggle the loading switch to see the transition between the different states.
+
+{{"demo": "LoadingButtonsTransition.js"}}
+
+:::warning
+There is a [known issue](https://github.com/mui/material-ui/issues/27853) with translating a page using Chrome tools when a Loading Button is present.
+After the page is translated, the application crashes when the loading state of a Button changes.
+To prevent this, ensure that the contents of the Loading Button are nested inside any HTML element, such as a `<span>`:
+
+```jsx
+<LoadingButton loading variant="outlined">
+  <span>Submit</span>
+</LoadingButton>
+```
+
+:::
+
+### Material You version
+
+The default Button component follows the Material Design 2 specs.
+For the Material Design 3 ([Material You](https://m3.material.io/)) version, you can use the new experimental `@mui/material-next` package:
+
+```js
+import Button from '@mui/material-next/Button';
+```
+
+{{"demo": "ButtonMaterialYouPlayground.js", "hideToolbar": true}}

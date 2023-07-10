@@ -53,6 +53,9 @@ describe('experimental_extendTheme', () => {
 
   it('should generate color channels', () => {
     const theme = extendTheme();
+    expect(theme.colorSchemes.dark.palette.background.defaultChannel).to.equal('18 18 18');
+    expect(theme.colorSchemes.light.palette.background.defaultChannel).to.equal('255 255 255');
+
     expect(theme.colorSchemes.dark.palette.primary.mainChannel).to.equal('144 202 249');
     expect(theme.colorSchemes.dark.palette.primary.darkChannel).to.equal('66 165 245');
     expect(theme.colorSchemes.dark.palette.primary.lightChannel).to.equal('227 242 253');
@@ -404,6 +407,100 @@ describe('experimental_extendTheme', () => {
     it('custom css var prefix', () => {
       const theme = extendTheme({ cssVarPrefix: 'foo' });
       expect(theme.cssVarPrefix).to.equal('foo');
+    });
+  });
+
+  describe('warnings', () => {
+    it('dependent token: should warn if the value cannot be parsed by color manipulators', () => {
+      expect(() =>
+        extendTheme({
+          colorSchemes: {
+            light: {
+              palette: {
+                divider: 'green',
+              },
+            },
+          },
+        }),
+      ).toWarnDev(
+        "MUI: Can't create `palette.dividerChannel` because `palette.divider` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()." +
+          '\n' +
+          'To suppress this warning, you need to explicitly provide the `palette.dividerChannel` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.',
+      );
+    });
+
+    it('should not warn if channel token is provided', () => {
+      expect(() =>
+        extendTheme({
+          colorSchemes: {
+            light: {
+              palette: {
+                dividerChannel: '12 12 12',
+              },
+            },
+          },
+        }),
+      ).not.toWarnDev();
+      expect(() =>
+        extendTheme({
+          colorSchemes: {
+            light: {
+              palette: {
+                dividerChannel: undefined,
+              },
+            },
+          },
+        }),
+      ).not.toWarnDev();
+    });
+
+    it('independent token: should skip warning', () => {
+      expect(() =>
+        extendTheme({
+          colorSchemes: {
+            light: {
+              palette: {
+                Alert: {
+                  errorColor: 'green',
+                },
+              },
+            },
+          },
+        }),
+      ).not.to.throw();
+    });
+
+    it('custom palette should not throw errors', () => {
+      expect(() =>
+        extendTheme({
+          colorSchemes: {
+            light: {
+              palette: {
+                gradient: {
+                  primary: 'linear-gradient(#000, transparent)',
+                },
+              },
+            },
+          },
+        }),
+      ).not.to.throw();
+    });
+  });
+
+  it('should have the vars object', () => {
+    const theme = extendTheme();
+    const keys = [
+      // MD2 specific tokens
+      'palette',
+      'shadows',
+      'zIndex',
+      'opacity',
+      'overlays',
+      'shape',
+    ];
+
+    Object.keys(keys).forEach((key) => {
+      expect(theme[key]).to.deep.equal(theme.vars[key]);
     });
   });
 });

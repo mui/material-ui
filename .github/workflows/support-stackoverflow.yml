@@ -1,18 +1,20 @@
 # Configuration for support-requests - https://github.com/dessant/support-requests
-name: 'Support Stack Overflow'
+name: Support Stack Overflow
 
 on:
   issues:
     types: [labeled, unlabeled, reopened]
 
-permissions:
-  issues: write
+permissions: {}
 
 jobs:
   mark-support:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
     steps:
-      - uses: dessant/support-requests@v2
+      - uses: dessant/support-requests@b1303caf4438e66dea1130aa4c30189dc28e690d # v3.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # Label used to mark issues as support requests

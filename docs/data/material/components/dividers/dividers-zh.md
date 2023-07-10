@@ -1,9 +1,9 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Divider（分隔线）组件
 components: Divider
 githubLabel: 'component: divider'
-materialDesign: https://material.io/components/dividers
+materialDesign: https://m2.material.io/components/dividers
 ---
 
 # Divider

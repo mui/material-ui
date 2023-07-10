@@ -31,6 +31,8 @@
     "name": "MuiAccordionSummary"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAccordionSummary",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AccordionSummary/AccordionSummary.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

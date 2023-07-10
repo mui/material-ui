@@ -22,7 +22,14 @@ describe('<ListItem />', () => {
     refInstanceof: window.HTMLLIElement,
     muiName: 'MuiListItem',
     testVariantProps: { dense: true },
-    skip: ['componentsProp'],
+    testLegacyComponentsProp: true,
+    slots: {
+      root: {},
+    },
+    skip: [
+      'componentsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should render with gutters classes', () => {
@@ -168,7 +175,7 @@ describe('<ListItem />', () => {
               classes: {},
               children: [
                 <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>,
-                <ListItemText>My position doesn not matter.</ListItemText>,
+                <ListItemText>My position does not matter.</ListItemText>,
               ],
             },
             'prop',

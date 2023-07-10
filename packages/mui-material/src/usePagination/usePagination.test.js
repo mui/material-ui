@@ -9,10 +9,10 @@ describe('usePagination', () => {
 
   const renderHook = (useHook) => {
     const result = {};
-    const TestCase = () => {
+    function TestCase() {
       result.current = useHook();
       return null;
-    };
+    }
     render(<TestCase />);
     return { result };
   };

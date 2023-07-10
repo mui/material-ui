@@ -1,9 +1,9 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: accordion'
-materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
+materialDesign: https://m1.material.io/components/expansion-panels.html
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 ---
 
@@ -16,8 +16,7 @@ An accordion is a lightweight container that may either be used standalone, or b
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 :::info
-**Note:**
-Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel".
+This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
 ## Basic accordion
@@ -26,7 +25,15 @@ Accordions are no longer documented in the [Material Design guidelines](https://
 
 ## Controlled accordion
 
-Extend the default behavior to create an accordion with the `Accordion` component.
+The Accordion component can be controlled or uncontrolled.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 {{"demo": "ControlledAccordions.js", "bg": true}}
 

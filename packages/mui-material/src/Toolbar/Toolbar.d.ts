@@ -11,7 +11,7 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
      * The Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
-     * The Toolbar is a flex container, allowing flex item properites to be used to lay out the children.
+     * The Toolbar is a flex container, allowing flex item properties to be used to lay out the children.
      */
     children?: React.ReactNode;
     /**
@@ -39,7 +39,7 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [App bar](https://mui.com/material-ui/react-app-bar/)
+ * - [App Bar](https://mui.com/material-ui/react-app-bar/)
  *
  * API:
  *

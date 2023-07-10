@@ -6,9 +6,20 @@ const ownerState = {
   checked: true,
 };
 
-const CustomComponent = () => null;
+function CustomComponent() {
+  return null;
+}
 
 describe('appendOwnerState', () => {
+  describe('when the provided elementType is undefined', () => {
+    it('returns the provided existingProps without modification ', () => {
+      const existingProps = { className: 'foo' };
+      const actual = appendOwnerState(undefined, existingProps, ownerState);
+
+      expect(actual).to.equal(existingProps);
+    });
+  });
+
   describe('when a DOM element is provided as elementType', () => {
     it('returns the provided existingProps without modification ', () => {
       const existingProps = { className: 'foo' };

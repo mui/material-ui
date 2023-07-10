@@ -34,15 +34,18 @@ function References({
         {inView && <CompaniesGrid data={companies} />}
       </Box>
       <Typography
-        color={(theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800')}
         textAlign="center"
         variant="body2"
-        sx={{
+        sx={(theme) => ({
+          color: 'grey.800',
+          ...theme.applyDarkStyles({
+            color: 'grey.500',
+          }),
           minHeight: 42, // hard-coded to reduce CLS (layout shift)
           mt: 4,
           mx: 'auto',
           maxWidth: 400,
-        }}
+        })}
       >
         The world&apos;s best product teams trust MUI to deliver an unrivaled experience for both
         developers and users.

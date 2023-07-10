@@ -4,11 +4,11 @@ import clsx from 'clsx';
 import { SxProps } from '@mui/system';
 // eslint-disable-next-line no-restricted-imports -- importing types
 import { InternalStandardProps as StandardProps } from '@mui/material';
-import { capitalize } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps, Theme } from '@mui/material/styles';
 import TimelineContext from './TimelineContext';
 import { getTimelineUtilityClass } from './timelineClasses';
+import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
 
 export type TimelineClassKey = keyof NonNullable<TimelineProps['classes']>;
 
@@ -17,7 +17,7 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
    * The position where the TimelineContent should appear relative to the time axis.
    * @default 'right'
    */
-  position?: 'left' | 'right' | 'alternate';
+  position?: 'left' | 'right' | 'alternate' | 'alternate-reverse';
   /**
    * The content of the component.
    */
@@ -34,6 +34,8 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
     positionRight?: string;
     /** Styles applied to the root element if `position="alternate"`. */
     positionAlternate?: string;
+    /** Styles applied to the root element if `position="alternate-reverse"`. */
+    positionAlternateReverse?: string;
   };
 
   /**
@@ -52,7 +54,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
   const { position, classes } = ownerState;
 
   const slots = {
-    root: ['root', position && `position${capitalize(position)}`],
+    root: ['root', position && convertTimelinePositionToClass(position)],
   };
 
   return composeClasses(slots, getTimelineUtilityClass, classes);
@@ -66,7 +68,7 @@ const TimelineRoot = styled('ul' as const, {
     return [
       styles.root,
       ownerState.position &&
-        styles[`position${capitalize(ownerState.position)}` as TimelineClassKey],
+        styles[convertTimelinePositionToClass(ownerState.position) as TimelineClassKey],
     ];
   },
 })<{ ownerState: OwnerState }>({
@@ -91,8 +93,11 @@ const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Time
   const { position = 'right', className, ...other } = props;
   const ownerState = { ...props, position };
   const classes = useUtilityClasses(ownerState);
+
+  const contextValue = React.useMemo(() => ({ position }), [position]);
+
   return (
-    <TimelineContext.Provider value={{ position }}>
+    <TimelineContext.Provider value={contextValue}>
       <TimelineRoot
         className={clsx(classes.root, className)}
         ownerState={ownerState}
@@ -102,7 +107,7 @@ const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Time
       />
     </TimelineContext.Provider>
   );
-});
+}) as React.ForwardRefExoticComponent<TimelineProps & React.RefAttributes<HTMLUListElement>>;
 
 Timeline.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -125,7 +130,7 @@ Timeline.propTypes /* remove-proptypes */ = {
    * The position where the TimelineContent should appear relative to the time axis.
    * @default 'right'
    */
-  position: PropTypes.oneOf(['alternate', 'left', 'right']),
+  position: PropTypes.oneOf(['alternate-reverse', 'alternate', 'left', 'right']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

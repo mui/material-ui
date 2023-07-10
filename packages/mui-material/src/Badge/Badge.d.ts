@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { ExtendBadgeUnstyledTypeMap } from '@mui/base/BadgeUnstyled';
+import { BadgeTypeMap as BaseBadgeTypeMap, ExtendBadgeTypeMap } from '@mui/base/Badge';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BadgeClasses } from './badgeClasses';
@@ -15,10 +15,7 @@ export interface BadgeOrigin {
   horizontal: 'left' | 'right';
 }
 
-export type BadgeTypeMap<
-  D extends React.ElementType = 'span',
-  P = {},
-> = ExtendBadgeUnstyledTypeMap<{
+export type BadgeTypeMap<D extends React.ElementType = 'span', P = {}> = ExtendBadgeTypeMap<{
   props: P & {
     /**
      * The anchor of the badge.
@@ -47,6 +44,28 @@ export type BadgeTypeMap<
       BadgePropsColorOverrides
     >;
     /**
+     * The extra props for the slot components.
+     * You can override the existing props or add new ones.
+     *
+     * This prop is an alias for the `slotProps` prop.
+     * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+     *
+     * @default {}
+     */
+    componentsProps?: BaseBadgeTypeMap['props']['slotProps'];
+    /**
+     * The components used for each slot inside.
+     *
+     * This prop is an alias for the `slots` prop.
+     * It's recommended to use the `slots` prop instead.
+     *
+     * @default {}
+     */
+    components?: {
+      Root?: React.ElementType;
+      Badge?: React.ElementType;
+    };
+    /**
      * Wrapped shape the badge should overlap.
      * @default 'rectangular'
      */
@@ -64,8 +83,8 @@ export type BadgeTypeMap<
   defaultComponent: D;
 }>;
 
-type BadgeRootProps = NonNullable<BadgeTypeMap['props']['componentsProps']>['root'];
-type BadgeBadgeProps = NonNullable<BadgeTypeMap['props']['componentsProps']>['badge'];
+type BadgeRootProps = NonNullable<BadgeTypeMap['props']['slotProps']>['root'];
+type BadgeBadgeProps = NonNullable<BadgeTypeMap['props']['slotProps']>['badge'];
 
 export declare const BadgeRoot: React.FC<BadgeRootProps>;
 export declare const BadgeMark: React.FC<BadgeBadgeProps>;
@@ -80,7 +99,6 @@ export declare const BadgeMark: React.FC<BadgeBadgeProps>;
  * API:
  *
  * - [Badge API](https://mui.com/material-ui/api/badge/)
- * - inherits [BadgeUnstyled API](https://mui.com/base/api/badge-unstyled/)
  */
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 

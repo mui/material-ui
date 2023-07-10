@@ -4,10 +4,7 @@ import * as React from 'react';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
-import acceptLanguage from 'accept-language';
-import { useRouter } from 'next/router';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import pages from 'docs/src/pages';
+import generalPages from 'docs/src/pages';
 import basePages from 'docs/data/base/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
@@ -16,61 +13,27 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
-import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
-import { LANGUAGES, LANGUAGES_IGNORE_PAGES } from 'docs/src/modules/constants';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
-import {
-  UserLanguageProvider,
-  useSetUserLanguage,
-  useUserLanguage,
-} from 'docs/src/modules/utils/i18n';
+import { CodeStylingProvider } from 'docs/src/modules/utils/codeStylingSolution';
+import { UserLanguageProvider } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
-import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
+import { useRouter } from 'next/router';
 import { LicenseInfo } from '@mui/x-data-grid-pro';
+import materialPkgJson from 'packages/mui-material/package.json';
+import joyPkgJson from 'packages/mui-joy/package.json';
+import systemPkgJson from 'packages/mui-system/package.json';
+import basePkgJson from 'packages/mui-base/package.json';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
+import './global.css';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
-
-// Set the locales that the documentation automatically redirects to.
-acceptLanguage.languages(LANGUAGES);
-
-function LanguageNegotiation() {
-  const setUserLanguage = useSetUserLanguage();
-  const router = useRouter();
-  const userLanguage = useUserLanguage();
-
-  useEnhancedEffect(() => {
-    const { userLanguage: userLanguageUrl, canonicalAs } = pathnameToLanguage(router.asPath);
-
-    // Only consider a redirection if coming to the naked folder.
-    if (userLanguageUrl === 'en') {
-      const preferedLanguage =
-        LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
-        acceptLanguage.get(navigator.language) ||
-        userLanguage;
-
-      if (
-        userLanguage !== preferedLanguage &&
-        !process.env.BUILD_ONLY_ENGLISH_LOCALE &&
-        !LANGUAGES_IGNORE_PAGES(router.pathname)
-      ) {
-        window.location =
-          preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
-      }
-    }
-
-    if (userLanguage !== userLanguageUrl) {
-      setUserLanguage(userLanguageUrl);
-    }
-  }, [router.pathname, router.asPath, setUserLanguage, userLanguage]);
-
-  return null;
-}
 
 let reloadInterval;
 
@@ -174,7 +137,11 @@ Tip: you can access the documentation \`theme\` object directly in the console.
 function AppWrapper(props) {
   const { children, emotionCache, pageProps } = props;
 
-  const { asPathWithoutLang, product, ...router } = useRouterExtra();
+  const router = useRouter();
+  // TODO move productId & productCategoryId resolution to page layout.
+  // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
+  // if not present
+  const { productId, productCategoryId } = getProductInfoFromUrl(router.asPath);
 
   React.useEffect(() => {
     loadDependencies();
@@ -187,21 +154,109 @@ function AppWrapper(props) {
     }
   }, []);
 
-  let productPages = pages;
-  if (product === 'base') {
-    productPages = basePages;
-  } else if (product === 'material-ui') {
-    productPages = materialPages;
-  } else if (product === 'joy-ui') {
-    productPages = joyPages;
-  } else if (product === 'system') {
-    productPages = systemPages;
-  }
+  const productIdentifier = React.useMemo(() => {
+    const languagePrefix = pageProps.userLanguage === 'en' ? '' : `/${pageProps.userLanguage}`;
 
-  const activePage = findActivePage(productPages, router.pathname);
+    if (productId === 'material-ui') {
+      return {
+        metadata: 'MUI Core',
+        name: 'Material UI',
+        versions: [
+          { text: `v${materialPkgJson.version}`, current: true },
+          {
+            text: 'v4',
+            href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
+          },
+          {
+            text: 'View all versions',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    if (productId === 'joy-ui') {
+      return {
+        metadata: 'MUI Core',
+        name: 'Joy UI',
+        versions: [{ text: `v${joyPkgJson.version}`, current: true }],
+      };
+    }
+
+    if (productId === 'system') {
+      return {
+        metadata: 'MUI Core',
+        name: 'MUI System',
+        versions: [
+          { text: `v${systemPkgJson.version}`, current: true },
+          { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
+          {
+            text: 'View all versions',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    if (productId === 'base-ui') {
+      return {
+        metadata: 'MUI Core',
+        name: 'Base UI',
+        versions: [{ text: `v${basePkgJson.version}`, current: true }],
+      };
+    }
+
+    if (productId === 'core') {
+      return {
+        metadata: '',
+        name: 'MUI Core',
+        versions: [
+          { text: `v${materialPkgJson.version}`, current: true },
+          {
+            text: 'View all versions',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    return {
+      metadata: '',
+      name: 'Docs-infra',
+      versions: [
+        {
+          text: 'v0.0.0',
+          href: `https://mui.com${languagePrefix}/versions/`,
+        },
+      ],
+    };
+  }, [pageProps.userLanguage, productId]);
+
+  const pageContextValue = React.useMemo(() => {
+    let pages = generalPages;
+    if (productId === 'base-ui') {
+      pages = basePages;
+    } else if (productId === 'material-ui') {
+      pages = materialPages;
+    } else if (productId === 'joy-ui') {
+      pages = joyPages;
+    } else if (productId === 'system') {
+      pages = systemPages;
+    }
+
+    const { activePage, activePageParents } = findActivePage(pages, router.pathname);
+
+    return {
+      activePage,
+      activePageParents,
+      pages,
+      productIdentifier,
+      productId,
+    };
+  }, [productId, productIdentifier, router.pathname]);
 
   let fonts = [];
-  if (asPathWithoutLang.match(/onepirate/)) {
+  if (pathnameToLanguage(router.asPath).canonicalAs.match(/onepirate/)) {
     fonts = [
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];
@@ -214,20 +269,23 @@ function AppWrapper(props) {
         {fonts.map((font) => (
           <link rel="stylesheet" href={font} key={font} />
         ))}
+        <meta name="mui:productId" content={productId} />
+        <meta name="mui:productCategoryId" content={productCategoryId} />
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
-        <LanguageNegotiation />
         <CodeCopyProvider>
-          <CodeVariantProvider>
-            <PageContext.Provider value={{ activePage, pages: productPages }}>
-              <ThemeProvider>
-                <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                  {children}
-                  <GoogleAnalytics />
-                </DocsStyledEngineProvider>
-              </ThemeProvider>
-            </PageContext.Provider>
-          </CodeVariantProvider>
+          <CodeStylingProvider>
+            <CodeVariantProvider>
+              <PageContext.Provider value={pageContextValue}>
+                <ThemeProvider>
+                  <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                    {children}
+                    <GoogleAnalytics />
+                  </DocsStyledEngineProvider>
+                </ThemeProvider>
+              </PageContext.Provider>
+            </CodeVariantProvider>
+          </CodeStylingProvider>
         </CodeCopyProvider>
       </UserLanguageProvider>
     </React.Fragment>
@@ -242,10 +300,11 @@ AppWrapper.propTypes = {
 
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
-      <Component {...pageProps} />
+      {getLayout(<Component {...pageProps} />)}
     </AppWrapper>
   );
 }
@@ -272,8 +331,9 @@ MyApp.getInitialProps = async ({ ctx, Component }) => {
 
 // Track fraction of actual events to prevent exceeding event quota.
 // Filter sessions instead of individual events so that we can track multiple metrics per device.
+// See https://github.com/GoogleChromeLabs/web-vitals-report to use this data
 const disableWebVitalsReporting = Math.random() > 0.0001;
-export function reportWebVitals({ id, name, label, value }) {
+export function reportWebVitals({ id, name, label, delta, value }) {
   if (disableWebVitalsReporting) {
     return;
   }
@@ -284,5 +344,12 @@ export function reportWebVitals({ id, name, label, value }) {
     eventValue: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
     eventLabel: id, // id unique to current page load
     nonInteraction: true, // avoids affecting bounce rate.
+  });
+  window.gtag('event', name, {
+    value: delta,
+    metric_label: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
+    metric_value: value,
+    metric_delta: delta,
+    metric_id: id, // id unique to current page load
   });
 }

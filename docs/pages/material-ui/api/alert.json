@@ -10,6 +10,17 @@
         "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       }
     },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ CloseButton?: elementType, CloseIcon?: elementType }"
+      },
+      "default": "{}"
+    },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ closeButton?: object, closeIcon?: object }" },
+      "default": "{}"
+    },
     "icon": { "type": { "name": "node" } },
     "iconMapping": {
       "type": {
@@ -25,6 +36,17 @@
         "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
       "default": "'success'"
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ closeButton?: object, closeIcon?: object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ closeButton?: elementType, closeIcon?: elementType }"
+      },
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -67,6 +89,8 @@
     "name": "MuiAlert"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAlert",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Alert/Alert.js",
   "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },

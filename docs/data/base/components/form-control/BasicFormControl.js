@@ -1,35 +1,23 @@
 import * as React from 'react';
-import FormControlUnstyled, {
-  useFormControlUnstyledContext,
-} from '@mui/base/FormControlUnstyled';
-import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
+import FormControl, { useFormControlContext } from '@mui/base/FormControl';
+import Input, { inputClasses } from '@mui/base/Input';
 import { styled } from '@mui/system';
 import clsx from 'clsx';
 
-const blue = {
-  100: '#DAECFF',
-  200: '#80BFFF',
-  400: '#3399FF',
-  600: '#0072E5',
-};
+export default function BasicFormControl() {
+  return (
+    <FormControl defaultValue="" required>
+      <Label>Name</Label>
+      <StyledInput />
+      <HelperText />
+    </FormControl>
+  );
+}
 
-const grey = {
-  50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
-};
-
-const Input = styled(InputUnstyled)(
+const StyledInput = styled(Input)(
   ({ theme }) => `
   
-  .${inputUnstyledClasses.input} {
+  .${inputClasses.input} {
     width: 320px;
     font-size: 0.875rem;
     font-family: IBM Plex Sans, sans-serif;
@@ -54,7 +42,7 @@ const Input = styled(InputUnstyled)(
 );
 
 const Label = styled(({ children, className }) => {
-  const formControlContext = useFormControlUnstyledContext();
+  const formControlContext = useFormControlContext();
   const [dirty, setDirty] = React.useState(false);
 
   React.useEffect(() => {
@@ -77,7 +65,7 @@ const Label = styled(({ children, className }) => {
     </p>
   );
 })`
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   margin-bottom: 4px;
 
@@ -87,7 +75,7 @@ const Label = styled(({ children, className }) => {
 `;
 
 const HelperText = styled((props) => {
-  const formControlContext = useFormControlUnstyledContext();
+  const formControlContext = useFormControlContext();
   const [dirty, setDirty] = React.useState(false);
 
   React.useEffect(() => {
@@ -105,16 +93,26 @@ const HelperText = styled((props) => {
 
   return showRequiredError ? <p {...props}>This field is required.</p> : null;
 })`
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
 `;
 
-export default function UseFormControl() {
-  return (
-    <FormControlUnstyled defaultValue="" required>
-      <Label>Name</Label>
-      <Input />
-      <HelperText />
-    </FormControlUnstyled>
-  );
-}
+const blue = {
+  100: '#DAECFF',
+  200: '#80BFFF',
+  400: '#3399FF',
+  600: '#0072E5',
+};
+
+const grey = {
+  50: '#F3F6F9',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7',
+  400: '#B2BAC2',
+  500: '#A0AAB4',
+  600: '#6F7E8C',
+  700: '#3E5060',
+  800: '#2D3843',
+  900: '#1A2027',
+};

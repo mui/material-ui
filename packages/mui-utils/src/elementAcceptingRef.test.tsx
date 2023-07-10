@@ -103,6 +103,7 @@ describe('elementAcceptingRef', () => {
 
     // undesired behavior
     it('accepts Fragment', () => {
+      // eslint-disable-next-line react/jsx-no-useless-fragment
       assertPass(<React.Fragment />);
     });
   });
@@ -130,7 +131,9 @@ describe('elementAcceptingRef', () => {
     });
 
     it('rejects function components', () => {
-      const Component = () => null;
+      function Component() {
+        return null;
+      }
 
       assertFail(
         <Component />,

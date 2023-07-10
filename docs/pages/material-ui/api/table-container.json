@@ -13,6 +13,8 @@
   "name": "TableContainer",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableContainer" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTableContainer",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/TableContainer/TableContainer.js",
   "inheritance": null,

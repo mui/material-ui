@@ -1,17 +1,17 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React Interruptor
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 githubLabel: 'component: switch'
-materialDesign: 'https://material.io/components/selection-controls#switches'
-unstyled: /base/react-switch/
+materialDesign: 'https://m2.material.io/components/selection-controls#switches'
+unstyled: /base-ui/react-switch/
 ---
 
 # Interruptor
 
 <p class="description">Interruptores alternam o estado de uma única configuração ligado ou desligado.</p>
 
-[Interruptores](https://material.io/design/components/selection-controls.html#switches) são a forma preferida de ajustes de configuração em mobile. The option that the switch controls, as well as the state it's in, should be made clear from the corresponding inline label.
+[Interruptores](https://m2.material.io/design/components/selection-controls.html#switches) são a forma preferida de ajustes de configuração em mobile. The option that the switch controls, as well as the state it's in, should be made clear from the corresponding inline label.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

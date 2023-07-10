@@ -18,6 +18,8 @@
     "name": "MuiSnackbarContent"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSnackbarContent",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/SnackbarContent/SnackbarContent.js",
   "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },

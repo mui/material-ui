@@ -10,7 +10,7 @@
     "emitDeclarationOnly": true
   },
   "include": ["src/**/*.ts*"],
-  "exclude": ["src/**/*.d.ts", "src/**/*.test.*", "./**/*.spec.*", "**/test-utils.tsx"],
+  "exclude": ["src/**/*.d.ts", "src/**/*.test.*", "./**/*.spec.*"],
   "references": [
     { "path": "../mui-material/tsconfig.build.json" },
     { "path": "../mui-system/tsconfig.build.json" }

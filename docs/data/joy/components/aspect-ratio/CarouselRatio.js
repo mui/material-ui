@@ -40,7 +40,7 @@ export default function CarouselRatio() {
     >
       {data.map((item) => (
         <Card
-          row
+          orientation="horizontal"
           key={item.title}
           variant="outlined"
           sx={{
@@ -48,10 +48,7 @@ export default function CarouselRatio() {
             '--Card-padding': (theme) => theme.spacing(2),
           }}
         >
-          <AspectRatio
-            ratio="1"
-            sx={{ minWidth: 60, borderRadius: 'sm', overflow: 'auto' }}
-          >
+          <AspectRatio ratio="1" sx={{ minWidth: 60 }}>
             <img
               src={`${item.src}?h=120&fit=crop&auto=format`}
               srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}

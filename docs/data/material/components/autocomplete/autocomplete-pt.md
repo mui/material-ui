@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React para Autocompletar
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'
@@ -170,7 +170,7 @@ A customized UI for Google Maps Places Autocomplete. For this demo, we need to l
 {{"demo": "GoogleMaps.js"}}
 
 :::warning
-⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
+⚠️ Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
 :::
 
 ## Múltiplos valores

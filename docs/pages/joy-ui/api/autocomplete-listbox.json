@@ -1,0 +1,74 @@
+{
+  "props": {
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'neutral'"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "size": {
+      "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },
+      "default": "'md'"
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'contained'<br>&#124;&nbsp;'light'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
+      },
+      "default": "'outlined'"
+    }
+  },
+  "name": "AutocompleteListbox",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'ul'",
+      "class": ".MuiAutocompleteListbox-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAutocompleteListbox",
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/mui-joy/src/AutocompleteListbox/AutocompleteListbox.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-autocomplete/\">Autocomplete</a></li></ul>",
+  "cssComponent": false
+}

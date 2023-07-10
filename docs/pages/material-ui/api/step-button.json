@@ -18,6 +18,8 @@
     "name": "MuiStepButton"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStepButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/StepButton/StepButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

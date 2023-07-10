@@ -8,7 +8,6 @@ function Root(props: BoxProps) {
       {...props}
       sx={[
         {
-          bgcolor: 'background.appBody',
           display: 'grid',
           gridTemplateColumns: {
             xs: '1fr',
@@ -34,7 +33,7 @@ function Header(props: BoxProps) {
         {
           p: 2,
           gap: 2,
-          bgcolor: 'background.componentBg',
+          bgcolor: 'background.surface',
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -61,7 +60,7 @@ function SideNav(props: BoxProps) {
       sx={[
         {
           p: 2,
-          bgcolor: 'background.componentBg',
+          bgcolor: 'background.surface',
           borderRight: '1px solid',
           borderColor: 'divider',
           display: {
@@ -82,7 +81,7 @@ function SidePane(props: BoxProps) {
       {...props}
       sx={[
         {
-          bgcolor: 'background.componentBg',
+          bgcolor: 'background.surface',
           borderRight: '1px solid',
           borderColor: 'divider',
           display: {
@@ -136,7 +135,7 @@ function SideDrawer({
           height: '100%',
           p: 2,
           boxShadow: 'lg',
-          bgcolor: 'background.componentBg',
+          bgcolor: 'background.surface',
         }}
       >
         {props.children}

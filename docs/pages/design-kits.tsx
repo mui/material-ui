@@ -9,20 +9,20 @@ import DesignKitDemo from 'docs/src/components/productDesignKit/DesignKitDemo';
 import DesignKitFAQ from 'docs/src/components/productDesignKit/DesignKitFAQ';
 import Testimonials from 'docs/src/components/home/Testimonials';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import References, { DESIGNKITS_CUSTOMERS } from 'docs/src/components/home/References';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 export default function DesignKits() {
   return (
-    <BrandingProvider>
+    <BrandingCssVarsProvider>
       <Head
         title="MUI in your favorite design tool"
         description="Pick your favorite design tool to enjoy and use MUI components. Boost consistency and facilitate communication when working with developers."
         card="/static/social-previews/designkits-preview.jpg"
       />
       <AppHeaderBanner />
-      <AppHeader />
+      <AppHeader gitHubRepository="https://github.com/mui/mui-design-kits" />
       <main id="main-content">
         <DesignKitHero />
         <References companies={DESIGNKITS_CUSTOMERS} />
@@ -34,6 +34,6 @@ export default function DesignKits() {
       </main>
       <Divider />
       <AppFooter />
-    </BrandingProvider>
+    </BrandingCssVarsProvider>
   );
 }

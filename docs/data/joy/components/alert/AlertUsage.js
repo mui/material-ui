@@ -9,7 +9,7 @@ export default function AlertUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
@@ -26,7 +26,7 @@ export default function AlertUsage() {
         },
       ]}
       renderDemo={(props) => (
-        <Alert {...props}>This is a Joy UI alert — check it out!</Alert>
+        <Alert {...props}>This is a Joy UI Alert — check it out!</Alert>
       )}
     />
   );

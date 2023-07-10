@@ -41,7 +41,7 @@ const MenuButton = React.forwardRef(
           color="neutral"
           aria-haspopup="menu"
           aria-expanded={open ? 'true' : undefined}
-          aria-controls={open ? `toolbar-example-menu-${children}` : undefined}
+          aria-controls={`toolbar-example-menu-${children}`}
           onClick={onOpen}
           onKeyDown={handleButtonKeyDown}
         >
@@ -51,7 +51,7 @@ const MenuButton = React.forwardRef(
           open,
           actions: menuActions,
           anchorEl: buttonRef.current,
-          componentsProps: {
+          slotProps: {
             listbox: {
               id: `toolbar-example-menu-${children}`,
               'aria-label': children,
@@ -63,8 +63,8 @@ const MenuButton = React.forwardRef(
           sx: (theme) => ({
             width: 288,
             boxShadow: '0 2px 8px 0px rgba(0 0 0 / 0.38)',
-            '--List-padding': 'var(--List-divider-gap)',
-            '--List-item-minHeight': '32px',
+            '--List-padding': 'var(--ListDivider-gap)',
+            '--ListItem-minHeight': '32px',
             [`& .${menuItemClasses.root}`]: {
               transition: 'none',
               '&:hover': {
@@ -144,7 +144,7 @@ export default function MenuToolbarExample() {
 
   return (
     <List
-      row
+      orientation="horizontal"
       aria-label="Example application menu bar"
       role="menubar"
       data-joy-color-scheme="dark"
@@ -153,13 +153,15 @@ export default function MenuToolbarExample() {
         px: 2,
         borderRadius: '4px',
         maxWidth: 'fit-content',
-        '--List-item-radius': '8px',
+        '--ListItem-radius': '8px',
       }}
     >
       <ListItem>
         <MenuButton
           open={menuIndex === 0}
-          onOpen={() => setMenuIndex(0)}
+          onOpen={() => {
+            setMenuIndex((prevMenuIndex) => (prevMenuIndex === null ? 0 : null));
+          }}
           onKeyDown={createHandleButtonKeyDown(0)}
           onMouseEnter={() => {
             if (typeof menuIndex === 'number') {
@@ -171,9 +173,11 @@ export default function MenuToolbarExample() {
           }}
           menu={
             <Menu
-              onClose={() => {
+              onClose={(event) => {
                 menus.current[0]?.focus();
-                setMenuIndex(null);
+                if (event.relatedTarget !== menus.current[0]) {
+                  setMenuIndex(null);
+                }
               }}
             >
               <ListItem nested>
@@ -203,7 +207,9 @@ export default function MenuToolbarExample() {
       <ListItem>
         <MenuButton
           open={menuIndex === 1}
-          onOpen={() => setMenuIndex(1)}
+          onOpen={() => {
+            setMenuIndex((prevMenuIndex) => (prevMenuIndex === null ? 1 : null));
+          }}
           onKeyDown={createHandleButtonKeyDown(1)}
           onMouseEnter={() => {
             if (typeof menuIndex === 'number') {
@@ -215,9 +221,11 @@ export default function MenuToolbarExample() {
           }}
           menu={
             <Menu
-              onClose={() => {
+              onClose={(event) => {
                 menus.current[1]?.focus();
-                setMenuIndex(null);
+                if (event.relatedTarget !== menus.current[1]) {
+                  setMenuIndex(null);
+                }
               }}
             >
               <ListItem nested>
@@ -243,7 +251,9 @@ export default function MenuToolbarExample() {
       <ListItem>
         <MenuButton
           open={menuIndex === 2}
-          onOpen={() => setMenuIndex(2)}
+          onOpen={() => {
+            setMenuIndex((prevMenuIndex) => (prevMenuIndex === null ? 2 : null));
+          }}
           onKeyDown={createHandleButtonKeyDown(2)}
           onMouseEnter={() => {
             if (typeof menuIndex === 'number') {
@@ -255,9 +265,11 @@ export default function MenuToolbarExample() {
           }}
           menu={
             <Menu
-              onClose={() => {
+              onClose={(event) => {
                 menus.current[2]?.focus();
-                setMenuIndex(null);
+                if (event.relatedTarget !== menus.current[2]) {
+                  setMenuIndex(null);
+                }
               }}
             >
               <MenuItem {...itemProps}>Select All {renderShortcut('⌘ A')}</MenuItem>

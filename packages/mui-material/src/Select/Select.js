@@ -65,21 +65,21 @@ const Select = React.forwardRef(function Select(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['variant'],
+    states: ['variant', 'error'],
   });
 
   const variant = fcs.variant || variantProp;
 
+  const ownerState = { ...props, variant, classes: classesProp };
+  const classes = useUtilityClasses(ownerState);
+
   const InputComponent =
     input ||
     {
-      standard: <StyledInput />,
-      outlined: <StyledOutlinedInput label={label} />,
-      filled: <StyledFilledInput />,
+      standard: <StyledInput ownerState={ownerState} />,
+      outlined: <StyledOutlinedInput label={label} ownerState={ownerState} />,
+      filled: <StyledFilledInput ownerState={ownerState} />,
     }[variant];
-
-  const ownerState = { ...props, variant, classes: classesProp };
-  const classes = useUtilityClasses(ownerState);
 
   const inputComponentRef = useForkRef(ref, InputComponent.ref);
 
@@ -91,6 +91,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
         inputComponent,
         inputProps: {
           children,
+          error: fcs.error,
           IconComponent,
           variant,
           type: undefined, // We render a select. We can ignore the type provided by the `Input`.
@@ -218,20 +219,20 @@ Select.propTypes /* remove-proptypes */ = {
    *
    * @param {SelectChangeEvent<T>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
-   * **Warning**: This is a generic event not a change event unless the change event is caused by browser autofill.
+   * **Warning**: This is a generic event, not a change event, unless the change event is caused by browser autofill.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
   onChange: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
-   * Use in controlled mode (see open).
+   * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select collapses).
    *
    * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
    * Callback fired when the component requests to be opened.
-   * Use in controlled mode (see open).
+   * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select expands).
    *
    * @param {object} event The event source of the callback.
    */

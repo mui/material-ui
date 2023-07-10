@@ -42,6 +42,8 @@
     "name": "MuiIcon"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiIcon",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Icon/Icon.js",
   "inheritance": null,

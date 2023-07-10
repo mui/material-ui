@@ -2,7 +2,7 @@ import * as React from 'react';
 import Router from 'next/router';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
-export function openLinkInNewTab(event) {
+export function shouldHandleLinkClick(event) {
   if (
     event.defaultPrevented ||
     event.button !== 0 || // ignore everything but left-click
@@ -16,18 +16,6 @@ export function openLinkInNewTab(event) {
   return false;
 }
 
-export function handleEvent(event, as) {
-  // Ignore click for new tab/new window behavior
-  if (openLinkInNewTab(event)) {
-    return;
-  }
-
-  event.preventDefault();
-
-  const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
-  Router.push(canonicalPathname, as);
-}
-
 /**
  * @param {MouseEvent} event
  */
@@ -37,7 +25,7 @@ function handleClick(event) {
     activeElement = activeElement.parentElement;
   }
 
-  // Ignore non link clicks
+  // Ignore non internal link clicks
   if (
     activeElement === null ||
     activeElement.nodeName !== 'A' ||
@@ -48,7 +36,15 @@ function handleClick(event) {
     return;
   }
 
-  handleEvent(event, activeElement.getAttribute('href'));
+  // Ignore click meant for native link handling, e.g. open in new tab
+  if (shouldHandleLinkClick(event)) {
+    return;
+  }
+
+  event.preventDefault();
+  const as = activeElement.getAttribute('href');
+  const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
+  Router.push(canonicalPathname, as);
 }
 
 export default function MarkdownLinks() {

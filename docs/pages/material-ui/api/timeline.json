@@ -6,7 +6,7 @@
     "position": {
       "type": {
         "name": "enum",
-        "description": "'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
+        "description": "'alternate-reverse'<br>&#124;&nbsp;'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
       "default": "'right'"
     },
@@ -19,11 +19,19 @@
   },
   "name": "Timeline",
   "styles": {
-    "classes": ["root", "positionLeft", "positionRight", "positionAlternate"],
+    "classes": [
+      "root",
+      "positionLeft",
+      "positionRight",
+      "positionAlternate",
+      "positionAlternateReverse"
+    ],
     "globalClasses": {},
     "name": "MuiTimeline"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTimeline",
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-lab/src/Timeline/Timeline.tsx",
   "inheritance": null,

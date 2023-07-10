@@ -16,24 +16,24 @@ export default function ButtonThemes() {
   const [preset, setPreset] = React.useState('');
   const rootPresets = {
     dense: {
-      '--List-item-minHeight': '27px',
-      '--List-decorator-size': '28px',
-      '--List-item-radius': '5px',
+      '--ListItem-minHeight': '27px',
+      '--ListItemDecorator-size': '28px',
+      '--ListItem-radius': '5px',
       '--List-gap': '5px',
       '--List-padding': '10px',
-      '--List-item-paddingLeft': '5px',
-      '--List-item-paddingRight': '5px',
-      '--List-item-paddingY': '0px',
-      '--List-item-fontSize': '14px',
+      '--ListItem-paddingLeft': '5px',
+      '--ListItem-paddingRight': '5px',
+      '--ListItem-paddingY': '0px',
+      '--ListItem-fontSize': '14px',
       '--List-nestedInsetStart': '28px',
-      '--List-decorator-color': 'var(--joy-palette-primary-plainColor)',
+      '--ListItemDecorator-color': 'var(--joy-palette-primary-plainColor)',
     },
     cozy: {
       '--List-radius': '20px',
-      '--List-item-minHeight': '48px',
+      '--ListItem-minHeight': '48px',
       '--List-padding': '8px',
       '--List-gap': '8px',
-      '--List-nestedInsetStart': 'var(--List-decorator-size)',
+      '--List-nestedInsetStart': 'var(--ListItemDecorator-size)',
     },
   };
   const nestedPresets = {
@@ -109,7 +109,7 @@ export default function ButtonThemes() {
           <FormLabel htmlFor="list-theme">Change the preset:</FormLabel>
           <Select
             size="sm"
-            componentsProps={{
+            slotProps={{
               button: {
                 id: 'list-theme',
               },

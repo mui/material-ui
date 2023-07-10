@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { spy } from 'sinon';
+import { createRenderer, describeConformance, fireEvent } from 'test/utils';
 import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
@@ -111,7 +112,7 @@ describe('<TextField />', () => {
       const [, fakeLabel] = getAllByTestId('label');
       const notch = container.querySelector('.notch legend');
       expect(notch).to.contain(fakeLabel);
-      expect(notch).to.have.text('label\u00a0*');
+      expect(notch).to.have.text('label\u2009*');
     });
 
     it('should set shrink prop on outline from label', () => {
@@ -127,7 +128,7 @@ describe('<TextField />', () => {
       );
 
       const notch = container.querySelector('.notch legend');
-      expect(notch).to.have.text('0\u00a0*');
+      expect(notch).to.have.text('0\u2009*');
     });
 
     it('should not set padding for empty, null or undefined label props', function test() {
@@ -151,6 +152,22 @@ describe('<TextField />', () => {
       );
 
       expect(getByTestId('InputComponent')).not.to.equal(null);
+    });
+  });
+
+  describe('prop: disabled', () => {
+    it('should not run click event when disabled', () => {
+      const handleClick = spy();
+      const { getByRole } = render(<TextField disabled onClick={handleClick} />);
+      fireEvent.click(getByRole('textbox'));
+      expect(handleClick.callCount).to.equal(0);
+    });
+
+    it('should not run click event when disabled and when onClick prop is set through InputProps', () => {
+      const handleClick = spy();
+      const { getByRole } = render(<TextField disabled InputProps={{ onClick: handleClick }} />);
+      fireEvent.click(getByRole('textbox'));
+      expect(handleClick.callCount).to.equal(0);
     });
   });
 

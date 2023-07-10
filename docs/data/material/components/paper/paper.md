@@ -1,8 +1,9 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Paper component
 components: Paper
 githubLabel: 'component: Paper'
+materialDesign: https://m2.material.io/design/environment/elevation.html
 ---
 
 # Paper

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Typography from '@mui/joy/Typography';
+import Typography, { TypographyOwnerState } from '@mui/joy/Typography';
+import { expectType } from '@mui/types';
 
 <Typography component="a" href="/">
   Text
@@ -25,3 +26,52 @@ function Link(props: JSX.IntrinsicElements['a']) {
 <Typography color="warning" />;
 
 <Typography textColor="neutral.500" />;
+<Typography textColor="#fff" />; // should support plain string
+
+<Typography
+  slots={{
+    root: 'div',
+    startDecorator: 'div',
+    endDecorator: 'div',
+  }}
+/>;
+
+<Typography
+  slotProps={{
+    root: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    startDecorator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    endDecorator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+  }}
+/>;
+
+<Typography
+  slotProps={{
+    root: (ownerState) => {
+      expectType<TypographyOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    startDecorator: (ownerState) => {
+      expectType<TypographyOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    endDecorator: (ownerState) => {
+      expectType<TypographyOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+  }}
+/>;

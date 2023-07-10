@@ -1,4 +1,5 @@
-import { generateUtilityClasses, generateUtilityClass } from '@mui/base';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClass from '../generateUtilityClass';
 import { inputBaseClasses } from '../InputBase';
 
 export interface OutlinedInputClasses {
@@ -32,6 +33,8 @@ export interface OutlinedInputClasses {
   inputAdornedStart: string;
   /** Styles applied to the input element if `endAdornment` is provided. */
   inputAdornedEnd: string;
+  /** Styles applied to the input element if `type="search"`. */
+  inputTypeSearch: string;
 }
 
 export type OutlinedInputClassKey = keyof OutlinedInputClasses;

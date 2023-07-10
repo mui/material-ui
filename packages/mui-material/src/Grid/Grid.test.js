@@ -693,7 +693,7 @@ describe('Material UI <Grid />', () => {
     it('should not throw error for setting zero spacing in theme', () => {
       const theme = createTheme({ spacing: 0 });
 
-      const App = () => {
+      function App() {
         return (
           <ThemeProvider theme={theme}>
             <Grid container spacing={4}>
@@ -702,7 +702,7 @@ describe('Material UI <Grid />', () => {
             </Grid>
           </ThemeProvider>
         );
-      };
+      }
 
       expect(() => {
         render(<App />);

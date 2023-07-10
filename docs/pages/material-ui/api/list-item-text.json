@@ -2,8 +2,8 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "disableTypography": { "type": { "name": "bool" } },
-    "inset": { "type": { "name": "bool" } },
+    "disableTypography": { "type": { "name": "bool" }, "default": "false" },
+    "inset": { "type": { "name": "bool" }, "default": "false" },
     "primary": { "type": { "name": "node" } },
     "primaryTypographyProps": { "type": { "name": "object" } },
     "secondary": { "type": { "name": "node" } },
@@ -22,6 +22,8 @@
     "name": "MuiListItemText"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListItemText",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ListItemText/ListItemText.js",
   "inheritance": null,

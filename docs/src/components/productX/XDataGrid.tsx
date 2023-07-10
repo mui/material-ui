@@ -38,7 +38,7 @@ const code = `<DataGrid
     },
   ]}
   checkboxSelection
-  disableSelectionOnClick
+  disableRowSelectionOnClick
   pagination
 />`;
 
@@ -53,7 +53,7 @@ const startLine = {
 const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-demo" pro />;
 
 export default function XDataGrid() {
-  const [demo, setDemo] = React.useState<typeof DEMOS[number] | null>(null);
+  const [demo, setDemo] = React.useState<(typeof DEMOS)[number] | null>(null);
   const gridApiRef = useGridApiRef();
   const icons = {
     [DEMOS[0]]: <EditRoundedIcon fontSize="small" />,
@@ -91,7 +91,7 @@ export default function XDataGrid() {
         const checkbox = document.querySelector(
           '#data-grid-demo div[data-field="__check__"] input',
         ) as HTMLInputElement | null;
-        if (checkbox) {
+        if (checkbox && !checkbox.checked) {
           checkbox.click();
         }
       }
@@ -151,32 +151,41 @@ export default function XDataGrid() {
           <Paper
             id="data-grid-demo"
             variant="outlined"
-            sx={{
-              position: 'relative',
-              zIndex: 1,
-              height: 240,
-              borderRadius: '10px 10px 0 0',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
-              '& .MuiDataGrid-root': {
-                '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
-                '& .MuiDataGrid-footerContainer': {
-                  minHeight: 48,
-                  borderTop: '1px solid',
-                  borderColor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
-                },
-                '& .MuiTablePagination-root': {
-                  fontSize: '0.75rem',
-                  '& p': {
-                    fontSize: '0.75rem',
-                  },
-                  '& .MuiToolbar-root': {
+            sx={[
+              {
+                position: 'relative',
+                zIndex: 1,
+                height: 240,
+                borderRadius: '10px 10px 0 0',
+                borderColor: 'grey.200',
+                '& .MuiDataGrid-root': {
+                  '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
+                  '& .MuiDataGrid-footerContainer': {
                     minHeight: 48,
+                    borderTop: '1px solid',
+                    borderColor: 'grey.200',
+                  },
+                  '& .MuiTablePagination-root': {
+                    fontSize: '0.75rem',
+                    '& p': {
+                      fontSize: '0.75rem',
+                    },
+                    '& .MuiToolbar-root': {
+                      minHeight: 48,
+                    },
                   },
                 },
               },
-            }}
+              (theme) =>
+                theme.applyDarkStyles({
+                  borderColor: 'primaryDark.600',
+                  '& .MuiDataGrid-root': {
+                    '& .MuiDataGrid-footerContainer': {
+                      borderColor: 'primaryDark.600',
+                    },
+                  },
+                }),
+            ]}
           >
             {dataGridStyleOverrides}
             <DataGridPro
@@ -185,9 +194,8 @@ export default function XDataGrid() {
               loading={loading}
               density="compact"
               checkboxSelection
-              disableSelectionOnClick
+              disableRowSelectionOnClick
               pagination
-              experimentalFeatures={{ newEditingApi: true }}
             />
           </Paper>
           <Frame.Info
@@ -220,7 +228,7 @@ export default function XDataGrid() {
               {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />}
               <StylingInfo
                 appeared={demo === DEMOS[3] || demo === DEMOS[4]}
-                content={
+                stylingContent={
                   <React.Fragment>
                     <Typography fontWeight="bold" color="#fff" variant="body2">
                       {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}

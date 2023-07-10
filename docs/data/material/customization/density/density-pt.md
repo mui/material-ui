@@ -4,7 +4,7 @@
 
 ## Aplicando densidade
 
-Esta seção explica como aplicar a densidade. Ela não cobre casos de uso potenciais ou considerações sobre o uso de densidade em seu aplicativo. The Material Design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
+Esta seção explica como aplicar a densidade. Ela não cobre casos de uso potenciais ou considerações sobre o uso de densidade em seu aplicativo. The Material Design guidelines have a [comprehensive guide](https://m2.material.io/design/layout/applying-density.html) covering these topics in more detail.
 
 ## Implementando densidade
 
@@ -32,7 +32,7 @@ Os seguintes componentes possuem propriedades que aplicam maior densidade:
 
 Esta ferramenta permite aplicar densidade via espaçamento e propriedades de componentes. Você pode navegar e ver como isso se aplica à sensação geral dos componentes do Material-UI.
 
-Se você ativar alta densidade, um tema personalizado será aplicado a documentação. Este tema é apenas para fins de demonstração. Você _não deve_ aplicar este tema para todo o seu aplicativo, isso pode impactar negativamente a experiência do usuário. The [Material Design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples for when not to apply density.
+Se você ativar alta densidade, um tema personalizado será aplicado a documentação. Este tema é apenas para fins de demonstração. Você _não deve_ aplicar este tema para todo o seu aplicativo, isso pode impactar negativamente a experiência do usuário. The [Material Design guidelines](https://m2.material.io/design/layout/applying-density.html) has examples for when not to apply density.
 
 O tema é configurado com as seguintes opções:
 

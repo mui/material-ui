@@ -10,10 +10,10 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "16" },
-    "hideBackdrop": { "type": { "name": "bool" } },
+    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
     "ModalProps": { "type": { "name": "object" }, "default": "{}" },
     "onClose": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" } },
+    "open": { "type": { "name": "bool" }, "default": "false" },
     "PaperProps": { "type": { "name": "object" }, "default": "{}" },
     "SlideProps": { "type": { "name": "object" } },
     "sx": {
@@ -57,6 +57,8 @@
     "name": "MuiDrawer"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiDrawer",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Drawer/Drawer.js",
   "inheritance": null,

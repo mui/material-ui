@@ -1,4 +1,12 @@
-export const getHtml = ({ title, language }: { title: string; language: string }) => {
+export const getHtml = ({
+  title,
+  language,
+  codeStyling,
+}: {
+  title: string;
+  language: string;
+  codeStyling?: 'Tailwind' | 'MUI System';
+}) => {
   return `<!DOCTYPE html>
 <html lang="${language}">
   <head>
@@ -12,7 +20,31 @@ export const getHtml = ({ title, language }: { title: string; language: string }
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
+    />${
+      codeStyling === 'Tailwind'
+        ? `
+    <!-- Check the Tailwind CSS's installation guide for setting up tailwind: https://tailwindcss.com/docs/installation -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            boxShadow: {
+              'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
+              'outline-switch': '0 0 1px 8px rgba(0, 0, 0, 0.25)',
+            },
+            cursor: {
+              inherit: 'inherit',
+            },
+            border: {
+              3: '3px',
+            },
+          }
+        }
+      }
+    </script>`
+        : ''
+    }
   </head>
   <body>
     <div id="root"></div>
@@ -20,10 +52,10 @@ export const getHtml = ({ title, language }: { title: string; language: string }
 </html>`;
 };
 
-export const getRootIndex = (product?: 'joy-ui' | 'base') => {
-  if (product === 'joy-ui') {
+export const getRootIndex = (productId?: 'joy-ui' | 'base-ui') => {
+  if (productId === 'joy-ui') {
     return `import * as React from 'react';
-import ReactDOM from 'react-dom/client';
+import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
 import Demo from './demo';
 
@@ -37,9 +69,9 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </React.StrictMode>
 );`;
   }
-  if (product === 'base') {
+  if (productId === 'base-ui') {
     return `import * as React from 'react';
-import ReactDOM from 'react-dom/client';
+import * as ReactDOM from 'react-dom/client';
 import Demo from './demo';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
@@ -49,7 +81,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
 );`;
   }
   return `import * as React from 'react';
-import ReactDOM from 'react-dom/client';
+import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './demo';
 

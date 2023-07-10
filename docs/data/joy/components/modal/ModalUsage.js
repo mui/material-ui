@@ -16,7 +16,7 @@ export default function ModalUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
@@ -57,14 +57,12 @@ ${prependLinesSpace(code, 2)}
               aria-describedby="modal-usage-description"
             >
               <ModalClose />
-              <Typography
-                id="modal-usage-title"
-                component="h2"
-                level="inherit"
-                fontSize="1.25em"
-                mb="0.25em"
-              >
+              <Typography id="modal-usage-title" component="h2">
                 Modal title
+              </Typography>
+              <Typography id="modal-usage-description">
+                A description of the dialog should give primary message or purpose of
+                the dialog.
               </Typography>
             </ModalDialog>
           </Modal>

@@ -10,10 +10,10 @@
       },
       "default": "'standard'"
     },
-    "disabled": { "type": { "name": "bool" } },
-    "disableFocusRipple": { "type": { "name": "bool" } },
-    "disableRipple": { "type": { "name": "bool" } },
-    "fullWidth": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "onChange": { "type": { "name": "func" } },
     "onClick": { "type": { "name": "func" } },
     "selected": { "type": { "name": "bool" } },
@@ -48,9 +48,11 @@
     "name": "MuiToggleButton"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiToggleButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/ToggleButton/ToggleButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-toggle-button/\">Toggle button</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-toggle-button/\">Toggle Button</a></li></ul>",
   "cssComponent": false
 }

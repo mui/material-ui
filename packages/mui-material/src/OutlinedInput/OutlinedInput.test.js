@@ -17,7 +17,17 @@ describe('<OutlinedInput />', () => {
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
-    skip: ['componentProp', 'componentsProp'],
+    testLegacyComponentsProp: true,
+    slots: {
+      // can't test with DOM element as InputBase places an ownerState prop on it unconditionally.
+      root: { expectedClassName: classes.root, testWithElement: null },
+      input: { expectedClassName: classes.input, testWithElement: null },
+    },
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should render a NotchedOutline', () => {
@@ -37,7 +47,7 @@ describe('<OutlinedInput />', () => {
       />,
     );
     const notchOutlined = container.querySelector('.notched-outlined legend');
-    expect(notchOutlined).to.have.text('label\xa0*');
+    expect(notchOutlined).to.have.text('label\u2009*');
   });
 
   it('should forward classes to InputBase', () => {

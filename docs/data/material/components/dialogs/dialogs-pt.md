@@ -1,10 +1,10 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente Diálogo para React
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
-materialDesign: https://material.io/components/dialogs
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
+materialDesign: https://m2.material.io/components/dialogs
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
 
 # Diálogo
@@ -26,7 +26,7 @@ Mecanismo de toque:
 - Escolhendo uma opção irá imediatamente confirmar a opção e fechar o menu
 - Tocando para sair do diálogo ou pressionando a opção de voltar irá cancelar a ação e fechar o diálogo
 
-{{"demo": "SimpleDialog.js"}}
+{{"demo": "SimpleDialogDemo.js"}}
 
 ## Alertas
 

@@ -792,6 +792,8 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
 
   return (
     <TreeViewContext.Provider
+      // TODO: fix this lint error
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
         focus,

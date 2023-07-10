@@ -18,13 +18,12 @@ export default function EarlyBird() {
       id="early-bird"
     >
       <Stack
-        sx={{
+        sx={(theme) => ({
           borderRadius: 1,
           p: 2,
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'primary.50'),
+          bgcolor: 'primary.50',
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'primaryDark.500' : 'primary.100',
+          borderColor: 'primary.100',
           display: 'flex',
           flexDirection: {
             xs: 'column',
@@ -35,7 +34,11 @@ export default function EarlyBird() {
             xs: 'flex-start',
             sm: 'center',
           },
-        }}
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.900',
+            borderColor: 'primaryDark.500',
+          }),
+        })}
       >
         <Box>
           <Typography fontWeight="bold" sx={{ mb: 0.5 }}>
@@ -56,6 +59,7 @@ export default function EarlyBird() {
           endIcon={<KeyboardArrowRightRounded />}
           sx={{
             py: 1,
+            flexShrink: 0,
             ml: { xs: 0, sm: 2 },
             mt: { xs: 3, sm: 0 },
             width: { xs: '100%', sm: '50%', md: '15%' },

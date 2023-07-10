@@ -18,7 +18,7 @@ export default function FadeModalDialog() {
             keepMounted
             open={!['exited', 'exiting'].includes(state)}
             onClose={() => setOpen(false)}
-            componentsProps={{
+            slotProps={{
               backdrop: {
                 sx: {
                   opacity: 0,
@@ -47,13 +47,7 @@ export default function FadeModalDialog() {
                 }[state],
               }}
             >
-              <Typography
-                id="fade-modal-dialog-title"
-                component="h2"
-                level="inherit"
-                fontSize="1.25em"
-                mb="0.25em"
-              >
+              <Typography id="fade-modal-dialog-title" component="h2">
                 Transition modal
               </Typography>
               <Typography

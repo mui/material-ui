@@ -75,10 +75,6 @@ declare global {
        * @see [Excluding Elements from the Accessibility Tree](https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion)
        */
       toBeInaccessible(): void;
-      /**
-       * Matcher with useful error messages if the dates don't match.
-       */
-      toEqualDateTime(expected: Date): void;
       toHaveAccessibleDescription(description: string): void;
       /**
        * Checks if the accessible name computation (according to `accname` spec)
@@ -103,7 +99,7 @@ declare global {
        * @example expect(() => render()).toWarnDev('single message')
        * @example expect(() => render()).toWarnDev(['first warning', 'then the second'])
        */
-      toWarnDev(messages?: string | readonly string[]): void;
+      toWarnDev(messages?: string | readonly (string | boolean)[]): void;
       /**
        * Matches calls to `console.error` in the asserted callback.
        *
@@ -111,7 +107,7 @@ declare global {
        * @example expect(() => render()).toErrorDev('single message')
        * @example expect(() => render()).toErrorDev(['first warning', 'then the second'])
        */
-      toErrorDev(messages?: string | readonly string[]): void;
+      toErrorDev(messages?: string | readonly (string | boolean)[]): void;
       /**
        * Asserts that the given callback throws an error matching the given message in development (process.env.NODE_ENV !== 'production').
        * In production it expects a minified error.
@@ -228,7 +224,7 @@ chai.use((chaiAPI, utils) => {
     // -- https://www.w3.org/TR/wai-aria-1.1/#aria-hidden
     while (
       currentNode !== null &&
-      // stoping at <html /> so that failed assertion message only prints
+      // stopping at <html /> so that failed assertion message only prints
       // <body /> or below. use cases for aria-hidden on <html /> are unknown
       currentNode !== document.documentElement &&
       ariaHidden === false
@@ -449,7 +445,7 @@ chai.use((chaiAPI, utils) => {
     function toHaveInlineStyle(expectedStyleUnnormalized: Record<string, string>) {
       const element = utils.flag(this, 'object') as HTMLElement;
       if (element?.nodeType !== 1) {
-        // Same pre-condition for negated and unnegated  assertion
+        // Same pre-condition for negated and unnegated assertion
         throw new AssertionError(`Expected an Element but got ${String(element)}`);
       }
 
@@ -474,15 +470,6 @@ chai.use((chaiAPI, utils) => {
       });
     },
   );
-
-  chai.Assertion.addMethod('toEqualDateTime', function toEqualDateTime(expectedDate, message) {
-    // eslint-disable-next-line no-underscore-dangle
-    const actualDate = this._obj;
-    const assertion = new chai.Assertion(actualDate.toISOString(), message);
-    // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
-    utils.transferFlags(this as any, assertion, false);
-    assertion.to.equal(expectedDate.toISOString());
-  });
 
   chai.Assertion.addMethod('toThrowMinified', function toThrowMinified(expectedDevMessage) {
     // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.

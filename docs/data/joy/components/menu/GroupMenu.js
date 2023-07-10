@@ -9,39 +9,40 @@ import MenuItem from '@mui/joy/MenuItem';
 import ArrowRight from '@mui/icons-material/ArrowRight';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 
-export default function BasicMenu() {
+export default function GroupMenu() {
   const SIZES = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large'];
   const [size, setSize] = React.useState('Medium');
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const buttonRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false);
+
   const handleClose = () => {
-    setAnchorEl(null);
+    setOpen(false);
   };
 
   return (
     <div>
       <Button
+        ref={buttonRef}
         id="group-demo-button"
-        aria-controls={open ? 'group-menu' : undefined}
+        aria-controls={'group-menu'}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="outlined"
         color="neutral"
-        onClick={handleClick}
+        onClick={() => {
+          setOpen(!open);
+        }}
         endDecorator={<ArrowDropDown />}
       >
         Size
       </Button>
       <Menu
         id="group-menu"
-        anchorEl={anchorEl}
+        anchorEl={buttonRef.current}
         open={open}
         onClose={handleClose}
         aria-labelledby="group-demo-button"
-        sx={{ minWidth: 160, '--List-decorator-size': '24px' }}
+        sx={{ minWidth: 160, '--ListItemDecorator-size': '24px' }}
       >
         <MenuItem
           onClick={() => {

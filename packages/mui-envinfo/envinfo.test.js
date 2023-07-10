@@ -26,7 +26,7 @@ describe('@mui/envinfo', () => {
       isRunningOnWindows ? 'npx.cmd' : 'npx',
       ['--package', buildPath, 'envinfo', ...args],
       {
-        encoding: 'utf-8',
+        encoding: 'utf8',
         stdio: 'pipe',
       },
     );

@@ -94,6 +94,10 @@ class AdErrorBoundary extends React.Component {
       eventAction: 'crash',
       eventLabel,
     });
+    window.gtag('event', 'ad', {
+      eventAction: 'crash',
+      eventLabel,
+    });
   }
 
   render() {
@@ -107,7 +111,7 @@ class AdErrorBoundary extends React.Component {
   }
 }
 
-function Ad() {
+export default function Ad() {
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
 
@@ -117,7 +121,7 @@ function Ad() {
   let children;
   let label;
   // Hide the content to google bot to avoid its indexation.
-  if (/Googlebot/.test(navigator.userAgent) || disableAd) {
+  if ((typeof window !== 'undefined' && /Googlebot/.test(navigator.userAgent)) || disableAd) {
     children = <span />;
   } else if (adblock) {
     if (randomAdblock < 0.2) {
@@ -197,6 +201,10 @@ function Ad() {
         eventAction: 'display',
         eventLabel,
       });
+      window.gtag('event', 'ad', {
+        eventAction: 'display',
+        eventLabel,
+      });
     }, 2500);
 
     return () => {
@@ -210,7 +218,8 @@ function Ad() {
       sx={{
         position: 'relative',
         display: 'block',
-        m: (theme) => theme.spacing(4, 0, 3),
+        mt: 4,
+        mb: 3,
         ...(adShape === 'image' && {
           minHeight: 126,
         }),
@@ -233,5 +242,3 @@ function Ad() {
     </Box>
   );
 }
-
-export default Ad;

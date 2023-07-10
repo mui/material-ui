@@ -13,6 +13,8 @@
   "name": "TabPanel",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTabPanel" },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiTabPanel",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/TabPanel/TabPanel.js",
   "inheritance": null,

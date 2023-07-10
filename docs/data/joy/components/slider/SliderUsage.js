@@ -10,7 +10,7 @@ export default function SliderUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'solid',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
@@ -51,8 +51,6 @@ export default function SliderUsage() {
             p: 2,
             lineHeight: 0,
             borderRadius: 'sm',
-            bgcolor:
-              props.variant === 'plain' ? 'background.level3' : 'background.surface',
           }}
         >
           <Slider defaultValue={3} max={10} {...props} />

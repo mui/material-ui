@@ -7,8 +7,13 @@ function themeTest() {
     value: number;
     theme: { palette: { primary: string } };
   }) => ({});
-  const Component: React.FC<{ value: number }> = () => null;
-  const ComponentWithTheme: React.FC<{ theme: { zIndex: { [k: string]: number } } }> = () => null;
+  const Component: React.FC<{ value: number }> = function Component() {
+    return null;
+  };
+  const ComponentWithTheme: React.FC<{ theme: { zIndex: { [k: string]: number } } }> =
+    function ComponentWithTheme() {
+      return null;
+    };
 
   const ComponentStyled = styled(Component)(style);
   const ComponentStyledWithTheme = styled(Component)(styleWithTheme);
@@ -35,7 +40,9 @@ function themeTest() {
 
   const ComponentWithOptionalTheme: React.FC<{
     theme?: { zIndex: { [k: string]: number } };
-  }> = () => null;
+  }> = function ComponentWithOptionalTheme() {
+    return null;
+  };
   const ComponentWithOptionalThemeStyledWithTheme = styled(ComponentWithOptionalTheme)(
     styleWithTheme,
   );
@@ -86,14 +93,14 @@ function acceptanceTest() {
       fontFamily: theme.fontFamily,
     }),
   );
-  const StyledInferedPropsMyComponent = styled(MyComponent)(({ defaulted }) => ({
+  const StyledInferredPropsMyComponent = styled(MyComponent)(({ defaulted }) => ({
     content: defaulted,
   }));
   const renderedMyComponent = (
     <React.Fragment>
       <MyComponent className="test" />
       <StyledMyComponent theme={MyThemeInstance} />
-      <StyledInferedPropsMyComponent defaulted="Hi!" />
+      <StyledInferredPropsMyComponent defaulted="Hi!" />
     </React.Fragment>
   );
 }

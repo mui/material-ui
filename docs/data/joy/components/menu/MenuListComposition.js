@@ -1,44 +1,47 @@
 import * as React from 'react';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/Popper';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { styled } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 import MenuList from '@mui/joy/MenuList';
 import MenuItem from '@mui/joy/MenuItem';
 
-const Popup = styled(PopperUnstyled)({
+const Popup = styled(Popper)({
   zIndex: 1000,
 });
 
 export default function MenuListComposition() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const buttonRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false);
+
   const handleClose = () => {
-    setAnchorEl(null);
+    setOpen(false);
   };
 
   const handleListKeyDown = (event) => {
     if (event.key === 'Tab') {
-      setAnchorEl(null);
+      setOpen(false);
     } else if (event.key === 'Escape') {
-      anchorEl.focus();
-      setAnchorEl(null);
+      if (buttonRef.current) {
+        buttonRef.current?.focus();
+      }
+      setOpen(false);
     }
   };
 
   return (
     <div>
       <Button
+        ref={buttonRef}
         id="composition-button"
-        aria-controls={open ? 'composition-menu' : undefined}
+        aria-controls={'composition-menu'}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="outlined"
         color="neutral"
-        onClick={handleClick}
+        onClick={() => {
+          setOpen(!open);
+        }}
         sx={{ borderRadius: 0 }}
       >
         Open menu
@@ -47,7 +50,7 @@ export default function MenuListComposition() {
         role={undefined}
         id="composition-menu"
         open={open}
-        anchorEl={anchorEl}
+        anchorEl={buttonRef.current}
         disablePortal
         modifiers={[
           {

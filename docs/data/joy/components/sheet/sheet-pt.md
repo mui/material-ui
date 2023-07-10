@@ -1,6 +1,7 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Sheet component
+components: Sheet
 ---
 
 # Sheet

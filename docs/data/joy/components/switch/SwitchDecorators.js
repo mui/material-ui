@@ -8,7 +8,7 @@ export default function SwitchDecorators() {
   return (
     <Switch
       color={dark ? 'primary' : 'danger'}
-      componentsProps={{ input: { 'aria-label': 'dark mode' } }}
+      slotProps={{ input: { 'aria-label': 'dark mode' } }}
       startDecorator={
         <LocalFireDepartmentRoundedIcon
           sx={{ color: dark ? 'text.tertiary' : 'danger.600' }}

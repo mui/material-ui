@@ -19,6 +19,8 @@ export interface TabsClasses {
   colorSuccess: string;
   /** Classname applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Class name applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Classname applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Classname applied to the root element if `variant="outlined"`. */
@@ -38,10 +40,10 @@ export interface TabsClasses {
 export type TabsClassKey = keyof TabsClasses;
 
 export function getTabsUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTabs', slot);
+  return generateUtilityClass('MuiTabs', slot);
 }
 
-const tabListClasses: TabsClasses = generateUtilityClasses('JoyTabs', [
+const tabListClasses: TabsClasses = generateUtilityClasses('MuiTabs', [
   'root',
   'horizontal',
   'vertical',
@@ -51,6 +53,7 @@ const tabListClasses: TabsClasses = generateUtilityClasses('JoyTabs', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

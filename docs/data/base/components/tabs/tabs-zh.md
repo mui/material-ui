@@ -1,9 +1,9 @@
 ---
-product: base
+productId: base-ui
 title: Unstyled React Tabs components
 components: TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: tabs'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 ---
 
 # Unstyled tabs
@@ -25,7 +25,7 @@ Tabs are implemented using a collection of related components:
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import TabUnstyled from '@mui/base/TabUnstyled';
@@ -81,7 +81,7 @@ The tab components are each composed of a root slot with no interior slots:
 ### Slot props
 
 :::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+The following props are available on all non-utility Base components. See [Usage](/base-ui/getting-started/usage/) for full details.
 :::
 
 Use the `component` prop to override the root slot with a custom element:
@@ -122,7 +122,7 @@ The `TabUnstyled` component provides the `component` prop to handle this use cas
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
 
 The following steps are necessary to make the tab component suite accessible to assistive technology:
 
@@ -135,7 +135,7 @@ The demos below illustrate the proper use of ARIA labels.
 
 By default, when using keyboard navigation, the tab components open via **manual activation**—that is, the next panel is displayed only after the user activates the tab with either <kbd class="key">Space</kbd>, <kbd class="key">Enter</kbd>, or a mouse click.
 
-This is the preferable behavior for tabs in most cases, acccording to [the WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
+This is the preferable behavior for tabs in most cases, according to [the WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
 
 Alternatively, you can set the panels to be displayed automatically when their corresponding tabs are in focus—this behavior of the selection following the focus is known as **automatic activation**.
 

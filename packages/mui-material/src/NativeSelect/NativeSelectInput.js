@@ -8,10 +8,10 @@ import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSele
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, disabled, multiple, open } = ownerState;
+  const { classes, variant, disabled, multiple, open, error } = ownerState;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled', multiple && 'multiple'],
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
   };
 
@@ -28,8 +28,12 @@ export const nativeSelectSelectStyles = ({ ownerState, theme }) => ({
   cursor: 'pointer',
   '&:focus': {
     // Show that it's not an text input
-    backgroundColor:
-      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',
+    ...(theme.vars
+      ? { backgroundColor: `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.05)` }
+      : {
+          backgroundColor:
+            theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',
+        }),
     borderRadius: 0, // Reset Chrome style
   },
   // Remove IE11 arrow
@@ -43,7 +47,7 @@ export const nativeSelectSelectStyles = ({ ownerState, theme }) => ({
     height: 'auto',
   },
   '&:not([multiple]) option, &:not([multiple]) optgroup': {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
   },
   // Bump specificity to allow extending custom inputs
   '&&&': {
@@ -56,9 +60,9 @@ export const nativeSelectSelectStyles = ({ ownerState, theme }) => ({
     },
   }),
   ...(ownerState.variant === 'outlined' && {
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
     '&:focus': {
-      borderRadius: theme.shape.borderRadius, // Reset the reset for Chrome style
+      borderRadius: (theme.vars || theme).shape.borderRadius, // Reset the reset for Chrome style
     },
     '&&&': {
       paddingRight: 32,
@@ -76,6 +80,7 @@ const NativeSelectSelect = styled('select', {
     return [
       styles.select,
       styles[ownerState.variant],
+      ownerState.error && styles.error,
       { [`&.${nativeSelectClasses.multiple}`]: styles.multiple },
     ];
   },
@@ -88,9 +93,9 @@ export const nativeSelectIconStyles = ({ ownerState, theme }) => ({
   right: 0,
   top: 'calc(50% - .5em)', // Center vertically, height is 1em
   pointerEvents: 'none', // Don't block pointer events on the select under the icon.
-  color: theme.palette.action.active,
+  color: (theme.vars || theme).palette.action.active,
   [`&.${nativeSelectClasses.disabled}`]: {
-    color: theme.palette.action.disabled,
+    color: (theme.vars || theme).palette.action.disabled,
   },
   ...(ownerState.open && {
     transform: 'rotate(180deg)',
@@ -120,12 +125,21 @@ const NativeSelectIcon = styled('svg', {
  * @ignore - internal component.
  */
 const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref) {
-  const { className, disabled, IconComponent, inputRef, variant = 'standard', ...other } = props;
+  const {
+    className,
+    disabled,
+    error,
+    IconComponent,
+    inputRef,
+    variant = 'standard',
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
     disabled,
     variant,
+    error,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -164,6 +178,10 @@ NativeSelectInput.propTypes = {
    * If `true`, the select is disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the `select input` will indicate an error.
+   */
+  error: PropTypes.bool,
   /**
    * The icon that displays the arrow.
    */

@@ -29,13 +29,12 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
       PaginationItemPropsColorOverrides
     >;
     /**
-     * The components used for first, last, next & previous item type
-     * @default {
-     *   first: FirstPageIcon,
-     *   last: LastPageIcon,
-     *   next: NavigateNextIcon,
-     *   previous: NavigateBeforeIcon,
-     * }
+     * The components used for each slot inside.
+     *
+     * This prop is an alias for the `slots` prop.
+     * It's recommended to use the `slots` prop instead.
+     *
+     * @default {}
      */
     components?: {
       first?: React.ElementType;
@@ -67,6 +66,19 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      * @default 'medium'
      */
     size?: OverridableStringUnion<'small' | 'medium' | 'large', PaginationItemPropsSizeOverrides>;
+    /**
+     * The components used for each slot inside.
+     *
+     * This prop is an alias for the `components` prop, which will be deprecated in the future.
+     *
+     * @default {}
+     */
+    slots?: {
+      first?: React.ElementType;
+      last?: React.ElementType;
+      next?: React.ElementType;
+      previous?: React.ElementType;
+    };
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
