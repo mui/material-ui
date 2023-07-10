@@ -277,7 +277,7 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
   );
 }) as React.ForwardRefExoticComponent<TouchRippleProps & React.RefAttributes<TouchRippleActions>>;
 
-TouchRipple.propTypes = {
+(TouchRipple as any).propTypes = {
   /**
    * If `true`, the ripple starts at the center of the component
    * rather than at the point of interaction.
