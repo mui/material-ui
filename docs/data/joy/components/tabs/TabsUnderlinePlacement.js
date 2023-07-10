@@ -8,40 +8,37 @@ export default function TabsUnderlinePlacement() {
   const [placement, setPlacement] = React.useState('top');
   return (
     <Tabs
-      variant="outlined"
-      orientation={placement.match(/(left|right)/) ? 'vertical' : 'horizontal'}
+      variant="plain"
       aria-label="Placement indicator tabs"
       value={placement}
       onChange={(event, newValue) => setPlacement(newValue)}
-      sx={{
-        width: 300,
-        height: 180,
-        flexDirection: {
-          top: 'column-reverse',
-          bottom: 'column',
-          left: 'row-reverse',
-          right: 'row',
-        }[placement],
-      }}
     >
       <TabList underlinePlacement={placement}>
-        <Tab indicatorPlacement={placement} value="bottom">
-          Bottom
-        </Tab>
-        <Tab indicatorPlacement={placement} value="top">
+        <Tab disableIndicator value="top">
           Top
         </Tab>
-        <Tab indicatorPlacement={placement} value="left">
-          Left
-        </Tab>
-        <Tab indicatorPlacement={placement} value="right">
+        <Tab disableIndicator value="right">
           Right
         </Tab>
+        <Tab disableIndicator value="bottom">
+          Bottom
+        </Tab>
+        <Tab disableIndicator value="left">
+          Left
+        </Tab>
       </TabList>
-      <TabPanel value="top">Top panel</TabPanel>
-      <TabPanel value="bottom">Bottom panel</TabPanel>
-      <TabPanel value="left">Left panel</TabPanel>
-      <TabPanel value="right">Right panel</TabPanel>
+      <TabPanel value="top">
+        underlinePlacement <b>Top</b>
+      </TabPanel>
+      <TabPanel value="bottom">
+        underlinePlacement <b>Bottom</b>
+      </TabPanel>
+      <TabPanel value="left">
+        underlinePlacement <b>Left</b>
+      </TabPanel>
+      <TabPanel value="right">
+        underlinePlacement <b>Right</b>
+      </TabPanel>
     </Tabs>
   );
 }

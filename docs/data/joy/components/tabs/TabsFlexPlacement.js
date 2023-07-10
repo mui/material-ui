@@ -17,25 +17,26 @@ export default function TabsFlexPlacement() {
         width: 300,
         height: 180,
         flexDirection: {
-          top: 'column-reverse',
-          bottom: 'column',
-          left: 'row-reverse',
-          right: 'row',
+          top: 'column',
+          bottom: 'column-reverse',
+          left: 'row',
+          right: 'row-reverse',
         }[placement],
       }}
     >
       <TabList underlinePlacement={placement}>
-        <Tab indicatorPlacement={placement} value="bottom">
-          Bottom
-        </Tab>
         <Tab indicatorPlacement={placement} value="top">
           Top
         </Tab>
-        <Tab indicatorPlacement={placement} value="left">
-          Left
-        </Tab>
         <Tab indicatorPlacement={placement} value="right">
           Right
+        </Tab>
+        <Tab indicatorPlacement={placement} value="bottom">
+          Bottom
+        </Tab>
+
+        <Tab indicatorPlacement={placement} value="left">
+          Left
         </Tab>
       </TabList>
       <TabPanel value="top">Top panel</TabPanel>
