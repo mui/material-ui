@@ -94,7 +94,7 @@ export default function UnstyledMenuSimple() {
           listbox: {
             id: 'simple-menu',
             className:
-              'text-sm box-border p-1.5 my-3 mx-0 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 shadow-md min-w-listbox',
+              'text-sm box-border p-1.5 my-3 mx-0 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 min-w-listbox shadow-md dark:shadow-slate-900',
           },
         }}
       >
