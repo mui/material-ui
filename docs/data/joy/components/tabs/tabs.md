@@ -82,14 +82,19 @@ Keyboard navigation (e.g. arrow keys) will adapt automatically to the used orien
 
 ### Placement
 
-To change the placement, provide the value of `top`, `bottom`, `left` or `right` to:
+To change the placement, you should provide the value of `top`, `bottom`, `left` or `right`.
 
-- The `underlinePlacement` prop on the `TabList` component.
-- The `indicatorPlacement` prop on the `Tab` component.
+This prop can be applied on the `TabList` component to change the `underlinePlacement` as in the example:
+
+{{"demo": "TabsUnderlinePlacement.js"}}
+
+Or, it can be applied on the `Tab` component to change the `indicatorPlacement`:
+
+{{"demo": "TabsIndicatorPlacement.js"}}
 
 The flex direction of the Tabs component will need to be changed based on each placement.
 
-{{"demo": "TabsIndicatorPlacement.js"}}
+{{"demo": "TabsFlexPlacement.js"}}
 
 ### Sticky
 
