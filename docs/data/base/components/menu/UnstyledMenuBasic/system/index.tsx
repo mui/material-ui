@@ -99,6 +99,7 @@ export default function UnstyledMenuSimple() {
 }
 
 const blue = {
+  50: '#F0F7FF',
   100: '#DAECFF',
   200: '#99CCF3',
   300: '#66B2FF',
@@ -164,7 +165,7 @@ const StyledMenuItem = styled(MenuItem)(
   }
 
   &:hover:not(.${menuItemClasses.disabled}) {
-    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
+    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[50]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
   `,

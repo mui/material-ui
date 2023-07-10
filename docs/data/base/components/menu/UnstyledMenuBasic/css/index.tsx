@@ -188,7 +188,7 @@ function Styles() {
     }
 
     .CustomMenu--item:hover:not(.${menuItemClasses.disabled}) {
-      background-color: ${isDarkMode ? grey[800] : grey[100]};
+      background-color: ${isDarkMode ? cyan[700] : cyan[50]};
       color: ${isDarkMode ? grey[300] : grey[900]};
     }
 
