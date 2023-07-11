@@ -172,6 +172,7 @@ authors:
 ### Unofficial 👍
 ### Warning ⚠️
 ### Header with Pro plan [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+### Header with \`code\`
 `;
 
       const {
@@ -197,6 +198,11 @@ authors:
               hash: 'header-with-pro-plan',
               level: 3,
               text: 'Header with Pro plan <span class="plan-pro"></span>',
+            },
+            {
+              hash: 'header-with-code',
+              level: 3,
+              text: 'Header with code',
             },
           ],
           hash: 'community-help-free',

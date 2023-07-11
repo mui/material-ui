@@ -1,3 +1,4 @@
+'use client';
 export { default } from './OptionGroup';
 
 export * from './OptionGroup.types';

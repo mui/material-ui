@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 
 const TabsListContext = React.createContext(null);
