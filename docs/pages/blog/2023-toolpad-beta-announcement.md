@@ -15,7 +15,7 @@ Toolpad was created to meet the needs of the MUI community. We conducted surveys
 
 Internal tools are software applications that are developed and used within an organization itself. They can automate tasks, manage data, and help foster collaboration. Internal tools are a valuable asset for businesses of all sizes, as they help to improve efficiency, productivity, and communication.
 
-A sub-optimal tool means a waste of time and effort for everyone. Maintaining them distracts developers from solving actual business problems. We've all had our fair share of wrestling with lousy internal tools that we hoped we'd never have to use more than once. In recent years, customer-facing software has moved quickly and is now flashy and sleek. It's time for internal tools to get this same upgrade.
+We've all had our fair share of wrestling with lousy internal tools that we hoped we'd never have to use more than once. A sub-optimal tool means a waste of time and effort for everyone. Maintaining them distracts developers from solving actual business problems. In recent years, customer-facing software has moved quickly and is now flashy and sleek. It's time for internal tools to get this same upgrade.
 
 ## What is Toolpad exactly?
 
@@ -35,11 +35,11 @@ Toolpad is for full-stack and back-end developers. They build, manage, and integ
 
 ### 1. Drag-and-drop UI builder
 
-Build UIs by simply dropping components on the canvas. The set constraints help you build faster.
+Easily create user interfaces by dragging and dropping pre-built components onto the canvas. Utilize constraints to speed up the building process.
 
 ### 2. Query builder UI
 
-Quickly intergrate any REST API using a Postman like query builder. The query output can be directly wired to components through the binding option in Toolpad. It supports writing Javascript.
+A Postman-like query builder allows you to integrate any REST API quickly. A binding editor, which supports Javascript, allows you to wire query response directly to the components.
 
 ### 3. Bring your own components
 
@@ -63,9 +63,11 @@ MUI Core provides all modern components; a chosen few are currently available in
 
 ## How is Toolpad different from similar products on the market?
 
-Toolpad follows an open-core approach, meaning that the base version is open source. You can build an unlimited number of apps, and the basic service will be free forever. Among similar products like Retool, Appsmith, Budibase, Airplane, and Interval, only some are open source.
+In this space, there are 2 categories of products. Category 1: Retool, Appsmith, Budibase and the likes. While these are great tools, they don't integrate with developer's local IDE, neither do they offer a good git version control mechanism. Providing features that could have been coded on a need basis makes the software heavy and reports of slowness from end users is common.
 
-Another major area of difference is that Toolpad is solely focused on developers as users. As much as we are low-code, we are equally code-friendly. Providing basic functionalities that a developer expects from an open-source tool is non-negotiable for us—we will always prioritize the developer's best interests over all else. With nearly a decade of history building developer tools, we know the long-term benefits of cultivating a close relationship with our community of users.
+The other category includes airplane.dev, Interval and others. They also allow building internal tools but don't support a drag-and-drop UI builder. The components are required to be coded using their APIs and that comes with some learning curve.
+
+Toolpad is solely focused on developers as users. As much as we are low-code, we are equally code-friendly. Providing basic functionalities that a developer expects from an open-source tool is non-negotiable for us—we will always prioritize the developer's best interests over all else. With nearly a decade of history building developer tools, we know the long-term benefits of cultivating a close relationship with our community of users.
 
 Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favorite IDEs like VSCode. It's the best of both the worlds!
 
