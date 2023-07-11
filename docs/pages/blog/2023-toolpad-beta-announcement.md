@@ -51,7 +51,7 @@ Directly integrate with your Node.js back-end and have your data available on th
 
 ### 5. Own your code
 
-Toolpad runs fully locally. You're not stuck with an online code editor or a suboptimal GitHub integration. All configuration is stored in local files which you can version-control, edit, and deploy in any way you want.
+Toolpad runs completely locally. You're not stuck with an online code editor or a suboptimal GitHub integration. All configuration is stored in local files which you can version-control, edit, and deploy in any way you want.
 
 <img alt="Building an application on Toolpad " src="/static/blog/2023-toolpad-beta-announcement/code.png" style="margin-bottom: 16px;" loading="lazy" width="2048" height="1536" />
 
@@ -67,7 +67,7 @@ In this space, there are 2 categories of products. Category 1: Retool, Appsmith,
 
 The other category includes airplane.dev, Interval and others. They also allow building internal tools but don't support a drag-and-drop UI builder. The components are required to be coded using their APIs and that comes with some learning curve.
 
-Toolpad is solely focused on developers as users. As much as we are low-code, we are equally code-friendly. Providing basic functionalities that a developer expects from an open-source tool is non-negotiable for us—we will always prioritize the developer's best interests over all else. With nearly a decade of history building developer tools, we know the long-term benefits of cultivating a close relationship with our community of users.
+Toolpad is solely focused on professional developers. As much as we are low-code, we are equally code-friendly. Providing the basic functionality that you expect from an open-source tool is non-negotiable for us—we will always prioritize your best interests over all else. With nearly a decade of experience building developer tools, we understand the long-term benefits of cultivating a close relationship with our community of users.
 
 Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favorite IDEs like VSCode. It's the best of both the worlds!
 
@@ -81,6 +81,6 @@ We plan to continue to iterate on our vision of helping developers increase the 
 
 The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/mui-toolpad) and our [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
 
-If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [Twitter](https://twitter.com/MUI_Toolpad). You can also engage in conversations in our [Discord](https://discord.gg/hHqtMP9Ckc) server.
+If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [Twitter](https://twitter.com/MUI_Toolpad). You can also engage in conversation in our [Discord](https://discord.gg/hHqtMP9Ckc) server.
 
 If you'd like an in-depth demo and discussion of your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).
