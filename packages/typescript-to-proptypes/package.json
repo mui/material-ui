@@ -29,7 +29,7 @@
     "@types/react": "^18.2.14",
     "@types/uuid": "^8.3.4",
     "fast-glob": "^3.3.0",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.0",
     "rimraf": "^5.0.1"
   },
   "dependencies": {
