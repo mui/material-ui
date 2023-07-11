@@ -1,0 +1,331 @@
+# Custom Component
+
+<p class="description">Plug your component with Material UI theming feature.</p>
+
+## Introduction
+
+Material UI provides a powerful theming feature that lets you to add your own component to the theme as if it is one of the built-in components.
+
+One use case of doing this would be to build a component library on top of Material UI for multiple projects. Then your users can use your components with the same theming feature as Material UI components.
+
+:::info
+You don't need to connect your component to the theme if you are only using it in a single project.
+:::
+
+## Step-by-step guide
+
+We are going to build a statistics component that looks like this:
+
+{{"demo": "StatComponent.js", "hideToolbar": true}}
+
+### 1. Create the component slots
+
+The slots let your users customize each part of the component by targeting the slot's name in [theme's styleOverrides](/material-ui/customization/theme-components/#theme-style-overrides) and [theme's variants](/material-ui/customization/theme-components/#creating-new-component-variants).
+
+In this example, we are going to create 3 slots:
+
+- `root`: the container of the component
+- `value`: the number of the statistics
+- `unit`: the unit of the statistics
+
+:::success
+We recommend to use `root` as the name of the slot that is the outermost container of the component to follow the Material UI consistency.
+:::
+
+{{"demo": "StatSlots.js", "hideToolbar": true}}
+
+Use `styled` API to create the slots by passing the component `name`, `slot`, and `overridesResolver` parameters.
+
+```js
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+
+const StatRoot = styled('div', {
+  name: 'MuiStat', // The component name
+  slot: 'Root', // The slot name
+  overridesResolver: (props, styles) => styles.root, // This will resolve the `root` slot from the theme styleOverrides
+})(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(0.5),
+  padding: theme.spacing(3, 4),
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.shape.borderRadius,
+  boxShadow: theme.shadows[2],
+  letterSpacing: '-0.025em',
+  fontWeight: 600,
+}));
+
+// …Do the same for the `value` and `unit` slots
+```
+
+### 2. Create the component
+
+Now we can create the component by using the slots in the previous step.
+
+```js
+// /path/to/Stat.js
+import * as React from 'react';
+
+const StatRoot = styled('div', {
+  name: 'MuiStat',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(…);
+
+const StatValue = styled('div', {
+  name: 'MuiStat',
+  slot: 'Value',
+  overridesResolver: (props, styles) => styles.value,
+})(…);
+
+const StatUnit = styled('div', {
+  name: 'MuiStat',
+  slot: 'Unit',
+  overridesResolver: (props, styles) => styles.unit,
+})(…);
+
+const Stat = React.forwardRef(function Stat(props, ref) {
+  const { value, unit, ...other } = props;
+
+  return (
+    <StatRoot ref={ref} {...other}>
+      <StatValue>{value}</StatValue>
+      <StatUnit>{unit}</StatUnit>
+    </StatRoot>
+  );
+});
+
+export default Stat;
+```
+
+At this point, your users will be able to theme the `Stat` component like this:
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  components: {
+    // the component name defined in the `name` parameter of `styled`
+    MuiStat: {
+      styleOverrides: {
+        // the slot name defined in the `slot` and `overridesResolver` parameters of `styled`
+        root: {
+          backgroundColor: '#121212',
+        },
+        value: {
+          color: '#fff',
+        },
+        unit: {
+          color: '#888',
+        },
+      },
+    },
+  },
+});
+```
+
+### 3. Style the slot with `ownerState`
+
+When you need to style the slot based props or internal state, wrap them in `ownerState` object and pass to each slot as a prop. The `ownerState` is a special name that will not spread to DOM by the `styled` API.
+
+In this example, we are going to add a `variant` prop to the `Stat` component and use it to style the `root` slot.
+
+```diff
+  const Stat = React.forwardRef(function Stat(props, ref) {
++   const { value, unit, variant, ...other } = props;
++
++   const ownerState = { ...props, variant };
+
+    return (
+-      <StatRoot ref={ref} {...other}>
+-        <StatValue>{value}</StatValue>
+-        <StatUnit>{unit}</StatUnit>
+-      </StatRoot>
++      <StatRoot ref={ref} ownerState={ownerState} {...other}>
++        <StatValue ownerState={ownerState}>{value}</StatValue>
++        <StatUnit ownerState={ownerState}>{unit}</StatUnit>
++      </StatRoot>
+    );
+  });
+```
+
+Then you can read `ownerState` in the slot to style it based on the `variant` prop.
+
+```diff
+  const StatRoot = styled('div', {
+    name: 'MuiStat',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root
+-  })(({ theme }) => ({
++  })(({ theme, ownerState }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing(0.5),
+    padding: theme.spacing(3, 4),
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: theme.shadows[2],
+    letterSpacing: '-0.025em',
+    fontWeight: 600,
++   ...ownerState.variant === 'outlined' && {
++    border: `2px solid ${theme.palette.divider}`,
++   },
+  }));
+```
+
+### 4. Support theme default props
+
+To let your users customize the default props of your component for different projects, you need to use the `useThemeProps` API.
+
+```diff
++ import { useThemeProps } from '@mui/material/styles';
+
+- const Stat = React.forwardRef(function Stat(props, ref) {
++ const Stat = React.forwardRef(function Stat(inProps, ref) {
++ const props = useThemeProps({ props: inProps, name: 'MuiStat' });
+  const { value, unit, ...other } = props;
+
+  return (
+    <StatRoot ref={ref} {...other}>
+      <StatValue>{value}</StatValue>
+      <StatUnit>{unit}</StatUnit>
+    </StatRoot>
+  );
+});
+```
+
+Then your users can customize the default props of your component like this:
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  components: {
+    MuiStat: {
+      defaultProps: {
+        variant: 'outlined',
+      },
+    },
+  },
+});
+```
+
+## TypeScript
+
+If you use TypeScript, you should create interfaces for the component props and ownerState.
+
+```js
+interface StatProps {
+  value: number;
+  unit: string;
+  variant?: 'outlined';
+}
+
+interface StatOwnerState extends StatProps {
+  // …key value pairs for the internal state that you want to style the slot
+  // but don't want to expose to the users
+}
+```
+
+Then you can use them in the component and slots.
+
+```js
+const StatRoot = styled('div', {
+  name: 'MuiStat',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: StatOwnerState }>(({ theme, ownerState }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(0.5),
+  padding: theme.spacing(3, 4),
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.shape.borderRadius,
+  boxShadow: theme.shadows[2],
+  letterSpacing: '-0.025em',
+  fontWeight: 600,
+  // typed-safe access to the `variant` prop
+  ...(ownerState.variant === 'outlined' && {
+    border: `2px solid ${theme.palette.divider}`,
+    boxShadow: 'none',
+  }),
+}));
+
+// …do the same for other slots
+
+const Stat = React.forwardRef<HTMLDivElement, StatProps>(function Stat(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiStat' });
+  const { value, unit, variant, ...other } = props;
+
+  const ownerState = { ...props, variant };
+
+  return (
+    <StatRoot ref={ref} ownerState={ownerState} {...other}>
+      <StatValue ownerState={ownerState}>{value}</StatValue>
+      <StatUnit ownerState={ownerState}>{unit}</StatUnit>
+    </StatRoot>
+  );
+});
+```
+
+Finally, you have to add the Stat component the theme types.
+
+```ts
+import {
+  ComponentsProps,
+  ComponentsOverrides,
+  ComponentsVariants,
+  Theme as MuiTheme,
+} from '@mui/material/styles';
+// TODO: change the import path
+import { StatProps } from '/path/to/Stat';
+
+type Theme = Omit<MuiTheme, 'components'>;
+
+// shut off automatic exporting for the `Theme` above
+export {};
+
+interface CustomComponentsPropsList {
+  // TODO: change to your component name
+  MuiStat?: StatProps;
+}
+
+declare module '@mui/material/styles' {
+  interface ComponentsPropsList extends LabComponentsPropsList {}
+}
+
+interface CustomComponentNameToClassKey {
+  // TODO: change to your component name and keyof slot names
+  MuiStat?: 'root' | 'value' | 'unit';
+}
+
+declare module '@mui/material/styles' {
+  interface ComponentNameToClassKey extends CustomComponentNameToClassKey {}
+}
+
+interface CustomComponents {
+  // TODO: change to your component name
+  MuiStat?: {
+    defaultProps?: ComponentsPropsList['MuiStat'];
+    styleOverrides?: ComponentsOverrides['MuiStat'];
+    variants?: ComponentsVariants['MuiStat'];
+  };
+}
+
+declare module '@mui/material/styles' {
+  interface Components extends CustomComponents {}
+}
+```
+
+:::success
+🍾 Congratulations! You have successfully built a themable component!.
+:::
+
+---
+
+## Template
+
+You can use the following template to create your own component. It is the full code of the `Stat` component in this guide.
+
+{{"demo": "StatFullTemplate.js"}}
