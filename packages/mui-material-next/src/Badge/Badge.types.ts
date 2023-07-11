@@ -2,7 +2,6 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverridableComponent, OverrideProps } from '@mui/types';
 import {
-  BadgeTypeMap as BaseBadgeTypeMap,
   BadgeRootSlotProps as BaseBadgeRootSlotProps,
   BadgeBadgeSlotProps as BaseBadgeBadgeSlotProps,
   ExtendBadgeTypeMap,
@@ -48,28 +47,6 @@ export type BadgeTypeMap<D extends React.ElementType = 'span', P = {}> = ExtendB
       BadgePropsColorOverrides
     >;
     /**
-     * The extra props for the slot components.
-     * You can override the existing props or add new ones.
-     *
-     * This prop is an alias for the `slotProps` prop.
-     * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-     *
-     * @default {}
-     */
-    componentsProps?: BaseBadgeTypeMap['props']['slotProps'];
-    /**
-     * The components used for each slot inside.
-     *
-     * This prop is an alias for the `slots` prop.
-     * It's recommended to use the `slots` prop instead.
-     *
-     * @default {}
-     */
-    components?: {
-      Root?: React.ElementType;
-      Badge?: React.ElementType;
-    };
-    /**
      * Wrapped shape the badge should overlap.
      * @default 'rectangular'
      */
@@ -82,7 +59,7 @@ export type BadgeTypeMap<D extends React.ElementType = 'span', P = {}> = ExtendB
      * The variant to use.
      * @default 'large'
      */
-    variant?: OverridableStringUnion<'large' | 'small', BadgePropsVariantOverrides>;
+    variant?: OverridableStringUnion<'small' | 'large', BadgePropsVariantOverrides>;
   };
   defaultComponent: D;
 }>;

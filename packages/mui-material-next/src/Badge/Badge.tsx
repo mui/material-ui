@@ -264,7 +264,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default 'error'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'error']),
     PropTypes.string,
   ]),
   /**
@@ -309,7 +309,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default 'large'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['dot', 'standard']),
+    PropTypes.oneOf(['small', 'large']),
     PropTypes.string,
   ]),
 } as any;
