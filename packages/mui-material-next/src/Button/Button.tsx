@@ -654,10 +654,6 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
   onContextMenu: PropTypes.func,
   /**
    * @ignore
@@ -666,19 +662,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
   onFocusVisible: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyUp: PropTypes.func,
   /**
    * @ignore
    */
