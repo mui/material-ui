@@ -165,7 +165,7 @@ import Link from '@mui/joy/Link';
 Joy UI provides an effortless way to toggle between modes by using the React hook `useColorScheme`. All you need to do is create a component that uses the hook and then render it under the `CssVarsProvider` component.
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 // ...other imports
 

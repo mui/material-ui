@@ -552,11 +552,16 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const renderListOption = (option, index) => {
     const optionProps = getOptionProps({ option, index });
 
-    return renderOption({ ...optionProps, className: classes.option }, option, {
-      selected: optionProps['aria-selected'],
-      index,
-      inputValue,
-    });
+    return renderOption(
+      { ...optionProps, className: classes.option },
+      option,
+      {
+        selected: optionProps['aria-selected'],
+        index,
+        inputValue,
+      },
+      ownerState,
+    );
   };
 
   const clearIndicatorSlotProps = slotProps.clearIndicator ?? componentsProps.clearIndicator;
@@ -1064,7 +1069,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {object} props The props to apply on the li element.
    * @param {T} option The option to render.
-   * @param {object} state The state of the component.
+   * @param {object} state The state of each option.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderOption: PropTypes.func,

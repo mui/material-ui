@@ -237,13 +237,15 @@ export interface AutocompleteProps<
    *
    * @param {object} props The props to apply on the li element.
    * @param {T} option The option to render.
-   * @param {object} state The state of the component.
+   * @param {object} state The state of each option.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderOption?: (
     props: React.HTMLAttributes<HTMLLIElement>,
     option: T,
     state: AutocompleteRenderOptionState,
+    ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**
    * Render the selected value.
