@@ -63,9 +63,11 @@ MUI Core provides all modern components; a chosen few are currently available in
 
 ## How is Toolpad different from similar products on the market?
 
-In this space, there are 2 categories of products. Category 1: Retool, Appsmith, Budibase and the likes. While these are great tools, they don't integrate with developer's local IDE, neither do they offer a good git version control mechanism. Providing features that could have been coded on a need basis makes the software heavy and reports of slowness from end users is common.
+In this domain, there are two categories of products:
 
-The other category includes airplane.dev, Interval and others. They also allow building internal tools but don't support a drag-and-drop UI builder. The components are required to be coded using their APIs and that comes with some learning curve.
+1.  Visual first: Retool, Appsmith, Budibase and the likes. While these are great tools, they don't integrate with the developer's local IDE nor offer a good git version control mechanism. Providing features that could have been hand-coded on a need basis makes the application heavy, and reports of slowness at runtime are common.
+
+2.  Code first: Airplane.dev, Interval and others. They also allow building internal tools but don't support a drag-and-drop UI builder. The components must be coded using their APIs, which comes with some learning curve.
 
 Toolpad is solely focused on professional developers. As much as we are low-code, we are equally code-friendly. Providing the basic functionality that you expect from an open-source tool is non-negotiable for us—we will always prioritize your best interests over all else. With nearly a decade of experience building developer tools, we understand the long-term benefits of cultivating a close relationship with our community of users.
 
