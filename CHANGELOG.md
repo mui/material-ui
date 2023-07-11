@@ -6,8 +6,11 @@
 
 _Jul 11, 2023_
 
-A big thanks to the 14 contributors who made this release possible.
-This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 💫 Exports from Material UI, Base UI and Joy UI are now prepended with the `"use client"` directive (#37656) @mj12albert
+- 📚 Added new guides for integrating with Next.js 13 App Router (#37656) @mj12albert
+- 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
 ### `@mui/material@5.13.8`
 
@@ -21,6 +24,10 @@ This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️
 
 - [ButtonGroup] Fix style for single Button (#37692) @MaybePixem
 - Fix theme typography fallback value (#37845) @siriwatknp
+
+### `@mui/icons-material@5.13.8`
+
+- [icons-material] Rebuild icons with `"use client"` (#37894) @mj12albert
 
 ### Docs
 
@@ -47,14 +54,14 @@ This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️
 
 ### Core
 
+- [core] Prepend "use-client" directive + add docs and examples for using MUI libraries with Next.js App Router (#37656) @mj12albert
 - [core] Fix imports to React (#37863) @oliviertassinari
 - [core] Disambiguate eslint plugin name @oliviertassinari
 - [core] Sync the lint script name with the other repositories @oliviertassinari
 - [core] Point to Crowdin directly @oliviertassinari
 - [website] Sync career page (#37847) @oliviertassinari
 
-All contributors of this release in alphabetical order: @alexfauquette, @cherniavskii, @danilo-leal, @DiegoAndai, @enrique-ramirez, @gitstart, @LukasTy, @MaybePixem, @mnajdova, @nicolas-ot, @oliviertassinari, @samuelsycamore, @siriwatknp, @Studio384
-
+All contributors of this release in alphabetical order: @alexfauquette, @cherniavskii, @danilo-leal, @DiegoAndai, @enrique-ramirez, @gitstart, @LukasTy, @MaybePixem, @mj12albert, @mnajdova, @nicolas-ot, @oliviertassinari, @samuelsycamore, @siriwatknp, @Studio384
 ## 5.13.7
 
 <!-- generated comparing v5.13.6..master -->
