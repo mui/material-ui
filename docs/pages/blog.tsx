@@ -12,6 +12,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import Chip from '@mui/material/Chip';
@@ -189,7 +190,11 @@ const PAGE_SIZE = 5;
 export default function Blog(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
   const postListRef = React.useRef<HTMLDivElement | null>(null);
-  const [page, setPage] = React.useState(0);
+  const [page, setPage] = React.useState(
+    Number.isNaN(router.query.page) || !router.query.page
+      ? 1
+      : Number.parseInt(router.query.page as string, 10),
+  );
   const [selectedTags, setSelectedTags] = React.useState<Record<string, boolean>>({});
   const { allBlogPosts, tagInfo: rawTagInfo } = props;
   const [firstPost, secondPost, ...otherPosts] = allBlogPosts;
@@ -215,7 +220,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       return Object.keys(selectedTags).includes(tag);
     });
   });
-  const pageStart = page * PAGE_SIZE;
+  const pageStart = (page - 1) * PAGE_SIZE;
   const totalPage = Math.ceil(filteredPosts.length / PAGE_SIZE);
   const displayedPosts = filteredPosts.slice(pageStart, pageStart + PAGE_SIZE);
   const getTags = React.useCallback(() => {
@@ -225,6 +230,14 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       .filter((tag) => !!tag);
   }, [router.query]);
 
+  const getPage = React.useCallback(() => {
+    const { page: pageParam = '' } = router.query;
+    if (typeof pageParam !== 'string' || !pageParam || Number.isNaN(pageParam)) {
+      return 1;
+    }
+    return Number.parseInt(pageParam, 10);
+  }, [router.query]);
+
   React.useEffect(() => {
     const arrayTags = getTags();
     const finalTags: Record<string, boolean> = {};
@@ -232,8 +245,8 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       finalTags[tag] = true;
     });
     setSelectedTags(finalTags);
-    setPage(0);
-  }, [getTags]);
+    setPage(getPage());
+  }, [getTags, getPage]);
 
   const removeTag = (tag: string) => {
     router.push(
@@ -247,6 +260,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       { shallow: true },
     );
   };
+
   return (
     <BrandingCssVarsProvider>
       <Head
@@ -435,14 +449,22 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               ))}
             </Box>
             <Pagination
-              page={page + 1}
+              page={page}
               count={totalPage}
               variant="outlined"
               shape="rounded"
               onChange={(_, value) => {
-                setPage(value - 1);
+                setPage(value);
                 postListRef.current?.scrollIntoView();
               }}
+              renderItem={(item) => (
+                <PaginationItem
+                  component={Link}
+                  href={`/blog${item.page === 1 ? '' : `?page=${item.page}`}`}
+                  scroll={false}
+                  {...item}
+                />
+              )}
               sx={{ mt: 1, mb: 8 }}
             />
           </Box>
