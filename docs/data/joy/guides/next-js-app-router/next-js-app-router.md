@@ -125,7 +125,8 @@ export default function Page() {
 }
 ```
 
-However, function props such as event handlers or render props are **non-serializable**.
+:::error
+🚨 This code snippet _doesn't work_, because the Button's click handler is **non-serializable**:
 
 ```tsx
 // page.tsx
@@ -152,3 +153,4 @@ export default function Page() {
 ```
 
 Instead, the Next.js team recommend moving components like these ["to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.
+:::
