@@ -19,6 +19,15 @@ module.exports = {
       border: {
         3: '3px',
       },
+      minWidth: {
+        badge: '22px',
+      },
+      minHeight: {
+        badge: '22px',
+      },
+      lineHeight: {
+        5.5: '1.375rem',
+      },
     },
   },
   corePlugins: {
