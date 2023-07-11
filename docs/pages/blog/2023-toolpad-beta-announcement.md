@@ -19,7 +19,7 @@ We've all had our fair share of wrestling with lousy internal tools that we hope
 
 ## What is Toolpad exactly?
 
-Toolpad is an open-source, low-code, drag-and-drop admin builder. The primary purpose of Toolpad is to create data-intensive React apps faster. Toolpad simplifies writing back-end logic, connecting to a data source, querying and mutating data, and deploying an app. It can quickly convert an API, script, or SQL query into a web UI.
+Toolpad is an open-source, low-code, drag-and-drop admin builder. The primary purpose of Toolpad is to create data-intensive React apps faster. Toolpad simplifies building UI, writing back-end logic, connecting to a data source, querying and mutating data. It can quickly convert an API, script, or SQL query into a web UI.
 
 Toolpad is not ideal for building static web pages, mobile apps, or customer-facing custom-designed front-ends. It's for building admin applications, CRUD interfaces, custom internal tools, and analytics dashboards.
 
