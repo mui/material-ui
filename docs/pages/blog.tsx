@@ -261,6 +261,15 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
     );
   };
 
+  const hrefWithSpecificPage = (newPage: number) => {
+    const tags = getTags();
+
+    return `/blog/?${[
+      ...(newPage <= 1 ? [] : [`page=${newPage}`]),
+      ...(tags.length === 0 ? [] : [`tags=${tags.join(',')}`]),
+    ].join('&')}`;
+  };
+
   return (
     <BrandingCssVarsProvider>
       <Head
@@ -460,8 +469,9 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               renderItem={(item) => (
                 <PaginationItem
                   component={Link}
-                  href={`/blog${item.page === 1 ? '' : `?page=${item.page}`}`}
+                  href={item.page ? hrefWithSpecificPage(item.page) : '/blog/'}
                   scroll={false}
+                  shallow
                   {...item}
                 />
               )}
