@@ -4,7 +4,6 @@ import { Mark } from '@mui/base/useSlider';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps, OverridableComponent } from '@mui/types';
 import { Theme } from '../styles';
-import SliderValueLabelComponent from './SliderValueLabel';
 import { SliderClasses } from './sliderClasses';
 
 export interface SliderPropsColorOverrides {}
@@ -147,11 +146,7 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
       thumb?: SlotComponentProps<'span', SliderSlotPropsOverrides, SliderOwnerState>;
       mark?: SlotComponentProps<'span', SliderSlotPropsOverrides, SliderOwnerState>;
       markLabel?: SlotComponentProps<'span', SliderSlotPropsOverrides, SliderOwnerState>;
-      valueLabel?: SlotComponentProps<
-        typeof SliderValueLabelComponent,
-        SliderSlotPropsOverrides,
-        SliderOwnerState
-      >;
+      valueLabel?: SlotComponentProps<'span', SliderSlotPropsOverrides, SliderOwnerState>;
       input?: SlotComponentProps<'input', SliderSlotPropsOverrides, SliderOwnerState>;
     };
     /**
@@ -227,12 +222,22 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
   defaultComponent: D;
 }
 
-export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children: React.ReactElement;
-  index: number;
-  open: boolean;
-  value: number;
-}
+export type SliderValueLabelProps = NonNullable<SliderTypeMap['props']['slotProps']>['valueLabel'] &
+  Pick<SliderTypeMap['props'], 'valueLabelFormat' | 'valueLabelDisplay' | 'value' | 'disabled'> & {
+    /**
+     * The index of the value label.
+     * Useful for range sliders.
+     */
+    index: number;
+    /**
+     * If `true`, the value label is visible.
+     */
+    open: boolean;
+    /**
+     * If `true`, the value label is overlaping another value label.
+     */
+    isOverlapping?: boolean;
+  };
 
 type SliderRootProps = NonNullable<SliderTypeMap['props']['slotProps']>['root'];
 type SliderMarkProps = NonNullable<SliderTypeMap['props']['slotProps']>['mark'];

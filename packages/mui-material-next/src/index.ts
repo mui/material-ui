@@ -3,6 +3,9 @@ export * from './Button';
 
 export { default as Input } from './Input';
 
+export { default as Slider } from './Slider';
+export * from './Slider';
+
 export { default as Tabs } from './Tabs';
 export * from './Tabs';
 

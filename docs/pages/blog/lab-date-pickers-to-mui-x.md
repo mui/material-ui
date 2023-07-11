@@ -83,7 +83,7 @@ Follow the [migration steps](/x/migration/migration-pickers-lab/) by updating th
 
 We have prepared a codemod to help you migrate your codebase from `@mui/lab` to `@mui/x-date-pickers` or `@mui/x-date-pickers-pro`:
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
 ```
 

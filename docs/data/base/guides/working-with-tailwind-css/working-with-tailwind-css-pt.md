@@ -28,7 +28,7 @@ The end result of this guide is an interactive media player interface. Here's wh
 
 We'll use [`create-react-app` with typescript](https://create-react-app.dev/docs/adding-typescript/#installation) for this guide. After you have created the project, follow the instructions given on the [Tailwind CSS installation page](https://tailwindcss.com/docs/guides/create-react-app) in order to configure `tailwind`. Next, install `@mui/base` in the project:
 
-```sh
+```bash
 npm install @mui/base
 ```
 

@@ -34,7 +34,7 @@ module.exports = {
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
-    'filenames',
+    'eslint-plugin-filenames',
   ],
   settings: {
     'import/resolver': {

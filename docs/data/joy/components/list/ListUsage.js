@@ -17,7 +17,7 @@ export default function ListUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           options: ['plain', 'outlined', 'soft', 'solid'],
           defaultValue: 'plain',
         },

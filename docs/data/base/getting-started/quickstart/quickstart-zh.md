@@ -6,13 +6,13 @@
 
 把专案安装并保存在您的`package.json`,你可以用**npm**执行以下指令
 
-```sh
+```bash
 npm install @mui/base
 ```
 
 或使用**yarn**
 
-```sh
+```bash
 yarn add @mui/base
 ```
 
