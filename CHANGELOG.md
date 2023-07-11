@@ -1,5 +1,60 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.13.8
+
+<!-- generated comparing v5.13.7..master -->
+
+_Jul 11, 2023_
+
+A big thanks to the 14 contributors who made this release possible.
+This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.13.8`
+
+- [Autocomplete] Enable global customization of different options (#36971) @nicolas-ot
+
+### `@mui/material-next@6.0.0-alpha.92`
+
+- [Slider][material-next] Slider restructure and style improvements (#37644) @DiegoAndai
+
+### `@mui/joy@5.0.0-alpha.87`
+
+- [ButtonGroup] Fix style for single Button (#37692) @MaybePixem
+- Fix theme typography fallback value (#37845) @siriwatknp
+
+### Docs
+
+- [docs] Polish ukraine banner (#37905) @oliviertassinari
+- [docs] Reduce ukraine banner size (#34795) @oliviertassinari
+- [docs] Add callouts about controlled vs uncontrolled components in Core docs (#37849) @samuelsycamore
+- [docs] Add missing Portal elements to Tailwind CSS interoperability guide (#37807) @enrique-ramirez
+- [docs] Small pickers migration improvement (#37815) @alexfauquette
+- [docs] Fix pickers product name (#37825) @LukasTy
+- [docs][Joy][Link] Set `variant` and `color` defaults for the playground (#37817) @Studio384
+- [docs][Joy][Table] Add `undefined` as an option to `stripe` (#37816) @Studio384
+- [docs][base] Add Tailwind CSS & plain CSS demo on the Snackbar page (#37812) @mnajdova
+- [docs][base] Add Tailwind CSS & plain CSS demo on Badge page (#37768) @mnajdova
+- [docs][base] Fix Nested modal demo positioning (#37506) @gitstart
+- [docs][base] Add Tailwind CSS & plain CSS demo on the Switch page (#37728) @mnajdova
+- [docs-infra] Remove code tags in ToC (#37834) @cherniavskii
+- [docs-infra] Fixes in API pages generation (#37813) @mnajdova
+- [docs-infra] Add test case when using sh (#37818) @oliviertassinari
+- [docs-infra] Use icons instead of words for the code copy button (#37664) @danilo-leal
+- [docs-infra] Fix code parser (#37828) @alexfauquette
+- [docs-infra] Fix `marked` deprecation warning (#37769) @alexfauquette
+- [docs-infra] Allows to use codeblock in the docs (#37643) @alexfauquette
+- [docs-infra][joy] Change Joy UI's playground variant selector (#37821) @danilo-leal
+
+### Core
+
+- [core] Fix imports to React (#37863) @oliviertassinari
+- [core] Disambiguate eslint plugin name @oliviertassinari
+- [core] Sync the lint script name with the other repositories @oliviertassinari
+- [core] Point to Crowdin directly @oliviertassinari
+- [website] Sync career page (#37847) @oliviertassinari
+
+All contributors of this release in alphabetical order: @alexfauquette, @cherniavskii, @danilo-leal, @DiegoAndai, @enrique-ramirez, @gitstart, @LukasTy, @MaybePixem, @mnajdova, @nicolas-ot, @oliviertassinari, @samuelsycamore, @siriwatknp, @Studio384
+
 ## 5.13.7
 
 <!-- generated comparing v5.13.6..master -->
