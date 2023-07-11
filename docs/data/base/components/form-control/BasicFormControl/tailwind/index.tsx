@@ -21,7 +21,7 @@ export default function BasicFormControl() {
           slotProps={{
             input: {
               className:
-                'w-80 text-sm font-normal leading-normal text-slate-900 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 border border-solid border-slate-300 dark:border-slate-800 rounded-lg p-3 hover:bg-slate-100 hover:dark:bg-slate-900 hover:border-slate-400 hover:dark:border-slate-700 focus:outline-0 focus:shadow-outline-purple',
+                'w-80 text-sm font-normal leading-normal text-slate-900 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 border border-solid border-slate-300 dark:border-slate-800 px-3 py-2 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-900 hover:border-slate-400 hover:dark:border-slate-700 focus:outline-0 focus:shadow-outline-purple',
             },
           }}
         />

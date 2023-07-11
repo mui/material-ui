@@ -123,11 +123,11 @@ function Styles() {
         font-family: IBM Plex Sans, sans-serif;
         font-weight: 400;
         line-height: 1.5;
+        padding: 8px 12px;
+        border-radius: 8px;
         color: ${isDarkMode ? grey[300] : grey[900]};
         background: ${isDarkMode ? grey[900] : grey[50]};
         border: 1px solid ${isDarkMode ? grey[800] : grey[300]};
-        border-radius: 8px;
-        padding: 12px 12px;
       }
            .CustomInput .${inputClasses.input}:hover {
         background: ${isDarkMode ? '' : grey[100]};
