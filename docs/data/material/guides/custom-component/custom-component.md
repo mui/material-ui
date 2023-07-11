@@ -4,9 +4,11 @@
 
 ## Introduction
 
-Material UI provides a powerful theming feature that lets you to add your own component to the theme as if it is one of the built-in components.
+Material UI provides a powerful theming feature that lets you to add your own component to the theme as if it's one of the built-in components.
 
-One use case of doing this would be to build a component library on top of Material UI for multiple projects. Then your users can use your components with the same theming feature as Material UI components.
+If you are building a component library on top of Material UI, you can follow the step-by-step guide below on how to create a custom component that is themable across multiple projects.
+
+Otherwise, you can skip the step-by-step guide and use the [template](#template) as a starting point for your component.
 
 :::info
 You don't need to connect your component to the theme if you are only using it in a single project.
@@ -22,19 +24,19 @@ We are going to build a statistics component that looks like this:
 
 The slots let your users customize each part of the component by targeting the slot's name in [theme's styleOverrides](/material-ui/customization/theme-components/#theme-style-overrides) and [theme's variants](/material-ui/customization/theme-components/#creating-new-component-variants).
 
-In this example, we are going to create 3 slots:
+In this example, we are going to create 3 slots for the statistics component:
 
 - `root`: the container of the component
 - `value`: the number of the statistics
-- `unit`: the unit of the statistics
+- `unit`: the unit or description of the statistics
 
 :::success
-We recommend to use `root` as the name of the slot that is the outermost container of the component to follow the Material UI consistency.
+We recommend to use `root` as the name of the slot that is the outermost container of the component to follow Material UI consistency.
 :::
 
 {{"demo": "StatSlots.js", "hideToolbar": true}}
 
-Use `styled` API to create the slots by passing the component `name`, `slot`, and `overridesResolver` parameters.
+Use `styled` API with `name`, `slot`, and `overridesResolver` parameters to create the slots.
 
 ```js
 import * as React from 'react';
@@ -106,10 +108,12 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   components: {
-    // the component name defined in the `name` parameter of `styled`
+    // the component name defined in the `name` parameter
+    // of the `styled` API
     MuiStat: {
       styleOverrides: {
-        // the slot name defined in the `slot` and `overridesResolver` parameters of `styled`
+        // the slot name defined in the `slot` and `overridesResolver` parameters
+        // of the `styled` API
         root: {
           backgroundColor: '#121212',
         },
@@ -125,7 +129,7 @@ const theme = createTheme({
 });
 ```
 
-### 3. Style the slot with `ownerState`
+### 3. Style the slot with ownerState
 
 When you need to style the slot based props or internal state, wrap them in `ownerState` object and pass to each slot as a prop. The `ownerState` is a special name that will not spread to DOM by the `styled` API.
 
@@ -217,7 +221,7 @@ If you use TypeScript, you should create interfaces for the component props and 
 
 ```js
 interface StatProps {
-  value: number;
+  value: number | string;
   unit: string;
   variant?: 'outlined';
 }
