@@ -5,7 +5,13 @@ import useEnhancedEffect from '../useEnhancedEffect';
 /**
  * https://github.com/facebook/react/issues/14099#issuecomment-440013892
  */
-export default function useEventCallback<Args extends unknown[], Return>(
+function useEventCallback<Fn extends (...args: any[]) => any = (...args: unknown[]) => unknown>(
+  fn: Fn,
+): Fn;
+function useEventCallback<Args extends unknown[], Return>(
+  fn: (...args: Args) => Return,
+): (...args: Args) => Return;
+function useEventCallback<Args extends unknown[], Return>(
   fn: (...args: Args) => Return,
 ): (...args: Args) => Return {
   const ref = React.useRef(fn);
@@ -20,3 +26,5 @@ export default function useEventCallback<Args extends unknown[], Return>(
     [],
   );
 }
+
+export default useEventCallback;
