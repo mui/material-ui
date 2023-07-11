@@ -29,7 +29,7 @@ Toolpad is not ideal for building static web pages, mobile apps, or customer-fac
 
 Before the arrival of Toolpad, MUI primarily catered to the front-end needs of the development process. Our products were mostly useful for React engineers or designers, but we saw many full-stack engineers use our advanced components for data-intensive apps. These highly customizable components are well-suited for complex apps, but not all apps require the same level of customization: for example, internal tools just need basic theming.
 
-Toolpad is for full-stack and back-end developers. They build, manage, and integrate data pipelines, server-side logic, databases, microservices, and APIs—and know the most about them. Sharing these endpoints and maintaining the internal documentation with the front-end teams is a hassle that lasts forever. Toolpad empowers you to take the next step and build the UI you need using our drag-and-drop editor.
+Toolpad is for you if you're a full-stack or back-end developers who builds, manages, and integrate data pipelines, server-side logic, databases, microservices, and APIs—and knows the most about them. Sharing these endpoints with and maintaining the internal documentation for the front-end teams is a hassle that lasts forever. Toolpad empowers you to take the next step and build the UI you need using our drag-and-drop editor, without losing any part of your normal development workflow.
 
 ## What are the main features available today?
 
