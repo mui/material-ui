@@ -7,11 +7,11 @@ card: true
 tags: ['Product', 'News']
 ---
 
-It's been over a year since we released the first version of Toolpad. Today, we're excited to take the next step on that journey with the release of Toolpad Beta. If you aren't familiar with Toolpad yet, it's an admin panel builder catering to the internal tooling needs of an organization. It's for developers who want to build a functional application quickly. It harnesses the speed of a UI builder for the front-end and closely integrates into your back-end. If this excites you, then read on!
+It's been over a year since we released the first version of Toolpad. Today, we're excited to take the next step on that journey with the release of Toolpad Beta. If you aren't familiar with Toolpad yet, it's an admin panel builder catering to the internal tooling needs of an organization, designed for developers who want to build a functional application quickly. It harnesses the speed of a UI builder for the front-end and closely integrates into your back-end. If this excites you, then read on!
 
 ## Why did we decide to build Toolpad?
 
-Toolpad was created to meet the needs of the MUI community. We conducted surveys, did our market research, and concluded to make an internal tool builder because the idea resonates with MUI's mission of empowering developers to build app faster and more efficiently.
+Toolpad was created to meet the needs of the MUI community. As a result of surveys we conducted, and market research we undertook, we decided to develop an internal tool builder because the idea resonates with MUI's mission of empowering developers to build app faster and more efficiently.
 
 Internal tools are software applications that are developed and used within an organization itself. They can automate tasks, manage data, and help foster collaboration. Internal tools are a valuable asset for businesses of all sizes, as they help to improve efficiency, productivity, and communication.
 
@@ -27,7 +27,7 @@ Toolpad is not ideal for building static web pages, mobile apps, or customer-fac
 
 ## Who is Toolpad for?
 
-Before the arrival of Toolpad, MUI primarily catered to the front-end needs of the development process. Our products were mostly useful for React engineers or designers. We saw many full-stack engineers use our advanced components for data-intensive apps. These highly customizable components are well-suited for complex apps, but not all apps require the same level of customization: for example, internal tools just need basic theming.
+Before the arrival of Toolpad, MUI primarily catered to the front-end needs of the development process. Our products were mostly useful for React engineers or designers, but we saw many full-stack engineers use our advanced components for data-intensive apps. These highly customizable components are well-suited for complex apps, but not all apps require the same level of customization: for example, internal tools just need basic theming.
 
 Toolpad is for full-stack and back-end developers. They build, manage, and integrate data pipelines, server-side logic, databases, microservices, and APIs—and know the most about them. Sharing these endpoints and maintaining the internal documentation with the front-end teams is a hassle that lasts forever. Toolpad empowers you to take the next step and build the UI you need using our drag-and-drop editor.
 
@@ -69,18 +69,18 @@ The other category includes airplane.dev, Interval and others. They also allow b
 
 Toolpad is solely focused on professional developers. As much as we are low-code, we are equally code-friendly. Providing the basic functionality that you expect from an open-source tool is non-negotiable for us—we will always prioritize your best interests over all else. With nearly a decade of experience building developer tools, we understand the long-term benefits of cultivating a close relationship with our community of users.
 
-Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favorite IDEs like VSCode. It's the best of both the worlds!
+Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favorite IDE, such as VSCode. It's the best of both the worlds!
 
 ## How can I use Toolpad?
 
-Toolpad is available as an NPM package. Follow the [Installation guide](https://mui.com/toolpad/getting-started/installation/) in our docs to get started. You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
+Toolpad is available as an NPM package. Follow the [Installation guide](https://mui.com/toolpad/getting-started/installation/) in the docs to get started. You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
 
 ## What's next?
 
-We plan to continue to iterate on our vision of helping developers increase the speed and efficiency of their workflows. We want to optimize for the biggest pains that you face when building admin apps. Your input is crucial to helping us shape our roadmap from here.
+We plan to continue to iterate on our vision of helping you as a developer to increase the speed and efficiency of your workflow. We want to optimize for the biggest pains that you face when building admin apps. Your input is crucial to helping us shape the roadmap from here.
 
 The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/mui-toolpad) and our [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
 
 If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [Twitter](https://twitter.com/MUI_Toolpad). You can also engage in conversation in our [Discord](https://discord.gg/hHqtMP9Ckc) server.
 
-If you'd like an in-depth demo and discussion of your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).
+If you'd like an in-depth demo and to discuss your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).
