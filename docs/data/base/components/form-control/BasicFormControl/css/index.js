@@ -10,7 +10,7 @@ export default function BasicFormControl() {
     <React.Fragment>
       <FormControl defaultValue="" required>
         <Label>Name</Label>
-        <Input className="CustomInput" />
+        <Input placeholder="Write your name here" className="CustomInput" />
         <HelperText />
       </FormControl>
       <Styles />
@@ -126,7 +126,7 @@ function Styles() {
         padding: 8px 12px;
         border-radius: 8px;
         color: ${isDarkMode ? grey[300] : grey[900]};
-        background: ${isDarkMode ? grey[900] : grey[50]};
+        background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[800] : grey[300]};
       }
            .CustomInput .${inputClasses.input}:hover {

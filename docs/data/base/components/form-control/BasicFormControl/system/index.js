@@ -8,7 +8,7 @@ export default function BasicFormControl() {
   return (
     <FormControl defaultValue="" required>
       <Label>Name</Label>
-      <StyledInput />
+      <StyledInput placeholder="Write your name here" />
       <HelperText />
     </FormControl>
   );
@@ -24,7 +24,7 @@ const StyledInput = styled(Input)(
     font-weight: 400;
     line-height: 1.5;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
     padding: 8px 12px;
     border-radius: 8px;
