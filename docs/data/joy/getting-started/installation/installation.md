@@ -4,17 +4,7 @@
 
 Run one of the following commands to add Joy UI to your project:
 
-## npm
-
-```bash
-npm install @mui/joy @emotion/react @emotion/styled
-```
-
-## yarn
-
-```bash
-yarn add @mui/joy @emotion/react @emotion/styled
-```
+{{"component": "modules/components/HighlightedCodeWithTabs", "tabs": [{"tab":"npm", "code":"npm install @mui/joy @emotion/react @emotion/styled", "language": "bash"}, {"tab":"yarn", "code": "yarn add @mui/joy @emotion/react @emotion/styled"}]}}
 
 ## Peer dependencies
 
@@ -35,17 +25,7 @@ Joy UI is designed to use the [Public Sans](https://fonts.google.com/specimen/Pu
 font by default.
 You may add it to your project with npm or yarn via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
 
-### npm
-
-```bash
-npm install @fontsource/public-sans
-```
-
-### yarn
-
-```bash
-yarn add @fontsource/public-sans
-```
+{{"component": "modules/components/HighlightedCodeWithTabs", "tabs": [{"tab":"npm", "code":"npm install @fontsource/public-sans", "language": "bash"}, {"tab":"yarn", "code": "yarn add @fontsource/public-sans"}]}}
 
 Then you can import it in your entry point like this:
 
