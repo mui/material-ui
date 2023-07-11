@@ -111,7 +111,7 @@
     "react-virtuoso": "^4.3.11",
     "react-window": "^1.8.9",
     "recharts": "2.7.2",
-    "rimraf": "^3.0.2",
+    "rimraf": "^5.0.1",
     "styled-components": "^5.3.11",
     "stylis": "^4.2.0",
     "stylis-plugin-rtl": "^2.1.1",
