@@ -91,7 +91,7 @@
     "markdown-to-jsx": "^7.2.1",
     "material-ui-popup-state": "^5.0.9",
     "next": "13.4.9",
-    "notistack": "2.0.8",
+    "notistack": "3.0.1",
     "nprogress": "^0.2.0",
     "postcss": "^8.4.25",
     "prop-types": "^15.8.1",
