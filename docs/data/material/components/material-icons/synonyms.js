@@ -2655,6 +2655,7 @@ const synonyms = {
   ThumbUpOffAlt:
     '[offline] agreed approved confirm correct disabled enabled favorite feedback fingers gesture good hands happy like okay positive ranking rate rating satisfaction slash social vote yes',
   Thunderstorm: 'cloud lightning rainfall rainstorm weather',
+  TikTok: 'brand logo social',
   Timelapse: 'duration motion photo timer video',
   Timeline:
     'analytics chart data graph history line movement points tracking trending zigzag zigzap',
