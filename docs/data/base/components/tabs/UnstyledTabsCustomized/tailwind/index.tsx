@@ -7,7 +7,7 @@ import Tab from '@mui/base/Tab';
 export default function UnstyledTabsCustomized() {
   return (
     <Tabs defaultValue={1}>
-      <TabsList className="mb-4 rounded-xl bg-purple-500 flex items-center justify-center content-between min-w-tabs-list shadow-md">
+      <TabsList className="mb-4 rounded-xl bg-purple-500 flex items-center justify-center content-between min-w-tabs-list shadow-lg">
         <Tab
           slotProps={{
             root: ({ selected, disabled }) => ({
@@ -17,7 +17,7 @@ export default function UnstyledTabsCustomized() {
                   : 'text-white bg-transparent focus:text-white hover:bg-purple-400'
               } ${
                 disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
-              } text-sm font-bold w-full p-3 m-1.5 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
+              } text-sm font-bold w-full p-2 m-1.5 border-0 rounded-lg flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
             }),
           }}
           value={1}
@@ -33,7 +33,7 @@ export default function UnstyledTabsCustomized() {
                   : 'text-white bg-transparent focus:text-white hover:bg-purple-400'
               } ${
                 disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
-              } text-sm font-bold w-full p-3 m-1.5 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
+              } text-sm font-bold w-full p-2 m-1.5 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
             }),
           }}
           value={2}
@@ -49,7 +49,7 @@ export default function UnstyledTabsCustomized() {
                   : 'text-white bg-transparent focus:text-white hover:bg-purple-400'
               } ${
                 disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
-              } text-sm font-bold w-full p-3 m-1.5 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
+              } text-sm font-bold w-full p-2 m-1.5 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
             }),
           }}
           value={3}
