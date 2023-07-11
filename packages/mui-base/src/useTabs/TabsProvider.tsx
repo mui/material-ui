@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import TabsContext, { TabsContextValue } from '../Tabs/TabsContext';
 import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
