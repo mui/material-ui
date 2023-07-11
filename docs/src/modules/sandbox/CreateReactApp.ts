@@ -39,8 +39,21 @@ export const getHtml = ({
             border: {
               3: '3px',
             },
+            keyframes: {
+              'in-right': {
+                from: { transform: 'translateX(100%)' },
+                to: { transform: 'translateX(0)' },
+              },
+            },
+            animation: {
+              appear: 'in-right 200ms',
+            },
             minWidth: {
               badge: '22px',
+              snackbar: '300px',
+            },
+            maxWidth: {
+              snackbar: '560px',
             },
             minHeight: {
               badge: '22px',

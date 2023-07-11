@@ -1,39 +1,50 @@
 import * as React from 'react';
-import { styled, keyframes, css } from '@mui/system';
-import Snackbar from '@mui/base/Snackbar';
-import { SnackbarCloseReason } from '@mui/base/useSnackbar';
+import useSnackbar from '@mui/base/useSnackbar';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { css, keyframes, styled } from '@mui/system';
 
-export default function UnstyledSnackbar() {
+export default function UseSnackbar() {
   const [open, setOpen] = React.useState(false);
 
-  const handleClose = (_: any, reason: SnackbarCloseReason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
+  const handleClose = () => {
     setOpen(false);
   };
 
-  const handleClick = () => {
+  const { getRootProps, onClickAway } = useSnackbar({
+    onClose: handleClose,
+    open,
+    autoHideDuration: 5000,
+  });
+
+  const handleOpen = () => {
     setOpen(true);
   };
 
   return (
     <React.Fragment>
-      <TriggerButton type="button" onClick={handleClick}>
+      <TriggerButton type="button" onClick={handleOpen}>
         Open snackbar
       </TriggerButton>
-      <StyledSnackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-        Hello World
-      </StyledSnackbar>
+      {open ? (
+        <ClickAwayListener onClickAway={onClickAway}>
+          <CustomSnackbar {...getRootProps()}>Hello World</CustomSnackbar>
+        </ClickAwayListener>
+      ) : null}
     </React.Fragment>
   );
 }
 
 const blue = {
+  50: '#F0F7FF',
+  100: '#C2E0FF',
   200: '#99CCF3',
+  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
+  600: '#0072E5',
+  700: '#0059B2',
+  800: '#004C99',
+  900: '#003A75',
 };
 
 const grey = {
@@ -65,17 +76,17 @@ const TriggerButton = styled('button')(
   font-size: 0.875rem;
   font-weight: 600;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 6px 12px;
+  border-radius: 8px;
+  padding: 8px 16px;
   line-height: 1.5;
   background: transparent;
+  cursor: pointer;
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
+  color: ${theme.palette.mode === 'dark' ? blue[300] : blue[500]};
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
+    border-color: ${theme.palette.mode === 'dark' ? blue[200] : blue[400]};
   }
 
   &:focus-visible {
@@ -85,7 +96,7 @@ const TriggerButton = styled('button')(
   `,
 );
 
-const StyledSnackbar = styled(Snackbar)(
+const CustomSnackbar = styled('div')(
   ({ theme }) => css`
     position: fixed;
     z-index: 5500;
@@ -100,12 +111,12 @@ const StyledSnackbar = styled(Snackbar)(
     border-radius: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: ${theme.palette.mode === 'dark'
-      ? `0 2px 8px rgb(0 0 0 / 0.5)`
-      : `0 2px 8px ${grey[200]}`};
+      ? `0 4px 8px rgb(0 0 0 / 0.7)`
+      : `0 4px 8px rgb(0 0 0 / 0.1)`};
     padding: 0.75rem;
-    color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
+    color: ${theme.palette.mode === 'dark' ? blue[200] : blue[700]};
     font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     animation: ${snackbarInRight} 200ms;
     transition: transform 0.2s ease-out;
   `,
