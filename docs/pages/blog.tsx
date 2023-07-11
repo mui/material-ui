@@ -260,6 +260,18 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       { shallow: true },
     );
   };
+  const addTag = (tag: string) => {
+    router.push(
+      {
+        query: {
+          ...router.query,
+          tags: [...getTags(), tag],
+        },
+      },
+      undefined,
+      { shallow: true },
+    );
+  };
 
   const hrefWithSpecificPage = (newPage: number) => {
     const tags = getTags();
@@ -402,28 +414,18 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                     <Chip
                       key={tag}
                       variant={selected ? 'filled' : 'outlined'}
+                      label={tag}
                       {...(selected
                         ? {
-                            label: tag,
                             onDelete: () => {
                               postListRef.current?.scrollIntoView();
                               removeTag(tag);
                             },
                           }
                         : {
-                            label: tag,
                             onClick: () => {
                               postListRef.current?.scrollIntoView();
-                              router.push(
-                                {
-                                  query: {
-                                    ...router.query,
-                                    tags: tag,
-                                  },
-                                },
-                                undefined,
-                                { shallow: true },
-                              );
+                              addTag(tag);
                             },
                           })}
                       size="small"
