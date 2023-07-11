@@ -124,7 +124,7 @@
     "@babel/preset-typescript": "^7.22.5",
     "@types/marked": "^5.0.0",
     "@types/recharts": "^2.0.0",
-    "cross-fetch": "^3.1.8",
+    "cross-fetch": "^4.0.0",
     "gm": "^1.25.0",
     "tailwindcss": "^3.3.2"
   }
