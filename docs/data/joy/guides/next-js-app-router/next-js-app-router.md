@@ -18,7 +18,7 @@ To support the App Router, currently all components and hooks from Joy UI and ot
 React Server Components should not be conflated with the concept of server-side rendering (SSR).
 So-called Client Components are still server-rendered to HTML.
 
-For more details, see this [explanation of Client Components and SSR](https://github.com/reactwg/server-components/discussions/4) from the React Working Group.
+For more details, see [this explanation](https://github.com/reactwg/server-components/discussions/4) of Client Components and SSR from the React Working Group.
 :::
 
 ## Using Joy UI with the App Router
@@ -151,4 +151,4 @@ export default function Page() {
 }
 ```
 
-Instead, the Next.js team recommends moving components like these ["to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.
+Instead, the Next.js team recommend moving components like these ["to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.

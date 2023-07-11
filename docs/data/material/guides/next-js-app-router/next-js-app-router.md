@@ -12,13 +12,13 @@ Jump right into the code with this [example repo](https://github.com/mui/materia
 
 The Next.js App Router implements React Server Components, a [new feature](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#changes-since-v1) introduced in React 18.
 
-To support the App Router, currently all components and hooks from MUI libraries (Material UI, Joy UI, Base UI etc) are exported with the `"use client"` directive.
+To support the App Router, currently all components and hooks from MUI libraries (Material UI, Joy UI, Base UI etc.) are exported with the `"use client"` directive.
 
 :::warning
 React Server Components should not be conflated with the concept of server-side rendering (SSR).
 So-called Client Components are still server-rendered to HTML.
 
-For more details, see this [explanation of Client Components and SSR](https://github.com/reactwg/server-components/discussions/4) from the React Working Group.
+For more details, see [this explanation](https://github.com/reactwg/server-components/discussions/4) of Client Components and SSR from the React Working Group.
 :::
 
 ## Using Material UI with the default theme
@@ -228,4 +228,4 @@ export default function Page() {
 }
 ```
 
-Instead, the Next.js team recommends moving components like these ["to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.
+Instead, the Next.js team recommend moving components like these ["to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.
