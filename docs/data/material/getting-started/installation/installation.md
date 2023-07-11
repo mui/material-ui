@@ -2,19 +2,27 @@
 
 <p class="description">Install Material UI, the world's most popular React UI framework.</p>
 
+:::warning
+We are currently working on supporting React Server Components in Material UI.
+
+All components and hooks are exported as [Client Components](https://nextjs.org/docs/getting-started/react-essentials#client-components) with the `"use client"` directive.
+If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](/material-ui/guides/next-js-app-router/)
+
+:::
+
 ## Default installation
 
 Run one of the following commands to add Material UI to your project:
 
 ### npm
 
-```sh
+```bash
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -25,13 +33,13 @@ If you want to use [styled-components](https://styled-components.com/) instead, 
 
 ### npm
 
-```sh
+```bash
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
@@ -60,13 +68,13 @@ You may add it to your project with npm or yarn via [Fontsource](https://fontsou
 
 ### npm
 
-```sh
+```bash
 npm install @fontsource/roboto
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @fontsource/roboto
 ```
 
@@ -101,13 +109,13 @@ You can do so with npm or yarn, or with the Google Web Fonts CDN.
 
 ### npm
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 

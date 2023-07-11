@@ -24,13 +24,13 @@
     "@types/babel__core": "^7.20.1",
     "@types/doctrine": "^0.0.5",
     "@types/lodash": "^4.14.195",
-    "@types/node": "^18.16.18",
+    "@types/node": "^18.16.19",
     "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.14",
     "@types/uuid": "^8.3.4",
-    "fast-glob": "^3.2.12",
+    "fast-glob": "^3.3.0",
     "prettier": "^2.8.8",
-    "rimraf": "^3.0.2"
+    "rimraf": "^5.0.1"
   },
   "dependencies": {
     "@babel/core": "^7.22.5",

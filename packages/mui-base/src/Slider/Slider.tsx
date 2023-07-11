@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -91,7 +92,10 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
 
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the variants
-  const partialOwnerState: Omit<SliderOwnerState, 'focusedThumbIndex' | 'marked' | 'dragging'> = {
+  const partialOwnerState: Omit<
+    SliderOwnerState,
+    'focusedThumbIndex' | 'activeThumbIndex' | 'marked' | 'dragging'
+  > = {
     ...props,
     marks: marksProp,
     disabled,
@@ -129,6 +133,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     marked: marks.length > 0 && marks.some((mark) => mark.label),
     dragging,
     focusedThumbIndex,
+    activeThumbIndex: active,
   };
 
   const classes = useUtilityClasses(ownerState);

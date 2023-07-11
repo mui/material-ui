@@ -151,16 +151,18 @@ function getHeaders(markdown) {
     return headers;
   } catch (err) {
     throw new Error(
-      `docs-infra: ${err.message} in getHeader(markdown) with markdown: \n\n${header}`,
+      `docs-infra: ${err.message} in getHeader(markdown) with markdown: \n\n${header}\n`,
     );
   }
 }
 
 function getContents(markdown) {
-  return markdown
+  const rep = markdown
     .replace(headerRegExp, '') // Remove header information
-    .split(/^{{("(?:demo|component)":[^}]*)}}$/gm) // Split markdown into an array, separating demos
+    .split(/^{{("(?:demo|component)":.*)}}$/gm) // Split markdown into an array, separating demos
+    .flatMap((text) => text.split(/^(<codeblock.*?<\/codeblock>)$/gmsu))
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
+  return rep;
 }
 
 function getTitle(markdown) {
@@ -239,7 +241,9 @@ function createRender(context) {
       }
 
       // Remove links to avoid nested links in the TOCs
-      const headingText = headingHtml.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
+      let headingText = headingHtml.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
+      // Remove `code` tags
+      headingText = headingText.replace(/<code\b[^>]*>/i, '').replace(/<\/code>/i, '');
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first
@@ -271,7 +275,7 @@ function createRender(context) {
         });
       } else if (level === 3) {
         if (!toc[toc.length - 1]) {
-          throw new Error(`docs-infra: Missing parent level for: ${headingText}`);
+          throw new Error(`docs-infra: Missing parent level for: ${headingText}\n`);
         }
 
         toc[toc.length - 1].children.push({
@@ -338,7 +342,14 @@ function createRender(context) {
 
       return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
-      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>\n`;
+      }</code></pre>${[
+        '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
+        '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
+        '<use class="MuiCode-copy-icon" xlink:href="#copy-icon" />',
+        '<use class="MuiCode-copied-icon" xlink:href="#copied-icon" />',
+        '</svg>',
+        '<span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
+      ].join('')}\n`;
     };
 
     const markedOptions = {
@@ -349,7 +360,9 @@ function createRender(context) {
       sanitize: false,
       smartLists: true,
       smartypants: false,
-      highlight: prism,
+      headerPrefix: false,
+      headerIds: false,
+      mangle: false,
       renderer,
     };
 
@@ -409,7 +422,7 @@ function resolveComponentApiUrl(product, componentPkg, component) {
   if (!product) {
     return `/api/${kebabCase(component)}/`;
   }
-  if (product === 'date-pickers') {
+  if (product === 'x-date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
   }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
@@ -446,7 +459,7 @@ function prepareMarkdown(config) {
       const description = headers.description || getDescription(markdown);
 
       if (title == null || title === '') {
-        throw new Error(`docs-infra: Missing title in the page: ${location}`);
+        throw new Error(`docs-infra: Missing title in the page: ${location}\n`);
       }
 
       if (title.length > 70) {
@@ -455,12 +468,13 @@ function prepareMarkdown(config) {
             `docs-infra: The title "${title}" is too long (${title.length} characters).`,
             'It needs to have fewer than 70 characters—ideally less than 60. For more details, see:',
             'https://developers.google.com/search/docs/advanced/appearance/title-link',
+            '',
           ].join('\n'),
         );
       }
 
       if (description == null || description === '') {
-        throw new Error(`docs-infra: Missing description in the page: ${location}`);
+        throw new Error(`docs-infra: Missing description in the page: ${location}\n`);
       }
 
       if (description.length > 170) {
@@ -469,6 +483,7 @@ function prepareMarkdown(config) {
             `docs-infra: The description "${description}" is too long (${description.length} characters).`,
             'It needs to have fewer than 170 characters—ideally less than 160. For more details, see:',
             'https://ahrefs.com/blog/meta-description/#4-be-concise',
+            '',
           ].join('\n'),
         );
       }
@@ -531,21 +546,57 @@ ${headers.hooks
             return null;
           }
         }
+        if (content.startsWith('<codeblock')) {
+          const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+          const blocks = [...content.matchAll(/^```(\S*) (\S*)\n([^`]*)\n```/gmsu)].map(
+            ([, language, tab, code]) => ({ language, tab, code }),
+          );
+
+          const blocksData = blocks.filter(
+            (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
+          );
+
+          return {
+            type: 'codeblock',
+            data: blocksData,
+            storageKey,
+          };
+        }
 
         return render(content);
       });
 
       // fragment link symbol
-      rendered.unshift(`<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
-  <symbol id="anchor-link-icon" viewBox="0 0 16 16">
-    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" />
-  </symbol>
-</svg>`);
-      rendered.unshift(`<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
-<symbol id="comment-link-icon" viewBox="0 0 24 24">
-  <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 14v-2.47l6.88-6.88c.2-.2.51-.2.71 0l1.77 1.77c.2.2.2.51 0 .71L8.47 14H6zm12 0h-7.5l2-2H18v2z" />
-</symbol>
-</svg>`);
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="comment-link-icon" viewBox="0 0 24 24">
+        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 14v-2.47l6.88-6.88c.2-.2.51-.2.71 0l1.77 1.77c.2.2.2.51 0 .71L8.47 14H6zm12 0h-7.5l2-2H18v2z" />
+      </symbol>
+      </svg>`,
+      );
+
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="anchor-link-icon" viewBox="0 0 16 16">
+      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" />
+    </symbol>
+    </svg>`,
+      );
+
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="copy-icon" viewBox="0 0 24 24">
+      <path d="M15 20H5V7c0-.55-.45-1-1-1s-1 .45-1 1v13c0 1.1.9 2 2 2h10c.55 0 1-.45 1-1s-.45-1-1-1zm5-4V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2zm-2 0H9V4h9v12z" />
+      +</symbol>
+      </svg>`,
+      );
+
+      rendered.unshift(`
+      <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="copied-icon" viewBox="0 0 24 24">
+        <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.24 11.28L9.69 11.2c-.38-.39-.38-1.01 0-1.4.39-.39 1.02-.39 1.41 0l1.36 1.37 4.42-4.46c.39-.39 1.02-.39 1.41 0 .38.39.38 1.01 0 1.4l-5.13 5.17c-.37.4-1.01.4-1.4 0zM3 6c-.55 0-1 .45-1 1v13c0 1.1.9 2 2 2h13c.55 0 1-.45 1-1s-.45-1-1-1H5c-.55 0-1-.45-1-1V7c0-.55-.45-1-1-1z" />
+      </symbol>
+      </svg>`);
 
       docs[userLanguage] = {
         description,

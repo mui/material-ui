@@ -10,7 +10,7 @@ The main difference between this and the non-TypeScript example is that you need
 
 and install @types/styled-components:
 
-```sh
+```bash
 npm install --save-dev @types/styled-components
 ```
 
@@ -22,14 +22,14 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-cra-styled-components-ts
 cd material-cra-styled-components-ts
 ```
 
 Install it and run:
 
-```sh
+```bash
 npm install
 npm start
 ```

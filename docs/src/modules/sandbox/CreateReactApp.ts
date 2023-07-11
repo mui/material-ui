@@ -30,7 +30,36 @@ export const getHtml = ({
         theme: {
           extend: {
             boxShadow: {
-              'outline-purple': '0 0 0 3px #c084fc',
+              'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
+              'outline-switch': '0 0 1px 8px rgba(0, 0, 0, 0.25)',
+            },
+            cursor: {
+              inherit: 'inherit',
+            },
+            border: {
+              3: '3px',
+            },
+            keyframes: {
+              'in-right': {
+                from: { transform: 'translateX(100%)' },
+                to: { transform: 'translateX(0)' },
+              },
+            },
+            animation: {
+              appear: 'in-right 200ms',
+            },
+            minWidth: {
+              badge: '22px',
+              snackbar: '300px',
+            },
+            maxWidth: {
+              snackbar: '560px',
+            },
+            minHeight: {
+              badge: '22px',
+            },
+            lineHeight: {
+              '5.5': '1.375rem',
             }
           }
         }
@@ -45,8 +74,8 @@ export const getHtml = ({
 </html>`;
 };
 
-export const getRootIndex = (product?: 'joy-ui' | 'base-ui') => {
-  if (product === 'joy-ui') {
+export const getRootIndex = (productId?: 'joy-ui' | 'base-ui') => {
+  if (productId === 'joy-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
@@ -62,7 +91,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </React.StrictMode>
 );`;
   }
-  if (product === 'base-ui') {
+  if (productId === 'base-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import Demo from './demo';

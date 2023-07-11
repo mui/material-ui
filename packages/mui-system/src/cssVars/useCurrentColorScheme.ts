@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import {
   DEFAULT_MODE_STORAGE_KEY,

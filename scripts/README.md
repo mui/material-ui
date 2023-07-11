@@ -13,7 +13,7 @@ A typical release goes like this:
    //registry.npmjs.org/:_authToken=npm_000000000000000000000000000000000000
    ```
 3. Make sure you have added the `material-ui-docs` remote to deploy the documentation:
-   ```sh
+   ```bash
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
 4. Generate a GitHub Token at https://github.com/settings/personal-access-tokens/new and add it to your shell rc script (either `.bashrc` or `.zshrc`) as `GITHUB_TOKEN`.
@@ -66,19 +66,19 @@ To do so, follow these steps:
 
 1. Add the `material-ui-docs` remote if you haven't done this already:
 
-   ```sh
+   ```bash
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
 
 2. Switch to the `latest` branch from `material-ui-docs` remote:
 
-   ```sh
+   ```bash
    git switch --detach material-ui-docs/latest
    ```
 
 3. Cherry-pick the commit(s) that you want to include in the new deployment:
 
-   ```sh
+   ```bash
    git cherry-pick <commit>
    ```
 
@@ -88,12 +88,12 @@ To do so, follow these steps:
 
 4. Push the changes to the `material-ui-docs` remote:
 
-   ```sh
+   ```bash
    git push material-ui-docs HEAD:latest
    ```
 
 5. Switch from detached `HEAD` back to your last checked out branch:
 
-   ```sh
+   ```bash
    git checkout -
    ```

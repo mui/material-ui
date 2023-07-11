@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { useEventCallback } from '@mui/material/utils';
 import { TouchRippleActions } from './TouchRipple.types';

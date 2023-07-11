@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@types/eslint": "^8.40.2",
-    "@typescript-eslint/parser": "^5.60.0"
+    "@typescript-eslint/parser": "^5.61.0"
   },
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js'"

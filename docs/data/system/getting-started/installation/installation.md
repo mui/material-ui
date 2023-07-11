@@ -8,13 +8,13 @@ Run one of the following commands to add MUI System to your project:
 
 ### npm
 
-```sh
+```bash
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
@@ -25,13 +25,13 @@ If you want to use [styled-components](https://styled-components.com/) instead, 
 
 ### npm
 
-```sh
+```bash
 npm install @mui/system @mui/styled-engine-sc styled-components
 ```
 
 ### yarn
 
-```sh
+```bash
 yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 
