@@ -62,6 +62,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [website] Sync career page (#37847) @oliviertassinari
 
 All contributors of this release in alphabetical order: @alexfauquette, @cherniavskii, @danilo-leal, @DiegoAndai, @enrique-ramirez, @gitstart, @LukasTy, @MaybePixem, @mj12albert, @mnajdova, @nicolas-ot, @oliviertassinari, @samuelsycamore, @siriwatknp, @Studio384
+
 ## 5.13.7
 
 <!-- generated comparing v5.13.6..master -->
