@@ -187,16 +187,16 @@ To let your users customize the default props of your component for different pr
 
 - const Stat = React.forwardRef(function Stat(props, ref) {
 + const Stat = React.forwardRef(function Stat(inProps, ref) {
-+ const props = useThemeProps({ props: inProps, name: 'MuiStat' });
-  const { value, unit, ...other } = props;
++   const props = useThemeProps({ props: inProps, name: 'MuiStat' });
+    const { value, unit, ...other } = props;
 
-  return (
-    <StatRoot ref={ref} {...other}>
-      <StatValue>{value}</StatValue>
-      <StatUnit>{unit}</StatUnit>
-    </StatRoot>
-  );
-});
+    return (
+      <StatRoot ref={ref} {...other}>
+        <StatValue>{value}</StatValue>
+        <StatUnit>{unit}</StatUnit>
+      </StatRoot>
+    );
+  });
 ```
 
 Then your users can customize the default props of your component like this:
