@@ -1,3 +1,4 @@
+'use client';
 export { default as appendOwnerState } from './appendOwnerState';
 export { default as areArraysEqual } from './areArraysEqual';
 export { default as ClassNameConfigurator } from './ClassNameConfigurator';
