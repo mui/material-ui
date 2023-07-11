@@ -8,7 +8,7 @@ export default function BasicFormControl() {
   return (
     <FormControl defaultValue="" required>
       <Label>Name</Label>
-      <StyledInput />
+      <StyledInput placeholder="Write your name here" />
       <HelperText />
     </FormControl>
   );

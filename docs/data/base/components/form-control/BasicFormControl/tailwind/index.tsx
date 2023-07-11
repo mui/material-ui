@@ -18,6 +18,7 @@ export default function BasicFormControl() {
       <FormControl defaultValue="" required>
         <Label>Name</Label>
         <Input
+          placeholder="Write your name here"
           slotProps={{
             input: {
               className:

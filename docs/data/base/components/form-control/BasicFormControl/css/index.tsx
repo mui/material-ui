@@ -9,7 +9,7 @@ export default function BasicFormControl() {
     <React.Fragment>
       <FormControl defaultValue="" required>
         <Label>Name</Label>
-        <Input className="CustomInput" />
+        <Input placeholder="Write your name here" className="CustomInput" />
         <HelperText />
       </FormControl>
       <Styles />
