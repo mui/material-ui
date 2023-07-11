@@ -43,7 +43,6 @@ function getStepContent(step: number) {
   }
 }
 
-
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
 
