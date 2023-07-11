@@ -1,6 +1,6 @@
 # [Versions](https://mui.com/versions/)
 
-## 5.13.8
+## 5.14.0
 
 <!-- generated comparing v5.13.7..master -->
 
@@ -8,11 +8,11 @@ _Jul 11, 2023_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- 💫 Exports from Material UI, Base UI and Joy UI are now prepended with the `"use client"` directive (#37656) @mj12albert
+- 💫 Material UI, Joy UI, and Base UI are compatible with [NextJS App Router](https://nextjs.org/docs/app) (#37656) @mj12albert
 - 📚 Added new guides for integrating with Next.js 13 App Router (#37656) @mj12albert
 - 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
-### `@mui/material@5.13.8`
+### `@mui/material@5.14.0`
 
 - [Autocomplete] Enable global customization of different options (#36971) @nicolas-ot
 
@@ -25,7 +25,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [ButtonGroup] Fix style for single Button (#37692) @MaybePixem
 - Fix theme typography fallback value (#37845) @siriwatknp
 
-### `@mui/icons-material@5.13.8`
+### `@mui/icons-material@5.14.0`
 
 - [icons-material] Rebuild icons with `"use client"` (#37894) @mj12albert
 
