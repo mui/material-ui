@@ -57053,7 +57053,13 @@ Object.defineProperty(exports, 'ThunderstormTwoTone', {
     return _ThunderstormTwoTone.default;
   },
 });
-Object.defineProperty(exports, 'TimeToLeave', {
+Object.defineProperty(exports, "TikTok", {
+  enumerable: true,
+  get: function () {
+    return _TikTok.default;
+  }
+});
+Object.defineProperty(exports, "TimeToLeave", {
   enumerable: true,
   get: function () {
     return _TimeToLeave.default;
@@ -73709,6 +73715,7 @@ var _ThunderstormOutlined = _interopRequireDefault(require('./ThunderstormOutlin
 var _ThunderstormRounded = _interopRequireDefault(require('./ThunderstormRounded'));
 var _ThunderstormSharp = _interopRequireDefault(require('./ThunderstormSharp'));
 var _ThunderstormTwoTone = _interopRequireDefault(require('./ThunderstormTwoTone'));
+var _TikTok = _interopRequireDefault(require('./TikTok'));
 var _TimeToLeave = _interopRequireDefault(require('./TimeToLeave'));
 var _TimeToLeaveOutlined = _interopRequireDefault(require('./TimeToLeaveOutlined'));
 var _TimeToLeaveRounded = _interopRequireDefault(require('./TimeToLeaveRounded'));

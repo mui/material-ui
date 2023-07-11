@@ -9507,6 +9507,7 @@ export { default as ThunderstormOutlined } from './ThunderstormOutlined';
 export { default as ThunderstormRounded } from './ThunderstormRounded';
 export { default as ThunderstormSharp } from './ThunderstormSharp';
 export { default as ThunderstormTwoTone } from './ThunderstormTwoTone';
+export { default as TikTok } from './TikTok';
 export { default as TimeToLeave } from './TimeToLeave';
 export { default as TimeToLeaveOutlined } from './TimeToLeaveOutlined';
 export { default as TimeToLeaveRounded } from './TimeToLeaveRounded';
