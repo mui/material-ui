@@ -55,10 +55,11 @@ const StyledTab = styled(Tab)`
   font-weight: bold;
   background-color: transparent;
   width: 100%;
-  padding: 12px;
+  line-height: 1.5;
+  padding: 8px 12px;
   margin: 6px;
   border: none;
-  border-radius: 7px;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
 
@@ -98,6 +99,8 @@ const StyledTabsList = styled(TabsList)(
   align-items: center;
   justify-content: center;
   align-content: space-between;
-  box-shadow: 0px 4px 8px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 4px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.4)' : 'rgba(0,0,0, 0.2)'
+  };
   `,
 );
