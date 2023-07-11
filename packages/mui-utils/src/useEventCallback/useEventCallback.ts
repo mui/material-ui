@@ -5,9 +5,9 @@ import useEnhancedEffect from '../useEnhancedEffect';
 /**
  * https://github.com/facebook/react/issues/14099#issuecomment-440013892
  */
-function useEventCallback<T extends (...args: any[]) => any = (...args: unknown[]) => any>(
-  fn: T,
-): T;
+function useEventCallback<Fn extends (...args: any[]) => any = (...args: unknown[]) => any>(
+  fn: Fn,
+): Fn;
 function useEventCallback<Args extends unknown[], Return>(
   fn: (...args: Args) => Return,
 ): (...args: Args) => Return;
