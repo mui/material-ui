@@ -290,27 +290,28 @@ export const newTheme = extendTheme({
     },
     JoyTabList: {
       styleOverrides: {
-        root: {
-          '--ListItem-radius': '8px',
-          padding: '4px',
-          '&:active': {
-            boxShadow: [
-              'inset 0px 1px 0px rgba(210, 210, 210, 0.2)',
-              'inset 0px -1px 0px rgba(0, 0, 0, 0.08)',
-            ].join(', '),
-          },
-        },
+        root: ({ theme }) =>
+          theme.unstable_sx({
+            p: 1,
+            gap: 0.5,
+            bgcolor: 'background.level1',
+            // border: '1px solid rgba(27, 31, 36, 0.15)',
+            // borderRadius: 'md',
+          }),
       },
     },
     JoyTab: {
       styleOverrides: {
         root: {
           '--Tab-indicatorThickness': '0',
-          '&:active': {
+          [`&[aria-selected="true"]`]: {
             boxShadow: [
               'inset 0px 1px 0px rgba(210, 210, 210, 0.2)',
               'inset 0px -1px 0px rgba(0, 0, 0, 0.08)',
             ].join(', '),
+            bgcolor: 'background.surface',
+            borderRadius: '12px',
+            paddingBottom: '6px',
           },
         },
       },
@@ -632,29 +633,7 @@ export default function FilesNewTheme() {
                   Label
                 </Button>
               </Sheet>
-              <Sheet
-                variant="soft"
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: 2,
-                  p: 1,
-                }}
-              >
-                <Button variant="solid" color="primary">
-                  Label
-                </Button>
-                <Button variant="soft" color="primary">
-                  Label
-                </Button>
-                <Button variant="outlined" color="primary">
-                  Label
-                </Button>
-                <Button variant="plain" color="primary">
-                  Label
-                </Button>
-              </Sheet>
+
               <Sheet
                 variant="solid"
                 sx={{
@@ -913,10 +892,10 @@ export default function FilesNewTheme() {
           </Box>
         </Layout.Main>
         <Sheet
+          variant="outlined"
           sx={{
             display: { xs: 'none', sm: 'initial' },
-            borderLeft: '1px solid',
-            borderColor: 'neutral.outlinedBorder',
+            borderTop: '0px',
           }}
         >
           <Box sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
@@ -927,25 +906,7 @@ export default function FilesNewTheme() {
           </Box>
           <Divider />
           <Tabs>
-            <TabList variant="solid" color="primary">
-              <Tab>Details</Tab>
-              <Tab>Activity</Tab>
-            </TabList>
-          </Tabs>
-          <Tabs>
-            <TabList variant="soft" color="primary">
-              <Tab>Details</Tab>
-              <Tab>Activity</Tab>
-            </TabList>
-          </Tabs>
-          <Tabs>
-            <TabList variant="outlined" color="primary">
-              <Tab>Details</Tab>
-              <Tab>Activity</Tab>
-            </TabList>
-          </Tabs>
-          <Tabs>
-            <TabList variant="plain" color="primary">
+            <TabList>
               <Tab>Details</Tab>
               <Tab>Activity</Tab>
             </TabList>
