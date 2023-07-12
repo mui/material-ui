@@ -64,21 +64,23 @@ function Styles() {
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         box-shadow: 0px 2px 2px ${isDarkMode ? grey[900] : grey[50]};
-    
-        &:hover {
-        border-color: ${cyan[400]};
         }
-    
-        &:focus {
-        border-color: ${cyan[400]};
-        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
+
+        .CustomTextarea:hover {
+          border-color: ${cyan[400]};
         }
-            
+
+        .CustomTextarea:focus {
+          border-color: ${cyan[400]};
+          box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
+          outline: none;
+        }
+        
         // firefox
-        &:focus-visible {
+        .CustomTextarea:focus-visible {
         outline: 0;
         }
-        }
+    
     `}
     </style>
   );
