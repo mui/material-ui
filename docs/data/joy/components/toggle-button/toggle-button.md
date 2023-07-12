@@ -25,9 +25,9 @@ import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 
 ### Toggle button
 
-Joy UI does not provide a `ToggleButton` component because we think it is better to just use Button or IconButton components with `aria-pressed` according to [WAI ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/).
+Joy UI does not provide a `ToggleButton` component. It's mainly because the Button or IconButton components can be used with `aria-pressed`, and according to [WAI ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/), it's a better option.
 
-The demo below shows how to create a toggle button from Joy UI Button and IconButton components.
+The demo below shows how to use a `Button` and a `IconButton` as a toggle.
 
 {{"demo": "ToggleButtons.js"}}
 
