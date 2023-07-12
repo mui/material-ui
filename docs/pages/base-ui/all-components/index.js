@@ -5,7 +5,7 @@ import * as pageProps from 'docs/data/base/components/all-components/all-compone
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
-  return <MarkdownDocs {...pageProps} {...other} disableToc />;
+  return <MarkdownDocs {...pageProps} {...other} />;
 }
 
 Page.getLayout = (page) => {
