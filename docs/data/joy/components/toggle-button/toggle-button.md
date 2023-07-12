@@ -78,11 +78,11 @@ You can test it combining different colors with different variants:
 
 ### Spacing
 
-When `spacing` is more than `0`, the buttons are disconnected with the given gap equals to `theme.spacing(<value>)`.
+When the `spacing` property is set to a value greater than `0`, the buttons within the group are detached, and separated by a `gap`. The size of the `gap` is determined by the value of `theme.spacing(<value>)`.
 
 {{"demo": "ToggleGroupSpacing.js"}}
 
-The value can be an object or an array to create responsive spacing.
+To create a responsive spacing, the `<value>` can be an object or an array.
 
 ```js
 <ToggleButtonGroup spacing={{ xs: 0, md: 2, lg: 3 }}>…</ToggleButtonGroup>
