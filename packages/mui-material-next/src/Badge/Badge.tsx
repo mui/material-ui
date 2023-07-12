@@ -5,6 +5,7 @@ import composeClasses from '@mui/base/composeClasses';
 import useBadge from '@mui/base/useBadge';
 import { useSlotProps } from '@mui/base';
 import styled from '../styles/styled';
+import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeOwnerState, BadgeProps, BadgeTypeMap } from './Badge.types';
@@ -124,15 +125,27 @@ const BadgeBadge = styled('span', {
   };
 });
 
+const defaultLtRAnchorOrigin = {
+  vertical: 'top',
+  horizontal: 'right',
+};
+
+const defaultRtLAnchorOrigin = {
+  vertical: 'top',
+  horizontal: 'left',
+};
+
 const Badge = React.forwardRef(function Badge<
   BaseComponentType extends React.ElementType = BadgeTypeMap['defaultComponent'],
 >(inProps: BadgeProps<BaseComponentType>, ref: React.ForwardedRef<Element>) {
   const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
+
+  const theme = useTheme();
+  const defaultAnchorOrigin =
+    theme.direction === 'rtl' ? defaultRtLAnchorOrigin : defaultLtRAnchorOrigin;
+
   const {
-    anchorOrigin: anchorOriginProp = {
-      vertical: 'top',
-      horizontal: 'right',
-    },
+    anchorOrigin: anchorOriginProp = defaultAnchorOrigin,
     className,
     classes: classesProp,
     component,
