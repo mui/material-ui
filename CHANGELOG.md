@@ -34,8 +34,8 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### Docs
 
-- [docs] Polish ukraine banner (#37905) @oliviertassinari
-- [docs] Reduce ukraine banner size (#34795) @oliviertassinari
+- [docs] Polish Ukraine banner (#37905) @oliviertassinari
+- [docs] Reduce Ukraine banner size (#34795) @oliviertassinari
 - [docs] Add callouts about controlled vs uncontrolled components in Core docs (#37849) @samuelsycamore
 - [docs] Add missing Portal elements to Tailwind CSS interoperability guide (#37807) @enrique-ramirez
 - [docs] Small pickers migration improvement (#37815) @alexfauquette
