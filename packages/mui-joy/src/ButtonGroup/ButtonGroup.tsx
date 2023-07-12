@@ -90,7 +90,7 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
           '--IconButton-radius': 'var(--ButtonGroup-radius)',
         },
         // first Button or IconButton
-        [`& > :not([data-first-child]):not(:only-child)`]: {
+        [`& > [data-first-child]`]: {
           '--Button-radius': firstChildRadius,
           '--IconButton-radius': firstChildRadius,
           ...(ownerState.orientation === 'horizontal' && {
@@ -127,7 +127,7 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
             borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
           }),
         },
-        [`& > :not([data-first-child])`]: {
+        [`& > :not([data-first-child]):not(:only-child)`]: {
           '--Button-margin': margin,
           '--IconButton-margin': margin,
         },
