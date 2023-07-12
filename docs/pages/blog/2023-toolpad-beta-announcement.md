@@ -25,11 +25,13 @@ Toolpad is an open-source, low-code, drag-and-drop admin builder. The primary pu
 
 Toolpad is not ideal for building static web pages, mobile apps, or customer-facing custom-designed front-ends. It's for building admin applications, CRUD interfaces, custom internal tools, and analytics dashboards.
 
-<img alt="Building an application on Toolpad " src="/static/blog/2023-toolpad-beta-announcement/toolpad.png" loading="lazy" width="2400" height="1394" />
+<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/toolpad.png" loading="lazy" width="2400" height="1394" />
 
 ## Who is Toolpad for?
 
 Before the arrival of Toolpad, MUI primarily catered to the front-end needs of the development process. Our products were mostly useful for React engineers or designers, but we saw many full-stack engineers use our advanced components for data-intensive apps. These highly customizable components are well-suited for complex apps, but not all apps require the same level of customization: for example, internal tools just need basic theming.
+
+<img alt="Toolpad personas" src="/static/blog/2023-toolpad-beta-announcement/personas.png"  loading="lazy" width="2076" height="900" style="margin-bottom:24px;" />
 
 Toolpad is for you if you're a full-stack or back-end developers who builds, manages, and integrate data pipelines, server-side logic, databases, microservices, and APIs—and knows the most about them. Sharing these endpoints with and maintaining the internal documentation for the front-end teams is a hassle that lasts forever. Toolpad empowers you to take the next step and build the UI you need using our drag-and-drop editor, without losing any part of your normal development workflow.
 
@@ -57,21 +59,21 @@ Directly integrate with your Node.js back-end and have your data available on th
 
 Toolpad runs completely locally. You're not stuck with an online code editor or a suboptimal GitHub integration. All configuration is stored in local files which you can version-control, edit, and deploy in any way you want.
 
-<img alt="Building an application on Toolpad " src="/static/blog/2023-toolpad-beta-announcement/code.png"  loading="lazy" width="2400" height="1394" />
+<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/code.png"  loading="lazy" width="2400" height="1394" />
 
 ### 6. A catalogue of components powered by Material UI
 
-MUI Core provides all modern components; a chosen few are currently available inside Toolpad, and we're adding more all the time. MUI X Pro (Data Grid and Date Picker) components are also available for free in Toolpad.
+Material UI provides all modern components; a chosen few are currently available inside Toolpad, and we're adding more all the time. MUI X Pro (Data Grid and Date Picker) components are also available for free in Toolpad.
 
-<img alt="Building an application on Toolpad " src="/static/blog/2023-toolpad-beta-announcement/library.png"  loading="lazy" width="2400" height="1394" />
+<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/library.png"  loading="lazy" width="2400" height="1394" />
 
 ## How is Toolpad different from similar products on the market?
 
 In this domain, there are two categories of products:
 
-1.  Visual first: Retool, Appsmith, Budibase and the likes. While these are great tools, they don't integrate with the developer's local IDE nor offer a good git version control mechanism. Providing features that could have been hand-coded on a need basis makes the application heavy, and reports of slowness at runtime are common.
+1. **Visual first**: Retool, Appsmith, Budibase and the likes. While these are great tools, they don't integrate with the developer's local IDE nor offer a good git version control mechanism. Providing features that could have been hand-coded on a need basis makes the application heavy, and reports of slowness at runtime are common.
 
-2.  Code first: Airplane.dev, Interval and others. They also allow building internal tools but don't support a drag-and-drop UI builder. The components must be coded using their APIs, which comes with some learning curve.
+2. **Code first**: Airplane.dev, Interval and others. They also allow building internal tools but don't support a drag-and-drop UI builder. The components must be coded using their APIs, which comes with some learning curve.
 
 Toolpad is solely focused on professional developers. As much as we are low-code, we are equally code-friendly. Providing the basic functionality that you expect from an open-source tool is non-negotiable for us—we will always prioritize your best interests over all else. With nearly a decade of experience building developer tools, we understand the long-term benefits of cultivating a close relationship with our community of users.
 
@@ -80,6 +82,8 @@ Lastly, Toolpad is the only product that offers a drag-and-drop UI builder close
 ## How can I use Toolpad?
 
 Toolpad is available as an NPM package. Follow the [Installation guide](https://mui.com/toolpad/getting-started/installation/) in the docs to get started. You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
+
+<img alt="Toolpad documentation and instructions on how to use it" src="/static/blog/2023-toolpad-beta-announcement/docs.png"  loading="lazy" width="2400" height="1394" />
 
 ## What's next?
 
