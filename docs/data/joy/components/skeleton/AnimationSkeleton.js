@@ -12,11 +12,11 @@ export default function AnimationSkeleton() {
     <Box sx={{ display: 'flex', gap: 2 }}>
       <Card variant="outlined" sx={{ width: 343 }}>
         <CardContent orientation="horizontal">
-          <Skeleton animation="wave" variant="circular" width={48} height={48} />
+          <Skeleton animation="pulse" variant="circular" width={48} height={48} />
           <div>
-            <Skeleton animation="wave" variant="text" sx={{ width: 120 }} />
+            <Skeleton animation="pulse" variant="text" sx={{ width: 120 }} />
             <Skeleton
-              animation="wave"
+              animation="pulse"
               variant="text"
               level="body2"
               sx={{ width: 200 }}
@@ -24,7 +24,7 @@ export default function AnimationSkeleton() {
           </div>
         </CardContent>
         <AspectRatio ratio="21/9">
-          <Skeleton animation="wave" variant="overlay">
+          <Skeleton animation="pulse" variant="overlay">
             <img
               alt=""
               src="https://images.unsplash.com/photo-1686548812883-9d3777f4c137"
@@ -32,14 +32,14 @@ export default function AnimationSkeleton() {
           </Skeleton>
         </AspectRatio>
         <Typography>
-          <Skeleton animation="wave">
+          <Skeleton animation="pulse">
             Lorem ipsum is placeholder text commonly used in the graphic, print, and
             publishing industries.
           </Skeleton>
         </Typography>
         <Button>
           Read more
-          <Skeleton animation="wave" />
+          <Skeleton animation="pulse" />
         </Button>
       </Card>
     </Box>
