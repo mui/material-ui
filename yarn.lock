@@ -1984,15 +1984,11 @@
     react-test-renderer "^18.0.0"
     semver "^5.7.0"
 
-"@mui/x-charts@6.0.0-alpha.1":
-  version "6.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-charts/-/x-charts-6.0.0-alpha.1.tgz#657be87a7155221611e373f3f27aa6c3ea222eac"
-  integrity sha512-Oxuj4TN48PqZvlFfL6PPwxO5oV7y2EyOqiRKwODNPZAkytik3aoJggMgCHZiDlmfE/zPvVh682JgdcQN4d0sDQ==
+"@mui/x-charts@https://pkg.csb.dev/mui/mui-x/commit/0321f7bb/@mui/x-charts":
+  version "6.0.0-alpha.2"
+  resolved "https://pkg.csb.dev/mui/mui-x/commit/0321f7bb/@mui/x-charts#b862ac1691fdd5c730073f8f6bfe8ef9cdaf461c"
   dependencies:
     "@babel/runtime" "^7.22.5"
-    "@types/d3-color" "^3.1.0"
-    "@types/d3-scale" "^4.0.3"
-    "@types/d3-shape" "^3.1.1"
     clsx "^1.2.1"
     d3-color "^3.1.0"
     d3-scale "^4.0.2"
@@ -3204,7 +3200,7 @@
   resolved "https://registry.yarnpkg.com/@types/d3-array/-/d3-array-3.0.4.tgz#44eebe40be57476cad6a0cd6a85b0f57d54185a2"
   integrity sha512-nwvEkG9vYOc0Ic7G7kwgviY4AQlTfYGIZ0fqB7CQHXGyYM6nO7kJh5EguSNA3jfh4rq7Sb7eMVq8isuvg2/miQ==
 
-"@types/d3-color@*", "@types/d3-color@^3.1.0":
+"@types/d3-color@*":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@types/d3-color/-/d3-color-3.1.0.tgz#6594da178ded6c7c3842f3cc0ac84b156f12f2d4"
   integrity sha512-HKuicPHJuvPgCD+np6Se9MQvS6OCbJmOjGvylzMJRlDwUXjKTTXs6Pwgk79O09Vj/ho3u1ofXnhFOaEWWPrlwA==
@@ -3226,14 +3222,14 @@
   resolved "https://registry.yarnpkg.com/@types/d3-path/-/d3-path-3.0.0.tgz#939e3a784ae4f80b1fde8098b91af1776ff1312b"
   integrity sha512-0g/A+mZXgFkQxN3HniRDbXMN79K3CdTpLsevj+PXiTcb2hVyvkZUBg37StmgCQkaD84cUJ4uaDAWq7UJOQy2Tg==
 
-"@types/d3-scale@^4.0.2", "@types/d3-scale@^4.0.3":
+"@types/d3-scale@^4.0.2":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@types/d3-scale/-/d3-scale-4.0.3.tgz#7a5780e934e52b6f63ad9c24b105e33dd58102b5"
   integrity sha512-PATBiMCpvHJSMtZAMEhc2WyL+hnzarKzI6wAHYjhsonjWJYGq5BXTzQjv4l8m2jO183/4wZ90rKvSeT7o72xNQ==
   dependencies:
     "@types/d3-time" "*"
 
-"@types/d3-shape@^3.1.0", "@types/d3-shape@^3.1.1":
+"@types/d3-shape@^3.1.0":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@types/d3-shape/-/d3-shape-3.1.1.tgz#15cc497751dac31192d7aef4e67a8d2c62354b95"
   integrity sha512-6Uh86YFF7LGg4PQkuO2oG6EMBRLuW9cbavUW46zkIO5kuS2PfTqo2o9SkgtQzguBHbLgNnU90UNsITpsX1My+A==

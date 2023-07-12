@@ -1,5 +1,4 @@
 import * as React from 'react';
-import dynamic from 'next/dynamic';
 import { red } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -21,8 +20,7 @@ import {
   useKeepGroupedColumnsHidden,
 } from '@mui/x-data-grid-premium';
 import { useDemoData } from '@mui/x-data-grid-generator';
-
-const BarChart = dynamic(() => import('../showcase/BarChart'), { ssr: false });
+import BarChart from '../showcase/BarChart';
 
 const startDate = new Date();
 startDate.setDate(10);
