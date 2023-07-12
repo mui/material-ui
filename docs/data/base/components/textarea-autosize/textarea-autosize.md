@@ -45,7 +45,7 @@ By default, an empty Textarea Autosize component renders as a single row, as sho
 
 The next demo shows how to apply custom styles to the Textarea:
 
-{{"demo": "EmptyTextarea.js"}}
+{{"demo": "UnstyledTextarea", "defaultCodeOpen": false}}
 
 ## Customization
 
