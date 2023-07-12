@@ -11,7 +11,7 @@
     "dev": "next dev",
     "deploy": "git push material-ui-docs master:latest",
     "export": "rimraf docs/export && next export --threads=3 -o export && yarn build-sw",
-    "icons": "rimraf public/static/icons/* && node ./scripts/buildIcons.js",
+    "icons": "rimraf --glob public/static/icons/* && node ./scripts/buildIcons.js",
     "start": "next start",
     "create-playground": "cpy --cwd=./scripts/ playground.template.tsx ../pages/playground --rename=index.tsx",
     "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
@@ -20,9 +20,9 @@
     "link-check": "node ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
-    "@babel/core": "^7.22.5",
+    "@babel/core": "^7.22.8",
     "@babel/plugin-transform-object-assign": "^7.22.5",
-    "@babel/runtime-corejs2": "^7.22.5",
+    "@babel/runtime-corejs2": "^7.22.6",
     "@docsearch/react": "^3.5.1",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
