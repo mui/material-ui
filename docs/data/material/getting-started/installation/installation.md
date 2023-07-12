@@ -14,14 +14,34 @@ If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](
 
 Run one of the following commands to add Material UI to your project:
 
-{{"component": "modules/components/HighlightedCodeWithTabs", "tabs": [{"tab":"npm", "code":"npm install @mui/material @emotion/react @emotion/styled", "language": "bash"}, {"tab":"yarn", "code": "yarn add @mui/material @emotion/react @emotion/styled"}]}}
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @mui/material @emotion/react @emotion/styled
+```
+
+```bash yarn
+yarn add @mui/material @emotion/react @emotion/styled
+```
+
+</codeblock>
 
 ## With styled-components
 
 Material UI uses [Emotion](https://emotion.sh/) as its default styling engine.
 If you want to use [styled-components](https://styled-components.com/) instead, run one of the following commands:
 
-{{"component": "modules/components/HighlightedCodeWithTabs", "tabs": [{"tab":"npm", "code":"npm install @mui/material @mui/styled-engine-sc styled-components", "language": "bash"}, {"tab":"yarn", "code": "yarn add @mui/material @mui/styled-engine-sc styled-components"}]}}
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @mui/material @mui/styled-engine-sc styled-components
+```
+
+```bash yarn
+yarn add @mui/material @mui/styled-engine-sc styled-components
+```
+
+</codeblock>
 
 :::warning
 Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more information about how to configure styled-components.
@@ -77,7 +97,17 @@ To install the Roboto font in your project using the Google Web Fonts CDN, add t
 To use the [font Icon component](/material-ui/icons/#icon-font-icons) or the prebuilt SVG Material Icons (such as those found in the [icon demos](/material-ui/icons/)), you must first install the [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) font.
 You can do so with npm or yarn, or with the Google Web Fonts CDN.
 
-{{"component": "modules/components/HighlightedCodeWithTabs", "tabs": [{"tab":"npm", "code":"npm install @mui/icons-material", "language": "bash"}, {"tab":"yarn", "code": "yarn add @mui/icons-material"}]}}
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @mui/icons-material
+```
+
+```bash yarn
+yarn add @mui/icons-material
+```
+
+</codeblock>
 
 ### Google Web Fonts
 
