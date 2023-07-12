@@ -14,7 +14,7 @@ export default function ToggleButtons() {
         onClick={() => setPressed(!pressed)}
         aria-pressed={pressed ? 'true' : 'false'}
         sx={(theme) =>
-          pressed ? { boxShadow: theme.shadow.sm.replace(/,/g, ',inset ') } : {}
+          pressed ? { boxShadow: theme.shadow.md.replace(/,/g, ',inset ') } : {}
         }
       >
         Button
@@ -25,7 +25,7 @@ export default function ToggleButtons() {
         onClick={() => setPressed(!pressed)}
         aria-pressed={pressed ? 'true' : 'false'}
         sx={(theme) =>
-          pressed ? { boxShadow: theme.shadow.sm.replace(/,/g, ',inset ') } : {}
+          pressed ? { boxShadow: theme.shadow.md.replace(/,/g, ',inset ') } : {}
         }
       >
         <FormatBold />
