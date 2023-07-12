@@ -163,7 +163,7 @@ const Item = styled(
         color: (theme.vars || theme).palette.primary[300],
         backgroundColor: (theme.vars || theme).palette.primaryDark[700],
         '&:before': {
-          background: (theme.vars || theme).palette.primary[600],
+          background: (theme.vars || theme).palette.primary[400],
         },
       },
       ...(subheader && {

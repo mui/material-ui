@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import Menu from '@mui/material/Menu';
@@ -183,9 +183,9 @@ const AppNavPaperComponent = styled('div')(({ theme }) => {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-    paddingBottom: theme.spacing(5),
+    position: 'relative',
     [theme.breakpoints.up('xs')]: {
-      borderRadius: '0px 10px 10px 0px',
+      borderRadius: '0 12px 12px 0',
     },
     [theme.breakpoints.up('sm')]: {
       borderRadius: '0px',
@@ -197,7 +197,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List sx={{ my: 0.5 }}>
+    <List sx={{ my: 0.5, height: '100%' }}>
       {pages.reduce(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),
@@ -393,9 +393,9 @@ export default function AppNavDrawer(props) {
                 pr: '12px',
                 mr: '4px',
                 borderRight: '1px solid',
-                borderColor: (theme.vars || theme).palette.grey[200],
+                borderColor: (theme.vars || theme).palette.divider,
                 ...theme.applyDarkStyles({
-                  borderColor: alpha(theme.palette.primary[100], 0.08),
+                  borderColor: (theme.vars || theme).palette.divider,
                 }),
               })}
             >
@@ -408,16 +408,9 @@ export default function AppNavDrawer(props) {
             versionSelector={renderVersionSelector(productIdentifier.versions)}
           />
         </ToolbarDiv>
-        <Divider
-          sx={(theme) => ({
-            borderColor: (theme.vars || theme).palette.grey[100],
-            ...theme.applyDarkStyles({
-              borderColor: alpha(theme.palette.primary[100], 0.08),
-            }),
-          })}
-        />
-        <DiamondSponsors />
+        <Divider />
         {navItems}
+        <DiamondSponsors />
       </React.Fragment>
     );
   }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
