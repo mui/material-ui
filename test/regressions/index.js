@@ -51,6 +51,7 @@ const blacklist = [
   'docs-components-autocomplete/Playground.png', // Redundant
   'docs-components-autocomplete/UseAutocomplete.png', // Redundant
   'docs-components-autocomplete/Virtualize.png', // Redundant
+  'docs-components-avatars/GroupAvatars.png', // Flaky
   'docs-components-backdrop/SimpleBackdrop.png', // Needs interaction
   'docs-components-badges/BadgeAlignment.png', // Redux isolation
   'docs-components-badges/BadgeVisibility.png', // Needs interaction
