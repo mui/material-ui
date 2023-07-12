@@ -9,6 +9,8 @@ tags: ['News']
 
 With v5.14.0, MUI's core component libraries—Material UI, Base UI, and Joy UI—are now compatible with the Next.js App Router. 🚀
 
+<img alt="MUI and Next.js logos" src="/static/blog/mui-next-js-app-router/logos.png" loading="lazy" width="2076" height="900" />
+
 ## Adapting to the new paradigm
 
 React 18 introduced the concept of React Server Components, and Next.js 13 gave us the first framework implementation of RSCs with the App Router.
@@ -21,6 +23,8 @@ Additionally, we've created guides to walk you through setting up an app using t
 - [Material UI setup](#)
 - [Base UI setup](#)
 - [Joy UI setup](#)
+
+<img alt="Screenshot of the Material UI documentation" src="/static/blog/mui-next-js-app-router/docs.png" loading="lazy" width="2400" height="1394" style="margin-bottom:24px;" />
 
 We also have example repos for each, with everything already set up for you:
 
