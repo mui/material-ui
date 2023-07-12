@@ -53,6 +53,7 @@
   "dependencies": {
     "@babel/runtime": "^7.22.6",
     "@emotion/is-prop-valid": "^1.2.1",
+    "@floating-ui/react-dom": "^2.0.1",
     "@mui/types": "^7.2.4",
     "@mui/utils": "^5.14.1",
     "@popperjs/core": "^2.11.8",
