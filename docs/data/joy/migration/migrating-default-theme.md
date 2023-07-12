@@ -11,7 +11,7 @@ With the introduction of v5.0.0-alpha.x, Joy UI's default theme went under signi
 The `purple` color range has been removed. If you want to continue using it, you can do so by adding the color range directly:
 
 ```diff
-- import { colors } from '@mui/joy/styles';
+- import colors from '@mui/joy/colors';
 
 + const purple = {
 +   50: '#FDF7FF',
@@ -361,7 +361,7 @@ declare module '@mui/joy/styles' {
 
 The colors of these palettes including `primary`, `neutral`, `danger`, `success`, `warning`, `common`, `text` and `background` have been refined to have better contrast.
 
-<!-- {{"demo": "PaletteChanges.js"}} -->
+{{"demo": "PaletteChanges.js"}}
 
 If you want to keep the old colors, you can do so by adding the following to your theme:
 

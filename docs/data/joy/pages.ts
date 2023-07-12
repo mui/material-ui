@@ -168,8 +168,8 @@ const pages = [
     icon: standardNavIcons.BookIcon,
     children: [
       {
-        pathname: '/joy-ui/migration/new-theme',
-        title: 'Migrating to new theme',
+        pathname: '/joy-ui/migration/migrating-default-theme',
+        title: 'Migrating the default theme',
       },
     ],
   },
