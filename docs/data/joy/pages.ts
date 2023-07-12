@@ -156,6 +156,10 @@ const pages = [
         pathname: '/joy-ui/guides/using-icon-libraries',
         title: 'Using icon libraries',
       },
+      {
+        pathname: '/joy-ui/guides/next-js-app-router',
+        title: 'Integrating with Next.js App Router',
+      },
     ],
   },
   {

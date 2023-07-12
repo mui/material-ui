@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable no-constant-condition */
 import * as React from 'react';
 import {
