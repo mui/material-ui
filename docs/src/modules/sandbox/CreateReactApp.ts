@@ -52,6 +52,7 @@ export const getHtml = ({
             },
             minWidth: {
               badge: '22px',
+              listbox: '200px',
               snackbar: '300px',
             },
             maxWidth: {
