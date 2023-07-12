@@ -111,19 +111,19 @@ Select can be used as an uncontrolled or controlled component.
 - The value is **controlled** when its parent manages it by providing a `value` prop.
 - The value is **uncontrolled** when it is managed by the component's own internal state. This state can be initialized using the `defaultValue` prop.
 
-Learn more about the _Controlled and uncontrolled_ pattern in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
 {{"demo": "UnstyledSelectControlled.js", "defaultCodeOpen": false}}
 
 To set the value of the controlled Select, use the `value` prop.
 The uncontrolled component accepts the `defaultValue` that can be used to set the initial value.
-In any case, if you wish to deselect all values pass `null` to the respective prop.
+In any case, if you wish to deselect all values, pass `null` to the respective prop.
 
 :::warning
 This pattern is where Base UI's Select differs from the equivalent [Material UI component](/material-ui/react-select/).
 The Material UI Select takes an empty string to deselect all values.
-In Base UI, use `null` to achieve this.
+In Base UI, you must use `null` to achieve this.
 :::
 
 ### Object values
