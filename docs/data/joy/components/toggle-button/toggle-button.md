@@ -33,9 +33,9 @@ The demo below shows how to use a `Button` and a `IconButton` as a toggle.
 
 ### Toggle group
 
-Provide a `value` as an array to ToggleButtonGroup. When the button is in pressed state, the ToggleButtonGroup's `onChange` prop is called with the new array.
+To use `ToggleButtonGroup`, you should pass a value as an array. When a button within the group is in the pressed state, the `ToggleButtonGroup` triggers the `onChange` prop and passes the updated array as a parameter.
 
-The ToggleButtonGroup uses the same styles as the [ButtonGroup](/joy-ui/react-button-group/) component to connect each button together.
+The `ToggleButtonGroup` uses the same styles as the [ButtonGroup](/joy-ui/react-button-group/) component to ensure a cohesive visual connection between all the buttons.
 
 {{"demo": "ToggleGroup.js"}}
 
