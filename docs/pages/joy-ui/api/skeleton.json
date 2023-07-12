@@ -5,7 +5,7 @@
         "name": "enum",
         "description": "'pulse'<br>&#124;&nbsp;'wave'<br>&#124;&nbsp;false"
       },
-      "default": "'pulse'"
+      "default": "'wave'"
     },
     "children": { "type": { "name": "node" } },
     "component": { "type": { "name": "elementType" } },
