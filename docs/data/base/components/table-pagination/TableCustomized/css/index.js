@@ -22,62 +22,65 @@ export default function TableCustomized() {
   };
 
   return (
-    <div className="TablePaginationDemo">
-      <table aria-label="custom pagination table">
-        <thead>
-          <tr>
-            <th>Dessert</th>
-            <th>Calories</th>
-            <th>Fat</th>
-          </tr>
-        </thead>
-        <tbody>
-          {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
-            <tr key={row.name}>
-              <td>{row.name}</td>
-              <td style={{ width: 120 }} align="right">
-                {row.calories}
-              </td>
-              <td style={{ width: 120 }} align="right">
-                {row.fat}
-              </td>
+    <React.Fragment>
+      <div className="TablePaginationDemo">
+        <table aria-label="custom pagination table">
+          <thead>
+            <tr>
+              <th>Dessert</th>
+              <th>Calories</th>
+              <th>Fat</th>
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {(rowsPerPage > 0
+              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : rows
+            ).map((row) => (
+              <tr key={row.name}>
+                <td>{row.name}</td>
+                <td style={{ width: 120 }} align="right">
+                  {row.calories}
+                </td>
+                <td style={{ width: 120 }} align="right">
+                  {row.fat}
+                </td>
+              </tr>
+            ))}
 
-          {emptyRows > 0 && (
-            <tr style={{ height: 34 * emptyRows }}>
-              <td colSpan={3} />
+            {emptyRows > 0 && (
+              <tr style={{ height: 34 * emptyRows }}>
+                <td colSpan={3} />
+              </tr>
+            )}
+          </tbody>
+          <tfoot>
+            <tr>
+              <TablePagination
+                className="CustomTablePagination"
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={3}
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                slotProps={{
+                  select: {
+                    'aria-label': 'rows per page',
+                  },
+                  actions: {
+                    showFirstButton: true,
+                    showLastButton: true,
+                  },
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
             </tr>
-          )}
-        </tbody>
-        <tfoot>
-          <tr>
-            <TablePagination
-              className="CustomTablePagination"
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              slotProps={{
-                select: {
-                  'aria-label': 'rows per page',
-                },
-                actions: {
-                  showFirstButton: true,
-                  showLastButton: true,
-                },
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+          </tfoot>
+        </table>
+      </div>
+      <Styles />
+    </React.Fragment>
   );
 }
 

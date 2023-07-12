@@ -35,72 +35,104 @@ export default function TableCustomized() {
   };
 
   return (
-      <div className={`${isDarkMode ? 'dark' : ''} w-200 max-w-full`}>
-        <table className="text-sm w-full border-collapse" aria-label="custom pagination table">
-          <thead>
-            <tr>
-              <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-slate-100 dark:bg-slate-900">Dessert</th>
-              <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-slate-100 dark:bg-slate-900">Calories</th>
-              <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-slate-100 dark:bg-slate-900">Fat</th>
+    <div
+      className={`${isDarkMode ? 'dark' : ''} max-w-full`}
+      style={{ width: '500px' }}
+    >
+      <table
+        className="text-sm w-full border-collapse"
+        aria-label="custom pagination table"
+      >
+        <thead>
+          <tr>
+            <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-slate-100 dark:bg-slate-900">
+              Dessert
+            </th>
+            <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-slate-100 dark:bg-slate-900">
+              Calories
+            </th>
+            <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-slate-100 dark:bg-slate-900">
+              Fat
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {(rowsPerPage > 0
+            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : rows
+          ).map((row) => (
+            <tr key={row.name}>
+              <td className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5">
+                {row.name}
+              </td>
+              <td
+                className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5"
+                style={{ width: 120 }}
+                align="right"
+              >
+                {row.calories}
+              </td>
+              <td
+                className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5"
+                style={{ width: 120 }}
+                align="right"
+              >
+                {row.fat}
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {(rowsPerPage > 0
-              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : rows
-            ).map((row) => (
-              <tr key={row.name}>
-                <td className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5">{row.name}</td>
-                <td className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5" style={{ width: 120 }} align="right">
-                  {row.calories}
-                </td>
-                <td className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5" style={{ width: 120 }} align="right">
-                  {row.fat}
-                </td>
-              </tr>
-            ))}
+          ))}
 
-            {emptyRows > 0 && (
-              <tr style={{ height: 34 * emptyRows }}>
-                <td className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5" colSpan={3} />
-              </tr>
-            )}
-          </tbody>
-          <tfoot>
-            <tr>
-              <TablePagination
-                className="CustomTablePagination"
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+          {emptyRows > 0 && (
+            <tr style={{ height: 34 * emptyRows }}>
+              <td
+                className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5"
                 colSpan={3}
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                slotProps={{
-                  select: {
-                    'aria-label': 'rows per page',
-                    className: 'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl bg-transparent hover:bg-slate-20 hover:dark:bg-slate-800 focus:outline-0 focus:shadow-outline-purple'
-                  },
-                  actions: {
-                    showFirstButton: true,
-                    showLastButton: true,
-                  },
-                  spacer: {
-                    className: 'hidden'
-                  },
-                  toolbar: {
-                    className: 'flex flex-col items-start gap-2.5'
-                  },
-                  selectLabel: {
-                    className: 'm-0'
-                  }
-                }}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
               />
             </tr>
-          </tfoot>
-        </table>
-      </div>
+          )}
+        </tbody>
+        <tfoot>
+          <tr>
+            <TablePagination
+              className="CustomTablePagination"
+              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              colSpan={3}
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              slotProps={{
+                select: {
+                  'aria-label': 'rows per page',
+                  className:
+                    'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl bg-transparent hover:bg-slate-20 hover:dark:bg-slate-800 focus:outline-0 focus:shadow-outline-purple-xs',
+                },
+                actions: {
+                  showFirstButton: true,
+                  showLastButton: true,
+                  className:
+                    'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl text-center [&>button]:my-0 [&>button]:mx-2 [&>button]:border-transparent [&>button]:rounded-sm [&>button]:bg-transparent [&>button:hover]:bg-slate-50 [&>button:hover]:dark:bg-slate-800 [&>button:focus]:outline-0 [&>button:focus]:shadow-outline-purple-xs',
+                },
+                spacer: {
+                  className: 'hidden',
+                },
+                toolbar: {
+                  className:
+                    'flex flex-col items-start gap-2.5 md:flex-row md:items-center',
+                },
+                selectLabel: {
+                  className: 'm-0',
+                },
+                displayedRows: {
+                  className: 'm-0 md:ml-auto',
+                },
+              }}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   );
 }
 
@@ -149,57 +181,3 @@ const grey = {
   800: '#2D3843',
   900: '#1A2027',
 };
-
-
-function Styles() {
-  // Replace this with your app logic for determining dark mode
-  const isDarkMode = useIsDarkMode();
-
-  return (
-    <style>
-      {`
-      
-      
-      flex flex-col items-start gap-2.5
-
-      .CustomTablePagination .${classes.toolbar}  {
-
-        @media (min-width: 768px) {
-          flex-direction: row;
-          align-items: center;
-        }
-      }
-
-      .CustomTablePagination .${classes.displayedRows} {
-        margin: 0;
-
-        @media (min-width: 768px) {
-          margin-left: auto;
-        }
-      }
-
-      .CustomTablePagination .${classes.actions} {
-        padding: 2px;
-        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-        border-radius: 50px;
-        text-align: center;
-      }
-
-      .CustomTablePagination .${classes.actions} > button {
-        margin: 0 8px;
-        border: transparent;
-        border-radius: 2px;
-        background-color: transparent;
-      }
-
-      .CustomTablePagination .${classes.actions} > button:hover {
-        background-color: ${isDarkMode ? grey[800] : grey[50]};
-      }
-
-      .CustomTablePagination .${classes.actions} > button:focus {
-        outline: 1px solid ${isDarkMode ? cyan[400] : cyan[200]};
-      }
-      `}
-    </style>
-  );
-}

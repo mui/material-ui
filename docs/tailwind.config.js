@@ -11,6 +11,7 @@ module.exports = {
     extend: {
       boxShadow: {
         'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
+        'outline-purple-xs': '0 0 0 1px rgba(192, 132, 252, 0.25)',
         'outline-switch': '0 0 1px 8px rgba(168, 85, 247, 0.35)',
       },
       cursor: {
