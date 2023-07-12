@@ -101,6 +101,7 @@ export default function useAutocomplete(props) {
     getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
+    handleUpDownArrow = true,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
@@ -834,16 +835,20 @@ export default function useAutocomplete(props) {
           handleOpen(event);
           break;
         case 'ArrowDown':
-          // Prevent cursor move
-          event.preventDefault();
-          changeHighlightedIndex({ diff: 1, direction: 'next', reason: 'keyboard', event });
-          handleOpen(event);
+          if (handleUpDownArrow) {
+            // Prevent cursor move
+            event.preventDefault();
+            changeHighlightedIndex({ diff: 1, direction: 'next', reason: 'keyboard', event });
+            handleOpen(event);
+          }
           break;
         case 'ArrowUp':
-          // Prevent cursor move
-          event.preventDefault();
-          changeHighlightedIndex({ diff: -1, direction: 'previous', reason: 'keyboard', event });
-          handleOpen(event);
+          if (handleUpDownArrow) {
+            // Prevent cursor move
+            event.preventDefault();
+            changeHighlightedIndex({ diff: -1, direction: 'previous', reason: 'keyboard', event });
+            handleOpen(event);
+          }
           break;
         case 'ArrowLeft':
           handleFocusTag(event, 'previous');

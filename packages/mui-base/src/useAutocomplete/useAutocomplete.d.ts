@@ -181,6 +181,13 @@ export interface UseAutocompleteProps<
    * @default !props.freeSolo
    */
   handleHomeEndKeys?: boolean;
+
+  /**
+   * If `true`, the component handles the "UP" and "DOWN" arrow keys.
+   * It should allow a user to scroll the options using these keys.
+   * @default true
+   */
+  handleUpDownArrow?: boolean;
   /**
    * This prop is used to help implement the accessibility logic.
    * If you don't provide an id it will fall back to a randomly generated one.
