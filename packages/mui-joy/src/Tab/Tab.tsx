@@ -39,7 +39,7 @@ const TabRoot = styled(StyledListItemButton, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabOwnerState }>(({ ownerState }) => [
   {
-    flexGrow: ownerState.row ? 1 : 0,
+    flex: 'initial',
     justifyContent: ownerState.row ? 'center' : 'initial',
     '--unstable_ListItemDecorator-alignItems': 'center',
     '--unstable_offset': 'min(calc(-1 * var(--variant-borderWidth, 0px)), -1px)',
