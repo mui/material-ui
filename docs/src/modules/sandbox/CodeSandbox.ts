@@ -1,10 +1,10 @@
 // @ts-ignore
 import LZString from 'lz-string';
 import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
-import SandboxDependencies from './Dependencies';
-import * as CRA from './CreateReactApp';
-import getFileExtension from './FileExtension';
-import { CodeVariant, Product, CodeStyling } from './types';
+import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
+import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
+import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
+import { DemoData, CodeVariant, CodeStyling } from 'docs/src/modules/sandbox/types';
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -13,7 +13,7 @@ function compress(object: any) {
     .replace(/=+$/, ''); // Remove ending '='
 }
 
-function openSandbox({ files, codeVariant, initialFile = '/App' }: any) {
+function openSandbox({ files, codeVariant, initialFile }: any) {
   const extension = codeVariant === 'TS' ? '.tsx' : '.js';
   const parameters = compress({ files });
 
@@ -33,36 +33,28 @@ function openSandbox({ files, codeVariant, initialFile = '/App' }: any) {
   document.body.removeChild(form);
 }
 
-const createReactApp = (demo: {
-  title: string;
-  language: string;
-  raw: string;
-  codeVariant: CodeVariant;
-  githubLocation: string;
-  productId?: Product;
-  codeStyling: CodeStyling;
-}) => {
-  const ext = getFileExtension(demo.codeVariant);
-  const { title, githubLocation: description } = demo;
+const createReactApp = (demoData: DemoData) => {
+  const ext = getFileExtension(demoData.codeVariant);
+  const { title, githubLocation: description } = demoData;
 
   const files: Record<string, object> = {
     'public/index.html': {
-      content: CRA.getHtml(demo),
+      content: CRA.getHtml(demoData),
     },
     [`index.${ext}`]: {
-      content: CRA.getRootIndex(demo.productId),
+      content: CRA.getRootIndex(demoData),
     },
-    [`demo.${ext}`]: {
-      content: demo.raw,
+    [`Demo.${ext}`]: {
+      content: demoData.raw,
     },
-    ...(demo.codeVariant === 'TS' && {
+    ...(demoData.codeVariant === 'TS' && {
       'tsconfig.json': {
         content: CRA.getTsconfig(),
       },
     }),
   };
 
-  const { dependencies, devDependencies } = SandboxDependencies(demo, {
+  const { dependencies, devDependencies } = SandboxDependencies(demoData, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
   });
 
@@ -71,7 +63,7 @@ const createReactApp = (demo: {
       description,
       dependencies,
       devDependencies,
-      ...(demo.codeVariant === 'TS' && {
+      ...(demoData.codeVariant === 'TS' && {
         main: 'index.tsx',
         scripts: {
           start: 'react-scripts start',
@@ -88,30 +80,33 @@ const createReactApp = (demo: {
     devDependencies,
     /**
      * @param {string} initialFile
-     * @description should start with `/`, e.g. `/demo.tsx`. If the extension is not provided,
+     * @description should start with `/`, e.g. `/Demo.tsx`. If the extension is not provided,
      * it will be appended based on the code variant.
      */
-    openSandbox: (initialFile?: string) =>
-      openSandbox({ files, codeVariant: demo.codeVariant, initialFile }),
+    openSandbox: (initialFile: string = `/Demo.${ext}`) =>
+      openSandbox({ files, codeVariant: demoData.codeVariant, initialFile }),
   };
 };
 
-const createJoyTemplate = (demo: {
+const createJoyTemplate = (templateData: {
   title: string;
   files: Record<string, string>;
   githubLocation: string;
-  codeVariant: 'TS' | 'JS';
-  codeStyling?: 'Tailwind' | 'MUI System';
+  codeVariant: CodeVariant;
+  codeStyling?: CodeStyling;
 }) => {
-  const ext = getFileExtension(demo.codeVariant);
-  const { title, githubLocation: description } = demo;
+  const ext = getFileExtension(templateData.codeVariant);
+  const { title, githubLocation: description } = templateData;
+
+  // document.querySelector returns 'Element | null' but createRoot expects 'Element | DocumentFragment'.
+  const type = templateData.codeVariant === 'TS' ? '!' : '';
 
   const files: Record<string, object> = {
     'public/index.html': {
       content: CRA.getHtml({
-        title: demo.title,
+        title: templateData.title,
         language: 'en',
-        codeStyling: demo.codeStyling ?? 'MUI System',
+        codeStyling: templateData.codeStyling ?? 'MUI System',
       }),
     },
     [`index.${ext}`]: {
@@ -120,7 +115,7 @@ import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/joy/styles';
 import App from './App';
 
-ReactDOM.createRoot(document.querySelector("#root")).render(
+ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <App />
@@ -128,7 +123,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </React.StrictMode>
 );`,
     },
-    ...Object.entries(demo.files).reduce(
+    ...Object.entries(templateData.files).reduce(
       (prev, curr) => ({
         ...prev,
         [curr[0]]: {
@@ -137,7 +132,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
       }),
       {},
     ),
-    ...(demo.codeVariant === 'TS' && {
+    ...(templateData.codeVariant === 'TS' && {
       'tsconfig.json': {
         content: CRA.getTsconfig(),
       },
@@ -146,8 +141,8 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
 
   const { dependencies, devDependencies } = SandboxDependencies(
     {
-      codeVariant: demo.codeVariant,
-      raw: Object.entries(demo.files).reduce((prev, curr) => `${prev}\n${curr}`, ''),
+      codeVariant: templateData.codeVariant,
+      raw: Object.entries(templateData.files).reduce((prev, curr) => `${prev}\n${curr}`, ''),
       productId: 'joy-ui',
     },
     {
@@ -160,7 +155,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
       description,
       dependencies,
       devDependencies,
-      ...(demo.codeVariant === 'TS' && {
+      ...(templateData.codeVariant === 'TS' && {
         main: 'index.tsx',
         scripts: {
           start: 'react-scripts start',
@@ -174,8 +169,8 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     files,
     dependencies,
     devDependencies,
-    openSandbox: (initialFile?: string) =>
-      openSandbox({ files, codeVariant: demo.codeVariant, initialFile }),
+    openSandbox: (initialFile: string = '/App') =>
+      openSandbox({ files, codeVariant: templateData.codeVariant, initialFile }),
   };
 };
 
