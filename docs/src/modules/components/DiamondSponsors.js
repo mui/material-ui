@@ -27,13 +27,15 @@ export default function DiamondSponsors() {
           (theme) => ({
             height: 40,
             width: '100%',
-            background: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%)`,
+            background: `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFF 100%)`,
             borderBottom: '1px solid',
             borderColor: (theme.vars || theme).palette.grey[100],
           }),
           (theme) =>
             theme.applyDarkStyles({
-              background: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #0A1929 100%)`,
+              background: `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, ${
+                (theme.vars || theme).palette.primaryDark[900]
+              } 100%)`,
               borderColor: (theme.vars || theme).palette.primaryDark[700],
             }),
         ]}
