@@ -1,3 +1,4 @@
+'use client';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { integerPropType } from '@mui/utils';
 import clsx from 'clsx';

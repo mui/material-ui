@@ -689,12 +689,22 @@ export const getStaticPaths = () => {
 ${staticProps}
       `;
 
-      const componentPageDirectory = `docs/pages/${productName}-ui/react-${componentName}/`;
+      const componentPageDirectory = `docs/pages/${productName}-ui/${
+        componentName !== 'all-components' ? 'react-' : ''
+      }${componentName}/`;
       if (!fs.existsSync(componentPageDirectory)) {
         fs.mkdirSync(componentPageDirectory, { recursive: true });
       }
       const demosSourcePath = path.join(process.cwd(), `${componentPageDirectory}/index.js`);
       writePrettifiedFile(demosSourcePath, demosSource);
+
+      if (
+        ((components ?? []).length === 0 && (hooks ?? []).length === 0) ||
+        markdown.filename.endsWith('all-components.md')
+      ) {
+        // Early return if it's a markdown file without components/hooks.
+        return;
+      }
 
       const docsTabsPagesDirectory = `${componentPageDirectory}/[docsTab]`;
       if (!fs.existsSync(docsTabsPagesDirectory)) {

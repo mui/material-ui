@@ -1,3 +1,4 @@
+'use client';
 export { ModalManager } from '@mui/base/Modal';
 
 export { default } from './Modal';

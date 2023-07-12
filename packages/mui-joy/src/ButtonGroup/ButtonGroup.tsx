@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -83,8 +84,13 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
         display: 'flex',
         borderRadius: 'var(--ButtonGroup-radius)',
         flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
+        // single Button or IconButton
+        [`& > :only-child`]: {
+          '--Button-radius': 'var(--ButtonGroup-radius)',
+          '--IconButton-radius': 'var(--ButtonGroup-radius)',
+        },
         // first Button or IconButton
-        [`& > [data-first-child]`]: {
+        [`& > :not([data-first-child]):not(:only-child)`]: {
           '--Button-radius': firstChildRadius,
           '--IconButton-radius': firstChildRadius,
           ...(ownerState.orientation === 'horizontal' && {
@@ -96,7 +102,7 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
           }),
         },
         // middle Buttons or IconButtons
-        [`& > :not([data-first-child]):not([data-last-child])`]: {
+        [`& > :not([data-first-child]):not([data-last-child]):not(:only-child)`]: {
           '--Button-radius': 'var(--unstable_childRadius)',
           '--IconButton-radius': 'var(--unstable_childRadius)',
           borderRadius: 'var(--unstable_childRadius)',
@@ -256,11 +262,13 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
             extraProps.role = 'presentation';
             extraProps.component = 'span';
           }
-          if (index === 0) {
-            extraProps['data-first-child'] = '';
-          }
-          if (index === React.Children.count(children) - 1) {
-            extraProps['data-last-child'] = '';
+          if (React.Children.count(children) > 1) {
+            if (index === 0) {
+              extraProps['data-first-child'] = '';
+            }
+            if (index === React.Children.count(children) - 1) {
+              extraProps['data-last-child'] = '';
+            }
           }
           return React.cloneElement(child, extraProps);
         })}
