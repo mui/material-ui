@@ -92,11 +92,11 @@ describe('extendTheme', () => {
 
   it('should have correct font family', () => {
     const theme = extendTheme({ fontFamily: { body: 'JetBrains Mono' } });
-    expect(theme.typography.body1).to.deep.equal({
+    expect(theme.typography['body-md']).to.deep.equal({
       fontFamily: 'var(--joy-fontFamily-body, JetBrains Mono)',
       fontSize: 'var(--joy-fontSize-md, 1rem)',
       lineHeight: 'var(--joy-lineHeight-md, 1.5)',
-      color: 'var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #25252D))',
+      color: 'var(--joy-palette-text-secondary, var(--joy-palette-neutral-700, #32383E))',
     });
   });
 

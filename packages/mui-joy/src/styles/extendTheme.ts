@@ -462,7 +462,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
 
       'title-lg': {
-        fontFamily: getCssVar(`fontFamily-display, ${fontFamily.display}`),
+        fontFamily: getCssVar(`fontFamily-body, ${fontFamily.body}`),
         fontWeight: getCssVar(`fontWeight-lg, ${fontWeight.lg}`),
         fontSize: getCssVar(`fontSize-lg, ${fontSize.lg}`),
         lineHeight: getCssVar(`lineHeight-xl, ${lineHeight.xl}`),
@@ -470,7 +470,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
 
       'title-md': {
-        fontFamily: getCssVar(`fontFamily-display, ${fontFamily.display}`),
+        fontFamily: getCssVar(`fontFamily-body, ${fontFamily.body}`),
         fontWeight: getCssVar(`fontWeight-md, ${fontWeight.md}`),
         fontSize: getCssVar(`fontSize-md, ${fontSize.md}`),
         lineHeight: getCssVar(`lineHeight-md, ${lineHeight.md}`),
@@ -478,7 +478,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
 
       'title-sm': {
-        fontFamily: getCssVar(`fontFamily-display, ${fontFamily.display}`),
+        fontFamily: getCssVar(`fontFamily-body, ${fontFamily.body}`),
         fontWeight: getCssVar(`fontWeight-md, ${fontWeight.md}`),
         fontSize: getCssVar(`fontSize-sm, ${fontSize.sm}`),
         lineHeight: getCssVar(`lineHeight-sm, ${lineHeight.sm}`),
@@ -486,28 +486,28 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
 
       'body-lg': {
-        fontFamily: getCssVar(`fontFamily-display, ${fontFamily.display}`),
+        fontFamily: getCssVar(`fontFamily-body, ${fontFamily.body}`),
         fontSize: getCssVar(`fontSize-lg, ${fontSize.lg}`),
         lineHeight: getCssVar(`lineHeight-lg, ${lineHeight.lg}`),
         color: getCssVar(`palette-text-secondary, ${lightColorSystem.palette.text.secondary}`),
       },
 
       'body-md': {
-        fontFamily: getCssVar(`fontFamily-display, ${fontFamily.display}`),
+        fontFamily: getCssVar(`fontFamily-body, ${fontFamily.body}`),
         fontSize: getCssVar(`fontSize-md, ${fontSize.md}`),
         lineHeight: getCssVar(`lineHeight-md, ${lineHeight.md}`),
         color: getCssVar(`palette-text-secondary, ${lightColorSystem.palette.text.secondary}`),
       },
 
       'body-sm': {
-        fontFamily: getCssVar(`fontFamily-display, ${fontFamily.display}`),
+        fontFamily: getCssVar(`fontFamily-body, ${fontFamily.body}`),
         fontSize: getCssVar(`fontSize-sm, ${fontSize.sm}`),
         lineHeight: getCssVar(`lineHeight-sm, ${lineHeight.sm}`),
         color: getCssVar(`palette-text-tertiary, ${lightColorSystem.palette.text.tertiary}`),
       },
 
       'body-xs': {
-        fontFamily: getCssVar(`fontFamily-display, ${fontFamily.display}`),
+        fontFamily: getCssVar(`fontFamily-body, ${fontFamily.body}`),
         fontWeight: getCssVar(`fontWeight-md, ${fontWeight.md}`),
         fontSize: getCssVar(`fontSize-xs, ${fontSize.xs}`),
         lineHeight: getCssVar(`lineHeight-xl, ${lineHeight.xl}`),
