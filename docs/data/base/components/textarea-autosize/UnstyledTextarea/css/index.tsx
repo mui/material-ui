@@ -5,7 +5,11 @@ import { useTheme } from '@mui/system';
 export default function UnstyledTextareaAutosize() {
   return (
     <React.Fragment>
-      <TextareaAutosize aria-label="empty textarea" placeholder="Empty" />
+      <TextareaAutosize
+        className="CustomTextarea"
+        aria-label="empty textarea"
+        placeholder="Empty"
+      />
       <Styles />
     </React.Fragment>
   );
