@@ -508,7 +508,7 @@ export function getThemedComponents(): ThemeOptions {
                 color: '#FFF',
                 background: `linear-gradient(180deg, ${
                   (theme.vars || theme).palette.primary[500]
-                } 0%, ${(theme.vars || theme).palette.primary[400]} 100%)`,
+                } 0%, ${(theme.vars || theme).palette.primary[600]} 100%)`,
                 border: '1px solid',
                 borderColor: (theme.vars || theme).palette.primary[400],
                 boxShadow: `0px 2px 4px ${alpha(
@@ -518,8 +518,8 @@ export function getThemedComponents(): ThemeOptions {
                 textShadow: `0px 1px 1px ${alpha(theme.palette.grey[900], 0.3)}`,
                 '&:hover': {
                   background: `linear-gradient(180deg, ${
-                    (theme.vars || theme).palette.primary[400]
-                  } 0%, ${(theme.vars || theme).palette.primary[300]} 100%)`,
+                    (theme.vars || theme).palette.primary[500]
+                  } 0%, ${(theme.vars || theme).palette.primary[400]} 100%)`,
                   boxShadow:
                     '0px 0px 8px rgba(0, 127, 255, 0.2), inset 0px 4px 8px rgba(102, 178, 255, 0.4)',
                 },
