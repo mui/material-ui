@@ -1,3 +1,4 @@
+'use client';
 export { default } from './Modal';
 
 export * from './Modal.types';

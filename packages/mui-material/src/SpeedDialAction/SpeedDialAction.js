@@ -1,3 +1,4 @@
+'use client';
 // @inheritedComponent Tooltip
 import * as React from 'react';
 import PropTypes from 'prop-types';
