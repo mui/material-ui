@@ -120,6 +120,7 @@ const Select = React.forwardRef(function Select<
     slotProps = {},
     slots = {},
     value: valueProp,
+    autoComplete,
     ...other
   } = props;
 
@@ -153,9 +154,10 @@ const Select = React.forwardRef(function Select<
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionMetadata,
     value,
     open,
+    getInputProps,
+    selectedOptionsMetadata,
   } = useSelect({
     areOptionsEqual,
     buttonRef: handleButtonRef,
@@ -169,6 +171,9 @@ const Select = React.forwardRef(function Select<
     onOpenChange: onListboxOpenChange,
     getOptionAsString,
     value: valueProp,
+    autoComplete,
+    name,
+    getSerializedValue,
   });
 
   const ownerState: SelectOwnerState<OptionValue, Multiple> = {
@@ -222,18 +227,6 @@ const Select = React.forwardRef(function Select<
       className: classes.popper,
     });
 
-  let selectedOptionsMetadata: SelectValue<SelectOption<OptionValue>, Multiple>;
-  if (multiple) {
-    selectedOptionsMetadata = (value as OptionValue[])
-      .map((v) => getOptionMetadata(v))
-      .filter((o) => o !== undefined) as SelectValue<SelectOption<OptionValue>, Multiple>;
-  } else {
-    selectedOptionsMetadata = (getOptionMetadata(value as OptionValue) ?? null) as SelectValue<
-      SelectOption<OptionValue>,
-      Multiple
-    >;
-  }
-
   return (
     <React.Fragment>
       <Button {...buttonProps}>{renderValue(selectedOptionsMetadata)}</Button>
@@ -245,9 +238,7 @@ const Select = React.forwardRef(function Select<
         </PopperComponent>
       )}
 
-      {name && (
-        <input type="hidden" name={name} value={getSerializedValue(selectedOptionsMetadata)} />
-      )}
+      {name && <input {...getInputProps()} />}
     </React.Fragment>
   );
 }) as SelectType;

@@ -106,6 +106,20 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * Set to `null` to deselect all options.
    */
   value?: SelectValue<OptionValue, Multiple>;
+  /**
+   * string that specifies which type of autocomplete is set for the hidden input
+   */
+  autoComplete?: string;
+  /**
+   * name of the hidden input field
+   */
+  name?: string;
+  /**
+   * Function to get the serialized value of the selected option
+   */
+  getSerializedValue: (
+    option: SelectValue<SelectOption<OptionValue>, Multiple>,
+  ) => string | number | readonly string[] | undefined;
 }
 
 interface UseSelectButtonSlotEventHandlers {
@@ -136,6 +150,14 @@ export type UseSelectListboxSlotProps<TOther = {}> = Omit<
     ref: React.RefCallback<Element> | null;
     role: React.HTMLAttributes<Element>['role'];
   };
+
+export type HiddenInputProps = {
+  autoComplete?: string;
+  name?: string;
+  type: string;
+  style: Record<string, string>;
+  value: string | number | readonly string[] | undefined;
+};
 
 export interface UseSelectReturnValue<Value, Multiple> {
   /**
@@ -183,6 +205,12 @@ export interface UseSelectReturnValue<Value, Multiple> {
    */
   getOptionMetadata: (optionValue: Value) => SelectOption<Value> | undefined;
   /**
+   * Resolver for the hidden select input's props.
+   *
+   * @returns props that should be spread on the hidden select input
+   */
+  getInputProps: () => HiddenInputProps;
+  /**
    * A value to be passed to the `SelectProvider` component.
    */
   contextValue: SelectProviderValue<Value>;
@@ -206,10 +234,15 @@ export interface UseSelectReturnValue<Value, Multiple> {
    * The value of the selected option(s).
    */
   value: SelectValue<Value, Multiple>;
+  /**
+   * The metadata of the list of options
+   */
+  selectedOptionsMetadata: SelectValue<SelectOption<Value>, Multiple>;
 }
 
 export const SelectActionTypes = {
   buttonClick: 'buttonClick',
+  browserAutoFill: 'browserAutoFill',
 } as const;
 
 export interface ButtonClickAction {
@@ -217,7 +250,12 @@ export interface ButtonClickAction {
   event: React.MouseEvent;
 }
 
-export type SelectAction = ButtonClickAction;
+export interface BrowserAutofillAction {
+  type: typeof SelectActionTypes.browserAutoFill;
+  event: React.ChangeEvent;
+}
+
+export type SelectAction = ButtonClickAction | BrowserAutofillAction;
 
 export interface SelectInternalState<OptionValue> extends ListState<OptionValue> {
   open: boolean;

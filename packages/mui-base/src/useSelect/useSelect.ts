@@ -6,6 +6,7 @@ import {
 } from '@mui/utils';
 import useButton from '../useButton';
 import {
+  BrowserAutofillAction,
   ButtonClickAction,
   SelectAction,
   SelectActionTypes,
@@ -59,6 +60,9 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     options: optionsParam,
     getOptionAsString = defaultOptionStringifier,
     value: valueProp,
+    autoComplete,
+    name,
+    getSerializedValue,
   } = props;
 
   const buttonRef = React.useRef<HTMLElement>(null);
@@ -293,6 +297,35 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     [getOptionByValue],
   );
 
+  let selectedOptionsMetadata: SelectValue<SelectOption<OptionValue>, Multiple>;
+  if (multiple) {
+    selectedOptionsMetadata = (value as OptionValue[])
+      .map((v) => getOptionMetadata(v))
+      .filter((o) => o !== undefined) as SelectValue<SelectOption<OptionValue>, Multiple>;
+  } else {
+    selectedOptionsMetadata = (getOptionMetadata(value as OptionValue) ?? null) as SelectValue<
+      SelectOption<OptionValue>,
+      Multiple
+    >;
+  }
+
+  const getInputProps = React.useCallback(() => {
+    return {
+      autoComplete,
+      type: 'text',
+      name,
+      style: { position: 'absolute', left: '-9999px' },
+      value: getSerializedValue(selectedOptionsMetadata),
+      onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+        const action: BrowserAutofillAction = {
+          type: SelectActionTypes.browserAutoFill,
+          event,
+        };
+        dispatch(action);
+      },
+    };
+  }, [autoComplete, dispatch, getSerializedValue, name, selectedOptionsMetadata]);
+
   const getSelectTriggerProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
   ) => {
@@ -362,10 +395,12 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getListboxProps,
     getOptionMetadata,
     listboxRef: mergedListRootRef,
+    getInputProps,
     open,
     options: optionValues,
     value: selectValue,
     highlightedOption,
+    selectedOptionsMetadata,
   };
 }
 

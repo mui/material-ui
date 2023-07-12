@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   ListAction,
   ListActionContext,
@@ -25,6 +26,14 @@ export default function selectReducer<OptionValue>(
       ...state,
       open: !open,
       highlightedValue: !open ? itemToHighlight : null,
+    };
+  }
+  if (action.type === SelectActionTypes.browserAutoFill) {
+    return {
+      ...state,
+      selectedValues: [
+        (action.event as React.ChangeEvent<HTMLInputElement>).target.value,
+      ] as OptionValue[],
     };
   }
 
