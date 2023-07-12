@@ -33,7 +33,7 @@ export default function EmptyTextarea() {
     font-weight: 400;
     line-height: 1.5;
     padding: 12px;
-    border-radius: 12px;
+    border-radius: 12px 12px 0 12px;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
     background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};

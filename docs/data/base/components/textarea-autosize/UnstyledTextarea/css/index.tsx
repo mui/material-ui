@@ -59,7 +59,7 @@ function Styles() {
         font-weight: 400;
         line-height: 1.5;
         padding: 12px;
-        border-radius: 12px;
+        border-radius: 12px 12px 0 12px;
         color: ${isDarkMode ? grey[300] : grey[900]};
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
@@ -73,7 +73,7 @@ function Styles() {
         border-color: ${cyan[400]};
         box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
         }
-    
+            
         // firefox
         &:focus-visible {
         outline: 0;
