@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable material-ui/mui-name-matches-component-name */
 import * as React from 'react';
 import PropTypes from 'prop-types';

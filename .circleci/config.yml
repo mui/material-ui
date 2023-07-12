@@ -199,7 +199,7 @@ jobs:
       - install_js
       - run:
           name: Eslint
-          command: yarn lint:ci
+          command: yarn eslint:ci
       - run:
           name: Stylelint
           command: yarn stylelint
@@ -222,6 +222,9 @@ jobs:
           command: yarn proptypes
       - run:
           name: '`yarn proptypes` changes committed?'
+          command: git diff --exit-code
+      - run:
+          name: '`yarn rsc:build` changes committed?'
           command: git diff --exit-code
       - run:
           name: Generate the documentation

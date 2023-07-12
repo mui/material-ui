@@ -34,7 +34,7 @@ module.exports = {
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
-    'filenames',
+    'eslint-plugin-filenames',
   ],
   settings: {
     'import/resolver': {
@@ -201,6 +201,7 @@ module.exports = {
     'react/no-invalid-html-attribute': 'off',
 
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
+    'lines-around-directive': 'off',
   },
   overrides: [
     {
