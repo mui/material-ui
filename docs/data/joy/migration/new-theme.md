@@ -6,6 +6,27 @@ With the introduction of v5.0.0-alpha.x, Joy UI's default theme went under signi
 
 ## Color
 
+### purple color range
+
+The `purple` color range has been removed. If you want to continue using it, you can do so by adding the color range directly:
+
+```diff
+- import { colors } from '@mui/joy/styles';
+
++ const purple = {
++   50: '#FDF7FF',
++   100: '#F4EAFF',
++   200: '#E1CBFF',
++   300: '#C69EFF',
++   400: '#A374F9',
++   500: '#814DDE',
++   600: '#5F35AE',
++   700: '#452382',
++   800: '#301761',
++   900: '#1D0A42',
++ }
+```
+
 ### info palette
 
 The `info` palette has been removed from the default theme. We recommend to use `neutral` instead.
@@ -18,29 +39,33 @@ For example:
 ```
 
 :::info
-When we started applying color palettes into contexts, and fleshing out the components, we noticed an overlap between the `neutral` and `info` states. To address this, we decided to eliminate the info palette and use the neutral colors for the `info` state instead. This change aligns better with the semantic meaning of an informational state.
+**The why**: when we started applying color palettes into contexts, and fleshing out the components, we noticed an overlap between the `neutral` and `info` states. To address this, we decided to eliminate the info palette and use the neutral colors for the `info` state instead. This change aligns better with the semantic meaning of an informational state.
 :::
 
-However, if you want to keep the `info` color palette, you can do so by adding the following to your theme:
+If you want to keep the `info` color palette, you can do so by adding the following to your theme:
 
 ```js
 import { extendTheme } from '@mui/joy/styles';
+
+const info = {
+  50: '#FDF7FF',
+  100: '#F4EAFF',
+  200: '#E1CBFF',
+  300: '#C69EFF',
+  400: '#A374F9',
+  500: '#814DDE',
+  600: '#5F35AE',
+  700: '#452382',
+  800: '#301761',
+  900: '#1D0A42',
+};
 
 const theme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
         info: {
-          50: '#FDF7FF',
-          100: '#F4EAFF',
-          200: '#E1CBFF',
-          300: '#C69EFF',
-          400: '#A374F9',
-          500: '#814DDE',
-          600: '#5F35AE',
-          700: '#452382',
-          800: '#301761',
-          900: '#1D0A42',
+          ...info,
           plainColor: `var(--joy-palette-info-600)`,
           plainHoverBg: `var(--joy-palette-info-100)`,
           plainActiveBg: `var(--joy-palette-info-200)`,
@@ -70,16 +95,7 @@ const theme = extendTheme({
     dark: {
       palette: {
         info: {
-          50: '#FDF7FF',
-          100: '#F4EAFF',
-          200: '#E1CBFF',
-          300: '#C69EFF',
-          400: '#A374F9',
-          500: '#814DDE',
-          600: '#5F35AE',
-          700: '#452382',
-          800: '#301761',
-          900: '#1D0A42',
+          ...info,
           plainColor: `var(--joy-palette-info-300)`,
           plainHoverBg: `var(--joy-palette-info-800)`,
           plainActiveBg: `var(--joy-palette-info-700)`,
@@ -339,6 +355,503 @@ declare module '@mui/joy/styles' {
     info: PaletteRange;
   }
 }
+```
+
+### Other palettes
+
+The colors of these palettes including `primary`, `neutral`, `danger`, `success`, `warning`, `common`, `text` and `background` have been refined to have better contrast.
+
+<!-- {{"demo": "PaletteChanges.js"}} -->
+
+If you want to keep the old colors, you can do so by adding the following to your theme:
+
+#### Primary
+
+```js
+const primary = {
+  50: '#F4FAFF',
+  100: '#DDF1FF',
+  200: '#ADDBFF',
+  300: '#6FB6FF',
+  400: '#3990FF',
+  500: '#096BDE',
+  600: '#054DA7',
+  700: '#02367D',
+  800: '#072859',
+  900: '#00153C',
+};
+
+extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          ...primary,
+          plainColor: `var(--joy-palette-primary-600)`,
+          plainHoverBg: `var(--joy-palette-primary-100)`,
+          plainActiveBg: `var(--joy-palette-primary-200)`,
+          plainDisabledColor: `var(--joy-palette-primary-200)`,
+
+          outlinedColor: `var(--joy-palette-primary-500)`,
+          outlinedBorder: `var(--joy-palette-primary-200)`,
+          outlinedHoverBg: `var(--joy-palette-primary-100)`,
+          outlinedHoverBorder: `var(--joy-palette-primary-300)`,
+          outlinedActiveBg: `var(--joy-palette-primary-200)`,
+          outlinedDisabledColor: `var(--joy-palette-primary-100)`,
+          outlinedDisabledBorder: `var(--joy-palette-primary-100)`,
+
+          softColor: `var(--joy-palette-primary-600)`,
+          softBg: `var(--joy-palette-primary-100)`,
+          softHoverBg: `var(--joy-palette-primary-200)`,
+          softActiveBg: `var(--joy-palette-primary-300)`,
+          softDisabledColor: `var(--joy-palette-primary-300)`,
+          softDisabledBg: `var(--joy-palette-primary}-)50`,
+
+          solidColor: '#fff',
+          solidBg: `var(--joy-palette-primary-500)`,
+          solidHoverBg: `var(--joy-palette-primary-600)`,
+          solidActiveBg: `var(--joy-palette-primary-700)`,
+          solidDisabledColor: `#fff`,
+          solidDisabledBg: `var(--joy-palette-primary-200)`,
+        },
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          ...primary,
+          plainColor: `var(--joy-palette-primary-300)`,
+          plainHoverBg: `var(--joy-palette-primary-800)`,
+          plainActiveBg: `var(--joy-palette-primary-700)`,
+          plainDisabledColor: `var(--joy-palette-primary-800)`,
+
+          outlinedColor: `var(--joy-palette-primary-200)`,
+          outlinedBorder: `var(--joy-palette-primary-700)`,
+          outlinedHoverBg: `var(--joy-palette-primary-800)`,
+          outlinedHoverBorder: `var(--joy-palette-primary-600)`,
+          outlinedActiveBg: `var(--joy-palette-primary-900)`,
+          outlinedDisabledColor: `var(--joy-palette-primary-800)`,
+          outlinedDisabledBorder: `var(--joy-palette-primary-800)`,
+
+          softColor: `var(--joy-palette-primary-200)`,
+          softBg: `var(--joy-palette-primary-900)`,
+          softHoverBg: `var(--joy-palette-primary-800)`,
+          softActiveBg: `var(--joy-palette-primary-700)`,
+          softDisabledColor: `var(--joy-palette-primary-800)`,
+          softDisabledBg: `var(--joy-palette-primary-900)`,
+
+          solidColor: `#fff`,
+          solidBg: `var(--joy-palette-primary-600)`,
+          solidHoverBg: `var(--joy-palette-primary-700)`,
+          solidActiveBg: `var(--joy-palette-primary-800)`,
+          solidDisabledColor: `var(--joy-palette-primary-700)`,
+          solidDisabledBg: `var(--joy-palette-primary-900)`,
+        },
+      },
+    },
+  },
+});
+```
+
+#### Neutral
+
+```js
+const neutral = {
+  50: '#F7F7F8',
+  100: '#EBEBEF',
+  200: '#D8D8DF',
+  300: '#B9B9C6',
+  400: '#8F8FA3',
+  500: '#73738C',
+  600: '#5A5A72',
+  700: '#434356',
+  800: '#25252D',
+  900: '#131318',
+};
+
+extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        neutral: {
+          ...neutral,
+          plainColor: `var(--joy-palette-neutral-800)`,
+          plainHoverColor: `var(--joy-palette-neutral-900)`,
+          plainHoverBg: `var(--joy-palette-neutral-100)`,
+          plainActiveBg: `var(--joy-palette-neutral-200)`,
+          plainDisabledColor: `var(--joy-palette-neutral-300)`,
+
+          outlinedColor: `var(--joy-palette-neutral-800)`,
+          outlinedBorder: `var(--joy-palette-neutral-200)`,
+          outlinedHoverColor: `var(--joy-palette-neutral-900)`,
+          outlinedHoverBg: `var(--joy-palette-neutral-100)`,
+          outlinedHoverBorder: `var(--joy-palette-neutral-300)`,
+          outlinedActiveBg: `var(--joy-palette-neutral-200)`,
+          outlinedDisabledColor: `var(--joy-palette-neutral-300)`,
+          outlinedDisabledBorder: `var(--joy-palette-neutral-100)`,
+
+          softColor: `var(--joy-palette-neutral-800)`,
+          softBg: `var(--joy-palette-neutral-100)`,
+          softHoverColor: `var(--joy-palette-neutral-900)`,
+          softHoverBg: `var(--joy-palette-neutral-200)`,
+          softActiveBg: `var(--joy-palette-neutral-300)`,
+          softDisabledColor: `var(--joy-palette-neutral-300)`,
+          softDisabledBg: `var(--joy-palette-neutral-50)`,
+          solidColor: `var(--joy-palette-common-white)`,
+          solidBg: `var(--joy-palette-neutral-600)`,
+          solidHoverBg: `var(--joy-palette-neutral-700)`,
+          solidActiveBg: `var(--joy-palette-neutral-800)`,
+          solidDisabledColor: `var(--joy-palette-neutral-300)`,
+          solidDisabledBg: `var(--joy-palette-neutral-50)`,
+        },
+      },
+    },
+    dark: {
+      palette: {
+        neutral: {
+          ...neutral,
+          plainColor: `var(--joy-palette-neutral-200)`,
+          plainHoverColor: `var(--joy-palette-neutral-50)`,
+          plainHoverBg: `var(--joy-palette-neutral-800)`,
+          plainActiveBg: `var(--joy-palette-neutral-700)`,
+          plainDisabledColor: `var(--joy-palette-neutral-700)`,
+
+          outlinedColor: `var(--joy-palette-neutral-200)`,
+          outlinedBorder: `var(--joy-palette-neutral-800)`,
+          outlinedHoverColor: `var(--joy-palette-neutral-50)`,
+          outlinedHoverBg: `var(--joy-palette-neutral-800)`,
+          outlinedHoverBorder: `var(--joy-palette-neutral-700)`,
+          outlinedActiveBg: `var(--joy-palette-neutral-800)`,
+          outlinedDisabledColor: `var(--joy-palette-neutral-800)`,
+          outlinedDisabledBorder: `var(--joy-palette-neutral-800)`,
+
+          softColor: `var(--joy-palette-neutral-200)`,
+          softBg: `var(--joy-palette-neutral-800)`,
+          softHoverColor: `var(--joy-palette-neutral-50)`,
+          softHoverBg: `var(--joy-palette-neutral-700)`,
+          softActiveBg: `var(--joy-palette-neutral-600)`,
+          softDisabledColor: `var(--joy-palette-neutral-700)`,
+          softDisabledBg: `var(--joy-palette-neutral-900)`,
+
+          solidColor: `var(--joy-palette-common-white)`,
+          solidBg: `var(--joy-palette-neutral-600)`,
+          solidHoverBg: `var(--joy-palette-neutral-700)`,
+          solidActiveBg: `var(--joy-palette-neutral-800)`,
+          solidDisabledColor: `var(--joy-palette-neutral-700)`,
+          solidDisabledBg: `var(--joy-palette-neutral-900)`,
+        },
+      },
+    },
+  },
+});
+```
+
+#### Danger
+
+```js
+const danger = {
+  50: '#FFF8F6',
+  100: '#FFE9E8',
+  200: '#FFC7C5',
+  300: '#FF9192',
+  400: '#FA5255',
+  500: '#D3232F',
+  600: '#A10E25',
+  700: '#77061B',
+  800: '#580013',
+  900: '#39000D',
+};
+
+extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        danger: {
+          ...danger,
+          plainColor: `var(--joy-palette-danger-600)`,
+          plainHoverBg: `var(--joy-palette-danger-100)`,
+          plainActiveBg: `var(--joy-palette-danger-200)`,
+          plainDisabledColor: `var(--joy-palette-danger-200)`,
+
+          outlinedColor: `var(--joy-palette-danger-500)`,
+          outlinedBorder: `var(--joy-palette-danger-200)`,
+          outlinedHoverBg: `var(--joy-palette-danger-100)`,
+          outlinedHoverBorder: `var(--joy-palette-danger-300)`,
+          outlinedActiveBg: `var(--joy-palette-danger-200)`,
+          outlinedDisabledColor: `var(--joy-palette-danger-100)`,
+          outlinedDisabledBorder: `var(--joy-palette-danger-100)`,
+
+          softColor: `var(--joy-palette-danger-600)`,
+          softBg: `var(--joy-palette-danger-100)`,
+          softHoverBg: `var(--joy-palette-danger-200)`,
+          softActiveBg: `var(--joy-palette-danger-300)`,
+          softDisabledColor: `var(--joy-palette-danger-300)`,
+          softDisabledBg: `var(--joy-palette-danger}-)50`,
+
+          solidColor: '#fff',
+          solidBg: `var(--joy-palette-danger-500)`,
+          solidHoverBg: `var(--joy-palette-danger-600)`,
+          solidActiveBg: `var(--joy-palette-danger-700)`,
+          solidDisabledColor: `#fff`,
+          solidDisabledBg: `var(--joy-palette-danger-200)`,
+        },
+      },
+    },
+    dark: {
+      palette: {
+        danger: {
+          ...danger,
+          plainColor: `var(--joy-palette-danger-300)`,
+          plainHoverBg: `var(--joy-palette-danger-800)`,
+          plainActiveBg: `var(--joy-palette-danger-700)`,
+          plainDisabledColor: `var(--joy-palette-danger-800)`,
+
+          outlinedColor: `var(--joy-palette-danger-200)`,
+          outlinedBorder: `var(--joy-palette-danger-700)`,
+          outlinedHoverBg: `var(--joy-palette-danger-800)`,
+          outlinedHoverBorder: `var(--joy-palette-danger-600)`,
+          outlinedActiveBg: `var(--joy-palette-danger-900)`,
+          outlinedDisabledColor: `var(--joy-palette-danger-800)`,
+          outlinedDisabledBorder: `var(--joy-palette-danger-800)`,
+
+          softColor: `var(--joy-palette-danger-200)`,
+          softBg: `var(--joy-palette-danger-900)`,
+          softHoverBg: `var(--joy-palette-danger-800)`,
+          softActiveBg: `var(--joy-palette-danger-700)`,
+          softDisabledColor: `var(--joy-palette-danger-800)`,
+          softDisabledBg: `var(--joy-palette-danger-900)`,
+
+          solidColor: `#fff`,
+          solidBg: `var(--joy-palette-danger-600)`,
+          solidHoverBg: `var(--joy-palette-danger-700)`,
+          solidActiveBg: `var(--joy-palette-danger-800)`,
+          solidDisabledColor: `var(--joy-palette-danger-700)`,
+          solidDisabledBg: `var(--joy-palette-danger-900)`,
+        },
+      },
+    },
+  },
+});
+```
+
+#### Success
+
+```js
+const success = {
+  50: '#F3FEF5',
+  100: '#D7F5DD',
+  200: '#77EC95',
+  300: '#4CC76E',
+  400: '#2CA24D',
+  500: '#1A7D36',
+  600: '#0F5D26',
+  700: '#034318',
+  800: '#002F0F',
+  900: '#001D09',
+};
+
+extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        success: {
+          ...success,
+          plainColor: `var(--joy-palette-success-600)`,
+          plainHoverBg: `var(--joy-palette-success-100)`,
+          plainActiveBg: `var(--joy-palette-success-200)`,
+          plainDisabledColor: `var(--joy-palette-success-200)`,
+
+          outlinedColor: `var(--joy-palette-success-500)`,
+          outlinedBorder: `var(--joy-palette-success-200)`,
+          outlinedHoverBg: `var(--joy-palette-success-100)`,
+          outlinedHoverBorder: `var(--joy-palette-success-300)`,
+          outlinedActiveBg: `var(--joy-palette-success-200)`,
+          outlinedDisabledColor: `var(--joy-palette-success-100)`,
+          outlinedDisabledBorder: `var(--joy-palette-success-100)`,
+
+          softColor: `var(--joy-palette-success-600)`,
+          softBg: `var(--joy-palette-success-100)`,
+          softHoverBg: `var(--joy-palette-success-200)`,
+          softActiveBg: `var(--joy-palette-success-300)`,
+          softDisabledColor: `var(--joy-palette-success-300)`,
+          softDisabledBg: `var(--joy-palette-success}-)50`,
+
+          solidColor: '#fff',
+          solidBg: `var(--joy-palette-success-500)`,
+          solidHoverBg: `var(--joy-palette-success-600)`,
+          solidActiveBg: `var(--joy-palette-success-700)`,
+          solidDisabledColor: `#fff`,
+          solidDisabledBg: `var(--joy-palette-success-200)`,
+        },
+      },
+    },
+    dark: {
+      palette: {
+        success: {
+          ...success,
+          plainColor: `var(--joy-palette-success-300)`,
+          plainHoverBg: `var(--joy-palette-success-800)`,
+          plainActiveBg: `var(--joy-palette-success-700)`,
+          plainDisabledColor: `var(--joy-palette-success-800)`,
+
+          outlinedColor: `var(--joy-palette-success-200)`,
+          outlinedBorder: `var(--joy-palette-success-700)`,
+          outlinedHoverBg: `var(--joy-palette-success-800)`,
+          outlinedHoverBorder: `var(--joy-palette-success-600)`,
+          outlinedActiveBg: `var(--joy-palette-success-900)`,
+          outlinedDisabledColor: `var(--joy-palette-success-800)`,
+          outlinedDisabledBorder: `var(--joy-palette-success-800)`,
+
+          softColor: `var(--joy-palette-success-200)`,
+          softBg: `var(--joy-palette-success-900)`,
+          softHoverBg: `var(--joy-palette-success-800)`,
+          softActiveBg: `var(--joy-palette-success-700)`,
+          softDisabledColor: `var(--joy-palette-success-800)`,
+          softDisabledBg: `var(--joy-palette-success-900)`,
+
+          solidColor: '#fff',
+          solidBg: `var(--joy-palette-success-600)`,
+          solidHoverBg: `var(--joy-palette-success-700)`,
+          solidActiveBg: `var(--joy-palette-success-800)`,
+          solidDisabledColor: `var(--joy-palette-success-700)`,
+          solidDisabledBg: `var(--joy-palette-success-900)`,
+        },
+      },
+    },
+  },
+});
+```
+
+#### Warning
+
+```js
+const warning = {
+  50: '#FFF8C5',
+  100: '#FAE17D',
+  200: '#EAC54F',
+  300: '#D4A72C',
+  400: '#BF8700',
+  500: '#9A6700',
+  600: '#7D4E00',
+  700: '#633C01',
+  800: '#4D2D00',
+  900: '#3B2300',
+};
+
+extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        warning: {
+          ...warning,
+          plainColor: `var(--joy-palette-warning-800)`,
+          plainHoverBg: `var(--joy-palette-warning-50)`,
+          plainActiveBg: `var(--joy-palette-warning-200)`,
+          plainDisabledColor: `var(--joy-palette-warning-200)`,
+
+          outlinedColor: `var(--joy-palette-warning-800)`,
+          outlinedBorder: `var(--joy-palette-warning-200)`,
+          outlinedHoverBg: `var(--joy-palette-warning-50)`,
+          outlinedHoverBorder: `var(--joy-palette-warning-300)`,
+          outlinedActiveBg: `var(--joy-palette-warning-200)`,
+          outlinedDisabledColor: `var(--joy-palette-warning-100)`,
+          outlinedDisabledBorder: `var(--joy-palette-warning-100)`,
+
+          softColor: `var(--joy-palette-warning-800)`,
+          softBg: `var(--joy-palette-warning-50)`,
+          softHoverBg: `var(--joy-palette-warning-100)`,
+          softActiveBg: `var(--joy-palette-warning-200)`,
+          softDisabledColor: `var(--joy-palette-warning-200)`,
+          softDisabledBg: `var(--joy-palette-warning-50)`,
+
+          solidColor: `var(--joy-palette-warning-800)`,
+          solidBg: `var(--joy-palette-warning-200)`,
+          solidHoverBg: `var(--joy-palette-warning-300)`,
+          solidActiveBg: `var(--joy-palette-warning-400)`,
+          solidDisabledColor: `var(--joy-palette-warning-200)`,
+          solidDisabledBg: `var(--joy-palette-warning-50)`,
+        },
+      },
+    },
+    dark: {
+      palette: {
+        warning: {
+          ...warning,
+          plainColor: `var(--joy-palette-warning-300)`,
+          plainHoverBg: `var(--joy-palette-warning-800)`,
+          plainActiveBg: `var(--joy-palette-warning-700)`,
+          plainDisabledColor: `var(--joy-palette-warning-800)`,
+
+          outlinedColor: `var(--joy-palette-warning-200)`,
+          outlinedBorder: `var(--joy-palette-warning-700)`,
+          outlinedHoverBg: `var(--joy-palette-warning-800)`,
+          outlinedHoverBorder: `var(--joy-palette-warning-600)`,
+          outlinedActiveBg: `var(--joy-palette-warning-900)`,
+          outlinedDisabledColor: `var(--joy-palette-warning-800)`,
+          outlinedDisabledBorder: `var(--joy-palette-warning-800)`,
+
+          softColor: `var(--joy-palette-warning-200)`,
+          softBg: `var(--joy-palette-warning-900)`,
+          softHoverBg: `var(--joy-palette-warning-800)`,
+          softActiveBg: `var(--joy-palette-warning-700)`,
+          softDisabledColor: `var(--joy-palette-warning-800)`,
+          softDisabledBg: `var(--joy-palette-warning-900)`,
+
+          solidColor: `var(--joy-palette-common-black)`,
+          solidBg: `var(--joy-palette-warning-300)`,
+          solidHoverBg: `var(--joy-palette-warning-400)`,
+          solidActiveBg: `var(--joy-palette-warning-500)`,
+          solidDisabledColor: `var(--joy-palette-warning-700)`,
+          solidDisabledBg: `var(--joy-palette-warning-900)`,
+        },
+      },
+    },
+  },
+});
+```
+
+### Common, Text and Background
+
+Some token's value does not change, e.g. `palette.text.primary`, so you don't need to override the default theme.
+
+```js
+extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        common: {
+          white: '#FFF',
+          black: '#09090D',
+        },
+        text: {
+          secondary: 'var(--joy-palette-neutral-600)',
+          tertiary: 'var(--joy-palette-neutral-500)',
+        },
+        background: {
+          body: 'var(--joy-palette-common-white)',
+          tooltip: 'var(--joy-palette-neutral-800)',
+          backdrop: 'rgba(255 255 255 / 0.5)',
+        },
+      },
+    },
+    dark: {
+      palette: {
+        common: {
+          white: '#FFF',
+          black: '#09090D',
+        },
+        background: {
+          body: 'var(--joy-palette-neutral-900)',
+          surface: 'var(--joy-palette-common-black)',
+          popup: 'var(--joy-palette-neutral-900)',
+          level1: 'var(--joy-palette-neutral-800)',
+          level2: 'var(--joy-palette-neutral-700)',
+          level3: 'var(--joy-palette-neutral-600)',
+        },
+      },
+    },
+  },
+});
 ```
 
 ## Typography
