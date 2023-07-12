@@ -8,10 +8,8 @@ import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 // import Link from 'docs/src/modules/components/Link';
 
 const Root = styled('div')(() => ({
-  position: 'sticky',
-  bottom: 0,
+  position: 'relative',
   width: '100%',
-  zIndex: 10,
   '& img': {
     display: 'inline-block',
   },
@@ -24,19 +22,18 @@ export default function DiamondSponsors() {
     <Root>
       <Box
         sx={[
-          (theme) => ({
+          {
+            position: 'absolute',
+            top: -40,
             height: 40,
             width: '100%',
             background: `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFF 100%)`,
-            borderBottom: '1px solid',
-            borderColor: (theme.vars || theme).palette.grey[100],
-          }),
+          },
           (theme) =>
             theme.applyDarkStyles({
               background: `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, ${
                 (theme.vars || theme).palette.primaryDark[900]
               } 100%)`,
-              borderColor: (theme.vars || theme).palette.primaryDark[700],
             }),
         ]}
       />
@@ -46,12 +43,15 @@ export default function DiamondSponsors() {
             display: 'flex',
             flexDirection: 'column',
             gap: 1,
-            padding: theme.spacing(2),
+            padding: theme.spacing(1, 2, 2, 2),
             background: '#FFF',
+            borderTop: '1px solid',
+            borderColor: (theme.vars || theme).palette.grey[100],
           }),
           (theme) =>
             theme.applyDarkStyles({
               background: (theme.vars || theme).palette.primaryDark[900],
+              borderColor: (theme.vars || theme).palette.primaryDark[700],
             }),
         ]}
       >

@@ -148,7 +148,19 @@ function PersistScroll(props) {
     };
   }, [enabled, slot]);
 
-  return <div ref={rootRef}>{children}</div>;
+  return (
+    <Box
+      sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}
+      ref={rootRef}
+    >
+      {children}
+    </Box>
+  );
 }
 
 PersistScroll.propTypes = {
@@ -158,12 +170,11 @@ PersistScroll.propTypes = {
 };
 
 const ToolbarDiv = styled('div')(({ theme }) => ({
-  padding: theme.spacing(1.45, 2),
+  padding: theme.spacing(1.6, 2),
   paddingRight: 0,
   height: 'var(--MuiDocs-header-height)',
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
-  flexGrow: 1,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -184,11 +195,13 @@ const AppNavPaperComponent = styled('div')(({ theme }) => {
     boxShadow: 'none',
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
     position: 'relative',
+    height: '100%',
     [theme.breakpoints.up('xs')]: {
       borderRadius: '0 12px 12px 0',
     },
     [theme.breakpoints.up('sm')]: {
       borderRadius: '0px',
+      overflow: 'hidden',
     },
   };
 });
@@ -197,7 +210,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List sx={{ my: 0.5, height: '100%' }}>
+    <List>
       {pages.reduce(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),
@@ -409,7 +422,7 @@ export default function AppNavDrawer(props) {
           />
         </ToolbarDiv>
         <Divider />
-        {navItems}
+        <Box sx={{ pt: 0.5, pb: 4, overflowY: 'auto', flexGrow: 1 }}>{navItems}</Box>
         <DiamondSponsors />
       </React.Fragment>
     );
