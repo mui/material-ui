@@ -4,6 +4,7 @@ import { usePreviousProps, unstable_capitalize as capitalize } from '@mui/utils'
 import composeClasses from '@mui/base/composeClasses';
 import useBadge from '@mui/base/useBadge';
 import { useSlotProps } from '@mui/base';
+import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
@@ -104,7 +105,9 @@ const BadgeBadge = styled('span', {
     color: tokens.sys.color[`on${capitalize(ownerState.color)}` as keyof MD3ColorSchemeTokens],
     minWidth: 'var(--md-comp-badge-size)',
     height: 'var(--md-comp-badge-size)',
-    padding: '0 var(--md-comp-badge-padding-x)',
+    paddingRight: 'var(--md-comp-badge-padding-x)',
+    // paddingLeft compensates letter spacing being added only on the right side
+    paddingLeft: `calc(var(--md-comp-badge-padding-x) + ${letterSpacing})`,
     borderRadius: tokens.sys.shape.corner.full,
     [verticalPositionProperty]: `calc(100% - var(--md-comp-badge-inset))`,
     [horizontalPositionProperty]: `calc(100% - var(--md-comp-badge-inset))`,
@@ -135,6 +138,16 @@ const defaultRtLAnchorOrigin = {
   horizontal: 'left',
 };
 
+/**
+ *
+ * Demos:
+ *
+ * - [Badge](https://mui.com/material-ui/react-badge/)
+ *
+ * API:
+ *
+ * - [Badge API](https://mui.com/material-ui/api/badge/)
+ */
 const Badge = React.forwardRef(function Badge<
   BaseComponentType extends React.ElementType = BadgeTypeMap['defaultComponent'],
 >(inProps: BadgeProps<BaseComponentType>, ref: React.ForwardedRef<Element>) {
@@ -236,7 +249,7 @@ const Badge = React.forwardRef(function Badge<
       <BadgeSlot {...badgeProps}>{displayValue}</BadgeSlot>
     </RootSlot>
   );
-});
+}) as OverridableComponent<BadgeTypeMap>;
 
 Badge.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -280,6 +293,11 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'error']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * If `true`, the badge is invisible.
    * @default false
