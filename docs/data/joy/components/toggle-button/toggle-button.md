@@ -41,7 +41,7 @@ The `ToggleButtonGroup` uses the same styles as the [ButtonGroup](/joy-ui/react-
 
 ### Exclusive selection
 
-When the `value` is not an array, the ToggleButtonGroup will render in exclusive selection mode. In this mode, only one button may be selected at a time.
+When the `value` provided to the `ToggleButtonGroup` is not an array, it operates in exclusive selection mode. In this mode, only one button can be selected at a time within the group.
 
 {{"demo": "ExclusiveSelection.js"}}
 
