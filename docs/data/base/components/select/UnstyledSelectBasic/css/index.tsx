@@ -8,9 +8,9 @@ export default function UnstyledSelectBasic() {
     <React.Fragment>
       <Select
         className="CustomSelect"
+        popupSettings={{ offset: 12 }}
         slotProps={{
           listbox: { className: 'CustomSelect-listbox' },
-          popper: { className: 'CustomSelect-popper' },
         }}
         defaultValue={10}
       >
@@ -111,8 +111,13 @@ function Styles() {
         font-size: 0.875rem;
         box-sizing: border-box;
         padding: 6px;
-        margin: 12px 0;
+        margin: 0;
         min-width: 320px;
+        width: max-content;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
         border-radius: 12px;
         overflow: auto;
         outline: 0px;
@@ -122,9 +127,6 @@ function Styles() {
         box-shadow: 0px 4px 30px ${
           isDarkMode ? 'rgba(0,0,0, 0.95)' : 'rgba(0,0,0, 0.15)'
         };
-      }
-      .CustomSelect-popper {
-        z-index: 1;
       }
       .CustomSelect-option {
         list-style: none;

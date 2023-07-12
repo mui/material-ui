@@ -58,9 +58,8 @@ export default function UnstyledSelectBasic() {
             } after:float-right`,
           }),
           listbox: {
-            className: `text-sm p-1.5 my-3 w-80 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 shadow shadow-slate-200 dark:shadow-slate-900`,
+            className: `text-sm p-1.5 m-0 w-80 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 shadow shadow-slate-200 dark:shadow-slate-900 z-10`,
           },
-          popper: { className: `${isDarkMode ? 'dark' : ''} z-10` },
         }}
         defaultValue={10}
       >

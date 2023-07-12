@@ -44,7 +44,6 @@ CustomMultiSelect.propTypes = {
    */
   slots: PropTypes.shape({
     listbox: PropTypes.elementType,
-    popper: PropTypes.func,
     root: PropTypes.elementType,
   }),
 };

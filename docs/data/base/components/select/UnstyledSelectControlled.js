@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Select, { selectClasses } from '@mui/base/Select';
 import Option, { optionClasses } from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 export default function UnstyledSelectControlled() {
@@ -24,7 +23,6 @@ function CustomSelect(props) {
   const slots = {
     root: StyledButton,
     listbox: StyledListbox,
-    popper: StyledPopper,
     ...props.slots,
   };
 
@@ -39,7 +37,6 @@ CustomSelect.propTypes = {
    */
   slots: PropTypes.shape({
     listbox: PropTypes.elementType,
-    popper: PropTypes.func,
     root: PropTypes.elementType,
   }),
 };
@@ -120,6 +117,7 @@ const StyledListbox = styled('ul')(
   position: absolute;
   left: 0;
   top: 0;
+  z-index: 1;
   border-radius: 12px;
   overflow: auto;
   outline: 0px;
@@ -166,10 +164,6 @@ const StyledOption = styled(Option)(
   }
   `,
 );
-
-const StyledPopper = styled(Popper)`
-  z-index: 1;
-`;
 
 const Paragraph = styled('p')(
   ({ theme }) => `

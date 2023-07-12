@@ -99,17 +99,16 @@ Set the `multiple` prop to turn on the multi-selection mode.
 
 ### Anatomy
 
-The Select component is composed of a root `<button>` along with a `<div>` that houses a `<ul>` within a Popper.
+The Select component is composed of a root `<button>` along with an `<ul>` that serves as a listbox.
 Option renders as an `<li>`:
 
 ```html
 <button class="MuiSelect-root" type="button">Open</button>
-<div class="MuiSelect-popper">
-  <ul class="MuiSelect-listbox">
-    <li class="MuiOption-root">Option one</li>
-    <li class="MuiOption-root">Option two</li>
-  </ul>
-</div>
+<ul class="MuiSelect-listbox">
+  <li class="MuiOption-root">Option one</li>
+  <li class="MuiOption-root">Option two</li>
+</ul>
+
 ```
 
 ### Custom structure
@@ -135,10 +134,10 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 ### Portals
 
 By default, the Select's popup is rendered in a [Portal](https://mui.com/base-ui/react-portal/) and appended to the bottom of the DOM.
-To instead render the popup where the component is defined, override the `disablePortal` prop of the underlying Popper, as shown below:
+To instead render the popup where the component is defined, add the `disablePortal` prop, as shown below:
 
 ```jsx
-<Select slotProps={{ popper: { disablePortal: true } }} />
+<Select disablePortal />
 ```
 
 #### Usage with TypeScript

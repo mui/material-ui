@@ -1,18 +1,18 @@
 import * as React from 'react';
 import Select, { selectClasses } from '@mui/base/Select';
 import Option, { optionClasses } from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
   const slots = {
     root: StyledButton,
     listbox: StyledListbox,
-    popper: StyledPopper,
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return (
+    <Select popupSettings={{ offset: 12 }} {...props} ref={ref} slots={slots} />
+  );
 });
 
 export default function UnstyledSelectBasic() {
@@ -95,8 +95,13 @@ const StyledListbox = styled('ul')(
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
-  margin: 12px 0;
+  margin: 0;
   min-width: 320px;
+  width: max-content;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
   border-radius: 12px;
   overflow: auto;
   outline: 0px;
@@ -145,7 +150,3 @@ const StyledOption = styled(Option)(
   }
   `,
 );
-
-const StyledPopper = styled(Popper)`
-  z-index: 1;
-`;
