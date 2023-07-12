@@ -1,3 +1,4 @@
+'use client';
 export { default } from './FormControl';
 
 export { default as FormControlContext } from './FormControlContext';

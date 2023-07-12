@@ -1,3 +1,4 @@
+'use client';
 export { default } from './TabsList';
 export * from './TabsList.types';
 

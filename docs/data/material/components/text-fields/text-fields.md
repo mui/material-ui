@@ -96,6 +96,14 @@ Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense
 
 The component can be controlled or uncontrolled.
 
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
+
 {{"demo": "StateTextFields.js"}}
 
 ## Components
