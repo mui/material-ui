@@ -351,7 +351,7 @@ export const newTheme = extendTheme({
             [theme.getColorSchemeSelector('dark')]: {
               '--Switch-trackBackground': 'rgba(255 255 255 / 0.4)',
             },
-            [`&.${switchClasses.checked}`]: {
+            [`&.${ownerState.checked}`]: {
               '--Switch-trackBackground': 'var(--joy-palette-success-500)',
               '&:hover': {
                 '--Switch-trackBackground': 'var(--joy-palette-success-500)',
