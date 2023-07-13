@@ -18,7 +18,7 @@ const pages = [
     title: 'Components',
     icon: standardNavIcons.ToggleOnIcon,
     children: [
-      { pathname: '/base-ui/react-components', title: 'All components' },
+      { pathname: '/base-ui/all-components', title: 'All components' },
       {
         pathname: '/base-ui/components/inputs',
         subheader: 'inputs',
@@ -107,6 +107,10 @@ const pages = [
       {
         pathname: '/base-ui/guides/overriding-component-structure',
         title: 'Overriding component structure',
+      },
+      {
+        pathname: '/base-ui/guides/next-js-app-router',
+        title: 'Integrating with Next.js App Router',
       },
     ],
   },

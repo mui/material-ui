@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 
@@ -28,7 +27,6 @@ export default function HeroPricing() {
           <br /> features & technical support.
         </Typography>
       </Box>
-      <Divider />
     </Container>
   );
 }

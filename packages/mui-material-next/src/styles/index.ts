@@ -1,3 +1,4 @@
+'use client';
 export * from './Theme.types';
 export * from './extendTheme';
 export { default as extendTheme } from './extendTheme';

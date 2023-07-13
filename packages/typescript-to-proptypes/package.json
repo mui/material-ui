@@ -30,10 +30,10 @@
     "@types/uuid": "^8.3.4",
     "fast-glob": "^3.3.0",
     "prettier": "^2.8.8",
-    "rimraf": "^3.0.2"
+    "rimraf": "^5.0.1"
   },
   "dependencies": {
-    "@babel/core": "^7.22.5",
+    "@babel/core": "^7.22.8",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^7.22.5",
     "@babel/types": "^7.22.5",

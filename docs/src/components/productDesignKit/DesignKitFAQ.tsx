@@ -50,12 +50,12 @@ const faqData = [
     summary: 'Do you offer discounts to educational or non-profit organizations?',
     detail: (
       <React.Fragment>
-        Yes, we offer a 50% discount on all products licensed to students, instructors, non-profit,
-        and charity entities. This special discount cannot be combined with any other type of
-        discount. To qualify for the discount, you need to send us a document clearly indicating
-        that you are a member of the respective institution. An email from your official account
-        which bears your signature is sufficient in most cases. For more information on how to
-        qualify for a discount, please contact sales.
+        <strong>Yes.</strong> We offer a 50% discount on all products licensed to students,
+        instructors, non-profit, and charity entities. This special discount cannot be combined with
+        any other type of discount. To qualify for the discount, you need to send us a document
+        clearly indicating that you are a member of the respective institution. An email from your
+        official account which bears your signature is sufficient in most cases. For more
+        information on how to qualify for a discount, please contact sales.
       </React.Fragment>
     ),
   },
@@ -138,7 +138,7 @@ export default function DesignKitFAQ() {
   }
   return (
     <Container sx={{ py: { xs: 6, sm: 10, md: 20 } }}>
-      <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
+      <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }} id="faq">
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
@@ -153,9 +153,8 @@ export default function DesignKitFAQ() {
           <Paper
             variant="outlined"
             sx={(theme) => ({
-              pt: 2,
+              p: 2,
               pb: 1,
-              px: 2,
               borderStyle: 'dashed',
               borderColor: 'grey.300',
               bgcolor: 'white',
