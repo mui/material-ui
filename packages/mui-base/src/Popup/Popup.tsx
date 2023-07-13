@@ -1,57 +1,15 @@
 import * as React from 'react';
-import {
-  Middleware,
-  OffsetOptions,
-  Strategy,
-  Placement,
-  autoUpdate,
-  flip,
-  offset,
-  useFloating,
-  VirtualElement,
-} from '@floating-ui/react-dom';
+import { autoUpdate, flip, offset, useFloating, VirtualElement } from '@floating-ui/react-dom';
 import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
 import composeClasses from '../composeClasses';
-import Portal, { PortalProps } from '../Portal';
-import { SlotComponentProps, useSlotProps } from '../utils';
+import Portal from '../Portal';
+import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getPopupUtilityClass } from './popupClasses';
-
-interface PopupRootSlotOverrides {}
-
-interface PopupSettings {
-  /**
-   * Collection of Floating UI middleware to use when positioning the popup.
-   * If not provided, an offset and flip functions will be used.
-   *
-   * @see https://floating-ui.com/docs/computePosition#middleware
-   */
-  middleware?: Array<Middleware | null | undefined | false>;
-  /**
-   * Distance between a popup and the trigger element.
-   *
-   * @default 0
-   * @see https://floating-ui.com/docs/offset
-   */
-  offset?: OffsetOptions;
-  /**
-   * Determines where to place the popup relative to the trigger element.
-   *
-   * @default 'bottom-start'
-   * @see https://floating-ui.com/docs/computePosition#placement
-   */
-  placement?: Placement;
-  /**
-   * The type of CSS position property to use (absolute or fixed).
-   *
-   * @default 'absolute'
-   * @see https://floating-ui.com/docs/computePosition#strategy
-   */
-  strategy?: Strategy;
-}
+import { PopupOwnerState, PopupProps } from './Popup.types';
 
 function useUtilityClasses(ownerState: PopupOwnerState) {
   const { open } = ownerState;
@@ -61,26 +19,6 @@ function useUtilityClasses(ownerState: PopupOwnerState) {
   };
 
   return composeClasses(slots, useClassNamesOverride(getPopupUtilityClass));
-}
-
-export interface PopupProps extends PopupSettings {
-  anchor?: VirtualElement | HTMLElement | (() => HTMLElement) | (() => VirtualElement) | null;
-  children?: React.ReactNode;
-  container?: PortalProps['container'];
-  disablePortal?: boolean;
-  keepMounted?: boolean;
-  open?: boolean;
-  slots?: {
-    root?: React.ElementType;
-  };
-  slotProps?: {
-    root?: SlotComponentProps<'div', PopupRootSlotOverrides, PopupProps>;
-  };
-}
-
-export interface PopupOwnerState extends PopupProps {
-  // isMounted: boolean;
-  // transitionStatus: 'unmounted' | 'initial' | 'open' | 'close';
 }
 
 function resolveAnchor(
@@ -95,8 +33,8 @@ function resolveAnchor(
   return typeof anchor === 'function' ? anchor() : anchor;
 }
 
-const Popup = React.forwardRef(function Popup(
-  props: PopupProps,
+const Popup = React.forwardRef(function Popup<RootComponentType extends React.ElementType>(
+  props: PopupProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {

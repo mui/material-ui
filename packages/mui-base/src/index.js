@@ -43,6 +43,9 @@ export * from './Option';
 
 export { default as Popper } from './Popper';
 
+export { default as Popup } from './Popup';
+export * from './Popup';
+
 export { default as Portal } from './Portal';
 
 export { default as Select } from './Select';
