@@ -51,7 +51,7 @@ Our products empower React developers to build awesome applications faster – w
 Depending on the day, you'll:
 
 - **Content**.
-  - Produce high quality technical "how-to" content (blogs, webinars, demos, talks) addressing common user needs, latest technology advances, and emerging best practices. Videos might go to [our YouTube channel](https://www.youtube.com/@MUI_hq).
+  - Produce high-quality technical "how-to" content (blogs, webinars, demos, talks) addressing common user needs, latest technology advances, and emerging best practices. Videos might go to [our YouTube channel](https://www.youtube.com/@MUI_hq).
   - Distribute content and leverage pieces to broaden awareness of the MUI brand, via existing connections.
   - Rework the pages of the documentation that are confusing, base on feedback.
 - **Community**.

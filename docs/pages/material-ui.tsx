@@ -15,8 +15,8 @@ export default function Core() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="Material UI: An open-source React component library that implements Google's Material Design"
-        description="A comprehensive collection of prebuilt components that are ready for use in production right out of the box."
+        title="Material UI: React components based on Material Design"
+        description="Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production right out of the box."
         card="/static/social-previews/core-preview.jpg"
       />
       <AppHeaderBanner />

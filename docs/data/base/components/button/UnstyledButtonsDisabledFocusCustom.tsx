@@ -26,7 +26,7 @@ const blue = {
 const CustomButton = styled(Button)`
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
-  line-height: 1.5rem;
+  line-height: 1.5;
   background-color: ${blue[500]};
   color: white;
   border-radius: 8px;

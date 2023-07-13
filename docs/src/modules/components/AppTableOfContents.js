@@ -13,6 +13,7 @@ import featureToggle from 'docs/src/featureToggle';
 
 const Nav = styled('nav')(({ theme }) => ({
   top: 'var(--MuiDocs-header-height)',
+  marginTop: 'var(--MuiDocs-header-height)',
   paddingLeft: 2, // Fix truncated focus outline style
   position: 'sticky',
   height: 'calc(100vh - var(--MuiDocs-header-height))',
@@ -233,8 +234,8 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
+      <TableOfContentsBanner />
       <NoSsr>
-        <TableOfContentsBanner />
         {showSurveyBanner && (
           <Link
             href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=docs"

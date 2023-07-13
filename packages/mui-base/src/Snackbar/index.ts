@@ -1,3 +1,4 @@
+'use client';
 export { default } from './Snackbar';
 
 export * from './Snackbar.types';
