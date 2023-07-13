@@ -129,9 +129,7 @@ npm install @mui/icons-material
 yarn add @mui/icons-material
 ```
 
-### pnpm
-
-```sh
+```bash pnpm
 pnpm add @mui/icons-material
 ```
 
