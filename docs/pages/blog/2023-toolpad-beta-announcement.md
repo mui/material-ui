@@ -25,7 +25,7 @@ Toolpad is an open-source, low-code, drag-and-drop admin builder. The primary pu
 
 Toolpad is not ideal for building static web pages, mobile apps, or customer-facing custom-designed front-ends. It's for building admin applications, CRUD interfaces, custom internal tools, and analytics dashboards.
 
-<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/toolpad.png" loading="lazy" width="2400" height="1394" />
+<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/toolpad2.png" loading="lazy" width="2400" height="1394" />
 
 ## Who is Toolpad for?
 
@@ -47,6 +47,8 @@ Easily create user interfaces by dragging and dropping pre-built components onto
 
 A Postman-like query builder allows you to integrate any REST API quickly. A binding editor, which supports Javascript, allows you to wire query response directly to the components.
 
+<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/uiquery.png"  loading="lazy" width="2400" height="1394" />
+
 ### 3. Bring your own components
 
 Toolpad can import [external React components](https://mui.com/toolpad/concepts/custom-components/), ready to be used in its visual designer. Your past effort shouldn't go to waste and you shouldn't be limited by the stock component suite.
@@ -65,7 +67,7 @@ Toolpad runs completely locally. You're not stuck with an online code editor or 
 
 Material UI provides all modern components; a chosen few are currently available inside Toolpad, and we're adding more all the time. MUI X Pro (Data Grid and Date Picker) components are also available for free in Toolpad.
 
-<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/library.png"  loading="lazy" width="2400" height="1394" />
+<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/library2.png"  loading="lazy" width="2400" height="1394" />
 
 ## How is Toolpad different from similar products on the market?
 
