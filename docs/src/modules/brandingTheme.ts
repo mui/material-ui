@@ -282,14 +282,14 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         '"Droid Sans Mono"', // Linux
         'monospace', // fallback
       ].join(','),
-      fontFamilyTagline: ['"Lexend"', ...systemFont].join(','),
+      fontFamilyTagline: ['"General Sans"', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
       fontWeightSemiBold: 600,
       fontWeightExtraBold: 800,
       h1: {
-        fontFamily: ['"Lexend"', ...systemFont].join(','),
-        fontSize: 'clamp(2.5rem, 1.125rem + 3.5vw, 3.25em)',
-        fontWeight: 700,
+        fontFamily: ['"General Sans"', ...systemFont].join(','),
+        fontSize: 'clamp(2.5rem, 1.125rem + 3.5vw, 3.5em)',
+        fontWeight: 600,
         lineHeight: 78 / 70,
         letterSpacing: -0.2,
         ...(mode === 'light' && {
@@ -297,7 +297,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         }),
       },
       h2: {
-        fontFamily: ['"Lexend"', ...systemFont].join(','),
+        fontFamily: ['"General Sans"', ...systemFont].join(','),
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
         fontWeight: 600,
         lineHeight: 44 / 36,
@@ -305,13 +305,13 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         color: mode === 'dark' ? grey[100] : blueDark[700],
       },
       h3: {
-        fontFamily: ['"Lexend"', ...systemFont].join(','),
+        fontFamily: ['"General Sans"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(36),
         lineHeight: 44 / 36,
         letterSpacing: 0.2,
       },
       h4: {
-        fontFamily: ['"Lexend"', ...systemFont].join(','),
+        fontFamily: ['"General Sans"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(30),
         lineHeight: 42 / 28,
         letterSpacing: 0.2,

@@ -171,8 +171,8 @@ const Item = styled(
           background: alpha(theme.palette.primaryDark[700], 0.6),
         },
         '&:after': {
-          background: alpha(theme.palette.primaryDark[700], 0.6),
-          borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+          background: alpha(theme.palette.primaryDark[700], 0.8),
+          borderColor: alpha(theme.palette.primaryDark[600], 0.6),
         },
       }),
       ...(!subheader && {
