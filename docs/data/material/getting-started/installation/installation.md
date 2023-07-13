@@ -6,7 +6,7 @@
 We are currently working on supporting React Server Components in Material UI.
 
 All components and hooks are exported as [Client Components](https://nextjs.org/docs/getting-started/react-essentials#client-components) with the `"use client"` directive.
-If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](/material-ui/guides/next-js-app-router/)
+If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](/material-ui/guides/next-js-app-router/).
 
 :::
 
@@ -14,34 +14,34 @@ If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](
 
 Run one of the following commands to add Material UI to your project:
 
-### npm
+<codeblock storageKey="package-manager">
 
-```bash
+```bash npm
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
-### yarn
-
-```bash
+```bash yarn
 yarn add @mui/material @emotion/react @emotion/styled
 ```
+
+</codeblock>
 
 ## With styled-components
 
 Material UI uses [Emotion](https://emotion.sh/) as its default styling engine.
 If you want to use [styled-components](https://styled-components.com/) instead, run one of the following commands:
 
-### npm
+<codeblock storageKey="package-manager">
 
-```bash
+```bash npm
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
-### yarn
-
-```bash
+```bash yarn
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
+
+</codeblock>
 
 :::warning
 Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more information about how to configure styled-components.
@@ -66,17 +66,7 @@ Material UI is designed to use the [Roboto](https://fonts.google.com/specimen/Ro
 font by default.
 You may add it to your project with npm or yarn via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
 
-### npm
-
-```bash
-npm install @fontsource/roboto
-```
-
-### yarn
-
-```bash
-yarn add @fontsource/roboto
-```
+{{"component": "modules/components/HighlightedCodeWithTabs", "tabs": [{"tab":"npm", "code":"npm install @fontsource/roboto", "language": "bash"}, {"tab":"yarn", "code": "yarn add @fontsource/roboto"}]}}
 
 Then you can import it in your entry point like this:
 
@@ -107,17 +97,17 @@ To install the Roboto font in your project using the Google Web Fonts CDN, add t
 To use the [font Icon component](/material-ui/icons/#icon-font-icons) or the prebuilt SVG Material Icons (such as those found in the [icon demos](/material-ui/icons/)), you must first install the [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) font.
 You can do so with npm or yarn, or with the Google Web Fonts CDN.
 
-### npm
+<codeblock storageKey="package-manager">
 
-```bash
+```bash npm
 npm install @mui/icons-material
 ```
 
-### yarn
-
-```bash
+```bash yarn
 yarn add @mui/icons-material
 ```
+
+</codeblock>
 
 ### Google Web Fonts
 
