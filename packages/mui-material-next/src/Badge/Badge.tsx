@@ -105,9 +105,8 @@ const BadgeBadge = styled('span', {
     color: tokens.sys.color[`on${capitalize(ownerState.color)}` as keyof MD3ColorSchemeTokens],
     minWidth: 'var(--md-comp-badge-size)',
     height: 'var(--md-comp-badge-size)',
-    paddingRight: 'var(--md-comp-badge-padding-x)',
-    // paddingLeft compensates letter spacing being added only on the right side
-    paddingLeft: `calc(var(--md-comp-badge-padding-x) + ${letterSpacing})`,
+    paddingRight: `calc(var(--md-comp-badge-padding-x) - ${letterSpacing})`,
+    paddingLeft: 'var(--md-comp-badge-padding-x)',
     borderRadius: tokens.sys.shape.corner.full,
     [verticalPositionProperty]: `calc(100% - var(--md-comp-badge-inset))`,
     [horizontalPositionProperty]: `calc(100% - var(--md-comp-badge-inset))`,
