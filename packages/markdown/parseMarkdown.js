@@ -550,7 +550,7 @@ ${headers.hooks
         }
         if (content.startsWith('<codeblock')) {
           const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
-          const blocks = [...content.matchAll(/^```(\S*) (\S*)\n([^`]*)\n```/gmsu)].map(
+          const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
             ([, language, tab, code]) => ({ language, tab, code }),
           );
 
