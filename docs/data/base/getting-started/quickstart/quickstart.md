@@ -10,23 +10,21 @@ If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](
 
 `@mui/base` is completely standalone – run one of the following commands to add Base UI to your React project:
 
-### With npm
+<codeblock storageKey="package-manager">
 
-```bash
+```bash npm
 npm install @mui/base
 ```
 
-### With yarn
-
-```bash
+```bash yarn
 yarn add @mui/base
 ```
 
-### With pnpm
-
-```bash
-pnpm add @mui/base
+```bash pnpm
+pnpm install @mui/base
 ```
+
+</codeblock>
 
 ### Peer dependencies
 
