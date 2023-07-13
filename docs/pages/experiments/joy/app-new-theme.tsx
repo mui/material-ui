@@ -23,6 +23,7 @@ import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
+import Switch from '@mui/joy/Switch';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -40,11 +41,15 @@ import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import Menu from './components/Menu';
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
+// import { Switch } from '@mui/base';
 
 export const newTheme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
+        // background: {
+        //   body: 'var(--joy-palette-neutral-50)',
+        // },
         primary: {
           50: '#fdf7ef',
           100: '#fbedd9',
@@ -114,6 +119,9 @@ export const newTheme = extendTheme({
     },
     dark: {
       palette: {
+        common: {
+          black: '#171A1C',
+        },
         primary: {
           50: '#fdf7ef',
           100: '#fbedd9',
@@ -263,10 +271,22 @@ export const newTheme = extendTheme({
     },
     JoySheet: {
       styleOverrides: {
-        root: ({ theme }) => ({
+        root: ({ theme, ownerState }) => ({
           borderColor: 'var(--joy-palette-neutral-200)',
+          ...(ownerState.variant === 'soft' && {
+            background: `linear-gradient(var(--joy-palette-neutral-100), var(--joy-palette-neutral-200))`,
+          }),
+          ...(ownerState.variant === 'solid' && {
+            background: `linear-gradient(var(--joy-palette-neutral-200), var(--joy-palette-neutral-500))`,
+          }),
           [theme.getColorSchemeSelector('dark')]: {
             borderColor: 'var(--joy-palette-neutral-800)',
+            ...(ownerState.variant === 'soft' && {
+              background: `linear-gradient(var(--joy-palette-neutral-800), var(--joy-palette-neutral-900))`,
+            }),
+            ...(ownerState.variant === 'solid' && {
+              background: `linear-gradient(var(--joy-palette-neutral-900), var(--joy-palette-common-black))`,
+            }),
           },
         }),
       },
@@ -295,8 +315,6 @@ export const newTheme = extendTheme({
             p: 1,
             gap: 0.5,
             bgcolor: 'background.level1',
-            // border: '1px solid rgba(27, 31, 36, 0.15)',
-            // borderRadius: 'md',
           }),
       },
     },
@@ -316,37 +334,93 @@ export const newTheme = extendTheme({
         },
       },
     },
+    JoySwitch: {
+      styleOverrides: {
+        root: ({ theme, ownerState }) =>
+          theme.unstable_sx({
+            display: 'inherit',
+            '--Switch-thumbShadow': theme.vars.shadow.sm,
+            '--Switch-trackRadius': '4px',
+            '--Switch-thumbSize': '16px',
+            '--Switch-trackWidth': '42px',
+            '--Switch-trackHeight': '22px',
+            '--Switch-trackBackground': '#E9E9EA',
+            '&:hover': {
+              '--Switch-trackBackground': '#E9E9EA',
+            },
+            [theme.getColorSchemeSelector('dark')]: {
+              '--Switch-trackBackground': 'rgba(255 255 255 / 0.4)',
+            },
+            [`&.${switchClasses.checked}`]: {
+              '--Switch-trackBackground': 'var(--joy-palette-success-500)',
+              '&:hover': {
+                '--Switch-trackBackground': 'var(--joy-palette-success-500)',
+              },
+            },
+          }),
+      },
+    },
     JoyCard: {
       styleOverrides: {
         root: ({ theme, ownerState }) => ({
-          boxShadow: 'none',
-          ...(ownerState.variant === 'solid' && {
-            border: '1px solid rgba(27, 31, 36, 0.15)',
-            backgroundColor: 'var(--joy-palette-neutral-400)',
-            boxShadow: [
-              'inset 0px 1px 0px rgba(210, 210, 210, 0.2)',
-              'inset 0px -1px 0px rgba(0, 0, 0, 0.08)',
-            ].join(', '),
-          }),
-          [theme.getColorSchemeSelector('dark')]: {
+          [theme.getColorSchemeSelector('light')]: {
+            ...(ownerState.variant === 'soft' && {
+              border: '1px solid rgba(27, 31, 36, 0.15)',
+              background: `linear-gradient(-45deg,var(--joy-palette-neutral-200), var(--joy-palette-neutral-100))`,
+              boxShadow: [
+                'inset 0px 1px 0px rgba(250, 250, 250, 0.6)',
+                'inset 0px -1px 0px rgba(0, 0, 0, 0.08)',
+                // '0px 2px 8px -2px rgba(21 21 21, 0.2)',
+                // '0px 6px 12px -2px rgba(21 21 21, 0.2)',
+              ].join(', '),
+            }),
             ...(ownerState.variant === 'solid' && {
-              backgroundColor: 'var(--joy-palette-neutral-900)',
+              border: '1px solid rgba(27, 31, 36, 0.15)',
+              background: `linear-gradient(-45deg,var(--joy-palette-neutral-400), var(--joy-palette-neutral-300))`,
+              boxShadow: [
+                'inset 0px 1px 0px rgba(250, 250, 250, 0.2)',
+                'inset 0px -1px 0px rgba(0, 0, 0, 0.08)',
+                // '0px 1px 2px 0px rgba(21 21 21, 0.12)',
+                // '0px 2px 4px 0px rgba(21 21 21, 0.12)',
+              ].join(', '),
+            }),
+            ...(ownerState.variant === 'outlined' && {
+              borderColor: 'var(--joy-palette-neutral-200)',
+              boxShadow: 'inset 0px -1px 0px rgba(0, 0, 0, 0.07)',
+            }),
+            ...(ownerState.variant === 'plain' && {
+              boxShadow: 'none',
             }),
           },
-          ...(ownerState.variant === 'solid' && {
-            border: '1px solid rgba(27, 31, 36, 0.15)',
-            boxShadow: [
-              'inset 0px 1px 0px rgba(210, 210, 210, 0.2)',
-              'inset 0px -1px 0px rgba(0, 0, 0, 0.08)',
-            ].join(', '),
-          }),
-          ...(ownerState.variant === 'soft' && {
-            boxShadow: 'inset 0px 1px 0px rgba(250, 250, 250, 0.1)',
-          }),
-          ...(ownerState.variant === 'outlined' && {
-            border: '1px solid rgba(27, 31, 36, 0.15)',
-            boxShadow: 'inset 0px -1px 0px rgba(0, 0, 0, 0.07)',
-          }),
+          [theme.getColorSchemeSelector('dark')]: {
+            ...(ownerState.variant === 'soft' && {
+              border: '1px solid rgba(27, 31, 36)',
+              background: `linear-gradient(-45deg, var(--joy-palette-common-black), var(--joy-palette-neutral-900))`,
+              boxShadow: [
+                'inset 0px 1px 0px rgba(210, 210, 210, 0.08)',
+                'inset 0px -1px 0px rgba(0, 0, 0, 0.8)',
+                // '0px 2px 8px -2px rgba(21 21 21, 0.01)',
+                // '0px 6px 12px -2px rgba(21 21 21, 0.01)',
+              ].join(', '),
+            }),
+            ...(ownerState.variant === 'solid' && {
+              border: '1px solid rgba(27, 31, 36)',
+              background: `linear-gradient(-45deg,var(--joy-palette-neutral-900), var(--joy-palette-neutral-800))`,
+              boxShadow: [
+                'inset 0px 1px 0px rgba(250, 250, 250, 0.08)',
+                'inset 0px -1px 0px rgba(0, 0, 0, 0.8)',
+                // '0px 1px 2px 0px rgba(21 21 21, 0.01)',
+                // '0px 2px 4px 0px rgba(21 21 21, 0.01)',
+              ].join(', '),
+            }),
+            ...(ownerState.variant === 'outlined' && {
+              borderColor: 'var(--joy-palette-neutral-800)',
+              boxShadow: 'inset 0px -1px 0px rgba(0, 0, 0, 0.07)',
+            }),
+            ...(ownerState.variant === 'plain' && {
+              boxShadow: 'none',
+            }),
+          },
         }),
       },
     },
@@ -606,58 +680,6 @@ export default function FilesNewTheme() {
                 </tbody>
               </Table>
             </Sheet>
-            <Card
-              variant="outlined"
-              sx={{ display: 'flex', flexDirection: 'row', alignItems: 'start' }}
-            >
-              <Sheet
-                variant="outlined"
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: 2,
-                  p: 1,
-                }}
-              >
-                <Button variant="solid" color="primary">
-                  Label
-                </Button>
-                <Button variant="soft" color="primary">
-                  Label
-                </Button>
-                <Button variant="outlined" color="primary">
-                  Label
-                </Button>
-                <Button variant="plain" color="primary">
-                  Label
-                </Button>
-              </Sheet>
-
-              <Sheet
-                variant="solid"
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: 2,
-                  p: 1,
-                }}
-              >
-                <Button variant="solid" color="neutral">
-                  Label
-                </Button>
-                <Button variant="soft" color="neutral">
-                  Label
-                </Button>
-                <Button variant="outlined" color="neutral">
-                  Label
-                </Button>
-                <Button variant="plain" color="neutral">
-                  Label
-                </Button>
-              </Sheet>
-            </Card>
             <Sheet
               variant="outlined"
               sx={{
@@ -800,25 +822,24 @@ export default function FilesNewTheme() {
               </List>
             </Sheet>
             <Card variant="plain">
-              <CardOverflow>
-                <AspectRatio ratio="16/9" color="primary">
-                  <Typography
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: 'primary.plainColor',
-                    }}
-                  >
-                    .zip
-                  </Typography>
-                </AspectRatio>
-              </CardOverflow>
+              <AspectRatio ratio="16/9" color="primary">
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'primary.plainColor',
+                  }}
+                >
+                  .zip
+                </Typography>
+              </AspectRatio>
+
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
-                  <Typography>photos-travel.zip</Typography>
+                  <Typography>platform_ios.zip</Typography>
                   <Typography level="body-xs" mt={0.5}>
-                    Added 25 May 2011
+                    Added 26 May 2011
                   </Typography>
                 </Box>
                 <IconButton variant="plain" color="neutral">
@@ -826,36 +847,31 @@ export default function FilesNewTheme() {
                 </IconButton>
               </Box>
             </Card>
-            <Card variant="solid" invertedColors>
-              <CardCover>
-                <img
-                  alt=""
-                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
-                />
-              </CardCover>
-              <CardCover
-                sx={{
-                  background: 'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.12))',
-                }}
-              />
-              <CardContent
-                sx={{
-                  mt: 'auto',
-                  flexGrow: 0,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}
-              >
+            <Card variant="outlined">
+              <AspectRatio ratio="16/9" color="primary">
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'primary.plainColor',
+                  }}
+                >
+                  .zip
+                </Typography>
+              </AspectRatio>
+
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
-                  <Typography>torres-del-paine.png</Typography>
+                  <Typography>platform_ios.zip</Typography>
                   <Typography level="body-xs" mt={0.5}>
-                    Added 5 Aug 2016
+                    Added 26 May 2011
                   </Typography>
                 </Box>
-                <IconButton variant="plain">
+                <IconButton variant="plain" color="neutral">
                   <EditOutlinedIcon />
                 </IconButton>
-              </CardContent>
+              </Box>
             </Card>
             <Card variant="soft">
               <AspectRatio ratio="16/9" color="primary">
@@ -883,11 +899,79 @@ export default function FilesNewTheme() {
                 </IconButton>
               </Box>
             </Card>
-            <Card variant="solid" invertedColors>
-              <Typography>platform_ios.zip</Typography>
-              <Typography level="body-xs" mt={0.5}>
-                Added 26 May 2011
-              </Typography>
+            <Card variant="solid">
+              <AspectRatio ratio="16/9" color="primary">
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'primary.plainColor',
+                  }}
+                >
+                  .zip
+                </Typography>
+              </AspectRatio>
+
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ flex: 1 }}>
+                  <Typography>platform_ios.zip</Typography>
+                  <Typography level="body-xs" mt={0.5}>
+                    Added 26 May 2011
+                  </Typography>
+                </Box>
+                <IconButton variant="plain" color="neutral">
+                  <EditOutlinedIcon />
+                </IconButton>
+              </Box>
+            </Card>
+            <Card variant="outlined" sx={{ display: 'flex', flexDirection: 'row' }}>
+              <Sheet
+                variant="soft"
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 2,
+                  p: 0.5,
+                }}
+              >
+                <Button variant="solid" color="primary">
+                  Label
+                </Button>
+                <Button variant="soft" color="primary">
+                  Label
+                </Button>
+                <Button variant="outlined" color="primary">
+                  Label
+                </Button>
+                <Button variant="plain" color="primary">
+                  Label
+                </Button>
+              </Sheet>
+              <Sheet
+                variant="solid"
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 2,
+                  p: 0.5,
+                }}
+              >
+                <Button variant="solid" color="neutral">
+                  Label
+                </Button>
+                <Button variant="soft" color="neutral">
+                  Label
+                </Button>
+                <Button variant="outlined" color="neutral">
+                  Label
+                </Button>
+                <Button variant="plain" color="neutral">
+                  Label
+                </Button>
+              </Sheet>
             </Card>
           </Box>
         </Layout.Main>
@@ -990,6 +1074,7 @@ export default function FilesNewTheme() {
             <Button variant="plain" size="sm" endDecorator={<EditOutlinedIcon />}>
               Add a description
             </Button>
+            <Switch />
           </Box>
         </Sheet>
       </Layout.Root>
