@@ -550,7 +550,7 @@ const Root = styled('div')(
       '& .MuiCallout-root': {
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
-          backgroundColor: alpha(darkTheme.palette.error[700], 0.15),
+          backgroundColor: alpha(darkTheme.palette.error[700], 0.25),
           borderColor: alpha(lightTheme.palette.error[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-error-100, ${darkTheme.palette.error[100]})`,
@@ -569,7 +569,7 @@ const Root = styled('div')(
         },
         '&.MuiCallout-success': {
           color: `var(--muidocs-palette-success-50, ${darkTheme.palette.success[50]})`,
-          backgroundColor: alpha(darkTheme.palette.success[700], 0.15),
+          backgroundColor: alpha(darkTheme.palette.success[700], 0.2),
           borderColor: alpha(lightTheme.palette.success[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-success-200, ${darkTheme.palette.success[200]})`,
@@ -580,7 +580,7 @@ const Root = styled('div')(
         },
         '&.MuiCallout-warning': {
           color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
-          backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
+          backgroundColor: alpha(darkTheme.palette.warning[700], 0.2),
           borderColor: alpha(darkTheme.palette.warning[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
