@@ -272,7 +272,9 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   PopoverClasses: PropTypes.object,
   /**
-   * The props used for each slot inside the Menu.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -280,8 +282,8 @@ Menu.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Menu.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
    * @default {}
    */
   slots: PropTypes.shape({
