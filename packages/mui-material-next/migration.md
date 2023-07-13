@@ -6,6 +6,58 @@ This is a reference guide on how to migrate from Material UI v5 to v6.
 
 This section lists all breaking changes related to components in v6 and how to address them.
 
+## Overarching changes
+
+These are the changes that apply to all components
+
+### Remove `components` and `componentsProps` props
+
+The deprecated `components` and `componentsProps` props are removed in v6.
+If you were using these, then you can use `slots` and `slotProps` props instead,
+which have the same functionality and API.
+Here's an example of the change using the Badge component:
+
+```diff
+ <Badge
+     badgeContent={4}
+-    components={{ badge: (props) => <span {...props}>slot test</span> }}
++    slots={{ badge: (props) => <span {...props}>slot test</span> }}
+-    componentsProps={{ badge: { id: "test-id" } }}
++    slotProps={{ badge: { id: "test-id" } }}
+ >
+   <MailIcon color="action" />
+ </Badge>
+```
+
+## Badge
+
+### Added and removed colors
+
+Color options were changed to match Material You:
+
+- `"default"`, `"info"`, `"success"`, and `"warning"` were removed and are no longer supported out-of-the-box
+- `"tertiary"` was added
+- `"error"` is now the default
+
+### Renamed variants
+
+Variants were renamed to match Material You:
+
+- `standard` renamed to `large`, which is still the default
+- `dot` renamed to `small`
+
+```diff
+-<Badge variant="standard">
+-<Badge classes={{ standard: 'className' }}>
++<Badge variant="large">
++<Badge classes={{ large: 'className' }}>
+
+-<Badge variant="dot">
+-<Badge classes={{ dot: 'className' }}>
++<Badge variant="small">
++<Badge classes={{ small: 'className' }}>
+```
+
 ## Slider
 
 ### Thumb and Value Label slots must accept refs
