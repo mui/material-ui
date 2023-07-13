@@ -1,11 +1,41 @@
 import * as React from 'react';
-import SelectUnstyled, {
-  SelectUnstyledProps,
-  selectUnstyledClasses,
-} from '@mui/base/SelectUnstyled';
-import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
+import Select, { SelectProps, selectClasses } from '@mui/base/Select';
+import Option, { optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
-import { PopperUnstyled } from '@mui/base';
+import { Popper } from '@mui/base';
+
+export default function UnstyledSelectRichOptions() {
+  return (
+    <CustomSelect>
+      {countries.map((c) => (
+        <StyledOption key={c.code} value={c.code} label={c.label}>
+          <img
+            loading="lazy"
+            width="20"
+            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
+            srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
+            alt={`Flag of ${c.label}`}
+          />
+          {c.label} ({c.code}) +{c.phone}
+        </StyledOption>
+      ))}
+    </CustomSelect>
+  );
+}
+
+const CustomSelect = React.forwardRef(function CustomSelect(
+  props: SelectProps<number, false>,
+  ref: React.ForwardedRef<any>,
+) {
+  const slots: SelectProps<number, false>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} ref={ref} slots={slots} />;
+});
 
 const blue = {
   100: '#DAECFF',
@@ -34,15 +64,17 @@ const StyledButton = styled('button')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
   min-width: 320px;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
   text-align: left;
   line-height: 1.5;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -53,12 +85,12 @@ const StyledButton = styled('button')(
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &.${selectUnstyledClasses.focusVisible} {
+  &.${selectClasses.focusVisible} {
     border-color: ${blue[400]};
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
-  &.${selectUnstyledClasses.expanded} {
+  &.${selectClasses.expanded} {
     &::after {
       content: '▴';
     }
@@ -86,11 +118,13 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
-const StyledOption = styled(OptionUnstyled)(
+const StyledOption = styled(Option)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -101,26 +135,26 @@ const StyledOption = styled(OptionUnstyled)(
     border-bottom: none;
   }
 
-  &.${optionUnstyledClasses.selected} {
+  &.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.${optionUnstyledClasses.highlighted} {
+  &.${optionClasses.highlighted} {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
+  &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.${optionUnstyledClasses.disabled} {
+  &.${optionClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
 
-  &:hover:not(.${optionUnstyledClasses.disabled}) {
+  &:hover:not(.${optionClasses.disabled}) {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
@@ -131,42 +165,9 @@ const StyledOption = styled(OptionUnstyled)(
   `,
 );
 
-const StyledPopper = styled(PopperUnstyled)`
+const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
-
-const CustomSelect = React.forwardRef(function CustomSelect(
-  props: SelectUnstyledProps<number, false>,
-  ref: React.ForwardedRef<any>,
-) {
-  const slots: SelectUnstyledProps<number, false>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <SelectUnstyled {...props} ref={ref} slots={slots} />;
-});
-
-export default function UnstyledSelectRichOptions() {
-  return (
-    <CustomSelect>
-      {countries.map((c) => (
-        <StyledOption key={c.code} value={c.code} label={c.label}>
-          <img
-            loading="lazy"
-            width="20"
-            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
-            srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
-            alt={`Flag of ${c.label}`}
-          />
-          {c.label} ({c.code}) +{c.phone}
-        </StyledOption>
-      ))}
-    </CustomSelect>
-  );
-}
 
 const countries = [
   { code: 'AD', label: 'Andorra', phone: '376' },

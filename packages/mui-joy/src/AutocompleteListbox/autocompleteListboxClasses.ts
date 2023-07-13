@@ -1,7 +1,7 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface AutocompleteListboxClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
   /** Classname applied to the root element if `size="sm"`. */
   sizeSm: string;
@@ -21,7 +21,7 @@ export interface AutocompleteListboxClasses {
   colorSuccess: string;
   /** Classname applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element when color inversion is triggered. */
+  /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
   /** Classname applied to the root element if `variant="plain"`. */
   variantPlain: string;

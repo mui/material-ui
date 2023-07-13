@@ -1,10 +1,10 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Menu component
 components: Menu, MenuItem, MenuList
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
-unstyled: /base/react-menu/
+unstyled: /base-ui/react-menu/
 ---
 
 # Menu
@@ -18,6 +18,10 @@ Joy UI provides three menu-related components:
 - `Menu`: A listbox popup for wrapping the menu items which reuses the styles from [`List`](/joy-ui/react-list/).
 - `MenuItem`: A menu item which reuses the styles from [`ListItemButton`](/joy-ui/react-list/).
 - `MenuList`: A standalone listbox for composition usage. It also reuses the styles from [`List`](/joy-ui/react-list/).
+
+:::info
+`id` attribute for the `Menu` component and `aria-controls` attribute for the `Button` component are required to establish a relationship between the button and the associated menu for enabling proper functionality and accessibility
+:::
 
 {{"demo": "MenuUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -70,7 +74,7 @@ The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/
 
 ### Positioned menu
 
-The `Menu` is based on the `PopperUnstyled` component, which exposes a few [placement props](/base/react-popper/#placement).
+The `Menu` is based on the Base UI `Popper` component, which exposes a few [placement props](/base-ui/react-popper/#placement).
 For example, this is how you'd go for displaying the menu on the bottom-end of the anchor button.
 
 {{"demo": "PositionedMenu.js"}}
@@ -97,6 +101,12 @@ To keep the list box open for inspecting elements, enable the `Emulate a focused
 You can also access this option by using [command menu and search for it](https://developer.chrome.com/docs/devtools/command-menu/).
 
 ## Common examples
+
+### Apps menu
+
+This example replicates a menu that contain links to other applications.
+
+{{"demo": "AppsMenu.js"}}
 
 ### Menu bar
 

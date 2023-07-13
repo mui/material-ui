@@ -95,7 +95,7 @@ const DOCS = [
     href: ROUTES.joyDocs,
   },
   {
-    name: 'MUI Base',
+    name: 'Base UI',
     description: 'Unstyled React components and low-level hooks.',
     href: ROUTES.baseDocs,
   },
@@ -224,7 +224,12 @@ export default function HeaderNavDropdown() {
                           >
                             {item.name}
                             {item.chip ? (
-                              <Chip size="small" label={item.chip} color="grey" />
+                              <Chip
+                                size="small"
+                                label={item.chip}
+                                color="primary"
+                                variant="outlined"
+                              />
                             ) : null}
                           </Box>
                           <Typography variant="body2" color="text.secondary">
@@ -270,7 +275,12 @@ export default function HeaderNavDropdown() {
                           >
                             {item.name}
                             {item.chip ? (
-                              <Chip size="small" label={item.chip} color="grey" />
+                              <Chip
+                                size="small"
+                                label={item.chip}
+                                color="primary"
+                                variant="outlined"
+                              />
                             ) : null}
                           </Box>
                           <Typography variant="body2" color="text.secondary">

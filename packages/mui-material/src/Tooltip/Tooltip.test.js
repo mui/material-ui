@@ -375,7 +375,7 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal(['mouseleave']);
   });
 
-  it('is dismissable by pressing Escape', () => {
+  it('is dismissible by pressing Escape', () => {
     const handleClose = spy();
     const transitionTimeout = 0;
     render(
@@ -993,6 +993,12 @@ describe('<Tooltip />', () => {
       }).toErrorDev(
         'The `children` component of the Tooltip is not forwarding its props correctly.',
       );
+    });
+
+    it('should warn when children is a string', () => {
+      expect(() => {
+        render(<Tooltip title="Hello World">Hello World</Tooltip>);
+      }).toErrorDev('Invalid prop `children` of type `string` supplied');
     });
   });
 

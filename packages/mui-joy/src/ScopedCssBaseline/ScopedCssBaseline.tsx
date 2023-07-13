@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -12,6 +13,7 @@ import {
   ScopedCssBaselineProps,
 } from './ScopedCssBaselineProps';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -76,7 +78,14 @@ const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, r
     name: 'JoyScopedCssBaseline',
   });
 
-  const { className, component = 'div', disableColorScheme = false, ...other } = props;
+  const {
+    className,
+    component = 'div',
+    disableColorScheme = false,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
@@ -85,16 +94,16 @@ const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, r
   };
 
   const classes = useUtilityClasses();
+  const externalForwardedProps = { ...other, component, slots, slotProps };
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ScopedCssBaselineRoot,
+    externalForwardedProps,
+    ownerState,
+  });
 
-  return (
-    <ScopedCssBaselineRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    />
-  );
+  return <SlotRoot {...rootProps} />;
 }) as OverridableComponent<ScopedCssBaselineTypeMap>;
 
 ScopedCssBaseline.propTypes /* remove-proptypes */ = {
@@ -122,6 +131,20 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableColorScheme: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

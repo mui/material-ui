@@ -1,4 +1,4 @@
-export * from '@mui/base/ModalUnstyled'; // exporting ModalManager
+export { ModalManager } from '@mui/base/Modal'; // exporting ModalManager
 
 export { default } from './Modal';
 export * from './Modal';

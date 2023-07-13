@@ -9,7 +9,11 @@
  * List of demos or folders to ignore when transpiling
  * Example: "app-bar/BottomAppBar.tsx"
  */
-const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
+const ignoreList = [
+  '/pages.ts',
+  'docs/data/joy/getting-started/templates',
+  'docs/data/base/components/select/UnstyledSelectIntroduction.tsx',
+];
 
 const fse = require('fs-extra');
 const path = require('path');
@@ -27,6 +31,7 @@ const babelConfig = {
   generatorOpts: { retainLines: true },
   babelrc: false,
   configFile: false,
+  shouldPrintComment: (comment) => !comment.startsWith(' @babel-ignore-comment-in-output'),
 };
 
 const workspaceRoot = path.join(__dirname, '../../');
@@ -97,7 +102,7 @@ async function transpileFile(tsxPath, program) {
 
     const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program, {
       shouldResolveObject: ({ name }) => {
-        if (name === 'classes') {
+        if (name === 'classes' || name === 'ownerState') {
           return false;
         }
 

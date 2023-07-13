@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/Popper';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
@@ -103,12 +103,7 @@ export default function GitHubLabel() {
           ))}
         </List>
       </Box>
-      <PopperUnstyled
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        placement="bottom-start"
-      >
+      <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-start">
         <ClickAwayListener onClickAway={handleClose}>
           <Sheet
             variant="outlined"
@@ -211,7 +206,7 @@ export default function GitHubLabel() {
             />
           </Sheet>
         </ClickAwayListener>
-      </PopperUnstyled>
+      </Popper>
     </React.Fragment>
   );
 }

@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Radio button component
 components: Radio, RadioGroup
 githubLabel: 'component: radio'
@@ -49,7 +49,7 @@ To swap the label and radio position, use the CSS property `flex-direction: row-
 
 ### Radio group
 
-The `RadioGrop` component is the ideal wrapper for multiple `Radio` components as it provides a tailored API for radio button grouping and proper keyboard-navigation accessibility support.
+The `RadioGroup` component is the ideal wrapper for multiple `Radio` components as it provides a tailored API for radio button grouping and proper keyboard-navigation accessibility support.
 
 {{"demo": "RadioButtonsGroup.js"}}
 

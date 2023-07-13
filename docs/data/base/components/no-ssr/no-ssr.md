@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: No SSR React component
 components: NoSsr
 ---
@@ -7,6 +7,10 @@ components: NoSsr
 # No SSR
 
 <p class="description">The No-SSR component defers the rendering of children components from the server to the client.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
 
 ## Introduction
 
@@ -20,13 +24,11 @@ This component can be useful in a variety of situations:
 - To turn on service degradation when the server load is too heavy
 - To improve the Time to Interactive (TTI) by only rendering what's important (using the `defer` prop)
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
-
 ## Component
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import NoSsr from '@mui/base/NoSsr';

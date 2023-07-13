@@ -88,12 +88,7 @@
     {
       "groupName": "examples",
       "matchPaths": ["examples/**/package.json"],
-      "minor": {
-        "enabled": false
-      },
-      "patch": {
-        "enabled": false
-      }
+      "enabled": false
     },
     {
       "groupName": "Playwright",

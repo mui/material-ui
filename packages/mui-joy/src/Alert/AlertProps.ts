@@ -10,17 +10,17 @@ export interface AlertSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
 }
 
 export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -48,6 +48,11 @@ export interface AlertTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * Element placed after the children.
        */
       endDecorator?: React.ReactNode;
+      /**
+       * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+       * @default false
+       */
+      invertedColors?: boolean;
       /**
        * The ARIA role attribute of the element.
        * @default 'alert'

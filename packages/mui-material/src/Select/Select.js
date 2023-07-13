@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -65,21 +66,21 @@ const Select = React.forwardRef(function Select(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['variant'],
+    states: ['variant', 'error'],
   });
 
   const variant = fcs.variant || variantProp;
 
+  const ownerState = { ...props, variant, classes: classesProp };
+  const classes = useUtilityClasses(ownerState);
+
   const InputComponent =
     input ||
     {
-      standard: <StyledInput />,
-      outlined: <StyledOutlinedInput label={label} />,
-      filled: <StyledFilledInput />,
+      standard: <StyledInput ownerState={ownerState} />,
+      outlined: <StyledOutlinedInput label={label} ownerState={ownerState} />,
+      filled: <StyledFilledInput ownerState={ownerState} />,
     }[variant];
-
-  const ownerState = { ...props, variant, classes: classesProp };
-  const classes = useUtilityClasses(ownerState);
 
   const inputComponentRef = useForkRef(ref, InputComponent.ref);
 
@@ -91,6 +92,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
         inputComponent,
         inputProps: {
           children,
+          error: fcs.error,
           IconComponent,
           variant,
           type: undefined, // We render a select. We can ignore the type provided by the `Input`.
@@ -224,7 +226,7 @@ Select.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
-   * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select collapes).
+   * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select collapses).
    *
    * @param {object} event The event source of the callback.
    */

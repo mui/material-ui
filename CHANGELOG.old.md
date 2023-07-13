@@ -5079,7 +5079,6 @@ Here are some highlights ✨:
   https://mui.com/lab/breadcrumbs
 - 📝 AppBar and Textfield demos in TypeScript (#13229) @eps1lon
 - 📝 Prepare support for 5 new documentation languages
-  https://translate.mui.com/project/material-ui-docs
 - And many more 🐛 bug fixes and 📝 documentation improvements.
 
 ### `@material-ui/core@v3.9.2`
@@ -11757,7 +11756,7 @@ We are releasing sooner than we use to for this **special day** :christmas_tree:
 That wouldn't have been possible without this awesome community.
 **Thank you!**
 
-But this's just the beginning, some [exciting stuff](https://github.com/mui/material-ui/blob/next/ROADMAP.md) is coming in 2017 :sparkles:.
+But this's just the beginning, some [exciting stuff](https://github.com/mui/material-ui/blob/v0.16.6/ROADMAP.md) is coming in 2017 :sparkles:.
 You can preview a **very early** version of the `next` branch following [this link](https://material-ui-next.com).
 
 ### Component Fixes / Enhancements

@@ -10,13 +10,19 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
-import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
-export default function AppFooter() {
+interface AppFooterProps {
+  stackOverflowUrl?: string;
+}
+
+export default function AppFooter(props: AppFooterProps) {
+  const { stackOverflowUrl } = props;
+
   return (
     <Container component="footer">
       <Box
@@ -25,7 +31,7 @@ export default function AppFooter() {
           pb: 8,
           display: 'grid',
           gridAutoColumns: '1fr',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           justifyContent: 'space-between',
           gap: 4,
           gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
@@ -42,14 +48,13 @@ export default function AppFooter() {
         }}
       >
         <div>
-          <SvgMuiLogo width={32} />
-          <Typography variant="body2" fontWeight="bold" sx={{ pt: 2 }}>
+          <Typography variant="body2" fontWeight="bold">
             Keep up to date
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
             Join our newsletter for regular updates. No spam ever.
           </Typography>
-          <EmailSubscribe sx={{ mb: 1 }} />
+          <EmailSubscribe sx={{ mb: 4 }} />
         </div>
         <Box
           sx={{
@@ -63,7 +68,7 @@ export default function AppFooter() {
             <Typography fontWeight="bold" variant="body2">
               Products
             </Typography>
-            <Link href={ROUTES.productCore}>MUI Core</Link>
+            <Link href={ROUTES.productMaterial}>Material UI</Link>
             <Link href={ROUTES.productAdvanced}>MUI X</Link>
             <Link href={ROUTES.productTemplates}>Templates</Link>
             <Link href={ROUTES.productDesignKits}>Design kits</Link>
@@ -88,7 +93,6 @@ export default function AppFooter() {
             <Link href={ROUTES.blog}>Blog</Link>
             <Link href={ROUTES.showcase}>Showcase</Link>
             <Link href={ROUTES.roadmap}>Roadmap</Link>
-            <Link href={ROUTES.languages}>Languages</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2">
@@ -130,16 +134,16 @@ export default function AppFooter() {
       <Divider />
       <Box
         sx={{
-          py: 4,
+          my: 3,
           display: { xs: 'block', sm: 'flex' },
           alignItems: { sm: 'center' },
           justifyContent: { sm: 'space-between' },
         }}
       >
-        <Typography color="text.secondary" variant="body2">
-          Copyright © {new Date().getFullYear()} Material UI SAS.
-        </Typography>
-        <Box sx={{ py: { xs: 2, sm: 0 } }}>
+        <Link href="/" aria-label="Go to homepage">
+          <SvgMuiLogotype height={28} width={91} />
+        </Link>
+        <Box sx={{ mt: { xs: 3, sm: 0 } }}>
           <Stack spacing={2} direction="row">
             <IconButton
               target="_blank"
@@ -160,16 +164,6 @@ export default function AppFooter() {
               size="small"
             >
               <RssFeedIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://stackoverflow.com/questions/tagged/mui"
-              aria-label="Stack Overflow"
-              title="Stack Overflow"
-              size="small"
-            >
-              <SvgStackOverflow fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
@@ -201,9 +195,24 @@ export default function AppFooter() {
             >
               <YouTubeIcon fontSize="small" />
             </IconButton>
+            {stackOverflowUrl ? (
+              <IconButton
+                target="_blank"
+                rel="noopener noreferrer"
+                href={stackOverflowUrl}
+                aria-label="Stack Overflow"
+                title="Stack Overflow"
+                size="small"
+              >
+                <SvgStackOverflow fontSize="small" />
+              </IconButton>
+            ) : null}
           </Stack>
         </Box>
       </Box>
+      <Typography color="text.secondary" variant="body2" sx={{ mb: 4 }}>
+        Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
+      </Typography>
     </Container>
   );
 }

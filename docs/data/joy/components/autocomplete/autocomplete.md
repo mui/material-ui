@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Autocomplete component
 components: Autocomplete, AutocompleteListbox, AutocompleteOption
 githubLabel: 'component: autocomplete'
@@ -10,13 +10,13 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 <p class="description">The autocomplete is a text input enhanced by a panel of suggested options when users start typing.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 `Autocomplete` is an enhanced version of text input that shows suggested options as the users type and also let them select an option from the list.
 
 {{"demo": "Playground.js", "hideToolbar": true}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Usage
 
@@ -98,8 +98,14 @@ The component has two states that can be controlled:
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-:::warning
 These two states are isolated, and should be controlled independently.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
 {{"demo": "ControllableStates.js"}}
@@ -246,6 +252,12 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ## Common examples
 
+### Hint
+
+The following demo shows how to add a hint feature to the Autocomplete using the `filterOptions` prop:
+
+{{"demo": "AutocompleteHint.js"}}
+
 ### Highlighting options
 
 The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
@@ -254,7 +266,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 ### GitHub's picker
 
-To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a [`PopperUnstyled`](/base/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the `AutocompleteListbox` component.
+To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a Base UI [`Popper`](/base-ui/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the `AutocompleteListbox` component.
 
 {{"demo": "GitHubLabel.js"}}
 

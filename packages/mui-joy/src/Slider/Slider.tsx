@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -428,6 +429,9 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     color: colorProp = 'primary',
     size = 'md',
     variant = 'solid',
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion('solid');
@@ -439,6 +443,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     classes: classesProp,
     disabled,
     defaultValue,
+    disableSwap,
     isRtl,
     max,
     min,
@@ -468,7 +473,8 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     values,
     trackOffset,
     trackLeap,
-  } = useSlider({ ...ownerState, ref });
+    getThumbStyle,
+  } = useSlider({ ...ownerState, rootRef: ref });
 
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
   ownerState.dragging = dragging;
@@ -479,12 +485,13 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: SliderRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getRootProps,
     ownerState,
   });
@@ -492,7 +499,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotRail, railProps] = useSlot('rail', {
     className: classes.rail,
     elementType: SliderRail,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -502,21 +509,21 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     },
     className: classes.track,
     elementType: SliderTrack,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotMark, markProps] = useSlot('mark', {
     className: classes.mark,
     elementType: SliderMark,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotMarkLabel, markLabelProps] = useSlot('markLabel', {
     className: classes.markLabel,
     elementType: SliderMarkLabel,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       'aria-hidden': true,
@@ -526,7 +533,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotThumb, thumbProps] = useSlot('thumb', {
     className: classes.thumb,
     elementType: SliderThumb,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getThumbProps,
     ownerState,
   });
@@ -534,7 +541,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotInput, inputProps] = useSlot('input', {
     className: classes.input,
     elementType: SliderInput,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getHiddenInputProps,
     ownerState,
   });
@@ -542,7 +549,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotValueLabel, valueLabelProps] = useSlot('valueLabel', {
     className: classes.valueLabel,
     elementType: SliderValueLabel,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -613,7 +620,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
             })}
             style={{
               ...style,
-              pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+              ...getThumbStyle(index),
               ...thumbProps.style,
             }}
           >
@@ -680,6 +687,11 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -789,6 +801,34 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    valueLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    mark: PropTypes.elementType,
+    markLabel: PropTypes.elementType,
+    rail: PropTypes.elementType,
+    root: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.elementType,
+    valueLabel: PropTypes.elementType,
+  }),
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.

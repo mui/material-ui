@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -143,7 +144,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
           return;
         }
 
-        if (isFilled(child.props, true)) {
+        if (isFilled(child.props, true) || isFilled(child.props.inputProps, true)) {
           initialFilled = true;
         }
       });

@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -39,6 +40,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Input-gap': '0.5rem',
         '--Input-placeholderColor': 'inherit',
         '--Input-placeholderOpacity': 0.5,
+        '--Input-focused': '0',
         '--Input-focusedThickness': theme.vars.focus.thickness,
         ...(ownerState.color === 'context'
           ? {
@@ -89,7 +91,6 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         cursor: 'text',
         position: 'relative',
         display: 'flex',
-        alignItems: 'center',
         paddingInline: `var(--Input-paddingInline)`,
         borderRadius: 'var(--Input-radius)',
         fontFamily: theme.vars.fontFamily.body,
@@ -110,23 +111,20 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           zIndex: 1,
           borderRadius: 'inherit',
           margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
+          boxShadow: `var(--Input-focusedInset, inset) 0 0 0 calc(var(--Input-focused) * var(--Input-focusedThickness)) var(--Input-focusedHighlight)`,
         },
       },
       {
         // variant styles
         ...variantStyle,
         backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
-        [`&:hover:not(.${inputClasses.focused})`]: {
+        '&:hover': {
           ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
           backgroundColor: null, // it is not common to change background on hover for Input
         },
         [`&.${inputClasses.disabled}`]:
           theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-        [`&.${inputClasses.focused}`]: {
-          '&:before': {
-            boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
-          },
-        },
+        '&:focus-within::before': { '--Input-focused': '1' },
       },
     ];
   },
@@ -139,7 +137,6 @@ export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
     outline: 0, // remove the native input outline
     padding: 0, // remove the native input padding
     flex: 1,
-    alignSelf: 'stretch',
     color: 'inherit',
     backgroundColor: 'transparent',
     fontFamily: 'inherit',
@@ -185,7 +182,7 @@ export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
   }),
 );
 
-export const StyledInputStartDecorator = styled('span')<{ ownerState: InputOwnerState }>(
+export const StyledInputStartDecorator = styled('div')<{ ownerState: InputOwnerState }>(
   ({ theme, ownerState }) => ({
     '--Button-margin': '0 0 0 calc(var(--Input-decoratorChildOffset) * -1)',
     '--IconButton-margin': '0 0 0 calc(var(--Input-decoratorChildOffset) * -1)',
@@ -206,7 +203,7 @@ export const StyledInputStartDecorator = styled('span')<{ ownerState: InputOwner
   }),
 );
 
-export const StyledInputEndDecorator = styled('span')<{ ownerState: InputOwnerState }>(
+export const StyledInputEndDecorator = styled('div')<{ ownerState: InputOwnerState }>(
   ({ theme, ownerState }) => ({
     '--Button-margin': '0 calc(var(--Input-decoratorChildOffset) * -1) 0 0',
     '--IconButton-margin': '0 calc(var(--Input-decoratorChildOffset) * -1) 0 0',
@@ -277,6 +274,9 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     variant = 'outlined',
     startDecorator,
     endDecorator,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = useForwardedInput<InputProps>(props, inputClasses);
 
@@ -309,13 +309,14 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: [classes.root, rootStateClasses],
     elementType: InputRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -330,21 +331,21 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     elementType: InputInput,
     getSlotProps: getInputProps,
     internalForwardedProps: propsToForward,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: InputStartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: InputEndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 

@@ -7,32 +7,33 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Check from '@mui/icons-material/Check';
 
 export default function SizeMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const buttonRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false);
+
   const handleClose = () => {
-    setAnchorEl(null);
+    setOpen(false);
   };
 
   return (
     <div>
       <Button
+        ref={buttonRef}
         id="size-demo-button"
-        aria-controls={open ? 'size-demo-menu' : undefined}
+        aria-controls={'size-demo-menu'}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="outlined"
         color="neutral"
-        onClick={handleClick}
+        onClick={() => {
+          setOpen(!open);
+        }}
       >
         Format
       </Button>
       <Menu
         id="size-demo-menu"
         size="sm"
-        anchorEl={anchorEl}
+        anchorEl={buttonRef.current}
         open={open}
         onClose={handleClose}
         aria-labelledby="size-demo-button"

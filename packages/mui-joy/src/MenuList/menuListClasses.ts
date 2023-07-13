@@ -1,13 +1,13 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface MenuListClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `size="sm"`. */
+  /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
-  /** Styles applied to the root element if `size="md"`. */
+  /** Class name applied to the root element if `size="md"`. */
   sizeMd: string;
-  /** Styles applied to the root element if `size="lg"`. */
+  /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
   /** Classname applied to the root element if `color="primary"`. */
   colorPrimary: string;
@@ -21,7 +21,7 @@ export interface MenuListClasses {
   colorSuccess: string;
   /** Classname applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element when color inversion is triggered. */
+  /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
   /** Classname applied to the root element if `variant="plain"`. */
   variantPlain: string;

@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable material-ui/mui-name-matches-component-name */
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -275,7 +276,7 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
       </TransitionGroup>
     </TouchRippleRoot>
   );
-});
+}) as React.ForwardRefExoticComponent<TouchRippleProps & React.RefAttributes<TouchRippleActions>>;
 
 TouchRipple.propTypes = {
   /**
@@ -292,6 +293,6 @@ TouchRipple.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-};
+} as any;
 
 export default TouchRipple;

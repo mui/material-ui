@@ -1,4 +1,4 @@
-# React Tech Lead - Core
+# React Tech Lead - Core (future role)
 
 <p class="description">You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.</p>
 
@@ -28,7 +28,7 @@ For additional details about the MUI team and culture, you can check our [career
 ## Why we're hiring
 
 The core components team (MUI Core) needs help.
-They are working on 4 products (Material UI, MUI Base, Joy UI, and MUI System) with a tiny team.
+They are working on 4 products (Material UI, Base UI, Joy UI, and MUI System) with a tiny team.
 
 We also need help to continue to improve the health of the open-source product: make the core components easier to use, increase the contributions by engaging and collaborating with the community, polish all the details, make the components more accessible, guide developers to answers, and just generally be a positive presence in the open-source community.
 

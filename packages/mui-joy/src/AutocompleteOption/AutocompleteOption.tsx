@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -11,6 +12,7 @@ import autocompleteOptionClasses, {
 } from './autocompleteOptionClasses';
 import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
 import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
   const { color, variant } = ownerState;
@@ -71,6 +73,8 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
     color: colorProp = 'neutral',
     variant = 'plain',
     className,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -84,19 +88,21 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  return (
-    <AutocompleteOptionRoot
-      ref={ref}
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      role="option"
-      {...other}
-    >
-      {children}
-    </AutocompleteOptionRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AutocompleteOptionRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role: 'option',
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<AutocompleteOptionTypeMap>;
 
 AutocompleteOption.propTypes /* remove-proptypes */ = {
@@ -125,6 +131,20 @@ AutocompleteOption.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

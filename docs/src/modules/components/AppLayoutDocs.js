@@ -15,6 +15,8 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
 
+const TOC_WIDTH = 242;
+
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
 })(({ disableToc, theme }) => ({
@@ -22,13 +24,13 @@ const Main = styled('main', {
   width: '100%',
   ...(disableToc
     ? {
-        [theme.breakpoints.up('lg')]: {
-          marginRight: '5%',
+        [theme.breakpoints.up('md')]: {
+          marginRight: TOC_WIDTH / 2,
         },
       }
     : {
         [theme.breakpoints.up('md')]: {
-          gridTemplateColumns: '1fr 242px',
+          gridTemplateColumns: `1fr ${TOC_WIDTH}px`,
         },
       }),
   '& .markdown-body .comment-link': {
@@ -37,20 +39,43 @@ const Main = styled('main', {
 }));
 
 const StyledAppContainer = styled(AppContainer, {
-  shouldForwardProp: (prop) => prop !== 'disableAd',
-})(({ disableAd, theme }) => {
+  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'hasTabs' && prop !== 'disableToc',
+})(({ disableAd, hasTabs, disableToc, theme }) => {
   return {
     position: 'relative',
     // By default, a grid item cannot be smaller than the size of its content.
     // https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
     minWidth: 0,
+    ...(disableToc
+      ? {
+          // 105ch ≈ 930px
+          maxWidth: `calc(105ch + ${TOC_WIDTH / 2}px)`,
+        }
+      : {
+          // We're mostly hosting text content so max-width by px does not make sense considering font-size is system-adjustable.
+          fontFamily: 'Arial',
+          // 105ch ≈ 930px
+          maxWidth: '105ch',
+        }),
     ...(!disableAd && {
-      '&& .description': {
-        marginBottom: 198,
-      },
-      '&& .description.ad': {
-        marginBottom: 40,
-      },
+      ...(!hasTabs && {
+        '&& .description': {
+          paddingBottom: 4 * 10 + 126,
+          marginBottom: 3 * 10,
+        },
+        '&& .description.ad': {
+          paddingBottom: 0,
+          marginBottom: 0,
+        },
+      }),
+      ...(hasTabs && {
+        '&& .component-tabs .MuiTabs-root': {
+          marginBottom: 4 * 10 + 4 * 10 + 126,
+        },
+        '&& .component-tabs.ad .MuiTabs-root': {
+          marginBottom: 0,
+        },
+      }),
     }),
     [theme.breakpoints.up('lg')]: {
       paddingLeft: '60px',
@@ -68,14 +93,18 @@ const ActionsDiv = styled('div')(({ theme }) => ({
   },
 }));
 
-function AppLayoutDocs(props) {
+export default function AppLayoutDocs(props) {
   const router = useRouter();
   const {
     BannerComponent,
     children,
     description,
     disableAd = false,
+    // TODO, disableLayout should be the default, retaining the layout between pages
+    // improves the UX. It's faster to transition, and you don't lose UI states, like scroll.
+    disableLayout = false,
     disableToc = false,
+    hasTabs = false,
     location,
     title,
     toc,
@@ -89,8 +118,8 @@ function AppLayoutDocs(props) {
   let productName = 'MUI';
   if (canonicalAs.startsWith('/material-ui/')) {
     productName = 'Material UI';
-  } else if (canonicalAs.startsWith('/base/')) {
-    productName = 'MUI Base';
+  } else if (canonicalAs.startsWith('/base-ui/')) {
+    productName = 'Base UI';
   } else if (canonicalAs.startsWith('/x/')) {
     productName = 'MUI X';
   } else if (canonicalAs.startsWith('/system/')) {
@@ -101,8 +130,11 @@ function AppLayoutDocs(props) {
     productName = 'Joy UI';
   }
 
+  const Layout = disableLayout ? React.Fragment : AppFrame;
+  const layoutProps = disableLayout ? {} : { BannerComponent };
+
   return (
-    <AppFrame BannerComponent={BannerComponent}>
+    <Layout {...layoutProps}>
       <GlobalStyles
         styles={{
           ':root': {
@@ -110,7 +142,7 @@ function AppLayoutDocs(props) {
           },
         }}
       />
-      <AdManager>
+      <AdManager {...(hasTabs && { classSelector: '.component-tabs' })}>
         <Head
           title={`${title} - ${productName}`}
           description={description}
@@ -122,9 +154,9 @@ function AppLayoutDocs(props) {
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          <StyledAppContainer disableAd={disableAd}>
+          <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs} disableToc={disableToc}>
             <ActionsDiv>
-              <EditPage markdownLocation={location} />
+              <EditPage sourceLocation={location} />
             </ActionsDiv>
             {children}
             <NoSsr>
@@ -135,7 +167,7 @@ function AppLayoutDocs(props) {
         </Main>
       </AdManager>
       <BackToTop />
-    </AppFrame>
+    </Layout>
   );
 }
 
@@ -144,7 +176,9 @@ AppLayoutDocs.propTypes = {
   children: PropTypes.node.isRequired,
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,
+  disableLayout: PropTypes.bool,
   disableToc: PropTypes.bool.isRequired,
+  hasTabs: PropTypes.bool,
   location: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   toc: PropTypes.array.isRequired,
@@ -153,5 +187,3 @@ AppLayoutDocs.propTypes = {
 if (process.env.NODE_ENV !== 'production') {
   AppLayoutDocs.propTypes = exactProp(AppLayoutDocs.propTypes);
 }
-
-export default AppLayoutDocs;

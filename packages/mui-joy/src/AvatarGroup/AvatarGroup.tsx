@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -7,8 +8,9 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 import { AvatarGroupProps, AvatarGroupOwnerState, AvatarGroupTypeMap } from './AvatarGroupProps';
+import useSlot from '../utils/useSlot';
 
-export const AvatarGroupContext = React.createContext<undefined | AvatarGroupOwnerState>(undefined);
+export const AvatarGroupContext = React.createContext<AvatarGroupOwnerState | undefined>(undefined);
 
 const useUtilityClasses = () => {
   const slots = {
@@ -40,6 +42,7 @@ const AvatarGroupGroupRoot = styled('div', {
   display: 'flex',
   marginInlineStart: 'calc(-1 * var(--AvatarGroup-gap))',
 }));
+
 /**
  *
  * Demos:
@@ -56,7 +59,17 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     name: 'JoyAvatarGroup',
   });
 
-  const { className, color, component = 'div', size = 'md', variant, children, ...other } = props;
+  const {
+    className,
+    color,
+    component = 'div',
+    size = 'md',
+    variant,
+    children,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const ownerState = React.useMemo(
     () => ({
@@ -71,17 +84,17 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const classes = useUtilityClasses();
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AvatarGroupGroupRoot,
+    externalForwardedProps: { ...other, component, slots, slotProps },
+    ownerState,
+  });
+
   return (
     <AvatarGroupContext.Provider value={ownerState}>
-      <AvatarGroupGroupRoot
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      >
-        {children}
-      </AvatarGroupGroupRoot>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
     </AvatarGroupContext.Provider>
   );
 }) as OverridableComponent<AvatarGroupTypeMap>;
@@ -122,6 +135,20 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['lg', 'md', 'sm']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

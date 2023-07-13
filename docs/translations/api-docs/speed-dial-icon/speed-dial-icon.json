@@ -21,12 +21,12 @@
     },
     "openIcon": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the `openIcon`",
+      "nodeName": "the <code>openIcon</code>",
       "conditions": "provided"
     },
     "openIconOpen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the `openIcon`",
+      "nodeName": "the <code>openIcon</code>",
       "conditions": "provided and if <code>open={true}</code>"
     }
   }

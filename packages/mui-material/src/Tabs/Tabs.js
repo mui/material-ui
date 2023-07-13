@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
@@ -488,7 +489,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     moveTabsScroll(getScrollSize());
   };
 
-  // TODO Remove <ScrollbarSize /> as browser support for hidding the scrollbar
+  // TODO Remove <ScrollbarSize /> as browser support for hiding the scrollbar
   // with CSS improves.
   const handleScrollbarSizeChange = React.useCallback((scrollbarWidth) => {
     setScrollerStyle({

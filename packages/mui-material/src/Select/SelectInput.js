@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
@@ -27,6 +28,7 @@ const SelectSelect = styled('div', {
       // Win specificity over the input base
       { [`&.${selectClasses.select}`]: styles.select },
       { [`&.${selectClasses.select}`]: styles[ownerState.variant] },
+      { [`&.${selectClasses.error}`]: styles.error },
       { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
@@ -83,10 +85,10 @@ function isEmpty(display) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, disabled, multiple, open } = ownerState;
+  const { classes, variant, disabled, multiple, open, error } = ownerState;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled', multiple && 'multiple'],
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
   };
@@ -109,6 +111,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     defaultValue,
     disabled,
     displayEmpty,
+    error = false,
     IconComponent,
     inputRef: inputRefProp,
     labelId,
@@ -242,13 +245,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   // Support autofill.
   const handleChange = (event) => {
-    const index = childrenArray.map((child) => child.props.value).indexOf(event.target.value);
+    const child = childrenArray.find((childItem) => childItem.props.value === event.target.value);
 
-    if (index === -1) {
+    if (child === undefined) {
       return;
     }
 
-    const child = childrenArray[index];
     setValueState(child.props.value);
 
     if (onChange) {
@@ -475,6 +477,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     variant,
     value,
     open,
+    error,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -510,6 +513,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         )}
       </SelectSelect>
       <SelectNativeInput
+        aria-invalid={error}
         value={Array.isArray(value) ? value.join(',') : value}
         name={name}
         ref={inputRef}
@@ -606,6 +610,10 @@ SelectInput.propTypes = {
    * If `true`, the selected item is displayed even if its value is empty.
    */
   displayEmpty: PropTypes.bool,
+  /**
+   * If `true`, the `select input` will indicate an error.
+   */
+  error: PropTypes.bool,
   /**
    * The icon that displays the arrow.
    */

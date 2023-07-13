@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
@@ -136,7 +137,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   const ignoringMouseDown = React.useRef(false);
   // We use a timer in order to only show the ripples for touch "click" like events.
   // We don't want to display the ripple for touch scroll events.
-  const startTimer = React.useRef(null);
+  const startTimer = React.useRef(0);
 
   // This is the hook called once the previous timeout is ready.
   const startTimerCommit = React.useRef(null);
@@ -144,7 +145,9 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
 
   React.useEffect(() => {
     return () => {
-      clearTimeout(startTimer.current);
+      if (startTimer.current) {
+        clearTimeout(startTimer.current);
+      }
     };
   }, []);
 

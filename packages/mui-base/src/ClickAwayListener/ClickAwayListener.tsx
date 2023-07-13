@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -63,11 +64,11 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click-Away Listener](https://mui.com/base/react-click-away-listener/)
+ * - [Click-Away Listener](https://mui.com/base-ui/react-click-away-listener/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://mui.com/base/api/click-away-listener/)
+ * - [ClickAwayListener API](https://mui.com/base-ui/react-click-away-listener/components-api/#click-away-listener)
  */
 function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
   const {

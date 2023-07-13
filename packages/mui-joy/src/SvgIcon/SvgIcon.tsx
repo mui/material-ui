@@ -1,3 +1,4 @@
+'use client';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -38,7 +39,9 @@ const SvgIconRoot = styled('svg', {
   width: '1em',
   height: '1em',
   display: 'inline-block',
-  fill: 'currentColor',
+  // the <svg> will define the property that has `currentColor`
+  // e.g. heroicons uses fill="none" and stroke="currentColor"
+  fill: ownerState.hasSvgAsChild ? undefined : 'currentColor',
   flexShrink: 0,
   ...(ownerState.fontSize &&
     ownerState.fontSize !== 'inherit' && {
@@ -80,8 +83,12 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     inheritViewBox = false,
     titleAccess,
     viewBox = '0 0 24 24',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
+
+  const hasSvgAsChild = React.isValidElement(children) && children.type === 'svg';
 
   const ownerState = {
     ...props,
@@ -91,15 +98,17 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     instanceFontSize: inProps.fontSize,
     inheritViewBox,
     viewBox,
+    hasSvgAsChild,
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: SvgIconRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       color: htmlColor,
@@ -107,12 +116,13 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       ...(titleAccess && { role: 'img' }),
       ...(!titleAccess && { 'aria-hidden': true }),
       ...(!inheritViewBox && { viewBox }),
+      ...(hasSvgAsChild && (children.props as Omit<React.SVGProps<SVGSVGElement>, 'ref'>)),
     },
   });
 
   return (
     <SlotRoot {...rootProps}>
-      {children}
+      {hasSvgAsChild ? (children.props as React.SVGProps<SVGSVGElement>).children : children}
       {titleAccess ? <title>{titleAccess}</title> : null}
     </SlotRoot>
   );
@@ -183,6 +193,20 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * If you are having issues with blurry icons you should investigate this prop.
    */
   shapeRendering: PropTypes.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

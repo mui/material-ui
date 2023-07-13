@@ -40,6 +40,7 @@ import { MenuListOwnerState } from '@mui/joy/MenuList';
 import { ModalOwnerState } from '@mui/joy/Modal';
 import { ModalCloseOwnerState } from '@mui/joy/ModalClose';
 import { ModalDialogOwnerState } from '@mui/joy/ModalDialog';
+import { ModalOverflowOwnerState } from '@mui/joy/ModalOverflow';
 import { OptionOwnerState } from '@mui/joy/Option';
 import { RadioOwnerState } from '@mui/joy/Radio';
 import { RadioGroupOwnerState } from '@mui/joy/RadioGroup';
@@ -785,6 +786,17 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<ModalDialogOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyModalOverflow: {
+      defaultProps: {},
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<ModalOverflowOwnerState & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};

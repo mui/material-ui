@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -8,10 +9,10 @@ import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSele
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, disabled, multiple, open } = ownerState;
+  const { classes, variant, disabled, multiple, open, error } = ownerState;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled', multiple && 'multiple'],
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
   };
 
@@ -80,6 +81,7 @@ const NativeSelectSelect = styled('select', {
     return [
       styles.select,
       styles[ownerState.variant],
+      ownerState.error && styles.error,
       { [`&.${nativeSelectClasses.multiple}`]: styles.multiple },
     ];
   },
@@ -124,12 +126,21 @@ const NativeSelectIcon = styled('svg', {
  * @ignore - internal component.
  */
 const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref) {
-  const { className, disabled, IconComponent, inputRef, variant = 'standard', ...other } = props;
+  const {
+    className,
+    disabled,
+    error,
+    IconComponent,
+    inputRef,
+    variant = 'standard',
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
     disabled,
     variant,
+    error,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -168,6 +179,10 @@ NativeSelectInput.propTypes = {
    * If `true`, the select is disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the `select input` will indicate an error.
+   */
+  error: PropTypes.bool,
   /**
    * The icon that displays the arrow.
    */

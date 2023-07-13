@@ -25,6 +25,11 @@ describe('<ModalClose />', () => {
     refInstanceof: window.HTMLButtonElement,
     testVariantProps: { variant: 'solid' },
     skip: ['classesRoot', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<ModalClose />, { muiName: 'JoyModalClose', classes });

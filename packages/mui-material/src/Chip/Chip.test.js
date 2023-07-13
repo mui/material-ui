@@ -12,7 +12,12 @@ import {
 } from 'test/utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
-import { ThemeProvider, createTheme, hexToRgb } from '@mui/material/styles';
+import {
+  ThemeProvider,
+  createTheme,
+  hexToRgb,
+  experimental_extendTheme as extendTheme,
+} from '@mui/material/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import defaultTheme from '../styles/defaultTheme';
 
@@ -712,6 +717,24 @@ describe('<Chip />', () => {
       setProps({ disabled: true });
 
       expect(chip).not.to.have.class(classes.focusVisible);
+    });
+  });
+
+  describe('CSS vars', () => {
+    it('should not throw when there is theme value is CSS variable', () => {
+      const theme = extendTheme();
+      theme.palette = theme.colorSchemes.light.palette;
+      theme.palette.text = {
+        ...theme.palette.text,
+        primary: 'var(--mui-palette-grey-900)',
+      };
+      expect(() =>
+        render(
+          <ThemeProvider theme={theme}>
+            <Chip label="Test Chip" />
+          </ThemeProvider>,
+        ),
+      ).not.to.throw();
     });
   });
 });

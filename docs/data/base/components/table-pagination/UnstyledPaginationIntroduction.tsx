@@ -1,11 +1,59 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TablePaginationUnstyled, {
-  tablePaginationUnstyledClasses as classes,
-} from '@mui/base/TablePaginationUnstyled';
+import TablePagination, {
+  tablePaginationClasses as classes,
+} from '@mui/base/TablePagination';
 
 function createData(name: string, calories: number, fat: number) {
   return { name, calories, fat };
+}
+
+export default function UnstyledPaginationIntroduction() {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  return (
+    <Root sx={{ width: 500, maxWidth: '100%' }}>
+      <table aria-label="custom pagination table">
+        <tfoot>
+          <tr>
+            <CustomTablePagination
+              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              colSpan={3}
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              slotProps={{
+                select: {
+                  'aria-label': 'rows per page',
+                },
+                actions: {
+                  showFirstButton: true,
+                  showLastButton: true,
+                },
+              }}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </tr>
+        </tfoot>
+      </table>
+    </Root>
+  );
 }
 
 const rows = [
@@ -49,7 +97,7 @@ const Root = styled('div')(
     font-size: 0.875rem;
     width: 100%;
     background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-    box-shadow: 0px 4px 30px ${
+    box-shadow: 0px 2px 16px ${
       theme.palette.mode === 'dark' ? grey[900] : grey[200]
     };
     border-radius: 12px;
@@ -69,7 +117,7 @@ const Root = styled('div')(
   `,
 );
 
-const CustomTablePagination = styled(TablePaginationUnstyled)(
+const CustomTablePagination = styled(TablePagination)(
   ({ theme }) => `
   & .${classes.spacer} {
     display: none;
@@ -93,7 +141,7 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
   }
 
   & .${classes.select}{
-    padding: 2px;
+    padding: 2px 6px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     border-radius: 50px;
     background-color: transparent;
@@ -126,12 +174,12 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
   & .${classes.actions} > button {
     margin: 0 8px;
     border: transparent;
-    border-radius: 2px;
+    border-radius: 4px;
     background-color: transparent;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
 
     &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     }
 
     &:focus {
@@ -140,51 +188,3 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
   }
   `,
 );
-
-export default function UnstyledPaginationIntroduction() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
-  ) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  return (
-    <Root sx={{ width: 500, maxWidth: '100%' }}>
-      <table aria-label="custom pagination table">
-        <tfoot>
-          <tr>
-            <CustomTablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              slotProps={{
-                select: {
-                  'aria-label': 'rows per page',
-                },
-                actions: {
-                  showFirstButton: true,
-                  showLastButton: true,
-                } as any,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </tr>
-        </tfoot>
-      </table>
-    </Root>
-  );
-}

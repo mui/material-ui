@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -6,7 +7,9 @@ import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardContentUtilityClass } from './cardContentClasses';
+import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
 import { CardContentProps, CardContentTypeMap } from './CardContentProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -20,13 +23,19 @@ const CardContentRoot = styled('div', {
   name: 'JoyCardContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardContentProps }>({
+})<{ ownerState: CardContentProps }>(({ ownerState }) => ({
   display: 'flex',
-  flexDirection: 'column',
-  flexGrow: 1,
+  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+  flex: 1, // fill the available space in the Card and also shrink if needed
   zIndex: 1,
-});
+  columnGap: 'calc(0.75 * var(--Card-padding))',
+  padding: 'var(--unstable_padding)',
+  [`.${cardOverflowClasses.root} > &`]: {
+    '--unstable_padding': 'calc(var(--Card-padding) * 0.75) 0px',
+  },
+}));
 /**
+ * ⚠️ CardContent must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
  * Demos:
  *
@@ -42,26 +51,34 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
     name: 'JoyCardContent',
   });
 
-  const { className, component = 'div', children, ...other } = props;
+  const {
+    className,
+    component = 'div',
+    children,
+    orientation = 'vertical',
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const ownerState = {
     ...props,
     component,
+    orientation,
   };
 
   const classes = useUtilityClasses();
 
-  return (
-    <CardContentRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
-      {children}
-    </CardContentRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: CardContentRoot,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<CardContentTypeMap>;
 
 CardContent.propTypes /* remove-proptypes */ = {
@@ -83,6 +100,25 @@ CardContent.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The component orientation.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

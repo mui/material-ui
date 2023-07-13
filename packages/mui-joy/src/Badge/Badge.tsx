@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
@@ -159,6 +160,9 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     badgeContent: badgeContentProp = '',
     showZero = false,
     variant: variantProp = 'solid',
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -192,6 +196,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 
   const ownerState = { ...props, anchorOrigin, badgeInset, variant, invisible, color, size };
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
   let displayValue =
     badgeContentProp && Number(badgeContentProp) > max ? `${max}+` : badgeContentProp;
 
@@ -203,14 +208,14 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     ref,
     className: classes.root,
     elementType: BadgeRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotBadge, badgeProps] = useSlot('badge', {
     className: classes.badge,
     elementType: BadgeBadge,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -261,6 +266,11 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * If `true`, the badge is invisible.
    * @default false
    */
@@ -283,6 +293,22 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    badge: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

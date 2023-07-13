@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -15,6 +16,7 @@ import listItemClasses from '../ListItem/listItemClasses';
 import listClasses from '../List/listClasses';
 import { scopedVariables } from '../List/ListProvider';
 import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: AutocompleteListboxOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -34,6 +36,7 @@ const excludePopperProps = <T extends Record<string, any>>({
   anchorEl,
   direction,
   disablePortal,
+  keepMounted,
   modifiers,
   open,
   placement,
@@ -106,6 +109,8 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     color: colorProp = 'neutral',
     variant = 'outlined',
     size = 'md',
+    slots = {},
+    slotProps = {},
     ...otherProps
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -124,19 +129,20 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
   const other = excludePopperProps(otherProps);
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  return (
-    <AutocompleteListboxRoot
-      ref={ref}
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      role="listbox"
-      {...other}
-    >
-      {children}
-    </AutocompleteListboxRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AutocompleteListboxRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      role: 'listbox',
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<AutocompleteListboxTypeMap>;
 
 AutocompleteListbox.propTypes /* remove-proptypes */ = {
@@ -170,6 +176,20 @@ AutocompleteListbox.propTypes /* remove-proptypes */ = {
    * @default 'md'
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

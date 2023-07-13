@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { BadgeUnstyledTypeMap, ExtendBadgeUnstyledTypeMap } from '@mui/base/BadgeUnstyled';
+import { BadgeTypeMap as BaseBadgeTypeMap, ExtendBadgeTypeMap } from '@mui/base/Badge';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BadgeClasses } from './badgeClasses';
@@ -15,10 +15,7 @@ export interface BadgeOrigin {
   horizontal: 'left' | 'right';
 }
 
-export type BadgeTypeMap<
-  D extends React.ElementType = 'span',
-  P = {},
-> = ExtendBadgeUnstyledTypeMap<{
+export type BadgeTypeMap<D extends React.ElementType = 'span', P = {}> = ExtendBadgeTypeMap<{
   props: P & {
     /**
      * The anchor of the badge.
@@ -55,7 +52,7 @@ export type BadgeTypeMap<
      *
      * @default {}
      */
-    componentsProps?: BadgeUnstyledTypeMap['props']['slotProps'];
+    componentsProps?: BaseBadgeTypeMap['props']['slotProps'];
     /**
      * The components used for each slot inside.
      *

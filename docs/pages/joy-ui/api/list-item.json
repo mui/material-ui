@@ -11,6 +11,20 @@
     "component": { "type": { "name": "elementType" } },
     "endAction": { "type": { "name": "node" } },
     "nested": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ endAction?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startAction?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ endAction?: elementType, root?: elementType, startAction?: elementType }"
+      },
+      "default": "{}"
+    },
     "startAction": { "type": { "name": "node" } },
     "sticky": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
@@ -49,6 +63,25 @@
       "class": ".MuiListItem-endAction"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "nested",
+      "nesting",
+      "sticky",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyListItem",

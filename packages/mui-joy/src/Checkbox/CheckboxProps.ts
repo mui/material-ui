@@ -11,27 +11,27 @@ export interface CheckboxSlots {
    * The component that renders the root.
    * @default 'span'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the checkbox.
    * @default 'span'
    */
-  checkbox: React.ElementType;
+  checkbox?: React.ElementType;
   /**
    * The component that renders the action.
    * @default 'span'
    */
-  action: React.ElementType;
+  action?: React.ElementType;
   /**
    * The component that renders the input.
    * @default 'input'
    */
-  input: React.ElementType;
+  input?: React.ElementType;
   /**
    * The component that renders the label.
    * @default 'label'
    */
-  label: React.ElementType;
+  label?: React.ElementType;
 }
 
 export interface CheckboxPropsVariantOverrides {}

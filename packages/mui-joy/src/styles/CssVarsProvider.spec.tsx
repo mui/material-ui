@@ -3,7 +3,7 @@ import { CSSObject } from '@mui/system';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
 // -----------------------------------
-// Extending palete
+// Extending palette
 
 declare module '@mui/joy/styles' {
   interface ColorSchemeOverrides {
