@@ -285,7 +285,9 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
 
         if (focusabeElem) {
           focusabeElem.focus();
-          focusabeElem.scrollIntoView({ behavior: 'auto', block: 'center' });
+          if (focusabeElem.scrollIntoView) {
+            focusabeElem.scrollIntoView({ behavior: 'auto', block: 'center' });
+          }
         }
       }
     };
