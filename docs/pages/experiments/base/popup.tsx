@@ -20,7 +20,12 @@ export default function PopupPlayground() {
 
   return (
     <div>
-      <button ref={setAnchor} onClick={() => setOpen((o) => !o)} style={{ margin: '250px' }}>
+      <button
+        type="button"
+        ref={setAnchor}
+        onClick={() => setOpen((o) => !o)}
+        style={{ margin: '250px' }}
+      >
         open
       </button>
       <StyledPopup
