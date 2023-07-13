@@ -791,7 +791,7 @@ export function getThemedComponents(): ThemeOptions {
       MuiChip: {
         styleOverrides: {
           root: ({ ownerState: { color, variant }, theme }) => ({
-            fontWeight: 500,
+            fontWeight: theme.typography.fontWeightSemiBold,
             ...(variant === 'outlined' &&
               color === 'default' && {
                 backgroundColor: alpha(theme.palette.grey[50], 0.5),
@@ -804,7 +804,7 @@ export function getThemedComponents(): ThemeOptions {
                 ...theme.applyDarkStyles({
                   backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
                   color: (theme.vars || theme).palette.grey[300],
-                  borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+                  borderColor: alpha(theme.palette.primaryDark[500], 0.5),
                   '&:hover': {
                     color: (theme.vars || theme).palette.grey[300],
                     backgroundColor: (theme.vars || theme).palette.primaryDark[700],
@@ -813,12 +813,13 @@ export function getThemedComponents(): ThemeOptions {
               }),
             ...(variant === 'outlined' &&
               color === 'primary' && {
-                '&:hover': {
-                  color: (theme.vars || theme).palette.primary[500],
-                },
+                borderColor: (theme.vars || theme).palette.primary[200],
+                ...theme.applyDarkStyles({
+                  borderColor: alpha(theme.palette.primary[500], 0.3),
+                }),
               }),
-            ...(variant === 'filled' &&
-              color === 'default' && {
+            ...(variant === 'filled' && {
+              ...(color === 'default' && {
                 border: '1px solid transparent',
                 color: (theme.vars || theme).palette.primary[700],
                 backgroundColor: alpha(theme.palette.primary[100], 0.5),
@@ -833,6 +834,21 @@ export function getThemedComponents(): ThemeOptions {
                   },
                 }),
               }),
+              ...(color === 'primary' && {
+                color: (theme.vars || theme).palette.primary[600],
+                backgroundColor: (theme.vars || theme).palette.primary[100],
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primary[200],
+                },
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primary[100],
+                  backgroundColor: alpha(theme.palette.primary[800], 0.5),
+                  '&:hover': {
+                    backgroundColor: alpha(theme.palette.primary[900], 0.5),
+                  },
+                }),
+              }),
+            }),
             // for labelling product in the search
             // @ts-ignore internal repo module augmentation issue
             ...(variant === 'light' && {
