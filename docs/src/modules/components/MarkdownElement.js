@@ -137,7 +137,7 @@ const Root = styled('div')(
         marginTop: 5,
         height: 26,
         width: 26,
-        lineHeight: '20.5px',
+        lineHeight: '21px',
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
@@ -166,7 +166,7 @@ const Root = styled('div')(
         }),
         '& svg': {
           opacity: 0.6,
-          marginBottom: 2,
+          marginBottom: 1,
           verticalAlign: 'middle',
         },
         '&:hover': {
