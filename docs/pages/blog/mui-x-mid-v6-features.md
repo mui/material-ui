@@ -67,7 +67,7 @@ This new feature is extremely versatile, and you can exchange data from other fi
 
 This feature is integrated with the editing API, so pasted data can be persisted using the `processRowUpdate` prop to update your data source through your usual editing validation process. Furthermore, the callbacks `clipboardPasteStart` and `clipboardPasteEnd` are fired during the clipboard paste operation, which can be useful for extra customizations around the event.
 
-For more details on how to use Clipboard copy and paste, check out the feature’s page.
+For more details on how to use clipboard copy and paste, check out the [feature’s page](https://mui.com/x/react-data-grid/clipboard/).
 
 ### Filter on column headers [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
@@ -77,7 +77,7 @@ This feature allows users to quickly filter the data without needing any additio
 
 The new filter fields are displayed below the headers and are synchronized with the filter panel, but for those seeking more simplicity, disable the default filter panel using `disableColumnFilter` prop and set filters to use only the default operator. You can also customize the header filter cell for a specific column using the `renderHeaderFilter` method of `GridColDef`
 
-For more details on how to use and customize the filters, check out [link].
+For more details on how to use and customize the filters, check out its [documentation page](https://mui.com/x/react-data-grid/filtering/header-filters/).
 
 ### **Performance Enhancements: Smoother Scrolling and Expanding Rows**
 
