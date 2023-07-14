@@ -200,6 +200,26 @@ function getDescription(markdown) {
   return matches[1].trim().replace(/`/g, '');
 }
 
+function getCodeblock(content) {
+  if (content.startsWith('<codeblock')) {
+    const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+    const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
+      ([, language, tab, code]) => ({ language, tab, code }),
+    );
+
+    const blocksData = blocks.filter(
+      (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
+    );
+
+    return {
+      type: 'codeblock',
+      data: blocksData,
+      storageKey,
+    };
+  }
+  return undefined;
+}
+
 /**
  * @param {string} markdown
  */
@@ -548,21 +568,11 @@ ${headers.hooks
             return null;
           }
         }
-        if (content.startsWith('<codeblock')) {
-          const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
-          const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
-            ([, language, tab, code]) => ({ language, tab, code }),
-          );
 
-          const blocksData = blocks.filter(
-            (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
-          );
+        const codeblock = getCodeblock(content);
 
-          return {
-            type: 'codeblock',
-            data: blocksData,
-            storageKey,
-          };
+        if (codeblock) {
+          return codeblock;
         }
 
         return render(content);
@@ -617,6 +627,7 @@ module.exports = {
   createRender,
   getContents,
   getDescription,
+  getCodeblock,
   getHeaders,
   getTitle,
   prepareMarkdown,
