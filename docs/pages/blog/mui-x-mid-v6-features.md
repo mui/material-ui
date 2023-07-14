@@ -10,7 +10,7 @@ tags: ['MUI X', 'News']
 <img src="/static/blog/mui-x-mid-v6-features/card.png" alt="" style="margin-bottom: 16px;" width="2400" height="559" />
 
 Since the first v6 stable release, we have continuously rolled out new major features.
-Now that we reached [MUI X v6.10.0](https://github.com/mui/mui-x/releases/tag/v6.10.0), it’s time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
+Now that we reached [MUI X v6.10.0](https://github.com/mui/mui-x/releases/tag/v6.10.0), it's time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
 
 ## Table of contents
 
@@ -67,7 +67,7 @@ This new feature is extremely versatile, and you can exchange data from other fi
 
 This feature is integrated with the editing API, so pasted data can be persisted using the `processRowUpdate` prop to update your data source through your usual editing validation process. Furthermore, the callbacks `clipboardPasteStart` and `clipboardPasteEnd` are fired during the clipboard paste operation, which can be useful for extra customizations around the event.
 
-For more details on how to use clipboard copy and paste, check out the [feature’s page](https://mui.com/x/react-data-grid/clipboard/).
+For more details on how to use clipboard copy and paste, check out the [feature's page](https://mui.com/x/react-data-grid/clipboard/).
 
 ### Filter on column headers [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
@@ -87,7 +87,7 @@ These performance upgrades are part of our ongoing commitment to provide end-use
 
 ## Charts - alpha version 🎁
 
-And last but not least, we're delighted to announce the upcoming expansion of MUI X– a brand-new suite of components specifically designed for building and easily customizing appealing charts. A solution that’s ready to match the style of your application and offers an intuitive API for building simple and complex visualizations.
+And last but not least, we're delighted to announce the upcoming expansion of MUI X– a brand-new suite of components specifically designed for building and easily customizing appealing charts. A solution that's ready to match the style of your application and offers an intuitive API for building simple and complex visualizations.
 And it ships with a couple of rad palettes, specially crafted by our designers!
 
 **[video showcasing different chart visualizations]**
