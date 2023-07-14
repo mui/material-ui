@@ -291,6 +291,17 @@ export const newTheme = extendTheme({
         }),
       },
     },
+    JoyInput: {
+      styleOverrides: {
+        root: ({ theme }) =>
+          theme.unstable_sx({
+            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.12)',
+            [theme.getColorSchemeSelector('dark')]: {
+              boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.3)',
+            },
+          }),
+      },
+    },
     JoyDivider: {
       styleOverrides: {
         root: ({ theme }) => ({
@@ -336,30 +347,49 @@ export const newTheme = extendTheme({
     },
     JoySwitch: {
       styleOverrides: {
-        root: ({ theme, ownerState }) =>
-          theme.unstable_sx({
-            display: 'inherit',
-            '--Switch-thumbShadow': theme.vars.shadow.sm,
-            '--Switch-trackRadius': '4px',
-            '--Switch-thumbSize': '16px',
-            '--Switch-trackWidth': '42px',
-            '--Switch-trackHeight': '22px',
+        root: ({ theme, ownerState }) => ({
+          '--Switch-thumbShadow': `$(theme.vars.shadow.sm)`,
+          '--Switch-trackRadius': '4px',
+          '--Switch-thumbSize': '16px',
+          '--Switch-trackWidth': '42px',
+          '--Switch-trackHeight': '22px',
+          '&:hover': {
             '--Switch-trackBackground': '#E9E9EA',
-            '&:hover': {
-              '--Switch-trackBackground': '#E9E9EA',
-            },
-            [theme.getColorSchemeSelector('dark')]: {
-              '--Switch-trackBackground': 'rgba(255 255 255 / 0.4)',
-            },
-            [`&.${ownerState.checked}`]: {
-              '--Switch-trackBackground': 'var(--joy-palette-success-500)',
-              '&:hover': {
-                '--Switch-trackBackground': 'var(--joy-palette-success-500)',
-              },
-            },
+          },
+          ...(ownerState.checked === true && {
+            '--Switch-trackBackground': 'var(--joy-palette-success-500)',
           }),
+        }),
       },
     },
+    // JoySwitch: {
+    //   styleOverrides: {
+    //     root: ({ theme, ownerState }) =>
+    //       theme.unstable_sx({
+    //         display: 'inherit',
+    //         '--Switch-thumbShadow': theme.vars.shadow.sm,
+    //         '--Switch-trackRadius': '4px',
+    //         '--Switch-thumbSize': '16px',
+    //         '--Switch-trackWidth': '42px',
+    //         '--Switch-trackHeight': '22px',
+    //         '&:hover': {
+    //           '--Switch-trackBackground': '#E9E9EA',
+    //         },
+    //         '&.Mui-checked': {
+    //           '--Switch-trackBackground': 'var(--joy-palette-success-500)',
+    //         },
+    //         // [theme.getColorSchemeSelector('dark')]: {
+    //         //   '--Switch-trackBackground': 'rgba(255 255 255 / 0.4)',
+    //         // },
+    //         // [`&.${ownerState.checked}`]: {
+    //         //   '--Switch-trackBackground': 'var(--joy-palette-success-500)',
+    //         //   '&:hover': {
+    //         //     '--Switch-trackBackground': 'var(--joy-palette-success-500)',
+    //         //   },
+    //         // },
+    //       }),
+    //   },
+    // },
     JoyCard: {
       styleOverrides: {
         root: ({ theme, ownerState }) => ({
