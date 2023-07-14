@@ -46,16 +46,16 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     anchor: anchorProp,
     children,
     container,
-    disablePortal,
-    open = false,
+    disablePortal = false,
+    keepMounted = false,
     middleware,
-    keepMounted,
-    offset: offsetProp,
+    offset: offsetProp = 0,
+    open = false,
     placement = 'bottom',
-    strategy,
-    slots = {},
     slotProps = {},
-    withTransition,
+    slots = {},
+    strategy = 'absolute',
+    withTransition = false,
     ...other
   } = props;
 
@@ -65,8 +65,8 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     },
     open,
     middleware: middleware ?? [offset(offsetProp ?? 0), flip()],
-    placement: placement ?? 'bottom-start',
-    strategy: strategy ?? 'absolute',
+    placement,
+    strategy,
     whileElementsMounted: !keepMounted ? autoUpdate : undefined,
   });
 
@@ -92,6 +92,13 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
 
   const ownerState: PopupOwnerState = {
     ...props,
+    disablePortal,
+    keepMounted,
+    offset,
+    open,
+    placement,
+    strategy,
+    withTransition,
   };
 
   const display = !open && keepMounted && (!withTransition || exited) ? 'none' : undefined;
@@ -147,20 +154,36 @@ Popup.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.func,
+    PropTypes.number,
+    PropTypes.shape({
+      '__@iterator@96': PropTypes.func.isRequired,
+    }),
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   /**
-   * @ignore
+   * An HTML element or function that returns one. The container will have the portal children appended to it.
+   * By default, it uses the body of the top-level document object, so it's simply document.body most of the time.
    */
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     HTMLElementType,
     PropTypes.func,
   ]),
   /**
-   * @ignore
+   * If `true`, the popup will be rendered where it is defined, without the use of portals.
+   * @default false
    */
   disablePortal: PropTypes.bool,
   /**
-   * @ignore
+   * If `true`, the popup will exist in the DOM even if it's closed.
+   * Its visibility will be controlled by the `display` CSS property.
+   *
+   * Otherwise, a closed popup will be removed from the DOM.
+   *
+   * @default false
    */
   keepMounted: PropTypes.bool,
   /**
@@ -195,7 +218,7 @@ Popup.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
-   * @ignore
+   * If `true`, the popup is visible.
    */
   open: PropTypes.bool,
   /**
@@ -237,6 +260,14 @@ Popup.propTypes /* remove-proptypes */ = {
    * @see https://floating-ui.com/docs/computePosition#strategy
    */
   strategy: PropTypes.oneOf(['absolute', 'fixed']),
+  /**
+   * If `true`, the popup will support open and close animations.
+   * In such a case, a function form of `children` must be used and `onEnter` and `onExited`
+   * callback functions must be called when the respective transitions or animations finish.
+   *
+   * @default false
+   */
+  withTransition: PropTypes.bool,
 } as any;
 
 export default Popup;

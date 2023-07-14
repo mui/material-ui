@@ -10,7 +10,28 @@ import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface PopupRootSlotPropsOverrides {}
 
-interface PopupSettings {
+export interface PopupOwnProps {
+  anchor?: VirtualElement | HTMLElement | (() => HTMLElement) | (() => VirtualElement) | null;
+  children?: React.ReactNode | ((props: PopupChildrenProps) => React.ReactNode);
+  /**
+   * An HTML element or function that returns one. The container will have the portal children appended to it.
+    By default, it uses the body of the top-level document object, so it's simply document.body most of the time.
+   */
+  container?: PortalProps['container'];
+  /**
+   * If `true`, the popup will be rendered where it is defined, without the use of portals.
+   * @default false
+   */
+  disablePortal?: boolean;
+  /**
+   * If `true`, the popup will exist in the DOM even if it's closed.
+   * Its visibility will be controlled by the `display` CSS property.
+   *
+   * Otherwise, a closed popup will be removed from the DOM.
+   *
+   * @default false
+   */
+  keepMounted?: boolean;
   /**
    * Collection of Floating UI middleware to use when positioning the popup.
    * If not provided, an offset and flip functions will be used.
@@ -26,12 +47,22 @@ interface PopupSettings {
    */
   offset?: OffsetOptions;
   /**
+   * If `true`, the popup is visible.
+   */
+  open?: boolean;
+  /**
    * Determines where to place the popup relative to the trigger element.
    *
    * @default 'bottom-start'
    * @see https://floating-ui.com/docs/computePosition#placement
    */
   placement?: Placement;
+  slots?: {
+    root?: React.ElementType;
+  };
+  slotProps?: {
+    root?: SlotComponentProps<'div', PopupRootSlotPropsOverrides, PopupProps>;
+  };
   /**
    * The type of CSS position property to use (absolute or fixed).
    *
@@ -39,28 +70,13 @@ interface PopupSettings {
    * @see https://floating-ui.com/docs/computePosition#strategy
    */
   strategy?: Strategy;
-}
-
-export interface PopupChildrenProps {
-  placement: Placement;
-  in: boolean;
-  onExited: () => void;
-  onEnter: () => void;
-}
-
-export interface PopupOwnProps extends PopupSettings {
-  anchor?: VirtualElement | HTMLElement | (() => HTMLElement) | (() => VirtualElement) | null;
-  children?: React.ReactNode | ((props: PopupChildrenProps) => React.ReactNode);
-  container?: PortalProps['container'];
-  disablePortal?: boolean;
-  keepMounted?: boolean;
-  open?: boolean;
-  slots?: {
-    root?: React.ElementType;
-  };
-  slotProps?: {
-    root?: SlotComponentProps<'div', PopupRootSlotPropsOverrides, PopupProps>;
-  };
+  /**
+   * If `true`, the popup will support open and close animations.
+   * In such a case, a function form of `children` must be used and `onEnter` and `onExited`
+   * callback functions must be called when the respective transitions or animations finish.
+   *
+   * @default false
+   */
   withTransition?: boolean;
 }
 
@@ -70,6 +86,13 @@ export interface PopupSlots {
    * @default 'div'
    */
   root?: React.ElementType;
+}
+
+export interface PopupChildrenProps {
+  placement: Placement;
+  in: boolean;
+  onExited: () => void;
+  onEnter: () => void;
 }
 
 export interface PopupTypeMap<
@@ -85,6 +108,11 @@ export type PopupProps<
 > = PolymorphicProps<PopupTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export interface PopupOwnerState extends PopupOwnProps {
-  // isMounted: boolean;
-  // transitionStatus: 'unmounted' | 'initial' | 'open' | 'close';
+  disablePortal: boolean;
+  open: boolean;
+  keepMounted: boolean;
+  offset: OffsetOptions;
+  placement: Placement;
+  strategy: Strategy;
+  withTransition: boolean;
 }
