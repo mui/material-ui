@@ -8,28 +8,31 @@ function resolveAliasPath(relativeToBabelConf) {
   return `./${resolvedPath.replace('\\', '/')}`;
 }
 
-const defaultAlias = {
-  '@mui/material': resolveAliasPath('./packages/mui-material/src'),
-  '@mui/docs': resolveAliasPath('./packages/mui-docs/src'),
-  '@mui/icons-material': resolveAliasPath('./packages/mui-icons-material/lib'),
-  '@mui/lab': resolveAliasPath('./packages/mui-lab/src'),
-  '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
-  '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),
-  '@mui/styles': resolveAliasPath('./packages/mui-styles/src'),
-  '@mui/system': resolveAliasPath('./packages/mui-system/src'),
-  '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
-  '@mui/base': resolveAliasPath('./packages/mui-base/src'),
-  '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
-  '@mui/material-next': resolveAliasPath('./packages/mui-material-next/src'),
-  '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
-};
-
 const productionPlugins = [
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
 ];
 
 module.exports = function getBabelConfig(api) {
-  const useESModules = api.env(['legacy', 'modern', 'stable', 'rollup']);
+  const useESModules = api.env(['development', 'legacy', 'modern', 'stable', 'rollup']);
+
+  const defaultAlias = {
+    '@mui/material': resolveAliasPath('./packages/mui-material/src'),
+    '@mui/docs': resolveAliasPath('./packages/mui-docs/src'),
+    '@mui/icons-material': resolveAliasPath(
+      `./packages/mui-icons-material/lib${useESModules ? '/esm' : ''}`,
+    ),
+    '@mui/lab': resolveAliasPath('./packages/mui-lab/src'),
+    '@mui/markdown': resolveAliasPath('./packages/markdown'),
+    '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
+    '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),
+    '@mui/styles': resolveAliasPath('./packages/mui-styles/src'),
+    '@mui/system': resolveAliasPath('./packages/mui-system/src'),
+    '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
+    '@mui/base': resolveAliasPath('./packages/mui-base/src'),
+    '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
+    '@mui/material-next': resolveAliasPath('./packages/mui-material-next/src'),
+    '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
+  };
 
   const presets = [
     [
