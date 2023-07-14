@@ -8,7 +8,7 @@ import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-tsx';
 
-function highlight(code, language) {
+function highlight(code: string, language: string) {
   let prismLanguage;
   switch (language) {
     case 'ts':
