@@ -1,7 +1,7 @@
 const { marked } = require('marked');
 const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
-const prism = require('./prism');
+const prism = require('./prism.cjs');
 
 /**
  * Option used by `marked` the library parsing markdown.
