@@ -9,8 +9,8 @@ tags: ['MUI X', 'News']
 
 <img src="/static/blog/mui-x-mid-v6-features/card.png" alt="" style="margin-bottom: 16px;" width="2400" height="559" />
 
-Since the first v6 stable release, we have continuously rolled out new major features. 
-Now, as we reached [MUI X v6.10.0](https://github.com/mui/mui-x/releases/tag/v6.10.0), it’s time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
+Since the first v6 stable release, we have continuously rolled out new major features.
+Now that we reached [MUI X v6.10.0](https://github.com/mui/mui-x/releases/tag/v6.10.0), it’s time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
 
 ## Table of contents
 
@@ -18,8 +18,8 @@ Now, as we reached [MUI X v6.10.0](https://github.com/mui/mui-x/releases/tag/v6
   - [Support for Time Zones](#support-for-time-zones)
   - [Digital Clock](#digital-clock)
 - [Data Grid](#data-grid)
-  - [Copy and Paste (Premium)](#copy-and-paste-premium)
-  - [Filter on Column Headers (Pro)](#filter-on-column-headers-pro)
+  - [Copy and Paste](#copy-and-paste)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+  - [Filter on Column Headers](#filter-on-column-headers)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
   - [Performance Enhancements: Smoother Scrolling and Expanding Rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
 - [Charts - Alpha Version](#charts---alpha-version)
 - [What's next](#whats-next)
@@ -57,7 +57,7 @@ Check out all the possibilities in [documentation](https://mui.com/x/react-date-
 
 ## Data Grid
 
-### Copy and Paste [premium]
+### Copy and Paste [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
 
 After setting the prop `experimentalFeatures={{ clipboardPaste: true }}` you can copy and paste data directly from and to your Data Grid.
 
@@ -69,7 +69,7 @@ This feature is integrated with the editing API, so pasted data can be persisted
 
 For more details on how to use Clipboard copy and paste, check out the feature’s page.
 
-### Filter on column headers [pro]
+### Filter on column headers [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
 This feature allows users to quickly filter the data without needing any additional menu and can be activated using the `unstable_headerFilters` prop.
 
