@@ -24,6 +24,11 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
 import Switch from '@mui/joy/Switch';
+import Alert from '@mui/joy/Alert';
+import Radio from '@mui/joy/Radio';
+import Slider from '@mui/joy/Slider';
+import JoyMenu from '@mui/joy/Menu';
+import MenuItem from '@mui/joy/MenuItem';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -36,6 +41,8 @@ import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 // custom
 import Menu from './components/Menu';
@@ -425,6 +432,12 @@ export const newTheme = extendTheme({
         }),
       },
     },
+    JoyAlert: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'neutral',
+      },
+    },
   },
 });
 
@@ -458,6 +471,13 @@ function ColorSchemeToggle() {
 
 export default function FilesNewTheme() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const buttonRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <CssVarsProvider disableTransitionOnChange theme={newTheme}>
       <CssBaseline />
@@ -1071,12 +1091,60 @@ export default function FilesNewTheme() {
             </Typography>
           </Box>
           <Divider />
-          <Box sx={{ py: 2, px: 1 }}>
+          <Box sx={{ display: 'flex', gap: 2, py: 2, px: 1, alignItems: 'center' }}>
             <Button variant="plain" size="sm" endDecorator={<EditOutlinedIcon />}>
               Add a description
             </Button>
             <Switch />
+            <Radio value="Label" label="Label" variant="solid" />
           </Box>
+          <Divider />
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}>
+            <Alert
+              startDecorator={<AccountCircleRoundedIcon />}
+              endDecorator={
+                <IconButton variant="plain" size="sm" color="neutral">
+                  <CloseRoundedIcon />
+                </IconButton>
+              }
+              sx={{ m: 1 }}
+            >
+              This is a Joy UI Alert — check it out!
+            </Alert>
+          </Box>
+          <Divider />
+          <Box sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
+            <Slider />
+          </Box>
+          <Divider />
+          <Box sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
+            <Button
+              ref={buttonRef}
+              id="basic-demo-button"
+              aria-controls={'basic-menu'}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              variant="outlined"
+              color="neutral"
+              onClick={() => {
+                setOpen(!open);
+              }}
+            >
+              Dashboard
+            </Button>
+            <JoyMenu
+              id="basic-menu"
+              anchorEl={buttonRef.current}
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="basic-demo-button"
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </JoyMenu>
+          </Box>
+          <Divider />
         </Sheet>
       </Layout.Root>
     </CssVarsProvider>
