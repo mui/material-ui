@@ -123,7 +123,6 @@
     "@babel/plugin-transform-react-constant-elements": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
     "@types/marked": "^5.0.0",
-    "@types/prismjs": "^1.26.0",
     "@types/recharts": "^2.0.0",
     "cross-fetch": "^4.0.0",
     "gm": "^1.25.0",
