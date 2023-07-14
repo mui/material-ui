@@ -18,6 +18,7 @@ const PopupBody = styled('div')`
   font-family: var(--joy-fontFamily-body);
   font-size: var(--joy-fontSize-sm);
   /* stylelint-enable custom-property-pattern */
+  z-index: 1;
 `;
 
 const Section = styled('div')`
@@ -87,7 +88,7 @@ const PopAnimation = styled(Animated)`
   }
 
   &.close {
-    animation: close-animation 0.4s ease-out;
+    animation: close-animation 0.4s ease-out forwards;
   }
 `;
 
@@ -102,7 +103,7 @@ function PopupWithTrigger(props: PopupProps & { label: string }) {
       <Button ref={setAnchor} onClick={() => setOpen((o) => !o)} fullWidth>
         {open ? 'Close' : 'Open'} {label}
       </Button>
-      <StyledPopup anchor={anchor} open={open} placement="bottom" offset={20} {...other}>
+      <StyledPopup anchor={anchor} open={open} {...other}>
         {children ?? <PopupBody>This is a {label} popup</PopupBody>}
       </StyledPopup>
     </Section>
@@ -112,11 +113,13 @@ function PopupWithTrigger(props: PopupProps & { label: string }) {
 export default function PopupPlayground() {
   return (
     <CssVarsProvider>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
         <PopupWithTrigger label="default" />
-        <PopupWithTrigger keepMounted label="always mounted" />
-        <PopupWithTrigger disablePortal label="non-portaled" />
-        <PopupWithTrigger label="with Material UI transition" withTransition disablePortal>
+        <PopupWithTrigger label="placed to the right" placement="right" />
+        <PopupWithTrigger label="always mounted" keepMounted />
+        <PopupWithTrigger label="non-portaled" disablePortal />
+        <PopupWithTrigger label="with offset" offset={20} />
+        <PopupWithTrigger label="with Material UI transition" withTransition>
           {(props) => (
             <Fade {...props} timeout={250}>
               <PopupBody>This is an animated popup</PopupBody>
