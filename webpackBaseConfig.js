@@ -9,6 +9,7 @@ module.exports = {
   resolve: {
     modules: [__dirname, 'node_modules'],
     alias: {
+      '@mui/markdown': path.resolve(__dirname, './packages/markdown'),
       '@mui/material': path.resolve(__dirname, './packages/mui-material/src'),
       '@mui/docs': path.resolve(__dirname, './packages/mui-docs/src'),
       '@mui/icons-material': path.resolve(__dirname, './packages/mui-icons-material/lib'),
