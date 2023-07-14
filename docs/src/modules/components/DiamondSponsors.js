@@ -125,8 +125,8 @@ export default function DiamondSponsors() {
           >
             <Box
               component="img"
-              height="30px"
-              width="137px"
+              height="27px"
+              width="123px"
               src="/static/sponsors/octopus-light.svg"
               alt="octopus"
               title="Repeatable, reliable deployments"
@@ -171,8 +171,8 @@ export default function DiamondSponsors() {
           >
             <Box
               component="img"
-              height="26px"
-              width="93px"
+              height="20px"
+              width="74px"
               src="https://brand.zesty.io/zesty-io-logo-horizontal.svg"
               alt="zesty.io"
               title="The only Next.js CMS you need"
