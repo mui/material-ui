@@ -199,7 +199,7 @@ jobs:
       - install_js
       - run:
           name: Eslint
-          command: yarn lint:ci
+          command: yarn eslint:ci
       - run:
           name: Stylelint
           command: yarn stylelint
@@ -222,6 +222,9 @@ jobs:
           command: yarn proptypes
       - run:
           name: '`yarn proptypes` changes committed?'
+          command: git diff --exit-code
+      - run:
+          name: '`yarn rsc:build` changes committed?'
           command: git diff --exit-code
       - run:
           name: Generate the documentation
@@ -266,15 +269,6 @@ jobs:
             yarn workspace @mui/material typescript:module-augmentation
             yarn workspace @mui/base typescript:module-augmentation
             yarn workspace @mui/joy typescript:module-augmentation
-
-      - restore_cache:
-          name: Restore generated declaration files
-          keys:
-            # #default-branch-switch
-            # We assume that the target branch is `master` and that declaration files are persisted in commit order.
-            # "If there are multiple matches, the most recently generated cache will be used."
-            - typescript-declaration-files-master
-
       - run:
           name: Diff declaration files
           command: |
@@ -283,7 +277,6 @@ jobs:
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
             yarn lerna run build:types
             git --no-pager diff
-
       - run:
           name: Any defect declaration files?
           command: node scripts/testBuiltTypes.mjs

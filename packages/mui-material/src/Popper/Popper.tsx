@@ -1,3 +1,4 @@
+'use client';
 import BasePopper, { PopperProps as BasePopperProps } from '@mui/base/Popper';
 import { Direction, SxProps, useThemeWithoutDefault as useTheme } from '@mui/system';
 import { HTMLElementType, refType } from '@mui/utils';

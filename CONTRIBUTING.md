@@ -152,7 +152,7 @@ Make sure the following is true:
 Because we will only merge a Pull Request for which all tests pass. The following items need to be true:
 
 - The code is formatted. If the code was changed, run `yarn prettier`.
-- The code is linted. If the code was changed, run `yarn lint`.
+- The code is linted. If the code was changed, run `yarn eslint`.
 - The code is type-safe. If TypeScript sources/declarations were changed, `yarn typescript` passed.
 - The API docs are up-to-date. If API was changed, run `yarn proptypes && yarn docs:api`.
 - The demos are up-to-date. If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes. See [about writing demos](#3-write-the-content-of-the-demo).
@@ -253,7 +253,7 @@ $ yarn docs:api
 Please follow the coding style of the project. MUI uses prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
 
 - `yarn prettier` reformats the code.
-- `yarn lint` runs manually the linting rules.
+- `yarn eslint` runs manually the linting rules.
 
 Finally, when you submit a Pull Request, they are run again by our continuous integration tools, but hopefully, your code is already clean!
 

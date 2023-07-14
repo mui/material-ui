@@ -51,7 +51,7 @@ For instance, if the form's **Submit** button needs to change states after the u
 The following demo shows how to create and style a form that uses Form Control to wrap the elements of the form.
 Note that it also uses the `useFormControlContext` hook in order to pass props to the custom Input—see the [Hook](#hook) section below for more details.
 
-{{"demo": "BasicFormControl.js"}}
+{{"demo": "BasicFormControl"}}
 
 #### Usage with TypeScript
 
@@ -93,9 +93,16 @@ The demo below shows how to integrate this hook with its component counterpart:
 
 {{"demo": "UseFormControl.js", "defaultCodeOpen": false}}
 
-Note that even though Form Control supports both controlled and uncontrolled-style APIs
-(i.e. it accepts `value` and `defaultValue` props), `useFormControlContext` returns only the controlled `value`.
+Note that even though Form Control supports both controlled and uncontrolled-style APIs (i.e. it accepts `value` and `defaultValue` props), `useFormControlContext` returns only the controlled `value`.
 This way, you don't have to implement both in your custom input—Form Control does this for you.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 ## Customization
 

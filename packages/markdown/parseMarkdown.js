@@ -3,6 +3,22 @@ const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
 
+/**
+ * Option used by `marked` the library parsing markdown.
+ */
+const markedOptions = {
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  headerPrefix: false,
+  headerIds: false,
+  mangle: false,
+};
+
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
 const descriptionRegExp = /<p class="description">(.*?)<\/p>/s;
@@ -188,7 +204,7 @@ function getDescription(markdown) {
  * @param {string} markdown
  */
 function renderInline(markdown) {
-  return marked.parseInline(markdown);
+  return marked.parseInline(markdown, markedOptions);
 }
 
 // Help rank mui.com on component searches first.
@@ -241,7 +257,9 @@ function createRender(context) {
       }
 
       // Remove links to avoid nested links in the TOCs
-      const headingText = headingHtml.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
+      let headingText = headingHtml.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
+      // Remove `code` tags
+      headingText = headingText.replace(/<code\b[^>]*>/i, '').replace(/<\/code>/i, '');
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first
@@ -350,20 +368,6 @@ function createRender(context) {
       ].join('')}\n`;
     };
 
-    const markedOptions = {
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      headerPrefix: false,
-      headerIds: false,
-      mangle: false,
-      renderer,
-    };
-
     marked.use({
       extensions: [
         {
@@ -399,7 +403,7 @@ function createRender(context) {
       ],
     });
 
-    return marked(markdown, markedOptions);
+    return marked(markdown, { ...markedOptions, renderer });
   }
 
   return render;
@@ -408,7 +412,7 @@ function createRender(context) {
 const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
 
 /**
- * @param {string} product
+ * @param {string} productId
  * @example 'material'
  * @param {string} componentPkg
  * @example 'mui-base'
@@ -416,17 +420,17 @@ const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'Tex
  * @example 'Button'
  * @returns {string}
  */
-function resolveComponentApiUrl(product, componentPkg, component) {
-  if (!product) {
+function resolveComponentApiUrl(productId, componentPkg, component) {
+  if (!productId) {
     return `/api/${kebabCase(component)}/`;
   }
-  if (product === 'x-date-pickers') {
+  if (productId === 'x-date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
   }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
   }
-  return `/${product}/api/${kebabCase(component)}/`;
+  return `/${productId}/api/${kebabCase(component)}/`;
 }
 
 /**

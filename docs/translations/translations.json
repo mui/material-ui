@@ -228,7 +228,7 @@
     "/base-ui/getting-started/usage": "Usage",
     "/base-ui/getting-started/customization": "Customization",
     "/base-ui/react-": "Components",
-    "/base-ui/react-components": "All components",
+    "/base-ui/all-components": "All components",
     "inputs": "Inputs",
     "/base-ui/react-autocomplete": "Autocomplete",
     "/base-ui/react-button": "Button",
@@ -304,6 +304,7 @@
     "/base-ui/guides": "How-to guides",
     "/base-ui/guides/working-with-tailwind-css": "Working with Tailwind CSS",
     "/base-ui/guides/overriding-component-structure": "Overriding component structure",
+    "/base-ui/guides/next-js-app-router": "Integrating with Next.js App Router",
     "/material-ui/getting-started-group": "Getting started",
     "/material-ui/getting-started": "Overview",
     "/material-ui/getting-started/installation": "Installation",
@@ -414,6 +415,7 @@
     "/material-ui/guides/content-security-policy": "Content Security Policy",
     "/material-ui/guides/right-to-left": "Right-to-left",
     "/material-ui/guides/shadow-dom": "Shadow DOM",
+    "/material-ui/guides/next-js-app-router": "Integrating with Next.js App Router",
     "/material-ui/experimental-api": "Experimental APIs",
     "/material-ui/experimental-api/classname-generator": "ClassName generator",
     "CSS theme variables": "CSS theme variables",
@@ -506,6 +508,7 @@
     "/joy-ui/guides": "How-to guides",
     "/joy-ui/guides/overriding-component-structure": "Overriding component structure",
     "/joy-ui/guides/using-joy-ui-and-material-ui-together": "Joy UI and Material UI together",
-    "/joy-ui/guides/using-icon-libraries": "Using icon libraries"
+    "/joy-ui/guides/using-icon-libraries": "Using icon libraries",
+    "/joy-ui/guides/next-js-app-router": "Integrating with Next.js App Router"
   }
 }

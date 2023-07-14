@@ -60,7 +60,7 @@ The following demo shows how to create and style a Menu component.
 Click **Dashboard** to view the menu.
 Notice that it uses the built-in [Popper](/base-ui/react-popper/) component to break out of its parent container visually:
 
-{{"demo": "UnstyledMenuSimple.js"}}
+{{"demo": "UnstyledMenuBasic"}}
 
 ### Anatomy
 

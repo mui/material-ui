@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import useButton from '../useButton';

@@ -1,3 +1,4 @@
+'use client';
 export { default } from './useList';
 export * from './useList.types';
 
