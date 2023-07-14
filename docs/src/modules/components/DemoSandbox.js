@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import { create } from 'jss';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
@@ -14,7 +13,6 @@ import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styl
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
 
