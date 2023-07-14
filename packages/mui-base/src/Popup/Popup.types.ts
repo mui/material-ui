@@ -41,9 +41,16 @@ interface PopupSettings {
   strategy?: Strategy;
 }
 
+export interface PopupChildrenProps {
+  placement: Placement;
+  in: boolean;
+  onExited: () => void;
+  onEnter: () => void;
+}
+
 export interface PopupOwnProps extends PopupSettings {
   anchor?: VirtualElement | HTMLElement | (() => HTMLElement) | (() => VirtualElement) | null;
-  children?: React.ReactNode;
+  children?: React.ReactNode | ((props: PopupChildrenProps) => React.ReactNode);
   container?: PortalProps['container'];
   disablePortal?: boolean;
   keepMounted?: boolean;
@@ -54,6 +61,7 @@ export interface PopupOwnProps extends PopupSettings {
   slotProps?: {
     root?: SlotComponentProps<'div', PopupRootSlotPropsOverrides, PopupProps>;
   };
+  withTransition?: boolean;
 }
 
 export interface PopupSlots {

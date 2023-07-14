@@ -11,7 +11,7 @@ import Portal from '../Portal';
 import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getPopupUtilityClass } from './popupClasses';
-import { PopupOwnerState, PopupProps } from './Popup.types';
+import { PopupChildrenProps, PopupOwnerState, PopupProps } from './Popup.types';
 
 function useUtilityClasses(ownerState: PopupOwnerState) {
   const { open } = ownerState;
@@ -47,14 +47,15 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     children,
     container,
     disablePortal,
-    open,
+    open = false,
     middleware,
     keepMounted,
     offset: offsetProp,
-    placement,
+    placement = 'bottom',
     strategy,
     slots = {},
     slotProps = {},
+    withTransition,
     ...other
   } = props;
 
@@ -70,6 +71,15 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
   });
 
   const handleRef = useForkRef(refs.setFloating, forwardedRef);
+  const [exited, setExited] = React.useState(true);
+
+  const handleEntering = () => {
+    setExited(false);
+  };
+
+  const handleExited = () => {
+    setExited(true);
+  };
 
   useEnhancedEffect(() => {
     if (keepMounted && open && elements.reference && elements.floating) {
@@ -99,15 +109,22 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     },
   });
 
-  const shouldRender = open || keepMounted;
+  const shouldRender = open || keepMounted || (withTransition && !exited);
 
   if (!shouldRender) {
     return null;
   }
 
+  const childProps: PopupChildrenProps = {
+    placement,
+    in: open,
+    onEnter: handleEntering,
+    onExited: handleExited,
+  };
+
   return (
     <Portal disablePortal={disablePortal} container={container}>
-      <Root {...rootProps}>{children}</Root>
+      <Root {...rootProps}>{typeof children === 'function' ? children(childProps) : children}</Root>
     </Portal>
   );
 });
