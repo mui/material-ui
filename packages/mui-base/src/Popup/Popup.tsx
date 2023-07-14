@@ -94,6 +94,8 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     ...props,
   };
 
+  const display = !open && keepMounted && (!withTransition || exited) ? 'none' : undefined;
+
   const classes = useUtilityClasses(ownerState);
 
   const Root = slots?.root ?? 'div';
@@ -105,7 +107,7 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     className: classes.root,
     additionalProps: {
       ref: handleRef,
-      style: floatingStyles,
+      style: { ...floatingStyles, display },
     },
   });
 

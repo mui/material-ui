@@ -69,13 +69,13 @@ const PopAnimation = styled(Animated)`
   @keyframes closeAnimation {
     0% {
       opacity: 1;
-      transform: translateY(0px) scale(1);
+      transform: scale(1) rotate(0deg);
       filter: blur(0px);
     }
 
     100% {
       opacity: 0;
-      transform: scale(1.2);
+      transform: scale(1.2) rotate(4deg);
       filter: blur(3px);
     }
   }
@@ -85,7 +85,7 @@ const PopAnimation = styled(Animated)`
   }
 
   &.close {
-    animation: closeAnimation 0.2s ease-out forwards;
+    animation: closeAnimation 0.4s ease-out forwards;
   }
 `;
 
