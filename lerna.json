@@ -1,5 +1,4 @@
 {
   "npmClient": "yarn",
-  "version": "independent",
-  "useNx": true
+  "version": "independent"
 }
