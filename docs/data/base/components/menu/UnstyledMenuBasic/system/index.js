@@ -1,86 +1,23 @@
 import * as React from 'react';
+import Dropdown from '@mui/base/Dropdown';
 import Menu from '@mui/base/Menu';
+import MenuButton from '@mui/base/MenuButton';
 import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
-import Button, { buttonClasses } from '@mui/base/Button';
-import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
-import { ListActionTypes } from '@mui/base/useList';
 
 export default function UnstyledMenuSimple() {
-  const [buttonElement, setButtonElement] = React.useState(null);
-  const [isOpen, setOpen] = React.useState(false);
-  const menuActions = React.useRef(null);
-  const preventReopen = React.useRef(false);
-
-  const updateAnchor = React.useCallback((node) => {
-    setButtonElement(node);
-  }, []);
-
-  const handleButtonClick = (event) => {
-    if (preventReopen.current) {
-      event.preventDefault();
-      preventReopen.current = false;
-      return;
-    }
-
-    setOpen((open) => !open);
-  };
-
-  const handleButtonMouseDown = () => {
-    if (isOpen) {
-      // Prevents the menu from reopening right after closing
-      // when clicking the button.
-      preventReopen.current = true;
-    }
-  };
-
-  const handleButtonKeyDown = (event) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setOpen(true);
-      if (event.key === 'ArrowUp') {
-        // Focus the last item when pressing ArrowUp.
-        menuActions.current?.dispatch({
-          type: ListActionTypes.keyDown,
-          key: event.key,
-          event,
-        });
-      }
-    }
-  };
-
   const createHandleMenuClick = (menuItem) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
-      setOpen(false);
-      buttonElement?.focus();
     };
   };
 
   return (
-    <div>
-      <TriggerButton
-        type="button"
-        onClick={handleButtonClick}
-        onKeyDown={handleButtonKeyDown}
-        onMouseDown={handleButtonMouseDown}
-        ref={updateAnchor}
-        aria-controls={isOpen ? 'simple-menu' : undefined}
-        aria-expanded={isOpen || undefined}
-        aria-haspopup="menu"
-      >
-        Dashboard
-      </TriggerButton>
-
+    <Dropdown>
+      <TriggerButton>Dashboard</TriggerButton>
       <Menu
-        actions={menuActions}
-        open={isOpen}
-        onOpenChange={(open) => {
-          setOpen(open);
-        }}
-        anchorEl={buttonElement}
-        slots={{ root: StyledPopper, listbox: StyledListbox }}
-        slotProps={{ listbox: { id: 'simple-menu' } }}
+        slots={{ root: StyledListbox }}
+        slotProps={{ root: { id: 'simple-menu' } }}
       >
         <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
           Profile
@@ -92,7 +29,7 @@ export default function UnstyledMenuSimple() {
           Log out
         </StyledMenuItem>
       </Menu>
-    </div>
+    </Dropdown>
   );
 }
 
@@ -134,9 +71,8 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 6px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
-  };
+  box-shadow: 0px 2px 16px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  z-index: 1;
   `,
 );
 
@@ -163,13 +99,13 @@ const StyledMenuItem = styled(MenuItem)(
   }
 
   &:hover:not(.${menuItemClasses.disabled}) {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[50]};
+    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
   `,
 );
 
-const TriggerButton = styled(Button)(
+const TriggerButton = styled(MenuButton)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 600;
@@ -192,13 +128,9 @@ const TriggerButton = styled(Button)(
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &.${buttonClasses.focusVisible} {
+  &:focus-visible {
     border-color: ${blue[400]};
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
   `,
 );
-
-const StyledPopper = styled(Popper)`
-  z-index: 1;
-`;
