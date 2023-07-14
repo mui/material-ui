@@ -117,7 +117,7 @@ export default function XHero() {
             components. We&apos;re kicking it off with the most powerful Data Grid on the market.
           </Typography>
           <GetStartedButtons
-            installation="npm install @mui/x-data-grid"
+            installation=""
             to={ROUTES.advancedComponents}
             sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
           />
