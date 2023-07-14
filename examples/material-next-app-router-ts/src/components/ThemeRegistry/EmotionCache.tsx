@@ -8,7 +8,7 @@ import type { EmotionCache, Options as OptionsOfCreateCache } from '@emotion/cac
 
 export type NextAppDirEmotionCacheProviderProps = {
   /** This is the options passed to createCache() from 'import createCache from "@emotion/cache"' */
-  options: Omit<OptionsOfCreateCache, 'insertionPoint'>;
+  options?: Omit<OptionsOfCreateCache, 'insertionPoint'>;
   /** By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"' */
   CacheProvider?: (props: {
     value: EmotionCache;
@@ -17,53 +17,52 @@ export type NextAppDirEmotionCacheProviderProps = {
   children: React.ReactNode;
 };
 
-// This implementation is taken from https://github.com/garronej/tss-react/blob/main/src/next/appDir.tsx
 export default function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionCacheProviderProps) {
   const { options, CacheProvider = DefaultCacheProvider, children } = props;
 
-  const [{ cache, flush }] = React.useState(() => {
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    const cache = createCache(options);
-    cache.compat = true;
-    const prevInsert = cache.insert;
-    let inserted: string[] = [];
-    cache.insert = (...args) => {
-      const serialized = args[1];
-      if (cache.inserted[serialized.name] === undefined) {
-        inserted.push(serialized.name);
-      }
-      return prevInsert(...args);
-    };
-    // eslint-disable-next-line @typescript-eslint/no-shadow
+  const [registry] = React.useState(() => {
+    const cache = createCache({ key: 'mui-style', ...options });
+
+    // Adapted from `extractCriticalToChunks` from emotion server
+    // https://github.com/emotion-js/emotion/blob/main/packages/server/src/create-instance/extract-critical-to-chunks.js
     const flush = () => {
-      const prevInserted = inserted;
-      inserted = [];
-      return prevInserted;
+      const styles = [];
+      const regularCssIds: string[] = [];
+      let regularCss = '';
+
+      Object.keys(cache.inserted).forEach((id) => {
+        if (cache.registered[`${cache.key}-${id}`]) {
+          // regular css can be added in one style tag
+          regularCssIds.push(id);
+          regularCss += cache.inserted[id];
+        } else {
+          // each global styles require a new entry so it can be independently flushed
+          styles.push({
+            key: `${cache.key}-global`,
+            ids: [id],
+            css: cache.inserted[id],
+          });
+        }
+      });
+
+      styles.push({ key: cache.key, ids: regularCssIds, css: regularCss });
+
+      return styles;
     };
     return { cache, flush };
   });
 
   useServerInsertedHTML(() => {
-    const names = flush();
-    if (names.length === 0) {
-      return null;
-    }
-    let styles = '';
-    // eslint-disable-next-line no-restricted-syntax
-    for (const name of names) {
-      styles += cache.inserted[name];
-    }
-    return (
+    const styles = registry.flush();
+    return styles.map((style) => (
       <style
-        key={cache.key}
-        data-emotion={`${cache.key} ${names.join(' ')}`}
+        data-emotion={`${style.key} ${style.ids.join(' ')}`}
+        key={style.key}
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{
-          __html: styles,
-        }}
+        dangerouslySetInnerHTML={{ __html: style.css }}
       />
-    );
+    ));
   });
 
-  return <CacheProvider value={cache}>{children}</CacheProvider>;
+  return <CacheProvider value={registry.cache}>{children}</CacheProvider>;
 }
