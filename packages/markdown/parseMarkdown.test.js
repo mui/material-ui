@@ -158,6 +158,45 @@ authors:
         ]);
       });
     });
+
+    describe('Split markdown into an array, separating codeblocks', () => {
+      it('uses a `<codeblock>` tag to split', () => {
+        expect(
+          getContents(
+            [
+              '## Tabs',
+              '',
+              '<codeblock storageKey="package-manager">',
+              '',
+              '```bash npm',
+              'npm install @mui/material @emotion/react @emotion/styled',
+              '```',
+              '',
+              '```bash yarn',
+              'yarn add @mui/material @emotion/react @emotion/styled',
+              '```',
+              '',
+              '</codeblock>',
+            ].join('\n'),
+          ),
+        ).to.deep.equal([
+          '## Tabs\n\n',
+          [
+            '<codeblock storageKey="package-manager">',
+            '',
+            '```bash npm',
+            'npm install @mui/material @emotion/react @emotion/styled',
+            '```',
+            '',
+            '```bash yarn',
+            'yarn add @mui/material @emotion/react @emotion/styled',
+            '```',
+            '',
+            '</codeblock>',
+          ].join('\n'),
+        ]);
+      });
+    });
   });
 
   describe('prepareMarkdown', () => {
