@@ -12,10 +12,12 @@ const StyledPopup = styled(BasePopup)`
 const PopupBody = styled('div')`
   padding: 16px;
   background-color: white;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05), 0 3px 2px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 0.05), 0 3px 2px -2px rgb(0 0 0 / 0.1);
   border-radius: 4px;
+  /* stylelint-disable custom-property-pattern */
   font-family: var(--joy-fontFamily-body);
   font-size: var(--joy-fontSize-sm);
+  /* stylelint-enable custom-property-pattern */
 `;
 
 const Section = styled('div')`
@@ -49,7 +51,7 @@ function Animated(
 }
 
 const PopAnimation = styled(Animated)`
-  @keyframes openAnimation {
+  @keyframes open-animation {
     0% {
       opacity: 0;
       transform: translateY(-8px) scale(0.95);
@@ -62,15 +64,15 @@ const PopAnimation = styled(Animated)`
 
     100% {
       opacity: 1;
-      transform: translateY(0px) scale(1);
+      transform: translateY(0) scale(1);
     }
   }
 
-  @keyframes closeAnimation {
+  @keyframes close-animation {
     0% {
       opacity: 1;
       transform: scale(1) rotate(0deg);
-      filter: blur(0px);
+      filter: blur(0);
     }
 
     100% {
@@ -81,11 +83,11 @@ const PopAnimation = styled(Animated)`
   }
 
   &.open {
-    animation: openAnimation 0.2s ease-out forwards;
+    animation: open-animation 0.2s ease-out forwards;
   }
 
   &.close {
-    animation: closeAnimation 0.4s ease-out forwards;
+    animation: close-animation 0.4s ease-out;
   }
 `;
 
