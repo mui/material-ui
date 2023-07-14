@@ -79,12 +79,12 @@ export default function DiamondSponsors() {
           {t('diamondSponsors')}
         </Button>
         <Stack
-          spacing={1.5}
+          spacing={{ xs: 1, sm: 1.5 }}
           sx={[
             (theme) => ({
               '& a': {
                 width: '100%',
-                height: 52,
+                height: { xs: 36, sm: 50 },
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -125,8 +125,8 @@ export default function DiamondSponsors() {
           >
             <Box
               component="img"
-              height="27px"
-              width="123px"
+              height="25px"
+              width="116px"
               src="/static/sponsors/octopus-light.svg"
               alt="octopus"
               title="Repeatable, reliable deployments"
@@ -171,8 +171,8 @@ export default function DiamondSponsors() {
           >
             <Box
               component="img"
-              height="20px"
-              width="74px"
+              height="19px"
+              width="70px"
               src="https://brand.zesty.io/zesty-io-logo-horizontal.svg"
               alt="zesty.io"
               title="The only Next.js CMS you need"
