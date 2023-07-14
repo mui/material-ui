@@ -19,7 +19,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
 
   const handleCopy = () => {
     setCopied(true);
-    copy(installation!).then(() => {
+    copy(installation as any).then(() => {
       setTimeout(() => setCopied(false), 2000);
     });
   };
