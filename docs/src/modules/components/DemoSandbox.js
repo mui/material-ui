@@ -163,9 +163,14 @@ const jss = create({
  * to an `iframe` if `iframe={true}`.
  */
 function DemoSandbox(props) {
-  const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
-  const { children: childrenProp, iframe = false, name, onResetDemoClick, ...other } = props;
+  const {
+    children: childrenProp,
+    iframe = false,
+    name,
+    onResetDemoClick,
+    productId,
+    ...other
+  } = props;
   const Sandbox = iframe ? DemoIframe : React.Fragment;
   const sandboxProps = iframe ? { name, ...other } : {};
 
@@ -176,7 +181,7 @@ function DemoSandbox(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      {canonicalAs.startsWith('/joy-ui/') ? (
+      {productId === 'joy-ui' ? (
         children
       ) : (
         <StylesProvider jss={jss}>
@@ -192,6 +197,7 @@ DemoSandbox.propTypes = {
   iframe: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,
+  productId: PropTypes.string,
 };
 
 export default React.memo(DemoSandbox);
