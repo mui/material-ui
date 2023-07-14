@@ -1,7 +1,7 @@
 ---
-title: Introducing MUI X v6.0.0
-description: Introducing the new major version of the advanced components.
-date: 2023-03-06T00:00:00.000Z
+title: The newest additions to MUI X v6
+description: Support for time zones, a new filtering UI, charts! and more
+date: 2023-07-30T00:00:00.000Z
 authors: ['josefreitas']
 card: true
 tags: ['MUI X', 'News']
