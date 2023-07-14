@@ -57,7 +57,7 @@ export default function DiamondSponsors() {
       >
         <Button
           component="a"
-          href="/material-ui/discover-more/backers/#diamond"
+          href="/material-ui/discover-more/backers/"
           target="_blank"
           rel="noopener nofollow"
           size="small"
