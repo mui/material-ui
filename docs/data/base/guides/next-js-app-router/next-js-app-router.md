@@ -5,7 +5,7 @@
 :::info
 Starting fresh on a new App Router-based project?
 
-Jump right into the code with this [example repo](https://github.com/mui/material-ui/tree/master/examples/base-next-app-router-tailwind-ts).
+Jump right into the code with [this example: Base UI - Next.js App Router with Tailwind CSS example in TypeScript](https://github.com/mui/material-ui/tree/master/examples/base-next-app-router-tailwind-ts).
 :::
 
 ## Next.js and React Server Components
