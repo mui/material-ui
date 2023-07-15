@@ -114,7 +114,8 @@ export default function ThemeRegistry(props) {
 }
 
 // app/layout.js
-export default function RootLayout({ children }) {
+export default function RootLayout(props) {
+  const { children } = props;
   return (
     <html lang="en">
       <body>

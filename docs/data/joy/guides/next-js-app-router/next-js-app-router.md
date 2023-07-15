@@ -92,7 +92,8 @@ export default function ThemeRegistry(props) {
 }
 
 // app/layout.tsx
-export default function RootLayout({ children }) {
+export default function RootLayout(props) {
+  const { children } = props;
   return (
     <html lang="en">
       <body>

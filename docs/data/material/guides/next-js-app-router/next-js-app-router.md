@@ -29,7 +29,8 @@ If you're using the default theme, you can add Material UI components to Next.js
 
 ```jsx
 // app/layout.js - no directives needed
-export default function RootLayout({ children }) {
+export default function RootLayout(props) {
+  const { children } = props;
   return (
     <html lang="en">
       <body>{children}</body>
@@ -130,7 +131,8 @@ export default function ThemeRegistry(props) {
 }
 
 // app/layout.js
-export default function RootLayout({ children }) {
+export default function RootLayout(props) {
+  const { children } = props;
   return (
     <html lang="en">
       <body>
