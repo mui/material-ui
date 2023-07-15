@@ -11,6 +11,7 @@ module.exports = {
     // Helps debugging and build perf.
     // Bundle size is irrelevant for local serving
     minimize: false,
+    concatenateModules: false,
   },
   output: {
     path: path.resolve(__dirname, './build'),
