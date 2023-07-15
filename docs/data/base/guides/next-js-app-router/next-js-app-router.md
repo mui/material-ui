@@ -10,7 +10,7 @@ Jump right into the code with this [example repo](https://github.com/mui/materia
 
 ## Next.js and React Server Components
 
-The Next.js App Router implements React Server Components, a [new feature](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#changes-since-v1) introduced in React 18.
+The Next.js App Router implements React Server Components, [an upcoming feature for React](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md).
 
 To support the App Router, currently all components and hooks from Base UI and other MUI libraries are exported with the `"use client"` directive.
 
