@@ -8,7 +8,7 @@ import type { EmotionCache, Options as OptionsOfCreateCache } from '@emotion/cac
 
 export type NextAppDirEmotionCacheProviderProps = {
   /** This is the options passed to createCache() from 'import createCache from "@emotion/cache"' */
-  options?: Omit<OptionsOfCreateCache, 'insertionPoint'>;
+  options: Omit<OptionsOfCreateCache, 'insertionPoint'>;
   /** By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"' */
   CacheProvider?: (props: {
     value: EmotionCache;
@@ -17,51 +17,78 @@ export type NextAppDirEmotionCacheProviderProps = {
   children: React.ReactNode;
 };
 
+// Adatped from https://github.com/garronej/tss-react/blob/main/src/next/appDir.tsx
 export default function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionCacheProviderProps) {
   const { options, CacheProvider = DefaultCacheProvider, children } = props;
 
   const [registry] = React.useState(() => {
-    const cache = createCache({ key: 'mui-style', ...options });
-
-    // Adapted from `extractCriticalToChunks` from emotion server
-    // https://github.com/emotion-js/emotion/blob/main/packages/server/src/create-instance/extract-critical-to-chunks.js
+    const cache = createCache(options);
+    cache.compat = true;
+    const prevInsert = cache.insert;
+    let inserted: { name: string; isGlobal: boolean }[] = [];
+    cache.insert = (...args) => {
+      const [selector, serialized] = args;
+      if (cache.inserted[serialized.name] === undefined) {
+        inserted.push({
+          name: serialized.name,
+          isGlobal: selector === '',
+        });
+      }
+      return prevInsert(...args);
+    };
     const flush = () => {
-      const styles = [];
-      const regularCssIds: string[] = [];
-      let regularCss = '';
-
-      Object.keys(cache.inserted).forEach((id) => {
-        if (cache.registered[`${cache.key}-${id}`]) {
-          // regular css can be added in one style tag
-          regularCssIds.push(id);
-          regularCss += cache.inserted[id];
-        } else {
-          // each global styles require a new entry so it can be independently flushed
-          styles.push({
-            key: `${cache.key}-global`,
-            ids: [id],
-            css: cache.inserted[id],
-          });
-        }
-      });
-
-      styles.push({ key: cache.key, ids: regularCssIds, css: regularCss });
-
-      return styles;
+      const prevInserted = inserted;
+      inserted = [];
+      return prevInserted;
     };
     return { cache, flush };
   });
 
   useServerInsertedHTML(() => {
-    const styles = registry.flush();
-    return styles.map((style) => (
-      <style
-        data-emotion={`${style.key} ${style.ids.join(' ')}`}
-        key={style.key}
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: style.css }}
-      />
-    ));
+    const inserted = registry.flush();
+    if (inserted.length === 0) {
+      return null;
+    }
+    let styles = '';
+    let dataEmotionAttribute = registry.cache.key;
+
+    const globals: {
+      name: string;
+      style: string;
+    }[] = [];
+
+    inserted.forEach(({ name, isGlobal }) => {
+      const style = registry.cache.inserted[name];
+
+      if (typeof style !== 'boolean') {
+        if (isGlobal) {
+          globals.push({ name, style });
+        } else {
+          styles += style;
+          dataEmotionAttribute += ` ${name}`;
+        }
+      }
+    });
+
+    return (
+      <React.Fragment>
+        {globals.map(({ name, style }) => (
+          <style
+            key={name}
+            data-emotion={`${registry.cache.key}-global ${name}`}
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: style }}
+          />
+        ))}
+        {styles !== '' && (
+          <style
+            data-emotion={dataEmotionAttribute}
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: styles }}
+          />
+        )}
+      </React.Fragment>
+    );
   });
 
   return <CacheProvider value={registry.cache}>{children}</CacheProvider>;
