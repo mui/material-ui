@@ -117,11 +117,9 @@ import Typography from '@mui/joy/Typography';
 
 export default function Page() {
   return (
-    <>
-      <Sheet variant="outlined">
-        <Typography fontSize="sm">Hello World</Typography>
-      </Sheet>
-    </>
+    <Sheet variant="outlined">
+      <Typography fontSize="sm">Hello World</Typography>
+    </Sheet>
   );
 }
 ```
@@ -136,19 +134,17 @@ import Sheet from '@mui/joy/Sheet';
 
 export default function Page() {
   return (
-    <>
-      <Sheet variant="outlined">
-        {/* Next.js won't render this button without 'use-client' */}
-        <Button
-          variant="outlined"
-          onClick={() => {
-            console.log('handle click');
-          }}
-        >
-          Submit
-        </Button>
-      </Sheet>
-    </>
+    <Sheet variant="outlined">
+      {/* Next.js won't render this button without 'use-client' */}
+      <Button
+        variant="outlined"
+        onClick={() => {
+          console.log('handle click');
+        }}
+      >
+        Submit
+      </Button>
+    </Sheet>
   );
 }
 ```

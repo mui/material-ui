@@ -168,7 +168,7 @@ A common customization method in Base UI is to pass a callback to slots in `slot
 
 export default function Page() {
   return (
-    <>
+    <React.Fragment>
       {/* Next.js won't render this button without 'use-client'*/}
       <Button
         slotProps={{
@@ -190,7 +190,7 @@ export default function Page() {
       >
         Return
       </Button>
-    </>
+    </React.Fragment>
   );
 }
 ```

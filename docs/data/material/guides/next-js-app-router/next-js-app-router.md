@@ -191,15 +191,13 @@ import Typography from '@mui/material/Typography';
 
 export default function Page() {
   return (
-    <>
-      <Container maxWidth="lg">
-        <Box>
-          <Card raised>
-            <Typography variant="h2">Hello World</Typography>
-          </Card>
-        </Box>
-      </Container>
-    </>
+    <Container maxWidth="lg">
+      <Box>
+        <Card raised>
+          <Typography variant="h2">Hello World</Typography>
+        </Card>
+      </Box>
+    </Container>
   );
 }
 ```
@@ -214,19 +212,17 @@ import Container from '@mui/material/Container';
 
 export default function Page() {
   return (
-    <>
-      <Container maxWidth="lg">
-        {/* Next.js won't render this button without 'use-client' */}
-        <Button
-          variant="text"
-          onClick={() => {
-            console.log('handle click');
-          }}
-        >
-          Submit
-        </Button>
-      </Container>
-    </>
+    <Container maxWidth="lg">
+      {/* Next.js won't render this button without 'use-client' */}
+      <Button
+        variant="text"
+        onClick={() => {
+          console.log('handle click');
+        }}
+      >
+        Submit
+      </Button>
+    </Container>
   );
 }
 ```
