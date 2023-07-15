@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -24,10 +25,15 @@ export default function Core() {
       <main id="main-content">
         <MaterialHero />
         <References companies={CORE_CUSTOMERS} />
+        <Divider />
         <MaterialComponents />
+        <Divider />
         <MaterialTheming />
+        <Divider />
         <MaterialStyling />
+        <Divider />
         <MaterialHeroEnd />
+        <Divider />
       </main>
       <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/material-ui" />
     </BrandingCssVarsProvider>

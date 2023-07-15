@@ -744,9 +744,9 @@ function AboutContent() {
               'Autonomy. We want to create a safe, high-trust team.',
               "Excellence. We're aiming high, and we know it.",
             ].map((text) => (
-              <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
+              <Box key={text} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                 <IconImage name="yes" />
-                <Typography variant="body2" color="text.primary" fontWeight={700} sx={{ ml: 1 }}>
+                <Typography variant="body2" color="text.primary" fontWeight={600} sx={{ ml: 1.5 }}>
                   {text}
                 </Typography>
               </Box>

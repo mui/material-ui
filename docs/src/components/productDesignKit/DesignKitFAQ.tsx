@@ -159,7 +159,7 @@ export default function DesignKitFAQ() {
               borderColor: 'grey.300',
               bgcolor: 'white',
               ...theme.applyDarkStyles({
-                borderColor: 'primaryDark.400',
+                borderColor: 'primaryDark.600',
                 bgcolor: 'primaryDark.800',
               }),
             })}

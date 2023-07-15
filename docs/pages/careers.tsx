@@ -283,7 +283,7 @@ function CareersContent() {
       <Container>
         <Box
           sx={{
-            height: '40vh',
+            height: '30vh',
             minHeight: 300,
             display: 'flex',
             flexDirection: 'column',
@@ -308,8 +308,8 @@ function CareersContent() {
               minHeight: 48, // a hack to reduce CLS (layout shift)
             }}
           >
-            Our mission is to enable developers at every level of ability to build great UIs,
-            faster.
+            Our mission is to enable developers at every level of ability
+            <br /> to build great UIs, faster.
           </Typography>
         </Box>
       </Container>
@@ -345,9 +345,9 @@ function CareersContent() {
                 'Freedom. We work from anywhere in the world.',
                 'Autonomy. We want to create a safe, high-trust team.',
               ].map((text) => (
-                <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
+                <Box key={text} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                   <IconImage name="yes" />
-                  <Typography variant="body2" color="text.primary" fontWeight={700} sx={{ ml: 1 }}>
+                  <Typography variant="body2" color="text.primary" fontWeight={600} sx={{ ml: 1 }}>
                     {text}
                   </Typography>
                 </Box>
@@ -380,17 +380,23 @@ function CareersContent() {
               ],
               ['Time off:', 'We provide 33 days of paid time off globally.'],
             ].map((textArray) => (
-              <Box key={textArray[0]} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
+              <Box key={textArray[0]} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                 <IconImage name="yes" />
                 <Typography variant="body2" color="text.primary" sx={{ ml: 1 }}>
-                  <span style={{ fontWeight: 700 }}>{`${textArray[0]}  `}</span>
+                  <span style={{ fontWeight: 600 }}>{`${textArray[0]}  `}</span>
                   {textArray[1]}
                 </Typography>
               </Box>
             ))}
           </Grid>
           <Grid item xs={12} sm={12} md={6}>
-            <Paper component={Link} href={ROUTES.blog} noLinkStyle variant="outlined" sx={{ p: 2 }}>
+            <Paper
+              component={Link}
+              href={ROUTES.blog}
+              noLinkStyle
+              variant="outlined"
+              sx={{ p: 2, width: { xs: '100%', sm: '50%' } }}
+            >
               <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
                 Blog
               </Typography>
@@ -554,7 +560,7 @@ function CareersContent() {
                 borderColor: 'grey.300',
                 bgcolor: 'white',
                 ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.400',
+                  borderColor: 'primaryDark.600',
                   bgcolor: 'primaryDark.800',
                 }),
               })}

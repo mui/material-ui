@@ -6,10 +6,10 @@ import GradientText from 'docs/src/components/typography/GradientText';
 
 export default function HeroPricing() {
   return (
-    <Container sx={{ mb: 8 }}>
+    <Container>
       <Box
         sx={{
-          height: '40vh',
+          height: '30vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',

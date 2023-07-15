@@ -1,5 +1,6 @@
 import * as React from 'react';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
+import { alpha } from '@mui/material/styles';
 
 export default function Highlighter({
   disableBorder = false,
@@ -74,12 +75,12 @@ export default function Highlighter({
               borderColor: 'primaryDark.700',
             }),
             ...(selected && {
-              bgcolor: 'primaryDark.700',
+              bgcolor: `${alpha(theme.palette.primary[900], 0.3)}`,
               borderColor: 'primary.700',
               color: 'primary.300',
               boxShadow: `0px 1px 6px ${
                 (theme.vars || theme).palette.primary[800]
-              }, inset 0px 2px 8px ${(theme.vars || theme).palette.primaryDark[700]}`,
+              }, inset 0px 2px 8px ${(theme.vars || theme).palette.primaryDark[800]}`,
             }),
             ...(!selected && {
               '&:hover, &:focus': {

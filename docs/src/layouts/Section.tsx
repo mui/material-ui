@@ -42,12 +42,12 @@ const Section = React.forwardRef<HTMLDivElement, SelectionProps>(function Sectio
           ...(bg === 'gradient'
             ? {
                 background: `linear-gradient(180deg, #FFF 0%, ${
-                  (theme.vars || theme).palette.grey[50]
+                  (theme.vars || theme).palette.primary[50]
                 } 100%)`,
                 ...theme.applyDarkStyles({
                   background: `linear-gradient(180deg, ${
                     (theme.vars || theme).palette.primaryDark[800]
-                  } 0%, ${alpha(theme.palette.primaryDark[700], 0.5)} 100%)`,
+                  } 0%, ${alpha(theme.palette.primary[900], 0.2)} 100%)`,
                 }),
               }
             : {
@@ -56,7 +56,7 @@ const Section = React.forwardRef<HTMLDivElement, SelectionProps>(function Sectio
                   bgcolor: map[bg].dark,
                 }),
               }),
-          py: cozy ? { xs: 6, sm: 10, md: 12 } : { xs: 4, sm: 12, md: 18 },
+          py: cozy ? { xs: 6, sm: 10, md: 12 } : { xs: 4, sm: 12, md: 14 },
           overflow: 'hidden',
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

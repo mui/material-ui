@@ -402,7 +402,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 }),
               })}
             >
-              <Typography color="text.primary" fontWeight="500" sx={{ mb: 2 }}>
+              <Typography color="text.primary" fontWeight="semiBold" sx={{ mb: 2 }}>
                 Filter by tag
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
@@ -446,7 +446,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 })}
               </Box>
               <Divider sx={{ mt: 3, mb: 2 }} />
-              <Typography color="text.primary" fontWeight="500" sx={{ mb: 1 }}>
+              <Typography color="text.primary" fontWeight="semiBold" sx={{ mb: 1 }}>
                 Want to hear more from us?
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>

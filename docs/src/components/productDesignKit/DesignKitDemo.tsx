@@ -201,7 +201,7 @@ export default function TemplateDemo() {
             <Frame.Info sx={{ display: 'flex', alignItems: 'center', minWidth: 0 }}>
               <Box sx={{ minWidth: 0 }}>
                 <Typography variant="body2" fontWeight={500} noWrap sx={{ mb: 0.5 }}>
-                  e.g. MUI for Figma
+                  e.g. Material UI for Figma
                 </Typography>
               </Box>
               <Button
