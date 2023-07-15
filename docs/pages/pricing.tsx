@@ -13,7 +13,7 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
-import { LicenseTypeProvider } from 'docs/src/components/pricing/LicenseTypeContext';
+import { LicensingModelProvider } from 'docs/src/components/pricing/LicensingModelContext';
 
 export default function Pricing() {
   return (
@@ -27,7 +27,7 @@ export default function Pricing() {
       <main id="main-content">
         <HeroPricing />
         <Divider />
-        <LicenseTypeProvider>
+        <LicensingModelProvider>
           {/* Mobile, Tablet */}
           <Container sx={{ display: { xs: 'block', md: 'none' }, pb: 3, mt: '-1px' }}>
             <PricingList />
@@ -36,8 +36,8 @@ export default function Pricing() {
           <Container sx={{ display: { xs: 'none', md: 'block' } }}>
             <PricingTable />
           </Container>
-          <Divider />
-        </LicenseTypeProvider>
+        </LicensingModelProvider>
+        <Divider />
         <PricingWhatToExpect />
         <Divider />
         <PricingFAQ />
