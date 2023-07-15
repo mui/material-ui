@@ -5,7 +5,7 @@
 :::info
 Starting fresh on a new App Router-based project?
 
-Jump right into the code with this [example repo](https://github.com/mui/material-ui/blob/master/examples/material-next-app-router-ts).
+Jump right into the code with this [example repo](https://github.com/mui/material-ui/tree/master/examples/material-next-app-router-ts).
 :::
 
 ## Next.js and React Server Components
