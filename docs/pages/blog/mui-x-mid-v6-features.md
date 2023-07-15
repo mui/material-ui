@@ -1,5 +1,5 @@
 ---
-title: The newest additions to MUI X v6
+title: MUI X improvements from v6.0.0 to v6.10.0
 description: Support for time zones, a new filtering UI, charts! and more
 date: 2023-07-30T00:00:00.000Z
 authors: ['josefreitas']
@@ -15,13 +15,13 @@ Now that we reached [MUI X v6.10.0](https://github.com/mui/mui-x/releases/tag/v
 ## Table of contents
 
 - [Date Pickers](#date-pickers)
-  - [Support for Time Zones](#support-for-time-zones)
+  - [Support for Time zones](#support-for-time-zones)
   - [Digital Clock](#digital-clock)
 - [Data Grid](#data-grid)
   - [Copy and Paste](#copy-and-paste)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
-  - [Filter on Column Headers](#filter-on-column-headers)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+  - [Filter on Column headers](#filter-on-column-headers)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
   - [Performance Enhancements: Smoother Scrolling and Expanding Rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
-- [Charts - Alpha Version](#charts---alpha-version)
+- [Charts - Alpha version](#charts---alpha-version)
 - [What's next](#whats-next)
 
 ## Date pickers
