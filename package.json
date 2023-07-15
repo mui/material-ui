@@ -228,6 +228,7 @@
     "**/@definitelytyped/header-parser": "^0.0.163",
     "**/@definitelytyped/typescript-versions": "^0.0.163",
     "**/@definitelytyped/utils": "^0.0.163",
+    "**/@types/node": "^18.16.19",
     "**/@types/react": "^18.2.14",
     "**/cross-fetch": "^4.0.0"
   },
