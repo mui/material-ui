@@ -25,6 +25,10 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
   autoFocus?: boolean;
   children?: React.ReactNode;
   className?: string;
+  /**
+   * Sets html autocomplete attribute to select field 
+   *
+   */
   autoComplete?: string;
   /**
    * If `true`, the select will be initially open.
