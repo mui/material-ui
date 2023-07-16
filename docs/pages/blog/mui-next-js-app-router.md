@@ -7,7 +7,7 @@ card: true
 tags: ['News']
 ---
 
-With [v5.14.0](https://github.com/mui/material-ui/releases/tag/v5.14.0), MUI's core component libraries—Material UI, Base UI, and Joy UI—are now compatible with the Next.js App Router. 🚀
+With [v5.14.0](https://github.com/mui/material-ui/releases/tag/v5.14.0), MUI's Core component libraries—Material UI, Base UI, and Joy UI—are now compatible with the Next.js App Router. 🚀
 
 <img alt="MUI and Next.js logos" src="/static/blog/mui-next-js-app-router/logos.png" loading="lazy" width="2076" height="900" />
 
