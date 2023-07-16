@@ -35,4 +35,8 @@ We also have example repos for each, with everything already set up for you:
 ## What comes next
 
 In the world of Server Components, "traditional" CSS-in-JS poses a serious challenge that may require us to move beyond Emotion, which is the default styling solution for Material UI and Joy UI in v5.
-We're currently exploring ways to offer our own zero-runtime CSS-in-JSS solution, that will allow some of the components even to be treated as Server Components, while at the same time, the performance of the libraries will be improved.
+We're currently exploring ways to offer our own zero-runtime CSS-in-JSS solution that will enable relevant MUI components to be used as Server Components.
+This will also have the added benefit of improving performance across the board.
+Keep an eye out for an RFC from us that will detail the proposed solution.
+
+In the meantime, please let us know if you have any questions or encounter any issues when using MUI components with the Next.js App Router.
