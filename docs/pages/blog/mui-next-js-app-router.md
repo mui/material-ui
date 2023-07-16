@@ -35,4 +35,4 @@ We also have example repos for each, with everything already set up for you:
 ## What comes next
 
 In the world of Server Components, "traditional" CSS-in-JS poses a serious challenge that may require us to move beyond Emotion, which is the default styling solution for Material UI and Joy UI in v5.
-We're currently exploring ways to offer our own zero-runtime CSS-in-JSS solution, similar to what Chakra UI now offers with Panda CSS.
+We're currently exploring ways to offer our own zero-runtime CSS-in-JSS solution, that will allow some of the components even to be treated as Server Components, while at the same time, the performance of the libraries will be improved.
