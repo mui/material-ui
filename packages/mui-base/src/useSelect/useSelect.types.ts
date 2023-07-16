@@ -117,7 +117,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
   /**
    * Function to get the serialized value of the selected option
    */
-  getSerializedValue: (
+  getSerializedValue?: (
     option: SelectValue<SelectOption<OptionValue>, Multiple>,
   ) => string | number | readonly string[] | undefined;
 }

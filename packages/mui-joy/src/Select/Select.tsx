@@ -450,6 +450,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     onOpenChange: handleOpenChange,
     open: listboxOpenProp,
     value: valueProp,
+    getSerializedValue,
   });
 
   const ownerState = {

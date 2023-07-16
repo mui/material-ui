@@ -315,7 +315,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
       type: 'text',
       name,
       style: { position: 'absolute', left: '-9999px' },
-      value: getSerializedValue(selectedOptionsMetadata),
+      value: getSerializedValue?.(selectedOptionsMetadata),
       onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
         const action: BrowserAutofillAction = {
           type: SelectActionTypes.browserAutoFill,
