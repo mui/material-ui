@@ -28,9 +28,9 @@ Additionally, we've created guides to walk you through setting up an app using t
 
 We also have example repos for each, with everything already set up for you:
 
-- [Material UI example](#)
-- [Base UI with Tailwind CSS example](#)
-- [Joy UI example](#)
+- [Material UI example](https://github.com/mui/material-ui/blob/master/examples/material-next-app-router-ts)
+- [Base UI with Tailwind CSS example](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts)
+- [Joy UI example](https://github.com/mui/material-ui/blob/master/examples/joy-next-app-router-ts)
 
 ## What comes next
 
