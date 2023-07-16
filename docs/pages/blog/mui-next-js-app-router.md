@@ -19,7 +19,7 @@ While these two changes have caused major waves among the React community, it's 
 As a first step towards this goal, we've updated all MUI Core components to ship with the `"use client"` directive, to let your apps know that these are Client Components (since Server Components are now the default).
 
 :::info
-**A note on terminology:** although MUI components cannot be used as React Server Components (RSCs) at this time, they _do_ support server-side rendering (SSR). 
+**A note on terminology:** although MUI components cannot be used as React Server Components (RSCs) at this time, they _do_ support server-side rendering (SSR).
 See [this explanation of Client Components and SSR](https://github.com/reactwg/server-components/discussions/4) from the React Working Group for more details on the distinction between RSC and SSR.
 :::
 
