@@ -506,10 +506,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     ) : null;
 
     const scrollButtonsActive = displayStartScroll || displayEndScroll;
-    const showScrollableButtons =
+    const showScrollButtons =
       scrollable && ((scrollButtons === 'auto' && scrollButtonsActive) || scrollButtons === true);
 
-    conditionalElements.scrollButtonStart = showScrollableButtons ? (
+    conditionalElements.scrollButtonStart = showScrollButtons ? (
       <ScrollButtonComponent
         slots={{ StartScrollButtonIcon: slots.StartScrollButtonIcon }}
         slotProps={{ startScrollButtonIcon: startScrollButtonIconProps }}
@@ -522,7 +522,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       />
     ) : null;
 
-    conditionalElements.scrollButtonEnd = showScrollableButtons ? (
+    conditionalElements.scrollButtonEnd = showScrollButtons ? (
       <ScrollButtonComponent
         slots={{ EndScrollButtonIcon: slots.EndScrollButtonIcon }}
         slotProps={{
