@@ -145,7 +145,7 @@ export default function RootLayout({ children }) {
 
 <!-- https://github.com/emotion-js/emotion/issues/3059 -->
 
-By default, Emotion injects Material UI styles at the bottom of the HTML `<head>`, which gives them precedence over custom styles—for example if you' ar'e customizing Material UI with CSS modules, Tailwind CSS, or even plain CSS.
+By default, Emotion injects Material UI styles at the bottom of the HTML `<head>`, which gives them precedence over custom styles—for example if you are customizing Material UI with CSS modules, Tailwind CSS, or even plain CSS.
 
 Emotion provides the `prepend: true` option for `createCache` to reverse the injection order, so custom styles can override Material UI styles without using `!important`.
 
