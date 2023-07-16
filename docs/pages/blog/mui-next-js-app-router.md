@@ -7,7 +7,7 @@ card: true
 tags: ['News']
 ---
 
-With v5.14.0, MUI's core component libraries—Material UI, Base UI, and Joy UI—are now compatible with the Next.js App Router. 🚀
+With [v5.14.0](https://github.com/mui/material-ui/releases/tag/v5.14.0), MUI's core component libraries—Material UI, Base UI, and Joy UI—are now compatible with the Next.js App Router. 🚀
 
 <img alt="MUI and Next.js logos" src="/static/blog/mui-next-js-app-router/logos.png" loading="lazy" width="2076" height="900" />
 
@@ -16,7 +16,12 @@ With v5.14.0, MUI's core component libraries—Material UI, Base UI, and Joy UI�
 React 18 introduced the concept of React Server Components, and Next.js 13 gave us the first framework implementation of RSCs with the App Router.
 While these two changes have caused major waves among the React community, it's clear that this is the path forward, and it's our responsibility as library maintainers to adapt to the new paradigm.
 
-As a first step towards this goal, we've updated all MUI Core components to ship with the `"use client"` directive, to let your apps know that these are Client Components since Server Components are now the default.
+As a first step towards this goal, we've updated all MUI Core components to ship with the `"use client"` directive, to let your apps know that these are Client Components (since Server Components are now the default).
+
+:::info
+**A note on terminology:** although MUI components cannot be used as React Server Components (RSCs) at this time, they _do_ support server-side rendering (SSR). 
+See [this explanation of Client Components and SSR](https://github.com/reactwg/server-components/discussions/4) from the React Working Group for more details on the distinction between RSC and SSR.
+:::
 
 Additionally, we've created guides to walk you through setting up an app using the Next.js App Router with each of the Core libraries:
 
