@@ -505,9 +505,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       />
     ) : null;
 
-    const isScrollableButtons = scrollable && (scrollButtons === 'auto' || scrollButtons === true);
+    const scrollButtonsActive = displayStartScroll || displayEndScroll;
+    const showScrollableButtons =
+      scrollable && ((scrollButtons === 'auto' && scrollButtonsActive) || scrollButtons === true);
 
-    conditionalElements.scrollButtonStart = isScrollableButtons ? (
+    conditionalElements.scrollButtonStart = showScrollableButtons ? (
       <ScrollButtonComponent
         slots={{ StartScrollButtonIcon: slots.StartScrollButtonIcon }}
         slotProps={{ startScrollButtonIcon: startScrollButtonIconProps }}
@@ -520,7 +522,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       />
     ) : null;
 
-    conditionalElements.scrollButtonEnd = isScrollableButtons ? (
+    conditionalElements.scrollButtonEnd = showScrollableButtons ? (
       <ScrollButtonComponent
         slots={{ EndScrollButtonIcon: slots.EndScrollButtonIcon }}
         slotProps={{
@@ -605,16 +607,16 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
     const handleScrollButtonStart = (entries) => {
       let display = false;
-      entries.forEach(({ intersectionRatio }) => {
-        display = intersectionRatio < threshold;
+      entries.forEach(({ isIntersecting }) => {
+        display = !isIntersecting;
       });
       setDisplayStartScroll(display);
     };
 
     const handleScrollButtonEnd = (entries) => {
       let display = false;
-      entries.forEach(({ intersectionRatio }) => {
-        display = intersectionRatio < threshold;
+      entries.forEach(({ isIntersecting }) => {
+        display = !isIntersecting;
       });
       setDisplayEndScroll(display);
     };
@@ -638,7 +640,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       firstObserver?.disconnect();
       lastObserver?.disconnect();
     };
-  }, [scrollable, scrollButtons, tabsRef, childrenProp]);
+  }, [scrollable, scrollButtons, childrenProp]);
 
   React.useEffect(() => {
     setMounted(true);
@@ -657,6 +659,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     action,
     () => ({
       updateIndicator: updateIndicatorState,
+      updateScrollButtons: () => {},
     }),
     [updateIndicatorState],
   );
@@ -799,7 +802,7 @@ Tabs.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the component mounts.
    * This is useful when you want to trigger an action programmatically.
-   * It supports one action: `updateIndicator()`
+   * It supports two actions: `updateIndicator()` and `updateScrollButtons()`
    *
    * @param {object} actions This object contains all possible actions
    * that can be triggered programmatically.
