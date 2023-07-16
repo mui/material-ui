@@ -50,7 +50,7 @@ But this behavior is optional for a snackbar.
 The following demo illustrates the basic usage of Snackbar.
 Click **Open snackbar** to see how it behaves:
 
-{{"demo": "UnstyledSnackbar.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledSnackbar", "defaultCodeOpen": false}}
 
 ### Anatomy
 

@@ -1,3 +1,4 @@
+'use client';
 export { default } from './TabPanel';
 export * from './TabPanel.types';
 

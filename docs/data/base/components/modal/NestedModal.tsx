@@ -16,12 +16,12 @@ export default function NestedModal() {
   return (
     <div>
       <TriggerButton onClick={handleOpen}>Open modal</TriggerButton>
-      <Modal
+      <StyledModal
         open={open}
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
-        slots={{ backdrop: Backdrop }}
+        slots={{ backdrop: StyledBackdrop }}
       >
         <Box sx={style}>
           <h2 id="parent-modal-title">Text in a modal</h2>
@@ -30,7 +30,7 @@ export default function NestedModal() {
           </p>
           <ChildModal />
         </Box>
-      </Modal>
+      </StyledModal>
     </div>
   );
 }

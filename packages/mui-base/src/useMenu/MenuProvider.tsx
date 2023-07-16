@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { ListContext, ListContextValue } from '../useList/ListContext';
 import { MenuItemMetadata } from '../useMenuItem';

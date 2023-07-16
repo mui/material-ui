@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import useInput from '@mui/base/useInput';
 import FormControlContext, { FormControlContextValue } from '../FormControl/FormControlContext';

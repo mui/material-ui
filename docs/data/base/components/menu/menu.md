@@ -52,7 +52,7 @@ The Menu serves as a replacement for the native HTML `<ul>`, and the Menu Item c
 The following demo shows how to create and style a Menu component.
 Click **Dashboard** to view the menu—notice that it uses the built-in [Popper](/base-ui/react-popper/) component to visually break out of its parent container:
 
-{{"demo": "UnstyledMenuSimple.js"}}
+{{"demo": "UnstyledMenuBasic"}}
 
 ### Anatomy
 
