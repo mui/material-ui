@@ -60,7 +60,7 @@ declare const Link: OverridableComponent<LinkTypeMap>;
 
 export type LinkBaseProps = DistributiveOmit<
   TypographyOwnProps,
-  'children' | 'component' | 'color' | 'ref' | 'variant' | 'classes'
+  'children' | 'color' | 'variant' | 'classes'
 >;
 
 export type LinkProps<
