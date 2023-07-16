@@ -39,8 +39,8 @@ function ProductDrawerButton(props) {
     <React.Fragment>
       <Button
         id="mui-product-selector"
-        aria-controls="drawer-open-button"
         aria-haspopup="true"
+        aria-controls={open ? 'drawer-open-button' : undefined}
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
