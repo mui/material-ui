@@ -85,6 +85,6 @@ Ripple.propTypes = {
    * exit delay
    */
   timeout: PropTypes.number.isRequired,
-};
+} as any;
 
-export default Ripple;
+export default Ripple as (props: RippleProps) => JSX.Element;

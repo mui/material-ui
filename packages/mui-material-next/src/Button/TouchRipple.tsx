@@ -293,6 +293,6 @@ TouchRipple.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-};
+} as any;
 
 export default TouchRipple;
