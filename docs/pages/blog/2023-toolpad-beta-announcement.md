@@ -9,7 +9,9 @@ tags: ['Product', 'News']
 
 It's been over a year since we released the first version of Toolpad. Today, we're excited to take the next step on that journey with the release of Toolpad Beta. If you aren't familiar with Toolpad yet, it's an admin panel builder catering to the internal tooling needs of an organization, designed for developers who want to build a functional application quickly. It harnesses the speed of a UI builder for the front-end and closely integrates into your back-end. If this excites you, then read on!
 
+<a href="https://mui.com/toolpad/examples/admin-app/">
 <img alt="Introducing Toolpad" src="/static/blog/2023-toolpad-beta-announcement/intro.png"  loading="lazy" width="2400" height="1200" />
+</a>
 
 ## Why did we decide to build Toolpad?
 
@@ -25,7 +27,9 @@ Toolpad is an open-source, low-code, drag-and-drop admin builder. The primary pu
 
 Toolpad is not ideal for building static web pages, mobile apps, or customer-facing custom-designed front-ends. It's for building admin applications, CRUD interfaces, custom internal tools, and analytics dashboards.
 
-<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/toolpad2.png" loading="lazy" width="2400" height="1394" />
+<a href="https://mui.com/toolpad/examples/npm-stats/">
+<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/toolpad.png" loading="lazy" width="2400" height="1394"  />
+</a>
 
 ## Who is Toolpad for?
 
@@ -41,13 +45,17 @@ Toolpad is for you if you're a full-stack or back-end developers who builds, man
 
 Easily create user interfaces by dragging and dropping pre-built components onto the canvas. Utilize constraints to speed up the building process.
 
+<a href="https://mui.com/toolpad/examples/admin-app/">
 <img alt="Dragging components to the canvas" src="/static/blog/2023-toolpad-beta-announcement/drag.png"  loading="lazy" width="2400" height="1394" />
+</a>
 
 ### 2. Query builder UI
 
 A Postman-like query builder allows you to integrate any REST API quickly. A binding editor, which supports Javascript, allows you to wire query response directly to the components.
 
+<a href="https://mui.com/toolpad/examples/npm-stats/">
 <img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/uiquery.png"  loading="lazy" width="2400" height="1394" />
+</a>
 
 ### 3. Bring your own components
 
@@ -61,13 +69,17 @@ Directly integrate with your Node.js back-end and have your data available on th
 
 Toolpad runs completely locally. You're not stuck with an online code editor or a suboptimal GitHub integration. All configuration is stored in local files which you can version-control, edit, and deploy in any way you want.
 
+<a href="https://mui.com/toolpad/examples/admin-app/">
 <img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/code.png"  loading="lazy" width="2400" height="1394" />
+</a>
 
 ### 6. A catalogue of components powered by Material UI
 
 Material UI provides all modern components; a chosen few are currently available inside Toolpad, and we're adding more all the time. MUI X Pro (Data Grid and Date Picker) components are also available for free in Toolpad.
 
-<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/library2.png"  loading="lazy" width="2400" height="1394" />
+<a href="https://mui.com/toolpad/examples/npm-stats/">
+<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/library.png"  loading="lazy" width="2400" height="1394" />
+</a>
 
 ## How is Toolpad different from similar products on the market?
 
