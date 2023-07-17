@@ -11,7 +11,7 @@ export default function OverlayCheckbox() {
         flexDirection: 'column',
         gap: 2,
         width: 300,
-        '& > div': { p: 2, boxShadow: 'sm', borderRadius: 'xs', display: 'flex' },
+        '& > div': { p: 2, borderRadius: 'md', display: 'flex' },
       }}
     >
       <Sheet variant="outlined">
