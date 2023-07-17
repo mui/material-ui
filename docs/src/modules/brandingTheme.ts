@@ -105,15 +105,15 @@ export const blueDark = {
 };
 export const grey = {
   50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
-  400: '#B2BAC2', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
-  500: '#A0AAB4', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
-  600: '#6F7E8C', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
-  700: '#3E5060', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
-  800: '#2D3843', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
-  900: '#1A2027',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
+  400: '#B0B8C4', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
+  500: '#9DA8B7', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
+  600: '#6B7A90', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
+  700: '#434D5B', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
+  800: '#303740', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
+  900: '#1C2025',
 };
 export const error = {
   50: '#FFF0F1',
@@ -836,9 +836,9 @@ export function getThemedComponents(): ThemeOptions {
               }),
               ...(color === 'primary' && {
                 color: (theme.vars || theme).palette.primary[600],
-                backgroundColor: (theme.vars || theme).palette.primary[100],
+                backgroundColor: alpha(theme.palette.primary[100], 0.4),
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primary[200],
+                  backgroundColor: (theme.vars || theme).palette.primary[100],
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[100],
