@@ -52,6 +52,7 @@
     },
     "groupBy": { "type": { "name": "func" } },
     "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
+    "handleUpDownArrow": { "type": { "name": "bool" }, "default": "true" },
     "id": { "type": { "name": "string" } },
     "includeInputInList": { "type": { "name": "bool" }, "default": "false" },
     "inputValue": { "type": { "name": "string" } },

@@ -79,6 +79,10 @@
       "type": { "name": "boolean", "description": "boolean" },
       "default": "!props.freeSolo"
     },
+    "handleUpDownArrow": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "true"
+    },
     "id": { "type": { "name": "string", "description": "string" } },
     "includeInputInList": {
       "type": { "name": "boolean", "description": "boolean" },

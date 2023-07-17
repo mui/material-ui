@@ -21,7 +21,7 @@
     "getOptionLabel": "Used to determine the string value for a given option.\nIt&#39;s used to fill the input (and the list box options if <code>renderOption</code> is not provided).\n\nIf used in free solo mode, it must accept both the type of the options and a string.",
     "groupBy": "If provided, the options will be grouped under the returned string.\nThe groupBy value is also used as the text for group headings when <code>renderGroup</code> is not provided.",
     "handleHomeEndKeys": "If <code>true</code>, the component handles the &quot;Home&quot; and &quot;End&quot; keys when the popup is open.\nIt should move focus to the first option and last option, respectively.",
-    "handleUpDownArrow": "If <code>true</code>, the component handles the &quot;UP&quot; and &quot;DOWN&quot; arrow keys. It should allow a user to scroll the options using these keys.",
+    "handleUpDownArrow": "If <code>true</code>, the component handles the &quot;UP&quot; and &quot;DOWN&quot; arrow keys.\nIt should allow a user to scroll the options using these keys.",
     "id": "This prop is used to help implement the accessibility logic.\nIf you don&#39;t provide an id it will fall back to a randomly generated one.",
     "includeInputInList": "If <code>true</code>, the highlight can move to the input.",
     "inputValue": "The input value.",

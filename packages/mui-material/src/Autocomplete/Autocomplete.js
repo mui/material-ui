@@ -414,6 +414,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     isOptionEqualToValue,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
+    handleUpDownArrow = true,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
@@ -907,6 +908,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default !props.freeSolo
    */
   handleHomeEndKeys: PropTypes.bool,
+  /**
+   * If `true`, the component handles the "UP" and "DOWN" arrow keys.
+   * It should allow a user to scroll the options using these keys.
+   * @default true
+   */
+  handleUpDownArrow: PropTypes.bool,
   /**
    * This prop is used to help implement the accessibility logic.
    * If you don't provide an id it will fall back to a randomly generated one.
