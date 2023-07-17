@@ -17,7 +17,7 @@ export type NextAppDirEmotionCacheProviderProps = {
   children: React.ReactNode;
 };
 
-// Adatped from https://github.com/garronej/tss-react/blob/main/src/next/appDir.tsx
+// Adapted from https://github.com/garronej/tss-react/blob/main/src/next/appDir.tsx
 export default function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionCacheProviderProps) {
   const { options, CacheProvider = DefaultCacheProvider, children } = props;
 
@@ -31,7 +31,7 @@ export default function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionC
       if (cache.inserted[serialized.name] === undefined) {
         inserted.push({
           name: serialized.name,
-          isGlobal: selector === '',
+          isGlobal: !selector,
         });
       }
       return prevInsert(...args);
@@ -80,7 +80,7 @@ export default function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionC
             dangerouslySetInnerHTML={{ __html: style }}
           />
         ))}
-        {styles !== '' && (
+        {styles && (
           <style
             data-emotion={dataEmotionAttribute}
             // eslint-disable-next-line react/no-danger
