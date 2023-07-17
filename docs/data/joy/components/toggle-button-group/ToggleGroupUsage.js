@@ -32,12 +32,6 @@ export default function ToggleGroupUsage() {
           defaultValue: 'md',
         },
         {
-          propName: 'exclusive',
-          knob: 'switch',
-          defaultValue: false,
-          codeBlockDisplay: false,
-        },
-        {
           propName: 'children',
           defaultValue: `<Button />
   <IconButton />

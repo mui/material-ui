@@ -64,11 +64,11 @@ const ToggleButtonGroupRoot = styled(StyledButtonGroup as unknown as 'div', {
     },
 }));
 /**
- * ⚠️ ToggleButtonGroup must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
+ * ⚠️ ToggleButtonGroup must have Button and/or IconButton as direct children.
  *
  * Demos:
  *
- * - [Toggle Button](https://mui.com/joy-ui/react-toggle-button/)
+ * - [Toggle Button Group](https://mui.com/joy-ui/react-toggle-button-group/)
  *
  * API:
  *
@@ -120,6 +120,9 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup<
     elementType: ToggleButtonGroupRoot,
     externalForwardedProps,
     ownerState,
+    additionalProps: {
+      role: 'group',
+    },
   });
 
   const buttonGroupContext = React.useMemo(

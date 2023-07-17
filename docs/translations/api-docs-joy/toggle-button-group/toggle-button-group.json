@@ -1,5 +1,5 @@
 {
-  "componentDescription": "⚠️ ToggleButtonGroup must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.",
+  "componentDescription": "⚠️ ToggleButtonGroup must have Button and/or IconButton as direct children.",
   "propDescriptions": {
     "buttonFlex": "The flex value of the button.",
     "children": "Used to render icon or text elements inside the ButtonGroup if <code>src</code> is not set. This can be an element, or just a string.",

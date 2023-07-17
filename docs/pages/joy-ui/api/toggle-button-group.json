@@ -89,6 +89,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ToggleButtonGroup/ToggleButtonGroup.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-toggle-button/\">Toggle Button</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-toggle-button-group/\">Toggle Button Group</a></li></ul>",
   "cssComponent": false
 }

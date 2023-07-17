@@ -13,9 +13,12 @@ export default function ToggleButtons() {
         color="neutral"
         onClick={() => setPressed(!pressed)}
         aria-pressed={pressed ? 'true' : 'false'}
-        sx={(theme) =>
-          pressed ? { boxShadow: theme.shadow.md.replace(/,/g, ',inset ') } : {}
-        }
+        sx={(theme) => ({
+          [`&[aria-pressed="true"]`]: {
+            ...theme.variants.outlinedActive.neutral,
+            borderColor: theme.vars.palette.neutral.outlinedHoverBorder,
+          },
+        })}
       >
         Button
       </Button>
@@ -24,9 +27,12 @@ export default function ToggleButtons() {
         color="neutral"
         onClick={() => setPressed(!pressed)}
         aria-pressed={pressed ? 'true' : 'false'}
-        sx={(theme) =>
-          pressed ? { boxShadow: theme.shadow.md.replace(/,/g, ',inset ') } : {}
-        }
+        sx={(theme) => ({
+          [`&[aria-pressed="true"]`]: {
+            ...theme.variants.outlinedActive.neutral,
+            borderColor: theme.vars.palette.neutral.outlinedHoverBorder,
+          },
+        })}
       >
         <FormatBold />
       </IconButton>
