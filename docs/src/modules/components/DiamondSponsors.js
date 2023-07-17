@@ -84,7 +84,7 @@ export default function DiamondSponsors() {
             (theme) => ({
               '& a': {
                 width: '100%',
-                height: { xs: 36, sm: 50 },
+                height: { xs: 40, sm: 50 },
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -148,8 +148,8 @@ export default function DiamondSponsors() {
           >
             <Box
               component="img"
-              height="26px"
-              width="62px"
+              height="28px"
+              width="68px"
               src="/static/sponsors/doit-light.svg"
               alt="doit"
               title="Management Platform for Google Cloud and AWS"
@@ -171,8 +171,8 @@ export default function DiamondSponsors() {
           >
             <Box
               component="img"
-              height="19px"
-              width="70px"
+              height="20px"
+              width="77px"
               src="https://brand.zesty.io/zesty-io-logo-horizontal.svg"
               alt="zesty.io"
               title="The only Next.js CMS you need"

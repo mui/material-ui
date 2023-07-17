@@ -189,12 +189,11 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-const AppNavPaperComponent = styled('div')(({ theme }) => {
+const AppNavPaperComponent = styled('div')(() => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-    paddingBottom: theme.spacing(5),
   };
 });
 
