@@ -40,7 +40,7 @@ We also have example repos for each, with everything already set up for you:
 ## What comes next
 
 In the world of Server Components, "traditional" CSS-in-JS poses a serious challenge that may require us to move beyond Emotion, which is the default styling solution for Material UI and Joy UI in v5.
-We're currently exploring ways to offer our own zero-runtime CSS-in-JS solution that will enable relevant MUI components to be used as Server Components.
+We're currently exploring ways to offer our own zero-runtime CSS-in-JS solution that will enable you to use relevant MUI components as Server Components.
 This will also have the added benefit of improving performance across the board.
 Keep an eye out for an RFC from us very soon that will detail the proposed solution.
 
