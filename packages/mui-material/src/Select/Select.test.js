@@ -1170,6 +1170,42 @@ describe('<Select />', () => {
         expect(onChange.callCount).to.equal(2);
         expect(onChange.secondCall.returnValue).to.deep.equal({ name: 'age', value: [30, 10] });
       });
+
+      it('should call onChange when  an item', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          this.skip();
+        }
+        const { getByRole, getAllByRole, getByTestId } = render(
+          <Select data-testid="select" multiple name="age">
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Ten</MenuItem>
+            <MenuItem value={30}>Ten</MenuItem>
+            <MenuItem value={40}>Ten</MenuItem>
+            <MenuItem value={50}>Ten</MenuItem>
+            <MenuItem value={60}>Ten</MenuItem>
+            <MenuItem value={70}>Ten</MenuItem>
+            <MenuItem value={80}>Ten</MenuItem>
+            <MenuItem value={90}>Ten</MenuItem>
+            <MenuItem value={90}>Ten</MenuItem>
+            <MenuItem value={100}>Ten</MenuItem>
+          </Select>,
+        );
+
+        fireEvent.mouseDown(getByRole('button'));
+        const options = getAllByRole('option');
+        fireEvent.click(options[10]);
+
+        act(() => {
+          options[0].click();
+        });
+
+        fireEvent.click(options[10]);
+
+        act(() => {
+          options[0].click();
+        });
+        console.log(getByTestId('select').scrollHeight);
+      });
     });
 
     it('should apply multiple class to `select` slot', () => {
