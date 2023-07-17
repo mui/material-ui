@@ -73,7 +73,7 @@
     "generate-codeowners": "node scripts/generateCodeowners.mjs"
   },
   "devDependencies": {
-    "@argos-ci/core": "^0.8.0",
+    "@argos-ci/core": "^0.9.0",
     "@babel/cli": "^7.22.9",
     "@babel/core": "^7.22.9",
     "@babel/node": "^7.22.6",
