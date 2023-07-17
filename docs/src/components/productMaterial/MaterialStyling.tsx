@@ -162,7 +162,7 @@ export default function MaterialStyling() {
   }, [index]);
 
   return (
-    <Section bg="gradient">
+    <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>

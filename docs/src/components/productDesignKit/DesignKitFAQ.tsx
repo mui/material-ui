@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import Section from 'docs/src/layouts/Section';
 import InternalLink from 'docs/src/modules/components/Link';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -137,7 +137,7 @@ export default function DesignKitFAQ() {
     );
   }
   return (
-    <Container sx={{ py: { xs: 6, sm: 10, md: 20 } }}>
+    <Section>
       <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }} id="faq">
         Frequently asked questions
       </Typography>
@@ -186,6 +186,6 @@ export default function DesignKitFAQ() {
           </Paper>
         </Grid>
       </Grid>
-    </Container>
+    </Section>
   );
 }

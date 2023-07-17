@@ -29,7 +29,7 @@ export default function MaterialHeroEnd() {
             <SectionHeadline
               overline="Community"
               title="Join our global community"
-              description="The core components were crafted by many hands, all over the world. Join the community to help us expand it even further!"
+              description="The core components were crafted by many hands, all over the world. Join the community to help us expand them even further!"
             />
             <Button
               aria-label="Go to documentation"

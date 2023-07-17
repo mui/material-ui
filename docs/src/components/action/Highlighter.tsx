@@ -5,7 +5,6 @@ import { alpha } from '@mui/material/styles';
 export default function Highlighter({
   disableBorder = false,
   selected = false,
-  selectedBg = 'white',
   sx,
   ...props
 }: {
@@ -13,10 +12,6 @@ export default function Highlighter({
   selectedBg?: 'white' | 'comfort';
   selected?: boolean;
 } & ButtonBaseProps) {
-  const lightSelectedBg = {
-    white: '#fff',
-    comfort: 'grey.50',
-  };
   const ref = React.useRef<null | HTMLButtonElement>(null);
   return (
     <ButtonBase
@@ -53,7 +48,7 @@ export default function Highlighter({
             borderColor: 'grey.100',
           }),
           ...(selected && {
-            bgcolor: lightSelectedBg[selectedBg],
+            bgcolor: '#FFF',
             borderColor: 'primary.300',
             boxShadow: `0px 1px 6px ${
               (theme.vars || theme).palette.primary[100]
@@ -62,8 +57,8 @@ export default function Highlighter({
           }),
           ...(!selected && {
             '&:hover, &:focus': {
-              bgcolor: 'grey.50',
-              borderColor: 'grey.100',
+              bgcolor: 'primary.50',
+              borderColor: 'primary.100',
               '@media (hover: none)': {
                 bgcolor: 'transparent',
               },

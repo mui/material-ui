@@ -10,7 +10,7 @@ import ArrowForward from '@mui/icons-material/ArrowForward';
 
 export default function BaseUITestimonial() {
   return (
-    <Section bg="gradient">
+    <Section>
       <Grid container spacing={{ xs: 6, sm: 10 }} alignItems="center">
         <Grid xs={12} sm={6}>
           <Box

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Palette from '@mui/icons-material/Palette';
 import LibraryBooks from '@mui/icons-material/LibraryBooks';
@@ -32,7 +32,7 @@ const content = [
 
 function DesignKitValues() {
   return (
-    <Container sx={{ py: { xs: 6, sm: 10, md: 20 } }}>
+    <Section>
       <Typography variant="body2" color="primary" fontWeight="bold">
         Collaboration
       </Typography>
@@ -46,7 +46,7 @@ function DesignKitValues() {
             <Paper
               variant="outlined"
               sx={(theme) => ({
-                p: 4,
+                p: 3,
                 height: '100%',
                 position: 'relative',
                 borderRadius: '12px',
@@ -101,7 +101,7 @@ function DesignKitValues() {
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </Section>
   );
 }
 
