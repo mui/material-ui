@@ -184,12 +184,6 @@ const AppNavPaperComponent = styled('div')(({ theme }) => {
     boxShadow: 'none',
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
     paddingBottom: theme.spacing(5),
-    [theme.breakpoints.up('xs')]: {
-      borderRadius: '0px 10px 10px 0px',
-    },
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: '0px',
-    },
   };
 });
 

@@ -94,6 +94,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/76401606',
     github: 'mikailaread',
   },
+  prakhargupta: {
+    name: 'Prakhar Gupta',
+    avatar: 'https://avatars.githubusercontent.com/u/92228082',
+    github: 'prakhargupta1',
+  },
 };
 
 const classes = {

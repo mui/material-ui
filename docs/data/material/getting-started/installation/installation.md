@@ -24,6 +24,10 @@ npm install @mui/material @emotion/react @emotion/styled
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
+```bash pnpm
+pnpm add @mui/material @emotion/react @emotion/styled
+```
+
 </codeblock>
 
 ## With styled-components
@@ -39,6 +43,10 @@ npm install @mui/material @mui/styled-engine-sc styled-components
 
 ```bash yarn
 yarn add @mui/material @mui/styled-engine-sc styled-components
+```
+
+```bash pnpm
+pnpm add @mui/material @mui/styled-engine-sc styled-components
 ```
 
 </codeblock>
@@ -66,7 +74,21 @@ Material UI is designed to use the [Roboto](https://fonts.google.com/specimen/Ro
 font by default.
 You may add it to your project with npm or yarn via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
 
-{{"component": "modules/components/HighlightedCodeWithTabs", "tabs": [{"tab":"npm", "code":"npm install @fontsource/roboto", "language": "bash"}, {"tab":"yarn", "code": "yarn add @fontsource/roboto"}]}}
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @fontsource/roboto
+```
+
+```bash yarn
+yarn add @fontsource/roboto
+```
+
+```bash pnpm
+pnpm add @fontsource/roboto
+```
+
+</codeblock>
 
 Then you can import it in your entry point like this:
 
@@ -105,6 +127,10 @@ npm install @mui/icons-material
 
 ```bash yarn
 yarn add @mui/icons-material
+```
+
+```bash pnpm
+pnpm add @mui/icons-material
 ```
 
 </codeblock>
