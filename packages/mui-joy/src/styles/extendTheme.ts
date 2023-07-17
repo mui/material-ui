@@ -236,7 +236,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
     shadowRing: '0 0 #000',
     shadowChannel: '21 21 21',
-    shadowOpacity: '0.12',
+    shadowOpacity: '0.08',
   };
   const darkColorSystem = {
     palette: {
