@@ -19,7 +19,7 @@ import Skeleton from '@mui/joy/Skeleton';
 
 There are two methods of using the Skeleton component:
 
-- Masking the component (**👍 Recommended**), see [Avatar](#avatar), [Image](#image) and [Typography](#inline-with-typography). The parent components control the layout of the interface which prevent layout shifts when the loading state is no longer exisiting.
+- Masking the component, see [Avatar](#avatar), [Image](#image) and [Typography](#inline-with-typography). The parent components control the layout of the interface which prevent layout shifts when the loading state is no longer exisiting.
 - Custom width and height, see [Geometry](#geometry) and [Text block](#text-block). This method is useful when you have no control of the parent component or you want to separate the loading state from the component itself. This method could cause layout shifts when the component gets bigger or smaller.
 
 ### Loading
