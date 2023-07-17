@@ -110,7 +110,7 @@ const pages = [
       },
       {
         pathname: '/base-ui/guides/next-js-app-router',
-        title: 'Integrating with Next.js App Router',
+        title: 'Next.js App Router',
       },
     ],
   },

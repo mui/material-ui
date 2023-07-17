@@ -33,7 +33,7 @@ const Paper = styled(MuiPaper)({
 });
 const List = styled(MuiList)(({ theme }) => ({
   width: theme.spacing(40),
-  maxHeight: 440,
+  maxHeight: 540,
   overflow: 'auto',
   padding: theme.spacing(1, 0),
 }));
@@ -129,8 +129,8 @@ export default function Notifications() {
             id: 1,
             text: 'You can <a style="color: inherit;" target="_blank" rel="noopener" href="https://twitter.com/MUI_hq">follow us on Twitter</a> or subscribe on <a style="color: inherit;" target="_blank" rel="noopener" href="/blog/">our blog</a> to receive exclusive tips and updates about MUI and the React ecosystem.',
           },
-          // Only 2
-          ...notifications.splice(-2),
+          // Only 3
+          ...notifications.splice(-3),
         ];
 
         const seen = getCookie('lastSeenNotification');

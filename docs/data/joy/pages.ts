@@ -158,7 +158,7 @@ const pages = [
       },
       {
         pathname: '/joy-ui/guides/next-js-app-router',
-        title: 'Integrating with Next.js App Router',
+        title: 'Next.js App Router',
       },
     ],
   },

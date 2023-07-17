@@ -6,6 +6,7 @@ import { alpha, styled } from '@mui/material/styles';
 import { styled as joyStyled } from '@mui/joy/styles';
 import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -21,6 +22,7 @@ import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
 import { blue, blueDark, grey } from 'docs/src/modules/brandingTheme';
 
 /**
@@ -33,23 +35,12 @@ function trimLeadingSpaces(input = '') {
 }
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
-// Sync with styles from DemoToolbar
-// Importing the styles results in no bundle size reduction
-const DemoToolbarFallbackRoot = styled('div')(({ theme }) => {
-  return {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-      height: 40 + 5 * 2 + 1 * 2,
-      marginTop: -1,
-    },
-  };
-});
 
 function DemoToolbarFallback() {
   const t = useTranslate();
 
-  return <DemoToolbarFallbackRoot aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
+  // Sync with styles from DemoToolbar, we can't import the styles
+  return <Box sx={{ height: 40 }} aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
 }
 
 function getDemoName(location) {
@@ -549,30 +540,32 @@ export default function Demo(props) {
       {/* TODO: BrandingProvider shouldn't be needed, it should already be at the top of the docs page */}
       <BrandingProvider {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
         {demoOptions.hideToolbar ? null : (
-          <NoSsr defer fallback={<DemoToolbarFallback />}>
-            <React.Suspense fallback={<DemoToolbarFallback />}>
-              <DemoToolbar
-                codeOpen={codeOpen}
-                codeVariant={codeVariant}
-                hasNonSystemDemos={hasNonSystemDemos}
-                demo={demo}
-                demoData={demoData}
-                demoHovered={demoHovered}
-                demoId={demoId}
-                demoName={demoName}
-                demoOptions={demoOptions}
-                demoSourceId={demoSourceId}
-                initialFocusRef={initialFocusRef}
-                onCodeOpenChange={() => {
-                  setCodeOpen((open) => !open);
-                  setShowAd(true);
-                }}
-                onResetDemoClick={resetDemo}
-                openDemoSource={openDemoSource}
-                showPreview={showPreview}
-              />
-            </React.Suspense>
-          </NoSsr>
+          <DemoToolbarRoot demoOptions={demoOptions} openDemoSource={openDemoSource}>
+            <NoSsr defer fallback={<DemoToolbarFallback />}>
+              <React.Suspense fallback={<DemoToolbarFallback />}>
+                <DemoToolbar
+                  codeOpen={codeOpen}
+                  codeVariant={codeVariant}
+                  hasNonSystemDemos={hasNonSystemDemos}
+                  demo={demo}
+                  demoData={demoData}
+                  demoHovered={demoHovered}
+                  demoId={demoId}
+                  demoName={demoName}
+                  demoOptions={demoOptions}
+                  demoSourceId={demoSourceId}
+                  initialFocusRef={initialFocusRef}
+                  onCodeOpenChange={() => {
+                    setCodeOpen((open) => !open);
+                    setShowAd(true);
+                  }}
+                  onResetDemoClick={resetDemo}
+                  openDemoSource={openDemoSource}
+                  showPreview={showPreview}
+                />
+              </React.Suspense>
+            </NoSsr>
+          </DemoToolbarRoot>
         )}
         <Collapse in={openDemoSource} unmountOnExit timeout={150}>
           {/* A limitation from https://github.com/nihgwu/react-runner,
