@@ -274,7 +274,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     className,
     component = 'span',
     children,
-    animation = 'wave',
+    animation = 'pulse',
     overlay = false,
     loading = true,
     variant = 'overlay',
@@ -337,7 +337,7 @@ Skeleton.propTypes /* remove-proptypes */ = {
   /**
    * The animation.
    * If `false` the animation effect is disabled.
-   * @default 'wave'
+   * @default 'pulse'
    */
   animation: PropTypes.oneOf(['pulse', 'wave', false]),
   /**

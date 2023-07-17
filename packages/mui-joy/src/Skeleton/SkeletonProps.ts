@@ -30,7 +30,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
     /**
      * The animation.
      * If `false` the animation effect is disabled.
-     * @default 'wave'
+     * @default 'pulse'
      */
     animation?: 'pulse' | 'wave' | false;
     /**
