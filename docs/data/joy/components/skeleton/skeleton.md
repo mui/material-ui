@@ -19,7 +19,7 @@ import Skeleton from '@mui/joy/Skeleton';
 
 There are two methods of using the Skeleton component:
 
-- Masking (**Recommended**), see [Avatar](#avatar), [Image](#image) and [Typography](#inline-with-typography) as examples. The Skeleton is rendered inside a component and mask the component using absolute positioning to let the parent component control the layout of the interface. This method is preferred if possible to prevent layout shifts when the loading state is no longer exisiting.
+- Masking the component (**👍 Recommended**), see [Avatar](#avatar), [Image](#image) and [Typography](#inline-with-typography). The parent components control the layout of the interface which prevent layout shifts when the loading state is no longer exisiting.
 - Custom width and height, see [Geometry](#geometry) and [Text block](#text-block). This method is useful when you have no control of the parent component or you want to separate the loading state from the component itself. This method could cause layout shifts when the component gets bigger or smaller.
 
 ### Loading
@@ -85,16 +85,16 @@ The value of the `level` prop can be one of the theme's typography. The result o
 
 Use the `animation` prop to control the animation of the Skeleton component. The value of the `animation` prop can be one of the following:
 
-- `wave` (default): The wave animation from left to right.
-- `pulse`: The background of the Skeleton is faded in and out.
+- `pulse` (default): The background of the Skeleton is faded in and out.
+- `wave`: The wave animation from left to right.
 - `false`: Disable the animation.
 
-The demo below shows the pulse animation.
+The demo below shows the wave animation.
 
 {{"demo": "AnimationSkeleton.js"}}
 
 :::success
-To set the `pulse` animation as the default animation for all Skeleton components, use the theme's default props.
+To set the `wave` animation as the default animation for all Skeleton components, use the theme's default props.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -103,7 +103,7 @@ const theme = extendTheme({
   components: {
     JoySkeleton: {
       defaultProps: {
-        animation: 'pulse',
+        animation: 'wave',
       },
     },
   },
@@ -113,7 +113,7 @@ function App() {
   return (
     <CssVarsProvider theme={theme}>
       <Skeleton />{' '}
-      {/* The Skeleton component will have the pulse animation by default */}
+      {/* The Skeleton component will have the wave animation by default */}
     </CssVarsProvider>
   );
 }
