@@ -1,27 +1,52 @@
 import * as React from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Grid from '@mui/material/Grid';
-import { alpha } from '@mui/material/styles';
+import { useTheme, alpha } from '@mui/material/styles';
 
 export default function HeroContainer({
   left,
   right,
-  rightRef,
   rightSx,
   linearGradient,
   disableMobileHidden,
 }: {
   left: React.ReactElement;
   right: React.ReactElement;
-  rightRef?: React.MutableRefObject<HTMLDivElement | null>;
   rightSx?: BoxProps['sx'];
   linearGradient?: boolean;
   disableMobileHidden?: boolean;
 }) {
+  const frame = React.useRef<null | HTMLDivElement>(null);
+  const globalTheme = useTheme();
+  const isMdUp = useMediaQuery(globalTheme.breakpoints.up('md'));
+
+  React.useEffect(() => {
+    let obs: undefined | MutationObserver;
+    function suppressTabIndex() {
+      if (frame.current && isMdUp) {
+        const elements = frame.current.querySelectorAll(
+          'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
+        );
+        elements.forEach((elm) => {
+          elm.setAttribute('tabindex', '-1');
+        });
+      }
+    }
+    if (typeof MutationObserver !== 'undefined' && frame.current) {
+      obs = new MutationObserver(suppressTabIndex);
+      obs.observe(frame.current, { childList: true, subtree: true });
+    }
+    return () => {
+      if (obs) {
+        obs.disconnect();
+      }
+    };
+  }, [isMdUp]);
+
   const renderRightWrapper = (sx?: BoxProps['sx']) => (
     <Box
-      ref={rightRef}
       id="hero-container-right-area"
       aria-hidden="true"
       sx={[
@@ -105,6 +130,7 @@ export default function HeroContainer({
       </Box>
     );
   }
+
   return (
     <Box sx={{ overflow: 'hidden' }}>
       <Container

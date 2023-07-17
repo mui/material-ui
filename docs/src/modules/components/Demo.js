@@ -195,15 +195,15 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const DemoRootMaterial = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
-})(({ theme, hiddenToolbar, bg }) => ({
+  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
+})(({ theme, hideToolbar, bg }) => ({
   position: 'relative',
   outline: 0,
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: hiddenToolbar ? 12 : '12px 12px 0 0',
+    borderRadius: hideToolbar ? 12 : '12px 12px 0 0',
     ...(bg === 'outlined' && {
       borderLeftWidth: 1,
       borderRightWidth: 1,
@@ -276,15 +276,15 @@ const DemoRootMaterial = styled('div', {
 }));
 
 const DemoRootJoy = joyStyled('div', {
-  shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
-})(({ theme, hiddenToolbar, bg }) => ({
+  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
+})(({ theme, hideToolbar, bg }) => ({
   position: 'relative',
   outline: 0,
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: hiddenToolbar ? 12 : '12px 12px 0 0',
+    borderRadius: hideToolbar ? 12 : '12px 12px 0 0',
     ...(bg === 'outlined' && {
       borderLeftWidth: 1,
       borderRightWidth: 1,
@@ -375,8 +375,24 @@ export default function Demo(props) {
     if (demoOptions.hideToolbar === false) {
       throw new Error(
         [
-          '"hiddenToolbar": false is already the default.',
+          '"hideToolbar": false is already the default.',
           `Please remove the property in {{"demo": "${demoOptions.demo}", …}}.`,
+        ].join('\n'),
+      );
+    }
+    if (demoOptions.hideToolbar === true && demoOptions.defaultCodeOpen === true) {
+      throw new Error(
+        [
+          '"hideToolbar": true, "defaultCodeOpen": true combination is invalid.',
+          `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
+        ].join('\n'),
+      );
+    }
+    if (demoOptions.hideToolbar === true && demoOptions.disableAd === true) {
+      throw new Error(
+        [
+          '"hideToolbar": true, "disableAd": true combination is invalid.',
+          `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
         ].join('\n'),
       );
     }
@@ -474,14 +490,17 @@ export default function Demo(props) {
     initialEditorCode,
   });
 
-  const resetDemo = () => {
-    setEditorCode({
-      value: initialEditorCode,
-      isPreview,
-      initialEditorCode,
-    });
-    setDemoKey();
-  };
+  const resetDemo = React.useMemo(
+    () => () => {
+      setEditorCode({
+        value: initialEditorCode,
+        isPreview,
+        initialEditorCode,
+      });
+      setDemoKey();
+    },
+    [setEditorCode, setDemoKey, initialEditorCode, isPreview],
+  );
 
   React.useEffect(() => {
     setEditorCode({
@@ -506,7 +525,7 @@ export default function Demo(props) {
     <Root>
       <AnchorLink id={demoName} />
       <DemoRoot
-        hiddenToolbar={demoOptions.hideToolbar}
+        hideToolbar={demoOptions.hideToolbar}
         bg={demoOptions.bg}
         id={demoId}
         onMouseEnter={handleDemoHover}
@@ -523,25 +542,26 @@ export default function Demo(props) {
           key={demoKey}
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
+          productId={demoData.productId}
           name={demoName}
           onResetDemoClick={resetDemo}
         >
           {demoElement}
         </DemoSandbox>
       </DemoRoot>
-      {Object.keys(stylingSolutionMapping).map((key) => (
-        <React.Fragment key={key}>
-          <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
-          <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
-        </React.Fragment>
-      ))}
-      <AnchorLink id={`${demoName}.js`} />
-      <AnchorLink id={`${demoName}.tsx`} />
       {/* TODO: BrandingProvider shouldn't be needed, it should already be at the top of the docs page */}
-      <BrandingProvider {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
-        {demoOptions.hideToolbar ? null : (
+      {demoOptions.hideToolbar ? null : (
+        <BrandingProvider {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
+          {Object.keys(stylingSolutionMapping).map((key) => (
+            <React.Fragment key={key}>
+              <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
+              <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
+            </React.Fragment>
+          ))}
+          <AnchorLink id={`${demoName}.js`} />
+          <AnchorLink id={`${demoName}.tsx`} />
           <DemoToolbarRoot demoOptions={demoOptions} openDemoSource={openDemoSource}>
-            <NoSsr defer fallback={<DemoToolbarFallback />}>
+            <NoSsr fallback={<DemoToolbarFallback />}>
               <React.Suspense fallback={<DemoToolbarFallback />}>
                 <DemoToolbar
                   codeOpen={codeOpen}
@@ -566,49 +586,49 @@ export default function Demo(props) {
               </React.Suspense>
             </NoSsr>
           </DemoToolbarRoot>
-        )}
-        <Collapse in={openDemoSource} unmountOnExit timeout={150}>
-          {/* A limitation from https://github.com/nihgwu/react-runner,
-            we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
-          {demoOptions.disableLiveEdit ? (
-            <DemoCodeViewer
-              code={editorCode.value}
-              id={demoSourceId}
-              language={demoData.sourceLanguage}
-              copyButtonProps={{
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-                'data-ga-event-action': 'copy-click',
-              }}
-            />
-          ) : (
-            <DemoEditor
-              // Mount a new text editor when the preview mode change to reset the undo/redo history.
-              key={editorCode.isPreview}
-              value={editorCode.value}
-              onChange={(value) => {
-                setEditorCode({
-                  ...editorCode,
-                  value,
-                });
-              }}
-              onFocus={() => {
-                setLiveDemoActive(true);
-              }}
-              id={demoSourceId}
-              language={demoData.sourceLanguage}
-              copyButtonProps={{
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-                'data-ga-event-action': 'copy-click',
-              }}
-            >
-              <DemoEditorError>{debouncedError}</DemoEditorError>
-            </DemoEditor>
-          )}
-        </Collapse>
-        {adVisibility ? <AdCarbonInline /> : null}
-      </BrandingProvider>
+          <Collapse in={openDemoSource} unmountOnExit timeout={150}>
+            {/* A limitation from https://github.com/nihgwu/react-runner,
+                we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
+            {demoOptions.disableLiveEdit ? (
+              <DemoCodeViewer
+                code={editorCode.value}
+                id={demoSourceId}
+                language={demoData.sourceLanguage}
+                copyButtonProps={{
+                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                  'data-ga-event-label': demo.gaLabel,
+                  'data-ga-event-action': 'copy-click',
+                }}
+              />
+            ) : (
+              <DemoEditor
+                // Mount a new text editor when the preview mode change to reset the undo/redo history.
+                key={editorCode.isPreview}
+                value={editorCode.value}
+                onChange={(value) => {
+                  setEditorCode({
+                    ...editorCode,
+                    value,
+                  });
+                }}
+                onFocus={() => {
+                  setLiveDemoActive(true);
+                }}
+                id={demoSourceId}
+                language={demoData.sourceLanguage}
+                copyButtonProps={{
+                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                  'data-ga-event-label': demo.gaLabel,
+                  'data-ga-event-action': 'copy-click',
+                }}
+              >
+                <DemoEditorError>{debouncedError}</DemoEditorError>
+              </DemoEditor>
+            )}
+          </Collapse>
+          {adVisibility ? <AdCarbonInline /> : null}
+        </BrandingProvider>
+      )}
     </Root>
   );
 }

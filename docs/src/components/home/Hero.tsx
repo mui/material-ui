@@ -86,31 +86,8 @@ const NotificationCard = dynamic(() => import('../showcase/NotificationCard'), {
 });
 
 export default function Hero() {
-  const frame = React.useRef<null | HTMLDivElement>(null);
   const globalTheme = useTheme();
   const isMdUp = useMediaQuery(globalTheme.breakpoints.up('md'));
-  React.useEffect(() => {
-    let obs: undefined | MutationObserver;
-    function suppressTabIndex() {
-      if (frame.current && isMdUp) {
-        const elements = frame.current.querySelectorAll(
-          'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
-        );
-        elements.forEach((elm) => {
-          elm.setAttribute('tabindex', '-1');
-        });
-      }
-    }
-    if (typeof MutationObserver !== 'undefined' && frame.current) {
-      obs = new MutationObserver(suppressTabIndex);
-      obs.observe(frame.current, { childList: true, subtree: true });
-    }
-    return () => {
-      if (obs) {
-        obs.disconnect();
-      }
-    };
-  }, [isMdUp]);
   return (
     <HeroContainer
       linearGradient
@@ -147,7 +124,6 @@ export default function Hero() {
           ),
         },
       }}
-      rightRef={frame}
       right={
         <React.Fragment>
           {isMdUp && (
