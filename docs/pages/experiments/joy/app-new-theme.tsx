@@ -858,7 +858,7 @@ export default function FilesNewTheme() {
 
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
-                  <Typography>platform_ios.zip</Typography>
+                  <Typography>file_name.zip</Typography>
                   <Typography level="body-xs" mt={0.5}>
                     Added 26 May 2011
                   </Typography>
@@ -884,7 +884,7 @@ export default function FilesNewTheme() {
 
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
-                  <Typography>platform_ios.zip</Typography>
+                  <Typography>file_name.zip</Typography>
                   <Typography level="body-xs" mt={0.5}>
                     Added 26 May 2011
                   </Typography>
@@ -910,7 +910,7 @@ export default function FilesNewTheme() {
 
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
-                  <Typography>platform_ios.zip</Typography>
+                  <Typography>file_name.zip</Typography>
                   <Typography level="body-xs" mt={0.5}>
                     Added 26 May 2011
                   </Typography>
@@ -936,7 +936,7 @@ export default function FilesNewTheme() {
 
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
-                  <Typography>platform_ios.zip</Typography>
+                  <Typography>file_name.zip</Typography>
                   <Typography level="body-xs" mt={0.5}>
                     Added 26 May 2011
                   </Typography>
@@ -948,12 +948,11 @@ export default function FilesNewTheme() {
             </Card>
             <Card variant="outlined" sx={{ display: 'flex', flexDirection: 'row' }}>
               <Sheet
-                variant="soft"
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: 2,
+                  gap: 1,
                   p: 0.5,
                 }}
               >
@@ -971,12 +970,11 @@ export default function FilesNewTheme() {
                 </Button>
               </Sheet>
               <Sheet
-                variant="solid"
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: 2,
+                  gap: 1,
                   p: 0.5,
                 }}
               >
