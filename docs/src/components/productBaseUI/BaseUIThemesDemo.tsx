@@ -523,7 +523,7 @@ const StyledBackdrop = styled(Backdrop)`
   z-index: -1;
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(0 0 0 / 0.5);
   -webkit-tap-highlight-color: transparent;
   opacity: ${({ open }) => (open ? 1 : 0)};
   transition: opacity 0.3s ease;
