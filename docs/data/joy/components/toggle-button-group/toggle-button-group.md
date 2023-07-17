@@ -7,13 +7,12 @@ components: ToggleButtonGroup, Button, IconButton
 
 # Toggle Button Group
 
-<p class="description">A group of mutually exclusive two-state buttons.</p>
+<p class="description">A group of mutually exclusive buttons.</p>
 
 ## Introduction
 
-To emphasize groups of related toggle buttons, a group should share a common container.
-
-The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
+Toggle Button Group provides a way to get mutually exclusive actions closer together by sharing a common container.
+It controls the selected state of its child buttons when given its own `value` prop.
 
 {{"demo": "ToggleGroupUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -23,27 +22,20 @@ The `ToggleButtonGroup` controls the selected state of its child buttons when gi
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 ```
 
-### Toggle button
-
-Joy UI **does not** provide a `ToggleButton` component. It's mainly because the Button or IconButton components can be used with `aria-pressed`, and according to [WAI ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/), it's a better option.
-
-The demo below shows how to use a `Button` and a `IconButton` as a toggle.
+Note that Joy UI doesn't provide a Toggle Button component but rather a Toggle Button Group container component. The reason for that is that according to the [WAI ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/), it's better to use `aria-pressed` on the Button or Icon Button component instead.
 
 {{"demo": "ToggleButtons.js"}}
 
-### Toggle group
+That said, when using the Toggle Button Group component, pass a value as an array.
+When a button within the group is pressed, the Toggle Button Group component triggers the `onChange` prop of it and passes the updated array as a parameter.
 
-To use the `ToggleButtonGroup`, you should pass a value as an array. When a button within the group is in the pressed state, the `ToggleButtonGroup` triggers the `onChange` prop and passes the updated array as a parameter.
-
-The `ToggleButtonGroup` uses the same styles as the [ButtonGroup](/joy-ui/react-button-group/) component to ensure a cohesive visual connection between all the buttons.
+The Toggle Button Group component uses the same styles as the [Button Group](/joy-ui/react-button-group/) component to ensure a consistent visual connection between all of the Joy UI buttons.
 
 {{"demo": "ToggleGroup.js"}}
 
 ### Exclusive selection
 
-When the `value` provided to the `ToggleButtonGroup` is not an array, it operates in exclusive selection mode.
-
-In this mode, only one button can be selected at a time within the group.
+When the value provided to the Toggle Button Group component is not an array, it operates in the exclusive selection mode, which means that only one button can be selected at a single time within the group.
 
 {{"demo": "ExclusiveSelection.js"}}
 
@@ -51,7 +43,7 @@ In this mode, only one button can be selected at a time within the group.
 
 ### Variants
 
-The `ToggleButtonGroup` component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `plain`, `soft`, and `solid`.
+The Toggle Button Group component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `plain`, `soft`, and `solid`.
 
 {{"demo": "ToggleGroupVariants.js"}}
 
@@ -62,7 +54,7 @@ Note that you lose the global variants when you add custom variants.
 
 ### Sizes
 
-The `ToggleButtonGroup` component comes in three sizes: `sm`, `md` (default), and `lg`.
+The Toggle Button Group component comes in three sizes: `sm`, `md` (default), and `lg`.
 
 {{"demo": "ToggleGroupSizes.js"}}
 
@@ -72,19 +64,20 @@ To learn how to add custom sizes to the component, check out [Themed componentsâ
 
 ### Colors
 
-The `ToggleButtonGroup` can use all the colors included in the theme via the `color` prop.
-
-You can test it combining different colors with different variants:
+Every palette included in the theme is available via the color prop.
 
 {{"demo": "ToggleGroupColors.js"}}
 
 ### Spacing
 
-When the `spacing` property is set to a value greater than `0`, the buttons within the group are detached, and separated by a `gap`. The size of the `gap` is determined by the value of `theme.spacing(<value>)`.
+By default, there's no spacing between the buttons within a Toggle Button Group.
+Use the `spacing` prop with a value greater than 0 to separate each button.
+
+The spacing is applied using the `gap` CSS property and its value is determined on the theme `theme.spacing(<value>)`).
 
 {{"demo": "ToggleGroupSpacing.js"}}
 
-To create a responsive spacing, the `<value>` can be an object or an array.
+To create a responsive spacing scale, the `<value>` can be an object or an array.
 
 ```js
 <ToggleButtonGroup spacing={{ xs: 0, md: 2, lg: 3 }}>â€¦</ToggleButtonGroup>
@@ -100,9 +93,10 @@ To create a responsive spacing, the `<value>` can be an object or an array.
 
 ### ARIA
 
-- ToggleButtonGroup has `role="group"`. You should provide an accessible label with `aria-label="label"`, `aria-labelledby="id"` or `<label>`.
-- For the toggle button, sets `aria-pressed="<bool>"` according to the button state. You should label an icon button with `aria-label`.
+- The Toggle Button Group component has `role="group"`. Make sure to provide an accessible label with `aria-label="label"`, `aria-labelledby="id"` or `<label>`.
+- For the toggle button, set `aria-pressed="<bool>"` according to the button state. Make sure to label an icon button with `aria-label`.
 
 ### Keyboard
 
-At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.
+Buttons within a Toggle Button Group component are in the same order as in the DOM.
+Use the tab key to navigate them.
