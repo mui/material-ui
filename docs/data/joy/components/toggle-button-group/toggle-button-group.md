@@ -11,8 +11,8 @@ components: ToggleButtonGroup, Button, IconButton
 
 ## Introduction
 
-To emphasize groups of related toggle buttons,
-a group should share a common container.
+To emphasize groups of related toggle buttons, a group should share a common container.
+
 The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
 
 {{"demo": "ToggleGroupUsage.js", "hideToolbar": true, "bg": "gradient"}}
