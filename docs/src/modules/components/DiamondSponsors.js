@@ -24,9 +24,11 @@ export default function DiamondSponsors() {
         sx={[
           {
             position: 'absolute',
+            pointerEvents: 'none',
             top: -40,
             height: 40,
-            width: '100%',
+            left: 0,
+            right: 20,
             background: `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFF 100%)`,
           },
           (theme) =>
