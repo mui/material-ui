@@ -128,3 +128,7 @@ To learn more about this, see [Themed Components](/joy-ui/customization/themed-c
 ### Basic card
 
 {{"demo": "BasicCardSkeleton.js"}}
+
+### Comment
+
+{{"demo": "CommentSkeleton.js"}}
