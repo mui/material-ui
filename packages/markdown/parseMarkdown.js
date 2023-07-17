@@ -3,6 +3,22 @@ const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
 
+/**
+ * Option used by `marked` the library parsing markdown.
+ */
+const markedOptions = {
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  headerPrefix: false,
+  headerIds: false,
+  mangle: false,
+};
+
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
 const descriptionRegExp = /<p class="description">(.*?)<\/p>/s;
@@ -188,7 +204,7 @@ function getDescription(markdown) {
  * @param {string} markdown
  */
 function renderInline(markdown) {
-  return marked.parseInline(markdown);
+  return marked.parseInline(markdown, markedOptions);
 }
 
 // Help rank mui.com on component searches first.
@@ -352,20 +368,6 @@ function createRender(context) {
       ].join('')}\n`;
     };
 
-    const markedOptions = {
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      headerPrefix: false,
-      headerIds: false,
-      mangle: false,
-      renderer,
-    };
-
     marked.use({
       extensions: [
         {
@@ -401,7 +403,7 @@ function createRender(context) {
       ],
     });
 
-    return marked(markdown, markedOptions);
+    return marked(markdown, { ...markedOptions, renderer });
   }
 
   return render;

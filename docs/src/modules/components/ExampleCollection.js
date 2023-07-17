@@ -96,13 +96,13 @@ export default function ExampleCollection() {
                 backgroundImage: 'none',
                 borderRadius: 1,
                 border: '1px solid',
-                borderColor: 'grey.200',
+                borderColor: 'divider',
                 boxShadow: 'none',
               },
               (theme) =>
                 theme.applyDarkStyles({
                   bgcolor: 'transparent',
-                  borderColor: 'primaryDark.700',
+                  borderColor: 'divider',
                 }),
             ]}
           >

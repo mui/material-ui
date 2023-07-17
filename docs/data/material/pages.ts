@@ -207,7 +207,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
       {
         pathname: '/material-ui/guides/next-js-app-router',
-        title: 'Integrating with Next.js App Router',
+        title: 'Next.js App Router',
       },
     ],
   },

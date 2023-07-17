@@ -59,48 +59,15 @@ const faqData = [
     ),
   },
   {
-    summary: 'Why must we license developers not using the software directly?',
+    summary: 'Am I allowed to use the product after the update entitlement expires?',
     detail: (
       <React.Fragment>
-        Our pricing model requires all developers working on a project using MUI X Pro or Premium to
-        be licensed. This is intended to make it easier for you and your team to know if the right
-        number of developers are licensed.
+        <strong>Yes.</strong> You can continue to use the product in production environments after
+        the entitlement expires. But you will need to keep your subscription active to continue
+        development, update for new features, or gain access to technical support.
         <br />
         <br />
-        Our licensing model also requires developers indirectly using MUI X Pro or Premium (e.g.
-        through a wrapper library) to be licensed.
-        <br />
-        <br />
-        The price point per developer is adjusted to be lower than if only direct use needed a
-        license.{' '}
-        <Link
-          target="_blank"
-          rel="noopener"
-          href="https://mui.com/legal/mui-x-eula/#required-quantity-of-licenses"
-        >
-          The relevant EULA clause.
-        </Link>
-      </React.Fragment>
-    ),
-  },
-  {
-    summary: 'Do developers have to be named?',
-    detail: (
-      <React.Fragment>
-        <strong>No.</strong> We trust that you will not go over the number of licensed developers.
-        Developers moving on and off projects is expected occasionally, and the license can be
-        transferred between developers at that time.
-      </React.Fragment>
-    ),
-  },
-  {
-    summary: 'Why are you calling it "early access"?',
-    detail: (
-      <React.Fragment>
-        We think you'll love the features we've built so far, but we're planning to release more. We
-        opened it up as soon as we had something useful so that you can start getting value from it
-        right away, and we'll be adding new features and components based on our own ideas, and on
-        suggestions from early access customers.
+        To renew your license, please <Link href="mailto:sales@mui.com">contact sales</Link>.
       </React.Fragment>
     ),
   },
@@ -116,15 +83,23 @@ const faqData = [
     ),
   },
   {
-    summary: 'Am I allowed to use the product after the update entitlement expires?',
+    summary: 'Why are you calling it "early access"?',
     detail: (
       <React.Fragment>
-        Yes. You can continue to use the product in production environments after the entitlement
-        expires. But you will need to keep your subscription active to continue development, update
-        for new features, or gain access to technical support.
-        <br />
-        <br />
-        To renew your license, please <Link href="mailto:sales@mui.com">contact sales</Link>.
+        We think you'll love the features we've built so far, but we're planning to release more. We
+        opened it up as soon as we had something useful so that you can start getting value from it
+        right away, and we'll be adding new features and components based on our own ideas, and on
+        suggestions from early access customers.
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'Do developers have to be named?',
+    detail: (
+      <React.Fragment>
+        <strong>No.</strong> We trust that you will not go over the number of licensed developers.
+        Developers moving on and off projects is expected occasionally, and the license can be
+        transferred between developers at that time.
       </React.Fragment>
     ),
   },
@@ -191,6 +166,31 @@ const faqData = [
       </React.Fragment>
     ),
   },
+  {
+    summary: 'Why must we license developers not using the software directly?',
+    detail: (
+      <React.Fragment>
+        Our pricing model requires all developers working on a project using MUI X Pro or Premium to
+        be licensed. This is intended to make it easier for you and your team to know if the right
+        number of developers are licensed.
+        <br />
+        <br />
+        Our licensing model also requires developers indirectly using MUI X Pro or Premium (e.g.
+        through a wrapper library) to be licensed.
+        <br />
+        <br />
+        The price point per developer is adjusted to be lower than if only direct use needed a
+        license.{' '}
+        <Link
+          target="_blank"
+          rel="noopener"
+          href="https://mui.com/legal/mui-x-eula/#required-quantity-of-licenses"
+        >
+          The relevant EULA clause.
+        </Link>
+      </React.Fragment>
+    ),
+  },
 ];
 
 const Accordion = styled(MuiAccordion)(({ theme }) => ({
@@ -234,7 +234,7 @@ const AccordionDetails = styled(MuiAccordionDetail)(({ theme }) => ({
   padding: 0,
 }));
 
-export default function FAQ() {
+export default function PricingFAQ() {
   function renderItem(index: number) {
     const faq = faqData[index];
     return (
@@ -275,9 +275,9 @@ export default function FAQ() {
           {renderItem(4)}
           {renderItem(5)}
           {renderItem(6)}
+          {renderItem(7)}
         </Grid>
         <Grid item xs={12} md={4}>
-          {renderItem(7)}
           <Paper
             variant="outlined"
             sx={(theme) => ({
