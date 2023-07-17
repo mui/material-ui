@@ -169,7 +169,7 @@
     "markdownlint-cli2": "^0.8.1",
     "mocha": "^10.2.0",
     "node-fetch": "^2.6.12",
-    "nx": "^15.9.4",
+    "nx": "^16.5.2",
     "nyc": "^15.1.0",
     "piscina": "^4.0.0",
     "postcss-styled-syntax": "^0.4.0",
