@@ -8,7 +8,7 @@ export default function BasicFormControl() {
   return (
     <FormControl defaultValue="" required>
       <Label>Name</Label>
-      <StyledInput />
+      <StyledInput placeholder="Write your name here" />
       <HelperText />
     </FormControl>
   );
@@ -24,10 +24,10 @@ const StyledInput = styled(Input)(
     font-weight: 400;
     line-height: 1.5;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
+    padding: 8px 12px;
     border-radius: 8px;
-    padding: 12px 12px;
 
     &:hover {
       background: ${theme.palette.mode === 'dark' ? '' : grey[100]};
@@ -41,30 +41,32 @@ const StyledInput = styled(Input)(
 `,
 );
 
-const Label = styled(({ children, className }) => {
-  const formControlContext = useFormControlContext();
-  const [dirty, setDirty] = React.useState(false);
+const Label = styled(
+  ({ children, className }: { children?: React.ReactNode; className?: string }) => {
+    const formControlContext = useFormControlContext();
+    const [dirty, setDirty] = React.useState(false);
 
-  React.useEffect(() => {
-    if (formControlContext?.filled) {
-      setDirty(true);
+    React.useEffect(() => {
+      if (formControlContext?.filled) {
+        setDirty(true);
+      }
+    }, [formControlContext]);
+
+    if (formControlContext === undefined) {
+      return <p>{children}</p>;
     }
-  }, [formControlContext]);
 
-  if (formControlContext === undefined) {
-    return <p>{children}</p>;
-  }
+    const { error, required, filled } = formControlContext;
+    const showRequiredError = dirty && required && !filled;
 
-  const { error, required, filled } = formControlContext;
-  const showRequiredError = dirty && required && !filled;
-
-  return (
-    <p className={clsx(className, error || showRequiredError ? 'invalid' : '')}>
-      {children}
-      {required ? ' *' : ''}
-    </p>
-  );
-})`
+    return (
+      <p className={clsx(className, error || showRequiredError ? 'invalid' : '')}>
+        {children}
+        {required ? ' *' : ''}
+      </p>
+    );
+  },
+)`
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   margin-bottom: 4px;
@@ -74,7 +76,7 @@ const Label = styled(({ children, className }) => {
   }
 `;
 
-const HelperText = styled((props) => {
+const HelperText = styled((props: {}) => {
   const formControlContext = useFormControlContext();
   const [dirty, setDirty] = React.useState(false);
 

@@ -1,19 +1,46 @@
 import * as React from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Grid from '@mui/material/Grid';
 
 export default function HeroContainer({
   left,
   right,
-  rightRef,
   rightSx,
 }: {
   left: React.ReactElement;
   right: React.ReactElement;
-  rightRef?: React.MutableRefObject<HTMLDivElement | null>;
   rightSx?: BoxProps['sx'];
 }) {
+  const frame = React.useRef<null | HTMLDivElement>(null);
+  const globalTheme = useTheme();
+  const isMdUp = useMediaQuery(globalTheme.breakpoints.up('md'));
+
+  React.useEffect(() => {
+    let obs: undefined | MutationObserver;
+    function suppressTabIndex() {
+      if (frame.current && isMdUp) {
+        const elements = frame.current.querySelectorAll(
+          'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
+        );
+        elements.forEach((elm) => {
+          elm.setAttribute('tabindex', '-1');
+        });
+      }
+    }
+    if (typeof MutationObserver !== 'undefined' && frame.current) {
+      obs = new MutationObserver(suppressTabIndex);
+      obs.observe(frame.current, { childList: true, subtree: true });
+    }
+    return () => {
+      if (obs) {
+        obs.disconnect();
+      }
+    };
+  }, [isMdUp]);
+
   return (
     <Box sx={{ overflow: 'hidden' }}>
       <Container
@@ -35,8 +62,7 @@ export default function HeroContainer({
             sx={{ maxHeight: '100%', display: { xs: 'none', md: 'initial' } }}
           >
             <Box
-              ref={rightRef}
-              id="hero-container-right-area"
+              ref={frame}
               aria-hidden="true"
               sx={[
                 {

@@ -51,7 +51,7 @@ For instance, if the form's **Submit** button needs to change states after the u
 The following demo shows how to create and style a form that uses Form Control to wrap the elements of the form.
 Note that it also uses the `useFormControlContext` hook in order to pass props to the custom Input—see the [Hook](#hook) section below for more details.
 
-{{"demo": "BasicFormControl.js"}}
+{{"demo": "BasicFormControl"}}
 
 #### Usage with TypeScript
 

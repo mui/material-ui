@@ -1,0 +1,8 @@
+<React.Fragment>
+  <FormControl defaultValue="" required>
+    <Label>Name</Label>
+    <Input placeholder="Write your name here" className="CustomInput" />
+    <HelperText />
+  </FormControl>
+  <Styles />
+</React.Fragment>

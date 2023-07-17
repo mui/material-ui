@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Tabs, { TabsOwnProps } from '@mui/base/Tabs';
 import TabsList from '@mui/base/TabsList';
 import TabPanel from '@mui/base/TabPanel';
@@ -8,18 +7,21 @@ import Tab from '@mui/base/Tab';
 import HighlightedCode from './HighlightedCode';
 
 const StyledTabList = styled(TabsList)(({ theme }) => ({
+  padding: 6,
   display: 'flex',
-  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+  border: '1px solid',
+  borderColor: (theme.vars || theme).palette.primaryDark[700],
+  backgroundColor: (theme.vars || theme).palette.primaryDark[900],
   borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
   borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
   ...theme.applyDarkStyles({
-    backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+    backgroundColor: alpha(theme.palette.primaryDark[800], 0.5),
   }),
 }));
 
 const StyledTabPanel = styled(TabPanel)<{ ownerState: { mounted: boolean } }>(({ ownerState }) => ({
   '& pre': {
-    marginTop: 0,
+    marginTop: -1,
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
     '& code': {
@@ -30,41 +32,42 @@ const StyledTabPanel = styled(TabPanel)<{ ownerState: { mounted: boolean } }>(({
 
 const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ownerState }) =>
   theme.unstable_sx({
-    py: 1.5,
-    px: 2,
+    p: 0.8,
     border: 'none',
-    borderBottom: '2px solid transparent',
-    bgcolor: 'primaryDark.800',
-    color: 'rgba(255 255 255 / 0.6)',
-    fontSize: '0.75rem',
-    fontWeight: 'semiBold',
+    bgcolor: 'transparent',
+    color: (theme.vars || theme).palette.grey[500],
+    fontSize: theme.typography.pxToRem(12),
+    fontWeight: theme.typography.fontWeightSemiBold,
     fontFamily: theme.typography.fontFamilyCode,
     outline: 'none',
-    minWidth: 80,
+    minWidth: 52,
     cursor: 'pointer',
-    '&:first-child /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */':
-      {
-        borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-      },
+    borderRadius: '8px',
+    position: 'relative',
     '&:not(:first-child)': {
-      marginLeft: '1px',
-    },
-    '&:last-child': {
-      borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+      marginLeft: 0.5,
     },
     ...(ownerState.mounted && {
       '&.Mui-selected': {
-        color: '#fff',
-        borderColor: (theme.vars || theme).palette.primary.light,
+        color: '#FFF',
+        '&:after': {
+          content: "''",
+          position: 'absolute',
+          left: 0,
+          bottom: '-6px',
+          height: 2,
+          width: '100%',
+          bgcolor: (theme.vars || theme).palette.primary.light,
+        },
       },
     }),
     '&:hover': {
-      backgroundColor: 'rgba(255 255 255 / 0.08)',
+      backgroundColor: alpha(theme.palette.primaryDark[500], 0.5),
     },
     '&:focus-visible': {
       outline: '2px solid',
       outlineOffset: '-2px',
-      outlineColor: (theme.vars || theme).palette.primary.main,
+      outlineColor: (theme.vars || theme).palette.primary.light,
     },
   }),
 );
@@ -123,7 +126,6 @@ export default function HighlightedCodeWithTabs({
             {tab}
           </StyledTab>
         ))}
-        <Box sx={{ ml: 'auto' }} />
       </StyledTabList>
       {tabs.map(({ tab, language, code }) => (
         <StyledTabPanel ownerState={ownerState} key={tab} value={tab}>
