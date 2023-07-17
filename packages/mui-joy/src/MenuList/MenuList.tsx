@@ -88,6 +88,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     dispatch,
   } = useMenu({
     listboxRef: ref,
+    id: idProp,
     onItemsChange,
   });
 
