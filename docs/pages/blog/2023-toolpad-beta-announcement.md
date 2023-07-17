@@ -1,7 +1,7 @@
 ---
 title: Introducing Toolpad: MUI's low-code admin builder
 description: Assemble admin panels and internal tools faster than ever before with Toolpad—now in beta.
-date: 2023-07-03T00:00:00.000Z
+date: 2023-07-17T00:00:00.000Z
 authors: ['prakhargupta']
 card: true
 tags: ['Product', 'News']
@@ -15,7 +15,7 @@ It's been over a year since we released the first version of Toolpad. Today, we'
 
 ## Why did we decide to build Toolpad?
 
-Toolpad was created to meet the needs of the MUI community. As a result of surveys we conducted, and market research we undertook, we decided to develop an internal tool builder because the idea resonates with MUI's mission of empowering developers to build app faster and more efficiently.
+Toolpad was created to meet the needs of the MUI community. As a result of surveys we conducted, and market research we undertook, we decided to develop an internal tool builder because the idea resonates with MUI's mission of empowering developers to build apps faster and more efficiently.
 
 Internal tools are software applications that are developed and used within an organization itself. They can automate tasks, manage data, and help foster collaboration. Internal tools are a valuable asset for businesses of all sizes, as they help to improve efficiency, productivity, and communication.
 
