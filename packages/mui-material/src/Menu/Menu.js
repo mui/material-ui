@@ -100,7 +100,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const selectedOptions =
     React.Children.map(children, (child) => child?.props?.selected ?? false)?.filter(Boolean)
-      ?.length || 0;
+      ?.length ?? 0;
 
   const hasUserSelectedOption = React.useRef(false);
 
@@ -113,9 +113,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     }
   }, [selectedOptions, open]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const preventAutoFocus = selectedOptions === 0 && hasUserSelectedOption.current;
 
-  const autoFocusItem = !preventAutoFocus && autoFocus && !disableAutoFocusItem && open;
+  const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
   const menuListActionsRef = React.useRef(null);
 
