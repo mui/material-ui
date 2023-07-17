@@ -33,7 +33,7 @@ The demo below shows how to use a `Button` and a `IconButton` as a toggle.
 
 ### Toggle group
 
-To use `ToggleButtonGroup`, you should pass a value as an array. When a button within the group is in the pressed state, the `ToggleButtonGroup` triggers the `onChange` prop and passes the updated array as a parameter.
+To use the `ToggleButtonGroup`, you should pass a value as an array. When a button within the group is in the pressed state, the `ToggleButtonGroup` triggers the `onChange` prop and passes the updated array as a parameter.
 
 The `ToggleButtonGroup` uses the same styles as the [ButtonGroup](/joy-ui/react-button-group/) component to ensure a cohesive visual connection between all the buttons.
 
@@ -41,7 +41,9 @@ The `ToggleButtonGroup` uses the same styles as the [ButtonGroup](/joy-ui/react-
 
 ### Exclusive selection
 
-When the `value` provided to the `ToggleButtonGroup` is not an array, it operates in exclusive selection mode. In this mode, only one button can be selected at a time within the group.
+When the `value` provided to the `ToggleButtonGroup` is not an array, it operates in exclusive selection mode.
+
+In this mode, only one button can be selected at a time within the group.
 
 {{"demo": "ExclusiveSelection.js"}}
 
@@ -49,7 +51,7 @@ When the `value` provided to the `ToggleButtonGroup` is not an array, it operate
 
 ### Variants
 
-The ToggleButtonGroup component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `plain`, `soft`, and `solid`.
+The `ToggleButtonGroup` component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `plain`, `soft`, and `solid`.
 
 {{"demo": "ToggleGroupVariants.js"}}
 
@@ -60,7 +62,7 @@ Note that you lose the global variants when you add custom variants.
 
 ### Sizes
 
-The ToggleButtonGroup component comes in three sizes: `sm`, `md` (default), and `lg`.
+The `ToggleButtonGroup` component comes in three sizes: `sm`, `md` (default), and `lg`.
 
 {{"demo": "ToggleGroupSizes.js"}}
 
