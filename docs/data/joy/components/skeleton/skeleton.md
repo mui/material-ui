@@ -19,82 +19,34 @@ import Skeleton from '@mui/joy/Skeleton';
 
 There are two methods of using the Skeleton component:
 
-- Masking the component, see [Avatar](#avatar), [Image](#image) and [Typography](#inline-with-typography). The parent components control the layout of the interface which prevent layout shifts when the loading state is no longer exisiting.
-- Custom width and height, see [Geometry](#geometry) and [Text block](#text-block). This method is useful when you have no control of the parent component or you want to separate the loading state from the component itself. This method could cause layout shifts when the component gets bigger or smaller.
-
-### Loading
-
-The Skeleton has `loading` prop set to `true` by default.
-
-Set it to `false` to hide the Skeleton component. If the Skeleton has children, the children will be rendered instead.
-
-{{"demo": "LoadingSkeleton.js"}}
+1. **Masking a component**: see the [Avatar](#avatar), [Image](#image) and [Typography](#inline-with-typography) examples. The Skeleton component will inherit their dimension which makes for a more predictable UI while also preventing layout shift when the loading is done.
+2. **Setting a custom width and height**: see the [Geometry](#geometry) and [Text block](#text-block) examples. Use this for full control of the Skeleton size, ignoring its parent dimensions entirely. Be aware that this option _can_ generate layout shift if the actual component the Skeleton is mimicing has a different size.
 
 ## Customization
 
-### Avatar
+### Loading
 
-We recommend using the [Avatar](/joy-ui/react-avatar/) to wrap the Skeleton component when displaying an avatar.
+The Skeleton has the `loading` prop set to `true` by default.
 
-{{"demo": "AvatarSkeleton.js"}}
+Set it to `false` to hide the Skeleton component.
+If the Skeleton has children, they will be rendered instead.
 
-### Image
-
-We recommend using the [AspectRatio](/joy-ui/react-aspect-ratio/) to wrap the Skeleton component when displaying an image.
-
-{{"demo": "ImageSkeleton.js"}}
-
-### Inline with Typography
-
-Insert the Skeleton component between the Typography component and the text to display lines of placeholder.
-
-{{"demo": "InlineSkeleton.js"}}
-
-### Geometry
-
-Use `variant="circular` or `variant="rectangular"` to take full control of the size of the Skeleton component.
-
-Use `width` and `height` prop to adjust the dimension of the Skeleton component.
-
-{{"demo": "GeometrySkeleton.js"}}
-
-:::success
-The `width` and `height` prop support object notation for responsive values.
-
-The example below shows how to create a Skeleton component with a circular shape that is 40px wide and 40px high on mobile and 48px wide and 48px high on desktop.
-
-```js
-<Skeleton
-  variant="circular"
-  width={{ xs: 40, md: 48 }}
-  height={{ xs: 40, md: 48 }}
-/>
-```
-
-:::
-
-### Text block
-
-Use `variant="text"` and `level` props to create a block of skeleton text that follows the theme's typography styles.
-
-The value of the `level` prop can be one of the theme's typography. The result of the skeleton text will have the same height as the text of the `level` prop.
-
-{{"demo": "TextBlockSkeleton.js"}}
+{{"demo": "LoadingSkeleton.js"}}
 
 ### Animation
 
-Use the `animation` prop to control the animation of the Skeleton component. The value of the `animation` prop can be one of the following:
+Use the `animation` prop to control how the Skeleton component animates.
+The `animation` prop value can be one of the following:
 
-- `pulse` (default): The background of the Skeleton is faded in and out.
-- `wave`: The wave animation from left to right.
-- `false`: Disable the animation.
+- `pulse` (default): The background of the Skeleton fades in and out.
+- `wave`: A wave animation flowing from left to right.
+- `false`: Disable the animation entirely.
 
-The demo below shows the wave animation.
+The demo below shows the wave animation:
 
 {{"demo": "AnimationSkeleton.js"}}
 
-:::success
-To set the `wave` animation as the default animation for all Skeleton components, use the theme's default props.
+To set the `wave` animation as the default for all Skeleton component instances, use the theme's default props:
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -119,9 +71,58 @@ function App() {
 }
 ```
 
-To learn more about this, see [Themed Components](/joy-ui/customization/themed-components/) page.
+:::info
+To learn more about global theme changes, see [Themed Components](/joy-ui/customization/themed-components/) page.
+:::
+
+### Avatar
+
+Use the [Avatar](/joy-ui/react-avatar/) component to wrap the Skeleton when displaying an avatar.
+
+{{"demo": "AvatarSkeleton.js"}}
+
+### Image
+
+Use the [AspectRatio](/joy-ui/react-aspect-ratio/) component to wrap the Skeleton when displaying an image.
+
+{{"demo": "ImageSkeleton.js"}}
+
+### Inline with Typography
+
+Insert the Skeleton between the Typography component and the text to display placeholder lines.
+
+{{"demo": "InlineSkeleton.js"}}
+
+### Geometry
+
+To build a specific Skeleton shape, use the `variant` prop and choose between `circular` or `rectangular`.
+And to have it on a specific dimension, use the `width` and `height` props.
+
+{{"demo": "GeometrySkeleton.js"}}
+
+:::success
+The `width` and `height` props support object notation for responsive values.
+
+The example below shows how to create a Skeleton component with a circular shape that is 40x40px on mobile and 48x48px on desktop.
+
+```js
+<Skeleton
+  variant="circular"
+  width={{ xs: 40, md: 48 }}
+  height={{ xs: 40, md: 48 }}
+/>
+```
 
 :::
+
+### Text block
+
+Use the `variant="text"` and `level` props to create a block of skeleton text that follows the theme's typography styles.
+
+The `level` prop value can be a theme's typography-related token.
+The result of the skeleton text will have the same height as the text of the `level` prop.
+
+{{"demo": "TextBlockSkeleton.js"}}
 
 ## Common examples
 
