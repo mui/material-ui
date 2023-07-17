@@ -1175,7 +1175,7 @@ describe('<Select />', () => {
         if (/jsdom/.test(window.navigator.userAgent)) {
           this.skip();
         }
-        const { getByRole, getAllByRole, getByTestId } = render(
+        const { getByRole, getAllByRole } = render(
           <Select data-testid="select" multiple name="age" defaultValue={[]}>
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Ten</MenuItem>
@@ -1199,12 +1199,12 @@ describe('<Select />', () => {
           options[0].click();
         });
 
-        fireEvent.click(options[10]);
+        fireEvent.click(options[0]);
 
         act(() => {
-          options[0].click();
+          options[10].click();
         });
-        console.log(getByTestId('select').scrollHeight);
+        expect(options[10]).toHaveFocus();
       });
     });
 
