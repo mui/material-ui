@@ -8,12 +8,13 @@ import {
 } from 'docs/src/modules/brandingTheme';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { IconButton } from '@mui/material';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import IconButton from '@mui/material/IconButton';
 
 type DescriptionType = 'props' | 'classes' | 'CSS' | 'slots';
 
-const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
-  ({ theme }) => ({
+const Root = styled('div')<{ ownerState: { type?: DescriptionType; isContentExtended: boolean } }>(
+  ({ theme, ownerState }) => ({
     '& .MuiApi-item-header': {
       ...theme.typography.caption,
       fontSize: 13,
@@ -177,7 +178,22 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
       },
     },
-    marginBottom: 36,
+    '& .MuiApi-item-content': {
+      display: 'flex',
+      flexDirection: 'column',
+      '& .MuiApi-showmore': {
+        textAlign: 'center',
+      },
+      '&:hover .MuiApi-showmore': {},
+      '&>*': {
+        display: 'none',
+      },
+      '&.MuiApi-item-content-expended>*, &>.prop-list-description, &>.MuiApi-showmore': {
+        display: 'inline',
+      },
+    },
+    transition: 'margin-bottom 0.1s',
+    marginBottom: ownerState.isContentExtended ? 36 : 0,
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
@@ -250,6 +266,7 @@ function ApiItem(props: ApiItemProps) {
   const descriptionRef = React.useRef<HTMLSpanElement>(null);
   const [isOverflow, setIsOverflow] = React.useState(false);
   const [isExtended, setIsExtended] = React.useState(false);
+  const [isContentExtended, setIsContentExtended] = React.useState(false);
 
   React.useEffect(() => {
     const handler = () => {
@@ -268,7 +285,7 @@ function ApiItem(props: ApiItemProps) {
   }, []);
 
   return (
-    <Root ownerState={{ type }}>
+    <Root ownerState={{ type, isContentExtended }}>
       <div id={id} className="MuiApi-item-header">
         <a
           className="MuiApi-item-link-visual"
@@ -312,7 +329,23 @@ function ApiItem(props: ApiItemProps) {
         )}
         {note && <span className="MuiApi-item-note">{note}</span>}
       </div>
-      {children}
+      <div
+        className={`MuiApi-item-content ${
+          isContentExtended ? 'MuiApi-item-content-expended' : 'MuiApi-item-content-collapsed'
+        }`}
+      >
+        {children}
+        <div className="MuiApi-showmore">
+          <IconButton
+            size="small"
+            // variant="outlined"
+            sx={{ justifySelf: 'center', borderRadius: 10 }}
+            onClick={() => setIsContentExtended((prev) => !prev)}
+          >
+            {isContentExtended ? <KeyboardArrowUpIcon /> : <MoreHorizIcon />}
+          </IconButton>
+        </div>
+      </div>
     </Root>
   );
 }
