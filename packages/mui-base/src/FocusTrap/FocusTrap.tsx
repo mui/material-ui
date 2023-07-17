@@ -285,7 +285,9 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
 
         if (focusabeElem) {
           focusabeElem.focus();
-          if (focusabeElem.scrollIntoView) {
+          // In Firefox, the element may not be clearly visible, so we need to ensure it is focused within the user's viewport.
+          // This fix addresses the issue by centering the element within the viewport.
+          if (focusabeElem.scrollIntoView && navigator.userAgent.includes('Firefox')) {
             focusabeElem.scrollIntoView({ behavior: 'auto', block: 'center' });
           }
         }
