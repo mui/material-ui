@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
-import { UseMenuRootSlotProps } from '../useMenu';
+import { UseMenuListboxSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
 import Popper from '../Popper';
 
 export interface MenuRootSlotPropsOverrides {}
+export interface MenuListboxSlotPropsOverrides {}
 
 export interface MenuActions {
   /**
@@ -34,8 +35,9 @@ export interface MenuOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<'ul', MenuRootSlotPropsOverrides, MenuOwnerState> &
+    root?: SlotComponentProps<'div', MenuRootSlotPropsOverrides, MenuOwnerState> &
       Partial<React.ComponentPropsWithoutRef<typeof Popper>>;
+    listbox?: SlotComponentProps<'ul', MenuListboxSlotPropsOverrides, MenuOwnerState>;
   };
   /**
    * The components used for each slot inside the Menu.
@@ -47,15 +49,20 @@ export interface MenuOwnProps {
 
 export interface MenuSlots {
   /**
-   * The component that renders the root.
-   * @default 'ul'
+   * The component that renders the popup element.
+   * @default 'div'
    */
   root?: React.ElementType;
+  /**
+   * The component that renders the listbox.
+   * @default 'ul'
+   */
+  listbox?: React.ElementType;
 }
 
 export interface MenuTypeMap<
   AdditionalProps = {},
-  RootComponentType extends React.ElementType = 'ul',
+  RootComponentType extends React.ElementType = 'div',
 > {
   props: MenuOwnProps & AdditionalProps;
   defaultComponent: RootComponentType;
@@ -71,9 +78,15 @@ export type MenuOwnerState = Simplify<
   }
 >;
 
-export type MenuRootSlotProps = UseMenuRootSlotProps & {
+export type MenuRootSlotProps = {
   children?: React.ReactNode;
   className?: string;
   ownerState: MenuOwnerState;
   ref: React.Ref<any>;
+};
+
+export type MenuPopupSlotProps = UseMenuListboxSlotProps & {
+  children?: React.ReactNode;
+  className?: string;
+  ownerState: MenuOwnerState;
 };

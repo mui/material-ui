@@ -24,10 +24,7 @@ export default function WrappedMenuItems() {
   return (
     <Dropdown>
       <TriggerButton>Options</TriggerButton>
-      <Menu
-        slots={{ root: StyledListbox }}
-        slotProps={{ root: { id: 'simple-menu' } }}
-      >
+      <Menu slots={{ listbox: StyledListbox }}>
         <MenuSection label="Navigation">
           <StyledMenuItem onClick={createHandleMenuClick('Back')}>
             Back

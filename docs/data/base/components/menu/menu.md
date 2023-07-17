@@ -64,7 +64,7 @@ Notice that it uses the built-in [Popper](/base-ui/react-popper/) component to b
 
 ### Anatomy
 
-- The Menu component comprises a root slot that renders an `<ul>` by default.
+- The Menu component comprises a root slot that renders an `<div>` by default and a listbox slot that is a `<li>`.
 - The Menu Item has a single root `<li>` slot.
 - The Menu Button is a native HTML `<button>`.
 - The Dropdown does not render any HTML element.
@@ -73,17 +73,19 @@ Notice that it uses the built-in [Popper](/base-ui/react-popper/) component to b
 
 ```html
 <button class="MuiMenuButton-root">Click me</button>
-<ul class="MuiMenu-root">
-  <li class="MuiMenuItem-root">List item</li>
+<div class="MuiMenu-root">
+  <ul class="MuiMenu-listbox">
+    <li class="MuiMenuItem-root">List item</li>
+  </ul>
 </div>
 ```
 
 ### Custom structure
 
-Use the `slots` prop to override the root slot on any component except the Dropdown:
+Use the `slots` prop to override the slots on any component except the Dropdown:
 
 ```jsx
-<Menu slots={{ root: 'ol' }} />
+<Menu slots={{ listbox: 'ol' }} />
 ```
 
 :::info
@@ -95,7 +97,7 @@ Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-listbox` to the root slot:
 
 ```jsx
-<Menu slotProps={{ root: { className: 'my-listbox' } }} />
+<Menu slotProps={{ listbox: { className: 'my-listbox' } }} />
 ```
 
 #### Usage with TypeScript

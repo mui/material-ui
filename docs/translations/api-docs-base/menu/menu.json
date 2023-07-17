@@ -8,11 +8,18 @@
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },
+    "listbox": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the listbox element"
+    },
     "expanded": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>open={true}</code>"
     }
   },
-  "slotDescriptions": { "root": "The component that renders the root." }
+  "slotDescriptions": {
+    "root": "The component that renders the popup element.",
+    "listbox": "The component that renders the listbox."
+  }
 }

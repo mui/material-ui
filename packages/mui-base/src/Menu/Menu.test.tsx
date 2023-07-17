@@ -26,7 +26,7 @@ describe('<Menu />', () => {
   const { render } = createRenderer();
 
   describeConformanceUnstyled(<Menu />, () => ({
-    inheritComponent: 'ul',
+    inheritComponent: 'div',
     render: (node) => {
       return render(
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
@@ -38,12 +38,14 @@ describe('<Menu />', () => {
       );
       return wrapper.childAt(0);
     },
-    refInstanceof: window.HTMLUListElement,
+    refInstanceof: window.HTMLDivElement,
     muiName: 'MuiMenu',
     slots: {
       root: {
         expectedClassName: menuClasses.root,
-        testWithElement: null,
+      },
+      listbox: {
+        expectedClassName: menuClasses.listbox,
       },
     },
     skip: ['reactTestRenderer', 'componentProp', 'slotsProp'],

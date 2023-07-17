@@ -13,12 +13,12 @@ const Menu = React.forwardRef(function Menu(
 ) {
   const { children, ...other } = props;
 
-  const { contextValue, getRootProps } = useMenu({
-    rootRef: ref,
+  const { contextValue, getListboxProps } = useMenu({
+    listboxRef: ref,
   });
 
   return (
-    <ul className="menu-root" {...other} {...getRootProps()}>
+    <ul className="menu-root" {...other} {...getListboxProps()}>
       <MenuProvider value={contextValue}>{children}</MenuProvider>
     </ul>
   );

@@ -19,7 +19,7 @@ export default function UnstyledMenuSimple() {
       <Menu
         className="CustomMenu"
         slotProps={{
-          root: { id: 'simple-menu', className: 'CustomMenu--listbox' },
+          listbox: { className: 'CustomMenu--listbox' },
         }}
       >
         <MenuItem

@@ -2,17 +2,17 @@
   "hookDescription": "",
   "parametersDescriptions": {
     "id": "The id of the menu. If not provided, it will be generated.",
-    "onItemsChange": "Callback fired when the menu items change.",
-    "rootRef": "The ref to the menu&#39;s root node."
+    "listboxRef": "The ref to the menu&#39;s listbox node.",
+    "onItemsChange": "Callback fired when the menu items change."
   },
   "returnValueDescriptions": {
     "contextValue": "The value to be passed into the MenuProvider.",
     "dispatch": "Action dispatcher for the menu component.\nAllows to programmatically control the menu.",
-    "getRootProps": "Resolver for the root slot&#39;s props.",
+    "getListboxProps": "Resolver for the listbox slot&#39;s props.",
     "highlightedValue": "The highlighted option in the menu listbox.",
+    "listboxRef": "The ref to the menu&#39;s listbox node.",
     "menuItems": "Items in the menu listbox.",
     "open": "If <code>true</code>, the menu is open.",
-    "rootRef": "The ref to the menu&#39;s root node.",
     "triggerElement": "An element that triggers the visibility of the menu."
   }
 }

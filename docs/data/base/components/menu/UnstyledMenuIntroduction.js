@@ -15,10 +15,7 @@ export default function UnstyledMenuIntroduction() {
   return (
     <Dropdown>
       <TriggerButton>My account</TriggerButton>
-      <Menu
-        slots={{ root: StyledListbox }}
-        slotProps={{ root: { id: 'simple-menu' } }}
-      >
+      <Menu slots={{ listbox: StyledListbox }}>
         <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
           Profile
         </StyledMenuItem>

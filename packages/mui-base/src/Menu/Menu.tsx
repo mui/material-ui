@@ -18,43 +18,10 @@ function useUtilityClasses(ownerState: MenuOwnerState) {
   const { open } = ownerState;
   const slots = {
     root: ['root', open && 'expanded'],
+    listbox: ['listbox', open && 'expanded'],
   };
 
   return composeClasses(slots, useClassNamesOverride(getMenuUtilityClass));
-}
-
-interface ListboxRootProps {
-  children?: React.ReactNode;
-  open: boolean;
-  rootComponent: React.ElementType;
-  rootProps: WithOptionalOwnerState<MenuRootSlotProps>;
-  triggerElement: HTMLElement | null;
-}
-
-// Renders a Popper with the provided rootComponent only if `triggerElement` is defined.
-// Otherwise, renders a rootComponent directly.
-function ListboxRoot(props: ListboxRootProps) {
-  const { triggerElement, open, rootComponent: Root, rootProps, children } = props;
-
-  if (triggerElement != null) {
-    return (
-      <Popper
-        keepMounted
-        {...rootProps}
-        anchorEl={triggerElement}
-        open={open}
-        slots={{ root: Root }}
-      >
-        {children}
-      </Popper>
-    );
-  }
-
-  return (
-    <Root {...rootProps} style={!open ? { display: 'none' } : undefined}>
-      {children}
-    </Root>
-  );
 }
 
 /**
@@ -73,7 +40,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
 ) {
   const { actions, children, onItemsChange, slotProps = {}, slots = {}, ...other } = props;
 
-  const { contextValue, getRootProps, dispatch, open, triggerElement } = useMenu({
+  const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     onItemsChange,
   });
 
@@ -90,28 +57,44 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = slots.root ?? 'ul';
-  const rootProps: WithOptionalOwnerState<MenuRootSlotProps> = useSlotProps({
+  const Root = slots.root ?? 'div';
+  const rootProps = useSlotProps({
     elementType: Root,
-    getSlotProps: getRootProps,
-    externalForwardedProps: other,
     externalSlotProps: slotProps.root,
+    externalForwardedProps: other,
     additionalProps: {
       ref: forwardedRef,
+      role: undefined,
     },
     className: classes.root,
     ownerState,
   });
 
+  const Listbox = slots.listbox ?? 'ul';
+  const listboxProps: WithOptionalOwnerState<MenuRootSlotProps> = useSlotProps({
+    elementType: Listbox,
+    getSlotProps: getListboxProps,
+    externalSlotProps: slotProps.listbox,
+    className: classes.listbox,
+    ownerState,
+  });
+
+  if (triggerElement == null) {
+    return (
+      <Root {...rootProps}>
+        <Listbox {...listboxProps}>
+          <MenuProvider value={contextValue}>{children}</MenuProvider>
+        </Listbox>
+      </Root>
+    );
+  }
+
   return (
-    <ListboxRoot
-      open={open}
-      triggerElement={triggerElement}
-      rootComponent={Root}
-      rootProps={rootProps}
-    >
-      <MenuProvider value={contextValue}>{children}</MenuProvider>
-    </ListboxRoot>
+    <Popper {...rootProps} open={open} anchorEl={triggerElement} slots={{ root: Root }}>
+      <Listbox {...listboxProps}>
+        <MenuProvider value={contextValue}>{children}</MenuProvider>
+      </Listbox>
+    </Popper>
   );
 }) as PolymorphicComponent<MenuTypeMap>;
 
@@ -137,6 +120,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -145,6 +129,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
 } as any;

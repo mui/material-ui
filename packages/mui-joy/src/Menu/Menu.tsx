@@ -103,10 +103,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
-  const { contextValue, getRootProps, dispatch, open, triggerElement } = useMenu({
+  const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     onItemsChange,
     id,
-    rootRef: ref,
+    listboxRef: ref,
   });
 
   React.useImperativeHandle(
@@ -148,7 +148,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
 
   const rootProps = useSlotProps({
     elementType: MenuRoot,
-    getSlotProps: getRootProps,
+    getSlotProps: getListboxProps,
     externalForwardedProps,
     externalSlotProps: {},
     ownerState: ownerState as MenuOwnerState & ListOwnerState,

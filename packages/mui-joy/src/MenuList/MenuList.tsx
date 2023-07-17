@@ -84,10 +84,10 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
 
   const {
     contextValue: menuContextValue,
-    getRootProps: getListboxProps,
+    getListboxProps,
     dispatch,
   } = useMenu({
-    rootRef: ref,
+    listboxRef: ref,
     onItemsChange,
   });
 

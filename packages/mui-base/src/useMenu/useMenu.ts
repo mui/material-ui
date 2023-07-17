@@ -5,7 +5,7 @@ import {
   unstable_useId as useId,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
-import { UseMenuRootSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
+import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
 import menuReducer from './menuReducer';
 import DropdownContext, { DropdownContextValue } from '../useDropdown/DropdownContext';
 import useList from '../useList';
@@ -36,10 +36,10 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
  * - [useMenu API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu)
  */
 export default function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
-  const { rootRef: rootRefProp, onItemsChange, id: idParam } = parameters;
+  const { listboxRef: listboxRefProp, onItemsChange, id: idParam } = parameters;
 
   const rootRef = React.useRef<HTMLElement | null>(null);
-  const handleRef = useForkRef(rootRef, rootRefProp);
+  const handleRef = useForkRef(rootRef, listboxRefProp);
 
   const listboxId = useId(idParam) ?? '';
 
@@ -145,15 +145,15 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       }
     };
 
-  const getOwnRootHandlers = (otherHandlers: EventHandlers = {}) => ({
+  const getOwnListboxHandlers = (otherHandlers: EventHandlers = {}) => ({
     onBlur: createHandleBlur(otherHandlers),
     onKeyDown: createHandleKeyDown(otherHandlers),
   });
 
-  const getRootProps = <TOther extends EventHandlers>(
+  const getListboxProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
-  ): UseMenuRootSlotProps => {
-    const getCombinedRootProps = combineHooksSlotProps(getOwnRootHandlers, getListRootProps);
+  ): UseMenuListboxSlotProps => {
+    const getCombinedRootProps = combineHooksSlotProps(getOwnListboxHandlers, getListRootProps);
     return {
       ...getCombinedRootProps(otherHandlers),
       id: listboxId,
@@ -169,9 +169,9 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       ...listContextValue,
     },
     dispatch: listDispatch,
-    getRootProps,
+    getListboxProps,
     highlightedValue,
-    rootRef: mergedListRef,
+    listboxRef: mergedListRef,
     menuItems: subitems,
     open,
     triggerElement,
