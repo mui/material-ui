@@ -22,12 +22,12 @@ export default function Core() {
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
       <main id="main-content">
         <CoreHero />
-        <Divider />
         <CoreProducts />
         <Divider />
         <References companies={CORE_CUSTOMERS} />
         <Divider />
         <MaterialHeroEnd />
+        <Divider />
       </main>
       <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/material-ui" />
     </BrandingCssVarsProvider>
