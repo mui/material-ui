@@ -1029,6 +1029,36 @@ describe('<Select />', () => {
       expect(options[2]).to.have.attribute('aria-selected', 'true');
     });
 
+    it('should not reset focused option on multi select', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const { getByRole, getAllByRole } = render(
+        <Select data-testid="select" multiple name="age" defaultValue={[]}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Ten</MenuItem>
+          <MenuItem value={30}>Ten</MenuItem>
+          <MenuItem value={40}>Ten</MenuItem>
+          <MenuItem value={50}>Ten</MenuItem>
+        </Select>,
+      );
+
+      fireEvent.mouseDown(getByRole('button'));
+      const options = getAllByRole('option');
+      fireEvent.click(options[4]);
+
+      act(() => {
+        options[0].click();
+      });
+
+      fireEvent.click(options[0]);
+
+      act(() => {
+        options[4].click();
+      });
+      expect(options[4]).toHaveFocus();
+    });
+
     it('should serialize multiple select display value', () => {
       const { getByRole } = render(
         <Select multiple value={[10, 20, 30]}>
@@ -1169,36 +1199,6 @@ describe('<Select />', () => {
 
         expect(onChange.callCount).to.equal(2);
         expect(onChange.secondCall.returnValue).to.deep.equal({ name: 'age', value: [30, 10] });
-      });
-
-      it('should call onChange when  an item', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
-          this.skip();
-        }
-        const { getByRole, getAllByRole } = render(
-          <Select data-testid="select" multiple name="age" defaultValue={[]}>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Ten</MenuItem>
-            <MenuItem value={30}>Ten</MenuItem>
-            <MenuItem value={40}>Ten</MenuItem>
-            <MenuItem value={50}>Ten</MenuItem>
-          </Select>,
-        );
-
-        fireEvent.mouseDown(getByRole('button'));
-        const options = getAllByRole('option');
-        fireEvent.click(options[4]);
-
-        act(() => {
-          options[0].click();
-        });
-
-        fireEvent.click(options[0]);
-
-        act(() => {
-          options[4].click();
-        });
-        expect(options[4]).toHaveFocus();
       });
     });
 
