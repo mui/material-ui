@@ -1,48 +1,47 @@
 # Migrating to the new theme
 
-<p class="description">This guide explains what's news in the default theme and how to migrate to it</p>
+<p class="description">This guide walks through recent Joy UI default theme upgrades and how to update to it.</p>
 
-With the introduction of v5.0.0-alpha.x, Joy UI's default theme went under significant restructuring and polishing. We've made several changes, including renaming, removing, and adding new tokens. This guide will walk you through the latest updates to the default theme and provide instructions for a smooth migration.
+With the introduction of Joy UI's v5.0.0-alpha.x, its default theme went under some significant restructuring and polish.
+Several changes were made, including renaming, removing, and adding new tokens.
+This guide walks through each and every one of them and provides instructions for a smooth migration process.
 
-## Color
+## Color & Typography
 
-### purple color range
+### Purple palette removed
 
-The `purple` color range has been removed. If you want to continue using it, you can do so by adding the color range directly:
+The purple palette has been removed as we updated the primary color.
+In case you want to continue using it, add it directly on the theme object file:
 
-```diff
-- import colors from '@mui/joy/colors';
+```js
+import { extendTheme } from '@mui/joy/styles';
 
-+ const purple = {
-+   50: '#FDF7FF',
-+   100: '#F4EAFF',
-+   200: '#E1CBFF',
-+   300: '#C69EFF',
-+   400: '#A374F9',
-+   500: '#814DDE',
-+   600: '#5F35AE',
-+   700: '#452382',
-+   800: '#301761',
-+   900: '#1D0A42',
-+ }
+const purple = {
+  50: '#FDF7FF',
+  100: '#F4EAFF',
+  200: '#E1CBFF',
+  300: '#C69EFF',
+  400: '#A374F9',
+  500: '#814DDE',
+  600: '#5F35AE',
+  700: '#452382',
+  800: '#301761',
+  900: '#1D0A42',
+};
 ```
 
-### info palette
+### Info palette removed
 
-The `info` palette has been removed from the default theme. We recommend to use `neutral` instead.
-
-For example:
+The info palette has been removed to simplify the color set.
+We've realized that, in most cases, the neutral palette is used for info-related components and use cases.
+Additionally, we noticed a strong overlap between `info` and `neutral`, which motivated further this change.
 
 ```diff
 - <Chip color="info" variant="soft">
 + <Chip color="neutral" variant="soft">
 ```
 
-:::info
-**The why**: when we started applying color palettes into contexts, and fleshing out the components, we noticed an overlap between the `neutral` and `info` states. To address this, we decided to eliminate the info palette and use the neutral colors for the `info` state instead. This change aligns better with the semantic meaning of an informational state.
-:::
-
-If you want to keep the `info` color palette, you can do so by adding the following to your theme:
+However, in case you want to continue using it, add it directly on the theme object file:
 
 ```js
 import { extendTheme } from '@mui/joy/styles';
@@ -337,7 +336,7 @@ function App() {
 
 #### TypeScript
 
-You have add the `info` to the theme's palette types via module augmentation:
+If working with TypeScript, add the `info` palette to the theme's palette types via module augmentation:
 
 ```ts
 // You can put this to any file that's included in your tsconfig
@@ -359,13 +358,17 @@ declare module '@mui/joy/styles' {
 
 ### Other palettes
 
-The colors of these palettes including `primary`, `neutral`, `danger`, `success`, `warning`, `common`, `text` and `background` have been refined to have better contrast.
+Each and every color of all palettes have been refined for better contrast ratios, vibrance, and personality.
+Here's a before and after:
 
 {{"demo": "PaletteChanges.js"}}
 
-If you want to keep the old colors, you can do so by adding the following to your theme:
+#### Keep the old colors
 
-#### Primary
+To keep using the old colors, add them to your theme:
+
+<details>
+<summary>Primary</summary>
 
 ```js
 const primary = {
@@ -453,7 +456,10 @@ extendTheme({
 });
 ```
 
-#### Neutral
+</details>
+
+<details>
+<summary>Neutral</summary>
 
 ```js
 const neutral = {
@@ -546,7 +552,10 @@ extendTheme({
 });
 ```
 
-#### Danger
+</details>
+
+<details>
+<summary>Danger</summary>
 
 ```js
 const danger = {
@@ -634,7 +643,10 @@ extendTheme({
 });
 ```
 
-#### Success
+</details>
+
+<details>
+<summary>Success</summary>
 
 ```js
 const success = {
@@ -722,7 +734,10 @@ extendTheme({
 });
 ```
 
-#### Warning
+</details>
+
+<details>
+<summary>Warning</summary>
 
 ```js
 const warning = {
@@ -810,7 +825,9 @@ extendTheme({
 });
 ```
 
-### Common, Text and Background
+</details>
+
+### Semantic colors
 
 Some token's value does not change, e.g. `palette.text.primary`, so you don't need to override the default theme.
 
@@ -854,13 +871,12 @@ extendTheme({
 });
 ```
 
-## Typography
-
 ### Font family
 
-The font family has been changed to [`Inter`](https://fonts.google.com/specimen/Inter?query=inter). Follow the [installation guide](/getting-started/installation/#inter-font) to install it.
+The default theme typeface has been changed to [`Inter`](https://fonts.google.com/specimen/Inter?query=inter).
+Follow the [installation guide](/getting-started/installation/#inter-font) to install it.
 
-If you want to keep the old font family, you can do so by adding the following to your theme:
+To keep the old font family, add the following to your theme:
 
 ```js
 extendTheme({
@@ -893,7 +909,7 @@ The font size scale has been reduced to:
  }
 ```
 
-If you want to add the old font sizes back, you can do so by adding the following to your theme:
+To keep the old font size scale, add the following to your theme:
 
 ```js
 extendTheme({
@@ -909,7 +925,7 @@ extendTheme({
 
 #### TypeScript
 
-You have add the old font sizes to the theme's types via module augmentation:
+If working with TypeScript, add the old font size scale to the theme's type via module augmentation:
 
 ```ts
 // You can put this to any file that's included in your tsconfig
@@ -940,7 +956,7 @@ The font weight scale has been reduced to:
  }
 ```
 
-If you want to add the old font weights back, you can do so by adding the following to your theme:
+To keep the old font weight scale, add the following to your theme:
 
 ```js
 extendTheme({
@@ -954,7 +970,7 @@ extendTheme({
 
 #### TypeScript
 
-You have add the old font weights to the theme's types via module augmentation:
+If working with TypeScript, add the old font weight scale to the theme's type via module augmentation:
 
 ```ts
 // You can put this to any file that's included in your tsconfig
@@ -986,7 +1002,8 @@ The font size scale has been changed to:
 
 ### Letter spacing
 
-The letter spacing scale has been removed, if you want to add it back, you can do so by adding the following to your theme:
+The letter spacing scale has been removed.
+To add it back, add the following to your theme:
 
 ```js
 extendTheme({
@@ -1000,7 +1017,7 @@ extendTheme({
 
 #### TypeScript
 
-You have add the `letterSpacing` to the theme's types via module augmentation:
+If working with TypeScript, add the old letter spacing scale to the theme's type via module augmentation:
 
 ```ts
 // You can put this to any file that's included in your tsconfig
@@ -1017,7 +1034,7 @@ declare module '@mui/joy/styles' {
 
 ### Level
 
-The default `theme.typography.*` have been restructured to:
+The default typography level scale (`theme.typography.*`) has been restructured to:
 
 ```diff
   h1
@@ -1042,7 +1059,7 @@ The default `theme.typography.*` have been restructured to:
 - body5
 ```
 
-If you want to add the old levels back, you can do so by adding the following to your theme:
+To keep the old level scale, add the following to your theme:
 
 ```js
 extendTheme({
@@ -1067,15 +1084,18 @@ extendTheme({
 });
 ```
 
-The reason behind this restructure is to make the levels more consistent and easier to use. The `h1` through `h4` levels are intended to be used for page headings, while the `title-*` and `body-*` levels are intended to be used as page paragraphs and as texts in components.
+The reason behind this restructure is to make the levels more consistent and easier to use.
+The `h1` through `h4` levels are intended to be used for page headings, while the `title-*` and `body-*` levels are intended to be used as page paragraphs and as component texts.
 
 The `title-*` and `body-*` levels are designed to be composable which align perfectly with each size of the `SvgIcon` component:
 
 {{"demo": "TitleBodyIconExample.js"}}
 
-## Shadow
+### Shadow
 
-The shadow scale remains the same but each value has been changed. If you want to add the old shadow scale back, you can do so by adding the following to your theme:
+The shadow scale remains the same but all values have been changed.
+
+To keep the old shadow scale, add the following to your theme:
 
 ```js
 extendTheme({
@@ -1113,11 +1133,11 @@ extendTheme({
 
 ### Tabs
 
-The [Tabs](/joy-ui/react-tabs/) component has been redesigned due to this [issue](https://github.com/mui/material-ui/issues/36782).
+The [Tabs](/joy-ui/react-tabs/) component has been redesigned following feedback we've received on [this GitHub issue](https://github.com/mui/material-ui/issues/36782).
 
 {{"demo": "../components/tabs/TabsBasic.js"}}
 
-If you want to keep the old Tabs design, you can do so by adding the following to your theme:
+To keep the Tabs desgin, add the following to your theme:
 
 ```js
 extendTheme({
