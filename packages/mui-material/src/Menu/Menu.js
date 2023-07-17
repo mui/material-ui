@@ -113,9 +113,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     }
   }, [selectedOptions, open]);
 
+  // eslint-disable-next-line
   const preventAutoFocus = selectedOptions === 0 && hasUserSelectedOption.current;
 
-  const autoFocusItem = !preventAutoFocus && autoFocus && !disableAutoFocusItem && open;
+  const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
   const menuListActionsRef = React.useRef(null);
 
