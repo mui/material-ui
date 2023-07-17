@@ -39,8 +39,8 @@ function ProductDrawerButton(props) {
     <React.Fragment>
       <Button
         id="mui-product-selector"
-        aria-controls="drawer-open-button"
         aria-haspopup="true"
+        aria-controls={open ? 'drawer-open-button' : undefined}
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
@@ -194,15 +194,7 @@ const AppNavPaperComponent = styled('div')(({ theme }) => {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-    position: 'relative',
-    height: '100%',
-    [theme.breakpoints.up('xs')]: {
-      borderRadius: '0 12px 12px 0',
-    },
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: '0px',
-      overflow: 'hidden',
-    },
+    paddingBottom: theme.spacing(5),
   };
 });
 

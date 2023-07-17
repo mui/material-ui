@@ -55,7 +55,7 @@ function Feedback({
 const TESTIMONIALS = [
   {
     quote:
-      '"MUI offers a wide variety of high quality components that have allowed us to ship features faster. MUI has been used by more than a hundred engineers in our organization. What\'s more, MUI\'s well architected customization system has allowed us to differentiate ourselves in the marketplace."',
+      '"MUI offers a wide variety of high-quality components that have allowed us to ship features faster. MUI has been used by more than a hundred engineers in our organization. What\'s more, MUI\'s well-architected customization system has allowed us to differentiate ourselves in the marketplace."',
     profile: {
       avatarSrc: 'https://avatars.githubusercontent.com/u/28296253?s=58',
       avatarSrcSet: 'https://avatars.githubusercontent.com/u/28296253?s=116 2x',

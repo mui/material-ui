@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { Axis } from '@mui/base';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';

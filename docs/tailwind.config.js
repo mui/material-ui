@@ -30,6 +30,7 @@ module.exports = {
       },
       minWidth: {
         badge: '22px',
+        listbox: '200px',
         snackbar: '300px',
       },
       maxWidth: {
