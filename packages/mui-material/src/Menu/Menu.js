@@ -98,7 +98,24 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
+  const selectedOptions = Array.isArray(children)
+    ? children.filter((child) => child?.props?.selected ?? false).length
+    : 0;
+
+  const hasUserSelectedOption = React.useRef(false);
+
+  React.useEffect(() => {
+    if (selectedOptions !== 0) {
+      hasUserSelectedOption.current = true;
+    }
+    if (!open && selectedOptions === 0) {
+      hasUserSelectedOption.current = false;
+    }
+  }, [selectedOptions, open]);
+
+  const preventAutoFocus = selectedOptions === 0 && hasUserSelectedOption.current;
+
+  const autoFocusItem = !preventAutoFocus && autoFocus && !disableAutoFocusItem && open;
 
   const menuListActionsRef = React.useRef(null);
 
