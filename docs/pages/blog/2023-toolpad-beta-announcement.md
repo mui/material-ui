@@ -75,7 +75,7 @@ Toolpad runs completely locally. You're not stuck with an online code editor or 
 
 ### 6. A catalogue of components powered by Material UI
 
-Material UI provides producttion-ready React components; a chosen few are currently available inside Toolpad, and we're adding more all the time. MUI X Pro (Data Grid and Date Picker) components are also available for free in Toolpad.
+Material UI provides production-ready React components; a chosen few are currently available inside Toolpad, and we're adding more all the time. MUI X Pro (Data Grid and Date Picker) components are also available for free in Toolpad.
 
 <a href="https://mui.com/toolpad/examples/npm-stats/">
 <img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/library.png"  loading="lazy" width="2400" height="1394" />
