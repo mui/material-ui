@@ -1182,18 +1182,12 @@ describe('<Select />', () => {
             <MenuItem value={30}>Ten</MenuItem>
             <MenuItem value={40}>Ten</MenuItem>
             <MenuItem value={50}>Ten</MenuItem>
-            <MenuItem value={60}>Ten</MenuItem>
-            <MenuItem value={70}>Ten</MenuItem>
-            <MenuItem value={80}>Ten</MenuItem>
-            <MenuItem value={90}>Ten</MenuItem>
-            <MenuItem value={90}>Ten</MenuItem>
-            <MenuItem value={100}>Ten</MenuItem>
           </Select>,
         );
 
         fireEvent.mouseDown(getByRole('button'));
         const options = getAllByRole('option');
-        fireEvent.click(options[10]);
+        fireEvent.click(options[4]);
 
         act(() => {
           options[0].click();
@@ -1202,9 +1196,9 @@ describe('<Select />', () => {
         fireEvent.click(options[0]);
 
         act(() => {
-          options[10].click();
+          options[4].click();
         });
-        expect(options[10]).toHaveFocus();
+        expect(options[4]).toHaveFocus();
       });
     });
 
