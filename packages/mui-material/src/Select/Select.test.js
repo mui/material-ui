@@ -1176,7 +1176,7 @@ describe('<Select />', () => {
           this.skip();
         }
         const { getByRole, getAllByRole, getByTestId } = render(
-          <Select data-testid="select" multiple name="age">
+          <Select data-testid="select" multiple name="age" defaultValue={[]}>
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Ten</MenuItem>
             <MenuItem value={30}>Ten</MenuItem>
