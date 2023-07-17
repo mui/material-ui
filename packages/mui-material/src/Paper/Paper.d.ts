@@ -7,7 +7,7 @@ import { PaperClasses } from './paperClasses';
 
 export interface PaperPropsVariantOverrides {}
 
-export interface PaperBaseProps {
+export interface PaperOwnProps {
   /**
    * The content of the component.
    */
@@ -39,7 +39,7 @@ export interface PaperBaseProps {
 }
 
 export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & PaperBaseProps;
+  props: P & PaperOwnProps;
   defaultComponent: D;
 }
 
