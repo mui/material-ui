@@ -11,6 +11,11 @@ components: Skeleton, AspectRatio, Avatar, Typography
 
 ## Introduction
 
+Skeletons provide users an expectation of what the UI looks like while data loads.
+It helps reducing the perception of long loading times while being a more interesting loading state to look at.
+
+{{"demo": "BasicSkeleton.js"}}
+
 ## Basics
 
 ```jsx
