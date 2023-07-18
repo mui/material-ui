@@ -137,6 +137,7 @@ export default function FilesExample() {
                 xs: 'none',
                 sm: 'flex',
               },
+              boxShadow: 'sm',
             }}
           />
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
@@ -576,9 +577,13 @@ export default function FilesExample() {
           </Box>
           <Divider />
           <Tabs>
-            <TabList>
-              <Tab indicatorPlacement="top">Details</Tab>
-              <Tab indicatorPlacement="top">Activity</Tab>
+            <TabList color="primary">
+              <Tab color="primary" sx={{ flexGrow: 1 }}>
+                Details
+              </Tab>
+              <Tab color="primary" sx={{ flexGrow: 1 }}>
+                Activity
+              </Tab>
             </TabList>
           </Tabs>
           <AspectRatio ratio="21/9">

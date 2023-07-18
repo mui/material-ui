@@ -91,7 +91,7 @@ function TeamNav() {
           }}
         >
           <ListItem>
-            <ListItemButton selected color="primary">
+            <ListItemButton selected>
               <ListItemDecorator>
                 <PeopleRoundedIcon fontSize="small" />
               </ListItemDecorator>
@@ -191,6 +191,7 @@ export default function TeamExample() {
                 xs: 'none',
                 sm: 'flex',
               },
+              boxShadow: 'sm',
             }}
           />
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
