@@ -132,7 +132,7 @@ export default function TemplateDemo() {
   const templates = TEMPLATES[demo];
 
   return (
-    <Section bg="comfort">
+    <Section bg="gradient">
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
@@ -143,7 +143,7 @@ export default function TemplateDemo() {
                   The right template for your <GradientText>specific need</GradientText>
                 </Typography>
               }
-              description="A growing list of templates for multiple use-cases, all powered by MUI Core components and carefully curated by MUI's team."
+              description="A growing list of templates for multiple use-cases, all powered by Material UI components and carefully curated by MUI's team."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>

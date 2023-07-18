@@ -384,6 +384,8 @@ function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: Rea
           display: 'flex',
           alignItems: 'center',
           bgcolor: 'grey.50',
+          border: '1px solid',
+          borderColor: 'divider',
         },
         (theme) =>
           theme.applyDarkStyles({
@@ -1089,7 +1091,7 @@ export default function PricingTable({
   const renderRow = (key: string) => renderMasterRow(key, gridSx, plans);
 
   return (
-    <Box ref={tableRef} {...props} sx={{ pt: 2, pb: 8, ...props.sx }}>
+    <Box ref={tableRef} {...props} sx={{ pt: 8, pb: 8, ...props.sx }}>
       <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
       {!columnHeaderHidden && (
         <Box sx={gridSx}>
