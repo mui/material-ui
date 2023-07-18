@@ -44,7 +44,6 @@ export default function PropertiesTable(props) {
               key={propName}
               id={`${hashPrefix}prop-${propName}`}
               title={propName}
-              description={typeName}
               note={
                 (propData.required && !showOptionalAbbr && 'Required') ||
                 (!propData.required && showOptionalAbbr && 'Optional') ||
@@ -126,51 +125,73 @@ export default function PropertiesTable(props) {
                   )}
                 </Alert>
               )}
-
-              {propDefault && (
-                <p className="prop-list-default-props">
-                  <span>{t('api-docs.default')}: </span>
-                  <code>{propDefault}</code>
-                </p>
-              )}
-
-              {signature && (
-                <div className="prop-list-signature">
-                  <p>{t('api-docs.signature')}:</p>
-                  <code
-                    dangerouslySetInnerHTML={{
-                      __html: signature,
-                    }}
-                  />
-                  {propData.signature.describedArgs && (
-                    <div>
-                      <ul>
-                        {propData.signature.describedArgs.map((argName) => (
-                          <li
-                            key={argName}
-                            dangerouslySetInnerHTML={{
-                              __html: `<code>${argName}</code> ${propertiesDescriptions[propName].typeDescriptions[argName]}`,
-                            }}
-                          />
-                        ))}
-                      </ul>
+              <div className="prop-list-additional-info">
+                {propDefault && (
+                  <div className="prop-list-default-props">
+                    <div className="prop-list-title">
+                      <p>{t('api-docs.default')}:</p>
                     </div>
-                  )}
-                  {propData.signature.returned && (
-                    <p>
-                      {t('api-docs.returns')}
-                      <span
+                    <div className="prop-list-content">
+                      <code>{propDefault}</code>
+                    </div>
+                  </div>
+                )}
+                {typeName && (
+                  <div className="prop-list-type">
+                    <div className="prop-list-title">
+                      <p>{t('api-docs.type')}:</p>
+                    </div>
+                    <div className="prop-list-content">
+                      <code
                         dangerouslySetInnerHTML={{
-                          __html:
-                            propertiesDescriptions[propName].typeDescriptions[
-                              propData.signature.returned
-                            ],
+                          __html: typeName,
                         }}
                       />
-                    </p>
-                  )}
-                </div>
-              )}
+                    </div>
+                  </div>
+                )}
+                {signature && (
+                  <div className="prop-list-signature">
+                    <div className="prop-list-title">
+                      <p>{t('api-docs.signature')}:</p>
+                    </div>
+                    <div className="prop-list-content">
+                      <code
+                        dangerouslySetInnerHTML={{
+                          __html: signature,
+                        }}
+                      />
+                      {propData.signature.describedArgs && (
+                        <div>
+                          <ul>
+                            {propData.signature.describedArgs.map((argName) => (
+                              <li
+                                key={argName}
+                                dangerouslySetInnerHTML={{
+                                  __html: `<code>${argName}</code> ${propertiesDescriptions[propName].typeDescriptions[argName]}`,
+                                }}
+                              />
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {propData.signature.returned && (
+                        <p>
+                          {t('api-docs.returns')}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                propertiesDescriptions[propName].typeDescriptions[
+                                  propData.signature.returned
+                                ],
+                            }}
+                          />
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
             </ApiItem>
           );
         })}

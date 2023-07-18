@@ -140,15 +140,14 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
       marginBottom: 16,
     },
+    '& .prop-list-additional-info': {
+      display: 'table',
+      '& .prop-list-title': { paddingRight: 5, whiteSpace: 'nowrap', verticalAlign: 'top' },
+      '&>div': { display: 'table-row', '&>div': { display: 'table-cell' } },
+    },
     '& .prop-list-default-props': {
       ...theme.typography.body2,
       fontWeight: theme.typography.fontWeightSemiBold,
-      display: 'flex',
-      alignItems: 'center',
-      span: {
-        marginRight: 6,
-        whiteSpace: 'nowrap',
-      },
       code: {
         ...theme.typography.caption,
         fontFamily: theme.typography.fontFamilyCode,
