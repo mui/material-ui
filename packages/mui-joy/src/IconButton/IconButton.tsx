@@ -95,8 +95,14 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
           ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
         },
       },
-      '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-      '&:disabled': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      '&:active, &[aria-pressed="true"]': {
+        '--Icon-color': 'currentColor',
+        ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      },
+      '&:disabled': {
+        '--Icon-color': 'currentColor',
+        ...theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      },
     },
   ],
 );

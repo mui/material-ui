@@ -37,7 +37,7 @@ const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
 
 export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerState }>(
   ({ theme, ownerState }) => {
-    const radius = resolveSxValue({ theme, ownerState }, ['borderRadius']);
+    const { borderRadius: radius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
     const firstChildRadius =
       ownerState.orientation === 'vertical'
         ? 'var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius) var(--unstable_childRadius)'
@@ -131,82 +131,31 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
           '&:not(:disabled)': {
             zIndex: 1, // to make borders appear above disabled buttons.
           },
-          // first Button or IconButton
-          [`& > [data-first-child]`]: {
-            '--Button-radius': firstChildRadius,
-            '--IconButton-radius': firstChildRadius,
-            ...(ownerState.orientation === 'horizontal' && {
-              borderRight:
-                'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-            }),
-            ...(ownerState.orientation === 'vertical' && {
-              borderBottom:
-                'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-            }),
-          },
-          // middle Buttons or IconButtons
-          [`& > :not([data-first-child]):not([data-last-child]):not(:only-child)`]: {
-            '--Button-radius': 'var(--unstable_childRadius)',
-            '--IconButton-radius': 'var(--unstable_childRadius)',
-            borderRadius: 'var(--unstable_childRadius)',
-            ...(ownerState.orientation === 'horizontal' && {
-              borderLeft:
-                'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-              borderRight:
-                'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-            }),
-            ...(ownerState.orientation === 'vertical' && {
-              borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-              borderBottom:
-                'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-            }),
-          },
-          // last Button or IconButton
-          [`& > [data-last-child]`]: {
-            '--Button-radius': lastChildRadius,
-            '--IconButton-radius': lastChildRadius,
-            ...(ownerState.orientation === 'horizontal' && {
-              borderLeft:
-                'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-            }),
-            ...(ownerState.orientation === 'vertical' && {
-              borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-            }),
-          },
-          [`& > :not([data-first-child]):not(:only-child)`]: {
-            '--Button-margin': margin,
-            '--IconButton-margin': margin,
-          },
-          [`& .${buttonClasses.root}, & .${iconButtonClasses.root}`]: {
-            '&:not(:disabled)': {
-              zIndex: 1, // to make borders appear above disabled buttons.
-            },
-            ...(ownerState.color !== 'context' && {
-              '&:disabled': {
-                '--ButtonGroup-separatorColor':
-                  theme.vars.palette[ownerState.color!]?.outlinedDisabledBorder,
-              },
-            }),
-            ...(ownerState.variant === 'outlined' &&
-              ownerState.color !== 'context' && {
-                '&:hover': {
-                  '--ButtonGroup-separatorColor':
-                    theme.vars.palette[ownerState.color!]?.outlinedHoverBorder,
-                },
-              }),
-            [`&:hover, ${theme.focus.selector}`]: {
-              zIndex: 2, // to make borders appear above sibling.
-            },
-          },
-          ...(ownerState.buttonFlex && {
-            [`& > *:not(.${iconButtonClasses.root})`]: {
-              flex: ownerState.buttonFlex,
-            },
-            [`& > :not(button) > .${buttonClasses.root}`]: {
-              width: '100%', // for button to fill its wrapper.
+          ...(ownerState.color !== 'context' && {
+            '&:disabled': {
+              '--ButtonGroup-separatorColor':
+                theme.vars.palette[ownerState.color!]?.outlinedDisabledBorder,
             },
           }),
+          ...(ownerState.variant === 'outlined' &&
+            ownerState.color !== 'context' && {
+              '&:hover': {
+                '--ButtonGroup-separatorColor':
+                  theme.vars.palette[ownerState.color!]?.outlinedHoverBorder,
+              },
+            }),
+          [`&:hover, ${theme.focus.selector}`]: {
+            zIndex: 2, // to make borders appear above sibling.
+          },
         },
+        ...(ownerState.buttonFlex && {
+          [`& > *:not(.${iconButtonClasses.root})`]: {
+            flex: ownerState.buttonFlex,
+          },
+          [`& > :not(button) > .${buttonClasses.root}`]: {
+            width: '100%', // for button to fill its wrapper.
+          },
+        }),
       },
       {
         [theme.getColorSchemeSelector('dark')]: {

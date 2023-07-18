@@ -151,7 +151,8 @@ export const ButtonRoot = styled('button', {
       '&:hover': {
         '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
       },
-      '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      '&:active, &[aria-pressed="true"]':
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
       '&:disabled': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       ...(ownerState.loadingPosition === 'center' && {
         // this has to come after the variant styles to take effect.
