@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Slider component and hook
 components: Slider
 hooks: useSlider
@@ -43,7 +43,7 @@ export default function MyApp() {
 The following demo shows how to create and style two basic sliders.
 Notice that both are set to a default value of 10 with the `defaultValue` prop, and the second slider cannot be adjusted due to the `disabled` prop:
 
-{{"demo": "UnstyledSlider.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledSliderBasic", "defaultCodeOpen": false}}
 
 ### Anatomy
 

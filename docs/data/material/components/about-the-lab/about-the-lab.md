@@ -17,17 +17,19 @@ For a component to be ready to move to the core, the following criteria are cons
 
 ## Installation
 
-To install and save in your `package.json` dependencies, run the command below using **npm**:
+To install and save in your `package.json` dependencies, run one of the following commands:
 
-```sh
+<codeblock storageKey="package-manager">
+
+```bash npm
 npm install @mui/lab @mui/material
 ```
 
-Or **yarn**:
-
-```sh
+```bash yarn
 yarn add @mui/lab @mui/material
 ```
+
+</codeblock>
 
 Note that the lab has a peer dependency on the Material UI components.
 

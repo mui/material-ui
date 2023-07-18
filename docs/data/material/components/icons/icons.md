@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Icon Component
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'
@@ -26,13 +26,13 @@ You can [search the full list of these icons](/material-ui/material-icons/).
 
 To install and save in your `package.json` dependencies, run the command below using **npm**:
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 Or **yarn**:
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 

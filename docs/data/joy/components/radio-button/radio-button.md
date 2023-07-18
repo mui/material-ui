@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Radio Button component
 components: Radio, RadioGroup
 githubLabel: 'component: radio'

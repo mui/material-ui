@@ -1,3 +1,4 @@
+'use client';
 // A grid component using the following libs as inspiration.
 //
 // For the implementation:

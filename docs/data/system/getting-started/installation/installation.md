@@ -6,34 +6,34 @@
 
 Run one of the following commands to add MUI System to your project:
 
-### npm
+<codeblock storageKey="package-manager">
 
-```sh
+```bash npm
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
-### yarn
-
-```sh
+```bash yarn
 yarn add @mui/system @emotion/react @emotion/styled
 ```
+
+</codeblock>
 
 ## With styled-components
 
 MUI System uses [Emotion](https://emotion.sh/) as its default styling engine.
 If you want to use [styled-components](https://styled-components.com/) instead, run one of the following commands:
 
-### npm
+<codeblock storageKey="package-manager">
 
-```sh
+```bash npm
 npm install @mui/system @mui/styled-engine-sc styled-components
 ```
 
-### yarn
-
-```sh
+```bash yarn
 yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
+
+</codeblock>
 
 :::warning
 Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more information about how to configure styled-components.

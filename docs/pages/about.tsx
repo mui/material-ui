@@ -876,11 +876,15 @@ function AboutContent() {
                   <Link href="https://github.com/mui/material-ui/issues">issues</Link>.
                 </li>
                 <li>
-                  Help <Link href="https://translate.mui.com/">translate</Link> the documentation.
+                  Help <Link href="https://crowdin.com/project/material-ui-docs">translate</Link>{' '}
+                  the documentation.
                 </li>
                 <li>
                   Answer questions on{' '}
-                  <Link href="https://stackoverflow.com/questions/tagged/mui">Stack Overflow</Link>.
+                  <Link href="https://stackoverflow.com/questions/tagged/material-ui">
+                    Stack Overflow
+                  </Link>
+                  .
                 </li>
               </Box>
               <Button

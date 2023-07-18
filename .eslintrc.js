@@ -34,6 +34,7 @@ module.exports = {
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
+    'eslint-plugin-filenames',
   ],
   settings: {
     'import/resolver': {
@@ -200,6 +201,7 @@ module.exports = {
     'react/no-invalid-html-attribute': 'off',
 
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
+    'lines-around-directive': 'off',
   },
   overrides: [
     {
@@ -295,6 +297,18 @@ module.exports = {
         'react/prop-types': 'off',
         'no-alert': 'off',
         'no-console': 'off',
+      },
+    },
+    {
+      files: ['docs/data/**/*.tsx'],
+      excludedFiles: [
+        'docs/data/joy/getting-started/templates/**/*.tsx',
+        'docs/data/**/css/*.tsx',
+        'docs/data/**/system/*.tsx',
+        'docs/data/**/tailwind/*.tsx',
+      ],
+      rules: {
+        'filenames/match-exported': ['error'],
       },
     },
     {
