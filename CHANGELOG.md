@@ -8,7 +8,9 @@ _Jul 18, 2023_
 
 A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
-- 💫 Added Joy UI [Skeleton](https://mui.com/joy-ui/react-skeleton/) component (#37893) @siriwatknp
+- 💫 Introducing some new components for Joy UI:
+  - [Skeleton](https://mui.com/joy-ui/react-skeleton/) component (#37893) @siriwatknp
+  - [ToggleButton](https://mui.com/joy-ui/react-toggle-button-group/) (#37716) @siriwatknp
 - 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
 ### `@mui/material@5.14.1`
@@ -41,7 +43,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - &#8203;<!-- 41 -->[docs][base] Add Tailwind CSS & plain CSS demo on the form control page (#37914) @mnajdova
 - &#8203;<!-- 40 -->[docs][base] Make Base UI Select demos denser (#37836) @zanivan
 - &#8203;<!-- 32 -->[docs] Fix the empty /components page (#38010) @brijeshb42
-- &#8203;<!-- 31 -->[docs] checkout template follows user's color scheme preference (#37928) @OndrejHj04
+- &#8203;<!-- 31 -->[docs] Checkout template follows user's color scheme preference (#37928) @OndrejHj04
 - &#8203;<!-- 30 -->[docs] Disable ad for onboarding pages (#37998) @oliviertassinari
 - &#8203;<!-- 29 -->[docs] Fix broken link to Base UI Next.js App Router (#37973) @oliviertassinari
 - &#8203;<!-- 28 -->[docs] Fix typo in next-js-app-router.md (#37974) @ericbrian
@@ -50,7 +52,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - &#8203;<!-- 25 -->[docs] Improve changelog @oliviertassinari
 - &#8203;<!-- 24 -->[docs] Improve the Select docs (#37279) @michaldudak
 - &#8203;<!-- 13 -->[docs][menu] Add Tailwind CSS & plain CSS demo on the Menu page (#37856) @mnajdova
-- &#8203;<!-- 12 -->[example] update EmotionCacheProvider to work with GlobalStyles (#37962) @siriwatknp
+- &#8203;<!-- 12 -->[example] Update EmotionCacheProvider to work with GlobalStyles (#37962) @siriwatknp
 
 ### Core
 
