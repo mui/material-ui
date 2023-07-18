@@ -160,6 +160,9 @@ export * from './Select';
 export { default as Sheet } from './Sheet';
 export * from './Sheet';
 
+export { default as Skeleton } from './Skeleton';
+export * from './Skeleton';
+
 export { default as Slider } from './Slider';
 export * from './Slider';
 
