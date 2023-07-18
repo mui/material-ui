@@ -547,7 +547,7 @@ export default function ButtonThemes() {
               alignItems: 'center',
               justifyContent: 'center',
               borderTop: '1px solid',
-              borderColor: 'neutral.200',
+              borderColor: 'var(--joy-palette-divider)',
             }}
           >
             <FormLabel htmlFor="button-theme">Change the theme:</FormLabel>
