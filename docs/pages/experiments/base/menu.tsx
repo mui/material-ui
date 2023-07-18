@@ -42,7 +42,7 @@ const StyledListbox = styled('ul')(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   box-shadow: 0 1px 3px rgba(31,35,40,0.12), 0 8px 24px rgba(66,74,83,0.12);
-  z-index: 1
+  z-index: 1;
   `,
 );
 
@@ -115,6 +115,7 @@ const Separator = styled(UnstyledSeparator)(`
   height: 0;
   margin: 8px -6px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  list-style: none;
 `);
 
 export default function UnstyledMenuIntroduction() {
@@ -136,7 +137,7 @@ export default function UnstyledMenuIntroduction() {
       <Dropdown open={isOpen} onOpenChange={handleOpenChange}>
         <StyledMenuButton>Create new...</StyledMenuButton>
         <Menu
-          slots={{ root: StyledListbox }}
+          slots={{ listbox: StyledListbox }}
           slotProps={{ root: { placement: 'bottom-start', id: 'simple-menu' } }}
         >
           <StyledMenuItem onClick={createHandleMenuClick('New repository')}>
