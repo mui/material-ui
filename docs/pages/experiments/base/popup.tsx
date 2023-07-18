@@ -30,19 +30,16 @@ function Animated(
   props: React.PropsWithChildren<{
     className?: string;
     open: boolean;
-    onAppearing: () => void;
     onDisappeared: () => void;
   }>,
 ) {
-  const { open, onAppearing, onDisappeared, children, className } = props;
+  const { open, onDisappeared, children, className } = props;
 
   const handleAnimationEnd = React.useCallback(() => {
-    if (open) {
-      onAppearing();
-    } else {
+    if (!open) {
       onDisappeared();
     }
-  }, [onAppearing, onDisappeared, open]);
+  }, [onDisappeared, open]);
 
   return (
     <div onAnimationEnd={handleAnimationEnd} className={className + (open ? ' open' : ' close')}>
@@ -128,8 +125,8 @@ export default function PopupPlayground() {
         </PopupWithTrigger>
 
         <PopupWithTrigger label="with custom transition" withTransition>
-          {({ in: open, onEnter, onExited }) => (
-            <PopAnimation open={open} onAppearing={onEnter} onDisappeared={onExited}>
+          {({ requestOpen: open, onExited }) => (
+            <PopAnimation open={open} onDisappeared={onExited}>
               <PopupBody>This is an animated popup</PopupBody>
             </PopAnimation>
           )}

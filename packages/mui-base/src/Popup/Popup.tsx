@@ -65,7 +65,13 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     ...other
   } = props;
 
-  const { refs, elements, floatingStyles, update } = useFloating({
+  const {
+    refs,
+    elements,
+    floatingStyles,
+    update,
+    placement: finalPlacement,
+  } = useFloating({
     elements: {
       reference: resolveAnchor(anchorProp),
     },
@@ -79,9 +85,11 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
   const handleRef = useForkRef(refs.setFloating, forwardedRef);
   const [exited, setExited] = React.useState(true);
 
-  const handleEntering = () => {
-    setExited(false);
-  };
+  React.useEffect(() => {
+    if (open) {
+      setExited(false);
+    }
+  }, [open]);
 
   const handleExited = () => {
     setExited(true);
@@ -103,6 +111,7 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     offset,
     open,
     placement,
+    finalPlacement,
     strategy,
     withTransition,
   };
@@ -131,9 +140,8 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
   }
 
   const childProps: PopupChildrenProps = {
-    placement,
-    in: open,
-    onEnter: handleEntering,
+    placement: finalPlacement,
+    requestOpen: open,
     onExited: handleExited,
   };
 
@@ -162,15 +170,9 @@ Popup.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  children: PropTypes.oneOfType([
-    PropTypes.element,
+  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
     PropTypes.func,
-    PropTypes.number,
-    PropTypes.shape({
-      '__@iterator@96': PropTypes.func.isRequired,
-    }),
-    PropTypes.string,
-    PropTypes.bool,
   ]),
   /**
    * An HTML element or function that returns one. The container will have the portal children appended to it.

@@ -1,12 +1,20 @@
 import {
-  Middleware,
-  OffsetOptions,
-  Placement,
-  Strategy,
-  VirtualElement,
+  Middleware as PopupMiddleware,
+  OffsetOptions as PopupOffsetOptions,
+  Placement as PopupPlacement,
+  Strategy as PopupStrategy,
+  VirtualElement as PopupVirtualElement,
 } from '@floating-ui/react-dom';
 import { PortalProps } from '../Portal';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
+
+export type {
+  PopupPlacement,
+  PopupStrategy,
+  PopupOffsetOptions,
+  PopupMiddleware,
+  PopupVirtualElement,
+};
 
 export interface PopupRootSlotPropsOverrides {}
 
@@ -16,7 +24,12 @@ export interface PopupOwnProps {
    * or a function that returns either.
    * It's used to set the position of the popup.
    */
-  anchor?: VirtualElement | HTMLElement | (() => HTMLElement) | (() => VirtualElement) | null;
+  anchor?:
+    | PopupVirtualElement
+    | HTMLElement
+    | (() => HTMLElement)
+    | (() => PopupVirtualElement)
+    | null;
   children?: React.ReactNode | ((props: PopupChildrenProps) => React.ReactNode);
   /**
    * An HTML element or function that returns one. The container will have the portal children appended to it.
@@ -44,7 +57,7 @@ export interface PopupOwnProps {
    *
    * @see https://floating-ui.com/docs/computePosition#middleware
    */
-  middleware?: Array<Middleware | null | undefined | false>;
+  middleware?: Array<PopupMiddleware | null | undefined | false>;
   /**
    * Distance between a popup and the trigger element.
    * This prop is ignored when custom `middleware` is provided.
@@ -52,7 +65,7 @@ export interface PopupOwnProps {
    * @default 0
    * @see https://floating-ui.com/docs/offset
    */
-  offset?: OffsetOptions;
+  offset?: PopupOffsetOptions;
   /**
    * If `true`, the popup is visible.
    *
@@ -65,7 +78,7 @@ export interface PopupOwnProps {
    * @default 'bottom'
    * @see https://floating-ui.com/docs/computePosition#placement
    */
-  placement?: Placement;
+  placement?: PopupPlacement;
   /**
    * The components used for each slot inside the Popup.
    * Either a string to use a HTML element or a component.
@@ -89,7 +102,7 @@ export interface PopupOwnProps {
    * @default 'absolute'
    * @see https://floating-ui.com/docs/computePosition#strategy
    */
-  strategy?: Strategy;
+  strategy?: PopupStrategy;
   /**
    * If `true`, the popup will support open and close animations.
    * In such a case, a function form of `children` must be used and `onEnter` and `onExited`
@@ -109,10 +122,9 @@ export interface PopupSlots {
 }
 
 export interface PopupChildrenProps {
-  placement: Placement;
-  in: boolean;
+  placement: PopupPlacement;
+  requestOpen: boolean;
   onExited: () => void;
-  onEnter: () => void;
 }
 
 export interface PopupTypeMap<
@@ -131,8 +143,9 @@ export interface PopupOwnerState extends PopupOwnProps {
   disablePortal: boolean;
   open: boolean;
   keepMounted: boolean;
-  offset: OffsetOptions;
-  placement: Placement;
-  strategy: Strategy;
+  offset: PopupOffsetOptions;
+  placement: PopupPlacement;
+  finalPlacement: PopupPlacement;
+  strategy: PopupStrategy;
   withTransition: boolean;
 }
