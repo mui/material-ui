@@ -37,11 +37,11 @@ const CardRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => {
-  const {
-    p,
-    padding,
-    borderRadius = 'var(--Card-radius)',
-  } = resolveSxValue({ theme, ownerState }, ['p', 'padding', 'borderRadius']);
+  const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
+    'p',
+    'padding',
+    'borderRadius',
+  ]);
   return [
     {
       ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
@@ -55,7 +55,7 @@ const CardRoot = styled('div', {
       // Link integration
       '--unstable_actionMargin': 'calc(-1 * var(--variant-borderWidth, 0px))',
       // Link, Radio, Checkbox integration
-      '--unstable_actionRadius': borderRadius,
+      '--unstable_actionRadius': 'var(--Card-radius)',
       // CardCover integration
       '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
       // CardOverflow integration
@@ -93,6 +93,7 @@ const CardRoot = styled('div', {
       theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
     p !== undefined && { '--Card-padding': p },
     padding !== undefined && { '--Card-padding': padding },
+    borderRadius !== undefined && { '--Card-radius': borderRadius },
   ];
 });
 
