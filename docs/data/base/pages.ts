@@ -3,10 +3,11 @@ import pagesApi from 'docs/data/base/pagesApi';
 
 const pages = [
   {
-    pathname: '/base-ui/getting-started',
+    pathname: '/base-ui/getting-started-group',
+    title: 'Getting started',
     icon: standardNavIcons.DescriptionIcon,
     children: [
-      { pathname: '/base-ui/getting-started/overview', title: 'Overview' },
+      { pathname: '/base-ui/getting-started', title: 'Overview' },
       { pathname: '/base-ui/getting-started/quickstart', title: 'Quickstart' },
       { pathname: '/base-ui/getting-started/usage', title: 'Usage' },
       { pathname: '/base-ui/getting-started/customization', title: 'Customization' },
@@ -17,7 +18,7 @@ const pages = [
     title: 'Components',
     icon: standardNavIcons.ToggleOnIcon,
     children: [
-      { pathname: '/base-ui/react-components', title: 'All components' },
+      { pathname: '/base-ui/all-components', title: 'All components' },
       {
         pathname: '/base-ui/components/inputs',
         subheader: 'inputs',
@@ -106,6 +107,10 @@ const pages = [
       {
         pathname: '/base-ui/guides/overriding-component-structure',
         title: 'Overriding component structure',
+      },
+      {
+        pathname: '/base-ui/guides/next-js-app-router',
+        title: 'Next.js App Router',
       },
     ],
   },

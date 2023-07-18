@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { refType } from '@mui/utils';
@@ -153,7 +154,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['required'],
+    states: ['color', 'disabled', 'error', 'focused', 'hiddenLabel', 'size', 'required'],
   });
 
   const ownerState = {

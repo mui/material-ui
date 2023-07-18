@@ -2,27 +2,29 @@
 
 <p class="description">Get started with Base UI, a library of headless ("unstyled") React UI components and low-level hooks.</p>
 
+:::info
+If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](/base-ui/guides/next-js-app-router/).
+:::
+
 ## Installation
 
 `@mui/base` is completely standalone – run one of the following commands to add Base UI to your React project:
 
-### With npm
+<codeblock storageKey="package-manager">
 
-```sh
+```bash npm
 npm install @mui/base
 ```
 
-### With yarn
-
-```sh
+```bash yarn
 yarn add @mui/base
 ```
 
-### With pnpm
-
-```sh
-pnpm add @mui/base
+```bash pnpm
+pnpm install @mui/base
 ```
+
+</codeblock>
 
 ### Peer dependencies
 
@@ -132,7 +134,7 @@ The demo below shows how to build the Primer button using Tailwind CSS:
 
 ### Styling with MUI System
 
-[MUI System](/system/getting-started/overview/) is a small set of CSS utilties that provide a styled-components-like API for building out designs that adhere to a theme.
+[MUI System](/system/getting-started/) is a small set of CSS utilties that provide a styled-components-like API for building out designs that adhere to a theme.
 
 MUI System's core utility is a [`styled` function](/system/styled/) that's equivalent to the `styled()` function in emotion and styled-components.
 Interpolations or arguments that are functions called by `styled` receive the `theme` from an upper `ThemeProvider`.

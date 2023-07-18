@@ -1,3 +1,4 @@
+'use client';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 
 export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine';

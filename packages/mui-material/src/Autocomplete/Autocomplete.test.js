@@ -1698,6 +1698,31 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'two');
     });
 
+    it('should reset the highlight when the input changed', () => {
+      const filterOptions = createFilterOptions({});
+      render(
+        <Autocomplete
+          open
+          autoFocus
+          autoHighlight
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          filterOptions={filterOptions}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const listbox = screen.getByRole('listbox');
+
+      fireEvent.change(textbox, { target: { value: 't' } });
+      checkHighlightIs(listbox, 'two');
+
+      fireEvent.change(textbox, { target: { value: '' } });
+      checkHighlightIs(listbox, 'one');
+
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(textbox).has.value('one');
+    });
+
     it("should reset the highlight when previously highlighted option doesn't exists in new options", () => {
       const { setProps } = render(
         <Autocomplete
@@ -2998,6 +3023,27 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // open listbox
 
       expect(root).to.have.class(classes.expanded);
+    });
+  });
+
+  describe('prop: renderOption', () => {
+    it('should pass getOptionLabel through ownerState in renderOption callback', () => {
+      render(
+        <Autocomplete
+          open
+          options={[{ name: 'Max' }]}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderOption={(props, option, optionState, ownerState) => (
+            <li key={option.name} data-testid="optionLi">
+              {ownerState.getOptionLabel(option)}
+            </li>
+          )}
+        />,
+      );
+
+      const renderedOption = screen.getByTestId('optionLi');
+      expect(renderedOption).to.have.text('Max');
     });
   });
 

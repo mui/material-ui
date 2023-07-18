@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -405,6 +406,14 @@ Modal.propTypes /* remove-proptypes */ = {
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
+  /**
+   * A function called when a transition enters.
+   */
+  onTransitionEnter: PropTypes.func,
+  /**
+   * A function called when a transition has exited.
+   */
+  onTransitionExited: PropTypes.func,
   /**
    * If `true`, the component is shown.
    */

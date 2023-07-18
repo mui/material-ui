@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable no-constant-condition */
 import * as React from 'react';
 import {
@@ -233,6 +234,7 @@ export default function useAutocomplete(props) {
   const previousProps = usePreviousProps({
     filteredOptions,
     value,
+    inputValue,
   });
 
   React.useEffect(() => {
@@ -376,10 +378,14 @@ export default function useAutocomplete(props) {
 
     // Scroll active descendant into view.
     // Logic copied from https://www.w3.org/WAI/content-assets/wai-aria-practices/patterns/combobox/examples/js/select-only.js
-    //
+    // In case of mouse clicks and touch (in mobile devices) we avoid scrolling the element and keep both behaviors same.
     // Consider this API instead once it has a better browser support:
     // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
-    if (listboxNode.scrollHeight > listboxNode.clientHeight && reason !== 'mouse') {
+    if (
+      listboxNode.scrollHeight > listboxNode.clientHeight &&
+      reason !== 'mouse' &&
+      reason !== 'touch'
+    ) {
       const element = option;
 
       const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
@@ -478,6 +484,7 @@ export default function useAutocomplete(props) {
       highlightedIndexRef.current !== -1 &&
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
+      previousProps.inputValue === inputValue &&
       (multiple
         ? value.length === previousProps.value.length &&
           previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
@@ -503,8 +510,8 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    // Check if the previously highlighted option still exists in the updated filtered options list and if the value hasn't changed
-    // If it exists and the value hasn't changed, return, otherwise continue execution
+    // Check if the previously highlighted option still exists in the updated filtered options list and if the value and inputValue haven't changed
+    // If it exists and the value and the inputValue haven't changed, return, otherwise continue execution
     if (checkHighlightedOptionExists()) {
       return;
     }

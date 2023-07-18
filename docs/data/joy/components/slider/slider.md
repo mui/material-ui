@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Slider component
 components: Slider
 githubLabel: 'component: slider'

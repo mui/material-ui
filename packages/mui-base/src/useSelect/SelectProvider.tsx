@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { ListContextValue, ListContext } from '../useList/ListContext';
 import { SelectOption } from '../useOption/useOption.types';

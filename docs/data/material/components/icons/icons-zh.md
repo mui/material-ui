@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Icon（图标）组件
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'
@@ -24,13 +24,13 @@ Google has created over 2,000 official Material icons, each in five different "t
 
 To install and save in your `package.json` dependencies, run the command below using **npm**:
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 Or **yarn**:
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 

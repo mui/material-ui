@@ -44,16 +44,55 @@ describe('CodeSandbox', () => {
         },
       },
       'public/index.html': {
-        content:
-          '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <title>BasicButtons Material Demo</title>\n    <!-- Fonts to support Material Design -->\n    <link\n      rel="stylesheet"\n      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"\n    />\n    <!-- Icons to support Material Design -->\n    <link\n      rel="stylesheet"\n      href="https://fonts.googleapis.com/icon?family=Material+Icons"\n    />\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>',
+        content: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BasicButtons Material Demo</title>
+    <!-- Fonts to support Material Design -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <!-- Icons to support Material Design -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`,
       },
-      'demo.js': {
-        content:
-          'import * as React from \'react\';\nimport Stack from \'@mui/material/Stack\';\nimport Button from \'@mui/material/Button\';\n\nexport default function BasicButtons() {\n  return (\n    <Stack spacing={2} direction="row">\n      <Button variant="text">Text</Button>\n      <Button variant="contained">Contained</Button>\n      <Button variant="outlined">Outlined</Button>\n    </Stack>\n  );\n}\n',
+      'Demo.js': {
+        content: `import * as React from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+
+export default function BasicButtons() {
+  return (
+    <Stack spacing={2} direction="row">
+      <Button variant="text">Text</Button>
+      <Button variant="contained">Contained</Button>
+      <Button variant="outlined">Outlined</Button>
+    </Stack>
+  );
+}
+`,
       },
       'index.js': {
-        content:
-          "import * as React from 'react';\nimport * as ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
+        content: `import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import { StyledEngineProvider } from '@mui/material/styles';
+import Demo from './Demo';
+
+ReactDOM.createRoot(document.querySelector("#root")).render(
+  <React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <Demo />
+    </StyledEngineProvider>
+  </React.StrictMode>
+);`,
       },
     });
   });
@@ -92,20 +131,83 @@ describe('CodeSandbox', () => {
         },
       },
       'public/index.html': {
-        content:
-          '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <title>BasicButtons Material Demo</title>\n    <!-- Fonts to support Material Design -->\n    <link\n      rel="stylesheet"\n      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"\n    />\n    <!-- Icons to support Material Design -->\n    <link\n      rel="stylesheet"\n      href="https://fonts.googleapis.com/icon?family=Material+Icons"\n    />\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>',
+        content: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BasicButtons Material Demo</title>
+    <!-- Fonts to support Material Design -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <!-- Icons to support Material Design -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`,
       },
-      'demo.tsx': {
-        content:
-          'import * as React from \'react\';\nimport Stack from \'@mui/material/Stack\';\nimport Button from \'@mui/material/Button\';\n\nexport default function BasicButtons() {\n  return (\n    <Stack spacing={2} direction="row">\n      <Button variant="text">Text</Button>\n      <Button variant="contained">Contained</Button>\n      <Button variant="outlined">Outlined</Button>\n    </Stack>\n  );\n}\n',
+      'Demo.tsx': {
+        content: `import * as React from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+
+export default function BasicButtons() {
+  return (
+    <Stack spacing={2} direction="row">
+      <Button variant="text">Text</Button>
+      <Button variant="contained">Contained</Button>
+      <Button variant="outlined">Outlined</Button>
+    </Stack>
+  );
+}
+`,
       },
       'index.tsx': {
-        content:
-          "import * as React from 'react';\nimport * as ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
+        content: `import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import { StyledEngineProvider } from '@mui/material/styles';
+import Demo from './Demo';
+
+ReactDOM.createRoot(document.querySelector("#root")!).render(
+  <React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <Demo />
+    </StyledEngineProvider>
+  </React.StrictMode>
+);`,
       },
       'tsconfig.json': {
-        content:
-          '{\n  "compilerOptions": {\n    "target": "es5",\n    "lib": [\n      "dom",\n      "dom.iterable",\n      "esnext"\n    ],\n    "allowJs": true,\n    "skipLibCheck": true,\n    "esModuleInterop": true,\n    "allowSyntheticDefaultImports": true,\n    "strict": true,\n    "forceConsistentCasingInFileNames": true,\n    "module": "esnext",\n    "moduleResolution": "node",\n    "resolveJsonModule": true,\n    "isolatedModules": true,\n    "noEmit": true,\n    "jsx": "react"\n  },\n  "include": [\n    "src"\n  ]\n}\n',
+        content: `{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react"
+  },
+  "include": [
+    "src"
+  ]
+}
+`,
       },
     });
     expect(result.dependencies).to.deep.equal({
@@ -123,7 +225,7 @@ describe('CodeSandbox', () => {
     });
   });
 
-  it('generate the correct Tailwind JavaScript result', () => {
+  it('generate the correct index.html result when Tailwind is used', () => {
     const result = CodeSandbox.createReactApp({
       title: 'BasicButtons Material Demo',
       githubLocation:
@@ -133,35 +235,8 @@ describe('CodeSandbox', () => {
       raw: testCase,
       codeStyling: 'Tailwind',
     });
-    expect(result.files).to.deep.equal({
-      'package.json': {
-        content: {
-          description:
-            'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
-          dependencies: {
-            react: 'latest',
-            '@mui/material': 'latest',
-            'react-dom': 'latest',
-            '@emotion/react': 'latest',
-            '@emotion/styled': 'latest',
-          },
-          devDependencies: {
-            'react-scripts': 'latest',
-          },
-        },
-      },
-      'public/index.html': {
-        content:
-          '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <title>BasicButtons Material Demo</title>\n    <!-- Fonts to support Material Design -->\n    <link\n      rel="stylesheet"\n      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"\n    />\n    <!-- Icons to support Material Design -->\n    <link\n      rel="stylesheet"\n      href="https://fonts.googleapis.com/icon?family=Material+Icons"\n    />\n    <!-- Check the Tailwind CSS\'s installation guide for setting up tailwind: https://tailwindcss.com/docs/installation -->\n    <script src="https://cdn.tailwindcss.com"></script>\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>',
-      },
-      'demo.js': {
-        content:
-          'import * as React from \'react\';\nimport Stack from \'@mui/material/Stack\';\nimport Button from \'@mui/material/Button\';\n\nexport default function BasicButtons() {\n  return (\n    <Stack spacing={2} direction="row">\n      <Button variant="text">Text</Button>\n      <Button variant="contained">Contained</Button>\n      <Button variant="outlined">Outlined</Button>\n    </Stack>\n  );\n}\n',
-      },
-      'index.js': {
-        content:
-          "import * as React from 'react';\nimport * as ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
-      },
-    });
+    expect(result.files['public/index.html'].content).to.contain(
+      '<script src="https://cdn.tailwindcss.com"></script>',
+    );
   });
 });

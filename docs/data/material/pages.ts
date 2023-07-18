@@ -4,10 +4,11 @@ import { MuiPage } from 'docs/src/MuiPage';
 
 const pages: MuiPage[] = [
   {
-    pathname: '/material-ui/getting-started',
+    pathname: '/material-ui/getting-started-group',
+    title: 'Getting started',
     icon: standardNavIcons.DescriptionIcon,
     children: [
-      { pathname: '/material-ui/getting-started/overview' },
+      { pathname: '/material-ui/getting-started', title: 'Overview' },
       { pathname: '/material-ui/getting-started/installation' },
       { pathname: '/material-ui/getting-started/usage' },
       { pathname: '/material-ui/getting-started/example-projects' },
@@ -204,6 +205,10 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
+      {
+        pathname: '/material-ui/guides/next-js-app-router',
+        title: 'Next.js App Router',
+      },
     ],
   },
   {

@@ -36,7 +36,7 @@ const componentPackageMapping = {
 
 const packages = [
   {
-    product: 'material-ui',
+    productId: 'material-ui',
     paths: [
       path.join(__dirname, '../../packages/mui-base/src'),
       path.join(__dirname, '../../packages/mui-lab/src'),
@@ -44,11 +44,11 @@ const packages = [
     ],
   },
   {
-    product: 'base-ui',
+    productId: 'base-ui',
     paths: [path.join(__dirname, '../../packages/mui-base/src')],
   },
   {
-    product: 'joy-ui',
+    productId: 'joy-ui',
     paths: [path.join(__dirname, '../../packages/mui-joy/src')],
   },
 ];
@@ -63,11 +63,11 @@ packages.forEach((pkg) => {
     const filePaths = readdirSync(pkgPath);
     filePaths.forEach((folder) => {
       if (folder.match(/^[A-Z]/)) {
-        if (!componentPackageMapping[pkg.product]) {
-          throw new Error(`componentPackageMapping must have "${pkg.product}" as a key`);
+        if (!componentPackageMapping[pkg.productId]) {
+          throw new Error(`componentPackageMapping must have "${pkg.productId}" as a key`);
         }
         // filename starts with Uppercase = component
-        componentPackageMapping[pkg.product][folder] = packageName;
+        componentPackageMapping[pkg.productId][folder] = packageName;
       }
     });
   });
@@ -121,12 +121,15 @@ module.exports = async function demoLoader() {
       }),
   );
 
-  const pageFilename = this.context
-    .replace(this.rootContext, '')
+  // Use .. as the docs runs from the /docs folder
+  const repositoryRoot = path.join(this.rootContext, '..');
+  const fileRelativeContext = path
+    .relative(repositoryRoot, this.context)
     // win32 to posix
     .replace(/\\/g, '/');
+
   const { docs } = prepareMarkdown({
-    pageFilename,
+    fileRelativeContext,
     translations,
     componentPackageMapping,
     options,
@@ -157,7 +160,7 @@ module.exports = async function demoLoader() {
       // The import paths currently use a completely different format.
       // They should just use relative imports.
       let moduleID = `./${demoName.replace(
-        `pages/${pageFilename.replace(/^\/src\/pages\//, '')}/`,
+        `pages/${fileRelativeContext.replace(/^docs\/src\/pages\//, '')}/`,
         '',
       )}`;
 

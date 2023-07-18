@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -141,6 +142,7 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }: UseLoadedProps)
  * Demos:
  *
  * - [Avatar](https://mui.com/joy-ui/react-avatar/)
+ * - [Skeleton](https://mui.com/joy-ui/react-skeleton/)
  *
  * API:
  *

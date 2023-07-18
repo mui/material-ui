@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from 'modules/components/Container';

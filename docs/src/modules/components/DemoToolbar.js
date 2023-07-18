@@ -34,37 +34,17 @@ import stackBlitz from '../sandbox/StackBlitz';
 
 const Root = styled('div')(({ theme }) => [
   {
-    display: 'none',
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    marginTop: -1,
-    marginBottom: 16,
     [theme.breakpoints.up('sm')]: {
+      justifyContent: 'space-between',
+      alignItems: 'center',
       display: 'flex',
-      top: 0,
-      paddingTop: theme.spacing(0.5),
-      paddingBottom: theme.spacing(0.5),
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(0.5),
-      backgroundColor: alpha(theme.palette.grey[50], 0.2),
-      borderRadius: '0 0 12px 12px',
-      ...(theme.direction === 'rtl' && {
-        left: theme.spacing(1),
-      }),
-      ...(theme.direction !== 'rtl' && {
-        right: theme.spacing(1),
-      }),
     },
-    justifyContent: 'space-between',
-    alignItems: 'center',
     '& .MuiSvgIcon-root': {
       fontSize: 16,
       color: (theme.vars || theme).palette.grey[800],
     },
   },
   theme.applyDarkStyles({
-    [theme.breakpoints.up('sm')]: {
-      backgroundColor: alpha(theme.palette.primaryDark[800], 0.2),
-    },
     '& .MuiSvgIcon-root': {
       color: (theme.vars || theme).palette.grey[400],
     },
@@ -104,12 +84,6 @@ ToggleCodeTooltip.propTypes = {
   showSourceHint: PropTypes.bool,
 };
 
-export function DemoToolbarFallback() {
-  const t = useTranslate();
-
-  return <Root aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
-}
-
 const alwaysTrue = () => true;
 
 const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
@@ -137,7 +111,7 @@ const Button = styled(MDButton)(({ theme }) => ({
   border: 'none',
   paddingLeft: theme.spacing(1),
   paddingRight: theme.spacing(0.5),
-  fontSize: '0.85rem',
+  fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
   color: theme.palette.primary.main,
   '& svg': {
@@ -172,8 +146,8 @@ const MenuItem = styled(MDMenuItem)(({ theme }) => ({
 
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
-    padding: theme.spacing(0, 1),
-    fontSize: '0.85rem',
+    padding: theme.spacing(0, 1, 0.1, 1),
+    fontSize: theme.typography.pxToRem(13),
     borderRadius: 99,
     borderColor: 'grey.200',
     '&.Mui-disabled': {
@@ -602,6 +576,7 @@ export default function DemoToolbar(props) {
               onClick={handleCodeOpenClick}
               color="default"
               {...getControlProps(3)}
+              sx={{ borderRadius: 1 }}
             >
               <CodeRoundedIcon />
             </IconButton>
@@ -613,8 +588,9 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
-                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox('/demo')}
+                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox()}
                   {...getControlProps(4)}
+                  sx={{ borderRadius: 1 }}
                 >
                   <SvgIcon viewBox="0 0 1024 1024">
                     <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
@@ -626,8 +602,9 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
-                  onClick={() => stackBlitz.createReactApp(demoData).openSandbox('demo')}
+                  onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
                   {...getControlProps(5)}
+                  sx={{ borderRadius: 1 }}
                 >
                   <SvgIcon viewBox="0 0 19 28">
                     <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
@@ -643,6 +620,7 @@ export default function DemoToolbar(props) {
               data-ga-event-action="copy"
               onClick={handleCopyClick}
               {...getControlProps(6)}
+              sx={{ borderRadius: 1 }}
             >
               <ContentCopyRoundedIcon />
             </IconButton>
@@ -654,6 +632,7 @@ export default function DemoToolbar(props) {
               data-ga-event-action="reset-focus"
               onClick={handleResetFocusClick}
               {...getControlProps(7)}
+              sx={{ borderRadius: 1 }}
             >
               <ResetFocusIcon />
             </IconButton>
@@ -666,6 +645,7 @@ export default function DemoToolbar(props) {
               data-ga-event-action="reset"
               onClick={onResetDemoClick}
               {...getControlProps(8)}
+              sx={{ borderRadius: 1 }}
             >
               <RefreshRoundedIcon />
             </IconButton>
@@ -676,6 +656,7 @@ export default function DemoToolbar(props) {
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
             aria-haspopup="true"
             {...getControlProps(9)}
+            sx={{ borderRadius: 1 }}
           >
             <MoreVertIcon />
           </IconButton>

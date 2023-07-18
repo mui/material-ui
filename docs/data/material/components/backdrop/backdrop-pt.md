@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React para Pano de Fundo
 components: Backdrop
 githubLabel: 'component: backdrop'

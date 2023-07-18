@@ -140,15 +140,17 @@ const StyledButton = styled('button')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
   min-width: 320px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 0.75em;
-  padding: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
   text-align: left;
   line-height: 1.5;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   &:hover {
     background: ${theme.palette.mode === 'dark' ? '' : grey[100]};
@@ -177,23 +179,26 @@ const StyledListbox = styled('ul')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 8px;
   margin: 10px 0;
   min-width: 320px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 0.75em;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
   outline: 0px;
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
 const StyledOption = styled(Option)(
   ({ theme }) => `
   list-style: none;
-  padding: 8px;
-  border-radius: 0.45em;
+  padding: 8px 12px;
+  border-radius: 8px;
   cursor: default;
 
   &:last-of-type {
@@ -242,17 +247,19 @@ const Label = styled('label')(
 );
 
 const Button = styled('button')`
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: bold;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
   font-size: 0.875rem;
   background-color: ${blue[500]};
-  padding: 12px 24px;
+  padding: 8px 16px;
+  line-height: 1.5;
   border-radius: 8px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
   vertical-align: middle;
+  min-height: calc(1em + 25px);
 
   &:hover {
     background-color: ${blue[600]};

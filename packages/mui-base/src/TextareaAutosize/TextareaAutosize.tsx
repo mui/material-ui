@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
@@ -263,7 +264,8 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         style={{
           ...styles.shadow,
           ...style,
-          padding: 0,
+          paddingTop: 0,
+          paddingBottom: 0,
         }}
       />
     </React.Fragment>
