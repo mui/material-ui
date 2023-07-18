@@ -87,7 +87,7 @@ export default class MyDocument extends Document {
           <link // prevent font flash
             rel="preload"
             // optimized for english characters (40kb -> 6kb)
-            href="/static/fonts/PlusJakartaSans-ExtraBold-subset.woff2"
+            href="/static/fonts/GeneralSans-Semibold-subset.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
@@ -96,14 +96,7 @@ export default class MyDocument extends Document {
             // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
-              __html: `@font-face{font-family:'PlusJakartaSans-ExtraBold';font-style:normal;font-weight:800;font-display:swap;src:url('/static/fonts/PlusJakartaSans-ExtraBold-subset.woff2') format('woff2');}`,
-            }}
-          />
-          <style
-            // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `@font-face{font-family:'PlusJakartaSans-Bold';font-style:normal;font-weight:700;font-display:swap;src:url('/static/fonts/PlusJakartaSans-Bold-subset.woff2') format('woff2');}`,
+              __html: `@font-face{font-family:'General Sans';font-style:normal;font-weight:600;font-display:swap;src:url('/static/fonts/GeneralSans-Semibold-subset.woff2') format('woff2');}`,
             }}
           />
           <style
