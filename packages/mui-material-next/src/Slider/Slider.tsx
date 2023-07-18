@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, unstable_capitalize as capitalize } from '@mui/utils';
+import { OverridableComponent } from '@mui/types';
 import {
   isHostComponent,
   useSlotProps,
@@ -534,6 +535,16 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
   return composeClasses(slots, getSliderUtilityClass, classes);
 };
 
+/**
+ *
+ * Demos:
+ *
+ * - [Slider](https://mui.com/material-ui/react-slider/)
+ *
+ * API:
+ *
+ * - [Slider API](https://mui.com/material-ui/api/slider/)
+ */
 const Slider = React.forwardRef(function Slider<
   BaseComponentType extends React.ElementType = SliderTypeMap['defaultComponent'],
 >(inProps: SliderProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
@@ -853,7 +864,7 @@ const Slider = React.forwardRef(function Slider<
       })}
     </RootSlot>
   );
-});
+}) as OverridableComponent<SliderTypeMap>;
 
 Slider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -893,6 +904,10 @@ Slider.propTypes /* remove-proptypes */ = {
     return null;
   }),
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
@@ -910,6 +925,11 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * If `true`, the component is disabled.
    * @default false

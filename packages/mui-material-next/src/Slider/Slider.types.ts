@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SlotComponentProps } from '@mui/base';
 import { Mark } from '@mui/base/useSlider';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion, OverrideProps, OverridableComponent } from '@mui/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { Theme } from '../styles';
 import { SliderClasses } from './sliderClasses';
 
@@ -11,12 +11,6 @@ export interface SliderPropsColorOverrides {}
 export interface SliderPropsSizeOverrides {}
 
 export interface SliderSlotPropsOverrides {}
-
-export interface SliderOwnerState extends SliderProps {
-  dragging: boolean;
-  marked: boolean;
-  focusedThumbIndex: number;
-}
 
 export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
   props: P & {
@@ -234,41 +228,18 @@ export type SliderValueLabelProps = NonNullable<SliderTypeMap['props']['slotProp
      */
     open: boolean;
     /**
-     * If `true`, the value label is overlaping another value label.
+     * If `true`, the value label is overlapping another value label.
      */
     isOverlapping?: boolean;
   };
-
-type SliderRootProps = NonNullable<SliderTypeMap['props']['slotProps']>['root'];
-type SliderMarkProps = NonNullable<SliderTypeMap['props']['slotProps']>['mark'];
-type SliderMarkLabelProps = NonNullable<SliderTypeMap['props']['slotProps']>['markLabel'];
-type SliderRailProps = NonNullable<SliderTypeMap['props']['slotProps']>['rail'];
-type SliderTrackProps = NonNullable<SliderTypeMap['props']['slotProps']>['track'];
-type SliderThumbProps = NonNullable<SliderTypeMap['props']['slotProps']>['thumb'];
-
-export declare const SliderRoot: React.FC<SliderRootProps>;
-export declare const SliderMark: React.FC<SliderMarkProps>;
-export declare const SliderMarkLabel: React.FC<SliderMarkLabelProps>;
-export declare const SliderRail: React.FC<SliderRailProps>;
-export declare const SliderTrack: React.FC<SliderTrackProps>;
-export declare const SliderThumb: React.FC<SliderThumbProps>;
-export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
-
-/**
- *
- * Demos:
- *
- * - [Slider](https://mui.com/material-ui/react-slider/)
- *
- * API:
- *
- * - [Slider API](https://mui.com/material-ui/api/slider/)
- */
-declare const Slider: OverridableComponent<SliderTypeMap>;
 
 export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<SliderTypeMap<D, P>, D>;
 
-export default Slider;
+export interface SliderOwnerState extends SliderProps {
+  dragging: boolean;
+  marked: boolean;
+  focusedThumbIndex: number;
+}
