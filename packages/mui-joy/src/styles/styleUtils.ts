@@ -2,6 +2,13 @@ import { Theme, SxProps } from './types';
 
 /**
  * internal utility
+ *
+ * Why? to read `sx` values and attach component's CSS variables
+ *      eg. <Card sx={{ borderRadius: 0 }} /> should attach
+ *          `--Card-radius: 0px` so that developers don't have to remember
+ *
+ * Why not reuse `styleFunctionSx`?
+ *     `styleFunctionSx` is more expensive as it iterates over all the keys
  */
 // eslint-disable-next-line import/prefer-default-export
 export const resolveSxValue = <K extends string>(
