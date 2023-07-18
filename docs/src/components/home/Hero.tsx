@@ -100,7 +100,7 @@ export default function Hero() {
             with Material UI, our fully-loaded component library, or bring your own design system to
             our production-ready components.
           </Typography>
-          <GetStartedButtons />
+          <GetStartedButtons callToAction="Discover the Core libraries" to="/core/" />
         </Box>
       }
       rightSx={{

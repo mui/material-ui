@@ -244,7 +244,10 @@ export default function MaterialHero() {
             Material UI is beautiful by design and features a suite of customization options that
             make it easy to implement your own custom design system.
           </Typography>
-          <GetStartedButtons />
+          <GetStartedButtons
+            to="/material-ui/getting-started/"
+            installation="npm install @mui/material @emotion/react @emotion/styled"
+          />
         </Box>
       }
       rightSx={{
