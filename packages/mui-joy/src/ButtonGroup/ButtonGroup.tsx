@@ -157,15 +157,6 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
           },
         }),
       },
-      {
-        [theme.getColorSchemeSelector('dark')]: {
-          ...(ownerState.color !== 'context' && {
-            ...(ownerState.variant !== 'outlined' && {
-              '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[700],
-            }),
-          }),
-        },
-      },
       radius !== undefined && {
         '--ButtonGroup-radius': radius,
       },
