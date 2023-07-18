@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
-import { getDisplayName } from '@mui/utils';
+import { getDisplayName, unstable_capitalize as capitalize } from '@mui/utils';
 import createTheme from './createTheme';
 import propsToClassKey from './propsToClassKey';
 import styleFunctionSx from './styleFunctionSx';
@@ -80,6 +80,10 @@ function resolveTheme({ defaultTheme, theme, themeId }) {
   return isEmpty(theme) ? defaultTheme : theme[themeId] || theme;
 }
 
+function defaultOverridesResolver(slot) {
+  return (props, styles) => styles[slot];
+}
+
 export default function createStyled(input = {}) {
   const {
     themeId,
@@ -102,7 +106,8 @@ export default function createStyled(input = {}) {
       slot: componentSlot,
       skipVariantsResolver: inputSkipVariantsResolver,
       skipSx: inputSkipSx,
-      overridesResolver,
+      // TODO: remove `lowercaseFirstLetter()` in the next major release
+      overridesResolver = defaultOverridesResolver(lowercaseFirstLetter(componentSlot)),
       ...options
     } = inputOptions;
 
@@ -110,7 +115,8 @@ export default function createStyled(input = {}) {
     const skipVariantsResolver =
       inputSkipVariantsResolver !== undefined
         ? inputSkipVariantsResolver
-        : (componentSlot && componentSlot !== 'Root') || false;
+        : // TODO: remove `Root` in the next major release
+          (componentSlot && componentSlot !== 'Root' && componentSlot !== 'root') || false;
 
     const skipSx = inputSkipSx || false;
 
@@ -118,13 +124,15 @@ export default function createStyled(input = {}) {
 
     if (process.env.NODE_ENV !== 'production') {
       if (componentName) {
+        // TODO: remove `lowercaseFirstLetter()` in the next major release
         label = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
       }
     }
 
     let shouldForwardPropOption = shouldForwardProp;
 
-    if (componentSlot === 'Root') {
+    // TODO: remove `Root` in the next major release
+    if (componentSlot === 'Root' || componentSlot === 'root') {
       shouldForwardPropOption = rootShouldForwardProp;
     } else if (componentSlot) {
       // any other slot specified
@@ -219,7 +227,7 @@ export default function createStyled(input = {}) {
       if (process.env.NODE_ENV !== 'production') {
         let displayName;
         if (componentName) {
-          displayName = `${componentName}${componentSlot || ''}`;
+          displayName = `${componentName}${capitalize(componentSlot || '')}`;
         }
         if (displayName === undefined) {
           displayName = `Styled(${getDisplayName(tag)})`;
