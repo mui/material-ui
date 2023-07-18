@@ -874,7 +874,7 @@ extendTheme({
 ### Font family
 
 The default theme typeface has been changed to [`Inter`](https://fonts.google.com/specimen/Inter?query=inter).
-Follow the [installation guide](/getting-started/installation/#inter-font) to install it.
+Follow the [installation guide](/joy-ui/getting-started/installation/#inter-font) to install it.
 
 To keep the old font family, add the following to your theme:
 

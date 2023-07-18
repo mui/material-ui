@@ -54,7 +54,6 @@ const tabListClasses: TabPanelClasses = generateUtilityClasses('MuiTabPanel', [
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',
