@@ -142,6 +142,7 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }: UseLoadedProps)
  * Demos:
  *
  * - [Avatar](https://mui.com/joy-ui/react-avatar/)
+ * - [Skeleton](https://mui.com/joy-ui/react-skeleton/)
  *
  * API:
  *

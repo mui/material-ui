@@ -580,6 +580,8 @@ export function generateBaseUIApiPages() {
     const productName = pathnameTokens[1];
     const componentName = pathnameTokens[3];
 
+    // TODO: fix `productName` should be called `productId` and include the full name,
+    // e.g. base-ui below.
     if (
       productName === 'base' &&
       (markdown.filename.indexOf('\\components\\') >= 0 ||
@@ -689,22 +691,12 @@ export const getStaticPaths = () => {
 ${staticProps}
       `;
 
-      const componentPageDirectory = `docs/pages/${productName}-ui/${
-        componentName !== 'all-components' ? 'react-' : ''
-      }${componentName}/`;
+      const componentPageDirectory = `docs/pages/${productName}-ui/react-${componentName}/`;
       if (!fs.existsSync(componentPageDirectory)) {
         fs.mkdirSync(componentPageDirectory, { recursive: true });
       }
       const demosSourcePath = path.join(process.cwd(), `${componentPageDirectory}/index.js`);
       writePrettifiedFile(demosSourcePath, demosSource);
-
-      if (
-        ((components ?? []).length === 0 && (hooks ?? []).length === 0) ||
-        markdown.filename.endsWith('all-components.md')
-      ) {
-        // Early return if it's a markdown file without components/hooks.
-        return;
-      }
 
       const docsTabsPagesDirectory = `${componentPageDirectory}/[docsTab]`;
       if (!fs.existsSync(docsTabsPagesDirectory)) {
