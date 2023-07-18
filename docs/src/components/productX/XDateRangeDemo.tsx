@@ -166,7 +166,7 @@ export default function XDateRangeDemo() {
           }}
         >
           <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-            🎉&nbsp;&nbsp;&nbsp;Stable version available now for your project!
+            🎉&nbsp;&nbsp;&nbsp;Date Range Picker now available for your project!
           </Typography>
           <Button
             variant="outlined"
