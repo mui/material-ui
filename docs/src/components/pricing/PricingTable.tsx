@@ -476,7 +476,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
       href="/x/react-data-grid/row-selection/#multiple-row-selection"
     />
   ),
-  'data-grid/row-rangeselection': (
+  'data-grid/row-cell-selection': (
     <ColumnHead label="Cell selection" nested href="/x/react-data-grid/cell-selection/" />
   ),
   'data-grid/filter-column': (
@@ -676,7 +676,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-pinning': no,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': no,
-  'data-grid/row-rangeselection': no,
+  'data-grid/row-cell-selection': no,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': no,
@@ -738,7 +738,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
-  'data-grid/row-rangeselection': no,
+  'data-grid/row-cell-selection': no,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': yes,
@@ -805,7 +805,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
-  'data-grid/row-rangeselection': yes,
+  'data-grid/row-cell-selection': yes,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': yes,
@@ -1234,7 +1234,7 @@ export default function PricingTable({
         {nestedDivider}
         {renderRow('data-grid/row-multiselection')}
         {nestedDivider}
-        {renderRow('data-grid/row-rangeselection')}
+        {renderRow('data-grid/row-cell-selection')}
         {nestedDivider}
         <RowCategory>Filtering features</RowCategory>
         {renderRow('data-grid/filter-column')}
