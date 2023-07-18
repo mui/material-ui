@@ -82,6 +82,14 @@ The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/
 
 {{"demo": "SelectedMenu.js"}}
 
+### Icon button menu
+
+To use [IconButton](/joy-ui/react-button/#icon-button) component as a menu button, pass it to the root slot of the `MenuButton` component.
+
+Use `slotProps` to pass props to the IconButton component.
+
+{{"demo": "IconButtonMenu.js"}}
+
 ### Positioned menu
 
 The `Menu` is based on the Base UI `Popper` component, which exposes a few [placement props](/base-ui/react-popper/#placement).

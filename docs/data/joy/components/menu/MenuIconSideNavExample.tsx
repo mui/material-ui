@@ -48,7 +48,7 @@ function NavMenuButton({
   onLeaveMenu,
   label,
   ...props
-}: MenuButtonProps) {
+}: Omit<MenuButtonProps, 'color'>) {
   const isOnButton = React.useRef(false);
   const internalOpen = React.useRef(open);
 
@@ -72,8 +72,7 @@ function NavMenuButton({
       <MenuButton
         {...props}
         slots={{ root: IconButton }}
-        variant="plain"
-        color="neutral"
+        slotProps={{ root: { variant: 'plain', color: 'neutral' } }}
         onMouseDown={() => {
           internalOpen.current = open;
         }}
