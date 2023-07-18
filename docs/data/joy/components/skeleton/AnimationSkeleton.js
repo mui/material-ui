@@ -18,7 +18,7 @@ export default function AnimationSkeleton() {
             <Skeleton
               animation="wave"
               variant="text"
-              level="body2"
+              level="body-sm"
               sx={{ width: 200 }}
             />
           </div>
