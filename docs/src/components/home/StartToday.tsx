@@ -22,7 +22,10 @@ export default function StartToday() {
           }
           description="Find out why MUI's tools are trusted by thousands of open-source developers and teams around the world."
         />
-        <GetStartedButtons />
+        <GetStartedButtons
+          to={ROUTES.documentation}
+          installation="npm install @mui/material @emotion/react @emotion/styled"
+        />
       </Grid>
       <Grid item xs={12} sm={6} md={6} container spacing={2}>
         <Grid item xs={12} md={6}>
