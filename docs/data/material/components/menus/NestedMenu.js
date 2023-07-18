@@ -76,7 +76,7 @@ function SubMenu({ options, MENU_LEVELS }) {
               <Grow
                 {...TransitionProps}
                 style={{
-                  transformOrigin: 'right top',
+                  transformOrigin: 'left top',
                 }}
               >
                 <Paper>
@@ -125,7 +125,7 @@ function SubMenu({ options, MENU_LEVELS }) {
                               if (
                                 Date.now() -
                                   duration.current[getId(option, optIndex)] >
-                                50
+                                20
                               ) {
                                 mouseEntered.current[getId(option, optIndex)] = true;
                                 if (!option.nestedOptions) {
