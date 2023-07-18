@@ -84,6 +84,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/AspectRatio/AspectRatio.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-aspect-ratio/\">Aspect Ratio</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-aspect-ratio/\">Aspect Ratio</a></li>\n<li><a href=\"/joy-ui/react-skeleton/\">Skeleton</a></li></ul>",
   "cssComponent": false
 }
