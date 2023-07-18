@@ -698,15 +698,12 @@ ${staticProps}
       const demosSourcePath = path.join(process.cwd(), `${componentPageDirectory}/index.js`);
       writePrettifiedFile(demosSourcePath, demosSource);
 
-      // Don't generate API tabs for pages that don't have any components or hooks, for e.g. coming soon pages
-      if ((components && components.length > 0) || (hooks && hooks.length > 0)) {
-        const docsTabsPagesDirectory = `${componentPageDirectory}/[docsTab]`;
-        if (!fs.existsSync(docsTabsPagesDirectory)) {
-          fs.mkdirSync(docsTabsPagesDirectory, { recursive: true });
-        }
-        const tabsApiPath = path.join(process.cwd(), `${docsTabsPagesDirectory}/index.js`);
-        writePrettifiedFile(tabsApiPath, tabsApiSource);
+      const docsTabsPagesDirectory = `${componentPageDirectory}/[docsTab]`;
+      if (!fs.existsSync(docsTabsPagesDirectory)) {
+        fs.mkdirSync(docsTabsPagesDirectory, { recursive: true });
       }
+      const tabsApiPath = path.join(process.cwd(), `${docsTabsPagesDirectory}/index.js`);
+      writePrettifiedFile(tabsApiPath, tabsApiSource);
     }
   });
 }
