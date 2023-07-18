@@ -143,8 +143,8 @@
     "renderOption": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(props: object, option: T, state: object) => ReactNode",
-        "describedArgs": ["props", "option", "state"]
+        "type": "function(props: object, option: T, state: object, ownerState: object) => ReactNode",
+        "describedArgs": ["props", "option", "state", "ownerState"]
       }
     },
     "renderTags": {

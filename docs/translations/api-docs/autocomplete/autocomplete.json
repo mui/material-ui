@@ -168,7 +168,8 @@
       "typeDescriptions": {
         "props": "The props to apply on the li element.",
         "option": "The option to render.",
-        "state": "The state of the component."
+        "state": "The state of each option.",
+        "ownerState": "The state of the Autocomplete component."
       }
     },
     "renderTags": {
