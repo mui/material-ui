@@ -29,6 +29,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/base-ui/react-checkbox', title: 'Checkbox', comingSoon: true },
           { pathname: '/base-ui/react-input', title: 'Input' },
           { pathname: '/base-ui/react-radio-button', title: 'Radio Button', comingSoon: true },
+          { pathname: '/base-ui/react-rating', title: 'Rating', comingSoon: true },
           { pathname: '/base-ui/react-select', title: 'Select' },
           { pathname: '/base-ui/react-slider', title: 'Slider' },
           { pathname: '/base-ui/react-switch', title: 'Switch' },
@@ -38,10 +39,8 @@ const pages: readonly MuiPage[] = [
         pathname: '/base-ui/components/data-display',
         subheader: 'data-display',
         children: [
-          {
-            pathname: '/base-ui/react-badge',
-            title: 'Badge',
-          },
+          { pathname: '/base-ui/react-badge', title: 'Badge' },
+          { pathname: '/base-ui/react-tooltip', title: 'Tooltip', comingSoon: true },
         ],
       },
       {
@@ -70,6 +69,7 @@ const pages: readonly MuiPage[] = [
         subheader: 'navigation',
         children: [
           { pathname: '/base-ui/react-menu', title: 'Menu' },
+          { pathname: '/base-ui/react-pagination', title: 'Pagination', comingSoon: true },
           { pathname: '/base-ui/react-table-pagination', title: 'Table Pagination' },
           { pathname: '/base-ui/react-tabs', title: 'Tabs' },
         ],
