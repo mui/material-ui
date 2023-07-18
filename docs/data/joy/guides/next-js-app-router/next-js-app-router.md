@@ -5,12 +5,12 @@
 :::info
 Starting fresh on a new App Router-based project?
 
-Jump right into the code with this [example repo](https://github.com/mui/material-ui/blob/master/examples/joy-next-app-router-ts).
+Jump right into the code with [this example: Joy UI - Next.js App Router with TypeScript](https://github.com/mui/material-ui/tree/master/examples/joy-next-app-router-ts).
 :::
 
 ## Next.js and React Server Components
 
-The Next.js App Router implements React Server Components, a [new feature](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#changes-since-v1) introduced in React 18.
+The Next.js App Router implements React Server Components, [an upcoming feature for React](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md).
 
 To support the App Router, currently all components and hooks from Joy UI and other MUI libraries are exported with the `"use client"` directive.
 
@@ -92,7 +92,8 @@ export default function ThemeRegistry(props) {
 }
 
 // app/layout.tsx
-export default function RootLayout({ children }) {
+export default function RootLayout(props) {
+  const { children } = props;
   return (
     <html lang="en">
       <body>
@@ -116,11 +117,9 @@ import Typography from '@mui/joy/Typography';
 
 export default function Page() {
   return (
-    <>
-      <Sheet variant="outlined">
-        <Typography fontSize="sm">Hello World</Typography>
-      </Sheet>
-    </>
+    <Sheet variant="outlined">
+      <Typography fontSize="sm">Hello World</Typography>
+    </Sheet>
   );
 }
 ```
@@ -135,19 +134,17 @@ import Sheet from '@mui/joy/Sheet';
 
 export default function Page() {
   return (
-    <>
-      <Sheet variant="outlined">
-        {/* Next.js won't render this button without 'use-client' */}
-        <Button
-          variant="outlined"
-          onClick={() => {
-            console.log('handle click');
-          }}
-        >
-          Submit
-        </Button>
-      </Sheet>
-    </>
+    <Sheet variant="outlined">
+      {/* Next.js won't render this button without 'use-client' */}
+      <Button
+        variant="outlined"
+        onClick={() => {
+          console.log('handle click');
+        }}
+      >
+        Submit
+      </Button>
+    </Sheet>
   );
 }
 ```

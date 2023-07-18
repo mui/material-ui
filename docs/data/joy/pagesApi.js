@@ -49,6 +49,7 @@ module.exports = [
   { pathname: '/joy-ui/api/scoped-css-baseline' },
   { pathname: '/joy-ui/api/select' },
   { pathname: '/joy-ui/api/sheet' },
+  { pathname: '/joy-ui/api/skeleton' },
   { pathname: '/joy-ui/api/slider' },
   { pathname: '/joy-ui/api/stack' },
   { pathname: '/joy-ui/api/svg-icon' },
@@ -59,6 +60,7 @@ module.exports = [
   { pathname: '/joy-ui/api/tab-panel' },
   { pathname: '/joy-ui/api/tabs' },
   { pathname: '/joy-ui/api/textarea' },
+  { pathname: '/joy-ui/api/toggle-button-group' },
   { pathname: '/joy-ui/api/tooltip' },
   { pathname: '/joy-ui/api/typography' },
 ];
