@@ -8,7 +8,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import GradientText from 'docs/src/components/typography/GradientText';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
-import ROUTES from 'docs/src/route';
 
 function createLoading(sx: BoxProps['sx']) {
   return function Loading() {
@@ -101,10 +100,7 @@ export default function Hero() {
             with Material UI, our fully-loaded component library, or bring your own design system to
             our production-ready components.
           </Typography>
-          <GetStartedButtons
-            to={ROUTES.documentation}
-            installation="npm install @mui/material @emotion/react @emotion/styled"
-          />
+          <GetStartedButtons callToAction="Discover the Core libraries" to="/core/" />
         </Box>
       }
       rightSx={{
