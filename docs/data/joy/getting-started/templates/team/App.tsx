@@ -48,14 +48,14 @@ function ColorSchemeToggle() {
     setMounted(true);
   }, []);
   if (!mounted) {
-    return <IconButton size="sm" variant="outlined" color="primary" />;
+    return <IconButton size="sm" variant="soft" color="neutral" />;
   }
   return (
     <IconButton
       id="toggle-mode"
       size="sm"
-      variant="outlined"
-      color="primary"
+      variant="soft"
+      color="neutral"
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');
@@ -165,7 +165,7 @@ export default function TeamExample() {
             </IconButton>
             <IconButton
               size="sm"
-              variant="solid"
+              variant="soft"
               sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
             >
               <GroupRoundedIcon />
@@ -176,6 +176,7 @@ export default function TeamExample() {
           </Box>
           <Input
             size="sm"
+            variant="outlined"
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
@@ -198,15 +199,16 @@ export default function TeamExample() {
             <IconButton
               size="sm"
               variant="outlined"
-              color="primary"
+              color="neutral"
               sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
             >
               <SearchRoundedIcon />
             </IconButton>
+
             <IconButton
               size="sm"
-              variant="outlined"
-              color="primary"
+              variant="soft"
+              color="neutral"
               component="a"
               href="/blog/first-look-at-joy/"
             >
@@ -217,8 +219,8 @@ export default function TeamExample() {
               control={
                 <IconButton
                   size="sm"
-                  variant="outlined"
-                  color="primary"
+                  variant="soft"
+                  color="neutral"
                   aria-label="Apps"
                 >
                   <GridViewRoundedIcon />

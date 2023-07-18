@@ -48,14 +48,14 @@ function ColorSchemeToggle() {
     setMounted(true);
   }, []);
   if (!mounted) {
-    return <IconButton size="sm" variant="outlined" color="primary" />;
+    return <IconButton size="sm" variant="soft" color="neutral" />;
   }
   return (
     <IconButton
       id="toggle-mode"
       size="sm"
-      variant="outlined"
-      color="primary"
+      variant="soft"
+      color="neutral"
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');
@@ -111,7 +111,7 @@ export default function FilesExample() {
             </IconButton>
             <IconButton
               size="sm"
-              variant="solid"
+              variant="soft"
               sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
             >
               <FindInPageRoundedIcon />
@@ -122,6 +122,7 @@ export default function FilesExample() {
           </Box>
           <Input
             size="sm"
+            variant="outlined"
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
@@ -144,15 +145,16 @@ export default function FilesExample() {
             <IconButton
               size="sm"
               variant="outlined"
-              color="primary"
+              color="neutral"
               sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
             >
               <SearchRoundedIcon />
             </IconButton>
+
             <IconButton
               size="sm"
-              variant="outlined"
-              color="primary"
+              variant="soft"
+              color="neutral"
               component="a"
               href="/blog/first-look-at-joy/"
             >
@@ -163,8 +165,8 @@ export default function FilesExample() {
               control={
                 <IconButton
                   size="sm"
-                  variant="outlined"
-                  color="primary"
+                  variant="soft"
+                  color="neutral"
                   aria-label="Apps"
                 >
                   <GridViewRoundedIcon />
@@ -182,8 +184,8 @@ export default function FilesExample() {
                 {
                   label: 'Files',
                   active: true,
-                  href: '/joy-ui/getting-started/templates/files/',
                   'aria-current': 'page',
+                  href: '/joy-ui/getting-started/templates/files/',
                 },
               ]}
             />
