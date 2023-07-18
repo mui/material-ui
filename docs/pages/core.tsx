@@ -5,7 +5,7 @@ import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import CoreHero from 'docs/src/components/productCore/CoreHero';
 import CoreProducts from 'docs/src/components/productCore/CoreProducts';
-import MaterialHeroEnd from 'docs/src/components/productMaterial/MaterialHeroEnd';
+import MaterialHeroEnd from 'docs/src/components/productCore/CoreHeroEnd';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';

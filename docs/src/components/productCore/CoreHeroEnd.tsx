@@ -2,15 +2,17 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import GradientText from 'docs/src/components/typography/GradientText';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import { alpha } from '@mui/material/styles';
 
-export default function MaterialHeroEnd() {
+export default function CoreHeroEnd() {
   return (
     <Section
       cozy
@@ -28,8 +30,12 @@ export default function MaterialHeroEnd() {
           <Box maxWidth={500} sx={{ mb: 4 }}>
             <SectionHeadline
               overline="Community"
-              title="Join our global community"
-              description="The core components were crafted by many hands, all over the world. Join the community to help us expand them even further!"
+              title={
+                <Typography variant="h2">
+                  Join our <GradientText>global community</GradientText>
+                </Typography>
+              }
+              description="The core components were crafted by many hands, all over the world. Join us today to get help when you need it, and lend a hand when you can."
             />
             <Button
               aria-label="Go to documentation"
