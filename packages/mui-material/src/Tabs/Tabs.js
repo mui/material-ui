@@ -640,7 +640,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       firstObserver?.disconnect();
       lastObserver?.disconnect();
     };
-  }, [scrollable, scrollButtons, childrenProp]);
+  }, [scrollable, scrollButtons, childrenProp?.length]);
 
   React.useEffect(() => {
     setMounted(true);

@@ -189,7 +189,6 @@ declare const Tabs: OverridableComponent<TabsTypeMap>;
 
 export interface TabsActions {
   updateIndicator(): void;
-  /** @deprecated this action does nothing */
   updateScrollButtons(): void;
 }
 
