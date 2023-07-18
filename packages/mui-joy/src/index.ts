@@ -195,6 +195,9 @@ export * from './Textarea';
 
 export { default as TextField } from './TextField';
 
+export { default as ToggleButtonGroup } from './ToggleButtonGroup';
+export * from './ToggleButtonGroup';
+
 export { default as Tooltip } from './Tooltip';
 export * from './Tooltip';
 
