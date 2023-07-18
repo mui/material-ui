@@ -84,7 +84,8 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
             rel="stylesheet"
           />
-          <link // prevent font flash
+          {/* ========== Font preload (prevent font flash) ============= */}
+          <link
             rel="preload"
             // optimized for english characters (40kb -> 6kb)
             href="/static/fonts/GeneralSans-Semibold-subset.woff2"
@@ -99,6 +100,22 @@ export default class MyDocument extends Document {
               __html: `@font-face{font-family:'General Sans';font-style:normal;font-weight:600;font-display:swap;src:url('/static/fonts/GeneralSans-Semibold-subset.woff2') format('woff2');}`,
             }}
           />
+          <link
+            rel="preload"
+            // optimized for english characters (40kb -> 6kb)
+            href="/static/fonts/IBMPlexSans-Regular-subset.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <style
+            // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400;font-display:swap;src:url('/static/fonts/IBMPlexSans-Regular-subset.woff2') format('woff2');}`,
+            }}
+          />
+          {/* =========================================================== */}
           <style
             // Loads General Sans: Regular (400), Medium (500), SemiBold (600), Bold (700)
             // Typeface documentation: https://www.fontshare.com/fonts/general-sans
