@@ -91,23 +91,15 @@ describe('<SvgIcon />', () => {
       expect(container.firstChild).to.have.class('meow');
     });
 
-    it('should render with `inherit` by default', () => {
-      const { container } = render(<SvgIcon>{path}</SvgIcon>);
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+      it(`should render ${color}`, () => {
+        const { container } = render(<SvgIcon color={color}>{path}</SvgIcon>);
 
-      expect(container.firstChild).to.have.class(classes.colorInherit);
+        expect(container.firstChild).to.have.class(
+          classes[`color${capitalize(color)}` as SvgIconClassKey],
+        );
+      });
     });
-
-    (['inherit', 'primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach(
-      (color) => {
-        it(`should render ${color}`, () => {
-          const { container } = render(<SvgIcon color={color}>{path}</SvgIcon>);
-
-          expect(container.firstChild).to.have.class(
-            classes[`color${capitalize(color)}` as SvgIconClassKey],
-          );
-        });
-      },
-    );
   });
 
   describe('prop: size', function test() {
