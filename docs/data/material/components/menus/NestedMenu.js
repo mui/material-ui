@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import {
@@ -12,9 +13,7 @@ import {
   Typography,
 } from '@mui/material';
 
-export default function BasicMenu() {
-  const MENU_LEVELS = 3;
-
+function SubMenu({ options, MENU_LEVELS }) {
   const [anchors, setAnchors] = React.useState({
     elements: new Array(MENU_LEVELS).fill(null),
     options: new Array(MENU_LEVELS).fill(null),
@@ -213,67 +212,82 @@ export default function BasicMenu() {
   );
 }
 
-const options = [
-  {
-    value: 'Food',
-    menuLevel: 0,
-  },
-  {
-    value: 'Drinks',
-    menuLevel: 0,
-    nestedOptions: [
-      {
-        value: 'Non-Alcoholic',
-        menuLevel: 1,
-        nestedOptions: [
-          {
-            value: 'Soda',
-            menuLevel: 2,
-          },
-          {
-            value: 'Iced Tea',
-            menuLevel: 2,
-          },
-          {
-            value: 'Lemonade',
-            menuLevel: 2,
-          },
-          {
-            value: 'Mocktail',
-            menuLevel: 2,
-          },
-          {
-            value: 'Smoothie',
-            menuLevel: 2,
-          },
-          {
-            value: 'Herbal tea',
-            menuLevel: 2,
-          },
-        ],
-      },
-      {
-        value: 'Alcoholic',
-        menuLevel: 1,
-      },
-    ],
-  },
-  {
-    value: 'Desserts',
-    menuLevel: 0,
-    nestedOptions: [
-      {
-        value: 'Cakes',
-        menuLevel: 1,
-      },
-      {
-        value: 'Ice Cream',
-        menuLevel: 1,
-      },
-      {
-        value: 'Pastries',
-        menuLevel: 1,
-      },
-    ],
-  },
-];
+SubMenu.propTypes = {
+  MENU_LEVELS: PropTypes.number.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      menuLevel: PropTypes.number.isRequired,
+      nestedOptions: PropTypes.arrayOf(PropTypes.object),
+      value: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};
+
+export default function NestedMenu() {
+  const options = [
+    {
+      value: 'Food',
+      menuLevel: 0,
+    },
+    {
+      value: 'Drinks',
+      menuLevel: 0,
+      nestedOptions: [
+        {
+          value: 'Non-Alcoholic',
+          menuLevel: 1,
+          nestedOptions: [
+            {
+              value: 'Soda',
+              menuLevel: 2,
+            },
+            {
+              value: 'Iced Tea',
+              menuLevel: 2,
+            },
+            {
+              value: 'Lemonade',
+              menuLevel: 2,
+            },
+            {
+              value: 'Mocktail',
+              menuLevel: 2,
+            },
+            {
+              value: 'Smoothie',
+              menuLevel: 2,
+            },
+            {
+              value: 'Herbal tea',
+              menuLevel: 2,
+            },
+          ],
+        },
+        {
+          value: 'Alcoholic',
+          menuLevel: 1,
+        },
+      ],
+    },
+    {
+      value: 'Desserts',
+      menuLevel: 0,
+      nestedOptions: [
+        {
+          value: 'Cakes',
+          menuLevel: 1,
+        },
+        {
+          value: 'Ice Cream',
+          menuLevel: 1,
+        },
+        {
+          value: 'Pastries',
+          menuLevel: 1,
+        },
+      ],
+    },
+  ];
+
+  return <SubMenu options={options} MENU_LEVELS={3} />;
+}

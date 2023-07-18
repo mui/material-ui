@@ -12,9 +12,16 @@ import {
   Typography,
 } from '@mui/material';
 
-export default function BasicMenu() {
-  const MENU_LEVELS = 3;
+type SubMenuProps = {
+  MENU_LEVELS: number;
+  options: Array<{
+    value: string;
+    menuLevel: number;
+    nestedOptions?: SubMenuProps['options'];
+  }>;
+};
 
+function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
   const [anchors, setAnchors] = React.useState<{
     elements: Array<null | HTMLElement>;
     options: Array<null | typeof options>;
@@ -84,7 +91,7 @@ export default function BasicMenu() {
               <Grow
                 {...TransitionProps}
                 style={{
-                  transformOrigin: 'right top',
+                  transformOrigin: 'left top',
                 }}
               >
                 <Paper>
@@ -133,7 +140,7 @@ export default function BasicMenu() {
                               if (
                                 Date.now() -
                                   duration.current[getId(option, optIndex)] >
-                                50
+                                20
                               ) {
                                 mouseEntered.current[getId(option, optIndex)] = true;
                                 if (!option.nestedOptions) {
@@ -219,69 +226,72 @@ export default function BasicMenu() {
     </React.Fragment>
   );
 }
+export default function NestedMenu() {
+  const options = [
+    {
+      value: 'Food',
+      menuLevel: 0,
+    },
+    {
+      value: 'Drinks',
+      menuLevel: 0,
+      nestedOptions: [
+        {
+          value: 'Non-Alcoholic',
+          menuLevel: 1,
+          nestedOptions: [
+            {
+              value: 'Soda',
+              menuLevel: 2,
+            },
+            {
+              value: 'Iced Tea',
+              menuLevel: 2,
+            },
+            {
+              value: 'Lemonade',
+              menuLevel: 2,
+            },
+            {
+              value: 'Mocktail',
+              menuLevel: 2,
+            },
+            {
+              value: 'Smoothie',
+              menuLevel: 2,
+            },
+            {
+              value: 'Herbal tea',
+              menuLevel: 2,
+            },
+          ],
+        },
+        {
+          value: 'Alcoholic',
+          menuLevel: 1,
+        },
+      ],
+    },
 
-const options = [
-  {
-    value: 'Food',
-    menuLevel: 0,
-  },
-  {
-    value: 'Drinks',
-    menuLevel: 0,
-    nestedOptions: [
-      {
-        value: 'Non-Alcoholic',
-        menuLevel: 1,
-        nestedOptions: [
-          {
-            value: 'Soda',
-            menuLevel: 2,
-          },
-          {
-            value: 'Iced Tea',
-            menuLevel: 2,
-          },
-          {
-            value: 'Lemonade',
-            menuLevel: 2,
-          },
-          {
-            value: 'Mocktail',
-            menuLevel: 2,
-          },
-          {
-            value: 'Smoothie',
-            menuLevel: 2,
-          },
-          {
-            value: 'Herbal tea',
-            menuLevel: 2,
-          },
-        ],
-      },
-      {
-        value: 'Alcoholic',
-        menuLevel: 1,
-      },
-    ],
-  },
+    {
+      value: 'Desserts',
+      menuLevel: 0,
+      nestedOptions: [
+        {
+          value: 'Cakes',
+          menuLevel: 1,
+        },
+        {
+          value: 'Ice Cream',
+          menuLevel: 1,
+        },
+        {
+          value: 'Pastries',
+          menuLevel: 1,
+        },
+      ],
+    },
+  ];
 
-  {
-    value: 'Desserts',
-    menuLevel: 0,
-    nestedOptions: [
-      {
-        value: 'Cakes',
-        menuLevel: 1,
-      },
-      {
-        value: 'Ice Cream',
-        menuLevel: 1,
-      },
-      {
-        value: 'Pastries',
-        menuLevel: 1,
-      },
-    ],
-  },
-];
+  return <SubMenu options={options} MENU_LEVELS={3} />;
+}
