@@ -6,8 +6,11 @@ import { describeConformance, act, createRenderer, fireEvent, screen } from 'tes
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import BaseSlider from '@mui/base/Slider';
 import Slider, { sliderClasses as classes } from '@mui/material-next/Slider';
+import { SliderOwnerState, SliderValueLabelProps } from './Slider.types';
 
-function createTouches(touches) {
+type Touches = Array<Pick<Touch, 'identifier' | 'clientX' | 'clientY'>>;
+
+function createTouches(touches: Touches) {
   return {
     changedTouches: touches.map(
       (touch) =>
@@ -27,14 +30,15 @@ describe('<Slider />', () => {
     }
   });
 
-  let originalMatchmedia;
+  let originalMatchmedia: typeof window.matchMedia;
 
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
-    window.matchMedia = () => ({
-      addListener: () => {},
-      removeListener: () => {},
-    });
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      } as unknown as MediaQueryList);
   });
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
@@ -69,7 +73,7 @@ describe('<Slider />', () => {
           expectedClassName: classes.rail,
         },
         input: {
-          expectedClassName: classes.input,
+          expectedClassName: '',
         },
         mark: {
           expectedClassName: classes.mark,
@@ -89,20 +93,35 @@ describe('<Slider />', () => {
     const handleChange = spy();
     const handleChangeCommitted = spy();
 
-    const { container, getByRole } = render(
-      <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
+    const { getByRole, getByTestId } = render(
+      <Slider
+        onChange={handleChange}
+        onChangeCommitted={handleChangeCommitted}
+        value={0}
+        data-testid="slider-root"
+      />,
     );
-    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+
+    const sliderRoot = getByTestId('slider-root');
+    stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
       width: 100,
+      height: 10,
+      top: 0,
+      right: 100,
+      bottom: 10,
       left: 0,
+      x: 0,
+      y: 0,
+      toJSON() {},
     }));
+
     const slider = getByRole('slider');
 
-    fireEvent.mouseDown(container.firstChild, {
+    fireEvent.mouseDown(sliderRoot, {
       buttons: 1,
       clientX: 10,
     });
-    fireEvent.mouseUp(container.firstChild, {
+    fireEvent.mouseUp(sliderRoot, {
       buttons: 1,
       clientX: 10,
     });
@@ -123,46 +142,72 @@ describe('<Slider />', () => {
   it('should only listen to changes from the same touchpoint', () => {
     const handleChange = spy();
     const handleChangeCommitted = spy();
-    const { container } = render(
-      <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
+    const { getByTestId } = render(
+      <Slider
+        onChange={handleChange}
+        onChangeCommitted={handleChangeCommitted}
+        value={0}
+        data-testid="slider-root"
+      />,
     );
-    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+
+    const sliderRoot = getByTestId('slider-root');
+    stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
       width: 100,
       height: 10,
+      top: 0,
+      right: 100,
       bottom: 10,
       left: 0,
+      x: 0,
+      y: 0,
+      toJSON() {},
     }));
 
-    fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 0 }]));
+    fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 0, clientY: 0 }]));
     expect(handleChange.callCount).to.equal(0);
     expect(handleChangeCommitted.callCount).to.equal(0);
 
-    fireEvent.touchStart(document.body, createTouches([{ identifier: 2, clientX: 40 }]));
+    fireEvent.touchStart(
+      document.body,
+      createTouches([{ identifier: 2, clientX: 40, clientY: 0 }]),
+    );
     expect(handleChange.callCount).to.equal(0);
     expect(handleChangeCommitted.callCount).to.equal(0);
 
-    fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 1 }]));
+    fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 1, clientY: 0 }]));
     expect(handleChange.callCount).to.equal(1);
     expect(handleChangeCommitted.callCount).to.equal(0);
 
-    fireEvent.touchMove(document.body, createTouches([{ identifier: 2, clientX: 41 }]));
+    fireEvent.touchMove(document.body, createTouches([{ identifier: 2, clientX: 41, clientY: 0 }]));
     expect(handleChange.callCount).to.equal(1);
     expect(handleChangeCommitted.callCount).to.equal(0);
 
-    fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 2 }]));
+    fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 2, clientY: 0 }]));
     expect(handleChange.callCount).to.equal(1);
     expect(handleChangeCommitted.callCount).to.equal(1);
   });
 
   it('should hedge against a dropped mouseup event', () => {
     const handleChange = spy();
-    const { container } = render(<Slider onChange={handleChange} value={0} />);
-    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+    const { getByTestId } = render(
+      <Slider onChange={handleChange} value={0} data-testid="slider-root" />,
+    );
+
+    const sliderRoot = getByTestId('slider-root');
+    stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
       width: 100,
+      height: 10,
+      top: 0,
+      right: 100,
+      bottom: 10,
       left: 0,
+      x: 0,
+      y: 0,
+      toJSON() {},
     }));
 
-    fireEvent.mouseDown(container.firstChild, {
+    fireEvent.mouseDown(sliderRoot, {
       buttons: 1,
       clientX: 1,
     });
@@ -186,13 +231,24 @@ describe('<Slider />', () => {
 
   it('should only fire onChange when the value changes', () => {
     const handleChange = spy();
-    const { container } = render(<Slider defaultValue={20} onChange={handleChange} />);
-    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+    const { getByTestId } = render(
+      <Slider defaultValue={20} onChange={handleChange} data-testid="slider-root" />,
+    );
+
+    const sliderRoot = getByTestId('slider-root');
+    stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
       width: 100,
+      height: 10,
+      top: 0,
+      right: 100,
+      bottom: 10,
       left: 0,
+      x: 0,
+      y: 0,
+      toJSON() {},
     }));
 
-    fireEvent.mouseDown(container.firstChild, {
+    fireEvent.mouseDown(sliderRoot, {
       buttons: 1,
       clientX: 21,
     });
@@ -216,49 +272,62 @@ describe('<Slider />', () => {
     it('adds custom classes to the component', () => {
       const selectedClasses = ['root', 'rail', 'track', 'mark'];
       const customClasses = selectedClasses.reduce((acc, curr) => {
-        acc[curr] = `custom-${curr}`;
-        return acc;
+        return { ...acc, [curr]: `custom-${curr}` };
       }, {});
 
-      const { container } = render(
+      const { getByTestId } = render(
         <Slider
           marks={[{ value: 0 }, { value: 20 }, { value: 30 }]}
           defaultValue={0}
           classes={customClasses}
+          data-testid="slider-root"
         />,
       );
 
-      expect(container.firstChild).to.have.class(classes.root);
-      expect(container.firstChild).to.have.class('custom-root');
+      const sliderRoot = getByTestId('slider-root');
+
+      expect(sliderRoot).to.have.class(classes.root);
+      expect(sliderRoot).to.have.class('custom-root');
       selectedClasses.slice(1).forEach((className, index) => {
-        expect(container.firstChild.children[index]).to.have.class(`custom-${className}`);
+        expect(sliderRoot.children[index]).to.have.class(`custom-${className}`);
       });
     });
   });
 
   describe('prop: orientation', () => {
     it('should render with the vertical classes', () => {
-      const { container, getByRole } = render(<Slider orientation="vertical" value={0} />);
-      expect(container.firstChild).to.have.class(classes.vertical);
+      const { getByTestId, getByRole } = render(
+        <Slider orientation="vertical" value={0} data-testid="slider-root" />,
+      );
+      const sliderRoot = getByTestId('slider-root');
+      expect(sliderRoot).to.have.class(classes.vertical);
       expect(getByRole('slider')).to.have.attribute('aria-orientation', 'vertical');
     });
 
     it('should report the right position', () => {
       const handleChange = spy();
-      const { container } = render(
-        <Slider orientation="vertical" defaultValue={20} onChange={handleChange} />,
+      const { getByTestId } = render(
+        <Slider
+          orientation="vertical"
+          defaultValue={20}
+          onChange={handleChange}
+          data-testid="slider-root"
+        />,
       );
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      const sliderRoot = getByTestId('slider-root');
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 10,
         height: 100,
+        top: 0,
+        right: 10,
         bottom: 100,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 0, clientY: 20 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 0, clientY: 20 }]));
       fireEvent.touchMove(
         document.body,
         createTouches([{ identifier: 1, clientX: 0, clientY: 22 }]),
@@ -311,23 +380,13 @@ describe('<Slider />', () => {
     });
 
     it('should focus the slider when dragging', () => {
-      const { getByRole, getByTestId, container } = render(
-        <Slider
-          slotProps={{ thumb: { 'data-testid': 'thumb' } }}
-          defaultValue={30}
-          step={10}
-          marks
-        />,
-      );
+      const { getByRole } = render(<Slider defaultValue={30} />);
       const slider = getByRole('slider');
-      const thumb = getByTestId('thumb');
+      const thumb = slider.parentElement;
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
-        width: 100,
-        left: 0,
-      }));
+      expect(thumb).not.to.equal(null);
 
-      fireEvent.mouseDown(thumb, {
+      fireEvent.mouseDown(thumb!, {
         buttons: 1,
         clientX: 1,
       });
@@ -337,31 +396,57 @@ describe('<Slider />', () => {
 
     it('should support touch events', () => {
       const handleChange = spy();
-      const { container } = render(<Slider defaultValue={[20, 30]} onChange={handleChange} />);
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      const { getByTestId } = render(
+        <Slider defaultValue={[20, 30]} onChange={handleChange} data-testid="slider-root" />,
+      );
+      const sliderRoot = getByTestId('slider-root');
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
+        top: 0,
+        right: 100,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
 
-      fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 20 }]));
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]));
 
-      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 21 }]));
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+      );
 
-      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 21 }]));
+      fireEvent.touchEnd(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+      );
 
-      fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 21 }]));
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]));
 
-      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 22 }]));
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]),
+      );
 
-      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 22 }]));
+      fireEvent.touchEnd(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]),
+      );
 
-      fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 22 }]));
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]));
 
-      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 22.1 }]));
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 22.1, clientY: 0 }]),
+      );
 
-      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 22.1 }]));
+      fireEvent.touchEnd(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 22.1, clientY: 0 }]),
+      );
 
       expect(handleChange.callCount).to.equal(2);
       expect(handleChange.args[0][1]).to.deep.equal([21, 30]);
@@ -380,19 +465,25 @@ describe('<Slider />', () => {
   });
 
   it('should not break when initial value is out of range', () => {
-    const { container } = render(<Slider value={[19, 41]} min={20} max={40} />);
+    const { getByTestId } = render(
+      <Slider value={[19, 41]} min={20} max={40} data-testid="slider-root" />,
+    );
 
-    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+    const sliderRoot = getByTestId('slider-root');
+
+    stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
       width: 100,
       height: 10,
+      top: 0,
+      right: 100,
       bottom: 10,
       left: 0,
+      x: 0,
+      y: 0,
+      toJSON() {},
     }));
 
-    fireEvent.touchStart(
-      container.firstChild,
-      createTouches([{ identifier: 1, clientX: 100, clientY: 0 }]),
-    );
+    fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 100, clientY: 0 }]));
 
     fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]));
   });
@@ -408,25 +499,29 @@ describe('<Slider />', () => {
 
   describe('prop: step', () => {
     it('should handle a null step', () => {
-      const { getByRole, container } = render(
+      const { getByRole, getByTestId } = render(
         <Slider
           step={null}
           marks={[{ value: 0 }, { value: 20 }, { value: 30 }]}
           defaultValue={0}
+          data-testid="slider-root"
         />,
       );
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      const sliderRoot = getByTestId('slider-root');
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
+        top: 0,
+        right: 100,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
       const slider = getByRole('slider');
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]));
       expect(slider).to.have.attribute('aria-valuenow', '20');
 
       fireEvent.change(slider, {
@@ -464,20 +559,26 @@ describe('<Slider />', () => {
     });
 
     it('should round value to step precision', () => {
-      const { getByRole, container } = render(
-        <Slider defaultValue={0.2} min={0} max={1} step={0.1} />,
+      const { getByRole, getByTestId } = render(
+        <Slider defaultValue={0.2} min={0} max={1} step={0.1} data-testid="slider-root" />,
       );
+      const sliderRoot = getByTestId('slider-root');
       const slider = getByRole('slider');
 
       act(() => {
         slider.focus();
       });
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
+        top: 0,
+        right: 100,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
 
       act(() => {
@@ -486,10 +587,7 @@ describe('<Slider />', () => {
 
       expect(slider).to.have.attribute('aria-valuenow', '0.2');
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]));
 
       fireEvent.touchMove(
         document.body,
@@ -505,20 +603,32 @@ describe('<Slider />', () => {
     });
 
     it('should not fail to round value to step precision when step is very small', () => {
-      const { getByRole, container } = render(
-        <Slider defaultValue={0.00000002} min={0} max={0.0000001} step={0.00000001} />,
+      const { getByRole, getByTestId } = render(
+        <Slider
+          defaultValue={0.00000002}
+          min={0}
+          max={0.0000001}
+          step={0.00000001}
+          data-testid="slider-root"
+        />,
       );
+      const sliderRoot = getByTestId('slider-root');
       const slider = getByRole('slider');
 
       act(() => {
         slider.focus();
       });
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
+        top: 0,
+        right: 100,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
 
       act(() => {
@@ -527,10 +637,7 @@ describe('<Slider />', () => {
 
       expect(slider).to.have.attribute('aria-valuenow', '2e-8');
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]));
 
       fireEvent.touchMove(
         document.body,
@@ -540,20 +647,32 @@ describe('<Slider />', () => {
     });
 
     it('should not fail to round value to step precision when step is very small and negative', () => {
-      const { getByRole, container } = render(
-        <Slider defaultValue={-0.00000002} min={-0.0000001} max={0} step={0.00000001} />,
+      const { getByRole, getByTestId } = render(
+        <Slider
+          defaultValue={-0.00000002}
+          min={-0.0000001}
+          max={0}
+          step={0.00000001}
+          data-testid="slider-root"
+        />,
       );
+      const sliderRoot = getByTestId('slider-root');
       const slider = getByRole('slider');
 
       act(() => {
         slider.focus();
       });
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
+        top: 0,
+        right: 100,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
 
       act(() => {
@@ -562,10 +681,7 @@ describe('<Slider />', () => {
 
       expect(slider).to.have.attribute('aria-valuenow', '-2e-8');
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 80, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 80, clientY: 0 }]));
 
       fireEvent.touchMove(
         document.body,
@@ -577,8 +693,11 @@ describe('<Slider />', () => {
 
   describe('prop: disabled', () => {
     it('should render the disabled classes', () => {
-      const { container, getByRole } = render(<Slider disabled value={0} />);
-      expect(container.firstChild).to.have.class(classes.disabled);
+      const { getByTestId, getByRole } = render(
+        <Slider disabled value={0} data-testid="slider-root" />,
+      );
+      const sliderRoot = getByTestId('slider-root');
+      expect(sliderRoot).to.have.class(classes.disabled);
       expect(getByRole('slider')).not.to.have.attribute('tabIndex');
     });
 
@@ -588,19 +707,24 @@ describe('<Slider />', () => {
         this.skip();
       }
 
-      const { getByRole, setProps, container } = render(<Slider defaultValue={0} />);
+      const { getByRole, setProps, getByTestId } = render(
+        <Slider defaultValue={0} data-testid="slider-root" />,
+      );
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      const sliderRoot = getByTestId('slider-root');
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
+        top: 0,
+        right: 100,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]));
 
       const thumb = getByRole('slider');
 
@@ -611,10 +735,7 @@ describe('<Slider />', () => {
       expect(thumb).not.toHaveFocus();
       expect(thumb).not.to.have.class(classes.active);
 
-      fireEvent.touchMove(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 30, clientY: 0 }]),
-      );
+      fireEvent.touchMove(sliderRoot, createTouches([{ identifier: 1, clientX: 30, clientY: 0 }]));
 
       expect(thumb).to.have.attribute('aria-valuenow', '21');
     });
@@ -651,12 +772,13 @@ describe('<Slider />', () => {
         },
       });
 
-      const { container } = render(
+      const { getByTestId } = render(
         <CssVarsProvider theme={theme}>
-          <Slider disabled value={0} />
+          <Slider disabled value={0} data-testid="slider-root" />
         </CssVarsProvider>,
       );
-      expect(container.firstChild).to.toHaveComputedStyle({
+      const sliderRoot = getByTestId('slider-root');
+      expect(sliderRoot).to.toHaveComputedStyle({
         mixBlendMode: 'darken',
       });
     });
@@ -664,13 +786,17 @@ describe('<Slider />', () => {
 
   describe('prop: track', () => {
     it('should render the track classes for false', () => {
-      const { container } = render(<Slider track={false} value={50} />);
-      expect(container.firstChild).to.have.class(classes.trackFalse);
+      const { getByTestId } = render(<Slider track={false} value={50} data-testid="slider-root" />);
+      const sliderRoot = getByTestId('slider-root');
+      expect(sliderRoot).to.have.class(classes.trackFalse);
     });
 
     it('should render the track classes for inverted', () => {
-      const { container } = render(<Slider track="inverted" value={50} />);
-      expect(container.firstChild).to.have.class(classes.trackInverted);
+      const { getByTestId } = render(
+        <Slider track="inverted" value={50} data-testid="slider-root" />,
+      );
+      const sliderRoot = getByTestId('slider-root');
+      expect(sliderRoot).to.have.class(classes.trackInverted);
     });
   });
 
@@ -746,15 +872,21 @@ describe('<Slider />', () => {
     });
 
     it('should reach right edge value', () => {
-      const { getByRole, container } = render(
-        <Slider defaultValue={90} min={6} max={108} step={10} />,
+      const { getByRole, getByTestId } = render(
+        <Slider defaultValue={90} min={6} max={108} step={10} data-testid="slider-root" />,
       );
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      const sliderRoot = getByTestId('slider-root');
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
+        top: 0,
+        right: 100,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
 
       const thumb = getByRole('slider');
@@ -764,10 +896,7 @@ describe('<Slider />', () => {
 
       expect(thumb).to.have.attribute('aria-valuenow', '90');
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]));
 
       fireEvent.touchMove(
         document.body,
@@ -797,13 +926,7 @@ describe('<Slider />', () => {
 
   describe('prop: valueLabelDisplay', () => {
     it('should always display the value label according to on and off', () => {
-      const { setProps } = render(
-        <Slider
-          valueLabelDisplay="on"
-          value={50}
-          slotProps={{ thumb: { 'data-testid': 'thumb' } }}
-        />,
-      );
+      const { setProps } = render(<Slider valueLabelDisplay="on" value={50} />);
       expect(document.querySelector(`.${classes.valueLabelOpen}`)).not.to.equal(null);
 
       setProps({
@@ -814,31 +937,30 @@ describe('<Slider />', () => {
     });
 
     it('should display the value label only on hover for auto', () => {
-      const { getByTestId } = render(
-        <Slider
-          valueLabelDisplay="auto"
-          value={50}
-          slotProps={{ thumb: { 'data-testid': 'thumb' } }}
-        />,
-      );
-      const thumb = getByTestId('thumb');
+      const { getByRole } = render(<Slider valueLabelDisplay="auto" value={50} />);
+      const input = getByRole('slider');
+      const thumb = input.parentElement;
+      expect(thumb).not.to.equal(null);
+
       expect(document.querySelector(`.${classes.valueLabelOpen}`)).to.equal(null);
 
-      fireEvent.mouseOver(thumb);
+      fireEvent.mouseOver(thumb!);
 
       expect(document.querySelector(`.${classes.valueLabelOpen}`)).not.to.equal(null);
     });
 
     it('should be respected when using custom value label', () => {
-      const ValueLabelComponent = React.forwardRef((props, ref) => {
-        const { value, open } = props;
-        return (
-          <span data-testid="value-label" className={open ? 'open' : ''} ref={ref}>
-            {value}
-          </span>
-        );
-      });
-      ValueLabelComponent.propTypes = { value: PropTypes.number };
+      const ValueLabelComponent = React.forwardRef(
+        (props: SliderValueLabelProps, ref: React.ForwardedRef<HTMLSpanElement>) => {
+          const { value, open } = props;
+          return (
+            <span data-testid="value-label" className={open ? 'open' : ''} ref={ref}>
+              {value}
+            </span>
+          );
+        },
+      );
+      ValueLabelComponent.propTypes = { value: PropTypes.number } as any;
 
       const { setProps } = render(
         <Slider slots={{ valueLabel: ValueLabelComponent }} valueLabelDisplay="on" value={50} />,
@@ -855,7 +977,7 @@ describe('<Slider />', () => {
   });
 
   describe('markActive state', () => {
-    function getActives(container) {
+    function getActives(container: HTMLElement) {
       return Array.from(container.querySelectorAll(`.${classes.mark}`)).map((node) =>
         node.classList.contains(classes.markActive),
       );
@@ -904,8 +1026,11 @@ describe('<Slider />', () => {
 
   it('should forward mouseDown', () => {
     const handleMouseDown = spy();
-    const { container } = render(<Slider disabled onMouseDown={handleMouseDown} value={0} />);
-    fireEvent.mouseDown(container.firstChild);
+    const { getByTestId } = render(
+      <Slider disabled onMouseDown={handleMouseDown} value={0} data-testid="slider-root" />,
+    );
+    const sliderRoot = getByTestId('slider-root');
+    fireEvent.mouseDown(sliderRoot);
     expect(handleMouseDown.callCount).to.equal(1);
   });
 
@@ -930,33 +1055,34 @@ describe('<Slider />', () => {
 
     it('should handle RTL', () => {
       const handleChange = spy();
-      const { container, getByTestId } = render(
+      const { getByTestId, getByRole } = render(
         <CssVarsProvider
           theme={extendTheme({
             direction: 'rtl',
           })}
         >
-          <Slider
-            value={30}
-            onChange={handleChange}
-            slotProps={{ thumb: { 'data-testid': 'thumb' } }}
-          />
+          <Slider value={30} onChange={handleChange} data-testid="slider-root" />
         </CssVarsProvider>,
       );
-      const thumb = getByTestId('thumb');
-      expect(thumb.style.right).to.equal('30%');
+      const sliderRoot = getByTestId('slider-root');
+      const input = getByRole('slider');
+      const thumb = input.parentElement;
+      expect(thumb).not.to.equal(null);
+      expect(thumb!.style.right).to.equal('30%');
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
+        top: 0,
+        right: 100,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]));
 
       fireEvent.touchMove(
         document.body,
@@ -1018,7 +1144,7 @@ describe('<Slider />', () => {
   });
 
   it('should support getAriaValueText', () => {
-    const getAriaValueText = (value) => `${value}°C`;
+    const getAriaValueText = (value: number) => `${value}°C`;
     const { getAllByRole } = render(
       <Slider value={[20, 50]} getAriaValueText={getAriaValueText} />,
     );
@@ -1029,7 +1155,7 @@ describe('<Slider />', () => {
   });
 
   it('should support getAriaLabel', () => {
-    const getAriaLabel = (index) => `Label ${index}`;
+    const getAriaLabel = (index: number) => `Label ${index}`;
     const { getAllByRole } = render(<Slider value={[20, 50]} getAriaLabel={getAriaLabel} />);
     const sliders = getAllByRole('slider');
 
@@ -1055,7 +1181,7 @@ describe('<Slider />', () => {
   });
 
   it('should correctly display mark labels when ranges slider have the same start and end', () => {
-    const getMarks = (value) => value.map((val) => ({ value: val, label: val }));
+    const getMarks = (value: number[]) => value.map((val) => ({ value: val, label: val }));
 
     const { container, setProps } = render(
       <Slider value={[100, 100]} marks={getMarks([100, 100])} />,
@@ -1092,15 +1218,17 @@ describe('<Slider />', () => {
 
   describe('prop: ValueLabelComponent', () => {
     it('receives the formatted value', () => {
-      const ValueLabelComponent = React.forwardRef((props, ref) => {
-        const { value } = props;
-        return (
-          <span data-testid="value-label" ref={ref}>
-            {value}
-          </span>
-        );
-      });
-      ValueLabelComponent.propTypes = { value: PropTypes.string };
+      const ValueLabelComponent = React.forwardRef(
+        (props: SliderValueLabelProps, ref: React.ForwardedRef<HTMLSpanElement>) => {
+          const { value } = props;
+          return (
+            <span data-testid="value-label" ref={ref}>
+              {value}
+            </span>
+          );
+        },
+      );
+      ValueLabelComponent.propTypes = { value: PropTypes.string } as any;
 
       const { getByTestId } = render(
         <Slider
@@ -1140,11 +1268,16 @@ describe('<Slider />', () => {
     stub(slider, 'getBoundingClientRect').callsFake(() => ({
       width: 100,
       height: 10,
+      top: 0,
+      right: 100,
       bottom: 10,
       left: 0,
+      x: 0,
+      y: 0,
+      toJSON() {},
     }));
 
-    fireEvent.touchStart(slider, createTouches([{ identifier: 1, clientX: 0 }]));
+    fireEvent.touchStart(slider, createTouches([{ identifier: 1, clientX: 0, clientY: 0 }]));
 
     expect(handleChange.callCount).to.equal(0);
     expect(handleNativeEvent.callCount).to.equal(1);
@@ -1177,8 +1310,13 @@ describe('<Slider />', () => {
     stub(slider, 'getBoundingClientRect').callsFake(() => ({
       width: 100,
       height: 10,
+      top: 0,
+      right: 100,
       bottom: 10,
       left: 0,
+      x: 0,
+      y: 0,
+      toJSON() {},
     }));
 
     fireEvent.mouseDown(slider);
@@ -1192,41 +1330,50 @@ describe('<Slider />', () => {
 
   describe('dragging state', () => {
     it('should not apply class name for click modality', () => {
-      const { container } = render(<Slider defaultValue={90} />);
+      const { getByTestId } = render(<Slider defaultValue={90} data-testid="slider-root" />);
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      const sliderRoot = getByTestId('slider-root');
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
+        top: 0,
+        right: 100,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]));
       fireEvent.touchMove(
         document.body,
         createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
       );
-      expect(container.firstChild).not.to.have.class(classes.dragging);
-      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1 }]));
+      expect(sliderRoot).not.to.have.class(classes.dragging);
+      fireEvent.touchEnd(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+      );
     });
 
     it('should apply class name for dragging modality', () => {
-      const { container } = render(<Slider defaultValue={90} />);
+      const { getByTestId } = render(<Slider defaultValue={90} data-testid="slider-root" />);
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      const sliderRoot = getByTestId('slider-root');
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
+        top: 0,
+        right: 100,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]));
       fireEvent.touchMove(
         document.body,
         createTouches([{ identifier: 1, clientX: 200, clientY: 0 }]),
@@ -1236,16 +1383,19 @@ describe('<Slider />', () => {
         createTouches([{ identifier: 1, clientX: 200, clientY: 0 }]),
       );
 
-      expect(container.firstChild).not.to.have.class(classes.dragging);
+      expect(sliderRoot).not.to.have.class(classes.dragging);
 
       fireEvent.touchMove(
         document.body,
         createTouches([{ identifier: 1, clientX: 200, clientY: 0 }]),
       );
 
-      expect(container.firstChild).to.have.class(classes.dragging);
-      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1 }]));
-      expect(container.firstChild).not.to.have.class(classes.dragging);
+      expect(sliderRoot).to.have.class(classes.dragging);
+      fireEvent.touchEnd(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 200, clientY: 0 }]),
+      );
+      expect(sliderRoot).not.to.have.class(classes.dragging);
     });
   });
 
@@ -1272,21 +1422,29 @@ describe('<Slider />', () => {
 
     it('should bound the value when using the mouse', () => {
       const handleChange = spy();
-      const { container } = render(
-        <Slider defaultValue={[20, 30]} disableSwap onChange={handleChange} />,
+      const { getByTestId } = render(
+        <Slider
+          defaultValue={[20, 30]}
+          disableSwap
+          onChange={handleChange}
+          data-testid="slider-root"
+        />,
       );
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      const sliderRoot = getByTestId('slider-root');
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
+        top: 0,
+        right: 100,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 35, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 35, clientY: 0 }]));
       fireEvent.touchMove(
         document.body,
         createTouches([{ identifier: 1, clientX: 19, clientY: 0 }]),
@@ -1298,21 +1456,29 @@ describe('<Slider />', () => {
 
     it('should bound the value when moving the first behind the second', () => {
       const handleChange = spy();
-      const { container } = render(
-        <Slider defaultValue={[20, 30]} disableSwap onChange={handleChange} />,
+      const { getByTestId } = render(
+        <Slider
+          defaultValue={[20, 30]}
+          disableSwap
+          onChange={handleChange}
+          data-testid="slider-root"
+        />,
       );
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      const sliderRoot = getByTestId('slider-root');
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
+        top: 0,
+        right: 100,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        toJSON() {},
       }));
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 15, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 15, clientY: 0 }]));
       fireEvent.touchMove(
         document.body,
         createTouches([{ identifier: 1, clientX: 40, clientY: 0 }]),
@@ -1348,7 +1514,7 @@ describe('<Slider />', () => {
       // ARRANGE
       const dataTestId = 'slider-input-testid';
       const name = 'custom-input';
-      function CustomInput({ ownerState, ...props }) {
+      function CustomInput({ ownerState, ...props }: { ownerState: SliderOwnerState }) {
         return <input {...props} data-testid={dataTestId} name={name} />;
       }
 
@@ -1356,23 +1522,7 @@ describe('<Slider />', () => {
       const { getByTestId } = render(<Slider slots={{ input: CustomInput }} />);
 
       // ASSERT
-      expect(getByTestId(dataTestId).name).to.equal(name);
-    });
-  });
-
-  describe('prop: slotProps', () => {
-    it('should forward the props to their respective components', () => {
-      // ARRANGE
-      const dataTestId = 'slider-input-testid';
-      const id = 'slider-input-id';
-
-      // ACT
-      const { getByTestId } = render(
-        <Slider defaultValue={10} slotProps={{ input: { 'data-testid': dataTestId, id } }} />,
-      );
-
-      // ASSERT
-      expect(getByTestId(dataTestId).id).to.equal(id);
+      expect((getByTestId(dataTestId) as HTMLInputElement).name).to.equal(name);
     });
   });
 
@@ -1450,7 +1600,7 @@ describe('<Slider />', () => {
 
       const { getAllByRole } = render(<Slider sx={{ width: 100 }} value={[0, 0]} />);
 
-      const [firstThumb, lastThumb] = document.querySelectorAll(`.${classes.thumb}`);
+      const [firstThumb, lastThumb] = Array.from(document.querySelectorAll(`.${classes.thumb}`));
       const firstThumbInput = getAllByRole('slider')[0];
       act(() => {
         firstThumbInput.focus();
@@ -1467,7 +1617,7 @@ describe('<Slider />', () => {
 
       const { getAllByRole } = render(<Slider sx={{ width: 100 }} value={[0, 0]} />);
 
-      const [firstThumb, lastThumb] = document.querySelectorAll(`.${classes.thumb}`);
+      const [firstThumb, lastThumb] = Array.from(document.querySelectorAll(`.${classes.thumb}`));
 
       const lastThumbInput = getAllByRole('slider')[1];
       act(() => {
@@ -1487,7 +1637,9 @@ describe('<Slider />', () => {
         <Slider sx={{ width: 100 }} value={[0, 0]} valueLabelDisplay="on" />,
       );
 
-      const [firstValueLabel, lastValueLabel] = document.querySelectorAll(`.${classes.valueLabel}`);
+      const [firstValueLabel, lastValueLabel] = Array.from(
+        document.querySelectorAll(`.${classes.valueLabel}`),
+      );
       const firstThumbInput = getAllByRole('slider')[0];
       act(() => {
         firstThumbInput.focus();
