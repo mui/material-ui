@@ -45,6 +45,7 @@ import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import TabPanel, { tabPanelClasses } from '@mui/joy/TabPanel';
 import Tab, { tabClasses } from '@mui/joy/Tab';
+import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
@@ -1468,27 +1469,20 @@ export default function JoyThemeBuilder() {
             borderRadius: '8px 8px 0 0',
           }}
         >
-          <Tabs
+          <ToggleButtonGroup
             size="sm"
             value={colorMode}
             onChange={(event, newValue) => setColorMode(newValue as 'light' | 'dark')}
-            sx={{ bgcolor: 'transparent' }}
           >
-            <TabList>
-              <Tab value="light">
-                <ListItemDecorator>
-                  <LightMode />
-                </ListItemDecorator>{' '}
-                Light
-              </Tab>
-              <Tab value="dark">
-                <ListItemDecorator>
-                  <DarkMode />
-                </ListItemDecorator>{' '}
-                Dark
-              </Tab>
-            </TabList>
-          </Tabs>
+            <Button value="light">
+              <LightMode />
+              Light
+            </Button>
+            <Button value="dark">
+              <DarkMode />
+              Dark
+            </Button>
+          </ToggleButtonGroup>
           <IconButton
             size="sm"
             variant="outlined"
