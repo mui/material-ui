@@ -153,6 +153,7 @@ import {
   RadioGroupSlot,
 } from '../RadioGroup/RadioGroupProps';
 import { SheetProps, SheetOwnerState, SheetSlot } from '../Sheet/SheetProps';
+import { SkeletonProps, SkeletonOwnerState, SkeletonSlot } from '../Skeleton/SkeletonProps';
 import { SelectProps, SelectOwnerState, SelectSlot } from '../Select/SelectProps';
 import { OptionProps, OptionOwnerState, OptionSlot } from '../Option/OptionProps';
 import { SliderProps, SliderOwnerState, SliderSlot } from '../Slider/SliderProps';
@@ -379,6 +380,10 @@ export interface Components<Theme = unknown> {
   JoySheet?: {
     defaultProps?: Partial<SheetProps>;
     styleOverrides?: OverridesStyleRules<SheetSlot, SheetOwnerState, Theme>;
+  };
+  JoySkeleton?: {
+    defaultProps?: Partial<SkeletonProps>;
+    styleOverrides?: OverridesStyleRules<SkeletonSlot, SkeletonOwnerState, Theme>;
   };
   JoyStack?: {
     defaultProps?: Partial<StackProps>;
