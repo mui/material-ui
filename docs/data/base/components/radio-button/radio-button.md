@@ -10,6 +10,6 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 <p class="description">Radio buttons enable the user to select one option from a set.</p>
 
 :::info
-💡 The Base UI Radio Button component is still in development.
+💡 The Base UI Radio Button component isn't implement yet but it's planned!
 Help us prioritize the next batch of new components by sharing your needs in [this GitHub issue](https://github.com/mui/material-ui/issues/27170).
 :::
