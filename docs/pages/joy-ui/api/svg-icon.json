@@ -5,14 +5,13 @@
       "type": {
         "name": "union",
         "description": "'danger'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
-      },
-      "default": "'inherit'"
+      }
     },
     "component": { "type": { "name": "elementType" } },
     "fontSize": {
       "type": {
-        "name": "enum",
-        "description": "'inherit'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xl2'<br>&#124;&nbsp;'xl3'<br>&#124;&nbsp;'xl4'<br>&#124;&nbsp;'xs'"
+        "name": "union",
+        "description": "'inherit'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xl2'<br>&#124;&nbsp;'xl3'<br>&#124;&nbsp;'xl4'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;string"
       }
     },
     "htmlColor": { "type": { "name": "string" } },

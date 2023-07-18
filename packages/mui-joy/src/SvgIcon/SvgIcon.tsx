@@ -17,7 +17,7 @@ const useUtilityClasses = (ownerState: SvgIconOwnerState) => {
   const slots = {
     root: [
       'root',
-      color && `color${capitalize(color)}`,
+      color && color !== 'inherit' && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
       fontSize && `fontSize${capitalize(fontSize)}`,
     ],
@@ -33,6 +33,9 @@ const SvgIconRoot = styled('svg', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SvgIconOwnerState }>(({ theme, ownerState }) => ({
+  ...(ownerState.instanceSize && {
+    '--Icon-fontSize': theme.vars.fontSize[sizeMap[ownerState.instanceSize!]],
+  }),
   ...(ownerState.instanceFontSize &&
     ownerState.instanceFontSize !== 'inherit' && {
       '--Icon-fontSize': theme.vars.fontSize[ownerState.instanceFontSize],
@@ -53,6 +56,9 @@ const SvgIconRoot = styled('svg', {
     }),
   ...(!ownerState.htmlColor && {
     color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
+    ...(ownerState.color === 'inherit' && {
+      color: 'inherit',
+    }),
     ...(ownerState.color !== 'inherit' &&
       ownerState.color !== 'context' &&
       theme.vars.palette[ownerState.color!] && {
@@ -82,7 +88,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const {
     children,
     className,
-    color = 'inherit',
+    color,
     component = 'svg',
     fontSize,
     htmlColor,
@@ -102,6 +108,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     color,
     component,
     size,
+    instanceSize: inProps.size,
     fontSize,
     instanceFontSize: inProps.fontSize,
     inheritViewBox,
@@ -152,7 +159,6 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
-   * @default 'inherit'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'inherit', 'neutral', 'primary', 'success', 'warning']),
@@ -167,7 +173,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * The theme's fontSize applied to the icon that will override the `size` prop.
    * Use this prop when you want to use a specific font-size from the theme.
    */
-  fontSize: PropTypes.oneOf(['inherit', 'lg', 'md', 'sm', 'xl', 'xl2', 'xl3', 'xl4', 'xs']),
+  fontSize: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['inherit', 'lg', 'md', 'sm', 'xl', 'xl2', 'xl3', 'xl4', 'xs']),
+    PropTypes.string,
+  ]),
   /**
    * Applies a color attribute to the SVG element.
    */

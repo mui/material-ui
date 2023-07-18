@@ -32,7 +32,6 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
-     * @default 'inherit'
      */
     color?: OverridableStringUnion<'inherit' | ColorPaletteProp, SvgIconPropsColorOverrides>;
     /**
@@ -94,10 +93,17 @@ export type SvgIconProps<
 
 export interface SvgIconOwnerState extends ApplyColorInversion<SvgIconProps> {
   /**
+   * @internal
    * The `size` specified explicitly on the instance.
+   */
+  instanceSize: SvgIconProps['size'];
+  /**
+   * @internal
+   * The `fontSize` specified explicitly on the instance.
    */
   instanceFontSize: SvgIconProps['fontSize'];
   /**
+   * @internal
    * The `children` has a `svg` element as a child.
    */
   hasSvgAsChild: boolean;
