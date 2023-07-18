@@ -13,7 +13,7 @@ With [v5.14.0](https://github.com/mui/material-ui/releases/tag/v5.14.0), MUI's C
 
 ## Adapting to the new paradigm
 
-React 18 introduced the concept of React Server Components, and Next.js 13 gave us the first framework implementation of RSCs with the App Router.
+React 18 introduced the concept of React Server Components, and Next.js 13 gave us the most mature framework implementation of RSCs to date with the App Router.
 While these two changes have caused major waves among the React community, it's clear that this is the path forward, and it's our responsibility as library maintainers to adapt to the new paradigm.
 
 As a first step towards this goal, we've updated all MUI Core components to ship with the `"use client"` directive, to let your apps know that these are Client Components (since Server Components are now the default).
