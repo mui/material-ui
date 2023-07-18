@@ -1649,43 +1649,14 @@ export default function JoyThemeBuilder() {
               .filter((k) => mergedValue[k] !== undefined);
             return (
               <Tabs
-                size="sm"
+                size="md"
                 defaultValue={0}
                 sx={{ flex: 1, [`& .${tabPanelClasses.root}`]: { p: 3 } }}
               >
-                <TabList
-                  variant="plain"
-                  sx={{
-                    px: 2,
-                    '--List-padding': '0px',
-                    '--ListItem-minHeight': '48px',
-                    '& > button': {
-                      bgcolor: 'transparent',
-                      boxShadow: 'none',
-                      flex: 'none',
-                      color: 'text.tertiary',
-                      fontWeight: 'md',
-                      '&:hover': { bgcolor: 'transparent' },
-                      '&[aria-selected="true"]': {
-                        color: 'text.primary',
-                        '&::before': {
-                          content: '""',
-                          display: 'block',
-                          position: 'absolute',
-                          height: 2,
-                          left: 'var(--ListItem-paddingLeft)',
-                          right: 'var(--ListItem-paddingRight)',
-                          bottom: -1,
-                          bgcolor: `${colorProp}.solidBg`,
-                        },
-                      },
-                    },
-                  }}
-                >
+                <TabList variant="plain">
                   <Tab>Primitive colors</Tab>
                   <Tab>Global variants</Tab>
                 </TabList>
-                <Divider />
                 <TabPanel value={0}>
                   <Typography component="div" fontWeight="xl" level="title-md">
                     Customize primitive colors
