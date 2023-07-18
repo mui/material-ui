@@ -31,9 +31,6 @@ declare module '@mui/material/styles/createPalette' {
 
   interface Palette {
     primaryDark: PaletteColor;
-    patterns: {
-      triangle: string;
-    };
     gradients: {
       lightGrayRadio: string;
       stylizedRadio: string;
@@ -242,12 +239,6 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         }),
       },
       warning,
-      patterns: {
-        isometric:
-          mode === 'dark'
-            ? 'url(/static/branding/background-pattern-dark.svg)'
-            : 'url(/static/branding/background-pattern.svg)',
-      },
       gradients: {
         lightGrayRadio:
           'radial-gradient(50% 50% at 50% 50%, #F0F7FF 0%, rgba(240, 247, 255, 0.05) 100%)',
