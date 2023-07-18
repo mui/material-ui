@@ -723,10 +723,12 @@ export function fireTouchChangedEvent(
   target.getBoundingClientRect = originalGetBoundingClientRect;
 }
 
-export function act(callback: () => void) {
+function act<T>(callback: () => T | Promise<T>): Promise<T>;
+function act(callback: () => void): void;
+function act<T>(callback: () => void | T | Promise<T>) {
   return traceSync('act', () => rtlAct(callback));
 }
 
 export * from '@testing-library/react/pure';
-export { cleanup, fireEvent };
+export { act, cleanup, fireEvent };
 export const screen = within(document.body, { ...queries, ...customQueries });
