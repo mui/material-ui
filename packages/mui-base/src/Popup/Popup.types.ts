@@ -11,11 +11,16 @@ import { PolymorphicProps, SlotComponentProps } from '../utils';
 export interface PopupRootSlotPropsOverrides {}
 
 export interface PopupOwnProps {
+  /**
+   * An HTML element, [virtual element](https://floating-ui.com/docs/virtual-elements),
+   * or a function that returns either.
+   * It's used to set the position of the popup.
+   */
   anchor?: VirtualElement | HTMLElement | (() => HTMLElement) | (() => VirtualElement) | null;
   children?: React.ReactNode | ((props: PopupChildrenProps) => React.ReactNode);
   /**
    * An HTML element or function that returns one. The container will have the portal children appended to it.
-    By default, it uses the body of the top-level document object, so it's simply document.body most of the time.
+    By default, it uses the body of the top-level document object, so it's `document.body` in these cases.
    */
   container?: PortalProps['container'];
   /**
@@ -34,13 +39,15 @@ export interface PopupOwnProps {
   keepMounted?: boolean;
   /**
    * Collection of Floating UI middleware to use when positioning the popup.
-   * If not provided, an offset and flip functions will be used.
+   * If not provided, the [`offset`](https://floating-ui.com/docs/offset)
+   * and [`flip`](https://floating-ui.com/docs/flip) functions will be used.
    *
    * @see https://floating-ui.com/docs/computePosition#middleware
    */
   middleware?: Array<Middleware | null | undefined | false>;
   /**
    * Distance between a popup and the trigger element.
+   * This prop is ignored when custom `middleware` is provided.
    *
    * @default 0
    * @see https://floating-ui.com/docs/offset
@@ -48,18 +55,31 @@ export interface PopupOwnProps {
   offset?: OffsetOptions;
   /**
    * If `true`, the popup is visible.
+   *
+   * @default false
    */
   open?: boolean;
   /**
    * Determines where to place the popup relative to the trigger element.
    *
-   * @default 'bottom-start'
+   * @default 'bottom'
    * @see https://floating-ui.com/docs/computePosition#placement
    */
   placement?: Placement;
+  /**
+   * The components used for each slot inside the Popup.
+   * Either a string to use a HTML element or a component.
+   *
+   * @default {}
+   */
   slots?: {
     root?: React.ElementType;
   };
+  /**
+   * The props used for each slot inside the Popup.
+   *
+   * @default {}
+   */
   slotProps?: {
     root?: SlotComponentProps<'div', PopupRootSlotPropsOverrides, PopupProps>;
   };

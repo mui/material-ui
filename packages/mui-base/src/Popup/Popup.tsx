@@ -34,9 +34,15 @@ function resolveAnchor(
 ): HTMLElement | VirtualElement | null | undefined {
   return typeof anchor === 'function' ? anchor() : anchor;
 }
-
 /**
- * @ignore - do not document.
+ *
+ * Demos:
+ *
+ * - [Popup](https://mui.com/base-ui/react-popup/)
+ *
+ * API:
+ *
+ * - [Popup API](https://mui.com/base-ui/react-popup/components-api/#popup)
  */
 const Popup = React.forwardRef(function Popup<RootComponentType extends React.ElementType>(
   props: PopupProps<RootComponentType>,
@@ -144,7 +150,9 @@ Popup.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * @ignore
+   * An HTML element, [virtual element](https://floating-ui.com/docs/virtual-elements),
+   * or a function that returns either.
+   * It's used to set the position of the popup.
    */
   anchor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     HTMLElementType,
@@ -166,7 +174,7 @@ Popup.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * An HTML element or function that returns one. The container will have the portal children appended to it.
-   * By default, it uses the body of the top-level document object, so it's simply document.body most of the time.
+   * By default, it uses the body of the top-level document object, so it's `document.body` in these cases.
    */
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     HTMLElementType,
@@ -188,7 +196,8 @@ Popup.propTypes /* remove-proptypes */ = {
   keepMounted: PropTypes.bool,
   /**
    * Collection of Floating UI middleware to use when positioning the popup.
-   * If not provided, an offset and flip functions will be used.
+   * If not provided, the [`offset`](https://floating-ui.com/docs/offset)
+   * and [`flip`](https://floating-ui.com/docs/flip) functions will be used.
    *
    * @see https://floating-ui.com/docs/computePosition#middleware
    */
@@ -204,6 +213,7 @@ Popup.propTypes /* remove-proptypes */ = {
   ),
   /**
    * Distance between a popup and the trigger element.
+   * This prop is ignored when custom `middleware` is provided.
    *
    * @default 0
    * @see https://floating-ui.com/docs/offset
@@ -219,12 +229,14 @@ Popup.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * If `true`, the popup is visible.
+   *
+   * @default false
    */
   open: PropTypes.bool,
   /**
    * Determines where to place the popup relative to the trigger element.
    *
-   * @default 'bottom-start'
+   * @default 'bottom'
    * @see https://floating-ui.com/docs/computePosition#placement
    */
   placement: PropTypes.oneOf([
@@ -242,13 +254,18 @@ Popup.propTypes /* remove-proptypes */ = {
     'top',
   ]),
   /**
-   * @ignore
+   * The props used for each slot inside the Popup.
+   *
+   * @default {}
    */
   slotProps: PropTypes.shape({
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * @ignore
+   * The components used for each slot inside the Popup.
+   * Either a string to use a HTML element or a component.
+   *
+   * @default {}
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

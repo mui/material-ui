@@ -30,6 +30,7 @@ module.exports = [
     title: 'OptionGroup',
   },
   { pathname: '/base-ui/react-popper/components-api/#popper', title: 'Popper' },
+  { pathname: '/base-ui/react-popup/components-api/#popup', title: 'Popup' },
   { pathname: '/base-ui/react-portal/components-api/#portal', title: 'Portal' },
   { pathname: '/base-ui/react-select/components-api/#select', title: 'Select' },
   { pathname: '/base-ui/react-slider/components-api/#slider', title: 'Slider' },
