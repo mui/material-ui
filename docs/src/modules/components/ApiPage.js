@@ -3,13 +3,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
-import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Alert from '@mui/material/Alert';
-import Collapse from '@mui/material/Collapse';
+import AlertTitle from '@mui/material/AlertTitle';
+import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
+import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -66,37 +66,40 @@ Heading.propTypes = {
 };
 
 function DesignInfo() {
-  const [showDesignInfo, setShowDesignInfo] = React.useState(true);
-
   return (
-    <Alert severity="info" icon={false} sx={{ mt: 4 }}>
-      <Collapse in={showDesignInfo}>
-        <Box>
-          <Typography sx={{ marginTop: 1 }}>Design update 🎨</Typography>
-          <Typography>
-            Hey! Api pages got a refreshing design. Hope it will improve you experience 🎉
-          </Typography>
-          <Typography>
-            If you want to discuss it feel free to join the discussion in the{' '}
-            <Link href="https://github.com/mui/material-ui/issues/34085">GitHub issue</Link> or
-            simply drop a feedback to say what you like/dislike.
-          </Typography>
-        </Box>
-      </Collapse>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
+    <React.Fragment>
+      <Divider />
+      <Alert
+        severity="info"
+        icon={
+          <DesignServicesRoundedIcon fontSize="small" color="primary" sx={{ marginTop: 0.3 }} />
+        }
+        sx={[
+          (theme) => ({
+            padding: '16px 20px',
+            gap: 1,
+            background: alpha(theme.palette.primary[50], 0.5),
+            border: '1px dashed',
+            borderColor: (theme.vars || theme).palette.divider,
+            ...theme.applyDarkStyles({
+              background: alpha(theme.palette.primary[900], 0.2),
+            }),
+          }),
+        ]}
       >
-        <Button variant="contained" data-feedback-hash="new-docs-api-feedback">
-          Drop a feedback 💬
+        <AlertTitle sx={{ fontWeight: (theme) => theme.typography.fontWeightSemiBold }}>
+          Got any feedback about this new API display design?
+        </AlertTitle>
+        <Typography>
+          We&apos;ve heard from you and iterated on making the design of API content documentation
+          more scalable and easier to parse! We value your input, so please don&apos;t hesitate to
+          share any additional feedback you may have.
+        </Typography>
+        <Button variant="outlined" data-feedback-hash="new-docs-api-feedback">
+          Share feedback
         </Button>
-        <Button variant="outlined" onClick={() => setShowDesignInfo((prev) => !prev)}>
-          {showDesignInfo ? 'Hide' : 'Expand'}
-        </Button>
-      </Box>
-    </Alert>
+      </Alert>
+    </React.Fragment>
   );
 }
 
@@ -250,7 +253,6 @@ import { ${pageContent.name} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        <DesignInfo />
 
         <Heading hash="props" />
         <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
@@ -352,6 +354,7 @@ import { ${pageContent.name} } from '${source}';`}
             <Divider />
           </React.Fragment>
         ) : null}
+        <DesignInfo />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 12 6">

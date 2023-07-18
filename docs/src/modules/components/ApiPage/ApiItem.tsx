@@ -68,7 +68,6 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         textOverflow: 'ellipsis',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
-
         '&.MuiApi-item-description-extended': {
           whiteSpace: 'normal',
           alignSelf: 'start',
@@ -141,9 +140,19 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       marginBottom: 16,
     },
     '& .prop-list-additional-info': {
-      display: 'table',
-      '& .prop-list-title': { paddingRight: 5, whiteSpace: 'nowrap', verticalAlign: 'top' },
-      '&>div': { display: 'table-row', '&>div': { display: 'table-cell' } },
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 8,
+      '& .prop-list-title': {
+        paddingRight: 5,
+        whiteSpace: 'nowrap',
+        p: {
+          ...theme.typography.body2,
+          margin: 0,
+          fontWeight: theme.typography.fontWeightSemiBold,
+        },
+      },
+      '&>div': { display: 'flex', alignItems: 'baseline' },
     },
     '& .prop-list-default-props': {
       ...theme.typography.body2,
@@ -152,18 +161,22 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         ...theme.typography.caption,
         fontFamily: theme.typography.fontFamilyCode,
         fontWeight: theme.typography.fontWeightRegular,
-        padding: '2px 4px',
+        padding: '1px 4px',
         border: '1px solid',
-        borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
+        borderColor: alpha(darkTheme.palette.primary[100], 0.5),
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       },
     },
     '& .prop-list-signature': {
-      marginBottom: 16,
       p: {
         ...theme.typography.body2,
         fontWeight: theme.typography.fontWeightSemiBold,
         marginBottom: 8,
+      },
+      ul: {
+        paddingLeft: 24,
+        marginTop: 2,
+        marginBottom: 0,
       },
       '&>code': {
         borderRadius: 8,
