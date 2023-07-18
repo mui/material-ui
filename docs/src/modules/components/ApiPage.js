@@ -1,9 +1,15 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
+import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -58,6 +64,41 @@ Heading.propTypes = {
   hash: PropTypes.string.isRequired,
   level: PropTypes.string,
 };
+
+function DesignInfo() {
+  const [showDesignInfo, setShowDesignInfo] = React.useState(true);
+
+  return (
+    <Alert severity="info" icon={false} sx={{ mt: 4 }}>
+      <Collapse in={showDesignInfo}>
+        <Box>
+          <Typography sx={{ marginTop: 1 }}>Design update 🎨</Typography>
+          <Typography>
+            Hey! Api pages got a refreshing design. Hope it will improve you experience 🎉
+          </Typography>
+          <Typography>
+            If you want to discuss it feel free to join the discussion in the{' '}
+            <Link href="https://github.com/mui/material-ui/issues/34085">GitHub issue</Link> or
+            simply drop a feedback to say what you like/dislike.
+          </Typography>
+        </Box>
+      </Collapse>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Button variant="contained" data-feedback-hash="new-docs-api-feedback">
+          Drop a feedback 💬
+        </Button>
+        <Button variant="outlined" onClick={() => setShowDesignInfo((prev) => !prev)}>
+          {showDesignInfo ? 'Hide' : 'Expand'}
+        </Button>
+      </Box>
+    </Alert>
+  );
+}
 
 export default function ApiPage(props) {
   const { descriptions, disableAd = false, pageContent } = props;
@@ -209,6 +250,8 @@ import { ${pageContent.name} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
+        <DesignInfo />
+
         <Heading hash="props" />
         <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
         <PropertiesTable properties={componentProps} propertiesDescriptions={propDescriptions} />

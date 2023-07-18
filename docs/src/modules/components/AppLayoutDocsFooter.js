@@ -241,6 +241,7 @@ function usePageNeighbours() {
 }
 
 const EMPTY_SECTION = { hash: '', text: '' };
+const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API design' }];
 
 export default function AppLayoutDocsFooter(props) {
   const { tableOfContents = [] } = props;
@@ -353,7 +354,10 @@ export default function AppLayoutDocsFooter(props) {
     const eventListener = (event) => {
       const feedbackHash = event.target.getAttribute('data-feedback-hash');
       if (feedbackHash) {
-        const section = sectionOptions.find((item) => item.hash === feedbackHash) || EMPTY_SECTION;
+        const section =
+          [...sectionOptions, ...SPEACIAL_FEEDBACK_HASH].find(
+            (item) => item.hash === feedbackHash,
+          ) || EMPTY_SECTION;
         setCommentOpen(true);
         setCommentedSection(section);
 
