@@ -106,6 +106,7 @@ export const IconButtonRoot = styled(StyledIconButton, {
  *
  * - [Button](https://mui.com/joy-ui/react-button/)
  * - [Button Group](https://mui.com/joy-ui/react-button-group/)
+ * - [Toggle Button Group](https://mui.com/joy-ui/react-toggle-button-group/)
  *
  * API:
  *
@@ -272,5 +273,8 @@ IconButton.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
+// @ts-ignore internal logic for ToggleButtonGroup
+IconButton.muiName = 'IconButton';
 
 export default IconButton;
