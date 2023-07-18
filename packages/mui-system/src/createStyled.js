@@ -73,6 +73,9 @@ export function shouldForwardProp(prop) {
 export const systemDefaultTheme = createTheme();
 
 const lowercaseFirstLetter = (string) => {
+  if (!string) {
+    return string;
+  }
   return string.charAt(0).toLowerCase() + string.slice(1);
 };
 
@@ -81,6 +84,9 @@ function resolveTheme({ defaultTheme, theme, themeId }) {
 }
 
 function defaultOverridesResolver(slot) {
+  if (!slot) {
+    return null;
+  }
   return (props, styles) => styles[slot];
 }
 

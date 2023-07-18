@@ -1,6 +1,6 @@
-# Custom Component
+# Themable Component
 
-<p class="description">Plug your component with Material UI theming feature.</p>
+<p class="description">Create your own themable component with Material UI theming feature.</p>
 
 ## Introduction
 
@@ -44,8 +44,7 @@ import { styled } from '@mui/material/styles';
 
 const StatRoot = styled('div', {
   name: 'MuiStat', // The component name
-  slot: 'Root', // The slot name
-  overridesResolver: (props, styles) => styles.root, // This will resolve the `root` slot from the theme styleOverrides
+  slot: 'root', // The slot name
 })(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -58,7 +57,22 @@ const StatRoot = styled('div', {
   fontWeight: 600,
 }));
 
-// …Do the same for the `value` and `unit` slots
+const StatValue = styled('div', {
+  name: 'MuiStat',
+  slot: 'value',
+  overridesResolver: (props, styles) => styles.value,
+})(({ theme }) => ({
+  ...theme.typography.h3,
+}));
+
+const StatUnit = styled('div', {
+  name: 'MuiStat',
+  slot: 'unit',
+  overridesResolver: (props, styles) => styles.unit,
+})(({ theme }) => ({
+  ...theme.typography.body2,
+  color: theme.palette.text.secondary,
+}));
 ```
 
 ### 2. Create the component
@@ -71,20 +85,17 @@ import * as React from 'react';
 
 const StatRoot = styled('div', {
   name: 'MuiStat',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
+  slot: 'root',
 })(…);
 
 const StatValue = styled('div', {
   name: 'MuiStat',
-  slot: 'Value',
-  overridesResolver: (props, styles) => styles.value,
+  slot: 'value',
 })(…);
 
 const StatUnit = styled('div', {
   name: 'MuiStat',
-  slot: 'Unit',
-  overridesResolver: (props, styles) => styles.unit,
+  slot: 'unit',
 })(…);
 
 const Stat = React.forwardRef(function Stat(props, ref) {
@@ -160,7 +171,6 @@ Then you can read `ownerState` in the slot to style it based on the `variant` pr
   const StatRoot = styled('div', {
     name: 'MuiStat',
     slot: 'Root',
-    overridesResolver: (props, styles) => styles.root
 -  })(({ theme }) => ({
 +  })(({ theme, ownerState }) => ({
     display: 'flex',
@@ -238,7 +248,6 @@ Then you can use them in the component and slots.
 const StatRoot = styled('div', {
   name: 'MuiStat',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: StatOwnerState }>(({ theme, ownerState }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -296,7 +305,7 @@ interface CustomComponentsPropsList {
 }
 
 declare module '@mui/material/styles' {
-  interface ComponentsPropsList extends LabComponentsPropsList {}
+  interface ComponentsPropsList extends CustomComponentsPropsList {}
 }
 
 interface CustomComponentNameToClassKey {

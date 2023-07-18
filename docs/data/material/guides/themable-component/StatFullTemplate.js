@@ -1,23 +1,12 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
 import { styled, useThemeProps } from '@mui/material/styles';
 
-interface StatProps {
-  value: number | string;
-  unit: string;
-  variant?: 'outlined';
-}
-
-interface StatOwnerState extends StatProps {
-  // …key value pairs for the internal state that you want to style the slot
-  // but don't want to expose to the users
-}
-
 const StatRoot = styled('div', {
   name: 'MuiStat',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: StatOwnerState }>(({ theme, ownerState }) => ({
+  slot: 'root',
+})(({ theme, ownerState }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(0.5),
@@ -35,25 +24,20 @@ const StatRoot = styled('div', {
 
 const StatValue = styled('div', {
   name: 'MuiStat',
-  slot: 'Value',
-  overridesResolver: (props, styles) => styles.value,
-})<{ ownerState: StatOwnerState }>(({ theme }) => ({
+  slot: 'value',
+})(({ theme }) => ({
   ...theme.typography.h3,
 }));
 
 const StatUnit = styled('div', {
   name: 'MuiStat',
-  slot: 'Unit',
-  overridesResolver: (props, styles) => styles.unit,
-})<{ ownerState: StatOwnerState }>(({ theme }) => ({
+  slot: 'unit',
+})(({ theme }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,
 }));
 
-const Stat = React.forwardRef<HTMLDivElement, StatProps>(function Stat(
-  inProps,
-  ref,
-) {
+const Stat = React.forwardRef(function Stat(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiStat' });
   const { value, unit, variant, ...other } = props;
 
@@ -66,6 +50,12 @@ const Stat = React.forwardRef<HTMLDivElement, StatProps>(function Stat(
     </StatRoot>
   );
 });
+
+Stat.propTypes = {
+  unit: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  variant: PropTypes.oneOf(['outlined']),
+};
 
 export default function StatFullTemplate() {
   return (
