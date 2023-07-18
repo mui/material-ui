@@ -59,7 +59,7 @@ export default function XChartsDemo() {
           }}
         >
           <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-            🎉&nbsp;&nbsp;&nbsp; Charts now in Alpha! 
+            🎉&nbsp;&nbsp;&nbsp; Charts now in Alpha!
           </Typography>
           <Button
             variant="outlined"
