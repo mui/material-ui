@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable jsx-a11y/aria-role */
 import * as React from 'react';
 import PropTypes from 'prop-types';

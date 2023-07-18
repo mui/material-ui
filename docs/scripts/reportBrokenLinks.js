@@ -15,7 +15,7 @@ const getPageLinks = (markdown) => {
       hrefs.push(href);
     }
   };
-  marked(markdown, { renderer });
+  marked(markdown, { mangle: false, headerIds: false, renderer });
   return hrefs;
 };
 

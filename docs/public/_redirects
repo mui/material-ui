@@ -484,6 +484,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /material-ui/getting-started/overview/ /material-ui/getting-started/ 301
 /joy-ui/getting-started/overview/ /joy-ui/getting-started/ 301
 /base-ui/getting-started/overview/ /base-ui/getting-started/ 301
+/base-ui/react-components/ /base-ui/all-components/ 301
 /system/getting-started/overview/ /system/getting-started/ 301
 
 # Proxies

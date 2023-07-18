@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
@@ -105,6 +106,7 @@ export const IconButtonRoot = styled(StyledIconButton, {
  *
  * - [Button](https://mui.com/joy-ui/react-button/)
  * - [Button Group](https://mui.com/joy-ui/react-button-group/)
+ * - [Toggle Button Group](https://mui.com/joy-ui/react-toggle-button-group/)
  *
  * API:
  *
@@ -271,5 +273,8 @@ IconButton.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
+// @ts-ignore internal logic for ToggleButtonGroup
+IconButton.muiName = 'IconButton';
 
 export default IconButton;

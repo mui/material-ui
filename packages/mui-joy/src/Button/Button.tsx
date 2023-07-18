@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import useButton from '@mui/base/useButton';
@@ -163,6 +164,7 @@ export const ButtonRoot = styled('button', {
  *
  * - [Button](https://mui.com/joy-ui/react-button/)
  * - [Button Group](https://mui.com/joy-ui/react-button-group/)
+ * - [Toggle Button Group](https://mui.com/joy-ui/react-toggle-button-group/)
  *
  * API:
  *
@@ -419,5 +421,8 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
+// @ts-ignore internal logic for ToggleButtonGroup
+Button.muiName = 'Button';
 
 export default Button;

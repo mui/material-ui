@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable no-constant-condition */
 import * as React from 'react';
 import {
@@ -377,10 +378,14 @@ export default function useAutocomplete(props) {
 
     // Scroll active descendant into view.
     // Logic copied from https://www.w3.org/WAI/content-assets/wai-aria-practices/patterns/combobox/examples/js/select-only.js
-    //
+    // In case of mouse clicks and touch (in mobile devices) we avoid scrolling the element and keep both behaviors same.
     // Consider this API instead once it has a better browser support:
     // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
-    if (listboxNode.scrollHeight > listboxNode.clientHeight && reason !== 'mouse') {
+    if (
+      listboxNode.scrollHeight > listboxNode.clientHeight &&
+      reason !== 'mouse' &&
+      reason !== 'touch'
+    ) {
       const element = option;
 
       const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;

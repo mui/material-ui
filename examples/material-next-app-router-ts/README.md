@@ -1,5 +1,7 @@
 # Material UI - Next.js App Router example in TypeScript
 
+This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with Material UI installed.
+
 ## How to use
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
@@ -11,21 +13,31 @@ curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip
 cd material-next-app-router-ts
 ```
 
-Install it and run:
+Install dependencies and run:
 
 ```bash
+# npm
 npm install
 npm run dev
+
+# yarn
+yarn
+yarn dev
+
+# pnpm
+pnpm install
+pnpm dev
 ```
 
-## The idea behind the example
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-The project uses [Next.js](https://github.com/vercel/next.js), which is a framework for server-rendered React apps.
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5. If you prefer, you can [use styled-components instead](https://mui.com/material-ui/guides/interoperability/#styled-components).
+You can start editing the page by modifying `src/app/page.tsx`. The page auto-updates as you edit the file.
 
-## What's next?
+This example uses [`next/font/google`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts#google-fonts) to automatically optimize and load Roboto, a custom Google Font.
 
-<!-- #default-branch-switch -->
+## Learn More
 
-You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+To learn more about this example:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Customizing Material UI](https://mui.com/material-ui/customization/how-to-customize/) - approaches to customizing Material UI.

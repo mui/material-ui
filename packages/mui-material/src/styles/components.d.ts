@@ -338,6 +338,11 @@ export interface Components<Theme = unknown> {
     styleOverrides?: ComponentsOverrides<Theme>['MuiMenuItem'];
     variants?: ComponentsVariants['MuiMenuItem'];
   };
+  MuiMenuList?: {
+    defaultProps?: ComponentsProps['MuiMenuList'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiMenuList'];
+    variants?: ComponentsVariants['MuiMenuList'];
+  };
   MuiMobileStepper?: {
     defaultProps?: ComponentsProps['MuiMobileStepper'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiMobileStepper'];
