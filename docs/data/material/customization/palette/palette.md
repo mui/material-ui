@@ -9,7 +9,7 @@ Palette colors are represented by four tokens:
 - `main`: The main shade of the color
 - `light`: A lighter shade of `main`
 - `dark`: A darker shade of `main`
-- `contrastText`: A color to be used for text so it contrasts with `main`
+- `contrastText`: Text color, intended to contrast with `main`
 
 For example the default theme primary color tokens are:
 
