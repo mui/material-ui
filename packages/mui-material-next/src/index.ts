@@ -2,6 +2,9 @@
 export { default as Button } from './Button';
 export * from './Button';
 
+export { default as Chip } from './Chip';
+export * from './Chip';
+
 export { default as Input } from './Input';
 
 export { default as Slider } from './Slider';
