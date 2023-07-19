@@ -26,7 +26,7 @@ See the [Color](/material-ui/customization/color/) documentation for details on 
 
 ## Default colors
 
-The theme exposes the following default palette colors (accessible under `theme.palette.`):
+The theme exposes the following default palette colors (accessible under `theme.palette.*`):
 
 - _primary_ - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
 - _secondary_ - used to represent secondary interface elements for a user. It provides more ways to accent and distinguish your product. Having it is optional.
