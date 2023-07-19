@@ -22,7 +22,7 @@ const primary = {
 };
 ```
 
-For more information about color check out [the color section](/material-ui/customization/color/).
+See the [Color](/material-ui/customization/color/) documentation for details on the Material Design color system.
 
 ## Default colors
 
