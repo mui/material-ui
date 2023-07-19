@@ -96,14 +96,14 @@ function ProductsSwitcher({
   const isBelowMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const productElements = [
     <ProductItem
-      label=", go to core components page"
+      label="by going to the Core components page"
       icon={<IconImage name="product-core" />}
       name="MUI Core"
       description="Foundational components for shipping features faster. Includes Material UI."
       href={ROUTES.productCore}
     />,
     <ProductItem
-      label=", go to advanced components page"
+      label="by going to the Advanced components page"
       icon={<IconImage name="product-advanced" />}
       name={
         <Box component="span" display="inline-flex" alignItems="center">
@@ -114,14 +114,14 @@ function ProductsSwitcher({
       href={ROUTES.productAdvanced}
     />,
     <ProductItem
-      label=", go to templates page"
+      label="by going to the templates page"
       icon={<IconImage name="product-templates" />}
       name="Templates"
       description="Professionally designed UI layouts to jumpstart your next project."
       href={ROUTES.productTemplates}
     />,
     <ProductItem
-      label=", go to design-kits page"
+      label="by going to the design-kits page"
       icon={<IconImage name="product-designkits" />}
       name="Design kits"
       description="Bring our components to your favorite design tool."
