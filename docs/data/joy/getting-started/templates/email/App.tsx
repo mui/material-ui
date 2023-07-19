@@ -115,7 +115,7 @@ export default function EmailExample() {
                 xs: 'none',
                 sm: 'flex',
               },
-              boxShadow: 'xs',
+              boxShadow: 'sm',
             }}
           />
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>

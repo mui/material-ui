@@ -35,13 +35,13 @@ export default function TabsPricingExample() {
           },
         }}
       >
-        <Tab disableIndicator variant="soft">
+        <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }}>
           Community
         </Tab>
-        <Tab disableIndicator variant="soft">
+        <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }}>
           Pro
         </Tab>
-        <Tab disableIndicator variant="soft">
+        <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }}>
           Premium
         </Tab>
       </TabList>
