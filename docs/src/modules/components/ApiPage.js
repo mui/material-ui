@@ -223,7 +223,6 @@ export default function ApiPage(props) {
         </Typography>
         <Heading hash="demos" />
         <div
-          className="MuiCallout-root MuiCallout-info"
           dangerouslySetInnerHTML={{
             __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
               ${demos}`,
@@ -264,8 +263,11 @@ import { ${pageContent.name} } from '${source}';`}
             <br />
           </React.Fragment>
         )}
-        <span dangerouslySetInnerHTML={{ __html: refHint }} />
         <Divider />
+        <div
+          className="MuiCallout-root MuiCallout-info"
+          dangerouslySetInnerHTML={{ __html: refHint }}
+        />
         {inheritance && (
           <React.Fragment>
             <Heading hash="inheritance" level="h3" />
