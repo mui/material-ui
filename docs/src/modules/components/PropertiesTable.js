@@ -144,7 +144,7 @@ export default function PropertiesTable(props) {
                     <div className="prop-list-content">
                       <code
                         dangerouslySetInnerHTML={{
-                          __html: typeName,
+                          __html: typeName.replace(/<br>&#124;/, ' |'),
                         }}
                       />
                     </div>
