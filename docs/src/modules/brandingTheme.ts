@@ -436,7 +436,7 @@ export function getThemedComponents(): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             ...(ownerState.size === 'large' && {
-              padding: theme.spacing('12px', '11px', '12px', '14px'),
+              padding: theme.spacing('12px', '12px', '12px', '14px'),
               ...theme.typography.body1,
               lineHeight: 21 / 16,
               fontWeight: 700,
