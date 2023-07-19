@@ -580,8 +580,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || 'outlined',
-      color: mergedProps.color || 'neutral',
+      variant: mergedProps.variant || variant,
+      color: mergedProps.color || color,
       disableColorInversion: !mergedProps.disablePortal,
     }),
     additionalProps: {

@@ -508,8 +508,8 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     } as SelectOwnerState<any> & ListOwnerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || 'outlined',
-      color: mergedProps.color || 'neutral',
+      variant: mergedProps.variant || variant,
+      color: mergedProps.color || color,
       disableColorInversion: !mergedProps.disablePortal,
     }),
   });

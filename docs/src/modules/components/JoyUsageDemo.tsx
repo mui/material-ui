@@ -442,7 +442,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                               sx={{
                                 width: 28,
                                 height: 28,
-                                borderRadius: 'lg',
+                                borderRadius: 'xl',
                                 textTransform: 'capitalize',
                               }}
                             >

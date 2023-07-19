@@ -11,9 +11,17 @@ export default function SelectUsage() {
       componentName="Select"
       data={[
         {
-          propName: 'variant',
+          formLabel: 'Select variant',
+          propName: 'selectVariant',
           knob: 'radio',
           defaultValue: 'outlined',
+          options: ['plain', 'outlined', 'soft', 'solid'],
+        },
+        {
+          formLabel: 'Option variant',
+          propName: 'optionVariant',
+          knob: 'radio',
+          defaultValue: 'plain',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
@@ -42,18 +50,27 @@ export default function SelectUsage() {
           defaultValue: `<Option>...</Option>`,
         },
       ]}
-      renderDemo={(props) => (
+      renderDemo={({ selectVariant, optionVariant, ...props }) => (
         <Select
           {...props}
+          variant={selectVariant}
           action={action}
           value={value}
           onChange={(e, newValue) => setValue(newValue)}
           sx={{ minWidth: 160, mb: 20 }}
         >
-          <Option value="react">React</Option>
-          <Option value="vue">Vue</Option>
-          <Option value="svelte">Svelte</Option>
-          <Option value="angular">Angular</Option>
+          <Option variant={optionVariant} value="react">
+            React
+          </Option>
+          <Option variant={optionVariant} value="vue">
+            Vue
+          </Option>
+          <Option variant={optionVariant} value="svelte">
+            Svelte
+          </Option>
+          <Option variant={optionVariant} value="angular">
+            Angular
+          </Option>
         </Select>
       )}
     />
