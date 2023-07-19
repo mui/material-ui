@@ -4,7 +4,7 @@
 
 ## Color tokens
 
-Palette colors are composed by four tokens:
+Palette colors are represented by four tokens:
 
 - `main`: The main shade of the color
 - `light`: A lighter shade of `main`
