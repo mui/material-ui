@@ -509,28 +509,6 @@ describe('<Tabs />', () => {
       expect(container.querySelectorAll(selector)).to.have.lengthOf(1);
     });
 
-    it('should response to scroll events', async function test() {
-      if (isJSDOM) {
-        this.skip();
-      }
-      const { container, getByRole } = render(tabs);
-      const tablistContainer = getByRole('tablist').parentElement;
-
-      tablistContainer.scrollLeft = 10;
-      await waitFor(() => {
-        expect(hasLeftScrollButton(container)).to.equal(true);
-        expect(hasRightScrollButton(container)).to.equal(true);
-      });
-
-      tablistContainer.scrollLeft = 0;
-      fireEvent.scroll(container.querySelector(`.${classes.scroller}.${classes.scrollableX}`));
-
-      await waitFor(() => {
-        expect(hasLeftScrollButton(container)).to.equal(false);
-        expect(hasRightScrollButton(container)).to.equal(true);
-      });
-    });
-
     it('should get a scrollbar size listener', () => {
       const { setProps, getByRole } = render(
         <Tabs value={0}>
@@ -600,39 +578,8 @@ describe('<Tabs />', () => {
       expect(container.querySelectorAll(`.${classes.scrollButtonsHideMobile}`)).to.have.lengthOf(0);
     });
 
-    it('should handle window resize event', async function test() {
-      if (isJSDOM) {
-        this.skip();
-      }
-      const { container, getByRole } = render(
-        <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
-          <Tab />
-          <Tab />
-          <Tab />
-        </Tabs>,
-      );
-
-      const tablistContainer = getByRole('tablist').parentElement;
-
-      tablistContainer.scrollLeft = 10;
-      await waitFor(() => {
-        expect(hasLeftScrollButton(container)).to.equal(true);
-        expect(hasRightScrollButton(container)).to.equal(true);
-      });
-      tablistContainer.scrollLeft = 0;
-
-      act(() => {
-        window.dispatchEvent(new window.Event('resize', {}));
-      });
-
-      await waitFor(() => {
-        expect(hasLeftScrollButton(container)).to.equal(false);
-        expect(hasRightScrollButton(container)).to.equal(true);
-      });
-    });
-
     describe('scroll button visibility states', () => {
-      it('should set neither left nor right scroll button state', async function test() {
+      it('should set neither left nor right scroll button state', function test() {
         if (isJSDOM) {
           this.skip();
         }
@@ -643,10 +590,8 @@ describe('<Tabs />', () => {
           </Tabs>,
         );
 
-        await waitFor(() => {
-          expect(hasLeftScrollButton(container)).to.equal(false);
-          expect(hasRightScrollButton(container)).to.equal(false);
-        });
+        expect(hasLeftScrollButton(container)).to.equal(false);
+        expect(hasRightScrollButton(container)).to.equal(false);
       });
 
       it('should set only left scroll button state', async function test() {

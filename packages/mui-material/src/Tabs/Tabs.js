@@ -559,6 +559,29 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
   });
 
+  const updateScrollButtonState = useEventCallback(() => {
+    if (scrollable && scrollButtons !== false) {
+      const { scrollTop, scrollHeight, clientHeight, scrollWidth, clientWidth } = tabsRef.current;
+      let showStartScroll;
+      let showEndScroll;
+
+      if (vertical) {
+        showStartScroll = scrollTop > 1;
+        showEndScroll = scrollTop < scrollHeight - clientHeight - 1;
+      } else {
+        const scrollLeft = getNormalizedScrollLeft(tabsRef.current, theme.direction);
+        // use 1 for the potential rounding error with browser zooms.
+        showStartScroll = isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
+        showEndScroll = !isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
+      }
+
+      if (showStartScroll !== displayStartScroll || showEndScroll !== displayEndScroll) {
+        setDisplayStartScroll(showStartScroll);
+        setDisplayEndScroll(showEndScroll);
+      }
+    }
+  });
+
   React.useEffect(() => {
     const handleResize = debounce(() => {
       // If the Tabs component is replaced by Suspense with a fallback, the last
@@ -663,9 +686,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     action,
     () => ({
       updateIndicator: updateIndicatorState,
-      updateScrollButtons: () => {},
+      updateScrollButtons: updateScrollButtonState,
     }),
-    [updateIndicatorState],
+    [updateIndicatorState, updateScrollButtonState],
   );
 
   const indicator = (
