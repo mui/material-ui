@@ -11,5 +11,5 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 
 :::info
 💡 The Base UI Radio Button component isn't implement yet but it's planned!
-Help us prioritize the next batch of new components by sharing your needs in [this GitHub issue](https://github.com/mui/material-ui/issues/27170).
+Help us prioritize the next batch of new components by sharing your needs in [this GitHub issue](https://github.com/mui/material-ui/issues/38038).
 :::
