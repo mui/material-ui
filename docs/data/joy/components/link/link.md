@@ -145,7 +145,7 @@ When using `target="_blank"` with links to pages on another site, the [Google Ch
 - `rel="noopener"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process.
   Without this, the target page can potentially redirect your page to a malicious URL.
 - `rel="noreferrer"` has the same effect, but also prevents the _Referer_ header from being sent to a new page.
-  ⚠️ Removing the referrer header will affect analytics.
+  Note that removing the referrer header will affect analytics.
 
 ## Accessibility
 
