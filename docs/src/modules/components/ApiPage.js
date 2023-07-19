@@ -264,8 +264,8 @@ import { ${pageContent.name} } from '${source}';`}
             <br />
           </React.Fragment>
         )}
-        <Divider />
         <span dangerouslySetInnerHTML={{ __html: refHint }} />
+        <Divider />
         {inheritance && (
           <React.Fragment>
             <Heading hash="inheritance" level="h3" />

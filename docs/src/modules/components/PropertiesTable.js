@@ -126,16 +126,6 @@ export default function PropertiesTable(props) {
                 </Alert>
               )}
               <div className="prop-list-additional-info">
-                {propDefault && (
-                  <div className="prop-list-default-props">
-                    <div className="prop-list-title">
-                      <p>{t('api-docs.default')}:</p>
-                    </div>
-                    <div className="prop-list-content">
-                      <code>{propDefault}</code>
-                    </div>
-                  </div>
-                )}
                 {typeName && (
                   <div className="prop-list-type">
                     <div className="prop-list-title">
@@ -147,6 +137,16 @@ export default function PropertiesTable(props) {
                           __html: typeName.replace(/<br>&#124;/g, ' |'),
                         }}
                       />
+                    </div>
+                  </div>
+                )}
+                {propDefault && (
+                  <div className="prop-list-default-props">
+                    <div className="prop-list-title">
+                      <p>{t('api-docs.default')}:</p>
+                    </div>
+                    <div className="prop-list-content">
+                      <code>{propDefault}</code>
                     </div>
                   </div>
                 )}
