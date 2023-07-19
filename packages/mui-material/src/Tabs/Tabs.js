@@ -599,7 +599,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   React.useEffect(() => {
     let firstObserver;
     let lastObserver;
-    const { 0: firstTab, length, [length - 1]: lastTab } = Array.from(tabListRef.current.children);
+    const tabListChildren = Array.from(tabListRef.current.children);
+    const length = tabListChildren.length;
+    const firstTab = tabListChildren[0];
+    const lastTab = tabListChildren[length - 1];
     const threshold = 0.99;
     const observerOptions = {
       root: tabsRef.current,
