@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { refType, deepmerge } from '@mui/utils';
 import PropTypes from 'prop-types';

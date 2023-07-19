@@ -1,3 +1,5 @@
+import { DemoData } from 'docs/src/modules/sandbox/types';
+
 export const getHtml = ({
   title,
   language,
@@ -40,9 +42,23 @@ export const getHtml = ({
             border: {
               3: '3px',
             },
+            keyframes: {
+              'in-right': {
+                from: { transform: 'translateX(100%)' },
+                to: { transform: 'translateX(0)' },
+              },
+            },
+            animation: {
+              appear: 'in-right 200ms',
+            },
             minWidth: {
               badge: '22px',
+              listbox: '200px',
+              snackbar: '300px',
               'tabs-list': '400px',
+            },
+            maxWidth: {
+              snackbar: '560px',
             },
             minHeight: {
               badge: '22px',
@@ -63,14 +79,17 @@ export const getHtml = ({
 </html>`;
 };
 
-export const getRootIndex = (productId?: 'joy-ui' | 'base-ui') => {
-  if (productId === 'joy-ui') {
+export function getRootIndex(demoData: DemoData) {
+  // document.querySelector returns 'Element | null' but createRoot expects 'Element | DocumentFragment'.
+  const type = demoData.codeVariant === 'TS' ? '!' : '';
+
+  if (demoData.productId === 'joy-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
-import Demo from './demo';
+import Demo from './Demo';
 
-ReactDOM.createRoot(document.querySelector("#root")).render(
+ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <CssVarsProvider>
@@ -80,12 +99,12 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </React.StrictMode>
 );`;
   }
-  if (productId === 'base-ui') {
+  if (demoData.productId === 'base-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import Demo from './demo';
+import Demo from './Demo';
 
-ReactDOM.createRoot(document.querySelector("#root")).render(
+ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   <React.StrictMode>
     <Demo />
   </React.StrictMode>
@@ -94,16 +113,16 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
-import Demo from './demo';
+import Demo from './Demo';
 
-ReactDOM.createRoot(document.querySelector("#root")).render(
+ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <Demo />
     </StyledEngineProvider>
   </React.StrictMode>
 );`;
-};
+}
 
 export const getTsconfig = () => `{
   "compilerOptions": {

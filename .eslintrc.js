@@ -201,6 +201,7 @@ module.exports = {
     'react/no-invalid-html-attribute': 'off',
 
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
+    'lines-around-directive': 'off',
   },
   overrides: [
     {

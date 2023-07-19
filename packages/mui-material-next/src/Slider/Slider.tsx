@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -104,7 +105,7 @@ SliderRoot.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-};
+} as any;
 
 export { SliderRoot };
 
@@ -144,7 +145,7 @@ SliderRail.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-};
+} as any;
 
 export { SliderRail };
 
@@ -192,7 +193,7 @@ SliderTrack.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-};
+} as any;
 
 export { SliderTrack };
 
@@ -293,7 +294,7 @@ SliderThumb.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-};
+} as any;
 
 export { SliderThumb };
 
@@ -390,7 +391,7 @@ SliderValueLabel.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.element,
-};
+} as any;
 
 export { SliderValueLabel };
 
@@ -437,7 +438,7 @@ SliderMark.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-};
+} as any;
 
 export { SliderMark };
 
@@ -489,7 +490,7 @@ SliderMarkLabel.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-};
+} as any;
 
 export { SliderMarkLabel };
 

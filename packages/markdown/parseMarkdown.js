@@ -3,6 +3,22 @@ const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
 
+/**
+ * Option used by `marked` the library parsing markdown.
+ */
+const markedOptions = {
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  headerPrefix: false,
+  headerIds: false,
+  mangle: false,
+};
+
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
 const descriptionRegExp = /<p class="description">(.*?)<\/p>/s;
@@ -184,11 +200,31 @@ function getDescription(markdown) {
   return matches[1].trim().replace(/`/g, '');
 }
 
+function getCodeblock(content) {
+  if (content.startsWith('<codeblock')) {
+    const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+    const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
+      ([, language, tab, code]) => ({ language, tab, code }),
+    );
+
+    const blocksData = blocks.filter(
+      (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
+    );
+
+    return {
+      type: 'codeblock',
+      data: blocksData,
+      storageKey,
+    };
+  }
+  return undefined;
+}
+
 /**
  * @param {string} markdown
  */
 function renderInline(markdown) {
-  return marked.parseInline(markdown);
+  return marked.parseInline(markdown, markedOptions);
 }
 
 // Help rank mui.com on component searches first.
@@ -352,20 +388,6 @@ function createRender(context) {
       ].join('')}\n`;
     };
 
-    const markedOptions = {
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      headerPrefix: false,
-      headerIds: false,
-      mangle: false,
-      renderer,
-    };
-
     marked.use({
       extensions: [
         {
@@ -401,7 +423,7 @@ function createRender(context) {
       ],
     });
 
-    return marked(markdown, markedOptions);
+    return marked(markdown, { ...markedOptions, renderer });
   }
 
   return render;
@@ -410,7 +432,7 @@ function createRender(context) {
 const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
 
 /**
- * @param {string} product
+ * @param {string} productId
  * @example 'material'
  * @param {string} componentPkg
  * @example 'mui-base'
@@ -418,17 +440,17 @@ const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'Tex
  * @example 'Button'
  * @returns {string}
  */
-function resolveComponentApiUrl(product, componentPkg, component) {
-  if (!product) {
+function resolveComponentApiUrl(productId, componentPkg, component) {
+  if (!productId) {
     return `/api/${kebabCase(component)}/`;
   }
-  if (product === 'x-date-pickers') {
+  if (productId === 'x-date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
   }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
   }
-  return `/${product}/api/${kebabCase(component)}/`;
+  return `/${productId}/api/${kebabCase(component)}/`;
 }
 
 /**
@@ -546,21 +568,11 @@ ${headers.hooks
             return null;
           }
         }
-        if (content.startsWith('<codeblock')) {
-          const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
-          const blocks = [...content.matchAll(/^```(\S*) (\S*)\n([^`]*)\n```/gmsu)].map(
-            ([, language, tab, code]) => ({ language, tab, code }),
-          );
 
-          const blocksData = blocks.filter(
-            (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
-          );
+        const codeblock = getCodeblock(content);
 
-          return {
-            type: 'codeblock',
-            data: blocksData,
-            storageKey,
-          };
+        if (codeblock) {
+          return codeblock;
         }
 
         return render(content);
@@ -615,6 +627,7 @@ module.exports = {
   createRender,
   getContents,
   getDescription,
+  getCodeblock,
   getHeaders,
   getTitle,
   prepareMarkdown,

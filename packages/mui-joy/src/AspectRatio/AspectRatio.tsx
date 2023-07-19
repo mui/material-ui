@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -87,6 +88,7 @@ const AspectRatioContent = styled('div', {
  * Demos:
  *
  * - [Aspect Ratio](https://mui.com/joy-ui/react-aspect-ratio/)
+ * - [Skeleton](https://mui.com/joy-ui/react-skeleton/)
  *
  * API:
  *
