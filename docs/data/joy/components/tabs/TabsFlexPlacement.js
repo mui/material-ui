@@ -42,6 +42,7 @@ export default function TabsFlexPlacement() {
         variant="outlined"
         orientation={direction.startsWith('row') ? 'vertical' : 'horizontal'}
         aria-label="Placement indicator tabs"
+        defaultValue="a"
         sx={{
           gridColumn: '1/-1',
           height: 180,

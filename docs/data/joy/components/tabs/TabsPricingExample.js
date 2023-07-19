@@ -20,9 +20,9 @@ export default function TabsPricingExample() {
     >
       <TabList
         disableUnderline
+        tabFlex={1}
         sx={{
           [`& .${tabClasses.root}`]: {
-            flex: 1,
             fontSize: 'sm',
             fontWeight: 'lg',
             [`&[aria-selected="true"]`]: {

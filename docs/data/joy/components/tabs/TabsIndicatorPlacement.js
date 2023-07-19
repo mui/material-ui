@@ -6,7 +6,7 @@ import TabPanel from '@mui/joy/TabPanel';
 
 export default function TabsIndicatorPlacement() {
   return (
-    <Tabs variant="soft" defaultValue="top">
+    <Tabs defaultValue="top">
       <TabList underlinePlacement="bottom">
         <Tab value="top" indicatorPlacement="top">
           Top

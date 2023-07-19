@@ -34,7 +34,7 @@ export default function TabsIconWithText() {
         </TabList>
       </Tabs>
       <Tabs aria-label="Icon tabs" defaultValue={0}>
-        <TabList>
+        <TabList tabFlex="auto">
           <Tab orientation="vertical">
             <ListItemDecorator>
               <PhoneIcon />

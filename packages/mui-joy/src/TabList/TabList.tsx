@@ -13,6 +13,7 @@ import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabListUtilityClass } from './tabListClasses';
 import { TabListProps, TabListOwnerState, TabListTypeMap } from './TabListProps';
+import tabClasses from '../Tab/tabClasses';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabListOwnerState) => {
@@ -79,6 +80,11 @@ const TabListRoot = styled(StyledList, {
         paddingLeft: 1,
         boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
       }),
+    }),
+    ...(ownerState.tabFlex && {
+      [`& .${tabClasses.root}`]: {
+        flex: ownerState.tabFlex,
+      },
     }),
   };
 });
