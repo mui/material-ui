@@ -8,10 +8,12 @@
 
 ```bash npm
 npm install @mui/material @emotion/react @emotion/styled
+# `@emotion/react` and `@emotion/styled` are peer dependencies
 ```
 
 ```bash yarn
 yarn add @mui/material @emotion/react @emotion/styled
+# `@emotion/react` and `@emotion/styled` are peer dependencies
 ```
 
 </codeblock>

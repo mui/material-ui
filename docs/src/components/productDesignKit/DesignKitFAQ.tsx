@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import Section from 'docs/src/layouts/Section';
 import InternalLink from 'docs/src/modules/components/Link';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -50,12 +50,12 @@ const faqData = [
     summary: 'Do you offer discounts to educational or non-profit organizations?',
     detail: (
       <React.Fragment>
-        Yes, we offer a 50% discount on all products licensed to students, instructors, non-profit,
-        and charity entities. This special discount cannot be combined with any other type of
-        discount. To qualify for the discount, you need to send us a document clearly indicating
-        that you are a member of the respective institution. An email from your official account
-        which bears your signature is sufficient in most cases. For more information on how to
-        qualify for a discount, please contact sales.
+        <strong>Yes.</strong> We offer a 50% discount on all products licensed to students,
+        instructors, non-profit, and charity entities. This special discount cannot be combined with
+        any other type of discount. To qualify for the discount, you need to send us a document
+        clearly indicating that you are a member of the respective institution. An email from your
+        official account which bears your signature is sufficient in most cases. For more
+        information on how to qualify for a discount, please contact sales.
       </React.Fragment>
     ),
   },
@@ -137,8 +137,8 @@ export default function DesignKitFAQ() {
     );
   }
   return (
-    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
-      <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
+    <Section>
+      <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }} id="faq">
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
@@ -153,14 +153,13 @@ export default function DesignKitFAQ() {
           <Paper
             variant="outlined"
             sx={(theme) => ({
-              pt: 2,
+              p: 2,
               pb: 1,
-              px: 2,
               borderStyle: 'dashed',
               borderColor: 'grey.300',
               bgcolor: 'white',
               ...theme.applyDarkStyles({
-                borderColor: 'primaryDark.400',
+                borderColor: 'primaryDark.600',
                 bgcolor: 'primaryDark.800',
               }),
             })}
@@ -187,6 +186,6 @@ export default function DesignKitFAQ() {
           </Paper>
         </Grid>
       </Grid>
-    </Container>
+    </Section>
   );
 }

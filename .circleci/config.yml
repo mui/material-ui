@@ -224,7 +224,10 @@ jobs:
           name: '`yarn proptypes` changes committed?'
           command: git diff --exit-code
       - run:
-          name: '`yarn rsc:build` changes committed?'
+          name: 'Write "use client" directive'
+          command: yarn rsc:build
+      - run:
+          name: '`yarn rsc:build` changes detected, "use client" missing from exports'
           command: git diff --exit-code
       - run:
           name: Generate the documentation
@@ -269,15 +272,6 @@ jobs:
             yarn workspace @mui/material typescript:module-augmentation
             yarn workspace @mui/base typescript:module-augmentation
             yarn workspace @mui/joy typescript:module-augmentation
-
-      - restore_cache:
-          name: Restore generated declaration files
-          keys:
-            # #default-branch-switch
-            # We assume that the target branch is `master` and that declaration files are persisted in commit order.
-            # "If there are multiple matches, the most recently generated cache will be used."
-            - typescript-declaration-files-master
-
       - run:
           name: Diff declaration files
           command: |
@@ -286,7 +280,6 @@ jobs:
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
             yarn lerna run build:types
             git --no-pager diff
-
       - run:
           name: Any defect declaration files?
           command: node scripts/testBuiltTypes.mjs
@@ -351,7 +344,7 @@ jobs:
     <<: *defaults
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -381,7 +374,7 @@ jobs:
   test_e2e:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -400,7 +393,7 @@ jobs:
   test_e2e_website:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -415,7 +408,7 @@ jobs:
   test_profile:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -442,7 +435,7 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -496,7 +489,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -520,7 +513,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -544,7 +537,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -568,7 +561,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -592,7 +585,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -616,7 +609,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -644,7 +637,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -746,7 +739,7 @@ jobs:
   test_benchmark:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.35.1-focal
+      - image: mcr.microsoft.com/playwright:v1.36.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:

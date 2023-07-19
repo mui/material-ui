@@ -302,7 +302,12 @@ export default function AppSearch(props) {
 
   return (
     <React.Fragment>
-      <SearchButton ref={searchButtonRef} onClick={onOpen} {...props}>
+      <SearchButton
+        ref={searchButtonRef}
+        onClick={onOpen}
+        aria-labelledby="app-search-label"
+        {...props}
+      >
         <SearchIcon
           fontSize="small"
           sx={(theme) => ({
@@ -312,7 +317,7 @@ export default function AppSearch(props) {
             }),
           })}
         />
-        <SearchLabel>{search}</SearchLabel>
+        <SearchLabel id="app-search-label">{search}</SearchLabel>
         <Shortcut>
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {macOS ? '⌘' : 'Ctrl+'}K

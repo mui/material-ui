@@ -11,60 +11,67 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
-import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
+import IconImage from 'docs/src/components/icon/IconImage';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
+import LicenseModelWidget from 'docs/src/components/pricing/LicensingModelWidget';
+import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
 
 const planInfo = {
   community: {
-    color: 'green',
+    iconName: 'x-plan-community',
     title: 'Community',
     description: 'Get started with the industry-standard React UI library, MIT-licensed.',
   },
   pro: {
-    color: 'blue',
+    iconName: 'x-plan-pro',
     title: 'Pro',
     description: 'Best for professional developers building enterprise or data-rich applications.',
   },
   premium: {
-    color: 'gold',
+    iconName: 'x-plan-premium',
     title: 'Premium',
     description:
       'The most advanced features for data-rich applications, as well as the highest priority for support.',
   },
 } as const;
 
+const formatter = new Intl.NumberFormat('en-US');
+
+function formatCurrency(value: number) {
+  return `$${formatter.format(value)}`;
+}
+
 export function PlanName({
   plan,
-  centered = false,
   disableDescription = false,
 }: {
   plan: 'community' | 'pro' | 'premium';
-  centered?: boolean;
   disableDescription?: boolean;
 }) {
-  const { title, color, description } = planInfo[plan];
+  const { title, iconName, description } = planInfo[plan];
   return (
     <React.Fragment>
-      {centered ? (
-        <Typography
-          variant="body2"
-          fontWeight="bold"
-          sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-        >
-          <IconImage name={`block-${color}` as IconImageProps['name']} sx={{ mr: 1 }} /> {title}
-        </Typography>
-      ) : (
-        <Typography
-          variant="body2"
-          fontWeight="bold"
-          sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-        >
-          {title} <IconImage name={`block-${color}` as IconImageProps['name']} />
-        </Typography>
-      )}
+      <Typography
+        variant="body2"
+        fontWeight="bold"
+        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', pr: 0.5 }}
+      >
+        <IconImage name={iconName} sx={{ mr: 1 }} /> {title}
+      </Typography>
       {!disableDescription && (
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, minHeight: { md: 63 } }}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            display: 'flex',
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'baseline',
+            mt: 1,
+            minHeight: { md: 63 },
+          }}
+        >
           {description}
         </Typography>
       )}
@@ -79,84 +86,132 @@ interface PlanPriceProps {
 export function PlanPrice(props: PlanPriceProps) {
   const { plan } = props;
 
+  const { licensingModel } = useLicensingModel();
+  const annual = licensingModel === 'annual';
+  const planPriceMinHeight = 64;
+
   if (plan === 'community') {
     return (
-      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-        <Typography variant="h4" component="div" fontWeight="bold" color="success.600">
-          $0
+      <React.Fragment>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
+          <Typography
+            variant="h3"
+            component="div"
+            fontWeight="bold"
+            color="success.600"
+            sx={{ mt: 4.5 }}
+          >
+            $0
+          </Typography>
+        </Box>
+        <Typography variant="body2" color="text.secondary" textAlign="center">
+          Free forever!
         </Typography>
-        <Box sx={{ width: 5 }} />
-        <Typography variant="body2" color="text.secondary" sx={{ mt: '4px' }}>
-          – free forever
-        </Typography>
-      </Box>
+      </React.Fragment>
     );
   }
+
+  const monthlyDisplay = annual;
+
+  const priceUnit = monthlyDisplay ? '/ month / dev' : '/ dev';
+  const getPriceExplanation = (displayedValue: number) => {
+    if (!annual) {
+      return `$${displayedValue}/dev billed once.`;
+    }
+    return monthlyDisplay
+      ? `Billed annually at $${displayedValue}/dev.`
+      : `$${displayedValue}/dev/month billed annualy.`;
+  };
+
   if (plan === 'pro') {
+    const monthlyValue = annual ? 15 : 15 * 3;
+    const annualValue = monthlyValue * 12;
+
+    const mainDisplayValue = monthlyDisplay ? monthlyValue : annualValue;
+    const priceExplanation = getPriceExplanation(monthlyDisplay ? annualValue : monthlyValue);
+
     return (
-      <div>
-        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
-          <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
-            $15
+      <React.Fragment>
+        <LicenseModelWidget />
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
+          <Typography variant="h3" component="div" fontWeight="bold" color="primary.main">
+            {formatCurrency(mainDisplayValue)}
           </Typography>
           <Box sx={{ width: 5 }} />
           <Typography variant="body2" color="text.secondary" sx={{ mt: '3px' }}>
-            / dev / month
+            {priceUnit}
           </Typography>
         </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-          Billed annually at $180/dev.
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-          No additional fee beyond 10 devs.
-        </Typography>
-      </div>
+        <Box sx={{ minHeight: planPriceMinHeight }}>
+          {(annual || monthlyDisplay) && (
+            <Typography variant="body2" color="text.secondary" textAlign="center">
+              {priceExplanation}
+            </Typography>
+          )}
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }} textAlign="center">
+            {'No additional fee beyond 10 devs.'}
+          </Typography>
+        </Box>
+      </React.Fragment>
     );
   }
+  // else Premium
+
+  const originalPriceMultiplicator = monthlyDisplay ? 1 : 12;
+  const premiumOriginalValue = annual
+    ? 49 * originalPriceMultiplicator
+    : 49 * 3 * originalPriceMultiplicator;
+  const premiumMonthlyValue = annual ? 37 : 37 * 3;
+  const premiumAnnualValue = premiumMonthlyValue * 12;
+
+  const premiumDisplayedValue = monthlyDisplay ? premiumMonthlyValue : premiumAnnualValue;
+  const priceExplanation = getPriceExplanation(
+    monthlyDisplay ? premiumAnnualValue : premiumMonthlyValue,
+  );
+
   return (
-    <div>
-      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+    <React.Fragment>
+      <LicenseModelWidget />
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
         <Typography
           variant="body2"
-          fontWeight="bold"
-          color="error.500"
+          fontWeight="medium"
           sx={(theme) => ({
             borderRadius: 0.5,
-            bgcolor: 'error.100',
+            alignSelf: 'flex-end',
             textDecoration: 'line-through',
-            p: '3px 4px',
+            p: '2px 4px',
+            mb: '3px',
+            bgcolor: 'error.50',
+            color: 'error.500',
             ...theme.applyDarkStyles({
+              color: 'error.400',
               bgcolor: 'error.900',
             }),
           })}
         >
-          $49
+          {formatCurrency(premiumOriginalValue)}
         </Typography>
         <Box sx={{ width: 10 }} />
-        <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
-          $37
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          component="div"
-          fontWeight="bold"
-          color="primary.main"
-          sx={{ mb: 1 }}
-        >
-          *
+        <Typography variant="h3" component="div" fontWeight="bold" color="primary.main">
+          {formatCurrency(premiumDisplayedValue)}
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary" sx={{ mt: '3px' }}>
-          / dev / month
+          {priceUnit}
         </Typography>
       </Box>
-      <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-        Billed annually at $444/dev.
-      </Typography>
-      <Link variant="body2" href="#early-bird" sx={{ mb: 2 }}>
-        * Early bird special.
-      </Link>
-    </div>
+      <Box sx={{ minHeight: planPriceMinHeight }}>
+        {(annual || monthlyDisplay) && (
+          <Typography variant="body2" color="text.secondary" textAlign="center">
+            {priceExplanation}
+          </Typography>
+        )}
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }} textAlign="center">
+          🐦 Early bird special (25% off).
+        </Typography>
+      </Box>
+    </React.Fragment>
   );
 }
 
@@ -256,8 +311,9 @@ function ColumnHeadHighlight(props: BoxProps) {
     <Box
       {...props}
       sx={[
-        (theme) => ({
+        () => ({
           p: 2,
+          pt: 1.5,
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
@@ -265,47 +321,16 @@ function ColumnHeadHighlight(props: BoxProps) {
           borderWidth: '1px 1px 0 1px',
           borderStyle: 'solid',
           borderColor: 'grey.100',
-          bgcolor: alpha(theme.palette.grey[50], 0.5),
+          background: 'linear-gradient(0deg, rgba(250, 250, 250, 1)  0%, rgba(255,255,255,0) 100%)',
         }),
         (theme) =>
           theme.applyDarkStyles({
             borderColor: 'primaryDark.700',
-            bgcolor: alpha(theme.palette.primaryDark[900], 0.5),
+            background: alpha(theme.palette.primaryDark[900], 0.5),
           }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
     />
-  );
-}
-
-function Recommended(props: BoxProps) {
-  return (
-    <Box
-      {...props}
-      sx={[
-        {
-          typography: 'caption',
-          color: 'primary.500',
-          p: '2px 8px',
-          border: '1px solid',
-          borderRadius: 2,
-          position: 'absolute',
-          top: 0,
-          left: 20,
-          transform: 'translateY(-50%)',
-          borderColor: 'primary.100',
-          bgcolor: 'primary.50',
-        },
-        (theme) =>
-          theme.applyDarkStyles({
-            borderColor: 'primaryDark.500',
-            bgcolor: 'primaryDark.800',
-          }),
-        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
-      ]}
-    >
-      Recommended
-    </Box>
   );
 }
 
@@ -359,6 +384,8 @@ function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: Rea
           display: 'flex',
           alignItems: 'center',
           bgcolor: 'grey.50',
+          border: '1px solid',
+          borderColor: 'divider',
         },
         (theme) =>
           theme.applyDarkStyles({
@@ -556,6 +583,9 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'date-picker/range': <ColumnHead label="Date Range Picker" />,
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
+  'mui-x-development-perpetual': (
+    <ColumnHead label="Development license" tooltip="For active development" />
+  ),
   'mui-x-updates': <ColumnHead label="Access to new releases" />,
   // Support
   'core-support': (
@@ -680,6 +710,7 @@ const communityData: Record<string, React.ReactNode> = {
   'mui-x-production': yes,
   'mui-x-updates': yes,
   'mui-x-development': yes,
+  'mui-x-development-perpetual': yes,
   // Support
   'core-support': <Info value="Community" />,
   'x-support': <Info value="Community" />,
@@ -740,6 +771,7 @@ const proData: Record<string, React.ReactNode> = {
   'date-picker/range': yes,
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
+  'mui-x-development-perpetual': <Info value="Perpetual" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
   'core-support': <Info value="Community" />,
@@ -806,6 +838,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'date-picker/range': yes,
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
+  'mui-x-development-perpetual': <Info value="Perpetual" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
   'core-support': <Info value={pending} metadata="priority add-on only" />,
@@ -894,7 +927,7 @@ function StickyHead({
       sx={[
         (theme) => ({
           position: 'fixed',
-          zIndex: 1,
+          zIndex: 10,
           top: 56,
           left: 0,
           right: 0,
@@ -927,7 +960,7 @@ function StickyHead({
         </Typography>
         {(['community', 'pro', 'premium'] as const).map((plan) => (
           <Box key={plan} sx={{ px: 2, py: 1 }}>
-            <PlanName plan={plan} centered disableDescription />
+            <PlanName plan={plan} disableDescription />
           </Box>
         ))}
       </Container>
@@ -937,6 +970,91 @@ function StickyHead({
 
 const divider = <Divider />;
 const nestedDivider = <Divider sx={{ ml: 1 }} />;
+
+function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
+  return (
+    <Box
+      sx={[
+        gridSx,
+        (theme) => ({
+          '&:hover': {
+            bgcolor: alpha(theme.palette.grey[50], 0.4),
+            '@media (hover: none)': {
+              bgcolor: 'initial',
+            },
+          },
+        }),
+        (theme) =>
+          theme.applyDarkStyles({
+            '&:hover': {
+              bgcolor: alpha(theme.palette.primaryDark[900], 0.3),
+            },
+          }),
+      ]}
+    >
+      {rowHeaders[key]}
+      {plans.map((id, index) => (
+        <Cell key={id} highlighted={index % 2 === 1}>
+          {id === 'community' && communityData[key]}
+          {id === 'pro' && proData[key]}
+          {id === 'premium' && premiumData[key]}
+        </Cell>
+      ))}
+    </Box>
+  );
+}
+
+function PricingTableDevelopment(props: any) {
+  const { renderRow } = props;
+  const { licensingModel } = useLicensingModel();
+
+  return licensingModel === 'annual'
+    ? renderRow('mui-x-development')
+    : renderRow('mui-x-development-perpetual');
+}
+
+function PricingTableBuyPro() {
+  const { licensingModel } = useLicensingModel();
+
+  return (
+    <Button
+      component={Link}
+      noLinkStyle
+      href={
+        licensingModel === 'annual'
+          ? 'https://mui.com/store/items/mui-x-pro/'
+          : 'https://mui.com/store/items/mui-x-pro-perpetual/'
+      }
+      variant="contained"
+      endIcon={<KeyboardArrowRightRounded />}
+      sx={{ py: 1, mt: 'auto' }}
+    >
+      Buy now
+    </Button>
+  );
+}
+
+function PricingTableBuyPremium() {
+  const { licensingModel } = useLicensingModel();
+
+  return (
+    <Button
+      component={Link}
+      noLinkStyle
+      href={
+        licensingModel === 'annual'
+          ? 'https://mui.com/store/items/mui-x-premium/'
+          : 'https://mui.com/store/items/mui-x-premium-perpetual/'
+      }
+      variant="contained"
+      fullWidth
+      endIcon={<KeyboardArrowRightRounded />}
+      sx={{ py: 1, mt: 'auto' }}
+    >
+      Buy now
+    </Button>
+  );
+}
 
 export default function PricingTable({
   columnHeaderHidden,
@@ -970,56 +1088,17 @@ export default function PricingTable({
     />
   );
 
-  function renderRow(key: string) {
-    return (
-      <Box
-        sx={[
-          gridSx,
-          (theme) => ({
-            '&:hover': {
-              bgcolor: alpha(theme.palette.grey[50], 0.4),
-              '@media (hover: none)': {
-                bgcolor: 'initial',
-              },
-            },
-          }),
-          (theme) =>
-            theme.applyDarkStyles({
-              '&:hover': {
-                bgcolor: alpha(theme.palette.primaryDark[900], 0.3),
-              },
-            }),
-        ]}
-      >
-        {rowHeaders[key]}
-        {plans.map((id, index) => (
-          <Cell key={id} highlighted={index % 2 === 1}>
-            {id === 'community' && communityData[key]}
-            {id === 'pro' && proData[key]}
-            {id === 'premium' && premiumData[key]}
-          </Cell>
-        ))}
-      </Box>
-    );
-  }
+  const renderRow = (key: string) => renderMasterRow(key, gridSx, plans);
+
   return (
-    <Box
-      ref={tableRef}
-      {...props}
-      sx={{
-        width: '100%',
-        overflow: 'auto',
-        py: { xs: 2, md: 4 },
-        ...props.sx,
-      }}
-    >
+    <Box ref={tableRef} {...props} sx={{ pt: 8, pb: 8, ...props.sx }}>
       <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
       {!columnHeaderHidden && (
         <Box sx={gridSx}>
           <Typography variant="body2" fontWeight="bold" sx={{ p: 2 }}>
             Plans
           </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
             <PlanName plan="community" />
             <PlanPrice plan="community" />
             <Button
@@ -1035,37 +1114,16 @@ export default function PricingTable({
             </Button>
           </Box>
           <ColumnHeadHighlight>
-            <Recommended />
             <Box>
               <PlanName plan="pro" />
               <PlanPrice plan="pro" />
             </Box>
-            <Button
-              component={Link}
-              noLinkStyle
-              href="https://mui.com/store/items/mui-x-pro/"
-              variant="contained"
-              fullWidth
-              endIcon={<KeyboardArrowRightRounded />}
-              sx={{ py: 1, mt: 'auto' }}
-            >
-              Buy now
-            </Button>
+            <PricingTableBuyPro />
           </ColumnHeadHighlight>
-          <Box sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
             <PlanName plan="premium" />
             <PlanPrice plan="premium" />
-            <Button
-              component={Link}
-              noLinkStyle
-              href="https://mui.com/store/items/mui-x-premium/"
-              variant="contained"
-              fullWidth
-              endIcon={<KeyboardArrowRightRounded />}
-              sx={{ py: 1, mt: 'auto' }}
-            >
-              Buy now
-            </Button>
+            <PricingTableBuyPremium />
           </Box>
         </Box>
       )}
@@ -1247,7 +1305,7 @@ export default function PricingTable({
       {divider}
       {renderRow('mui-x-production')}
       {divider}
-      {renderRow('mui-x-development')}
+      <PricingTableDevelopment renderRow={renderRow} />
       {divider}
       {renderRow('mui-x-updates')}
       <RowHead>Support</RowHead>

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
+import { alpha } from '@mui/material/styles';
 
 export default function Highlighter({
   disableBorder = false,
   selected = false,
-  selectedBg = 'white',
   sx,
   ...props
 }: {
@@ -12,10 +12,6 @@ export default function Highlighter({
   selectedBg?: 'white' | 'comfort';
   selected?: boolean;
 } & ButtonBaseProps) {
-  const lightSelectedBg = {
-    white: '#fff',
-    comfort: 'grey.50',
-  };
   const ref = React.useRef<null | HTMLButtonElement>(null);
   return (
     <ButtonBase
@@ -49,16 +45,20 @@ export default function Highlighter({
           transitionDuration: '150ms',
           color: 'primary.300',
           ...((!disableBorder || selected) && {
-            borderColor: 'grey.200',
+            borderColor: 'grey.100',
           }),
           ...(selected && {
-            bgcolor: lightSelectedBg[selectedBg],
-            borderColor: 'grey.200',
+            bgcolor: '#FFF',
+            borderColor: 'primary.300',
+            boxShadow: `0px 1px 6px ${
+              (theme.vars || theme).palette.primary[100]
+            }, inset 0px 2px 8px ${(theme.vars || theme).palette.grey[50]}`,
             color: 'primary.500',
           }),
           ...(!selected && {
             '&:hover, &:focus': {
-              bgcolor: 'grey.100',
+              bgcolor: 'primary.50',
+              borderColor: 'primary.100',
               '@media (hover: none)': {
                 bgcolor: 'transparent',
               },
@@ -67,16 +67,20 @@ export default function Highlighter({
           ...theme.applyDarkStyles({
             color: 'primary.800',
             ...((!disableBorder || selected) && {
-              borderColor: 'primaryDark.500',
+              borderColor: 'primaryDark.700',
             }),
             ...(selected && {
-              bgcolor: 'primaryDark.700',
-              borderColor: 'primaryDark.300',
+              bgcolor: `${alpha(theme.palette.primary[900], 0.3)}`,
+              borderColor: 'primary.700',
               color: 'primary.300',
+              boxShadow: `0px 1px 6px ${
+                (theme.vars || theme).palette.primary[800]
+              }, inset 0px 2px 8px ${(theme.vars || theme).palette.primaryDark[800]}`,
             }),
             ...(!selected && {
               '&:hover, &:focus': {
                 bgcolor: 'primaryDark.800',
+                borderColor: 'primaryDark.700',
                 '@media (hover: none)': {
                   bgcolor: 'transparent',
                 },
