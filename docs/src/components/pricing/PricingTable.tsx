@@ -477,7 +477,11 @@ const rowHeaders: Record<string, React.ReactNode> = {
     />
   ),
   'data-grid/row-cell-selection': (
-    <ColumnHead label="Cell selection (and Range)" nested href="/x/react-data-grid/cell-selection/" />
+    <ColumnHead
+      label="Cell selection (and Range)"
+      nested
+      href="/x/react-data-grid/cell-selection/"
+    />
   ),
   'data-grid/filter-column': (
     <ColumnHead label="Column filters" nested href="/x/react-data-grid/filtering/" />
