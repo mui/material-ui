@@ -36,10 +36,14 @@ export default function Pricing() {
           <Container sx={{ display: { xs: 'none', md: 'block' } }}>
             <PricingTable />
           </Container>
+          <Divider />
         </LicenseTypeProvider>
-        <Testimonials />
         <PricingWhatToExpect />
+        <Divider />
         <PricingFAQ />
+        <Divider />
+        <Testimonials />
+        <Divider />
         <HeroEnd />
         <Divider />
       </main>

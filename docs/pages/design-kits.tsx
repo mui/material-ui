@@ -17,8 +17,8 @@ export default function DesignKits() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="MUI in your favorite design tool"
-        description="Pick your favorite design tool to enjoy and use MUI components. Boost consistency and facilitate communication when working with developers."
+        title="Material UI in your favorite design tool"
+        description="Pick your favorite design tool to enjoy and use Material UI components. Boost consistency and facilitate communication when working with developers."
         card="/static/social-previews/designkits-preview.jpg"
       />
       <AppHeaderBanner />
@@ -26,10 +26,15 @@ export default function DesignKits() {
       <main id="main-content">
         <DesignKitHero />
         <References companies={DESIGNKITS_CUSTOMERS} />
+        <Divider />
         <DesignKitValues />
+        <Divider />
         <DesignKitDemo />
+        <Divider />
         <DesignKitFAQ />
+        <Divider />
         <Testimonials />
+        <Divider />
         <HeroEnd />
       </main>
       <Divider />

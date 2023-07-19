@@ -39,7 +39,7 @@ export default function TemplateDemo() {
     [DEMOS[2]]: <WidgetsRounded fontSize="small" />,
   };
   return (
-    <Section bg="comfort">
+    <Section bg="gradient" cozy>
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
@@ -50,7 +50,7 @@ export default function TemplateDemo() {
                   Upgrade your <GradientText>design workflow</GradientText>
                 </Typography>
               }
-              description="The UI kits contain many of the MUI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date MUI release."
+              description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date Material UI release."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>
@@ -201,7 +201,7 @@ export default function TemplateDemo() {
             <Frame.Info sx={{ display: 'flex', alignItems: 'center', minWidth: 0 }}>
               <Box sx={{ minWidth: 0 }}>
                 <Typography variant="body2" fontWeight={500} noWrap sx={{ mb: 0.5 }}>
-                  e.g. MUI for Figma
+                  e.g. Material UI for Figma
                 </Typography>
               </Box>
               <Button

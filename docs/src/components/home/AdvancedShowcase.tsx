@@ -1729,6 +1729,7 @@ export default function DataTable() {
               display: 'none',
             },
             '& pre': {
+              bgcolor: 'transparent !important',
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
