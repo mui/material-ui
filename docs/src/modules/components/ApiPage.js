@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
+import ReviewsRoundedIcon from '@mui/icons-material/ReviewsRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
@@ -69,7 +69,7 @@ function DesignInfo() {
   return (
     <Alert
       severity="info"
-      icon={<DesignServicesRoundedIcon fontSize="small" color="primary" sx={{ marginTop: 0.3 }} />}
+      icon={<ReviewsRoundedIcon fontSize="small" color="primary" sx={{ marginTop: 0.3 }} />}
       sx={[
         (theme) => ({
           mt: 4,
