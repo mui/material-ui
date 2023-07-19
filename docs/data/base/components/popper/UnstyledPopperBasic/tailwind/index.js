@@ -10,6 +10,7 @@ function useIsDarkMode() {
 export default function SimplePopper() {
   // Replace this with your app logic for determining dark mode
   const isDarkMode = useIsDarkMode();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -30,7 +31,7 @@ export default function SimplePopper() {
         Toggle Popper
       </button>
       <Popper id={id} open={open} anchorEl={anchorEl}>
-        <div className=" z-50 rounded-lg font-medium text-sm bg-slate-50 dark:bg-slate-900 m-1 p-3 border border-solid border-slate-200 dark:border-slate-700 shadow-md text-purple-900 dark:text-purple-100">
+        <div className=" z-50 rounded-lg font-medium text-sm m-1 p-3 border border-solid border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 shadow-md text-purple-900 dark:text-purple-100">
           The content of the Popper.
         </div>
       </Popper>

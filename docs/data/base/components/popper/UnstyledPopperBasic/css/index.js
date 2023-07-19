@@ -14,7 +14,12 @@ export default function SimplePopper() {
 
   return (
     <React.Fragment>
-      <button aria-describedby={id} className="Button" onClick={handleClick}>
+      <button
+        type="button"
+        aria-describedby={id}
+        className="Button"
+        onClick={handleClick}
+      >
         Toggle Popper
       </button>
       <Popper id={id} open={open} anchorEl={anchorEl}>
