@@ -40,14 +40,7 @@ export default function useMenuButton(
     rootRef: externalRef,
   });
 
-  const setTriggerRef = React.useCallback(
-    (element: HTMLElement | null) => {
-      registerTrigger(element);
-    },
-    [registerTrigger],
-  );
-
-  const handleRef = useForkRef(buttonRootRef, setTriggerRef);
+  const handleRef = useForkRef(buttonRootRef, registerTrigger);
 
   const createHandleClick =
     (otherHandlers: EventHandlers) => (event: React.MouseEvent & MuiCancellableEvent) => {
