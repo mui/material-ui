@@ -2,6 +2,7 @@ import * as React from 'react';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import { Box, Stack } from '@mui/system';
+import { Typography } from '@mui/material';
 
 const defaultTonalOffsetTheme = createTheme({
   palette: {
@@ -51,9 +52,18 @@ function ColorShowcase({ title, color }) {
       </span>
       <span>{caption}</span>
       <Stack direction="row" gap={1}>
-        <Box sx={{ bgcolor: `${color}.light`, width: 40, height: 40 }} />
-        <Box sx={{ bgcolor: `${color}.main`, width: 40, height: 40 }} />
-        <Box sx={{ bgcolor: `${color}.dark`, width: 40, height: 40 }} />
+        <Stack alignItems="center">
+          <Typography variant="body2">light</Typography>
+          <Box sx={{ bgcolor: `${color}.light`, width: 40, height: 20 }} />
+        </Stack>
+        <Stack alignItems="center">
+          <Typography variant="body2">main</Typography>
+          <Box sx={{ bgcolor: `${color}.main`, width: 40, height: 20 }} />
+        </Stack>
+        <Stack alignItems="center">
+          <Typography variant="body2">dark</Typography>
+          <Box sx={{ bgcolor: `${color}.dark`, width: 40, height: 20 }} />
+        </Stack>
       </Stack>
     </Stack>
   );
@@ -61,7 +71,7 @@ function ColorShowcase({ title, color }) {
 
 export default function TonalOffset() {
   return (
-    <Stack direction="row" gap={4}>
+    <Stack direction="row" gap={8}>
       <ThemeProvider theme={defaultTonalOffsetTheme}>
         <ColorShowcase title="Default tonal offset" color="primary" />
       </ThemeProvider>

@@ -7,6 +7,7 @@ import {
 } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { Box, Stack } from '@mui/system';
+import { Typography } from '@mui/material';
 
 const violetBase = '#7F00FF';
 const violetMain = alpha(violetBase, 0.7);
@@ -25,14 +26,23 @@ const theme = createTheme({
 export default function Palette() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack gap={1} alignItems="center">
+      <Stack gap={2} alignItems="center">
         <Button variant="contained" color="violet">
           Violet
         </Button>
         <Stack direction="row" gap={1}>
-          <Box sx={{ bgcolor: `violet.light`, width: 20, height: 20 }} />
-          <Box sx={{ bgcolor: `violet.main`, width: 20, height: 20 }} />
-          <Box sx={{ bgcolor: `violet.dark`, width: 20, height: 20 }} />
+          <Stack alignItems="center">
+            <Typography variant="body2">light</Typography>
+            <Box sx={{ bgcolor: 'violet.light', width: 40, height: 20 }} />
+          </Stack>
+          <Stack alignItems="center">
+            <Typography variant="body2">main</Typography>
+            <Box sx={{ bgcolor: 'violet.main', width: 40, height: 20 }} />
+          </Stack>
+          <Stack alignItems="center">
+            <Typography variant="body2">dark</Typography>
+            <Box sx={{ bgcolor: 'violet.dark', width: 40, height: 20 }} />
+          </Stack>
         </Stack>
       </Stack>
     </ThemeProvider>
