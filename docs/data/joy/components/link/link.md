@@ -8,13 +8,13 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 # Link
 
-<p class="description">The Link component allows you to customize anchor tags with theme colors and typography styles.</p>
+<p class="description">The Link component lets you customize anchor tags with theme colors and typography styles.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Introduction
 
-The Joy UI Link component replaces the native HTML `<a>` element, and accepts the same props as the [Typography](/joy-ui/react-typography/) component, as well as the system props.
+The Joy UI Link component replaces the native HTML `<a>` element, and accepts the same props as the [Typography](/joy-ui/react-typography/) component, as well as MUI System props.
 
 {{"demo": "LinkUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -24,10 +24,10 @@ The Joy UI Link component replaces the native HTML `<a>` element, and accepts th
 import Link from '@mui/joy/Link';
 ```
 
-The Joy UI Link behaves similar to the native HTML `<a>`, so it renders by default with an underline and has no background color on hover.
+The Joy UI Link behaves similar to the native HTML `<a>`, so it renders with an underline by default and has no background color on hover.
 
 The demo below shows the two basic states available to the Link: default and disabled.
-Don't forget to always assign an `href` assigned to it.
+Don't forget to always assign an `href` value:
 
 {{"demo": "BasicsLink.js"}}
 
@@ -35,10 +35,11 @@ Don't forget to always assign an `href` assigned to it.
 
 ### Variants
 
-The Link component supports Joy UI's four global variants: plain (default), soft, outlined, and solid.
+The Link component supports Joy UI's four global variants: `plain` (default), `soft`, `outlined`, and `solid`.
 
-:::info
-However, even though it has a default variant set, it will render, by default, without any variant. That is to adhere to stanrdard link visual design on the web (no background color on hover).
+:::warning
+Although the component is technically set to `plain` by default, it will actually render without any variant if you don't customize it.
+This is so that it adheres to the standard visual design of links on the web (no background color on hover).
 :::
 
 {{"demo": "LinkVariants.js"}}
@@ -84,10 +85,10 @@ The demo below shows how to use that with the Card component, ensuring proper ac
 ### As a button
 
 To use the Link component as a button, assign the `button` value to the `component` prop.
-That can be useful in two main situations:
+This can be useful in two situations:
 
 1. The link doesn't have a meaningful href.
-2. The design looks more like a button rather than a link.
+2. The design looks more like a button than a link.
 
 ```js
 <Link
@@ -100,16 +101,16 @@ That can be useful in two main situations:
 </Link>
 ```
 
-### With a typography
+### Usage with Typography
 
 The Link component can be used as a child of the [Typography](/joy-ui/react-typography/) component.
-In that case, the Link will inherit the typographic level scale from its Typography parent, unless a value for the `level` prop is specified.
+In this situation, the Link will inherit the typographic level scale from its Typography parent, unless you specify a value for the `level` prop on the Link itself.
 
 {{"demo": "LinkAndTypography.js"}}
 
 ## Third-party routing library
 
-Here's how you can use the Link component with libraries that also provide their version of it.
+The sections below explain how to integrate the Link component with third-party tools that have their own comparable component.
 
 ### Next.js
 
@@ -139,7 +140,7 @@ import Link from '@mui/joy/Link';
 
 ## Security
 
-When using `target="_blank"` with links, it's [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to a third-party content.
+When using `target="_blank"` with links to pages on another site, the [Google Chrome Developers documentation](https://developers.google.com/web/tools/lighthouse/audits/noopener) recommends adding `rel="noopener"` or `rel="noreferrer"` to avoid potential security issues.
 
 - `rel="noopener"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process.
   Without this, the target page can potentially redirect your page to a malicious URL.
@@ -150,14 +151,14 @@ When using `target="_blank"` with links, it's [recommended](https://developers.g
 
 Here are a few tips for ensuring an accessible link component, based on [WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/link/).
 
-- **Copywriting**: Avoid generic words as call to action, such as "click here" or "go to".
-  Instead, use [descriptive texts](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
+- **Copywriting:** Avoid generic words as calls to action, such as "click here" or "go to".
+  Instead, use [descriptive text](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text) to inform the user about what they'll find when they click the link.
 - **Design:** For a good user experience, links should stand out from the text on the page.
   Keeping the default `underline="always"` behavior is a safe bet.
 - **Href:** If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](#as-button).
 
 ## Common examples
 
-Examples showcasing how to compose designs with the `Link` component and others as decorators.
+Examples showcasing how to compose designs with the Link component and others as decorators.
 
 {{"demo": "DecoratorExamples.js"}}
