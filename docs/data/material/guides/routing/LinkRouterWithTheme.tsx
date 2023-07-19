@@ -8,7 +8,7 @@ import { StaticRouter } from 'react-router-dom/server';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Link, { LinkProps } from '@mui/material/Link';
+import Link from '@mui/material/Link';
 
 const LinkBehavior = React.forwardRef<
   HTMLAnchorElement,
@@ -33,7 +33,7 @@ const theme = createTheme({
     MuiLink: {
       defaultProps: {
         component: LinkBehavior,
-      } as LinkProps,
+      },
     },
     MuiButtonBase: {
       defaultProps: {

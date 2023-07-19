@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import Menu from '@mui/material/Menu';
@@ -148,7 +148,19 @@ function PersistScroll(props) {
     };
   }, [enabled, slot]);
 
-  return <div ref={rootRef}>{children}</div>;
+  return (
+    <Box
+      sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}
+      ref={rootRef}
+    >
+      {children}
+    </Box>
+  );
 }
 
 PersistScroll.propTypes = {
@@ -158,12 +170,11 @@ PersistScroll.propTypes = {
 };
 
 const ToolbarDiv = styled('div')(({ theme }) => ({
-  padding: theme.spacing(1.45, 2),
+  padding: theme.spacing(1.6, 2),
   paddingRight: 0,
   height: 'var(--MuiDocs-header-height)',
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
-  flexGrow: 1,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -178,12 +189,11 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-const AppNavPaperComponent = styled('div')(({ theme }) => {
+const AppNavPaperComponent = styled('div')(() => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-    paddingBottom: theme.spacing(5),
   };
 });
 
@@ -191,7 +201,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List sx={{ my: 0.5 }}>
+    <List>
       {pages.reduce(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),
@@ -387,9 +397,9 @@ export default function AppNavDrawer(props) {
                 pr: '12px',
                 mr: '4px',
                 borderRight: '1px solid',
-                borderColor: (theme.vars || theme).palette.grey[200],
+                borderColor: (theme.vars || theme).palette.divider,
                 ...theme.applyDarkStyles({
-                  borderColor: alpha(theme.palette.primary[100], 0.08),
+                  borderColor: (theme.vars || theme).palette.divider,
                 }),
               })}
             >
@@ -402,16 +412,9 @@ export default function AppNavDrawer(props) {
             versionSelector={renderVersionSelector(productIdentifier.versions)}
           />
         </ToolbarDiv>
-        <Divider
-          sx={(theme) => ({
-            borderColor: (theme.vars || theme).palette.grey[100],
-            ...theme.applyDarkStyles({
-              borderColor: alpha(theme.palette.primary[100], 0.08),
-            }),
-          })}
-        />
+        <Divider />
+        <Box sx={{ pt: 0.5, pb: 4, overflowY: 'auto', flexGrow: 1 }}>{navItems}</Box>
         <DiamondSponsors />
-        {navItems}
       </React.Fragment>
     );
   }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);

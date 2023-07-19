@@ -35,6 +35,9 @@ const PaginationDiv = styled('div')(({ theme }) => {
 
 const PageLinkButton = styled(Button)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightMedium,
+  ...theme.applyDarkStyles({
+    color: (theme.vars || theme).palette.primary[300],
+  }),
 }));
 
 const FeedbackGrid = styled(Grid)(({ theme }) => {

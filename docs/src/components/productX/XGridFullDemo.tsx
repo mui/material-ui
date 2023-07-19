@@ -173,6 +173,8 @@ export default function XGridFullDemo() {
           variant="outlined"
           sx={[
             {
+              overflow: 'auto',
+              borderRadius: '8px',
               height: 328,
               '& .MuiDataGrid-root': {
                 bgcolor: '#fff',

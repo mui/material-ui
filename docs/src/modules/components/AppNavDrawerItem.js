@@ -163,7 +163,7 @@ const Item = styled(
         color: (theme.vars || theme).palette.primary[300],
         backgroundColor: (theme.vars || theme).palette.primaryDark[700],
         '&:before': {
-          background: (theme.vars || theme).palette.primary[600],
+          background: (theme.vars || theme).palette.primary[400],
         },
       },
       ...(subheader && {
@@ -171,8 +171,8 @@ const Item = styled(
           background: alpha(theme.palette.primaryDark[700], 0.6),
         },
         '&:after': {
-          background: alpha(theme.palette.primaryDark[700], 0.6),
-          borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+          background: alpha(theme.palette.primaryDark[700], 0.8),
+          borderColor: alpha(theme.palette.primaryDark[600], 0.6),
         },
       }),
       ...(!subheader && {
@@ -225,7 +225,7 @@ export const sxChip = (color) => [
   (theme) =>
     theme.applyDarkStyles({
       borderColor: alpha(theme.palette[color][800], 0.5),
-      bgcolor: alpha(theme.palette[color][900], 0.5),
+      bgcolor: alpha(theme.palette[color][800], 0.5),
       color: (theme.vars || theme).palette[color][300],
       '&:hover': {
         bgcolor: alpha(theme.palette[color][900], 0.5),

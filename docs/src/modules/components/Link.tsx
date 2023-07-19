@@ -64,7 +64,7 @@ export type LinkProps = {
   linkAs?: NextLinkProps['as']; // Useful when the as prop is shallow by styled().
   noLinkStyle?: boolean;
 } & Omit<NextLinkComposedProps, 'to' | 'linkAs' | 'href'> &
-  Omit<MuiLinkProps, 'href'>;
+  Omit<MuiLinkProps, 'href' | 'component'>;
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/api-reference/next/link
