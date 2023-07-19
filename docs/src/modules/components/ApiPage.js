@@ -67,39 +67,35 @@ Heading.propTypes = {
 
 function DesignInfo() {
   return (
-    <React.Fragment>
-      <Divider />
-      <Alert
-        severity="info"
-        icon={
-          <DesignServicesRoundedIcon fontSize="small" color="primary" sx={{ marginTop: 0.3 }} />
-        }
-        sx={[
-          (theme) => ({
-            padding: '16px 20px',
-            gap: 1,
-            background: alpha(theme.palette.primary[50], 0.5),
-            border: '1px dashed',
-            borderColor: (theme.vars || theme).palette.divider,
-            ...theme.applyDarkStyles({
-              background: alpha(theme.palette.primary[900], 0.2),
-            }),
+    <Alert
+      severity="info"
+      icon={<DesignServicesRoundedIcon fontSize="small" color="primary" sx={{ marginTop: 0.3 }} />}
+      sx={[
+        (theme) => ({
+          mt: 4,
+          padding: '16px 20px',
+          gap: 1,
+          background: alpha(theme.palette.primary[50], 0.5),
+          border: '1px dashed',
+          borderColor: (theme.vars || theme).palette.divider,
+          ...theme.applyDarkStyles({
+            background: alpha(theme.palette.primary[900], 0.2),
           }),
-        ]}
-      >
-        <AlertTitle sx={{ fontWeight: (theme) => theme.typography.fontWeightSemiBold }}>
-          Got any feedback about this new API display design?
-        </AlertTitle>
-        <Typography>
-          We&apos;ve heard from you and iterated on making the design of API content documentation
-          more scalable and easier to parse! We value your input, so please don&apos;t hesitate to
-          share any additional feedback you may have.
-        </Typography>
-        <Button variant="outlined" data-feedback-hash="new-docs-api-feedback">
-          Share feedback
-        </Button>
-      </Alert>
-    </React.Fragment>
+        }),
+      ]}
+    >
+      <AlertTitle sx={{ fontWeight: (theme) => theme.typography.fontWeightSemiBold }}>
+        Got any feedback about this new API display design?
+      </AlertTitle>
+      <Typography>
+        We&apos;ve heard from you and iterated on making the design of API content documentation
+        more scalable and easier to parse! We value your input, so please don&apos;t hesitate to
+        share any additional feedback you may have.
+      </Typography>
+      <Button variant="outlined" data-feedback-hash="new-docs-api-feedback">
+        Share feedback
+      </Button>
+    </Alert>
   );
 }
 

@@ -199,19 +199,19 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         },
         '& .MuiApi-item-title': {
           color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
-          backgroundColor: alpha(darkTheme.palette.primaryDark[700], 0.6),
+          backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
         },
         '& .MuiApi-item-link-visual': {
-          borderColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
-          backgroundColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+          backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
           '& svg': {
             fill: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
           },
         },
         '&:hover, &:target': {
           '.MuiApi-item-link-visual:hover': {
-            borderColor: `var(--muidocs-palette-primaryDark-400, ${darkTheme.palette.primaryDark[400]})`,
-            backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+            borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
+            backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
             '& svg': {
               fill: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
             },

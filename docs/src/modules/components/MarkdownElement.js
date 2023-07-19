@@ -511,11 +511,11 @@ const Root = styled('div')(
       '& h1, & h2, & h3, & h4': {
         '&:hover .anchor-link, & .comment-link': {
           color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
-          borderColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
-          backgroundColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+          backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
           '&:hover': {
-            borderColor: `var(--muidocs-palette-primaryDark-400, ${darkTheme.palette.primaryDark[400]})`,
-            backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+            borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
+            backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
             color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
           },
         },
