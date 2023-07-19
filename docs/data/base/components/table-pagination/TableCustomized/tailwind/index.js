@@ -38,13 +38,13 @@ export default function TableCustomized() {
       >
         <thead>
           <tr>
-            <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-slate-100 dark:bg-slate-900">
+            <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-purple-50 dark:bg-purple-950">
               Dessert
             </th>
-            <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-slate-100 dark:bg-slate-900">
+            <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-purple-50 dark:bg-purple-950">
               Calories
             </th>
-            <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-slate-100 dark:bg-slate-900">
+            <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-purple-50 dark:bg-purple-950">
               Fat
             </th>
           </tr>
@@ -85,9 +85,9 @@ export default function TableCustomized() {
           )}
         </tbody>
         <tfoot>
-          <tr>
+          <tr className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5">
             <TablePagination
-              className="CustomTablePagination"
+              className="CustomTablePagination p-1.5"
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
               count={rows.length}
