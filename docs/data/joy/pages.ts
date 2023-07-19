@@ -75,14 +75,14 @@ const pages = [
           { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
           { pathname: '/joy-ui/react-skeleton', newFeature: true },
-          { pathname: '/joy-ui/react-snackbar', comingSoon: true },
+          { pathname: '/joy-ui/react-snackbar', planned: true },
         ],
       },
       {
         pathname: '/joy-ui/components/surfaces',
         subheader: 'surfaces',
         children: [
-          { pathname: '/joy-ui/react-accordion', comingSoon: true },
+          { pathname: '/joy-ui/react-accordion', planned: true },
           { pathname: '/joy-ui/react-card' },
           { pathname: '/joy-ui/react-sheet' },
         ],
@@ -92,7 +92,7 @@ const pages = [
         subheader: 'navigation',
         children: [
           { pathname: '/joy-ui/react-breadcrumbs' },
-          { pathname: '/joy-ui/react-drawer', comingSoon: true },
+          { pathname: '/joy-ui/react-drawer', planned: true },
           { pathname: '/joy-ui/react-link' },
           { pathname: '/joy-ui/react-menu' },
           { pathname: '/joy-ui/react-tabs' },
