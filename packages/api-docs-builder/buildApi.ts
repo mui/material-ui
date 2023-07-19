@@ -207,6 +207,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
           if (
             component.filename.includes('ThemeProvider') ||
             component.filename.includes('CssVarsProvider') ||
+            (component.filename.includes('mui-material') && component.filename.includes('Grid2')) ||
             (component.filename.includes('mui-joy') &&
               // Box's demo isn't ready
               // Container's demo isn't ready

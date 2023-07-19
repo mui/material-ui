@@ -217,7 +217,7 @@ npx @mui/codemod v5.0.0/jss-to-tss-react <path>
 示例转换：
 
 ```diff
- import React from 'react';
+ import * as React from 'react';
 -import makeStyles from '@material-ui/styles/makeStyles';
 +import { makeStyles } from 'tss-react/mui';
  import Button from '@mui/material/Button';

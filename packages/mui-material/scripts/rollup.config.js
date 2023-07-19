@@ -154,6 +154,9 @@ const nodeOptions = {
 };
 
 function onwarn(warning) {
+  if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
+    return;
+  }
   if (
     warning.code === 'UNUSED_EXTERNAL_IMPORT' &&
     warning.source === 'react' &&
@@ -180,6 +183,7 @@ export default [
       format: 'umd',
       name: 'MaterialUI',
       globals,
+      intro: "'use client';",
     },
     external: Object.keys(globals),
     plugins: [
@@ -199,6 +203,7 @@ export default [
       format: 'umd',
       name: 'MaterialUI',
       globals,
+      intro: "'use client';",
     },
     external: Object.keys(globals),
     plugins: [

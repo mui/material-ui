@@ -3026,6 +3026,27 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: renderOption', () => {
+    it('should pass getOptionLabel through ownerState in renderOption callback', () => {
+      render(
+        <Autocomplete
+          open
+          options={[{ name: 'Max' }]}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderOption={(props, option, optionState, ownerState) => (
+            <li key={option.name} data-testid="optionLi">
+              {ownerState.getOptionLabel(option)}
+            </li>
+          )}
+        />,
+      );
+
+      const renderedOption = screen.getByTestId('optionLi');
+      expect(renderedOption).to.have.text('Max');
+    });
+  });
+
   // https://github.com/mui/material-ui/issues/36212
   it('should preserve scrollTop position of the listbox when adding new options on mobile', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {

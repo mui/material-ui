@@ -221,8 +221,8 @@ export default function StoreTemplatesBanner() {
     <Box
       sx={{
         mx: { xs: -2, sm: -3, md: 0 },
-        my: { md: -8 },
-        height: { xs: 300, sm: 360, md: 'calc(100% + 160px)' },
+        my: { md: -18 },
+        height: { xs: 300, sm: 360, md: 'calc(100% + 320px)' },
         overflow: 'hidden',
         position: 'relative',
         width: { xs: '100vw', md: '50vw' },
@@ -237,11 +237,6 @@ export default function StoreTemplatesBanner() {
           width: '100%',
           height: '100%',
           pointerEvents: 'none',
-          background: `linear-gradient(to bottom, ${
-            (theme.vars || theme).palette.grey[50]
-          } 0%, ${transparent} 30%, ${transparent} 70%, ${
-            (theme.vars || theme).palette.grey[50]
-          } 100%)`,
           zIndex: 2,
           ...theme.applyDarkStyles({
             background: `linear-gradient(to bottom, ${

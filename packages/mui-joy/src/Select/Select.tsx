@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -139,7 +140,7 @@ const SelectRoot = styled('div', {
       alignItems: 'center',
       borderRadius: 'var(--Select-radius)',
       cursor: 'pointer',
-      ...(!variantStyle.backgroundColor && {
+      ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
       }),
       ...(ownerState.size && {

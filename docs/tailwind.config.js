@@ -1,12 +1,15 @@
+/** @type {import('tailwindcss/plugin')} */
+// eslint-disable-next-line import/no-import-module-exports
+import plugin from 'tailwindcss/plugin';
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: ['class', '[data-mui-color-scheme="dark"]'],
   content: [
     './data/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  // This needs to be kept in sync with docs/src/modules/sandbox/CreateReactApp.tsx
   theme: {
     extend: {
       boxShadow: {
@@ -19,11 +22,58 @@ module.exports = {
       border: {
         3: '3px',
       },
+      keyframes: {
+        'in-right': {
+          from: { transform: 'translateX(100%)' },
+          to: { transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        appear: 'in-right 200ms',
+      },
+      minWidth: {
+        badge: '22px',
+        listbox: '200px',
+        snackbar: '300px',
+      },
+      maxWidth: {
+        snackbar: '560px',
+      },
+      minHeight: {
+        badge: '22px',
+      },
+      lineHeight: {
+        5.5: '1.375rem',
+      },
     },
   },
   corePlugins: {
     // Remove the Tailwind CSS preflight styles so it can use Material UI's preflight instead (CssBaseline).
     preflight: false,
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addVariant }) => {
+      [
+        'active',
+        'checked',
+        'completed',
+        'disabled',
+        'readOnly',
+        'error',
+        'expanded',
+        'focused',
+        'required',
+        'selected',
+      ].forEach((state) => {
+        addVariant(`ui-${state}`, [`&[class~="Mui-${state}"]`]);
+
+        addVariant(`ui-not-${state}`, [`&:not([class~="Mui-${state}"])`]);
+      });
+
+      // for focus-visible, use the same selector as headlessui
+      // https://github.com/tailwindlabs/headlessui/blob/main/packages/%40headlessui-tailwindcss/src/index.ts#LL35C11-L35C11
+      addVariant(`ui-focus-visible`, [`&[class~="Mui-focusVisible"]`, `&:focus-visible`]);
+      addVariant(`ui-not-focus-visible`, [`&:not([class~="Mui-focusVisible"])`]);
+    }),
+  ],
 };
