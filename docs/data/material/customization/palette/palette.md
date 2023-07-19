@@ -62,47 +62,36 @@ This can be achieved by either using a color object or by providing the colors d
 
 #### Using a color object
 
-The simplest way to customize a palette color is to import one or more of
-the [color objects](/material-ui/customization/color/#2014-material-design-color-palettes)
-and apply them:
+The most direct way to customize a palette color is to import and apply one or more [color objects](/material-ui/customization/color/#2014-material-design-color-palettes), as shown below:
 
 {{"demo": "UsingColorObject.js", "defaultCodeOpen": true }}
 
 #### Providing the colors directly
 
-You can also modify each color directly.
-For that, you'll have to provide an object with one or more of the color tokens.
-Only the `main` token is required.
-The `light`, `dark`, and `contrastText` tokens are optional and if not provided,
-then their values are calculated automatically:
+To modify each color directly, provide an object with one or more of the color tokens.
+Only the `main` token is required; `light`, `dark`, and `contrastText` are optional, and if not provided, then their values are calculated automatically:
 
 {{"demo": "ManuallyProvidePaletteColor.js" }}
 
-### Contrast Threshold
+### Contrast threshold
 
-The `contrastText` token is calculated using the `contrastThreshold` value,
-to maximize the contrast between the background and the text.
+The `contrastText` token is calculated using the `contrastThreshold` value, to maximize the contrast between the background and the text.
 
-A higher contrast threshold value increases the point at which a background color is considered light,
-and thus given a dark `contrastText`.
-Note that the contrast threshold follows a non-linear curve,
-and defaults to a value of 3 which indicates a minimum contrast ratio of 3:1.
+A higher contrast threshold value increases the point at which a background color is considered light, and thus given a dark `contrastText`.
+Note that the contrast threshold follows a non-linear curve, and defaults to a value of 3 which indicates a minimum contrast ratio of 3:1.
 
 {{"demo": "ContrastThreshold.js" }}
 
 ### Tonal offset
 
-The `light` and `dark` tokens are calculated using the `tonalOffset` value,
-to shift the `main` color's luminance.
+The `light` and `dark` tokens are calculated using the `tonalOffset` value, to shift the `main` color's luminance.
 A higher tonal offset value will make `light` tokens lighter, and `dark` tokens darker.
 
 :::warning
-This only applies when customizing colors,
-it won't have any effect on the [default values](#default-values).
+This only applies when working with custom colors—it won't have any effect on the [default values](#default-values).
 :::
 
-For example, the tonal offset default value `0.2` shifts the luminance by approximately two indexes,
-so if `main` token is `blue[500]`, then `light` token would be `blue[300]` and `dark` token would be `blue[700]`.
+For example, the tonal offset default value `0.2` shifts the luminance by approximately two indexes, so if the `main` token is `blue[500]`, then the `light` token would be `blue[300]` and `dark` would be `blue[700]`.
 
 The tonal offset value can be either a number between 0 and 1 (which would apply to both `light` and `dark` tokens) or an object with `light` and `dark` keys specified:
 
@@ -114,7 +103,7 @@ The tonal offset value can be either a number between 0 and 1 (which would apply
 Unlike [default colors](#default-colors), tokens for custom colors are _not_ automatically calculated.
 :::
 
-To add custom colors either provide the tokens manually or generate them using the `augmentColor` utility:
+To add custom colors, you must either provide the tokens manually, or generate them using the `augmentColor` utility:
 
 ### Provide tokens manually
 
@@ -122,36 +111,33 @@ The most straightforward approach is to define all tokens—`main`, `light`, `da
 
 {{"demo": "ManuallyProvideCustomColor.js" }}
 
-If you need to manipulate colors, then `@mui/material/styles` provides [a set of utilities](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) to help with this. The following example uses the `alpha` and `getContrastRatio` utils to define tokens using opacity:
+If you need to manipulate colors, `@mui/material/styles` provides [a set of utilities](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) to help with this. 
+The following example uses the `alpha` and `getContrastRatio` utilities to define tokens using opacity:
 
 {{"demo": "UsingStylesUtils.js" }}
 
 ### Generate tokens using augmentColor utility
 
-Alternatively, you can generate the `light`, `dark` and `contrastText` tokens using the palette's `augmentColor` utility,
-which is the same function used for the default palette colors.
+Alternatively, you can generate the `light`, `dark` and `contrastText` tokens using the palette's `augmentColor` utility, which is the same function used for the default palette colors.
 This requires creating the theme in two steps and providing the `main` token on which the other will be based on:
 
 {{"demo": "UsingAugmentColor.js" }}
 
-The [contrast threshold](#contrast-threshold) and [tonal offset](#tonal-offset) values
-will apply for the colors defined using this utility.
+The [contrast threshold](#contrast-threshold) and [tonal offset](#tonal-offset) values will apply for the colors defined using this utility.
 
 ### Using in components
 
-After adding a custom color,
-you will be able to use it in components the same way default palette colors are used:
+After adding a custom color, you will be able to use it in components just like you do with default palette colors:
 
 ```js
 <Button color="custom">
 ```
 
-### Typescript
+### TypeScript
 
-If you're using Typescript, then you need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for custom colors.
+If you're using TypeScript, then you need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for custom colors.
 
-To add a custom color to the palette,
-you'll have to add it to the `Palette` and `PaletteOptions` interfaces:
+To add a custom color to the palette, you must add it to the `Palette` and `PaletteOptions` interfaces:
 
 <!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
@@ -167,9 +153,8 @@ declare module '@mui/material/styles' {
 }
 ```
 
-To use the custom color for the `color` prop of a component,
-you'll need to add it to the component's `PropsColorOverrides` interface.
-For example if you need to use it on the `Button` component add it like this:
+To use a custom color for the `color` prop of a component, you must add it to the component's `PropsColorOverrides` interface.
+The example below shows how to do this with a Button component:
 
 <!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
@@ -183,14 +168,13 @@ declare module '@mui/material/Button' {
 
 ## Adding color tokens
 
-To add a new [color token](#color-tokens) include it in the color's object as follows:
+To add a new [color token](#color-tokens), include it in the color's object as follows:
 
 {{"demo": "AddingColorTokens.js" }}
 
-### Typescript
+### TypeScript
 
-If you're using Typescript, then you'll need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme)
-to add the new color token to the `PaletteColor` and `SimplePaletteColorOptions` interfaces as follows:
+If you're using TypeScript, then you'll need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) to add the new color token to the `PaletteColor` and `SimplePaletteColorOptions` interfaces as follows:
 
 <!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
@@ -208,13 +192,11 @@ declare module '@mui/material/styles' {
 
 ## Non-palette colors
 
-To add colors outside of `theme.palette`,
-check out the [Custom variables](/material-ui/customization/theming/#custom-variables) section on the Theming page.
+To learn how to add colors outside of `theme.palette`, see [Theming—Custom variables](/material-ui/customization/theming/#custom-variables).
 
 ## Accessibility
 
-To meet the minimum contrast of at least 4.5:1 as defined in [WCAG 2.1 Rule 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html),
-create a custom theme with a [contrast threshold](#contrast-threshold) value of 4.5 as follows:
+To meet the minimum contrast of at least 4.5:1 as defined in [WCAG 2.1 Rule 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html), create a custom theme with a [contrast threshold](#contrast-threshold) value of 4.5 as follows:
 
 ```js
 import { createTheme } from '@mui/material/styles';
