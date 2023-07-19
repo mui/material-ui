@@ -226,8 +226,8 @@ export default function DesignKits() {
     <Box
       sx={{
         mx: { xs: -2, sm: -3, md: 0 },
-        my: { md: -8 },
-        height: { xs: 300, sm: 360, md: 'calc(100% + 160px)' },
+        my: { md: -18 },
+        height: { xs: 300, sm: 360, md: 'calc(100% + 320px)' },
         overflow: 'hidden',
         position: 'relative',
         width: { xs: '100vw', md: '50vw' },

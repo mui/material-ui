@@ -35,7 +35,7 @@ const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ow
     p: 0.8,
     border: 'none',
     bgcolor: 'transparent',
-    color: (theme.vars || theme).palette.grey[600],
+    color: (theme.vars || theme).palette.grey[500],
     fontSize: theme.typography.pxToRem(12),
     fontWeight: theme.typography.fontWeightSemiBold,
     fontFamily: theme.typography.fontFamilyCode,

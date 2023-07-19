@@ -81,7 +81,7 @@
   "demoStylingSelectSystem": "MUI System",
   "demoStylingSelectTailwind": "Tailwind CSS",
   "demoStylingSelectCSS": "Plain CSS",
-  "diamondSponsors": "Diamond Sponsors",
+  "diamondSponsors": "Learn about Diamond Sponsors",
   "editorHint": "Press <kbd>Enter</kbd> to start editing",
   "editPage": "Edit this page",
   "emojiLove": "Love",
@@ -300,7 +300,7 @@
     "/base-ui/guides": "How-to guides",
     "/base-ui/guides/working-with-tailwind-css": "Working with Tailwind CSS",
     "/base-ui/guides/overriding-component-structure": "Overriding component structure",
-    "/base-ui/guides/next-js-app-router": "Integrating with Next.js App Router",
+    "/base-ui/guides/next-js-app-router": "Next.js App Router",
     "/material-ui/getting-started-group": "Getting started",
     "/material-ui/getting-started": "Overview",
     "/material-ui/getting-started/installation": "Installation",
@@ -411,7 +411,7 @@
     "/material-ui/guides/content-security-policy": "Content Security Policy",
     "/material-ui/guides/right-to-left": "Right-to-left",
     "/material-ui/guides/shadow-dom": "Shadow DOM",
-    "/material-ui/guides/next-js-app-router": "Integrating with Next.js App Router",
+    "/material-ui/guides/next-js-app-router": "Next.js App Router",
     "/material-ui/experimental-api": "Experimental APIs",
     "/material-ui/experimental-api/classname-generator": "ClassName generator",
     "CSS theme variables": "CSS theme variables",
@@ -462,7 +462,7 @@
     "/joy-ui/react-switch": "Switch",
     "/joy-ui/react-textarea": "Textarea",
     "/joy-ui/react-text-field": "Text Field",
-    "/joy-ui/react-toggle-button": "Toggle Button",
+    "/joy-ui/react-toggle-button-group": "Toggle Button Group",
     "/joy-ui/react-aspect-ratio": "Aspect Ratio",
     "/joy-ui/react-avatar": "Avatar",
     "/joy-ui/react-badge": "Badge",
@@ -505,6 +505,6 @@
     "/joy-ui/guides/overriding-component-structure": "Overriding component structure",
     "/joy-ui/guides/using-joy-ui-and-material-ui-together": "Joy UI and Material UI together",
     "/joy-ui/guides/using-icon-libraries": "Using icon libraries",
-    "/joy-ui/guides/next-js-app-router": "Integrating with Next.js App Router"
+    "/joy-ui/guides/next-js-app-router": "Next.js App Router"
   }
 }
