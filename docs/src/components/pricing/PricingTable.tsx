@@ -14,7 +14,7 @@ import Link from 'docs/src/modules/components/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
-import LicenseModelWidget from 'docs/src/components/pricing/LicensingModelWidget';
+import LicensingModelSwitch from 'docs/src/components/pricing/LicensingModelSwitch';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
 
 const planInfo = {
@@ -132,7 +132,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
     return (
       <React.Fragment>
-        <LicenseModelWidget />
+        <LicensingModelSwitch />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
           <Typography variant="h3" component="div" fontWeight="bold" color="primary.main">
             {formatCurrency(mainDisplayValue)}
@@ -171,7 +171,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   return (
     <React.Fragment>
-      <LicenseModelWidget />
+      <LicensingModelSwitch />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
         <Typography
           variant="body2"

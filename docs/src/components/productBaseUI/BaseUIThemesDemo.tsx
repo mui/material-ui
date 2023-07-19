@@ -87,6 +87,7 @@ const StyledTabsList = styled('div')({
 const StyledTab = styled('button')({
   display: 'flex',
   alignItems: 'center',
+  cursor: 'pointer',
   justifyContent: 'center',
   gap: 6,
   position: 'relative',
@@ -121,6 +122,7 @@ const StyledTab = styled('button')({
 
 const StyledSelectButton = styled('button')({
   width: '100%',
+  cursor: 'pointer',
   maxWidth: '100%',
   minHeight: 'calc(2 * var(--border-width, 0px) + 37px)',
   border: 'var(--border-width, 1px) solid',
@@ -655,11 +657,12 @@ const StyledMenuListbox = styled('ul')(`
   box-shadow: var(--Panel-shadow);
   `);
 
-const StyledMenuButton = styled(Button)`
-  padding: 0;
-  border: none;
-  background: transparent;
-`;
+const StyledMenuButton = styled(Button)({
+  padding: 0,
+  cursor: 'pointer',
+  border: 'none',
+  background: 'transparent',
+});
 
 const snackbarInRight = keyframes`
   from {

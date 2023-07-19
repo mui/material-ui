@@ -47,7 +47,7 @@ export default function HeroContainer({
 
   const renderRightWrapper = (sx?: BoxProps['sx']) => (
     <Box
-      id="hero-container-right-area"
+      ref={frame}
       aria-hidden="true"
       sx={[
         (theme) => ({

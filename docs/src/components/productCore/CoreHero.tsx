@@ -35,8 +35,9 @@ export default function CoreHero() {
         >
           <IconImage width={28} height={28} name="product-core" /> MUI Core
         </Typography>
-        <Typography variant="h2" sx={{ maxWidth: 700, textAlign: 'center' }} gutterBottom>
+        <Typography variant="h2" sx={{ textAlign: 'center' }} gutterBottom>
           Ready to use components,
+          <br />
           <GradientText>free forever</GradientText>
         </Typography>
         <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 550 }}>
