@@ -232,6 +232,13 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
           fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
         },
       },
+      '& .prop-list-additional-info': {
+        '& .prop-list-title': {
+          p: {
+            color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
+          },
+        },
+      },
       '& .prop-list-notes': {
         borderColor: alpha(darkTheme.palette.grey[800], 0.5),
         backgroundColor: alpha(darkTheme.palette.warning[800], 0.2),
