@@ -22,6 +22,7 @@ export default function TabsPricingExample() {
         disableUnderline
         sx={{
           [`& .${tabClasses.root}`]: {
+            flex: 1,
             fontSize: 'sm',
             fontWeight: 'lg',
             [`&[aria-selected="true"]`]: {

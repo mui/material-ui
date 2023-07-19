@@ -12,7 +12,7 @@ export default function SelectUsage() {
       data={[
         {
           formLabel: 'Select variant',
-          propName: 'selectVariant',
+          propName: 'variant',
           knob: 'radio',
           defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
@@ -23,6 +23,7 @@ export default function SelectUsage() {
           knob: 'radio',
           defaultValue: 'plain',
           options: ['plain', 'outlined', 'soft', 'solid'],
+          codeBlockDisplay: false,
         },
         {
           propName: 'color',
@@ -47,13 +48,20 @@ export default function SelectUsage() {
         },
         {
           propName: 'children',
-          defaultValue: `<Option>...</Option>`,
+          defaultValue: '$children',
         },
       ]}
-      renderDemo={({ selectVariant, optionVariant, ...props }) => (
+      getCodeBlock={(code, props) =>
+        code.replace(
+          '$children',
+          `<Option${
+            props.optionVariant ? ` variant="${props.optionVariant}"` : ''
+          }>...</Option$>`,
+        )
+      }
+      renderDemo={({ optionVariant, ...props }) => (
         <Select
           {...props}
-          variant={selectVariant}
           action={action}
           value={value}
           onChange={(e, newValue) => setValue(newValue)}

@@ -241,14 +241,14 @@ const TableRoot = styled('table', {
     ownerState.stripe && {
       [tableSelector.getBodyRow(ownerState.stripe)]: {
         // For customization, a table cell can look for this variable with a fallback value.
-        background: `var(--TableRow-stripeBackground, ${theme.vars.palette.background.level1})`,
+        background: `var(--TableRow-stripeBackground, ${theme.vars.palette.background.level2})`,
         color: theme.vars.palette.text.primary,
       },
     },
     ownerState.hoverRow && {
       [tableSelector.getBodyRow()]: {
         '&:hover': {
-          background: `var(--TableRow-hoverBackground, ${theme.vars.palette.background.level2})`,
+          background: `var(--TableRow-hoverBackground, ${theme.vars.palette.background.level3})`,
         },
       },
     },

@@ -14,7 +14,7 @@ export default function TabsUsage() {
         {
           formLabel: 'Selected tab variant',
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'plain',
           options: ['plain', 'outlined', 'soft', 'solid'],
           codeBlockDisplay: false,
