@@ -11,7 +11,7 @@ Palette colors are represented by four tokens:
 - `dark`: A darker shade of `main`
 - `contrastText`: Text color, intended to contrast with `main`
 
-For example the default theme primary color tokens are:
+Here's how Material UI's default theme defines the primary color tokens:
 
 ```js
 const primary = {
