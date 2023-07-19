@@ -509,7 +509,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant: mergedProps.variant || variant,
-      color: mergedProps.color || color,
+      color: mergedProps.color || (!mergedProps.disablePortal ? colorProp : color),
       disableColorInversion: !mergedProps.disablePortal,
     }),
   });
