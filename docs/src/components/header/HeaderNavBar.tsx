@@ -54,7 +54,7 @@ const Navigation = styled('nav')(({ theme }) => [
   },
   theme.applyDarkStyles({
     '& li': {
-      '& > a, & > div': {
+      '& > a, & > button': {
         '&:hover': {
           backgroundColor: (theme.vars || theme).palette.primaryDark[700],
           color: (theme.vars || theme).palette.primaryDark[200],

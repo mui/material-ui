@@ -55,7 +55,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
         <Button
           size="large"
           // @ts-expect-error
-          variant="code"
+          variant="codeOutlined"
           endIcon={copied ? <CheckRounded color="primary" /> : <ContentCopyRounded />}
           onClick={handleCopy}
           sx={{
