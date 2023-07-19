@@ -79,7 +79,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
     ownerState,
   });
 
-  if (triggerElement == null) {
+  if (open === true && triggerElement == null) {
     return (
       <Root {...rootProps}>
         <Listbox {...listboxProps}>
