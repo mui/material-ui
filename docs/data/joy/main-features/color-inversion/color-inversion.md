@@ -10,12 +10,12 @@ The example below (on your right-hand side) shows the problem when the interface
 
 {{"demo": "ColorInversionMotivation.js"}}
 
-On the **left**, the `Button`'s variant is `solid` which is the highest emphasis level compared to other components.
+On the **left**, the Button's variant is `solid`, which is the highest emphasis level compared to other components.
 This conforms to the visual appearance on the screen.
 
 On the **right**, the problem arises when the container's variant becomes `solid`.
-The button is no longer the highest emphasis element because the it has the same background as the container.
-Also, the text and the icon button don't have enough contrast to the parent's background.
+The Button is no longer the highest emphasis element because the it has the same background as the container.
+Also, the text and the icon button don't contrast enough with the parent's background.
 
 The color inversion is implemented to solves this issue, keeping the global variants meaningful when multiple layers of global variants are composed together.
 
