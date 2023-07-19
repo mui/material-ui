@@ -33,6 +33,11 @@ const pages: readonly MuiPage[] = [
           { pathname: '/base-ui/react-select', title: 'Select' },
           { pathname: '/base-ui/react-slider', title: 'Slider' },
           { pathname: '/base-ui/react-switch', title: 'Switch' },
+          {
+            pathname: '/base-ui/react-toggle-button-group',
+            title: 'Toggle Button Group',
+            planned: true,
+          },
         ],
       },
       {
