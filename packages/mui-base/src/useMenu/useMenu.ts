@@ -50,6 +50,10 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     registerPopup,
   } = React.useContext(DropdownContext) ?? FALLBACK_MENU_CONTEXT;
 
+  // store the initial open state to prevent focus stealing
+  // (the first menu items gets focued only when the menu is opened by the user)
+  const isInitiallyOpen = React.useRef(open);
+
   const { subitems, contextValue: compoundComponentContextValue } = useCompoundParent<
     string,
     MenuItemMetadata
@@ -98,7 +102,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
   }, [listboxId, registerPopup]);
 
   React.useEffect(() => {
-    if (open && highlightedValue === subitemKeys[0]) {
+    if (open && highlightedValue === subitemKeys[0] && !isInitiallyOpen.current) {
       subitems.get(subitemKeys[0])?.ref?.current?.focus();
     }
   }, [open, highlightedValue, subitems, subitemKeys]);
