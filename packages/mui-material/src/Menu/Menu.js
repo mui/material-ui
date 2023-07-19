@@ -3,7 +3,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses, resolveComponentProps } from '@mui/base';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import { HTMLElementType } from '@mui/utils';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
@@ -79,8 +79,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     transitionDuration = 'auto',
     TransitionProps: { onEntering, ...TransitionProps } = {},
     variant = 'selectedMenu',
-    slots,
-    slotProps,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -159,8 +159,22 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     }
   });
 
-  const PaperSlot = slots?.paper ?? MenuPaper;
-  const paperSlotProps = slotProps?.paper ?? PaperProps;
+  const PaperSlot = slots.paper ?? MenuPaper;
+  const paperExternalSlotProps = slotProps.paper ?? PaperProps;
+
+  const rootSlotProps = useSlotProps({
+    elementType: slots.root,
+    externalSlotProps: slotProps.root,
+    ownerState,
+    className: clsx(classes.paper, className),
+  });
+
+  const paperSlotProps = useSlotProps({
+    elementType: PaperSlot,
+    externalSlotProps: paperExternalSlotProps,
+    ownerState,
+    className: classes.paper,
+  });
 
   return (
     <MenuRoot
@@ -172,17 +186,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       transformOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
       slots={{
         paper: PaperSlot,
-        root: slots?.root,
+        root: slots.root,
       }}
       slotProps={{
-        root: {
-          ...resolveComponentProps(slotProps?.root, ownerState),
-          className: clsx(classes?.root, PopoverClasses?.root, className),
-        },
-        paper: {
-          ...resolveComponentProps(paperSlotProps, ownerState),
-          className: clsx(classes?.paper, PopoverClasses?.paper, paperSlotProps?.classes),
-        },
+        root: rootSlotProps,
+        paper: paperSlotProps,
       }}
       open={open}
       ref={ref}
@@ -190,6 +198,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
       ownerState={ownerState}
       {...other}
+      classes={PopoverClasses}
     >
       <MenuMenuList
         onKeyDown={handleListKeyDown}

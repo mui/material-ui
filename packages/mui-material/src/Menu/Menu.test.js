@@ -384,4 +384,16 @@ describe('<Menu />', () => {
       expect(wrapper.find(MenuPaper)).to.have.length(1);
     });
   });
+
+  describe('slots', () => {
+    it('should merge slots with existing values', () => {
+      const wrapper = mount(
+        <Menu slots={{ root: 'span' }} anchorEl={document.createElement('div')} open>
+          <div />
+        </Menu>,
+      );
+
+      expect(wrapper.find(MenuPaper)).to.have.length(1);
+    });
+  });
 });
