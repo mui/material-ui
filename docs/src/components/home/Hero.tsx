@@ -98,9 +98,9 @@ export default function Hero() {
             with intuitive React UI tools
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            MUI offers a comprehensive suite of free UI tools to help you ship new features faster. Start
-            with Material UI, our fully-loaded component library, or bring your own design system to
-            our production-ready components.
+            MUI offers a comprehensive suite of free UI tools to help you ship new features faster.
+            Start with Material UI, our fully-loaded component library, or bring your own design
+            system to our production-ready components.
           </Typography>
           <GetStartedButtons callToAction="Discover the Core libraries" to="/core/" />
         </Box>
