@@ -271,6 +271,9 @@ export default function BaseUICustomization() {
               })}
             >
               <SwitchUnstyled
+                slotProps={{
+                  input: { 'aria-label': 'Demo switch' },
+                }}
                 slots={{
                   root: StyledSwitchRoot,
                   input: StyledSwitchInput,
