@@ -84,11 +84,11 @@ Keyboard navigation (e.g. arrow keys) will adapt automatically to the used orien
 
 To change the placement, you should provide the value of `top`, `bottom`, `left` or `right`.
 
-This prop can be applied on the `TabList` component to change the `underlinePlacement` as in the example:
+This prop can be applied on the TabList component to change the `underlinePlacement` as in the example:
 
 {{"demo": "TabsUnderlinePlacement.js"}}
 
-Or, it can be applied on the `Tab` component to change the `indicatorPlacement`:
+Or, it can be applied on the Tab component to change the `indicatorPlacement`:
 
 {{"demo": "TabsIndicatorPlacement.js"}}
 
@@ -98,11 +98,25 @@ The flex direction of the Tabs component will need to be changed based on each p
 
 ### Sticky
 
-For long content, you can use the `sticky="top"` prop on the `TabList` component to keep the tabs visible while scrolling.
+For long content, you can use the `sticky="top"` prop on the TabList component to keep the tabs visible while scrolling.
 
 To stick the TabList at the bottom, use `sticky="bottom"` and render the TabList at the end of the Tabs component.
 
 {{"demo": "TabsSticky.js"}}
+
+### Tab flex
+
+Use the `tabFlex` prop on the TabList component to make the Tab elements fill the available space as shown in the example below.
+
+The first demo, `tabFlex={1}`, the Tab elements will fill the available space equally.
+
+The second demo, `tabFlex="auto`, the Tab elements will fill the available space equally, but the width of each Tab element will be based on the content.
+
+{{"demo": "TabsFlex.js"}}
+
+:::success
+The value of the `tabFlex` can be any valid [CSS flex](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) value.
+:::
 
 ### Icon
 
