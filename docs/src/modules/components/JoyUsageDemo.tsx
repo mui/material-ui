@@ -426,7 +426,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       onChange={(event) =>
                         setProps((latestProps) => ({
                           ...latestProps,
-                          color: event.target.value,
+                          [propName || 'color']: event.target.value,
                         }))
                       }
                       sx={{ flexWrap: 'wrap', gap: 1.5 }}
