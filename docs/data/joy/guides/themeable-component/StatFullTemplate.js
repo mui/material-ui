@@ -1,21 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Stack from '@mui/material/Stack';
-import { styled, useThemeProps } from '@mui/material/styles';
+import Stack from '@mui/joy/Stack';
+import { styled, useThemeProps } from '@mui/joy/styles';
 
 const StatRoot = styled('div', {
-  name: 'MuiStat',
+  name: 'JoyStat',
   slot: 'root',
 })(({ theme, ownerState }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(0.5),
   padding: theme.spacing(3, 4),
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[2],
-  letterSpacing: '-0.025em',
-  fontWeight: 600,
+  backgroundColor: theme.vars.palette.background.surface,
+  borderRadius: theme.vars.radius.sm,
+  boxShadow: theme.vars.shadow.md,
   ...(ownerState.variant === 'outlined' && {
     border: `2px solid ${theme.palette.divider}`,
     boxShadow: 'none',
@@ -23,22 +21,22 @@ const StatRoot = styled('div', {
 }));
 
 const StatValue = styled('div', {
-  name: 'MuiStat',
+  name: 'JoyStat',
   slot: 'value',
 })(({ theme }) => ({
   ...theme.typography.h3,
 }));
 
 const StatUnit = styled('div', {
-  name: 'MuiStat',
+  name: 'JoyStat',
   slot: 'unit',
 })(({ theme }) => ({
   ...theme.typography.body2,
-  color: theme.palette.text.secondary,
+  color: theme.vars.palette.text.tertiary,
 }));
 
 const Stat = React.forwardRef(function Stat(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStat' });
+  const props = useThemeProps({ props: inProps, name: 'JoyStat' });
   const { value, unit, variant, ...other } = props;
 
   const ownerState = { ...props, variant };
