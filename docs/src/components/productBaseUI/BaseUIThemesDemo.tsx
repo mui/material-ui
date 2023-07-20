@@ -1008,13 +1008,13 @@ export default function BaseUIThemesDemo() {
             />
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <StyledParagraph id="make-it-your-own">Use every component</StyledParagraph>
+            <StyledParagraph id="use-every-component">Use every component</StyledParagraph>
             <Switch
               slots={{
                 root: StyledSwitch,
               }}
               slotProps={{
-                input: { 'aria-labelledby': 'Use every component' },
+                input: { 'aria-labelledby': 'use-every-component' },
               }}
             />
           </Box>
