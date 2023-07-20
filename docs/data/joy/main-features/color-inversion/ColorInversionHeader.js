@@ -16,6 +16,7 @@ import AddIcon from '@mui/icons-material/Add';
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 
 export default function ColorInversionHeader() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -30,8 +31,6 @@ export default function ColorInversionHeader() {
         alignItems: 'center',
         flexGrow: 1,
         p: 2,
-        mx: -3,
-        my: -3,
         borderRadius: { xs: 0, sm: 'sm' },
         minWidth: 'min-content',
         ...(color !== 'warning' && {
@@ -51,7 +50,7 @@ export default function ColorInversionHeader() {
         }}
         sx={{ borderRadius: '50%' }}
       >
-        🎨
+        <ColorLensRoundedIcon fontSize="small" />
       </IconButton>
       <Box sx={{ flex: 1, display: 'flex', gap: 1, px: 2 }}>
         <Chip
@@ -117,7 +116,7 @@ export default function ColorInversionHeader() {
             <Typography
               component="span"
               variant="outlined"
-              level="body-xs"
+              level="body3"
               sx={{ bgcolor: 'background.surface', mx: 0 }}
             >
               ⌘K

@@ -24,6 +24,15 @@ import parseStyles, { Classes, Styles } from '../utils/parseStyles';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
 
+export type AdditionalPropsInfo = {
+  cssApi?: boolean;
+  sx?: boolean;
+  slotsApi?: boolean;
+  'joy-size'?: boolean;
+  'joy-color'?: boolean;
+  'joy-variant'?: boolean;
+};
+
 export interface ReactApi extends ReactDocgenApi {
   demos: ReturnType<ComponentInfo['getDemos']>;
   EOL: string;
@@ -58,10 +67,19 @@ export interface ReactApi extends ReactDocgenApi {
     type: { name: string | undefined; description: string | undefined };
     deprecated: true | undefined;
     deprecationInfo: string | undefined;
+    signature: undefined | { type: string; describedArgs?: string[]; returned?: string };
+    additionalInfo?: AdditionalPropsInfo;
   }>;
   translations: {
     componentDescription: string;
-    propDescriptions: { [key: string]: string | undefined };
+    propDescriptions: {
+      [key: string]: {
+        description: string;
+        requiresRef?: boolean;
+        deprecated?: string;
+        typeDescriptions?: { [t: string]: string };
+      };
+    };
     classDescriptions: { [key: string]: { description: string; conditions?: string } };
     slotDescriptions?: { [key: string]: string };
   };
@@ -421,36 +439,23 @@ const attachTranslations = (reactApi: ReactApi) => {
       prop = null;
     }
     if (prop) {
-      let description = generatePropDescription(prop, propName);
-      description = renderMarkdownInline(description);
+      const { deprecated, jsDocText, signatureArgs, signatureReturn, requiresRef } =
+        generatePropDescription(prop, propName);
+      // description = renderMarkdownInline(`${description}`);
 
-      const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
+      const typeDescriptions: { [t: string]: string } = {};
+      [...(signatureArgs ?? []), ...(signatureReturn ? [signatureReturn] : [])].forEach(
+        ({ name, description }) => {
+          typeDescriptions[name] = renderMarkdownInline(description);
+        },
+      );
 
-      if (propName === 'classes') {
-        description += ' See <a href="#css">CSS API</a> below for more details.';
-      } else if (propName === 'sx') {
-        description +=
-          ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
-      } else if (propName === 'slots' && !normalizedApiPathname.startsWith('/material-ui')) {
-        description += ' See <a href="#slots">Slots API</a> below for more details.';
-      } else if (normalizedApiPathname.startsWith('/joy-ui')) {
-        switch (propName) {
-          case 'size':
-            description +=
-              ' To learn how to add custom sizes to the component, check out <a href="/joy-ui/customization/themed-components/#extend-sizes">Themed components—Extend sizes</a>.';
-            break;
-          case 'color':
-            description +=
-              ' To learn how to add your own colors, check out <a href="/joy-ui/customization/themed-components/#extend-colors">Themed components—Extend colors</a>.';
-            break;
-          case 'variant':
-            description +=
-              ' To learn how to add your own variants, check out <a href="/joy-ui/customization/themed-components/#extend-variants">Themed components—Extend variants</a>.';
-            break;
-          default:
-        }
-      }
-      translations.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
+      translations.propDescriptions[propName] = {
+        description: renderMarkdownInline(jsDocText),
+        requiresRef: requiresRef || undefined,
+        deprecated: renderMarkdownInline(deprecated) || undefined,
+        typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
+      };
     }
   });
 
@@ -495,6 +500,11 @@ const attachPropsTable = (reactApi: ReactApi) => {
 
       const defaultValue = propDescriptor.jsdocDefaultValue?.value;
 
+      const {
+        signature: signatureType,
+        signatureArgs,
+        signatureReturn,
+      } = generatePropDescription(prop, propName);
       const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
       const chainedPropType = getChained(prop.type);
 
@@ -505,6 +515,39 @@ const attachPropsTable = (reactApi: ReactApi) => {
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
 
+      const additionalPropsInfo: AdditionalPropsInfo = {};
+
+      const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
+
+      if (propName === 'classes') {
+        additionalPropsInfo.cssApi = true;
+      } else if (propName === 'sx') {
+        additionalPropsInfo.sx = true;
+      } else if (propName === 'slots' && !normalizedApiPathname.startsWith('/material-ui')) {
+        additionalPropsInfo.slotsApi = true;
+      } else if (normalizedApiPathname.startsWith('/joy-ui')) {
+        switch (propName) {
+          case 'size':
+            additionalPropsInfo['joy-size'] = true;
+            break;
+          case 'color':
+            additionalPropsInfo['joy-color'] = true;
+            break;
+          case 'variant':
+            additionalPropsInfo['joy-variant'] = true;
+            break;
+          default:
+        }
+      }
+
+      let signature;
+      if (signatureType !== undefined) {
+        signature = {
+          type: signatureType,
+          describedArgs: signatureArgs?.map((arg) => arg.name),
+          returned: signatureReturn?.name,
+        };
+      }
       return [
         propName,
         {
@@ -519,6 +562,8 @@ const attachPropsTable = (reactApi: ReactApi) => {
           deprecated: !!deprecation || undefined,
           deprecationInfo:
             renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
+          signature,
+          ...(Object.keys(additionalPropsInfo).length === 0 ? {} : { additionalPropsInfo }),
         },
       ];
     }),

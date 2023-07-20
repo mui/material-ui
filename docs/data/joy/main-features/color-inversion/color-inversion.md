@@ -10,9 +10,12 @@ The example below (on your right-hand side) shows the problem when the interface
 
 {{"demo": "ColorInversionMotivation.js"}}
 
-On the **left**, the `Button`'s variant is `solid` which is the highest emphasis level compared to other components. This conforms to the visual appearance on the screen.
+On the **left**, the Button's variant is `solid`, which is the highest emphasis level compared to other components.
+This conforms to the visual appearance on the screen.
 
-On the **right**, the problem arises when the container's variant becomes `solid`. The button is no longer the highest emphasis element because the it has the same background as the container. Also, the text and the icon button don't have enough contrast to the parent's background.
+On the **right**, the problem arises when the container's variant becomes `solid`.
+The Button is no longer the highest emphasis element because the it has the same background as the container.
+Also, the text and the icon button don't contrast enough with the parent's background.
 
 The color inversion is implemented to solves this issue, keeping the global variants meaningful when multiple layers of global variants are composed together.
 
@@ -51,8 +54,8 @@ Color inversion has no effect on children that have an **explicit** `color` prop
 
 ## Usage
 
-To enable color inversion, use the `invertedColors` prop on one of the two components that support it, either on the [Sheet](/joy-ui/react-sheet/) or the [Card](/joy-ui/react-card/).
-Note that this prop only works when these components have the `solid` or `soft` global variants applied.
+To enable color inversion, use the `invertedColors` prop on one of the two components that support it: [Sheet](/joy-ui/react-sheet/) or [Card](/joy-ui/react-card/).
+Note that this prop only works when these components have the `solid` or `soft` global variant applied.
 
 ```js
 <Card variant="solid" invertedColors>…</Card>
@@ -76,7 +79,7 @@ The popup slot of the Select component has `disablePortal` set to true by defaul
 ### Parent component
 
 When `invertedColors` is set to true on the surface component, a set of CSS variables is applied to it.
-The values of those variables comes from `theme.colorInversion[variant][color]`, where `variant` and `color` are the component's props.
+The values of those variables come from `theme.colorInversion[variant][color]`, where `variant` and `color` are the component's props.
 The surface component also creates a React context to tell the children to update their styles.
 
 ```jsx
@@ -96,7 +99,8 @@ The surface component also creates a React context to tell the children to updat
 
 ### Child component
 
-All Joy UI components that support global variants check the React context that contains the color inversion flag. If the flag is true and the child has an implicit color, the internal `color` value will switch to `context` and apply the styles from `theme.variants[variant].context`.
+All Joy UI components that support global variants check the React context that contains the color inversion flag.
+If the flag is true and the child has an implicit color, the internal `color` value will switch to `context` and apply the styles from `theme.variants[variant].context`.
 
 The styles will match the `--variant-*` variables that the parent has.
 
@@ -110,7 +114,8 @@ The styles will match the `--variant-*` variables that the parent has.
 }
 ```
 
-In summary, the parent creates a React context to tell the children that the feature is enabled, and generates CSS variables that will be used by the children. The children with an implicit color switch their default color value to `context` to get the styles from the theme.
+In summary, the parent creates a React context to tell the children that the feature is enabled, and generates CSS variables that will be used by the children.
+The children with an implicit color switch their default color value to `context` to get the styles from the theme.
 
 ## Common examples
 

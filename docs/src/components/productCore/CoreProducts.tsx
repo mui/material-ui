@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 // import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import Section from 'docs/src/layouts/Section';
 import Link from 'docs/src/modules/components/Link';
 
 // Note: All of the commented code will be put back in once logos for each Core product are done.
@@ -28,7 +28,7 @@ const content = [
     title: 'Base UI',
     description:
       'A library of unstyled components with production-ready functionality, along with low-level hooks.',
-    link: '/base-ui/getting-started/',
+    link: '/base-ui/',
   },
   {
     // logo:
@@ -40,7 +40,7 @@ const content = [
 
 export default function CoreProducts() {
   return (
-    <Container sx={{ mb: 4 }}>
+    <Section cozy>
       <Grid container spacing={2}>
         {content.map(({ title, description, link }) => (
           <Grid key={title} item xs={12} md={6}>
@@ -120,6 +120,6 @@ export default function CoreProducts() {
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </Section>
   );
 }

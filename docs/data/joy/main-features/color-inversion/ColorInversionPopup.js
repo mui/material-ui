@@ -43,7 +43,7 @@ export default function ColorInversionPopup() {
       </Button>
       <Card
         orientation="horizontal"
-        variant="soft"
+        variant="solid"
         color={color}
         invertedColors
         sx={{

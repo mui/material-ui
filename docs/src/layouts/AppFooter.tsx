@@ -15,6 +15,7 @@ import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
+import { alpha } from '@mui/material/styles';
 
 interface AppFooterProps {
   stackOverflowUrl?: string;
@@ -27,8 +28,7 @@ export default function AppFooter(props: AppFooterProps) {
     <Container component="footer">
       <Box
         sx={{
-          pt: 4,
-          pb: 8,
+          py: 8,
           display: 'grid',
           gridAutoColumns: '1fr',
           alignItems: 'flex-start',
@@ -69,6 +69,7 @@ export default function AppFooter(props: AppFooterProps) {
               Products
             </Typography>
             <Link href={ROUTES.productMaterial}>Material UI</Link>
+            <Link href={ROUTES.productBase}>Base UI</Link>
             <Link href={ROUTES.productAdvanced}>MUI X</Link>
             <Link href={ROUTES.productTemplates}>Templates</Link>
             <Link href={ROUTES.productDesignKits}>Design kits</Link>
@@ -105,18 +106,22 @@ export default function AppFooter(props: AppFooterProps) {
               <Box
                 sx={(theme) => ({
                   px: 0.5,
-                  py: '3px',
+                  py: 0.1,
                   ml: 1,
                   mb: '1px',
-                  borderRadius: 0.5,
-                  fontSize: theme.typography.pxToRem(9),
-                  fontWeight: 700,
+                  fontSize: theme.typography.pxToRem(10),
+                  fontWeight: 'Bold',
                   textTransform: 'uppercase',
-                  color: '#fff',
-                  letterSpacing: '0.1rem',
-                  bgcolor: 'success.main',
+                  letterSpacing: '.04rem',
+                  borderRadius: 8,
+                  border: 1,
+                  borderColor: 'success.300',
+                  bgcolor: alpha(theme.palette.success[100], 0.5),
+                  color: 'success.700',
                   ...theme.applyDarkStyles({
-                    bgcolor: 'success.900',
+                    borderColor: alpha(theme.palette.success[800], 0.5),
+                    bgcolor: alpha(theme.palette.success[800], 0.5),
+                    color: 'success.300',
                   }),
                 })}
               >
@@ -134,15 +139,27 @@ export default function AppFooter(props: AppFooterProps) {
       <Divider />
       <Box
         sx={{
-          my: 3,
+          my: 6,
           display: { xs: 'block', sm: 'flex' },
           alignItems: { sm: 'center' },
           justifyContent: { sm: 'space-between' },
         }}
       >
-        <Link href="/" aria-label="Go to homepage">
-          <SvgMuiLogotype height={28} width={91} />
-        </Link>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: { xs: 'start', sm: 'center' },
+            gap: 1.5,
+          }}
+        >
+          <Link href="/" aria-label="Go to homepage">
+            <SvgMuiLogotype height={28} width={91} />
+          </Link>
+          <Typography color="text.tertiary" variant="caption" fontWeight={400}>
+            Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
+          </Typography>
+        </Box>
         <Box sx={{ mt: { xs: 3, sm: 0 } }}>
           <Stack spacing={2} direction="row">
             <IconButton
@@ -210,9 +227,6 @@ export default function AppFooter(props: AppFooterProps) {
           </Stack>
         </Box>
       </Box>
-      <Typography color="text.secondary" variant="body2" sx={{ mb: 4 }}>
-        Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
-      </Typography>
     </Container>
   );
 }

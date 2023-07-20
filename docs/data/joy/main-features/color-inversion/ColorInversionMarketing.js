@@ -6,9 +6,10 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 
 /**
- * Credit: https://flutter.dev/
+ * Design credit: https://flutter.dev/
  */
 
 export default function ColorInversionMarketing() {
@@ -24,7 +25,7 @@ export default function ColorInversionMarketing() {
         bgcolor: color === 'primary' ? '#042449' : undefined,
         p: { xs: '36px', md: '70px' },
         pt: { xs: '24px', md: '60px' },
-        borderRadius: 'lg',
+        borderRadius: 'sm',
         overflow: 'hidden',
         '& button': { borderRadius: 'xl' },
       }}
@@ -76,7 +77,7 @@ export default function ColorInversionMarketing() {
           setColor(colors[nextColor + 1] ?? colors[0]);
         }}
       >
-        🎨
+        <ColorLensRoundedIcon fontSize="small" />
       </IconButton>
     </Sheet>
   );

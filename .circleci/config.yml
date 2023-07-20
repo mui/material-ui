@@ -224,7 +224,10 @@ jobs:
           name: '`yarn proptypes` changes committed?'
           command: git diff --exit-code
       - run:
-          name: '`yarn rsc:build` changes committed?'
+          name: 'Write "use client" directive'
+          command: yarn rsc:build
+      - run:
+          name: '`yarn rsc:build` changes detected, "use client" missing from exports'
           command: git diff --exit-code
       - run:
           name: Generate the documentation

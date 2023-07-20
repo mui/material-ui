@@ -87,7 +87,17 @@ describe('<Popover />', () => {
         return <div data-testid="backdrop" data-invisible={invisible} />;
       }
       render(
-        <Popover open anchorEl={document.createElement('div')} BackdropComponent={TestBackdrop}>
+        <Popover
+          open
+          anchorEl={document.createElement('div')}
+          slotProps={{
+            root: {
+              slots: {
+                backdrop: TestBackdrop,
+              },
+            },
+          }}
+        >
           <div />
         </Popover>,
       );

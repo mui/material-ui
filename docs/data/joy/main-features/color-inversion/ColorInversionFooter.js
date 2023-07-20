@@ -18,6 +18,7 @@ import Sheet from '@mui/joy/Sheet';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import SendIcon from '@mui/icons-material/Send';
+import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 
 export default function ColorInversionFooter() {
   const [color, setColor] = React.useState('neutral');
@@ -32,8 +33,6 @@ export default function ColorInversionFooter() {
         }),
         flexGrow: 1,
         p: 2,
-        mx: -3,
-        my: -3,
         borderRadius: { xs: 0, sm: 'sm' },
       }}
     >
@@ -48,7 +47,7 @@ export default function ColorInversionFooter() {
             setColor(colors[nextColor + 1] ?? colors[0]);
           }}
         >
-          🎨
+          <ColorLensRoundedIcon fontSize="small" />
         </IconButton>
         <Divider orientation="vertical" />
         <IconButton variant="plain">

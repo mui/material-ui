@@ -7,7 +7,6 @@ import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import CircularProgress from '@mui/joy/CircularProgress';
 import Chip from '@mui/joy/Chip';
-import Divider from '@mui/joy/Divider';
 import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -23,19 +22,18 @@ import SmsIcon from '@mui/icons-material/Sms';
 import PersonIcon from '@mui/icons-material/Person';
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
 import AddIcon from '@mui/icons-material/Add';
+import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 
 export default function ColorInversionNavigation() {
   const [color, setColor] = React.useState('neutral');
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', borderRadius: 'sm', overflow: 'auto' }}>
       <Sheet
         variant="solid"
         color="neutral"
         invertedColors
         sx={{
           p: 2,
-          ml: -3,
-          my: -3,
           ...(color !== 'neutral' && {
             bgcolor: `${color}.800`,
           }),
@@ -74,7 +72,7 @@ export default function ColorInversionNavigation() {
             '--ListItem-radius': '8px',
             '--List-gap': '4px',
             flexGrow: 0,
-            minWidth: 320,
+            minWidth: 200,
           }}
         >
           <ListItemButton>
@@ -109,7 +107,7 @@ export default function ColorInversionNavigation() {
         <Card
           variant="soft"
           orientation="horizontal"
-          sx={{ my: 2, display: 'flex', alignItems: 'center' }}
+          sx={{ mt: 2, display: 'flex', alignItems: 'center', borderRadius: 'sm' }}
         >
           <CircularProgress value={35} determinate thickness={8} size="lg">
             35%
@@ -125,11 +123,6 @@ export default function ColorInversionNavigation() {
             <Typography fontSize="xs">Last update: 22/12/22</Typography>
           </CardContent>
         </Card>
-        <Divider sx={{ my: 2, mx: -2 }} />
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <Avatar src="/static/images/avatar/2.jpg" size="sm" />
-          <Typography sx={{ flex: 1 }}>Jerry Wilson</Typography>
-        </Box>
       </Sheet>
       <Sheet
         variant="soft"
@@ -137,8 +130,6 @@ export default function ColorInversionNavigation() {
         invertedColors
         sx={(theme) => ({
           p: 2,
-          mr: -3,
-          my: -3,
           display: 'flex',
           flexDirection: 'column',
           gap: 2,
@@ -178,14 +169,21 @@ export default function ColorInversionNavigation() {
           variant="plain"
           size="sm"
           onClick={() => {
-            const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
+            const colors = [
+              'primary',
+              'neutral',
+              'danger',
+              'info',
+              'success',
+              'warning',
+            ];
 
             const nextColor = colors.indexOf(color);
             setColor(colors[nextColor + 1] ?? colors[0]);
           }}
           sx={{ mt: 'auto', height: '40px' }}
         >
-          🎨
+          <ColorLensRoundedIcon fontSize="small" />
         </IconButton>
       </Sheet>
     </Box>

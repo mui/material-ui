@@ -33,7 +33,7 @@ const Header = styled('header')(({ theme }) => [
   }),
 ]);
 
-const HEIGHT = 56;
+const HEIGHT = 60;
 
 interface AppHeaderProps {
   gitHubRepository?: string;
