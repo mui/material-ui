@@ -170,7 +170,7 @@ Then you can read `ownerState` in the slot to style it based on the `variant` pr
 ```diff
   const StatRoot = styled('div', {
     name: 'MuiStat',
-    slot: 'Root',
+    slot: 'root',
 -  })(({ theme }) => ({
 +  })(({ theme, ownerState }) => ({
     display: 'flex',
@@ -247,7 +247,7 @@ Then you can use them in the component and slots.
 ```js
 const StatRoot = styled('div', {
   name: 'MuiStat',
-  slot: 'Root',
+  slot: 'root',
 })<{ ownerState: StatOwnerState }>(({ theme, ownerState }) => ({
   display: 'flex',
   flexDirection: 'column',
