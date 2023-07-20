@@ -85,7 +85,7 @@ function DesignInfo() {
       ]}
     >
       <AlertTitle sx={{ fontWeight: (theme) => theme.typography.fontWeightSemiBold }}>
-        Got any feedback about this new API display design?
+        Have any feedback about this new API display design?
       </AlertTitle>
       <Typography>
         We&apos;ve heard from you and iterated on making the design of API content documentation
