@@ -28,12 +28,14 @@ See the [Color](/material-ui/customization/color/) documentation for details on 
 
 The theme exposes the following default palette colors (accessible under `theme.palette.*`):
 
-- `primary` - represents primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
-- `secondary` - used to represent secondary interface elements for a user. It provides more ways to accent and distinguish your product. Having it is optional.
-- `error` - used to represent interface elements that the user should be made aware of.
-- `warning` - used to represent potentially dangerous actions or important messages.
-- `info` - used to present information to the user that is neutral and not necessarily important.
-- `success` - used to indicate the successful completion of an action that the user triggered.
+- `primary` - for primary interface elements.
+- `secondary` - for secondary interface elements.
+- `error` - for elements that the user should be made aware of.
+- `warning` - for potentially dangerous actions or important messages.
+- `info` - for highlighting neutral information.
+- `success` - for indicating the successful completion of an action that the user triggered.
+
+See Material Design's [Color System](https://m2.material.io/design/color/the-color-system.html) for details on color usage and guidelines.
 
 ### Values
 
