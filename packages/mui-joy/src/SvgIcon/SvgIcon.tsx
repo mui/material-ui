@@ -62,11 +62,8 @@ const SvgIconRoot = styled('svg', {
     ...(ownerState.color !== 'inherit' &&
       ownerState.color !== 'context' &&
       theme.vars.palette[ownerState.color!] && {
-        color: theme.vars.palette[ownerState.color!].plainColor,
+        color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
       }),
-    ...(ownerState.color === 'context' && {
-      color: theme.variants.plain?.[ownerState.color!]?.color,
-    }),
   }),
 }));
 /**
