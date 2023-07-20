@@ -20,7 +20,7 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 const code = `
 import clsx from 'clsx';
 import { styled } from '@mui/system';
-import SwitchUnstyled from '@mui/base/SwitchUnstyled';
+import SwitchUnstyled from '@mui/base/Switch';
 import useSwitch from '@mui/base/useSwitch';
 
 const StyledSwitchRoot = styled('span')(\`

@@ -48,11 +48,13 @@ const buttonStyles = `
     &:hover {
       background: var(--muidocs-palette-primaryDark-800);
     }
-  }`;
+  }
+`;
 const StyledMenuButton = styled('button')(buttonStyles);
 
 const popperStyles = `
-  z-index: 1000;`;
+  z-index: 1000;
+`;
 const StyledPopper = styled(PopperUnstyled)(popperStyles);
 
 const listboxStyles = `
@@ -69,7 +71,8 @@ const listboxStyles = `
   :where([data-mui-color-scheme='dark']) & {
     border-color: var(--muidocs-palette-primaryDark-700);
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.5);
-  }`;
+  }
+`;
 const StyledListbox = styled('ul')(listboxStyles);
 
 const menuItemStyles = `
@@ -97,16 +100,17 @@ const menuItemStyles = `
       background: var(--muidocs-palette-primaryDark-700);
       border-color: var(--muidocs-palette-primaryDark-500);
     }
-  }`;
+  }
+`;
 const StyledMenuItem = styled('li')(menuItemStyles);
 
-const CSS = `.Mui-base.MuiButton-root{${buttonStyles}};
+const CSS = `.Mui-base.MuiButton-root {${buttonStyles}}
 
-.Mui-base.MuiMenu-root{${popperStyles}};
+.Mui-base.MuiMenu-root {${popperStyles}}
 
-.Mui-base.MuiMenu-listbox{${listboxStyles}};
+.Mui-base.MuiMenu-listbox {${listboxStyles}}
 
-.Mui-base.MuiMenuItem-root{${menuItemStyles}};`;
+.Mui-base.MuiMenuItem-root {${menuItemStyles}}`;
 
 export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwindcss' | 'css' }) {
   const [buttonElement, setButtonElement] = React.useState<HTMLButtonElement | null>(null);
@@ -380,19 +384,19 @@ function Demo() {
     setButtonElement(node);
   }, []);
   return (
-    <>
+    <React.Fragment>
       <ButtonUnstyled
         className="min-h-[calc(1.5em + 22px)] inline-flex 
-        items-center gap-[0.5rem] rounded-[8px] border 
-        border-solid border-[--muidocs-palette-grey-200] 
-        bg-[--muidocs-palette-background-paper] 
-        p-[8px_12px_8px_6px] text-[0.875rem] 
-        leading-[1.5] transition-all [font-family:IBM_Plex_sans] 
-        [box-shadow:var(--shadow)]
-        hover:bg-[--muidocs-palette-grey-50] 
-        ui-focus-visible:[outline:3px_solid_var(--focus-ring)]
-        dark:border-[--muidocs-palette-primaryDark-700] 
-        dark:hover:bg-[--muidocs-palette-primaryDark-800]"
+          items-center gap-[0.5rem] rounded-[8px] border 
+          border-solid border-[--muidocs-palette-grey-200] 
+          bg-[--muidocs-palette-background-paper] 
+          p-[8px_12px_8px_6px] text-[0.875rem] 
+          leading-[1.5] transition-all [font-family:IBM_Plex_sans] 
+          [box-shadow:var(--shadow)]
+          hover:bg-[--muidocs-palette-grey-50] 
+          ui-focus-visible:[outline:3px_solid_var(--focus-ring)]
+          dark:border-[--muidocs-palette-primaryDark-700] 
+          dark:hover:bg-[--muidocs-palette-primaryDark-800]"
         type="button"
         onClick={handleButtonClick}
         onKeyDown={handleButtonKeyDown}
@@ -417,63 +421,62 @@ function Demo() {
           root: { placement: 'top', className: 'z-[1000]' },
           listbox: {
             id: 'simple-menu',
-            className:
-              'mx-0 my-[8px] p-[4px] flex flex-col rounded-[8px] 
+            className: \`mx-0 my-[8px] p-[4px] flex flex-col rounded-[8px] 
               border border-solid border-[--muidocs-palette-grey-200] 
               bg-[--muidocs-palette-background-paper] 
               shadow-[0px_4px_40px_rgba(62,80,96,0.1)] 
               dark:border-[--muidocs-palette-primaryDark-700] 
-              dark:shadow-[0px_4px_40px_rgba(11,13,14,0.5)]',
+              dark:shadow-[0px_4px_40px_rgba(11,13,14,0.5)]\`,
           },
         }}
       >
         <MenuItemUnstyled
           className="hover:color-[--muidocs-palette-text-primary] 
-          flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
-          border border-solid border-transparent px-[12px] 
-          py-[6px] hover:cursor-default 
-          hover:border-[--muidocs-palette-grey-100] 
-          hover:bg-[--muidocs-palette-grey-50] 
-          ui-focus-visible:cursor-default 
-          ui-focus-visible:border-[--muidocs-palette-grey-100] 
-          ui-focus-visible:bg-[--muidocs-palette-grey-50] 
-          ui-focus-visible:outline-none"
+            flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
+            border border-solid border-transparent px-[12px] 
+            py-[6px] hover:cursor-default 
+            hover:border-[--muidocs-palette-grey-100] 
+            hover:bg-[--muidocs-palette-grey-50] 
+            ui-focus-visible:cursor-default 
+            ui-focus-visible:border-[--muidocs-palette-grey-100] 
+            ui-focus-visible:bg-[--muidocs-palette-grey-50] 
+            ui-focus-visible:outline-none"
           onClick={createHandleMenuClick()}
         >
           Profile
         </MenuItemUnstyled>
         <MenuItemUnstyled
           className="hover:color-[--muidocs-palette-text-primary] 
-          flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
-          border border-solid border-transparent px-[12px] 
-          py-[6px] hover:cursor-default 
-          hover:border-[--muidocs-palette-grey-100] 
-          hover:bg-[--muidocs-palette-grey-50] 
-          ui-focus-visible:cursor-default 
-          ui-focus-visible:border-[--muidocs-palette-grey-100] 
-          ui-focus-visible:bg-[--muidocs-palette-grey-50] 
-          ui-focus-visible:outline-none"
+            flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
+            border border-solid border-transparent px-[12px] 
+            py-[6px] hover:cursor-default 
+            hover:border-[--muidocs-palette-grey-100] 
+            hover:bg-[--muidocs-palette-grey-50] 
+            ui-focus-visible:cursor-default 
+            ui-focus-visible:border-[--muidocs-palette-grey-100] 
+            ui-focus-visible:bg-[--muidocs-palette-grey-50] 
+            ui-focus-visible:outline-none"
           onClick={createHandleMenuClick()}
         >
           Language settings
         </MenuItemUnstyled>
         <MenuItemUnstyled
           className="hover:color-[--muidocs-palette-text-primary] 
-          flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
-          border border-solid border-transparent px-[12px] 
-          py-[6px] hover:cursor-default 
-          hover:border-[--muidocs-palette-grey-100] 
-          hover:bg-[--muidocs-palette-grey-50] 
-          ui-focus-visible:cursor-default 
-          ui-focus-visible:border-[--muidocs-palette-grey-100] 
-          ui-focus-visible:bg-[--muidocs-palette-grey-50] 
-          ui-focus-visible:outline-none"
+            flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
+            border border-solid border-transparent px-[12px] 
+            py-[6px] hover:cursor-default 
+            hover:border-[--muidocs-palette-grey-100] 
+            hover:bg-[--muidocs-palette-grey-50] 
+            ui-focus-visible:cursor-default 
+            ui-focus-visible:border-[--muidocs-palette-grey-100] 
+            ui-focus-visible:bg-[--muidocs-palette-grey-50] 
+            ui-focus-visible:outline-none"
           onClick={createHandleMenuClick()}
         >
           Log out
         </MenuItemUnstyled>
       </MenuUnstyled>
-    </>
+    </React.Fragment>
   )
 }
 `;
