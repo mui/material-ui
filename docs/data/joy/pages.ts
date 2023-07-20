@@ -152,6 +152,7 @@ const pages = [
         pathname: '/joy-ui/guides/overriding-component-structure',
         title: 'Overriding component structure',
       },
+      { pathname: '/joy-ui/guides/themeable-component', title: 'Themeable component' },
       {
         pathname: '/joy-ui/guides/using-joy-ui-and-material-ui-together',
         title: 'Joy UI and Material UI together',
