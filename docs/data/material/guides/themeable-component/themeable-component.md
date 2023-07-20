@@ -286,48 +286,30 @@ Finally, you have to add the Stat component the theme types.
 
 ```ts
 import {
-  ComponentsProps,
   ComponentsOverrides,
   ComponentsVariants,
   Theme as MuiTheme,
 } from '@mui/material/styles';
-// TODO: change the import path
-import { StatProps } from '/path/to/Stat';
+import { StatProps } from 'path/to/Stat';
 
 type Theme = Omit<MuiTheme, 'components'>;
 
-// shut off automatic exporting for the `Theme` above
-export {};
-
-interface CustomComponentsPropsList {
-  // TODO: change to your component name
-  MuiStat?: StatProps;
-}
-
 declare module '@mui/material/styles' {
-  interface ComponentsPropsList extends CustomComponentsPropsList {}
-}
+  interface ComponentNameToClassKey {
+    MuiStat: 'root' | 'value' | 'unit';
+  }
 
-interface CustomComponentNameToClassKey {
-  // TODO: change to your component name and keyof slot names
-  MuiStat?: 'root' | 'value' | 'unit';
-}
+  interface ComponentsPropsList {
+    MuiStat: Partial<StatProps>;
+  }
 
-declare module '@mui/material/styles' {
-  interface ComponentNameToClassKey extends CustomComponentNameToClassKey {}
-}
-
-interface CustomComponents {
-  // TODO: change to your component name
-  MuiStat?: {
-    defaultProps?: ComponentsPropsList['MuiStat'];
-    styleOverrides?: ComponentsOverrides['MuiStat'];
-    variants?: ComponentsVariants['MuiStat'];
-  };
-}
-
-declare module '@mui/material/styles' {
-  interface Components extends CustomComponents {}
+  interface Components {
+    MuiStat?: {
+      defaultProps?: ComponentsPropsList['MuiStat'];
+      styleOverrides?: ComponentsOverrides<Theme>['MuiStat'];
+      variants?: ComponentsVariants['MuiStat'];
+    };
+  }
 }
 ```
 

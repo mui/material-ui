@@ -284,11 +284,7 @@ Finally, you have to add the Stat component the theme types.
 
 ```ts
 import { Theme, StyleOverrides } from '@mui/joy/styles';
-// TODO: change the import path
 import { StatProps, StatOwnerState } from '/path/to/Stat';
-
-// shut off automatic exporting for the `Theme` above
-export {};
 
 declare module '@mui/joy/styles' {
   interface Components {

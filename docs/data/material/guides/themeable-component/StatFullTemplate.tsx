@@ -2,7 +2,7 @@ import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import { styled, useThemeProps } from '@mui/material/styles';
 
-interface StatProps {
+export interface StatProps {
   value: number | string;
   unit: string;
   variant?: 'outlined';
