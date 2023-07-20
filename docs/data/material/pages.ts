@@ -187,7 +187,7 @@ const pages: MuiPage[] = [
     icon: standardNavIcons.VisibilityIcon,
     children: [
       { pathname: '/material-ui/guides/api', title: 'API design approach' },
-      { pathname: '/material-ui/guides/themable-component', title: 'Themable component' },
+      { pathname: '/material-ui/guides/themeable-component', title: 'Themeable component' },
       { pathname: '/material-ui/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/material-ui/guides/typescript', title: 'TypeScript' },
       { pathname: '/material-ui/guides/interoperability', title: 'Style library interoperability' },

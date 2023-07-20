@@ -1,12 +1,12 @@
-# Themable Component
+# Themeable Component
 
-<p class="description">Create your own themable component with Material UI theming feature.</p>
+<p class="description">Create your own themeable component with Material UI theming feature.</p>
 
 ## Introduction
 
 Material UI provides a powerful theming feature that lets you to add your own component to the theme as if it's one of the built-in components.
 
-If you are building a component library on top of Material UI, you can follow the step-by-step guide below on how to create a custom component that is themable across multiple projects.
+If you are building a component library on top of Material UI, you can follow the step-by-step guide below on how to create a custom component that is themeable across multiple projects.
 
 Otherwise, you can skip the step-by-step guide and use the [template](#template) as a starting point for your component.
 
@@ -332,7 +332,7 @@ declare module '@mui/material/styles' {
 ```
 
 :::success
-🍾 Congratulations! You have successfully built a themable component!.
+🍾 Congratulations! You have successfully built a themeable component!.
 :::
 
 ---
