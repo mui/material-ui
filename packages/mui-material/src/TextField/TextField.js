@@ -189,6 +189,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       color={color}
       variant={variant}
       ownerState={ownerState}
+      onClick={!disabled ? onClick : undefined}
       {...other}
     >
       {label != null && label !== '' && (

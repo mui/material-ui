@@ -254,4 +254,14 @@ describe('e2e', () => {
       expect(pageErrors.length).to.equal(0);
     });
   });
+
+  describe('<TextField />', () => {
+    it('should handle `onClick` when clicking on the focused label position', async () => {
+      await renderFixture('TextField/TextFieldWithOnClick');
+
+      // execute the click on the focused label position
+      await page.getByRole('textbox').click({ position: { x: 10, y: 10 } });
+      await page.waitForSelector('.MuiInputBase-root.Mui-error');
+    });
+  });
 });
