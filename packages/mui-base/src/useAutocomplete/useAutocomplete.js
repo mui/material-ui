@@ -1023,6 +1023,7 @@ export default function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
+    // Only handle event when the main button is pressed (left click).
     if ((inputValue === '' || !open) && event.button === 0) {
       handlePopupIndicator(event);
     }
