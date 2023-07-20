@@ -1336,6 +1336,8 @@ describe('<Tabs />', () => {
   });
 
   describe('dynamic tabs', () => {
+    const pause = (timeout) => new Promise((resolve) => setTimeout(resolve, timeout));
+
     it('should not show scroll buttons if a tab added or removed in auto width', async function test() {
       if (isJSDOM) {
         this.skip();
@@ -1415,6 +1417,69 @@ describe('<Tabs />', () => {
         expect(hasLeftScrollButton(container)).to.equal(false);
         expect(hasRightScrollButton(container)).to.equal(false);
       });
+    });
+
+    // https://github.com/mui/material-ui/issues/31936
+    it('should not show scroll buttons if a tab added or removed in vertical mode', async function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
+      function DynamicTabs() {
+        const [value, setValue] = React.useState(0);
+        const handleChange = (event, newValue) => {
+          setValue(newValue);
+        };
+        const [tabs, setTabs] = React.useState(['item1', 'item2']);
+        return (
+          <React.Fragment>
+            <button
+              data-testid="add"
+              onClick={() => {
+                setTabs([...tabs, `item${tabs.length + 1}`]);
+              }}
+            >
+              add
+            </button>
+            <button
+              data-testid="delete"
+              onClick={() => {
+                setTabs(tabs.slice(0, tabs.length - 1));
+                setValue(0);
+              }}
+            >
+              delete
+            </button>
+            <Tabs
+              onChange={handleChange}
+              value={value}
+              orientation="vertical"
+              variant="scrollable"
+              scrollButtons
+              style={{ width: '260px' }}
+            >
+              {tabs.map((label, index) => (
+                <Tab key={`tab${index}`} label={label} />
+              ))}
+            </Tabs>
+          </React.Fragment>
+        );
+      }
+      const { container, getByTestId, getAllByRole } = render(<DynamicTabs />);
+      const addButton = getByTestId('add');
+      const deleteButton = getByTestId('delete');
+
+      fireEvent.click(addButton);
+      expect(hasLeftScrollButton(container)).to.equal(false);
+      expect(hasRightScrollButton(container)).to.equal(false);
+
+      const tabs = getAllByRole('tab');
+      const lastTab = tabs[tabs.length - 1];
+      fireEvent.click(lastTab);
+      await pause(400);
+
+      fireEvent.click(deleteButton);
+      expect(hasLeftScrollButton(container)).to.equal(false);
+      expect(hasRightScrollButton(container)).to.equal(false);
     });
   });
 });
