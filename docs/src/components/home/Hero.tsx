@@ -109,7 +109,7 @@ export default function Hero() {
         p: 3,
         ml: 2,
         minWidth: 2000,
-        overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
+        overflow: 'hidden', // the components in the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
         '& > div': {
           width: 360,
           display: 'inline-flex',
