@@ -112,7 +112,8 @@ export default function createStyled(input = {}) {
       slot: componentSlot,
       skipVariantsResolver: inputSkipVariantsResolver,
       skipSx: inputSkipSx,
-      // TODO: remove `lowercaseFirstLetter()` in the next major release
+      // TODO v6: remove `lowercaseFirstLetter()` in the next major release
+      // For more details: https://github.com/mui/material-ui/pull/37908
       overridesResolver = defaultOverridesResolver(lowercaseFirstLetter(componentSlot)),
       ...options
     } = inputOptions;
@@ -121,7 +122,8 @@ export default function createStyled(input = {}) {
     const skipVariantsResolver =
       inputSkipVariantsResolver !== undefined
         ? inputSkipVariantsResolver
-        : // TODO: remove `Root` in the next major release
+        : // TODO v6: remove `Root` in the next major release
+          // For more details: https://github.com/mui/material-ui/pull/37908
           (componentSlot && componentSlot !== 'Root' && componentSlot !== 'root') || false;
 
     const skipSx = inputSkipSx || false;
@@ -130,14 +132,16 @@ export default function createStyled(input = {}) {
 
     if (process.env.NODE_ENV !== 'production') {
       if (componentName) {
-        // TODO: remove `lowercaseFirstLetter()` in the next major release
+        // TODO v6: remove `lowercaseFirstLetter()` in the next major release
+        // For more details: https://github.com/mui/material-ui/pull/37908
         label = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
       }
     }
 
     let shouldForwardPropOption = shouldForwardProp;
 
-    // TODO: remove `Root` in the next major release
+    // TODO v6: remove `Root` in the next major release
+    // For more details: https://github.com/mui/material-ui/pull/37908
     if (componentSlot === 'Root' || componentSlot === 'root') {
       shouldForwardPropOption = rootShouldForwardProp;
     } else if (componentSlot) {
