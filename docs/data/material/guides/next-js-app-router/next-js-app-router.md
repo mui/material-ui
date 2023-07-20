@@ -169,7 +169,7 @@ Currently, `prepend` does not work reliably with the App Router, but you can wor
        data-emotion={`${cache.key} ${names.join(' ')}`}
        dangerouslySetInnerHTML={{
 -        __html: styles,
-+        __html: options.prepend ? `@layer emotion {${styles}}` : styles,
++        __html: cache.prepend ? `@layer emotion {${styles}}` : styles,
        }}
      />
    );
