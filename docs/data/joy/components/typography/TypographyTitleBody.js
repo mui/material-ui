@@ -5,7 +5,13 @@ import SvgIcon from '@mui/joy/SvgIcon';
 
 export default function TypographyTitleBody() {
   return (
-    <Stack spacing={2} sx={{ maxWidth: '60ch' }}>
+    <Stack
+      spacing={2}
+      sx={{
+        maxWidth: '60ch',
+        '& *:not(path, i)': { outline: '1px solid rgb(255 53 53 / 40%)' },
+      }}
+    >
       <Stack direction="row" spacing={1.5}>
         <SvgIcon size="lg">
           <svg

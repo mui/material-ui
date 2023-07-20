@@ -113,10 +113,10 @@ const LinkRoot = styled('a', {
       }),
       ...(ownerState.variant
         ? {
-            paddingBlock: 'min(0.15em, 4px)',
-            paddingInline: '0.375em', // better than left, right because it also works with writing mode.
+            paddingBlock: 'min(0.1em, 4px)',
+            paddingInline: '0.25em', // better than left, right because it also works with writing mode.
             ...(!ownerState.nesting && {
-              marginInline: '-0.375em',
+              marginInline: '-0.25em',
             }),
           }
         : {

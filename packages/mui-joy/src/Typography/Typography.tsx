@@ -77,6 +77,9 @@ const TypographyRoot = styled('span', {
     ownerState.level !== 'inherit' ? theme.typography[ownerState.level!]?.lineHeight : '1';
   return {
     '--Icon-fontSize': `calc(1em * ${lineHeight})`,
+    ...(ownerState.color && {
+      '--Icon-color': 'currentColor',
+    }),
     margin: 'var(--Typography-margin, 0px)',
     ...(ownerState.nesting
       ? {
@@ -115,10 +118,10 @@ const TypographyRoot = styled('span', {
       }),
     ...(ownerState.variant && {
       borderRadius: theme.vars.radius.xs,
-      paddingBlock: 'min(0.15em, 4px)',
-      paddingInline: '0.375em',
+      paddingBlock: 'min(0.1em, 4px)',
+      paddingInline: '0.25em', // better than left, right because it also works with writing mode.
       ...(!ownerState.nesting && {
-        marginInline: '-0.375em',
+        marginInline: '-0.25em',
       }),
       ...theme.variants[ownerState.variant]?.[ownerState.color!],
     }),
