@@ -112,6 +112,9 @@ function App() {
         input: StyledSwitchInput,
         thumb: StyledSwitchThumb,
       }}
+      slotProps={{
+        input: { 'aria-label': 'Demo switch' },
+      }}
     />
     <SwitchFromHook />
   )
@@ -271,13 +274,13 @@ export default function BaseUICustomization() {
               })}
             >
               <SwitchUnstyled
-                slotProps={{
-                  input: { 'aria-label': 'Demo switch' },
-                }}
                 slots={{
                   root: StyledSwitchRoot,
                   input: StyledSwitchInput,
                   thumb: StyledSwitchThumb,
+                }}
+                slotProps={{
+                  input: { 'aria-label': 'Demo switch' },
                 }}
               />
               <SwitchFromHook defaultChecked />
