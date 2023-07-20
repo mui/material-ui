@@ -247,7 +247,7 @@ function AppWrapper(props) {
       };
     }
 
-    throw new Error('unknown product');
+    return null;
   }, [pageProps.userLanguage, productId]);
 
   const pageContextValue = React.useMemo(() => {
