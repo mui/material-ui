@@ -441,6 +441,9 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       inputRef.current.focus();
     }
     if (onClick && !fcs.disabled) {
+      // The `onClick` is also registered on the `TextField` root element.
+      // Without stopping the propagation, the even could be triggered twice.
+      event.stopPropagation();
       onClick(event);
     }
   };
