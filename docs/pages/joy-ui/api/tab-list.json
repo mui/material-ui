@@ -35,6 +35,7 @@
       },
       "additionalPropsInfo": { "sx": true }
     },
+    "tabFlex": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "underlinePlacement": {
       "type": {
         "name": "enum",
@@ -47,7 +48,7 @@
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'soft'",
+      "default": "'plain'",
       "additionalPropsInfo": { "joy-variant": true }
     }
   },

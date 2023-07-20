@@ -36,6 +36,7 @@ export default function SelectUsage() {
           propName: 'optionColor',
           knob: 'color',
           defaultValue: 'neutral',
+          codeBlockDisplay: false,
         },
         {
           propName: 'size',
@@ -63,7 +64,7 @@ export default function SelectUsage() {
           '$children',
           `<Option${props.optionVariant ? ` variant="${props.optionVariant}"` : ''}${
             props.optionColor ? ` color="${props.optionColor}"` : ''
-          }>...</Option$>`,
+          }>...</Option>`,
         )
       }
       renderDemo={({ optionVariant, optionColor, ...props }) => (

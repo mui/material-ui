@@ -2,6 +2,9 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": { "description": "The content of the component." },
+    "color": {
+      "description": "The color of the component. It supports those theme colors that make sense for this component."
+    },
     "component": {
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
@@ -13,6 +16,9 @@
     },
     "value": {
       "description": "The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected."
+    },
+    "variant": {
+      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use."
     }
   },
   "classDescriptions": {

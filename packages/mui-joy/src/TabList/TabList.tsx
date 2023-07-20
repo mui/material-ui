@@ -226,6 +226,11 @@ TabList.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
+   * The flex value of the Tab.
+   * @example tabFlex={1} will set flex: '1 1 auto' on each tab (stretch the tab to equally fill the available space).
+   */
+  tabFlex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
    * The placement of the TabList's underline.
    * @default orientation === 'horizontal' ? 'bottom' : 'right'
    */

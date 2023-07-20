@@ -4,9 +4,8 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+        "description": "'danger'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'inherit'",
       "additionalPropsInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
@@ -24,7 +23,8 @@
         "name": "union",
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
-      "default": "'md'"
+      "default": "'md'",
+      "additionalPropsInfo": { "joy-size": true }
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
