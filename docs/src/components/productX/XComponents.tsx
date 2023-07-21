@@ -22,8 +22,8 @@ import More from 'docs/src/components/action/More';
 import ROUTES from 'docs/src/route';
 import IconImage from 'docs/src/components/icon/IconImage';
 
-const DEMOS = ['Data Grid', 'Date Range Picker', 'Tree View', 'Sparkline', 'Charts'];
-const WIP = DEMOS.slice(2);
+const DEMOS = ['Data Grid', 'Date Range Picker', 'Charts', 'Tree View', 'Sparkline'];
+const WIP = DEMOS.slice(4);
 
 function PrefetchImages() {
   function makeImg(component: 'sparkline' | 'chart', mode: string, num: number) {
@@ -65,9 +65,9 @@ export default function XComponents() {
   const icons = {
     [DEMOS[0]]: <TableChartRounded fontSize="small" />,
     [DEMOS[1]]: <DateRangeRounded fontSize="small" />,
-    [DEMOS[2]]: <AccountTreeRounded fontSize="small" />,
-    [DEMOS[3]]: <ShowChartRounded fontSize="small" />,
-    [DEMOS[4]]: <BarChartRounded fontSize="small" />,
+    [DEMOS[2]]: <BarChartRounded fontSize="small" />,
+    [DEMOS[3]]: <AccountTreeRounded fontSize="small" />,
+    [DEMOS[4]]: <ShowChartRounded fontSize="small" />,
   };
   return (
     <Section bg="gradient">
@@ -115,21 +115,21 @@ export default function XComponents() {
           {demo === DEMOS[2] && (
             <Fade in timeout={500}>
               <div>
-                <XTreeViewDemo />
+                <XChartsDemo />
               </div>
             </Fade>
           )}
           {demo === DEMOS[3] && (
             <Fade in timeout={500}>
               <div>
-                <XSparklineDemo />
+                <XTreeViewDemo />
               </div>
             </Fade>
           )}
           {demo === DEMOS[4] && (
             <Fade in timeout={500}>
               <div>
-                <XChartsDemo />
+                <XSparklineDemo />
               </div>
             </Fade>
           )}
