@@ -47,6 +47,7 @@ const TabRoot = styled(StyledListItemButton, {
   !ownerState.disableIndicator && {
     '&[aria-selected="true"]': {
       '--Tab-indicatorColor': 'currentColor',
+      zIndex: 1, // to stay above other tab elements
     },
     // using pseudo element for showing active indicator is best for controlling the size and customization.
     // for example, developers can customize the radius, width or background.
