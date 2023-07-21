@@ -1267,11 +1267,11 @@ export default function PricingTable({
         {nestedDivider}
         {renderRow('data-grid/file-print')}
         {nestedDivider}
-        {renderRow('data-grid/file-excel')}
-        {nestedDivider}
         {renderRow('data-grid/file-clipboard-copy')}
         {nestedDivider}
         {renderRow('data-grid/file-clipboard-paste')}
+        {nestedDivider}
+        {renderRow('data-grid/file-excel')}
         {nestedDivider}
         <RowCategory>Rendering features</RowCategory>
         {renderRow('data-grid/customizable-components')}
