@@ -203,6 +203,6 @@ declare const Box: OverridableComponent<BoxTypeMap>;
 export type BoxProps<
   D extends React.ElementType = BoxTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<BoxTypeMap<P, D>, D>;
+> = OverrideProps<BoxTypeMap<P, D>, D> & { component?: D };
 
 export default Box;
