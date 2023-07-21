@@ -20,7 +20,7 @@ import useSlot from '../utils/useSlot';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
 import { ListOwnerState } from '../List';
 import FormControlContext from '../FormControl/FormControlContext';
-import { VariantColorProvider } from '../styles/VariantColorProvider';
+import { VariantColorProvider } from '../styles/variantColorInheritance';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';

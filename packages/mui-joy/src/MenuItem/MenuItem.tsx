@@ -7,7 +7,7 @@ import useMenuItem from '@mui/base/useMenuItem';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
-import { useVariantColor } from '../styles/VariantColorProvider';
+import { useVariantColor } from '../styles/variantColorInheritance';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import { MenuItemOwnerState, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
 import RowListContext from '../List/RowListContext';

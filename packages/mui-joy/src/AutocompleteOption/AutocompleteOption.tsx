@@ -7,7 +7,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
-import { useVariantColor } from '../styles/VariantColorProvider';
+import { useVariantColor } from '../styles/variantColorInheritance';
 import { getAutocompleteOptionUtilityClass } from './autocompleteOptionClasses';
 import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
 import { useColorInversion } from '../styles/ColorInversion';

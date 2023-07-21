@@ -8,7 +8,7 @@ import useSlot from '../utils/useSlot';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
-import { useVariantColor } from '../styles/VariantColorProvider';
+import { useVariantColor } from '../styles/variantColorInheritance';
 import { OptionOwnerState, ExtendOption, OptionTypeMap } from './OptionProps';
 import optionClasses, { getOptionUtilityClass } from './optionClasses';
 import RowListContext from '../List/RowListContext';

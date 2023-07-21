@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
-import { VariantColorProvider, useVariantColor } from './VariantColorProvider';
+import { VariantColorProvider, useVariantColor } from './variantColorInheritance';
 
 describe('VariantColorProvider', () => {
   const { render } = createRenderer();

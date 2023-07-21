@@ -12,7 +12,7 @@ import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
 import { styled, useThemeProps } from '../styles';
-import { VariantColorProvider } from '../styles/VariantColorProvider';
+import { VariantColorProvider } from '../styles/variantColorInheritance';
 import ColorInversion, {
   ColorInversionProvider,
   useColorInversion,

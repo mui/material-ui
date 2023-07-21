@@ -18,7 +18,7 @@ import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import styled from '../styles/styled';
-import { VariantColorProvider, getChildVariantAndColor } from '../styles/VariantColorProvider';
+import { VariantColorProvider, getChildVariantAndColor } from '../styles/variantColorInheritance';
 // slot components
 import { StyledIconButton } from '../IconButton/IconButton';
 // default render components
