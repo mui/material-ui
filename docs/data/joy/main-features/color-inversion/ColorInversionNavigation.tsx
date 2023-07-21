@@ -173,7 +173,6 @@ export default function ColorInversionNavigation() {
               'primary',
               'neutral',
               'danger',
-              'info',
               'success',
               'warning',
             ];
