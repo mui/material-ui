@@ -4,8 +4,8 @@ const theme = extendTheme({
   components: {
     JoyTypography: {
       styleOverrides: {
-        root:{
-          fontFamily: 'var(--font-public-sans)'
+        root: {
+          fontFamily: 'var(--font-public-sans)',
         },
       },
     },
