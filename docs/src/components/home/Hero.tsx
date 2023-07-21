@@ -90,24 +90,26 @@ export default function Hero() {
   const isMdUp = useMediaQuery(globalTheme.breakpoints.up('md'));
   return (
     <HeroContainer
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            <GradientText>Move faster</GradientText> with intuitive React UI tools
+            <GradientText>Move faster</GradientText> <br />
+            with intuitive React UI tools
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            MUI offers a comprehensive suite of UI tools to help you ship new features faster. Start
-            with Material UI, our fully-loaded component library, or bring your own design system to
-            our production-ready components.
+            MUI offers a comprehensive suite of free UI tools to help you ship new features faster.
+            Start with Material UI, our fully-loaded component library, or bring your own design
+            system to our production-ready components.
           </Typography>
-          <GetStartedButtons />
+          <GetStartedButtons callToAction="Discover the Core libraries" to="/core/" />
         </Box>
       }
       rightSx={{
         p: 3,
         ml: 2,
         minWidth: 2000,
-        overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
+        overflow: 'hidden', // the components in the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
         '& > div': {
           width: 360,
           display: 'inline-flex',

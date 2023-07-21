@@ -4,6 +4,9 @@ const defaultTheme = createTheme({
   palette: {
     mode: 'light',
   },
+  typography: {
+    fontFamily: 'var(--font-roboto)',
+  },
   components: {
     MuiAlert: {
       styleOverrides: {

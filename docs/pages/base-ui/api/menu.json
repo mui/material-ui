@@ -19,7 +19,8 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ listbox?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     }
   },
   "name": "Menu",
