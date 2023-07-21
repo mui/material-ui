@@ -1225,11 +1225,11 @@ export default function PricingTable({
         <RowCategory>Row features</RowCategory>
         {renderRow('data-grid/row-height')}
         {nestedDivider}
+        {renderRow('data-grid/row-spanning')}
+        {nestedDivider}
         {renderRow('data-grid/row-reordering')}
         {nestedDivider}
         {renderRow('data-grid/row-pinning')}
-        {nestedDivider}
-        {renderRow('data-grid/row-spanning')}
         {nestedDivider}
         <RowCategory>Selection features</RowCategory>
         {renderRow('data-grid/row-selection')}
