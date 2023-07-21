@@ -19,7 +19,7 @@ export default function BadgeUsage() {
           defaultValue: 'error',
         },
         {
-          propName: 'variant',
+          propName: 'size',
           knob: 'select',
           options: ['small', 'large'],
           defaultValue: 'large',

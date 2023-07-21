@@ -8,9 +8,9 @@ export interface BadgeClasses {
   root: string;
   /** Styles applied to the badge `span` element. */
   badge: string;
-  /** Styles applied to the badge `span` element if `variant="small"`. */
+  /** Styles applied to the badge `span` element if `size="small"`. */
   small: string;
-  /** Styles applied to the badge `span` element if `variant="large"`. */
+  /** Styles applied to the badge `span` element if `size="large"`. */
   large: string;
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`. */
   anchorOriginTopRight: string;

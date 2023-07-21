@@ -5,7 +5,7 @@ import { SlotComponentProps } from '@mui/base';
 import { Theme } from '../styles';
 import { BadgeClasses } from './badgeClasses';
 
-export interface BadgePropsVariantOverrides {}
+export interface BadgePropsSizeOverrides {}
 
 export interface BadgePropsColorOverrides {}
 
@@ -102,10 +102,10 @@ export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
      */
     sx?: SxProps<Theme>;
     /**
-     * The variant to use.
+     * The size to use.
      * @default 'large'
      */
-    variant?: OverridableStringUnion<'small' | 'large', BadgePropsVariantOverrides>;
+    size?: OverridableStringUnion<'small' | 'large', BadgePropsSizeOverrides>;
   };
   defaultComponent: D;
 }

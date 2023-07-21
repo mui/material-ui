@@ -17,18 +17,21 @@ function classesTest() {
 
 <Badge component="div" />;
 
-// `variant`
-<Badge variant="large" />;
-<Badge variant="small" />;
+// `size`
+<Badge size="large" />;
+<Badge size="small" />;
+
+// @ts-expect-error there is no 'medium' size
+<Badge size="medium" />;
+
+// @ts-expect-error there is no variant `filled`
+<Badge variant="filled" />;
 
 // `color`
 <Badge color="primary" />;
 <Badge color="secondary" />;
 <Badge color="tertiary" />;
 <Badge color="error" />;
-
-// @ts-expect-error there is no variant `filled`
-<Badge variant="filled" />;
 
 // @ts-expect-error there is no color `info`
 <Badge color="info" />;
