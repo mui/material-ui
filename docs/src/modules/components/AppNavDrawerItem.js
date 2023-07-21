@@ -44,7 +44,7 @@ const Item = styled(
       }),
       fontSize: theme.typography.pxToRem(14),
       textDecoration: 'none',
-      paddingLeft: 32 + (depth > 1 ? (depth - 1) * 10 : 0),
+      paddingLeft: 32 + (depth > 1 ? (depth + 1) * 10 : 0),
       '&:before': {
         content: '""',
         display: 'block',
