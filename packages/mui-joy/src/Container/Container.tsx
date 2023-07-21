@@ -8,7 +8,6 @@ import { useThemeProps } from '../styles';
 import { ContainerTypeMap } from './ContainerProps';
 
 const Container = createContainer<Theme>({
-  componentName: 'JoyContainer',
   createStyledComponent: styled('div', {
     name: 'JoyContainer',
     slot: 'Root',
