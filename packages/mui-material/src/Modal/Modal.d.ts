@@ -131,6 +131,6 @@ export declare const modalClasses: ModalClasses;
 export type ModalProps<
   D extends React.ElementType = ModalTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<ModalTypeMap<D, P>, D>;
+> = OverrideProps<ModalTypeMap<D, P>, D> & { component?: D };
 
 export default Modal;

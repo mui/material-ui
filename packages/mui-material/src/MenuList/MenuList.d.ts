@@ -61,6 +61,6 @@ declare const MenuList: ExtendList<MenuListTypeMap>;
 export type MenuListProps<
   D extends React.ElementType = MenuListTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<MenuListTypeMap<P, D>, D>;
+> = OverrideProps<MenuListTypeMap<P, D>, D> & { component?: D };
 
 export default MenuList;

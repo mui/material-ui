@@ -80,6 +80,6 @@ export interface ExtendFormLabelTypeMap<M extends OverridableTypeMap> {
 export type FormLabelProps<
   D extends React.ElementType = FormLabelTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<FormLabelTypeMap<P, D>, D>;
+> = OverrideProps<FormLabelTypeMap<P, D>, D> & { component?: D };
 
 export default FormLabel;

@@ -97,6 +97,6 @@ declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;
 export type BreadcrumbsProps<
   D extends React.ElementType = BreadcrumbsTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<BreadcrumbsTypeMap<P, D>, D>;
+> = OverrideProps<BreadcrumbsTypeMap<P, D>, D> & { component?: D };
 
 export default Breadcrumbs;

@@ -64,6 +64,6 @@ export type LinkBaseProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 
 export type LinkProps<
   D extends React.ElementType = LinkTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<LinkTypeMap<P, D>, D>;
+> = OverrideProps<LinkTypeMap<P, D>, D> & { component?: D };
 
 export default Link;

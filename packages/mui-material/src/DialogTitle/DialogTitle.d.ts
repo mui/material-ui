@@ -41,6 +41,6 @@ declare const DialogTitle: OverridableComponent<DialogTitleTypeMap>;
 export type DialogTitleProps<
   D extends React.ElementType = DialogTitleTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
-> = OverrideProps<DialogTitleTypeMap<P, D>, D>;
+> = OverrideProps<DialogTitleTypeMap<P, D>, D> & { component?: D };
 
 export default DialogTitle;

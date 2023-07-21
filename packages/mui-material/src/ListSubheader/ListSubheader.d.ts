@@ -57,6 +57,6 @@ declare const ListSubheader: OverridableComponent<ListSubheaderTypeMap>;
 export type ListSubheaderProps<
   D extends React.ElementType = ListSubheaderTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<ListSubheaderTypeMap<P, D>, D>;
+> = OverrideProps<ListSubheaderTypeMap<P, D>, D> & { component?: D };
 
 export default ListSubheader;

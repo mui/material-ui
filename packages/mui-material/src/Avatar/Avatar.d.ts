@@ -74,6 +74,6 @@ declare const Avatar: OverridableComponent<AvatarTypeMap>;
 export type AvatarProps<
   D extends React.ElementType = AvatarTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<AvatarTypeMap<P, D>, D>;
+> = OverrideProps<AvatarTypeMap<P, D>, D> & { component?: D };
 
 export default Avatar;

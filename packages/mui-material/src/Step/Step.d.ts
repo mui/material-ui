@@ -53,7 +53,7 @@ export interface StepTypeMap<P = {}, D extends React.ElementType = 'div'> {
 export type StepProps<
   D extends React.ElementType = StepTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
-> = OverrideProps<StepTypeMap<P, D>, D>;
+> = OverrideProps<StepTypeMap<P, D>, D> & { component?: D };
 
 export type StepClasskey = keyof NonNullable<StepProps['classes']>;
 

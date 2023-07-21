@@ -36,6 +36,6 @@ declare const TableContainer: OverridableComponent<TableContainerTypeMap>;
 export type TableContainerProps<
   D extends React.ElementType = TableContainerTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<TableContainerTypeMap<P, D>, D>;
+> = OverrideProps<TableContainerTypeMap<P, D>, D> & { component?: D };
 
 export default TableContainer;
