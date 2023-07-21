@@ -1336,7 +1336,12 @@ describe('<Tabs />', () => {
   });
 
   describe('dynamic tabs', () => {
-    const pause = (timeout) => new Promise((resolve) => setTimeout(resolve, timeout));
+    const pause = (timeout) =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, timeout);
+      });
 
     // https://github.com/mui/material-ui/issues/31936
     it('should not show scroll buttons if a tab added or removed in vertical mode', async function test() {
