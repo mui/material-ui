@@ -15,10 +15,12 @@ import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { SelectOwnProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
+import { resolveSxValue } from '../styles/styleUtils';
 import useSlot from '../utils/useSlot';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
 import { ListOwnerState } from '../List';
 import FormControlContext from '../FormControl/FormControlContext';
+import { VariantColorProvider } from '../styles/VariantColorProvider';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';
@@ -84,6 +86,7 @@ const SelectRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
+  const { borderRadius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
   return [
     {
       '--Select-radius': theme.vars.radius.sm,
@@ -179,6 +182,7 @@ const SelectRoot = styled('div', {
       [`&.${selectClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
     },
+    borderRadius !== undefined && { '--Select-radius': borderRadius },
   ];
 });
 
@@ -535,14 +539,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     ownerState,
   });
 
-  const context = React.useMemo(
-    () => ({
-      ...contextValue,
-      color,
-    }),
-    [color, contextValue],
-  );
-
   // Wait for `listboxProps` because `slotProps.listbox` could be a function.
   const modifiers = React.useMemo(
     () => [...defaultModifiers, ...(listboxProps.modifiers || [])],
@@ -565,11 +561,13 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
           slots: { root: listboxProps.as || 'ul' },
         })}
       >
-        <SelectProvider value={context}>
-          <GroupListContext.Provider value="select">
-            {/* for building grouped options */}
-            <ListProvider nested>{children}</ListProvider>
-          </GroupListContext.Provider>
+        <SelectProvider value={contextValue}>
+          <VariantColorProvider variant={variant} color={colorProp}>
+            <GroupListContext.Provider value="select">
+              {/* for building grouped options */}
+              <ListProvider nested>{children}</ListProvider>
+            </GroupListContext.Provider>
+          </VariantColorProvider>
         </SelectProvider>
       </SlotListbox>
     );

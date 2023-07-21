@@ -11,32 +11,15 @@ export default function SelectUsage() {
       componentName="Select"
       data={[
         {
-          formLabel: 'Select variant',
           propName: 'variant',
           knob: 'radio',
           defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
-          formLabel: 'Select color',
           propName: 'color',
           knob: 'color',
           defaultValue: 'neutral',
-        },
-        {
-          formLabel: 'Option variant',
-          propName: 'optionVariant',
-          knob: 'radio',
-          defaultValue: 'plain',
-          options: ['plain', 'outlined', 'soft', 'solid'],
-          codeBlockDisplay: false,
-        },
-        {
-          formLabel: 'Option color',
-          propName: 'optionColor',
-          knob: 'color',
-          defaultValue: 'neutral',
-          codeBlockDisplay: false,
         },
         {
           propName: 'size',
@@ -56,18 +39,10 @@ export default function SelectUsage() {
         },
         {
           propName: 'children',
-          defaultValue: '$children',
+          defaultValue: '<Option>...</Option>',
         },
       ]}
-      getCodeBlock={(code, props) =>
-        code.replace(
-          '$children',
-          `<Option${props.optionVariant ? ` variant="${props.optionVariant}"` : ''}${
-            props.optionColor ? ` color="${props.optionColor}"` : ''
-          }>...</Option>`,
-        )
-      }
-      renderDemo={({ optionVariant, optionColor, ...props }) => (
+      renderDemo={(props) => (
         <Select
           {...props}
           defaultListboxOpen
@@ -76,18 +51,10 @@ export default function SelectUsage() {
           onChange={(e, newValue) => setValue(newValue)}
           sx={{ minWidth: 160, mb: 20 }}
         >
-          <Option variant={optionVariant} color={optionColor} value="react">
-            React
-          </Option>
-          <Option variant={optionVariant} color={optionColor} value="vue">
-            Vue
-          </Option>
-          <Option variant={optionVariant} color={optionColor} value="svelte">
-            Svelte
-          </Option>
-          <Option variant={optionVariant} color={optionColor} value="angular">
-            Angular
-          </Option>
+          <Option value="react">React</Option>
+          <Option value="vue">Vue</Option>
+          <Option value="svelte">Svelte</Option>
+          <Option value="angular">Angular</Option>
         </Select>
       )}
     />

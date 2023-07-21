@@ -8,6 +8,7 @@ import useSlot from '../utils/useSlot';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
+import { useVariantColor } from '../styles/VariantColorProvider';
 import { OptionOwnerState, ExtendOption, OptionTypeMap } from './OptionProps';
 import optionClasses, { getOptionUtilityClass } from './optionClasses';
 import RowListContext from '../List/RowListContext';
@@ -56,7 +57,7 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
     disabled = false,
     value,
     label,
-    variant = 'plain',
+    variant: variantProp = 'plain',
     color: colorProp = 'neutral',
     slots = {},
     slotProps = {},
@@ -64,6 +65,7 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
   } = props;
 
   const row = React.useContext(RowListContext);
+  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor();
   const optionRef = React.useRef<HTMLLIElement>(null);
   const combinedRef = useForkRef(optionRef, ref);
 
@@ -78,7 +80,7 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
   });
 
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const color = getColor(inProps.color, inheritedColor);
 
   const ownerState: OptionOwnerState = {
     ...props,
