@@ -541,6 +541,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       variant:
         mergedProps.variant || getChildVariantAndColor(variant, colorProp).variant || 'plain',
       color: mergedProps.color || getChildVariantAndColor(variant, colorProp).color || 'neutral',
+      disableColorInversion: !!inProps.color,
     }),
     additionalProps: {
       'aria-label': clearText,
@@ -559,6 +560,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       variant:
         mergedProps.variant || getChildVariantAndColor(variant, colorProp).variant || 'plain',
       color: mergedProps.color || getChildVariantAndColor(variant, colorProp).color || 'neutral',
+      disableColorInversion: !!inProps.color,
     }),
     additionalProps: {
       disabled,
