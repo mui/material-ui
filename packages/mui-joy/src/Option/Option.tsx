@@ -65,7 +65,10 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
   } = props;
 
   const row = React.useContext(RowListContext);
-  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor();
+  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor(
+    inProps.variant,
+    inProps.color,
+  );
   const optionRef = React.useRef<HTMLLIElement>(null);
   const combinedRef = useForkRef(optionRef, ref);
 

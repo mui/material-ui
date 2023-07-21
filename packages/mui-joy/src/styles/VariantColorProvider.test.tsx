@@ -8,7 +8,7 @@ describe('VariantColorProvider', () => {
 
   it('should provide default variant and color', () => {
     function Test() {
-      const { variant, color } = useVariantColor();
+      const { variant, color } = useVariantColor(undefined, undefined);
       return <div data-testid="test">{`${variant}:${color}`}</div>;
     }
     const { getByTestId } = render(<Test />);
@@ -17,7 +17,7 @@ describe('VariantColorProvider', () => {
 
   it('variant `solid` should inherit variant and color', () => {
     function Test() {
-      const { variant, color } = useVariantColor();
+      const { variant, color } = useVariantColor(undefined, undefined);
       return <div data-testid="test">{`${variant}:${color}`}</div>;
     }
     const { getByTestId } = render(
@@ -30,7 +30,7 @@ describe('VariantColorProvider', () => {
 
   it('variant `soft` should inherit variant and color', () => {
     function Test() {
-      const { variant, color } = useVariantColor();
+      const { variant, color } = useVariantColor(undefined, undefined);
       return <div data-testid="test">{`${variant}:${color}`}</div>;
     }
     const { getByTestId } = render(
@@ -43,7 +43,7 @@ describe('VariantColorProvider', () => {
 
   it('variant `outlined` should set variant to plain and color to neutral', () => {
     function Test() {
-      const { variant, color } = useVariantColor();
+      const { variant, color } = useVariantColor(undefined, undefined);
       return <div data-testid="test">{`${variant}:${color}`}</div>;
     }
     const { getByTestId } = render(
@@ -56,11 +56,37 @@ describe('VariantColorProvider', () => {
 
   it('variant `plain` should set color to neutral', () => {
     function Test() {
-      const { variant, color } = useVariantColor();
+      const { variant, color } = useVariantColor(undefined, undefined);
       return <div data-testid="test">{`${variant}:${color}`}</div>;
     }
     const { getByTestId } = render(
       <VariantColorProvider variant="plain" color="primary">
+        <Test />
+      </VariantColorProvider>,
+    );
+    expect(getByTestId('test')).to.have.text('plain:neutral');
+  });
+
+  it('should use instance variant and color', () => {
+    function Test() {
+      const { variant, color } = useVariantColor('soft', 'warning');
+      return <div data-testid="test">{`${variant}:${color}`}</div>;
+    }
+    const { getByTestId } = render(
+      <VariantColorProvider variant="plain" color="primary">
+        <Test />
+      </VariantColorProvider>,
+    );
+    expect(getByTestId('test')).to.have.text('soft:warning');
+  });
+
+  it('should use default variant and color', () => {
+    function Test() {
+      const { variant = 'plain', color = 'neutral' } = useVariantColor(undefined, undefined);
+      return <div data-testid="test">{`${variant}:${color}`}</div>;
+    }
+    const { getByTestId } = render(
+      <VariantColorProvider variant={undefined} color={undefined}>
         <Test />
       </VariantColorProvider>,
     );

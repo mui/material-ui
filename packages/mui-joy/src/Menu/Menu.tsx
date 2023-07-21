@@ -12,6 +12,7 @@ import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
 import { styled, useThemeProps } from '../styles';
+import { VariantColorProvider } from '../styles/VariantColorProvider';
 import ColorInversion, {
   ColorInversionProvider,
   useColorInversion,
@@ -193,9 +194,12 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
 
   let result = (
     <MenuProvider value={contextValue}>
-      <GroupListContext.Provider value="menu">
-        <ListProvider nested>{children}</ListProvider>
-      </GroupListContext.Provider>
+      {/* If `invertedColors` is true, let the children use their default variant */}
+      <VariantColorProvider variant={invertedColors ? undefined : variant} color={colorProp}>
+        <GroupListContext.Provider value="menu">
+          <ListProvider nested>{children}</ListProvider>
+        </GroupListContext.Provider>
+      </VariantColorProvider>
     </MenuProvider>
   );
 

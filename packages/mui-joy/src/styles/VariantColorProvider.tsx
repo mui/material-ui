@@ -21,7 +21,7 @@ export function getChildVariantAndColor(
   if (parentVariant === 'plain') {
     childColor = 'neutral';
   }
-  return { variant: childVariant, color: childColor } as const;
+  return { variant: childVariant, color: childColor };
 }
 
 /**
@@ -32,11 +32,17 @@ export function getChildVariantAndColor(
  *
  * For example, the `Option` component in `Select` component is using this function.
  */
-export function useVariantColor() {
+export function useVariantColor(
+  instanceVariant: VariantProp | undefined,
+  instanceColor: ColorPaletteProp | undefined,
+) {
   const value = React.useContext(VariantColorContext);
   const [variant, color] =
     typeof value === 'string' ? (value.split(':') as [VariantProp, ColorPaletteProp]) : [];
-  return getChildVariantAndColor(variant, color);
+  const result = getChildVariantAndColor(variant || undefined, color || undefined);
+  result.variant = instanceVariant || result.variant;
+  result.color = instanceColor || result.color;
+  return result;
 }
 
 /**
@@ -46,9 +52,12 @@ export function VariantColorProvider({
   children,
   color,
   variant,
-}: React.PropsWithChildren<{ variant: VariantProp; color: ColorPaletteProp }>) {
+}: React.PropsWithChildren<{
+  variant: VariantProp | undefined;
+  color: ColorPaletteProp | undefined;
+}>) {
   return (
-    <VariantColorContext.Provider value={`${variant}:${color}`}>
+    <VariantColorContext.Provider value={`${variant || ''}:${color || ''}`}>
       {children}
     </VariantColorContext.Provider>
   );

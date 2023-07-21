@@ -4,7 +4,6 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
-import ListDivider from '@mui/joy/ListDivider';
 
 export default function MenuUsage() {
   const buttonRef = React.useRef(null);
@@ -83,25 +82,13 @@ export default function MenuUsage() {
               },
             }}
           >
-            <MenuItem
-              variant={props.variant === 'solid' ? 'solid' : undefined}
-              onClick={() => setOpen(false)}
-            >
+            <MenuItem onClick={() => setOpen(false)}>
               Add space before paragraph
             </MenuItem>
-            <MenuItem
-              variant={props.variant === 'solid' ? 'solid' : undefined}
-              onClick={() => setOpen(false)}
-            >
+            <MenuItem onClick={() => setOpen(false)}>
               Add space after paragraph
             </MenuItem>
-            <ListDivider />
-            <MenuItem
-              variant={props.variant === 'solid' ? 'solid' : undefined}
-              onClick={() => setOpen(false)}
-            >
-              Custom spacing...
-            </MenuItem>
+            <MenuItem onClick={() => setOpen(false)}>Custom spacing...</MenuItem>
           </Menu>
         </Box>
       )}

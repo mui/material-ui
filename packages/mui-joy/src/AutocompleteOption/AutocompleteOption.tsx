@@ -68,7 +68,10 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
     slotProps = {},
     ...other
   } = props;
-  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor();
+  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor(
+    inProps.variant,
+    inProps.color,
+  );
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, inheritedColor);
 
