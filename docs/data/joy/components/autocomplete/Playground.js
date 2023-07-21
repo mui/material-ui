@@ -33,16 +33,9 @@ export default function Playground() {
           top: 'var(--MuiDocs-header-height)',
           zIndex: 2,
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark'
-              ? 'rgba(62, 80, 96, 0.3)'
-              : theme.palette.neutral[100],
-
+          borderColor: 'divider',
           borderRadius: 'xs',
-          background: (theme) =>
-            theme.palette.mode === 'dark'
-              ? 'rgba(0,30,60, 0.95)'
-              : theme.palette.primary[50],
+          bgcolor: 'background.surface',
         }}
       >
         <FormControl sx={{ width: 300, mx: 'auto' }}>

@@ -7,6 +7,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import { styled, useThemeProps } from '../styles';
+import { VariantColorProvider } from '../styles/VariantColorProvider';
 import { getAutocompleteListboxUtilityClass } from './autocompleteListboxClasses';
 import {
   AutocompleteListboxOwnerState,
@@ -142,7 +143,11 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     },
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  return (
+    <VariantColorProvider variant={variant} color={colorProp}>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
+    </VariantColorProvider>
+  );
 }) as OverridableComponent<AutocompleteListboxTypeMap>;
 
 AutocompleteListbox.propTypes /* remove-proptypes */ = {

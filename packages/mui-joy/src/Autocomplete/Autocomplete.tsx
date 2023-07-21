@@ -18,6 +18,7 @@ import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import styled from '../styles/styled';
+import { VariantColorProvider, getChildVariantAndColor } from '../styles/VariantColorProvider';
 // slot components
 import { StyledIconButton } from '../IconButton/IconButton';
 // default render components
@@ -59,13 +60,6 @@ const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
     <List>{params.children}</List>
   </ListItem>
 );
-
-const defaultVariantMapping = {
-  plain: 'plain',
-  outlined: 'plain',
-  soft: 'soft',
-  solid: 'solid',
-};
 
 const useUtilityClasses = (ownerState: OwnerState) => {
   const {
@@ -544,8 +538,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || defaultVariantMapping[variant] || 'plain',
-      color: mergedProps.color || 'neutral',
+      variant:
+        mergedProps.variant || getChildVariantAndColor(variant, colorProp).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, colorProp).color || 'neutral',
     }),
     additionalProps: {
       'aria-label': clearText,
@@ -561,8 +556,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || defaultVariantMapping[variant] || 'plain',
-      color: mergedProps.color || 'neutral',
+      variant:
+        mergedProps.variant || getChildVariantAndColor(variant, colorProp).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, colorProp).color || 'neutral',
     }),
     additionalProps: {
       disabled,
@@ -641,8 +637,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     externalForwardedProps,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
-      variant: mergedProps.variant || 'plain',
-      color: mergedProps.color || 'neutral',
+      variant:
+        mergedProps.variant || getChildVariantAndColor(variant, colorProp).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, colorProp).color || 'neutral',
       disableColorInversion: !listboxProps.disablePortal,
     }),
     additionalProps: {
@@ -684,41 +681,43 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   let popup = null;
   if (anchorEl) {
     popup = (
-      <ListProvider nested>
-        <SlotListbox
-          {...listboxProps}
-          className={clsx(
-            listboxProps.className,
-            listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
-          )}
-          // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
-          modifiers={modifiers}
-          {...(!props.slots?.listbox && {
-            as: Popper,
-            slots: { root: listboxProps.as || 'ul' },
-          })}
-        >
-          {groupedOptions.map((option, index) => {
-            if (groupBy) {
-              const typedOption = option as AutocompleteGroupedOption;
-              return renderGroup({
-                key: String(typedOption.key),
-                group: typedOption.group,
-                children: typedOption.options.map((option2, index2) =>
-                  renderListOption(option2, typedOption.index + index2),
-                ),
-              });
-            }
-            return renderListOption(option, index);
-          })}
-          {loading && groupedOptions.length === 0 ? (
-            <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
-          ) : null}
-          {groupedOptions.length === 0 && !freeSolo && !loading ? (
-            <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
-          ) : null}
-        </SlotListbox>
-      </ListProvider>
+      <VariantColorProvider variant={variant} color={colorProp}>
+        <ListProvider nested>
+          <SlotListbox
+            {...listboxProps}
+            className={clsx(
+              listboxProps.className,
+              listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
+            )}
+            // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
+            modifiers={modifiers}
+            {...(!props.slots?.listbox && {
+              as: Popper,
+              slots: { root: listboxProps.as || 'ul' },
+            })}
+          >
+            {groupedOptions.map((option, index) => {
+              if (groupBy) {
+                const typedOption = option as AutocompleteGroupedOption;
+                return renderGroup({
+                  key: String(typedOption.key),
+                  group: typedOption.group,
+                  children: typedOption.options.map((option2, index2) =>
+                    renderListOption(option2, typedOption.index + index2),
+                  ),
+                });
+              }
+              return renderListOption(option, index);
+            })}
+            {loading && groupedOptions.length === 0 ? (
+              <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
+            ) : null}
+            {groupedOptions.length === 0 && !freeSolo && !loading ? (
+              <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
+            ) : null}
+          </SlotListbox>
+        </ListProvider>
+      </VariantColorProvider>
     );
 
     if (!listboxProps.disablePortal) {

@@ -7,6 +7,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
+import { useVariantColor } from '../styles/VariantColorProvider';
 import { getAutocompleteOptionUtilityClass } from './autocompleteOptionClasses';
 import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -61,14 +62,15 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
     children,
     component = 'li',
     color: colorProp = 'neutral',
-    variant = 'plain',
+    variant: variantProp = 'plain',
     className,
     slots = {},
     slotProps = {},
     ...other
   } = props;
+  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor();
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const color = getColor(inProps.color, inheritedColor);
 
   const ownerState = {
     ...props,
