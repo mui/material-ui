@@ -90,7 +90,7 @@ const tooltipProps = {
   },
 };
 
-export default function LicenseModelWidget() {
+export default function LicensingModelSwitch() {
   const { licensingModel, setLicensingModel } = useLicensingModel();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {

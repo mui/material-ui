@@ -3,6 +3,7 @@ import path from 'path';
 import PropTypes from 'prop-types';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import HighlightedCodeWithTabs from 'docs/src/modules/components/HighlightedCodeWithTabs';
 import Demo from 'docs/src/modules/components/Demo';
 
 function noComponent(moduleID) {
@@ -11,19 +12,20 @@ function noComponent(moduleID) {
   };
 }
 
-export default function MarkdownElementV2({
-  renderedMarkdownOrDemo,
-  WrapperComponent: Wrapper,
-  wrapperProps,
-  srcComponents,
-  activeTab,
-  localizedDoc,
-  demos = {},
-  location,
-  theme,
-  demoComponents,
-  disableAd,
-}) {
+export default function RichMarkdownElement(props) {
+  const {
+    activeTab,
+    demoComponents,
+    demos = {},
+    disableAd,
+    localizedDoc,
+    location,
+    renderedMarkdownOrDemo,
+    srcComponents,
+    theme,
+    WrapperComponent: Wrapper,
+    wrapperProps,
+  } = props;
   const userLanguage = useUserLanguage();
   const t = useTranslate();
 
@@ -38,18 +40,32 @@ export default function MarkdownElementV2({
   if (renderedMarkdownOrDemo.component) {
     const name = renderedMarkdownOrDemo.component;
     const Component = srcComponents?.[name];
-    const additionalProps = {};
 
     if (Component === undefined) {
       throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
     }
-    if (name.indexOf('Tabs') >= 0) {
+
+    const additionalProps = {};
+    if (name === 'modules/components/ComponentPageTabs.js') {
       additionalProps.activeTab = activeTab;
     }
 
     return (
       <Wrapper {...wrapperProps}>
         <Component {...renderedMarkdownOrDemo} {...additionalProps} markdown={localizedDoc} />
+      </Wrapper>
+    );
+  }
+
+  if (renderedMarkdownOrDemo.type === 'codeblock') {
+    return (
+      <Wrapper {...wrapperProps}>
+        <HighlightedCodeWithTabs
+          tabs={renderedMarkdownOrDemo.data}
+          storageKey={
+            renderedMarkdownOrDemo.storageKey && `codeblock-${renderedMarkdownOrDemo.storageKey}`
+          }
+        />
       </Wrapper>
     );
   }
@@ -116,7 +132,7 @@ export default function MarkdownElementV2({
   );
 }
 
-MarkdownElementV2.propTypes = {
+RichMarkdownElement.propTypes = {
   activeTab: PropTypes.string,
   demoComponents: PropTypes.any,
   demos: PropTypes.any,
