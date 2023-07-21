@@ -88,6 +88,7 @@ export default function XHero() {
 
   return (
     <HeroContainer
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
@@ -135,6 +136,7 @@ export default function XHero() {
               borderColor: 'grey.200',
               boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
               mb: { md: 2, lg: 3, xl: 4 },
+              overflow: 'hidden',
               ...theme.applyDarkStyles({
                 backgroundColor: 'primaryDark.800',
                 borderColor: 'primaryDark.600',

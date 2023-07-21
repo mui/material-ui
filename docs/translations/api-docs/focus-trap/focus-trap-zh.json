@@ -1,7 +1,7 @@
 {
   "componentDescription": "Utility component that locks focus inside the component.",
   "propDescriptions": {
-    "children": "A single child content element.<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
+    "children": "A single child content element.⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "disableAutoFocus": "If <code>true</code>, the focus trap will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any focus trap children that have the <code>disableAutoFocus</code> prop.<br>Generally this should never be set to <code>true</code> as it makes the focus trap less accessible to assistive technologies, like screen readers.",
     "disableEnforceFocus": "If <code>true</code>, the focus trap will not prevent focus from leaving the focus trap while open.<br>Generally this should never be set to <code>true</code> as it makes the focus trap less accessible to assistive technologies, like screen readers.",
     "disableRestoreFocus": "If <code>true</code>, the focus trap will not restore focus to previously focused element once focus trap is hidden or unmounted.",

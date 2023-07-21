@@ -11,25 +11,25 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
-import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
+import IconImage from 'docs/src/components/icon/IconImage';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
-import LicenseTypeWidget from 'docs/src/components/pricing/LicenseTypeWidget';
-import { useLicenseType } from 'docs/src/components/pricing/LicenseTypeContext';
+import LicenseModelWidget from 'docs/src/components/pricing/LicensingModelWidget';
+import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
 
 const planInfo = {
   community: {
-    color: 'green',
+    iconName: 'x-plan-community',
     title: 'Community',
     description: 'Get started with the industry-standard React UI library, MIT-licensed.',
   },
   pro: {
-    color: 'blue',
+    iconName: 'x-plan-pro',
     title: 'Pro',
     description: 'Best for professional developers building enterprise or data-rich applications.',
   },
   premium: {
-    color: 'gold',
+    iconName: 'x-plan-premium',
     title: 'Premium',
     description:
       'The most advanced features for data-rich applications, as well as the highest priority for support.',
@@ -49,7 +49,7 @@ export function PlanName({
   plan: 'community' | 'pro' | 'premium';
   disableDescription?: boolean;
 }) {
-  const { title, color, description } = planInfo[plan];
+  const { title, iconName, description } = planInfo[plan];
   return (
     <React.Fragment>
       <Typography
@@ -57,7 +57,7 @@ export function PlanName({
         fontWeight="bold"
         sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', pr: 0.5 }}
       >
-        <IconImage name={`block-${color}` as IconImageProps['name']} sx={{ mr: 1 }} /> {title}
+        <IconImage name={iconName} sx={{ mr: 1 }} /> {title}
       </Typography>
       {!disableDescription && (
         <Typography
@@ -86,8 +86,8 @@ interface PlanPriceProps {
 export function PlanPrice(props: PlanPriceProps) {
   const { plan } = props;
 
-  const { licenseType } = useLicenseType();
-  const annual = licenseType === 'Annual';
+  const { licensingModel } = useLicensingModel();
+  const annual = licensingModel === 'annual';
   const planPriceMinHeight = 64;
 
   if (plan === 'community') {
@@ -113,7 +113,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   const monthlyDisplay = annual;
 
-  const priceUnit = monthlyDisplay ? '/ dev / month' : '/ dev';
+  const priceUnit = monthlyDisplay ? '/ month / dev' : '/ dev';
   const getPriceExplanation = (displayedValue: number) => {
     if (!annual) {
       return `$${displayedValue}/dev billed once.`;
@@ -132,7 +132,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
     return (
       <React.Fragment>
-        <LicenseTypeWidget />
+        <LicenseModelWidget />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
           <Typography variant="h3" component="div" fontWeight="bold" color="primary.main">
             {formatCurrency(mainDisplayValue)}
@@ -149,7 +149,7 @@ export function PlanPrice(props: PlanPriceProps) {
             </Typography>
           )}
           <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }} textAlign="center">
-            No additional fee beyond 10 devs.
+            {'No additional fee beyond 10 devs.'}
           </Typography>
         </Box>
       </React.Fragment>
@@ -171,7 +171,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   return (
     <React.Fragment>
-      <LicenseTypeWidget />
+      <LicenseModelWidget />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
         <Typography
           variant="body2"
@@ -384,6 +384,8 @@ function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: Rea
           display: 'flex',
           alignItems: 'center',
           bgcolor: 'grey.50',
+          border: '1px solid',
+          borderColor: 'divider',
         },
         (theme) =>
           theme.applyDarkStyles({
@@ -476,8 +478,12 @@ const rowHeaders: Record<string, React.ReactNode> = {
       href="/x/react-data-grid/row-selection/#multiple-row-selection"
     />
   ),
-  'data-grid/row-rangeselection': (
-    <ColumnHead label="Range selection" nested href="/x/react-data-grid/cell-selection/" />
+  'data-grid/row-cell-selection': (
+    <ColumnHead
+      label="Cell selection (and Range)"
+      nested
+      href="/x/react-data-grid/cell-selection/"
+    />
   ),
   'data-grid/filter-column': (
     <ColumnHead label="Column filters" nested href="/x/react-data-grid/filtering/" />
@@ -676,7 +682,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-pinning': no,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': no,
-  'data-grid/row-rangeselection': no,
+  'data-grid/row-cell-selection': no,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': no,
@@ -738,7 +744,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
-  'data-grid/row-rangeselection': no,
+  'data-grid/row-cell-selection': no,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': yes,
@@ -805,7 +811,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
-  'data-grid/row-rangeselection': yes,
+  'data-grid/row-cell-selection': yes,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': yes,
@@ -1004,22 +1010,22 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
 
 function PricingTableDevelopment(props: any) {
   const { renderRow } = props;
-  const { licenseType } = useLicenseType();
+  const { licensingModel } = useLicensingModel();
 
-  return licenseType === 'Annual'
+  return licensingModel === 'annual'
     ? renderRow('mui-x-development')
     : renderRow('mui-x-development-perpetual');
 }
 
 function PricingTableBuyPro() {
-  const { licenseType } = useLicenseType();
+  const { licensingModel } = useLicensingModel();
 
   return (
     <Button
       component={Link}
       noLinkStyle
       href={
-        licenseType === 'Annual'
+        licensingModel === 'annual'
           ? 'https://mui.com/store/items/mui-x-pro/'
           : 'https://mui.com/store/items/mui-x-pro-perpetual/'
       }
@@ -1033,14 +1039,14 @@ function PricingTableBuyPro() {
 }
 
 function PricingTableBuyPremium() {
-  const { licenseType } = useLicenseType();
+  const { licensingModel } = useLicensingModel();
 
   return (
     <Button
       component={Link}
       noLinkStyle
       href={
-        licenseType === 'Annual'
+        licensingModel === 'annual'
           ? 'https://mui.com/store/items/mui-x-premium/'
           : 'https://mui.com/store/items/mui-x-premium-perpetual/'
       }
@@ -1089,7 +1095,7 @@ export default function PricingTable({
   const renderRow = (key: string) => renderMasterRow(key, gridSx, plans);
 
   return (
-    <Box ref={tableRef} {...props} sx={{ pt: 2, pb: 8, ...props.sx }}>
+    <Box ref={tableRef} {...props} sx={{ pt: 8, pb: 8, ...props.sx }}>
       <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
       {!columnHeaderHidden && (
         <Box sx={gridSx}>
@@ -1234,7 +1240,7 @@ export default function PricingTable({
         {nestedDivider}
         {renderRow('data-grid/row-multiselection')}
         {nestedDivider}
-        {renderRow('data-grid/row-rangeselection')}
+        {renderRow('data-grid/row-cell-selection')}
         {nestedDivider}
         <RowCategory>Filtering features</RowCategory>
         {renderRow('data-grid/filter-column')}

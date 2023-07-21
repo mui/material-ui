@@ -81,7 +81,7 @@ export default function DiamondSponsors() {
           {t('diamondSponsors')}
         </Button>
         <Stack
-          spacing={{ xs: 1, sm: 1.5 }}
+          spacing={1}
           sx={[
             (theme) => ({
               '& a': {

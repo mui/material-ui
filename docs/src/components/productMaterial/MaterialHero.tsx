@@ -209,6 +209,7 @@ const customTheme = extendTheme({
 export default function MaterialHero() {
   return (
     <HeroContainer
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
