@@ -44,7 +44,7 @@
     "@mui/styles": "^5.13.7",
     "@mui/system": "^5.13.7",
     "@mui/types": "^7.2.4",
-    "@mui/x-charts": "https://pkg.csb.dev/mui/mui-x/commit/0321f7bb/@mui/x-charts",
+    "@mui/x-charts": "6.0.0-alpha.4",
     "@mui/x-data-grid": "6.9.1",
     "@mui/x-data-grid-generator": "6.9.1",
     "@mui/x-data-grid-pro": "6.9.1",
