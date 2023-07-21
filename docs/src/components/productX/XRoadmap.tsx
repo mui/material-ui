@@ -157,6 +157,8 @@ export default function XRoadmap() {
                   <React.Fragment>
                     <BarChartRounded fontSize="small" />
                     <b>Charts</b>
+                    <ShowChartRounded fontSize="small" />
+                    <b>Sparkline</b>
                   </React.Fragment>,
                 )}
               </Paper>
@@ -167,8 +169,6 @@ export default function XRoadmap() {
                 <Box sx={{ color: 'text.secondary' }}>Starting sometime soon…</Box>
                 {renderList(
                   <React.Fragment>
-                    <ShowChartRounded fontSize="small" />
-                    <b>Sparkline</b>
                     <AccountTreeRounded fontSize="small" />
                     <b>Tree View</b>
                     <FileUploadRounded fontSize="small" />
