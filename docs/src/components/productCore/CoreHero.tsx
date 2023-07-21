@@ -11,7 +11,7 @@ export default function CoreHero() {
       <Box
         sx={{
           pt: { xs: 6, sm: 8, md: 12 },
-          pb: { xs: 3, sm: 4, md: 8 },
+          pb: { xs: 3, md: 1 },
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
