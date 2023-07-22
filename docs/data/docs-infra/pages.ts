@@ -6,9 +6,7 @@ const pages: readonly MuiPage[] = [
     pathname: '/experiments/docs/writing',
     title: 'Writing',
     icon: standardNavIcons.DescriptionIcon,
-    children: [
-      { pathname: '/experiments/docs/headers' },
-    ],
+    children: [{ pathname: '/experiments/docs/headers' }],
   },
   {
     pathname: '/experiments/docs/components',
