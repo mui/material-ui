@@ -8,6 +8,51 @@ import getScrollbarSize from '../utils/getScrollbarSize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 
+/**
+ * This function dictates whether the element passed can receive focus when tabbed by checking from an array
+ * if it's a legal child.
+ */
+function isElementTabbableMenuChild(reactElement) {
+  /**
+   * If the element passed is not a valid React Element OR it does not have a type associated with
+   * it then early exit the function with `false` since it should not be tabbable.
+   */
+  if (!React.isValidElement(reactElement) || !reactElement.type) {
+    return false;
+  }
+
+  // This contains illegal child that should not get focussed through tab.
+  const illegalTabbableChildNames = ['Divider'];
+
+  /**
+   * If the element is a native HTML element like p, div, span then we can directly
+   * check if reactElement.type is in the array of illegal children.
+   *
+   * - if yes, return false that it should not be tabbable otherwise return true
+   */
+  if (typeof reactElement.type === 'string') {
+    return !illegalTabbableChildNames.includes(reactElement.type);
+  }
+
+  /**
+   * If the element is a custom user defined component like - Divider, Button, Accordion etc
+   * then we can directly access the element.type.name to check its name.
+   */
+  if (typeof reactElement.type === 'function') {
+    return !illegalTabbableChildNames.includes(reactElement.type.name);
+  }
+
+  /**
+   * It's possible that the element passes is wrapped with forwardRef, in that case we can
+   * just check the element.type.render.name as these properties are listed down in the render key.
+   */
+  if (reactElement.type.render) {
+    return !illegalTabbableChildNames.includes(reactElement.type.render.name);
+  }
+
+  return false;
+}
+
 function nextItem(list, item, disableListWrap) {
   if (list === item) {
     return list.firstChild;
@@ -259,7 +304,12 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       if (autoFocusItem) {
         newChildProps.autoFocus = true;
       }
-      if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
+
+      if (
+        child.props.tabIndex === undefined &&
+        variant === 'selectedMenu' &&
+        isElementTabbableMenuChild(child)
+      ) {
         newChildProps.tabIndex = 0;
       }
 
