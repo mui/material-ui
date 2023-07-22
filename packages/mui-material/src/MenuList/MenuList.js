@@ -4,6 +4,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
+import Divider from '../Divider';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -22,7 +23,7 @@ function isElementTabbableMenuChild(reactElement) {
   }
 
   // This contains illegal child that should not get focussed through tab.
-  const illegalTabbableChildNames = ['Divider'];
+  const illegalTabbableChildNames = [Divider];
 
   /**
    * If the element is a native HTML element like p, div, span then we can directly
@@ -31,26 +32,14 @@ function isElementTabbableMenuChild(reactElement) {
    * - if yes, return false that it should not be tabbable otherwise return true
    */
   if (typeof reactElement.type === 'string') {
-    return !illegalTabbableChildNames.includes(reactElement.type);
+    return !illegalTabbableChildNames.includes(reactElement);
   }
 
   /**
    * If the element is a custom user defined component like - Divider, Button, Accordion etc
-   * then we can directly access the element.type.name to check its name.
+   * then we can directly access the element.type to check its type / component definition.
    */
-  if (typeof reactElement.type === 'function') {
-    return !illegalTabbableChildNames.includes(reactElement.type.name);
-  }
-
-  /**
-   * It's possible that the element passes is wrapped with forwardRef, in that case we can
-   * just check the element.type.render.name as these properties are listed down in the render key.
-   */
-  if (reactElement.type.render) {
-    return !illegalTabbableChildNames.includes(reactElement.type.render.name);
-  }
-
-  return false;
+  return !illegalTabbableChildNames.includes(reactElement.type);
 }
 
 function nextItem(list, item, disableListWrap) {
