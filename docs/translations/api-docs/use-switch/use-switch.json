@@ -19,8 +19,8 @@
       "description": "If <code>true</code>, it indicates that the component is being focused using keyboard."
     },
     "getInputProps": { "description": "Resolver for the input slot&#39;s props." },
-    "getRootProps": "Resolver for the root slot&#39;s props.",
-    "readOnly": "If <code>true</code>, the component will be read only.",
-    "rootRef": "Ref to the root slot&#39;s DOM node."
+    "getRootProps": { "description": "Resolver for the root slot&#39;s props." },
+    "readOnly": { "description": "If <code>true</code>, the component will be read only." },
+    "rootRef": { "description": "Ref to the root slot&#39;s DOM node." }
   }
 }
