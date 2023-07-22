@@ -39,8 +39,8 @@ interface UseSwitchRootSlotOwnProps {
   'aria-disabled'?: React.AriaAttributes['aria-disabled'];
   'aria-required'?: React.AriaAttributes['aria-required'];
   checked?: boolean;
-  defaultChecked?: boolean;
   disabled?: boolean;
+  defaultChecked?: boolean;
   readOnly?: boolean;
   required?: boolean;
   role: string;
