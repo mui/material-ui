@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { useTabsContext } from '../Tabs';
 import {
@@ -152,8 +153,16 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     };
   };
 
+  const contextValue = React.useMemo(
+    () => ({
+      ...compoundComponentContextValue,
+      ...listContextValue,
+    }),
+    [compoundComponentContextValue, listContextValue],
+  );
+
   return {
-    contextValue: { ...compoundComponentContextValue, ...listContextValue },
+    contextValue,
     dispatch,
     getRootProps,
     highlightedValue,

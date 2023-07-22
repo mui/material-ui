@@ -35,7 +35,7 @@ To install and save in your `package.json` dependencies, run:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 // with npm
 npm install @mui/styles
 

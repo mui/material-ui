@@ -6,10 +6,12 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 
 /**
- * Credit: https://flutter.dev/
+ * Design credit: https://flutter.dev/
  */
+
 export default function ColorInversionMarketing() {
   const [color, setColor] = React.useState<ColorPaletteProp>('primary');
   return (
@@ -23,13 +25,13 @@ export default function ColorInversionMarketing() {
         bgcolor: color === 'primary' ? '#042449' : undefined,
         p: { xs: '36px', md: '70px' },
         pt: { xs: '24px', md: '60px' },
-        borderRadius: '40px',
+        borderRadius: 'sm',
         overflow: 'hidden',
         '& button': { borderRadius: 'xl' },
       }}
     >
       <Box sx={{ zIndex: 1, position: 'relative' }}>
-        <Typography level="display2">Get started</Typography>
+        <Typography level="h2">Get started</Typography>
         <Typography sx={{ mt: 1, mb: 3 }}>
           Instant access to the power of the React UI library
         </Typography>
@@ -47,8 +49,8 @@ export default function ColorInversionMarketing() {
             variant="plain"
             endDecorator={<ArrowForwardIcon fontSize="md" />}
             sx={{
-              '&:hover': { '--Button-gap': '0.75rem' },
-              '& span': { transition: '0.3s' },
+              '&:hover': { '--Button-gap': '0.625rem' },
+              '& span': { transition: '0.15s' },
             }}
           >
             See the docs
@@ -81,7 +83,7 @@ export default function ColorInversionMarketing() {
           setColor(colors[nextColor + 1] ?? colors[0]);
         }}
       >
-        🎨
+        <ColorLensRoundedIcon fontSize="small" />
       </IconButton>
     </Sheet>
   );

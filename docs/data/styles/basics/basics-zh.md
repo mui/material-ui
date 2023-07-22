@@ -29,7 +29,7 @@ MUI的风格化解决方案受到许多其他风格化库的启发，如[styled-
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 // 用 npm 安装
 npm install @mui/styles
 

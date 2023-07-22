@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 
 interface RegisterItemReturnValue<Key> {
@@ -146,12 +147,17 @@ export function useCompoundParent<
     [sortedSubitems],
   );
 
-  return {
-    contextValue: {
+  const contextValue = React.useMemo(
+    () => ({
       getItemIndex,
       registerItem,
       totalSubitemCount: subitems.size,
-    },
+    }),
+    [getItemIndex, registerItem, subitems.size],
+  );
+
+  return {
+    contextValue,
     subitems: sortedSubitems,
   };
 }

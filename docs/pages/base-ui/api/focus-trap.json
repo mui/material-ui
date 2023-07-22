@@ -5,7 +5,10 @@
     "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
     "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
     "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
-    "getTabbable": { "type": { "name": "func" } },
+    "getTabbable": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(root: HTMLElement) => void", "describedArgs": [] }
+    },
     "isEnabled": {
       "type": { "name": "func" },
       "default": "function defaultIsEnabled(): boolean {\n  return true;\n}"

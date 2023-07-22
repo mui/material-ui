@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Table Pagination component
 components: TablePagination
 githubLabel: 'component: TablePagination'
@@ -159,4 +159,4 @@ This prop requires an array of either numbers or objects:
 
 The following demo shows another example of pagination controls but with additional style customization:
 
-{{"demo": "TableCustomized.js"}}
+{{"demo": "TableCustomized"}}

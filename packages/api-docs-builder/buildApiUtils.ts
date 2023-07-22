@@ -580,6 +580,8 @@ export function generateBaseUIApiPages() {
     const productName = pathnameTokens[1];
     const componentName = pathnameTokens[3];
 
+    // TODO: fix `productName` should be called `productId` and include the full name,
+    // e.g. base-ui below.
     if (
       productName === 'base' &&
       (markdown.filename.indexOf('\\components\\') >= 0 ||
@@ -695,6 +697,11 @@ ${staticProps}
       }
       const demosSourcePath = path.join(process.cwd(), `${componentPageDirectory}/index.js`);
       writePrettifiedFile(demosSourcePath, demosSource);
+
+      if ((components ?? []).length === 0 && (hooks ?? []).length === 0) {
+        // Early return if it's a markdown file without components/hooks.
+        return;
+      }
 
       const docsTabsPagesDirectory = `${componentPageDirectory}/[docsTab]`;
       if (!fs.existsSync(docsTabsPagesDirectory)) {

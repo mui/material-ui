@@ -1,0 +1,13 @@
+<Link href="#variants">Link</Link>
+<Link href="#variants" variant="plain">
+  Link
+</Link>
+<Link href="#variants" variant="soft">
+  Link
+</Link>
+<Link href="#variants" variant="outlined">
+  Link
+</Link>
+<Link href="#variants" variant="solid">
+  Link
+</Link>

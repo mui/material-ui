@@ -9,7 +9,7 @@ export default function CircularProgressUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },

@@ -41,13 +41,13 @@ Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -69,13 +69,13 @@ Base UI is available as an [npm package](https://www.npmjs.com/package/@mui/base
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/base
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/base
 ```
 
@@ -88,13 +88,13 @@ MUI System is available as an [npm package](https://www.npmjs.com/package/@mui/s
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
@@ -102,13 +102,13 @@ Or if you want to use `styled-components` as a styling engine:
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
@@ -131,7 +131,7 @@ Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
 via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p>
-  <a href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=192" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
+  <a href="https://www.tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=192" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
   <a href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=192" alt="text-em-all.com" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
   <a href="https://open.spotify.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/spotify/f37ea28/logo/192.png" alt="Spotify" title="Music service to access to millions of songs" loading="lazy" /></a>
   <a href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://mui.com/static/sponsors/megafamous.png" alt="megafamous.com" title="The best place to buy Instagram followers & likes." loading="lazy" /></a>

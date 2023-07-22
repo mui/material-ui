@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Badge component and hook
 components: Badge
 hooks: useBadge
@@ -125,7 +125,7 @@ When this content is a number, there are additional props you can use for furthe
 
 The following demo shows how to create and style a typical numerical badge that's attached to a generic box element:
 
-{{"demo": "UnstyledBadge.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledBadge", "defaultCodeOpen": false}}
 
 ### Badge visibility
 

@@ -33,7 +33,7 @@ const Header = styled('header')(({ theme }) => [
   }),
 ]);
 
-const HEIGHT = 56;
+const HEIGHT = 60;
 
 interface AppHeaderProps {
   gitHubRepository?: string;
@@ -93,6 +93,8 @@ export default function AppHeader(props: AppHeaderProps) {
               component="a"
               color="primary"
               href={gitHubRepository}
+              target="_blank"
+              rel="noopener"
               data-ga-event-category="header"
               data-ga-event-action="github"
             >

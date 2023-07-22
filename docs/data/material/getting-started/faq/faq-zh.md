@@ -171,7 +171,7 @@ If you are using webpack, you can change the way it will [resolve](https://webpa
 
 One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
 
-```sh
+```bash
 lerna bootstrap --hoist
 ```
 

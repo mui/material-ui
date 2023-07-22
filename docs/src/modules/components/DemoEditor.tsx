@@ -15,7 +15,9 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
     '& .scrollContainer': {
       maxHeight: 'min(68vh, 1000px)',
       overflow: 'auto',
-      backgroundColor: blueDark[800],
+      marginTop: -1,
+      backgroundColor: '#0F1924', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
+      border: `1px solid ${(theme.vars || theme).palette.divider}`,
       colorScheme: 'dark',
       '&:hover': {
         boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary.light}`,
@@ -24,7 +26,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
         boxShadow: `0 0 0 2px ${(theme.vars || theme).palette.primary.main}`,
       },
       [theme.breakpoints.up('sm')]: {
-        borderRadius: (theme.vars || theme).shape.borderRadius,
+        borderRadius: '0 0 12px 12px',
       },
     },
     '& pre': {
@@ -36,6 +38,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
   },
   theme.applyDarkStyles({
     '& .scrollContainer': {
+      borderColor: (theme.vars || theme).palette.divider,
       '&:hover': {
         boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primaryDark[300]}`,
       },
