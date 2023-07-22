@@ -3045,6 +3045,25 @@ describe('<Autocomplete />', () => {
       const renderedOption = screen.getByTestId('optionLi');
       expect(renderedOption).to.have.text('Max');
     });
+
+    // https://github.com/mui/material-ui/issues/38048
+    it('should pass getOptionLabel default value through ownerState when no custom getOptionLabel prop provided', () => {
+      render(
+        <Autocomplete
+          open
+          options={[{ label: 'Max', name: 'Max' }]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderOption={(props, option, optionState, ownerState) => (
+            <li key={option.name} data-testid="optionLi">
+              {ownerState.getOptionLabel(option)}
+            </li>
+          )}
+        />,
+      );
+
+      const renderedOption = screen.getByTestId('optionLi');
+      expect(renderedOption).to.have.text('Max');
+    });
   });
 
   // https://github.com/mui/material-ui/issues/36212

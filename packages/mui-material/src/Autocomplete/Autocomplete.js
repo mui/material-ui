@@ -382,6 +382,9 @@ export { createFilterOptions };
 
 const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAutocomplete' });
+
+  const defaultGetOptionLabel = (option) => option.label ?? option;
+
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
     autoComplete = false,
@@ -410,7 +413,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     fullWidth = false,
     getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
-    getOptionLabel = (option) => option.label ?? option,
+    getOptionLabel = defaultGetOptionLabel,
     isOptionEqualToValue,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
@@ -492,6 +495,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     inputFocused: focusedTag === -1,
     popupOpen,
     size,
+    getOptionLabel,
   };
 
   const classes = useUtilityClasses(ownerState);
