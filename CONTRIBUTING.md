@@ -347,7 +347,7 @@ $test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
 
 ## Translations
 
-Translations are handled via [Crowdin](https://translate.mui.com).
+Translations are handled via [Crowdin](https://crowdin.com/project/material-ui-docs).
 You don't need to apply any changes to localized versions of our markdown files
 i.e. files having a `-locale` suffix. Crowdin automatically takes care of syncing
 these changes across the localized versions.
