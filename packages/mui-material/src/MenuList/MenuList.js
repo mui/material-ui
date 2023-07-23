@@ -200,7 +200,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   };
 
   const handleRef = useForkRef(listRef, ref);
-
+  let lastSelectedActiveItemIndex = -1;
   /**
    * the index of the item should receive focus
    * in a `variant="selectedMenu"` it's the first `selected` item
@@ -235,9 +235,12 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
 
     if (!child.props.disabled) {
       if (variant === 'selectedMenu' && child.props.selected) {
+        lastSelectedActiveItemIndex = index;
         activeItemIndex = index;
       } else if (activeItemIndex === -1) {
         activeItemIndex = index;
+      } else {
+        activeItemIndex = lastSelectedActiveItemIndex;
       }
     }
 
