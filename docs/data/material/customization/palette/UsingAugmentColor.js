@@ -21,7 +21,7 @@ theme = createTheme(theme, {
   },
 });
 
-export default function Palette() {
+export default function UsingAugmentColor() {
   return (
     <ThemeProvider theme={theme}>
       <Stack gap={2} alignItems="center">

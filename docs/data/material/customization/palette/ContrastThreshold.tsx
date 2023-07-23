@@ -29,7 +29,7 @@ function ContrastShowcase({ title }: { title: string }) {
   );
 }
 
-export default function contrastThreshold() {
+export default function ContrastThreshold() {
   return (
     <Stack direction="row" gap={4}>
       <ThemeProvider theme={defaultContrastThresholdTheme}>
