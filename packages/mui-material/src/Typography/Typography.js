@@ -34,7 +34,7 @@ export const TypographyRoot = styled('span', {
 
     return [
       styles.root,
-      ownerState&& styles[ownerState.variant],
+      ownerState && styles[ownerState.variant],
       ownerState.align !== 'inherit' && styles[`align${capitalize(ownerState.align)}`],
       ownerState.noWrap && styles.noWrap,
       ownerState.gutterBottom && styles.gutterBottom,
@@ -44,7 +44,7 @@ export const TypographyRoot = styled('span', {
 })(({ theme, ownerState }) => ({
   margin: 0,
   ...(ownerState.variant === 'inherit' && {
-    font: 'inherit'
+    font: 'inherit',
   }),
   ...(ownerState.variant !== 'inherit' && theme.typography[ownerState.variant]),
   ...(ownerState.align !== 'inherit' && {
