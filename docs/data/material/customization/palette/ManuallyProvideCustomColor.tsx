@@ -33,7 +33,7 @@ const theme = createTheme({
   },
 });
 
-export default function Palette() {
+export default function ManuallyProvideCustomColor() {
   return (
     <ThemeProvider theme={theme}>
       <Stack gap={2} alignItems="center">
