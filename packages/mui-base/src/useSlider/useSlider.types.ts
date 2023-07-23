@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { EventHandlers } from '../utils';
 
+export type SingleValueChange = (event: Event, value: number, activeThumb: number) => void;
+export type MultipleValuesChange = (event: Event, value: number[], activeThumb: number) => void;
+export type DefaultOnChange = (event: Event, value: number | number[], activeThumb: number) => void;
+
 export interface UseSliderParameters {
   /**
    * The id of the element containing a label for the slider.
@@ -56,8 +60,9 @@ export interface UseSliderParameters {
    * **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
    * @param {number} activeThumb Index of the currently moved thumb.
+   * 
    */
-  onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
+  onChange?: SingleValueChange | MultipleValuesChange | DefaultOnChange;
   /**
    * Callback function that is fired when the `mouseup` is triggered.
    *

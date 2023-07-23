@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SlotComponentProps } from '@mui/base';
-import { Mark } from '@mui/base/useSlider';
+import { DefaultOnChange, Mark, MultipleValuesChange, SingleValueChange } from '@mui/base/useSlider';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
@@ -151,7 +151,7 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
      * @param {number | number[]} value The new value.
      * @param {number} activeThumb Index of the currently moved thumb.
      */
-    onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
+    onChange?: SingleValueChange | MultipleValuesChange | DefaultOnChange;
     /**
      * Callback function that is fired when the `mouseup` is triggered.
      *
