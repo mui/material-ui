@@ -155,16 +155,17 @@ export default function BaseUIComponents() {
                 height: 360,
                 position: 'relative',
                 overflow: 'hidden',
+                p: 0,
                 pt: 5,
               }}
             >
               <Box
                 sx={{
-                  height: 'calc(100% + 40px)',
                   overflow: 'auto',
-                  m: -2,
-                  p: 2,
-                  pt: 3,
+                  pt: 2,
+                  pb: 1,
+                  px: 2,
+                  height: '100%',
                 }}
               >
                 <HighlightedCode

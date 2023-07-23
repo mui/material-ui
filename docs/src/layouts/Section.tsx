@@ -11,27 +11,27 @@ interface SelectionProps extends BoxProps {
   cozy?: boolean;
 }
 
+const map = {
+  white: {
+    light: 'common.white',
+    dark: 'primaryDark.800',
+  },
+  comfort: {
+    light: 'grey.50',
+    dark: 'primaryDark.900',
+  },
+  dim: {
+    light: 'primaryDark.700',
+    dark: 'primaryDark.700',
+  },
+  transparent: {
+    light: 'transparent',
+    dark: 'transparent',
+  },
+};
+
 const Section = React.forwardRef<HTMLDivElement, SelectionProps>(function Section(props, ref) {
   const { bg = 'white', children, sx, cozy = false, ...other } = props;
-
-  const map = {
-    white: {
-      light: 'common.white',
-      dark: 'primaryDark.800',
-    },
-    comfort: {
-      light: 'grey.50',
-      dark: 'primaryDark.900',
-    },
-    dim: {
-      light: 'primaryDark.700',
-      dark: 'primaryDark.700',
-    },
-    transparent: {
-      light: 'transparent',
-      dark: 'transparent',
-    },
-  };
 
   return (
     <Box

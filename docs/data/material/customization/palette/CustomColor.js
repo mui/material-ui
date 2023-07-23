@@ -5,7 +5,9 @@ import Button from '@mui/material/Button';
 const theme = createTheme({
   palette: {
     neutral: {
-      main: '#64748B',
+      light: '#838fa2',
+      main: '#64748b',
+      dark: '#465161',
       contrastText: '#fff',
     },
   },

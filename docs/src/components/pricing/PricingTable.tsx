@@ -14,7 +14,7 @@ import Link from 'docs/src/modules/components/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
-import LicenseModelWidget from 'docs/src/components/pricing/LicensingModelWidget';
+import LicensingModelSwitch from 'docs/src/components/pricing/LicensingModelSwitch';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
 
 const planInfo = {
@@ -132,7 +132,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
     return (
       <React.Fragment>
-        <LicenseModelWidget />
+        <LicensingModelSwitch />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
           <Typography variant="h3" component="div" fontWeight="bold" color="primary.main">
             {formatCurrency(mainDisplayValue)}
@@ -171,7 +171,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   return (
     <React.Fragment>
-      <LicenseModelWidget />
+      <LicensingModelSwitch />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
         <Typography
           variant="body2"
@@ -1229,11 +1229,11 @@ export default function PricingTable({
         <RowCategory>Row features</RowCategory>
         {renderRow('data-grid/row-height')}
         {nestedDivider}
+        {renderRow('data-grid/row-spanning')}
+        {nestedDivider}
         {renderRow('data-grid/row-reordering')}
         {nestedDivider}
         {renderRow('data-grid/row-pinning')}
-        {nestedDivider}
-        {renderRow('data-grid/row-spanning')}
         {nestedDivider}
         <RowCategory>Selection features</RowCategory>
         {renderRow('data-grid/row-selection')}
@@ -1271,11 +1271,11 @@ export default function PricingTable({
         {nestedDivider}
         {renderRow('data-grid/file-print')}
         {nestedDivider}
-        {renderRow('data-grid/file-excel')}
-        {nestedDivider}
         {renderRow('data-grid/file-clipboard-copy')}
         {nestedDivider}
         {renderRow('data-grid/file-clipboard-paste')}
+        {nestedDivider}
+        {renderRow('data-grid/file-excel')}
         {nestedDivider}
         <RowCategory>Rendering features</RowCategory>
         {renderRow('data-grid/customizable-components')}
