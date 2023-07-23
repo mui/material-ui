@@ -1,14 +1,16 @@
+import { Public_Sans } from 'next/font/google';
 import { extendTheme } from '@mui/joy/styles';
 
+const publicSans = Public_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+});
+
 const theme = extendTheme({
+  fontFamily: {
+    body: publicSans.style.fontFamily,
+  },
   components: {
-    JoyTypography: {
-      styleOverrides: {
-        root: {
-          fontFamily: 'var(--font-public-sans)',
-        },
-      },
-    },
     JoyButton: {
       styleOverrides: {
         root: ({ ownerState }) => ({

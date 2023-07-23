@@ -1,8 +1,5 @@
 import * as React from 'react';
-import { Public_Sans } from 'next/font/google';
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
-
-const publicSans = Public_Sans({ variable: '--font-public-sans', subsets: ['latin'] });
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,8 +8,8 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={publicSans.variable}>
-      <body className={publicSans.className}>
+    <html lang="en">
+      <body>
         <ThemeRegistry>{children}</ThemeRegistry>
       </body>
     </html>
