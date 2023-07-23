@@ -312,10 +312,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const [mounted, setMounted] = React.useState(false);
   const [indicatorStyle, setIndicatorStyle] = React.useState(defaultIndicatorStyle);
-  const [displayScroll, setDisplayScroll] = React.useState({
-    start: false,
-    end: false,
-  });
+  const [displayStartScroll, setDisplayStartScroll] = React.useState(false);
+  const [displayEndScroll, setDisplayEndScroll] = React.useState(false);
+  const [updateScrollObserver, setUpdateScrollObserver] = React.useState(false);
 
   const [scrollerStyle, setScrollerStyle] = React.useState({
     overflow: 'hidden',
@@ -508,7 +507,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       />
     ) : null;
 
-    const scrollButtonsActive = displayScroll.start || displayScroll.end;
+    const scrollButtonsActive = displayStartScroll || displayEndScroll;
     const showScrollButtons =
       scrollable && ((scrollButtons === 'auto' && scrollButtonsActive) || scrollButtons === true);
 
@@ -519,7 +518,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         orientation={orientation}
         direction={isRtl ? 'right' : 'left'}
         onClick={handleStartScrollClick}
-        disabled={!displayScroll.start}
+        disabled={!displayStartScroll}
         {...TabScrollButtonProps}
         className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
       />
@@ -534,7 +533,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         orientation={orientation}
         direction={isRtl ? 'left' : 'right'}
         onClick={handleEndScrollClick}
-        disabled={!displayScroll.end}
+        disabled={!displayEndScroll}
         {...TabScrollButtonProps}
         className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
       />
@@ -563,23 +562,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const updateScrollButtonState = useEventCallback(() => {
     if (scrollable && scrollButtons !== false) {
-      const { scrollTop, scrollHeight, clientHeight, scrollWidth, clientWidth } = tabsRef.current;
-      let showStartScroll;
-      let showEndScroll;
-
-      if (vertical) {
-        showStartScroll = scrollTop > 1;
-        showEndScroll = scrollTop < scrollHeight - clientHeight - 1;
-      } else {
-        const scrollLeft = getNormalizedScrollLeft(tabsRef.current, theme.direction);
-        // use 1 for the potential rounding error with browser zooms.
-        showStartScroll = isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
-        showEndScroll = !isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
-      }
-
-      if (showStartScroll !== displayScroll.start || showEndScroll !== displayScroll.end) {
-        setDisplayScroll({ start: showStartScroll, end: showEndScroll });
-      }
+      setUpdateScrollObserver(!updateScrollObserver);
     }
   });
 
@@ -593,7 +576,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       // replaced by Suspense with a fallback, once React is updated to version 18
       if (tabsRef.current) {
         updateIndicatorState();
-        updateScrollButtonState();
       }
     });
     const win = ownerWindow(tabsRef.current);
@@ -615,21 +597,61 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         resizeObserver.disconnect();
       }
     };
-  }, [updateIndicatorState, updateScrollButtonState]);
+  }, [updateIndicatorState]);
 
-  const handleTabsScroll = React.useMemo(
-    () =>
-      debounce(() => {
-        updateScrollButtonState();
-      }),
-    [updateScrollButtonState],
-  );
-
+  /**
+   * Toggle visibility of start and end scroll buttons
+   * Using IntersectionObserver on first and last Tabs.
+   */
   React.useEffect(() => {
-    return () => {
-      handleTabsScroll.clear();
+    let firstObserver;
+    let lastObserver;
+    const tabListChildren = Array.from(tabListRef.current.children);
+    const length = tabListChildren.length;
+    const firstTab = tabListChildren[0];
+    const lastTab = tabListChildren[length - 1];
+    const threshold = 0.99;
+    const observerOptions = {
+      root: tabsRef.current,
+      threshold,
     };
-  }, [handleTabsScroll]);
+
+    const handleScrollButtonStart = (entries) => {
+      let display = false;
+      entries.forEach(({ isIntersecting }) => {
+        display = !isIntersecting;
+      });
+      setDisplayStartScroll(display);
+    };
+
+    const handleScrollButtonEnd = (entries) => {
+      let display = false;
+      entries.forEach(({ isIntersecting }) => {
+        display = !isIntersecting;
+      });
+      setDisplayEndScroll(display);
+    };
+
+    if (
+      typeof IntersectionObserver !== 'undefined' &&
+      length > 0 &&
+      scrollable &&
+      scrollButtons !== false
+    ) {
+      firstObserver = new IntersectionObserver(handleScrollButtonStart, observerOptions);
+      firstObserver.observe(firstTab);
+
+      if (length > 1) {
+        lastObserver = new IntersectionObserver(handleScrollButtonEnd, observerOptions);
+        lastObserver.observe(lastTab);
+      }
+    }
+
+    return () => {
+      firstObserver?.disconnect();
+      lastObserver?.disconnect();
+    };
+  }, [scrollable, scrollButtons, updateScrollObserver, childrenProp?.length]);
 
   React.useEffect(() => {
     setMounted(true);
@@ -637,7 +659,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   React.useEffect(() => {
     updateIndicatorState();
-    updateScrollButtonState();
   });
 
   React.useEffect(() => {
@@ -763,7 +784,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
             : -scrollerStyle.scrollbarWidth,
         }}
         ref={tabsRef}
-        onScroll={handleTabsScroll}
       >
         {/* The tablist isn't interactive but the tabs are */}
         <FlexContainer
