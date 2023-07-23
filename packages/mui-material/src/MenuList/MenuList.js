@@ -239,7 +239,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         activeItemIndex = index;
       } else if (activeItemIndex === -1) {
         activeItemIndex = index;
-      } else {
+      } else if (children.length === index) {
         activeItemIndex = lastSelectedActiveItemIndex;
       }
     }
