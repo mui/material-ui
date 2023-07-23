@@ -1029,12 +1029,9 @@ describe('<Select />', () => {
       expect(options[2]).to.have.attribute('aria-selected', 'true');
     });
 
-    it('should not reset focused option on multi select', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+    it.only('should not reset focused option on multi select', function test() {
       const { getByRole, getAllByRole } = render(
-        <Select data-testid="select" multiple name="age" defaultValue={[]}>
+        <Select multiple name="age" defaultValue={[]}>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Ten</MenuItem>
           <MenuItem value={30}>Ten</MenuItem>
