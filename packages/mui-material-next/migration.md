@@ -39,25 +39,6 @@ Color options were changed to match Material You:
 - `"tertiary"` was added
 - `"error"` is now the default
 
-### Renamed variants
-
-Variants were renamed to match Material You:
-
-- `standard` renamed to `large`, which is still the default
-- `dot` renamed to `small`
-
-```diff
--<Badge variant="standard">
--<Badge classes={{ standard: 'className' }}>
-+<Badge variant="large">
-+<Badge classes={{ large: 'className' }}>
-
--<Badge variant="dot">
--<Badge classes={{ dot: 'className' }}>
-+<Badge variant="small">
-+<Badge classes={{ small: 'className' }}>
-```
-
 ## Slider
 
 ### Thumb and Value Label slots must accept refs

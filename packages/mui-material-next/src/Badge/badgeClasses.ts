@@ -12,6 +12,10 @@ export interface BadgeClasses {
   small: string;
   /** Styles applied to the badge `span` element if `size="large"`. */
   large: string;
+  /** Styles applied to the badge `span` element if `variant="dot"`. */
+  dot: string;
+  /** Styles applied to the badge `span` element if `variant="standard"`. */
+  standard: string;
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`. */
   anchorOriginTopRight: string;
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }}`. */
@@ -63,6 +67,8 @@ const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'badge',
   'small',
   'large',
+  'dot',
+  'standard',
   'anchorOriginTopRight',
   'anchorOriginBottomRight',
   'anchorOriginTopLeft',

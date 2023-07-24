@@ -7,6 +7,8 @@ import { BadgeClasses } from './badgeClasses';
 
 export interface BadgePropsSizeOverrides {}
 
+export interface BadgePropsVariantOverrides {}
+
 export interface BadgePropsColorOverrides {}
 
 export interface BadgeOrigin {
@@ -106,6 +108,12 @@ export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
      * @default 'large'
      */
     size?: OverridableStringUnion<'small' | 'large', BadgePropsSizeOverrides>;
+    /**
+     * The variant to use.
+     * @default 'standard'
+     * @deprecated Use `size = 'small' | 'large'` instead
+     */
+    variant?: OverridableStringUnion<'dot' | 'standard', BadgePropsVariantOverrides>;
   };
   defaultComponent: D;
 }

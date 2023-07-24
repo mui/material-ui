@@ -24,6 +24,10 @@ function classesTest() {
 // @ts-expect-error there is no 'medium' size
 <Badge size="medium" />;
 
+// `variant`
+<Badge variant="standard" />;
+<Badge variant="dot" />;
+
 // @ts-expect-error there is no variant `filled`
 <Badge variant="filled" />;
 

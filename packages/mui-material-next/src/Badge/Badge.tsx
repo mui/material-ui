@@ -14,13 +14,14 @@ import { BadgeOwnerState, BadgeProps, BadgeTypeMap } from './Badge.types';
 import { MD3ColorSchemeTokens } from '../styles';
 
 const useUtilityClasses = (ownerState: BadgeOwnerState) => {
-  const { color, anchorOrigin, invisible, overlap, size, classes = {} } = ownerState;
+  const { color, anchorOrigin, invisible, overlap, size, variant, classes = {} } = ownerState;
 
   const slots = {
     root: ['root'],
     badge: [
       'badge',
       size,
+      variant,
       invisible && 'invisible',
       `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(anchorOrigin.horizontal)}`,
       `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
@@ -55,6 +56,7 @@ const BadgeBadge = styled('span', {
     return [
       styles.badge,
       styles[ownerState.size],
+      styles[ownerState.variant],
       styles[
         `anchorOrigin${capitalize(ownerState.anchorOrigin.vertical)}${capitalize(
           ownerState.anchorOrigin.horizontal,
@@ -138,6 +140,15 @@ const defaultRtLAnchorOrigin = {
   horizontal: 'left',
 };
 
+function isSmall(size?: BadgeProps['size'], variant?: BadgeProps['variant']): boolean {
+  if (size) {
+    // size takes precedence
+    return size === 'small';
+  }
+
+  return variant === 'dot';
+}
+
 /**
  *
  * Demos:
@@ -171,7 +182,8 @@ const Badge = React.forwardRef(function Badge<
     slots = {},
     slotProps = {},
     showZero = false,
-    size: sizeProp = 'large',
+    size: sizeProp,
+    variant: variantProp,
     ...other
   } = props;
 
@@ -192,19 +204,21 @@ const Badge = React.forwardRef(function Badge<
     color: colorProp,
     overlap: overlapProp,
     size: sizeProp,
+    variant: variantProp,
     badgeContent: badgeContentProp,
   });
 
-  const invisible = invisibleFromHook || (badgeContent == null && sizeProp !== 'small');
+  const invisible = invisibleFromHook || (badgeContent == null && !isSmall(sizeProp, variantProp));
 
   const {
     color = colorProp,
     overlap = overlapProp,
     anchorOrigin = anchorOriginProp,
     size = sizeProp,
+    variant = variantProp,
   } = invisible ? prevProps : props;
 
-  const displayValue = size !== 'small' ? displayValueFromHook : undefined;
+  const displayValue = !isSmall(size, variant) ? displayValueFromHook : undefined;
 
   const ownerState = {
     ...props,
@@ -216,7 +230,8 @@ const Badge = React.forwardRef(function Badge<
     anchorOrigin,
     color,
     overlap,
-    size,
+    size: isSmall(size, variant) ? 'small' : 'large',
+    variant: isSmall(size, variant) ? 'dot' : 'standard',
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -319,6 +334,14 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   showZero: PropTypes.bool,
   /**
+   * The size to use.
+   * @default 'large'
+   */
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['small', 'large']),
+    PropTypes.string,
+  ]),
+  /**
    * The props used for each slot inside the Badge.
    * @default {}
    */
@@ -336,11 +359,11 @@ Badge.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * The size to use.
+   * The variant to use.
    * @default 'large'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['small', 'large']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['dot', 'standard']),
     PropTypes.string,
   ]),
 } as any;
