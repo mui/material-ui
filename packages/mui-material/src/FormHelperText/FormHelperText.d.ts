@@ -73,6 +73,6 @@ declare const FormHelperText: OverridableComponent<FormHelperTextTypeMap>;
 export type FormHelperTextProps<
   D extends React.ElementType = FormHelperTextTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<FormHelperTextTypeMap<P, D>, D> & { component?: D };
+> = OverrideProps<FormHelperTextTypeMap<P, D>, D> & { component?: React.ElementType };
 
 export default FormHelperText;

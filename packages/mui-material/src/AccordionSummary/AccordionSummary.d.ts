@@ -46,6 +46,6 @@ declare const AccordionSummary: ExtendButtonBase<AccordionSummaryTypeMap>;
 export type AccordionSummaryProps<
   D extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<AccordionSummaryTypeMap<P, D>, D> & { component?: D };
+> = OverrideProps<AccordionSummaryTypeMap<P, D>, D> & { component?: React.ElementType };
 
 export default AccordionSummary;

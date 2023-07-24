@@ -105,6 +105,6 @@ declare const Badge: OverridableComponent<BadgeTypeMap>;
 export type BadgeProps<
   D extends React.ElementType = BadgeTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<BadgeTypeMap<D, P>, D> & { component?: D };
+> = OverrideProps<BadgeTypeMap<D, P>, D> & { component?: React.ElementType };
 
 export default Badge;

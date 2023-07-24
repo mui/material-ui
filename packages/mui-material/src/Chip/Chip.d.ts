@@ -111,6 +111,6 @@ declare const Chip: OverridableComponent<ChipTypeMap>;
 export type ChipProps<
   D extends React.ElementType = ChipTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<ChipTypeMap<P, D>, D> & { component?: D };
+> = OverrideProps<ChipTypeMap<P, D>, D> & { component?: React.ElementType };
 
 export default Chip;

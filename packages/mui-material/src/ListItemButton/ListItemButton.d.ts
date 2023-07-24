@@ -82,6 +82,6 @@ declare const ListItemButton: ExtendButtonBase<ListItemButtonTypeMap>;
 export type ListItemButtonProps<
   D extends React.ElementType = ListItemButtonTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<ListItemButtonTypeMap<P, D>, D> & { component?: D };
+> = OverrideProps<ListItemButtonTypeMap<P, D>, D> & { component?: React.ElementType };
 
 export default ListItemButton;

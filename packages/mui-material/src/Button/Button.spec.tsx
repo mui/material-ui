@@ -26,11 +26,6 @@ const props2: ButtonProps = {
   },
 };
 
-const props3: ButtonProps<'span'> = {
-  // @ts-expect-error
-  component: 'div',
-};
-
 const props4: ButtonProps<typeof TestOverride> = {
   component: TestOverride,
   x: 2,

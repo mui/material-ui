@@ -36,6 +36,6 @@ declare const TableBody: OverridableComponent<TableBodyTypeMap>;
 export type TableBodyProps<
   D extends React.ElementType = TableBodyTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<TableBodyTypeMap<P, D>, D>& { component?: D };
+> = OverrideProps<TableBodyTypeMap<P, D>, D> & { component?: React.ElementType };
 
 export default TableBody;

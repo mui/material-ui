@@ -66,6 +66,6 @@ declare const MenuItem: ExtendButtonBase<MenuItemTypeMap>;
 export type MenuItemProps<
   D extends React.ElementType = MenuItemTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<MenuItemTypeMap<P, D>, D> & { component?: D };
+> = OverrideProps<MenuItemTypeMap<P, D>, D> & { component?: React.ElementType };
 
 export default MenuItem;
