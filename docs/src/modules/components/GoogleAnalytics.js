@@ -150,7 +150,6 @@ function GoogleAnalytics() {
 
   const codeStylingVariant = useNoSsrCodeStyling();
   React.useEffect(() => {
-    window.ga('set', 'dimension6', codeStylingVariant);
     window.gtag('set', 'user_properties', {
       codeStylingVariant,
     });
