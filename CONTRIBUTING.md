@@ -16,7 +16,6 @@ If you're reading this, you're awesome! Thank you for helping us make this proje
   - [Coding style](#coding-style)
 - [How to add a new demo in the documentation](#how-to-add-a-new-demo-in-the-documentation)
 - [How can I use a change that wasn't released yet?](#how-can-i-use-a-change-that-wasnt-released-yet)
-- [Translations](#translations)
 - [Roadmap](#roadmap)
 - [License](#license)
 
@@ -344,13 +343,6 @@ $test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
 >
 > If you have already installed this package, your changes will not be reflected when you reinstall it.
 > As a quick fix, you can temporarily bump the version number in your `package.json` before running `yarn build`.
-
-## Translations
-
-Translations are handled via [Crowdin](https://crowdin.com/project/material-ui-docs).
-You don't need to apply any changes to localized versions of our markdown files
-i.e. files having a `-locale` suffix. Crowdin automatically takes care of syncing
-these changes across the localized versions.
 
 ## Roadmap
 
