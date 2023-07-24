@@ -3,7 +3,7 @@ import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDe
 import Badge from '@mui/material-next/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 
-export default function BadgeUsage() {
+export default function BadgeMaterialYouPlayground() {
   return (
     <MaterialYouUsageDemo
       componentName="Badge"
@@ -15,7 +15,16 @@ export default function BadgeUsage() {
         {
           propName: 'color',
           knob: 'select',
-          options: ['error', 'primary', 'secondary', 'tertiary'],
+          options: [
+            'error',
+            'info',
+            'warning',
+            'success',
+            'primary',
+            'secondary',
+            'tertiary',
+            'default',
+          ],
           defaultValue: 'error',
         },
         {

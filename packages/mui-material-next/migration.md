@@ -31,13 +31,9 @@ Here's an example of the change using the Badge component:
 
 ## Badge
 
-### Added and removed colors
+### Changed default color
 
-Color options were changed to match Material You:
-
-- `"default"`, `"info"`, `"success"`, and `"warning"` were removed and are no longer supported out-of-the-box
-- `"tertiary"` was added
-- `"error"` is now the default
+The default value for the color prop was changed to `"error"`.
 
 ## Slider
 

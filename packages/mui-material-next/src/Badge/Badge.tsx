@@ -104,8 +104,7 @@ const BadgeBadge = styled('span', {
     fontSize: theme.typography.pxToRem(theme.sys.typescale.label.small.size),
     lineHeight: `calc(${tokens.sys.typescale.label.small.lineHeight} / ${tokens.sys.typescale.label.small.size})`,
     letterSpacing,
-    backgroundColor: tokens.sys.color[ownerState.color],
-    color: tokens.sys.color[`on${capitalize(ownerState.color)}` as keyof MD3ColorSchemeTokens],
+    color: tokens.sys.color.onSurface,
     minWidth: 'var(--md-comp-badge-size)',
     height: 'var(--md-comp-badge-size)',
     paddingRight: `calc(var(--md-comp-badge-padding-x) - ${letterSpacing})`,
@@ -127,6 +126,10 @@ const BadgeBadge = styled('span', {
         duration: theme.transitions.duration.leavingScreen,
       }),
     },
+    ...(ownerState.color !== 'default' && {
+      backgroundColor: tokens.sys.color[ownerState.color],
+      color: tokens.sys.color[`on${capitalize(ownerState.color)}` as keyof MD3ColorSchemeTokens],
+    }),
   };
 });
 
@@ -305,7 +308,16 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default 'error'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'error']),
+    PropTypes.oneOf([
+      'error',
+      'info',
+      'primary',
+      'secondary',
+      'success',
+      'tertiary',
+      'warning',
+      'default',
+    ]),
     PropTypes.string,
   ]),
   /**
@@ -360,7 +372,8 @@ Badge.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The variant to use.
-   * @default 'large'
+   * @default 'standard'
+   * @deprecated Use `size = 'small' | 'large'` instead
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['dot', 'standard']),
