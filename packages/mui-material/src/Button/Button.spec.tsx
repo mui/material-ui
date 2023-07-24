@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Button, { ButtonProps } from '@mui/material/Button';
+import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
 import { expectType } from '@mui/types';
 
@@ -8,6 +9,15 @@ const log = console.log;
 const TestOverride = React.forwardRef<HTMLDivElement, { x?: number }>((props, ref) => (
   <div ref={ref} />
 ));
+
+type CustomLinkProps = MuiLinkProps<typeof ReactRouterLink, LinkProps>;
+const CustomLink: React.FC<React.PropsWithChildren<CustomLinkProps>> = ({ children, ...props }) => {
+  return (
+    <MuiLink component={ReactRouterLink} {...props}>
+      {children}
+    </MuiLink>
+  );
+};
 
 function FakeIcon() {
   return <div>Icon</div>;
@@ -62,6 +72,9 @@ const buttonTest = () => (
     </Button>
     <Button href="/open-collective">Link</Button>
     <Button component={ReactRouterLink} to="/open-collective">
+      Link
+    </Button>
+    <Button component={CustomLink} to="/some-route">
       Link
     </Button>
     <Button href="/open-collective">Link</Button>
