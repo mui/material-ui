@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { type DropdownContextValue } from './DropdownContext';
 import useControllableReducer from '../utils/useControllableReducer';
