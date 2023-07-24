@@ -65,7 +65,8 @@ const fieldStyles = `
       border-color: var(--palette-primary);
       outline-color: var(--focus-ring);
     }
-  }`;
+  }
+`;
 const Field = styled('div')(fieldStyles);
 
 const inputStyles = `
@@ -85,12 +86,13 @@ const inputStyles = `
   &:focus ~ label {
     transform: translateY(-100%) scale(var(--TextInput-labelScale));
     font-weight: 600;
-  }`;
+  }
+`;
 const StyledInput = styled('input')(inputStyles);
 
-const CSS = `.MuiInput-root{${fieldStyles}}
+const CSS = `.MuiInput-root {${fieldStyles}}
 
-.MuiInput-input{${inputStyles}}`;
+.MuiInput-input {${inputStyles}}`;
 
 const StyledFloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
   function StyledFloatingLabelInput(props, ref) {
@@ -134,8 +136,8 @@ const TailwindFloatingLabelInput = React.forwardRef<
         id={id}
       />
       <label
-        className="pointer-events-none absolute left-[0.75rem] top-[50%] flex origin-[0_0] translate-y-[-100%] scale-[--TextInput-labelScale] transform items-center overflow-hidden whitespace-nowrap text-start font-[500] leading-[--TextInput-labelLineHeight] text-[--muidocs-palette-grey-600] transition-transform duration-100 ease-out peer-placeholder-shown:translate-y-[-50%] peer-placeholder-shown:scale-100 peer-placeholder-shown:transform peer-focus:translate-y-[-100%] peer-focus:scale-[--TextInput-labelScale] peer-focus:transform peer-focus:text-[--palette-primary] "
         htmlFor={id}
+        className="pointer-events-none absolute left-[0.75rem] top-[50%] flex origin-[0_0] translate-y-[-100%] scale-[--TextInput-labelScale] transform items-center overflow-hidden whitespace-nowrap text-start font-[500] leading-[--TextInput-labelLineHeight] text-[--muidocs-palette-grey-600] transition-transform duration-100 ease-out peer-placeholder-shown:translate-y-[-50%] peer-placeholder-shown:scale-100 peer-placeholder-shown:transform peer-focus:translate-y-[-100%] peer-focus:scale-[--TextInput-labelScale] peer-focus:transform peer-focus:text-[--palette-primary] "
       >
         Floating label
       </label>
@@ -184,11 +186,13 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' | 'tailw
 BaseInputDemo.getCode = (styling?: 'system' | 'tailwindcss' | 'css') => {
   if (styling === 'system') {
     return `import Input from '@mui/base/Input';
-    
+
 const Field = styled('div')\`${fieldStyles}\`;
 const StyledInput = styled('input')\`${inputStyles}/\`;
 
-const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
+const FloatingLabelInput = React.forwardRef<
+  HTMLInputElement, JSX.IntrinsicElements['input']
+>(
   function FloatingLabelInput(props, ref) {
     const id = unstable_useId(props.id);
     return (
@@ -213,7 +217,9 @@ const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicEleme
     return `import Input from '@mui/base/Input';
 import './styles.css';
 
-const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
+const FloatingLabelInput = React.forwardRef<
+  HTMLInputElement, JSX.IntrinsicElements['input']
+>(
   function FloatingLabelInput(props, ref) {
     const id = unstable_useId(props.id);
     return (
@@ -247,29 +253,29 @@ const FloatingLabelInput = React.forwardRef(
         ref={ref}
         {...props}
         className={clsx(
-          'peer h-full flex-1 border-none bg-transparent 
+          \`peer h-full flex-1 border-none bg-transparent 
           px-3 pb-[0.75rem] pt-[--TextInput-paddingTop] 
           font-sans text-base placeholder-transparent 
-          focus:outline-none focus:ring-0',
+          focus:outline-none focus:ring-0\`,
           props.className,
         )}
         id={id}
       />
       <label
-        className="pointer-events-none absolute left-[0.75rem] 
-        top-[50%] flex origin-[0_0] translate-y-[-100%] 
-        scale-[--TextInput-labelScale] transform items-center 
-        overflow-hidden whitespace-nowrap text-start font-[500] 
-        leading-[--TextInput-labelLineHeight] 
-        text-[--muidocs-palette-grey-600] transition-transform 
-        duration-100 ease-out 
-        peer-placeholder-shown:translate-y-[-50%] 
-        peer-placeholder-shown:scale-100 
-        peer-placeholder-shown:transform 
-        peer-focus:translate-y-[-100%] 
-        peer-focus:scale-[--TextInput-labelScale] 
-        peer-focus:transform peer-focus:text-[--palette-primary]"
         htmlFor={id}
+        className="pointer-events-none absolute left-[0.75rem] 
+          top-[50%] flex origin-[0_0] translate-y-[-100%] 
+          scale-[--TextInput-labelScale] transform items-center 
+          overflow-hidden whitespace-nowrap text-start font-[500] 
+          leading-[--TextInput-labelLineHeight] 
+          text-[--muidocs-palette-grey-600] transition-transform 
+          duration-100 ease-out 
+          peer-placeholder-shown:translate-y-[-50%] 
+          peer-placeholder-shown:scale-100 
+          peer-placeholder-shown:transform 
+          peer-focus:translate-y-[-100%] 
+          peer-focus:scale-[--TextInput-labelScale] 
+          peer-focus:transform peer-focus:text-[--palette-primary]"
       >
         Floating label
       </label>
@@ -279,21 +285,21 @@ const FloatingLabelInput = React.forwardRef(
 
 <InputUnstyled
   placeholder="Type something here"
-  className=" relative inline-flex h-[--TextInput-height] w-[320px] 
-  rounded-[--muidocs-shape-borderRadius] border border-solid 
-  border-[--muidocs-palette-grey-300] 
-  bg-[--muidocs-palette-background-paper] 
-  p-[0px_0.75rem] [box-shadow:var(--shadow)] 
-  outline-transparent [--TextInput-height:64px] 
-  [--TextInput-labelLineHeight:20px] [--TextInput-labelScale:0.75] 
-  [--TextInput-paddingTop:2rem] 
-  focus-within:!border-[--palette-primary] 
-  focus-within:[outline:3px_solid_var(--focus-ring)] 
-  hover:border-[--muidocs-palette-grey-400] dark:border-transparent 
-  dark:shadow-[0_2px_4px_0_rgba(0_0_0/0.8)] 
-  dark:focus-within:!border-[--palette-primary] 
-  dark:focus-within:[outline:3px_solid_var(--focus-ring)] 
-  dark:hover:border-[--muidocs-palette-grey-700]"
+  className="relative inline-flex h-[--TextInput-height] w-[320px] 
+    rounded-[--muidocs-shape-borderRadius] border border-solid 
+    border-[--muidocs-palette-grey-300] 
+    bg-[--muidocs-palette-background-paper] 
+    p-[0px_0.75rem] [box-shadow:var(--shadow)] 
+    outline-transparent [--TextInput-height:64px] 
+    [--TextInput-labelLineHeight:20px] [--TextInput-labelScale:0.75] 
+    [--TextInput-paddingTop:2rem] 
+    focus-within:!border-[--palette-primary] 
+    focus-within:[outline:3px_solid_var(--focus-ring)] 
+    hover:border-[--muidocs-palette-grey-400] dark:border-transparent 
+    dark:shadow-[0_2px_4px_0_rgba(0_0_0/0.8)] 
+    dark:focus-within:!border-[--palette-primary] 
+    dark:focus-within:[outline:3px_solid_var(--focus-ring)] 
+    dark:hover:border-[--muidocs-palette-grey-700]"
   slots={{ input: FloatingLabelInput }}
 />
 `;

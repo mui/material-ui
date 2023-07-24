@@ -59,9 +59,10 @@ const StyledAppContainer = styled(AppContainer, {
         }),
     ...(!disableAd && {
       ...(!hasTabs && {
+        // Sync with material-ui/docs/src/modules/components/Ad.js container
         '&& .description': {
-          paddingBottom: 4 * 10 + 126,
-          marginBottom: 3 * 10,
+          paddingBottom: `calc(${theme.spacing(4)} + 126px)`,
+          marginBottom: theme.spacing(3),
         },
         '&& .description.ad': {
           paddingBottom: 0,
@@ -70,7 +71,7 @@ const StyledAppContainer = styled(AppContainer, {
       }),
       ...(hasTabs && {
         '&& .component-tabs .MuiTabs-root': {
-          marginBottom: 4 * 10 + 4 * 10 + 126,
+          marginBottom: `calc(${theme.spacing(4)} + 126px + 40px)`,
         },
         '&& .component-tabs.ad .MuiTabs-root': {
           marginBottom: 0,

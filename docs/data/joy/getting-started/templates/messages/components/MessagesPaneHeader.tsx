@@ -38,11 +38,11 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
           <i data-feather="chevron-left" />
         </IconButton>
         <Avatar size="lg" src={sender.avatar} />
-
         <div>
           <Typography
             fontWeight="lg"
             fontSize="lg"
+            component="h2"
             noWrap
             endDecorator={
               sender.online ? (

@@ -19,6 +19,8 @@ The Joy UI Card component includes several complementary utility components to h
 - [Card Content](#card-layers): an optional wrapper that brings content to the front (commonly but not always used with the Card Cover).
 - [Card Actions](#actions): an optional wrapper that groups a set of buttons.
 
+{{"demo": "CardUsage.js", "hideToolbar": true, "bg": "gradient"}}
+
 ## Basics
 
 ```jsx

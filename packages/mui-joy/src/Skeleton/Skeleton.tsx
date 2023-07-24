@@ -217,7 +217,7 @@ const SkeletonRoot = styled('span', {
         ...(ownerState.level !== 'inherit' && {
           ...theme.typography[ownerState.level!],
         }),
-        '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
+        WebkitMaskImage: '-webkit-radial-gradient(white, black)',
         '&::before': {
           position: 'absolute',
           zIndex: 'var(--unstable_pseudo-zIndex)',
