@@ -134,9 +134,9 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     children,
     action,
     component = 'button',
-    color: colorProp = 'primary',
+    color: colorProp = 'neutral',
     disabled: disabledProp,
-    variant: variantProp = 'soft',
+    variant: variantProp = 'plain',
     size: sizeProp = 'md',
     slots = {},
     slotProps = {},
@@ -217,7 +217,7 @@ IconButton.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
@@ -278,7 +278,7 @@ IconButton.propTypes /* remove-proptypes */ = {
   tabIndex: PropTypes.number,
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'soft'
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

@@ -930,3 +930,29 @@ extendTheme({
   },
 });
 ```
+
+### IconButton
+
+The default variant and color of the IconButton component has been changed to:
+
+```diff
+- variant: 'soft'
+- color: 'primary'
++ variant: 'plain'
++ color: 'neutral'
+```
+
+To keep the old IconButton variant and color, add the following to your theme:
+
+```js
+extendTheme({
+  components: {
+    JoyIconButton: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+    },
+  },
+});
+```
