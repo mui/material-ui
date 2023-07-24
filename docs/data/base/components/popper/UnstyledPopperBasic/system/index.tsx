@@ -82,8 +82,8 @@ const StyledPopperDiv = styled('div')(
     border-radius: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: ${theme.palette.mode === 'dark'
-      ? `0 4px 8px rgb(0 0 0 / 0.7)`
-      : `0 4px 8px rgb(0 0 0 / 0.1)`};
+      ? `0px 4px 8px rgb(0 0 0 / 0.7)`
+      : `0px 4px 8px rgb(0 0 0 / 0.1)`};
     padding: 0.75rem;
     color: ${theme.palette.mode === 'dark' ? blue[200] : blue[800]};
     font-size: 0.875rem;
