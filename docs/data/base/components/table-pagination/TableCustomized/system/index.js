@@ -101,8 +101,10 @@ const rows = [
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
 const blue = {
+  50: '#F0F7FF',
   200: '#A5D8FF',
   400: '#3399FF',
+  900: '#003A75',
 };
 
 const grey = {
@@ -135,7 +137,7 @@ const Root = styled('div')(
   }
 
   th {
-    background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
+    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[50]};
   }
   `,
 );

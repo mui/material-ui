@@ -1,10 +1,16 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "actions": "A ref with imperative actions that can be performed on the menu.",
-    "onItemsChange": "Function called when the items displayed in the menu change.",
-    "slotProps": "The props used for each slot inside the Menu.",
-    "slots": "The components used for each slot inside the Menu. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details."
+    "actions": {
+      "description": "A ref with imperative actions that can be performed on the menu."
+    },
+    "onItemsChange": {
+      "description": "Function called when the items displayed in the menu change."
+    },
+    "slotProps": { "description": "The props used for each slot inside the Menu." },
+    "slots": {
+      "description": "The components used for each slot inside the Menu. Either a string to use a HTML element or a component."
+    }
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },

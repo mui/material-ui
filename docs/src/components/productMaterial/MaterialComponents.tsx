@@ -82,7 +82,7 @@ const CODES = {
 `,
   Table: `
 <TableContainer
-  component={Paper} 
+  component={Paper}
   variant="outlined"
 >
   <Table aria-label="demo table">
@@ -320,14 +320,23 @@ export default function MaterialComponents() {
             </Frame.Demo>
             <Frame.Info
               sx={{
-                minHeight: 200,
+                minHeight: 180,
                 maxHeight: demo === 'Table' ? 260 : 'none',
                 position: 'relative',
                 overflow: 'hidden',
+                p: 0,
                 pt: 5,
               }}
             >
-              <Box sx={{ height: 'calc(100% + 40px)', overflow: 'auto', m: -2, p: 2, pt: 3 }}>
+              <Box
+                sx={{
+                  overflow: 'auto',
+                  pt: 2,
+                  pb: 1,
+                  px: 2,
+                  height: '100%',
+                }}
+              >
                 <HighlightedCode
                   copyButtonHidden
                   component={MarkdownElement}

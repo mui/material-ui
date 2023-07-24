@@ -4,7 +4,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { useLicenseType } from 'docs/src/components/pricing/LicenseTypeContext';
+import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
   margin: '14px auto 4px',
@@ -16,7 +16,11 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
   border: '1px solid',
   borderColor: (theme.vars || theme).palette.grey[200],
   backgroundColor: (theme.vars || theme).palette.grey[50],
-  '& .MuiTabs-scroller': {
+  '&:has(.Mui-focusVisible)': {
+    outline: `2px solid ${(theme.vars || theme).palette.primary.main}`,
+  },
+  '& .MuiTabs-scroller, & .MuiTab-root': {
+    // Override inline-style to see the box-shadow
     overflow: 'visible!important',
   },
   '& span': {
@@ -32,10 +36,6 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
     borderRadius: 20,
     '&:hover': {
       color: (theme.vars || theme).palette.grey[800],
-    },
-    '&.Mui-focusVisible': {
-      outline: `2px solid ${(theme.vars || theme).palette.primary.main}`,
-      outlineOffset: 2,
     },
     '&.Mui-selected': {
       color: (theme.vars || theme).palette.grey[900],
@@ -90,24 +90,24 @@ const tooltipProps = {
   },
 };
 
-export default function LicenseTypeWidget() {
-  const { licenseType, setLicenseType } = useLicenseType();
+export default function LicensingModelSwitch() {
+  const { licensingModel, setLicensingModel } = useLicensingModel();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setLicenseType(newValue);
+    setLicensingModel(newValue);
   };
 
   return (
     <Box sx={{ display: 'flex' }}>
       <StyledTabs
-        aria-label="license type"
+        aria-label="licensing model"
         selectionFollowsFocus
-        value={licenseType}
+        value={licensingModel}
         onChange={handleChange}
       >
         <Tab
           disableFocusRipple
-          value="Perpetual"
+          value="perpetual"
           label={
             <Tooltip title={perpetualDescription} {...tooltipProps}>
               <span>Perpetual</span>
@@ -116,7 +116,7 @@ export default function LicenseTypeWidget() {
         />
         <Tab
           disableFocusRipple
-          value="Annual"
+          value="annual"
           label={
             <Tooltip title={annualDescription} {...tooltipProps}>
               <span>Annual</span>

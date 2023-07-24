@@ -16,8 +16,7 @@ const GOLDs = [
     srcSet: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
     description: 'Enterprise-ready open-source software.',
-    // Tidelift requests this format.
-    href: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
+    href: 'https://www.tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
   },
   {
     src: 'https://avatars.githubusercontent.com/u/1262264?size=40',

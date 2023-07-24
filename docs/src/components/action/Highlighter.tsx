@@ -15,9 +15,10 @@ export default function Highlighter({
   const ref = React.useRef<null | HTMLButtonElement>(null);
   return (
     <ButtonBase
+      component="span"
       ref={ref}
       {...props}
-      onClick={(event) => {
+      onClick={(event: any) => {
         if (ref.current) {
           ref.current.scrollIntoView({ block: 'nearest' });
         }

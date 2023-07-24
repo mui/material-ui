@@ -37,7 +37,8 @@ export default function AppFooter(props: AppFooterProps) {
           gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
           gridTemplateRows: 'auto',
           '& a:not(.MuiIconButton-root)': {
-            mt: 1,
+            pt: 0.5,
+            pb: 0.5,
             color: 'text.secondary',
             typography: 'body2',
             '&:hover': {
@@ -65,7 +66,7 @@ export default function AppFooter(props: AppFooterProps) {
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
+            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Products
             </Typography>
             <Link href={ROUTES.productMaterial}>Material UI</Link>
@@ -76,7 +77,7 @@ export default function AppFooter(props: AppFooterProps) {
             <Link href={ROUTES.productToolpad}>MUI Toolpad</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
+            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Resources
             </Typography>
             <Link href={ROUTES.materialIcons}>Material Icons</Link>
@@ -86,7 +87,7 @@ export default function AppFooter(props: AppFooterProps) {
             <Link href={ROUTES.theming}>Theming</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
+            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Explore
             </Typography>
             <Link href={ROUTES.documentation}>Documentation</Link>
@@ -96,7 +97,7 @@ export default function AppFooter(props: AppFooterProps) {
             <Link href={ROUTES.roadmap}>Roadmap</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
+            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Company
             </Typography>
             <Link href={ROUTES.about}>About</Link>
@@ -109,6 +110,8 @@ export default function AppFooter(props: AppFooterProps) {
                   py: 0.1,
                   ml: 1,
                   mb: '1px',
+                  position: 'relative',
+                  top: theme.spacing(-0.5),
                   fontSize: theme.typography.pxToRem(10),
                   fontWeight: 'Bold',
                   textTransform: 'uppercase',

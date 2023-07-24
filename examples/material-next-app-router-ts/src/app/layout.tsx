@@ -26,7 +26,11 @@ export const metadata = {
   description: 'Next.js App Router + Material UI v5',
 };
 
-const roboto = Roboto({ weight: ['300', '400', '500', '700'], subsets: ['latin'] });
+const roboto = Roboto({
+  variable: '--font-roboto',
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+});
 
 const DRAWER_WIDTH = 240;
 
@@ -44,7 +48,7 @@ const PLACEHOLDER_LINKS = [
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={roboto.variable}>
       <body className={roboto.className}>
         <ThemeRegistry>
           <AppBar position="fixed" sx={{ zIndex: 2000 }}>
