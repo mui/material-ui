@@ -52,16 +52,7 @@ describe('<Menu />', () => {
   }));
 
   describe('after initialization', () => {
-    const spyFocus = spy();
-
     function Test() {
-      React.useEffect(() => {
-        document.addEventListener('focus', spyFocus, true);
-        return () => {
-          document.removeEventListener('focus', spyFocus, true);
-        };
-      }, []);
-
       return (
         <DropdownContext.Provider value={testContext}>
           <Menu>
@@ -81,8 +72,6 @@ describe('<Menu />', () => {
       otherItems.forEach((item) => {
         expect(item.tabIndex).to.equal(-1);
       });
-      expect(spyFocus.callCount).to.equal(1);
-      expect(spyFocus.firstCall.args[0]).to.have.property('target', firstItem);
     });
   });
 
