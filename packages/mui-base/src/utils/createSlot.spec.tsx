@@ -21,7 +21,7 @@ function MissingRequiredProps() {
 
 function ThrowsOnInvalidProps() {
   // @ts-expect-error throws on invalid prop
-  return <SlotComponent a={true} />;
+  return <SlotComponent a={false} />;
 }
 
 function WorkAsExpected() {
