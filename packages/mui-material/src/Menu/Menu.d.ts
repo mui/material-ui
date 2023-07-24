@@ -9,7 +9,8 @@ import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { MenuClasses } from './menuClasses';
 
-export interface MenuProps extends StandardProps<Omit<PopoverProps, 'slots' | 'slotProps'>, 'children'> {
+export interface MenuProps
+  extends StandardProps<Omit<PopoverProps, 'slots' | 'slotProps'>, 'children'> {
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.
