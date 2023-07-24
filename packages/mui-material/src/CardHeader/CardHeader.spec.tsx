@@ -12,6 +12,8 @@ interface ComponentProp {
   component?: React.ElementType;
 }
 
+<CardHeader component={CustomComponent} stringProp="s" numberProp={2} />;
+
 function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader);
   React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
