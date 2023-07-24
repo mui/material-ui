@@ -11,7 +11,7 @@ const theme = createTheme({
   },
 });
 
-export default function Palette() {
+export default function UsingColorObject() {
   return (
     <ThemeProvider theme={theme}>
       <Stack direction="row" gap={4}>
