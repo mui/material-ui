@@ -101,6 +101,7 @@ The CSS [`color-scheme`](https://web.dev/color-scheme/) is applied by default to
 - Set the default `Typography`'s level (`body1`) style on the `<body>` element. The style comes from `theme.typography.{default typography level prop}`.
 - Set the font-weight to `bold` for the `<b>` and `<strong>` elements.
 - Custom font-smoothing is enabled for better display of the default font.
+- Set the color of `<a>` elements to provide better contrast in both light and dark modes.
 
 ## Customization
 

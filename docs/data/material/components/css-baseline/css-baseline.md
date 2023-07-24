@@ -115,6 +115,7 @@ To enable it, you can set `enableColorScheme=true` as follows:
 - Set the `theme.typography.body1` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
 - Custom font-smoothing is enabled for better display of the Roboto font.
+- Set the color of `<a>` elements to provide better contrast in both light and dark modes.
 
 ## Customization
 
