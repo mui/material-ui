@@ -69,10 +69,10 @@ describe('<Chip />', () => {
     it('contained by default', () => {
       const { getByTestId } = render(<Chip data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.variantSolid);
+      expect(getByTestId('root')).to.have.class(classes.variantSoft);
     });
 
-    (['outlined', 'soft', 'solid'] as const).forEach((variant) => {
+    (['outlined', 'plain', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(<Chip data-testid="root" variant={variant} />);
 
@@ -87,7 +87,7 @@ describe('<Chip />', () => {
     it('adds a primary class by default', () => {
       const { getByTestId } = render(<Chip data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.colorPrimary);
+      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
