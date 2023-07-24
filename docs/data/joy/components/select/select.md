@@ -132,6 +132,14 @@ To control the placement of the listbox, use `placement`:
 
 :::
 
+#### Placement
+
+To align `listbox` position to `Select` while displaying long options, use `slotProps` prop to position listbox slot:
+
+{{"demo": "SelectPosition.js"}}
+
+````
+
 #### Controlling the open state
 
 You can control the open state of the select with the `listboxOpen` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultListboxOpen` prop.
@@ -230,3 +238,4 @@ The value can be `string`, `number`, or any valid React element.
 
 To keep the listbox open for inspecting elements, enable the `Emulate a focused page` option from the [Chrome DevTool Rendering](https://developer.chrome.com/docs/devtools/rendering/apply-effects/#emulate-a-focused-page) tab.
 You can also access this option by using [command menu and search for it](https://developer.chrome.com/docs/devtools/command-menu/).
+````
