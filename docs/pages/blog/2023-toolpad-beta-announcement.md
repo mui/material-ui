@@ -1,7 +1,7 @@
 ---
 title: Introducing Toolpad: MUI's low-code admin builder
 description: Assemble admin panels and internal tools faster than ever before with Toolpad—now in beta.
-date: 2023-07-17T00:00:00.000Z
+date: 2023-07-24T00:00:00.000Z
 authors: ['prakhargupta']
 card: true
 tags: ['Product', 'News']
@@ -105,6 +105,6 @@ We plan to continue to iterate on our vision of helping you as a developer to in
 
 The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/mui-toolpad) and our [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
 
-If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [Twitter](https://twitter.com/MUI_Toolpad). You can also engage in conversation in our [Discord](https://discord.gg/hHqtMP9Ckc) server.
+If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [Twitter](https://twitter.com/MUI_Toolpad). You can also engage in conversation in our [Discord](https://discord.gg/Rqwf7Ddez9) server.
 
 If you'd like an in-depth demo and to discuss your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).
