@@ -608,29 +608,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     let lastObserver;
     const tabListChildren = Array.from(tabListRef.current.children);
     const length = tabListChildren.length;
-    const firstTab = tabListChildren[0];
-    const lastTab = tabListChildren[length - 1];
-    const threshold = 0.99;
-    const observerOptions = {
-      root: tabsRef.current,
-      threshold,
-    };
-
-    const handleScrollButtonStart = (entries) => {
-      let display = false;
-      entries.forEach(({ isIntersecting }) => {
-        display = !isIntersecting;
-      });
-      setDisplayStartScroll(display);
-    };
-
-    const handleScrollButtonEnd = (entries) => {
-      let display = false;
-      entries.forEach(({ isIntersecting }) => {
-        display = !isIntersecting;
-      });
-      setDisplayEndScroll(display);
-    };
 
     if (
       typeof IntersectionObserver !== 'undefined' &&
@@ -638,6 +615,21 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       scrollable &&
       scrollButtons !== false
     ) {
+      const firstTab = tabListChildren[0];
+      const lastTab = tabListChildren[length - 1];
+      const threshold = 0.99;
+      const observerOptions = {
+        root: tabsRef.current,
+        threshold,
+      };
+
+      const handleScrollButtonStart = (entries) => {
+        setDisplayStartScroll(!entries[0].isIntersecting);
+      };
+
+      const handleScrollButtonEnd = (entries) => {
+        setDisplayEndScroll(!entries[0].isIntersecting);
+      };
       firstObserver = new IntersectionObserver(handleScrollButtonStart, observerOptions);
       firstObserver.observe(firstTab);
 
