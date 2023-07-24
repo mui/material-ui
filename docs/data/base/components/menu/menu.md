@@ -62,6 +62,17 @@ Notice that it uses the built-in [Popper](/base-ui/react-popper/) component to b
 
 {{"demo": "UnstyledMenuBasic"}}
 
+The Dropdown should be the outermost component—all other menu-related components must be placed as its children (not necessarily as direct ones).
+If you need to control the open state of the menu or react to its changes, place an `open`/`onOpenChange` props on the Dropdown.
+
+The Dropdown should contain at most one Menu Button and one Menu.
+It will wire them together, so that pressing the button will open the menu.
+It also takes care of assigning proper accessibility attributes, so the menu can be used with assistive technologies or a keyboard.
+
+The Menu hosts Menu Items.
+They can be wrapped in arbitrary tags and components or even grouped together.
+Clicking on a menu item closes the associated menu.
+
 ### Anatomy
 
 - The Menu component comprises a root slot that renders an `<div>` by default and a listbox slot that is a `<li>`.
@@ -94,7 +105,7 @@ See [Overriding component structure](/base-ui/guides/overriding-component-struct
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.
-The following code snippet applies a CSS class called `my-listbox` to the root slot:
+The following code snippet applies a CSS class called `my-listbox` to the listbox slot:
 
 ```jsx
 <Menu slotProps={{ listbox: { className: 'my-listbox' } }} />
