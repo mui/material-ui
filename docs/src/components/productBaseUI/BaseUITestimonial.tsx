@@ -63,7 +63,10 @@ export default function BaseUITestimonial() {
           </Typography>
           <Divider />
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <Avatar src="https://media.licdn.com/dms/image/C4D03AQHm6cbz2UDXpw/profile-displayphoto-shrink_800_800/0/1642674447256?e=2147483647&v=beta&t=L8g2vW_8mG8AvB3lwui0CT8969_Cx9QQ0iJXIS47i0o" />
+            <Avatar
+              alt=""
+              src="https://media.licdn.com/dms/image/C4D03AQHm6cbz2UDXpw/profile-displayphoto-shrink_800_800/0/1642674447256?e=2147483647&v=beta&t=L8g2vW_8mG8AvB3lwui0CT8969_Cx9QQ0iJXIS47i0o"
+            />
             <Box sx={{ flex: 1 }}>
               <Typography variant="body2" fontWeight={600}>
                 Szilárd Dóró

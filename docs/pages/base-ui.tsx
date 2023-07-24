@@ -17,7 +17,8 @@ export default function Core() {
     <BrandingCssVarsProvider>
       <Head
         title="Base UI: Ship accessible & sleek components"
-        description='Base UI gives you a set of foundational \"headless\" components that you can build with using any styling solution you choose—no need to override any default style engine or theme.'
+        description={`Base UI is a library of headless ("unstyled") React UI components and low-level hooks.
+        You can style them with any CSS solutions like PostCSS or Tailwind CSS.`}
         card="/static/blog/introducing-mui-base/card.png"
       >
         <link

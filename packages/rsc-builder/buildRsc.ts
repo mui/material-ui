@@ -1,13 +1,10 @@
 import * as yargs from 'yargs';
 import * as fse from 'fs-extra';
-import os from 'os';
 import path from 'path';
 import findComponents from '../api-docs-builder/utils/findComponents';
 import findHooks from '../api-docs-builder/utils/findHooks';
 
 type CommandOptions = { grep?: string };
-
-const { EOL } = os;
 
 const PROJECTS = [
   {
@@ -44,14 +41,17 @@ async function processFile(
   filename: string,
   options: {
     lineToPrepend?: string;
-    truncate?: boolean;
   } = {},
 ) {
-  const { lineToPrepend = `'use client';${EOL}`, truncate = true } = options;
+  const { lineToPrepend = `'use client';` } = options;
   const contents = await fse.readFile(filename, 'utf8');
 
-  const truncatedContents = truncate ? contents.split(/\r?\n/).slice(1).join('\n') : contents;
-  const newContents = `${lineToPrepend}${truncatedContents}`;
+  const lines = contents.split(/\r?\n/);
+  if (lines[0] === lineToPrepend) {
+    return;
+  }
+
+  const newContents = `${lineToPrepend}\n${contents}`;
 
   await fse.writeFile(filename, newContents);
 }

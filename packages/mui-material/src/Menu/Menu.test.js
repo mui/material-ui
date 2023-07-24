@@ -24,6 +24,14 @@ describe('<Menu />', () => {
     render,
     muiName: 'MuiMenu',
     refInstanceof: window.HTMLDivElement,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      paper: {
+        expectedClassName: classes.paper,
+      },
+    },
     testDeepOverrides: { slotName: 'list', slotClassName: classes.list },
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'menu' },

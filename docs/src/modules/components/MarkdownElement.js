@@ -51,9 +51,11 @@ const Root = styled('div')(
     // inline code block
     '& :not(pre) > code': {
       display: 'inline-block',
-      padding: '0 5px',
+      padding: '0 4px',
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-      backgroundColor: alpha(lightTheme.palette.primary.light, 0.15),
+      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+      border: '1px solid',
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       borderRadius: 5,
       fontSize: lightTheme.typography.pxToRem(13),
       direction: 'ltr /*! @noflip */',
@@ -131,13 +133,13 @@ const Root = styled('div')(
         textDecoration: 'none',
       },
       '&:hover .anchor-link, & .comment-link': {
-        lineHeight: '21.5px',
         position: 'absolute',
         textAlign: 'center',
-        marginLeft: 10,
+        marginLeft: 8,
         marginTop: 5,
         height: 26,
         width: 26,
+        lineHeight: '21px',
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
@@ -151,8 +153,8 @@ const Root = styled('div')(
           color: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
         },
         '& svg': {
-          width: '0.875rem',
-          height: '0.875rem',
+          height: '14px',
+          width: '14px',
           fill: 'currentColor',
           pointerEvents: 'none',
         },
@@ -166,7 +168,7 @@ const Root = styled('div')(
         }),
         '& svg': {
           opacity: 0.6,
-          marginBottom: 2,
+          marginBottom: 1,
           verticalAlign: 'middle',
         },
         '&:hover': {
@@ -479,6 +481,8 @@ const Root = styled('div')(
       '& :not(pre) > code': {
         // inline code block
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+        borderColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[600]})`,
+        backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
       },
       '& strong': {
         color: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
@@ -507,11 +511,11 @@ const Root = styled('div')(
       '& h1, & h2, & h3, & h4': {
         '&:hover .anchor-link, & .comment-link': {
           color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
-          borderColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
-          backgroundColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+          backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
           '&:hover': {
-            borderColor: `var(--muidocs-palette-primaryDark-400, ${darkTheme.palette.primaryDark[400]})`,
-            backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+            borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
+            backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
             color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
           },
         },

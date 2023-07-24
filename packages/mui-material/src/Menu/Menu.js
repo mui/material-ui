@@ -166,7 +166,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     elementType: slots.root,
     externalSlotProps: slotProps.root,
     ownerState,
-    className: clsx(classes.paper, className),
+    className: [classes.root, className],
   });
 
   const paperSlotProps = useSlotProps({

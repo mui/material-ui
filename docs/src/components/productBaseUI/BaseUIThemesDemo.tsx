@@ -87,6 +87,7 @@ const StyledTabsList = styled('div')({
 const StyledTab = styled('button')({
   display: 'flex',
   alignItems: 'center',
+  cursor: 'pointer',
   justifyContent: 'center',
   gap: 6,
   position: 'relative',
@@ -121,6 +122,7 @@ const StyledTab = styled('button')({
 
 const StyledSelectButton = styled('button')({
   width: '100%',
+  cursor: 'pointer',
   maxWidth: '100%',
   minHeight: 'calc(2 * var(--border-width, 0px) + 37px)',
   border: 'var(--border-width, 1px) solid',
@@ -655,11 +657,12 @@ const StyledMenuListbox = styled('ul')(`
   box-shadow: var(--Panel-shadow);
   `);
 
-const StyledMenuButton = styled(Button)`
-  padding: 0;
-  border: none;
-  background: transparent;
-`;
+const StyledMenuButton = styled(Button)({
+  padding: 0,
+  cursor: 'pointer',
+  border: 'none',
+  background: 'transparent',
+});
 
 const snackbarInRight = keyframes`
   from {
@@ -1005,13 +1008,13 @@ export default function BaseUIThemesDemo() {
             />
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <StyledParagraph id="make-it-your-own">Use every component</StyledParagraph>
+            <StyledParagraph id="use-every-component">Use every component</StyledParagraph>
             <Switch
               slots={{
                 root: StyledSwitch,
               }}
               slotProps={{
-                input: { 'aria-labelledby': 'Use every component' },
+                input: { 'aria-labelledby': 'use-every-component' },
               }}
             />
           </Box>

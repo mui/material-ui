@@ -11,7 +11,7 @@ export default function CoreHero() {
       <Box
         sx={{
           pt: { xs: 6, sm: 8, md: 12 },
-          pb: { xs: 3, sm: 4, md: 8 },
+          pb: { xs: 3, md: 1 },
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -35,8 +35,9 @@ export default function CoreHero() {
         >
           <IconImage width={28} height={28} name="product-core" /> MUI Core
         </Typography>
-        <Typography variant="h2" sx={{ maxWidth: 700, textAlign: 'center' }} gutterBottom>
-          Ready to use components,
+        <Typography component="h1" variant="h2" sx={{ textAlign: 'center' }} gutterBottom>
+          Ready to use components
+          <br />
           <GradientText>free forever</GradientText>
         </Typography>
         <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 550 }}>
