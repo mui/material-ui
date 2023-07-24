@@ -60,7 +60,7 @@ export interface UseSliderParameters {
    * **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
    * @param {number} activeThumb Index of the currently moved thumb.
-   * 
+   *
    */
   onChange?: SingleValueChange | MultipleValuesChange | DefaultOnChange;
   /**

@@ -254,7 +254,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
         value: { value, name },
       });
 
-      onChange(clonedEvent, value, thumbIndex);
+      onChange(clonedEvent, value as number & number[], thumbIndex);
     });
 
   const range = Array.isArray(valueDerived);

@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { SlotComponentProps } from '@mui/base';
-import { DefaultOnChange, Mark, MultipleValuesChange, SingleValueChange } from '@mui/base/useSlider';
+import {
+  DefaultOnChange,
+  Mark,
+  MultipleValuesChange,
+  SingleValueChange,
+} from '@mui/base/useSlider';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps, OverridableComponent } from '@mui/types';
 import { Theme } from '../styles';
