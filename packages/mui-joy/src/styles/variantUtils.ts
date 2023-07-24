@@ -149,7 +149,6 @@ export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
 
     solidColor: 'var(--variant-solidColor)',
     solidBg: 'var(--variant-solidBg)',
-    solidHoverColor: 'var(--variant-solidHoverColor)',
     solidHoverBg: 'var(--variant-solidHoverBg)',
     solidActiveBg: 'var(--variant-solidActiveBg)',
     solidDisabledColor: 'var(--variant-solidDisabledColor)',
@@ -408,12 +407,9 @@ export const createSolidInversion = (theme: ThemeFragment, addDefaultValues?: bo
         '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.1)`,
 
         '--variant-solidColor': getCssVar(
-          `palette-${color}-${color === 'neutral' ? '700' : '600'}`,
+          `palette-${color}-${color === 'neutral' ? '600' : '500'}`,
         ),
         '--variant-solidBg': getCssVar(`palette-common-white`),
-        '--variant-solidHoverColor': getCssVar(
-          `palette-${color}-${color === 'neutral' ? '800' : '700'}`,
-        ),
         '--variant-solidHoverBg': getCssVar(`palette-common-white`),
         '--variant-solidActiveBg': getCssVar(`palette-${color}-100`),
         '--variant-solidDisabledColor': `rgba(${getCssVar(
