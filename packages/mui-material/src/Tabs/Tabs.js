@@ -617,10 +617,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     ) {
       const firstTab = tabListChildren[0];
       const lastTab = tabListChildren[length - 1];
-      const threshold = 0.99;
       const observerOptions = {
         root: tabsRef.current,
-        threshold,
+        threshold: 0.99,
       };
 
       const handleScrollButtonStart = (entries) => {
