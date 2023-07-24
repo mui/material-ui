@@ -72,7 +72,7 @@ function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props
         onKeyDown={handleButtonKeyDown}
         sx={{
           bgcolor: open ? 'neutral.plainHoverBg' : undefined,
-          '&.Joy-focusVisible': {
+          '&:focus-visible': {
             bgcolor: 'neutral.plainHoverBg',
           },
         }}

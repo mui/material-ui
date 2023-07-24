@@ -78,6 +78,9 @@ const LinkRoot = styled('a', {
       '--CircularProgress-size': '1.25em',
       '--CircularProgress-thickness': '3px',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
+      ...(ownerState.level === 'inherit' && {
+        font: 'inherit',
+      }),
       ...(ownerState.underline === 'none' && {
         textDecoration: 'none',
       }),
