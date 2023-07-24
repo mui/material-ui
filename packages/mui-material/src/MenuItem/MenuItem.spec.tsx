@@ -1,6 +1,7 @@
 import * as React from 'react';
 import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import { expectType } from '@mui/types';
+import Link from '@mui/material/Link';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
   function CustomComponent() {
@@ -61,6 +62,7 @@ const TestComponent = () => {
           expectType<React.FormEvent<HTMLSpanElement>, typeof event>(event);
         }}
       />
+      <MenuItem component={Link} />
     </React.Fragment>
   );
 };
