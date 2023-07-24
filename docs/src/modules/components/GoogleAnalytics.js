@@ -3,6 +3,7 @@ import loadScript from 'docs/src/modules/utils/loadScript';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
+import { useNoSsrCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useRouter } from 'next/router';
@@ -146,6 +147,14 @@ function GoogleAnalytics() {
       colorScheme,
     });
   }, [colorScheme]);
+
+  const codeStylingVariant = useNoSsrCodeStyling();
+  React.useEffect(() => {
+    window.ga('set', 'dimension6', codeStylingVariant);
+    window.gtag('set', 'user_properties', {
+      codeStylingVariant,
+    });
+  }, [codeStylingVariant]);
 
   return null;
 }
