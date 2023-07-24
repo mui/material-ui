@@ -11,6 +11,7 @@ import { ColorInversionProvider, useColorInversion } from '../styles/ColorInvers
 import useSlot from '../utils/useSlot';
 import { getAlertUtilityClass } from './alertClasses';
 import { AlertProps, AlertOwnerState, AlertTypeMap } from './AlertProps';
+import { resolveSxValue } from '../styles/styleUtils';
 
 const useUtilityClasses = (ownerState: AlertOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -33,48 +34,58 @@ const AlertRoot = styled('div', {
   name: 'JoyAlert',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => [
-  {
-    '--Alert-radius': theme.vars.radius.sm,
-    '--Alert-decoratorChildRadius':
-      'max((var(--Alert-radius) - var(--variant-borderWidth, 0px)) - var(--Alert-padding), min(var(--Alert-padding) + var(--variant-borderWidth, 0px), var(--Alert-radius) / 2))',
-    '--Button-minHeight': 'var(--Alert-decoratorChildHeight)',
-    '--IconButton-size': 'var(--Alert-decoratorChildHeight)',
-    '--Button-radius': 'var(--Alert-decoratorChildRadius)',
-    '--IconButton-radius': 'var(--Alert-decoratorChildRadius)',
-    '--Icon-color': 'currentColor',
-    ...(ownerState.size === 'sm' && {
-      '--Alert-padding': '0.5rem',
-      '--Alert-gap': '0.375rem',
-      '--Alert-decoratorChildHeight': '1.5rem',
-      '--Icon-fontSize': theme.vars.fontSize.xl,
-    }),
-    ...(ownerState.size === 'md' && {
-      '--Alert-padding': '0.75rem',
-      '--Alert-gap': '0.5rem',
-      '--Alert-decoratorChildHeight': '2rem',
-      '--Icon-fontSize': theme.vars.fontSize.xl,
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Alert-padding': '1rem',
-      '--Alert-gap': '0.875rem',
-      '--Alert-decoratorChildHeight': '2.375rem',
-      '--Icon-fontSize': theme.vars.fontSize.xl2,
-    }),
-    backgroundColor: 'transparent',
-    display: 'flex',
-    position: 'relative',
-    alignItems: 'center',
-    padding: `var(--Alert-padding)`,
-    borderRadius: 'var(--Alert-radius)',
-    ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
-    fontWeight: theme.vars.fontWeight.md,
-    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-  },
-  ownerState.color !== 'context' &&
-    ownerState.invertedColors &&
-    theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
-]);
+})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => {
+  const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
+    'p',
+    'padding',
+    'borderRadius',
+  ]);
+  return [
+    {
+      '--Alert-radius': theme.vars.radius.sm,
+      '--Alert-decoratorChildRadius':
+        'max((var(--Alert-radius) - var(--variant-borderWidth, 0px)) - var(--Alert-padding), min(var(--Alert-padding) + var(--variant-borderWidth, 0px), var(--Alert-radius) / 2))',
+      '--Button-minHeight': 'var(--Alert-decoratorChildHeight)',
+      '--IconButton-size': 'var(--Alert-decoratorChildHeight)',
+      '--Button-radius': 'var(--Alert-decoratorChildRadius)',
+      '--IconButton-radius': 'var(--Alert-decoratorChildRadius)',
+      '--Icon-color': 'currentColor',
+      ...(ownerState.size === 'sm' && {
+        '--Alert-padding': '0.5rem',
+        '--Alert-decoratorChildHeight': '1.5rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl,
+        gap: '0.5rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Alert-padding': '0.75rem',
+        '--Alert-decoratorChildHeight': '2rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl,
+        gap: '0.625rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Alert-padding': '1rem',
+        '--Alert-decoratorChildHeight': '2.375rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
+        gap: '0.875rem',
+      }),
+      backgroundColor: theme.vars.palette.background.surface,
+      display: 'flex',
+      position: 'relative',
+      alignItems: 'center',
+      padding: `var(--Alert-padding)`,
+      borderRadius: 'var(--Alert-radius)',
+      ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
+      fontWeight: theme.vars.fontWeight.md,
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    },
+    ownerState.color !== 'context' &&
+      ownerState.invertedColors &&
+      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
+    p !== undefined && { '--Alert-padding': p },
+    padding !== undefined && { '--Alert-padding': padding },
+    borderRadius !== undefined && { '--Alert-radius': borderRadius },
+  ];
+});
 
 const AlertStartDecorator = styled('span', {
   name: 'JoyAlert',
@@ -83,7 +94,6 @@ const AlertStartDecorator = styled('span', {
 })<{ ownerState: AlertOwnerState }>({
   display: 'inherit',
   flex: 'none',
-  marginInlineEnd: 'var(--Alert-gap)',
 });
 
 const AlertEndDecorator = styled('span', {
@@ -93,7 +103,6 @@ const AlertEndDecorator = styled('span', {
 })<{ ownerState: AlertOwnerState }>({
   display: 'inherit',
   flex: 'none',
-  marginInlineStart: 'var(--Alert-gap)',
   marginLeft: 'auto',
 });
 /**
@@ -115,10 +124,10 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const {
     children,
     className,
-    color: colorProp = 'primary',
+    color: colorProp = 'neutral',
     invertedColors = false,
     role = 'alert',
-    variant = 'soft',
+    variant = 'outlined',
     size = 'md',
     startDecorator,
     endDecorator,
@@ -202,7 +211,7 @@ Alert.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
@@ -267,7 +276,7 @@ Alert.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'soft'
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

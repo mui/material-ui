@@ -7,6 +7,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import useButton from '@mui/base/useButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useVariantColor } from '../styles/variantColorInheritance';
 import { useColorInversion } from '../styles/ColorInversion';
 import Cancel from '../internal/svg-icons/Cancel';
 import chipDeleteClasses, { getChipDeleteUtilityClass } from './chipDeleteClasses';
@@ -63,12 +64,6 @@ const ChipDeleteRoot = styled('button', {
   },
 ]);
 
-const chipVariantMapping = {
-  plain: 'outlined',
-  outlined: 'soft',
-  soft: 'soft',
-  solid: 'solid',
-} as const;
 /**
  *
  * Demos:
@@ -87,8 +82,8 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
 
   const {
     children,
-    variant: variantProp,
-    color: colorProp,
+    variant: variantProp = 'plain',
+    color: colorProp = 'neutral',
     disabled: disabledProp,
     onKeyDown,
     onDelete,
@@ -99,9 +94,12 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     ...other
   } = props;
   const chipContext = React.useContext(ChipContext);
-  const variant = variantProp || chipVariantMapping[chipContext.variant!] || 'solid';
+  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor(
+    inProps.variant,
+    inProps.color,
+  );
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp || chipContext.color || 'primary');
+  const color = getColor(inProps.color, inheritedColor);
   const disabled = disabledProp ?? chipContext.disabled;
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
@@ -174,7 +172,7 @@ ChipDelete.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
@@ -228,7 +226,7 @@ ChipDelete.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'solid'
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

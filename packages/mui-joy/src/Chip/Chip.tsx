@@ -8,6 +8,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { VariantColorProvider } from '../styles/variantColorInheritance';
 import { useColorInversion } from '../styles/ColorInversion';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
@@ -217,11 +218,11 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const {
     children,
     className,
-    color: colorProp = 'primary',
+    color: colorProp = 'neutral',
     onClick,
     disabled = false,
     size = 'md',
-    variant = 'solid',
+    variant = 'soft',
     startDecorator,
     endDecorator,
     component,
@@ -302,26 +303,27 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     ownerState,
   });
 
-  const chipContextValue = React.useMemo(
-    () => ({ disabled, variant, color: color === 'context' ? undefined : color }),
-    [color, disabled, variant],
-  );
+  const chipContextValue = React.useMemo(() => ({ disabled }), [disabled]);
 
   return (
     <ChipContext.Provider value={chipContextValue}>
-      <SlotRoot {...rootProps}>
-        {clickable && <SlotAction {...actionProps} />}
+      <VariantColorProvider variant={variant} color={colorProp}>
+        <SlotRoot {...rootProps}>
+          {clickable && <SlotAction {...actionProps} />}
 
-        {/* label is always the first element for integrating with other controls, eg. Checkbox, Radio. Use CSS order to rearrange position */}
-        <SlotLabel {...labelProps} id={id}>
-          {children}
-        </SlotLabel>
-        {startDecorator && (
-          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
-        )}
+          {/* label is always the first element for integrating with other controls, eg. Checkbox, Radio. Use CSS order to rearrange position */}
+          <SlotLabel {...labelProps} id={id}>
+            {children}
+          </SlotLabel>
+          {startDecorator && (
+            <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
+          )}
 
-        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
-      </SlotRoot>
+          {endDecorator && (
+            <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>
+          )}
+        </SlotRoot>
+      </VariantColorProvider>
     </ChipContext.Provider>
   );
 }) as OverridableComponent<ChipTypeMap>;
@@ -341,7 +343,7 @@ Chip.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
@@ -410,7 +412,7 @@ Chip.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'solid'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

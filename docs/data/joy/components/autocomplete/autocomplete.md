@@ -73,13 +73,26 @@ To customize the appearance of the options, use `renderOption` prop in combinati
 
 The autocomplete component supports the four global variants: `outlined` (default), `soft`, `solid`, and `plain`.
 
-The variant is propagated to the Autocomplete's `root` and `listbox` slots but **not** to the Option component.
+The variant and color values are propagated to the Autocomplete's `input` and `listbox` slots.
 
 {{"demo": "AutocompleteVariants.js"}}
 
 :::info
 To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 :::
+
+To customize the variant and color for a specific slot, use `slotProps`:
+
+```js
+<Autocomplete
+  variant="plain"
+  slotProps={{
+    listbox: {
+      variant: 'outlined',
+    },
+  }}
+/>
+```
 
 ### Label
 

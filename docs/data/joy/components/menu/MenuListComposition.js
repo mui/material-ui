@@ -42,7 +42,6 @@ export default function MenuListComposition() {
         onClick={() => {
           setOpen(!open);
         }}
-        sx={{ borderRadius: 0 }}
       >
         Open menu
       </Button>

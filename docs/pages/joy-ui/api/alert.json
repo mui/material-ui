@@ -5,7 +5,7 @@
         "name": "union",
         "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'",
+      "default": "'neutral'",
       "additionalPropsInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
@@ -48,7 +48,7 @@
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'soft'",
+      "default": "'outlined'",
       "additionalPropsInfo": { "joy-variant": true }
     }
   },

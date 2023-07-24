@@ -76,7 +76,7 @@ export default function AlertInvertedColors() {
             <Warning />
           </CircularProgress>
         }
-        sx={{ alignItems: 'flex-start', '--Alert-gap': '1rem' }}
+        sx={{ alignItems: 'flex-start', gap: '1rem' }}
       >
         <Box sx={{ flex: 1 }}>
           <Typography level="title-md">Lost connection</Typography>

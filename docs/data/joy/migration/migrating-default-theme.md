@@ -888,6 +888,99 @@ extendTheme({
 
 ## Components
 
+### Alert
+
+The default variant has been changed to `outlined` and the default color has been changed to `neutral`.
+
+To keep the old default variant and color, add the following to your theme:
+
+```js
+extendTheme({
+  components: {
+    JoyAlert: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+    },
+  },
+});
+```
+
+### Autocomplete
+
+The variant and color are now the same for `input` and `listbox` slots.
+
+If you want to use a different variant for the specific slot, use `slotProps`:
+
+```js
+<Autocomplete
+  variant="plain"
+  slotProps={{
+    listbox: {
+      variant: 'outlined',
+    }
+  }}
+>
+```
+
+### Chip
+
+The default variant has been changed to `soft` and the default color has been changed to `neutral`.
+
+To keep the old default variant and color, add the following to your theme:
+
+```js
+extendTheme({
+  components: {
+    JoyChip: {
+      defaultProps: {
+        variant: 'solid',
+        color: 'primary',
+      },
+    },
+  },
+});
+```
+
+### ChipDelete
+
+The default variant has been changed to `plain` and the default color has been changed to `neutral`.
+
+To keep the old default variant and color, add the following to your theme:
+
+```js
+extendTheme({
+  components: {
+    JoyChipDelete: {
+      defaultProps: {
+        variant: 'solid',
+        color: 'primary',
+      },
+    },
+  },
+});
+```
+
+### IconButton
+
+The default variant has been changed to `plain` and the default color has been changed to `neutral`.
+
+To keep the old default variant and color, add the following to your theme:
+
+```js
+extendTheme({
+  components: {
+    JoyIconButton: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+    },
+  },
+});
+```
+
 ### Tabs
 
 The [Tabs](/joy-ui/react-tabs/) component has been redesigned following feedback we've received on [this GitHub issue](https://github.com/mui/material-ui/issues/36782).
@@ -931,28 +1024,19 @@ extendTheme({
 });
 ```
 
-### IconButton
+### Select
 
-The default variant and color of the IconButton component has been changed to:
+The variant and color are now the same for `button` and `listbox` slots.
 
-```diff
-- variant: 'soft'
-- color: 'primary'
-+ variant: 'plain'
-+ color: 'neutral'
-```
-
-To keep the old IconButton variant and color, add the following to your theme:
+If you want to use a different variant for the specific slot, use `slotProps`:
 
 ```js
-extendTheme({
-  components: {
-    JoyIconButton: {
-      defaultProps: {
-        variant: 'soft',
-        color: 'primary',
-      },
-    },
-  },
-});
+<Select
+  variant="plain"
+  slotProps={{
+    listbox: {
+      variant: 'outlined',
+    }
+  }}
+>
 ```
