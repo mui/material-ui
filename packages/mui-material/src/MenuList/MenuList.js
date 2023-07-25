@@ -4,43 +4,9 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
-import Divider from '../Divider';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-
-/**
- * This function dictates whether the element passed can receive focus when tabbed by checking from an array
- * if it's a legal child.
- */
-function isElementTabbableMenuChild(reactElement) {
-  /**
-   * If the element passed is not a valid React Element OR it does not have a type associated with
-   * it then early exit the function with `false` since it should not be tabbable.
-   */
-  if (!React.isValidElement(reactElement) || !reactElement.type) {
-    return false;
-  }
-
-  // This contains illegal child that should not get focussed through tab.
-  const illegalTabbableChildNames = [Divider];
-
-  /**
-   * If the element is a native HTML element like p, div, span then we can directly
-   * check if reactElement.type is in the array of illegal children.
-   *
-   * - if yes, return false that it should not be tabbable otherwise return true
-   */
-  if (typeof reactElement.type === 'string') {
-    return !illegalTabbableChildNames.includes(reactElement);
-  }
-
-  /**
-   * If the element is a custom user defined component like - Divider, Button, Accordion etc
-   * then we can directly access the element.type to check its type / component definition.
-   */
-  return !illegalTabbableChildNames.includes(reactElement.type);
-}
 
 function nextItem(list, item, disableListWrap) {
   if (list === item) {
@@ -294,11 +260,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         newChildProps.autoFocus = true;
       }
 
-      if (
-        child.props.tabIndex === undefined &&
-        variant === 'selectedMenu' &&
-        isElementTabbableMenuChild(child)
-      ) {
+      if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
         newChildProps.tabIndex = 0;
       }
 
