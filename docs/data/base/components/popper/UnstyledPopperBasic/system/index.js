@@ -90,6 +90,6 @@ const StyledPopperDiv = styled('div')(
     font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 500;
     opacity: 1;
-    margin: 0.25rem 0px;
+    margin: 0.25rem 0;
   `,
 );
