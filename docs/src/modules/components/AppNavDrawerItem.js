@@ -13,9 +13,10 @@ const Item = styled(
     return <Component {...props} />;
   },
   {
-    shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader',
+    shouldForwardProp: (prop) =>
+      prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader' && prop !== 'expandable',
   },
-)(({ theme, hasIcon, depth, subheader }) => {
+)(({ theme, hasIcon, depth, subheader, expandable }) => {
   const color = {
     color: (theme.vars || theme).palette.text.secondary,
     ...(depth === 0 && {
@@ -44,7 +45,7 @@ const Item = styled(
       }),
       fontSize: theme.typography.pxToRem(14),
       textDecoration: 'none',
-      paddingLeft: 32 + (depth > 1 ? (depth + 1) * 10 : 0),
+      paddingLeft: 22 + (depth + 1) * 10 - (expandable ? 23 : 0),
       '&:before': {
         content: '""',
         display: 'block',
@@ -293,6 +294,7 @@ export default function AppNavDrawerItem(props) {
         href={href}
         prefetch={false}
         subheader={subheader}
+        expandable={expandable}
         activeClassName={expandable ? null : 'app-drawer-active'}
         className={topLevel ? 'algolia-lvl0' : null}
         onClick={handleClick}
