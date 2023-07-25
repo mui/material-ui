@@ -19,13 +19,11 @@ function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
     component: 'div',
   });
-  // ExpectError: type system should be demanding the required props of "CustomComponent"
-  React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
+  // @ts-expect-error
+  React.createElement<CardHeaderProps<typeof CustomComponent, ComponentProp>>(CardHeader, {
     component: CustomComponent,
   });
-  // @ts-expect-error
-  React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
-    // This test shouldn't fail but does; stringProp & numberProp are required props of CustomComponent
+  React.createElement<CardHeaderProps<typeof CustomComponent, ComponentProp>>(CardHeader, {
     component: CustomComponent,
     stringProp: '',
     numberProp: 0,
