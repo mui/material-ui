@@ -72,7 +72,6 @@ const LinkRoot = styled(Typography, {
       borderRadius: 0,
       padding: 0, // Remove the padding in Firefox
       cursor: 'pointer',
-      userSelect: 'none',
       verticalAlign: 'middle',
       MozAppearance: 'none', // Reset
       WebkitAppearance: 'none', // Reset

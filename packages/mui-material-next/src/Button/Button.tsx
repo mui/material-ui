@@ -294,7 +294,6 @@ export const ButtonRoot = styled('button', {
     border: 0,
     margin: `var(--Button-margin, 0)`, // Remove the margin in Safari by default
     cursor: 'pointer',
-    userSelect: 'none',
     verticalAlign: 'middle',
     MozAppearance: 'none', // Reset
     WebkitAppearance: 'none', // Reset

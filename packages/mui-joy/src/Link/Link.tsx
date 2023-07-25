@@ -128,7 +128,6 @@ const LinkRoot = styled('a', {
               }),
             },
           }),
-      userSelect: 'none',
       MozAppearance: 'none', // Reset
       WebkitAppearance: 'none', // Reset
       '&::-moz-focus-inner': {

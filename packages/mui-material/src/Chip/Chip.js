@@ -195,7 +195,6 @@ const ChipRoot = styled('div', {
   },
   ({ theme, ownerState }) => ({
     ...(ownerState.clickable && {
-      userSelect: 'none',
       WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
       '&:hover': {
