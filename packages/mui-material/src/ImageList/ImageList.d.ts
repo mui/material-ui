@@ -63,8 +63,8 @@ export interface ImageListTypeMap<
 declare const ImageList: OverridableComponent<ImageListTypeMap>;
 
 export type ImageListProps<
-  D extends React.ElementType = ImageListTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ImageListTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ImageListTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ImageListTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default ImageList;

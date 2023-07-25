@@ -122,9 +122,9 @@ export type ExtendButtonBase<M extends OverridableTypeMap> = ((
 declare const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap>;
 
 export type ButtonBaseProps<
-  D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ButtonBaseTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ButtonBaseTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export interface ButtonBaseActions {
   focusVisible(): void;

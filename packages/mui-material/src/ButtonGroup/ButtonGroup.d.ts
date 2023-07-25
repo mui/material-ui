@@ -97,8 +97,8 @@ export interface ButtonGroupTypeMap<
 declare const ButtonGroup: OverridableComponent<ButtonGroupTypeMap>;
 
 export type ButtonGroupProps<
-  D extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ButtonGroupTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ButtonGroupTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default ButtonGroup;

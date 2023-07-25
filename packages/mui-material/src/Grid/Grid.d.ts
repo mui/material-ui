@@ -169,8 +169,8 @@ export interface GridTypeMap<
 declare const Grid: OverridableComponent<GridTypeMap>;
 
 export type GridProps<
-  D extends React.ElementType = GridTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<GridTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = GridTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<GridTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default Grid;

@@ -123,8 +123,8 @@ export type ExtendButton<M extends OverridableTypeMap> = ((
 declare const Button: ExtendButtonBase<ButtonTypeMap>;
 
 export type ButtonProps<
-  D extends React.ElementType = ButtonTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ButtonTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ButtonTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ButtonTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default Button;

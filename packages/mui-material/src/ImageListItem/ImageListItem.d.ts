@@ -47,8 +47,8 @@ export interface ImageListItemTypeMap<
 declare const ImageListItem: OverridableComponent<ImageListItemTypeMap>;
 
 export type ImageListItemProps<
-  D extends React.ElementType = ImageListItemTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ImageListItemTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ImageListItemTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ImageListItemTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default ImageListItem;

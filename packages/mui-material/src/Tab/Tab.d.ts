@@ -74,8 +74,8 @@ export type TabTypeMap<
 declare const Tab: ExtendButtonBase<TabTypeMap>;
 
 export type TabProps<
-  D extends React.ElementType = TabTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TabTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TabTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TabTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default Tab;

@@ -49,8 +49,8 @@ export interface TableRowTypeMap<
 declare const TableRow: OverridableComponent<TableRowTypeMap>;
 
 export type TableRowProps<
-  D extends React.ElementType = TableRowTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TableRowTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TableRowTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TableRowTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default TableRow;

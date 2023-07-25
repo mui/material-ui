@@ -307,8 +307,8 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
 declare const Slider: OverridableComponent<SliderTypeMap>;
 
 export type SliderProps<
-  D extends React.ElementType = SliderTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<SliderTypeMap<D, P>, D>;
+  RootComponent extends React.ElementType = SliderTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps>, RootComponent>;
 
 export default Slider;

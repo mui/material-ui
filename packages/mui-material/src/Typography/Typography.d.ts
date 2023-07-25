@@ -94,8 +94,8 @@ export interface TypographyTypeMap<
 declare const Typography: OverridableComponent<TypographyTypeMap>;
 
 export type TypographyProps<
-  D extends React.ElementType = TypographyTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TypographyTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TypographyTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default Typography;

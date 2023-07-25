@@ -63,8 +63,8 @@ export interface ExtendPaperTypeMap<M extends OverridableTypeMap, Keys extends s
 }
 
 export type PaperProps<
-  D extends React.ElementType = PaperTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<PaperTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = PaperTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<PaperTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default Paper;

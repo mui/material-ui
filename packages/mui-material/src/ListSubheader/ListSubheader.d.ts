@@ -58,8 +58,8 @@ export interface ListSubheaderTypeMap<
 declare const ListSubheader: OverridableComponent<ListSubheaderTypeMap>;
 
 export type ListSubheaderProps<
-  D extends React.ElementType = ListSubheaderTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ListSubheaderTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ListSubheaderTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ListSubheaderTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default ListSubheader;

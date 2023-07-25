@@ -37,8 +37,8 @@ export interface TableBodyTypeMap<
 declare const TableBody: OverridableComponent<TableBodyTypeMap>;
 
 export type TableBodyProps<
-  D extends React.ElementType = TableBodyTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TableBodyTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TableBodyTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TableBodyTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default TableBody;

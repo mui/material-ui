@@ -36,8 +36,8 @@ export interface DialogContentTextTypeMap<
 declare const DialogContentText: OverridableComponent<DialogContentTextTypeMap>;
 
 export type DialogContentTextProps<
-  D extends React.ElementType = DialogContentTextTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<DialogContentTextTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = DialogContentTextTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<DialogContentTextTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default DialogContentText;

@@ -196,8 +196,8 @@ export interface TabsActions {
 }
 
 export type TabsProps<
-  D extends React.ElementType = TabsTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TabsTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TabsTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TabsTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default Tabs;

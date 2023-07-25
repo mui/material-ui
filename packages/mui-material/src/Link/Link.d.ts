@@ -65,8 +65,8 @@ export type LinkBaseProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 
   DistributiveOmit<TypographyProps, 'children' | 'component' | 'color' | 'ref' | 'variant'>;
 
 export type LinkProps<
-  D extends React.ElementType = LinkTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<LinkTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = LinkTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<LinkTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default Link;

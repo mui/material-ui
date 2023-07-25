@@ -61,8 +61,8 @@ export type TableSortLabelTypeMap<
 declare const TableSortLabel: ExtendButtonBase<TableSortLabelTypeMap>;
 
 export type TableSortLabelProps<
-  D extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TableSortLabelTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TableSortLabelTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default TableSortLabel;

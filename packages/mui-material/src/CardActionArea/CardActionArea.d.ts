@@ -39,8 +39,8 @@ declare const CardActionArea: ExtendButtonBase<
 >;
 
 export type CardActionAreaProps<
-  D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<CardActionAreaTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<CardActionAreaTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default CardActionArea;

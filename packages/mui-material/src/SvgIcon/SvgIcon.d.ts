@@ -102,8 +102,8 @@ export interface SvgIconTypeMap<
 declare const SvgIcon: OverridableComponent<SvgIconTypeMap> & { muiName: string };
 
 export type SvgIconProps<
-  D extends React.ElementType = SvgIconTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<SvgIconTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = SvgIconTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<SvgIconTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default SvgIcon;
