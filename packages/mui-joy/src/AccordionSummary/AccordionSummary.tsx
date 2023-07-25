@@ -7,12 +7,19 @@ import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAccordionSummaryUtilityClass } from './accordionSummaryClasses';
-import { AccordionSummaryProps, AccordionSummaryTypeMap } from './AccordionSummaryProps';
+import {
+  AccordionSummaryProps,
+  AccordionSummaryOwnerState,
+  AccordionSummaryTypeMap,
+} from './AccordionSummaryProps';
 import useSlot from '../utils/useSlot';
+import AccordionContext from '../Accordion/AccordionContext';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: AccordionSummaryOwnerState) => {
+  const { disabled, expanded } = ownerState;
   const slots = {
-    root: ['root'],
+    root: ['root', disabled && 'disabled', expanded && 'expanded'],
+    button: ['button', disabled && 'disabled', expanded && 'expanded'],
   };
 
   return composeClasses(slots, getAccordionSummaryUtilityClass, {});
@@ -22,14 +29,20 @@ const AccordionSummaryRoot = styled('div', {
   name: 'JoyAccordionSummary',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AccordionSummaryProps }>(({ ownerState }) => ({
+})<{ ownerState: AccordionSummaryOwnerState }>(({ ownerState }) => ({
   display: 'flex',
-  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   flex: 1, // fill the available space in the Card and also shrink if needed
   zIndex: 1,
   columnGap: 'calc(0.75 * var(--Card-padding))',
   padding: 'var(--unstable_padding)',
 }));
+
+const AccordionSummaryButton = styled('button', {
+  name: 'JoyAccordionSummary',
+  slot: 'Button',
+  overridesResolver: (props, styles) => styles.button,
+})<{ ownerState: AccordionSummaryOwnerState }>({});
+
 /**
  * ⚠️ AccordionSummary must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
@@ -47,24 +60,36 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     name: 'JoyAccordionSummary',
   });
 
+  const { className, component = 'div', children, slots = {}, slotProps = {}, ...other } = props;
+
   const {
-    className,
-    component = 'div',
-    children,
-    orientation = 'vertical',
-    slots = {},
-    slotProps = {},
-    ...other
-  } = props;
+    accordionId,
+    disabled = false,
+    expanded = false,
+    toggle,
+  } = React.useContext(AccordionContext);
+
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const ownerState = {
     ...props,
     component,
-    orientation,
+    disabled,
+    expanded,
   };
 
-  const classes = useUtilityClasses();
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (toggle) {
+      toggle(event);
+    }
+    if (typeof slotProps.button === 'function') {
+      slotProps.button(ownerState)?.onClick?.(event);
+    } else {
+      slotProps.button?.onClick?.(event);
+    }
+  };
+
+  const classes = useUtilityClasses(ownerState);
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
@@ -74,7 +99,25 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     ownerState,
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  const [SlotButton, buttonProps] = useSlot('button', {
+    ref,
+    className: classes.button,
+    elementType: AccordionSummaryButton,
+    externalForwardedProps,
+    additionalProps: {
+      'aria-expanded': expanded ? 'true' : 'false',
+      'aria-controls': accordionId,
+      disabled,
+      onClick: handleClick,
+    },
+    ownerState,
+  });
+
+  return (
+    <SlotRoot {...rootProps}>
+      <SlotButton {...buttonProps}>{children}</SlotButton>
+    </SlotRoot>
+  );
 }) as OverridableComponent<AccordionSummaryTypeMap>;
 
 AccordionSummary.propTypes /* remove-proptypes */ = {

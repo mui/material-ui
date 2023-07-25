@@ -4,11 +4,13 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
+import { unstable_useControlled as useControlled, unstable_useId as useId } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAccordionUtilityClass } from './accordionClasses';
-import { AccordionProps, AccordionTypeMap } from './AccordionProps';
+import { AccordionProps, AccordionOwnerState, AccordionTypeMap } from './AccordionProps';
 import useSlot from '../utils/useSlot';
+import AccordionContext from './AccordionContext';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -22,9 +24,8 @@ const AccordionRoot = styled('div', {
   name: 'JoyAccordion',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AccordionProps }>(({ ownerState }) => ({
+})<{ ownerState: AccordionOwnerState }>(({ ownerState }) => ({
   display: 'flex',
-  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   flex: 1, // fill the available space in the Card and also shrink if needed
   zIndex: 1,
   columnGap: 'calc(0.75 * var(--Card-padding))',
@@ -48,20 +49,49 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   });
 
   const {
+    accordionId: idOverride,
     className,
     component = 'div',
     children,
-    orientation = 'vertical',
+    defaultExpanded = false,
+    disabled = false,
+    expanded: expandedProp,
+    onChange,
     slots = {},
     slotProps = {},
     ...other
   } = props;
+
+  const accordionId = useId(idOverride);
+
+  const [expanded, setExpandedState] = useControlled({
+    controlled: expandedProp,
+    default: defaultExpanded,
+    name: 'Accordion',
+    state: 'expanded',
+  });
+
+  const handleChange = React.useCallback(
+    (event: React.SyntheticEvent) => {
+      setExpandedState(!expanded);
+
+      if (onChange) {
+        onChange(event, !expanded);
+      }
+    },
+    [expanded, onChange, setExpandedState],
+  );
+
+  const contextValue = React.useMemo(
+    () => ({ accordionId, expanded, disabled, toggle: handleChange }),
+    [accordionId, expanded, disabled, handleChange],
+  );
+
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const ownerState = {
     ...props,
     component,
-    orientation,
   };
 
   const classes = useUtilityClasses();
@@ -74,7 +104,11 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ownerState,
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  return (
+    <AccordionContext.Provider value={contextValue}>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
+    </AccordionContext.Provider>
+  );
 }) as OverridableComponent<AccordionTypeMap>;
 
 Accordion.propTypes /* remove-proptypes */ = {

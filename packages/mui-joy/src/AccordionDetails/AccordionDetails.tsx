@@ -7,12 +7,18 @@ import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAccordionDetailsUtilityClass } from './accordionDetailsClasses';
-import { AccordionDetailsProps, AccordionDetailsTypeMap } from './AccordionDetailsProps';
+import {
+  AccordionDetailsProps,
+  AccordionDetailsOwnerState,
+  AccordionDetailsTypeMap,
+} from './AccordionDetailsProps';
 import useSlot from '../utils/useSlot';
+import AccordionContext from '../Accordion/AccordionContext';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: AccordionDetailsOwnerState) => {
+  const { expanded } = ownerState;
   const slots = {
-    root: ['root'],
+    root: ['root', expanded && 'expanded'],
   };
 
   return composeClasses(slots, getAccordionDetailsUtilityClass, {});
@@ -22,9 +28,8 @@ const AccordionDetailsRoot = styled('div', {
   name: 'JoyAccordionDetails',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AccordionDetailsProps }>(({ ownerState }) => ({
+})<{ ownerState: AccordionDetailsOwnerState }>(({ ownerState }) => ({
   display: 'flex',
-  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   flex: 1, // fill the available space in the Card and also shrink if needed
   zIndex: 1,
   columnGap: 'calc(0.75 * var(--Card-padding))',
@@ -47,30 +52,28 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
     name: 'JoyAccordionDetails',
   });
 
-  const {
-    className,
-    component = 'div',
-    children,
-    orientation = 'vertical',
-    slots = {},
-    slotProps = {},
-    ...other
-  } = props;
+  const { className, component = 'div', children, slots = {}, slotProps = {}, ...other } = props;
+
+  const { accordionId, expanded = false } = React.useContext(AccordionContext);
+
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const ownerState = {
     ...props,
     component,
-    orientation,
+    expanded,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: AccordionDetailsRoot,
-    externalForwardedProps,
+    externalForwardedProps: {
+      'aria-labelledby': accordionId,
+      ...externalForwardedProps,
+    },
     ownerState,
   });
 

@@ -9,6 +9,14 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 <p class="description">Accordions let users show and hide sections of related content on a page.</p>
 
+## Introduction
+
+<!-- TODO: improve content -->
+
+Accordion components are used to expand and collapse sections of content.
+
+{{"demo": "AccordionUsage.js", "hideToolbar": true, "bg": "gradient"}}
+
 :::info
 💡 The Joy UI Accordion component is still in development.
 If you're in need of it, please upvote [**this GitHub issue**](https://github.com/mui/material-ui/issues/36281) to help us prioritize the next batch of new components.

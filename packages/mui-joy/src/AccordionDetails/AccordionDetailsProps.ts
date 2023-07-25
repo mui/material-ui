@@ -28,11 +28,6 @@ export interface AccordionDetailsTypeMap<P = {}, D extends React.ElementType = '
      */
     children?: React.ReactNode;
     /**
-     * The component orientation.
-     * @default 'vertical'
-     */
-    orientation?: 'horizontal' | 'vertical';
-    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
@@ -45,4 +40,9 @@ export type AccordionDetailsProps<
   P = { component?: React.ElementType },
 > = OverrideProps<AccordionDetailsTypeMap<P, D>, D>;
 
-export interface AccordionDetailsOwnerState extends AccordionDetailsProps {}
+export interface AccordionDetailsOwnerState extends AccordionDetailsProps {
+  /**
+   * The expanded state of the accordion.
+   */
+  expanded: boolean;
+}

@@ -3,7 +3,7 @@ import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
-export type AccordionSummarySlot = 'root';
+export type AccordionSummarySlot = 'root' | 'button';
 
 export interface AccordionSummarySlots {
   /**
@@ -11,12 +11,18 @@ export interface AccordionSummarySlots {
    * @default 'div'
    */
   root?: React.ElementType;
+  /**
+   * The component that renders the button.
+   * @default 'button'
+   */
+  button?: React.ElementType;
 }
 
 export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
   AccordionSummarySlots,
   {
     root: SlotProps<'div', {}, AccordionSummaryOwnerState>;
+    button: SlotProps<'button', {}, AccordionSummaryOwnerState>;
   }
 >;
 
@@ -27,11 +33,6 @@ export interface AccordionSummaryTypeMap<P = {}, D extends React.ElementType = '
      * This can be an element, or just a string.
      */
     children?: React.ReactNode;
-    /**
-     * The component orientation.
-     * @default 'vertical'
-     */
-    orientation?: 'horizontal' | 'vertical';
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -45,4 +46,13 @@ export type AccordionSummaryProps<
   P = { component?: React.ElementType },
 > = OverrideProps<AccordionSummaryTypeMap<P, D>, D>;
 
-export interface AccordionSummaryOwnerState extends AccordionSummaryProps {}
+export interface AccordionSummaryOwnerState extends AccordionSummaryProps {
+  /**
+   * If `true`, the accordion is disabled.
+   */
+  disabled: boolean;
+  /**
+   * The expanded state of the accordion.
+   */
+  expanded: boolean;
+}
