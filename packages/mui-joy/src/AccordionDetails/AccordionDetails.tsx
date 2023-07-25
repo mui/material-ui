@@ -6,7 +6,9 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getAccordionDetailsUtilityClass } from './accordionDetailsClasses';
+import accordionDetailsClasses, {
+  getAccordionDetailsUtilityClass,
+} from './accordionDetailsClasses';
 import {
   AccordionDetailsProps,
   AccordionDetailsOwnerState,
@@ -28,13 +30,28 @@ const AccordionDetailsRoot = styled('div', {
   name: 'JoyAccordionDetails',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AccordionDetailsOwnerState }>(({ ownerState }) => ({
-  display: 'flex',
-  flex: 1, // fill the available space in the Card and also shrink if needed
-  zIndex: 1,
-  columnGap: 'calc(0.75 * var(--Card-padding))',
-  padding: 'var(--unstable_padding)',
+})<{ ownerState: AccordionDetailsOwnerState }>(({ ownerState, theme }) => ({
+  overflow: 'hidden',
+  display: 'grid',
+  gridTemplateRows: '1fr',
+  marginInline: 'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
+  paddingInlineStart: 'var(--ListItem-paddingLeft)',
+  paddingInlineEnd: 'var(--ListItem-paddingRight)',
+  paddingBlock: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
+  [`&:not(.${accordionDetailsClasses.expanded})`]: {
+    gridTemplateRows: '0fr',
+    paddingBlock: 0,
+  },
 }));
+
+const AccordionDetailsContent = styled('div', {
+  name: 'JoyAccordionDetails',
+  slot: 'Content',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: AccordionDetailsOwnerState }>(({ ownerState }) => ({
+  overflow: 'hidden', // required for user-provided transition to work
+}));
+
 /**
  * ⚠️ AccordionDetails must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
@@ -62,6 +79,7 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
     ...props,
     component,
     expanded,
+    nesting: true, // for the List styles
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -70,14 +88,20 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
     ref,
     className: clsx(classes.root, className),
     elementType: AccordionDetailsRoot,
-    externalForwardedProps: {
+    externalForwardedProps,
+    additionalProps: {
       'aria-labelledby': accordionId,
-      ...externalForwardedProps,
+      role: 'region',
+      hidden: expanded ? undefined : true,
     },
     ownerState,
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  return (
+    <SlotRoot {...rootProps}>
+      <AccordionDetailsContent>{children}</AccordionDetailsContent>
+    </SlotRoot>
+  );
 }) as OverridableComponent<AccordionDetailsTypeMap>;
 
 AccordionDetails.propTypes /* remove-proptypes */ = {

@@ -3,7 +3,8 @@ import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Accordion from '@mui/joy/Accordion';
 import AccordionDetails from '@mui/joy/AccordionDetails';
 import AccordionSummary from '@mui/joy/AccordionSummary';
-import Box from '@mui/joy/Box';
+import List from '@mui/joy/List';
+import ListDivider from '@mui/joy/ListDivider';
 
 export default function ButtonUsage() {
   return (
@@ -35,16 +36,22 @@ export default function ButtonUsage() {
         { propName: 'onClick', defaultValue: () => {} },
       ]}
       renderDemo={(props) => (
-        <Box sx={{ display: 'flex', gap: 2 }}>
+        <List variant="outlined">
           <Accordion>
             <AccordionSummary>Personal Information</AccordionSummary>
             <AccordionDetails>test</AccordionDetails>
+          </Accordion>
+          <ListDivider />
+          <Accordion>
             <AccordionSummary>Billing Address</AccordionSummary>
             <AccordionDetails>test</AccordionDetails>
+          </Accordion>
+          <ListDivider />
+          <Accordion>
             <AccordionSummary>Shipping Address</AccordionSummary>
             <AccordionDetails>test</AccordionDetails>
           </Accordion>
-        </Box>
+        </List>
       )}
     />
   );

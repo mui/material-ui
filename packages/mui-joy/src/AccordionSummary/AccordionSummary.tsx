@@ -6,7 +6,9 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getAccordionSummaryUtilityClass } from './accordionSummaryClasses';
+import accordionSummaryClasses, {
+  getAccordionSummaryUtilityClass,
+} from './accordionSummaryClasses';
 import {
   AccordionSummaryProps,
   AccordionSummaryOwnerState,
@@ -14,6 +16,9 @@ import {
 } from './AccordionSummaryProps';
 import useSlot from '../utils/useSlot';
 import AccordionContext from '../Accordion/AccordionContext';
+import { StyledListItem } from '../ListItem/ListItem';
+import { StyledListItemButton } from '../ListItemButton/ListItemButton';
+import KeyboardArrowDown from '../internal/svg-icons/KeyboardArrowDown';
 
 const useUtilityClasses = (ownerState: AccordionSummaryOwnerState) => {
   const { disabled, expanded } = ownerState;
@@ -25,23 +30,37 @@ const useUtilityClasses = (ownerState: AccordionSummaryOwnerState) => {
   return composeClasses(slots, getAccordionSummaryUtilityClass, {});
 };
 
-const AccordionSummaryRoot = styled('div', {
+const AccordionSummaryRoot = styled(StyledListItem as unknown as 'div', {
   name: 'JoyAccordionSummary',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AccordionSummaryOwnerState }>(({ ownerState }) => ({
-  display: 'flex',
-  flex: 1, // fill the available space in the Card and also shrink if needed
-  zIndex: 1,
-  columnGap: 'calc(0.75 * var(--Card-padding))',
-  padding: 'var(--unstable_padding)',
+})<{ ownerState: AccordionSummaryOwnerState }>(({ theme }) => ({
+  fontWeight: theme.vars.fontWeight.md,
+  [`&.${accordionSummaryClasses.expanded}`]: {
+    '--Icon-color': 'currentColor',
+  },
 }));
 
-const AccordionSummaryButton = styled('button', {
+const AccordionSummaryButton = styled(StyledListItemButton as unknown as 'button', {
   name: 'JoyAccordionSummary',
   slot: 'Button',
   overridesResolver: (props, styles) => styles.button,
-})<{ ownerState: AccordionSummaryOwnerState }>({});
+})<{ ownerState: AccordionSummaryOwnerState }>({
+  gap: '0.5rem',
+  fontWeight: 'inherit',
+  justifyContent: 'space-between',
+});
+
+const AccordionSummaryIndicator = styled('span', {
+  name: 'JoyAccordionSummary',
+  slot: 'Indicator',
+  overridesResolver: (props, styles) => styles.indicator,
+})<{ ownerState: AccordionSummaryOwnerState }>({
+  display: 'inline-flex',
+  [`&.${accordionSummaryClasses.expanded}`]: {
+    transform: 'rotate(180deg)',
+  },
+});
 
 /**
  * ⚠️ AccordionSummary must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
@@ -60,7 +79,15 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     name: 'JoyAccordionSummary',
   });
 
-  const { className, component = 'div', children, slots = {}, slotProps = {}, ...other } = props;
+  const {
+    className,
+    component = 'div',
+    children,
+    indicator = <KeyboardArrowDown />,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const {
     accordionId,
@@ -105,6 +132,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     elementType: AccordionSummaryButton,
     externalForwardedProps,
     additionalProps: {
+      component: 'button',
       'aria-expanded': expanded ? 'true' : 'false',
       'aria-controls': accordionId,
       disabled,
@@ -113,9 +141,20 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     ownerState,
   });
 
+  const [SlotIndicator, indicatorProps] = useSlot('indicator', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AccordionSummaryIndicator,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
     <SlotRoot {...rootProps}>
-      <SlotButton {...buttonProps}>{children}</SlotButton>
+      <SlotButton {...buttonProps}>
+        {children}
+        {indicator && <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>}
+      </SlotButton>
     </SlotRoot>
   );
 }) as OverridableComponent<AccordionSummaryTypeMap>;

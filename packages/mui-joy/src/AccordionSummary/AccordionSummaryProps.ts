@@ -16,6 +16,11 @@ export interface AccordionSummarySlots {
    * @default 'button'
    */
   button?: React.ElementType;
+  /**
+   * The component that renders the indicator.
+   * @default 'span'
+   */
+  indicator?: React.ElementType;
 }
 
 export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -23,6 +28,7 @@ export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     root: SlotProps<'div', {}, AccordionSummaryOwnerState>;
     button: SlotProps<'button', {}, AccordionSummaryOwnerState>;
+    indicator: SlotProps<'span', {}, AccordionSummaryOwnerState>;
   }
 >;
 
@@ -33,6 +39,10 @@ export interface AccordionSummaryTypeMap<P = {}, D extends React.ElementType = '
      * This can be an element, or just a string.
      */
     children?: React.ReactNode;
+    /**
+     * The indicator element to display.
+     */
+    indicator?: React.ReactNode;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

@@ -11,6 +11,7 @@ import { getAccordionUtilityClass } from './accordionClasses';
 import { AccordionProps, AccordionOwnerState, AccordionTypeMap } from './AccordionProps';
 import useSlot from '../utils/useSlot';
 import AccordionContext from './AccordionContext';
+import { StyledListItem } from '../ListItem/ListItem';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -20,17 +21,11 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getAccordionUtilityClass, {});
 };
 
-const AccordionRoot = styled('div', {
+const AccordionRoot = styled(StyledListItem as unknown as 'div', {
   name: 'JoyAccordion',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AccordionOwnerState }>(({ ownerState }) => ({
-  display: 'flex',
-  flex: 1, // fill the available space in the Card and also shrink if needed
-  zIndex: 1,
-  columnGap: 'calc(0.75 * var(--Card-padding))',
-  padding: 'var(--unstable_padding)',
-}));
+})<{ ownerState: AccordionOwnerState }>(({ ownerState }) => ({}));
 /**
  * ⚠️ Accordion must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
@@ -92,6 +87,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   const ownerState = {
     ...props,
     component,
+    nested: true, // for the ListItem styles
   };
 
   const classes = useUtilityClasses();
@@ -106,7 +102,16 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 
   return (
     <AccordionContext.Provider value={contextValue}>
-      <SlotRoot {...rootProps}>{children}</SlotRoot>
+      <SlotRoot {...rootProps}>
+        {React.Children.map(children, (child, index) =>
+          React.isValidElement(child) && index === 0
+            ? React.cloneElement(child, {
+                // @ts-ignore: to let ListItem knows when to apply margin(Inline|Block)Start
+                'data-first-child': '',
+              })
+            : child,
+        )}
+      </SlotRoot>
     </AccordionContext.Provider>
   );
 }) as OverridableComponent<AccordionTypeMap>;
