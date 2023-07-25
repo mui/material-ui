@@ -119,7 +119,7 @@ export default function MusicPlayerSlider() {
           min={0}
           step={1}
           max={duration}
-          onChange={(_, value) => setPosition(value as number)}
+          onChange={(_: Event, value: number) => setPosition(value)}
           sx={{
             color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
             height: 4,

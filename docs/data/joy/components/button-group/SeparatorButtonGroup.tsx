@@ -16,7 +16,7 @@ export default function SeparatorButtonGroup() {
         max={360}
         valueLabelDisplay="on"
         valueLabelFormat={(value) => `hsl(${value} 100% 50%)`}
-        onChange={(event, newValue) => setHue(newValue as number)}
+        onChange={(event: Event, newValue: number) => setHue(newValue)}
       />
       <ButtonGroup
         variant="plain"

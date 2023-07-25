@@ -14,8 +14,8 @@
     "name": { "type": { "name": "string", "description": "string" } },
     "onChange": {
       "type": {
-        "name": "(event: Event, value: number | number[], activeThumb: number) =&gt; void",
-        "description": "(event: Event, value: number | number[], activeThumb: number) =&gt; void"
+        "name": "SingleValueChange | MultipleValuesChange | DefaultOnChange",
+        "description": "SingleValueChange | MultipleValuesChange | DefaultOnChange"
       }
     },
     "onChangeCommitted": {
