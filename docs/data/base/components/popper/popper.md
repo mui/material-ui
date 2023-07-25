@@ -44,7 +44,7 @@ You can disable this behavior with `disablePortal` prop.
 The following demo shows how to create and style a basic popper.
 Click **Toggle Popper** to see how it behaves:
 
-{{"demo": "SimplePopper.js", "defaultCodeOpen": true}}
+{{"demo": "UnstyledPopperBasic", "defaultCodeOpen": true}}
 
 :::warning
 By default, clicking outside the popper does not hide it.
