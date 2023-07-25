@@ -46,7 +46,7 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
-  PaperProps?: Partial<PaperProps<React.ElementType>>;
+  PaperProps?: Partial<PaperProps>;
   /**
    * Props applied to the [`Slide`](/material-ui/api/slide/) element.
    */

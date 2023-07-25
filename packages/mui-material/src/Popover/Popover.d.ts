@@ -107,7 +107,7 @@ export interface PopoverProps
    *
    * @default {}
    */
-  PaperProps?: Partial<PaperProps<React.ElementType>>;
+  PaperProps?: Partial<PaperProps>;
   /**
    * The components used for each slot inside.
    *
