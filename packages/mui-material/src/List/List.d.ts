@@ -44,12 +44,14 @@ export interface ListTypeMap<
 /**
  * utility to create component types that inherit props from List.
  */
-export interface ExtendListTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ListTypeMap['props'];
-  defaultComponent: M['defaultComponent'];
+export interface ExtendListTypeMap<TypeMap extends OverridableTypeMap> {
+  props: TypeMap['props'] & ListTypeMap['props'];
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
-export type ExtendList<M extends OverridableTypeMap> = OverridableComponent<ExtendListTypeMap<M>>;
+export type ExtendList<TypeMap extends OverridableTypeMap> = OverridableComponent<
+  ExtendListTypeMap<TypeMap>
+>;
 
 /**
  *

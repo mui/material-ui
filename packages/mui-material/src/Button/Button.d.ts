@@ -95,18 +95,18 @@ export type ButtonTypeMap<
  * This component has an additional overload if the `href` prop is set which
  * can make extension quite tricky
  */
-export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] &
-    (M['props'] extends { classes?: Record<string, string> }
+export interface ExtendButtonTypeMap<TypeMap extends OverridableTypeMap> {
+  props: TypeMap['props'] &
+    (TypeMap['props'] extends { classes?: Record<string, string> }
       ? DistributiveOmit<ButtonTypeMap['props'], 'classes'>
       : ButtonTypeMap['props']);
-  defaultComponent: M['defaultComponent'];
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
-export type ExtendButton<M extends OverridableTypeMap> = ((
-  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>,
+export type ExtendButton<TypeMap extends OverridableTypeMap> = ((
+  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<TypeMap>, 'a'>,
 ) => JSX.Element) &
-  OverridableComponent<ExtendButtonBaseTypeMap<M>>;
+  OverridableComponent<ExtendButtonBaseTypeMap<TypeMap>>;
 
 /**
  *

@@ -75,9 +75,9 @@ declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 
 export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 
-export interface ExtendFormLabelTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & Pick<FormLabelOwnProps, 'filled' | 'color'>;
-  defaultComponent: M['defaultComponent'];
+export interface ExtendFormLabelTypeMap<TypeMap extends OverridableTypeMap> {
+  props: TypeMap['props'] & Pick<FormLabelOwnProps, 'filled' | 'color'>;
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
 export type FormLabelProps<

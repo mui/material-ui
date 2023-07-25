@@ -57,9 +57,9 @@ export interface PaperTypeMap<
  */
 declare const Paper: OverridableComponent<PaperTypeMap>;
 
-export interface ExtendPaperTypeMap<M extends OverridableTypeMap, Keys extends string = ''> {
-  props: M['props'] & Omit<PaperTypeMap['props'], Keys>;
-  defaultComponent: M['defaultComponent'];
+export interface ExtendPaperTypeMap<TypeMap extends OverridableTypeMap, Keys extends string = ''> {
+  props: TypeMap['props'] & Omit<PaperTypeMap['props'], Keys>;
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
 export type PaperProps<
