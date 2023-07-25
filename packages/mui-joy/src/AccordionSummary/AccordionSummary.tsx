@@ -49,6 +49,9 @@ const AccordionSummaryButton = styled(StyledListItemButton as unknown as 'button
   gap: '0.5rem',
   fontWeight: 'inherit',
   justifyContent: 'space-between',
+  '&:focus-visible': {
+    zIndex: 1, // to make the focus ring appear above the next Accordion.
+  },
 });
 
 const AccordionSummaryIndicator = styled('span', {

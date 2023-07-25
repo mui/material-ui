@@ -17,7 +17,42 @@ Accordion components are used to expand and collapse sections of content.
 
 {{"demo": "AccordionUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-:::info
+## Basics
+
+```jsx
+import Accordion from '@mui/joy/Accordion';
+import AccordionDetails from '@mui/joy/AccordionDetails';
+import AccordionGroup from '@mui/joy/AccordionGroup';
+import AccordionSummary from '@mui/joy/AccordionSummary';
+```
+
+{{"demo": "AccordionBasic.js"}}
+
+## Customization
+
+### Sizes
+
+{{"demo": "AccordionSizes.js"}}
+
+### Controlled accordion
+
+### Disabled
+
+### Divider
+
+### Transition
+
+## Common examples
+
+## Accessibility
+
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)
+
+For optimal accessibility we recommend setting `id` and `aria-controls` on the
+`AccordionSummary`. The `Accordion` will derive the necessary `aria-labelledby`
+and `id` for the content region of the accordion.
+
+<!-- :::info
 💡 The Joy UI Accordion component is still in development.
 If you're in need of it, please upvote [**this GitHub issue**](https://github.com/mui/material-ui/issues/36281) to help us prioritize the next batch of new components.
 :::
@@ -66,4 +101,4 @@ Headless UI does not provide an API to create animation so you have to use other
      title="Joy UI feat. Headless UI Disclosure"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+   ></iframe> -->

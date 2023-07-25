@@ -32,12 +32,14 @@ const AccordionDetailsRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AccordionDetailsOwnerState }>(({ ownerState, theme }) => ({
   overflow: 'hidden',
+  borderRadius: 'var(--AccordionDetails-radius)',
   display: 'grid',
   gridTemplateRows: '1fr',
   marginInline: 'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
   paddingInlineStart: 'var(--ListItem-paddingLeft)',
   paddingInlineEnd: 'var(--ListItem-paddingRight)',
-  paddingBlock: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
+  paddingBlockStart: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
+  paddingBlockEnd: 'calc(2 * var(--ListItem-paddingY))',
   [`&:not(.${accordionDetailsClasses.expanded})`]: {
     gridTemplateRows: '0fr',
     paddingBlock: 0,

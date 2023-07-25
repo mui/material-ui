@@ -32,9 +32,9 @@ export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface AccordionPropsVariantOverrides {}
+export interface AccordionSummaryPropsVariantOverrides {}
 
-export interface AccordionPropsColorOverrides {}
+export interface AccordionSummaryPropsColorOverrides {}
 
 export interface AccordionSummaryTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -47,7 +47,7 @@ export interface AccordionSummaryTypeMap<P = {}, D extends React.ElementType = '
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'neutral'
      */
-    color?: OverridableStringUnion<ColorPaletteProp, AccordionPropsColorOverrides>;
+    color?: OverridableStringUnion<ColorPaletteProp, AccordionSummaryPropsColorOverrides>;
     /**
      * The indicator element to display.
      */
@@ -56,7 +56,7 @@ export interface AccordionSummaryTypeMap<P = {}, D extends React.ElementType = '
      * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
-    variant?: OverridableStringUnion<VariantProp, AccordionPropsVariantOverrides>;
+    variant?: OverridableStringUnion<VariantProp, AccordionSummaryPropsVariantOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

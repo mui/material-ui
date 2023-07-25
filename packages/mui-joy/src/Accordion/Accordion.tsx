@@ -16,6 +16,7 @@ import { AccordionProps, AccordionOwnerState, AccordionTypeMap } from './Accordi
 import useSlot from '../utils/useSlot';
 import AccordionContext from './AccordionContext';
 import { StyledListItem } from '../ListItem/ListItem';
+import accordionDetailsClasses from '../AccordionDetails/accordionDetailsClasses';
 
 const useUtilityClasses = (ownerState: AccordionOwnerState) => {
   const { variant, color, expanded, disabled } = ownerState;
@@ -36,7 +37,24 @@ const AccordionRoot = styled(StyledListItem as unknown as 'div', {
   name: 'JoyAccordion',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AccordionOwnerState }>({});
+})<{ ownerState: AccordionOwnerState }>(({ ownerState }) => ({
+  '&[data-first-child]': {
+    '--ListItem-radius': 'var(--unstable_List-childRadius) var(--unstable_List-childRadius) 0 0',
+  },
+  '&[data-last-child]': {
+    '--ListItem-radius': '0 0 var(--unstable_List-childRadius) var(--unstable_List-childRadius)',
+    '& [aria-expanded="true"]': {
+      '--ListItem-radius': '0',
+    },
+    [`& .${accordionDetailsClasses.root}`]: {
+      '--AccordionDetails-radius':
+        '0 0 var(--unstable_List-childRadius) var(--unstable_List-childRadius)',
+    },
+  },
+  '&:not([data-first-child]):not([data-last-child])': {
+    '--ListItem-radius': '0',
+  },
+}));
 /**
  * ⚠️ Accordion must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
