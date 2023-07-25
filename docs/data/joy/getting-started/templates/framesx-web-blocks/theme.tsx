@@ -1,4 +1,5 @@
 import { extendTheme } from '@mui/joy/styles';
+import { inputClasses } from '@mui/joy/Input';
 
 export default extendTheme({
   colorSchemes: {
@@ -56,7 +57,7 @@ export default extendTheme({
         root: ({ ownerState, theme }) => ({
           ...(ownerState.variant === 'outlined' &&
             ownerState.color !== 'context' && {
-              '&:not(.Joy-focused):hover::before': {
+              [`&:not(.${inputClasses.focused}):hover::before`]: {
                 boxShadow: `inset 0 0 0 2px ${
                   theme.vars.palette?.[ownerState.color!]?.outlinedBorder
                 }`,

@@ -46,7 +46,7 @@ function ColorShowcase({ color }: { color: 'primary' | 'secondary' }) {
   );
 }
 
-export default function Palette() {
+export default function ManuallyProvidePaletteColor() {
   return (
     <ThemeProvider theme={theme}>
       <Stack direction="row" gap={8}>
