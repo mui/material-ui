@@ -489,7 +489,11 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead label="Column filters" nested href="/x/react-data-grid/filtering/" />
   ),
   'data-grid/filter-quick': (
-    <ColumnHead label="Quick filter (Search)" nested href="/x/react-data-grid/filtering/quick-filter/" />
+    <ColumnHead
+      label="Quick filter (Search)"
+      nested
+      href="/x/react-data-grid/filtering/quick-filter/"
+    />
   ),
   'data-grid/header-filters': (
     <ColumnHead label="Header filters" nested href="/x/react-data-grid/filtering/header-filters/" />
