@@ -14,17 +14,14 @@ const theme = createTheme({
   typography: {
     fontFamily: roboto.style.fontFamily,
   },
-  components: {
-    MuiAlert: {
-      styleOverrides: {
-        root: ({ ownerState }) => ({
-          ...(ownerState.severity === 'info' && {
-            backgroundColor: '#60a5fa',
-          }),
-        }),
-      },
-    },
-  },
+
+  // Use the `components` key for simple, theme-level customizations
+  // Bear in mind the theme isn't tree-shakable!
+  // https://mui.com/material-ui/customization/theme-components/
+  //
+  // components: {
+  //
+  // },
 });
 
 export default theme;
