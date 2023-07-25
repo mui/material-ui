@@ -257,15 +257,15 @@ export default function AppNavDrawerItem(props) {
     comingSoon,
     linkProps,
     onClick,
-    openImmediately,
+    initiallyExpanded = false,
+    expandable = false,
     plan = 'community',
     subheader,
     title,
     topLevel = false,
     ...other
   } = props;
-  const expandable = openImmediately != null;
-  const [open, setOpen] = React.useState(openImmediately);
+  const [open, setOpen] = React.useState(initiallyExpanded);
   const handleClick = (event) => {
     // Ignore the action if opening the link in a new tab
     if (shouldHandleLinkClick(event)) {
@@ -276,7 +276,7 @@ export default function AppNavDrawerItem(props) {
       onClick(event);
     }
 
-    if (expandable && !subheader) {
+    if (expandable) {
       event.preventDefault();
       setOpen((oldOpen) => !oldOpen);
     }
@@ -295,12 +295,12 @@ export default function AppNavDrawerItem(props) {
         prefetch={false}
         subheader={subheader}
         expandable={expandable}
-        activeClassName={expandable ? null : 'app-drawer-active'}
+        activeClassName={initiallyExpanded ? null : 'app-drawer-active'}
         className={topLevel ? 'algolia-lvl0' : null}
         onClick={handleClick}
         {...linkProps}
       >
-        {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
+        {expandable && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
         {title}
         {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
         {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
@@ -323,13 +323,14 @@ AppNavDrawerItem.propTypes = {
   children: PropTypes.node,
   comingSoon: PropTypes.bool,
   depth: PropTypes.number.isRequired,
+  expandable: PropTypes.bool,
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   icon: PropTypes.elementType,
+  initiallyExpanded: PropTypes.bool,
   legacy: PropTypes.bool,
   linkProps: PropTypes.object,
   newFeature: PropTypes.bool,
   onClick: PropTypes.func,
-  openImmediately: PropTypes.bool,
   plan: PropTypes.oneOf(['community', 'pro', 'premium']),
   subheader: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,

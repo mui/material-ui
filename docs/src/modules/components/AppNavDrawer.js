@@ -253,7 +253,8 @@ function reduceChildRoutes(context) {
         icon={page.icon}
         subheader={subheader}
         topLevel={topLevel && !page.subheader}
-        openImmediately={topLevel || subheader}
+        initiallyExpanded={topLevel || subheader}
+        expandable={!subheader}
       >
         {renderNavItems({
           onClose,
