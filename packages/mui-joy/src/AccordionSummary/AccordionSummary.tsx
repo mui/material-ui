@@ -82,8 +82,10 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
   const {
     className,
     component = 'div',
+    color = 'neutral',
     children,
     indicator = <KeyboardArrowDown />,
+    variant = 'plain',
     slots = {},
     slotProps = {},
     ...other
@@ -101,8 +103,10 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
   const ownerState = {
     ...props,
     component,
+    color,
     disabled,
     expanded,
+    variant,
   };
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -150,6 +154,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
   });
 
   return (
+    // Root and Button slots are required based on [WAI-ARIA Accordion](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/)
     <SlotRoot {...rootProps}>
       <SlotButton {...buttonProps}>
         {children}
