@@ -7,5 +7,6 @@ export { default as isHostComponent } from './isHostComponent';
 export { default as resolveComponentProps } from './resolveComponentProps';
 export { default as useSlotProps } from './useSlotProps';
 export { default as mergeSlotProps } from './mergeSlotProps';
+export { default as createSlot } from './createSlot';
 export * from './PolymorphicComponent';
 export * from './types';

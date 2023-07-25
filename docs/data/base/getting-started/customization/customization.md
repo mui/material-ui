@@ -141,6 +141,10 @@ In this case, `MyCustomThumb` component receives the `ownerState` object with th
 
 You can use this object to style your component.
 
+**Note:** If you want to use a third-party library's component as slot, automatically propagating the `ownerState` may create issues, for e.g. you may receive a warning: "React does not recognize the ownerState prop on a DOM element.". If you want to use the `ownerState` in order to propagate some props to the component, you can create a wrapper around it and do so. However, if you just want to replace the slot and don't want to bother to handle the `ownerState`, you can use the `createSlot` util:
+
+{{"demo": "CreateSlot.js", "defaultCodeOpen": true}}
+
 ### Customizing slot props
 
 Use the `slotProps` prop to customize the inner component props.
