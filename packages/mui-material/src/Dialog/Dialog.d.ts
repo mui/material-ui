@@ -72,7 +72,7 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
-  PaperProps?: Partial<PaperProps<React.ElementType>>;
+  PaperProps?: Partial<PaperProps>;
   /**
    * Determine the container for scrolling the dialog.
    * @default 'paper'
