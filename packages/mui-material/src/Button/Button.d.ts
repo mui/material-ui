@@ -13,10 +13,10 @@ export interface ButtonPropsColorOverrides {}
 export interface ButtonPropsSizeOverrides {}
 
 export type ButtonTypeMap<
-  P = {},
-  D extends React.ElementType = 'button',
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'button',
 > = ExtendButtonBaseTypeMap<{
-  props: P & {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -87,7 +87,7 @@ export type ButtonTypeMap<
       ButtonPropsVariantOverrides
     >;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**

@@ -51,9 +51,12 @@ export interface FormLabelOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
-  props: P & FormLabelBaseProps & FormLabelOwnProps;
-  defaultComponent: D;
+export interface FormLabelTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'label',
+> {
+  props: AdditionalProps & FormLabelBaseProps & FormLabelOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**

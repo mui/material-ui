@@ -4,8 +4,11 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BottomNavigationClasses } from './bottomNavigationClasses';
 
-export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
+export interface BottomNavigationTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -36,7 +39,7 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
      */
     value?: any;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *

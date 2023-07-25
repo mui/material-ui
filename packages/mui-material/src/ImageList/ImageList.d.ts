@@ -7,8 +7,11 @@ import { ImageListClasses } from './imageListClasses';
 
 export interface ImageListPropsVariantOverrides {}
 
-export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
-  props: P & {
+export interface ImageListTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'ul',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component, normally `ImageListItem`s.
      */
@@ -45,7 +48,7 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
       ImageListPropsVariantOverrides
     >;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *

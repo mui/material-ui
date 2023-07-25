@@ -4,8 +4,11 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TableFooterClasses } from './tableFooterClasses';
 
-export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot'> {
-  props: P & {
+export interface TableFooterTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'tfoot',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component, normally `TableRow`.
      */
@@ -19,7 +22,7 @@ export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *

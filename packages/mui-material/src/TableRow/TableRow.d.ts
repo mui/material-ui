@@ -4,8 +4,11 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TableRowClasses } from './tableRowClasses';
 
-export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
-  props: P & {
+export interface TableRowTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'tr',
+> {
+  props: AdditionalProps & {
     /**
      * Should be valid <tr> children such as `TableCell`.
      */
@@ -29,7 +32,7 @@ export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  * Will automatically set dynamic row height

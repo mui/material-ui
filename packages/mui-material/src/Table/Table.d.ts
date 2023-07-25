@@ -7,8 +7,11 @@ import { TableClasses } from './tableClasses';
 
 export interface TablePropsSizeOverrides {}
 
-export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
-  props: P & {
+export interface TableTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'table',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the table, normally `TableHead` and `TableBody`.
      */
@@ -39,7 +42,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *

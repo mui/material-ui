@@ -11,8 +11,11 @@ export interface FabPropsSizeOverrides {}
 
 export interface FabPropsColorOverrides {}
 
-export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
-  props: P & {
+export type FabTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'button',
+> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -66,7 +69,7 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**

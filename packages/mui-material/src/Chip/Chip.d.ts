@@ -11,8 +11,11 @@ export interface ChipPropsSizeOverrides {}
 
 export interface ChipPropsColorOverrides {}
 
-export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
+export interface ChipTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & {
     /**
      * The Avatar element to display.
      */
@@ -92,7 +95,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     variant?: OverridableStringUnion<'filled' | 'outlined', ChipPropsVariantOverrides>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

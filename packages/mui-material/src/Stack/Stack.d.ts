@@ -3,8 +3,11 @@ import { ResponsiveStyleValue, SxProps, SystemProps } from '@mui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createTheme';
 
-export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
+export interface StackTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps &
     SystemProps<Theme> & {
       /**
        * The content of the component.
@@ -40,7 +43,7 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps<Theme>;
     };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *

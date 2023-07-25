@@ -8,8 +8,11 @@ import { TypographyClasses } from './typographyClasses';
 
 export interface TypographyPropsVariantOverrides {}
 
-export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
-  props: P &
+export interface TypographyTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'span',
+> {
+  props: AdditionalProps &
     SystemProps<Theme> & {
       /**
        * Set the text-align on the component.
@@ -74,7 +77,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
         Record<OverridableStringUnion<Variant | 'inherit', TypographyPropsVariantOverrides>, string>
       >;
     };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

@@ -4,8 +4,8 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { CardMediaClasses } from './cardMediaClasses';
 
-export interface CardMediaTypeMap<P, D extends React.ElementType> {
-  props: P & {
+export interface CardMediaTypeMap<AdditionalProps, DefaultComponent extends React.ElementType> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -31,7 +31,7 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

@@ -84,8 +84,8 @@ export interface ListItemBaseProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ListItemTypeMap<P, D extends React.ElementType> {
-  props: P &
+export interface ListItemTypeMap<AdditionalProps, DefaultComponent extends React.ElementType> {
+  props: AdditionalProps &
     ListItemBaseProps & {
       /**
        * The components used for each slot inside.
@@ -132,7 +132,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
         root?: React.ElementType;
       };
     };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

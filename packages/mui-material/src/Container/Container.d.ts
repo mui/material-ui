@@ -4,8 +4,11 @@ import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ContainerClasses } from './containerClasses';
 
-export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
+export interface ContainerTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & {
     children?: React.ReactNode;
     /**
      * Override or extend the styles applied to the component.
@@ -36,7 +39,7 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *

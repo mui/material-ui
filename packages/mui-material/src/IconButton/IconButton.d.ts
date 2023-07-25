@@ -11,10 +11,10 @@ export interface IconButtonPropsColorOverrides {}
 export interface IconButtonPropsSizeOverrides {}
 
 export type IconButtonTypeMap<
-  P = {},
-  D extends React.ElementType = 'button',
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'button',
 > = ExtendButtonBaseTypeMap<{
-  props: P & {
+  props: AdditionalProps & {
     /**
      * The icon to display.
      */
@@ -62,7 +62,7 @@ export type IconButtonTypeMap<
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**

@@ -9,10 +9,10 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface InputLabelPropsSizeOverrides {}
 
 export type InputLabelTypeMap<
-  P = {},
-  D extends React.ElementType = 'label',
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'label',
 > = ExtendFormLabelTypeMap<{
-  props: P & {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -66,7 +66,7 @@ export type InputLabelTypeMap<
      */
     variant?: 'standard' | 'outlined' | 'filled';
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**

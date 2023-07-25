@@ -15,8 +15,11 @@ export interface LabelDisplayedRowsArgs {
   page: number;
 }
 
-export interface TablePaginationTypeMap<P, D extends React.ElementType> {
-  props: P &
+export interface TablePaginationTypeMap<
+  AdditionalProps,
+  DefaultComponent extends React.ElementType,
+> {
+  props: AdditionalProps &
     TablePaginationBaseProps & {
       /**
        * The component used for displaying the actions.
@@ -121,7 +124,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        */
       sx?: SxProps<Theme>;
     };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

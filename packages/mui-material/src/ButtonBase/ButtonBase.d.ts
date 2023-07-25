@@ -5,8 +5,11 @@ import { TouchRippleActions, TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 import { ButtonBaseClasses } from './buttonBaseClasses';
 
-export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button'> {
-  props: P & {
+export interface ButtonBaseTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'button',
+> {
+  props: AdditionalProps & {
     /**
      * A ref for imperative actions.
      * It currently only supports `focusVisible()` action.
@@ -85,7 +88,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     touchRippleRef?: React.Ref<TouchRippleActions>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

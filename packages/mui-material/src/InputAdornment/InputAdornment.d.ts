@@ -4,8 +4,11 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '..';
 import { InputAdornmentClasses } from './inputAdornmentClasses';
 
-export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
+export interface InputAdornmentTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & {
     /**
      * Override or extend the styles applied to the component.
      */
@@ -40,7 +43,7 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
      */
     variant?: 'standard' | 'outlined' | 'filled';
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *

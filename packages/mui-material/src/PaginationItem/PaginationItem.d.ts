@@ -12,8 +12,11 @@ export interface PaginationItemPropsSizeOverrides {}
 
 export interface PaginationItemPropsColorOverrides {}
 
-export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
+export interface PaginationItemTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & {
     /**
      * Override or extend the styles applied to the component.
      */
@@ -94,7 +97,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      */
     variant?: OverridableStringUnion<'text' | 'outlined', PaginationItemPropsVariantOverrides>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

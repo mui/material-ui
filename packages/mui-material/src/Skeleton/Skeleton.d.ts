@@ -7,8 +7,11 @@ import { SkeletonClasses } from './skeletonClasses';
 
 export interface SkeletonPropsVariantOverrides {}
 
-export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
-  props: P & {
+export interface SkeletonTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'span',
+> {
+  props: AdditionalProps & {
     /**
      * The animation.
      * If `false` the animation effect is disabled.
@@ -46,7 +49,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     width?: number | string;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

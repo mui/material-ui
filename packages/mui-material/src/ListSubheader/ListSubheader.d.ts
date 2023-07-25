@@ -4,8 +4,11 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListSubheaderClasses } from './listSubheaderClasses';
 
-export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'> {
-  props: P & {
+export interface ListSubheaderTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'li',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -39,7 +42,7 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

@@ -5,8 +5,11 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { TabClasses } from './tabClasses';
 
-export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButtonBaseTypeMap<{
-  props: P & {
+export type TabTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps & {
     /**
      * This prop isn't supported.
      * Use the `component` prop if you need to change the children structure.
@@ -54,7 +57,7 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
      */
     wrapped?: boolean;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**

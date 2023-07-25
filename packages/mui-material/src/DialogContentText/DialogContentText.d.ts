@@ -6,10 +6,10 @@ import { Theme } from '../styles';
 import { DialogContentTextClasses } from './dialogContentTextClasses';
 
 export interface DialogContentTextTypeMap<
-  P = {},
-  D extends React.ElementType = TypographyTypeMap['defaultComponent'],
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
 > {
-  props: P & {
+  props: AdditionalProps & {
     /**
      * Override or extend the styles applied to the component.
      */
@@ -19,7 +19,7 @@ export interface DialogContentTextTypeMap<
      */
     sx?: SxProps<Theme>;
   } & Omit<TypographyTypeMap['props'], 'classes'>;
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

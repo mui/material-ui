@@ -7,8 +7,11 @@ import { DividerClasses } from './dividerClasses';
 
 export interface DividerPropsVariantOverrides {}
 
-export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
-  props: P & {
+export interface DividerTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'hr',
+> {
+  props: AdditionalProps & {
     /**
      * Absolutely position the element.
      * @default false
@@ -56,7 +59,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
       DividerPropsVariantOverrides
     >;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

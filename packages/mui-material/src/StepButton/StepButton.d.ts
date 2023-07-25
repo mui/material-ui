@@ -10,8 +10,11 @@ import { StepButtonClasses } from './stepButtonClasses';
  */
 export type StepButtonIcon = React.ReactNode;
 
-export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
-  props: P & {
+export type StepButtonTypeMap<
+  AdditionalProps,
+  DefaultComponent extends React.ElementType,
+> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps & {
     /**
      * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
      */
@@ -33,7 +36,7 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 
   ignoredProps: 'disabled';
 }>;

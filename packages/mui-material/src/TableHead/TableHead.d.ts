@@ -4,8 +4,11 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TableHeadClasses } from './tableHeadClasses';
 
-export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'> {
-  props: P & {
+export interface TableHeadTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'thead',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component, normally `TableRow`.
      */
@@ -19,7 +22,7 @@ export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'>
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *

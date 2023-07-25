@@ -8,9 +8,12 @@ import { ExtendPaperTypeMap } from '../Paper/Paper';
 
 export interface AppBarPropsColorOverrides {}
 
-export type AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> = ExtendPaperTypeMap<
+export type AppBarTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'header',
+> = ExtendPaperTypeMap<
   {
-    props: P & {
+    props: AdditionalProps & {
       /**
        * Override or extend the styles applied to the component.
        */
@@ -39,7 +42,7 @@ export type AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> = Exte
        */
       sx?: SxProps<Theme>;
     };
-    defaultComponent: D;
+    defaultComponent: DefaultComponent;
   },
   'position' | 'color' | 'classes'
 >;

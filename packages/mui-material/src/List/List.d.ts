@@ -4,8 +4,11 @@ import { Theme } from '..';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
 import { ListClasses } from './listClasses';
 
-export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
-  props: P & {
+export interface ListTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'ul',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -35,7 +38,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

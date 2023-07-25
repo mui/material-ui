@@ -8,8 +8,11 @@ import { FormControlClasses } from './formControlClasses';
 export interface FormControlPropsSizeOverrides {}
 export interface FormControlPropsColorOverrides {}
 
-export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
+export interface FormControlTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -79,7 +82,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     variant?: 'standard' | 'outlined' | 'filled';
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

@@ -7,8 +7,11 @@ import { PaperClasses } from './paperClasses';
 
 export interface PaperPropsVariantOverrides {}
 
-export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
+export interface PaperTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -38,7 +41,7 @@ export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     variant?: OverridableStringUnion<'elevation' | 'outlined', PaperPropsVariantOverrides>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

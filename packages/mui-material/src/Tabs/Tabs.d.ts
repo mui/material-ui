@@ -24,8 +24,11 @@ export interface TabsOwnerState extends TabsProps {
   scrollButtonsHideMobile: boolean;
 }
 
-export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
-  props: P & {
+export interface TabsTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = typeof ButtonBase,
+> {
+  props: AdditionalProps & {
     /**
      * Callback fired when the component mounts.
      * This is useful when you want to trigger an action programmatically.
@@ -172,7 +175,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

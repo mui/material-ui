@@ -6,10 +6,10 @@ import { TypographyTypeMap } from '../Typography';
 import { DialogTitleClasses } from './dialogTitleClasses';
 
 export interface DialogTitleTypeMap<
-  P = {},
-  D extends React.ElementType = TypographyTypeMap['defaultComponent'],
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
 > {
-  props: P & {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -23,7 +23,7 @@ export interface DialogTitleTypeMap<
      */
     sx?: SxProps<Theme>;
   } & Omit<TypographyTypeMap['props'], 'classes'>;
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**

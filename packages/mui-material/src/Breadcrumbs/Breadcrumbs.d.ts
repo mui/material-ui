@@ -12,8 +12,11 @@ export interface BreadcrumbsOwnerState extends BreadcrumbsProps {
   expanded: boolean;
 }
 
-export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
-  props: P & {
+export interface BreadcrumbsTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'nav',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -79,7 +82,7 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**
