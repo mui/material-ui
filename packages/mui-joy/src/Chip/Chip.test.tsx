@@ -27,7 +27,7 @@ describe('<Chip />', () => {
       refInstanceof: window.HTMLDivElement,
       testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
       testComponentPropWith: 'span',
-      testVariantProps: { variant: 'soft' },
+      testVariantProps: { variant: 'solid' },
       testCustomVariant: true,
       slots: {
         root: { expectedClassName: classes.root },

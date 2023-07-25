@@ -10,6 +10,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
 import { useColorInversion } from '../styles/ColorInversion';
+import { resolveSxValue } from '../styles/styleUtils';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
@@ -42,6 +43,7 @@ const ChipRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const { borderRadius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
   return [
     {
       // for controlling chip delete margin offset
@@ -57,26 +59,26 @@ const ChipRoot = styled('div', {
       '--Icon-color': 'currentColor',
       '--unstable_actionRadius': 'var(--_Chip-radius)', // to be used with Radio or Checkbox
       ...(ownerState.size === 'sm' && {
-        '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decoratorChildHeight':
           'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth, 0px))',
         '--Icon-fontSize': theme.vars.fontSize.sm,
         '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)',
+        gap: '0.25rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Chip-gap': '0.375rem',
         '--Chip-paddingInline': '0.75rem',
         '--Chip-decoratorChildHeight': 'min(1.375rem, var(--_Chip-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.lg,
         '--_Chip-minHeight': 'var(--Chip-minHeight, 2rem)',
+        gap: '0.375rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Chip-gap': '0.5rem',
         '--Chip-paddingInline': '1rem',
         '--Chip-decoratorChildHeight': 'min(1.75rem, var(--_Chip-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl,
         '--_Chip-minHeight': 'var(--Chip-minHeight, 2.5rem)',
+        gap: '0.5rem',
       }),
       '--_Chip-radius': 'var(--Chip-radius, 1.5rem)',
       '--_Chip-paddingBlock':
@@ -114,6 +116,7 @@ const ChipRoot = styled('div', {
             color: variantStyle?.color,
           },
         ]),
+    borderRadius !== undefined && { '--_Chip-radius': borderRadius },
   ];
 });
 
@@ -180,7 +183,6 @@ const ChipStartDecorator = styled('span', {
   '--Chip-deleteMargin': '0 0 0 calc(var(--Chip-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Chip-paddingInline) / -4)',
   display: 'inherit',
-  marginInlineEnd: 'var(--Chip-gap)',
   // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
   order: 0,
   zIndex: 1,
@@ -195,7 +197,6 @@ const ChipEndDecorator = styled('span', {
   '--Chip-deleteMargin': '0 calc(var(--Chip-decoratorChildOffset) * -1) 0 0',
   '--Icon-margin': '0 calc(var(--Chip-paddingInline) / -4) 0 0',
   display: 'inherit',
-  marginInlineStart: 'var(--Chip-gap)',
   // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
   order: 2,
   zIndex: 1,
