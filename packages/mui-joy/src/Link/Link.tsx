@@ -76,9 +76,7 @@ const LinkRoot = styled('a', {
       '--Icon-fontSize': '1.25em',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
       ...(ownerState.level === 'inherit' && {
-        fontSize: 'inherit',
-        fontFamily: 'inherit',
-        lineHeight: 'inherit',
+        font: 'inherit',
       }),
       ...(ownerState.underline === 'none' && {
         textDecoration: 'none',

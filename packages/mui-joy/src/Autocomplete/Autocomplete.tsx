@@ -385,7 +385,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ...props,
     id: id ?? formControl?.htmlFor,
     componentName: 'Autocomplete',
-    unstable_classNamePrefix: 'Joy',
+    unstable_classNamePrefix: 'Mui',
     unstable_isActiveElementInListbox: defaultIsActiveElementInListbox,
   });
 

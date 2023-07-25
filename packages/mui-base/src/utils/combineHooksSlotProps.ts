@@ -22,7 +22,9 @@ export default function combineHooksSlotProps<
   getFirstProps: (external?: ExternalHandlers) => FirstSlotProps,
   getSecondProps: (external?: ExternalHandlers) => SecondSlotProps,
 ) {
-  return (external?: ExternalHandlers) => {
+  return function getCombinedProps<OtherProps extends ExternalHandlers>(
+    external: OtherProps = {} as OtherProps,
+  ) {
     const firstResult = {
       ...external,
       ...getFirstProps(external),

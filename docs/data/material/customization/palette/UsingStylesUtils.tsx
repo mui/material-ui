@@ -41,7 +41,7 @@ const theme = createTheme({
   },
 });
 
-export default function Palette() {
+export default function UsingStylesUtils() {
   return (
     <ThemeProvider theme={theme}>
       <Stack gap={2} alignItems="center">
