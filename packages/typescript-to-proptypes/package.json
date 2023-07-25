@@ -28,7 +28,7 @@
     "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.15",
     "@types/uuid": "^8.3.4",
-    "fast-glob": "^3.3.0",
+    "fast-glob": "^3.3.1",
     "prettier": "^2.8.8",
     "rimraf": "^5.0.1"
   },
