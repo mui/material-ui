@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button, { ButtonProps } from '@mui/material/Button';
-import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
+import MaterialUiLink, { LinkProps as MaterialUiLinkProps } from '@mui/material/Link';
 import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
 import { expectType } from '@mui/types';
 
@@ -10,12 +10,12 @@ const TestOverride = React.forwardRef<HTMLDivElement, { x?: number }>((props, re
   <div ref={ref} />
 ));
 
-type CustomLinkProps = MuiLinkProps<typeof ReactRouterLink, LinkProps>;
+type CustomLinkProps = MaterialUiLinkProps<typeof ReactRouterLink, LinkProps>;
 const CustomLink: React.FC<React.PropsWithChildren<CustomLinkProps>> = ({ children, ...props }) => {
   return (
-    <MuiLink component={ReactRouterLink} {...props}>
+    <MaterialUiLink component={ReactRouterLink} {...props}>
       {children}
-    </MuiLink>
+    </MaterialUiLink>
   );
 };
 
@@ -36,18 +36,18 @@ const props2: ButtonProps = {
   },
 };
 
-const props4: ButtonProps<typeof TestOverride> = {
+const props3: ButtonProps<typeof TestOverride> = {
   component: TestOverride,
   x: 2,
 };
 
-const props5: ButtonProps<typeof TestOverride> = {
+const props4: ButtonProps<typeof TestOverride> = {
   component: TestOverride,
   // @ts-expect-error
-  inCorrectProp: 3,
+  incorrectProp: 3,
 };
 
-const props6: ButtonProps<typeof TestOverride> = {
+const props5: ButtonProps<typeof TestOverride> = {
   component: TestOverride,
 };
 
