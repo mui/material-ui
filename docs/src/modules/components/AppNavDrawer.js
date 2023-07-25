@@ -217,7 +217,7 @@ function renderNavItems(options) {
  */
 function reduceChildRoutes(context) {
   const { onClose, activePageParents, items, depth, t } = context;
-  let { page } = context;
+  const { page } = context;
   if (page.inSideNav === false) {
     return items;
   }
@@ -265,7 +265,6 @@ function reduceChildRoutes(context) {
       </AppNavDrawerItem>,
     );
   } else {
-    page = page.children && page.children.length === 1 ? page.children[0] : page;
     const [path, hash] = page.pathname.split('#');
     items.push(
       <AppNavDrawerItem
