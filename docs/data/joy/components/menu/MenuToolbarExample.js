@@ -175,7 +175,7 @@ export default function MenuToolbarExample() {
             <Menu
               onClose={(event) => {
                 menus.current[0]?.focus();
-                if (event.relatedTarget !== menus.current[0]) {
+                if (event && event.relatedTarget !== menus.current[0]) {
                   setMenuIndex(null);
                 }
               }}
@@ -223,7 +223,7 @@ export default function MenuToolbarExample() {
             <Menu
               onClose={(event) => {
                 menus.current[1]?.focus();
-                if (event.relatedTarget !== menus.current[1]) {
+                if (event && event.relatedTarget !== menus.current[1]) {
                   setMenuIndex(null);
                 }
               }}
@@ -267,7 +267,7 @@ export default function MenuToolbarExample() {
             <Menu
               onClose={(event) => {
                 menus.current[2]?.focus();
-                if (event.relatedTarget !== menus.current[2]) {
+                if (event && event.relatedTarget !== menus.current[2]) {
                   setMenuIndex(null);
                 }
               }}

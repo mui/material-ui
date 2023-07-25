@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Tabs components
 components: Tabs, Tab, TabPanel, TabsList
 hooks: useTab, useTabPanel, useTabs, useTabsList
@@ -65,7 +65,7 @@ The following demo omits the `value` prop from the Tab components, and also defi
 
 The next demo shows how to apply custom styles to a set of tabs:
 
-{{"demo": "UnstyledTabsCustomized.js"}}
+{{"demo": "UnstyledTabsCustomized"}}
 
 ### Anatomy
 
@@ -127,7 +127,9 @@ The same applies for props specific to custom primitive elements:
 
 A common use case for tabs is to implement client-side navigation that doesn't require an HTTP round-trip to the server.
 
-The Tab component provides the [slots](/base-ui/react-tabs/#custom-structure) prop to handle this use case—see [the Material UI documentation on routing](/material-ui/guides/routing/#tabs) for more details.
+The Tab component provides the `slots` prop to handle this, as shown below:
+
+{{"demo": "UnstyledTabsRouting.js"}}
 
 ## Accessibility
 

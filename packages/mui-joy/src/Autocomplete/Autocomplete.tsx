@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -225,7 +226,10 @@ const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})<{ ownerState: OwnerState }>({});
+})<{ ownerState: OwnerState }>(({ theme }) => ({
+  // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+  zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
+}));
 
 const AutocompleteOption = styled(StyledAutocompleteOption, {
   name: 'JoyAutocomplete',
@@ -381,7 +385,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ...props,
     id: id ?? formControl?.htmlFor,
     componentName: 'Autocomplete',
-    unstable_classNamePrefix: 'Joy',
+    unstable_classNamePrefix: 'Mui',
     unstable_isActiveElementInListbox: defaultIsActiveElementInListbox,
   });
 

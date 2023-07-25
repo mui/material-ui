@@ -9,7 +9,7 @@ import MenuItem from '@mui/joy/MenuItem';
 import ArrowRight from '@mui/icons-material/ArrowRight';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 
-export default function BasicMenu() {
+export default function GroupMenu() {
   const SIZES = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large'];
   const [size, setSize] = React.useState('Medium');
   const buttonRef = React.useRef(null);

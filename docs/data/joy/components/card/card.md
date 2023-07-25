@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Card component
 components: Card, CardActions, CardContent, CardCover, CardOverflow
 githubLabel: 'component: card'
@@ -18,6 +18,8 @@ The Joy UI Card component includes several complementary utility components to h
 - [Card Cover](#card-layers): an optional container for displaying background images and gradient layers behind the Card Content.
 - [Card Content](#card-layers): an optional wrapper that brings content to the front (commonly but not always used with the Card Cover).
 - [Card Actions](#actions): an optional wrapper that groups a set of buttons.
+
+{{"demo": "CardUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Basics
 

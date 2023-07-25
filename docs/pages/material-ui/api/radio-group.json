@@ -3,7 +3,13 @@
     "children": { "type": { "name": "node" } },
     "defaultValue": { "type": { "name": "any" } },
     "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>, value: string) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
     "value": { "type": { "name": "any" } }
   },
   "name": "RadioGroup",

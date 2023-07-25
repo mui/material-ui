@@ -39,7 +39,7 @@ export default function ComponentLinkHeader(props) {
   const t = useTranslate();
 
   const packageName =
-    headers.packageName ?? defaultPackageNames[headers.product] ?? '@mui/material';
+    headers.packageName ?? defaultPackageNames[headers.productId] ?? '@mui/material';
 
   return (
     <Root>

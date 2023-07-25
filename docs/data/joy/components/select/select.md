@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Select component
 components: Select, Option
 githubLabel: 'component: select'
@@ -131,6 +131,12 @@ To control the placement of the listbox, use `placement`:
 ```
 
 :::
+
+#### Placement
+
+To align `listbox` position to `Select` while displaying long options, use `slotProps` prop to position listbox slot:
+
+{{"demo": "SelectPosition.js"}}
 
 #### Controlling the open state
 

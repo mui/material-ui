@@ -13,6 +13,7 @@ const ignoreList = [
   '/pages.ts',
   'docs/data/joy/getting-started/templates',
   'docs/data/base/components/select/UnstyledSelectIntroduction.tsx',
+  'docs/data/material/customization/palette',
 ];
 
 const fse = require('fs-extra');
@@ -102,7 +103,7 @@ async function transpileFile(tsxPath, program) {
 
     const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program, {
       shouldResolveObject: ({ name }) => {
-        if (name === 'classes') {
+        if (name === 'classes' || name === 'ownerState') {
           return false;
         }
 

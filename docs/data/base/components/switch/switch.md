@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Switch component and hook
 components: Switch
 hooks: useSwitch
@@ -39,7 +39,7 @@ export default function MyApp() {
 
 The following demo shows how to assign styles and props to the Switch component:
 
-{{"demo": "UnstyledSwitches.js"}}
+{{"demo": "UnstyledSwitchBasic"}}
 
 ### Anatomy
 

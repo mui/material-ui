@@ -2,13 +2,14 @@
   "props": {
     "aria-label": { "type": { "name": "string" } },
     "aria-valuetext": { "type": { "name": "string" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'"
+      "default": "'primary'",
+      "additionalPropsInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
     "defaultValue": {
@@ -16,8 +17,17 @@
     },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableSwap": { "type": { "name": "bool" }, "default": "false" },
-    "getAriaLabel": { "type": { "name": "func" } },
-    "getAriaValueText": { "type": { "name": "func" } },
+    "getAriaLabel": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(index: number) => string", "describedArgs": ["index"] }
+    },
+    "getAriaValueText": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: number, index: number) => string",
+        "describedArgs": ["value", "index"]
+      }
+    },
     "isRtl": { "type": { "name": "bool" }, "default": "false" },
     "marks": {
       "type": {
@@ -29,19 +39,36 @@
     "max": { "type": { "name": "number" }, "default": "100" },
     "min": { "type": { "name": "number" }, "default": "0" },
     "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
-    "onChangeCommitted": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: Event, value: number | Array<number>, activeThumb: number) => void",
+        "describedArgs": ["event", "value", "activeThumb"]
+      }
+    },
+    "onChangeCommitted": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent | Event, value: number | Array<number>) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
-    "scale": { "type": { "name": "func" }, "default": "function Identity(x) {\n  return x;\n}" },
+    "scale": {
+      "type": { "name": "func" },
+      "default": "function Identity(x) {\n  return x;\n}",
+      "signature": { "type": "function(x: any) => any", "describedArgs": [] }
+    },
     "size": {
       "type": {
         "name": "union",
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
-      "default": "'md'"
+      "default": "'md'",
+      "additionalPropsInfo": { "joy-size": true }
     },
     "slotProps": {
       "type": {
@@ -55,14 +82,16 @@
         "name": "shape",
         "description": "{ input?: elementType, mark?: elementType, markLabel?: elementType, rail?: elementType, root?: elementType, thumb?: elementType, track?: elementType, valueLabel?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
     "step": { "type": { "name": "number" }, "default": "1" },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "tabIndex": { "type": { "name": "number" } },
     "track": {
@@ -88,7 +117,8 @@
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'solid'"
+      "default": "'solid'",
+      "additionalPropsInfo": { "joy-variant": true }
     }
   },
   "name": "Slider",

@@ -16,12 +16,12 @@ export default function NestedModal() {
   return (
     <div>
       <TriggerButton onClick={handleOpen}>Open modal</TriggerButton>
-      <Modal
+      <StyledModal
         open={open}
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
-        slots={{ backdrop: Backdrop }}
+        slots={{ backdrop: StyledBackdrop }}
       >
         <Box sx={style}>
           <h2 id="parent-modal-title">Text in a modal</h2>
@@ -30,7 +30,7 @@ export default function NestedModal() {
           </p>
           <ChildModal />
         </Box>
-      </Modal>
+      </StyledModal>
     </div>
   );
 }
@@ -102,10 +102,7 @@ const grey = {
 const StyledModal = styled(Modal)`
   position: fixed;
   z-index: 1300;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,11 +111,8 @@ const StyledModal = styled(Modal)`
 const StyledBackdrop = styled(Backdrop)`
   z-index: -1;
   position: fixed;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background-color: rgb(0 0 0 / 0.5);
   -webkit-tap-highlight-color: transparent;
 `;
 

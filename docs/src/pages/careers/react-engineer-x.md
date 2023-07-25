@@ -1,4 +1,4 @@
-# React Engineer - X (future)
+# React Engineer - X (future role)
 
 <p class="description">You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
 

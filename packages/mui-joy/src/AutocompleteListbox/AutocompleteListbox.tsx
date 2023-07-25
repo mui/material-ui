@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -35,6 +36,7 @@ const excludePopperProps = <T extends Record<string, any>>({
   anchorEl,
   direction,
   disablePortal,
+  keepMounted,
   modifiers,
   open,
   placement,
