@@ -8,7 +8,7 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
     return <div />;
   };
 
-const props: GridProps<'span'> = {
+const props1: GridProps<'span'> = {
   component: 'span',
   onChange: (event) => {
     expectType<React.FormEvent<HTMLSpanElement>, typeof event>(event);
@@ -21,22 +21,22 @@ const props2: GridProps = {
   },
 };
 
+const props3: GridProps<typeof CustomComponent> = {
+  component: CustomComponent,
+  stringProp: '2',
+  numberProp: 2,
+};
+
 const props4: GridProps<typeof CustomComponent> = {
   component: CustomComponent,
   stringProp: '2',
   numberProp: 2,
-};
-
-const props5: GridProps<typeof CustomComponent> = {
-  component: CustomComponent,
-  stringProp: '2',
-  numberProp: 2,
   // @ts-expect-error
-  inCorrectProp: 3,
+  incorrectProp: 3,
 };
 
 // @ts-expect-error
-const props6: GridProps<typeof CustomComponent> = {
+const props5: GridProps<typeof CustomComponent> = {
   component: CustomComponent,
 };
 
