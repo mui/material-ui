@@ -7,7 +7,7 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
     return <div />;
   };
 
-const props: FormHelperTextProps<'div'> = {
+const props1: FormHelperTextProps<'div'> = {
   component: 'div',
   onChange: (event) => {
     expectType<React.FormEvent<HTMLDivElement>, typeof event>(event);
@@ -20,22 +20,22 @@ const props2: FormHelperTextProps = {
   },
 };
 
+const props3: FormHelperTextProps<typeof CustomComponent> = {
+  component: CustomComponent,
+  stringProp: '2',
+  numberProp: 2,
+};
+
 const props4: FormHelperTextProps<typeof CustomComponent> = {
   component: CustomComponent,
   stringProp: '2',
   numberProp: 2,
-};
-
-const props5: FormHelperTextProps<typeof CustomComponent> = {
-  component: CustomComponent,
-  stringProp: '2',
-  numberProp: 2,
   // @ts-expect-error
-  inCorrectProp: 3,
+  incorrectProp: 3,
 };
 
 // @ts-expect-error
-const props6: FormHelperTextProps<typeof CustomComponent> = {
+const props5: FormHelperTextProps<typeof CustomComponent> = {
   component: CustomComponent,
 };
 
