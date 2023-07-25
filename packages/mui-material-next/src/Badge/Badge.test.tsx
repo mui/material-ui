@@ -64,7 +64,6 @@ describe('<Badge />', () => {
     const customClasses = {
       root: 'test-root',
       anchorOriginTopRight: 'test-anchorOriginTopRight',
-      anchorOriginTopRightCircular: 'test-anchorOriginTopRightCircular',
       badge: 'test-badge',
       colorSecondary: 'test-colorSecondary',
       small: 'test-small',
@@ -87,7 +86,6 @@ describe('<Badge />', () => {
 
     expect(findBadgeRoot(container)).to.have.class(customClasses.root);
     expect(findBadge(container)).to.have.class(customClasses.anchorOriginTopRight);
-    expect(findBadge(container)).to.have.class(customClasses.anchorOriginTopRightCircular);
     expect(findBadge(container)).to.have.class(customClasses.badge);
     expect(findBadge(container)).to.have.class(customClasses.colorSecondary);
     expect(findBadge(container)).to.have.class(customClasses.small);
@@ -266,76 +264,54 @@ describe('<Badge />', () => {
   });
 
   describe('prop: anchorOrigin', () => {
-    it('should apply style for top left rectangular', () => {
+    it('should apply style for top right by default', () => {
+      const { container } = render(<Badge {...defaultProps} />);
+      expect(findBadge(container)).to.have.class(classes.anchorOriginTopRight);
+    });
+
+    it('should apply style for top left', () => {
       const { container } = render(
         <Badge {...defaultProps} anchorOrigin={{ horizontal: 'left', vertical: 'top' }} />,
       );
-      expect(findBadge(container)).to.have.class(classes.anchorOriginTopLeftRectangular);
+      expect(findBadge(container)).to.have.class(classes.anchorOriginTopLeft);
     });
 
-    it('should apply style for top right rectangular', () => {
+    it('should apply style for top right', () => {
       const { container } = render(
         <Badge {...defaultProps} anchorOrigin={{ horizontal: 'right', vertical: 'top' }} />,
       );
-      expect(findBadge(container)).to.have.class(classes.anchorOriginTopRightRectangular);
+      expect(findBadge(container)).to.have.class(classes.anchorOriginTopRight);
     });
 
-    it('should apply style for bottom left rectangular', () => {
+    it('should apply style for bottom left', () => {
       const { container } = render(
         <Badge {...defaultProps} anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }} />,
       );
-      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomLeftRectangular);
+      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomLeft);
     });
 
-    it('should apply style for bottom right rectangular', () => {
+    it('should apply style for bottom right', () => {
       const { container } = render(
         <Badge {...defaultProps} anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }} />,
       );
-      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomRightRectangular);
+      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomRight);
+    });
+  });
+
+  describe('prop: overlap', () => {
+    it('should apply style for rectangular by default', () => {
+      const { container } = render(<Badge {...defaultProps} />);
+      expect(findBadge(container)).to.have.class(classes.overlapRectangular);
     });
 
-    it('should apply style for top left circular', () => {
-      const { container } = render(
-        <Badge
-          {...defaultProps}
-          anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
-          overlap="circular"
-        />,
-      );
-      expect(findBadge(container)).to.have.class(classes.anchorOriginTopLeftCircular);
+    it('should apply style for rectangular', () => {
+      const { container } = render(<Badge {...defaultProps} overlap="rectangular" />);
+      expect(findBadge(container)).to.have.class(classes.overlapRectangular);
     });
 
-    it('should apply style for top right circular', () => {
-      const { container } = render(
-        <Badge
-          {...defaultProps}
-          anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-          overlap="circular"
-        />,
-      );
-      expect(findBadge(container)).to.have.class(classes.anchorOriginTopRightCircular);
-    });
-
-    it('should apply style for bottom left circular', () => {
-      const { container } = render(
-        <Badge
-          {...defaultProps}
-          anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-          overlap="circular"
-        />,
-      );
-      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomLeftCircular);
-    });
-
-    it('should apply style for bottom right circular', () => {
-      const { container } = render(
-        <Badge
-          {...defaultProps}
-          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-          overlap="circular"
-        />,
-      );
-      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomRightCircular);
+    it('should apply style for circular', () => {
+      const { container } = render(<Badge {...defaultProps} overlap="circular" />);
+      expect(findBadge(container)).to.have.class(classes.overlapCircular);
     });
   });
 
@@ -360,6 +336,6 @@ describe('<Badge />', () => {
     expect(findBadge(container)).to.have.class(classes.colorSecondary);
     expect(findBadge(container)).to.have.class(classes.small);
     expect(findBadge(container)).to.have.class(classes.dot);
-    expect(findBadge(container)).to.have.class(classes.anchorOriginTopRightRectangular);
+    expect(findBadge(container)).to.have.class(classes.anchorOriginTopRight);
   });
 });
