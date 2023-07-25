@@ -74,7 +74,10 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
           slots={{
             root: StyledPopper,
           }}
-          modifiers={[{ name: 'flip', enabled: false }]}
+          modifiers={[
+            { name: 'flip', enabled: false },
+            { name: 'preventOverflow', enabled: false },
+          ]}
         >
           <StyledListbox {...getListboxProps()}>
             {(groupedOptions as typeof top100Films).map((option, index) => {
@@ -123,7 +126,7 @@ const StyledAutocompleteRoot = styled('div')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
-  border-radius: 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
@@ -159,7 +162,7 @@ const StyledInput = styled('input')(
   background: inherit;
   border: none;
   border-radius: inherit;
-  padding: 12px 12px;
+  padding: 8px 12px;
   outline: 0;
   flex: 1 0 auto;
 `,
@@ -232,13 +235,13 @@ const StyledOption = styled('li')(
 
 const StyledPopupIndicator = styled(Button)(
   ({ theme }) => `
-    margin-top: 5px;
-    margin-bottom: 5px;
     outline: 0;
     box-shadow: none;
     border: 0;
-    border-radius: 7px;
+    border-radius: 4px;
     background-color: transparent;
+    align-self: center;
+    padding: 0 2px;
     
     &:hover {
       background-color: ${theme.palette.mode === 'dark' ? grey[700] : blue[100]};
@@ -246,24 +249,24 @@ const StyledPopupIndicator = styled(Button)(
     }
 
     & > svg {
-      transform: translateY(1px);
+      transform: translateY(2px);
     }
 
     &.popupOpen > svg {
-      transform: translateY(1px) rotate(180deg);
+      transform: translateY(2px) rotate(180deg);
     }
   `,
 );
 
 const StyledClearIndicator = styled(Button)(
   ({ theme }) => `
-    margin-top: 5px;
-    margin-bottom: 5px;
     outline: 0;
     box-shadow: none;
     border: 0;
-    border-radius: 7px;
+    border-radius: 4px;
     background-color: transparent;
+    align-self: center;
+    padding: 0 2px;
     
     &:hover {
       background-color: ${theme.palette.mode === 'dark' ? grey[700] : blue[100]};
@@ -271,7 +274,7 @@ const StyledClearIndicator = styled(Button)(
     }
 
     & > svg {
-      transform: translateY(1px);
+      transform: translateY(2px) scale(0.9);
     }
   `,
 );
