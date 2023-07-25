@@ -124,6 +124,8 @@ export type BadgeProps<
 > = OverrideProps<BadgeTypeMap<D, P>, D>;
 
 export interface BadgeOwnerState extends BadgeProps {
+  size: NonNullable<BadgeProps['size']>;
+  variant: NonNullable<BadgeProps['variant']>;
   anchorOrigin: NonNullable<BadgeProps['anchorOrigin']>;
   overlap: NonNullable<BadgeProps['overlap']>;
   color: NonNullable<BadgeProps['color']>;

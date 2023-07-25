@@ -24,9 +24,6 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
       variant,
       invisible && 'invisible',
       `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(anchorOrigin.horizontal)}`,
-      `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
-        anchorOrigin.horizontal,
-      )}${capitalize(overlap)}`,
       `overlap${capitalize(overlap)}`,
       `color${capitalize(color)}`,
     ],
@@ -51,7 +48,7 @@ const BadgeBadge = styled('span', {
   name: 'MuiBadge',
   slot: 'Badge',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
+    const { ownerState }: { ownerState: BadgeOwnerState } = props;
 
     return [
       styles.badge,
@@ -60,8 +57,9 @@ const BadgeBadge = styled('span', {
       styles[
         `anchorOrigin${capitalize(ownerState.anchorOrigin.vertical)}${capitalize(
           ownerState.anchorOrigin.horizontal,
-        )}${capitalize(ownerState.overlap)}`
+        )}`
       ],
+      styles[`overlap${capitalize(ownerState.overlap)}`],
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
       ownerState.invisible && styles.invisible,
     ];

@@ -35,6 +35,27 @@ Here's an example of the change using the Badge component:
 
 The default value for the color prop was changed to `"error"`.
 
+### Removed combined anchor-overlap classes
+
+The following classes were removed:
+
+- `MuiBadge-anchorOriginTopLeftCircular`
+- `MuiBadge-anchorOriginTopLeftRectangular`
+- `MuiBadge-anchorOriginTopRightCircular`
+- `MuiBadge-anchorOriginTopRightRectangular`
+- `MuiBadge-anchorOriginBottomLeftCircular`
+- `MuiBadge-anchorOriginBottomLeftRectangular`
+- `MuiBadge-anchorOriginBottomRightCircular`
+- `MuiBadge-anchorOriginBottomRightRectangular`
+
+You can replace them with the `anchorOrigin` value and `overlap` value classes combined in a CSS selector.
+The following example replaces the `MuiBadge-anchorOriginBottomLeftCircular` class using `MuiBadge-anchorOriginBottomLeft` and `MuiBadge-overlapCircular`:
+
+```diff
+- .MuiBadge-anchorOriginBottomLeftCircular
++ .MuiBadge-anchorOriginBottomLeft.MuiBadge-overlapCircular
+```
+
 ## Slider
 
 ### Thumb and Value Label slots must accept refs
