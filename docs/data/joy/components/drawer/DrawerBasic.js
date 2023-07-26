@@ -8,7 +8,7 @@ import Divider from '@mui/joy/Divider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 
-export default function TemporaryDrawer() {
+export default function DrawerBasic() {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -40,7 +40,7 @@ export default function TemporaryDrawer() {
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        {['All mail', 'Trash', 'Spam'].map((text) => (
           <ListItem key={text}>
             <ListItemButton>{text}</ListItemButton>
           </ListItem>

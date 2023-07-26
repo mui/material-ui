@@ -3,8 +3,7 @@ import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Modal, { modalClasses } from '@mui/joy/Modal';
-import Drawer, { DrawerClassKey, drawerClasses as classes } from '@mui/joy/Drawer';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import Drawer, { drawerClasses as classes } from '@mui/joy/Drawer';
 
 describe('<Drawer />', () => {
   const { render } = createRenderer();

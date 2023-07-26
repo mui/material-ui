@@ -10,7 +10,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
-export default function TemporaryDrawer() {
+export default function DrawerBasic() {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -40,7 +40,7 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
           <ListItem key={text}>
             <ListItemButton>{text}</ListItemButton>
           </ListItem>

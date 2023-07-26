@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { OverrideProps } from '@mui/types';
 import Modal from '../Modal';
 import Sheet from '../Sheet';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SxProps } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type DrawerSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDecorator';
