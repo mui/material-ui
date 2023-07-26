@@ -13,8 +13,7 @@ These are the changes that apply to all components
 ### Remove `components` and `componentsProps` props
 
 The deprecated `components` and `componentsProps` props are removed in v6.
-If you were using these, then you can use `slots` and `slotProps` props instead,
-which have the same functionality and API.
+If you were using these, then you can use `slots` and `slotProps` props instead, which have the same functionality and API.
 Here's an example of the change using the Badge component:
 
 ```diff
