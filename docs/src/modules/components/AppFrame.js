@@ -24,7 +24,7 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { debounce } from '@mui/material/utils';
 import NextLink from 'next/link';
-import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 
 const nProgressStart = debounce(() => {
@@ -64,6 +64,8 @@ export function NextNProgressBar() {
   return <NProgressBar />;
 }
 
+const sx = { minWidth: { sm: 160 } };
+
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 export function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false);
@@ -75,11 +77,11 @@ export function DeferredAppSearch() {
     <React.Fragment>
       {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
-        <React.Suspense fallback={<Box sx={{ minWidth: { sm: 200 } }} />}>
-          <AppSearch />
+        <React.Suspense fallback={<Box sx={sx} />}>
+          <AppSearch sx={sx} />
         </React.Suspense>
       ) : (
-        <Box sx={{ minWidth: { sm: 200 } }} />
+        <Box sx={sx} />
       )}
     </React.Fragment>
   );
@@ -198,7 +200,7 @@ export default function AppFrame(props) {
               aria-label={t('goToHome')}
               sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
             >
-              <SvgMuiLogo width={30} />
+              <SvgMuiLogomark width={30} />
             </Box>
           </NextLink>
           <GrowingDiv />

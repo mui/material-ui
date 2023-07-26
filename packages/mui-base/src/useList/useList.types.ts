@@ -8,6 +8,7 @@ import {
 } from '../utils/useControllableReducer.types';
 import { EventHandlers } from '../utils';
 import type { ListContextValue } from './ListContext';
+import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
 
 type ListActionContextRequiredKeys =
   | 'disabledItemsFocusable'
@@ -135,7 +136,7 @@ export interface UseListParameters<
    */
   isItemDisabled?: (itemValue: ItemValue, index: number) => boolean;
   /**
-   * Ref of the list root DOM element.
+   * Ref to the list root DOM element.
    */
   rootRef?: React.Ref<Element>;
   /**
@@ -156,6 +157,12 @@ export interface UseListParameters<
     option: ItemValue | null,
     reason: string,
   ) => void;
+  /**
+   * Callback fired when the items change.
+   *
+   * @param items The new items collection
+   */
+  onItemsChange?: (items: ItemValue[]) => void;
   /**
    * Callback fired when the any of the state items change.
    * Note that in case of `selectedValues` and `highlightedValue` the strongly typed
@@ -235,9 +242,8 @@ export interface ListItemState {
 
 interface UseListRootSlotOwnProps {
   'aria-activedescendant'?: React.AriaAttributes['aria-activedescendant'];
-  id?: string;
-  onBlur: React.FocusEventHandler;
-  onKeyDown: React.KeyboardEventHandler;
+  onBlur: MuiCancellableEventHandler<React.FocusEvent<HTMLElement>>;
+  onKeyDown: MuiCancellableEventHandler<React.KeyboardEvent<HTMLElement>>;
   tabIndex: number;
   ref: React.RefCallback<Element> | null;
 }

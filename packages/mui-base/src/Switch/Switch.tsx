@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
@@ -40,11 +41,11 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
  *
  * Demos:
  *
- * - [Switch](https://mui.com/base/react-switch/)
+ * - [Switch](https://mui.com/base-ui/react-switch/)
  *
  * API:
  *
- * - [Switch API](https://mui.com/base/react-switch/components-api/#switch)
+ * - [Switch API](https://mui.com/base-ui/react-switch/components-api/#switch)
  */
 const Switch = React.forwardRef(function Switch<RootComponentType extends React.ElementType>(
   props: SwitchProps<RootComponentType>,

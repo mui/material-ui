@@ -23,6 +23,8 @@ const createLightColorScheme = (
   onSurface: getCssVar('ref-palette-neutral-10', palette.neutral[10]),
   surfaceVariant: getCssVar('ref-palette-neutralVariant-90', palette.neutralVariant[90]),
   surface: getCssVar('ref-palette-neutral-99', palette.neutral[99]),
+  surfaceContainerHigh: getCssVar('ref-palette-neutral-92', palette.neutral[92]),
+  surfaceContainerHighest: getCssVar('ref-palette-neutral-90', palette.neutral[90]),
   onSecondaryContainer: getCssVar('ref-palette-secondary-10', palette.secondary[10]),
   onSecondary: getCssVar('ref-palette-secondary-100', palette.secondary[100]),
   secondaryContainer: getCssVar('ref-palette-secondary-90', palette.secondary[90]),

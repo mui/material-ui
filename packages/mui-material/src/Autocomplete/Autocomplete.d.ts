@@ -163,6 +163,7 @@ export interface AutocompleteProps<
    */
   ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
     sx?: SxProps<Theme>;
+    ref?: React.Ref<Element>;
   };
   /**
    * If `true`, the component is in a loading state.
@@ -236,13 +237,15 @@ export interface AutocompleteProps<
    *
    * @param {object} props The props to apply on the li element.
    * @param {T} option The option to render.
-   * @param {object} state The state of the component.
+   * @param {object} state The state of each option.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderOption?: (
     props: React.HTMLAttributes<HTMLLIElement>,
     option: T,
     state: AutocompleteRenderOptionState,
+    ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**
    * Render the selected value.
@@ -293,4 +296,5 @@ export default function Autocomplete<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
->(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>): JSX.Element;
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+>(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>): JSX.Element;

@@ -21,6 +21,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
+import Section from 'docs/src/layouts/Section';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
@@ -101,7 +102,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
                 borderRadius: 1,
                 backgroundColor: 'primary.100',
                 ...theme.applyDarkStyles({
-                  backgroundColor: 'primary.700',
+                  backgroundColor: 'primary.900',
                 }),
               })}
             />
@@ -193,11 +194,55 @@ function Widget({
   icon: React.ReactElement;
 }) {
   return (
-    <Paper variant="outlined" sx={{ height: '100%', px: 2, pt: 2, pb: 1.5 }}>
-      <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-        <Box sx={{ display: 'inline-block', lineHeight: 0, verticalAlign: 'bottom', mr: 1 }}>
-          {icon}
-        </Box>
+    <Paper
+      variant="outlined"
+      sx={(theme) => ({
+        p: 4,
+        height: '100%',
+        position: 'relative',
+        borderRadius: '12px',
+        border: '1px solid',
+        borderColor: 'grey.100',
+        background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+
+        ...theme.applyDarkStyles({
+          bgcolor: 'primaryDark.900',
+          borderColor: 'primaryDark.700',
+          background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+        }),
+      })}
+    >
+      <Box
+        sx={(theme) => ({
+          width: 40,
+          height: 40,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 1,
+          border: '1px solid',
+          borderColor: 'primary.200',
+          bgcolor: 'primary.50',
+          boxShadow:
+            '0px 1px 6px 0px rgba(194, 224, 255, 1), 0px 2px 30px 0px rgba(234, 237, 241, 0.3) inset',
+          ...theme.applyDarkStyles({
+            borderColor: 'primary.400',
+            bgcolor: 'primary.900',
+            boxShadow:
+              '0px 1px 6px 0px rgba(0, 89, 178, 1), 0px 2px 30px 0px rgba(0, 0, 0, 0.25) inset',
+          }),
+        })}
+      >
+        {icon}
+      </Box>
+      <Typography
+        fontWeight="bold"
+        component="h3"
+        color="text.primary"
+        variant="body2"
+        mt={2}
+        mb={0.5}
+      >
         {title}
       </Typography>
       {children}
@@ -209,7 +254,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/olivier.png',
     name: 'Olivier Tassinari',
-    title: 'Co-founder',
+    title: 'Co-founder, CEO',
     location: 'Paris, France',
     locationCountry: 'fr',
     about: 'Exercise addict and lifelong learner',
@@ -219,7 +264,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Matt Brookes',
     src: '/static/branding/about/matt.png',
-    title: 'Co-founder',
+    title: 'Co-founder, Head of Sales',
     location: 'London, UK',
     locationCountry: 'gb',
     about: "When I'm not 👨🏻‍💻, I'm 🧗🏼‍♂️",
@@ -229,7 +274,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Marija Najdova',
     src: '/static/branding/about/marija.png',
-    title: 'MUI Core Engineer',
+    title: 'Engineering Manager - Core',
     location: 'Skopje, North Macedonia',
     locationCountry: 'mk',
     about: 'I do karate 🥋 and read 📚. A lot!',
@@ -239,7 +284,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Danail Hadjiatanasov',
     src: '/static/branding/about/danail.png',
-    title: 'MUI X Engineer',
+    title: 'Engineering Manager - X',
     location: 'Sofia, Bulgaria',
     locationCountry: 'bg',
     about: 'Boringly normal, geek deep down. I like 🚗  and 🏂',
@@ -249,7 +294,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Matheus Wichman',
     src: '/static/branding/about/matheus.png',
-    title: 'MUI X Engineer',
+    title: 'React Community Engineer - X',
     location: 'Esteio, Brazil',
     locationCountry: 'br',
     about: 'I like road cycling 🚲, DIY 🛠 and aviation ✈!',
@@ -258,7 +303,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Michał Dudak',
     src: '/static/branding/about/michal.png',
-    title: 'MUI Core Engineer',
+    title: 'Software Engineer - Core',
     location: 'Silesia, Poland',
     locationCountry: 'pl',
     about: 'Motorcyclist, gamer, and coder (UI and more!)',
@@ -268,7 +313,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Siriwat Kunaporn',
     src: '/static/branding/about/siriwat.png',
-    title: 'MUI Core Engineer',
+    title: 'Software Engineer - Core',
     location: 'Bangkok, Thailand',
     locationCountry: 'th',
     about: 'UI Lover and ⛷ skiing newbie.',
@@ -288,7 +333,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Flavien Delangle',
     src: '/static/branding/about/flavien.png',
-    title: 'MUI X Engineer',
+    title: 'Tech Lead - X',
     location: 'Lille, France',
     about: 'Love cycling 🚴‍♂️ and reading 📚',
     locationCountry: 'fr',
@@ -297,7 +342,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Benny Joo',
     src: '/static/branding/about/benny.png',
-    title: 'MUI Core Engineer',
+    title: 'Junior Software Engineer - Core',
     location: 'London, UK',
     locationCountry: 'gb',
     about: 'Love reading 📚 and working out 🏋️‍♂️',
@@ -306,7 +351,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/alexandre.png',
     name: 'Alexandre Fauquette',
-    title: 'MUI X Engineer',
+    title: 'Software Engineer - X',
     location: 'Nancy, France',
     locationCountry: 'fr',
     about: 'Love hacking and cycling 🚴‍♂️',
@@ -316,7 +361,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/bharat.png',
     name: 'Bharat Kashyap',
-    title: 'MUI Toolpad Engineer',
+    title: 'Software Engineer - Toolpad',
     location: 'New Delhi, India',
     locationCountry: 'in',
     about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
@@ -326,7 +371,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/jan.png',
     name: 'Jan Potoms',
-    title: 'MUI Toolpad Engineer',
+    title: 'Tech Lead - Toolpad',
     location: 'Brussels, Belgium',
     locationCountry: 'be',
     about: 'Always curious, I enjoy cinema and hiking',
@@ -335,7 +380,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/prakhar.png',
     name: 'Prakhar Gupta',
-    title: 'MUI Toolpad PM',
+    title: 'Product Manager - Toolpad',
     location: 'New Delhi, India',
     locationCountry: 'in',
     about: 'Into sports and hiking!',
@@ -345,7 +390,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/jose.png',
     name: 'José Freitas',
-    title: 'MUI X PM',
+    title: 'Technical Product Manager - X',
     location: 'Augsburg, Germany',
     locationCountry: 'de',
     about: 'Art, fiction, and bar philosophy',
@@ -355,7 +400,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/andrii.png',
     name: 'Andrii Cherniavskyi',
-    title: 'MUI X Engineer',
+    title: 'Tech Lead - X',
     location: 'Wrocław, Poland',
     locationCountry: 'pl',
     about: 'Love playing music - electric and bass guitar 🎸',
@@ -375,7 +420,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/pedro.png',
     name: 'Pedro Ferreira',
-    title: 'MUI Toolpad Engineer',
+    title: 'Software Engineer - Toolpad',
     location: 'Porto, Portugal',
     locationCountry: 'pt',
     about: 'Passionate about videogames and football',
@@ -384,7 +429,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/gerda.png',
     name: 'Gerda Mostonaite',
-    title: 'Senior Designer',
+    title: 'Senior Designer - X',
     location: 'New York, USA',
     locationCountry: 'us',
     about: '🎨 Art & design, traveling, and asking questions',
@@ -410,7 +455,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/lukas.png',
     name: 'Lukas Tyla',
-    title: 'MUI X Engineer',
+    title: 'Software Engineer - X',
     location: 'Vilnius, Lithuania',
     locationCountry: 'lt',
     about: 'Learning and experimenting 📚',
@@ -419,7 +464,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/bilal.png',
     name: 'Bilal Shafi',
-    title: 'MUI X Engineer',
+    title: 'Software Engineer - X',
     location: 'Islamabad, Pakistan',
     locationCountry: 'pk',
     about: 'DIY 🛠️, Learning 📚 and 🏓',
@@ -429,7 +474,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/albert.png',
     name: 'Albert Yu',
-    title: 'MUI Core Engineer',
+    title: 'Software Engineer - Core',
     location: 'Hong Kong',
     locationCountry: 'hk',
     about: 'Minimalist, dog lover 🏔🐕',
@@ -447,11 +492,58 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/romain.png',
     name: 'Romain Grégoire',
-    title: 'MUI X Engineer',
+    title: 'Software Engineer - X',
     location: 'Montréal, Canada',
     locationCountry: 'ca',
     about: 'Open-source tinkerer',
     github: 'romgrk',
+  },
+  {
+    src: '/static/branding/about/rich.png',
+    name: 'Rich Bustos',
+    title: 'Developer Advocate',
+    location: 'Daly City, CA, USA',
+    locationCountry: 'us',
+    about: 'I enjoy collecting sports cards and practicing jiu-jitsu',
+    github: 'richbustos',
+  },
+  {
+    src: '/static/branding/about/victor.png',
+    name: 'Victor Zanivan',
+    title: 'Senior Designer - Core',
+    location: 'São Paulo, Brazil',
+    locationCountry: 'br',
+    about: 'Very geek 🎮 and love to watch/play football ⚽️',
+    github: 'zanivan',
+    twitter: 'Zanivan_',
+  },
+  {
+    name: 'Diego Andai',
+    src: '/static/branding/about/diego.png',
+    title: 'Software Engineer - Core',
+    location: 'Santiago, Chile',
+    locationCountry: 'cl',
+    about: 'I love tennis 🎾 and cats 🐈',
+    twitter: 'DiegoAndaiC',
+    github: 'DiegoAndai',
+  },
+  {
+    name: 'Brijesh Bittu',
+    src: '/static/branding/about/brijesh.png',
+    title: 'Software Engineer - Core',
+    location: 'Bengaluru, India',
+    locationCountry: 'in',
+    about: '🏊🏼 Swimming and 🚗 driving newbie. Loves cooking.',
+    github: 'brijeshb42',
+  },
+  {
+    name: 'David Cnoops',
+    src: '/static/branding/about/david.png',
+    title: 'Design Engineer - Core',
+    location: 'Leuven, Belgium',
+    locationCountry: 'be',
+    about: 'Volleyball, Cycling, Parenting, Movies',
+    github: 'DavidCnoops',
   },
 ];
 
@@ -596,8 +688,9 @@ function AboutContent() {
       <Container>
         <Box
           sx={{
-            height: '40vh',
-            minHeight: 300,
+            pt: 12,
+
+            minHeight: 200,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -628,48 +721,41 @@ function AboutContent() {
         </Box>
         <References companies={CORE_CUSTOMERS} />
       </Container>
-      <Box
-        sx={(theme) => ({
-          bgcolor: 'grey.50',
-          ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900',
-          }),
-        })}
-      >
-        <Container sx={{ py: { xs: 4, md: 8 } }}>
-          <Grid container alignItems="center" spacing={4}>
-            <Grid item xs={12} md={6}>
-              <Typography variant="h2" sx={{ my: 1 }}>
-                Our ultimate goal
-              </Typography>
-              <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
-                We aim high trying to design the most effective and efficient tool for building UIs,
-                for developers and designers. MUI started back in 2014, to unify React and Material
-                Design. Since then, we&apos;ve become a community of over 2M developers from every
-                corner of the world.
-              </Typography>
-              <Typography color="text.secondary" sx={{ mb: 2 }}>
-                We plan on doing all that cultivating our values:
-              </Typography>
-              {[
-                'Customer obsessed. We put our customers front & center.',
-                'Transparency. Most of our work is public.',
-                'Freedom. We work from anywhere in the world.',
-                'Autonomy. We want to create a safe, high-trust team.',
-                "Excellence. We're aiming high, and we know it.",
-              ].map((text) => (
-                <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
-                  <IconImage name="yes" />
-                  <Typography variant="body2" color="text.primary" fontWeight={700} sx={{ ml: 1 }}>
-                    {text}
-                  </Typography>
-                </Box>
-              ))}
-            </Grid>
-            <MuiStatistics />
+      <Divider />
+      <Section bg="gradient" cozy>
+        <Grid container alignItems="center" spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h2" sx={{ my: 1 }}>
+              Our <GradientText>ultimate</GradientText> goal
+            </Typography>
+            <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
+              We aim high trying to design the most effective and efficient tool for building UIs,
+              for developers and designers. MUI started back in 2014, to unify React and Material
+              Design. Since then, we&apos;ve become a community of over 2M developers from every
+              corner of the world.
+            </Typography>
+            <Typography color="text.secondary" sx={{ mb: 2 }}>
+              We plan on doing all that cultivating our values:
+            </Typography>
+            {[
+              'Customer obsessed. We put our customers front & center.',
+              'Transparency. Most of our work is public.',
+              'Freedom. We work from anywhere in the world.',
+              'Autonomy. We want to create a safe, high-trust team.',
+              "Excellence. We're aiming high, and we know it.",
+            ].map((text) => (
+              <Box key={text} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+                <IconImage name="yes" />
+                <Typography variant="body2" color="text.primary" fontWeight={600} sx={{ ml: 1.5 }}>
+                  {text}
+                </Typography>
+              </Box>
+            ))}
           </Grid>
-        </Container>
-      </Box>
+          <MuiStatistics />
+        </Grid>
+      </Section>
+      <Divider />
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
@@ -704,7 +790,7 @@ function AboutContent() {
         >
           Company
         </Typography>
-        <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+        <Typography color="text.secondary" sx={{ maxWidth: { md: 450 } }}>
           The development of the project and its ecosystem is guided by an international team.
         </Typography>
         <Box sx={{ pt: 2 }}>
@@ -717,7 +803,8 @@ function AboutContent() {
           </Grid>
         </Box>
       </Container>
-      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.700' }}>
+      <Divider />
+      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
         <Container sx={{ py: { xs: 4, sm: 8 } }}>
           <Typography
             component="h3"
@@ -764,11 +851,12 @@ function AboutContent() {
           </Box>
         </Container>
       </Box>
-      <Container sx={{ py: { xs: 4, md: 8 } }}>
+      <Divider />
+      <Container sx={{ py: { xs: 4, md: 12 } }}>
         <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
           How can you support us?
         </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={4}>
             <Widget
               icon={<ForumRoundedIcon fontSize="small" color="primary" />}
@@ -788,6 +876,7 @@ function AboutContent() {
                 size="small"
                 href="https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
                 endIcon={<KeyboardArrowRightRounded />}
+                sx={{ ml: -1 }}
               >
                 Leave your feedback{' '}
               </Button>
@@ -807,6 +896,7 @@ function AboutContent() {
                   typography: 'body2',
                   color: 'text.secondary',
                   pl: 2,
+                  mb: 2,
                 }}
               >
                 <li>
@@ -829,11 +919,15 @@ function AboutContent() {
                   <Link href="https://github.com/mui/material-ui/issues">issues</Link>.
                 </li>
                 <li>
-                  Help <Link href="https://translate.mui.com/">translate</Link> the documentation.
+                  Help <Link href="https://crowdin.com/project/material-ui-docs">translate</Link>{' '}
+                  the documentation.
                 </li>
                 <li>
                   Answer questions on{' '}
-                  <Link href="https://stackoverflow.com/questions/tagged/mui">Stack Overflow</Link>.
+                  <Link href="https://stackoverflow.com/questions/tagged/material-ui">
+                    Stack Overflow
+                  </Link>
+                  .
                 </li>
               </Box>
               <Button
@@ -843,6 +937,7 @@ function AboutContent() {
                 size="small"
                 href="https://github.com/mui/material-ui"
                 endIcon={<KeyboardArrowRightRounded />}
+                sx={{ ml: -1 }}
               >
                 See the repository
               </Button>
@@ -869,6 +964,7 @@ function AboutContent() {
                 size="small"
                 href="https://opencollective.com/mui"
                 endIcon={<KeyboardArrowRightRounded />}
+                sx={{ ml: -1 }}
               >
                 See Open Collective{' '}
               </Button>
@@ -876,6 +972,7 @@ function AboutContent() {
           </Grid>
         </Grid>
       </Container>
+      <Divider />
       <HeroEnd />
       <Divider />
     </React.Fragment>

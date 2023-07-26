@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import {
   unstable_useForkRef as useForkRef,
@@ -69,8 +70,6 @@ export default function useListItem<ItemValue>(
       if (event.defaultPrevented) {
         return;
       }
-
-      event.preventDefault();
 
       dispatch({
         type: ListActionTypes.itemClick,

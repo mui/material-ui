@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -36,12 +37,9 @@ const AspectRatioRoot = styled('div', {
     typeof ownerState.maxHeight === 'number' ? `${ownerState.maxHeight}px` : ownerState.maxHeight;
   return {
     // a context variable for any child component
-    '--AspectRatio-paddingBottom':
-      minHeight || maxHeight
-        ? `clamp(${minHeight || '0px'}, calc(100% / (${ownerState.ratio})), ${
-            maxHeight || '9999px'
-          })`
-        : `calc(100% / (${ownerState.ratio}))`,
+    '--AspectRatio-paddingBottom': `clamp(var(--AspectRatio-minHeight), calc(100% / (${ownerState.ratio})), var(--AspectRatio-maxHeight))`,
+    '--AspectRatio-maxHeight': maxHeight || '9999px',
+    '--AspectRatio-minHeight': minHeight || '0px',
     borderRadius: 'var(--AspectRatio-radius)',
     flexDirection: 'column',
     margin: 'var(--AspectRatio-margin)',
@@ -60,6 +58,7 @@ const AspectRatioContent = styled('div', {
     height: 0,
     paddingBottom: 'calc(var(--AspectRatio-paddingBottom) - 2 * var(--variant-borderWidth, 0px))',
     overflow: 'hidden',
+    transition: 'inherit', // makes it easy to add transition to the content
     // use data-attribute instead of :first-child to support zero config SSR (emotion)
     // use nested selector for integrating with nextjs image `fill` layout (spans are inserted on top of the img)
     '& [data-first-child]': {
@@ -89,6 +88,7 @@ const AspectRatioContent = styled('div', {
  * Demos:
  *
  * - [Aspect Ratio](https://mui.com/joy-ui/react-aspect-ratio/)
+ * - [Skeleton](https://mui.com/joy-ui/react-skeleton/)
  *
  * API:
  *

@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: React Input component and hook
 components: Input
 hooks: useInput
@@ -26,7 +26,7 @@ It can also be transformed into a `<textarea>` as needed.
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Input from '@mui/base/Input';
@@ -42,7 +42,7 @@ Input behaves similarly to the native HTML `<input>`, except that it's nested in
 
 The following demo shows how to create and style an input component, including `placeholder` text:
 
-{{"demo": "UnstyledInputBasic.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledInputBasic", "defaultCodeOpen": false}}
 
 ### Anatomy
 
@@ -64,7 +64,7 @@ Use the `slots` prop to override the root or any other interior slot:
 
 :::info
 The `slots` prop is available on all non-utility Base components.
-See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.
@@ -130,7 +130,7 @@ The `multiline` prop transforms the `<input>` field into a `<textarea>` element,
 
 {{"demo": "InputMultiline.js"}}
 
-If you want the `<textarea>` to grow with the content, you can use the [Textarea Autosize](/base/react-textarea-autosize/) component within the input.
+If you want the `<textarea>` to grow with the content, you can use the [Textarea Autosize](/base-ui/react-textarea-autosize/) component within the input.
 
 When using Textarea Autosize, the height of the `<textarea>` element dynamically matches its content unless you set the `rows` prop.
 To set minimum and maximum sizes, add the `minRows` and `maxRows` props.

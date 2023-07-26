@@ -19,7 +19,7 @@ import { LANGUAGES_SSR } from 'docs/config';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import getUrlProduct from 'docs/src/modules/utils/getUrlProduct';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 const SearchButton = styled('button')(({ theme }) => [
   {
@@ -36,9 +36,6 @@ const SearchButton = styled('button')(({ theme }) => [
       '& > *:not(.MuiSvgIcon-root)': {
         display: 'none',
       },
-    },
-    [theme.breakpoints.up('sm')]: {
-      minWidth: 150,
     },
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
@@ -130,7 +127,7 @@ function NewStartScreen() {
         icon: <HandymanRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Overview', href: '/system/getting-started/overview/' },
+        { name: 'Overview', href: '/system/getting-started/' },
         { name: 'Properties', href: '/system/properties/' },
         { name: 'The sx prop', href: '/system/getting-started/the-sx-prop/' },
       ],
@@ -156,27 +153,40 @@ function NewStartScreen() {
   );
 }
 
+const displayTagProductId = {
+  'material-ui': 'Material UI',
+  'joy-ui': 'Joy UI',
+  'base-ui': 'Base UI',
+  x: 'MUI X',
+  system: 'MUI System',
+  toolpad: 'Toolpad',
+};
+
+function getDisplayTag(hit) {
+  if (hit.productId === undefined || hit.productCategoryId === undefined) {
+    return null;
+  }
+
+  const productInfo = {
+    productId: hit.productId,
+    productCategoryId: hit.productCategoryId,
+  };
+
+  const displayTag =
+    displayTagProductId[productInfo.productId] ||
+    displayTagProductId[productInfo.productCategoryId];
+
+  if (!displayTag) {
+    console.error(
+      `getDisplayTag missing mapping for productId: ${productInfo.productId}, pathname: ${hit.pathname}.`,
+    );
+  }
+
+  return <Chip label={displayTag} size="small" variant="outlined" sx={{ mr: 1 }} />;
+}
+
 function DocSearchHit(props) {
   const { children, hit } = props;
-
-  function displayTag(pathname) {
-    // does not need to show product label for MUI X because they are grouped by the product name in the search
-    // ie. Data Grid, Date Picker
-    if (!pathname.match(/^\/(material-ui|joy-ui|base)\//)) {
-      return null;
-    }
-    let text = '';
-    if (pathname.startsWith('/material-ui/')) {
-      text = 'Material UI';
-    }
-    if (pathname.startsWith('/joy-ui/')) {
-      text = 'Joy UI';
-    }
-    if (pathname.startsWith('/base/')) {
-      text = 'Base UI';
-    }
-    return <Chip label={text} size="small" variant="outlined" sx={{ mr: 1 }} />;
-  }
 
   if (hit.pathname) {
     return (
@@ -186,7 +196,7 @@ function DocSearchHit(props) {
         sx={{ display: 'flex !important', '& .DocSearch-Hit-Container': { flex: 1, minWidth: 0 } }}
       >
         {children}
-        {displayTag(hit.pathname)}
+        {getDisplayTag(hit)}
       </Link>
     );
   }
@@ -201,7 +211,7 @@ DocSearchHit.propTypes = {
   hit: PropTypes.object.isRequired,
 };
 
-export default function AppSearch() {
+export default function AppSearch(props) {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
@@ -219,7 +229,7 @@ export default function AppSearch() {
     setIsOpen(true);
   }, [setIsOpen]);
   const router = useRouter();
-  const productSpace = getUrlProduct(router.asPath);
+  const pageContext = React.useContext(PageContext);
 
   const keyboardNavigator = {
     navigate({ item }) {
@@ -292,7 +302,12 @@ export default function AppSearch() {
 
   return (
     <React.Fragment>
-      <SearchButton ref={searchButtonRef} onClick={onOpen}>
+      <SearchButton
+        ref={searchButtonRef}
+        onClick={onOpen}
+        aria-labelledby="app-search-label"
+        {...props}
+      >
         <SearchIcon
           fontSize="small"
           sx={(theme) => ({
@@ -302,7 +317,7 @@ export default function AppSearch() {
             }),
           })}
         />
-        <SearchLabel>{search}</SearchLabel>
+        <SearchLabel id="app-search-label">{search}</SearchLabel>
         <Shortcut>
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {macOS ? '⌘' : 'Ctrl+'}K
@@ -312,12 +327,29 @@ export default function AppSearch() {
         ReactDOM.createPortal(
           <DocSearchModal
             initialQuery={initialQuery}
-            appId={'TZGZ85B9TB'}
-            apiKey={'8177dfb3e2be72b241ffb8c5abafa899'}
+            appId="TZGZ85B9TB"
+            apiKey="8177dfb3e2be72b241ffb8c5abafa899"
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
-              optionalFilters: [`product:${productSpace}`],
+              optionalFilters: [`productId:${pageContext.productId}`],
+              attributesToRetrieve: [
+                // Copied from https://github.com/algolia/docsearch/blob/ce0c865cd8767e961ce3088b3155fc982d4c2e2e/packages/docsearch-react/src/DocSearchModal.tsx#L231
+                'hierarchy.lvl0',
+                'hierarchy.lvl1',
+                'hierarchy.lvl2',
+                'hierarchy.lvl3',
+                'hierarchy.lvl4',
+                'hierarchy.lvl5',
+                'hierarchy.lvl6',
+                'content',
+                'type',
+                'url',
+                // Extra
+                'productId',
+                'productCategoryId',
+              ],
+              analyticsTags: [facetFilterLanguage, `product:${pageContext.productId}`],
               hitsPerPage: 40,
             }}
             placeholder={search}

@@ -75,10 +75,6 @@ declare global {
        * @see [Excluding Elements from the Accessibility Tree](https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion)
        */
       toBeInaccessible(): void;
-      /**
-       * Matcher with useful error messages if the dates don't match.
-       */
-      toEqualDateTime(expected: Date): void;
       toHaveAccessibleDescription(description: string): void;
       /**
        * Checks if the accessible name computation (according to `accname` spec)
@@ -474,15 +470,6 @@ chai.use((chaiAPI, utils) => {
       });
     },
   );
-
-  chai.Assertion.addMethod('toEqualDateTime', function toEqualDateTime(expectedDate, message) {
-    // eslint-disable-next-line no-underscore-dangle
-    const actualDate = this._obj;
-    const assertion = new chai.Assertion(actualDate.toISOString(), message);
-    // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
-    utils.transferFlags(this as any, assertion, false);
-    assertion.to.equal(expectedDate.toISOString());
-  });
 
   chai.Assertion.addMethod('toThrowMinified', function toThrowMinified(expectedDevMessage) {
     // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.

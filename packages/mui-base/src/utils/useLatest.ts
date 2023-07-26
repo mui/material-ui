@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 
 /**
@@ -11,7 +12,7 @@ import * as React from 'react';
  *
  * API:
  *
- * - [useLatest API](https://mui.com/base/api/use-latest/)
+ * - [useLatest API](https://mui.com/base-ui/api/use-latest/)
  */
 export default function useLatest<T>(value: T, deps?: React.DependencyList) {
   const ref = React.useRef<T>(value);

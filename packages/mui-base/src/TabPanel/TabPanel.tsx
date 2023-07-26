@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
@@ -25,11 +26,11 @@ const useUtilityClasses = (ownerState: { hidden: boolean }) => {
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/base/react-tabs/)
+ * - [Tabs](https://mui.com/base-ui/react-tabs/)
  *
  * API:
  *
- * - [TabPanel API](https://mui.com/base/react-tabs/components-api/#tab-panel)
+ * - [TabPanel API](https://mui.com/base-ui/react-tabs/components-api/#tab-panel)
  */
 const TabPanel = React.forwardRef(function TabPanel<RootComponentType extends React.ElementType>(
   props: TabPanelProps<RootComponentType>,

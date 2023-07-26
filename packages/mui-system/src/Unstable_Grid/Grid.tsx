@@ -1,3 +1,4 @@
+'use client';
 import PropTypes from 'prop-types';
 import createGrid from './createGrid';
 /**

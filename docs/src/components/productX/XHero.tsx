@@ -72,9 +72,23 @@ export default function XHero() {
     },
   });
 
+  const groupingColDef = React.useMemo(
+    () => ({
+      headerClassName: 'grouping-column-header',
+    }),
+    [],
+  );
+
   let rowGroupingCounter = 0;
+  const isGroupExpandedByDefault = React.useCallback(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    rowGroupingCounter += 1;
+    return rowGroupingCounter === 3;
+  }, []);
+
   return (
     <HeroContainer
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
@@ -104,8 +118,7 @@ export default function XHero() {
             components. We&apos;re kicking it off with the most powerful Data Grid on the market.
           </Typography>
           <GetStartedButtons
-            installation="npm install @mui/x-data-grid"
-            to={ROUTES.dataGridDocs}
+            to={ROUTES.advancedComponents}
             sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
           />
         </Box>
@@ -123,6 +136,7 @@ export default function XHero() {
               borderColor: 'grey.200',
               boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
               mb: { md: 2, lg: 3, xl: 4 },
+              overflow: 'hidden',
               ...theme.applyDarkStyles({
                 backgroundColor: 'primaryDark.800',
                 borderColor: 'primaryDark.600',
@@ -199,6 +213,9 @@ export default function XHero() {
                         color: red[500],
                       },
                     },
+                    '& .grouping-column-header': {
+                      pl: 6,
+                    },
                   },
                 },
                 (theme) =>
@@ -225,20 +242,12 @@ export default function XHero() {
                 apiRef={apiRef}
                 initialState={initialState}
                 disableRowSelectionOnClick
-                groupingColDef={{
-                  headerClassName: 'grouping-column-header',
-                }}
-                sx={{
-                  '& .grouping-column-header': {
-                    pl: 6,
-                  },
-                }}
+                groupingColDef={groupingColDef}
+                rowHeight={36}
+                columnHeaderHeight={48}
                 hideFooter
                 loading={loading}
-                isGroupExpandedByDefault={() => {
-                  rowGroupingCounter += 1;
-                  return rowGroupingCounter === 3;
-                }}
+                isGroupExpandedByDefault={isGroupExpandedByDefault}
               />
             </Box>
           </Paper>

@@ -42,12 +42,10 @@ export interface UseTabsListReturnValue {
   highlightedValue: string | number | null;
   /**
    * If `true`, it will indicate that the text's direction in right-to-left.
-   * @default false
    */
   isRtl: boolean;
   /**
    * The component orientation (layout flow direction).
-   * @default 'horizontal'
    */
   orientation: 'horizontal' | 'vertical';
   rootRef: React.RefCallback<Element> | null;

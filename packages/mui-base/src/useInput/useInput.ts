@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
@@ -13,11 +14,11 @@ import {
  *
  * Demos:
  *
- * - [Input](https://mui.com/base/react-input/#hook)
+ * - [Input](https://mui.com/base-ui/react-input/#hook)
  *
  * API:
  *
- * - [useInput API](https://mui.com/base/react-input/hooks-api/#use-input)
+ * - [useInput API](https://mui.com/base-ui/react-input/hooks-api/#use-input)
  */
 export default function useInput(parameters: UseInputParameters): UseInputReturnValue {
   const {

@@ -1,14 +1,17 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import useButton from '@mui/base/useButton';
 import composeClasses from '@mui/base/composeClasses';
+import { Interpolation } from '@mui/system';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { styled, useThemeProps } from '../styles';
+import { styled, Theme, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const {
@@ -84,11 +87,13 @@ const ButtonLoadingCenter = styled('span', {
   }),
 }));
 
-export const ButtonRoot = styled('button', {
-  name: 'JoyButton',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ButtonOwnerState }>(({ theme, ownerState }) => {
+export const getButtonStyles = ({
+  theme,
+  ownerState,
+}: {
+  theme: Theme;
+  ownerState: Partial<Omit<ButtonOwnerState, 'slots' | 'slotProps'>>;
+}): Interpolation<any> => {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
@@ -139,7 +144,11 @@ export const ButtonRoot = styled('button', {
       [theme.focus.selector]: theme.focus.default,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
-    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+    {
+      '&:hover': {
+        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      },
+    },
     { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
     {
       [`&.${buttonClasses.disabled}`]:
@@ -151,12 +160,20 @@ export const ButtonRoot = styled('button', {
       }),
     },
   ];
-});
+};
+
+const ButtonRoot = styled('button', {
+  name: 'JoyButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: ButtonOwnerState }>(getButtonStyles);
 /**
  *
  * Demos:
  *
  * - [Button](https://mui.com/joy-ui/react-button/)
+ * - [Button Group](https://mui.com/joy-ui/react-button-group/)
+ * - [Toggle Button Group](https://mui.com/joy-ui/react-toggle-button-group/)
  *
  * API:
  *
@@ -172,29 +189,34 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     children,
     action,
     color: colorProp = 'primary',
-    variant = 'solid',
-    size = 'md',
+    variant: variantProp = 'solid',
+    size: sizeProp = 'md',
     fullWidth = false,
     startDecorator,
     endDecorator,
     loading = false,
     loadingPosition = 'center',
     loadingIndicator: loadingIndicatorProp,
-    disabled,
+    disabled: disabledProp,
     component,
     slots = {},
     slotProps = {},
     ...other
   } = props;
+  const buttonGroup = React.useContext(ButtonGroupContext);
+
+  const variant = inProps.variant || buttonGroup.variant || variantProp;
+  const size = inProps.size || buttonGroup.size || sizeProp;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp || loading);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    disabled: disabled || loading,
+    disabled,
     rootRef: handleRef,
   });
 
@@ -225,7 +247,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     focusVisible,
     loading,
     loadingPosition,
-    disabled: disabled || loading,
+    disabled,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -408,5 +430,8 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
+// @ts-ignore internal logic for ToggleButtonGroup
+Button.muiName = 'Button';
 
 export default Button;

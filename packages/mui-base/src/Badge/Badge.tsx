@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
@@ -28,11 +29,11 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
  *
  * Demos:
  *
- * - [Badge](https://mui.com/base/react-badge/)
+ * - [Badge](https://mui.com/base-ui/react-badge/)
  *
  * API:
  *
- * - [Badge API](https://mui.com/base/react-badge/components-api/#badge)
+ * - [Badge API](https://mui.com/base-ui/react-badge/components-api/#badge)
  */
 const Badge = React.forwardRef(function Badge<RootComponentType extends React.ElementType>(
   props: BadgeProps<RootComponentType>,

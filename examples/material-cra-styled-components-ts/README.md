@@ -10,7 +10,7 @@ The main difference between this and the non-TypeScript example is that you need
 
 and install @types/styled-components:
 
-```sh
+```bash
 npm install --save-dev @types/styled-components
 ```
 
@@ -22,14 +22,14 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-cra-styled-components-ts
 cd material-cra-styled-components-ts
 ```
 
 Install it and run:
 
-```sh
+```bash
 npm install
 npm start
 ```
@@ -53,4 +53,4 @@ This example demonstrates how to set up Material UI with [Create React App](http
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.

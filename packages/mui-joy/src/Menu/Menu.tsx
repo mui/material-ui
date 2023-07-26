@@ -1,9 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
+import { unstable_capitalize as capitalize, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import useMenu, { MenuProvider } from '@mui/base/useMenu';
+import { ListActionTypes } from '@mui/base/useList';
 import Popper from '@mui/base/Popper';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
@@ -52,7 +54,8 @@ const MenuRoot = styled(StyledList, {
       ...scopedVariables,
       boxShadow: theme.shadow.md,
       overflow: 'auto',
-      zIndex: theme.vars.zIndex.popup,
+      // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+      zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
       ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.popup,
       }),
@@ -72,7 +75,7 @@ const MenuRoot = styled(StyledList, {
  * API:
  *
  * - [Menu API](https://mui.com/joy-ui/api/menu/)
- * - inherits [Popper API](https://mui.com/base/api/popper/)
+ * - inherits [Popper API](https://mui.com/base-ui/api/popper/)
  */
 const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTMLUListElement>) {
   const props = useThemeProps({
@@ -82,16 +85,14 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
 
   const {
     actions,
-    anchorEl,
     children,
     color: colorProp = 'neutral',
     component,
     disablePortal = false,
     keepMounted = false,
-    invertedColors = false,
     id,
-    onClose,
-    open = false,
+    invertedColors = false,
+    onItemsChange,
     modifiers: modifiersProp,
     variant = 'outlined',
     size = 'md',
@@ -102,25 +103,17 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
-  const handleOpenChange = React.useCallback(
-    (isOpen: boolean) => {
-      if (!isOpen) {
-        onClose?.();
-      }
-    },
-    [onClose],
-  );
-
-  const { contextValue, getListboxProps, dispatch } = useMenu({
-    open,
-    onOpenChange: handleOpenChange,
-    listboxId: id,
+  const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
+    onItemsChange,
+    id,
+    listboxRef: ref,
   });
 
   React.useImperativeHandle(
     actions,
     () => ({
       dispatch,
+      resetHighlight: () => dispatch({ type: ListActionTypes.resetHighlight, event: null }),
     }),
     [dispatch],
   );
@@ -160,9 +153,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     externalSlotProps: {},
     ownerState: ownerState as MenuOwnerState & ListOwnerState,
     additionalProps: {
-      ref,
-      anchorEl,
-      open,
+      anchorEl: triggerElement,
+      open: open && triggerElement !== null,
       disablePortal,
       keepMounted,
       modifiers,
@@ -214,16 +206,6 @@ Menu.propTypes /* remove-proptypes */ = {
    * It allows to select the first or last menu item.
    */
   actions: refType,
-  /**
-   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
-   * or a function that returns either.
-   * It's used to set the position of the popper.
-   * The return value will passed as the reference object of the Popper instance.
-   */
-  anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.func,
-  ]),
   /**
    * @ignore
    */
@@ -295,6 +277,10 @@ Menu.propTypes /* remove-proptypes */ = {
    * Triggered when focus leaves the menu and the menu should close.
    */
   onClose: PropTypes.func,
+  /**
+   * Function called when the items displayed in the menu change.
+   */
+  onItemsChange: PropTypes.func,
   /**
    * Controls whether the menu is displayed.
    * @default false

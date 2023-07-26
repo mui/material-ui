@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import ClickAwayListener from '../ClickAwayListener';
@@ -25,12 +26,12 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Snackbar](https://mui.com/base/react-snackbar/)
+ * - [Snackbar](https://mui.com/base-ui/react-snackbar/)
  * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
  *
  * API:
  *
- * - [Snackbar API](https://mui.com/base/react-snackbar/components-api/#snackbar)
+ * - [Snackbar API](https://mui.com/base-ui/react-snackbar/components-api/#snackbar)
  */
 const Snackbar = React.forwardRef(function Snackbar<RootComponentType extends React.ElementType>(
   props: SnackbarProps<RootComponentType>,

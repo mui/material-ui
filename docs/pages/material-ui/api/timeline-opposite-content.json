@@ -1,17 +1,24 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "TimelineOppositeContent",
   "styles": {
-    "classes": ["root", "positionRight", "positionLeft", "positionAlternate"],
+    "classes": [
+      "root",
+      "positionRight",
+      "positionLeft",
+      "positionAlternate",
+      "positionAlternateReverse"
+    ],
     "globalClasses": {},
     "name": "MuiTimelineOppositeContent"
   },

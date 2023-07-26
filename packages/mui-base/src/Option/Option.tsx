@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
@@ -111,10 +112,10 @@ Option.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Select](https://mui.com/base-ui/react-select/)
  *
  * API:
  *
- * - [Option API](https://mui.com/base/react-select/components-api/#option)
+ * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
  */
 export default React.memo(Option) as OptionType;

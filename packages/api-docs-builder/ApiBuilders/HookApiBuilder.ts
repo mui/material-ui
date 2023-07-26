@@ -70,8 +70,18 @@ export interface ReactApi extends ReactDocgenApi {
   }>;
   translations: {
     hookDescription: string;
-    parametersDescriptions: { [key: string]: string | undefined };
-    returnValueDescriptions: { [key: string]: string | undefined };
+    parametersDescriptions: {
+      [key: string]: {
+        description: string;
+        deprecated?: string;
+      };
+    };
+    returnValueDescriptions: {
+      [key: string]: {
+        description: string;
+        deprecated?: string;
+      };
+    };
   };
 }
 
@@ -80,11 +90,11 @@ export interface ReactApi extends ReactDocgenApi {
  * /**
  * * Demos:
  * *
- * * - [Button](https://mui.com/base/react-button/)
+ * * - [Button](https://mui.com/base-ui/react-button/)
  * *
  * * API:
  * *
- * * - [useButton API](https://mui.com/base/api/use-button/)
+ * * - [useButton API](https://mui.com/base-ui/api/use-button/)
  */
 async function annotateHookDefinition(api: ReactApi) {
   const HOST = 'https://mui.com';
@@ -264,10 +274,7 @@ const attachTable = (
 };
 
 const generateTranslationDescription = (description: string) => {
-  return description
-    .replace(/\n@default.*$/, '')
-    .replace(/`([a-z]|[A-Z]|\()/g, '<code>$1')
-    .replace(/`/g, '</code>');
+  return renderMarkdownInline(description.replace(/\n@default.*$/, ''));
 };
 
 const attachTranslations = (reactApi: ReactApi) => {
@@ -279,13 +286,27 @@ const attachTranslations = (reactApi: ReactApi) => {
 
   (reactApi.parameters ?? []).forEach(({ name: propName, description }) => {
     if (description) {
-      translations.parametersDescriptions[propName] = generateTranslationDescription(description);
+      translations.parametersDescriptions[propName] = {
+        description: generateTranslationDescription(description),
+      };
+      const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
+      if (deprecation !== null) {
+        translations.parametersDescriptions[propName].deprecated =
+          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+      }
     }
   });
 
   (reactApi.returnValue ?? []).forEach(({ name: propName, description }) => {
     if (description) {
-      translations.returnValueDescriptions[propName] = generateTranslationDescription(description);
+      translations.returnValueDescriptions[propName] = {
+        description: generateTranslationDescription(description),
+      };
+      const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
+      if (deprecation !== null) {
+        translations.parametersDescriptions[propName].deprecated =
+          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+      }
     }
   });
 

@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -39,17 +40,17 @@ const AvatarRoot = styled('div', {
       ...(ownerState.size === 'sm' && {
         width: `var(--Avatar-size, 2rem)`,
         height: `var(--Avatar-size, 2rem)`,
-        fontSize: theme.vars.fontSize.sm,
+        fontSize: `calc(var(--Avatar-size, 2rem) * 0.4375)`, // default as 14px
       }),
       ...(ownerState.size === 'md' && {
         width: `var(--Avatar-size, 2.5rem)`,
         height: `var(--Avatar-size, 2.5rem)`,
-        fontSize: theme.vars.fontSize.md,
+        fontSize: `calc(var(--Avatar-size, 2.5rem) * 0.4)`, // default as 16px
       }),
       ...(ownerState.size === 'lg' && {
         width: `var(--Avatar-size, 3rem)`,
         height: `var(--Avatar-size, 3rem)`,
-        fontSize: theme.vars.fontSize.lg,
+        fontSize: `calc(var(--Avatar-size, 3rem) * 0.375)`, // default as 18px
       }),
       marginInlineStart: 'var(--Avatar-marginInlineStart)',
       boxShadow: `var(--Avatar-ring)`,
@@ -141,6 +142,7 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }: UseLoadedProps)
  * Demos:
  *
  * - [Avatar](https://mui.com/joy-ui/react-avatar/)
+ * - [Skeleton](https://mui.com/joy-ui/react-skeleton/)
  *
  * API:
  *
@@ -227,7 +229,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     children = <SlotImg {...imageProps} />;
   } else if (childrenProp != null) {
     children = childrenProp;
-  } else if (hasImg && alt) {
+  } else if (alt) {
     children = alt[0];
   } else {
     children = <SlotFallback {...fallbackProps} />;

@@ -61,7 +61,7 @@ async function attemptGoto(page: playwright.Page, url: string): Promise<boolean>
 }
 
 describe('e2e', () => {
-  const baseUrl = 'http://localhost:3000';
+  const baseUrl = 'http://localhost:5001';
   let browser: playwright.Browser;
   let page: playwright.Page;
   const screen: PlaywrightScreen = {
@@ -232,7 +232,7 @@ describe('e2e', () => {
       await page.keyboard.down('ArrowDown'); // moves to 4th option
 
       const listbox = (await screen.getByRole('listbox'))!;
-      const focusedOption = (await listbox.$('.Joy-focused'))!;
+      const focusedOption = (await listbox.$('.Mui-focused'))!;
       const focusedOptionText = await focusedOption.innerHTML();
 
       expect(focusedOptionText).to.equal('four');

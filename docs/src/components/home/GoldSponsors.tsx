@@ -16,8 +16,7 @@ const GOLDs = [
     srcSet: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
     description: 'Enterprise-ready open-source software.',
-    // Tidelift requests this format.
-    href: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
+    href: 'https://www.tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
   },
   {
     src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
@@ -60,13 +59,6 @@ const GOLDs = [
     description: 'Icons, illustrations, design tools, and more.',
     href: 'https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
-  {
-    src: 'https://images.opencollective.com/ridi-corporation/175dcf3/logo/40.png',
-    srcSet: 'https://images.opencollective.com/ridi-corporation/175dcf3/logo/80.png 2x',
-    name: 'RIDI',
-    description: 'Digital content platform for webcomics and more.',
-    href: 'https://ridicorp.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
 ];
 
 export default function GoldSponsors() {
@@ -77,21 +69,22 @@ export default function GoldSponsors() {
   });
   return (
     <Box ref={ref}>
-      <Box sx={{ mb: 1 }}>
-        <Typography
-          component="h3"
-          variant="h5"
-          fontWeight="extraBold"
-          sx={(theme) => ({
-            color: 'warning.700',
-            ...theme.applyDarkStyles({
-              color: 'warning.300',
-            }),
-          })}
-        >
-          Gold
-        </Typography>
-      </Box>
+      <Typography
+        component="h3"
+        variant="h6"
+        fontWeight="bold"
+        sx={(theme) => ({
+          mt: 4,
+          mb: 2,
+          background: `linear-gradient(90deg, ${(theme.vars || theme).palette.warning[400]} 50%, ${
+            (theme.vars || theme).palette.warning[700]
+          } 100%)`,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        })}
+      >
+        Gold
+      </Typography>
       <Grid container spacing={{ xs: 2, md: 3 }}>
         {GOLDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>

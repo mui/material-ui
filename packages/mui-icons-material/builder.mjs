@@ -1,7 +1,7 @@
 import fse from 'fs-extra';
 import yargs from 'yargs';
 import path from 'path';
-import rimraf from 'rimraf';
+import { rimrafSync } from 'rimraf';
 import Mustache from 'mustache';
 import globAsync from 'fast-glob';
 import * as svgo from 'svgo';
@@ -237,7 +237,7 @@ async function worker({ progress, svgPath, options, renameFilter, template }) {
 export async function handler(options) {
   const progress = options.disableLog ? () => {} : () => process.stdout.write('.');
 
-  rimraf.sync(`${options.outputDir}/*.js`); // Clean old files
+  rimrafSync(`${options.outputDir}/*.js`, { glob: true }); // Clean old files
 
   let renameFilter = options.renameFilter;
   if (typeof renameFilter === 'string') {

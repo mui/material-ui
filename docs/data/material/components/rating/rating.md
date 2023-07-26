@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Rating component
 components: Rating
 githubLabel: 'component: rating'

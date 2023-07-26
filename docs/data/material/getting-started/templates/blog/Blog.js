@@ -33,7 +33,7 @@ const mainFeaturedPost = {
   title: 'Title of a longer featured blog post',
   description:
     "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: 'https://source.unsplash.com/random/?blog/',
+  image: 'https://source.unsplash.com/random?wallpapers',
   imageText: 'main image description',
   linkText: 'Continue reading…',
 };
@@ -44,7 +44,7 @@ const featuredPosts = [
     date: 'Nov 12',
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random/?blog/',
+    image: 'https://source.unsplash.com/random?wallpapers',
     imageLabel: 'Image Text',
   },
   {
@@ -52,7 +52,7 @@ const featuredPosts = [
     date: 'Nov 11',
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random/?blog/',
+    image: 'https://source.unsplash.com/random?wallpapers',
     imageLabel: 'Image Text',
   },
 ];
@@ -83,11 +83,12 @@ const sidebar = {
   ],
 };
 
-const theme = createTheme();
+// TODO remove, this demo shouldn't need to reset the theme.
+const defaultTheme = createTheme();
 
 export default function Blog() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <Container maxWidth="lg">
         <Header title="Blog" sections={sections} />

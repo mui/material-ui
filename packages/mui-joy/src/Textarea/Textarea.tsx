@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -42,6 +43,7 @@ const TextareaRoot = styled('div', {
       '--Textarea-gap': '0.5rem',
       '--Textarea-placeholderColor': 'inherit',
       '--Textarea-placeholderOpacity': 0.5,
+      '--Textarea-focused': '0',
       '--Textarea-focusedThickness': theme.vars.focus.thickness,
       ...(ownerState.color === 'context'
         ? {
@@ -114,24 +116,21 @@ const TextareaRoot = styled('div', {
         zIndex: 1,
         borderRadius: 'inherit',
         margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
+        boxShadow: `var(--Textarea-focusedInset, inset) 0 0 0 calc(var(--Textarea-focused) * var(--Textarea-focusedThickness)) var(--Textarea-focusedHighlight)`,
       },
     },
     {
       // variant styles
       ...variantStyle,
       backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
-      [`&:hover:not(.${textareaClasses.focused})`]: {
+      '&:hover': {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        backgroundColor: null, // it is not common to change background on hover for Input
+        backgroundColor: null, // it is not common to change background on hover for Textarea
         cursor: 'text',
       },
       [`&.${textareaClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-      [`&.${textareaClasses.focused}`]: {
-        '&:before': {
-          boxShadow: `inset 0 0 0 var(--Textarea-focusedThickness) var(--Textarea-focusedHighlight)`,
-        },
-      },
+      '&:focus-within::before': { '--Textarea-focused': '1' },
     },
   ];
 });
@@ -156,10 +155,6 @@ const TextareaInput = styled(TextareaAutosize, {
   fontStyle: 'inherit',
   fontWeight: 'inherit',
   lineHeight: 'inherit',
-  '&:-webkit-autofill': {
-    WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: 'currentColor',
-  },
   '&::-webkit-input-placeholder': {
     color: 'var(--Textarea-placeholderColor)',
     opacity: 'var(--Textarea-placeholderOpacity)',

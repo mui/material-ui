@@ -1,8 +1,14 @@
+'use client';
 import * as React from 'react';
 import TabsContext, { TabsContextValue } from '../Tabs/TabsContext';
 import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
 
-export type TabsProviderValue = CompoundComponentContextValue<string | number, string> &
+export type TabPanelMetadata = {
+  id: string | undefined;
+  ref: React.RefObject<HTMLElement>;
+};
+
+export type TabsProviderValue = CompoundComponentContextValue<string | number, TabPanelMetadata> &
   TabsContextValue;
 
 export interface TabsProviderProps {
@@ -31,15 +37,17 @@ export default function TabsProvider(props: TabsProviderProps) {
     getTabPanelId,
   } = valueProp;
 
-  const compoundComponentContextValue: CompoundComponentContextValue<string | number, string> =
-    React.useMemo(
-      () => ({
-        getItemIndex,
-        registerItem,
-        totalSubitemCount,
-      }),
-      [registerItem, getItemIndex, totalSubitemCount],
-    );
+  const compoundComponentContextValue: CompoundComponentContextValue<
+    string | number,
+    TabPanelMetadata
+  > = React.useMemo(
+    () => ({
+      getItemIndex,
+      registerItem,
+      totalSubitemCount,
+    }),
+    [registerItem, getItemIndex, totalSubitemCount],
+  );
 
   const tabsContextValue: TabsContextValue = React.useMemo(
     () => ({

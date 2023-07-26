@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -91,7 +92,8 @@ const ModalDialogRoot = styled(SheetRoot, {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    maxWidth: 'calc(100vw - 2 * var(--ModalDialog-padding))',
+    maxWidth:
+      'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-maxWidth, 100vw))',
     maxHeight: 'calc(100% - 2 * var(--ModalDialog-padding))',
   }),
   [`& [id="${ownerState['aria-labelledby']}"]`]: {

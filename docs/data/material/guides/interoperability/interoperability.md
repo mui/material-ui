@@ -1,6 +1,6 @@
 # Style library interoperability
 
-<p class="description">While you can use the Emotion-based styling solution provided by Material UI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
+<p class="description">While you can use the Emotion-based styling solution provided by Material UI, you can also use the one you already know, from plain CSS to styled-components.</p>
 
 This guide aims to document the most popular alternatives,
 but you should find that the principles applied here can be adapted to other libraries.
@@ -703,6 +703,16 @@ const theme = createTheme({
       },
     },
     MuiPopper: {
+      defaultProps: {
+        container: rootElement,
+      },
+    },
+    MuiDialog: {
+      defaultProps: {
+        container: rootElement,
+      },
+    },
+    MuiModal: {
       defaultProps: {
         container: rootElement,
       },

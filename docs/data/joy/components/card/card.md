@@ -1,7 +1,7 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Card component
-components: Card, CardContent, CardCover, CardOverflow
+components: Card, CardActions, CardContent, CardCover, CardOverflow
 githubLabel: 'component: card'
 ---
 
@@ -17,6 +17,9 @@ The Joy UI Card component includes several complementary utility components to h
 - [Card Overflow](#overflow): a supplemental wrapper that expands a Card's contents to fill all edges.
 - [Card Cover](#card-layers): an optional container for displaying background images and gradient layers behind the Card Content.
 - [Card Content](#card-layers): an optional wrapper that brings content to the front (commonly but not always used with the Card Cover).
+- [Card Actions](#actions): an optional wrapper that groups a set of buttons.
+
+{{"demo": "CardUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Basics
 
@@ -39,9 +42,6 @@ import CardOverflow from '@mui/joy/CardOverflow';
 
 By default, the Card component adds padding around the outer edges of its contents.
 To eliminate this white space, add the Card Overflow component inside the Card as a wrapper around the content to be expanded.
-
-Note that Card Overflow only works when it's the first and/or last child of the parent Card.
-In the demo below, the top and bottom sections are expanded to fill the edges:
 
 {{"demo": "OverflowCard.js" }}
 
@@ -89,6 +89,14 @@ There may be individual (discrete) actions _within_ a given card, or _the entire
 
 The following sections explain how to approach each of these scenarios.
 
+#### Bottom actions
+
+Cards often include buttons at the bottom section. Use `CardActions` component as a wrapper of those buttons to create proper spacing around them.
+
+The demo below also use `buttonFlex` prop to set the ideal width of the buttons to `120px` while allowing them to shrink if necessary. To learn more about CSS flex, visit [MDN's guide](https://developer.mozilla.org/en-US/docs/Web/CSS/flex).
+
+{{"demo": "BottomActionsCard.js" }}
+
 #### Discrete actions
 
 By default, action elements like links and buttons sit above the surface-level interactive area of the Card.
@@ -126,6 +134,48 @@ This is because the variables are also used to calculate a proper radius for the
 
 ## Common examples
 
+### Bio card
+
+{{"demo": "BioCard.js" }}
+
+### Credit card form
+
+{{"demo": "CreditCardForm.js" }}
+
+### Congratulations card
+
+{{"demo": "CongratCard.js" }}
+
+### FAQ card
+
+{{"demo": "FAQCard.js" }}
+
+### License card
+
+{{"demo": "LicenseCard.js" }}
+
+### Pricing card
+
+{{"demo": "PricingCards.js" }}
+
+### Product card
+
+This example demonstrates the automatic adjustment when a button is placed as a only child of a [CardOverflow](#expand-to-fill) component. The button will be stretched to fill the entire area of the CardOverflow and the bottom corner radius is also adjusted.
+
+{{"demo": "ProductCard.js" }}
+
+### User card
+
+Combining CSS min-width with clamp, a [horizontal card](#horizontal-alignment) can be stacked when it reaches a certain width or below.
+
+The example below shows a user card that stacks when the card's width is equal or below 500px. The drag handle is at the bottom right corner of the card.
+
+{{"demo": "UserCard.js" }}
+
+:::info
+Alternatively, you can use [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries) to achieve the similar result. You should check the [browser support](https://caniuse.com/css-container-queries) before using CSS Container Queries.
+:::
+
 ### Instagram post
 
 {{"demo": "InstagramPost.js" }}
@@ -156,9 +206,8 @@ The Card component and all of its supplementary components are composed of a sin
   <div class="MuiCardOverflow-root">
     <!-- optional Card Overflow utility -->
   </div>
+  <div class="MuiCardActions-root">
+    <!-- optional Card Actions layer -->
+  </div>
 </div>
 ```
-
-:::info
-Keep in mind that [Card Overflow](#expand-to-fill) must be the first or last child of a Card in order to function—accordingly, it will have a `data-first-child` or `data-last-child` attribute appended to its `<div>`.
-:::

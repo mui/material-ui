@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
@@ -23,11 +24,11 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
  *
  * Demos:
  *
- * - [Button](https://mui.com/base/react-button/)
+ * - [Button](https://mui.com/base-ui/react-button/)
  *
  * API:
  *
- * - [Button API](https://mui.com/base/react-button/components-api/#button)
+ * - [Button API](https://mui.com/base-ui/react-button/components-api/#button)
  */
 const Button = React.forwardRef(function Button<RootComponentType extends React.ElementType>(
   props: ButtonProps<RootComponentType>,
