@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { autoUpdate, flip, offset, useFloating, VirtualElement } from '@floating-ui/react-dom';
