@@ -36,69 +36,38 @@ import AccordionSummary from '@mui/joy/AccordionSummary';
 
 ### Controlled accordion
 
+{{"demo": "AccordionControlled.js"}}
+
 ### Disabled
+
+{{"demo": "AccordionDisabled.js"}}
 
 ### Divider
 
-### Transition
+{{"demo": "AccordionDivider.js"}}
+
+### Expanding transition
+
+{{"demo": "AccordionTransition.js", "hideToolbar": true}}
+
+### Indicator
+
+{{"demo": "AccordionIndicator.js"}}
+
+### Styling on expansion
+
+{{"demo": "AccordionStylingExpansion.js"}}
 
 ## Common examples
 
+### Depth panel
+
+{{"demo": "AccordionDepthPanel.js"}}
+
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)
+The built-in accessibility of the accordion follows [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
 
-For optimal accessibility we recommend setting `id` and `aria-controls` on the
-`AccordionSummary`. The `Accordion` will derive the necessary `aria-labelledby`
-and `id` for the content region of the accordion.
-
-<!-- :::info
-💡 The Joy UI Accordion component is still in development.
-If you're in need of it, please upvote [**this GitHub issue**](https://github.com/mui/material-ui/issues/36281) to help us prioritize the next batch of new components.
-:::
-
-## Integration with headless UI libraries
-
-In the meantime, you can still adopt Joy UI today for building an accordion!
-
-This document shows how to construct it with existing Joy UI components combined with popular headless UI libraries.
-
-### Using the List component
-
-Joy UI's [List](/joy-ui/react-list/) components are perfect for building accordions because they stack vertically with an equal width.
-
-- `<List />` - Wraps the accordion and sets `component="div"` to remove it from the accessibility tree.
-- `<ListItemButton />` - The accordion header that toggles the visibility of the content.
-- `<ListItem />` - The content container.
-
-### With Radix UI
-
-Use Joy UI List components as a starting point and pass Radix's Accordion to `component` prop. Radix will enhance the functionalities by preserving the styles of Joy UI components.
-
-Animation is created by targeting a CSS variable, `--radix-accordion-content-height`, provided by Radix Accordion. In this demo, it uses `@mui/system` keyframes API, same as [emotion's keyframes](https://emotion.sh/docs/keyframes), to build the animation stylesheet.
-
-- [Install Radix UI's Accordion](https://www.radix-ui.com/docs/primitives/components/accordion#installation)
-- [Accordion component documentation](https://www.radix-ui.com/docs/primitives/components/accordion)
-
-<iframe src="https://codesandbox.io/embed/joy-ui-feat-radix-accordion-4n2p04?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:360px; border:2; border-radius: 12px; overflow:hidden;"
-     title="Joy UI feat. Radix UI Accordion"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
-
-### With Headless UI
-
-Use Joy UI List components as a starting point and pass Headless UI's Accordion to `component` prop. Headless UI will enhance the functionalities by preserving the styles of Joy UI components.
-
-Headless UI does not provide an API to create animation so you have to use other libraries or build it yourself.
-
-- [Install Headless UI](https://headlessui.com/react/disclosure#installation)
-- [Disclosure component documentation](https://headlessui.com/react/disclosure)
-
-<iframe src="https://codesandbox.io/embed/joy-ui-feat-headless-ui-disclosure-g2mqpr?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:360px; border:2; border-radius: 12px; overflow:hidden;"
-     title="Joy UI feat. Headless UI Disclosure"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe> -->
+- The accordion summary has a root slot (`div`) that can be changed, for example using `h3`, based on the hierarchy of the accordion.
+- The accordion summary contains a button with `aria-expanded` and `aria-controls` attributes.
+- The accordion details contains a div with `role="region"` and `aria-labelledby` attributes.

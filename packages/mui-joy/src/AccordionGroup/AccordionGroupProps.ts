@@ -42,6 +42,10 @@ export interface AccordionGroupTypeMap<P = {}, D extends React.ElementType = 'di
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', AccordionGroupPropsSizeOverrides>;
     /**
+     * The CSS transition for the Accordion details.
+     */
+    transition?: string | { initial: string; expanded: string };
+    /**
      * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */

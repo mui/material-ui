@@ -16,6 +16,7 @@ import {
 import useSlot from '../utils/useSlot';
 import ListProvider from '../List/ListProvider';
 import { StyledList } from '../List/List';
+import accordionDetailsClasses from '../AccordionDetails/accordionDetailsClasses';
 
 const useUtilityClasses = (ownerState: AccordionGroupOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -35,10 +36,29 @@ const AccordionGroupRoot = styled(StyledList as unknown as 'div', {
   name: 'JoyAccordionGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AccordionGroupOwnerState }>(({ theme }) => ({
-  '--List-padding': '0px',
-  '--ListDivider-gap': '0px',
-}));
+})<{ ownerState: AccordionGroupOwnerState }>(({ ownerState }) => {
+  let transition: Record<string, any> = {};
+  if (ownerState.transition) {
+    if (typeof ownerState.transition === 'string') {
+      transition = {
+        '--AccordionDetails-transition': `grid-template-rows ${ownerState.transition}, padding-block ${ownerState.transition}`,
+      };
+    }
+    if (typeof ownerState.transition === 'object') {
+      transition = {
+        '--AccordionDetails-transition': `grid-template-rows ${ownerState.transition.initial}, padding-block ${ownerState.transition.initial}`,
+        [`& .${accordionDetailsClasses.root}.${accordionDetailsClasses.expanded}`]: {
+          '--AccordionDetails-transition': `grid-template-rows ${ownerState.transition.expanded}, padding-block ${ownerState.transition.expanded}`,
+        },
+      };
+    }
+  }
+  return {
+    '--List-padding': '0px',
+    '--ListDivider-gap': '0px',
+    ...transition,
+  };
+});
 
 /**
  * ⚠️ AccordionGroup must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.

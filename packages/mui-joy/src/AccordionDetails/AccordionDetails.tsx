@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
@@ -21,6 +20,7 @@ const useUtilityClasses = (ownerState: AccordionDetailsOwnerState) => {
   const { expanded } = ownerState;
   const slots = {
     root: ['root', expanded && 'expanded'],
+    content: ['content', expanded && 'expanded'],
   };
 
   return composeClasses(slots, getAccordionDetailsUtilityClass, {});
@@ -40,19 +40,26 @@ const AccordionDetailsRoot = styled('div', {
   paddingInlineEnd: 'var(--ListItem-paddingRight)',
   paddingBlockStart: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
   paddingBlockEnd: 'calc(2 * var(--ListItem-paddingY))',
+  transition: 'var(--AccordionDetails-transition)',
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   [`&:not(.${accordionDetailsClasses.expanded})`]: {
     gridTemplateRows: '0fr',
     paddingBlock: 0,
   },
 }));
 
+/**
+ * The content slot is required because the root slot is a CSS Grid, it needs a child.
+ */
 const AccordionDetailsContent = styled('div', {
   name: 'JoyAccordionDetails',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AccordionDetailsOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: AccordionDetailsOwnerState }>({
+  display: 'flex',
+  flexDirection: 'column',
   overflow: 'hidden', // required for user-provided transition to work
-}));
+});
 
 /**
  * ⚠️ AccordionDetails must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
@@ -71,7 +78,16 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
     name: 'JoyAccordionDetails',
   });
 
-  const { className, component = 'div', children, slots = {}, slotProps = {}, ...other } = props;
+  const {
+    className,
+    component = 'div',
+    children,
+    color = 'neutral',
+    variant = 'plain',
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const { accordionId, expanded = false } = React.useContext(AccordionContext);
 
@@ -80,6 +96,8 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
   const ownerState = {
     ...props,
     component,
+    color,
+    variant,
     expanded,
     nesting: true, // for the List styles
   };
@@ -88,7 +106,7 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
-    className: clsx(classes.root, className),
+    className: classes.root,
     elementType: AccordionDetailsRoot,
     externalForwardedProps,
     additionalProps: {
@@ -99,9 +117,17 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
     ownerState,
   });
 
+  const [SlotContent, contentProps] = useSlot('content', {
+    ref,
+    className: classes.content,
+    elementType: AccordionDetailsContent,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
     <SlotRoot {...rootProps}>
-      <AccordionDetailsContent>{children}</AccordionDetailsContent>
+      <SlotContent {...contentProps}>{children}</SlotContent>
     </SlotRoot>
   );
 }) as OverridableComponent<AccordionDetailsTypeMap>;

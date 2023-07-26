@@ -5,6 +5,10 @@ export interface AccordionSummaryClasses {
   root: string;
   /** Class name applied to the button element. */
   button: string;
+  /** Class name applied to the indicator element. */
+  indicator: string;
+  /** Class name applied when the accordion is disabled. */
+  disabled: string;
   /** Class name applied when the accordion is expanded. */
   expanded: string;
 }
@@ -17,7 +21,7 @@ export function getAccordionSummaryUtilityClass(slot: string): string {
 
 const accordionSummaryClasses: AccordionSummaryClasses = generateUtilityClasses(
   'MuiAccordionSummary',
-  ['root', 'button', 'expanded'],
+  ['root', 'button', 'indicator', 'disabled', 'expanded'],
 );
 
 export default accordionSummaryClasses;

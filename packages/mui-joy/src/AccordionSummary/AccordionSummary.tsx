@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
@@ -25,6 +24,7 @@ const useUtilityClasses = (ownerState: AccordionSummaryOwnerState) => {
   const slots = {
     root: ['root', disabled && 'disabled', expanded && 'expanded'],
     button: ['button', disabled && 'disabled', expanded && 'expanded'],
+    indicator: ['indicator', disabled && 'disabled', expanded && 'expanded'],
   };
 
   return composeClasses(slots, getAccordionSummaryUtilityClass, {});
@@ -127,7 +127,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
-    className: clsx(classes.root, className),
+    className: classes.root,
     elementType: AccordionSummaryRoot,
     externalForwardedProps,
     ownerState,
@@ -150,7 +150,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
 
   const [SlotIndicator, indicatorProps] = useSlot('indicator', {
     ref,
-    className: clsx(classes.root, className),
+    className: classes.indicator,
     elementType: AccordionSummaryIndicator,
     externalForwardedProps,
     ownerState,

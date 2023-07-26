@@ -42,7 +42,7 @@ export default function ButtonUsage() {
         },
       ]}
       renderDemo={({ disabled, ...props }) => (
-        <AccordionGroup {...props} sx={{ my: 3 }}>
+        <AccordionGroup {...props} sx={{ mb: 3, width: 300, maxWidth: '100%' }}>
           <Accordion disabled={disabled}>
             <AccordionSummary>Personal Information</AccordionSummary>
             <AccordionDetails>test</AccordionDetails>
