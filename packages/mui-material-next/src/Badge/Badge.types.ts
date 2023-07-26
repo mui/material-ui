@@ -29,8 +29,11 @@ export interface BadgeSlots {
   badge?: React.ElementType;
 }
 
-export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
-  props: P & {
+export interface BadgeTypeMap<
+  DefaultComponent extends React.ElementType = 'span',
+  AdditionalProps = {},
+> {
+  props: AdditionalProps & {
     /**
      * The anchor of the badge.
      * @default {
@@ -115,13 +118,13 @@ export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
      */
     variant?: OverridableStringUnion<'dot' | 'standard', BadgePropsVariantOverrides>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 export type BadgeProps<
-  D extends React.ElementType = BadgeTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BadgeTypeMap<D, P>, D>;
+  RootComponent extends React.ElementType = BadgeTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BadgeTypeMap<RootComponent, AdditionalProps>, RootComponent>;
 
 export interface BadgeOwnerState extends BadgeProps {
   size: NonNullable<BadgeProps['size']>;
