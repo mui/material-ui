@@ -35,12 +35,11 @@ font by default.
 You may add it to your project with npm or yarn via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
 
 <codeblock storageKey="package-manager">
-
-```bash
+```bash npm
 npm install @fontsource/inter
 ```
 
-```bash
+```bash yarn
 yarn add @fontsource/inter
 ```
 
