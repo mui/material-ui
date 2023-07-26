@@ -36,6 +36,9 @@ function classesTest() {
 <Badge color="secondary" />;
 <Badge color="tertiary" />;
 <Badge color="error" />;
+<Badge color="info" />;
+<Badge color="warning" />;
+<Badge color="success" />;
 
 // @ts-expect-error there is no color `default`
 <Badge color="default" />;

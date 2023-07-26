@@ -34,6 +34,12 @@ export interface BadgeClasses {
   colorSecondary: string;
   /** Styles applied to the badge `span` element if `color="tertiary"`. */
   colorTertiary: string;
+  /** Styles applied to the badge `span` element if `color="info"`. */
+  colorInfo: string;
+  /** Styles applied to the badge `span` element if `color="warning"`. */
+  colorWarning: string;
+  /** Styles applied to the badge `span` element if `color="success"`. */
+  colorSuccess: string;
   /** Styles applied to the badge `span` element if `overlap="rectangular"`. */
   overlapRectangular: string;
   /** Styles applied to the badge `span` element if `overlap="circular"`. */
@@ -62,6 +68,9 @@ const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'colorPrimary',
   'colorSecondary',
   'colorTertiary',
+  'colorInfo',
+  'colorWarning',
+  'colorSuccess',
   'overlapRectangular',
   'overlapCircular',
 ]);
