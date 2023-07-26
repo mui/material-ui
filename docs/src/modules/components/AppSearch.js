@@ -300,7 +300,7 @@ export default function AppSearch(props) {
 
   const search = `${t('algoliaSearch')}…`;
 
-  const optionalFilters = []
+  const optionalFilters = [];
   if (pageContext.productId !== 'null') {
     optionalFilters.push(`productId:${pageContext.productId}`);
   }
