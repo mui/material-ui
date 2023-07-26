@@ -38,6 +38,38 @@ The default value for the color prop was changed to `"error"`.
 
 The `"default"` option is no longer accepted for the color prop.
 
+### Removed combined anchor-overlap styleOverrides keys
+
+The following `styleOverrides` `MuiBadge` keys were removed:
+
+- `anchorOriginTopLeftCircular`
+- `anchorOriginTopLeftRectangular`
+- `anchorOriginTopRightCircular`
+- `anchorOriginTopRightRectangular`
+- `anchorOriginBottomLeftCircular`
+- `anchorOriginBottomLeftRectangular`
+- `anchorOriginBottomRightCircular`
+- `anchorOriginBottomRightRectangular`
+
+You can replace them by using a CSS selector inside the `MuiBadge` `styleOverrides` `badge` key.
+The following example replaces the usage of `anchorOriginTopLeftCircular` with a CSS selector including the `MuiBadge-overlapCircular` class and the `MuiBadge-anchorOriginBottomLeft` class
+
+```diff
+const theme = extendTheme({
+  components: {
+    MuiBadge: {
+      styleOverrides: {
+-       anchorOriginBottomLeftCircular: {
++       badge: {
++         "&.MuiBadge-anchorOriginBottomLeft.MuiBadge-overlapCircular": {
+            background: "fuchsia"
+          }
+        }
+      }
+    }
+  }
+});
+```
 
 ### Removed combined anchor-overlap classes
 
