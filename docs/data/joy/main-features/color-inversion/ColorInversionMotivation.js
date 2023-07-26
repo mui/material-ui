@@ -47,7 +47,7 @@ export default function ColorInversionMotivation() {
       {/* Left: The global variants are applied to children only */}
       <Box sx={{ maxWidth: 300 }}>
         {demo}
-        <Typography level="body-xs" mt={2} textAlign="center">
+        <Typography level="body-sm" mt={2} textAlign="center">
           <b>One layer</b>
           <br />
           Global variants are applied only to the children.
