@@ -21,6 +21,7 @@ module.exports = [
   { pathname: '/joy-ui/api/circular-progress' },
   { pathname: '/joy-ui/api/css-baseline' },
   { pathname: '/joy-ui/api/divider' },
+  { pathname: '/joy-ui/api/drawer' },
   { pathname: '/joy-ui/api/form-control' },
   { pathname: '/joy-ui/api/form-helper-text' },
   { pathname: '/joy-ui/api/form-label' },

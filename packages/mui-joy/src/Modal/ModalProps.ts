@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ModalOwnProps } from '@mui/base/Modal';
-import { OverrideProps } from '@mui/types';
+import { OverrideProps, OverridableTypeMap } from '@mui/types';
 import { SxProps } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -59,6 +59,14 @@ export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
       sx?: SxProps;
     } & ModalSlotsAndSlotProps;
   defaultComponent: D;
+}
+
+/**
+ * utility to create component types that inherit props from Modal.
+ */
+export interface ExtendModalTypeMap<M extends OverridableTypeMap> {
+  props: M['props'] & Omit<ModalTypeMap['props'], 'classes'>;
+  defaultComponent: M['defaultComponent'];
 }
 
 export type ModalProps<

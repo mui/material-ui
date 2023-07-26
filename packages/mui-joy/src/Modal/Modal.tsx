@@ -94,7 +94,7 @@ const ModalBackdrop = styled('div', {
  *
  * - [Modal API](https://mui.com/joy-ui/api/modal/)
  */
-const Modal = React.forwardRef(function ModalU(inProps, ref) {
+const Modal = React.forwardRef(function Modal(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyModal',
@@ -117,6 +117,8 @@ const Modal = React.forwardRef(function ModalU(inProps, ref) {
     component,
     slots = {},
     slotProps = {},
+    // @ts-ignore TODO: Add it in the types - how can we make the component extendable?
+    ownerState: ownerStateProp,
     ...other
   } = props;
 
@@ -205,7 +207,8 @@ const Modal = React.forwardRef(function ModalU(inProps, ref) {
     disableScrollLock,
     hideBackdrop,
     keepMounted,
-  };
+    ...ownerStateProp,
+  } as ModalOwnerState;
 
   const classes = useUtilityClasses(ownerState);
   const externalForwardedProps = { ...other, component, slots, slotProps };

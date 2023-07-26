@@ -76,6 +76,9 @@ export * from './CssBaseline';
 export { default as Divider } from './Divider';
 export * from './Divider';
 
+export { default as Drawer } from './Drawer';
+export * from './Drawer';
+
 export { default as FormControl } from './FormControl';
 export * from './FormControl';
 

@@ -1,0 +1,56 @@
+{
+  "props": {
+    "anchor": {
+      "type": {
+        "name": "enum",
+        "description": "'bottom'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'left'"
+    },
+    "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ root?: func<br>&#124;&nbsp;object, sheet?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType, sheet?: elementType }" },
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalPropsInfo": { "sx": true }
+    }
+  },
+  "name": "Drawer",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "Modal",
+      "class": ".MuiDrawer-root"
+    },
+    {
+      "name": "sheet",
+      "description": "The component that renders the content inside the drawer.",
+      "default": "Sheet",
+      "class": ".MuiDrawer-sheet"
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "JoyDrawer",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/Drawer/Drawer.tsx",
+  "inheritance": { "component": "Modal", "pathname": "/joy-ui/api/modal/" },
+  "demos": "<ul><li><a href=\"/joy-ui/react-drawer/\">Drawer</a></li></ul>",
+  "cssComponent": false
+}
