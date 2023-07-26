@@ -47,6 +47,7 @@ By default, the Popup is mounted to the DOM when its `open` prop is set to `true
 `anchor` is passed as the reference element to the Floating UI's [`useFloating`](https://floating-ui.com/docs/react#positioning) hook.
 The children are placed in a [Portal](/base-ui/react-portal/) prepended to the body of the document to avoid rendering problems.
 You can disable this behavior with `disablePortal` prop.
+See how it's done in the [demo below](#disable-portal)
 
 The following demo shows how to create and style a basic popup.
 Click **Toggle Popup** to see how it behaves:
@@ -83,6 +84,17 @@ When the exit transition finishes, call the provided `onExited` function to let 
 If using CSS transitions or animations, you can use the `onTransitionEnd`/`onAnimationEnd` events to detect when the transition is over.
 
 {{"demo": "AnimatedPopup.js"}}
+
+### Disable portal
+
+To render the popup where it is defined in the source, without using [React portals](https://react.dev/reference/react-dom/createPortal), pass in the `disablePortal` prop.
+Note that it may cause visual clipping if a popup is placed in a container without visible overflow.
+
+A way to prevent clipping while not using portals is to leverage fixed positioning.
+The Popup has the `strategy` prop, that is responsible for determining how the position is calculated.
+When set to `"fixed"`, the fixed CSS position will be used and the Popup won't be subject to overflow hiding.
+
+{{"demo": "DisabledPortalPopup.js"}}
 
 ### Floating UI middleware
 
