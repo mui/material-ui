@@ -23,7 +23,7 @@ function ModeToggle() {
 
   return (
     <Button
-      variant="outlined"
+      variant="soft"
       onClick={() => {
         setMode(mode === 'light' ? 'dark' : 'light');
       }}
