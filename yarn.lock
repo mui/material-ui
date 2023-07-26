@@ -2008,6 +2008,22 @@
     prop-types "^15.8.1"
     reselect "^4.1.8"
 
+"@mui/x-data-grid-premium@6.10.1":
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-premium/-/x-data-grid-premium-6.10.1.tgz#c99a73a5552c5bf1043deb0b67ae4dd45b89990f"
+  integrity sha512-a7yQ5ayQqyFuOz6hfXqK6HGX1Ze39jDwygvdqnJ2pHKAYW61t/QsAwCn97M2/JuMnFFzktPv9hma5jReGOxm3g==
+  dependencies:
+    "@babel/runtime" "^7.22.6"
+    "@mui/utils" "^5.13.7"
+    "@mui/x-data-grid" "6.10.1"
+    "@mui/x-data-grid-pro" "6.10.1"
+    "@mui/x-license-pro" "6.10.0"
+    "@types/format-util" "^1.0.2"
+    clsx "^1.2.1"
+    exceljs "^4.3.0"
+    prop-types "^15.8.1"
+    reselect "^4.1.8"
+
 "@mui/x-data-grid-pro@6.10.0":
   version "6.10.0"
   resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-6.10.0.tgz#39d604f41ceeaf1e63200108588ca549c82b549c"
