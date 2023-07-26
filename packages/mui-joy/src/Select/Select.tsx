@@ -759,6 +759,11 @@ Select.propTypes /* remove-proptypes */ = {
    */
   renderValue: PropTypes.func,
   /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required: PropTypes.bool,
+  /**
    * The size of the component.
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

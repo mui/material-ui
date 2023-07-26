@@ -29,6 +29,7 @@
     "onListboxOpenChange": { "type": { "name": "func" } },
     "placeholder": { "type": { "name": "node" } },
     "renderValue": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" } },
     "size": {
       "type": {
         "name": "union",
