@@ -32,7 +32,7 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface DrawerTypeMap<P = {}, D extends React.ElementType = Modal> {
+export interface DrawerTypeMap<P = {}, D extends React.ElementType = typeof Modal> {
   props: P &
     DrawerSlotsAndSlotProps & {
       /**
