@@ -55,20 +55,20 @@ You can replace them by using a CSS selector inside the `MuiBadge` `styleOverrid
 The following example replaces the usage of `anchorOriginTopLeftCircular` with a CSS selector including the `MuiBadge-overlapCircular` class and the `MuiBadge-anchorOriginBottomLeft` class
 
 ```diff
-const theme = extendTheme({
-  components: {
-    MuiBadge: {
-      styleOverrides: {
+ const theme = extendTheme({
+   components: {
+     MuiBadge: {
+       styleOverrides: {
 -       anchorOriginBottomLeftCircular: {
 +       badge: {
 +         "&.MuiBadge-anchorOriginBottomLeft.MuiBadge-overlapCircular": {
-            background: "fuchsia"
-          }
-        }
-      }
-    }
-  }
-});
+             background: "fuchsia"
+           }
+         }
+       }
+     }
+   }
+ });
 ```
 
 ### Removed combined anchor-overlap classes
