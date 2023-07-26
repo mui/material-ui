@@ -41,7 +41,7 @@ Textarea Autosize behaves similarly to the native HTML`<textarea>`.
 
 By default, an empty Textarea Autosize component renders as a single row, as shown in the following demo:
 
-{{"demo": "EmptyTextarea.js"}}
+{{"demo": "UnstyledTextarea", "defaultCodeOpen": false}}
 
 ## Customization
 

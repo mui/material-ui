@@ -14,7 +14,8 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ badge?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     }
   },
   "name": "Badge",

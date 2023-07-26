@@ -1,15 +1,7 @@
 {
   "props": {
     "actions": { "type": { "name": "custom", "description": "ref" } },
-    "anchorEl": {
-      "type": {
-        "name": "union",
-        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
-      }
-    },
     "onItemsChange": { "type": { "name": "func" } },
-    "onOpenChange": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
         "name": "shape",
@@ -19,7 +11,8 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ listbox?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     }
   },
   "name": "Menu",
@@ -27,8 +20,8 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component that renders the root.",
-      "default": "Popper",
+      "description": "The component that renders the popup element.",
+      "default": "'div'",
       "class": ".MuiMenu-root"
     },
     {
@@ -39,7 +32,7 @@
     }
   ],
   "classes": { "classes": ["expanded"], "globalClasses": { "expanded": "Mui-expanded" } },
-  "spread": false,
+  "spread": true,
   "muiName": "MuiMenu",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Menu/Menu.tsx",

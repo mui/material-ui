@@ -65,7 +65,7 @@ The following demo omits the `value` prop from the Tab components, and also defi
 
 The next demo shows how to apply custom styles to a set of tabs:
 
-{{"demo": "UnstyledTabsCustomized.js"}}
+{{"demo": "UnstyledTabsCustomized"}}
 
 ### Anatomy
 

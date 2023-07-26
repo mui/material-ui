@@ -1,32 +1,35 @@
 import * as React from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Grid from '@mui/material/Grid';
-import { useTheme, alpha } from '@mui/material/styles';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import { alpha } from '@mui/material/styles';
 
-export default function HeroContainer({
-  left,
-  right,
-  rightSx,
-  linearGradient,
-  disableMobileHidden,
-}: {
+interface HeroContainerProps {
+  disableMobileHidden?: boolean;
+  disableTabExclusion?: boolean;
   left: React.ReactElement;
+  linearGradient?: boolean;
   right: React.ReactElement;
   rightSx?: BoxProps['sx'];
-  linearGradient?: boolean;
-  disableMobileHidden?: boolean;
-}) {
-  const frame = React.useRef<null | HTMLDivElement>(null);
-  const globalTheme = useTheme();
-  const isMdUp = useMediaQuery(globalTheme.breakpoints.up('md'));
+}
 
-  React.useEffect(() => {
+export default function HeroContainer(props: HeroContainerProps) {
+  const {
+    disableMobileHidden,
+    disableTabExclusion = false,
+    left,
+    linearGradient,
+    right,
+    rightSx,
+  } = props;
+  const frame = React.useRef<null | HTMLDivElement>(null);
+
+  useEnhancedEffect(() => {
     let obs: undefined | MutationObserver;
     function suppressTabIndex() {
-      if (frame.current && isMdUp) {
-        const elements = frame.current.querySelectorAll(
+      if (!disableTabExclusion) {
+        const elements = frame.current!.querySelectorAll(
           'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
         );
         elements.forEach((elm) => {
@@ -43,12 +46,12 @@ export default function HeroContainer({
         obs.disconnect();
       }
     };
-  }, [isMdUp]);
+  }, [disableTabExclusion]);
 
   const renderRightWrapper = (sx?: BoxProps['sx']) => (
     <Box
-      id="hero-container-right-area"
-      aria-hidden="true"
+      ref={frame}
+      aria-hidden={disableTabExclusion ? undefined : 'true'}
       sx={[
         (theme) => ({
           minWidth: '50vw',
