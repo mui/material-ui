@@ -117,8 +117,8 @@ export default function PopupPlayground() {
         <PopupWithTrigger label="non-portaled" disablePortal />
         <PopupWithTrigger label="with offset" offset={20} />
         <PopupWithTrigger label="with Material UI transition" withTransition>
-          {(props) => (
-            <Fade {...props} timeout={250}>
+          {({ requestOpen, onExited }) => (
+            <Fade in={requestOpen} onExited={onExited} timeout={250}>
               <PopupBody>This is an animated popup</PopupBody>
             </Fade>
           )}

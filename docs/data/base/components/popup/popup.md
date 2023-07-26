@@ -21,7 +21,7 @@ It relies on the [Floating UI](https://floating-ui.com/) third-party library for
 
 :::info
 Base UI also contains the [Popper](/base-ui/react-popper/) component with a very similar API.
-It's based on the [Popper](https://popper.js.org/) library, which is in maintenance mode and it's deprecated itself.
+It's based on the [Popper](https://popper.js.org/) library, which is in maintenance mode.
 
 We recommend using the Popup component instead.
 :::
@@ -70,11 +70,22 @@ Try changing this value to `top` in the interactive demo below to see how it wor
 
 ### Transitions
 
-You can animate the open and close states of the Popup with a render prop child and a transition component, as long as the component meets these conditions:
+You can animate opening and closing of the Popup using CSS transitions, CSS animations, or third party animation libraries.
 
-- is a direct child descendant of the Popup,
-- calls the `onExited` callback prop when the exit transition is completed.
+To enable transitions, first of all, set the `withTransition` prop.
+It will make the Popup wait for the exit animation to finish before unmounting.
 
-These two callbacks allow the Popup to unmount the child content when closed and fully transitioned.
+Then, instead of placing the Popup contents directly as its children, wrap them in a function that receives an object with `requestOpen: boolean` and `onExited: () => void` fields.
+
+Run the open transition when `requestOpen` becomes `true` and the close transition when it changes to `false`.
+When the exit transition finishes, call the provided `onExited` function to let the Popup know it can be unmounted.
+
+If using CSS transitions or animations, you can use the `onTransitionEnd`/`onAnimationEnd` events to detect when the transition is over.
 
 {{"demo": "AnimatedPopup.js"}}
+
+### Floating UI middleware
+
+If you need to modify the underlying [Floating UI middleware](https://floating-ui.com/docs/middleware), you can do so via the `middleware` prop.
+By default, the Popup uses [`offset`](https://floating-ui.com/docs/offset) (with the value provided in the `offset` prop) and [`flip`](https://floating-ui.com/docs/flip) functions.
+If you provide your own middleware array, these defaults won't be applied.

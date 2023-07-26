@@ -280,9 +280,10 @@ Popup.propTypes /* remove-proptypes */ = {
    */
   strategy: PropTypes.oneOf(['absolute', 'fixed']),
   /**
-   * If `true`, the popup will support open and close animations.
-   * In such a case, a function form of `children` must be used and `onEnter` and `onExited`
-   * callback functions must be called when the respective transitions or animations finish.
+   * If `true`, the popup will not disappear immediately when it needs to be closed
+   * but wait until the exit transition has finished.
+   * In such a case, a function form of `children` must be used and `onExited`
+   * callback function must be called when the transition or animation finish.
    *
    * @default false
    */
