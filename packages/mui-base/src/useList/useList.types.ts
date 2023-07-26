@@ -136,7 +136,7 @@ export interface UseListParameters<
    */
   isItemDisabled?: (itemValue: ItemValue, index: number) => boolean;
   /**
-   * Ref of the list root DOM element.
+   * Ref to the list root DOM element.
    */
   rootRef?: React.Ref<Element>;
   /**

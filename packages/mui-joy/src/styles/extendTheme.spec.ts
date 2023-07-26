@@ -35,6 +35,7 @@ import { ListItemButtonOwnerState } from '@mui/joy/ListItemButton';
 import { ListItemContentOwnerState } from '@mui/joy/ListItemContent';
 import { ListItemDecoratorOwnerState } from '@mui/joy/ListItemDecorator';
 import { MenuOwnerState } from '@mui/joy/Menu';
+import { MenuButtonOwnerState } from '@mui/joy/MenuButton';
 import { MenuItemOwnerState } from '@mui/joy/MenuItem';
 import { MenuListOwnerState } from '@mui/joy/MenuList';
 import { ModalOwnerState } from '@mui/joy/Modal';
@@ -720,6 +721,19 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<MenuOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyMenuButton: {
+      defaultProps: {
+        size: 'sm',
+        variant: 'outlined',
+        color: 'neutral',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<MenuButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
       },

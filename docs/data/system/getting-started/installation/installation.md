@@ -16,6 +16,10 @@ npm install @mui/system @emotion/react @emotion/styled
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
+```bash pnpm
+pnpm add @mui/system @emotion/react @emotion/styled
+```
+
 </codeblock>
 
 ## With styled-components
@@ -31,6 +35,10 @@ npm install @mui/system @mui/styled-engine-sc styled-components
 
 ```bash yarn
 yarn add @mui/system @mui/styled-engine-sc styled-components
+```
+
+```bash pnpm
+pnpm add @mui/system @mui/styled-engine-sc styled-components
 ```
 
 </codeblock>

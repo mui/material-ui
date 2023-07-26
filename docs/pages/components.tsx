@@ -14,7 +14,7 @@ import Section from 'docs/src/layouts/Section';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Link from 'docs/src/modules/components/Link';
-import { MuiPage } from 'docs/src/pages';
+import type { MuiPage } from 'docs/src/MuiPage';
 import materialPages from 'docs/data/material/pages';
 
 export default function Components() {

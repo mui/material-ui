@@ -6,6 +6,7 @@ module.exports = [
       '/base-ui/react-click-away-listener/components-api/#click-away-listener',
     title: 'ClickAwayListener',
   },
+  { pathname: '/base-ui/react-menu/components-api/#dropdown', title: 'Dropdown' },
   {
     pathname: '/base-ui/react-focus-trap/components-api/#focus-trap',
     title: 'FocusTrap',
@@ -16,6 +17,10 @@ module.exports = [
   },
   { pathname: '/base-ui/react-input/components-api/#input', title: 'Input' },
   { pathname: '/base-ui/react-menu/components-api/#menu', title: 'Menu' },
+  {
+    pathname: '/base-ui/react-menu/components-api/#menu-button',
+    title: 'MenuButton',
+  },
   { pathname: '/base-ui/react-menu/components-api/#menu-item', title: 'MenuItem' },
   { pathname: '/base-ui/react-modal/components-api/#modal', title: 'Modal' },
   { pathname: '/base-ui/react-no-ssr/components-api/#no-ssr', title: 'NoSsr' },
@@ -51,12 +56,17 @@ module.exports = [
   },
   { pathname: '/base-ui/react-badge/hooks-api/#use-badge', title: 'useBadge' },
   { pathname: '/base-ui/react-button/hooks-api/#use-button', title: 'useButton' },
+  { pathname: '/base-ui/react-menu/hooks-api/#use-dropdown', title: 'useDropdown' },
   {
     pathname: '/base-ui/react-form-control/hooks-api/#use-form-control-context',
     title: 'useFormControlContext',
   },
   { pathname: '/base-ui/react-input/hooks-api/#use-input', title: 'useInput' },
   { pathname: '/base-ui/react-menu/hooks-api/#use-menu', title: 'useMenu' },
+  {
+    pathname: '/base-ui/react-menu/hooks-api/#use-menu-button',
+    title: 'useMenuButton',
+  },
   { pathname: '/base-ui/react-menu/hooks-api/#use-menu-item', title: 'useMenuItem' },
   { pathname: '/base-ui/react-select/hooks-api/#use-option', title: 'useOption' },
   { pathname: '/base-ui/react-select/hooks-api/#use-select', title: 'useSelect' },
