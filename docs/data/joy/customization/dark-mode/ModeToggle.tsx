@@ -19,7 +19,7 @@ function ModeSwitcher() {
   }
   return (
     <Button
-      variant="outlined"
+      variant="soft"
       color="neutral"
       onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
     >
