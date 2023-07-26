@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import Sheet from '@mui/joy/Sheet';
 import Modal, { modalClasses } from '../Modal';
 import { useThemeProps, Theme } from '../styles';
@@ -13,15 +12,9 @@ import { getDrawerUtilityClass } from './drawerClasses';
 import { DrawerProps, DrawerOwnerState, DrawerTypeMap } from './DrawerProps';
 import useSlot from '../utils/useSlot';
 
-const useUtilityClasses = (ownerState: DrawerOwnerState) => {
-  const { variant, color } = ownerState;
-
+const useUtilityClasses = () => {
   const slots = {
-    root: [
-      'root',
-      color && `color${capitalize(color)}`,
-      variant && `variant${capitalize(variant)}`,
-    ],
+    root: ['root'],
     sheet: ['sheet'],
   };
 
@@ -127,7 +120,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     open,
   };
 
-  const classes = useUtilityClasses(ownerState);
+  const classes = useUtilityClasses();
 
   const { sheet: sheetSlots, ...modalSlots } = slots;
   const { sheet: sheetSlotProps, ...modalSlotProps } = slotProps;
@@ -178,10 +171,19 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, the component is shown.
+   * @default false
+   */
+  open: PropTypes.bool.isRequired,
   /**
    * The props used for each slot inside.
    * @default {}

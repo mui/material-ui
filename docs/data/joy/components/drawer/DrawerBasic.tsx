@@ -48,7 +48,7 @@ export default function DrawerBasic() {
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        {['All mail', 'Trash', 'Spam'].map((text) => (
           <ListItem key={text}>
             <ListItemButton>{text}</ListItemButton>
           </ListItem>

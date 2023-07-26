@@ -9,6 +9,7 @@
     },
     "children": { "type": { "name": "node" } },
     "component": { "type": { "name": "elementType" } },
+    "open": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
         "name": "shape",

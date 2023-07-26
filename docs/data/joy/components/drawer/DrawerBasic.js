@@ -32,7 +32,7 @@ export default function DrawerBasic() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
           <ListItem key={text}>
             <ListItemButton>{text}</ListItemButton>
           </ListItem>

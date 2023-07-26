@@ -45,6 +45,11 @@ export interface DrawerTypeMap<P = {}, D extends React.ElementType = typeof Moda
        */
       children?: React.ReactNode;
       /**
+       * If `true`, the component is shown.
+       * @default false
+       */
+      open: boolean;
+      /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps;
