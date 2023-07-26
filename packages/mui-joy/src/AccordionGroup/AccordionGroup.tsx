@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -103,7 +102,7 @@ const AccordionGroup = React.forwardRef(function AccordionGroup(inProps, ref) {
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
-    className: clsx(classes.root, className),
+    className: classes.root,
     elementType: AccordionGroupRoot,
     externalForwardedProps,
     ownerState,

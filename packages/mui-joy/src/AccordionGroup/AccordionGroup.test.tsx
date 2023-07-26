@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import AccordionGroup, { accordionSummaryClasses as classes } from '@mui/joy/AccordionGroup';
+import AccordionGroup, { accordionGroupClasses as classes } from '@mui/joy/AccordionGroup';
 
 describe('<AccordionGroup />', () => {
   const { render } = createRenderer();
