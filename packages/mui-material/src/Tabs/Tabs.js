@@ -604,33 +604,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
    * Using IntersectionObserver on first and last Tabs.
    */
   React.useEffect(() => {
-    let firstObserver;
-    let lastObserver;
     const tabListChildren = Array.from(tabListRef.current.children);
     const length = tabListChildren.length;
-    const firstTab = tabListChildren[0];
-    const lastTab = tabListChildren[length - 1];
-    const threshold = 0.99;
-    const observerOptions = {
-      root: tabsRef.current,
-      threshold,
-    };
-
-    const handleScrollButtonStart = (entries) => {
-      let display = false;
-      entries.forEach(({ isIntersecting }) => {
-        display = !isIntersecting;
-      });
-      setDisplayStartScroll(display);
-    };
-
-    const handleScrollButtonEnd = (entries) => {
-      let display = false;
-      entries.forEach(({ isIntersecting }) => {
-        display = !isIntersecting;
-      });
-      setDisplayEndScroll(display);
-    };
 
     if (
       typeof IntersectionObserver !== 'undefined' &&
@@ -638,19 +613,32 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       scrollable &&
       scrollButtons !== false
     ) {
-      firstObserver = new IntersectionObserver(handleScrollButtonStart, observerOptions);
+      const firstTab = tabListChildren[0];
+      const lastTab = tabListChildren[length - 1];
+      const observerOptions = {
+        root: tabsRef.current,
+        threshold: 0.99,
+      };
+
+      const handleScrollButtonStart = (entries) => {
+        setDisplayStartScroll(!entries[0].isIntersecting);
+      };
+      const firstObserver = new IntersectionObserver(handleScrollButtonStart, observerOptions);
       firstObserver.observe(firstTab);
 
-      if (length > 1) {
-        lastObserver = new IntersectionObserver(handleScrollButtonEnd, observerOptions);
-        lastObserver.observe(lastTab);
-      }
+      const handleScrollButtonEnd = (entries) => {
+        setDisplayEndScroll(!entries[0].isIntersecting);
+      };
+      const lastObserver = new IntersectionObserver(handleScrollButtonEnd, observerOptions);
+      lastObserver.observe(lastTab);
+
+      return () => {
+        firstObserver.disconnect();
+        lastObserver.disconnect();
+      };
     }
 
-    return () => {
-      firstObserver?.disconnect();
-      lastObserver?.disconnect();
-    };
+    return undefined;
   }, [scrollable, scrollButtons, updateScrollObserver, childrenProp?.length]);
 
   React.useEffect(() => {

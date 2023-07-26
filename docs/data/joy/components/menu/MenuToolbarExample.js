@@ -6,51 +6,28 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListDivider from '@mui/joy/ListDivider';
 import Typography, { typographyClasses } from '@mui/joy/Typography';
+import Dropdown from '@mui/joy/Dropdown';
+import MenuButton from '@mui/joy/MenuButton';
 
-const MenuButton = React.forwardRef(
+const MenuBarButton = React.forwardRef(
   ({ children, menu, open, onOpen, onKeyDown, ...props }, ref) => {
-    const buttonRef = React.useRef(null);
-    const menuActions = React.useRef(null);
-    const combinedRef = React.useMemo(() => {
-      return (instance) => {
-        if (instance) {
-          ref(instance);
-          buttonRef.current = instance;
-        }
-      };
-    }, [buttonRef, ref]);
-
-    const handleButtonKeyDown = (event) => {
-      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-        event.preventDefault();
-        onOpen(event);
-        if (event.key === 'ArrowUp') {
-          menuActions.current?.highlightLastItem();
-        }
-      }
-      onKeyDown(event);
-    };
-
     return (
-      <React.Fragment>
-        <ListItemButton
+      <Dropdown
+        open={open}
+        onOpenChange={() => {
+          onOpen();
+        }}
+      >
+        <MenuButton
           {...props}
-          ref={combinedRef}
+          slots={{ root: ListItemButton }}
+          ref={ref}
           role="menuitem"
           variant={open ? 'soft' : 'plain'}
-          color="neutral"
-          aria-haspopup="menu"
-          aria-expanded={open ? 'true' : undefined}
-          aria-controls={`toolbar-example-menu-${children}`}
-          onClick={onOpen}
-          onKeyDown={handleButtonKeyDown}
         >
           {children}
-        </ListItemButton>
+        </MenuButton>
         {React.cloneElement(menu, {
-          open,
-          actions: menuActions,
-          anchorEl: buttonRef.current,
           slotProps: {
             listbox: {
               id: `toolbar-example-menu-${children}`,
@@ -76,7 +53,7 @@ const MenuButton = React.forwardRef(
             },
           }),
         })}
-      </React.Fragment>
+      </Dropdown>
     );
   },
 );
@@ -157,7 +134,7 @@ export default function MenuToolbarExample() {
       }}
     >
       <ListItem>
-        <MenuButton
+        <MenuBarButton
           open={menuIndex === 0}
           onOpen={() => {
             setMenuIndex((prevMenuIndex) => (prevMenuIndex === null ? 0 : null));
@@ -202,10 +179,10 @@ export default function MenuToolbarExample() {
           }
         >
           File
-        </MenuButton>
+        </MenuBarButton>
       </ListItem>
       <ListItem>
-        <MenuButton
+        <MenuBarButton
           open={menuIndex === 1}
           onOpen={() => {
             setMenuIndex((prevMenuIndex) => (prevMenuIndex === null ? 1 : null));
@@ -246,10 +223,10 @@ export default function MenuToolbarExample() {
           }
         >
           Edit
-        </MenuButton>
+        </MenuBarButton>
       </ListItem>
       <ListItem>
-        <MenuButton
+        <MenuBarButton
           open={menuIndex === 2}
           onOpen={() => {
             setMenuIndex((prevMenuIndex) => (prevMenuIndex === null ? 2 : null));
@@ -274,16 +251,16 @@ export default function MenuToolbarExample() {
             >
               <MenuItem {...itemProps}>Select All {renderShortcut('⌘ A')}</MenuItem>
               <MenuItem {...itemProps}>
-                Expand Selection {renderShortcut('^ ⇧ ⌘ →')}
+                Expand Selection {renderShortcut('⌃ ⇧ ⌘ →')}
               </MenuItem>
               <MenuItem {...itemProps}>
-                Shrink Selection {renderShortcut('^ ⇧ ⌘ ←')}
+                Shrink Selection {renderShortcut('⌃ ⇧ ⌘ ←')}
               </MenuItem>
             </Menu>
           }
         >
           Selection
-        </MenuButton>
+        </MenuBarButton>
       </ListItem>
     </List>
   );
