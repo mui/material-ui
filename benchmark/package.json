@@ -30,7 +30,7 @@
     "serve-handler": "^6.1.5",
     "styled-components": "^5.3.11",
     "theme-ui": "^0.16.0",
-    "webpack": "^5.88.1",
+    "webpack": "^5.88.2",
     "webpack-cli": "^4.10.0"
   }
 }
