@@ -25,7 +25,7 @@ export default function ColorInversionMarketing() {
         bgcolor: color === 'primary' ? '#042449' : undefined,
         p: { xs: '36px', md: '70px' },
         pt: { xs: '24px', md: '60px' },
-        borderRadius: 'sm',
+        borderRadius: 'lg',
         overflow: 'hidden',
         '& button': { borderRadius: 'xl' },
       }}
