@@ -25,16 +25,16 @@ Base UI's Number Input component is a customizable replacement for the native HT
 
 See [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.
 
-{{"demo": "UnstyledNumberInputIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "NumberInputIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import NumberInput from '@mui/base/NumberInput';
+import NumberInput from '@mui/base/Unstable_NumberInput';
 
 export default function MyApp() {
   return <NumberInput />;
@@ -45,7 +45,7 @@ export default function MyApp() {
 
 The following demo shows how to create a number input component, apply some styling, and write the latest value to a state variable using the `onChange` prop:
 
-{{"demo": "UnstyledNumberInputBasic.js"}}
+{{"demo": "NumberInputBasic.js"}}
 
 The `min` and `max` props can be used to define a range of accepted values. You can pass only one of them to define an open-ended range.
 
@@ -79,7 +79,12 @@ Here's another demo of a Number Input with fully customized styles:
 
 ### Anatomy
 
-The Base UI Number Input component consists of a root `<div>` that contains one interior `<input>` slot, and two `<button>` slots – `incrementButton` and `decrementButton` – for the stepper buttons.
+The Base UI Number Input component consists of 4 slots:
+
+- `root`: a outer `<div>` containing the other interior slots
+- `input`: an `<input>` element
+- `incrementButton`: a `<button>` for increasing the value
+- `decrementButton`: a `<button>` for decreasing the value
 
 ```html
 <div class="MuiNumberInput-root">
@@ -93,7 +98,7 @@ The Base UI Number Input component consists of a root `<div>` that contains one 
 
 :::info
 The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
+See [Usage](/base-ui/getting-started/usage/) for full details.
 :::
 
 Use the `slots` prop to override the root slot or any interior slots:
@@ -127,7 +132,7 @@ The following code snippet:
 ## Hook
 
 ```js
-import useNumberInput from '@mui/base/useNumberInput';
+import useNumberInput from '@mui/base/unstable_useNumberInput';
 ```
 
 The `useNumberInput` hook lets you apply the functionality of a number input to a fully custom component.
