@@ -17,6 +17,7 @@ import Ad from 'docs/src/modules/components/Ad';
 import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import AdGuest from 'docs/src/modules/components/AdGuest';
+import { getPropsToC } from 'docs/src/modules/components/PropertiesTable';
 
 function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();
@@ -144,6 +145,7 @@ export default function MarkdownDocsV2(props) {
         slots,
         themeDefaultProps,
         classes,
+        props: componentProps,
       } = componentsApiPageContents[key];
       const componentNameKebabCase = kebabCase(componentName);
 
@@ -151,9 +153,13 @@ export default function MarkdownDocsV2(props) {
         createComponentTocEntry(componentNameKebabCase, 'import'),
         ...componentDescriptionToc,
         styles.name && createComponentTocEntry(componentNameKebabCase, 'component-name'),
-        createComponentTocEntry(componentNameKebabCase, 'props', {
+        getPropsToC({
+          t,
+          componentName: componentNameKebabCase,
+          componentProps,
           inheritance,
           themeDefaultProps,
+          hash: `${componentName}-props`,
         }),
         styles.classes.length > 0 && createComponentTocEntry(componentNameKebabCase, 'css'),
         slots?.length > 0 && createComponentTocEntry(componentNameKebabCase, 'slots'),

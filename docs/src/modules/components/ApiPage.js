@@ -11,7 +11,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import ReviewsRoundedIcon from '@mui/icons-material/ReviewsRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
+import PropertiesTable, { getPropsToC } from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
@@ -172,7 +172,13 @@ export default function ApiPage(props) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    createTocEntry('props'),
+    getPropsToC({
+      t,
+      componentName: pageContent.name,
+      componentProps,
+      inheritance,
+      themeDefaultProps: pageContent.themeDefaultProps,
+    }),
     componentStyles.classes.length > 0 && createTocEntry('css'),
     componentSlots?.length > 0 && createTocEntry('slots'),
     hasClasses && createTocEntry('classes'),
@@ -251,7 +257,11 @@ import { ${pageContent.name} } from '${source}';`}
 
         <Heading hash="props" />
         <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
-        <PropertiesTable properties={componentProps} propertiesDescriptions={propDescriptions} />
+        <PropertiesTable
+          properties={componentProps}
+          propertiesDescriptions={propDescriptions}
+          componentName={pageContent.name}
+        />
         {cssComponent && (
           <React.Fragment>
             <span
@@ -300,7 +310,11 @@ import { ${pageContent.name} } from '${source}';`}
           <React.Fragment>
             <Heading hash="css" />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.cssDescription') }} />
-            <CSSList componentStyles={componentStyles} classDescriptions={classDescriptions} />
+            <CSSList
+              componentStyles={componentStyles}
+              classDescriptions={classDescriptions}
+              componentName={pageContent.name}
+            />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
               dangerouslySetInnerHTML={{
@@ -322,7 +336,11 @@ import { ${pageContent.name} } from '${source}';`}
                 }}
               />
             )}
-            <SlotsList componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
+            <SlotsList
+              componentSlots={componentSlots}
+              slotDescriptions={slotDescriptions}
+              componentName={pageContent.name}
+            />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
               dangerouslySetInnerHTML={{
