@@ -34,6 +34,11 @@ Here's an example of the change using the Badge component:
 
 The default value for the color prop was changed to `"error"`.
 
+### Removed the "default" color option
+
+The `"default"` option is no longer accepted for the color prop.
+
+
 ### Removed combined anchor-overlap classes
 
 The following classes were removed:

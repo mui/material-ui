@@ -37,6 +37,9 @@ function classesTest() {
 <Badge color="tertiary" />;
 <Badge color="error" />;
 
+// @ts-expect-error there is no color `default`
+<Badge color="default" />;
+
 <Badge
   slots={{
     root: 'div',

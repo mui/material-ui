@@ -62,7 +62,7 @@ export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
      * @default 'error'
      */
     color?: OverridableStringUnion<
-      'primary' | 'secondary' | 'tertiary' | 'error' | 'info' | 'warning' | 'success' | 'default',
+      'primary' | 'secondary' | 'tertiary' | 'error' | 'info' | 'warning' | 'success',
       BadgePropsColorOverrides
     >;
     /**

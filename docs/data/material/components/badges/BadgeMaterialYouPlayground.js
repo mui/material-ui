@@ -23,7 +23,6 @@ export default function BadgeMaterialYouPlayground() {
             'primary',
             'secondary',
             'tertiary',
-            'default',
           ],
           defaultValue: 'error',
         },
