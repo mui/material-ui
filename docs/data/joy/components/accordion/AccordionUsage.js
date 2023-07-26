@@ -4,7 +4,6 @@ import AccordionGroup from '@mui/joy/AccordionGroup';
 import Accordion from '@mui/joy/Accordion';
 import AccordionDetails from '@mui/joy/AccordionDetails';
 import AccordionSummary from '@mui/joy/AccordionSummary';
-import ListDivider from '@mui/joy/ListDivider';
 
 export default function ButtonUsage() {
   return (
@@ -32,30 +31,35 @@ export default function ButtonUsage() {
           propName: 'disabled',
           knob: 'switch',
           defaultValue: false,
+          codeBlockDisplay: false,
         },
         {
           propName: 'children',
-          defaultValue: `<Accordion>
+          defaultValue: `$children`,
+        },
+      ]}
+      getCodeBlock={(code, props) =>
+        code.replace(
+          '$children',
+          `<Accordion${props.disabled ? ' disabled' : ''}>
     <AccordionSummary>Title</AccordionSummary>
     <AccordionDetails>Content</AccordionDetails>
   </Accordion>`,
-        },
-      ]}
+        )
+      }
       renderDemo={({ disabled, ...props }) => (
         <AccordionGroup {...props} sx={{ mb: 3, width: 300, maxWidth: '100%' }}>
           <Accordion disabled={disabled}>
-            <AccordionSummary>Personal Information</AccordionSummary>
-            <AccordionDetails>test</AccordionDetails>
+            <AccordionSummary>First Header</AccordionSummary>
+            <AccordionDetails>Content of the first accordion.</AccordionDetails>
           </Accordion>
-          <ListDivider />
           <Accordion disabled={disabled}>
-            <AccordionSummary>Billing Address</AccordionSummary>
-            <AccordionDetails>test</AccordionDetails>
+            <AccordionSummary>Second Header</AccordionSummary>
+            <AccordionDetails>Content of the second accordion.</AccordionDetails>
           </Accordion>
-          <ListDivider />
           <Accordion disabled={disabled}>
-            <AccordionSummary>Shipping Address</AccordionSummary>
-            <AccordionDetails>test</AccordionDetails>
+            <AccordionSummary>Third Header</AccordionSummary>
+            <AccordionDetails>Content of the third accordion.</AccordionDetails>
           </Accordion>
         </AccordionGroup>
       )}
