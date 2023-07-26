@@ -172,6 +172,7 @@ PersistScroll.propTypes = {
 const ToolbarDiv = styled('div')(({ theme }) => ({
   padding: theme.spacing(1.6, 2),
   paddingRight: 0,
+  flexShrink: 0,
   height: 'var(--MuiDocs-header-height)',
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
@@ -413,7 +414,7 @@ export default function AppNavDrawer(props) {
           />
         </ToolbarDiv>
         <Divider />
-        <Box sx={{ pt: 0.5, pb: 4, overflowY: 'auto', flexGrow: 1 }}>{navItems}</Box>
+        <Box sx={{ pt: 0.5, pb: 5, overflowY: 'auto', flexGrow: 1 }}>{navItems}</Box>
         <DiamondSponsors />
       </React.Fragment>
     );
