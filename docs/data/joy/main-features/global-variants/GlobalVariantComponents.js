@@ -37,16 +37,16 @@ export default function GlobalVariantComponents() {
       <Typography level="body-sm" justifySelf="flex-end">
         Chip:
       </Typography>
-      <Chip variant="solid" size="sm">
+      <Chip variant="solid" size="sm" color="primary">
         Solid
       </Chip>
-      <Chip variant="soft" size="sm">
+      <Chip variant="soft" size="sm" color="primary">
         Soft
       </Chip>
-      <Chip variant="outlined" size="sm">
+      <Chip variant="outlined" size="sm" color="primary">
         Outlined
       </Chip>
-      <Chip variant="plain" size="sm">
+      <Chip variant="plain" size="sm" color="primary">
         Plain
       </Chip>
       <Typography level="body-sm" justifySelf="flex-end">
