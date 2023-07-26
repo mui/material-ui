@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Modal, { ModalTypeMap } from '../Modal';
+import Modal from '../Modal';
 import Sheet from '../Sheet';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
