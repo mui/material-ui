@@ -16,8 +16,11 @@ describe('<Popup />', () => {
     inheritComponent: 'div',
     render: async (...renderArgs) => {
       const result = render(...renderArgs);
-      // flush microtasks (https://floating-ui.com/docs/react#testing)
-      await act(() => async () => {});
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // flush microtasks (https://floating-ui.com/docs/react#testing)
+        await act(() => async () => {});
+      }
+
       return result;
     },
     mount,
