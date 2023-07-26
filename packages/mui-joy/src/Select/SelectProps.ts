@@ -141,6 +141,11 @@ export interface SelectStaticProps {
    */
   placeholder?: React.ReactNode;
   /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required?: boolean;
+  /**
    * The size of the component.
    */
   size?: OverridableStringUnion<'sm' | 'md' | 'lg', SelectPropsSizeOverrides>;

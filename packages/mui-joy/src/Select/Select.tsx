@@ -55,6 +55,8 @@ const defaultModifiers: PopperProps['modifiers'] = [
   },
 ];
 
+const noop = () => {};
+
 const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
   const { color, disabled, focusVisible, size, variant, open } = ownerState;
 
@@ -344,6 +346,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     onListboxOpenChange,
     onClose,
     renderValue: renderValueProp,
+    required = false,
     value: valueProp,
     size: sizeProp = 'md',
     variant = 'outlined',
@@ -488,6 +491,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       'aria-describedby': ariaDescribedby ?? formControl?.['aria-describedby'],
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby ?? formControl?.labelId,
+      'aria-required': required ? 'true' : undefined,
       id: id ?? formControl?.htmlFor,
       name,
     },
@@ -605,10 +609,28 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
 
         {indicator && <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>}
+        <input
+          name={name}
+          tabIndex={-1} // remove from tab order
+          aria-hidden="true" // hide from screen reader
+          required={required ? true : undefined}
+          value={getSerializedValue(selectedOption)}
+          onChange={noop} // to prevent React warning
+          style={{
+            // visually hidden style based on https://webaim.org/techniques/css/invisiblecontent/
+            clip: 'rect(1px, 1px, 1px, 1px)',
+            clipPath: 'inset(50%)',
+            height: '1px',
+            width: '1px',
+            margin: '-1px',
+            overflow: 'hidden',
+            padding: 0,
+            position: 'absolute',
+            bottom: 0, // to display the native browser validation error at the bottom of the Select.
+          }}
+        />
       </SlotRoot>
       {result}
-
-      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
     </React.Fragment>
   );
 }) as SelectComponent;
