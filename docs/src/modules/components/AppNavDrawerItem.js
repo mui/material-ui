@@ -195,6 +195,10 @@ const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
 })(({ open }) => ({
   fontSize: '1rem',
   transform: open && 'rotate(90deg)',
+  '&&:last-child': {
+    // overrrides https://github.com/mui/material-ui/blob/ca7c5c63e64b6a7f55255981f1836a565927b56c/docs/src/modules/brandingTheme.ts#L757-L759
+    marginLeft: 0,
+  },
 }));
 
 const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(
