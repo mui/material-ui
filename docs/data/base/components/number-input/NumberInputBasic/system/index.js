@@ -1,14 +1,8 @@
 import * as React from 'react';
-import NumberInput, {
-  NumberInputProps,
-  numberInputClasses,
-} from '@mui/base/Unstable_NumberInput';
+import NumberInput, { numberInputClasses } from '@mui/base/Unstable_NumberInput';
 import { styled } from '@mui/system';
 
-const CustomNumberInput = React.forwardRef(function CustomNumberInput(
-  props: NumberInputProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
+const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
   return (
     <NumberInput
       slots={{
@@ -34,7 +28,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(
 });
 
 export default function NumberInputBasic() {
-  const [value, setValue] = React.useState<number | undefined>();
+  const [value, setValue] = React.useState();
   return (
     <CustomNumberInput
       aria-label="Demo number input"
@@ -70,13 +64,13 @@ const StyledInputRoot = styled('div')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
-  border-radius: 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
   display: grid;
-  grid-template-columns: 1fr 24px;
+  grid-template-columns: 1fr 19px;
   grid-template-rows: 1fr 1fr;
   overflow: hidden;
 
@@ -109,19 +103,19 @@ const StyledInputElement = styled('input')(
   background: inherit;
   border: none;
   border-radius: inherit;
-  padding: 12px 12px;
+  padding: 8px 12px;
   outline: 0;
 `,
 );
 
 const StyledButton = styled('button')(
   ({ theme }) => `
-  width: 24px;
-  height: 24px;
+  width: 19px;
+  height: 19px;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  line-height: 1.5;
+  line-height: 1;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 0;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};

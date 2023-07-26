@@ -45,7 +45,7 @@ export default function MyApp() {
 
 The following demo shows how to create a number input component, apply some styling, and write the latest value to a state variable using the `onChange` prop:
 
-{{"demo": "NumberInputBasic.js"}}
+{{"demo": "NumberInputBasic"}}
 
 The `min` and `max` props can be used to define a range of accepted values. You can pass only one of them to define an open-ended range.
 
