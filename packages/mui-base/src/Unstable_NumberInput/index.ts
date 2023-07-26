@@ -1,3 +1,4 @@
+'use client';
 export { default } from './NumberInput';
 
 export { default as numberInputClasses } from './numberInputClasses';
