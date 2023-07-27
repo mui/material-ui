@@ -4,11 +4,14 @@ import Button from '@mui/material/Button';
 import { Box, Stack } from '@mui/system';
 import { Typography } from '@mui/material';
 
+// Augment the palette to include a salmon color
+
+// Update the Button's color options to include a salmon option
+
 let theme = createTheme({
   // Theme customization goes here as usual, including tonalOffset and/or
   // contrastThreshold as the augmentColor() function relies on these
 });
-
 theme = createTheme(theme, {
   // Custom colors created with augmentColor go here
   palette: {
