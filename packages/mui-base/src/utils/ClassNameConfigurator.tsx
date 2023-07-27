@@ -42,7 +42,7 @@ export function useClassNamesOverride(generateUtilityClass: (slot: string) => st
 /**
  * Allows to configure the components within to not apply any built-in classes.
  */
-export default function ClassNameConfigurator(props: ClassNameConfiguratorProps) {
+export function ClassNameConfigurator(props: ClassNameConfiguratorProps) {
   const { disableDefaultClasses, children } = props;
 
   const contextValue = React.useMemo(

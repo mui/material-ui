@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import composeClasses from '../composeClasses';
+import { composeClasses } from '../composeClasses';
 import { getTabUtilityClass } from './tabClasses';
 import { TabProps, TabTypeMap, TabRootSlotProps, TabOwnerState } from './Tab.types';
-import useTab from '../useTab';
+import { useTab } from '../useTab';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -129,4 +129,4 @@ Tab.propTypes /* remove-proptypes */ = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
-export default Tab;
+export { Tab };

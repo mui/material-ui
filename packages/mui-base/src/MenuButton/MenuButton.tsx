@@ -3,8 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { MenuButtonOwnerState, MenuButtonProps } from './MenuButton.types';
 import { useSlotProps } from '../utils';
-import useMenuButton from '../useMenuButton';
-import composeClasses from '../composeClasses';
+import { useMenuButton } from '../useMenuButton';
+import { composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getMenuButtonUtilityClass } from './menuButtonClasses';
 
@@ -115,4 +115,4 @@ MenuButton.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default MenuButton;
+export { MenuButton };

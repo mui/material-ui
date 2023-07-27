@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import composeClasses from '../composeClasses';
+import { composeClasses } from '../composeClasses';
 import { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ButtonTypeMap, ButtonRootSlotProps, ButtonOwnerState } from './Button.types';
-import useButton from '../useButton';
+import { useButton } from '../useButton';
 import { WithOptionalOwnerState } from '../utils/types';
 import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
@@ -148,4 +148,4 @@ Button.propTypes /* remove-proptypes */ = {
   to: PropTypes.string,
 } as any;
 
-export default Button;
+export { Button };

@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import isHostComponent from '../utils/isHostComponent';
-import composeClasses from '../composeClasses';
+import { isHostComponent } from '../utils/isHostComponent';
+import { composeClasses } from '../composeClasses';
 import { getSliderUtilityClass } from './sliderClasses';
-import useSlider, { valueToPercent } from '../useSlider';
-import useSlotProps from '../utils/useSlotProps';
-import resolveComponentProps from '../utils/resolveComponentProps';
+import { useSlider, valueToPercent } from '../useSlider';
+import { useSlotProps } from '../utils/useSlotProps';
+import { resolveComponentProps } from '../utils/resolveComponentProps';
 import { SliderOwnerState, SliderProps, SliderTypeMap } from './Slider.types';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -528,4 +528,4 @@ Slider.propTypes /* remove-proptypes */ = {
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 } as any;
 
-export default Slider;
+export { Slider };
