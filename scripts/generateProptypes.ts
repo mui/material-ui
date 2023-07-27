@@ -210,6 +210,7 @@ async function generateProptypes(
   const unstyledFile = getUnstyledFilename(tsFile, true);
   const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
 
+  // TODO remove, should only have .types.ts
   const propsFile = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, 'Props.ts');
   const propsFileAlternative = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, '.types.ts');
   const generatedForTypeScriptFile = sourceFile === tsFile;
