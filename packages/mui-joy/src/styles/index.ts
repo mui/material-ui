@@ -45,7 +45,7 @@ export type {
   TypographySystem,
   TypographySystemOverrides,
 } from './types/typography';
-export type { Components } from './components';
+export type { Components, StyleOverrides } from './components';
 export type {
   VariantPlain,
   VariantPlainHover,
