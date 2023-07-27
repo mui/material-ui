@@ -2,20 +2,22 @@ import * as React from 'react';
 import Switch from '@mui/base/Switch';
 import { Select, SelectOption, Slider } from './components';
 
-function Heading({ children }: { children: React.ReactNode }) {
-  return <h2 className="font-bold text-gray-400 uppercase text-base mt-3 mb-2">{children}</h2>;
+function Heading(props: { children: React.ReactNode }) {
+  return (
+    <h2 className="font-bold text-gray-400 uppercase text-base mt-3 mb-2">{props.children}</h2>
+  );
 }
 
-function Section({ children }: { children: React.ReactNode }) {
+function Section(props: { children: React.ReactNode }) {
   return (
     <div className="grid grid-cols-3 grid-rows-[40px] gap-x-16 items-center min-h-[40px] py-1.5 border-t-[1px] border-solid border-gray-700">
-      {children}
+      {props.children}
     </div>
   );
 }
 
-function Label({ children }: { children: React.ReactNode }) {
-  return <h3 className="font-medium leading-none text-gray-300 col-span-2">{children}</h3>;
+function Label(props: { children: React.ReactNode }) {
+  return <h3 className="font-medium leading-none text-gray-300 col-span-2">{props.children}</h3>;
 }
 
 const HOURS = [
@@ -74,7 +76,6 @@ export default function Home() {
             defaultChecked
           />
         </Section>
-
         <Section>
           <Label>Auto-Enable Between</Label>
           <div className="col-span-1 grid grid-cols-[1fr_auto_1fr] items-center">
@@ -95,7 +96,6 @@ export default function Home() {
             </Select>
           </div>
         </Section>
-
         <Section>
           <Label>Night Mode Tint</Label>
           <div className="col-span-1 self-stretch">

@@ -71,3 +71,16 @@ You can't rely on the content of the badge to be announced correctly.
 You should provide a full description, for instance, with `aria-label`:
 
 {{"demo": "AccessibleBadges.js"}}
+
+## Experimental API
+
+### Material You version
+
+The default Badge component follows the Material Design 2 specs.
+For the Material Design 3 ([Material You](https://m3.material.io/)) version, you can use the new experimental `@mui/material-next` package:
+
+```js
+import Badge from '@mui/material-next/Badge';
+```
+
+{{"demo": "BadgeMaterialYouPlayground.js", "hideToolbar": true}}

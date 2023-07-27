@@ -1074,7 +1074,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Render the option, use `getOptionLabel` by default.
    *
    * @param {object} props The props to apply on the li element.
-   * @param {T} option The option to render.
+   * @param {Value} option The option to render.
    * @param {object} state The state of each option.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
@@ -1083,7 +1083,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Render the selected value.
    *
-   * @param {T[]} value The `value` provided to the component.
+   * @param {Value[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}

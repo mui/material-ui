@@ -13,6 +13,10 @@ npm install @mui/joy @emotion/react @emotion/styled
 yarn add @mui/joy @emotion/react @emotion/styled
 ```
 
+```bash pnpm
+pnpm add @mui/joy @emotion/react @emotion/styled
+```
+
 </codeblock>
 
 ## Peer dependencies
@@ -32,7 +36,7 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 Joy UI is designed to use the [Public Sans](https://fonts.google.com/specimen/Public+Sans)
 font by default.
-You may add it to your project with npm or yarn via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
+You may add it to your project with npm via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
 
 <codeblock storageKey="package-manager">
 
@@ -41,6 +45,10 @@ npm install @fontsource/public-sans
 ```
 
 ```bash yarn
+yarn add @fontsource/public-sans
+```
+
+```bash pnpm
 yarn add @fontsource/public-sans
 ```
 

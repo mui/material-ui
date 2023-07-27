@@ -143,14 +143,14 @@
     "renderOption": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(props: object, option: T, state: object, ownerState: object) => ReactNode",
+        "type": "function(props: object, option: Value, state: object, ownerState: object) => ReactNode",
         "describedArgs": ["props", "option", "state", "ownerState"]
       }
     },
     "renderTags": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(value: Array<T>, getTagProps: function, ownerState: object) => ReactNode",
+        "type": "function(value: Array<Value>, getTagProps: function, ownerState: object) => ReactNode",
         "describedArgs": ["value", "getTagProps", "ownerState"]
       }
     },
