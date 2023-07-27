@@ -510,13 +510,23 @@ export default function useAutocomplete(props) {
       return;
     }
 
+    // Do not sync highlighted index when user don't want to highlight
+    if (!autoHighlight) {
+      // Reset highlighted index if user navigated using keyboard in previous input
+      if (highlightedIndexRef.current !== -1) {
+        setHighlightedIndex({ index: -1 });
+      }
+
+      return;
+    }
+
     // Check if the previously highlighted option still exists in the updated filtered options list and if the value and inputValue haven't changed
     // If it exists and the value and the inputValue haven't changed, return, otherwise continue execution
     if (checkHighlightedOptionExists()) {
       return;
     }
 
-    const valueItem = multiple ? value[0] : value;
+    const valueItem = multiple ? value[value.length - 1] : value;
 
     // The popup is empty, reset
     if (filteredOptions.length === 0 || valueItem == null) {
@@ -574,6 +584,7 @@ export default function useAutocomplete(props) {
     popupOpen,
     inputValue,
     multiple,
+    autoHighlight,
   ]);
 
   const handleListboxRef = useEventCallback((node) => {
