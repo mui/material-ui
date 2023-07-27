@@ -118,6 +118,8 @@ declare const Backdrop: OverridableComponent<BackdropTypeMap>;
 export type BackdropProps<
   RootComponent extends React.ElementType = BackdropTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<BackdropTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<BackdropTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Backdrop;

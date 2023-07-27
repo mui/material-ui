@@ -88,6 +88,8 @@ declare const Fab: ExtendButtonBase<FabTypeMap>;
 export type FabProps<
   RootComponent extends React.ElementType = FabTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<FabTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<FabTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Fab;

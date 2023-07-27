@@ -61,6 +61,8 @@ export type StepButtonClasskey = keyof NonNullable<StepButtonProps['classes']>;
 export type StepButtonProps<
   RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<StepButtonTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<StepButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default StepButton;

@@ -59,7 +59,9 @@ export interface StepperTypeMap<
 export type StepperProps<
   RootComponent extends React.ElementType = StepperTypeMap['defaultComponent'],
   AdditionalProps = { component?: React.ElementType },
-> = OverrideProps<StepperTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<StepperTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
 

@@ -78,6 +78,8 @@ declare const Divider: OverridableComponent<DividerTypeMap>;
 export type DividerProps<
   RootComponent extends React.ElementType = DividerTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<DividerTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<DividerTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Divider;

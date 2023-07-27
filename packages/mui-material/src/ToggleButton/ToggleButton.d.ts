@@ -101,6 +101,8 @@ declare const ToggleButton: ExtendButtonBase<ToggleButtonTypeMap>;
 export type ToggleButtonProps<
   RootComponent extends React.ElementType = ToggleButtonTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<ToggleButtonTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<ToggleButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default ToggleButton;

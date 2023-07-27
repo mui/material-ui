@@ -51,6 +51,8 @@ declare const TableRow: OverridableComponent<TableRowTypeMap>;
 export type TableRowProps<
   RootComponent extends React.ElementType = TableRowTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<TableRowTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<TableRowTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default TableRow;

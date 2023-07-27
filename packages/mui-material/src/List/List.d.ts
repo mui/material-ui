@@ -69,6 +69,8 @@ declare const List: ExtendList<ListTypeMap>;
 export type ListProps<
   RootComponent extends React.ElementType = ListTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<ListTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<ListTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default List;

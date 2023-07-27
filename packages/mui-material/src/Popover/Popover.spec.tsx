@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Dialog from '@mui/material/Dialog';
-import { PaperProps } from '@mui/material/Paper';
+import { Popover, PaperProps } from '@mui/material';
 import { expectType } from '@mui/types';
 
 const paperProps: PaperProps<'span'> = {
@@ -12,8 +11,8 @@ const paperProps: PaperProps<'span'> = {
 function Test() {
   return (
     <React.Fragment>
-      <Dialog open />;
-      <Dialog open PaperProps={paperProps} />;
+      <Popover open />;
+      <Popover open PaperProps={paperProps} />
     </React.Fragment>
   );
 }

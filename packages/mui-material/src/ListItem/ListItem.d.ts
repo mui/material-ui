@@ -180,6 +180,8 @@ declare const ListItem: ExtendButtonBase<
 export type ListItemProps<
   RootComponent extends React.ElementType = 'li',
   AdditionalProps = {},
-> = OverrideProps<ListItemTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<ListItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default ListItem;

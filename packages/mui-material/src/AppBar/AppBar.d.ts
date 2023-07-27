@@ -64,6 +64,8 @@ declare const AppBar: OverridableComponent<AppBarTypeMap>;
 export type AppBarProps<
   RootComponent extends React.ElementType = AppBarTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<AppBarTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<AppBarTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default AppBar;

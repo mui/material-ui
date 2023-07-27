@@ -65,6 +65,8 @@ declare const BottomNavigationAction: ExtendButtonBase<
 export type BottomNavigationActionProps<
   RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<BottomNavigationActionTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<BottomNavigationActionTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default BottomNavigationAction;
