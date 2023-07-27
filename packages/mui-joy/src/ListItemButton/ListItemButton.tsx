@@ -89,8 +89,10 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       zIndex: 1, // to be above of the next element. For example, the first Tab item should be above the second so that the outline is above the second Tab.
     },
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    [`&.${listItemButtonClasses.selected}`]:
-      theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+    [`&.${listItemButtonClasses.selected}`]: {
+      ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      '--Icon-color': 'currentColor',
+    },
     [`&:not(.${listItemButtonClasses.selected}, [aria-selected="true"])`]: {
       '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
       '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
