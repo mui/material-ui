@@ -1,7 +1,7 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
 import Button from '@mui/base/Button';
-import * as React from 'react';
 import createSlot from './createSlot';
 
 describe('createSlot', () => {
