@@ -36,7 +36,7 @@ export type AutocompleteOwnerState<
   expanded: boolean;
   focused: boolean;
   fullWidth: boolean;
-  getOptionLabel: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
+  getOptionLabel: (option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
   hasClearIcon: boolean;
   hasPopupIcon: boolean;
   inputFocused: boolean;
