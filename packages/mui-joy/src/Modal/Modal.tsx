@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: ModalOwnerState) => {
   return composeClasses(slots, getModalUtilityClass, {});
 };
 
-const ModalRoot = styled('div', {
+export const ModalRoot = styled('div', {
   name: 'JoyModal',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -45,7 +45,7 @@ const ModalRoot = styled('div', {
   }),
 }));
 
-const ModalBackdrop = styled('div', {
+export const ModalBackdrop = styled('div', {
   name: 'JoyModal',
   slot: 'Backdrop',
   overridesResolver: (props, styles) => styles.backdrop,
@@ -95,8 +95,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     component,
     slots = {},
     slotProps = {},
-    // @ts-ignore TODO: Add it in the types - how can we make the component extendable?
-    ownerState: ownerStateProp,
     ...other
   } = props;
 
@@ -110,8 +108,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock,
     hideBackdrop,
     keepMounted,
-    ...ownerStateProp,
-  } as ModalOwnerState;
+  };
 
   const { getRootProps, getBackdropProps, rootRef, portalRef, isTopModal } = useModal({
     ...ownerState,

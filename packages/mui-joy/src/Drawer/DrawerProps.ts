@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import Modal from '../Modal';
-import Sheet from '../Sheet';
-import { SxProps } from '../styles/types';
+import { ModalOwnProps } from '../Modal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type DrawerSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDecorator';
@@ -10,14 +8,19 @@ export type DrawerSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDe
 export interface DrawerSlots {
   /**
    * The component that renders the root.
-   * @default Modal
+   * @default 'div'
    */
   root?: React.ElementType;
   /**
-   * The component that renders the content inside the drawer.
-   * @default Sheet
+   * The component that renders the backdrop.
+   * @default 'div'
    */
-  sheet?: React.ElementType;
+  backdrop?: React.ElementType;
+  /**
+   * The component that renders the content of the drawer.
+   * @default 'div'
+   */
+  content?: React.ElementType;
 }
 
 export interface DrawerPropsColorOverrides {}
@@ -27,32 +30,21 @@ export interface DrawerPropsVariantOverrides {}
 export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
   DrawerSlots,
   {
-    root: SlotProps<typeof Modal, {}, DrawerOwnerState>;
-    sheet: SlotProps<typeof Sheet, {}, DrawerOwnerState>;
+    root: SlotProps<'div', {}, DrawerOwnerState>;
+    backdrop: SlotProps<'div', {}, DrawerOwnerState>;
+    content: SlotProps<'div', {}, DrawerOwnerState>;
   }
 >;
 
-export interface DrawerTypeMap<P = {}, D extends React.ElementType = typeof Modal> {
+export interface DrawerTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
+    Omit<ModalOwnProps, 'keepMounted'> &
     DrawerSlotsAndSlotProps & {
       /**
        * Side from which the drawer will appear.
        * @default 'left'
        */
       anchor?: 'left' | 'top' | 'right' | 'bottom';
-      /**
-       * The content of the component.
-       */
-      children?: React.ReactNode;
-      /**
-       * If `true`, the component is shown.
-       * @default false
-       */
-      open: boolean;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps;
     };
   defaultComponent: D;
 }

@@ -55,6 +55,7 @@
       "class": ".MuiModal-backdrop"
     }
   ],
+  "classes": { "classes": ["hidden"], "globalClasses": {} },
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "JoyModal",

@@ -1,5 +1,7 @@
 {
   "props": {
+    "children": { "type": { "name": "element" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true },
     "anchor": {
       "type": {
         "name": "enum",
@@ -7,27 +9,41 @@
       },
       "default": "'left'"
     },
-    "children": { "type": { "name": "node" } },
     "component": { "type": { "name": "elementType" } },
-    "open": { "type": { "name": "bool" }, "default": "false" },
+    "container": {
+      "type": {
+        "name": "union",
+        "description": "function (props, propName) {\n  if (props[propName] == null) {\n    return new Error(\"Prop '\" + propName + \"' is required but wasn't specified\");\n  } else if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {\n    return new Error(\"Expected prop '\" + propName + \"' to be of type Element\");\n  }\n}<br>&#124;&nbsp;func"
+      }
+    },
+    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
+    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ root?: func<br>&#124;&nbsp;object, sheet?: func<br>&#124;&nbsp;object }"
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, content?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ root?: elementType, sheet?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: elementType, content?: elementType, root?: elementType }"
+      },
       "default": "{}",
       "additionalPropsInfo": { "slotsApi": true }
-    },
-    "sx": {
-      "type": {
-        "name": "union",
-        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      },
-      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "Drawer",
@@ -36,22 +52,29 @@
     {
       "name": "root",
       "description": "The component that renders the root.",
-      "default": "Modal",
+      "default": "'div'",
       "class": ".MuiDrawer-root"
     },
     {
-      "name": "sheet",
-      "description": "The component that renders the content inside the drawer.",
-      "default": "Sheet",
-      "class": ".MuiDrawer-sheet"
+      "name": "backdrop",
+      "description": "The component that renders the backdrop.",
+      "default": "'div'",
+      "class": ".MuiDrawer-backdrop"
+    },
+    {
+      "name": "content",
+      "description": "The component that renders the content of the drawer.",
+      "default": "'div'",
+      "class": ".MuiDrawer-content"
     }
   ],
+  "classes": { "classes": ["hidden"], "globalClasses": {} },
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "JoyDrawer",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Drawer/Drawer.tsx",
-  "inheritance": { "component": "Modal", "pathname": "/joy-ui/api/modal/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-drawer/\">Drawer</a></li></ul>",
   "cssComponent": false
 }

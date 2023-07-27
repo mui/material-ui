@@ -2,20 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Modal, { modalClasses } from '@mui/joy/Modal';
 import Drawer, { drawerClasses as classes } from '@mui/joy/Drawer';
 
 describe('<Drawer />', () => {
   const { render } = createRenderer();
-
-  const CustomComponent = React.forwardRef<
-    HTMLElement,
-    React.PropsWithChildren<{ className?: string; tabIndex?: number }>
-  >(({ className, children, tabIndex }, ref) => (
-    <i className={className} ref={ref} tabIndex={tabIndex} data-testid="custom">
-      {children}
-    </i>
-  ));
 
   describeConformance(
     <Drawer open>
@@ -23,7 +13,7 @@ describe('<Drawer />', () => {
     </Drawer>,
     () => ({
       classes,
-      inheritComponent: Modal,
+      inheritComponent: 'div',
       render,
       ThemeProvider,
       muiName: 'JoyDrawer',
@@ -32,8 +22,7 @@ describe('<Drawer />', () => {
       testVariantProps: { hideBackdrop: true },
       slots: {
         root: { expectedClassName: classes.root },
-        backdrop: { expectedClassName: modalClasses.backdrop },
-        sheet: { expectedClassName: classes.sheet, testWithComponent: CustomComponent },
+        backdrop: { expectedClassName: classes.backdrop },
       },
       skip: [
         'classesRoot',

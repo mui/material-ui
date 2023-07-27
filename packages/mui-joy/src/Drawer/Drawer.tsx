@@ -1,75 +1,91 @@
 'use client';
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import Sheet from '@mui/joy/Sheet';
-import Modal, { modalClasses } from '../Modal';
+import Portal from '@mui/base/Portal';
+import FocusTrap from '@mui/base/FocusTrap';
+import { ModalBackdrop } from '../Modal';
+import { SheetRoot } from '../Sheet/Sheet';
+import useModal from '../Modal/useModal';
+import CloseModalContext from '../Modal/CloseModalContext';
 import { useThemeProps, Theme } from '../styles';
 import styled from '../styles/styled';
-import { getDrawerUtilityClass } from './drawerClasses';
+import drawerClasses, { getDrawerUtilityClass } from './drawerClasses';
 import { DrawerProps, DrawerOwnerState, DrawerTypeMap } from './DrawerProps';
 import useSlot from '../utils/useSlot';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: DrawerOwnerState) => {
+  const { open } = ownerState;
+
   const slots = {
-    root: ['root'],
-    sheet: ['sheet'],
+    root: ['root', !open && 'hidden'],
+    backdrop: ['backdrop'],
+    content: ['content'],
   };
 
   return composeClasses(slots, getDrawerUtilityClass, {});
 };
 
-const DrawerRoot = styled(Modal, {
+const DrawerRoot = styled('div', {
   name: 'JoyDrawer',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-  // Propagate all props to the underlaying Modal
-  shouldForwardProp: () => true,
-})<{ ownerState: DrawerOwnerState }>(({ ownerState }) => {
-  return [
-    {
-      transitionProperty: 'visibility',
-      transitionDelay: ownerState.open ? '0s' : '300ms',
-      [`& .${modalClasses.backdrop}`]: {
-        opacity: ownerState.open ? 1 : 0,
-        transition: 'opacity 0.3s ease',
-      },
-    },
-  ];
-});
+})<{ ownerState: DrawerOwnerState }>(({ theme, ownerState }) => ({
+  '--unstable_popup-zIndex': `calc(${theme.vars.zIndex.modal} + 1)`,
+  '& ~ [role="listbox"]': {
+    // target all the listbox (Autocomplete, Menu, Select, etc.) that uses portal
+    '--unstable_popup-zIndex': `calc(${theme.vars.zIndex.modal} + 1)`,
+  },
+  position: 'fixed',
+  zIndex: theme.vars.zIndex.modal,
+  transitionProperty: 'visibility',
+  transitionDelay: ownerState.open ? '0s' : '300ms',
+  ...(!ownerState.open && {
+    visibility: 'hidden',
+  }),
+  [`& .${drawerClasses.backdrop}`]: {
+    opacity: ownerState.open ? 1 : 0,
+    transition: 'opacity 0.3s ease',
+  },
+}));
 
-const DrawerSheet = styled(Sheet, {
+const DrawerBackdrop = styled(ModalBackdrop as unknown as 'div', {
   name: 'JoyDrawer',
-  slot: 'Sheet',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: DrawerOwnerState }>(({ ownerState }) => {
-  return {
-    boxSizing: 'border-box',
-    position: 'fixed',
-    overflow: 'auto',
-    ...(ownerState.anchor === 'left' && {
-      left: 0,
-      transform: ownerState.open ? 'translateX(0)' : 'translateX(-100%)',
-    }),
-    ...(ownerState.anchor === 'right' && {
-      right: 0,
-      transform: ownerState.open ? 'translateX(0)' : 'translateX(100%)',
-    }),
-    ...(ownerState.anchor === 'top' && {
-      top: 0,
-      transform: ownerState.open ? 'translateY(0)' : 'translateY(-100%)',
-    }),
-    ...(ownerState.anchor === 'bottom' && {
-      bottom: 0,
-      transform: ownerState.open ? 'translateY(0)' : 'translateY(100%)',
-    }),
-    height: ownerState.anchor!.match(/(left|right)/) ? '100%' : 'clamp(256px, 30vw, 378px)',
-    width: ownerState.anchor!.match(/(top|bottom)/) ? '100vw' : 'clamp(256px, 30vw, 378px)',
-    transition: 'transform 0.3s ease',
-  };
-});
+  slot: 'Backdrop',
+  overridesResolver: (props, styles) => styles.backdrop,
+})({});
+
+const DrawerContent = styled(SheetRoot, {
+  name: 'JoyDrawer',
+  slot: 'Backdrop',
+  overridesResolver: (props, styles) => styles.content,
+})<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
+  position: 'fixed',
+  boxSizing: 'border-box',
+  overflow: 'auto',
+  ...(ownerState.anchor === 'left' && {
+    top: 0,
+    left: 0,
+    transform: ownerState.open ? 'translateX(0)' : 'translateX(-100%)',
+  }),
+  ...(ownerState.anchor === 'right' && {
+    top: 0,
+    right: 0,
+    transform: ownerState.open ? 'translateX(0)' : 'translateX(100%)',
+  }),
+  ...(ownerState.anchor === 'top' && {
+    top: 0,
+    transform: ownerState.open ? 'translateY(0)' : 'translateY(-100%)',
+  }),
+  ...(ownerState.anchor === 'bottom' && {
+    bottom: 0,
+    transform: ownerState.open ? 'translateY(0)' : 'translateY(100%)',
+  }),
+  height: ownerState.anchor!.match(/(left|right)/) ? '100%' : 'auto',
+  width: ownerState.anchor!.match(/(top|bottom)/) ? '100vw' : 'auto',
+  transition: 'transform 0.3s ease',
+}));
 
 const oppositeDirection = {
   left: 'right',
@@ -97,62 +113,102 @@ export function getAnchor(theme: Theme, anchor: DrawerProps['anchor']) {
  * API:
  *
  * - [Drawer API](https://mui.com/joy-ui/api/drawer/)
- * - inherits [Modal API](https://mui.com/joy-ui/api/modal/)
  */
 const Drawer = React.forwardRef(function Drawer(inProps, ref) {
-  const props = useThemeProps<typeof inProps & DrawerProps>({ props: inProps, name: 'JoyDrawer' });
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+    props: inProps,
+    name: 'JoyDrawer',
+  });
+
   const {
     children,
-    className,
-    anchor: anchorProp = 'left',
-    open = false,
+    anchor = 'left',
+    container,
+    disableAutoFocus = false,
+    disableEnforceFocus = false,
+    disableEscapeKeyDown = false,
+    disablePortal = false,
+    disableRestoreFocus = false,
+    disableScrollLock = false,
+    hideBackdrop = false,
+    onClose,
+    onKeyDown,
+    open,
     component,
     slots = {},
     slotProps = {},
     ...other
   } = props;
 
-  const anchor = anchorProp;
-
-  const ownerState: DrawerOwnerState = {
+  const ownerState = {
     ...props,
     anchor,
-    open,
+    disableAutoFocus,
+    disableEnforceFocus,
+    disableEscapeKeyDown,
+    disablePortal,
+    disableRestoreFocus,
+    disableScrollLock,
+    hideBackdrop,
   };
 
-  const classes = useUtilityClasses();
+  const { getRootProps, getBackdropProps, rootRef, portalRef, isTopModal } = useModal({
+    ...ownerState,
+    ref,
+  });
 
-  const { sheet: sheetSlots, ...modalSlots } = slots;
-  const { sheet: sheetSlotProps, ...modalSlotProps } = slotProps;
-  const externalForwardedProps = {
-    ...other,
-    component,
-    slots: { sheet: sheetSlots },
-    slotProps: { sheet: sheetSlotProps },
-  };
+  const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const [SlotSheet, sheetProps] = useSlot('sheet', {
-    className: classes.sheet,
-    elementType: DrawerSheet,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref: rootRef,
+    className: classes.root,
+    elementType: DrawerRoot,
+    externalForwardedProps,
+    getSlotProps: getRootProps,
+    ownerState,
+  });
+
+  const [SlotBackdrop, backdropProps] = useSlot('backdrop', {
+    className: classes.backdrop,
+    elementType: DrawerBackdrop,
+    externalForwardedProps,
+    getSlotProps: getBackdropProps,
+    ownerState,
+  });
+
+  const [SlotContent, contentProps] = useSlot('content', {
+    className: classes.content,
+    elementType: DrawerContent,
     externalForwardedProps,
     ownerState,
   });
 
   return (
-    <DrawerRoot
-      ref={ref as React.ForwardedRef<HTMLDivElement>}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      open={open}
-      keepMounted
-      component={component}
-      slots={modalSlots}
-      // @ts-ignore ownerState is propagated to the Modal component
-      slotProps={modalSlotProps}
-      {...other}
-    >
-      <SlotSheet {...sheetProps}>{children}</SlotSheet>
-    </DrawerRoot>
+    <CloseModalContext.Provider value={onClose}>
+      <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
+        {/*
+         * Marking an element with the role presentation indicates to assistive technology
+         * that this element should be ignored; it exists to support the web application and
+         * is not meant for humans to interact with directly.
+         * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+         */}
+        <SlotRoot {...rootProps}>
+          {!hideBackdrop ? <SlotBackdrop {...backdropProps} /> : null}
+          <FocusTrap
+            disableEnforceFocus={disableEnforceFocus}
+            disableAutoFocus={disableAutoFocus}
+            disableRestoreFocus={disableRestoreFocus}
+            isEnabled={isTopModal}
+            open={open}
+          >
+            <SlotContent {...contentProps} tabIndex={contentProps.tabIndex ?? -1}>
+              {children}
+            </SlotContent>
+          </FocusTrap>
+        </SlotRoot>
+      </Portal>
+    </CloseModalContext.Provider>
   );
 }) as OverridableComponent<DrawerTypeMap>;
 
@@ -167,21 +223,89 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   anchor: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
   /**
-   * The content of the component.
+   * A single child content element.
    */
-  children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
+  children: PropTypes.element.isRequired,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the component is shown.
+   * An HTML element or function that returns one.
+   * The `container` will have the portal children appended to it.
+   *
+   * By default, it uses the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  container: PropTypes.oneOfType([
+    function (props, propName) {
+      if (props[propName] == null) {
+        return new Error("Prop '" + propName + "' is required but wasn't specified");
+      } else if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
+        return new Error("Expected prop '" + propName + "' to be of type Element");
+      }
+    },
+    PropTypes.func,
+  ]),
+  /**
+   * If `true`, the modal will not automatically shift focus to itself when it opens, and
+   * replace it to the last focused element when it closes.
+   * This also works correctly with any modal children that have the `disableAutoFocus` prop.
+   *
+   * Generally this should never be set to `true` as it makes the modal less
+   * accessible to assistive technologies, like screen readers.
    * @default false
+   */
+  disableAutoFocus: PropTypes.bool,
+  /**
+   * If `true`, the modal will not prevent focus from leaving the modal while open.
+   *
+   * Generally this should never be set to `true` as it makes the modal less
+   * accessible to assistive technologies, like screen readers.
+   * @default false
+   */
+  disableEnforceFocus: PropTypes.bool,
+  /**
+   * If `true`, hitting escape will not fire the `onClose` callback.
+   * @default false
+   */
+  disableEscapeKeyDown: PropTypes.bool,
+  /**
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disablePortal: PropTypes.bool,
+  /**
+   * If `true`, the modal will not restore focus to previously focused element once
+   * modal is hidden or unmounted.
+   * @default false
+   */
+  disableRestoreFocus: PropTypes.bool,
+  /**
+   * Disable the scroll lock behavior.
+   * @default false
+   */
+  disableScrollLock: PropTypes.bool,
+  /**
+   * If `true`, the backdrop is not rendered.
+   * @default false
+   */
+  hideBackdrop: PropTypes.bool,
+  /**
+   * Callback fired when the component requests to be closed.
+   * The `reason` parameter can optionally be used to control the response to `onClose`.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`, `"closeClick"`.
+   */
+  onClose: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**
@@ -189,25 +313,19 @@ Drawer.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    sheet: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    content: PropTypes.elementType,
     root: PropTypes.elementType,
-    sheet: PropTypes.elementType,
   }),
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
 } as any;
 
 export default Drawer;
