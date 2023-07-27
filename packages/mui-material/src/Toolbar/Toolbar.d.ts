@@ -7,8 +7,11 @@ import { ToolbarClasses } from './toolbarClasses';
 
 export interface ToolbarPropsVariantOverrides {}
 
-export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
+export interface ToolbarTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & {
     /**
      * The Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
      * The Toolbar is a flex container, allowing flex item properties to be used to lay out the children.
@@ -33,7 +36,7 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -48,8 +51,10 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
 declare const Toolbar: OverridableComponent<ToolbarTypeMap>;
 
 export type ToolbarProps<
-  D extends React.ElementType = ToolbarTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ToolbarTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ToolbarTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ToolbarTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Toolbar;

@@ -6,10 +6,10 @@ import { Theme } from '..';
 import { AccordionSummaryClasses } from './accordionSummaryClasses';
 
 export type AccordionSummaryTypeMap<
-  P = {},
-  D extends React.ElementType = 'div',
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
 > = ExtendButtonBaseTypeMap<{
-  props: P & {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -27,7 +27,7 @@ export type AccordionSummaryTypeMap<
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**
@@ -44,8 +44,10 @@ export type AccordionSummaryTypeMap<
 declare const AccordionSummary: ExtendButtonBase<AccordionSummaryTypeMap>;
 
 export type AccordionSummaryProps<
-  D extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<AccordionSummaryTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<AccordionSummaryTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default AccordionSummary;
