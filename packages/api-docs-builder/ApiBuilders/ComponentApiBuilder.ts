@@ -539,7 +539,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
         }
       }
 
-      let signature;
+      let signature: ReactApi['propsTable'][string]['signature'];
       if (signatureType !== undefined) {
         signature = {
           type: signatureType,
