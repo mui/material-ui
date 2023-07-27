@@ -75,7 +75,7 @@ This can be customized with the `shiftMultiplier` prop. In the following snippet
 
 Here's another demo of a Number Input with fully customized styles:
 
-{{"demo": "QuantityInput.js", "defaultCodeOpen": false}}
+{{"demo": "QuantityInput", "defaultCodeOpen": false}}
 
 ### Anatomy
 

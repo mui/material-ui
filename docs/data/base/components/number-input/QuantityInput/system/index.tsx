@@ -1,10 +1,13 @@
 import * as React from 'react';
-import NumberInput from '@mui/base/Unstable_NumberInput';
+import NumberInput, { NumberInputProps } from '@mui/base/Unstable_NumberInput';
 import { styled } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
-const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
+const CustomNumberInput = React.forwardRef(function CustomNumberInput(
+  props: NumberInputProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
   return (
     <NumberInput
       slots={{
@@ -65,14 +68,6 @@ const StyledInputRoot = styled('div')(
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-
-  &:hover {
-    border-color: ${blue[400]};
-  }
-
-  &:focus-visible {
-    outline: 0;
-  }
 `,
 );
 
