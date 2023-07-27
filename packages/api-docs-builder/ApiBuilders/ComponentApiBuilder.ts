@@ -444,11 +444,9 @@ const attachTranslations = (reactApi: ReactApi) => {
       // description = renderMarkdownInline(`${description}`);
 
       const typeDescriptions: { [t: string]: string } = {};
-      [...(signatureArgs ?? []), ...(signatureReturn ? [signatureReturn] : [])].forEach(
-        ({ name, description }) => {
-          typeDescriptions[name] = renderMarkdownInline(description);
-        },
-      );
+      (signatureArgs || []).concat(signatureReturn || []).forEach(({ name, description }) => {
+        typeDescriptions[name] = renderMarkdownInline(description);
+      });
 
       translations.propDescriptions[propName] = {
         description: renderMarkdownInline(jsDocText),
