@@ -38,13 +38,13 @@ TabContext.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The value of the currently selected `Tab`.
-   */
-  value: PropTypes.string.isRequired,
-  /**
    * The optional id prefix, internally used to render buttons
    */
   idPrefix: PropTypes.string,
+  /**
+   * The value of the currently selected `Tab`.
+   */
+  value: PropTypes.string.isRequired,
 };
 
 /**
