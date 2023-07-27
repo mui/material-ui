@@ -1,7 +1,8 @@
+import type { MuiPage } from 'docs/src/MuiPage';
 import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
-import pagesApi from './pagesApi';
+import pagesApi from 'docs/data/joy/pagesApi';
 
-const pages = [
+const pages: readonly MuiPage[] = [
   {
     pathname: '/joy-ui/getting-started-group',
     title: 'Getting started',

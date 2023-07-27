@@ -65,7 +65,7 @@
     "@mui/system": "^5.14.1",
     "@mui/types": "^7.2.4",
     "@mui/utils": "^5.14.1",
-    "clsx": "^1.2.1",
+    "clsx": "^2.0.0",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0"
   },

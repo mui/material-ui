@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
+import { unstable_capitalize as capitalize, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import useMenu, { MenuProvider } from '@mui/base/useMenu';
@@ -86,16 +86,14 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
 
   const {
     actions,
-    anchorEl,
     children,
     color: colorProp = 'neutral',
     component,
     disablePortal = false,
     keepMounted = false,
+    id,
     invertedColors = false,
-    onClose,
     onItemsChange,
-    open = false,
     modifiers: modifiersProp,
     variant = 'outlined',
     size = 'md',
@@ -106,20 +104,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
-  const handleOpenChange = React.useCallback(
-    (isOpen: boolean) => {
-      if (!isOpen) {
-        onClose?.();
-      }
-    },
-    [onClose],
-  );
-
-  const { contextValue, getListboxProps, dispatch } = useMenu({
-    open,
-    onOpenChange: handleOpenChange,
-    listboxId: props.id,
+  const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     onItemsChange,
+    id,
+    listboxRef: ref,
   });
 
   React.useImperativeHandle(
@@ -159,22 +147,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     [modifiersProp],
   );
 
-  if (anchorEl && process.env.NODE_ENV !== 'production') {
-    let ariaControls = null;
-    const resolvedAnchorEl = typeof anchorEl === 'function' ? anchorEl() : anchorEl;
-    if ('getAttribute' in resolvedAnchorEl) {
-      ariaControls = resolvedAnchorEl.getAttribute('aria-controls');
-    } else {
-      ariaControls = resolvedAnchorEl.contextElement?.getAttribute('aria-controls');
-    }
-
-    if (props.id && ariaControls && props.id !== ariaControls) {
-      console.error(
-        `MUI: the anchorEl must have [aria-controls="${props.id}"] but got [aria-controls="${ariaControls}"].`,
-      );
-    }
-  }
-
   const rootProps = useSlotProps({
     elementType: MenuRoot,
     getSlotProps: getListboxProps,
@@ -182,9 +154,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     externalSlotProps: {},
     ownerState: ownerState as MenuOwnerState & ListOwnerState,
     additionalProps: {
-      ref,
-      anchorEl,
-      open,
+      anchorEl: triggerElement,
+      open: open && triggerElement !== null,
       disablePortal,
       keepMounted,
       modifiers,
@@ -239,16 +210,6 @@ Menu.propTypes /* remove-proptypes */ = {
    * It allows to select the first or last menu item.
    */
   actions: refType,
-  /**
-   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
-   * or a function that returns either.
-   * It's used to set the position of the popper.
-   * The return value will passed as the reference object of the Popper instance.
-   */
-  anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.func,
-  ]),
   /**
    * @ignore
    */

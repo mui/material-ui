@@ -3,12 +3,15 @@ import { DistributiveOmit } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
-import { TypographyOwnProps } from '../Typography';
+import { TypographyProps } from '../Typography';
 import { LinkClasses } from './linkClasses';
 
-export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
-  props: P &
-    LinkBaseProps & {
+export interface LinkTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'a',
+> {
+  props: AdditionalProps &
+    DistributiveOmit<LinkBaseProps, 'classes'> & {
       /**
        * The content of the component.
        */
@@ -21,7 +24,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        * The color of the link.
        * @default 'primary'
        */
-      color?: TypographyOwnProps['color'];
+      color?: TypographyProps['color'];
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
@@ -29,7 +32,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       /**
        * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
        */
-      TypographyClasses?: TypographyOwnProps['classes'];
+      TypographyClasses?: TypographyProps['classes'];
       /**
        * Controls when the link should have an underline.
        * @default 'always'
@@ -39,9 +42,9 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        * Applies the theme typography styles.
        * @default 'inherit'
        */
-      variant?: TypographyOwnProps['variant'];
+      variant?: TypographyProps['variant'];
     };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -58,14 +61,12 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
  */
 declare const Link: OverridableComponent<LinkTypeMap>;
 
-export type LinkBaseProps = DistributiveOmit<
-  TypographyOwnProps,
-  'children' | 'color' | 'variant' | 'classes'
->;
+export type LinkBaseProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> &
+  DistributiveOmit<TypographyProps, 'children' | 'component' | 'color' | 'ref' | 'variant'>;
 
 export type LinkProps<
-  D extends React.ElementType = LinkTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<LinkTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = LinkTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<LinkTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default Link;

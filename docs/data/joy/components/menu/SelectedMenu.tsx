@@ -1,46 +1,27 @@
 import * as React from 'react';
-import Button from '@mui/joy/Button';
+import MenuButton from '@mui/joy/MenuButton';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import Apps from '@mui/icons-material/Apps';
+import Dropdown from '@mui/joy/Dropdown';
 
 export default function SelectedMenu() {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
-  const buttonRef = React.useRef(null);
-  const [open, setOpen] = React.useState(false);
 
   const createHandleClose = (index: number) => () => {
-    setOpen(false);
     if (typeof index === 'number') {
       setSelectedIndex(index);
     }
   };
 
   return (
-    <div>
-      <Button
-        ref={buttonRef}
-        id="selected-demo-button"
-        aria-controls={'selected-demo-menu'}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        variant="outlined"
-        color="neutral"
-        onClick={() => {
-          setOpen(!open);
-        }}
-        startDecorator={<Apps />}
-      >
-        Apps
-      </Button>
-      <Menu
-        id="selected-demo-menu"
-        anchorEl={buttonRef.current}
-        open={open}
-        onClose={createHandleClose(-1)}
-        aria-labelledby="selected-demo-button"
-      >
-        <MenuItem selected={selectedIndex === 0} onClick={createHandleClose(0)}>
+    <Dropdown>
+      <MenuButton startDecorator={<Apps />}>Apps</MenuButton>
+      <Menu>
+        <MenuItem
+          {...(selectedIndex === 0 && { selected: true, variant: 'soft' })}
+          onClick={createHandleClose(0)}
+        >
           Random project
         </MenuItem>
         <MenuItem selected={selectedIndex === 1} onClick={createHandleClose(1)}>
@@ -50,6 +31,6 @@ export default function SelectedMenu() {
           Staging - web
         </MenuItem>
       </Menu>
-    </div>
+    </Dropdown>
   );
 }

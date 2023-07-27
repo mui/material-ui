@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import useMenu, { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
+import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import { ListActionTypes } from '@mui/base/useList';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -82,9 +82,13 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const { contextValue, getListboxProps, dispatch } = useMenu({
+  const {
+    contextValue: menuContextValue,
+    getListboxProps,
+    dispatch,
+  } = useMenu({
     listboxRef: ref,
-    listboxId: idProp,
+    id: idProp,
     onItemsChange,
   });
 
@@ -117,16 +121,6 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     ownerState,
     className: classes.root,
   });
-
-  const menuContextValue = React.useMemo(
-    () =>
-      ({
-        ...contextValue,
-        getListboxProps,
-        open: true,
-      } as MenuProviderValue),
-    [contextValue, getListboxProps],
-  );
 
   return (
     <SlotRoot {...rootProps}>
