@@ -111,7 +111,7 @@
     "getRootProps": { "description": "Resolver for the root slot&#39;s props." },
     "getTagProps": { "description": "A tag props getter." },
     "groupedOptions": {
-      "description": "The options to render. It&#39;s either <code>T[]</code> or <code>AutocompleteGroupedOption&lt;T&gt;[]</code> if the groupBy prop is provided."
+      "description": "The options to render. It&#39;s either <code>Value[]</code> or <code>AutocompleteGroupedOption&lt;Value&gt;[]</code> if the groupBy prop is provided."
     },
     "id": { "description": "Id for the Autocomplete." },
     "inputValue": { "description": "The input value." },

@@ -9,8 +9,11 @@ export interface ButtonGroupPropsColorOverrides {}
 export interface ButtonGroupPropsVariantOverrides {}
 export interface ButtonGroupPropsSizeOverrides {}
 
-export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
+export interface ButtonGroupTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -78,7 +81,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -94,8 +97,10 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
 declare const ButtonGroup: OverridableComponent<ButtonGroupTypeMap>;
 
 export type ButtonGroupProps<
-  D extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ButtonGroupTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ButtonGroupTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default ButtonGroup;

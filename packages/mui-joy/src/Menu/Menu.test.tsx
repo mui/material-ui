@@ -8,20 +8,41 @@ import {
   screen,
   fireEvent,
   describeJoyColorInversion,
-  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Menu, { menuClasses as classes } from '@mui/joy/Menu';
+import Dropdown from '@mui/joy/Dropdown';
 import MenuItem from '@mui/joy/MenuItem';
+import MenuButton from '@mui/joy/MenuButton';
 import PopperUnstyled from '@mui/base/Popper';
+import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
+
+const testContext: DropdownContextValue = {
+  dispatch: () => {},
+  popupId: 'menu-popup',
+  registerPopup: () => {},
+  registerTrigger: () => {},
+  state: { open: true },
+  triggerElement: document.createElement('div'),
+};
 
 describe('Joy <Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
-  describeConformance(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
+  describeConformance(<Menu />, () => ({
     classes,
     inheritComponent: PopperUnstyled, // `Unstyled` suffix must exist for parser to recognise that this component inherits Base UI component
-    render,
+    render: (node) => {
+      return render(
+        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
+      );
+    },
+    wrapMount: (mount) => (node: React.ReactNode) => {
+      const wrapper = mount(
+        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
+      );
+      return wrapper.childAt(0);
+    },
     ThemeProvider,
     muiName: 'JoyMenu',
     refInstanceof: window.HTMLUListElement,
@@ -50,16 +71,6 @@ describe('Joy <Menu />', () => {
     },
   );
 
-  it("should show warning if `id` does not match the anchorEl's `aria-controls`", () => {
-    expect(() =>
-      render(<Menu id="foo" anchorEl={anchorEl} open data-testid="popover" />),
-    ).toErrorDev([
-      'MUI: the anchorEl must have [aria-controls="foo"] but got [aria-controls="test"].',
-      !strictModeDoubleLoggingSuppressed &&
-        'MUI: the anchorEl must have [aria-controls="foo"] but got [aria-controls="test"].',
-    ]);
-  });
-
   it('should render with `ul` by default', () => {
     render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
     expect(screen.getByTestId('popover')).to.have.tagName('ul');
@@ -68,9 +79,12 @@ describe('Joy <Menu />', () => {
   it('should pass onClose prop to Popover', () => {
     const handleClose = spy();
     render(
-      <Menu anchorEl={anchorEl} open onClose={handleClose}>
-        <MenuItem />
-      </Menu>,
+      <Dropdown open onOpenChange={handleClose}>
+        <MenuButton />
+        <Menu>
+          <MenuItem />
+        </Menu>
+      </Dropdown>,
     );
 
     const item = screen.getByRole('menuitem');
