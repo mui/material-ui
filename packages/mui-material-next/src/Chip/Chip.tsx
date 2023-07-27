@@ -81,7 +81,8 @@ const ChipRoot = styled('div', {
   },
 })<{ ownerState: ChipOwnerState }>(
   ({ theme, ownerState }) => {
-    const textColor = theme.vars.palette.grey[700];
+    const { vars: tokens } = theme;
+    const textColor = tokens.palette.grey[700];
     return {
       maxWidth: '100%',
       fontFamily: theme.typography.fontFamily,
@@ -90,8 +91,8 @@ const ChipRoot = styled('div', {
       alignItems: 'center',
       justifyContent: 'center',
       height: 32,
-      color: (theme.vars || theme).palette.text.primary,
-      backgroundColor: (theme.vars || theme).palette.action.selected,
+      color: tokens.palette.text.primary,
+      backgroundColor: tokens.palette.action.selected,
       borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
       transition: theme.transitions.create(['background-color', 'box-shadow']),
@@ -105,7 +106,7 @@ const ChipRoot = styled('div', {
       verticalAlign: 'middle',
       boxSizing: 'border-box',
       [`&.${chipClasses.disabled}`]: {
-        opacity: (theme.vars || theme).palette.action.disabledOpacity,
+        opacity: tokens.palette.action.disabledOpacity,
         pointerEvents: 'none',
       },
       [`& .${chipClasses.avatar}`]: {
@@ -113,16 +114,16 @@ const ChipRoot = styled('div', {
         marginRight: -6,
         width: 24,
         height: 24,
-        color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
+        color: tokens.palette.Chip.defaultAvatarColor,
         fontSize: theme.typography.pxToRem(12),
       },
       [`& .${chipClasses.avatarColorPrimary}`]: {
-        color: (theme.vars || theme).palette.primary.contrastText,
-        backgroundColor: (theme.vars || theme).palette.primary.dark,
+        color: tokens.palette.primary.contrastText,
+        backgroundColor: tokens.palette.primary.dark,
       },
       [`& .${chipClasses.avatarColorSecondary}`]: {
-        color: (theme.vars || theme).palette.secondary.contrastText,
-        backgroundColor: (theme.vars || theme).palette.secondary.dark,
+        color: tokens.palette.secondary.contrastText,
+        backgroundColor: tokens.palette.secondary.dark,
       },
       [`& .${chipClasses.avatarSmall}`]: {
         marginLeft: 4,
@@ -140,7 +141,7 @@ const ChipRoot = styled('div', {
           marginRight: -4,
         }),
         ...(ownerState.iconColor === ownerState.color && {
-          color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
+          color: tokens.palette.Chip.defaultIconColor,
           ...(ownerState.color !== 'default' && {
             color: 'inherit',
           }),
@@ -148,16 +149,12 @@ const ChipRoot = styled('div', {
       },
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
-        color: theme.vars
-          ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.26)`
-          : alpha(theme.palette.text.primary, 0.26),
+        color: `rgba(${tokens.palette.text.primaryChannel} / 0.26)`,
         fontSize: 22,
         cursor: 'pointer',
         margin: '0 5px 0 -6px',
         '&:hover': {
-          color: theme.vars
-            ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
-            : alpha(theme.palette.text.primary, 0.4),
+          color: `rgba(${tokens.palette.text.primaryChannel} / 0.4)`,
         },
         ...(ownerState.size === 'small' && {
           fontSize: 16,
@@ -165,11 +162,9 @@ const ChipRoot = styled('div', {
           marginLeft: -4,
         }),
         ...(ownerState.color !== 'default' && {
-          color: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].contrastTextChannel} / 0.7)`
-            : alpha(theme.palette[ownerState.color].contrastText, 0.7),
+          color: `rgba(${tokens.palette[ownerState.color].contrastTextChannel} / 0.7)`,
           '&:hover, &:active': {
-            color: (theme.vars || theme).palette[ownerState.color].contrastText,
+            color: tokens.palette[ownerState.color].contrastText,
           },
         }),
       },
@@ -177,122 +172,103 @@ const ChipRoot = styled('div', {
         height: 24,
       }),
       ...(ownerState.color !== 'default' && {
-        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
-        color: (theme.vars || theme).palette[ownerState.color].contrastText,
+        backgroundColor: tokens.palette[ownerState.color].main,
+        color: tokens.palette[ownerState.color].contrastText,
       }),
       ...(ownerState.onDelete && {
         [`&.${chipClasses.focusVisible}`]: {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-            : alpha(
-                theme.palette.action.selected,
-                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-              ),
+          backgroundColor: `rgba(${tokens.palette.action.selectedChannel} / calc(${tokens.palette.action.selectedOpacity} + ${tokens.palette.action.focusOpacity}))`,
         },
       }),
       ...(ownerState.onDelete &&
         ownerState.color !== 'default' && {
           [`&.${chipClasses.focusVisible}`]: {
-            backgroundColor: (theme.vars || theme).palette[ownerState.color].dark,
+            backgroundColor: tokens.palette[ownerState.color].dark,
           },
         }),
     };
   },
-  ({ theme, ownerState }) => ({
-    ...(ownerState.clickable && {
-      userSelect: 'none',
-      WebkitTapHighlightColor: 'transparent',
-      cursor: 'pointer',
-      '&:hover': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-          : alpha(
-              theme.palette.action.selected,
-              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-            ),
-      },
-      [`&.${chipClasses.focusVisible}`]: {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-          : alpha(
-              theme.palette.action.selected,
-              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-            ),
-      },
-      '&:active': {
-        boxShadow: (theme.vars || theme).shadows[1],
-      },
-    }),
-    ...(ownerState.clickable &&
-      ownerState.color !== 'default' && {
-        [`&:hover, &.${chipClasses.focusVisible}`]: {
-          backgroundColor: (theme.vars || theme).palette[ownerState.color].dark,
-        },
-      }),
-  }),
-  ({ theme, ownerState }) => ({
-    ...(ownerState.variant === 'outlined' && {
-      backgroundColor: 'transparent',
-      border: theme.vars
-        ? `1px solid ${theme.vars.palette.Chip.defaultBorder}`
-        : `1px solid ${theme.palette.grey[400]}`,
-      [`&.${chipClasses.clickable}:hover`]: {
-        backgroundColor: (theme.vars || theme).palette.action.hover,
-      },
-      [`&.${chipClasses.focusVisible}`]: {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
-      },
-      [`& .${chipClasses.avatar}`]: {
-        marginLeft: 4,
-      },
-      [`& .${chipClasses.avatarSmall}`]: {
-        marginLeft: 2,
-      },
-      [`& .${chipClasses.icon}`]: {
-        marginLeft: 4,
-      },
-      [`& .${chipClasses.iconSmall}`]: {
-        marginLeft: 2,
-      },
-      [`& .${chipClasses.deleteIcon}`]: {
-        marginRight: 5,
-      },
-      [`& .${chipClasses.deleteIconSmall}`]: {
-        marginRight: 3,
-      },
-    }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.color !== 'default' && {
-        color: (theme.vars || theme).palette[ownerState.color].main,
-        border: `1px solid ${
-          theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.7)`
-            : alpha(theme.palette[ownerState.color].main, 0.7)
-        }`,
-        [`&.${chipClasses.clickable}:hover`]: {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
-                theme.vars.palette.action.hoverOpacity
-              })`
-            : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
+  ({ theme, ownerState }) => {
+    const { vars: tokens } = theme;
+
+    return {
+      ...(ownerState.clickable && {
+        userSelect: 'none',
+        WebkitTapHighlightColor: 'transparent',
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: `rgba(${tokens.palette.action.selectedChannel} / calc(${tokens.palette.action.selectedOpacity} + ${tokens.palette.action.hoverOpacity}))`,
         },
         [`&.${chipClasses.focusVisible}`]: {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
-                theme.vars.palette.action.focusOpacity
-              })`
-            : alpha(theme.palette[ownerState.color].main, theme.palette.action.focusOpacity),
+          backgroundColor: `rgba(${tokens.palette.action.selectedChannel} / calc(${tokens.palette.action.selectedOpacity} + ${tokens.palette.action.focusOpacity}))`,
         },
-        [`& .${chipClasses.deleteIcon}`]: {
-          color: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.7)`
-            : alpha(theme.palette[ownerState.color].main, 0.7),
-          '&:hover, &:active': {
-            color: (theme.vars || theme).palette[ownerState.color].main,
-          },
+        '&:active': {
+          boxShadow: tokens.shadows[1],
         },
       }),
-  }),
+      ...(ownerState.clickable &&
+        ownerState.color !== 'default' && {
+          [`&:hover, &.${chipClasses.focusVisible}`]: {
+            backgroundColor: tokens.palette[ownerState.color].dark,
+          },
+        }),
+    };
+  },
+  ({ theme, ownerState }) => {
+    const { vars: tokens } = theme;
+
+    return {
+      ...(ownerState.variant === 'outlined' && {
+        backgroundColor: 'transparent',
+        border: `1px solid ${tokens.palette.Chip.defaultBorder}`,
+        [`&.${chipClasses.clickable}:hover`]: {
+          backgroundColor: tokens.palette.action.hover,
+        },
+        [`&.${chipClasses.focusVisible}`]: {
+          backgroundColor: tokens.palette.action.focus,
+        },
+        [`& .${chipClasses.avatar}`]: {
+          marginLeft: 4,
+        },
+        [`& .${chipClasses.avatarSmall}`]: {
+          marginLeft: 2,
+        },
+        [`& .${chipClasses.icon}`]: {
+          marginLeft: 4,
+        },
+        [`& .${chipClasses.iconSmall}`]: {
+          marginLeft: 2,
+        },
+        [`& .${chipClasses.deleteIcon}`]: {
+          marginRight: 5,
+        },
+        [`& .${chipClasses.deleteIconSmall}`]: {
+          marginRight: 3,
+        },
+      }),
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.color !== 'default' && {
+          color: tokens.palette[ownerState.color].main,
+          border: `1px solid rgba(${tokens.palette[ownerState.color].mainChannel} / 0.7)`,
+          [`&.${chipClasses.clickable}:hover`]: {
+            backgroundColor: `rgba(${tokens.palette[ownerState.color].mainChannel} / ${
+              tokens.palette.action.hoverOpacity
+            })`,
+          },
+          [`&.${chipClasses.focusVisible}`]: {
+            backgroundColor: `rgba(${tokens.palette[ownerState.color].mainChannel} / ${
+              tokens.palette.action.focusOpacity
+            })`,
+          },
+          [`& .${chipClasses.deleteIcon}`]: {
+            color: `rgba(${tokens.palette[ownerState.color].mainChannel} / 0.7)`,
+            '&:hover, &:active': {
+              color: tokens.palette[ownerState.color].main,
+            },
+          },
+        }),
+    };
+  },
 );
 
 const ChipLabel = styled('span', {
