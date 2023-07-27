@@ -154,4 +154,4 @@ Here's an example of a custom component built using the `useNumberInput` hook wi
 Here's an example of a "compact" number input component using the hook that only consists of the stepper buttons.
 In this demo, `onChange` is used to write the latest value of the component to a state variable.
 
-{{"demo": "UseNumberInputCompact.js", "defaultCodeOpen": false}}
+{{"demo": "UseNumberInputCompact", "defaultCodeOpen": false}}
