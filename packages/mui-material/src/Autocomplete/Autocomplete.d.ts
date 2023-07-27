@@ -13,6 +13,7 @@ import {
   AutocompleteInputChangeReason,
   createFilterOptions,
   UseAutocompleteProps,
+  AutocompleteFreeSoloValueMapping,
 } from '@mui/base';
 import { AutocompleteClasses } from './autocompleteClasses';
 
@@ -35,6 +36,7 @@ export type AutocompleteOwnerState<
   expanded: boolean;
   focused: boolean;
   fullWidth: boolean;
+  getOptionLabel: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
   hasClearIcon: boolean;
   hasPopupIcon: boolean;
   inputFocused: boolean;
