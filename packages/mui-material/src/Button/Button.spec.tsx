@@ -43,7 +43,7 @@ const props3: ButtonProps<typeof TestOverride> = {
 
 const props4: ButtonProps<typeof TestOverride> = {
   component: TestOverride,
-  // @ts-expect-error
+  // @ts-expect-error TestOverride does not accept incorrectProp
   incorrectProp: 3,
 };
 

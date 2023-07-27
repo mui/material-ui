@@ -30,11 +30,11 @@ const props4: PaperProps<typeof CustomComponent> = {
   component: CustomComponent,
   stringProp: '2',
   numberProp: 2,
-  // @ts-expect-error
+  // @ts-expect-error CustomComponent does not accept incorrectProp
   incorrectProp: 3,
 };
 
-// @ts-expect-error
+// @ts-expect-error missing props
 const props5: PaperProps<typeof CustomComponent> = {
   component: CustomComponent,
 };
@@ -46,7 +46,7 @@ function PaperTest() {
       <Paper component="a" href="test" />
 
       <Paper component={CustomComponent} stringProp="test" numberProp={0} />
-      {/* @ts-expect-error */}
+      {/* @ts-expect-error missing props */}
       <Paper component={CustomComponent} />
     </div>
   );

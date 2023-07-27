@@ -30,11 +30,11 @@ const props4: LinkProps<typeof CustomComponent> = {
   component: CustomComponent,
   stringProp: '2',
   numberProp: 2,
-  // @ts-expect-error
+  // @ts-expect-error CustomComponent does not accept incorrectProp
   incorrectProp: 3,
 };
 
-// @ts-expect-error
+// @ts-expect-error missing props
 const props5: LinkProps<typeof CustomComponent> = {
   component: CustomComponent,
 };

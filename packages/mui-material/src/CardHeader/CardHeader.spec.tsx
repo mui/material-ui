@@ -19,7 +19,7 @@ function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
     component: 'div',
   });
-  // @ts-expect-error
+  // @ts-expect-error required props are missing
   React.createElement<CardHeaderProps<typeof CustomComponent, ComponentProp>>(CardHeader, {
     component: CustomComponent,
   });
@@ -31,19 +31,19 @@ function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps>(CardHeader, {
     disableTypography: true,
   });
-  // @ts-expect-error
+  // @ts-expect-error CardHeader does not accept unknownProp
   React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
     unknownProp: 'shouldNotWork',
   });
-  // @ts-expect-error
+  // @ts-expect-error disableTypography does not accept strings
   React.createElement<CardHeaderProps>(CardHeader, {
     disableTypography: 'hello',
   });
-  // @ts-expect-error
+  // @ts-expect-error disableTypography does not accept numbers
   React.createElement<CardHeaderProps>(CardHeader, {
     disableTypography: 1,
   });
-  // @ts-expect-error
+  // @ts-expect-error `component` is not a valid element
   React.createElement<CardHeaderProps<any, ComponentProp>>(CardHeader, {
     component: 'incorrectElement',
   });
