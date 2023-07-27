@@ -88,7 +88,7 @@ export default function PropertiesTable(props) {
                 .filter((key) => propData.additionalInfo?.[key])
                 .map((key) => (
                   <p
-                    className="prop-list-additional-info"
+                    className="prop-list-description"
                     key={key}
                     dangerouslySetInnerHTML={{
                       __html: additionalPropsInfoText[key],
