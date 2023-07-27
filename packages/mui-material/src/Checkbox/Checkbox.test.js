@@ -66,6 +66,16 @@ describe('<Checkbox />', () => {
     });
   });
 
+  describe('prop: size', () => {
+    it('add sizeSmall class to the root element when the size prop equals "small"', () => {
+      const { getByRole } = render(<Checkbox size="small" />);
+      const checkbox = getByRole('checkbox');
+      const root = checkbox.parentElement;
+
+      expect(root).to.have.class(classes.sizeSmall);
+    });
+  });
+
   describe('with FormControl', () => {
     describe('enabled', () => {
       it('should not have the disabled class', () => {
