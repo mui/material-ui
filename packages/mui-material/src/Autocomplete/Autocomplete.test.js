@@ -3051,10 +3051,10 @@ describe('<Autocomplete />', () => {
       render(
         <Autocomplete
           open
-          options={[{ label: 'Max', name: 'Max' }]}
+          options={[{ label: 'Max' }]}
           renderInput={(params) => <TextField {...params} autoFocus />}
           renderOption={(props, option, optionState, ownerState) => (
-            <li key={option.name} data-testid="optionLi">
+            <li key={option.label} data-testid="optionLi">
               {ownerState.getOptionLabel(option)}
             </li>
           )}
