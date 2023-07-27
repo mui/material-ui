@@ -285,10 +285,7 @@ module.exports = {
     },
     // demos
     {
-      files: [
-        'docs/src/pages/**/*{.tsx,.js}',
-        'docs/data/**/*{.tsx,.js}',
-      ],
+      files: ['docs/src/pages/**/*{.tsx,.js}', 'docs/data/**/*{.tsx,.js}'],
       rules: {
         // This most often reports data that is defined after the component definition.
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
