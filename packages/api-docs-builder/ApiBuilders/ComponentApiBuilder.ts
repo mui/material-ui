@@ -564,7 +564,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
           deprecationInfo:
             renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
           signature,
-          additionalPropsInfo:
+          additionalInfo:
             Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
         },
       ];
