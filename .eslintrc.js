@@ -276,6 +276,7 @@ module.exports = {
         ],
       },
     },
+    // Next.js entry points pages
     {
       files: ['docs/pages/**/*.js'],
       rules: {
@@ -285,10 +286,8 @@ module.exports = {
     // demos
     {
       files: [
-        'docs/src/pages/**/*.js',
-        'docs/src/pages/**/*.tsx',
-        'docs/data/**/*.js',
-        'docs/data/**/*.tsx',
+        'docs/src/pages/**/*{.tsx,.js}',
+        'docs/data/**/*{.tsx,.js}',
       ],
       rules: {
         // This most often reports data that is defined after the component definition.
@@ -300,12 +299,12 @@ module.exports = {
       },
     },
     {
-      files: ['docs/data/**/*.tsx'],
+      files: ['docs/data/**/*{.tsx,.js}'],
       excludedFiles: [
         'docs/data/joy/getting-started/templates/**/*.tsx',
-        'docs/data/**/css/*.tsx',
-        'docs/data/**/system/*.tsx',
-        'docs/data/**/tailwind/*.tsx',
+        'docs/data/**/css/*{.tsx,.js}',
+        'docs/data/**/system/*{.tsx,.js}',
+        'docs/data/**/tailwind/*{.tsx,.js}',
       ],
       rules: {
         'filenames/match-exported': ['error'],
