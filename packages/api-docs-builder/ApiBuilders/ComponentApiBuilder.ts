@@ -484,8 +484,9 @@ const attachTranslations = (reactApi: ReactApi) => {
 
 const attachPropsTable = (reactApi: ReactApi) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
+  type Pair = [string, ReactApi['propsTable'][string]];
   const componentProps: ReactApi['propsTable'] = _.fromPairs(
-    Object.entries(reactApi.props!).map(([propName, propDescriptor]) => {
+    Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
       let prop: DescribeablePropDescriptor | null;
       try {
         prop = createDescribeableProp(propDescriptor, propName);
@@ -563,7 +564,8 @@ const attachPropsTable = (reactApi: ReactApi) => {
           deprecationInfo:
             renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
           signature,
-          ...(Object.keys(additionalPropsInfo).length === 0 ? {} : { additionalPropsInfo }),
+          additionalPropsInfo:
+            Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
         },
       ];
     }),
