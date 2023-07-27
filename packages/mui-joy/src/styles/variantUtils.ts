@@ -249,8 +249,8 @@ export const createSoftInversion = (
           '--variant-solidColor': '#fff',
           '--variant-solidBg': getCssVar(`palette-${color}-500`),
           '--variant-solidHoverColor': '#fff',
-          '--variant-solidHoverBg': getCssVar(`palette-${color}-400`),
-          '--variant-solidActiveBg': getCssVar(`palette-${color}-400`),
+          '--variant-solidHoverBg': getCssVar(`palette-${color}-600`),
+          '--variant-solidActiveBg': getCssVar(`palette-${color}-600`),
           '--variant-solidDisabledColor': `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.72)`,
@@ -315,13 +315,13 @@ export const createSoftInversion = (
           '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.08)`,
 
           '--variant-solidColor': getCssVar('palette-common-white'),
-          '--variant-solidBg': getCssVar(`palette-${color}-${color === 'neutral' ? '700' : '600'}`),
+          '--variant-solidBg': getCssVar(`palette-${color}-${color === 'neutral' ? '700' : '500'}`),
           '--variant-solidHoverColor': getCssVar('palette-common-white'),
           '--variant-solidHoverBg': getCssVar(
-            `palette-${color}-${color === 'neutral' ? '600' : '500'}`,
+            `palette-${color}-${color === 'neutral' ? '600' : '600'}`,
           ),
           '--variant-solidActiveBg': getCssVar(
-            `palette-${color}-${color === 'neutral' ? '600' : '500'}`,
+            `palette-${color}-${color === 'neutral' ? '600' : '600'}`,
           ),
           '--variant-solidDisabledColor': `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
