@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { HTMLElementType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import Portal from '@mui/base/Portal';
@@ -56,7 +57,7 @@ const DrawerBackdrop = styled(ModalBackdrop as unknown as 'div', {
   overridesResolver: (props, styles) => styles.backdrop,
 })({});
 
-const DrawerContent = styled(SheetRoot, {
+const DrawerContent = styled(SheetRoot as unknown as 'div', {
   name: 'JoyDrawer',
   slot: 'Backdrop',
   overridesResolver: (props, styles) => styles.content,
@@ -238,14 +239,8 @@ Drawer.propTypes /* remove-proptypes */ = {
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container: PropTypes.oneOfType([
-    function (props, propName) {
-      if (props[propName] == null) {
-        return new Error("Prop '" + propName + "' is required but wasn't specified");
-      } else if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
-        return new Error("Expected prop '" + propName + "' to be of type Element");
-      }
-    },
+  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
     PropTypes.func,
   ]),
   /**
