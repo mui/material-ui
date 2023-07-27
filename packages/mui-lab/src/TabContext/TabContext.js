@@ -9,17 +9,17 @@ if (process.env.NODE_ENV !== 'production') {
   Context.displayName = 'TabContext';
 }
 
-function useUniquePrefix() {
-  const [id, setId] = React.useState(null);
-  React.useEffect(() => {
-    setId(`mui-p-${Math.round(Math.random() * 1e5)}`);
-  }, []);
-  return id;
+function useUniquePrefix(idPrefix) {
+  const ref = React.useRef()
+  if (!ref.current || (typeof idPrefix === 'string' && ref.current !== idPrefix)) {
+    ref.current = idPrefix || `mui-p-${Math.round(Math.random() * 1e5)}`
+  }
+  return ref.current;
 }
 
 export default function TabContext(props) {
-  const { children, value } = props;
-  const idPrefix = useUniquePrefix();
+  const { children, value, idPrefix: idPrefixProp } = props;
+  const idPrefix = useUniquePrefix(idPrefixProp);
 
   const context = React.useMemo(() => {
     return { idPrefix, value };
@@ -41,6 +41,10 @@ TabContext.propTypes /* remove-proptypes */ = {
    * The value of the currently selected `Tab`.
    */
   value: PropTypes.string.isRequired,
+  /**
+   * The optional id prefix, internally used to render buttons
+   */
+  idPrefix: PropTypes.string,
 };
 
 /**

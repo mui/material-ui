@@ -14,6 +14,10 @@ export interface TabContextProps {
    * The value of the currently selected `Tab`.
    */
   value: string;
+  /**
+   * The optional id prefix, internally used to render buttons
+   */
+  idPrefix?: string;
 }
 /**
  *
