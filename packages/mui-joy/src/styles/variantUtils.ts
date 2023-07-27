@@ -183,7 +183,6 @@ export const createSoftInversion = (
     if (isVariantPalette(colorPalette)) {
       result[color] = {
         '--Badge-ringColor': getCssVar(`palette-${color}-softBg`),
-        [prefixVar('--shadowChannel')]: getCssVar(`palette-${color}-darkChannel`),
         [theme.getColorSchemeSelector('dark')]: {
           [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-300`),
           [prefixVar('--palette-background-body')]: `rgba(${getCssVar(
@@ -357,7 +356,6 @@ export const createSolidInversion = (theme: ThemeFragment, addDefaultValues?: bo
       result[color] = {
         colorScheme: 'dark',
         '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
-        [prefixVar('--shadowChannel')]: getCssVar(`palette-${color}-darkChannel`),
         [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
         [prefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
         [prefixVar('--palette-background-surface')]: 'rgba(0 0 0 / 0.06)',
