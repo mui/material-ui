@@ -21,8 +21,8 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       display: 'flex',
       alignItems: 'flex-end',
       position: 'relative',
-      marginBottom: 12,
-      marginLeft: -32,
+      marginBottom: 10,
+      marginLeft: -36,
       '& .MuiApi-item-link-visual': {
         display: 'none',
         flexShrink: 0,
@@ -50,13 +50,12 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
       '& .MuiApi-item-title': {
         flexShrink: 0,
-        padding: '2px 6px',
+        padding: '2px 8px',
         marginLeft: 32,
         borderWidth: '1px',
         borderStyle: 'solid',
         borderTopLeftRadius: 8,
         borderTopRightRadius: 8,
-        borderBottomLeftRadius: 8,
         fontWeight: theme.typography.fontWeightSemiBold,
         color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
@@ -138,6 +137,9 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
       color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
       marginBottom: 16,
+    },
+    '& .prop-list-description': {
+      marginBottom: 10,
     },
     '& .prop-list-additional-info': {
       display: 'flex',
