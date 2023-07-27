@@ -911,14 +911,14 @@ extendTheme({
 
 The variant and color are now the same for `input` and `listbox` slots.
 
-If you want to use a different variant for the specific slot, use `slotProps`:
+If you want to use a different variant for a specific slot, use `slotProps`. In the following example, the `listbox` slot uses the `plain` variant:
 
 ```js
 <Autocomplete
   variant="plain"
   slotProps={{
     listbox: {
-      variant: 'outlined',
+      variant: 'plain',
     }
   }}
 >
@@ -987,7 +987,7 @@ The [Tabs](/joy-ui/react-tabs/) component has been redesigned following feedback
 
 {{"demo": "../components/tabs/TabsBasic.js"}}
 
-To keep the old Tabs desgin, add the following to your theme:
+To keep the old Tabs design, add the following to your theme:
 
 ```js
 extendTheme({
@@ -1028,14 +1028,14 @@ extendTheme({
 
 The variant and color are now the same for `button` and `listbox` slots.
 
-If you want to use a different variant for the specific slot, use `slotProps`:
+If you want to use a different variant for a specific slot, use `slotProps`. In the following example, the `listbox` slot uses the `plain` variant:
 
 ```js
 <Select
   variant="plain"
   slotProps={{
     listbox: {
-      variant: 'outlined',
+      variant: 'plain',
     }
   }}
 >
