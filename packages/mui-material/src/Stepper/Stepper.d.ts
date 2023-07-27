@@ -7,8 +7,11 @@ import { StepperClasses } from './stepperClasses';
 
 export type Orientation = 'horizontal' | 'vertical';
 
-export interface StepperTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
+export interface StepperTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps &
     Pick<PaperProps, 'elevation' | 'square' | 'variant'> & {
       /**
        * Set the active step (zero based index).
@@ -50,13 +53,15 @@ export interface StepperTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps<Theme>;
     };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 export type StepperProps<
-  D extends React.ElementType = StepperTypeMap['defaultComponent'],
-  P = { component?: React.ElementType },
-> = OverrideProps<StepperTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = StepperTypeMap['defaultComponent'],
+  AdditionalProps = { component?: React.ElementType },
+> = OverrideProps<StepperTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
 

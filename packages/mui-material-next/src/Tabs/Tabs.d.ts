@@ -6,8 +6,11 @@ import { OverridableComponent, OverrideProps } from '@mui/material/OverridableCo
 import { TabScrollButtonProps } from '../TabScrollButton';
 import { TabsClasses } from './tabsClasses';
 
-export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
-  props: P & {
+export interface TabsTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = typeof ButtonBase,
+> {
+  props: AdditionalProps & {
     /**
      * Callback fired when the component mounts.
      * This is useful when you want to trigger an action programmatically.
@@ -126,7 +129,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -147,8 +150,8 @@ export interface TabsActions {
 }
 
 export type TabsProps<
-  D extends React.ElementType = TabsTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TabsTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TabsTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TabsTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default Tabs;

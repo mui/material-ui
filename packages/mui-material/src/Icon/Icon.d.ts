@@ -9,8 +9,11 @@ export interface IconPropsSizeOverrides {}
 
 export interface IconPropsColorOverrides {}
 
-export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
-  props: P & {
+export interface IconTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'span',
+> {
+  props: AdditionalProps & {
     /**
      * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
      * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).
@@ -56,7 +59,7 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -72,8 +75,10 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
 declare const Icon: OverridableComponent<IconTypeMap> & { muiName: string };
 
 export type IconProps<
-  D extends React.ElementType = IconTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<IconTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = IconTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<IconTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Icon;
