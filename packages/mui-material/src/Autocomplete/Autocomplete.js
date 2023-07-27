@@ -382,6 +382,7 @@ export { createFilterOptions };
 
 const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAutocomplete' });
+
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
     autoComplete = false,
@@ -410,7 +411,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     fullWidth = false,
     getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
-    getOptionLabel = (option) => option.label ?? option,
+    getOptionLabel: getOptionLabelProp,
     isOptionEqualToValue,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
@@ -480,6 +481,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const combinedListboxRef = useForkRef(listboxRef, externalListboxRef);
 
+  const defaultGetOptionLabel = (option) => option.label ?? option;
+  const getOptionLabel = getOptionLabelProp || defaultGetOptionLabel;
+
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
     ...props,
@@ -487,6 +491,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     expanded,
     focused,
     fullWidth,
+    getOptionLabel,
     hasClearIcon,
     hasPopupIcon,
     inputFocused: focusedTag === -1,

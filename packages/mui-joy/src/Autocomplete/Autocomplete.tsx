@@ -394,11 +394,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
+  // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
     ...props,
     value,
     disabled,
     focused,
+    getOptionLabel,
     hasOptions: !!groupedOptions.length,
     hasClearIcon,
     hasPopupIcon,
