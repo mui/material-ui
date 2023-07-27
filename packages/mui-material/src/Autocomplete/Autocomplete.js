@@ -482,7 +482,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const combinedListboxRef = useForkRef(listboxRef, externalListboxRef);
 
   const defaultGetOptionLabel = (option) => option.label ?? option;
-  const getOptionLabel = getOptionLabelProp || defaultGetOptionLabel
+  const getOptionLabel = getOptionLabelProp || defaultGetOptionLabel;
 
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
