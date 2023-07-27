@@ -10,11 +10,14 @@ import {
 } from '@mui/utils';
 import { alpha } from '@mui/system';
 import ButtonBase from '@mui/material/ButtonBase';
+import { OverridableComponent } from '@mui/types';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import { useThemeProps, styled } from '../styles';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
+import { ChipOwnerState, ChipProps, ChipTypeMap } from './Chip.types';
+import { IconProps } from '@mui/material';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: ChipOwnerState) => {
   const { classes, disabled, size, color, iconColor, onDelete, clickable, variant } = ownerState;
 
   const slots = {
@@ -76,7 +79,7 @@ const ChipRoot = styled('div', {
       styles[`${variant}${capitalize(color)}`],
     ];
   },
-})(
+})<{ ownerState: ChipOwnerState }>(
   ({ theme, ownerState }) => {
     const textColor = theme.vars.palette.grey[700];
     return {
@@ -301,7 +304,7 @@ const ChipLabel = styled('span', {
 
     return [styles.label, styles[`label${capitalize(size)}`]];
   },
-})(({ ownerState }) => ({
+})<{ ownerState: ChipOwnerState }>(({ ownerState }) => ({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   paddingLeft: 12,
@@ -313,15 +316,25 @@ const ChipLabel = styled('span', {
   }),
 }));
 
-function isDeleteKeyboardEvent(keyboardEvent) {
+function isDeleteKeyboardEvent(keyboardEvent: React.KeyboardEvent<HTMLDivElement>) {
   return keyboardEvent.key === 'Backspace' || keyboardEvent.key === 'Delete';
 }
 
 /**
  * Chips represent complex entities in small blocks, such as a contact.
+ *
+ * Demos:
+ *
+ * - [Chip](https://mui.com/material-ui/react-chip/)
+ *
+ * API:
+ *
+ * - [Chip API](https://mui.com/material-ui/api/chip/)
  */
-const Chip = React.forwardRef(function Chip(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiChip' });
+const Chip = React.forwardRef(function Chip<
+  BaseComponentType extends React.ElementType = ChipTypeMap['defaultComponent'],
+>(inProps: ChipProps<BaseComponentType>, ref: React.ForwardedRef<Element>) {
+  const props = useThemeProps<typeof inProps & ChipProps>({ props: inProps, name: 'MuiChip' });
   const {
     avatar: avatarProp,
     className,
@@ -343,10 +356,10 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     ...other
   } = props;
 
-  const chipRef = React.useRef(null);
+  const chipRef = React.useRef<HTMLDivElement | null>(null);
   const handleRef = useForkRef(chipRef, ref);
 
-  const handleDeleteIconClick = (event) => {
+  const handleDeleteIconClick = (event: React.MouseEvent<SVGSVGElement>) => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
     if (onDelete) {
@@ -354,7 +367,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     }
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // Ignore events from children of `Chip`.
     if (event.currentTarget === event.target && isDeleteKeyboardEvent(event)) {
       // Will be handled in keyUp, otherwise some browsers
@@ -367,7 +380,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     }
   };
 
-  const handleKeyUp = (event) => {
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // Ignore events from children of `Chip`.
     if (event.currentTarget === event.target) {
       if (onDelete && isDeleteKeyboardEvent(event)) {
@@ -386,13 +399,13 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   const component = clickable || onDelete ? ButtonBase : ComponentProp || 'div';
 
-  const ownerState = {
+  const ownerState: ChipOwnerState = {
     ...props,
     component,
     disabled,
     size,
     color,
-    iconColor: React.isValidElement(iconProp) ? iconProp.props.color || color : color,
+    iconColor: React.isValidElement(iconProp) ? (iconProp.props as any)?.color || color : color,
     onDelete: !!onDelete,
     clickable,
     variant,
@@ -404,7 +417,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     component === ButtonBase
       ? {
           component: ComponentProp || 'div',
-          focusVisibleClassName: classes.focusVisible,
+          focusVisibleClassName: chipClasses.focusVisible,
           ...(onDelete && { disableRipple: true }),
         }
       : {};
@@ -413,8 +426,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   if (onDelete) {
     deleteIcon =
       deleteIconProp && React.isValidElement(deleteIconProp) ? (
-        React.cloneElement(deleteIconProp, {
-          className: clsx(deleteIconProp.props.className, classes.deleteIcon),
+        React.cloneElement(deleteIconProp as React.ReactElement, {
+          className: clsx((deleteIconProp.props as any)?.className, classes.deleteIcon),
           onClick: handleDeleteIconClick,
         })
       ) : (
@@ -424,15 +437,15 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   let avatar = null;
   if (avatarProp && React.isValidElement(avatarProp)) {
-    avatar = React.cloneElement(avatarProp, {
-      className: clsx(classes.avatar, avatarProp.props.className),
+    avatar = React.cloneElement(avatarProp as React.ReactElement, {
+      className: clsx(classes.avatar, (avatarProp.props as any)?.className),
     });
   }
 
   let icon = null;
   if (iconProp && React.isValidElement(iconProp)) {
-    icon = React.cloneElement(iconProp, {
-      className: clsx(classes.icon, iconProp.props.className),
+    icon = React.cloneElement(iconProp as React.ReactElement, {
+      className: clsx(classes.icon, (iconProp.props as any)?.className),
     });
   }
 
@@ -466,7 +479,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       {deleteIcon}
     </ChipRoot>
   );
-});
+}) as OverridableComponent<ChipTypeMap>;
 
 Chip.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

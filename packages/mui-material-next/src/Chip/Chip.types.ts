@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { OverridableStringUnion, OverridableComponent, OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { IconProps } from '@mui/material';
 import { SxProps } from '@mui/system';
 import { Theme } from '..';
 import { ChipClasses } from './chipClasses';
@@ -97,22 +98,19 @@ export interface ChipTypeMap<
   defaultComponent: DefaultComponent;
 }
 
-/**
- * Chips represent complex entities in small blocks, such as a contact.
- *
- * Demos:
- *
- * - [Chip](https://mui.com/material-ui/react-chip/)
- *
- * API:
- *
- * - [Chip API](https://mui.com/material-ui/api/chip/)
- */
-declare const Chip: OverridableComponent<ChipTypeMap>;
-
 export type ChipProps<
   RootComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<ChipTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<ChipTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
-export default Chip;
+export interface ChipOwnerState extends ChipProps {
+  variant: NonNullable<ChipProps['variant']>;
+  size: NonNullable<ChipProps['size']>;
+  color: NonNullable<ChipProps['color']>;
+  /**
+   * color for the icon component
+   */
+  iconColor: NonNullable<IconProps['color'] | ChipProps['color']>;
+}

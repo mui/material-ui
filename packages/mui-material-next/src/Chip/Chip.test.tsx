@@ -11,24 +11,27 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import { hexToRgb } from '@mui/system';
-import { createTheme } from '@mui/material/styles';
-import Avatar from '@mui/material/Avatar';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import Chip, { chipClasses as classes } from '@mui/material-next/Chip';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
+import { createTheme } from '@mui/material/styles';
+import Avatar from '@mui/material/Avatar';
 import CheckBox from '../internal/svg-icons/CheckBox';
+import { ChipProps } from './Chip.types';
 
 // TODO: remove after implementing Material You Chip's style
 const MaterialV5DefaultTheme = createTheme();
 
 describe('<Chip />', () => {
-  let originalMatchmedia;
+  let originalMatchmedia: typeof window.matchMedia;
 
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
-    window.matchMedia = () => ({
-      addListener: () => {},
-      removeListener: () => {},
-    });
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      } as unknown as MediaQueryList);
   });
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
@@ -48,7 +51,7 @@ describe('<Chip />', () => {
     testStatOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    skip: ['slots', 'componentsProp'],
+    skip: ['componentsProp'],
   }));
 
   describe('text only', () => {
@@ -79,12 +82,18 @@ describe('<Chip />', () => {
     });
 
     it('should render with the color class name based on the color prop', () => {
-      const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
-
-      ['primary', 'secondary', 'info', 'error', 'warning', 'success'].forEach((color) => {
+      const colorOptions: NonNullable<ChipProps['color']>[] = [
+        'primary',
+        'secondary',
+        'info',
+        'error',
+        'warning',
+        'success',
+      ];
+      colorOptions.forEach((color) => {
         const { container } = render(<Chip color={color} />);
         const chip = container.querySelector(`.${classes.root}`);
-        expect(chip).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(chip).to.have.class(classes[`color${capitalize(color)}` as keyof typeof classes]);
       });
     });
   });
@@ -99,11 +108,15 @@ describe('<Chip />', () => {
     });
 
     it('should render link with the button base', () => {
-      const { container } = render(<Chip component="a" clickable label="My text Chip" />);
+      const { getByTestId } = render(
+        <Chip data-testid="root" component="a" clickable label="My text Chip" />,
+      );
 
-      expect(container.firstChild).to.have.class('MuiButtonBase-root');
-      expect(container.firstChild).to.have.tagName('a');
-      expect(container.firstChild.querySelector('.MuiTouchRipple-root')).not.to.equal(null);
+      const chipRoot = getByTestId('root');
+
+      expect(chipRoot).to.have.class('MuiButtonBase-root');
+      expect(chipRoot).to.have.tagName('a');
+      expect(chipRoot.querySelector('.MuiTouchRipple-root')).not.to.equal(null);
     });
 
     it('should disable ripple when MuiButtonBase has disableRipple in theme', () => {
@@ -117,14 +130,16 @@ describe('<Chip />', () => {
         },
       });
 
-      const { container } = render(
+      const { getByTestId } = render(
         <CssVarsProvider theme={theme}>
-          <Chip clickable label="My Chip" />
+          <Chip data-testid="root" clickable label="My Chip" />
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild).to.have.class('MuiButtonBase-root');
-      expect(container.firstChild.querySelector('.MuiTouchRipple-root')).to.equal(null);
+      const chipRoot = getByTestId('root');
+
+      expect(chipRoot).to.have.class('MuiButtonBase-root');
+      expect(chipRoot.querySelector('.MuiTouchRipple-root')).to.equal(null);
     });
 
     it('should apply user value of tabIndex', () => {
@@ -246,11 +261,13 @@ describe('<Chip />', () => {
     });
 
     it('should not create ripples', () => {
-      const { container } = render(
-        <Chip avatar={<Avatar id="avatar">MB</Avatar>} onDelete={() => {}} />,
+      const { getByTestId } = render(
+        <Chip data-testid="root" avatar={<Avatar id="avatar">MB</Avatar>} onDelete={() => {}} />,
       );
 
-      expect(container.firstChild.querySelector('.MuiTouchRipple-root')).to.equal(null);
+      const chipRoot = getByTestId('root');
+
+      expect(chipRoot.querySelector('.MuiTouchRipple-root')).to.equal(null);
     });
 
     it('should apply user value of tabIndex', () => {
@@ -265,7 +282,7 @@ describe('<Chip />', () => {
 
       expect(getByRole('button')).to.have.property('tabIndex', 5);
       const elementsInTabOrder = Array.from(container.querySelectorAll('[tabIndex]')).filter(
-        (element) => element.tabIndex >= 0,
+        (element) => (element as HTMLElement).tabIndex >= 0,
       );
       expect(elementsInTabOrder).to.have.length(1);
     });
@@ -532,8 +549,10 @@ describe('<Chip />', () => {
 
       it('should not prevent default on input', () => {
         const handleKeyDown = spy();
-        const { container } = render(<Chip label={<input />} onKeyDown={handleKeyDown} />);
-        const input = container.querySelector('input');
+        const { getByTestId } = render(
+          <Chip label={<input data-testid="input" />} onKeyDown={handleKeyDown} />,
+        );
+        const input = getByTestId('input');
 
         act(() => {
           input.focus();
@@ -550,14 +569,21 @@ describe('<Chip />', () => {
         it(`should not call onDelete for child keyup event when '${key}' is released`, () => {
           const handleDelete = spy();
           const handleKeyUp = spy();
-          render(
+          const { getByTestId } = render(
             <Chip
               onDelete={handleDelete}
-              label={<input autoFocus className="child-input" onKeyUp={handleKeyUp} />}
+              label={
+                <input
+                  data-testid="input"
+                  autoFocus
+                  className="child-input"
+                  onKeyUp={handleKeyUp}
+                />
+              }
             />,
           );
 
-          fireEvent.keyUp(document.querySelector('input'), { key });
+          fireEvent.keyUp(getByTestId('input'), { key });
 
           expect(handleKeyUp.callCount).to.equal(1);
           expect(handleDelete.callCount).to.equal(0);
@@ -567,14 +593,16 @@ describe('<Chip />', () => {
       it(`should not call onClick for child keyup event when 'Space' is released`, () => {
         const handleClick = spy();
         const handleKeyUp = spy();
-        render(
+        const { getByTestId } = render(
           <Chip
             onClick={handleClick}
-            label={<input autoFocus className="child-input" onKeyUp={handleKeyUp} />}
+            label={
+              <input data-testid="input" autoFocus className="child-input" onKeyUp={handleKeyUp} />
+            }
           />,
         );
 
-        fireEvent.keyUp(document.querySelector('input'), { key: ' ' });
+        fireEvent.keyUp(getByTestId('input'), { key: ' ' });
         expect(handleKeyUp.callCount).to.equal(1);
         expect(handleClick.callCount).to.equal(0);
       });
@@ -582,14 +610,21 @@ describe('<Chip />', () => {
       it(`should not call onClick for child keydown event when 'Enter' is pressed`, () => {
         const handleClick = spy();
         const handleKeyDown = spy();
-        render(
+        const { getByTestId } = render(
           <Chip
             onClick={handleClick}
-            label={<input autoFocus className="child-input" onKeyDown={handleKeyDown} />}
+            label={
+              <input
+                data-testid="input"
+                autoFocus
+                className="child-input"
+                onKeyDown={handleKeyDown}
+              />
+            }
           />,
         );
 
-        fireEvent.keyDown(document.querySelector('input'), { key: 'Enter' });
+        fireEvent.keyDown(getByTestId('input'), { key: 'Enter' });
         expect(handleKeyDown.callCount).to.equal(1);
         expect(handleClick.callCount).to.equal(0);
       });
@@ -597,14 +632,16 @@ describe('<Chip />', () => {
       it('should not call onClick for child event when `space` is released', () => {
         const handleClick = spy();
         const handleKeyUp = spy();
-        render(
+        const { getByTestId } = render(
           <Chip
             onClick={handleClick}
-            label={<input autoFocus className="child-input" onKeyUp={handleKeyUp} />}
+            label={
+              <input data-testid="input" autoFocus className="child-input" onKeyUp={handleKeyUp} />
+            }
           />,
         );
 
-        fireEvent.keyUp(document.querySelector('input'), { key: ' ' });
+        fireEvent.keyUp(getByTestId('input'), { key: ' ' });
 
         expect(handleClick.callCount).to.equal(0);
         expect(handleKeyUp.callCount).to.equal(1);
@@ -613,14 +650,21 @@ describe('<Chip />', () => {
       it('should not call onClick for child event when `enter` is pressed', () => {
         const handleClick = spy();
         const handleKeyDown = spy();
-        render(
+        const { getByTestId } = render(
           <Chip
             onClick={handleClick}
-            label={<input autoFocus className="child-input" onKeyDown={handleKeyDown} />}
+            label={
+              <input
+                data-testid="input"
+                autoFocus
+                className="child-input"
+                onKeyDown={handleKeyDown}
+              />
+            }
           />,
         );
 
-        fireEvent.keyDown(document.querySelector('input'), { key: 'Enter' });
+        fireEvent.keyDown(getByTestId('input'), { key: 'Enter' });
 
         expect(handleClick.callCount).to.equal(0);
         expect(handleKeyDown.callCount).to.equal(1);
@@ -698,8 +742,10 @@ describe('<Chip />', () => {
 
   describe('event: focus', () => {
     it('has a focus-visible polyfill', () => {
-      const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);
-      const chip = container.querySelector(`.${classes.root}`);
+      const { getByTestId } = render(
+        <Chip data-testid="root" label="Test Chip" onClick={() => {}} />,
+      );
+      const chip = getByTestId('root');
       simulatePointerDevice();
 
       expect(chip).not.to.have.class(classes.focusVisible);
@@ -720,8 +766,10 @@ describe('<Chip />', () => {
     });
 
     it('should reset the focused state', () => {
-      const { container, setProps } = render(<Chip label="Test Chip" onClick={() => {}} />);
-      const chip = container.querySelector(`.${classes.root}`);
+      const { getByTestId, setProps } = render(
+        <Chip data-testid="root" label="Test Chip" onClick={() => {}} />,
+      );
+      const chip = getByTestId('root');
 
       simulatePointerDevice();
       focusVisible(chip);
