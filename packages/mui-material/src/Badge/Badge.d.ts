@@ -15,8 +15,11 @@ export interface BadgeOrigin {
   horizontal: 'left' | 'right';
 }
 
-export type BadgeTypeMap<D extends React.ElementType = 'span', P = {}> = ExtendBadgeTypeMap<{
-  props: P & {
+export type BadgeTypeMap<
+  DefaultComponent extends React.ElementType = 'span',
+  AdditionalProps = {},
+> = ExtendBadgeTypeMap<{
+  props: AdditionalProps & {
     /**
      * The anchor of the badge.
      * @default {
@@ -80,7 +83,7 @@ export type BadgeTypeMap<D extends React.ElementType = 'span', P = {}> = ExtendB
      */
     variant?: OverridableStringUnion<'standard' | 'dot', BadgePropsVariantOverrides>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }>;
 
 type BadgeRootProps = NonNullable<BadgeTypeMap['props']['slotProps']>['root'];
@@ -103,8 +106,10 @@ export declare const BadgeMark: React.FC<BadgeBadgeProps>;
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 
 export type BadgeProps<
-  D extends React.ElementType = BadgeTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BadgeTypeMap<D, P>, D>;
+  RootComponent extends React.ElementType = BadgeTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BadgeTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Badge;

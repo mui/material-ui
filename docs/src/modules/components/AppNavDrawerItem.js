@@ -13,9 +13,10 @@ const Item = styled(
     return <Component {...props} />;
   },
   {
-    shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader',
+    shouldForwardProp: (prop) =>
+      prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader' && prop !== 'expandable',
   },
-)(({ theme, hasIcon, depth, subheader }) => {
+)(({ theme, hasIcon, depth, subheader, expandable }) => {
   const color = {
     color: (theme.vars || theme).palette.text.secondary,
     ...(depth === 0 && {
@@ -44,13 +45,13 @@ const Item = styled(
       }),
       fontSize: theme.typography.pxToRem(14),
       textDecoration: 'none',
-      paddingLeft: 31 + (depth > 1 ? (depth - 1) * 10 : 0),
+      paddingLeft: 16 + (depth + 1) * 10 - (expandable ? 21 : 0),
       '&:before': {
         content: '""',
         display: 'block',
         position: 'absolute',
         zIndex: 1,
-        left: 11.5,
+        left: 9.5,
         height: '100%',
         width: 1,
         opacity: depth === 0 ? 0 : 1,
@@ -68,7 +69,7 @@ const Item = styled(
           display: 'block',
           position: 'absolute',
           zIndex: 1,
-          left: 11.5,
+          left: 9.5,
           height: '55%',
           top: 16,
           width: 1,
@@ -80,7 +81,7 @@ const Item = styled(
           display: 'block',
           position: 'absolute',
           zIndex: 5,
-          left: 8,
+          left: 6,
           height: 8,
           width: 8,
           borderRadius: 2,
@@ -163,7 +164,7 @@ const Item = styled(
         color: (theme.vars || theme).palette.primary[300],
         backgroundColor: (theme.vars || theme).palette.primaryDark[700],
         '&:before': {
-          background: (theme.vars || theme).palette.primary[600],
+          background: (theme.vars || theme).palette.primary[400],
         },
       },
       ...(subheader && {
@@ -171,8 +172,8 @@ const Item = styled(
           background: alpha(theme.palette.primaryDark[700], 0.6),
         },
         '&:after': {
-          background: alpha(theme.palette.primaryDark[700], 0.6),
-          borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+          background: alpha(theme.palette.primaryDark[700], 0.8),
+          borderColor: alpha(theme.palette.primaryDark[600], 0.6),
         },
       }),
       ...(!subheader && {
@@ -194,6 +195,10 @@ const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
 })(({ open }) => ({
   fontSize: '1rem',
   transform: open && 'rotate(90deg)',
+  '&&:last-child': {
+    // overrrides https://github.com/mui/material-ui/blob/ca7c5c63e64b6a7f55255981f1836a565927b56c/docs/src/modules/brandingTheme.ts#L757-L759
+    marginLeft: 0,
+  },
 }));
 
 const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(
@@ -225,7 +230,7 @@ export const sxChip = (color) => [
   (theme) =>
     theme.applyDarkStyles({
       borderColor: alpha(theme.palette[color][800], 0.5),
-      bgcolor: alpha(theme.palette[color][900], 0.5),
+      bgcolor: alpha(theme.palette[color][800], 0.5),
       color: (theme.vars || theme).palette[color][300],
       '&:hover': {
         bgcolor: alpha(theme.palette[color][900], 0.5),
@@ -256,15 +261,15 @@ export default function AppNavDrawerItem(props) {
     comingSoon,
     linkProps,
     onClick,
-    openImmediately,
+    initiallyExpanded = false,
+    expandable = false,
     plan = 'community',
     subheader,
     title,
     topLevel = false,
     ...other
   } = props;
-  const expandable = openImmediately != null;
-  const [open, setOpen] = React.useState(openImmediately);
+  const [open, setOpen] = React.useState(initiallyExpanded);
   const handleClick = (event) => {
     // Ignore the action if opening the link in a new tab
     if (shouldHandleLinkClick(event)) {
@@ -275,7 +280,7 @@ export default function AppNavDrawerItem(props) {
       onClick(event);
     }
 
-    if (expandable && !subheader) {
+    if (expandable) {
       event.preventDefault();
       setOpen((oldOpen) => !oldOpen);
     }
@@ -293,12 +298,13 @@ export default function AppNavDrawerItem(props) {
         href={href}
         prefetch={false}
         subheader={subheader}
-        activeClassName={expandable ? null : 'app-drawer-active'}
+        expandable={expandable}
+        activeClassName={initiallyExpanded ? null : 'app-drawer-active'}
         className={topLevel ? 'algolia-lvl0' : null}
         onClick={handleClick}
         {...linkProps}
       >
-        {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
+        {expandable && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
         {title}
         {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
         {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
@@ -321,13 +327,14 @@ AppNavDrawerItem.propTypes = {
   children: PropTypes.node,
   comingSoon: PropTypes.bool,
   depth: PropTypes.number.isRequired,
+  expandable: PropTypes.bool,
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   icon: PropTypes.elementType,
+  initiallyExpanded: PropTypes.bool,
   legacy: PropTypes.bool,
   linkProps: PropTypes.object,
   newFeature: PropTypes.bool,
   onClick: PropTypes.func,
-  openImmediately: PropTypes.bool,
   plan: PropTypes.oneOf(['community', 'pro', 'premium']),
   subheader: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,

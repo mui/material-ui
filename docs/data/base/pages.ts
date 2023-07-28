@@ -1,7 +1,8 @@
+import type { MuiPage } from 'docs/src/MuiPage';
 import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 import pagesApi from 'docs/data/base/pagesApi';
 
-const pages = [
+const pages: readonly MuiPage[] = [
   {
     pathname: '/base-ui/getting-started-group',
     title: 'Getting started',
@@ -110,7 +111,7 @@ const pages = [
       },
       {
         pathname: '/base-ui/guides/next-js-app-router',
-        title: 'Integrating with Next.js App Router',
+        title: 'Next.js App Router',
       },
     ],
   },

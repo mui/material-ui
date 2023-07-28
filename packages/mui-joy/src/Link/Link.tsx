@@ -7,6 +7,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
+  unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
@@ -75,9 +76,7 @@ const LinkRoot = styled('a', {
       '--Icon-fontSize': '1.25em',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
       ...(ownerState.level === 'inherit' && {
-        fontSize: 'inherit',
-        fontFamily: 'inherit',
-        lineHeight: 'inherit',
+        font: 'inherit',
       }),
       ...(ownerState.underline === 'none' && {
         textDecoration: 'none',
@@ -288,7 +287,11 @@ const Link = React.forwardRef(function Link(inProps, ref) {
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        {children}
+        {isMuiElement(children, ['Skeleton'])
+          ? React.cloneElement(children as React.ReactElement, {
+              variant: (children as React.ReactElement).props.variant || 'inline',
+            })
+          : children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
       </SlotRoot>
     </TypographyNestedContext.Provider>

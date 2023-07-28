@@ -42,12 +42,17 @@ const StyledButton = styled(Button)(({ theme }) => ({
   fontSize: theme.typography.pxToRem(12),
   lineHeight: 18 / 12,
   '&.MuiButton-text': {
-    color: theme.palette.grey[400],
+    color: theme.palette.grey[500],
+    border: '1px solid',
+    borderColor: theme.palette.primaryDark[700],
+    '&:hover': {
+      backgroundColor: theme.palette.primaryDark[700],
+    },
   },
   '&.MuiButton-outlined': {
     color: '#fff',
-    backgroundColor: theme.palette.primary[700],
-    borderColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary[800],
+    borderColor: theme.palette.primary[700],
     '&:hover': {
       backgroundColor: theme.palette.primary[700],
     },
@@ -77,7 +82,7 @@ const CODES = {
 `,
   Table: `
 <TableContainer
-  component={Paper} 
+  component={Paper}
   variant="outlined"
 >
   <Table aria-label="demo table">
@@ -142,7 +147,7 @@ export default function MaterialComponents() {
     [DEMOS[4]]: <InfoRounded fontSize="small" />,
   };
   return (
-    <Section bg="comfort">
+    <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
@@ -315,14 +320,23 @@ export default function MaterialComponents() {
             </Frame.Demo>
             <Frame.Info
               sx={{
-                minHeight: 200,
+                minHeight: 180,
                 maxHeight: demo === 'Table' ? 260 : 'none',
                 position: 'relative',
                 overflow: 'hidden',
+                p: 0,
                 pt: 5,
               }}
             >
-              <Box sx={{ height: 'calc(100% + 40px)', overflow: 'auto', m: -2, p: 2 }}>
+              <Box
+                sx={{
+                  overflow: 'auto',
+                  pt: 2,
+                  pb: 1,
+                  px: 2,
+                  height: '100%',
+                }}
+              >
                 <HighlightedCode
                   copyButtonHidden
                   component={MarkdownElement}
@@ -331,15 +345,19 @@ export default function MaterialComponents() {
                 />
               </Box>
               <Box
-                sx={{
-                  pl: 1.5,
+                sx={(theme) => ({
+                  pb: 3,
                   display: 'flex',
                   alignItems: 'center',
                   position: 'absolute',
-                  top: 15,
-                  left: 10,
+                  top: 12,
+                  left: 16,
+                  right: 0,
                   zIndex: 10,
-                }}
+                  background: `linear-gradient(to bottom, ${
+                    (theme.vars || theme).palette.common.black
+                  } 30%, transparent)`,
+                })}
               >
                 <StyledButton
                   size="small"
@@ -358,7 +376,7 @@ export default function MaterialComponents() {
                   }}
                   sx={{ ml: 1 }}
                 >
-                  Custom Theme
+                  Custom theme
                 </StyledButton>
               </Box>
               <StylingInfo appeared={customized} />

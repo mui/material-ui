@@ -5,12 +5,12 @@
 :::info
 Starting fresh on a new App Router-based project?
 
-Jump right into the code with this [example repo](https://github.com/mui/material-ui/blob/master/examples/material-next-app-router-ts).
+Jump right into the code with [this example: Material UI - Next.js App Router example in TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-next-app-router-ts).
 :::
 
 ## Next.js and React Server Components
 
-The Next.js App Router implements React Server Components, a [new feature](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#changes-since-v1) introduced in React 18.
+The Next.js App Router implements React Server Components, [an upcoming feature for React](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md).
 
 To support the App Router, currently all components and hooks from MUI libraries (Material UI, Joy UI, Base UI etc.) are exported with the `"use client"` directive.
 
@@ -29,7 +29,8 @@ If you're using the default theme, you can add Material UI components to Next.js
 
 ```jsx
 // app/layout.js - no directives needed
-export default function RootLayout({ children }) {
+export default function RootLayout(props) {
+  const { children } = props;
   return (
     <html lang="en">
       <body>{children}</body>
@@ -38,10 +39,10 @@ export default function RootLayout({ children }) {
 }
 
 // app/page.js - no directives needed
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
 export default function Home() {
   return (
@@ -130,7 +131,8 @@ export default function ThemeRegistry(props) {
 }
 
 // app/layout.js
-export default function RootLayout({ children }) {
+export default function RootLayout(props) {
+  const { children } = props;
   return (
     <html lang="en">
       <body>
@@ -145,7 +147,7 @@ export default function RootLayout({ children }) {
 
 <!-- https://github.com/emotion-js/emotion/issues/3059 -->
 
-By default, Emotion injects Material UI styles at the bottom of the HTML `<head>`, which gives them precedence over custom styles—for example if you' ar'e customizing Material UI with CSS modules, Tailwind CSS, or even plain CSS.
+By default, Emotion injects Material UI styles at the bottom of the HTML `<head>`, which gives them precedence over custom styles—for example if you are customizing Material UI with CSS modules, Tailwind CSS, or even plain CSS.
 
 Emotion provides the `prepend: true` option for `createCache` to reverse the injection order, so custom styles can override Material UI styles without using `!important`.
 
@@ -189,15 +191,13 @@ import Typography from '@mui/material/Typography';
 
 export default function Page() {
   return (
-    <>
-      <Container maxWidth="lg">
-        <Box>
-          <Card raised>
-            <Typography variant="h2">Hello World</Typography>
-          </Card>
-        </Box>
-      </Container>
-    </>
+    <Container maxWidth="lg">
+      <Box>
+        <Card raised>
+          <Typography variant="h2">Hello World</Typography>
+        </Card>
+      </Box>
+    </Container>
   );
 }
 ```
@@ -212,19 +212,17 @@ import Container from '@mui/material/Container';
 
 export default function Page() {
   return (
-    <>
-      <Container maxWidth="lg">
-        {/* Next.js won't render this button without 'use-client' */}
-        <Button
-          variant="text"
-          onClick={() => {
-            console.log('handle click');
-          }}
-        >
-          Submit
-        </Button>
-      </Container>
-    </>
+    <Container maxWidth="lg">
+      {/* Next.js won't render this button without 'use-client' */}
+      <Button
+        variant="text"
+        onClick={() => {
+          console.log('handle click');
+        }}
+      >
+        Submit
+      </Button>
+    </Container>
   );
 }
 ```

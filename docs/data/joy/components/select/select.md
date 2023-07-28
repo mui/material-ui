@@ -132,6 +132,12 @@ To control the placement of the listbox, use `placement`:
 
 :::
 
+#### Placement
+
+To align `listbox` position to `Select` while displaying long options, use `slotProps` prop to position listbox slot:
+
+{{"demo": "SelectPosition.js"}}
+
 #### Controlling the open state
 
 You can control the open state of the select with the `listboxOpen` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultListboxOpen` prop.

@@ -128,6 +128,11 @@ import {
   ListItemDecoratorSlot,
 } from '../ListItemDecorator/ListItemDecoratorProps';
 import { MenuProps, MenuOwnerState, MenuSlot } from '../Menu/MenuProps';
+import {
+  type MenuButtonOwnerState,
+  type MenuButtonProps,
+  type MenuButtonSlot,
+} from '../MenuButton/MenuButtonProps';
 import { MenuItemProps, MenuItemOwnerState, MenuItemSlot } from '../MenuItem/MenuItemProps';
 import { MenuListProps, MenuListOwnerState, MenuListSlot } from '../MenuList/MenuListProps';
 import { ModalProps, ModalOwnerState, ModalSlot } from '../Modal/ModalProps';
@@ -153,6 +158,7 @@ import {
   RadioGroupSlot,
 } from '../RadioGroup/RadioGroupProps';
 import { SheetProps, SheetOwnerState, SheetSlot } from '../Sheet/SheetProps';
+import { SkeletonProps, SkeletonOwnerState, SkeletonSlot } from '../Skeleton/SkeletonProps';
 import { SelectProps, SelectOwnerState, SelectSlot } from '../Select/SelectProps';
 import { OptionProps, OptionOwnerState, OptionSlot } from '../Option/OptionProps';
 import { SliderProps, SliderOwnerState, SliderSlot } from '../Slider/SliderProps';
@@ -380,6 +386,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<SheetProps>;
     styleOverrides?: OverridesStyleRules<SheetSlot, SheetOwnerState, Theme>;
   };
+  JoySkeleton?: {
+    defaultProps?: Partial<SkeletonProps>;
+    styleOverrides?: OverridesStyleRules<SkeletonSlot, SkeletonOwnerState, Theme>;
+  };
   JoyStack?: {
     defaultProps?: Partial<StackProps>;
     styleOverrides?: OverridesStyleRules<StackSlot, StackProps, Theme>;
@@ -436,6 +446,10 @@ export interface Components<Theme = unknown> {
   JoyMenu?: {
     defaultProps?: Partial<MenuProps>;
     styleOverrides?: OverridesStyleRules<MenuSlot, MenuOwnerState, Theme>;
+  };
+  JoyMenuButton?: {
+    defaultProps?: Partial<MenuButtonProps>;
+    styleOverrides?: OverridesStyleRules<MenuButtonSlot, MenuButtonOwnerState, Theme>;
   };
   JoyMenuList?: {
     defaultProps?: Partial<MenuListProps>;
