@@ -8,14 +8,12 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_unsupportedProp as unsupportedProp,
 } from '@mui/utils';
-import { alpha } from '@mui/system';
 import ButtonBase from '@mui/material/ButtonBase';
 import { OverridableComponent } from '@mui/types';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import { useThemeProps, styled } from '../styles';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipOwnerState, ChipProps, ChipTypeMap } from './Chip.types';
-import { IconProps } from '@mui/material';
 
 const useUtilityClasses = (ownerState: ChipOwnerState) => {
   const { classes, disabled, size, color, iconColor, onDelete, clickable, variant } = ownerState;
@@ -82,7 +80,7 @@ const ChipRoot = styled('div', {
 })<{ ownerState: ChipOwnerState }>(
   ({ theme, ownerState }) => {
     const { vars: tokens } = theme;
-    const textColor = tokens.palette.grey[700];
+
     return {
       maxWidth: '100%',
       fontFamily: theme.typography.fontFamily,

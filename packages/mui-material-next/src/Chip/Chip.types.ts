@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { IconProps } from '@mui/material';
-import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { IconProps } from '@mui/material/Icon';
+import { SxProps } from '../styles/Theme.types';
 import { ChipClasses } from './chipClasses';
 
 export interface ChipPropsVariantOverrides {}
@@ -84,7 +83,7 @@ export interface ChipTypeMap<
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
-    sx?: SxProps<Theme>;
+    sx?: SxProps;
     /**
      *  @ignore
      */
