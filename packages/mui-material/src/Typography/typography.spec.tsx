@@ -56,6 +56,7 @@ const typographyTest = () => {
       {/* @ts-expect-error */}
       <Typography component={CustomComponent} prop1="1" prop2="12" />
       <Typography variant="inherit" />
+      <Typography variantMapping={{ inherit: 'span' }} />
     </div>
   );
 };

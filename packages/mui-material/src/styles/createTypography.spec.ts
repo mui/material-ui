@@ -35,12 +35,8 @@ import { expectType } from '@mui/types';
 }
 
 // test for theme.typography.inherit
-{
-  createTheme({
-    typography: {
-      inherit: {
-        fontSize: 10,
-      },
-    },
-  });
-}
+const Div = styled('div')(({ theme }) => ({
+  ...theme.typography.inherit,
+  backgroundColor: theme.palette.background.paper,
+  padding: theme.spacing(1),
+}));
