@@ -62,6 +62,22 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+### `base-use-named-exports`
+
+Base UI default exports were changed to named ones.
+This codemod updates the import and re-export statements.
+
+```diff
+-  import BaseButton from '@mui/base/Button';
++  import { Button as BaseButton } from '@mui/base/Button';
+-  export { default as BaseSlider } from '@mui/base/Slider';
++  export { Slider as BaseSlider } from '@mui/base/Slider';
+```
+
+```bash
+npx @mui/codemod v5.0.0/base-use-named-exports <path>
+```
+
 ### `base-remove-unstyled-suffix`
 
 The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
