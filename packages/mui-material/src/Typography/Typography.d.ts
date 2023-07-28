@@ -48,7 +48,7 @@ export interface TypographyOwnProps extends SystemProps<Theme> {
    * Applies the theme typography styles.
    * @default 'body1'
    */
-  variant?: OverridableStringUnion<Variant | 'inherit', TypographyPropsVariantOverrides>;
+  variant?: OverridableStringUnion<Variant, TypographyPropsVariantOverrides>;
   /**
    * The component maps the variant prop to a range of different HTML element types.
    * For instance, subtitle1 to `<h6>`.
@@ -69,7 +69,7 @@ export interface TypographyOwnProps extends SystemProps<Theme> {
    * }
    */
   variantMapping?: Partial<
-    Record<OverridableStringUnion<Variant | 'inherit', TypographyPropsVariantOverrides>, string>
+    Record<OverridableStringUnion<Variant, TypographyPropsVariantOverrides>, string>
   >;
 }
 
