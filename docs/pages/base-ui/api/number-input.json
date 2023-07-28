@@ -1,14 +1,25 @@
 {
   "props": {
-    "component": { "type": { "name": "elementType" } },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" } },
     "id": { "type": { "name": "string" } },
     "max": { "type": { "name": "number" } },
     "min": { "type": { "name": "number" } },
-    "onChange": { "type": { "name": "func" } },
-    "onInputChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent, value: number | undefined) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
+    "onInputChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "shiftMultiplier": { "type": { "name": "number" } },
