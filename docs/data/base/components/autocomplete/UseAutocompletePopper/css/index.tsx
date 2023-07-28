@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { useAutocomplete, UseAutocompleteProps } from '@mui/base/useAutocomplete';
-import { Popper } from '@mui/base/Popper';
-import { styled } from '@mui/system';
+import useAutocomplete, { UseAutocompleteProps } from '@mui/base/useAutocomplete';
+import Popper from '@mui/base/Popper';
+import { useTheme } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import clsx from 'clsx';
 
 const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
   props: UseAutocompleteProps<(typeof top100Films)[number], false, false, false>,
@@ -14,6 +15,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
     getListboxProps,
     getOptionProps,
     groupedOptions,
+    focused,
     popupOpen,
     anchorEl,
     setAnchorEl,
@@ -23,30 +25,38 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
 
   return (
     <React.Fragment>
-      <StyledAutocompleteRoot {...getRootProps()} ref={rootRef}>
-        <StyledInput {...getInputProps()} />
-      </StyledAutocompleteRoot>
+      <div
+        {...getRootProps()}
+        ref={rootRef}
+        className={clsx('UseAutocompletePopper__root', focused && 'focused')}
+      >
+        <input {...getInputProps()} className="UseAutocompletePopper__input" />
+      </div>
       {anchorEl && (
         <Popper
           open={popupOpen}
           anchorEl={anchorEl}
-          slots={{
-            root: StyledPopper,
+          slotProps={{
+            root: { className: 'UseAutocompletePopper__popper' },
           }}
         >
           {groupedOptions.length > 0 ? (
-            <StyledListbox {...getListboxProps()}>
+            <ul {...getListboxProps()} className="UseAutocompletePopper__listbox">
               {(groupedOptions as typeof top100Films).map((option, index) => (
-                <StyledOption {...getOptionProps({ option, index })}>
+                <li
+                  {...getOptionProps({ option, index })}
+                  className="UseAutocompletePopper__option"
+                >
                   {option.label}
-                </StyledOption>
+                </li>
               ))}
-            </StyledListbox>
+            </ul>
           ) : (
-            <StyledNoOptions>No results</StyledNoOptions>
+            <li className="UseAutocompletePopper__no-options">No results</li>
           )}
         </Popper>
       )}
+      <Styles />
     </React.Fragment>
   );
 });
@@ -70,145 +80,151 @@ export default function UseAutocompletePopper() {
   );
 }
 
-const blue = {
-  100: '#DAECFF',
-  200: '#99CCF3',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  900: '#003A75',
+const cyan = {
+  50: '#E9F8FC',
+  100: '#BDEBF4',
+  200: '#99D8E5',
+  300: '#66BACC',
+  400: '#1F94AD',
+  500: '#0D5463',
+  600: '#094855',
+  700: '#063C47',
+  800: '#043039',
+  900: '#022127',
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7',
+  400: '#B2BAC2',
+  500: '#A0AAB4',
+  600: '#6F7E8C',
+  700: '#3E5060',
+  800: '#2D3843',
+  900: '#1A2027',
 };
 
-const StyledAutocompleteRoot = styled('div')(
-  ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: 400;
-  border-radius: 12px;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  display: flex;
-  gap: 5px;
-  padding-right: 5px;
-  overflow: hidden;
-  width: 320px;
-  margin: 2rem 0 1.5rem;
+function useIsDarkMode() {
+  const theme = useTheme();
+  return theme.palette.mode === 'dark';
+}
 
-  &.focused {
-    border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-  }
+function Styles() {
+  // Replace this with your app logic for determining dark mode
+  const isDarkMode = useIsDarkMode();
 
-  &:hover {
-    border-color: ${blue[400]};
-  }
+  return (
+    <style>
+      {`
+      .UseAutocompletePopper__root {
+        font-family: IBM Plex Sans, sans-serif;
+        font-weight: 400;
+        border-radius: 8px;
+        color: ${isDarkMode ? grey[300] : grey[500]};
+        background: ${isDarkMode ? grey[900] : '#fff'};
+        border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+        box-shadow: 0px 2px 2px ${isDarkMode ? grey[900] : grey[50]};
+        display: flex;
+        gap: 5px;
+        padding-right: 5px;
+        overflow: hidden;
+        width: 320px;
+        margin: 1.5rem 0;
 
-  &:focus-visible {
-    outline: 0;
-  }
-`,
-);
+        &.focused {
+          border-color: ${cyan[400]};
+          box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
+        }
 
-const StyledInput = styled('input')(
-  ({ theme }) => `
-  font-size: 0.875rem;
-  font-family: inherit;
-  font-weight: 400;
-  line-height: 1.5;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  background: inherit;
-  border: none;
-  border-radius: inherit;
-  padding: 12px 12px;
-  outline: 0;
-  flex: 1 0 auto;
-`,
-);
+        &:hover {
+          border-color: ${cyan[400]};
+        }
 
-// ComponentPageTabs has z-index: 1000
-const StyledPopper = styled('div')`
-  position: relative;
-  z-index: 1001;
-  width: 320px;
-`;
+        &:focus-visible {
+          outline: 0;
+        }
+      }
 
-const StyledListbox = styled('ul')(
-  ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  padding: 6px;
-  margin: 12px 0;
-  min-width: 320px;
-  border-radius: 12px;
-  overflow: auto;
-  outline: 0px;
-  max-height: 300px;
-  z-index: 1;
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
-  `,
-);
+      .UseAutocompletePopper__popper {
+        position: relative;
+        z-index: 1001;
+        width: 320px;
+      }
 
-const StyledOption = styled('li')(
-  ({ theme }) => `
-  list-style: none;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: default;
+      .UseAutocompletePopper__input {
+        font-size: 0.875rem;
+        font-family: inherit;
+        font-weight: 400;
+        line-height: 1.5;
+        color: ${isDarkMode ? grey[300] : grey[900]};
+        background: inherit;
+        border: none;
+        border-radius: inherit;
+        padding: 8px 12px;
+        outline: 0;
+        flex: 1 0 auto;
+      }
 
-  &:last-of-type {
-    border-bottom: none;
-  }
+      .UseAutocompletePopper__listbox {
+        font-family: IBM Plex Sans, sans-serif;
+        font-size: 0.875rem;
+        box-sizing: border-box;
+        padding: 6px;
+        margin: 12px 0;
+        max-width: 320px;
+        border-radius: 12px;
+        overflow: auto;
+        outline: 0px;
+        max-height: 300px;
+        z-index: 1;
+        position: absolute;
+        background: ${isDarkMode ? grey[900] : '#fff'};
+        border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+        color: ${isDarkMode ? grey[300] : grey[900]};
+        box-shadow: 0px 4px 30px ${isDarkMode ? grey[900] : grey[200]};
+      }
 
-  &:hover {
-    cursor: pointer;
-  }
+      .UseAutocompletePopper__option {
+        list-style: none;
+        padding: 8px;
+        border-radius: 8px;
+        cursor: default;
 
-  &[aria-selected=true] {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
-    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-  }
+        &:last-of-type {
+          border-bottom: none;
+        }
 
-  &.Mui-focused,
-  &.Mui-focusVisible {
-    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  }
+        &:hover {
+          cursor: pointer;
+        }
 
-  &.Mui-focusVisible {
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-  }
+        &[aria-selected=true] {
+          background-color: ${isDarkMode ? cyan[900] : cyan[100]};
+          color: ${isDarkMode ? cyan[100] : cyan[900]};
+        }
 
-  &[aria-selected=true].Mui-focused,
-  &[aria-selected=true].Mui-focusVisible {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
-    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-  }
-  `,
-);
+        &.Mui-focused,
+        &.Mui-focusVisible {
+          background-color: ${isDarkMode ? grey[800] : grey[100]};
+          color: ${isDarkMode ? grey[300] : grey[900]};
+        }
 
-const StyledNoOptions = styled('li')`
-  list-style: none;
-  padding: 8px;
-  cursor: default;
-`;
+        &.Mui-focusVisible {
+          box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
+        }
+
+        &[aria-selected=true].Mui-focused,
+        &[aria-selected=true].Mui-focusVisible {
+          background-color: ${isDarkMode ? cyan[900] : cyan[100]};
+          color: ${isDarkMode ? cyan[100] : cyan[900]};
+        }
+      }
+      `}
+    </style>
+  );
+}
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
