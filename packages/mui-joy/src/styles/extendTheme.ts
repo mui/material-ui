@@ -206,7 +206,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createLightModeVariantVariables('warning'),
       },
       common: {
-        white: '#FCFCFD',
+        white: '#FBFCFD',
         black: '#0E0E10',
       },
       text: {
@@ -219,9 +219,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         body: getCssVarColor('palette-neutral-50'),
         surface: getCssVarColor('palette-common-white'),
         popup: getCssVarColor('palette-common-white'),
-        level1: getCssVarColor('palette-neutral-50'),
-        level2: getCssVarColor('palette-neutral-100'),
-        level3: getCssVarColor('palette-neutral-200'),
+        level1: getCssVarColor('palette-neutral-100'),
+        level2: getCssVarColor('palette-neutral-200'),
+        level3: getCssVarColor('palette-neutral-300'),
         tooltip: getCssVarColor('palette-neutral-500'),
         backdrop: `rgba(${getCssVar(
           'palette-neutral-darkChannel',
@@ -262,7 +262,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createDarkModeVariantVariables('warning'),
       },
       common: {
-        white: '#FCFCFD',
+        white: '#FBFCFD',
         black: '#0E0E10',
       },
       text: {
@@ -275,9 +275,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         body: getCssVarColor('palette-common-black'),
         surface: getCssVarColor('palette-neutral-900'),
         popup: getCssVarColor('palette-common-black'),
-        level1: getCssVarColor('palette-neutral-900'),
-        level2: getCssVarColor('palette-neutral-800'),
-        level3: getCssVarColor('palette-neutral-700'),
+        level1: getCssVarColor('palette-neutral-800'),
+        level2: getCssVarColor('palette-neutral-700'),
+        level3: getCssVarColor('palette-neutral-600'),
         tooltip: getCssVarColor('palette-neutral-600'),
         backdrop: `rgba(${getCssVar(
           'palette-neutral-darkChannel',
