@@ -1,4 +1,6 @@
-# Material UI - Next.js example in TypeScript
+# Material UI - Next.js App Router example in TypeScript
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with Material UI installed.
 
 ## How to use
 
@@ -11,34 +13,31 @@ curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip
 cd material-next-ts
 ```
 
-Install it and run:
+Install dependencies and run:
 
 ```bash
+# npm
 npm install
 npm run dev
+
+# yarn
+yarn
+yarn dev
+
+# pnpm
+pnpm install
+pnpm dev
 ```
 
-or:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-<!-- #default-branch-switch -->
+You can start editing the page by modifying `src/app/page.tsx`. The page auto-updates as you edit the file.
 
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-next-ts)
+This example uses [`next/font/google`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts#google-fonts) to automatically optimize and load Roboto, a custom Google Font.
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/material-next-ts)
+## Learn More
 
-## The idea behind the example
+To learn more about this example:
 
-The project uses [Next.js](https://github.com/vercel/next.js), which is a framework for server-rendered React apps.
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5. If you prefer, you can [use styled-components instead](https://mui.com/material-ui/guides/interoperability/#styled-components).
-
-## The link component
-
-The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-next-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/api-reference/next/link) with MUI.
-More information [in the documentation](https://mui.com/material-ui/guides/routing/#next-js).
-
-## What's next?
-
-<!-- #default-branch-switch -->
-
-You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Customizing Material UI](https://mui.com/material-ui/customization/how-to-customize/) - approaches to customizing Material UI.

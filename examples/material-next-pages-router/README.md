@@ -1,4 +1,4 @@
-# Material UI - Next.js example
+# Material UI - Next.js Pages Router example
 
 ## How to use
 
@@ -7,8 +7,8 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 <!-- #default-branch-switch -->
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/material-next
-cd material-next
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/material-next-pages-router
+cd material-next-pages-router
 ```
 
 Install it and run:
@@ -22,9 +22,9 @@ or:
 
 <!-- #default-branch-switch -->
 
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-next)
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-next-pages-router)
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/material-next)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/material-next-pages-router)
 
 ## The idea behind the example
 
@@ -34,7 +34,7 @@ If you prefer, you can [use styled-components instead](https://mui.com/material-
 
 ## The Link component
 
-The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-next-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/api-reference/next/link) with MUI.
+The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-next-pages-router) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/api-reference/next/link) with MUI.
 More information [in the documentation](https://mui.com/material-ui/guides/routing/#next-js).
 
 ## What's next?

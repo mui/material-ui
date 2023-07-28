@@ -9,8 +9,8 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 <!-- #default-branch-switch -->
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/base-next-app-router-tailwind-ts
-cd base-next-app-router-tailwind-ts
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/base-next-tailwind-ts
+cd base-next-tailwind-ts
 ```
 
 Install dependencies and run:

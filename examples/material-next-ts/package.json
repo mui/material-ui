@@ -1,5 +1,5 @@
 {
-  "name": "material-next-ts",
+  "name": "material-next-app-router-ts",
   "version": "5.0.0",
   "private": true,
   "scripts": {
@@ -12,17 +12,17 @@
   "dependencies": {
     "@emotion/cache": "latest",
     "@emotion/react": "latest",
-    "@emotion/server": "latest",
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "next": "13.x",
+    "react": "18.x",
+    "react-dom": "18.x"
   },
   "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
+    "@types/react-dom": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "typescript": "latest"
