@@ -673,6 +673,9 @@ export default function DemoToolbar(props) {
       >
         <MenuItem
           value={CODE_STYLING.SYSTEM}
+          data-ga-event-category="demo"
+          data-ga-event-action="styling-system"
+          data-ga-event-label={demo.gaLabel}
           selected={styleSolution === CODE_STYLING.SYSTEM}
           onClick={() => handleStylingSolutionChange(CODE_STYLING.SYSTEM)}
         >
@@ -683,6 +686,9 @@ export default function DemoToolbar(props) {
         </MenuItem>
         <MenuItem
           value={CODE_STYLING.TAILWIND}
+          data-ga-event-category="demo"
+          data-ga-event-action="styling-tailwind"
+          data-ga-event-label={demo.gaLabel}
           selected={styleSolution === CODE_STYLING.TAILWIND}
           onClick={() => handleStylingSolutionChange(CODE_STYLING.TAILWIND)}
         >
@@ -693,6 +699,9 @@ export default function DemoToolbar(props) {
         </MenuItem>
         <MenuItem
           value={CODE_STYLING.CSS}
+          data-ga-event-category="demo"
+          data-ga-event-action="styling-css"
+          data-ga-event-label={demo.gaLabel}
           selected={styleSolution === CODE_STYLING.CSS}
           onClick={() => handleStylingSolutionChange(CODE_STYLING.CSS)}
         >
