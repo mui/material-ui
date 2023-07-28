@@ -85,6 +85,10 @@ MenuButton.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * Class name applied to the root element.
+   */
+  className: PropTypes.string,
+  /**
    * If `true`, the component is disabled.
    * @default false
    */

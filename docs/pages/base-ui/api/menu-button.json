@@ -1,5 +1,6 @@
 {
   "props": {
+    "className": { "type": { "name": "string" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "string" } },

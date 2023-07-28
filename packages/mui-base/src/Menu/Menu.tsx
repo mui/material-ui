@@ -116,14 +116,6 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * @ignore
-   */
-  defaultOpen: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  listboxId: PropTypes.string,
-  /**
    * Function called when the items displayed in the menu change.
    */
   onItemsChange: PropTypes.func,
