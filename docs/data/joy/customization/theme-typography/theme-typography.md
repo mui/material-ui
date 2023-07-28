@@ -62,6 +62,13 @@ declare module '@mui/joy/styles' {
 }
 ```
 
+## Customize font family
+
+You can define a new level as a key-value pair in `theme.typography`, where the key is the name of the level and the value is an object containing CSS rules.
+The demo below shows how to add a new level called `kbd`:
+
+{{"demo": "CustomFontFamily.js"}}
+
 ## Adding more levels
 
 You can define a new level as a key-value pair in `theme.typography`, where the key is the name of the level and the value is an object containing CSS rules.
