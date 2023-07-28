@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { composeClasses } from '@mui/base/composeClasses';
 import Modal from '../Modal';
 import Slide from '../Slide';
 import Paper from '../Paper';

@@ -4,7 +4,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { composeClasses } from '@mui/base/composeClasses';
 import { alpha, darken, lighten } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';

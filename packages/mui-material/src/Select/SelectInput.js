@@ -4,7 +4,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { composeClasses } from '@mui/base/composeClasses';
 import { refType } from '@mui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
