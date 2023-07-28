@@ -21,6 +21,14 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
 
 /**
  * An unstyled option to be used within a Select.
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/base-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
  */
 const Option = React.memo(
   React.forwardRef(function Option<OptionValue, RootComponentType extends React.ElementType>(
@@ -117,15 +125,4 @@ Option.propTypes /* remove-proptypes */ = {
   value: PropTypes.any.isRequired,
 } as any;
 
-/**
- * An unstyled option to be used within a Select.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base-ui/react-select/)
- *
- * API:
- *
- * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
- */
 export { Option };
