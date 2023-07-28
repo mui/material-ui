@@ -26,7 +26,7 @@ It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Popper from '@mui/base/Popper';
+import { Popper } from '@mui/base/Popper';
 
 export default function MyApp() {
   return <Popper>{/* the popper's content */}</Popper>;

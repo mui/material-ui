@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Menu from '@mui/base/Menu';
-import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
-import MenuButton from '@mui/base/MenuButton';
-import Dropdown from '@mui/base/Dropdown';
+import { Menu } from '@mui/base/Menu';
+import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
+import { MenuButton } from '@mui/base/MenuButton';
+import { Dropdown } from '@mui/base/Dropdown';
 import { useTheme } from '@mui/system';
 
 export default function UnstyledMenuSimple() {

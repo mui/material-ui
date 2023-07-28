@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/system';
-import Badge, { badgeClasses } from '@mui/base/Badge';
+import { Badge, badgeClasses } from '@mui/base/Badge';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
