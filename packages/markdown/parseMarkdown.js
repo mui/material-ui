@@ -447,6 +447,12 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
   if (productId === 'x-date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
   }
+  if (productId === 'x-charts') {
+    return `/x/api/charts/${kebabCase(component)}`;
+  }
+  if (productId === 'x-tree-view') {
+    return `/x/api/tree-view/${kebabCase(component)}`;
+  }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
   }
