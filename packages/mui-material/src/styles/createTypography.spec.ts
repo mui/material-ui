@@ -33,3 +33,14 @@ import { expectType } from '@mui/types';
     ...theme.typography.body1,
   }));
 }
+
+// test for theme.typography.inherit
+{
+  createTheme({
+    typography: {
+      inherit: {
+        fontSize: 10,
+      },
+    },
+  });
+}
