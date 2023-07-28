@@ -6,10 +6,10 @@ import { OverrideProps } from '../OverridableComponent';
 import { TableSortLabelClasses } from './tableSortLabelClasses';
 
 export type TableSortLabelTypeMap<
-  P = {},
-  D extends React.ElementType = 'span',
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'span',
 > = ExtendButtonBaseTypeMap<{
-  props: P & {
+  props: AdditionalProps & {
     /**
      * If `true`, the label will have the active styling (should be true for the sorted column).
      * @default false
@@ -43,7 +43,7 @@ export type TableSortLabelTypeMap<
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**
@@ -61,8 +61,10 @@ export type TableSortLabelTypeMap<
 declare const TableSortLabel: ExtendButtonBase<TableSortLabelTypeMap>;
 
 export type TableSortLabelProps<
-  D extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TableSortLabelTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TableSortLabelTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default TableSortLabel;

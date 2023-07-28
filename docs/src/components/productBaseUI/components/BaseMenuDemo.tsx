@@ -1,10 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import ButtonUnstyled from '@mui/base/Button';
-import MenuUnstyled, { MenuActions } from '@mui/base/Menu';
+import Dropdown from '@mui/base/Dropdown';
+import MenuUnstyled from '@mui/base/Menu';
+import MenuButtonUnstyled from '@mui/base/MenuButton';
 import MenuItemUnstyled from '@mui/base/MenuItem';
-import PopperUnstyled from '@mui/base/Popper';
-import { ListActionTypes } from '@mui/base/useList';
 import { styled, GlobalStyles } from '@mui/system';
 import Person from '@mui/icons-material/Person';
 
@@ -48,12 +47,14 @@ const buttonStyles = `
     &:hover {
       background: var(--muidocs-palette-primaryDark-800);
     }
-  }`;
+  }
+`;
 const StyledMenuButton = styled('button')(buttonStyles);
 
 const popperStyles = `
-  z-index: 1000;`;
-const StyledPopper = styled(PopperUnstyled)(popperStyles);
+  z-index: 1000;
+`;
+const StyledPopup = styled('div')(popperStyles);
 
 const listboxStyles = `
   margin: 8px 0;
@@ -69,7 +70,8 @@ const listboxStyles = `
   :where([data-mui-color-scheme='dark']) & {
     border-color: var(--muidocs-palette-primaryDark-700);
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.5);
-  }`;
+  }
+`;
 const StyledListbox = styled('ul')(listboxStyles);
 
 const menuItemStyles = `
@@ -97,67 +99,19 @@ const menuItemStyles = `
       background: var(--muidocs-palette-primaryDark-700);
       border-color: var(--muidocs-palette-primaryDark-500);
     }
-  }`;
+  }
+`;
 const StyledMenuItem = styled('li')(menuItemStyles);
 
-const CSS = `.Mui-base.MuiButton-root{${buttonStyles}};
+const CSS = `.Mui-base.MuiMenuButton-root {${buttonStyles}}
 
-.Mui-base.MuiMenu-root{${popperStyles}};
+.Mui-base.MuiMenu-root {${popperStyles}}
 
-.Mui-base.MuiMenu-listbox{${listboxStyles}};
+.Mui-base.MuiMenu-listbox {${listboxStyles}}
 
-.Mui-base.MuiMenuItem-root{${menuItemStyles}};`;
+.Mui-base.MuiMenuItem-root {${menuItemStyles}}`;
 
 export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwindcss' | 'css' }) {
-  const [buttonElement, setButtonElement] = React.useState<HTMLButtonElement | null>(null);
-  const [isOpen, setOpen] = React.useState(false);
-  const menuActions = React.useRef<MenuActions>(null);
-  const preventReopen = React.useRef(false);
-
-  const updateAnchor = React.useCallback((node: HTMLButtonElement | null) => {
-    setButtonElement(node);
-  }, []);
-
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (preventReopen.current) {
-      event.preventDefault();
-      preventReopen.current = false;
-      return;
-    }
-
-    setOpen((open) => !open);
-  };
-
-  const handleButtonMouseDown = () => {
-    if (isOpen) {
-      // Prevents the menu from reopening right after closing
-      // when clicking the button.
-      preventReopen.current = true;
-    }
-  };
-
-  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setOpen(true);
-      if (event.key === 'ArrowUp') {
-        // Focus the last item when pressing ArrowUp.
-        menuActions.current?.dispatch({
-          type: ListActionTypes.keyDown,
-          key: event.key,
-          event,
-        });
-      }
-    }
-  };
-
-  const createHandleMenuClick = () => {
-    return () => {
-      setOpen(false);
-      buttonElement?.focus();
-    };
-  };
-
   return (
     <Box
       sx={{
@@ -171,31 +125,14 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwi
     >
       {styling === 'css' && <GlobalStyles styles={CSS} />}
       {styling === 'tailwindcss' && (
-        <React.Fragment>
-          <ButtonUnstyled
-            className="min-h-[calc(1.5em + 22px)] inline-flex items-center gap-[0.5rem] rounded-[8px] border border-solid border-[--muidocs-palette-grey-200] bg-[--muidocs-palette-background-paper] p-[8px_12px_8px_6px] text-[0.875rem] leading-[1.5] transition-all [box-shadow:var(--shadow)] [font-family:IBM_Plex_sans] hover:bg-[--muidocs-palette-grey-50]  ui-focus-visible:[outline:3px_solid_var(--focus-ring)] dark:border-[--muidocs-palette-primaryDark-700] dark:hover:bg-[--muidocs-palette-primaryDark-800]"
-            type="button"
-            onClick={handleButtonClick}
-            onKeyDown={handleButtonKeyDown}
-            onMouseDown={handleButtonMouseDown}
-            ref={updateAnchor}
-            aria-controls={isOpen ? 'simple-menu' : undefined}
-            aria-expanded={isOpen || undefined}
-            aria-haspopup="menu"
-          >
+        <Dropdown>
+          <MenuButtonUnstyled className="min-h-[calc(1.5em + 22px)] inline-flex items-center gap-[0.5rem] rounded-[8px] border border-solid border-[--muidocs-palette-grey-200] bg-[--muidocs-palette-background-paper] p-[8px_12px_8px_6px] text-[0.875rem] leading-[1.5] transition-all [box-shadow:var(--shadow)] [font-family:IBM_Plex_sans] hover:bg-[--muidocs-palette-grey-50]  ui-focus-visible:[outline:3px_solid_var(--focus-ring)] dark:border-[--muidocs-palette-primaryDark-700] dark:hover:bg-[--muidocs-palette-primaryDark-800]">
             <Person className="text-[--palette-primary]" />
             My account
-          </ButtonUnstyled>
+          </MenuButtonUnstyled>
           <MenuUnstyled
-            actions={menuActions}
-            open={isOpen}
-            onOpenChange={(open) => {
-              setOpen(open);
-            }}
-            anchorEl={buttonElement}
-            slots={{ root: PopperUnstyled }}
             slotProps={{
-              root: { placement: 'top', className: 'z-[1000]' },
+              root: { placement: 'bottom', className: 'z-[1000]' },
               listbox: {
                 id: 'simple-menu',
                 className:
@@ -203,53 +140,30 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwi
               },
             }}
           >
-            <MenuItemUnstyled
-              className="hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[4px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none"
-              onClick={createHandleMenuClick()}
-            >
+            <MenuItemUnstyled className="hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[4px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none">
               Profile
             </MenuItemUnstyled>
-            <MenuItemUnstyled
-              className="hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[4px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none"
-              onClick={createHandleMenuClick()}
-            >
+            <MenuItemUnstyled className="hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[4px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none">
               Language settings
             </MenuItemUnstyled>
-            <MenuItemUnstyled
-              className="hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[4px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none"
-              onClick={createHandleMenuClick()}
-            >
+            <MenuItemUnstyled className="hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[4px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none">
               Log out
             </MenuItemUnstyled>
           </MenuUnstyled>
-        </React.Fragment>
+        </Dropdown>
       )}
       {(styling === 'css' || styling === 'system') && (
-        <React.Fragment>
-          <ButtonUnstyled
+        <Dropdown>
+          <MenuButtonUnstyled
             className="Mui-base"
             slots={{ root: styling !== 'system' ? undefined : StyledMenuButton }}
-            type="button"
-            onClick={handleButtonClick}
-            onKeyDown={handleButtonKeyDown}
-            onMouseDown={handleButtonMouseDown}
-            ref={updateAnchor}
-            aria-controls={isOpen ? 'simple-menu' : undefined}
-            aria-expanded={isOpen || undefined}
-            aria-haspopup="menu"
           >
             <Person />
             My account
-          </ButtonUnstyled>
+          </MenuButtonUnstyled>
           <MenuUnstyled
-            actions={menuActions}
-            open={isOpen}
-            onOpenChange={(open) => {
-              setOpen(open);
-            }}
-            anchorEl={buttonElement}
             slots={{
-              root: styling !== 'system' ? undefined : StyledPopper,
+              root: styling !== 'system' ? undefined : StyledPopup,
               listbox: styling !== 'system' ? undefined : StyledListbox,
             }}
             slotProps={{
@@ -260,26 +174,23 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwi
             <MenuItemUnstyled
               className="Mui-base"
               slots={{ root: styling !== 'system' ? undefined : StyledMenuItem }}
-              onClick={createHandleMenuClick()}
             >
               Profile
             </MenuItemUnstyled>
             <MenuItemUnstyled
               className="Mui-base"
               slots={{ root: styling !== 'system' ? undefined : StyledMenuItem }}
-              onClick={createHandleMenuClick()}
             >
               Language settings
             </MenuItemUnstyled>
             <MenuItemUnstyled
               className="Mui-base"
               slots={{ root: styling !== 'system' ? undefined : StyledMenuItem }}
-              onClick={createHandleMenuClick()}
             >
               Log out
             </MenuItemUnstyled>
           </MenuUnstyled>
-        </React.Fragment>
+        </Dropdown>
       )}
     </Box>
   );
@@ -287,56 +198,40 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwi
 
 BaseMenuDemo.getCode = (styling?: 'system' | 'tailwindcss' | 'css') => {
   if (styling === 'system') {
-    return `import Button from '@mui/base/Button';
+    return `import * as React from 'react';
+import styled from '@mui/system/styled';
+import Dropdown from '@mui/base/Dropdown';
+import MenuButton from '@mui/base/MenuButton';
 import Menu from '@mui/base/Menu';
 import MenuItem from '@mui/base/MenuItem';
-import Popper from '@mui/base/Popper';
 
 const StyledMenuButton = styled('button')\`${buttonStyles}\`;
 const StyledListbox = styled('ul')\`${listboxStyles}\`;
 const StyledMenuItem = styled('li')\`${menuItemStyles}\`;
 
 function Demo() {
-  const [buttonElement, setButtonElement] = React.useState(null);
-  const updateAnchor = React.useCallback((node) => {
-    setButtonElement(node);
-  }, []);
-  return (
-    <>
-      <Button
-        ref={updateAnchor}
-        slots={{ root: StyledMenuButton }}
-        onClick={() => setOpen((open) => !open)}
-      >
-        My account
-      </Button>
+ return (
+    <Dropdown>
+      <MenuButton slots={{ root: StyledMenuButton }}>My account</MenuButton>
       <Menu
         slots={{
-          root: Popper,
           listbox: StyledListbox,
         }}
-        anchorEl={buttonElement}
       >
-        <MenuItem slots={{ root: StyledMenuItem }}>
-          Profile
-        </MenuItem>
-        <MenuItem slots={{ root: StyledMenuItem }}>
-          Language settings
-        </MenuItem>
-        <MenuItem slots={{ root: StyledMenuItem }}>
-          Log out
-        </MenuItem>
+        <MenuItem slots={{ root: StyledMenuItem }}>Profile</MenuItem>
+        <MenuItem slots={{ root: StyledMenuItem }}>Language settings</MenuItem>
+        <MenuItem slots={{ root: StyledMenuItem }}>Log out</MenuItem>
       </Menu>
-    </>
-  )
+    </Dropdown>
+  );
 }
 `;
   }
   if (styling === 'css') {
-    return `import Button from '@mui/base/Button';
+    return `import Dropdown from '@mui/base/Dropdown';
+import MenuButton from '@mui/base/MenuButton';
 import Menu from '@mui/base/Menu';
 import MenuItem from '@mui/base/MenuItem';
-import Popper from '@mui/base/Popper';
 import './styles.css';
 
 function Demo() {
@@ -345,22 +240,14 @@ function Demo() {
     setButtonElement(node);
   }, []);
   return (
-    <>
-      <Button
-        ref={updateAnchor}
-        onClick={() => setOpen((open) => !open)}
-      >
-        My account
-      </Button>
-      <Menu
-        slots={{ root: Popper }}
-        anchorEl={buttonElement}
-      >
+    <Dropdown>
+      <MenuButton>My account</MenuButton>
+      <Menu>
         <MenuItem>Profile</MenuItem>
         <MenuItem>Language settings</MenuItem>
         <MenuItem>Log out</MenuItem>
       </Menu>
-    </>
+    </Dropdown>
   )
 }
 
@@ -369,111 +256,88 @@ ${CSS}
 `;
   }
   if (styling === 'tailwindcss') {
-    return `import Button from '@mui/base/Button';
+    return `import Dropdown from '@mui/base/Dropdown';
+import MenuButton from '@mui/base/MenuButton';
 import Menu from '@mui/base/Menu';
 import MenuItem from '@mui/base/MenuItem';
-import Popper from '@mui/base/Popper';
 
 function Demo() {
-  const [buttonElement, setButtonElement] = React.useState(null);
-  const updateAnchor = React.useCallback((node) => {
-    setButtonElement(node);
-  }, []);
   return (
-    <>
-      <ButtonUnstyled
+    <Dropdown>
+      <MenuButtonUnstyled
         className="min-h-[calc(1.5em + 22px)] inline-flex 
-        items-center gap-[0.5rem] rounded-[8px] border 
-        border-solid border-[--muidocs-palette-grey-200] 
-        bg-[--muidocs-palette-background-paper] 
-        p-[8px_12px_8px_6px] text-[0.875rem] 
-        leading-[1.5] transition-all [font-family:IBM_Plex_sans] 
-        [box-shadow:var(--shadow)]
-        hover:bg-[--muidocs-palette-grey-50] 
-        ui-focus-visible:[outline:3px_solid_var(--focus-ring)]
-        dark:border-[--muidocs-palette-primaryDark-700] 
-        dark:hover:bg-[--muidocs-palette-primaryDark-800]"
-        type="button"
-        onClick={handleButtonClick}
-        onKeyDown={handleButtonKeyDown}
-        onMouseDown={handleButtonMouseDown}
-        ref={updateAnchor}
-        aria-controls={isOpen ? 'simple-menu' : undefined}
-        aria-expanded={isOpen || undefined}
-        aria-haspopup="menu"
+          items-center gap-[0.5rem] rounded-[8px] border 
+          border-solid border-[--muidocs-palette-grey-200] 
+          bg-[--muidocs-palette-background-paper] 
+          p-[8px_12px_8px_6px] text-[0.875rem] 
+          leading-[1.5] transition-all [font-family:IBM_Plex_sans] 
+          [box-shadow:var(--shadow)]
+          hover:bg-[--muidocs-palette-grey-50] 
+          ui-focus-visible:[outline:3px_solid_var(--focus-ring)]
+          dark:border-[--muidocs-palette-primaryDark-700] 
+          dark:hover:bg-[--muidocs-palette-primaryDark-800]"
       >
         <Person className="text-[--palette-primary]" />
         My account
       </ButtonUnstyled>
       <MenuUnstyled
-        actions={menuActions}
-        open={isOpen}
-        onOpenChange={(open) => {
-          setOpen(open);
-        }}
-        anchorEl={buttonElement}
-        slots={{ root: PopperUnstyled }}
         slotProps={{
           root: { placement: 'top', className: 'z-[1000]' },
           listbox: {
             id: 'simple-menu',
-            className:
-              'mx-0 my-[8px] p-[4px] flex flex-col rounded-[8px] 
+            className: \`mx-0 my-[8px] p-[4px] flex flex-col rounded-[8px] 
               border border-solid border-[--muidocs-palette-grey-200] 
               bg-[--muidocs-palette-background-paper] 
               shadow-[0px_4px_40px_rgba(62,80,96,0.1)] 
               dark:border-[--muidocs-palette-primaryDark-700] 
-              dark:shadow-[0px_4px_40px_rgba(11,13,14,0.5)]',
+              dark:shadow-[0px_4px_40px_rgba(11,13,14,0.5)]\`,
           },
         }}
       >
         <MenuItemUnstyled
           className="hover:color-[--muidocs-palette-text-primary] 
-          flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
-          border border-solid border-transparent px-[12px] 
-          py-[6px] hover:cursor-default 
-          hover:border-[--muidocs-palette-grey-100] 
-          hover:bg-[--muidocs-palette-grey-50] 
-          ui-focus-visible:cursor-default 
-          ui-focus-visible:border-[--muidocs-palette-grey-100] 
-          ui-focus-visible:bg-[--muidocs-palette-grey-50] 
-          ui-focus-visible:outline-none"
-          onClick={createHandleMenuClick()}
+            flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
+            border border-solid border-transparent px-[12px] 
+            py-[6px] hover:cursor-default 
+            hover:border-[--muidocs-palette-grey-100] 
+            hover:bg-[--muidocs-palette-grey-50] 
+            ui-focus-visible:cursor-default 
+            ui-focus-visible:border-[--muidocs-palette-grey-100] 
+            ui-focus-visible:bg-[--muidocs-palette-grey-50] 
+            ui-focus-visible:outline-none"
         >
           Profile
         </MenuItemUnstyled>
         <MenuItemUnstyled
           className="hover:color-[--muidocs-palette-text-primary] 
-          flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
-          border border-solid border-transparent px-[12px] 
-          py-[6px] hover:cursor-default 
-          hover:border-[--muidocs-palette-grey-100] 
-          hover:bg-[--muidocs-palette-grey-50] 
-          ui-focus-visible:cursor-default 
-          ui-focus-visible:border-[--muidocs-palette-grey-100] 
-          ui-focus-visible:bg-[--muidocs-palette-grey-50] 
-          ui-focus-visible:outline-none"
-          onClick={createHandleMenuClick()}
+            flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
+            border border-solid border-transparent px-[12px] 
+            py-[6px] hover:cursor-default 
+            hover:border-[--muidocs-palette-grey-100] 
+            hover:bg-[--muidocs-palette-grey-50] 
+            ui-focus-visible:cursor-default 
+            ui-focus-visible:border-[--muidocs-palette-grey-100] 
+            ui-focus-visible:bg-[--muidocs-palette-grey-50] 
+            ui-focus-visible:outline-none"
         >
           Language settings
         </MenuItemUnstyled>
         <MenuItemUnstyled
           className="hover:color-[--muidocs-palette-text-primary] 
-          flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
-          border border-solid border-transparent px-[12px] 
-          py-[6px] hover:cursor-default 
-          hover:border-[--muidocs-palette-grey-100] 
-          hover:bg-[--muidocs-palette-grey-50] 
-          ui-focus-visible:cursor-default 
-          ui-focus-visible:border-[--muidocs-palette-grey-100] 
-          ui-focus-visible:bg-[--muidocs-palette-grey-50] 
-          ui-focus-visible:outline-none"
-          onClick={createHandleMenuClick()}
+            flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
+            border border-solid border-transparent px-[12px] 
+            py-[6px] hover:cursor-default 
+            hover:border-[--muidocs-palette-grey-100] 
+            hover:bg-[--muidocs-palette-grey-50] 
+            ui-focus-visible:cursor-default 
+            ui-focus-visible:border-[--muidocs-palette-grey-100] 
+            ui-focus-visible:bg-[--muidocs-palette-grey-50] 
+            ui-focus-visible:outline-none"
         >
           Log out
         </MenuItemUnstyled>
       </MenuUnstyled>
-    </>
+    </Dropdown>
   )
 }
 `;

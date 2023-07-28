@@ -443,6 +443,7 @@ export interface Components<Theme = unknown> {
   };
   MuiStack?: {
     defaultProps?: ComponentsProps['MuiStack'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiStack'];
     variants?: ComponentsVariants['MuiStack'];
   };
   MuiStep?: {

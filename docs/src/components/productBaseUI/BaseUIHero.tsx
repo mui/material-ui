@@ -38,6 +38,7 @@ export default function BaseUIHero() {
     <HeroContainer
       linearGradient
       disableMobileHidden
+      disableTabExclusion
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' }, ml: { xl: '-40px' } }}>
           <Typography
@@ -95,7 +96,8 @@ export default function BaseUIHero() {
           sx={{
             position: 'relative',
             height: '100%',
-            padding: '16px',
+            py: { xs: 9, sm: 2 },
+            px: 2,
             display: 'flex',
             '& > div': { margin: 'auto' },
           }}

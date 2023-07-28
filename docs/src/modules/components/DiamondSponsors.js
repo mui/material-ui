@@ -2,9 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
+import Divider from '@mui/material/Divider';
 // import Link from 'docs/src/modules/components/Link';
 
 const Root = styled('div')(() => ({
@@ -44,8 +45,8 @@ export default function DiamondSponsors() {
           (theme) => ({
             display: 'flex',
             flexDirection: 'column',
-            gap: 1,
-            padding: theme.spacing(1, 2, 2, 2),
+            gap: 0.5,
+            padding: theme.spacing(0.5, 2, 2, 2),
             background: '#FFF',
             borderTop: '1px solid',
             borderColor: (theme.vars || theme).palette.grey[100],
@@ -81,25 +82,18 @@ export default function DiamondSponsors() {
           {t('diamondSponsors')}
         </Button>
         <Stack
-          spacing={1}
+          divider={<Divider />}
           sx={[
             (theme) => ({
               '& a': {
                 width: '100%',
-                height: { xs: 40, sm: 50 },
+                height: { xs: 40, sm: 45 },
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-                border: `1px solid`,
-                borderColor: 'divider',
-                fontSize: theme.typography.pxToRem(14),
-                fontWeight: 700,
-                borderRadius: 1,
                 transition: theme.transitions.create(['color', 'border-color']),
                 '&:hover': {
-                  color: 'primary.500',
-                  borderColor: 'grey.300',
                   backgroundColor: 'grey.50',
                 },
               },
@@ -109,9 +103,7 @@ export default function DiamondSponsors() {
                 '& a': {
                   borderColor: 'divider',
                   '&:hover': {
-                    color: 'primary.300',
-                    borderColor: 'primaryDark.600',
-                    backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                    backgroundColor: theme.palette.primaryDark[700],
                   },
                 },
               }),

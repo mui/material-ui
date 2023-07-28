@@ -172,13 +172,13 @@ export interface SliderTypeMap<
 /**
  * Utility to create component types that inherit props from Slider.
  */
-export interface ExtendSliderTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & Omit<SliderTypeMap['props'], 'isRtl'>;
-  defaultComponent: M['defaultComponent'];
+export interface ExtendSliderTypeMap<TypeMap extends OverridableTypeMap> {
+  props: TypeMap['props'] & Omit<SliderTypeMap['props'], 'isRtl'>;
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
-export type ExtendSlider<M extends OverridableTypeMap> = OverridableComponent<
-  ExtendSliderTypeMap<M>
+export type ExtendSlider<TypeMap extends OverridableTypeMap> = OverridableComponent<
+  ExtendSliderTypeMap<TypeMap>
 >;
 
 export type SliderProps<

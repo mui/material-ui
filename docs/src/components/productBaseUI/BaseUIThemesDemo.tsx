@@ -4,9 +4,10 @@ import clsx from 'clsx';
 // Base UI imports
 import Badge, { badgeClasses } from '@mui/base/Badge';
 import Input, { InputProps } from '@mui/base/Input';
-import Button from '@mui/base/Button';
-import Menu, { MenuActions } from '@mui/base/Menu';
+import Dropdown from '@mui/base/Dropdown';
+import Menu from '@mui/base/Menu';
 import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
+import MenuButton from '@mui/base/MenuButton';
 import Modal from '@mui/base/Modal';
 import Option from '@mui/base/Option';
 import Popper from '@mui/base/Popper';
@@ -18,7 +19,6 @@ import Switch, { switchClasses } from '@mui/base/Switch';
 import Tab from '@mui/base/Tab';
 import Tabs from '@mui/base/Tabs';
 import TabsList from '@mui/base/TabsList';
-import { ListActionTypes } from '@mui/base/useList';
 
 // Other packages
 import { css, styled, keyframes } from '@mui/system';
@@ -87,6 +87,7 @@ const StyledTabsList = styled('div')({
 const StyledTab = styled('button')({
   display: 'flex',
   alignItems: 'center',
+  cursor: 'pointer',
   justifyContent: 'center',
   gap: 6,
   position: 'relative',
@@ -121,6 +122,7 @@ const StyledTab = styled('button')({
 
 const StyledSelectButton = styled('button')({
   width: '100%',
+  cursor: 'pointer',
   maxWidth: '100%',
   minHeight: 'calc(2 * var(--border-width, 0px) + 37px)',
   border: 'var(--border-width, 1px) solid',
@@ -247,6 +249,10 @@ const StyledViewCode = styled(Link)({
 });
 
 const StyledPopper = styled(Popper)({
+  zIndex: 1,
+});
+
+const MenuRoot = styled('div')({
   zIndex: 1,
 });
 
@@ -655,11 +661,12 @@ const StyledMenuListbox = styled('ul')(`
   box-shadow: var(--Panel-shadow);
   `);
 
-const StyledMenuButton = styled(Button)`
-  padding: 0;
-  border: none;
-  background: transparent;
-`;
+const StyledMenuButton = styled(MenuButton)({
+  padding: 0,
+  cursor: 'pointer',
+  border: 'none',
+  background: 'transparent',
+});
 
 const snackbarInRight = keyframes`
   from {
@@ -767,54 +774,8 @@ export default function BaseUIThemesDemo() {
     setOpenSnackbar(true);
   };
   // Menu
-  const [buttonElement, setButtonElement] = React.useState<HTMLButtonElement | null>(null);
   const [isOpenMenu, setOpenMenu] = React.useState(false);
-  const menuActions = React.useRef<MenuActions>(null);
-  const preventReopen = React.useRef(false);
 
-  const updateAnchor = React.useCallback((node: HTMLButtonElement | null) => {
-    setButtonElement(node);
-  }, []);
-
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (preventReopen.current) {
-      event.preventDefault();
-      preventReopen.current = false;
-      return;
-    }
-
-    setOpenMenu((open) => !open);
-  };
-
-  const handleButtonMouseDown = () => {
-    if (isOpenMenu) {
-      // Prevents the menu from reopening right after closing
-      // when clicking the button.
-      preventReopen.current = true;
-    }
-  };
-
-  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setOpenMenu(true);
-      if (event.key === 'ArrowUp') {
-        // Focus the last item when pressing ArrowUp.
-        menuActions.current?.dispatch({
-          type: ListActionTypes.keyDown,
-          key: event.key,
-          event,
-        });
-      }
-    }
-  };
-
-  const createHandleMenuClick = () => {
-    return () => {
-      setOpenMenu(false);
-      buttonElement?.focus();
-    };
-  };
   return (
     <Fade in timeout={700}>
       <Panel sx={{ ...heroVariables[design] }}>
@@ -845,52 +806,44 @@ export default function BaseUIThemesDemo() {
           }}
         >
           <StyledParagraph>Notifications</StyledParagraph>
-          <StyledMenuButton
-            type="button"
-            onClick={handleButtonClick}
-            onKeyDown={handleButtonKeyDown}
-            onMouseDown={handleButtonMouseDown}
-            ref={updateAnchor}
-            aria-controls={isOpenMenu ? 'simple-menu' : undefined}
-            aria-expanded={isOpenMenu || undefined}
-            aria-haspopup="menu"
-          >
-            <StyledBadge badgeContent={5}>
-              <Box
-                component="img"
-                alt="Michał Dudak, the leading engineer for Base UI."
-                src="/static/branding/about/michal.png"
-                sx={{
-                  display: 'inline-block',
-                  verticalAlign: 'middle',
-                  height: 32,
-                  width: 32,
-                  borderRadius: 'var(--avatar-radius)',
-                  border: 'var(--border-width) solid var(--border-color)',
-                  background: 'var(--color-primary-light)',
-                  '&:hover': {
-                    background: 'var(--color-primary)',
-                  },
-                }}
-              />
-            </StyledBadge>
-          </StyledMenuButton>
-          <Menu
-            actions={menuActions}
+          <Dropdown
             open={isOpenMenu}
-            onOpenChange={(open) => {
+            onOpenChange={(_, open) => {
               setOpenMenu(open);
             }}
-            anchorEl={buttonElement}
-            slots={{ root: StyledPopper, listbox: StyledMenuListbox }}
-            slotProps={{ root: { disablePortal: true }, listbox: { id: 'simple-menu' } }}
           >
-            <StyledLabelCategory>Notification menu</StyledLabelCategory>
-            <CustomInput aria-label="Demo input" placeholder="Search for a component…" />
-            <StyledMenuItem onClick={createHandleMenuClick()}>Request a component</StyledMenuItem>
-            <StyledMenuItem onClick={createHandleMenuClick()}>Get started</StyledMenuItem>
-            <StyledMenuItem onClick={createHandleMenuClick()}>View all</StyledMenuItem>
-          </Menu>
+            <StyledMenuButton>
+              <StyledBadge badgeContent={5}>
+                <Box
+                  component="img"
+                  alt="Michał Dudak, the leading engineer for Base UI."
+                  src="/static/branding/about/michal.png"
+                  sx={{
+                    display: 'inline-block',
+                    verticalAlign: 'middle',
+                    height: 32,
+                    width: 32,
+                    borderRadius: 'var(--avatar-radius)',
+                    border: 'var(--border-width) solid var(--border-color)',
+                    background: 'var(--color-primary-light)',
+                    '&:hover': {
+                      background: 'var(--color-primary)',
+                    },
+                  }}
+                />
+              </StyledBadge>
+            </StyledMenuButton>
+            <Menu
+              slots={{ root: MenuRoot, listbox: StyledMenuListbox }}
+              slotProps={{ root: { disablePortal: true }, listbox: { id: 'simple-menu' } }}
+            >
+              <StyledLabelCategory>Notification menu</StyledLabelCategory>
+              <CustomInput aria-label="Demo input" placeholder="Search for a component…" />
+              <StyledMenuItem>Request a component</StyledMenuItem>
+              <StyledMenuItem>Get started</StyledMenuItem>
+              <StyledMenuItem>View all</StyledMenuItem>
+            </Menu>
+          </Dropdown>
         </Box>
         {/* Select component */}
         <Box
@@ -1005,13 +958,13 @@ export default function BaseUIThemesDemo() {
             />
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <StyledParagraph id="make-it-your-own">Use every component</StyledParagraph>
+            <StyledParagraph id="use-every-component">Use every component</StyledParagraph>
             <Switch
               slots={{
                 root: StyledSwitch,
               }}
               slotProps={{
-                input: { 'aria-labelledby': 'Use every component' },
+                input: { 'aria-labelledby': 'use-every-component' },
               }}
             />
           </Box>
