@@ -545,6 +545,15 @@ const teamMembers: Array<Profile> = [
     about: 'Volleyball, Cycling, Parenting, Movies',
     github: 'DavidCnoops',
   },
+  {
+    name: 'Raffaella Luzi',
+    src: '/static/branding/about/raffaella.png',
+    title: 'Head of Operations',
+    location: 'Rome, Italy',
+    locationCountry: 'it',
+    about: 'NYT crossword 📝 in one hand and a croissant 🥐 in the other',
+    github: 'rluzists1',
+  },
 ];
 
 const contributors = [
