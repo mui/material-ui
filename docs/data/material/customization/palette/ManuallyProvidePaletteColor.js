@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { Box, Stack } from '@mui/system';
@@ -45,6 +46,10 @@ function ColorShowcase({ color }) {
     </Stack>
   );
 }
+
+ColorShowcase.propTypes = {
+  color: PropTypes.oneOf(['primary', 'secondary']).isRequired,
+};
 
 export default function ManuallyProvidePaletteColor() {
   return (
