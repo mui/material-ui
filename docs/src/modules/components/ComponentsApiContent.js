@@ -139,18 +139,24 @@ export default function ComponentsApiContent(props) {
 
     const componentNameKebabCase = kebabCase(componentName);
 
+    const useNamedImports = source === '@mui/base';
+
+    const subpathImport = useNamedImports
+      ? `import { ${pageContent.name} } from '${source}/${pageContent.name}';`
+      : `import ${pageContent.name} from '${source}/${pageContent.name}';`;
+
+    const rootImport = `import { ${pageContent.name} } from '${source}';`;
+
+    const importInstructions = `${subpathImport}
+// ${t('or')}
+${rootImport}`;
+
     return (
       <React.Fragment key={`component-api-${key}`}>
         <MarkdownElement>
           <Heading hash={componentNameKebabCase} text={`${componentName} API`} />
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
-          <HighlightedCode
-            code={`
-import ${pageContent.name} from '${source}/${pageContent.name}';
-// ${t('or')}
-import { ${pageContent.name} } from '${source}';`}
-            language="jsx"
-          />
+          <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           <Heading text="props" hash={`${componentNameKebabCase}-props`} level="h3" />
           <p dangerouslySetInnerHTML={{ __html: spreadHint }} />

@@ -59,22 +59,28 @@ export default function HooksApiContent(props) {
     const source = filename
       .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
       // convert things like `/Table/Table.js` to ``
-      .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
+      .replace(/\/([^/]+)\/\1\.(js|ts|tsx)$/, '');
 
     const hookNameKebabCase = kebabCase(hookName);
+
+    const useNamedImports = source === '@mui/base';
+
+    const subpathImport = useNamedImports
+      ? `import { ${hookName} } from '${source}/${hookName}';`
+      : `import ${hookName} from '${source}/${hookName}';`;
+
+    const rootImport = `import { ${hookName} } from '${source}';`;
+
+    const importInstructions = `${subpathImport}
+// ${t('or')}
+${rootImport}`;
 
     return (
       <React.Fragment key={`hook-api-${key}`}>
         <MarkdownElement>
           <Heading hash={hookNameKebabCase} text={`${hookName} API`} />
           <Heading text="import" hash={`${hookNameKebabCase}-import`} level="h3" />
-          <HighlightedCode
-            code={`
-import ${hookName} from '${source.split('/').slice(0, -1).join('/')}';
-// ${t('or')}
-import { ${hookName} } from '${source.split('/').slice(0, 2).join('/')}';`}
-            language="jsx"
-          />
+          <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           <Heading text="parameters" hash={`${hookNameKebabCase}-parameters`} level="h3" />
           {Object.keys(parameters).length > 0 ? (
