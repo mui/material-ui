@@ -7,9 +7,9 @@ import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 import { EventHandlers, useSlotProps } from '@mui/base/utils';
-import composeClasses from '@mui/base/composeClasses';
+import { composeClasses } from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
 import TouchRipple from './TouchRipple';
 import { TouchRippleActions } from './TouchRipple.types';
