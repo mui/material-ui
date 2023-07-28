@@ -185,11 +185,6 @@ NumberInput.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
@@ -219,20 +214,26 @@ NumberInput.propTypes /* remove-proptypes */ = {
    */
   onBlur: PropTypes.func,
   /**
-   * Callback fired when the <input> value changes, before clamping is applied. Note that
-   * `event.target.value` may contain values that fall outside of `min` and `max` or
-   * are otherwise "invalid".
+   * Callback fired after the value is clamped and changes - when the <input> is blurred or when
+   * the stepper buttons are triggered.
+   * Called with `undefined` when the value is unset.
+   *
+   * @param {React.FocusEvent<HTMLInputElement>|React.PointerEvent|React.KeyboardEvent} event The event source of the callback
+   * @param {number|undefined} value The new value of the component
    */
-  onInputChange: PropTypes.func,
+  onChange: PropTypes.func,
   /**
    * @ignore
    */
   onFocus: PropTypes.func,
   /**
-   * Callback fired after the value is clamped and changes.
-   * Called with `undefined` when the value is unset.
+   * Callback fired when the <input> value changes after each keypress, before clamping is applied.
+   * Note that `event.target.value` may contain values that fall outside of `min` and `max` or
+   * are otherwise "invalid".
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
    */
-  onChange: PropTypes.func,
+  onInputChange: PropTypes.func,
   /**
    * @ignore
    */
