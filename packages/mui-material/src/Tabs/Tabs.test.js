@@ -684,6 +684,9 @@ describe('<Tabs />', () => {
       });
 
       it('should set only right scroll button state', async () => {
+        if (isJSDOM) {
+          this.skip();
+        }
         const { container, forceUpdate, getByRole } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab />
@@ -704,6 +707,9 @@ describe('<Tabs />', () => {
       });
 
       it('should set both left and right scroll button state', async () => {
+        if (isJSDOM) {
+          this.skip();
+        }
         const { container, forceUpdate, getByRole } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab style={{ width: 120, minWidth: 'auto' }} />
