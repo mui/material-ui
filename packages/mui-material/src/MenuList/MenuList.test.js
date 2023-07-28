@@ -47,18 +47,16 @@ describe('<MenuList />', () => {
       expect(getAllByRole('menuitem')).to.have.length(2);
     });
 
-    it('should not add tabIndex to presentation elements like Divider when all menuItems are disabled', () => {
+    it('should not add tabIndex to presentation elements like Divider when all Menu Items are disabled', () => {
       const { getByRole } = render(
         <MenuList>
           <MenuItem disabled>one</MenuItem>
-          <MenuItem disabled>two</MenuItem>
-          <MenuItem disabled>three</MenuItem>
           <Divider />
-          <MenuItem disabled>four</MenuItem>
+          <MenuItem disabled>two</MenuItem>
         </MenuList>,
       );
 
-      expect(getByRole('separator')).to.not.have.attribute('tabIndex');
+      expect(getByRole('separator')).not.to.have.attribute('tabIndex');
     });
   });
 
