@@ -28,11 +28,11 @@ function parseInput(v: string): string {
  *
  * Demos:
  *
- * - [Number Input](https://mui.com/base/react-number-input/#hook)
+ * - [Number Input](https://mui.com/base-ui/react-number-input/#hook)
  *
  * API:
  *
- * - [useNumberInput API](https://mui.com/base/react-number-input/hooks-api/#use-number-input)
+ * - [useNumberInput API](https://mui.com/base-ui/react-number-input/hooks-api/#use-number-input)
  */
 export default function useNumberInput(
   parameters: UseNumberInputParameters,

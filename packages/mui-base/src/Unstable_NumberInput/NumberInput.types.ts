@@ -1,4 +1,4 @@
-import { OverrideProps, Simplify } from '@mui/types';
+import { Simplify } from '@mui/types';
 import { FormControlState } from '../FormControl';
 import {
   UseNumberInputParameters,
@@ -6,7 +6,7 @@ import {
   UseNumberInputIncrementButtonSlotProps,
   UseNumberInputDecrementButtonSlotProps,
 } from '../unstable_useNumberInput/useNumberInput.types';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface NumberInputRootSlotPropsOverrides {}
 export interface NumberInputInputSlotPropsOverrides {}
@@ -52,20 +52,20 @@ export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
   };
 };
 
-export interface NumberInputTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & NumberInputOwnProps;
-  defaultComponent: D;
+export interface NumberInputTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & NumberInputOwnProps;
+  defaultComponent: RootComponentType;
 }
 
 export type NumberInputProps<
-  D extends React.ElementType = NumberInputTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<NumberInputTypeMap<P, D>, D> & {
-  component?: D;
-};
+  RootComponentType extends React.ElementType = NumberInputTypeMap['defaultComponent'],
+> = PolymorphicProps<NumberInputTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type NumberInputOwnerState = Simplify<
-  Omit<NumberInputProps, 'component' | 'slots' | 'slotProps'> & {
+  NumberInputOwnProps & {
     formControlContext: FormControlState | undefined;
     focused: boolean;
     isIncrementDisabled: boolean;

@@ -41,11 +41,11 @@ const useUtilityClasses = (ownerState: NumberInputOwnerState) => {
  *
  * Demos:
  *
- * - [Number Input](https://mui.com/base/react-number-input/)
+ * - [Number Input](https://mui.com/base-ui/react-number-input/)
  *
  * API:
  *
- * - [NumberInput API](https://mui.com/base/react-number-input/components-api/#number-input)
+ * - [NumberInput API](https://mui.com/base-ui/react-number-input/components-api/#number-input)
  */
 const NumberInput = React.forwardRef(function NumberInput(
   props: NumberInputProps,
@@ -53,7 +53,6 @@ const NumberInput = React.forwardRef(function NumberInput(
 ) {
   const {
     className,
-    component,
     defaultValue,
     disabled,
     error,
@@ -120,7 +119,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     placeholder,
   };
 
-  const Root = component ?? slots.root ?? 'div';
+  const Root = slots.root ?? 'div';
   const rootProps: WithOptionalOwnerState<NumberInputRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,

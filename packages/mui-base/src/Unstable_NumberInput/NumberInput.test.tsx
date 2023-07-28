@@ -36,6 +36,7 @@ describe('<NumberInput />', () => {
         testWithElement: 'button',
       },
     },
+    skip: ['componentProp'],
   }));
 
   it('should be able to attach input ref passed through props', () => {
