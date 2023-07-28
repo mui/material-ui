@@ -59,6 +59,7 @@ const RadioRoot = styled('span', {
   return [
     {
       '--Icon-fontSize': 'var(--Radio-size)',
+      '--Icon-color': 'currentColor',
       ...(ownerState.size === 'sm' && {
         '--Radio-size': '1rem',
         '--Radio-gap': '0.5rem',
@@ -113,6 +114,10 @@ const RadioRadio = styled('span', {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
       margin: 0,
       boxSizing: 'border-box',
       width: 'var(--Radio-size)',
@@ -125,6 +130,9 @@ const RadioRadio = styled('span', {
       ...(ownerState.disableIcon && {
         display: 'contents',
       }),
+      [`&.${radioClasses.checked}`]: {
+        '--Icon-color': 'currentColor',
+      },
     },
     ...(!ownerState.disableIcon
       ? [

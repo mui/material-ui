@@ -42,7 +42,7 @@ const TextareaRoot = styled('div', {
       '--Textarea-radius': theme.vars.radius.sm,
       '--Textarea-gap': '0.5rem',
       '--Textarea-placeholderColor': 'inherit',
-      '--Textarea-placeholderOpacity': 0.7,
+      '--Textarea-placeholderOpacity': 0.64,
       '--Textarea-decoratorColor': theme.vars.palette.text.icon,
       '--Textarea-focused': '0',
       '--Textarea-focusedThickness': theme.vars.focus.thickness,

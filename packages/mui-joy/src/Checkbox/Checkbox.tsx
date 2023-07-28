@@ -96,6 +96,10 @@ const CheckboxCheckbox = styled('span', {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
       boxSizing: 'border-box',
       borderRadius: `min(${theme.vars.radius.sm}, 0.25rem)`,
       width: 'var(--Checkbox-size)',
