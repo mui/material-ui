@@ -1,5 +1,8 @@
 <Label {...getInputLabelProps()}>Label</Label>
-<StyledAutocompleteRoot {...getRootProps()}>
+<StyledAutocompleteRoot
+  {...getRootProps()}
+  className={focused ? 'focused' : ''}
+>
   <StyledInput {...getInputProps()} />
 </StyledAutocompleteRoot>
 {groupedOptions.length > 0 && (

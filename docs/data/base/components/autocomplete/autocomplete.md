@@ -76,7 +76,7 @@ The useAutocomplete hook requires a list of `options` to be displayed when the t
 
 The following demo shows how to create a simple combobox, apply some styling, and write the selected value to a state variable using the `onChange` prop:
 
-{{"demo": "UseAutocomplete.js"}}
+{{"demo": "UseAutocomplete"}}
 
 ## Customization
 

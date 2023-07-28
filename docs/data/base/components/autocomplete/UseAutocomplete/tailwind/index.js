@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { useAutocomplete } from '@mui/base/useAutocomplete';
-import { styled } from '@mui/system';
+import useAutocomplete from '@mui/base/useAutocomplete';
+import clsx from 'clsx';
 
 export default function UseAutocomplete() {
-  const [value, setValue] = React.useState<(typeof top100Films)[number] | null>(
-    null,
-  );
+  const [value, setValue] = React.useState(null);
 
   const {
     getRootProps,
@@ -14,167 +12,60 @@ export default function UseAutocomplete() {
     getListboxProps,
     getOptionProps,
     groupedOptions,
+    focused,
   } = useAutocomplete({
     id: 'use-autocomplete-demo',
     options: top100Films,
     getOptionLabel: (option) => option.label,
+    isOptionEqualToValue: (option, val) => option.label === val.label,
     value,
     onChange: (event, newValue) => setValue(newValue),
   });
 
   return (
     <div style={{ marginBottom: 24 }}>
-      <Label {...getInputLabelProps()}>Label</Label>
-      <StyledAutocompleteRoot {...getRootProps()}>
-        <StyledInput {...getInputProps()} />
-      </StyledAutocompleteRoot>
-      {groupedOptions.length > 0 && (
-        <StyledListbox {...getListboxProps()}>
-          {(groupedOptions as typeof top100Films).map((option, index) => (
-            <StyledOption {...getOptionProps({ option, index })}>
-              {option.label}
-            </StyledOption>
-          ))}
-        </StyledListbox>
-      )}
+      <label
+        {...getInputLabelProps()}
+        htmlFor="use-autocomplete-demo"
+        className="block text-sm font-medium mb-1"
+      >
+        Pick a movie:
+      </label>
+      <div className="relative w-80">
+        <div
+          {...getRootProps()}
+          className={clsx(
+            'flex gap-[5px] pr-[5px] overflow-hidden w-full rounded-lg bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 hover:border-purple-400 dark:hover:border-purple-400 focus-visible:outline-0',
+            !focused &&
+              'shadow-[0_2px_2px_transparent] shadow-slate-50 dark:shadow-slate-900',
+            focused &&
+              'border-purple-400 dark:border-purple-400 shadow-outline-purple',
+          )}
+        >
+          <input
+            {...getInputProps()}
+            className="text-sm leading-[1.5] text-slate-900 dark:text-slate-300 bg-inherit border-0 rounded-[inherit] px-3 py-2 outline-0 grow shrink-0 basis-auto"
+          />
+        </div>
+        {groupedOptions.length > 0 && (
+          <ul
+            {...getListboxProps()}
+            className="text-sm box-border p-1.5 my-3 mx-0 w-full rounded-xl overflow-auto outline-0 max-h-[300px] z-[1] absolute inset-x-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-200 shadow shadow-slate-200 dark:shadow-slate-900"
+          >
+            {groupedOptions.map((option, index) => (
+              <li
+                {...getOptionProps({ option, index })}
+                className="list-none p-2 rounded-lg cursor-default last-of-type:border-b-0 hover:cursor-pointer aria-selected:bg-purple-100 dark:aria-selected:bg-purple-900 aria-selected:text-purple-900 dark:aria-selected:text-purple-100 ui-focused:bg-slate-100 dark:ui-focused:bg-slate-700 ui-focus-visible:bg-slate-100 dark:ui-focus-visible:bg-slate-800 ui-focused:text-slate-900 dark:ui-focused:text-slate-300 ui-focus-visible:text-slate-900 dark:ui-focus-visible:text-slate-300 ui-focus-visible:shadow-[0_0_0_3px_transparent] ui-focus-visible:shadow-purple-200 dark:ui-focus-visible:shadow-purple-500 ui-focused:aria-selected:bg-purple-100 dark:ui-focused:aria-selected:bg-purple-900 ui-focus-visible:aria-selected:bg-purple-100 dark:ui-focus-visible:aria-selected:bg-purple-900 ui-focused:aria-selected:text-purple-900 dark:ui-focused:aria-selected:text-purple-100 ui-focus-visible:aria-selected:text-purple-900 dark:ui-focus-visible:aria-selected:text-purple-100"
+              >
+                {option.label}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
-
-const blue = {
-  100: '#DAECFF',
-  200: '#99CCF3',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  900: '#003A75',
-};
-
-const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
-};
-
-const Label = styled('label')`
-  display: block;
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 4px;
-`;
-
-const StyledAutocompleteRoot = styled('div')(
-  ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: 400;
-  border-radius: 12px;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  display: flex;
-  gap: 5px;
-  padding-right: 5px;
-  overflow: hidden;
-  width: 320px;
-
-  &.focused {
-    border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-  }
-
-  &:hover {
-    border-color: ${blue[400]};
-  }
-
-  &:focus-visible {
-    outline: 0;
-  }
-`,
-);
-
-const StyledInput = styled('input')(
-  ({ theme }) => `
-  font-size: 0.875rem;
-  font-family: inherit;
-  font-weight: 400;
-  line-height: 1.5;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  background: inherit;
-  border: none;
-  border-radius: inherit;
-  padding: 12px 12px;
-  outline: 0;
-  flex: 1 0 auto;
-`,
-);
-
-const StyledListbox = styled('ul')(
-  ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  padding: 6px;
-  margin: 12px 0;
-  max-width: 320px;
-  border-radius: 12px;
-  overflow: auto;
-  outline: 0px;
-  max-height: 300px;
-  z-index: 1;
-  position: absolute;
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
-  `,
-);
-
-const StyledOption = styled('li')(
-  ({ theme }) => `
-  list-style: none;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: default;
-
-  &:last-of-type {
-    border-bottom: none;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &[aria-selected=true] {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
-    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-  }
-
-  &.Mui-focused,
-  &.Mui-focusVisible {
-    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  }
-
-  &.Mui-focusVisible {
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-  }
-
-  &[aria-selected=true].Mui-focused,
-  &[aria-selected=true].Mui-focusVisible {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
-    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-  }
-  `,
-);
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
