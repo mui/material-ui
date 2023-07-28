@@ -292,15 +292,6 @@ const teamMembers: Array<Profile> = [
     github: 'DanailH',
   },
   {
-    name: 'Matheus Wichman',
-    src: '/static/branding/about/matheus.png',
-    title: 'React Community Engineer - X',
-    location: 'Esteio, Brazil',
-    locationCountry: 'br',
-    about: 'I like road cycling 🚲, DIY 🛠 and aviation ✈!',
-    github: 'm4theushw',
-  },
-  {
     name: 'Michał Dudak',
     src: '/static/branding/about/michal.png',
     title: 'Software Engineer - Core',
@@ -338,15 +329,6 @@ const teamMembers: Array<Profile> = [
     about: 'Love cycling 🚴‍♂️ and reading 📚',
     locationCountry: 'fr',
     github: 'flaviendelangle',
-  },
-  {
-    name: 'Benny Joo',
-    src: '/static/branding/about/benny.png',
-    title: 'Junior Software Engineer - Core',
-    location: 'London, UK',
-    locationCountry: 'gb',
-    about: 'Love reading 📚 and working out 🏋️‍♂️',
-    github: 'hbjORbj',
   },
   {
     src: '/static/branding/about/alexandre.png',
