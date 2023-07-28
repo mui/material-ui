@@ -39,7 +39,7 @@ A big thanks to the 23 contributors who made this release possible.
 - &#8203;<!-- 19 -->[docs][joy] Add adjustments to the color inversion page (#37143) @danilo-leal
 - &#8203;<!-- 18 -->[docs][material] Improve documentation about adding custom colors (#37743) @DiegoAndai
 - &#8203;<!-- 17 -->[examples] Fix Joy UI Next.js App Router font loading (#38095) @IgnacioUtrilla
-- &#8203;<!-- 16 -->[examples] Fix material-next-app-router Font Usage with next/font (#38026) @onderonur
+- &#8203;<!-- 16 -->[examples] Fix material-next Font Usage with next/font (#38026) @onderonur
 
 ### Core
 
@@ -311,7 +311,7 @@ _Jun 21, 2023_
 A big thanks to the 25 contributors who made this release possible. Here are some highlights ✨:
 
 - 💫 Added [Slider](https://mui.com/material-ui/react-slider/#material-you-version) component using the new Material You design language (#37520) @DiegoAndai.
-- 📚 Added [examples](https://github.com/mui/material-ui/tree/master/examples/material-next-app-router-ts) showcasing how you can use Material UI with next.js's app directory (#37315) @smo043
+- 📚 Added [examples](https://github.com/mui/material-ui/tree/master/examples/material-next-ts) showcasing how you can use Material UI with next.js's app directory (#37315) @smo043
 
 ### `@mui/material@5.13.6`
 
@@ -372,7 +372,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - &#8203;<!-- 19 -->[docs-infra] Add analyticsTags to Algolia (#37600) @Janpot
 - &#8203;<!-- 18 -->[docs-infra] Simplify product id handling (#37593) @oliviertassinari
 - &#8203;<!-- 35 -->[CHANGELOG] Add missing release date for v5.13.5 @oliviertassinari
-- &#8203;<!-- 16 -->[examples] Shell command fix in the readme file of material-next-app-router-ts example (#37675) @bablukpik
+- &#8203;<!-- 16 -->[examples] Shell command fix in the readme file of material-next-ts example (#37675) @bablukpik
 - &#8203;<!-- 15 -->[examples] Next.js v13 app router with Material UI (#37315) @smo043
 
 ### Core
