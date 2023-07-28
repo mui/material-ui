@@ -60,9 +60,10 @@ const TabsRoot = styled('div', {
       '--Tabs-spacing': '1.25rem',
     }),
     '--Tab-indicatorThickness': '2px',
-    ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
-      '--Icon-color': 'currentColor',
-    }),
+    '--Icon-color':
+      ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+        ? 'currentColor'
+        : theme.vars.palette.text.icon,
     '--TabList-stickyBackground': resolvedBg === 'transparent' ? 'initial' : resolvedBg, // for sticky TabList
     display: 'flex',
     flexDirection: 'column',

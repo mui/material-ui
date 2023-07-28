@@ -44,9 +44,10 @@ const CardRoot = styled('div', {
   ]);
   return [
     {
-      ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
-        '--Icon-color': 'currentColor',
-      }),
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
       // a context variable for any child component
       '--Card-childRadius':
         'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
