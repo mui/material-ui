@@ -3,8 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import useButton from '@mui/base/useButton';
 import composeClasses from '@mui/base/composeClasses';
+import { Interpolation } from '@mui/system';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { styled, useThemeProps } from '../styles';
+import { styled, Theme, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
@@ -86,11 +87,13 @@ const ButtonLoadingCenter = styled('span', {
   }),
 }));
 
-export const ButtonRoot = styled('button', {
-  name: 'JoyButton',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ButtonOwnerState }>(({ theme, ownerState }) => {
+export const getButtonStyles = ({
+  theme,
+  ownerState,
+}: {
+  theme: Theme;
+  ownerState: Partial<Omit<ButtonOwnerState, 'slots' | 'slotProps'>>;
+}): Interpolation<any> => {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
@@ -157,7 +160,13 @@ export const ButtonRoot = styled('button', {
       }),
     },
   ];
-});
+};
+
+const ButtonRoot = styled('button', {
+  name: 'JoyButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: ButtonOwnerState }>(getButtonStyles);
 /**
  *
  * Demos:
@@ -353,7 +362,7 @@ Button.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * If `true`, the loading indicator is shown.
+   * If `true`, the loading indicator is shown and the button becomes disabled.
    * @default false
    */
   loading: PropTypes.bool,

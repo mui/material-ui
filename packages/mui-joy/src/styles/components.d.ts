@@ -128,6 +128,11 @@ import {
   ListItemDecoratorSlot,
 } from '../ListItemDecorator/ListItemDecoratorProps';
 import { MenuProps, MenuOwnerState, MenuSlot } from '../Menu/MenuProps';
+import {
+  type MenuButtonOwnerState,
+  type MenuButtonProps,
+  type MenuButtonSlot,
+} from '../MenuButton/MenuButtonProps';
 import { MenuItemProps, MenuItemOwnerState, MenuItemSlot } from '../MenuItem/MenuItemProps';
 import { MenuListProps, MenuListOwnerState, MenuListSlot } from '../MenuList/MenuListProps';
 import { ModalProps, ModalOwnerState, ModalSlot } from '../Modal/ModalProps';
@@ -441,6 +446,10 @@ export interface Components<Theme = unknown> {
   JoyMenu?: {
     defaultProps?: Partial<MenuProps>;
     styleOverrides?: OverridesStyleRules<MenuSlot, MenuOwnerState, Theme>;
+  };
+  JoyMenuButton?: {
+    defaultProps?: Partial<MenuButtonProps>;
+    styleOverrides?: OverridesStyleRules<MenuButtonSlot, MenuButtonOwnerState, Theme>;
   };
   JoyMenuList?: {
     defaultProps?: Partial<MenuListProps>;

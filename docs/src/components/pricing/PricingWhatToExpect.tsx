@@ -82,7 +82,7 @@ export default function PricingWhatToExpect() {
             Upon expiration, you can renew your maintenance plan with a discount that depends on
             when you renew:
             <ul>
-              <li>before the suppord expires: 50% discount</li>
+              <li>before the support expires: 50% discount</li>
               <li>up to 60 days after the support has expired: 25% discount</li>
               <li>more than 60 days after the support has expired: 15% discount</li>
             </ul>

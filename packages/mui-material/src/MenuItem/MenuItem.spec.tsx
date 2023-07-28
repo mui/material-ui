@@ -1,13 +1,14 @@
 import * as React from 'react';
 import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import { expectType } from '@mui/types';
+import Link from '@mui/material/Link';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
   function CustomComponent() {
     return <div />;
   };
 
-const props: MenuItemProps<'div'> = {
+const props1: MenuItemProps<'div'> = {
   component: 'div',
   onChange: (event) => {
     expectType<React.FormEvent<HTMLDivElement>, typeof event>(event);
@@ -20,27 +21,22 @@ const props2: MenuItemProps = {
   },
 };
 
-const props3: MenuItemProps<'span'> = {
-  // @ts-expect-error
-  component: 'div',
+const props3: MenuItemProps<typeof CustomComponent> = {
+  component: CustomComponent,
+  stringProp: '2',
+  numberProp: 2,
 };
 
 const props4: MenuItemProps<typeof CustomComponent> = {
   component: CustomComponent,
   stringProp: '2',
   numberProp: 2,
+  // @ts-expect-error CustomComponent does not accept incorrectProp
+  incorrectProp: 3,
 };
 
+// @ts-expect-error missing props
 const props5: MenuItemProps<typeof CustomComponent> = {
-  component: CustomComponent,
-  stringProp: '2',
-  numberProp: 2,
-  // @ts-expect-error
-  inCorrectProp: 3,
-};
-
-// @ts-expect-error
-const props6: MenuItemProps<typeof CustomComponent> = {
   component: CustomComponent,
 };
 
@@ -52,7 +48,7 @@ const TestComponent = () => {
 
       <MenuItem component={CustomComponent} stringProp="s" numberProp={1} />
       {
-        // @ts-expect-error
+        // @ts-expect-error missing props
         <MenuItem component={CustomComponent} />
       }
       <MenuItem
@@ -66,6 +62,7 @@ const TestComponent = () => {
           expectType<React.FormEvent<HTMLSpanElement>, typeof event>(event);
         }}
       />
+      <MenuItem component={Link} />
     </React.Fragment>
   );
 };

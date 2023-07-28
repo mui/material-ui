@@ -1,7 +1,7 @@
 {
   "parameters": {
     "options": {
-      "type": { "name": "ReadonlyArray&lt;T&gt;", "description": "ReadonlyArray&lt;T&gt;" },
+      "type": { "name": "ReadonlyArray&lt;Value&gt;", "description": "ReadonlyArray&lt;Value&gt;" },
       "required": true
     },
     "autoComplete": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
@@ -28,8 +28,8 @@
     "componentName": { "type": { "name": "string", "description": "string" } },
     "defaultValue": {
       "type": {
-        "name": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;",
-        "description": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;"
+        "name": "AutocompleteValue&lt;Value, Multiple, DisableClearable, FreeSolo&gt;",
+        "description": "AutocompleteValue&lt;Value, Multiple, DisableClearable, FreeSolo&gt;"
       },
       "default": "props.multiple ? [] : null"
     },
@@ -52,8 +52,8 @@
     },
     "filterOptions": {
       "type": {
-        "name": "(options: T[], state: FilterOptionsState&lt;T&gt;) =&gt; T[]",
-        "description": "(options: T[], state: FilterOptionsState&lt;T&gt;) =&gt; T[]"
+        "name": "(options: Value[], state: FilterOptionsState&lt;Value&gt;) =&gt; Value[]",
+        "description": "(options: Value[], state: FilterOptionsState&lt;Value&gt;) =&gt; Value[]"
       },
       "default": "createFilterOptions()"
     },
@@ -63,17 +63,23 @@
     },
     "freeSolo": { "type": { "name": "FreeSolo", "description": "FreeSolo" }, "default": "false" },
     "getOptionDisabled": {
-      "type": { "name": "(option: T) =&gt; boolean", "description": "(option: T) =&gt; boolean" }
+      "type": {
+        "name": "(option: Value) =&gt; boolean",
+        "description": "(option: Value) =&gt; boolean"
+      }
     },
     "getOptionLabel": {
       "type": {
-        "name": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string",
-        "description": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string"
+        "name": "(option: Value | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string",
+        "description": "(option: Value | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string"
       },
       "default": "(option) => option.label ?? option"
     },
     "groupBy": {
-      "type": { "name": "(option: T) =&gt; string", "description": "(option: T) =&gt; string" }
+      "type": {
+        "name": "(option: Value) =&gt; string",
+        "description": "(option: Value) =&gt; string"
+      }
     },
     "handleHomeEndKeys": {
       "type": { "name": "boolean", "description": "boolean" },
@@ -87,15 +93,15 @@
     "inputValue": { "type": { "name": "string", "description": "string" } },
     "isOptionEqualToValue": {
       "type": {
-        "name": "(option: T, value: T) =&gt; boolean",
-        "description": "(option: T, value: T) =&gt; boolean"
+        "name": "(option: Value, value: Value) =&gt; boolean",
+        "description": "(option: Value, value: Value) =&gt; boolean"
       }
     },
     "multiple": { "type": { "name": "Multiple", "description": "Multiple" }, "default": "false" },
     "onChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, value: AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails&lt;T&gt;) =&gt; void",
-        "description": "(event: React.SyntheticEvent, value: AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails&lt;T&gt;) =&gt; void"
+        "name": "(event: React.SyntheticEvent, value: AutocompleteValue&lt;Value, Multiple, DisableClearable, FreeSolo&gt;, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails&lt;Value&gt;) =&gt; void",
+        "description": "(event: React.SyntheticEvent, value: AutocompleteValue&lt;Value, Multiple, DisableClearable, FreeSolo&gt;, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails&lt;Value&gt;) =&gt; void"
       }
     },
     "onClose": {
@@ -106,8 +112,8 @@
     },
     "onHighlightChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, option: T | null, reason: AutocompleteHighlightChangeReason) =&gt; void",
-        "description": "(event: React.SyntheticEvent, option: T | null, reason: AutocompleteHighlightChangeReason) =&gt; void"
+        "name": "(event: React.SyntheticEvent, option: Value | null, reason: AutocompleteHighlightChangeReason) =&gt; void",
+        "description": "(event: React.SyntheticEvent, option: Value | null, reason: AutocompleteHighlightChangeReason) =&gt; void"
       }
     },
     "onInputChange": {
@@ -141,8 +147,8 @@
     },
     "value": {
       "type": {
-        "name": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;",
-        "description": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;"
+        "name": "AutocompleteValue&lt;Value, Multiple, DisableClearable, FreeSolo&gt;",
+        "description": "AutocompleteValue&lt;Value, Multiple, DisableClearable, FreeSolo&gt;"
       }
     }
   },
@@ -185,8 +191,8 @@
     },
     "getOptionProps": {
       "type": {
-        "name": "(renderedOption: UseAutocompleteRenderedOption&lt;T&gt;) =&gt; React.HTMLAttributes&lt;HTMLLIElement&gt;",
-        "description": "(renderedOption: UseAutocompleteRenderedOption&lt;T&gt;) =&gt; React.HTMLAttributes&lt;HTMLLIElement&gt;"
+        "name": "(renderedOption: UseAutocompleteRenderedOption&lt;Value&gt;) =&gt; React.HTMLAttributes&lt;HTMLLIElement&gt;",
+        "description": "(renderedOption: UseAutocompleteRenderedOption&lt;Value&gt;) =&gt; React.HTMLAttributes&lt;HTMLLIElement&gt;"
       },
       "required": true
     },
@@ -210,8 +216,8 @@
     },
     "groupedOptions": {
       "type": {
-        "name": "T[] | Array&lt;AutocompleteGroupedOption&lt;T&gt;&gt;",
-        "description": "T[] | Array&lt;AutocompleteGroupedOption&lt;T&gt;&gt;"
+        "name": "Value[] | Array&lt;AutocompleteGroupedOption&lt;Value&gt;&gt;",
+        "description": "Value[] | Array&lt;AutocompleteGroupedOption&lt;Value&gt;&gt;"
       },
       "required": true
     },
@@ -224,8 +230,8 @@
     },
     "value": {
       "type": {
-        "name": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;",
-        "description": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;"
+        "name": "AutocompleteValue&lt;Value, Multiple, DisableClearable, FreeSolo&gt;",
+        "description": "AutocompleteValue&lt;Value, Multiple, DisableClearable, FreeSolo&gt;"
       },
       "required": true
     }

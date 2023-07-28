@@ -1,4 +1,4 @@
-import type { MuiPage, OrderedMuiPage } from 'docs/src/MuiPage';
+import type { MuiPage } from 'docs/src/MuiPage';
 import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 
 const pages: readonly MuiPage[] = [
@@ -16,5 +16,4 @@ const pages: readonly MuiPage[] = [
   { pathname: '/blog', title: 'Blog', icon: standardNavIcons.BookIcon },
 ];
 
-export type { MuiPage, OrderedMuiPage };
 export default pages;

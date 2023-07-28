@@ -167,8 +167,8 @@ const systemFont = [
 
 export const getMetaThemeColor = (mode: 'light' | 'dark') => {
   const themeColor = {
-    light: grey[50],
-    dark: blueDark[800],
+    light: blue[600],
+    dark: blueDark[900],
   };
   return themeColor[mode];
 };

@@ -16,8 +16,11 @@ export interface ModalOwnerState extends ModalProps {
   exited: boolean;
 }
 
-export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
-  props: P & {
+export interface ModalTypeMap<
+  DefaultComponent extends React.ElementType = 'div',
+  AdditionalProps = {},
+> {
+  props: AdditionalProps & {
     /**
      * A backdrop component. This prop enables custom backdrop rendering.
      * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
@@ -92,7 +95,7 @@ export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
      */
     sx?: SxProps<Theme>;
   } & Omit<BaseModalTypeMap['props'], 'slotProps'>;
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 type ModalRootProps = NonNullable<ModalTypeMap['props']['slotProps']>['root'];
@@ -129,8 +132,10 @@ export type ModalClasses = Record<ModalClassKey, string>;
 export declare const modalClasses: ModalClasses;
 
 export type ModalProps<
-  D extends React.ElementType = ModalTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ModalTypeMap<D, P>, D>;
+  RootComponent extends React.ElementType = ModalTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ModalTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Modal;

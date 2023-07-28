@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { MuiPage } from 'docs/src/pages';
+import type { MuiPage } from 'docs/src/MuiPage';
 import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
 const PageContext = React.createContext<{

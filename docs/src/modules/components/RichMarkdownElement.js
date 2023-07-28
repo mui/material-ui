@@ -124,6 +124,7 @@ export default function RichMarkdownElement(props) {
         rawCSSTS: demo.rawCSSTS,
         jsCSS: demoComponents[demo.moduleCSS] ?? null,
         tsxCSS: demoComponents[demo.moduleTSCSS] ?? null,
+        gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
       }}
       disableAd={disableAd}
       demoOptions={renderedMarkdownOrDemo}
