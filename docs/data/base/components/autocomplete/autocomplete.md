@@ -128,7 +128,7 @@ These two states are isolated, and should be controlled independently.
 Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
-{{"demo": "ControlledStates.js"}}
+{{"demo": "ControlledStates"}}
 
 ### Using a portal
 

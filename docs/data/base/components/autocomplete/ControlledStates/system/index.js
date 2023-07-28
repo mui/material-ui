@@ -5,7 +5,7 @@ import { styled } from '@mui/system';
 const options = ['Firefox', 'Google Chrome', 'Microsoft Edge', 'Safari', 'Opera'];
 
 export default function ControlledStates() {
-  const [value, setValue] = React.useState<string | null>(options[0]);
+  const [value, setValue] = React.useState(options[0]);
   const [inputValue, setInputValue] = React.useState('');
 
   const {
@@ -37,7 +37,7 @@ export default function ControlledStates() {
         </StyledInputRoot>
         {groupedOptions.length > 0 && (
           <StyledListbox {...getListboxProps()}>
-            {(groupedOptions as string[]).map((option, index) => (
+            {groupedOptions.map((option, index) => (
               <StyledOption {...getOptionProps({ option, index })}>
                 {option}
               </StyledOption>
@@ -80,7 +80,7 @@ const StyledInputRoot = styled('div')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
-  border-radius: 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
@@ -116,7 +116,7 @@ const StyledInput = styled('input')(
   background: inherit;
   border: none;
   border-radius: inherit;
-  padding: 12px 12px;
+  padding: 8px 12px;
   outline: 0;
   flex: 1 0 auto;
 `,
