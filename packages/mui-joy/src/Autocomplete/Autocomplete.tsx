@@ -356,7 +356,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const formControl = React.useContext(FormControlContext);
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
+  const rootColor = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
+  const color = getColor(inProps.color, rootColor);
   const disabled = disabledProp ?? formControl?.disabled ?? false;
 
   const {
@@ -539,8 +540,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant:
-        mergedProps.variant || getChildVariantAndColor(variant, colorProp).variant || 'plain',
-      color: mergedProps.color || getChildVariantAndColor(variant, colorProp).color || 'neutral',
+        mergedProps.variant || getChildVariantAndColor(variant, rootColor).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, rootColor).color || 'neutral',
       disableColorInversion: !!inProps.color,
     }),
     additionalProps: {
@@ -558,8 +559,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant:
-        mergedProps.variant || getChildVariantAndColor(variant, colorProp).variant || 'plain',
-      color: mergedProps.color || getChildVariantAndColor(variant, colorProp).color || 'neutral',
+        mergedProps.variant || getChildVariantAndColor(variant, rootColor).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, rootColor).color || 'neutral',
       disableColorInversion: !!inProps.color,
     }),
     additionalProps: {
@@ -579,7 +580,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant: mergedProps.variant || variant,
-      color: mergedProps.color || (!mergedProps.disablePortal ? colorProp : color),
+      color: mergedProps.color || (!mergedProps.disablePortal ? rootColor : color),
       disableColorInversion: !mergedProps.disablePortal,
     }),
     additionalProps: {
@@ -640,8 +641,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       variant:
-        mergedProps.variant || getChildVariantAndColor(variant, colorProp).variant || 'plain',
-      color: mergedProps.color || getChildVariantAndColor(variant, colorProp).color || 'neutral',
+        mergedProps.variant || getChildVariantAndColor(variant, rootColor).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, rootColor).color || 'neutral',
       disableColorInversion: !listboxProps.disablePortal,
     }),
     additionalProps: {
@@ -683,7 +684,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   let popup = null;
   if (anchorEl) {
     popup = (
-      <VariantColorProvider variant={variant} color={colorProp}>
+      <VariantColorProvider variant={variant} color={rootColor}>
         <ListProvider nested>
           <SlotListbox
             {...listboxProps}

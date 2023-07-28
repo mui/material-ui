@@ -10,10 +10,11 @@ import styled from '../styles/styled';
 import { useVariantColor } from '../styles/variantColorInheritance';
 import { useColorInversion } from '../styles/ColorInversion';
 import Cancel from '../internal/svg-icons/Cancel';
-import chipDeleteClasses, { getChipDeleteUtilityClass } from './chipDeleteClasses';
+import { getChipDeleteUtilityClass } from './chipDeleteClasses';
 import { ChipDeleteProps, ChipDeleteOwnerState, ChipDeleteTypeMap } from './ChipDeleteProps';
 import ChipContext from '../Chip/ChipContext';
 import useSlot from '../utils/useSlot';
+import { StyledIconButton } from '../IconButton/IconButton';
 
 const useUtilityClasses = (ownerState: ChipDeleteOwnerState) => {
   const { focusVisible, variant, color, disabled } = ownerState;
@@ -30,39 +31,18 @@ const useUtilityClasses = (ownerState: ChipDeleteOwnerState) => {
   return composeClasses(slots, getChipDeleteUtilityClass, {});
 };
 
-const ChipDeleteRoot = styled('button', {
+const ChipDeleteRoot = styled(StyledIconButton as unknown as 'button', {
   name: 'JoyChipDelete',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ChipDeleteOwnerState }>(({ theme, ownerState }) => [
-  {
-    '--Icon-margin': 'initial', // prevent overrides from parent
-    ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
-      '--Icon-color': 'currentColor',
-    }),
-    pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
-    cursor: 'pointer',
-    width: 'var(--Chip-deleteSize, 2rem)',
-    height: 'var(--Chip-deleteSize, 2rem)',
-    borderRadius: 'var(--Chip-deleteRadius, 50%)',
-    margin: 'var(--Chip-deleteMargin)',
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1, // overflow above sibling button or anchor
-    border: 'none', // reset user agent stylesheet
-    background: 'none', // reset user agent stylesheet
-    padding: '0px', // reset user agent stylesheet
-    [theme.focus.selector]: { '--Icon-color': 'currentColor', ...theme.focus.default },
-  },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
-  { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
-  {
-    [`&.${chipDeleteClasses.disabled}`]:
-      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-  },
-]);
+})<{ ownerState: ChipDeleteOwnerState }>({
+  '--IconButton-size': 'var(--Chip-deleteSize, 2rem)',
+  '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.3)',
+  pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
+  borderRadius: 'var(--Chip-deleteRadius, 50%)',
+  zIndex: 1, // overflow above sibling button or anchor
+  padding: 0, // reset user agent stylesheet
+});
 
 /**
  *

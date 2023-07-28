@@ -97,9 +97,10 @@ export const getButtonStyles = ({
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
-      ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
-        '--Icon-color': 'currentColor',
-      }),
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': theme.vars.fontSize.lg,
         '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari

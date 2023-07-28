@@ -91,7 +91,7 @@ const SelectRoot = styled('div', {
     {
       '--Select-radius': theme.vars.radius.sm,
       '--Select-gap': '0.5rem',
-      '--Select-placeholderOpacity': ownerState.variant?.match(/(soft|solid)/) ? 0.7 : 0.5,
+      '--Select-placeholderOpacity': 0.64,
       '--Select-decoratorColor': theme.vars.palette.text.icon,
       '--Select-focusedThickness': theme.vars.focus.thickness,
       ...(ownerState.color === 'context'
@@ -295,13 +295,19 @@ const SelectIndicator = styled('span', {
   ...(ownerState.size === 'lg' && {
     '--Icon-fontSize': theme.vars.fontSize.xl2,
   }),
-  '--Icon-color': 'currentColor',
+  '--Icon-color':
+    ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+      ? 'currentColor'
+      : theme.vars.palette.text.icon,
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',
   marginInlineEnd: 'calc(var(--Select-paddingInline) / -4)',
   [`.${selectClasses.endDecorator} + &`]: {
     marginInlineStart: 'calc(var(--Select-gap) / 2)',
+  },
+  [`&.${selectClasses.expanded}, .${selectClasses.disabled} > &`]: {
+    '--Icon-color': 'currentColor',
   },
 }));
 /**

@@ -30,7 +30,7 @@ const AspectRatioRoot = styled('div', {
   name: 'JoyAspectRatio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AspectRatioOwnerState }>(({ ownerState }) => {
+})<{ ownerState: AspectRatioOwnerState }>(({ ownerState, theme }) => {
   const minHeight =
     typeof ownerState.minHeight === 'number' ? `${ownerState.minHeight}px` : ownerState.minHeight;
   const maxHeight =
@@ -40,9 +40,10 @@ const AspectRatioRoot = styled('div', {
     '--AspectRatio-paddingBottom': `clamp(var(--AspectRatio-minHeight), calc(100% / (${ownerState.ratio})), var(--AspectRatio-maxHeight))`,
     '--AspectRatio-maxHeight': maxHeight || '9999px',
     '--AspectRatio-minHeight': minHeight || '0px',
-    ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
-      '--Icon-color': 'currentColor',
-    }),
+    '--Icon-color':
+      ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+        ? 'currentColor'
+        : theme.vars.palette.text.icon,
     borderRadius: 'var(--AspectRatio-radius)',
     flexDirection: 'column',
     margin: 'var(--AspectRatio-margin)',

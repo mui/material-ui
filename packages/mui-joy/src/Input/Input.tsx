@@ -39,7 +39,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Input-radius': theme.vars.radius.sm,
         '--Input-gap': '0.5rem',
         '--Input-placeholderColor': 'inherit',
-        '--Input-placeholderOpacity': ownerState.variant?.match(/(soft|solid)/) ? 0.7 : 0.5,
+        '--Input-placeholderOpacity': 0.64,
         '--Input-decoratorColor': theme.vars.palette.text.icon,
         '--Input-focused': '0',
         '--Input-focusedThickness': theme.vars.focus.thickness,

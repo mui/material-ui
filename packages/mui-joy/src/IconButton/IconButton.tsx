@@ -38,9 +38,10 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
   ({ theme, ownerState }) => [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
-      ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
-        '--Icon-color': 'currentColor',
-      }),
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
       ...(ownerState.instanceSize && {
         '--IconButton-size': { sm: '2rem', md: '2.5rem', lg: '3rem' }[ownerState.instanceSize],
       }),

@@ -143,9 +143,10 @@ const ChipAction = styled('button', {
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => [
   {
-    ...((ownerState.color !== 'neutral' || ownerState.variant === 'solid') && {
-      '--Icon-color': 'currentColor',
-    }),
+    '--Icon-color':
+      ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+        ? 'currentColor'
+        : theme.vars.palette.text.icon,
     position: 'absolute',
     zIndex: 0,
     top: 0,
@@ -180,7 +181,7 @@ const ChipStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: ChipOwnerState }>({
   '--Avatar-marginInlineStart': 'calc(var(--Chip-decoratorChildOffset) * -1)',
-  '--Chip-deleteMargin': '0 0 0 calc(var(--Chip-decoratorChildOffset) * -1)',
+  '--IconButton-margin': '0 0 0 calc(var(--Chip-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Chip-paddingInline) / -4)',
   display: 'inherit',
   // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
@@ -194,7 +195,7 @@ const ChipEndDecorator = styled('span', {
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: ChipOwnerState }>({
-  '--Chip-deleteMargin': '0 calc(var(--Chip-decoratorChildOffset) * -1) 0 0',
+  '--IconButton-margin': '0 calc(var(--Chip-decoratorChildOffset) * -1) 0 0',
   '--Icon-margin': '0 calc(var(--Chip-paddingInline) / -4) 0 0',
   display: 'inherit',
   // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
