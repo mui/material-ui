@@ -8,8 +8,10 @@
     "max": { "type": { "name": "number" } },
     "min": { "type": { "name": "number" } },
     "onChange": { "type": { "name": "func" } },
-    "onValueChange": { "type": { "name": "func" } },
+    "onInputChange": { "type": { "name": "func" } },
+    "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
+    "shiftMultiplier": { "type": { "name": "number" } },
     "slotProps": {
       "type": {
         "name": "shape",
@@ -22,7 +24,8 @@
         "name": "shape",
         "description": "{ decrementButton?: elementType, incrementButton?: elementType, input?: elementType, root?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
     "step": { "type": { "name": "number" } },
     "value": { "type": { "name": "any" } }
@@ -32,8 +35,8 @@
   "spread": true,
   "muiName": "MuiNumberInput",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-base/src/NumberInput/NumberInput.tsx",
+  "filename": "/packages/mui-base/src/Unstable_NumberInput/NumberInput.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-number-input/\">Number Input</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base-ui/react-number-input/\">Number Input</a></li></ul>",
   "cssComponent": false
 }
