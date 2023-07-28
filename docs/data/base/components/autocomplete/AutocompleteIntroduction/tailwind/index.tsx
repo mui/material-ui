@@ -16,6 +16,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
     disabled = false,
     readOnly = false,
     options,
+    isOptionEqualToValue,
     ...other
   } = props;
 

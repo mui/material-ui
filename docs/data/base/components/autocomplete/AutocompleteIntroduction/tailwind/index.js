@@ -14,6 +14,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
     disabled = false,
     readOnly = false,
     options,
+    isOptionEqualToValue,
     ...other
   } = props;
 
@@ -130,6 +131,16 @@ CustomAutocomplete.propTypes = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * Used to determine if the option represents the given value.
+   * Uses strict equality by default.
+   * ⚠️ Both arguments need to be handled, an option can only match with one value.
+   *
+   * @param {Value} option The option to test.
+   * @param {Value} value The value to test against.
+   * @returns {boolean}
+   */
+  isOptionEqualToValue: PropTypes.func,
   /**
    * Array of options.
    */
