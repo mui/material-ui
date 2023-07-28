@@ -8,12 +8,13 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_capitalize as capitalize,
 } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
-import useAutocomplete, {
+import { composeClasses } from '@mui/base/composeClasses';
+import {
+  useAutocomplete,
   AutocompleteGroupedOption,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
-import Popper from '@mui/base/Popper';
+import { Popper } from '@mui/base/Popper';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';

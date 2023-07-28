@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
+import { composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListItemContentOwnerState, ListItemContentTypeMap } from './ListItemContentProps';
 import { getListItemContentUtilityClass } from './listItemContentClasses';

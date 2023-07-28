@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
+import { composeClasses } from '@mui/base/composeClasses';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import FormControlContext from './FormControlContext';

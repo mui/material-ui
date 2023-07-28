@@ -2,7 +2,7 @@ export * from './utils';
 export * from './Badge';
 export * from './Button';
 export * from './ClickAwayListener';
-export * from './composeClasses';
+export { composeClasses as unstable_composeClasses } from './composeClasses';
 export * from './Dropdown';
 export * from './FocusTrap';
 export * from './FormControl';

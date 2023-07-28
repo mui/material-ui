@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
+import { composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { DividerOwnerState, DividerTypeMap } from './DividerProps';
 import { getDividerUtilityClass } from './dividerClasses';

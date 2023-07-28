@@ -3,8 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
-import useButton from '@mui/base/useButton';
+import { composeClasses } from '@mui/base/composeClasses';
+import { useButton } from '@mui/base/useButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import {
