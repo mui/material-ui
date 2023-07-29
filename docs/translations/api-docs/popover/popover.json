@@ -9,6 +9,8 @@
     "children": "The content of the component.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "container": "An HTML element, component instance, or function that returns either. The <code>container</code> will passed to the Modal component.<br>By default, it uses the body of the anchorEl&#39;s top-level document object, so it&#39;s simply <code>document.body</code> most of the time.",
+    "disableMarginThreshold": "Disables the margin threshold so that when scrolled the popover stays in the correct position By default, false for backward compatibility.",
+    "disableScrollLock": "Disable the scroll lock behavior.",
     "elevation": "The elevation of the popover.",
     "marginThreshold": "Specifies how close to the edge of the window the popover can appear.",
     "onClose": "Callback fired when the component requests to be closed. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>.",
