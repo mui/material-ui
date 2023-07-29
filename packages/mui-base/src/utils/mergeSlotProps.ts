@@ -5,7 +5,7 @@ import { EventHandlers } from './types';
 import extractEventHandlers from './extractEventHandlers';
 import omitEventHandlers from './omitEventHandlers';
 
-export type WithCommonProps<T> = T & {
+export type WithCommonProps<OtherProps> = OtherProps & {
   className?: string;
   style?: React.CSSProperties;
   ref?: React.Ref<any>;

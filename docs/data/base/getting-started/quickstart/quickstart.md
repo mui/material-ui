@@ -21,7 +21,7 @@ yarn add @mui/base
 ```
 
 ```bash pnpm
-pnpm install @mui/base
+pnpm add @mui/base
 ```
 
 </codeblock>
