@@ -683,7 +683,7 @@ describe('<Tabs />', () => {
         expect(hasRightScrollButton(container)).to.equal(false);
       });
 
-      it('should set only right scroll button state', async () => {
+      it('should set only right scroll button state', async function test() {
         if (isJSDOM) {
           this.skip();
         }
@@ -706,7 +706,7 @@ describe('<Tabs />', () => {
         expect(hasRightScrollButton(container)).to.equal(true);
       });
 
-      it('should set both left and right scroll button state', async () => {
+      it('should set both left and right scroll button state', async function test() {
         if (isJSDOM) {
           this.skip();
         }
