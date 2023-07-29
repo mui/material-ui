@@ -3,6 +3,12 @@ import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 
+declare module '@mui/joy/styles' {
+  interface TypographySystemOverrides {
+    kbd: true;
+  }
+}
+
 const customTheme = extendTheme({
   typography: {
     kbd: {
