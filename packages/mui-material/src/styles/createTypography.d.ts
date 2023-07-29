@@ -15,8 +15,7 @@ export type Variant =
   | 'body2'
   | 'caption'
   | 'button'
-  | 'overline'
-  | 'inherit';
+  | 'overline';
 
 export interface FontStyle
   extends Required<{

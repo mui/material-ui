@@ -33,10 +33,3 @@ import { expectType } from '@mui/types';
     ...theme.typography.body1,
   }));
 }
-
-// test for theme.typography.inherit
-const Div = styled('div')(({ theme }) => ({
-  ...theme.typography.inherit,
-  backgroundColor: theme.palette.background.paper,
-  padding: theme.spacing(1),
-}));
