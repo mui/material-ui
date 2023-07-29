@@ -515,6 +515,7 @@ export default function ButtonThemes() {
                 </Button>
               </Box>
             )}
+
             {design === 'fluent' && (
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Button>Primary</Button>
@@ -523,12 +524,14 @@ export default function ButtonThemes() {
                 </Button>
               </Box>
             )}
+
             {design === 'chakra' && (
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Button>Solid</Button>
                 <Button variant="outlined">Outlined</Button>
               </Box>
             )}
+
             {design === 'mantine' && (
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Button>Solid</Button>
