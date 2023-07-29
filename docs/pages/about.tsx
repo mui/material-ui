@@ -488,6 +488,7 @@ const teamMembers: Array<Profile> = [
     locationCountry: 'us',
     about: 'I enjoy collecting sports cards and practicing jiu-jitsu',
     github: 'richbustos',
+    twitter: 'bustos_rich',
   },
   {
     src: '/static/branding/about/victor.png',
