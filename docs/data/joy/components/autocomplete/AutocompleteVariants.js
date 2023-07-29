@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Autocomplete from '@mui/joy/Autocomplete';
+import AutocompleteOption from '@mui/joy/AutocompleteOption';
 import Stack from '@mui/joy/Stack';
 
-export default function InputAppearance() {
+export default function AutocompleteVariants() {
   return (
     <Stack spacing={1}>
       <Autocomplete
@@ -20,6 +21,11 @@ export default function InputAppearance() {
         variant="solid"
         placeholder="Solid variant"
         options={top100Films}
+        renderOption={(props, option) => (
+          <AutocompleteOption variant="solid" {...props}>
+            {option.label}
+          </AutocompleteOption>
+        )}
         sx={{ width: 300 }}
       />
       <Autocomplete

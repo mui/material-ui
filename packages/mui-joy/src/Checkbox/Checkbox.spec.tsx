@@ -22,7 +22,6 @@ import { expectType } from '@mui/types';
 
 <Checkbox color="primary" />;
 <Checkbox color="danger" />;
-<Checkbox color="info" />;
 <Checkbox color="success" />;
 <Checkbox color="warning" />;
 <Checkbox color="neutral" />;

@@ -11,7 +11,7 @@ export default function CheckboxChip() {
   return (
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
       <Box>
-        <Typography fontWeight="md" fontSize="lg" id="fav-movie" mb={2}>
+        <Typography level="title-lg" id="fav-movie" mb={2}>
           Favorite Movies
         </Typography>
         <Box
@@ -34,7 +34,7 @@ export default function CheckboxChip() {
             return (
               <Chip
                 key={name}
-                variant={checked ? 'soft' : 'plain'}
+                variant="plain"
                 color={checked ? 'primary' : 'neutral'}
                 startDecorator={
                   checked && <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />

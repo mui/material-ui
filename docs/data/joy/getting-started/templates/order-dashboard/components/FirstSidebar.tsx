@@ -13,8 +13,8 @@ export default function FirstSidebar() {
   return (
     <Sheet
       className="FirstSidebar"
-      variant="soft"
-      color="primary"
+      variant="plain"
+      color="neutral"
       invertedColors
       sx={{
         position: {

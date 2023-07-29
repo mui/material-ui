@@ -512,6 +512,8 @@
     "/joy-ui/guides/overriding-component-structure": "Overriding component structure",
     "/joy-ui/guides/using-joy-ui-and-material-ui-together": "Joy UI and Material UI together",
     "/joy-ui/guides/using-icon-libraries": "Using icon libraries",
-    "/joy-ui/guides/next-js-app-router": "Next.js App Router"
+    "/joy-ui/guides/next-js-app-router": "Next.js App Router",
+    "/joy-ui/migration": "Migration",
+    "/joy-ui/migration/migrating-default-theme": "Migrating the default theme"
   }
 }

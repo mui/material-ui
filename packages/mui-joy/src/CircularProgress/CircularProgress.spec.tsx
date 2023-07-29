@@ -15,7 +15,6 @@ import { expectType } from '@mui/types';
 // `color`
 <CircularProgress color="primary" />;
 <CircularProgress color="danger" />;
-<CircularProgress color="info" />;
 <CircularProgress color="success" />;
 <CircularProgress color="warning" />;
 <CircularProgress color="neutral" />;

@@ -137,7 +137,7 @@ describe('<Link />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorPrimary);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" color={color}>
@@ -160,10 +160,24 @@ describe('<Link />', () => {
         </Link>,
       );
 
-      expect(getByTestId('root')).have.class(classes.body1);
+      expect(getByTestId('root')).have.class(classes['body-md']);
     });
 
-    (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'] as const).forEach((level) => {
+    (
+      [
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'title-lg',
+        'title-md',
+        'title-sm',
+        'body-lg',
+        'body-md',
+        'body-sm',
+        'body-xs',
+      ] as const
+    ).forEach((level) => {
       it(`should render ${level}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" level={level as keyof TypographySystem}>
