@@ -30,40 +30,16 @@ export default function BreadcrumbsWithMenu() {
         <MenuItem onClick={handleClose}>Breadcrumb 4</MenuItem>
       </Menu>
       <Breadcrumbs aria-label="breadcrumbs">
-        <Link
-          // `preventDefault` is for demo purposes
-          // and is generally not needed in your app
-          onClick={(event) => event.preventDefault()}
-          underline="hover"
-          color="primary"
-          href="/"
-          fontSize="inherit"
-        >
+        <Link color="primary" href="#condensed-with-menu">
           Breadcrumb 1
         </Link>
         <Button size="sm" onClick={handleClick} variant="plain" color="primary">
           •••
         </Button>
-        <Link
-          // `preventDefault` is for demo purposes
-          // and is generally not needed in your app
-          onClick={(event) => event.preventDefault()}
-          underline="hover"
-          color="primary"
-          href="/"
-          fontSize="inherit"
-        >
+        <Link color="primary" href="#condensed-with-menu">
           Breadcrumb 5
         </Link>
-        <Link
-          // `preventDefault` is for demo purposes
-          // and is generally not needed in your app
-          onClick={(event) => event.preventDefault()}
-          underline="hover"
-          color="primary"
-          href="/"
-          fontSize="inherit"
-        >
+        <Link color="primary" href="#condensed-with-menu">
           Breadcrumb 6
         </Link>
       </Breadcrumbs>

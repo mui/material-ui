@@ -9,6 +9,10 @@ import Button from '@mui/material/Button';
 import { Box, Stack } from '@mui/system';
 import { Typography } from '@mui/material';
 
+// Augment the palette to include a violet color
+
+// Update the Button's color options to include a violet option
+
 const violetBase = '#7F00FF';
 const violetMain = alpha(violetBase, 0.7);
 

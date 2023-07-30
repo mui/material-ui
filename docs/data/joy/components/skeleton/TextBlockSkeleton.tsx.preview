@@ -4,11 +4,11 @@
 <Skeleton variant="text" level="h2" />
 <Typography level="h2">h2 Typeface</Typography>
 
-<Skeleton variant="text" level="body1" />
-<Typography level="body1">body1 Typeface</Typography>
+<Skeleton variant="text" />
+<Typography>body-md Typeface</Typography>
 
-<Skeleton variant="text" level="body2" />
-<Typography level="body2">body2 Typeface</Typography>
+<Skeleton variant="text" level="body-sm" />
+<Typography level="body-sm">body-sm Typeface</Typography>
 
-<Skeleton variant="text" level="body3" />
-<Typography level="body3">body3 Typeface</Typography>
+<Skeleton variant="text" level="body-xs" />
+<Typography level="body-xs">body-xs Typeface</Typography>

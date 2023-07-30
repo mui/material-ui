@@ -11,7 +11,8 @@ const highContrastThresholdTheme = createTheme({
   },
 });
 
-function ContrastShowcase({ title }: { title: string }) {
+function ContrastShowcase(props: { title: string }) {
+  const { title } = props;
   const theme = useTheme();
 
   return (

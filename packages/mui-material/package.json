@@ -67,7 +67,7 @@
     "@mui/types": "^7.2.4",
     "@mui/utils": "^5.14.1",
     "@types/react-transition-group": "^4.4.6",
-    "clsx": "^1.2.1",
+    "clsx": "^2.0.0",
     "csstype": "^3.1.2",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0",

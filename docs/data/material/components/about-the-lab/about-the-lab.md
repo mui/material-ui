@@ -29,6 +29,10 @@ npm install @mui/lab @mui/material
 yarn add @mui/lab @mui/material
 ```
 
+```bash pnpm
+pnpm add @mui/lab @mui/material
+```
+
 </codeblock>
 
 Note that the lab has a peer dependency on the Material UI components.

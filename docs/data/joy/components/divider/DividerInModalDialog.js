@@ -21,7 +21,7 @@ export default function DividerInModalDialog() {
         Modal Title
       </Typography>
       <Divider inset="none" />
-      <Typography level="body2" id="divider-modal-desc" fontSize="sm">
+      <Typography level="body-sm" id="divider-modal-desc" fontSize="sm">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         Lorem Ipsum has been the industry standard dummy text ever since the 1500s
       </Typography>

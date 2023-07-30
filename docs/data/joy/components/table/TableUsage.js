@@ -55,7 +55,7 @@ export default function ButtonUsage() {
       renderDemo={(props) => (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <Typography
-            level="body3"
+            level="body-xs"
             justifyContent="center"
             textAlign="center"
             sx={{ mb: 2 }}
