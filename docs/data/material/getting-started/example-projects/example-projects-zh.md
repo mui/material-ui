@@ -8,8 +8,8 @@
 
 <!-- #default-branch-switch -->
 
-- [Next.js](https://github.com/mui/material-ui/tree/next/examples/material-next) （[TypeScript 版本](https://github.com/mui/material-ui/tree/next/examples/nextjs-with-typescript)）
-- [Create React App](https://github.com/mui/material-ui/tree/next/examples/create-react-app) （[TypeScript 版本](https://github.com/mui/material-ui/tree/next/examples/material-cra-ts)）
+- [Next.js](https://github.com/mui/material-ui/tree/next/examples/nextjs) （[TypeScript 版本](https://github.com/mui/material-ui/tree/next/examples/nextjs-with-typescript)）
+- [Create React App](https://github.com/mui/material-ui/tree/next/examples/create-react-app) （[TypeScript 版本](https://github.com/mui/material-ui/tree/next/examples/create-react-app-with-typescript)）
 - [Remix](https://github.com/mui/material-ui/tree/master/examples/material-remix-ts)
 - [Gatsby](https://github.com/mui/material-ui/tree/master/examples/material-gatsby)
 - [Preact](https://github.com/mui/material-ui/tree/master/examples/material-preact)

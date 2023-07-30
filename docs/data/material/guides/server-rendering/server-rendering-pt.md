@@ -208,7 +208,7 @@ We host different reference implementations which you can find in the [GitHub re
 
 - [A implementação de referência deste tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/material-express-ssr)
 - [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/material-gatsby)
-- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/material-next) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript))
+- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/material-next) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/material-next-ts))
 
 ## Resolução de problemas
 
