@@ -303,6 +303,8 @@ export default function AppSearch(props) {
   const optionalFilters = [];
   if (pageContext.productId !== 'null') {
     optionalFilters.push(`productId:${pageContext.productId}`);
+  } else if (pageContext.productCategoryId !== 'null') {
+    optionalFilters.push(`productCategoryId:${pageContext.productCategoryId}`);
   }
 
   return (
