@@ -111,9 +111,17 @@ Nested components inside a component have:
 
 ### Controlled components
 
-Most of the controlled component are controlled via the `value` and the `onChange` props,
-however, the `open` / `onClose` / `onOpen` combination is used for display related state.
-In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
+Most controlled components are controlled by the `value` and the `onChange` props.
+The `open` / `onClose` / `onOpen` combination is also used for displaying related state.
+In the cases where there are more events, the noun comes first, and then the verb—for example: `onPageChange`, `onRowsChange`.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 ### boolean vs. enum
 

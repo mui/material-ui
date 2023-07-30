@@ -4,17 +4,20 @@
 
 Run one of the following commands to add Joy UI to your project:
 
-## npm
-
-```sh
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/joy @emotion/react @emotion/styled
 ```
 
-## yarn
-
-```sh
+```bash yarn
 yarn add @mui/joy @emotion/react @emotion/styled
 ```
+
+```bash pnpm
+pnpm add @mui/joy @emotion/react @emotion/styled
+```
+
+</codeblock>
 
 ## Peer dependencies
 
@@ -29,37 +32,42 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 },
 ```
 
-## Public Sans font
+## Inter font
 
-Joy UI is designed to use the [Public Sans](https://fonts.google.com/specimen/Public+Sans)
+Joy UI is designed to use the [Inter](https://fonts.google.com/specimen/Inter)
 font by default.
-You may add it to your project with npm or yarn via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
+You may add it to your project with npm via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
 
-### npm
-
-```sh
-npm install @fontsource/public-sans
+<codeblock storageKey="package-manager">
+```bash npm
+npm install @fontsource/inter
 ```
 
-### yarn
+```bash yarn
+yarn add @fontsource/inter
+```
 
-```sh
+```bash pnpm
 yarn add @fontsource/public-sans
 ```
+
+</codeblock>
 
 Then you can import it in your entry point like this:
 
 ```tsx
-import '@fontsource/public-sans';
+import '@fontsource/inter';
 ```
 
 ### Google Web Fonts
 
-To install the Public Sans font in your project using the Google Web Fonts CDN, add the following code snippet inside your project's `<head />` tag:
+To install the Inter font in your project using the Google Web Fonts CDN, add the following code snippet inside your project's `<head />` tag:
 
 ```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Public+Sans&display=swap"
+  href="https://fonts.googleapis.com/css?family=Inter:wght@300;400;500;600;700&display=swap"
 />
 ```

@@ -12,14 +12,14 @@ export default function RadioUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
-          defaultValue: 'soft',
+          knob: 'radio',
+          defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'primary',
+          defaultValue: 'neutral',
         },
         {
           propName: 'size',
@@ -41,7 +41,6 @@ export default function RadioUsage() {
             orientation={orientation}
             defaultValue="1"
             name="radio-button-usage"
-            sx={{ mt: 1 }}
           >
             <Radio label="Regular crust" value="1" {...props} />
             <Radio label="Deep dish" value="2" {...props} />

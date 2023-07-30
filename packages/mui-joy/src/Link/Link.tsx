@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -6,6 +7,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
+  unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
@@ -72,11 +74,12 @@ const LinkRoot = styled('a', {
   return [
     {
       '--Icon-fontSize': '1.25em',
+      '--Icon-color': 'currentColor',
+      '--CircularProgress-size': '1.25em',
+      '--CircularProgress-thickness': '3px',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
       ...(ownerState.level === 'inherit' && {
-        fontSize: 'inherit',
-        fontFamily: 'inherit',
-        lineHeight: 'inherit',
+        font: 'inherit',
       }),
       ...(ownerState.underline === 'none' && {
         textDecoration: 'none',
@@ -93,6 +96,8 @@ const LinkRoot = styled('a', {
       ...(ownerState.startDecorator && {
         verticalAlign: 'bottom', // to make the link align with the parent's content
       }),
+      textDecorationThickness: 'max(0.08em, 1px)', // steal from https://moderncss.dev/modern-css-for-dynamic-component-based-architecture/#css-reset-additions
+      textUnderlineOffset: '0.15em', // steal from https://moderncss.dev/modern-css-for-dynamic-component-based-architecture/#css-reset-additions
       display: 'inline-flex',
       alignItems: 'center',
       WebkitTapHighlightColor: 'transparent',
@@ -111,10 +116,10 @@ const LinkRoot = styled('a', {
       }),
       ...(ownerState.variant
         ? {
-            paddingBlock: 'min(0.15em, 4px)',
-            paddingInline: '0.375em', // better than left, right because it also works with writing mode.
+            paddingBlock: 'min(0.1em, 4px)',
+            paddingInline: '0.25em', // better than left, right because it also works with writing mode.
             ...(!ownerState.nesting && {
-              marginInline: '-0.375em',
+              marginInline: '-0.25em',
             }),
           }
         : {
@@ -199,7 +204,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     disabled = false,
     onBlur,
     onFocus,
-    level: levelProp = 'body1',
+    level: levelProp = 'body-md',
     overlay = false,
     underline = 'hover',
     endDecorator,
@@ -287,7 +292,11 @@ const Link = React.forwardRef(function Link(inProps, ref) {
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        {children}
+        {isMuiElement(children, ['Skeleton'])
+          ? React.cloneElement(children as React.ReactElement, {
+              variant: (children as React.ReactElement).props.variant || 'inline',
+            })
+          : children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
       </SlotRoot>
     </TypographyNestedContext.Provider>
@@ -308,7 +317,7 @@ Link.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -327,7 +336,7 @@ Link.propTypes /* remove-proptypes */ = {
   endDecorator: PropTypes.node,
   /**
    * Applies the theme typography styles.
-   * @default 'body1'
+   * @default 'body-md'
    */
   level: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['body1', 'body2', 'body3', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'inherit']),

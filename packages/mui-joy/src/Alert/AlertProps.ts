@@ -41,7 +41,7 @@ export interface AlertTypeMap<P = {}, D extends React.ElementType = 'div'> {
     AlertSlotsAndSlotProps & {
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
-       * @default 'primary'
+       * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, AlertPropsColorOverrides>;
       /**
@@ -73,7 +73,7 @@ export interface AlertTypeMap<P = {}, D extends React.ElementType = 'div'> {
       sx?: SxProps;
       /**
        * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-       * @default 'soft'
+       * @default 'outlined'
        */
       variant?: OverridableStringUnion<VariantProp, AlertPropsVariantOverrides>;
     };

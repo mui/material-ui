@@ -6,14 +6,10 @@
  */
 
 /**
- * List of demos or folders to ignore when transpiling
- * Example: "app-bar/BottomAppBar.tsx"
+ * List of demos or folders to ignore when transpiling.
+ * Only ignore files that aren't used in the UI.
  */
-const ignoreList = [
-  '/pages.ts',
-  'docs/data/joy/getting-started/templates',
-  'docs/data/base/components/select/UnstyledSelectIntroduction.tsx',
-];
+const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
 
 const fse = require('fs-extra');
 const path = require('path');
@@ -102,7 +98,7 @@ async function transpileFile(tsxPath, program) {
 
     const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program, {
       shouldResolveObject: ({ name }) => {
-        if (name === 'classes') {
+        if (name === 'classes' || name === 'ownerState') {
           return false;
         }
 

@@ -41,13 +41,13 @@ Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -69,13 +69,13 @@ Base UI is available as an [npm package](https://www.npmjs.com/package/@mui/base
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/base
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/base
 ```
 
@@ -88,13 +88,13 @@ MUI System is available as an [npm package](https://www.npmjs.com/package/@mui/s
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
@@ -102,13 +102,13 @@ Or if you want to use `styled-components` as a styling engine:
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
@@ -168,7 +168,7 @@ For more options, see the [`Button` component page](https://mui.com/material-ui/
 
 ## Questions
 
-For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/tagged/mui) instead of GitHub issues.
+For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui) instead of GitHub issues.
 Use the "mui" tag on Stack Overflow to make it easier for the community to find your question.
 
 ## Examples

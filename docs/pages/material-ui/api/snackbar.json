@@ -10,20 +10,27 @@
     },
     "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
     "children": { "type": { "name": "element" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "ClickAwayListenerProps": { "type": { "name": "object" } },
     "ContentProps": { "type": { "name": "object" } },
     "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
     "key": { "type": { "name": "custom", "description": "any" } },
     "message": { "type": { "name": "node" } },
-    "onClose": { "type": { "name": "func" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent<any> | Event, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
     "open": { "type": { "name": "bool" } },
     "resumeHideDuration": { "type": { "name": "number" } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
     "transitionDuration": {

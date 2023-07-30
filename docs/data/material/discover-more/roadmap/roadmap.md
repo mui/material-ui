@@ -43,7 +43,7 @@ Here are the top priorities:
 Here are the components we will work on being supported in the MUI ecosystem:
 
 - ✅ Released as stable
-- 🧪 Close to becoming stable, already released as unstable
+- 🧪 Not too far from becoming stable, already released as unstable
 - 🛠 Work in progress, will be or already released as unstable
 - ⏳ Planning to build
 
@@ -51,7 +51,7 @@ Here are the components we will work on being supported in the MUI ecosystem:
 | :----------------------------------------------------------------------- | :------- | :----- |
 | Advanced Layout                                                          | MUI X    | ⏳     |
 | Carousel                                                                 | MUI X    | ⏳     |
-| Charts                                                                   | MUI X    | ⏳     |
+| [Charts](https://mui.com/x/react-charts/)                                | MUI X    | 🧪     |
 | [Data Grid](/x/react-data-grid/)                                         | MUI X    | ✅     |
 | [Date Picker](/x/react-date-pickers/date-picker/)                        | MUI X    | ✅     |
 | [Time Picker](/x/react-date-pickers/time-picker/)                        | MUI X    | ✅     |

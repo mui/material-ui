@@ -43,8 +43,9 @@ import Option from '@mui/base/Option';
 export default function MyApp() {
   return (
     <Select>
-      <Option>{/* option one */}</Option>
-      <Option>{/* option two */}</Option>
+      <Option value="#F00">Red</Option>
+      <Option value="#0F0">Green</Option>
+      <Option value="#00F">Blue</Option>
     </Select>
   );
 }
@@ -54,14 +55,14 @@ export default function MyApp() {
 
 The following demo shows how to create and style a Select component.
 
-{{"demo": "UnstyledSelectSimple.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledSelectBasic", "defaultCodeOpen": false}}
 
 #### Form submission
 
 The value(s) chosen in the Select can be posted to a server using a standard HTML form.
 When the `name` prop is set, the Select will render a hidden input with the selected value.
 
-{{"demo": "UnstyledSelectForm.js" }}
+{{"demo": "UnstyledSelectForm.js"}}
 
 Note how the second Select in the demo above renders a hidden input with the name provided as a prop.
 
@@ -70,7 +71,7 @@ See the [Object values](#object-values) section to learn how to do it.
 
 #### TypeScript caveat
 
-Select accepts generic props.
+Select's props are generic.
 Due to TypeScript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
 
 In such cases, the generic argument will be defaulted to `unknown` and type suggestions will be incomplete.
@@ -93,9 +94,57 @@ For the sake of brevity, the rest of the demos throughout this doc will not use 
 ### Multi-select
 
 The Select component lets your users select multiple options from the list.
+In contrast to the single-selection mode, the options popup doesn't close after an item is selected, enabling users to continue choosing more options.
+
 Set the `multiple` prop to turn on the multi-selection mode.
 
 {{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
+
+Note that in the multiple selection mode, the `value` prop (and `defaultValue`) is an array.
+
+### Controlled select
+
+Select can be used as an uncontrolled or controlled component.
+
+:::info
+
+- The value is **controlled** when its parent manages it by providing a `value` prop.
+- The value is **uncontrolled** when it is managed by the component's own internal state. This state can be initialized using the `defaultValue` prop.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
+
+{{"demo": "UnstyledSelectControlled.js", "defaultCodeOpen": false}}
+
+To set the value of the controlled Select, use the `value` prop.
+The uncontrolled component accepts the `defaultValue` that can be used to set the initial value.
+In any case, if you wish to deselect all values, pass `null` to the respective prop.
+
+:::warning
+This pattern is where Base UI's Select differs from the equivalent [Material UI component](/material-ui/react-select/).
+The Material UI Select takes an empty string to deselect all values.
+In Base UI, you must use `null` to achieve this.
+:::
+
+### Object values
+
+The Select component can be used with non-string values:
+
+{{"demo": "UnstyledSelectObjectValues.js", "defaultCodeOpen": false}}
+
+If you use a Select with object values in a form and post the form contents to a server, the selected value will be converted to JSON.
+You can change this behavior with the help of the `getSerializedValue` prop.
+
+{{"demo": "UnstyledSelectObjectValuesForm.js", "defaultCodeOpen": false}}
+
+### Grouping options
+
+Options can be grouped, similarly to how the native `<select>` element works.
+Unlike the native `<select>`, groups can be nested.
+
+The following demo shows how to group options with the Option Group component:
+
+{{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}
 
 ### Anatomy
 
@@ -181,23 +230,6 @@ The resulting HTML is much smaller compared to the unstyled component version, a
 
 ## Customization
 
-### Controlled select
-
-Select can be used as an uncontrolled or controlled component:
-
-{{"demo": "UnstyledSelectControlled.js", "defaultCodeOpen": false}}
-
-### Object values
-
-The Select component can be used with non-string values:
-
-{{"demo": "UnstyledSelectObjectValues.js", "defaultCodeOpen": false}}
-
-If you use a Select with object values in a form and post the form contents to a server, the selected value will be converted to JSON.
-You can change this behavior with the help of the `getSerializedValue` prop.
-
-{{"demo": "UnstyledSelectObjectValuesForm.js", "defaultCodeOpen": false}}
-
 ### Selected value appearance
 
 You can customize the appearance of the selected value display by providing a function to the `renderValue` prop.
@@ -211,12 +243,3 @@ Options don't have to be plain strings.
 You can include custom elements to be rendered inside the listbox.
 
 {{"demo": "UnstyledSelectRichOptions.js", "defaultCodeOpen": false}}
-
-### Grouping options
-
-Options can be grouped, similarly to how the native `<select>` element works.
-Unlike the native `<select>`, groups can be nested.
-
-The following demo shows how to group options with the Option Group component:
-
-{{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}

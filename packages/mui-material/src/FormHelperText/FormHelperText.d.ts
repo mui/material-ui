@@ -7,8 +7,11 @@ import { FormHelperTextClasses } from './formHelperTextClasses';
 
 export interface FormHelperTextPropsVariantOverrides {}
 
-export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'> {
-  props: P & {
+export interface FormHelperTextTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'p',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      *
@@ -56,7 +59,7 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
       FormHelperTextPropsVariantOverrides
     >;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -71,8 +74,10 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
 declare const FormHelperText: OverridableComponent<FormHelperTextTypeMap>;
 
 export type FormHelperTextProps<
-  D extends React.ElementType = FormHelperTextTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<FormHelperTextTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = FormHelperTextTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<FormHelperTextTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default FormHelperText;

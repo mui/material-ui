@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -24,11 +25,12 @@ const ListItemDecoratorRoot = styled('span', {
 })<{ ownerState: ListItemDecoratorOwnerState }>(({ ownerState }) => ({
   boxSizing: 'border-box',
   display: 'inline-flex',
-  color: `var(--ListItemDecorator-color)`,
+  alignItems: `var(--unstable_ListItemDecorator-alignItems, ${
+    ownerState.parentOrientation === 'horizontal' ? 'center' : 'initial'
+  })`,
   ...(ownerState.parentOrientation === 'horizontal'
     ? {
         minInlineSize: 'var(--ListItemDecorator-size)',
-        alignItems: 'center',
       }
     : {
         minBlockSize: 'var(--ListItemDecorator-size)',

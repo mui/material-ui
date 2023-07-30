@@ -60,7 +60,7 @@ const StyledSlider = styled(Slider)(
   &:hover {
     opacity: 1;
   }
-  &.${sliderClasses.disabled} { 
+  &.${sliderClasses.disabled} {
     pointer-events: none;
     cursor: default;
     color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};

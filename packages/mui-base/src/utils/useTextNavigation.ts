@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 
 const TEXT_NAVIGATION_RESET_TIMEOUT = 500; // milliseconds

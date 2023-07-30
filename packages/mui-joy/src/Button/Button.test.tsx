@@ -130,7 +130,7 @@ describe('Joy <Button />', () => {
     });
 
     it('is rendered properly when `loading` and children should not be visible', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
       const { container, getByRole } = render(

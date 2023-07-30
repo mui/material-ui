@@ -79,7 +79,7 @@ const PRODUCTS = [
     name: 'MUI Toolpad',
     description: 'Low-code admin builder.',
     href: ROUTES.productToolpad,
-    chip: 'Alpha',
+    chip: 'Beta',
   },
 ];
 

@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -213,6 +214,12 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     </DividerRoot>
   );
 });
+
+/**
+ * The following flag is used to ensure that this component isn't tabbable i.e.
+ * does not get highlight/focus inside of MUI List.
+ */
+Divider.muiSkipListHighlight = true;
 
 Divider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

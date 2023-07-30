@@ -19,13 +19,13 @@
 
 为了将依赖安装并保存在您的`package.json`，您可以用**npm**执行以下指令：
 
-```sh
+```bash
 npm install @mui/lab @mui/material
 ```
 
 或使用**yarn**：
 
-```sh
+```bash
 yarn add @mui/lab @mui/material
 ```
 

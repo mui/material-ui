@@ -32,41 +32,19 @@ import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMappin
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
 
-const Root = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'demoOptions',
-})(({ theme, demoOptions }) => [
+const Root = styled('div')(({ theme }) => [
   {
-    display: 'none',
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    marginTop: demoOptions.bg === 'inline' ? 8 : -1,
-    marginBottom: 16,
     [theme.breakpoints.up('sm')]: {
+      justifyContent: 'space-between',
+      alignItems: 'center',
       display: 'flex',
-      top: 0,
-      paddingTop: theme.spacing(0.5),
-      paddingBottom: theme.spacing(0.5),
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(0.5),
-      backgroundColor: alpha(theme.palette.grey[50], 0.2),
-      borderRadius: '0 0 12px 12px',
-      ...(theme.direction === 'rtl' && {
-        left: theme.spacing(1),
-      }),
-      ...(theme.direction !== 'rtl' && {
-        right: theme.spacing(1),
-      }),
     },
-    justifyContent: 'space-between',
-    alignItems: 'center',
     '& .MuiSvgIcon-root': {
       fontSize: 16,
       color: (theme.vars || theme).palette.grey[800],
     },
   },
   theme.applyDarkStyles({
-    [theme.breakpoints.up('sm')]: {
-      backgroundColor: alpha(theme.palette.primaryDark[800], 0.2),
-    },
     '& .MuiSvgIcon-root': {
       color: (theme.vars || theme).palette.grey[400],
     },
@@ -105,12 +83,6 @@ function ToggleCodeTooltip(props) {
 ToggleCodeTooltip.propTypes = {
   showSourceHint: PropTypes.bool,
 };
-
-export function DemoToolbarFallback() {
-  const t = useTranslate();
-
-  return <Root aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
-}
 
 const alwaysTrue = () => true;
 
@@ -540,7 +512,7 @@ export default function DemoToolbar(props) {
 
   return (
     <React.Fragment>
-      <Root aria-label={t('demoToolbarLabel')} {...toolbarProps} demoOptions={demoOptions}>
+      <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
         {hasNonSystemDemos && (
           <Button
             id="styling-solution"
@@ -616,7 +588,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
-                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox('/demo')}
+                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox()}
                   {...getControlProps(4)}
                   sx={{ borderRadius: 1 }}
                 >
@@ -630,7 +602,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
-                  onClick={() => stackBlitz.createReactApp(demoData).openSandbox('demo')}
+                  onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
                   {...getControlProps(5)}
                   sx={{ borderRadius: 1 }}
                 >
@@ -701,6 +673,9 @@ export default function DemoToolbar(props) {
       >
         <MenuItem
           value={CODE_STYLING.SYSTEM}
+          data-ga-event-category="demo"
+          data-ga-event-action="styling-system"
+          data-ga-event-label={demo.gaLabel}
           selected={styleSolution === CODE_STYLING.SYSTEM}
           onClick={() => handleStylingSolutionChange(CODE_STYLING.SYSTEM)}
         >
@@ -711,6 +686,9 @@ export default function DemoToolbar(props) {
         </MenuItem>
         <MenuItem
           value={CODE_STYLING.TAILWIND}
+          data-ga-event-category="demo"
+          data-ga-event-action="styling-tailwind"
+          data-ga-event-label={demo.gaLabel}
           selected={styleSolution === CODE_STYLING.TAILWIND}
           onClick={() => handleStylingSolutionChange(CODE_STYLING.TAILWIND)}
         >
@@ -721,6 +699,9 @@ export default function DemoToolbar(props) {
         </MenuItem>
         <MenuItem
           value={CODE_STYLING.CSS}
+          data-ga-event-category="demo"
+          data-ga-event-action="styling-css"
+          data-ga-event-label={demo.gaLabel}
           selected={styleSolution === CODE_STYLING.CSS}
           onClick={() => handleStylingSolutionChange(CODE_STYLING.CSS)}
         >

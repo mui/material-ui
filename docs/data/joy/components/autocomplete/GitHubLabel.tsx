@@ -59,7 +59,7 @@ export default function GitHubLabel() {
           color="neutral"
           component="button"
           underline="none"
-          level="body3"
+          level="body-xs"
           aria-describedby={id}
           onClick={handleClick}
           sx={{
@@ -80,13 +80,12 @@ export default function GitHubLabel() {
         <List
           size="sm"
           sx={{
-            '--List-radius': '0px',
             '--List-gap': '3px',
             '--ListItem-minHeight': '20px',
             '--ListItem-paddingX': '4px',
             '--ListItem-paddingY': '0.15em',
             '--ListItem-radius': '2px',
-            '--ListItem-fontSize': '13px',
+            fontSize: '13px',
           }}
         >
           {value.map((label) => (
@@ -179,10 +178,8 @@ export default function GitHubLabel() {
                     }}
                   />
                   <Box sx={{ flexGrow: 1 }}>
-                    <Typography fontSize="sm">{option.name}</Typography>
-                    <Typography level="body3" textColor="text.secondary">
-                      {option.description}
-                    </Typography>
+                    <Typography level="title-sm">{option.name}</Typography>
+                    <Typography level="body-xs">{option.description}</Typography>
                   </Box>
                   <CloseIcon sx={{ visibility: selected ? 'visible' : 'hidden' }} />
                 </AutocompleteOption>

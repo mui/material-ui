@@ -7,11 +7,7 @@ import Typography from '@mui/joy/Typography';
 
 export default function RowCard() {
   return (
-    <Card
-      orientation="horizontal"
-      variant="outlined"
-      sx={{ width: 260, bgcolor: 'background.body' }}
-    >
+    <Card orientation="horizontal" variant="outlined" sx={{ width: 260 }}>
       <CardOverflow>
         <AspectRatio ratio="1" sx={{ width: 90 }}>
           <img
@@ -26,7 +22,7 @@ export default function RowCard() {
         <Typography fontWeight="md" textColor="success.plainColor" mb={0.5}>
           Yosemite Park
         </Typography>
-        <Typography level="body2">California, USA</Typography>
+        <Typography level="body-sm">California, USA</Typography>
       </CardContent>
       <CardOverflow
         variant="soft"
@@ -35,8 +31,8 @@ export default function RowCard() {
           px: 0.2,
           writingMode: 'vertical-rl',
           textAlign: 'center',
-          fontSize: 'xs2',
-          fontWeight: 'xl2',
+          fontSize: 'xs',
+          fontWeight: 'xl',
           letterSpacing: '1px',
           textTransform: 'uppercase',
           borderLeft: '1px solid',

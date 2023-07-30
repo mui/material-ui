@@ -15,7 +15,6 @@ import { expectType } from '@mui/types';
 // `color`
 <Avatar color="primary" />;
 <Avatar color="danger" />;
-<Avatar color="info" />;
 <Avatar color="success" />;
 <Avatar color="warning" />;
 <Avatar color="neutral" />;

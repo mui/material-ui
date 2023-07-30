@@ -24,9 +24,6 @@ function HomeIcon() {
 <SvgIcon color="danger">
   <HomeIcon />
 </SvgIcon>;
-<SvgIcon color="info">
-  <HomeIcon />
-</SvgIcon>;
 <SvgIcon color="success">
   <HomeIcon />
 </SvgIcon>;
@@ -60,12 +57,6 @@ function HomeIcon() {
   <HomeIcon />
 </SvgIcon>;
 <SvgIcon fontSize="xl4">
-  <HomeIcon />
-</SvgIcon>;
-<SvgIcon fontSize="xl5">
-  <HomeIcon />
-</SvgIcon>;
-<SvgIcon fontSize="xl6">
   <HomeIcon />
 </SvgIcon>;
 

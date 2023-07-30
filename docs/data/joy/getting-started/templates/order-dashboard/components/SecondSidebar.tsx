@@ -24,8 +24,7 @@ export default function SecondSidebar() {
           left: 0,
           width: '100vw',
           height: '100vh',
-          bgcolor: 'background.body',
-          opacity: 'calc(var(--SideNavigation-slideIn, 0) - 0.2)',
+          backgroundColor: 'var(--joy-palette-background-backdrop)',
           transition: 'opacity 0.4s',
           transform: {
             xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1) + var(--SideNavigation-slideIn, 0) * var(--FirstSidebar-width, 0px)))',
@@ -105,7 +104,7 @@ export default function SecondSidebar() {
             </ListItemButton>
           </ListItem>
           <ListItem>
-            <ListItemButton selected variant="soft">
+            <ListItemButton selected>
               <ListItemDecorator>
                 <i data-feather="shopping-cart" />
               </ListItemDecorator>
@@ -131,10 +130,10 @@ export default function SecondSidebar() {
         </List>
         <Box sx={{ pl: 1, mt: 'auto', display: 'flex', alignItems: 'center' }}>
           <div>
-            <Typography fontWeight="lg" level="body2">
+            <Typography fontWeight="lg" level="body-sm">
               Olivia Ryhe
             </Typography>
-            <Typography level="body2">olivia@email.com</Typography>
+            <Typography level="body-sm">olivia@email.com</Typography>
           </div>
           <IconButton variant="plain" sx={{ ml: 'auto' }}>
             <i data-feather="log-out" />
