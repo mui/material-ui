@@ -331,7 +331,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     if (disableScrollLock) {
       window.addEventListener('scroll', setPositioningStyles);
     }
-
     return () => window.removeEventListener('scroll', setPositioningStyles);
   }, [anchorEl, disableScrollLock, setPositioningStyles]);
 
