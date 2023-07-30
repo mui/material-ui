@@ -162,7 +162,14 @@ export default function createGrid(
         {...other}
       >
         {React.Children.map(children, (child) => {
-          if (React.isValidElement(child) && isMuiElement(child, ['Grid'])) {
+          // @ts-ignore
+          console.log('muiname', child?.type?.muiName);
+          // @ts-ignore
+          console.log('awsaws', child?.type);
+          if (
+            React.isValidElement(child) &&
+            (isMuiElement(child, ['Grid']) || (child.type as any).muiName === 'Grid')
+          ) {
             return React.cloneElement(child, {
               unstable_level: child.props.unstable_level ?? level + 1,
             } as GridProps);
