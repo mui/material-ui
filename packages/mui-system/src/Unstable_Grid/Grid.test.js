@@ -186,7 +186,7 @@ describe('System <Grid />', () => {
     });
   });
 
-  it('should inherit columns from parent container even if container Grid is not direct child', () => {
+  it('should inherit columns from parent container even if container Grid is not direct child', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
