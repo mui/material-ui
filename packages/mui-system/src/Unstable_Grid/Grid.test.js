@@ -186,6 +186,31 @@ describe('System <Grid />', () => {
     });
   });
 
+  it('should inherit columns from parent container even if container Grid is not direct child', () => {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+    const { getByTestId } = render(
+      <Grid container columns={8}>
+        <Grid xs={4}>Test</Grid>
+        <Grid xs={4}>
+          <Grid container>
+            <Grid xs={6} data-testid="child-1">
+              Part one
+            </Grid>
+            <Grid xs={6} data-testid="child-2">
+              Part two
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>,
+    );
+
+    expect(getByTestId('child-1')).toHaveComputedStyle({
+      width: '50%',
+    });
+  });
+
   describe('prop: wrap', () => {
     it('should wrap by default', () => {
       render(<Grid container data-testid="wrap" />);

@@ -161,14 +161,16 @@ export default function createGrid(
         className={clsx(classes.root, className)}
         {...other}
       >
-        {React.Children.map(children, (child) => {
-          if (React.isValidElement(child) && isMuiElement(child, ['Grid'])) {
-            return React.cloneElement(child, {
-              unstable_level: child.props.unstable_level ?? level + 1,
-            } as GridProps);
-          }
-          return child;
-        })}
+        {container
+          ? React.Children.map(children, (child) => {
+              if (React.isValidElement(child) && isMuiElement(child, ['Grid'])) {
+                return React.cloneElement(child, {
+                  unstable_level: child.props.unstable_level ?? level + 1,
+                } as GridProps);
+              }
+              return child;
+            })
+          : children}
       </GridRoot>
     );
 
