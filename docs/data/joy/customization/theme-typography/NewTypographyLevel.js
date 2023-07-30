@@ -6,11 +6,10 @@ import Typography from '@mui/joy/Typography';
 const customTheme = extendTheme({
   typography: {
     kbd: {
-      background:
-        'linear-gradient(to top, var(--joy-palette-background-level2), var(--joy-palette-background-surface))',
+      backgroundColor: 'var(--joy-palette-background-surface)',
       border: '1px solid var(--joy-palette-neutral-outlinedBorder)',
       borderRadius: 'var(--joy-radius-xs)',
-      boxShadow: 'var(--joy-shadow-sm)',
+      boxShadow: '0 2px 0px 0px var(--joy-palette-background-level3)',
       padding: '0.125em 0.375em',
     },
   },
