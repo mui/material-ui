@@ -92,7 +92,7 @@
     "@googleapis/sheets": "^5.0.1",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@octokit/rest": "^20.0.1",
-    "@playwright/test": "1.36.1",
+    "@playwright/test": "1.36.2",
     "@rollup/plugin-replace": "^5.0.2",
     "@slack/bolt": "^3.13.2",
     "@testing-library/dom": "^9.3.1",
