@@ -152,7 +152,7 @@ export default function createGrid(
     };
 
     const classes = useUtilityClasses(ownerState, theme);
-
+    console.log('aaaa', children);
     let result = (
       <GridRoot
         ref={ref}
@@ -168,7 +168,7 @@ export default function createGrid(
           console.log('awsaws', child?.type);
           if (
             React.isValidElement(child) &&
-            (isMuiElement(child, ['Grid']) || (child.type as any).muiName === 'Grid')
+            (isMuiElement(child, ['Grid']) || (child.type as any)?.muiName === 'Grid')
           ) {
             return React.cloneElement(child, {
               unstable_level: child.props.unstable_level ?? level + 1,
