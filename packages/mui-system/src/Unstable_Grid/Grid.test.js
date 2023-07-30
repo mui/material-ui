@@ -191,7 +191,7 @@ describe('System <Grid />', () => {
       this.skip();
     }
     const { getByTestId } = render(
-      <Grid container columns={8}>
+      <Grid container columns={8} sx={{ width: '200px' }}>
         <Grid xs={4}>Test</Grid>
         <Grid xs={4}>
           <Grid container>
@@ -207,7 +207,10 @@ describe('System <Grid />', () => {
     );
 
     expect(getByTestId('child-1')).toHaveComputedStyle({
-      width: '50%',
+      width: '50px',
+    });
+    expect(getByTestId('child-2')).toHaveComputedStyle({
+      width: '50px',
     });
   });
 
