@@ -522,7 +522,7 @@ const StyledModal = styled(Modal)`
   align-items: center;
   justify-content: center;
   transition-property: visibility;
-  transition-delay: ${({ open }) => (open ? '0s' : '400ms')};
+  transition-delay: ${({ open }) => (open ? 0 : '200ms')};
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
 `;
 
