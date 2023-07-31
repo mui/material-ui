@@ -2,11 +2,11 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
+import { act, createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import NumberInput, {
   numberInputClasses,
   NumberInputOwnerState,
 } from '@mui/base/Unstable_NumberInput';
-import { act, createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 
 describe('<NumberInput />', () => {
   const mount = createMount();
@@ -414,10 +414,8 @@ describe('<NumberInput />', () => {
       expect(handleChange.args[0][1]).to.equal(9);
       expect(input.value).to.equal('9');
     });
-  });
 
-  describe('prop: readOnly', () => {
-    it('stepper buttons should not be in the tab order when readOnly is false', async () => {
+    it('only includes the input element in the tab order', async () => {
       const user = userEvent.setup();
 
       const { getByTestId } = render(
@@ -429,42 +427,6 @@ describe('<NumberInput />', () => {
 
       await user.keyboard('[Tab]');
       expect(document.activeElement).to.equal(input);
-
-      await user.keyboard('[Tab]');
-      expect(document.activeElement).to.equal(document.body);
-    });
-
-    it('tab order should be increment button, decrement button when readOnly is true', async () => {
-      const user = userEvent.setup();
-
-      const { getByTestId } = render(
-        <NumberInput
-          readOnly
-          slotProps={
-            {
-              input: {
-                'data-testid': 'input',
-              },
-              incrementButton: {
-                'data-testid': 'increment-btn',
-              },
-              decrementButton: {
-                'data-testid': 'decrement-btn',
-              },
-            } as any
-          }
-        />,
-      );
-
-      const incrementButton = getByTestId('increment-btn');
-      const decrementButton = getByTestId('decrement-btn');
-      expect(document.activeElement).to.equal(document.body);
-
-      await user.keyboard('[Tab]');
-      expect(document.activeElement).to.equal(decrementButton);
-
-      await user.keyboard('[Tab]');
-      expect(document.activeElement).to.equal(incrementButton);
 
       await user.keyboard('[Tab]');
       expect(document.activeElement).to.equal(document.body);

@@ -14,6 +14,8 @@ export interface NumberInputClasses {
   focused: string;
   /** Class name applied to the root element if `disabled={true}`. */
   disabled: string;
+  /** State class applied to the root element if `readOnly={true}`. */
+  readOnly: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
   /** Class name applied to the input element. */
@@ -35,6 +37,7 @@ const numberInputClasses: NumberInputClasses = generateUtilityClasses('MuiNumber
   'formControl',
   'focused',
   'disabled',
+  'readOnly',
   'error',
   'input',
   'incrementButton',

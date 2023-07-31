@@ -18,8 +18,15 @@ import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: NumberInputOwnerState) => {
-  const { disabled, error, focused, formControlContext, isIncrementDisabled, isDecrementDisabled } =
-    ownerState;
+  const {
+    disabled,
+    error,
+    focused,
+    readOnly,
+    formControlContext,
+    isIncrementDisabled,
+    isDecrementDisabled,
+  } = ownerState;
 
   const slots = {
     root: [
@@ -27,9 +34,10 @@ const useUtilityClasses = (ownerState: NumberInputOwnerState) => {
       disabled && 'disabled',
       error && 'error',
       focused && 'focused',
+      readOnly && 'readOnly',
       Boolean(formControlContext) && 'formControl',
     ],
-    input: ['input', disabled && 'disabled'],
+    input: ['input', disabled && 'disabled', readOnly && 'readOnly'],
     incrementButton: ['incrementButton', isIncrementDisabled && 'disabled'],
     decrementButton: ['decrementButton', isDecrementDisabled && 'disabled'],
   };
@@ -65,7 +73,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     onChange,
     placeholder,
     required,
-    readOnly,
+    readOnly = false,
     shiftMultiplier,
     step,
     value,
@@ -108,6 +116,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     disabled: disabledState,
     error: errorState,
     focused,
+    readOnly,
     formControlContext,
     isIncrementDisabled,
     isDecrementDisabled,
@@ -241,6 +250,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the `input` element becomes read-only. The stepper buttons remain active,
    * with the addition that they are now keyboard focusable.
+   * @default false
    */
   readOnly: PropTypes.bool,
   /**

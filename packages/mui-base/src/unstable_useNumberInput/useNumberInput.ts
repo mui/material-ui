@@ -317,7 +317,6 @@ export default function useNumberInput(
       spellCheck: 'false',
       required: requiredProp,
       readOnly: readOnlyProp,
-      tabIndex: readOnlyProp ? -1 : 0,
       'aria-disabled': disabledProp,
       disabled: disabledProp,
     };
@@ -333,7 +332,7 @@ export default function useNumberInput(
 
   const stepperButtonCommonProps = {
     'aria-controls': inputId,
-    tabIndex: readOnlyProp ? 0 : -1,
+    tabIndex: -1,
   };
 
   const isIncrementDisabled =

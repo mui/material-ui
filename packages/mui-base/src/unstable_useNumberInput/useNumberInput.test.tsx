@@ -41,7 +41,6 @@ describe('useNumberInput', () => {
     expect(inputProps['aria-valuemin']).to.equal(10);
     expect(inputProps['aria-valuemax']).to.equal(100);
     expect(inputProps['aria-disabled']).to.equal(true);
-    expect(inputProps.tabIndex).to.equal(0);
 
     expect(decrementButtonProps.tabIndex).to.equal(-1);
     expect(decrementButtonProps['aria-controls']).to.equal(INPUT_ID);
