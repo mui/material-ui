@@ -21,7 +21,6 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
 import ROUTES from 'docs/src/route';
 
-
 const startDate = new Date();
 startDate.setDate(10);
 const endDate = new Date();
