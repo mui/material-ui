@@ -206,12 +206,12 @@ const StyledSnackbarButton = styled('button')({
   },
 
   '[data-mui-color-scheme="dark"] &': {
-    borderColor: 'var(--muidocs-palette-grey-700)',
+    borderColor: 'var(--muidocs-palette-grey-800)',
     backgroundColor: 'var(--muidocs-palette-grey-900)',
     color: 'var(--muidocs-palette-grey-200)',
     boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.05)',
     '&:hover': {
-      backgroundColor: 'var(--muidocs-palette-grey-800)',
+      backgroundColor: 'var(--muidocs-palette-primaryDark-700)',
     },
   },
 });
@@ -223,10 +223,11 @@ const StyledViewCode = styled(Link)({
   width: '100%',
   padding: '12px 16px',
   cursor: 'pointer',
-  backgroundColor: 'var(--muidocs-palette-primaryDark-700)',
-  border: 'none',
+  backgroundColor: 'var(--muidocs-palette-primaryDark-800)',
+  border: '1px solid',
+  borderColor: 'var(--muidocs-palette-grey-800)',
   borderRadius: 'var(--border-radius)',
-  boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.2), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
+  boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.3)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
   fontWeight: 600,
@@ -240,10 +241,10 @@ const StyledViewCode = styled(Link)({
 
   '[data-mui-color-scheme="dark"] &': {
     color: 'var(--muidocs-palette-primary-200)',
-    boxShadow: '0px 2px 2px rgba(205, 210, 215, 0.2), inset 0px 4px 4px rgba(205, 210, 215, 0.08)',
+    boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.05)',
     '&:hover': {
       color: 'var(--muidocs-palette-primary-100)',
-      backgroundColor: 'var(--muidocs-palette-primaryDark-800)',
+      backgroundColor: 'var(--muidocs-palette-primaryDark-700)',
     },
   },
 });
