@@ -9,13 +9,13 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import {
   extendTheme,
   CssVarsProvider as MaterialYouCssVarsProvider,
   useColorScheme,
 } from '@mui/material-next/styles';
+import BrandingProvider from 'docs/src/BrandingProvider';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 type Mode = 'light' | 'dark' | 'system';
 

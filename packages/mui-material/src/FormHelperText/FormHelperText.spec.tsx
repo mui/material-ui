@@ -1,6 +1,6 @@
 import * as React from 'react';
-import FormHelperText, { FormHelperTextProps } from '@mui/material/FormHelperText';
 import { expectType } from '@mui/types';
+import FormHelperText, { FormHelperTextProps } from '@mui/material/FormHelperText';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
   function CustomComponent() {

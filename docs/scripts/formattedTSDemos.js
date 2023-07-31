@@ -11,8 +11,8 @@
  */
 const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
 
-const fse = require('fs-extra');
 const path = require('path');
+const fse = require('fs-extra');
 const babel = require('@babel/core');
 const prettier = require('prettier');
 const typescriptToProptypes = require('typescript-to-proptypes');

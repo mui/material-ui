@@ -3,10 +3,10 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
-import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
-import Frame from 'docs/src/components/action/Frame';
 import { styled } from '@mui/material/styles';
 import { shouldForwardProp } from '@mui/system';
+import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
+import Frame from 'docs/src/components/action/Frame';
 
 const AspectRatioImage = styled('div', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',

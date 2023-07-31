@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -13,6 +12,9 @@ import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
@@ -23,11 +25,18 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
 import IconImage from 'docs/src/components/icon/IconImage';
-import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
-import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
-import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
+import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+/**
+ * Import data from: https://tools-public.mui.com/prod/pages/nSwYn51
+
+curl 'https://tools-public.mui.com/prod/api/data/muicomabout/queryAbout' \
+  -H 'content-type: application/json' \
+  --data-raw '{}' \
+  --compressed
+*/
+import teamMembers from 'docs/data/about/teamMembers.json';
 
 interface Profile {
   name: string;
@@ -787,11 +796,20 @@ function AboutContent() {
         </Typography>
         <Box sx={{ pt: 2 }}>
           <Grid container spacing={2}>
-            {teamMembers.map((profile) => (
-              <Grid key={profile.name} item xs={12} sm={6} md={3}>
-                <Person {...profile} />
-              </Grid>
-            ))}
+            {(teamMembers as Array<Profile>).map((profileJson) => {
+              const profile = {
+                src: `/static/branding/about/${profileJson.name
+                  .split(' ')
+                  .map((x) => x.toLowerCase())
+                  .join('-')}.png`,
+                ...profileJson,
+              };
+              return (
+                <Grid key={profile.name} item xs={12} sm={6} md={3}>
+                  <Person {...profile} />
+                </Grid>
+              );
+            })}
           </Grid>
         </Box>
       </Container>

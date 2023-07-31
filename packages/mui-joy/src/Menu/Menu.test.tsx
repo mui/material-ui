@@ -9,13 +9,13 @@ import {
   fireEvent,
   describeJoyColorInversion,
 } from 'test/utils';
+import PopperUnstyled from '@mui/base/Popper';
+import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
 import Menu, { menuClasses as classes } from '@mui/joy/Menu';
 import Dropdown from '@mui/joy/Dropdown';
 import MenuItem from '@mui/joy/MenuItem';
 import MenuButton from '@mui/joy/MenuButton';
-import PopperUnstyled from '@mui/base/Popper';
-import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 
 const testContext: DropdownContextValue = {
   dispatch: () => {},

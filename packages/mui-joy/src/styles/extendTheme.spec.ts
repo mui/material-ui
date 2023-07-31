@@ -1,3 +1,4 @@
+import { expectType } from '@mui/types';
 import { AlertOwnerState } from '@mui/joy/Alert';
 import { AspectRatioOwnerState } from '@mui/joy/AspectRatio';
 import { AutocompleteOwnerState } from '@mui/joy/Autocomplete';
@@ -60,7 +61,6 @@ import { TableOwnerState } from '@mui/joy/Table';
 import { TextareaOwnerState } from '@mui/joy/Textarea';
 import { TooltipOwnerState } from '@mui/joy/Tooltip';
 import { TypographyOwnerState } from '@mui/joy/Typography';
-import { expectType } from '@mui/types';
 
 extendTheme({
   colorInversion: (theme) => ({

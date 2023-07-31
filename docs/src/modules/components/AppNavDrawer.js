@@ -13,14 +13,14 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import DoneRounded from '@mui/icons-material/DoneRounded';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import DoneRounded from '@mui/icons-material/DoneRounded';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 const savedScrollTop = {};

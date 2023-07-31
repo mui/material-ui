@@ -1,7 +1,7 @@
-const playwright = require('playwright');
-const fse = require('fs-extra');
 const http = require('http');
 const path = require('path');
+const playwright = require('playwright');
+const fse = require('fs-extra');
 const express = require('express');
 const { expect } = require('chai');
 
