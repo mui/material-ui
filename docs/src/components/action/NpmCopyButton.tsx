@@ -16,7 +16,6 @@ const StyledButton = styled(Button)`
   outline: 0;
   border: 0;
   margin: 0;
-  user-select: none;
   vertical-align: middle;
   text-decoration: none;
   text-transform: initial;
