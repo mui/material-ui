@@ -477,9 +477,10 @@ const StyledSwitch = styled('span')(`
     transition-duration: 120ms;
   }
 
-  &.${switchClasses.focusVisible} .${switchClasses.thumb} {
-    background-color: var(--muidocs-palette-grey-500);
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+  &.${switchClasses.focusVisible} {
+    border-radius: max(2px, var(--border-radius) * 4);
+    outline: 2px solid var(--muidocs-palette-primary-500);
+    outline-offset: 2px;
   }
 
   &.${switchClasses.checked} {
