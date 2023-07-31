@@ -43,6 +43,8 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 ### Docs
 
+- &#8203;<!-- 38 -->[docs] Fix typo in notifications.json @mbrookes
+- &#8203;<!-- 37 -->[docs-infra] Remove leftover standardNavIcon (#38252) @DiegoAndai
 - &#8203;<!-- 34 -->[docs][base] Add Tailwind CSS & plain CSS demos on the Popper page (#37953) @zanivan
 - &#8203;<!-- 31 -->[docs][Button][joy] Improve `loading` prop documentation (#38156) @sai6855
 - &#8203;<!-- 25 -->[docs] Prepare docs infra for Tree View migration to X (#38202) @flaviendelangle
