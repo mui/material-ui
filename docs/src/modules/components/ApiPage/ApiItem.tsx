@@ -6,6 +6,7 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
+import Divider from '@mui/material/Divider';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { IconButton } from '@mui/material';
@@ -21,7 +22,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       display: 'flex',
       alignItems: 'flex-end',
       position: 'relative',
-      marginBottom: 10,
+      marginBottom: 8,
       marginLeft: -36,
       '& .MuiApi-item-link-visual': {
         display: 'none',
@@ -42,7 +43,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
       '&>span, &>div': {
         fontWeight: theme.typography.fontWeightRegular,
-        borderBottom: 'solid 1px',
+        // borderBottom: 'solid 1px',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
       },
       '&>*': {
@@ -50,19 +51,20 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
       '& .MuiApi-item-title': {
         flexShrink: 0,
-        padding: '2px 8px',
+        padding: '2px 6px',
         marginLeft: 32,
         borderWidth: '1px',
         borderStyle: 'solid',
-        borderTopLeftRadius: 8,
-        borderTopRightRadius: 8,
+        borderRadius: 8,
+        // borderTopLeftRadius: 8,
+        // borderTopRightRadius: 8,
+        // borderBottomLeftRadius: 8,
         fontWeight: theme.typography.fontWeightSemiBold,
         color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       },
       '& .MuiApi-item-description': {
-        padding: '2px 10px 2px 10px',
-        paddingBottom: 3,
+        padding: '4px 6px',
         flexGrow: 1,
         textOverflow: 'ellipsis',
         overflow: 'hidden',
@@ -191,7 +193,12 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
       },
     },
-    marginBottom: 36,
+    // marginBottom: 36,
+    // borderBottom: 'solid 1px',
+    // borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
+    '&>hr': {
+      margin: '24px 0',
+    },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
@@ -334,6 +341,7 @@ function ApiItem(props: ApiItemProps) {
         {note && <span className="MuiApi-item-note">{note}</span>}
       </div>
       {children}
+      <Divider />
     </Root>
   );
 }
