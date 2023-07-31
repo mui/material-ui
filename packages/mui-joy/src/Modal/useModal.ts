@@ -4,7 +4,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
-import { ModalManager, ModalOwnProps } from '@mui/base/Modal';
+import { ModalManager, ModalOwnProps, ariaHidden } from '@mui/base/Modal';
 import { EventHandlers, extractEventHandlers } from '@mui/base/utils';
 
 export interface UseModalRootSlotOwnProps {
@@ -34,14 +34,6 @@ type UseModalParameters = Pick<
   onKeyDown?: React.KeyboardEventHandler;
   ref: React.Ref<HTMLElement>;
 };
-
-function ariaHidden(element: Element, show: boolean): void {
-  if (show) {
-    element.setAttribute('aria-hidden', 'true');
-  } else {
-    element.removeAttribute('aria-hidden');
-  }
-}
 
 function getContainer(container: UseModalParameters['container']) {
   return (typeof container === 'function' ? container() : container) as HTMLElement;
