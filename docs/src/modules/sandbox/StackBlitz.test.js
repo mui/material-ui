@@ -221,7 +221,7 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
       codeVariant: 'JS',
     });
 
-    expect(result.files['public/index.html'].content).to.contain(
+    expect(result.files['index.html']).to.contain(
       'https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone',
     );
   });
