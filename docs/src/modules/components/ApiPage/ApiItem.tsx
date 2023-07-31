@@ -23,7 +23,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       alignItems: 'flex-end',
       position: 'relative',
       marginBottom: 8,
-      marginLeft: -32,
+      marginLeft: -40,
       '& .MuiApi-item-link-visual': {
         display: 'none',
         flexShrink: 0,
