@@ -32,10 +32,10 @@ describe('<Alert />', () => {
     it('soft by default', () => {
       const { getByRole } = render(<Alert />);
 
-      expect(getByRole('alert')).to.have.class(classes.variantSoft);
+      expect(getByRole('alert')).to.have.class(classes.variantOutlined);
     });
 
-    (['outlined', 'soft', 'solid'] as const).forEach((variant) => {
+    (['plain', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByRole } = render(<Alert variant={variant} />);
 
@@ -50,10 +50,10 @@ describe('<Alert />', () => {
     it('adds a primary class by default', () => {
       const { getByRole } = render(<Alert />);
 
-      expect(getByRole('alert')).to.have.class(classes.colorPrimary);
+      expect(getByRole('alert')).to.have.class(classes.colorNeutral);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(<Alert color={color} />);
 

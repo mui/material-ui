@@ -327,14 +327,18 @@ async function run(argv: HandlerArgv) {
 
   const files = _.flatten(allFiles)
     .filter((filePath) => {
-      const folderName = path.basename(path.dirname(filePath));
+      // Filter out files where the directory name and filename doesn't match
+      // Example: Modal/ModalManager.d.ts
+      let folderName = path.basename(path.dirname(filePath));
       const fileName = path.basename(filePath).replace(/(\.d\.ts|\.tsx|\.ts)/g, '');
 
-      return (
-        // Filter out files where the directory name and filename doesn't match
-        // Example: Modal/ModalManager.d.ts
-        fileName === folderName
-      );
+      // An exception is if the folder name starts with Unstable_/unstable_
+      // Example: Unstable_Grid2/Grid2.tsx
+      if (/(u|U)nstable_/g.test(folderName)) {
+        folderName = folderName.slice(9);
+      }
+
+      return fileName === folderName;
     })
     .filter((filePath) => {
       return filePattern.test(filePath);

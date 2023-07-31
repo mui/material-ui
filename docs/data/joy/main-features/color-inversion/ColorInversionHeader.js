@@ -43,14 +43,7 @@ export default function ColorInversionHeader() {
         variant="soft"
         size="sm"
         onClick={() => {
-          const colors = [
-            'primary',
-            'neutral',
-            'danger',
-            'info',
-            'success',
-            'warning',
-          ];
+          const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
 
           const nextColor = colors.indexOf(color);
           setColor(colors[nextColor + 1] ?? colors[0]);
@@ -123,7 +116,7 @@ export default function ColorInversionHeader() {
             <Typography
               component="span"
               variant="outlined"
-              level="body3"
+              level="body-xs"
               sx={{ bgcolor: 'background.surface', mx: 0 }}
             >
               ⌘K
