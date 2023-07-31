@@ -35,11 +35,6 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"danger\"</code>"
     },
-    "colorInfo": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"info\"</code>"
-    },
     "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

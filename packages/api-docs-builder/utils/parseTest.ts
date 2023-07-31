@@ -1,6 +1,6 @@
+import * as path from 'path';
 import * as babel from '@babel/core';
 import { readFile } from 'fs-extra';
-import * as path from 'path';
 import glob from 'fast-glob';
 
 const workspaceRoot = path.join(__dirname, '../../../');

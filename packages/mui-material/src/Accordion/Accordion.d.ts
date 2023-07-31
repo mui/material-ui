@@ -86,6 +86,8 @@ declare const Accordion: OverridableComponent<AccordionTypeMap>;
 export type AccordionProps<
   RootComponent extends React.ElementType = AccordionTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<AccordionTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<AccordionTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Accordion;

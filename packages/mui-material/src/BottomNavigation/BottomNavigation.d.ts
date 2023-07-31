@@ -56,6 +56,8 @@ declare const BottomNavigation: OverridableComponent<BottomNavigationTypeMap>;
 export type BottomNavigationProps<
   RootComponent extends React.ElementType = BottomNavigationTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<BottomNavigationTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<BottomNavigationTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default BottomNavigation;

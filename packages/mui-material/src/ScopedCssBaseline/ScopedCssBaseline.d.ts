@@ -45,7 +45,9 @@ declare const ScopedCssBaseline: OverridableComponent<ScopedCssBaselineTypeMap>;
 export type ScopedCssBaselineProps<
   RootComponent extends React.ElementType = ScopedCssBaselineTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<ScopedCssBaselineTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<ScopedCssBaselineTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 /**
  *

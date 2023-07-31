@@ -15,6 +15,17 @@
       }
     },
     "PopoverClasses": { "type": { "name": "object" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ paper?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",

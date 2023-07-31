@@ -60,6 +60,8 @@ declare const Stack: OverridableComponent<StackTypeMap>;
 export type StackProps<
   RootComponent extends React.ElementType = StackTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<StackTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<StackTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Stack;

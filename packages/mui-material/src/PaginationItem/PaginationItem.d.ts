@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
-import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 import { SxProps } from '@mui/system';
+import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 import { Theme } from '../styles';
 import { UsePaginationItem } from '../usePagination/usePagination';
 import { PaginationItemClasses } from './paginationItemClasses';
@@ -115,6 +115,8 @@ declare const PaginationItem: OverridableComponent<PaginationItemTypeMap>;
 export type PaginationItemProps<
   RootComponent extends React.ElementType = PaginationItemTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<PaginationItemTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<PaginationItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default PaginationItem;

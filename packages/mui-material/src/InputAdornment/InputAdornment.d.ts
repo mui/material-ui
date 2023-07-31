@@ -60,6 +60,8 @@ declare const InputAdornment: OverridableComponent<InputAdornmentTypeMap>;
 export type InputAdornmentProps<
   RootComponent extends React.ElementType = InputAdornmentTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<InputAdornmentTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<InputAdornmentTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default InputAdornment;

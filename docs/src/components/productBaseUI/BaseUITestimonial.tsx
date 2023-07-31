@@ -2,11 +2,11 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
-import Section from 'docs/src/layouts/Section';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import Link from 'docs/src/modules/components/Link';
 import ArrowForward from '@mui/icons-material/ArrowForward';
+import Link from 'docs/src/modules/components/Link';
+import Section from 'docs/src/layouts/Section';
 
 export default function BaseUITestimonial() {
   return (

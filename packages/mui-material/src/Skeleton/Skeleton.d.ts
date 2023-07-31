@@ -67,6 +67,8 @@ declare const Skeleton: OverridableComponent<SkeletonTypeMap>;
 export type SkeletonProps<
   RootComponent extends React.ElementType = SkeletonTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<SkeletonTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<SkeletonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Skeleton;

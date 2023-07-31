@@ -62,7 +62,7 @@ The following demo shows how to create and style a Select component.
 The value(s) chosen in the Select can be posted to a server using a standard HTML form.
 When the `name` prop is set, the Select will render a hidden input with the selected value.
 
-{{"demo": "UnstyledSelectForm.js" }}
+{{"demo": "UnstyledSelectForm.js"}}
 
 Note how the second Select in the demo above renders a hidden input with the name provided as a prop.
 

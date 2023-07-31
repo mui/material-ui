@@ -49,6 +49,8 @@ declare const CardMedia: OverridableComponent<CardMediaTypeMap<{}, 'div'>>;
 export type CardMediaProps<
   RootComponent extends React.ElementType = 'div',
   AdditionalProps = {},
-> = OverrideProps<CardMediaTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<CardMediaTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default CardMedia;

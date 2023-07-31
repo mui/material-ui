@@ -167,6 +167,17 @@ const pages: readonly MuiPage[] = [
       },
     ],
   },
+  {
+    pathname: '/joy-ui/migration',
+    title: 'Migration',
+    icon: standardNavIcons.BookIcon,
+    children: [
+      {
+        pathname: '/joy-ui/migration/migrating-default-theme',
+        title: 'Migrating the default theme',
+      },
+    ],
+  },
 ];
 
 export default pages;

@@ -83,6 +83,8 @@ declare const IconButton: ExtendButtonBase<IconButtonTypeMap>;
 export type IconButtonProps<
   RootComponent extends React.ElementType = IconButtonTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<IconButtonTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<IconButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default IconButton;

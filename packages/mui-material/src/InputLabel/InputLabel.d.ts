@@ -85,6 +85,8 @@ declare const InputLabel: OverridableComponent<InputLabelTypeMap>;
 export type InputLabelProps<
   RootComponent extends React.ElementType = InputLabelTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<InputLabelTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<InputLabelTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default InputLabel;

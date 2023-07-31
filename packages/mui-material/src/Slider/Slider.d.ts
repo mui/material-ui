@@ -309,6 +309,8 @@ declare const Slider: OverridableComponent<SliderTypeMap>;
 export type SliderProps<
   RootComponent extends React.ElementType = SliderTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps>, RootComponent>;
+> = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Slider;

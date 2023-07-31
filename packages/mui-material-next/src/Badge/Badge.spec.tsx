@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Badge, { BadgeOwnerState } from '@mui/material-next/Badge';
 import { expectType } from '@mui/types';
+import Badge, { BadgeOwnerState } from '@mui/material-next/Badge';
 
 function classesTest() {
   return (

@@ -39,6 +39,8 @@ declare const TableHead: OverridableComponent<TableHeadTypeMap>;
 export type TableHeadProps<
   RootComponent extends React.ElementType = TableHeadTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<TableHeadTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<TableHeadTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default TableHead;

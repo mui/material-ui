@@ -3,7 +3,7 @@ import { DistributiveOmit } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
-import { TypographyProps } from '../Typography';
+import { TypographyOwnProps } from '../Typography';
 import { LinkClasses } from './linkClasses';
 
 export interface LinkTypeMap<
@@ -11,7 +11,7 @@ export interface LinkTypeMap<
   DefaultComponent extends React.ElementType = 'a',
 > {
   props: AdditionalProps &
-    DistributiveOmit<LinkBaseProps, 'classes'> & {
+    LinkBaseProps & {
       /**
        * The content of the component.
        */
@@ -24,7 +24,7 @@ export interface LinkTypeMap<
        * The color of the link.
        * @default 'primary'
        */
-      color?: TypographyProps['color'];
+      color?: TypographyOwnProps['color'];
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
@@ -32,7 +32,7 @@ export interface LinkTypeMap<
       /**
        * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
        */
-      TypographyClasses?: TypographyProps['classes'];
+      TypographyClasses?: TypographyOwnProps['classes'];
       /**
        * Controls when the link should have an underline.
        * @default 'always'
@@ -42,7 +42,7 @@ export interface LinkTypeMap<
        * Applies the theme typography styles.
        * @default 'inherit'
        */
-      variant?: TypographyProps['variant'];
+      variant?: TypographyOwnProps['variant'];
     };
   defaultComponent: DefaultComponent;
 }
@@ -61,12 +61,16 @@ export interface LinkTypeMap<
  */
 declare const Link: OverridableComponent<LinkTypeMap>;
 
-export type LinkBaseProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> &
-  DistributiveOmit<TypographyProps, 'children' | 'component' | 'color' | 'ref' | 'variant'>;
+export type LinkBaseProps = DistributiveOmit<
+  TypographyOwnProps,
+  'children' | 'color' | 'variant' | 'classes'
+>;
 
 export type LinkProps<
   RootComponent extends React.ElementType = LinkTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<LinkTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<LinkTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Link;

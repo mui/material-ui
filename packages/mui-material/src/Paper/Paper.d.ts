@@ -7,40 +7,42 @@ import { PaperClasses } from './paperClasses';
 
 export interface PaperPropsVariantOverrides {}
 
+export interface PaperOwnProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<PaperClasses>;
+  /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It accepts values between 0 and 24 inclusive.
+   * @default 1
+   */
+  elevation?: number;
+  /**
+   * If `true`, rounded corners are disabled.
+   * @default false
+   */
+  square?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
+   * The variant to use.
+   * @default 'elevation'
+   */
+  variant?: OverridableStringUnion<'elevation' | 'outlined', PaperPropsVariantOverrides>;
+}
+
 export interface PaperTypeMap<
   AdditionalProps = {},
   DefaultComponent extends React.ElementType = 'div',
 > {
-  props: AdditionalProps & {
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<PaperClasses>;
-    /**
-     * Shadow depth, corresponds to `dp` in the spec.
-     * It accepts values between 0 and 24 inclusive.
-     * @default 1
-     */
-    elevation?: number;
-    /**
-     * If `true`, rounded corners are disabled.
-     * @default false
-     */
-    square?: boolean;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-    /**
-     * The variant to use.
-     * @default 'elevation'
-     */
-    variant?: OverridableStringUnion<'elevation' | 'outlined', PaperPropsVariantOverrides>;
-  };
+  props: AdditionalProps & PaperOwnProps;
   defaultComponent: DefaultComponent;
 }
 
@@ -65,6 +67,8 @@ export interface ExtendPaperTypeMap<TypeMap extends OverridableTypeMap, Keys ext
 export type PaperProps<
   RootComponent extends React.ElementType = PaperTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<PaperTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<PaperTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Paper;

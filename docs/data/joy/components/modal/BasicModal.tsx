@@ -35,7 +35,7 @@ export default function BasicModal() {
               right: 'calc(-1/4 * var(--IconButton-size))',
               boxShadow: '0 2px 12px 0 rgba(0 0 0 / 0.2)',
               borderRadius: '50%',
-              bgcolor: 'background.body',
+              bgcolor: 'background.surface',
             }}
           />
           <Typography
