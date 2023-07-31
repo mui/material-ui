@@ -3,8 +3,8 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import { CardActions, CardContent } from '@mui/joy';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function CardUsage() {
   return (

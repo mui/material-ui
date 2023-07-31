@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import * as ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
@@ -15,6 +14,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import SearchIcon from '@mui/icons-material/Search';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';

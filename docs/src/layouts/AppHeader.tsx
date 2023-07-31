@@ -5,6 +5,9 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
@@ -12,9 +15,6 @@ import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import Link from 'docs/src/modules/components/Link';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
-import Tooltip from '@mui/material/Tooltip';
-import IconButton from '@mui/material/IconButton';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Header = styled('header')(({ theme }) => [

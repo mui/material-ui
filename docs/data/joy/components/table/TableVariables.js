@@ -1,7 +1,7 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import Table from '@mui/joy/Table';
 import Sheet from '@mui/joy/Sheet';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function TableVariables() {
   return (

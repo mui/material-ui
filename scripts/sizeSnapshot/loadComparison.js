@@ -1,8 +1,8 @@
 /**
  * `snapshots` always refer to size snapshots in this file
  */
-const fse = require('fs-extra');
 const path = require('path');
+const fse = require('fs-extra');
 const fetch = require('node-fetch');
 const lodash = require('lodash');
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Badge, { BadgeOwnerState } from '@mui/joy/Badge';
 import { expectType } from '@mui/types';
+import Badge, { BadgeOwnerState } from '@mui/joy/Badge';
 
 <Badge />;
 

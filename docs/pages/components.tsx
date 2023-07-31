@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -7,6 +6,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';

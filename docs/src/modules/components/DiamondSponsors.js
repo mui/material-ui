@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import Divider from '@mui/material/Divider';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 // import Link from 'docs/src/modules/components/Link';
 
 const Root = styled('div')(() => ({
