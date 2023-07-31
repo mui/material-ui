@@ -1,4 +1,4 @@
-<Label {...getInputLabelProps()}>Label</Label>
+<StyledLabel {...getInputLabelProps()}>Pick a movie</StyledLabel>
 <StyledAutocompleteRoot
   {...getRootProps()}
   className={focused ? 'focused' : ''}

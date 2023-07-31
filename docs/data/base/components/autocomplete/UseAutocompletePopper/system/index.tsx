@@ -39,17 +39,17 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
             root: StyledPopper,
           }}
         >
-          {groupedOptions.length > 0 ? (
-            <StyledListbox {...getListboxProps()}>
-              {(groupedOptions as typeof top100Films).map((option, index) => (
+          <StyledListbox {...getListboxProps()}>
+            {groupedOptions.length > 0 ? (
+              (groupedOptions as typeof top100Films).map((option, index) => (
                 <StyledOption {...getOptionProps({ option, index })}>
                   {option.label}
                 </StyledOption>
-              ))}
-            </StyledListbox>
-          ) : (
-            <StyledNoOptions>No results</StyledNoOptions>
-          )}
+              ))
+            ) : (
+              <StyledNoOptions>No results</StyledNoOptions>
+            )}
+          </StyledListbox>
         </Popper>
       )}
     </React.Fragment>

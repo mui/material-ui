@@ -25,7 +25,7 @@ export default function UseAutocomplete() {
 
   return (
     <div style={{ marginBottom: 24 }}>
-      <Label {...getInputLabelProps()}>Label</Label>
+      <StyledLabel {...getInputLabelProps()}>Pick a movie</StyledLabel>
       <StyledAutocompleteRoot
         {...getRootProps()}
         className={focused ? 'focused' : ''}
@@ -67,7 +67,7 @@ const grey = {
   900: '#24292f',
 };
 
-const Label = styled('label')`
+const StyledLabel = styled('label')`
   display: block;
   font-family: sans-serif;
   font-size: 14px;
@@ -128,7 +128,7 @@ const StyledListbox = styled('ul')(
   box-sizing: border-box;
   padding: 6px;
   margin: 12px 0;
-  max-width: 320px;
+  width: 320px;
   border-radius: 12px;
   overflow: auto;
   outline: 0px;

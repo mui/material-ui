@@ -47,23 +47,23 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
             },
           }}
         >
-          {groupedOptions.length > 0 ? (
-            <ul
-              {...getListboxProps()}
-              className="text-sm box-border p-1.5 my-3 mx-0 w-full rounded-xl overflow-auto outline-0 max-h-[300px] z-[1] absolute inset-x-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-200 shadow shadow-slate-200 dark:shadow-slate-900"
-            >
-              {groupedOptions.map((option, index) => (
+          <ul
+            {...getListboxProps()}
+            className="text-sm box-border p-1.5 my-3 mx-0 w-full rounded-xl overflow-auto outline-0 max-h-[300px] z-[1] absolute inset-x-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-200 shadow shadow-slate-200 dark:shadow-slate-900"
+          >
+            {groupedOptions.length > 0 ? (
+              groupedOptions.map((option, index) => (
                 <li
                   {...getOptionProps({ option, index })}
                   className="list-none p-2 rounded-lg cursor-default last-of-type:border-b-0 hover:cursor-pointer aria-selected:bg-purple-100 dark:aria-selected:bg-purple-900 aria-selected:text-purple-900 dark:aria-selected:text-purple-100 ui-focused:bg-slate-100 dark:ui-focused:bg-slate-700 ui-focus-visible:bg-slate-100 dark:ui-focus-visible:bg-slate-800 ui-focused:text-slate-900 dark:ui-focused:text-slate-300 ui-focus-visible:text-slate-900 dark:ui-focus-visible:text-slate-300 ui-focus-visible:shadow-[0_0_0_3px_transparent] ui-focus-visible:shadow-purple-200 dark:ui-focus-visible:shadow-purple-500 ui-focused:aria-selected:bg-purple-100 dark:ui-focused:aria-selected:bg-purple-900 ui-focus-visible:aria-selected:bg-purple-100 dark:ui-focus-visible:aria-selected:bg-purple-900 ui-focused:aria-selected:text-purple-900 dark:ui-focused:aria-selected:text-purple-100 ui-focus-visible:aria-selected:text-purple-900 dark:ui-focus-visible:aria-selected:text-purple-100"
                 >
                   {option.label}
                 </li>
-              ))}
-            </ul>
-          ) : (
-            <li className="list-none p-2 cursor-default">No results</li>
-          )}
+              ))
+            ) : (
+              <li className="list-none p-2 cursor-default">No results</li>
+            )}
+          </ul>
         </Popper>
       )}
     </div>

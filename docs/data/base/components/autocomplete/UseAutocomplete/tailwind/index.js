@@ -29,7 +29,7 @@ export default function UseAutocomplete() {
         htmlFor="use-autocomplete-demo"
         className="block text-sm font-medium mb-1"
       >
-        Pick a movie:
+        Pick a movie
       </label>
       <div className="relative w-80">
         <div

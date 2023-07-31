@@ -1,6 +1,7 @@
 import * as React from 'react';
 import useAutocomplete from '@mui/base/useAutocomplete';
 import { useTheme } from '@mui/system';
+import clsx from 'clsx';
 
 const options = ['Firefox', 'Google Chrome', 'Microsoft Edge', 'Safari', 'Opera'];
 
@@ -14,6 +15,7 @@ export default function ControlledStates() {
     getListboxProps,
     getOptionProps,
     groupedOptions,
+    focused,
   } = useAutocomplete({
     id: 'controlled-state-demo',
     options,
@@ -32,7 +34,7 @@ export default function ControlledStates() {
         inputValue: <code>{inputValue ?? ' '}</code>
       </pre>
       <div className="ControlledStates">
-        <div {...getRootProps()} className="root">
+        <div {...getRootProps()} className={clsx('root', focused && 'focused')}>
           <input {...getInputProps()} className="input" />
         </div>
         {groupedOptions.length > 0 && (

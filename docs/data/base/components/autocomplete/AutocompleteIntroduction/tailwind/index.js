@@ -31,6 +31,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
     focused,
     anchorEl,
     setAnchorEl,
+    groupedOptions,
   } = useAutocomplete({
     ...props,
     componentName: 'BaseAutocompleteIntroduction',
@@ -97,7 +98,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
             {...getListboxProps()}
             className="text-sm box-border p-1.5 my-3 mx-0 min-w-[320px] rounded-xl overflow-auto outline-0 max-h-[300px] z-[1] bg-white dark:bg-gray-800 border border-solid border-gray-200 dark:border-gray-900 text-gray-900 dark:text-gray-200 shadow-[0_4px_30px_transparent] shadow-gray-200 dark:shadow-gray-900"
           >
-            {options.map((option, index) => {
+            {groupedOptions.map((option, index) => {
               const optionProps = getOptionProps({ option, index });
 
               return (
@@ -110,7 +111,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
               );
             })}
 
-            {options.length === 0 && (
+            {groupedOptions.length === 0 && (
               <li className="list-none p-2 cursor-default">No results</li>
             )}
           </ul>

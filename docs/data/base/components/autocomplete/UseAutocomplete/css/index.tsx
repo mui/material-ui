@@ -32,7 +32,7 @@ export default function UseAutocomplete() {
           htmlFor="use-autocomplete-demo"
           className="label"
         >
-          Pick a movie:
+          Pick a movie
         </label>
         <div {...getRootProps()} className={clsx('root', focused && 'focused')}>
           <input {...getInputProps()} className="input" />
@@ -150,7 +150,7 @@ function Styles() {
         box-sizing: border-box;
         padding: 6px;
         margin: 12px 0;
-        max-width: 320px;
+        width: 320px;
         border-radius: 12px;
         overflow: auto;
         outline: 0px;

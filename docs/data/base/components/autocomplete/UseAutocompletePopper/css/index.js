@@ -37,20 +37,20 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
             root: { className: 'UseAutocompletePopper__popper' },
           }}
         >
-          {groupedOptions.length > 0 ? (
-            <ul {...getListboxProps()} className="UseAutocompletePopper__listbox">
-              {groupedOptions.map((option, index) => (
+          <ul {...getListboxProps()} className="UseAutocompletePopper__listbox">
+            {groupedOptions.length > 0 ? (
+              groupedOptions.map((option, index) => (
                 <li
                   {...getOptionProps({ option, index })}
                   className="UseAutocompletePopper__option"
                 >
                   {option.label}
                 </li>
-              ))}
-            </ul>
-          ) : (
-            <li className="UseAutocompletePopper__no-options">No results</li>
-          )}
+              ))
+            ) : (
+              <li className="UseAutocompletePopper__no-options">No results</li>
+            )}
+          </ul>
         </Popper>
       )}
 
@@ -166,7 +166,7 @@ function Styles() {
         box-sizing: border-box;
         padding: 6px;
         margin: 12px 0;
-        max-width: 320px;
+        width: 100%;
         border-radius: 12px;
         overflow: auto;
         outline: 0px;
@@ -213,6 +213,12 @@ function Styles() {
           background-color: ${isDarkMode ? cyan[900] : cyan[100]};
           color: ${isDarkMode ? cyan[100] : cyan[900]};
         }
+      }
+
+      .UseAutocompletePopper__no-options {
+        list-style: none;
+        padding: 8px;
+        cursor: default;
       }
       `}
     </style>

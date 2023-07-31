@@ -14,6 +14,7 @@ export default function ControlledStates() {
     getListboxProps,
     getOptionProps,
     groupedOptions,
+    focused,
   } = useAutocomplete({
     id: 'controlled-state-demo',
     options,
@@ -32,7 +33,7 @@ export default function ControlledStates() {
         inputValue: <code>{inputValue ?? ' '}</code>
       </Pre>
       <StyledAutocomplete>
-        <StyledInputRoot {...getRootProps()}>
+        <StyledInputRoot {...getRootProps()} className={focused ? 'focused' : ''}>
           <StyledInput {...getInputProps()} />
         </StyledInputRoot>
         {groupedOptions.length > 0 && (
