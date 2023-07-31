@@ -47,7 +47,7 @@ module.exports = {
 };
 ```
 
-Refer to this [example repo](https://github.com/mui/material-ui/blob/master/examples/base-next-app-router-tailwind-ts) for a full working demo of a Next.js 13 app using Base UI and Tailwind CSS.
+Refer to this [example repo](https://github.com/mui/material-ui/tree/master/examples/base-next-app-router-tailwind-ts) for a full working demo of a Next.js 13 app using Base UI and Tailwind CSS.
 
 ### Emotion
 

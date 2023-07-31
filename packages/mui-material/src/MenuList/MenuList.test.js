@@ -2,7 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import { describeConformance, createRenderer } from 'test/utils';
+import Divider from '@mui/material/Divider';
 import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
 import List from '@mui/material/List';
 import getScrollbarSize from '../utils/getScrollbarSize';
 
@@ -43,6 +45,18 @@ describe('<MenuList />', () => {
       );
 
       expect(getAllByRole('menuitem')).to.have.length(2);
+    });
+
+    it('should not add tabIndex to presentation elements like Divider when all Menu Items are disabled', () => {
+      const { getByRole } = render(
+        <MenuList>
+          <MenuItem disabled>one</MenuItem>
+          <Divider />
+          <MenuItem disabled>two</MenuItem>
+        </MenuList>,
+      );
+
+      expect(getByRole('separator')).not.to.have.attribute('tabIndex');
     });
   });
 

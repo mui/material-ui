@@ -12,7 +12,7 @@ export default function RadioChip() {
   return (
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
       <Box>
-        <Typography level="h2" fontSize="lg" id="best-movie" mb={2}>
+        <Typography level="title-lg" id="best-movie" mb={2}>
           Best Movie
         </Typography>
         <RadioGroup
@@ -36,7 +36,7 @@ export default function RadioChip() {
             return (
               <Chip
                 key={name}
-                variant={checked ? 'soft' : 'plain'}
+                variant="plain"
                 color={checked ? 'primary' : 'neutral'}
                 startDecorator={
                   checked && <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />

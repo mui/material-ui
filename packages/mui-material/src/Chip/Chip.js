@@ -92,8 +92,6 @@ const ChipRoot = styled('div', {
       borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
       transition: theme.transitions.create(['background-color', 'box-shadow']),
-      // label will inherit this from root, then `clickable` class overrides this for both
-      cursor: 'default',
       // We disable the focus ring for mouse, touch and keyboard users.
       outline: 0,
       textDecoration: 'none',

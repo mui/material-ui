@@ -12,8 +12,11 @@ export interface BreadcrumbsOwnerState extends BreadcrumbsProps {
   expanded: boolean;
 }
 
-export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
-  props: P & {
+export interface BreadcrumbsTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'nav',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -79,7 +82,7 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -95,8 +98,10 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
 declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;
 
 export type BreadcrumbsProps<
-  D extends React.ElementType = BreadcrumbsTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BreadcrumbsTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = BreadcrumbsTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BreadcrumbsTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Breadcrumbs;

@@ -263,7 +263,7 @@ export default function TemplateCollection() {
                 }}
               >
                 {author && (
-                  <Typography level="body2" fontWeight="md">
+                  <Typography level="body-sm" fontWeight="md">
                     Built by{' '}
                     <Link
                       href={author.link}
@@ -279,7 +279,7 @@ export default function TemplateCollection() {
                     <Typography level="caption" fontWeight="md" sx={{ mx: 0.5 }}>
                       •
                     </Typography>
-                    <Typography level="body2" fontWeight="md">
+                    <Typography level="body-sm" fontWeight="md">
                       Designed by{' '}
                       <Link
                         href={design.link}

@@ -10,13 +10,13 @@ export default function ChipUsages() {
         {
           propName: 'variant',
           knob: 'radio',
-          defaultValue: 'solid',
+          defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'primary',
+          defaultValue: 'neutral',
         },
         {
           propName: 'size',

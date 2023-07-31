@@ -23,7 +23,6 @@ import { expectType } from '@mui/types';
 
 <Switch color="primary" />;
 <Switch color="danger" />;
-<Switch color="info" />;
 <Switch color="success" />;
 <Switch color="warning" />;
 <Switch color="neutral" />;

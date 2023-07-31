@@ -82,8 +82,8 @@ function ColorToken({ name, value }: { name: string; value: string }) {
           boxShadow: 'sm',
         }}
       />
-      <Typography level="body3">{name}</Typography>
-      <Typography level="body3">{color}</Typography>
+      <Typography level="body-xs">{name}</Typography>
+      <Typography level="body-xs">{color}</Typography>
     </Box>
   );
 }
@@ -98,7 +98,7 @@ function PaletteTokens() {
   return (
     <React.Fragment>
       {mounted && (
-        <Typography level="h5" sx={{ mb: 1 }}>
+        <Typography level="title-md" sx={{ mb: 1 }}>
           Palette ({colorScheme})
         </Typography>
       )}
@@ -144,7 +144,7 @@ function TypographyScale() {
   const { typography } = useTheme();
   return (
     <React.Fragment>
-      <Typography level="h5" sx={{ mb: 1 }}>
+      <Typography level="title-md" sx={{ mb: 1 }}>
         Typography
       </Typography>
 
@@ -186,14 +186,14 @@ export default function JoyStyleGuide() {
             <TypographyScale />
           </Box>
           <Box>
-            <Typography level="h5" sx={{ mb: 1 }}>
+            <Typography level="title-md" sx={{ mb: 1 }}>
               UI Patterns
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <Box sx={{ width: 48, height: 48, bgcolor: 'background.level2' }} />
               <Box>
                 <Typography>List item title</Typography>
-                <Typography level="body2">Secondary text.</Typography>
+                <Typography level="body-sm">Secondary text.</Typography>
               </Box>
             </Box>
             <hr />
@@ -201,17 +201,17 @@ export default function JoyStyleGuide() {
               <Box sx={{ width: 48, height: 48, bgcolor: 'background.level2' }} />
               <Box sx={{ flexGrow: 1 }}>
                 <Typography>List item title</Typography>
-                <Typography level="body2">Secondary text.</Typography>
+                <Typography level="body-sm">Secondary text.</Typography>
               </Box>
-              <Typography level="body3">metadata</Typography>
+              <Typography level="body-xs">metadata</Typography>
             </Box>
             <hr />
             <Box sx={{ display: 'flex', gap: 2 }}>
               <Box sx={{ width: 64, height: 64, bgcolor: 'background.level2' }} />
               <Box sx={{ flexGrow: 1 }}>
                 <Typography>List item title</Typography>
-                <Typography level="body2">Secondary text.</Typography>
-                <Typography level="body3">metadata</Typography>
+                <Typography level="body-sm">Secondary text.</Typography>
+                <Typography level="body-xs">metadata</Typography>
               </Box>
             </Box>
           </Box>

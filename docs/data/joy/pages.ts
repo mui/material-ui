@@ -1,7 +1,8 @@
+import type { MuiPage } from 'docs/src/MuiPage';
 import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
-import pagesApi from './pagesApi';
+import pagesApi from 'docs/data/joy/pagesApi';
 
-const pages = [
+const pages: readonly MuiPage[] = [
   {
     pathname: '/joy-ui/getting-started-group',
     title: 'Getting started',
@@ -44,7 +45,11 @@ const pages = [
           { pathname: '/joy-ui/react-switch' },
           { pathname: '/joy-ui/react-textarea' },
           { pathname: '/joy-ui/react-text-field', title: 'Text Field' },
-          { pathname: '/joy-ui/react-toggle-button', title: 'Toggle Button', comingSoon: true },
+          {
+            pathname: '/joy-ui/react-toggle-button-group',
+            title: 'Toggle Button Group',
+            newFeature: true,
+          },
         ],
       },
       {
@@ -70,7 +75,7 @@ const pages = [
           { pathname: '/joy-ui/react-circular-progress', title: 'Circular Progress' },
           { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
-          { pathname: '/joy-ui/react-skeleton', comingSoon: true },
+          { pathname: '/joy-ui/react-skeleton', newFeature: true },
           { pathname: '/joy-ui/react-snackbar', comingSoon: true },
         ],
       },
@@ -159,6 +164,17 @@ const pages = [
       {
         pathname: '/joy-ui/guides/next-js-app-router',
         title: 'Next.js App Router',
+      },
+    ],
+  },
+  {
+    pathname: '/joy-ui/migration',
+    title: 'Migration',
+    icon: standardNavIcons.BookIcon,
+    children: [
+      {
+        pathname: '/joy-ui/migration/migrating-default-theme',
+        title: 'Migrating the default theme',
       },
     ],
   },

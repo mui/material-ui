@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Roboto } from 'next/font/google';
 import Link from 'next/link';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -26,8 +25,6 @@ export const metadata = {
   description: 'Next.js App Router + Material UI v5',
 };
 
-const roboto = Roboto({ weight: ['300', '400', '500', '700'], subsets: ['latin'] });
-
 const DRAWER_WIDTH = 240;
 
 const LINKS = [
@@ -45,7 +42,7 @@ const PLACEHOLDER_LINKS = [
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body>
         <ThemeRegistry>
           <AppBar position="fixed" sx={{ zIndex: 2000 }}>
             <Toolbar sx={{ backgroundColor: 'background.paper' }}>

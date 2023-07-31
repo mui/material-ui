@@ -35,14 +35,14 @@ export default function ArrowButton({
         },
         (theme) =>
           theme.applyDarkStyles({
-            color: '#fff',
-            borderColor: 'primaryDark.300',
+            color: 'primary.200',
+            borderColor: 'primaryDark.400',
             '&:hover': {
-              borderColor: 'primaryDark.200',
+              borderColor: 'primary.300',
             },
             '&.Mui-disabled': {
-              color: '#fff',
-              borderColor: 'primary.700',
+              color: 'primaryDark.200',
+              borderColor: 'primaryDark.400',
             },
           }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),

@@ -195,15 +195,15 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const DemoRootMaterial = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
-})(({ theme, hiddenToolbar, bg }) => ({
+  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
+})(({ theme, hideToolbar, bg }) => ({
   position: 'relative',
   outline: 0,
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: hiddenToolbar ? 12 : '12px 12px 0 0',
+    borderRadius: hideToolbar ? 12 : '12px 12px 0 0',
     ...(bg === 'outlined' && {
       borderLeftWidth: 1,
       borderRightWidth: 1,
@@ -253,38 +253,29 @@ const DemoRootMaterial = styled('div', {
         )} 0px, transparent 50%);`,
     ...theme.applyDarkStyles({
       borderColor: alpha(theme.palette.primaryDark[500], 0.7),
-      backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+      backgroundColor: alpha(theme.palette.primary[900], 0.1),
       backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
         theme.palette.primaryDark[700],
         0.5,
       )} 0px, transparent 50%),
-    radial-gradient(at 80% 0%, ${
-      (theme.vars || theme).palette.primaryDark[700]
-    } 0px, transparent 50%),
-    radial-gradient(at 0% 95%, ${
-      (theme.vars || theme).palette.primaryDark[700]
-    } 0px, transparent 50%),
-    radial-gradient(at 0% 5%, ${
-      (theme.vars || theme).palette.primaryDark[700]
-    } 0px, transparent 35%),
-    radial-gradient(at 93% 85%, ${alpha(
-      theme.palette.primaryDark[500],
-      0.8,
-    )} 0px, transparent 50%);`,
+    radial-gradient(at 80% 0%, ${alpha(theme.palette.primary[900], 0.3)} 0px, transparent 50%),
+    radial-gradient(at 0% 95%,  ${alpha(theme.palette.primary[900], 0.5)} 0px, transparent 50%),
+    radial-gradient(at 0% 5%, ${alpha(theme.palette.primary[900], 0.5)} 0px, transparent 35%),
+    radial-gradient(at 93% 85%, ${alpha(theme.palette.primary[900], 0.3)} 0px, transparent 50%);`,
     }),
   }),
 }));
 
 const DemoRootJoy = joyStyled('div', {
-  shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
-})(({ theme, hiddenToolbar, bg }) => ({
+  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
+})(({ theme, hideToolbar, bg }) => ({
   position: 'relative',
   outline: 0,
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: hiddenToolbar ? 12 : '12px 12px 0 0',
+    borderRadius: hideToolbar ? 12 : '12px 12px 0 0',
     ...(bg === 'outlined' && {
       borderLeftWidth: 1,
       borderRightWidth: 1,
@@ -327,20 +318,18 @@ const DemoRootJoy = joyStyled('div', {
       radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
       radial-gradient(at 0% 95%, ${alpha(blue[100], 0.3)}, transparent 40%),
       radial-gradient(at 0% 20%, ${blue[50]} 0px, transparent 50%),
-      radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.03'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
+      radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%);`,
     ...theme.applyDarkStyles({
-      backgroundColor: blueDark[800],
+      backgroundColor: alpha(blue[900], 0.1),
       borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
       backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
         blueDark[700],
         0.5,
       )} 0px, transparent 50%),
-        radial-gradient(at 80% 0%, ${blueDark[700]} 0px, transparent 50%),
-        radial-gradient(at 0% 95%, ${blueDark[700]} 0px, transparent 50%),
-        radial-gradient(at 0% 5%, ${blueDark[700]} 0px, transparent 25%),
-        radial-gradient(at 93% 85%, ${alpha(blueDark[500], 0.8)} 0px, transparent 50%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.15'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
+    radial-gradient(at 80% 0%, ${alpha(blue[900], 0.3)} 0px, transparent 50%),
+    radial-gradient(at 0% 95%,  ${alpha(blue[900], 0.5)} 0px, transparent 50%),
+    radial-gradient(at 0% 5%, ${alpha(blue[900], 0.5)} 0px, transparent 35%),
+    radial-gradient(at 93% 85%, ${alpha(blue[900], 0.3)} 0px, transparent 50%);`,
     }),
   }),
 }));
@@ -375,8 +364,24 @@ export default function Demo(props) {
     if (demoOptions.hideToolbar === false) {
       throw new Error(
         [
-          '"hiddenToolbar": false is already the default.',
+          '"hideToolbar": false is already the default.',
           `Please remove the property in {{"demo": "${demoOptions.demo}", …}}.`,
+        ].join('\n'),
+      );
+    }
+    if (demoOptions.hideToolbar === true && demoOptions.defaultCodeOpen === true) {
+      throw new Error(
+        [
+          '"hideToolbar": true, "defaultCodeOpen": true combination is invalid.',
+          `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
+        ].join('\n'),
+      );
+    }
+    if (demoOptions.hideToolbar === true && demoOptions.disableAd === true) {
+      throw new Error(
+        [
+          '"hideToolbar": true, "disableAd": true combination is invalid.',
+          `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
         ].join('\n'),
       );
     }
@@ -474,14 +479,17 @@ export default function Demo(props) {
     initialEditorCode,
   });
 
-  const resetDemo = () => {
-    setEditorCode({
-      value: initialEditorCode,
-      isPreview,
-      initialEditorCode,
-    });
-    setDemoKey();
-  };
+  const resetDemo = React.useMemo(
+    () => () => {
+      setEditorCode({
+        value: initialEditorCode,
+        isPreview,
+        initialEditorCode,
+      });
+      setDemoKey();
+    },
+    [setEditorCode, setDemoKey, initialEditorCode, isPreview],
+  );
 
   React.useEffect(() => {
     setEditorCode({
@@ -506,7 +514,7 @@ export default function Demo(props) {
     <Root>
       <AnchorLink id={demoName} />
       <DemoRoot
-        hiddenToolbar={demoOptions.hideToolbar}
+        hideToolbar={demoOptions.hideToolbar}
         bg={demoOptions.bg}
         id={demoId}
         onMouseEnter={handleDemoHover}
@@ -523,25 +531,26 @@ export default function Demo(props) {
           key={demoKey}
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
+          productId={demoData.productId}
           name={demoName}
           onResetDemoClick={resetDemo}
         >
           {demoElement}
         </DemoSandbox>
       </DemoRoot>
-      {Object.keys(stylingSolutionMapping).map((key) => (
-        <React.Fragment key={key}>
-          <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
-          <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
-        </React.Fragment>
-      ))}
-      <AnchorLink id={`${demoName}.js`} />
-      <AnchorLink id={`${demoName}.tsx`} />
       {/* TODO: BrandingProvider shouldn't be needed, it should already be at the top of the docs page */}
-      <BrandingProvider {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
-        {demoOptions.hideToolbar ? null : (
+      {demoOptions.hideToolbar ? null : (
+        <BrandingProvider {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
+          {Object.keys(stylingSolutionMapping).map((key) => (
+            <React.Fragment key={key}>
+              <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
+              <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
+            </React.Fragment>
+          ))}
+          <AnchorLink id={`${demoName}.js`} />
+          <AnchorLink id={`${demoName}.tsx`} />
           <DemoToolbarRoot demoOptions={demoOptions} openDemoSource={openDemoSource}>
-            <NoSsr defer fallback={<DemoToolbarFallback />}>
+            <NoSsr fallback={<DemoToolbarFallback />}>
               <React.Suspense fallback={<DemoToolbarFallback />}>
                 <DemoToolbar
                   codeOpen={codeOpen}
@@ -566,49 +575,49 @@ export default function Demo(props) {
               </React.Suspense>
             </NoSsr>
           </DemoToolbarRoot>
-        )}
-        <Collapse in={openDemoSource} unmountOnExit timeout={150}>
-          {/* A limitation from https://github.com/nihgwu/react-runner,
-            we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
-          {demoOptions.disableLiveEdit ? (
-            <DemoCodeViewer
-              code={editorCode.value}
-              id={demoSourceId}
-              language={demoData.sourceLanguage}
-              copyButtonProps={{
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-                'data-ga-event-action': 'copy-click',
-              }}
-            />
-          ) : (
-            <DemoEditor
-              // Mount a new text editor when the preview mode change to reset the undo/redo history.
-              key={editorCode.isPreview}
-              value={editorCode.value}
-              onChange={(value) => {
-                setEditorCode({
-                  ...editorCode,
-                  value,
-                });
-              }}
-              onFocus={() => {
-                setLiveDemoActive(true);
-              }}
-              id={demoSourceId}
-              language={demoData.sourceLanguage}
-              copyButtonProps={{
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-                'data-ga-event-action': 'copy-click',
-              }}
-            >
-              <DemoEditorError>{debouncedError}</DemoEditorError>
-            </DemoEditor>
-          )}
-        </Collapse>
-        {adVisibility ? <AdCarbonInline /> : null}
-      </BrandingProvider>
+          <Collapse in={openDemoSource} unmountOnExit timeout={150}>
+            {/* A limitation from https://github.com/nihgwu/react-runner,
+                we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
+            {demoOptions.disableLiveEdit ? (
+              <DemoCodeViewer
+                code={editorCode.value}
+                id={demoSourceId}
+                language={demoData.sourceLanguage}
+                copyButtonProps={{
+                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                  'data-ga-event-label': demo.gaLabel,
+                  'data-ga-event-action': 'copy-click',
+                }}
+              />
+            ) : (
+              <DemoEditor
+                // Mount a new text editor when the preview mode change to reset the undo/redo history.
+                key={editorCode.isPreview}
+                value={editorCode.value}
+                onChange={(value) => {
+                  setEditorCode({
+                    ...editorCode,
+                    value,
+                  });
+                }}
+                onFocus={() => {
+                  setLiveDemoActive(true);
+                }}
+                id={demoSourceId}
+                language={demoData.sourceLanguage}
+                copyButtonProps={{
+                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                  'data-ga-event-label': demo.gaLabel,
+                  'data-ga-event-action': 'copy-click',
+                }}
+              >
+                <DemoEditorError>{debouncedError}</DemoEditorError>
+              </DemoEditor>
+            )}
+          </Collapse>
+          {adVisibility ? <AdCarbonInline /> : null}
+        </BrandingProvider>
+      )}
     </Root>
   );
 }

@@ -13,7 +13,6 @@ import SecondSidebar from './components/SecondSidebar';
 import OrderTable from './components/OrderTable';
 import Header from './components/Header';
 import ColorSchemeToggle from './components/ColorSchemeToggle';
-import customTheme from './theme';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -31,17 +30,17 @@ export default function JoyOrderDashboardTemplate() {
   }, [status]);
 
   return (
-    <CssVarsProvider disableTransitionOnChange theme={customTheme}>
+    <CssVarsProvider disableTransitionOnChange>
       <GlobalStyles
-        styles={{
+        styles={(theme) => ({
           '[data-feather], .feather': {
-            color: 'var(--Icon-color)',
+            color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
             margin: 'var(--Icon-margin)',
-            fontSize: 'var(--Icon-fontSize, 20px)',
+            fontSize: `var(--Icon-fontSize, ${theme.vars.fontSize.xl})`,
             width: '1em',
             height: '1em',
           },
-        }}
+        })}
       />
       <CssBaseline />
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
@@ -104,7 +103,7 @@ export default function JoyOrderDashboardTemplate() {
               >
                 Dashboard
               </Link>
-              <Typography fontSize="inherit" variant="soft" color="primary">
+              <Typography fontSize="inherit" variant="plain" color="primary">
                 Orders
               </Typography>
             </Breadcrumbs>

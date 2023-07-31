@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
+import { unstable_capitalize as capitalize, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import useMenu, { MenuProvider } from '@mui/base/useMenu';
@@ -12,6 +12,7 @@ import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
 import { styled, useThemeProps } from '../styles';
+import { VariantColorProvider } from '../styles/variantColorInheritance';
 import ColorInversion, {
   ColorInversionProvider,
   useColorInversion,
@@ -45,13 +46,13 @@ const MenuRoot = styled(StyledList, {
   return [
     {
       '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
-      '--List-radius': theme.vars.radius.sm,
       '--ListItem-stickyBackground':
         variantStyle?.backgroundColor ||
         variantStyle?.background ||
         theme.vars.palette.background.popup,
       '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
       ...scopedVariables,
+      borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
       boxShadow: theme.shadow.md,
       overflow: 'auto',
       // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
@@ -85,16 +86,14 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
 
   const {
     actions,
-    anchorEl,
     children,
     color: colorProp = 'neutral',
     component,
     disablePortal = false,
     keepMounted = false,
+    id,
     invertedColors = false,
-    onClose,
     onItemsChange,
-    open = false,
     modifiers: modifiersProp,
     variant = 'outlined',
     size = 'md',
@@ -105,20 +104,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
-  const handleOpenChange = React.useCallback(
-    (isOpen: boolean) => {
-      if (!isOpen) {
-        onClose?.();
-      }
-    },
-    [onClose],
-  );
-
-  const { contextValue, getListboxProps, dispatch } = useMenu({
-    open,
-    onOpenChange: handleOpenChange,
-    listboxId: props.id,
+  const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     onItemsChange,
+    id,
+    listboxRef: ref,
   });
 
   React.useImperativeHandle(
@@ -158,22 +147,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     [modifiersProp],
   );
 
-  if (anchorEl && process.env.NODE_ENV !== 'production') {
-    let ariaControls = null;
-    const resolvedAnchorEl = typeof anchorEl === 'function' ? anchorEl() : anchorEl;
-    if ('getAttribute' in resolvedAnchorEl) {
-      ariaControls = resolvedAnchorEl.getAttribute('aria-controls');
-    } else {
-      ariaControls = resolvedAnchorEl.contextElement?.getAttribute('aria-controls');
-    }
-
-    if (props.id && ariaControls && props.id !== ariaControls) {
-      console.error(
-        `MUI: the anchorEl must have [aria-controls="${props.id}"] but got [aria-controls="${ariaControls}"].`,
-      );
-    }
-  }
-
   const rootProps = useSlotProps({
     elementType: MenuRoot,
     getSlotProps: getListboxProps,
@@ -181,9 +154,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     externalSlotProps: {},
     ownerState: ownerState as MenuOwnerState & ListOwnerState,
     additionalProps: {
-      ref,
-      anchorEl,
-      open,
+      anchorEl: triggerElement,
+      open: open && triggerElement !== null,
       disablePortal,
       keepMounted,
       modifiers,
@@ -193,9 +165,12 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
 
   let result = (
     <MenuProvider value={contextValue}>
-      <GroupListContext.Provider value="menu">
-        <ListProvider nested>{children}</ListProvider>
-      </GroupListContext.Provider>
+      {/* If `invertedColors` is true, let the children use their default variant */}
+      <VariantColorProvider variant={invertedColors ? undefined : variant} color={colorProp}>
+        <GroupListContext.Provider value="menu">
+          <ListProvider nested>{children}</ListProvider>
+        </GroupListContext.Provider>
+      </VariantColorProvider>
     </MenuProvider>
   );
 
@@ -236,16 +211,6 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   actions: refType,
   /**
-   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
-   * or a function that returns either.
-   * It's used to set the position of the popper.
-   * The return value will passed as the reference object of the Popper instance.
-   */
-  anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.func,
-  ]),
-  /**
    * @ignore
    */
   children: PropTypes.node,
@@ -253,7 +218,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

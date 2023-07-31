@@ -200,6 +200,26 @@ function getDescription(markdown) {
   return matches[1].trim().replace(/`/g, '');
 }
 
+function getCodeblock(content) {
+  if (content.startsWith('<codeblock')) {
+    const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+    const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
+      ([, language, tab, code]) => ({ language, tab, code }),
+    );
+
+    const blocksData = blocks.filter(
+      (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
+    );
+
+    return {
+      type: 'codeblock',
+      data: blocksData,
+      storageKey,
+    };
+  }
+  return undefined;
+}
+
 /**
  * @param {string} markdown
  */
@@ -427,6 +447,12 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
   if (productId === 'x-date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
   }
+  if (productId === 'x-charts') {
+    return `/x/api/charts/${kebabCase(component)}/`;
+  }
+  if (productId === 'x-tree-view') {
+    return `/x/api/tree-view/${kebabCase(component)}/`;
+  }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
   }
@@ -548,21 +574,11 @@ ${headers.hooks
             return null;
           }
         }
-        if (content.startsWith('<codeblock')) {
-          const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
-          const blocks = [...content.matchAll(/^```(\S*) (\S*)\n([^`]*)\n```/gmsu)].map(
-            ([, language, tab, code]) => ({ language, tab, code }),
-          );
 
-          const blocksData = blocks.filter(
-            (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
-          );
+        const codeblock = getCodeblock(content);
 
-          return {
-            type: 'codeblock',
-            data: blocksData,
-            storageKey,
-          };
+        if (codeblock) {
+          return codeblock;
         }
 
         return render(content);
@@ -572,16 +588,16 @@ ${headers.hooks
       rendered.unshift(
         `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
       <symbol id="comment-link-icon" viewBox="0 0 24 24">
-        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 14v-2.47l6.88-6.88c.2-.2.51-.2.71 0l1.77 1.77c.2.2.2.51 0 .71L8.47 14H6zm12 0h-7.5l2-2H18v2z" />
+      <path d="M5.025 14H6.95c.183 0 .35-.029.5-.087a1.24 1.24 0 0 0 .425-.288L13.65 7.9a.622.622 0 0 0 .2-.45.622.622 0 0 0-.2-.45l-2.3-2.3a.622.622 0 0 0-.45-.2.622.622 0 0 0-.45.2l-5.725 5.775a1.24 1.24 0 0 0-.287.425 1.37 1.37 0 0 0-.088.5v1.925c0 .184.067.342.2.475a.65.65 0 0 0 .475.2Zm5.325 0h5.725c.367 0 .68-.129.938-.387.258-.258.387-.57.387-.938 0-.366-.13-.679-.387-.937a1.277 1.277 0 0 0-.938-.388H13L10.35 14Zm-5.5 4.4-2.4 2.4c-.417.417-.896.509-1.437.275C.47 20.842.2 20.434.2 19.85V3.55c0-.733.258-1.358.775-1.875A2.554 2.554 0 0 1 2.85.9h16.3c.733 0 1.358.259 1.875.775.517.517.775 1.142.775 1.875v12.2c0 .734-.258 1.359-.775 1.875a2.554 2.554 0 0 1-1.875.775H4.85Z"/>
       </symbol>
       </svg>`,
       );
 
       rendered.unshift(
         `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
-    <symbol id="anchor-link-icon" viewBox="0 0 16 16">
-      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" />
-    </symbol>
+        <symbol id="anchor-link-icon" viewBox="0 0 12 6">
+          <path d="M8.9176 0.083252H7.1676C6.84677 0.083252 6.58427 0.345752 6.58427 0.666585C6.58427 0.987419 6.84677 1.24992 7.1676 1.24992H8.9176C9.8801 1.24992 10.6676 2.03742 10.6676 2.99992C10.6676 3.96242 9.8801 4.74992 8.9176 4.74992H7.1676C6.84677 4.74992 6.58427 5.01242 6.58427 5.33325C6.58427 5.65409 6.84677 5.91659 7.1676 5.91659H8.9176C10.5276 5.91659 11.8343 4.60992 11.8343 2.99992C11.8343 1.38992 10.5276 0.083252 8.9176 0.083252ZM3.6676 2.99992C3.6676 3.32075 3.9301 3.58325 4.25094 3.58325H7.75094C8.07177 3.58325 8.33427 3.32075 8.33427 2.99992C8.33427 2.67909 8.07177 2.41659 7.75094 2.41659H4.25094C3.9301 2.41659 3.6676 2.67909 3.6676 2.99992ZM4.83427 4.74992H3.08427C2.12177 4.74992 1.33427 3.96242 1.33427 2.99992C1.33427 2.03742 2.12177 1.24992 3.08427 1.24992H4.83427C5.1551 1.24992 5.4176 0.987419 5.4176 0.666585C5.4176 0.345752 5.1551 0.083252 4.83427 0.083252H3.08427C1.47427 0.083252 0.167603 1.38992 0.167603 2.99992C0.167603 4.60992 1.47427 5.91659 3.08427 5.91659H4.83427C5.1551 5.91659 5.4176 5.65409 5.4176 5.33325C5.4176 5.01242 5.1551 4.74992 4.83427 4.74992Z" />
+        </symbol>
     </svg>`,
       );
 
@@ -617,6 +633,7 @@ module.exports = {
   createRender,
   getContents,
   getDescription,
+  getCodeblock,
   getHeaders,
   getTitle,
   prepareMarkdown,

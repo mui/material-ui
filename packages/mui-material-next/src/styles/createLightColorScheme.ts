@@ -34,6 +34,12 @@ const createLightColorScheme = (
   onPrimary: getCssVar('ref-palette-primary-100', palette.primary[100]),
   primaryContainer: getCssVar('ref-palette-primary-90', palette.primary[90]),
   primary: getCssVar('ref-palette-primary-40', palette.primary[40]),
+  info: getCssVar('ref-palette-info-40', palette.info[40]),
+  onInfo: getCssVar('ref-palette-info-100', palette.info[100]),
+  warning: getCssVar('ref-palette-warning-40', palette.warning[40]),
+  onWarning: getCssVar('ref-palette-warning-100', palette.warning[100]),
+  success: getCssVar('ref-palette-success-40', palette.success[40]),
+  onSuccess: getCssVar('ref-palette-success-100', palette.success[100]),
 });
 
 export default createLightColorScheme;

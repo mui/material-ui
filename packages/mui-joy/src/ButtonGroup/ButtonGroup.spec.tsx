@@ -14,7 +14,6 @@ import * as React from 'react';
 // `color`
 <ButtonGroup color="primary" />;
 <ButtonGroup color="danger" />;
-<ButtonGroup color="info" />;
 <ButtonGroup color="success" />;
 <ButtonGroup color="warning" />;
 <ButtonGroup color="neutral" />;
