@@ -1,6 +1,4 @@
 import * as React from 'react';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Box from '@mui/joy/Box';
 import FormLabel from '@mui/joy/FormLabel';
 import List from '@mui/joy/List';
@@ -11,6 +9,8 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
 export default function ButtonThemes() {
   const [preset, setPreset] = React.useState('');

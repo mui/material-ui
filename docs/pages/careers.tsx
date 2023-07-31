@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -11,6 +10,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import MuiAccordionDetail from '@mui/material/AccordionDetails';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -19,9 +21,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import IconImage from 'docs/src/components/icon/IconImage';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import Section from 'docs/src/layouts/Section';
-import MuiAccordion from '@mui/material/Accordion';
-import MuiAccordionSummary from '@mui/material/AccordionSummary';
-import MuiAccordionDetail from '@mui/material/AccordionDetails';
+import Head from 'docs/src/modules/components/Head';
 import ROUTES from 'docs/src/route';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 

@@ -9,11 +9,11 @@ import Sheet from '@mui/joy/Sheet';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Input, { inputClasses } from '@mui/joy/Input';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
 interface DataItem {
   var: string;

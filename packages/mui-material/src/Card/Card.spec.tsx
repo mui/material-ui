@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
 import { expectType } from '@mui/types';
+import Card from '@mui/material/Card';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
   function CustomComponent() {

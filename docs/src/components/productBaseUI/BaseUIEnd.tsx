@@ -5,15 +5,15 @@ import Grid from '@mui/material/Unstable_Grid2';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
+import CompareIcon from '@mui/icons-material/Compare';
+import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import { alpha } from '@mui/material/styles';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Link from 'docs/src/modules/components/Link';
-import CompareIcon from '@mui/icons-material/Compare';
-import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
-import { alpha } from '@mui/material/styles';
 
 export default function BaseUIEnd() {
   return (

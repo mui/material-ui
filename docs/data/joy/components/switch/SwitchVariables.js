@@ -1,7 +1,7 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function SwitchVariables() {
   return (

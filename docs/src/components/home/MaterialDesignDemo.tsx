@@ -10,8 +10,8 @@ import MuiTypography from '@mui/material/Typography';
 import MuiStack from '@mui/material/Stack';
 import MuiEdit from '@mui/icons-material/Edit';
 import MuiLocationOn from '@mui/icons-material/LocationOn';
-import { withPointer } from 'docs/src/components/home/ElementPointer';
 import { grey } from '@mui/material/colors';
+import { withPointer } from 'docs/src/components/home/ElementPointer';
 
 export const componentCode = `<Card>
   <Box sx={{ p: 2, display: 'flex' }}>

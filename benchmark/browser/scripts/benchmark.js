@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 /* eslint-disable no-await-in-loop */
-const fse = require('fs-extra');
 const path = require('path');
+const http = require('http');
+const fse = require('fs-extra');
 const playwright = require('playwright');
 const handler = require('serve-handler');
-const http = require('http');
 
 const PORT = 1122;
 

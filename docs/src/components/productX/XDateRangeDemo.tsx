@@ -8,12 +8,12 @@ import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Frame from 'docs/src/components/action/Frame';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { PickersShortcutsItem, PickersShortcutsProps, DateRange } from '@mui/x-date-pickers-pro';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { startOfWeek, endOfWeek, subDays } from 'date-fns';
+import Frame from 'docs/src/components/action/Frame';
 
 const startDate = new Date();
 startDate.setDate(10);
