@@ -1,12 +1,10 @@
 import type { MuiPage } from 'docs/src/MuiPage';
-import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 import pagesApi from 'docs/data/base/pagesApi';
 
 const pages: readonly MuiPage[] = [
   {
     pathname: '/base-ui/getting-started-group',
     title: 'Getting started',
-    icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/base-ui/getting-started', title: 'Overview' },
       { pathname: '/base-ui/getting-started/quickstart', title: 'Quickstart' },
@@ -17,7 +15,6 @@ const pages: readonly MuiPage[] = [
   {
     pathname: '/base-ui/react-',
     title: 'Components',
-    icon: standardNavIcons.ToggleOnIcon,
     children: [
       { pathname: '/base-ui/all-components', title: 'All components' },
       {
@@ -93,13 +90,11 @@ const pages: readonly MuiPage[] = [
   {
     title: 'APIs',
     pathname: '/base-ui/api',
-    icon: standardNavIcons.CodeIcon,
     children: pagesApi,
   },
   {
     pathname: '/base-ui/guides',
     title: 'How-to guides',
-    icon: standardNavIcons.VisibilityIcon,
     children: [
       {
         pathname: '/base-ui/guides/working-with-tailwind-css',
