@@ -5,7 +5,7 @@
 :::info
 Starting fresh on a new App Router-based project?
 
-Jump right into the code with [this example: Joy UI - Next.js App Router with TypeScript](https://github.com/mui/material-ui/tree/master/examples/joy-next-ts).
+Jump right into the code with [this example: Joy UI - Next.js App Router with TypeScript](https://github.com/mui/material-ui/tree/master/examples/joy-ui-nextjs-ts).
 :::
 
 ## Next.js and React Server Components
