@@ -57,7 +57,6 @@ export default function PropertiesTable(props) {
   } = props;
   const t = useTranslate();
 
-  const hashPrefix = componentName ? `${componentName}-` : '';
   return (
     <div>
       {Object.entries(properties)
@@ -72,7 +71,7 @@ export default function PropertiesTable(props) {
           return (
             <ApiItem
               key={propName}
-              id={`${hashPrefix}prop-${propName}`}
+              id={getHash({ componentName, propName })}
               title={propName}
               note={
                 (propData.required && !showOptionalAbbr && 'Required') ||
