@@ -22,7 +22,7 @@ const useUtilityClasses = (ownerState) => {
       'root',
       indeterminate && 'indeterminate',
       `color${capitalize(color)}`,
-      size === 'small' && 'sizeSmall',
+      `size${capitalize(size)}`,
     ],
   };
 

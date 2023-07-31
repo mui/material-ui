@@ -16,6 +16,8 @@ export interface CheckboxClasses {
   colorSecondary: string;
   /** State class applied to the root element if `size="small"`. */
   sizeSmall: string;
+  /** State class applied to the root element if `size="medium"`. */
+  sizeMedium: string;
 }
 
 export type CheckboxClassKey = keyof CheckboxClasses;
@@ -32,6 +34,7 @@ const checkboxClasses: CheckboxClasses = generateUtilityClasses('MuiCheckbox', [
   'colorPrimary',
   'colorSecondary',
   'sizeSmall',
+  'sizeMedium',
 ]);
 
 export default checkboxClasses;

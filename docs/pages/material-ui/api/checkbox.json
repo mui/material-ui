@@ -52,7 +52,8 @@
       "indeterminate",
       "colorPrimary",
       "colorSecondary",
-      "sizeSmall"
+      "sizeSmall",
+      "sizeMedium"
     ],
     "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
     "name": "MuiCheckbox"
