@@ -28,7 +28,7 @@ const content = [
     title: 'Base UI',
     description:
       'A library of unstyled components with production-ready functionality, along with low-level hooks.',
-    link: '/base-ui/getting-started/',
+    link: '/base-ui/',
   },
   {
     // logo:

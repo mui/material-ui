@@ -174,11 +174,6 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div', T exten
   props: P &
     SystemProps<T> & {
       children?: React.ReactNode;
-      /**
-       * The component used for the root node.
-       * Either a string to use a HTML element or a component.
-       */
-      component?: React.ElementType;
       ref?: React.Ref<unknown>;
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -203,6 +198,6 @@ declare const Box: OverridableComponent<BoxTypeMap>;
 export type BoxProps<
   D extends React.ElementType = BoxTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<BoxTypeMap<P, D>, D>;
+> = OverrideProps<BoxTypeMap<P, D>, D> & { component?: React.ElementType };
 
 export default Box;

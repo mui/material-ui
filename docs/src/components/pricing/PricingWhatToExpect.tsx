@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Section from 'docs/src/layouts/Section';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
@@ -9,6 +8,7 @@ import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import Section from 'docs/src/layouts/Section';
 import Link from 'docs/src/modules/components/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 
@@ -82,7 +82,7 @@ export default function PricingWhatToExpect() {
             Upon expiration, you can renew your maintenance plan with a discount that depends on
             when you renew:
             <ul>
-              <li>before the suppord expires: 50% discount</li>
+              <li>before the support expires: 50% discount</li>
               <li>up to 60 days after the support has expired: 25% discount</li>
               <li>more than 60 days after the support has expired: 15% discount</li>
             </ul>

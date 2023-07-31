@@ -2,8 +2,8 @@ import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
 import Box from '@mui/material/Box';
-import Section from 'docs/src/layouts/Section';
 import { alpha } from '@mui/material/styles';
+import Section from 'docs/src/layouts/Section';
 
 function Placeholder() {
   return <Box sx={{ height: { xs: 587, sm: 303, md: 289 } }} />;
@@ -26,7 +26,7 @@ export default function HeroEnd() {
         ...theme.applyDarkStyles({
           background: `linear-gradient(180deg, ${
             (theme.vars || theme).palette.primaryDark[800]
-          } 50%, 
+          } 50%,
           ${alpha(theme.palette.primary[900], 0.2)} 100%)
           `,
         }),

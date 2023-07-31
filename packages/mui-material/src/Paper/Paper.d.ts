@@ -38,9 +38,12 @@ export interface PaperOwnProps {
   variant?: OverridableStringUnion<'elevation' | 'outlined', PaperPropsVariantOverrides>;
 }
 
-export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & PaperOwnProps;
-  defaultComponent: D;
+export interface PaperTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & PaperOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -56,14 +59,16 @@ export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
  */
 declare const Paper: OverridableComponent<PaperTypeMap>;
 
-export interface ExtendPaperTypeMap<M extends OverridableTypeMap, Keys extends string = ''> {
-  props: M['props'] & Omit<PaperTypeMap['props'], Keys>;
-  defaultComponent: M['defaultComponent'];
+export interface ExtendPaperTypeMap<TypeMap extends OverridableTypeMap, Keys extends string = ''> {
+  props: TypeMap['props'] & Omit<PaperTypeMap['props'], Keys>;
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
 export type PaperProps<
-  D extends React.ElementType = PaperTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<PaperTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = PaperTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<PaperTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Paper;

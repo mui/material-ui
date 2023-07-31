@@ -10,7 +10,7 @@ A comunidade é sua primeira parada para perguntas e conselhos sobre o framework
 
 For crowdsourced answers from expert MUI developers in our community. Stack Overflow is also visited from time to time by the maintainers of MUI.
 
-[Poste uma pergunta](https://stackoverflow.com/questions/tagged/mui)
+[Poste uma pergunta](https://stackoverflow.com/questions/tagged/material-ui)
 
 :::info
 💡 **Tip**:

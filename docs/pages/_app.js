@@ -4,8 +4,15 @@ import * as React from 'react';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
-import generalPages from 'docs/src/pages';
+import { useRouter } from 'next/router';
+import { LicenseInfo } from '@mui/x-data-grid-pro';
+import materialPkgJson from 'packages/mui-material/package.json';
+import joyPkgJson from 'packages/mui-joy/package.json';
+import systemPkgJson from 'packages/mui-system/package.json';
+import basePkgJson from 'packages/mui-base/package.json';
+import generalDocsPages from 'docs/data/docs/pages';
 import basePages from 'docs/data/base/pages';
+import docsInfraPages from 'docs/data/docs-infra/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
@@ -19,12 +26,6 @@ import { UserLanguageProvider } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
-import { useRouter } from 'next/router';
-import { LicenseInfo } from '@mui/x-data-grid-pro';
-import materialPkgJson from 'packages/mui-material/package.json';
-import joyPkgJson from 'packages/mui-joy/package.json';
-import systemPkgJson from 'packages/mui-system/package.json';
-import basePkgJson from 'packages/mui-base/package.json';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import './global.css';
@@ -220,20 +221,37 @@ function AppWrapper(props) {
       };
     }
 
-    return {
-      metadata: '',
-      name: 'Docs-infra',
-      versions: [
-        {
-          text: 'v0.0.0',
-          href: `https://mui.com${languagePrefix}/versions/`,
-        },
-      ],
-    };
+    if (productId === 'docs-infra') {
+      return {
+        metadata: '',
+        name: 'Docs-infra',
+        versions: [
+          {
+            text: 'v0.0.0',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    if (productId === 'docs') {
+      return {
+        metadata: '',
+        name: 'Home docs',
+        versions: [
+          {
+            text: 'v0.0.0',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    return null;
   }, [pageProps.userLanguage, productId]);
 
   const pageContextValue = React.useMemo(() => {
-    let pages = generalPages;
+    let pages = generalDocsPages;
     if (productId === 'base-ui') {
       pages = basePages;
     } else if (productId === 'material-ui') {
@@ -242,6 +260,8 @@ function AppWrapper(props) {
       pages = joyPages;
     } else if (productId === 'system') {
       pages = systemPages;
+    } else if (productId === 'docs-infra') {
+      pages = docsInfraPages;
     }
 
     const { activePage, activePageParents } = findActivePage(pages, router.pathname);

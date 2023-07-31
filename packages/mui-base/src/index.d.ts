@@ -12,6 +12,9 @@ export * from './ClickAwayListener';
 export { default as unstable_composeClasses } from './composeClasses';
 export * from './composeClasses';
 
+export { default as Dropdown } from './Dropdown';
+export * from './Dropdown';
+
 export { default as FocusTrap } from './FocusTrap';
 export * from './FocusTrap';
 
@@ -23,6 +26,9 @@ export * from './Input';
 
 export { default as Menu } from './Menu';
 export * from './Menu';
+
+export { default as MenuButton } from './MenuButton';
+export * from './MenuButton';
 
 export { default as MenuItem } from './MenuItem';
 export * from './MenuItem';
@@ -83,11 +89,17 @@ export * from './useBadge';
 export { default as useButton } from './useButton';
 export * from './useButton';
 
+export { default as useDropdown } from './useDropdown';
+export * from './useDropdown';
+
 export { default as useInput } from './useInput';
 export * from './useInput';
 
 export { default as useMenu } from './useMenu';
 export * from './useMenu';
+
+export { default as useMenuButton } from './useMenuButton';
+export * from './useMenuButton';
 
 export { default as useMenuItem } from './useMenuItem';
 export * from './useMenuItem';

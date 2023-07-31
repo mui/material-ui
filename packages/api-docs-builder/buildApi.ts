@@ -1,6 +1,6 @@
 import { mkdirSync } from 'fs';
-import * as fse from 'fs-extra';
 import path from 'path';
+import * as fse from 'fs-extra';
 import kebabCase from 'lodash/kebabCase';
 import * as yargs from 'yargs';
 import findComponents from './utils/findComponents';

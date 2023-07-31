@@ -6,17 +6,13 @@
  */
 
 /**
- * List of demos or folders to ignore when transpiling
- * Example: "app-bar/BottomAppBar.tsx"
+ * List of demos or folders to ignore when transpiling.
+ * Only ignore files that aren't used in the UI.
  */
-const ignoreList = [
-  '/pages.ts',
-  'docs/data/joy/getting-started/templates',
-  'docs/data/base/components/select/UnstyledSelectIntroduction.tsx',
-];
+const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
 
-const fse = require('fs-extra');
 const path = require('path');
+const fse = require('fs-extra');
 const babel = require('@babel/core');
 const prettier = require('prettier');
 const typescriptToProptypes = require('typescript-to-proptypes');

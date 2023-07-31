@@ -4,10 +4,10 @@ import Grid from '@mui/material/Unstable_Grid2';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import Paper from '@mui/material/Paper';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);

@@ -2,11 +2,11 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
-import Section from 'docs/src/layouts/Section';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import Link from 'docs/src/modules/components/Link';
 import ArrowForward from '@mui/icons-material/ArrowForward';
+import Link from 'docs/src/modules/components/Link';
+import Section from 'docs/src/layouts/Section';
 
 export default function BaseUITestimonial() {
   return (
@@ -63,7 +63,10 @@ export default function BaseUITestimonial() {
           </Typography>
           <Divider />
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <Avatar src="https://media.licdn.com/dms/image/C4D03AQHm6cbz2UDXpw/profile-displayphoto-shrink_800_800/0/1642674447256?e=2147483647&v=beta&t=L8g2vW_8mG8AvB3lwui0CT8969_Cx9QQ0iJXIS47i0o" />
+            <Avatar
+              alt=""
+              src="https://media.licdn.com/dms/image/C4D03AQHm6cbz2UDXpw/profile-displayphoto-shrink_800_800/0/1642674447256?e=2147483647&v=beta&t=L8g2vW_8mG8AvB3lwui0CT8969_Cx9QQ0iJXIS47i0o"
+            />
             <Box sx={{ flex: 1 }}>
               <Typography variant="body2" fontWeight={600}>
                 Szilárd Dóró

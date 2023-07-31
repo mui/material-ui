@@ -48,8 +48,7 @@ export const DividerRoot = styled('hr', {
         whiteSpace: 'nowrap',
         textAlign: 'center',
         border: 0,
-        fontFamily: theme.vars.fontFamily.body,
-        fontSize: theme.vars.fontSize.sm,
+        ...theme.typography['body-sm'],
         '&::before, &::after': {
           position: 'relative',
           inlineSize:

@@ -1,13 +1,23 @@
 import * as React from 'react';
-import Button, { ButtonProps } from '@mui/material/Button';
 import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
 import { expectType } from '@mui/types';
+import Button, { ButtonProps } from '@mui/material/Button';
+import MaterialUiLink, { LinkProps as MaterialUiLinkProps } from '@mui/material/Link';
 
 const log = console.log;
 
 const TestOverride = React.forwardRef<HTMLDivElement, { x?: number }>((props, ref) => (
   <div ref={ref} />
 ));
+
+type CustomLinkProps = MaterialUiLinkProps<typeof ReactRouterLink, LinkProps>;
+const CustomLink: React.FC<React.PropsWithChildren<CustomLinkProps>> = ({ children, ...props }) => {
+  return (
+    <MaterialUiLink component={ReactRouterLink} {...props}>
+      {children}
+    </MaterialUiLink>
+  );
+};
 
 function FakeIcon() {
   return <div>Icon</div>;
@@ -26,23 +36,18 @@ const props2: ButtonProps = {
   },
 };
 
-const props3: ButtonProps<'span'> = {
-  // @ts-expect-error
-  component: 'div',
-};
-
-const props4: ButtonProps<typeof TestOverride> = {
+const props3: ButtonProps<typeof TestOverride> = {
   component: TestOverride,
   x: 2,
 };
 
-const props5: ButtonProps<typeof TestOverride> = {
+const props4: ButtonProps<typeof TestOverride> = {
   component: TestOverride,
-  // @ts-expect-error
-  inCorrectProp: 3,
+  // @ts-expect-error TestOverride does not accept incorrectProp
+  incorrectProp: 3,
 };
 
-const props6: ButtonProps<typeof TestOverride> = {
+const props5: ButtonProps<typeof TestOverride> = {
   component: TestOverride,
 };
 
@@ -67,6 +72,9 @@ const buttonTest = () => (
     </Button>
     <Button href="/open-collective">Link</Button>
     <Button component={ReactRouterLink} to="/open-collective">
+      Link
+    </Button>
+    <Button component={CustomLink} to="/some-route">
       Link
     </Button>
     <Button href="/open-collective">Link</Button>

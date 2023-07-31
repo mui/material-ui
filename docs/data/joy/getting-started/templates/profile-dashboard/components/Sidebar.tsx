@@ -72,7 +72,7 @@ export default function Sidebar() {
           left: 0,
           width: '100vw',
           height: '100vh',
-          bgcolor: 'background.body',
+
           opacity: 'calc(var(--SideNavigation-slideIn, 0) - 0.2)',
           transition: 'opacity 0.4s',
           transform: {
@@ -159,7 +159,7 @@ export default function Sidebar() {
             </ListItemButton>
             <List>
               <ListItem>
-                <ListItemButton selected variant="soft" color="primary">
+                <ListItemButton selected color="primary">
                   My Profile
                 </ListItemButton>
               </ListItem>
@@ -206,7 +206,7 @@ export default function Sidebar() {
           <Typography fontSize="sm" fontWeight="lg" mb={0.5}>
             Used space
           </Typography>
-          <Typography level="body3">
+          <Typography level="body-xs">
             Your team has used 80% of your available space. Need more?
           </Typography>
           <LinearProgress value={80} determinate sx={{ my: 1.5 }} />
@@ -227,7 +227,7 @@ export default function Sidebar() {
           <Typography fontSize="sm" fontWeight="lg">
             Siriwat K.
           </Typography>
-          <Typography level="body3">siriwatk@test.com</Typography>
+          <Typography level="body-xs">siriwatk@test.com</Typography>
         </Box>
         <IconButton variant="plain" color="neutral">
           <i data-feather="log-out" />

@@ -168,7 +168,7 @@ For more options, see the [`Button` component page](https://mui.com/material-ui/
 
 ## Questions
 
-For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/tagged/mui) instead of GitHub issues.
+For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui) instead of GitHub issues.
 Use the "mui" tag on Stack Overflow to make it easier for the community to find your question.
 
 ## Examples

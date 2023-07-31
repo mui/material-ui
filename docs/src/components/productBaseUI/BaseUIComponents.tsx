@@ -2,23 +2,23 @@ import * as React from 'react';
 import { styled as materialStyled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import GradientText from 'docs/src/components/typography/GradientText';
-import Item, { Group } from 'docs/src/components/action/Item';
-import Highlighter from 'docs/src/components/action/Highlighter';
-import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import More from 'docs/src/components/action/More';
-import Frame from 'docs/src/components/action/Frame';
-import ROUTES from 'docs/src/route';
-
-// switcher icons
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
 import TabUnselectedRoundedIcon from '@mui/icons-material/TabUnselectedRounded';
 import InputRoundedIcon from '@mui/icons-material/InputRounded';
 import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded';
 import LinearScaleRoundedIcon from '@mui/icons-material/LinearScaleRounded';
+import GradientText from 'docs/src/components/typography/GradientText';
+import Item, { Group } from 'docs/src/components/action/Item';
+import Highlighter from 'docs/src/components/action/Highlighter';
+import Section from 'docs/src/layouts/Section';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import More from 'docs/src/components/action/More';
+import Frame from 'docs/src/components/action/Frame';
+import ROUTES from 'docs/src/route';
+
+// switcher icons
 
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
@@ -155,16 +155,17 @@ export default function BaseUIComponents() {
                 height: 360,
                 position: 'relative',
                 overflow: 'hidden',
+                p: 0,
                 pt: 5,
               }}
             >
               <Box
                 sx={{
-                  height: 'calc(100% + 40px)',
                   overflow: 'auto',
-                  m: -2,
-                  p: 2,
-                  pt: 3,
+                  pt: 2,
+                  pb: 1,
+                  px: 2,
+                  height: '100%',
                 }}
               >
                 <HighlightedCode

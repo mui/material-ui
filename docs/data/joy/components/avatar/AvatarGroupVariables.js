@@ -1,7 +1,7 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import AvatarGroup from '@mui/joy/AvatarGroup';
 import Avatar from '@mui/joy/Avatar';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function AvatarGroupVariables() {
   return (
