@@ -21,7 +21,6 @@ function Link(props: JSX.IntrinsicElements['a']) {
 <Typography color="primary" />;
 <Typography color="neutral" />;
 <Typography color="danger" />;
-<Typography color="info" />;
 <Typography color="success" />;
 <Typography color="warning" />;
 

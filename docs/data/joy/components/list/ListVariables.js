@@ -34,7 +34,6 @@ export default function ListVariables() {
             ...sx,
             width: 300,
             ...theme.variants.outlined.neutral,
-            bgcolor: 'background.body',
           })}
         >
           <ListItem>
@@ -57,7 +56,7 @@ export default function ListVariables() {
           <ListItem nested>
             <ListItem>
               <Typography
-                level="body2"
+                level="body-sm"
                 fontWeight="md"
                 startDecorator={
                   <Sheet

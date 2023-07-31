@@ -20,7 +20,6 @@ import { expectType } from '@mui/types';
 
 <Radio color="primary" />;
 <Radio color="danger" />;
-<Radio color="info" />;
 <Radio color="success" />;
 <Radio color="warning" />;
 <Radio color="neutral" />;

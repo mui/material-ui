@@ -67,7 +67,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       endDecorator?: React.ReactNode;
       /**
        * Applies the theme typography styles.
-       * @default 'body1'
+       * @default 'body-md'
        */
       level?: keyof TypographySystem | 'inherit';
       /**

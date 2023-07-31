@@ -42,12 +42,11 @@ describe('<FormControl />', () => {
       expect(getByTestId('root')).not.to.have.class(classes.colorNeutral);
       expect(getByTestId('root')).not.to.have.class(classes.colorPrimary);
       expect(getByTestId('root')).not.to.have.class(classes.colorDanger);
-      expect(getByTestId('root')).not.to.have.class(classes.colorInfo);
       expect(getByTestId('root')).not.to.have.class(classes.colorSuccess);
       expect(getByTestId('root')).not.to.have.class(classes.colorWarning);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(<FormControl data-testid="root" color={color} />);
 

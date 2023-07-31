@@ -11,7 +11,7 @@
     "color": {
       "type": {
         "name": "enum",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
+        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
       "default": "'neutral'",
       "additionalPropsInfo": { "joy-color": true }
@@ -28,7 +28,7 @@
       "type": { "name": "func" },
       "default": "createFilterOptions()",
       "signature": {
-        "type": "function(options: Array<T>, state: object) => Array<T>",
+        "type": "function(options: Array<Value>, state: object) => Array<Value>",
         "describedArgs": ["options", "state"]
       }
     },
@@ -47,23 +47,23 @@
     },
     "getOptionDisabled": {
       "type": { "name": "func" },
-      "signature": { "type": "function(option: T) => boolean", "describedArgs": ["option"] }
+      "signature": { "type": "function(option: Value) => boolean", "describedArgs": ["option"] }
     },
     "getOptionLabel": {
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option",
-      "signature": { "type": "function(option: T) => string", "describedArgs": [] }
+      "signature": { "type": "function(option: Value) => string", "describedArgs": [] }
     },
     "groupBy": {
       "type": { "name": "func" },
-      "signature": { "type": "function(options: T) => string", "describedArgs": ["options"] }
+      "signature": { "type": "function(options: Value) => string", "describedArgs": ["options"] }
     },
     "id": { "type": { "name": "string" } },
     "inputValue": { "type": { "name": "string" } },
     "isOptionEqualToValue": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(option: T, value: T) => boolean",
+        "type": "function(option: Value, value: Value) => boolean",
         "describedArgs": ["option", "value"]
       }
     },
@@ -76,7 +76,7 @@
     "onChange": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(event: React.SyntheticEvent, value: T | Array<T>, reason: string, details?: string) => void",
+        "type": "function(event: React.SyntheticEvent, value: Value | Array<Value>, reason: string, details?: string) => void",
         "describedArgs": ["event", "value", "reason"]
       }
     },
@@ -90,7 +90,7 @@
     "onHighlightChange": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(event: React.SyntheticEvent, option: T, reason: string) => void",
+        "type": "function(event: React.SyntheticEvent, option: Value, reason: string) => void",
         "describedArgs": ["event", "option", "reason"]
       }
     },
@@ -257,7 +257,6 @@
     "classes": [
       "colorContext",
       "colorDanger",
-      "colorInfo",
       "colorNeutral",
       "colorPrimary",
       "colorSuccess",

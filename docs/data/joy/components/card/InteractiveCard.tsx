@@ -25,10 +25,10 @@ export default function InteractiveCard() {
         />
       </AspectRatio>
       <CardContent>
-        <Typography level="h2" fontSize="lg" id="card-description" mb={0.5}>
+        <Typography level="title-lg" id="card-description">
           Yosemite Park
         </Typography>
-        <Typography fontSize="sm" aria-describedby="card-description" mb={1}>
+        <Typography level="body-sm" aria-describedby="card-description" mb={1}>
           <Link
             overlay
             underline="none"

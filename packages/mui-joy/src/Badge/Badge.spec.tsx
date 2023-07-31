@@ -14,7 +14,6 @@ import { expectType } from '@mui/types';
 // `color`
 <Badge color="primary" />;
 <Badge color="danger" />;
-<Badge color="info" />;
 <Badge color="success" />;
 <Badge color="warning" />;
 <Badge color="neutral" />;

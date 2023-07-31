@@ -56,7 +56,7 @@ export default function CardUsage() {
             <Typography fontWeight="lg" textColor="inherit">
               Yosemite
             </Typography>
-            <Typography level="body2">April 24 to May 02, 2021</Typography>
+            <Typography level="body-sm">April 24 to May 02, 2021</Typography>
             <CardActions>
               <Button size="sm">Explore</Button>
             </CardActions>

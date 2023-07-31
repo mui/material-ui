@@ -4,8 +4,11 @@ import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ScopedCssBaselineClasses } from './scopedCssBaselineClasses';
 
-export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
+export interface ScopedCssBaselineTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -25,7 +28,7 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -40,9 +43,11 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
 declare const ScopedCssBaseline: OverridableComponent<ScopedCssBaselineTypeMap>;
 
 export type ScopedCssBaselineProps<
-  D extends React.ElementType = ScopedCssBaselineTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ScopedCssBaselineTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ScopedCssBaselineTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ScopedCssBaselineTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 /**
  *

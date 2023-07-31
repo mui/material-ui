@@ -44,7 +44,7 @@
       "type": { "name": "func" },
       "default": "createFilterOptions()",
       "signature": {
-        "type": "function(options: Array<T>, state: object) => Array<T>",
+        "type": "function(options: Array<Value>, state: object) => Array<Value>",
         "describedArgs": ["options", "state"]
       }
     },
@@ -62,16 +62,16 @@
     },
     "getOptionDisabled": {
       "type": { "name": "func" },
-      "signature": { "type": "function(option: T) => boolean", "describedArgs": ["option"] }
+      "signature": { "type": "function(option: Value) => boolean", "describedArgs": ["option"] }
     },
     "getOptionLabel": {
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option",
-      "signature": { "type": "function(option: T) => string", "describedArgs": [] }
+      "signature": { "type": "function(option: Value) => string", "describedArgs": [] }
     },
     "groupBy": {
       "type": { "name": "func" },
-      "signature": { "type": "function(options: T) => string", "describedArgs": ["options"] }
+      "signature": { "type": "function(options: Value) => string", "describedArgs": ["options"] }
     },
     "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "id": { "type": { "name": "string" } },
@@ -80,7 +80,7 @@
     "isOptionEqualToValue": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(option: T, value: T) => boolean",
+        "type": "function(option: Value, value: Value) => boolean",
         "describedArgs": ["option", "value"]
       }
     },
@@ -94,7 +94,7 @@
     "onChange": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(event: React.SyntheticEvent, value: T | Array<T>, reason: string, details?: string) => void",
+        "type": "function(event: React.SyntheticEvent, value: Value | Array<Value>, reason: string, details?: string) => void",
         "describedArgs": ["event", "value", "reason"]
       }
     },
@@ -108,7 +108,7 @@
     "onHighlightChange": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(event: React.SyntheticEvent, option: T, reason: string) => void",
+        "type": "function(event: React.SyntheticEvent, option: Value, reason: string) => void",
         "describedArgs": ["event", "option", "reason"]
       }
     },
@@ -143,14 +143,14 @@
     "renderOption": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(props: object, option: T, state: object, ownerState: object) => ReactNode",
+        "type": "function(props: object, option: Value, state: object, ownerState: object) => ReactNode",
         "describedArgs": ["props", "option", "state", "ownerState"]
       }
     },
     "renderTags": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(value: Array<T>, getTagProps: function, ownerState: object) => ReactNode",
+        "type": "function(value: Array<Value>, getTagProps: function, ownerState: object) => ReactNode",
         "describedArgs": ["value", "getTagProps", "ownerState"]
       }
     },

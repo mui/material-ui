@@ -22,7 +22,7 @@
     "onChange": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(event: SelectChangeEvent<T>, child?: object) => void",
+        "type": "function(event: SelectChangeEvent<Value>, child?: object) => void",
         "describedArgs": ["event", "child"]
       }
     },

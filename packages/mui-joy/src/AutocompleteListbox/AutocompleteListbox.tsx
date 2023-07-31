@@ -7,6 +7,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import { styled, useThemeProps } from '../styles';
+import { VariantColorProvider } from '../styles/variantColorInheritance';
 import { getAutocompleteListboxUtilityClass } from './autocompleteListboxClasses';
 import {
   AutocompleteListboxOwnerState,
@@ -52,7 +53,6 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
-    '--List-radius': theme.vars.radius.sm,
     '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
@@ -60,6 +60,7 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
     '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)',
     ...scopedVariables,
     boxShadow: theme.shadow.md,
+    borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
     }),
@@ -142,7 +143,11 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     },
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  return (
+    <VariantColorProvider variant={variant} color={colorProp}>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
+    </VariantColorProvider>
+  );
 }) as OverridableComponent<AutocompleteListboxTypeMap>;
 
 AutocompleteListbox.propTypes /* remove-proptypes */ = {
@@ -163,7 +168,7 @@ AutocompleteListbox.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

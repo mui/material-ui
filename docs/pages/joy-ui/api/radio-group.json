@@ -4,7 +4,7 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+        "description": "'danger'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'neutral'",
       "additionalPropsInfo": { "joy-color": true }
@@ -72,7 +72,6 @@
   "classes": {
     "classes": [
       "colorDanger",
-      "colorInfo",
       "colorNeutral",
       "colorPrimary",
       "colorSuccess",

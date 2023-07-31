@@ -490,7 +490,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
       try {
         prop = createDescribeableProp(propDescriptor, propName);
       } catch (error) {
-        propErrors.push([propName, error as Error]);
+        propErrors.push([`[${reactApi.name}] \`${propName}\``, error as Error]);
         prop = null;
       }
       if (prop === null) {

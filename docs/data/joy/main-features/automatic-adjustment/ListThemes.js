@@ -24,13 +24,12 @@ export default function ButtonThemes() {
       '--ListItem-paddingLeft': '5px',
       '--ListItem-paddingRight': '5px',
       '--ListItem-paddingY': '0px',
-      '--ListItem-fontSize': '14px',
       '--List-nestedInsetStart': '28px',
-      '--ListItemDecorator-color': 'var(--joy-palette-primary-plainColor)',
+      fontSize: '14px',
     },
     cozy: {
       '--List-radius': '20px',
-      '--ListItem-minHeight': '48px',
+      '--ListItem-minHeight': '44px',
       '--List-padding': '8px',
       '--List-gap': '8px',
       '--List-nestedInsetStart': 'var(--ListItemDecorator-size)',
@@ -57,14 +56,7 @@ export default function ButtonThemes() {
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 3 }}>
         <Box sx={{ m: 'auto' }}>
-          <List
-            sx={{
-              ...rootPresets[preset],
-              bgcolor: 'background.body',
-              border: '1px solid',
-              borderColor: 'neutral.outlinedBorder',
-            }}
-          >
+          <List variant="outlined" sx={{ ...rootPresets[preset] }}>
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator>

@@ -47,7 +47,7 @@ export default function FadeModalDialog() {
                 }[state],
               }}
             >
-              <Typography id="fade-modal-dialog-title" component="h2">
+              <Typography id="fade-modal-dialog-title" level="h2">
                 Transition modal
               </Typography>
               <Typography
