@@ -23,7 +23,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       alignItems: 'flex-end',
       position: 'relative',
       marginBottom: 8,
-      marginLeft: -40,
+      marginLeft: -32,
       '& .MuiApi-item-link-visual': {
         display: 'none',
         flexShrink: 0,
@@ -51,7 +51,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
       '& .MuiApi-item-title': {
         flexShrink: 0,
-        padding: '2px 6px',
+        padding: '2px 4px',
         marginLeft: 32,
         borderWidth: '1px',
         borderStyle: 'solid',
