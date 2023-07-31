@@ -168,7 +168,9 @@ export default function createGrid(
           console.log('awsaws', child?.type);
           if (
             React.isValidElement(child) &&
-            (isMuiElement(child, ['Grid']) || (child.type as any)?.muiName === 'Grid')
+            (isMuiElement(child, ['Grid']) ||
+              // eslint-disable-next-line no-underscore-dangle
+              (child.type as any)?._payload?.value?.muiName === 'Grid')
           ) {
             return React.cloneElement(child, {
               unstable_level: child.props.unstable_level ?? level + 1,
