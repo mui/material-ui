@@ -7,7 +7,7 @@ tags: ['News', 'MUI Core']
 card: true
 ---
 
-<a href="/base-ui/getting-started/"><img src="/static/blog/introducing-mui-base/hero-image.png" style="width: 692px; aspect-ratio: 132/61; margin-bottom: 24px;" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" /></a>
+<a href="/base-ui/getting-started/"><img src="/static/blog/introducing-base-ui/hero-image.png" style="width: 692px; aspect-ratio: 132/61; margin-bottom: 24px;" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" /></a>
 
 While Material UI is excellent for building sleek user interfaces that adhere closely to Material Design, it can become unwieldy when your design system diverges significantly from the defaults.
 We get it.
@@ -52,7 +52,7 @@ Each unstyled component lets you modify or override its _slots_—smaller subcom
 For example, a `SwitchUnstyled` contains the root, thumb, input, and track slots.
 You can control props passed to each of these slots (including `className`) based on the component's state, and even replace the default slot components with your own.
 
-<img src="/static/blog/introducing-mui-base/switch-slots.png" style="width: 692px; aspect-ratio: 173/80; margin-bottom: 24px;" loading="lazy" alt="Depiction of SwitchUnstyled components' slots" />
+<img src="/static/blog/introducing-base-ui/switch-slots.png" style="width: 692px; aspect-ratio: 173/80; margin-bottom: 24px;" loading="lazy" alt="Depiction of SwitchUnstyled components' slots" />
 
 See how it works on the live demo:
 
