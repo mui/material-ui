@@ -187,7 +187,7 @@ export default function createGrid(
         <OverflowContext.Provider value={disableEqualOverflow}>{result}</OverflowContext.Provider>
       );
     }
-
+    console.log('result', result);
     return result;
   }) as OverridableComponent<GridTypeMap>;
 
