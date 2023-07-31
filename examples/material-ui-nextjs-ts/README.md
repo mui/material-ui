@@ -13,11 +13,30 @@ curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip
 cd material-ui-nextjs-ts
 ```
 
-Install dependencies and run:
+Install dependencies:
 
 ```bash
+#npm
 npm install
-npm run dev
+
+# yarn
+yarn
+
+# pnpm
+pnpm install
+```
+
+Start a local dev server:
+
+```bash
+# npm
+npm dev
+
+# yarn
+yarn dev
+
+# pnpm
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -26,7 +45,29 @@ You can start editing the page by modifying `src/app/page.tsx`. The page auto-up
 
 This example uses [`next/font/google`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts#google-fonts) to automatically optimize and load Roboto, a custom Google Font.
 
-## Learn more
+## Project Structure
+
+Here are some important files and folders in the project directory:
+
+```
+/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   └── components/
+│       ├── ThemeRegistry/
+│       └── Link.tsx
+├── public/
+├── next.config.js
+└── package.json
+```
+
+`ThemeRegistry` is a provider that
+
+Static assets like images can be placed in the `public/` directory.
+
+## Learn More
 
 To learn more about this example:
 
