@@ -251,6 +251,7 @@
     "surfaces": "Surfaces",
     "/base-ui/react-accordion": "Accordion",
     "navigation": "Navigation",
+    "/base-ui/react-drawer": "Drawer",
     "/base-ui/react-menu": "Menu",
     "/base-ui/react-pagination": "Pagination",
     "/base-ui/react-table-pagination": "Table Pagination",
