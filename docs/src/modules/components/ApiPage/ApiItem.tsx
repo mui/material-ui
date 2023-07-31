@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
+import Divider from '@mui/material/Divider';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { IconButton } from '@mui/material';
@@ -22,7 +23,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       alignItems: 'flex-end',
       position: 'relative',
       marginBottom: 8,
-      marginLeft: -36,
+      marginLeft: -40,
       '& .MuiApi-item-link-visual': {
         display: 'none',
         flexShrink: 0,
