@@ -11,5 +11,5 @@ githubLabel: 'component: Pagination'
 :::info
 💡 The Base UI Pagination component isn't implemented yet but it's planned!
 
-Help us prioritize it by giving a thumbs up in [this GitHub issue](https://github.com/mui/material-ui/issues/38042).
+Upvote [this GitHub issue](https://github.com/mui/material-ui/issues/38042) if you want it to land faster!
 :::

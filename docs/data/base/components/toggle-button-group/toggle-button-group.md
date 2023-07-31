@@ -11,5 +11,5 @@ githubLabel: 'component: toggle button'
 :::info
 💡 The Base UI Toggle Button Group component isn't implemented yet but it's planned!
 
-Help us prioritize it by giving a thumbs up in [this GitHub issue](https://github.com/mui/material-ui/issues/38044).
+Upvote [this GitHub issue](https://github.com/mui/material-ui/issues/38044) if you want it to land faster!
 :::

@@ -12,5 +12,5 @@ waiAria: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating
 :::info
 💡 The Base UI Rating component isn't implemented yet but it's planned!
 
-Help us prioritize it by giving a thumbs up in [this GitHub issue](https://github.com/mui/material-ui/issues/38043).
+Upvote [this GitHub issue](https://github.com/mui/material-ui/issues/38043) if you want it to land faster!
 :::
