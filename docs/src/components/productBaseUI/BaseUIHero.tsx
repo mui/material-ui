@@ -9,7 +9,7 @@ import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
-import GetStartedButtons2 from 'docs/src/components/home/GetStartedButtons2';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import Link from 'docs/src/modules/components/Link';
 
 const BaseUIThemesDemo = dynamic(() => import('./BaseUIThemesDemo'), {
@@ -83,11 +83,11 @@ export default function BaseUIHero() {
             build with using any styling solution you choose—no need to override any default style
             engine or theme.
           </Typography>
-          <GetStartedButtons2
-            getStartedUrl={ROUTES.baseDocs}
-            learnUrl={ROUTES.baseQuickstart}
-            learnLabel="Learn Base UI"
-            installation="npm install @mui/base"
+          <GetStartedButtons
+            primaryCTAto={ROUTES.baseDocs}
+            secondaryCTA="Learn Base UI"
+            secondaryCTAto={ROUTES.baseQuickstart}
+            installationAlternative="npm install @mui/base"
           />
         </Box>
       }

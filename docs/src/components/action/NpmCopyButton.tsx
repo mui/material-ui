@@ -8,6 +8,7 @@ import CheckRounded from '@mui/icons-material/CheckRounded';
 
 const StyledButton = styled(Button)`
   display: inline-flex;
+  gap: 8px;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -23,11 +24,8 @@ const StyledButton = styled(Button)`
   scroll-margin-top: calc(var(--MuiDocs-header-height) + 32px);
   min-width: 64px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   box-shadow: none;
-  border-radius: 6px;
   cursor: copy;
   padding: 0;
   width: max-content;
@@ -79,17 +77,18 @@ export default function NpmCopyButton({
   return (
     <Button
       slots={{ root: StyledButton }}
-      onClick={(event) => {
+      onClick={(event: any) => {
         handleCopy();
         onClick?.(event);
       }}
       {...props}
     >
-      <strong>$</strong>&nbsp;{installation}
+      <strong>$</strong>
+      {installation}
       {copied ? (
         <CheckRounded color="primary" sx={{ fontSize: 15 }} />
       ) : (
-        <ContentCopyRounded sx={{ fontSize: 15 }} />
+        <ContentCopyRounded color="primary" sx={{ fontSize: 15 }} />
       )}
     </Button>
   );
