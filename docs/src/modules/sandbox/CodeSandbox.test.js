@@ -241,8 +241,16 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
   });
 
   it('should generate the correct stylesheet font link in index.html for Material Two Tones icons', () => {
+    const raw = `import * as React from 'react';
+    import Icon from '@mui/material/Icon';
+
+    export default function TwoToneIcons() {
+      return <Icon baseClassName="material-icons-two-tone">add_circle</Icon>;
+    }
+    `;
+
     const result = CodeSandbox.createReactApp({
-      jsxPreview: '<Icon baseClassName="material-icons-two-tone">add_circle</Icon>',
+      raw,
       codeVariant: 'JS',
     });
 
