@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Textarea, { TextareaOwnerState } from '@mui/joy/Textarea';
 import { expectType } from '@mui/types';
+import Textarea, { TextareaOwnerState } from '@mui/joy/Textarea';
 
 <Textarea component="div" />;
 

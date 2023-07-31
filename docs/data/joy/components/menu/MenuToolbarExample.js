@@ -42,7 +42,7 @@ const MenuBarButton = React.forwardRef(
             boxShadow: '0 2px 8px 0px rgba(0 0 0 / 0.38)',
             '--List-padding': 'var(--ListDivider-gap)',
             '--ListItem-minHeight': '32px',
-            [`& .${menuItemClasses.root}`]: {
+            [`&& .${menuItemClasses.root}`]: {
               transition: 'none',
               '&:hover': {
                 ...theme.variants.solid.primary,
@@ -63,7 +63,7 @@ export default function MenuToolbarExample() {
   const [menuIndex, setMenuIndex] = React.useState(null);
 
   const renderShortcut = (text) => (
-    <Typography level="body2" textColor="text.tertiary" ml="auto">
+    <Typography level="body-sm" textColor="text.tertiary" ml="auto">
       {text}
     </Typography>
   );
@@ -127,10 +127,8 @@ export default function MenuToolbarExample() {
       data-joy-color-scheme="dark"
       sx={{
         bgcolor: 'background.body',
-        px: 2,
         borderRadius: '4px',
         maxWidth: 'fit-content',
-        '--ListItem-radius': '8px',
       }}
     >
       <ListItem>

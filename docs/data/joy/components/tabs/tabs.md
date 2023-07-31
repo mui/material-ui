@@ -80,6 +80,44 @@ Keyboard navigation (e.g. arrow keys) will adapt automatically to the used orien
 
 {{"demo": "TabsVertical.js"}}
 
+### Placement
+
+To change the placement, you should provide the value of `top`, `bottom`, `left` or `right`.
+
+This prop can be applied on the TabList component to change the `underlinePlacement` as in the example:
+
+{{"demo": "TabsUnderlinePlacement.js"}}
+
+Or, it can be applied on the Tab component to change the `indicatorPlacement`:
+
+{{"demo": "TabsIndicatorPlacement.js"}}
+
+The flex direction of the Tabs component will need to be changed based on each placement.
+
+{{"demo": "TabsFlexPlacement.js"}}
+
+### Sticky
+
+For long content, you can use the `sticky="top"` prop on the TabList component to keep the tabs visible while scrolling.
+
+To stick the TabList at the bottom, use `sticky="bottom"` and render the TabList at the end of the Tabs component.
+
+{{"demo": "TabsSticky.js"}}
+
+### Tab flex
+
+Use the `tabFlex` prop on the TabList component to make the Tab elements fill the available space as shown in the example below.
+
+The first demo, `tabFlex={1}`, the Tab elements will fill the available space equally.
+
+The second demo, `tabFlex="auto`, the Tab elements will fill the available space equally, but the width of each Tab element will be based on the content.
+
+{{"demo": "TabsFlex.js"}}
+
+:::success
+The value of the `tabFlex` can be any valid [CSS flex](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) value.
+:::
+
 ### Icon
 
 Since `TabList` uses the same style as the [`List`](/joy-ui/react-list/) component, you can use the icon directly as a child or use `ListItemDecorator` with a text.
@@ -121,18 +159,32 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 ## Common examples
 
-### Underlined tabs
+### Segmented controls
 
-{{"demo": "TabsUnderlineExample.js"}}
+To mimic the iOS segmented controls, add the border-radius to the `sx` prop of the TabList and set the selected Tab's background to `background.surface`.
+
+{{"demo": "TabsSegmentedControls.js"}}
+
+### Browser tabs
+
+In this example, the Tab's variant is set to `outlined` and the indicator is moved to the top via `indicatorPlacement="top"`. The borders of the Tab are set to `transparent` based on the selected state.
+
+{{"demo": "TabsBrowserExample.js"}}
 
 ### Pricing tabs
+
+This example removes the background of the selected Tab by targeting `[aria-selected="true"]` on the `sx` prop.
 
 {{"demo": "TabsPricingExample.js"}}
 
 ### With counter chips
 
+To render tab items at the center of the TabList, use `justifyContent: 'center'` on the `sx` prop of the TabList and set `flex: initial` to each of the Tab to override the default `flex-grow`.
+
 {{"demo": "TabsPageExample.js"}}
 
 ### Mobile bottom navigation
+
+In this example, each Tab's is applied with one of the theme's color palette when it is selected.
 
 {{"demo": "TabsBottomNavExample.js"}}

@@ -4,14 +4,14 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import Section from 'docs/src/layouts/Section';
-import InternalLink from 'docs/src/modules/components/Link';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
+import InternalLink from 'docs/src/modules/components/Link';
+import Section from 'docs/src/layouts/Section';
 
 const faqData = [
   {

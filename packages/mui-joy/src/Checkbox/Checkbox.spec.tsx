@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Checkbox, { CheckboxOwnerState } from '@mui/joy/Checkbox';
 import { expectType } from '@mui/types';
+import Checkbox, { CheckboxOwnerState } from '@mui/joy/Checkbox';
 
 <Checkbox id="test" name="test" />;
 
@@ -22,7 +22,6 @@ import { expectType } from '@mui/types';
 
 <Checkbox color="primary" />;
 <Checkbox color="danger" />;
-<Checkbox color="info" />;
 <Checkbox color="success" />;
 <Checkbox color="warning" />;
 <Checkbox color="neutral" />;

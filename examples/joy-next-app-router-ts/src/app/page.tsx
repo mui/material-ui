@@ -37,7 +37,7 @@ export default function Home() {
           <Typography level="h4" component="h1">
             <strong>Welcome back 👋</strong>
           </Typography>
-          <Typography level="body2">Sign in to continue.</Typography>
+          <Typography level="body-sm">Sign in to continue.</Typography>
         </div>
         <FormControl id="email">
           <FormLabel>Email</FormLabel>

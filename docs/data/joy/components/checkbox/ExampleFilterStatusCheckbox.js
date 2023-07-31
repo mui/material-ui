@@ -14,15 +14,12 @@ export default function ExampleFilterStatusCheckbox() {
     wrongAddress: false,
   });
   return (
-    <Sheet
-      variant="outlined"
-      sx={{ p: 2, borderRadius: 'sm', width: 300, bgcolor: 'background.body' }}
-    >
+    <Sheet variant="outlined" sx={{ p: 2, borderRadius: 'sm', width: 300 }}>
       <Typography
         id="filter-status"
         sx={{
           textTransform: 'uppercase',
-          fontSize: 'xs2',
+          fontSize: 'xs',
           letterSpacing: 'lg',
           fontWeight: 'lg',
           color: 'text.secondary',

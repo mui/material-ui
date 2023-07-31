@@ -108,7 +108,7 @@ Replace `Welcome!` inside your Sheet component with this `<div>`:
   <Typography level="h4" component="h1">
     Welcome!
   </Typography>
-  <Typography level="body2">Sign in to continue.</Typography>
+  <Typography level="body-sm">Sign in to continue.</Typography>
 </div>
 ```
 
