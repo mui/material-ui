@@ -77,9 +77,7 @@ export interface BadgeTypeMap<
 
 export type BadgeProps<
   RootComponentType extends React.ElementType = BadgeTypeMap['defaultComponent'],
-> = OverrideProps<BadgeTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = OverrideProps<BadgeTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type BadgeRootSlotProps = {
   children?: React.ReactNode;
