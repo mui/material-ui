@@ -79,6 +79,13 @@ const StyledParagraph = styled('p')({
   color: 'text.primary',
 });
 
+const StyledSwitchLabel = styled('label')({
+  margin: 0,
+  fontSize: 14,
+  fontWeight: 600,
+  color: 'text.primary',
+});
+
 const StyledTabsList = styled('div')({
   display: 'flex',
   borderBottom: 'var(--border-width) solid var(--border-color)',
@@ -972,7 +979,7 @@ export default function BaseUIThemesDemo() {
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <StyledParagraph id="make-it-your-own">Make it your own</StyledParagraph>
+            <StyledSwitchLabel id="make-it-your-own">Make it your own</StyledSwitchLabel>
             <Switch
               slots={{
                 root: StyledSwitch,
@@ -984,7 +991,7 @@ export default function BaseUIThemesDemo() {
             />
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <StyledParagraph id="use-every-component">Use every component</StyledParagraph>
+            <StyledSwitchLabel id="use-every-component">Use every component</StyledSwitchLabel>
             <Switch
               slots={{
                 root: StyledSwitch,
