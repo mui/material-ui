@@ -26,7 +26,7 @@ It has been replaced by a new library: [Floating UI](https://floating-ui.com/).
 Base UI offers the [Popup](/base-ui/react-popup/) component based on this new library.
 It has features and an API similar to the Popper component.
 
-We recommend using the [Popup](/base-ui/react-popup/) instead of the Popper.
+We recommend using the [Popup](/base-ui/react-popup/) instead, as we intend to deprecate our Popper component in the future.
 :::
 
 ## Component

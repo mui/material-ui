@@ -24,18 +24,18 @@ export default function AnimatedPopup() {
 }
 
 function Animated(props) {
-  const { requestOpen: open, onExited: onDisappeared, children, className } = props;
+  const { requestOpen, onExited, children, className } = props;
 
   const handleAnimationEnd = React.useCallback(() => {
-    if (!open) {
-      onDisappeared();
+    if (!requestOpen) {
+      onExited();
     }
-  }, [onDisappeared, open]);
+  }, [onExited, requestOpen]);
 
   return (
     <div
       onAnimationEnd={handleAnimationEnd}
-      className={className + (open ? ' open' : ' close')}
+      className={className + (requestOpen ? ' open' : ' close')}
     >
       {children}
     </div>
