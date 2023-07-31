@@ -43,7 +43,6 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
       '&>span, &>div': {
         fontWeight: theme.typography.fontWeightRegular,
-        // borderBottom: 'solid 1px',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
       },
       '&>*': {
@@ -56,9 +55,6 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         borderWidth: '1px',
         borderStyle: 'solid',
         borderRadius: 8,
-        // borderTopLeftRadius: 8,
-        // borderTopRightRadius: 8,
-        // borderBottomLeftRadius: 8,
         fontWeight: theme.typography.fontWeightSemiBold,
         color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
@@ -193,9 +189,6 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
       },
     },
-    // marginBottom: 36,
-    // borderBottom: 'solid 1px',
-    // borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
     '&>hr': {
       margin: '24px 0',
     },
