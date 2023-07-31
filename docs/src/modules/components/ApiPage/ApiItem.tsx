@@ -51,7 +51,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
       '& .MuiApi-item-title': {
         flexShrink: 0,
-        padding: '2px 4px',
+        padding: '2px 6px',
         marginLeft: 32,
         borderWidth: '1px',
         borderStyle: 'solid',
