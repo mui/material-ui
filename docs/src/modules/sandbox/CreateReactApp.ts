@@ -4,10 +4,12 @@ export const getHtml = ({
   title,
   language,
   codeStyling,
+  jsxPreview,
 }: {
   title: string;
   language: string;
   codeStyling?: 'Tailwind' | 'MUI System';
+  jsxPreview?: string;
 }) => {
   return `<!DOCTYPE html>
 <html lang="${language}">
@@ -21,7 +23,9 @@ export const getHtml = ({
     <!-- Icons to support Material Design -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons${
+        jsxPreview?.includes('material-icons-two-tone') ? '+Two+Tone' : ''
+      }"
     />${
       codeStyling === 'Tailwind'
         ? `
