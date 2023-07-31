@@ -247,10 +247,18 @@ The associated breaking change was done in [#34997](https://github.com/mui/mater
 
 #### `date-pickers-moved-to-x`
 
-Rename the imports of date and time pickers from `@mui/lab` to `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
+Rename the imports of Date and Time Pickers from `@mui/lab` to `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
 
 ```bash
 npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
+```
+
+#### `tree-view-moved-to-x`
+
+Rename the imports of Tree View from `@mui/lab` to `@mui/x-tree-view`.
+
+```bash
+npx @mui/codemod v5.0.0/tree-view-moved-to-x <path>
 ```
 
 #### 🚀 `preset-safe`
