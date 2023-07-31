@@ -855,8 +855,10 @@ export default function BaseUIThemesDemo() {
             borderBottom: 'var(--border-width) solid var(--border-color)',
           }}
         >
-          <StyledLabel>Select a component</StyledLabel>
+          <StyledLabel htmlFor="base-ui-select">Select a component</StyledLabel>
           <Select
+            id="base-ui-select"
+            name="base-ui-select"
             defaultValue={10}
             slots={{
               root: StyledSelectButton,
