@@ -16,7 +16,7 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-import CSSList from './ApiPage/CSSList';
+import CSSList, { getCssToC } from './ApiPage/CSSList';
 import ClassesList from './ApiPage/ClassesList';
 import SlotsList from './ApiPage/SlotsList';
 
@@ -179,7 +179,11 @@ export default function ApiPage(props) {
       inheritance,
       themeDefaultProps: pageContent.themeDefaultProps,
     }),
-    componentStyles.classes.length > 0 && createTocEntry('css'),
+    ...getCssToC({
+      t,
+      componentName: pageContent.name,
+      componentStyles,
+    }),
     componentSlots?.length > 0 && createTocEntry('slots'),
     hasClasses && createTocEntry('classes'),
   ].filter(Boolean);
