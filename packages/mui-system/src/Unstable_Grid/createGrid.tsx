@@ -162,10 +162,6 @@ export default function createGrid(
         {...other}
       >
         {React.Children.map(children, (child) => {
-          // @ts-ignore
-          console.log('muiname', child?.type?.muiName);
-          // @ts-ignore
-          console.log('awsaws', child?.type);
           if (
             React.isValidElement(child) &&
             (isMuiElement(child, ['Grid']) ||

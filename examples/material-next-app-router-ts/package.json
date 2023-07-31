@@ -14,7 +14,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
-    "@mui/material": "https://pkg.csb.dev/mui/material-ui/commit/960bbfca/@mui/material",
+    "@mui/material": "latest",
     "next": "13.x",
     "react": "18.x",
     "react-dom": "18.x"
