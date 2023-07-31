@@ -152,7 +152,7 @@ export default function createGrid(
     };
 
     const classes = useUtilityClasses(ownerState, theme);
-    console.log('aaaa', children);
+
     let result = (
       <GridRoot
         ref={ref}
@@ -185,7 +185,7 @@ export default function createGrid(
         <OverflowContext.Provider value={disableEqualOverflow}>{result}</OverflowContext.Provider>
       );
     }
-    console.log('result', result);
+
     return result;
   }) as OverridableComponent<GridTypeMap>;
 
