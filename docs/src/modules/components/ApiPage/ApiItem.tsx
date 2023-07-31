@@ -190,7 +190,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
     },
     '&>hr': {
-      margin: '24px 0',
+      margin: '20px 0',
     },
   }),
   ({ theme }) => ({
@@ -249,7 +249,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       '& .prop-list-default-props': {
         color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
         code: {
-          borderColor: alpha(darkTheme.palette.primary[800], 0.4),
+          borderColor: alpha(darkTheme.palette.primary[400], 0.1),
           backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
         },
       },
