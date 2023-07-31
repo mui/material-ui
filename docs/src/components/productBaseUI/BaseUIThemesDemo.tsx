@@ -96,12 +96,18 @@ const StyledTab = styled('button')({
   padding: '0.75rem',
   background: 'var(--Tab-background)',
   border: 'none',
+  borderRadius: 12,
   fontSize: 14,
   fontWeight: 600,
   color: 'var(--muidocs-palette-text-secondary)',
 
   '&:hover:not(.Mui-selected)': {
     background: 'var(--Tab-hoverBackground)',
+  },
+
+  '&:focus-visible': {
+    outline: '2px solid var(--muidocs-palette-primary-500)',
+    outlineOffset: -6,
   },
 
   '&.Mui-selected': {
@@ -141,12 +147,20 @@ const StyledSelectButton = styled('button')({
   '&:hover': {
     backgroundColor: 'var(--Tab-hoverBackground)',
   },
+
+  '&:focus-visible': {
+    outline: '2px solid var(--muidocs-palette-primary-500)',
+    outlineOffset: '2px',
+  },
+
   '& svg:last-child': {
     marginLeft: 'auto',
   },
+
   '& svg:first-child': {
     marginRight: 'var(--Select-spacing)',
   },
+
   '&:not(:empty)': {
     fontWeight: 500,
   },
@@ -171,6 +185,11 @@ const StyledModalButton = styled('button')({
 
   '&:hover': {
     backgroundColor: 'var(--muidocs-palette-primary-100)',
+  },
+
+  '&:focus-visible': {
+    outline: '2px solid var(--muidocs-palette-primary-500)',
+    outlineOffset: '2px',
   },
 
   '[data-mui-color-scheme="dark"] &': {
@@ -205,6 +224,11 @@ const StyledSnackbarButton = styled('button')({
     backgroundColor: 'var(--muidocs-palette-grey-200)',
   },
 
+  '&:focus-visible': {
+    outline: '2px solid var(--muidocs-palette-primary-500)',
+    outlineOffset: '2px',
+  },
+
   '[data-mui-color-scheme="dark"] &': {
     borderColor: 'var(--muidocs-palette-grey-800)',
     backgroundColor: 'var(--muidocs-palette-grey-900)',
@@ -237,6 +261,11 @@ const StyledViewCode = styled(Link)({
   '&:hover': {
     backgroundColor: 'var(--muidocs-palette-primaryDark-800)',
     color: 'var(--muidocs-palette-primary-100)',
+  },
+
+  '&:focus-visible': {
+    outline: '2px solid var(--muidocs-palette-primary-500)',
+    outlineOffset: '2px',
   },
 
   '[data-mui-color-scheme="dark"] &': {
@@ -565,8 +594,7 @@ const StyledBadge = styled(Badge)(
   list-style: none;
   font-family: IBM Plex Sans, sans-serif;
   position: relative;
-  display: inline-block;
-  
+  display: inline-block;  
 
   & .${badgeClasses.badge} {
     --_scale: 1.5em;
@@ -586,11 +614,6 @@ const StyledBadge = styled(Badge)(
     background: var(--muidocs-palette-error-main);
     outline: 3px solid ${
       theme.palette.mode === 'dark' ? 'var(--muidocs-palette-primaryDark-900)' : '#FFF'
-    };
-    box-shadow: 0px 2px 24px ${
-      theme.palette.mode === 'dark'
-        ? 'var(--muidocs-palette-primary-900)'
-        : 'var(--muidocs-palette-primary-100)'
     };
     transform: translate(50%, -50%);
     transform-origin: 100% 0;
@@ -613,21 +636,14 @@ const StyledMenuItem = styled(MenuItem)(
     border-bottom: none;
   }
 
+
   &.${menuItemClasses.focusVisible} {
-    outline: 3px solid ${
-      theme.palette.mode === 'dark'
-        ? 'var(--muidocs-palette-primary-600)'
-        : 'var(--muidocs-palette-primary-200)'
-    };
+    outline: 2px solid var(--muidocs-palette-primary-500);
+    outline-offset: 2px;
     background-color: ${
       theme.palette.mode === 'dark'
         ? 'var(--muidocs-palette-grey-800)'
-        : 'var(--muidocs-palette-grey-100)'
-    };
-    color: ${
-      theme.palette.mode === 'dark'
-        ? 'var(--muidocs-palette-grey-300)'
-        : 'var(--muidocs-palette-grey-900)'
+        : 'var(--muidocs-palette-grey-50)'
     };
   }
 
@@ -668,6 +684,12 @@ const StyledMenuButton = styled(MenuButton)({
   cursor: 'pointer',
   border: 'none',
   background: 'transparent',
+  borderRadius: 'var(--avatar-radius)',
+
+  '&:focus-visible': {
+    outline: '2px solid var(--muidocs-palette-primary-500)',
+    outlineOffset: '2px',
+  },
 });
 
 const snackbarInRight = keyframes`
