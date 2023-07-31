@@ -242,6 +242,7 @@
     "/base-ui/react-select": "Select",
     "/base-ui/react-slider": "Slider",
     "/base-ui/react-switch": "Switch",
+    "/base-ui/react-toggle-button-group": "Toggle Button Group",
     "data-display": "Data display",
     "/base-ui/react-badge": "Badge",
     "/base-ui/react-tooltip": "Tooltip",
