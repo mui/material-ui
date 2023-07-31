@@ -8,8 +8,9 @@ _Jul 31, 2023_
 
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎉 [Joy UI](https://mui.com/joy-ui/getting-started/) is now in Beta
-- ✨ Refine [Joy UI's](https://mui.com/joy-ui/getting-started/) default theme @siriwatknp @zanivan
+- 🚀 [Joy UI](https://mui.com/joy-ui/getting-started/) is now in Beta
+- ✨ Refine [Joy UI](https://mui.com/joy-ui/getting-started/)'s default theme @siriwatknp @zanivan
+- 🎉 Added Dropdown higher-level menu component [Base UI](https://mui.com/base-ui/getting-started/) @michaldudak
 - 💫 Added Material You [Badge](https://mui.com/material-ui/react-badge/#material-you-version) to `material-next` (#37850) @DiegoAndai
 
 ### `@mui/material@5.14.3`
@@ -23,8 +24,13 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 ### `@mui/base@5.0.0-beta.9`
 
-- &#8203;<!-- 33 -->[typescript][base] Rename one letter type parameters (#38171) @michaldudak
+#### Breaking changes
+
 - &#8203;<!-- 11 -->[Dropdown][base][joy] Introduce higher-level menu component (#37667) @michaldudak
+
+#### Other changes
+
+- &#8203;<!-- 33 -->[typescript][base] Rename one letter type parameters (#38171) @michaldudak
 
 ### `@mui/joy@5.0.0-beta.0`
 
