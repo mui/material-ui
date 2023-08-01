@@ -1,0 +1,7 @@
+{
+  "parameters": {},
+  "returnValue": {},
+  "name": "useModal",
+  "filename": "/packages/mui-base/src/unstable_useModal/useModal.ts",
+  "demos": "<ul><li><a href=\"/base-ui/react-modal/#hook\">Modal</a></li></ul>"
+}

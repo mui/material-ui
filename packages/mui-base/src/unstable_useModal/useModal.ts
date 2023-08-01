@@ -26,8 +26,17 @@ function getHasTransition(children: ModalOwnProps['children']) {
 // A modal manager used to track and manage the state of open Modals.
 // Modals don't open on the server so this won't conflict with concurrent requests.
 const defaultManager = new ModalManager();
-
-const useModal = (parameters: UseModalParameters) => {
+/**
+ *
+ * Demos:
+ *
+ * - [Modal](https://mui.com/base-ui/react-modal/#hook)
+ *
+ * API:
+ *
+ * - [useModal API](https://mui.com/base-ui/react-modal/hooks-api/#use-modal)
+ */
+export default function useModal(parameters: UseModalParameters) {
   const {
     container,
     disableEscapeKeyDown = false,
@@ -223,5 +232,3 @@ const useModal = (parameters: UseModalParameters) => {
     hasTransition,
   };
 };
-
-export default useModal;
