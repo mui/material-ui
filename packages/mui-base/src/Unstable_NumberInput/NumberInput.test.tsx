@@ -161,6 +161,7 @@ describe('<NumberInput />', () => {
       const incrementButton = getByTestId('increment-btn');
       const decrementButton = getByTestId('decrement-btn');
 
+      // press Shift key without releasing it
       await user.keyboard('{Shift>}');
       await user.click(incrementButton);
       await user.click(incrementButton);

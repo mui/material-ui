@@ -101,13 +101,6 @@ export default function useNumberInput(
   const handleFocus =
     (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
     (event: React.FocusEvent<HTMLInputElement>) => {
-      // Fix a bug with IE11 where the focus/blur events are triggered
-      // while the component is disabled.
-      if (formControlContext && formControlContext?.disabled) {
-        event.stopPropagation();
-        return;
-      }
-
       otherHandlers.onFocus?.(event);
 
       if (event.defaultPrevented) {
