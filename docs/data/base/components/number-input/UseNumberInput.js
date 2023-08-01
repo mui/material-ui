@@ -19,7 +19,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref
 
   return (
     <StyledInputRoot {...getRootProps()} className={focused ? 'focused' : null}>
-      <StyledStepperButton className="increment" {...getIncrementButtonProps()}>
+      <StyledStepperButton {...getIncrementButtonProps()} className="increment">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -33,7 +33,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref
           />
         </svg>
       </StyledStepperButton>
-      <StyledStepperButton className="decrement" {...getDecrementButtonProps()}>
+      <StyledStepperButton {...getDecrementButtonProps()} className="decrement">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -124,35 +124,41 @@ const StyledInputElement = styled('input')`
   padding: 0;
 `;
 
-const StyledStepperButton = styled('button')`
-  width: 1.5rem;
-  height: 1rem;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  border: 0;
-  color: inherit;
+const StyledStepperButton = styled('button')(
+  ({ theme }) => `
+    width: 1.5rem;
+    height: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+    border: 0;
 
-  &:hover {
-    cursor: pointer;
-    background: ${blue[400]};
-    color: ${grey[50]};
-  }
+    &.increment,
+    &.decrement {
+      background: ${theme.palette.mode === 'dark' ? grey[600] : grey[200]};
 
-  &.increment {
-    grid-column: 1/2;
-    grid-row: 1/2;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-  }
+      &:hover {
+        cursor: pointer;
+        background: ${blue[400]};
+        color: ${grey[50]};
+      }
+    }
 
-  &.decrement {
-    grid-column: 1/2;
-    grid-row: 2/3;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
-`;
+    &.increment {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    &.decrement {
+      grid-column: 1/2;
+      grid-row: 2/3;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+  `,
+);
