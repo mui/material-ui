@@ -21,8 +21,7 @@ Now that we reached [MUI X v6.10.x](https://github.com/mui/mui-x/releases), it'
   - [Copy and Paste](#copy-and-paste)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
   - [Filter on Column headers](#filter-on-column-headers)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
   - [Performance Enhancements: Smoother Scrolling and Expanding Rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
-- [Charts - Alpha version](#charts-alpha-version)
-- [Discord](#Discord)
+- [Charts - Alpha version](#charts---alpha-version)
 - [What's next](#whats-next)
 
 ## Date Pickers
@@ -96,7 +95,7 @@ And it ships with a couple of rad palettes, specially crafted by our designers!
 
 Checkout a video highlighting some of our Charts!
 
-<video width="400" height="400" preload="metadata" autoplay muted loop playsinline>
+<video width="400" height="400" preload="metadata" autoplay muted loop playsinline controls>
   <source src="/static/blog/mui-x-mid-v6-features/charts_final_v1.mov" type="video/mp4">
 </video>
 
@@ -106,16 +105,6 @@ We will also steadily expand our portfolio with new chart types; the Pie Chart i
 However, if there's a specific chart visualization you'd like us to prioritize, we encourage you to upvote the respective issue on [GitHub](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+charts%22+label%3A%22waiting+for+%F0%9F%91%8D%22). Your input can directly influence our development schedule, so don't hesitate to let us know what matters most to you!
 
 [Get started with charts now!](https://mui.com/x/react-charts/)
-
-## Discord
-
-<img src="/static/blog/mui-x-mid-v6-features/discord.png" alt="" width="640" height="320" style="margin-bottom: 16px;" />
-
-MUI is now on Discord!
-
-The combination of real-time communication, community building features, organizational capabilities, tool integrations, and developer-friendly features make it a valuable tool for our community to connect, collaborate, and grow together.
-
-[Join now!](https://mui.com/r/discord/)
 
 ## What's next
 
