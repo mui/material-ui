@@ -15,5 +15,6 @@ import {
   TreeItemClassKey,
   getTreeItemUtilityClass,
   TreeItemProps,
+  TreeItemContentProps,
   Timeline,
 } from '@mui/lab'

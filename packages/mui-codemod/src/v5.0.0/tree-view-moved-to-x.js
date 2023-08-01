@@ -21,6 +21,7 @@ const exports = {
       'TreeItemClassKey',
       'getTreeItemUtilityClass',
       'TreeItemProps',
+      'TreeItemContentProps',
     ],
   },
 };
