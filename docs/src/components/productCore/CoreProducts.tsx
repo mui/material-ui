@@ -21,7 +21,7 @@ const content = [
     title: 'Joy UI',
     description:
       "An easy to customize open-source React component library that implements MUI's own in-house design principles by default.",
-    link: '/joy-ui/getting-started/',
+    link: '/joy-ui/',
   },
   {
     // logo:

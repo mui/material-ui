@@ -3,13 +3,15 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
-import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
+import GetStartedButtons2 from 'docs/src/components/home/GetStartedButtons2';
 import GradientText from 'docs/src/components/typography/GradientText';
+import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 
 export default function JoyUIHero() {
   return (
     <HeroContainer
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' }, ml: { xl: '-40px' } }}>
           <Typography
@@ -19,20 +21,20 @@ export default function JoyUIHero() {
               color: 'primary.600',
               display: 'flex',
               alignItems: 'center',
+              gap: 1,
               justifyContent: { xs: 'center', md: 'flex-start' },
-              '& > *': { mr: 1 },
               ...theme.applyDarkStyles({
-                color: 'primary.400',
+                color: 'primary.300',
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-core" /> MUI Core{' '}
-            <Typography component="span" variant="inherit" sx={{ color: 'text.tertiary' }}>
-              &nbsp;&nbsp;
-              <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
-                /
-              </Typography>
-              &nbsp;&nbsp;Joy UI
+            <IconImage width={28} height={28} name="product-core" />{' '}
+            <Link href={ROUTES.productCore}>MUI Core</Link>{' '}
+            <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
+              /
+            </Typography>
+            <Typography component="span" variant="inherit" sx={{ color: 'text.primary' }}>
+              Joy UI
             </Typography>
           </Typography>
           <Typography
@@ -45,15 +47,18 @@ export default function JoyUIHero() {
               zIndex: 1,
             }}
           >
-            Craft gorgeous UIs that <GradientText>spark joy</GradientText>
+            Craft gorgeous UIs
+            <br /> that <GradientText>spark joy</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             Joy UI is for those that appreciate the comprehensiveness and reliability of Material
             UI, but don’t want Material Design. It’s design agnostic and built to be tailored to
             your specific design language.
           </Typography>
-          <GetStartedButtons
-            to={ROUTES.joyDocs}
+          <GetStartedButtons2
+            getStartedUrl={ROUTES.joyDocs}
+            learnUrl={ROUTES.baseQuickstart}
+            learnLabel="Learn Joy UI"
             installation="npm install @mui/joy @emotion/styled @emotion/react"
           />
         </Box>

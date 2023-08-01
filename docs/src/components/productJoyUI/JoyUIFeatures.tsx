@@ -21,7 +21,7 @@ export default function JoyUIFeatures() {
     };
   }
   return (
-    <Section bg="white">
+    <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
@@ -29,7 +29,7 @@ export default function JoyUIFeatures() {
               overline="Features"
               title={
                 <Typography variant="h2">
-                  Powerful <GradientText>tools to customize</GradientText> each and every piece
+                  Powerful <GradientText>features to customize</GradientText> every piece
                 </Typography>
               }
               description="Joy UI is built to ensure you ship great products to your users with an amazing developer experience."
@@ -40,7 +40,7 @@ export default function JoyUIFeatures() {
               <Item
                 icon={<SvgTwinkle />}
                 title="Global variants"
-                description="WPull their styles from a single source, helping you to ensure a consistent look and feel across both pre-built Joy UI components and any custom components you build."
+                description="Pull their styles from a single source, helping you to ensure a consistent look and feel across both pre-built Joy UI components and any custom components you build."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>

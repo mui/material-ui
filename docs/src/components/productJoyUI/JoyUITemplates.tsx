@@ -7,7 +7,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 export default function JoyUITemplates() {
   return (
-    <Section bg="gradient-reverse" cozy>
+    <Section>
       <Box sx={{ textAlign: 'center' }}>
         <SectionHeadline
           alwaysCenter

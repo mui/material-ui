@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
+import Divider from '@mui/material/Divider';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -8,6 +9,7 @@ import JoyUIHero from 'docs/src/components/productJoyUI/JoyUIHero';
 import JoyUISummary from 'docs/src/components/productJoyUI/JoyUISummary';
 import JoyUIComponents from 'docs/src/components/productJoyUI/JoyUIComponents';
 import JoyUIFeatures from 'docs/src/components/productJoyUI/JoyUIFeatures';
+import JoyUITestimonial from 'docs/src/components/productJoyUI/JoyUITestimonial';
 import JoyUIEnd from 'docs/src/components/productJoyUI/JoyUIEnd';
 import JoyUITemplates from 'docs/src/components/productJoyUI/JoyUITemplates';
 
@@ -25,10 +27,17 @@ export default function Core() {
       <main id="main-content">
         <JoyUIHero />
         <JoyUISummary />
+        <Divider />
         <JoyUIComponents />
+        <Divider />
         <JoyUIFeatures />
+        <Divider />
         <JoyUITemplates />
+        <Divider />
+        <JoyUITestimonial />
+        <Divider />
         <JoyUIEnd />
+        <Divider />
       </main>
       <AppFooter />
     </BrandingCssVarsProvider>

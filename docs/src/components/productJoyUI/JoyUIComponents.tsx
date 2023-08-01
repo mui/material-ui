@@ -30,7 +30,7 @@ export default function JoyUIComponents() {
     [DEMOS[7]]: <BarChartRounded fontSize="small" />,
   };
   return (
-    <Section bg="gradient-reverse">
+    <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
@@ -38,10 +38,7 @@ export default function JoyUIComponents() {
               overline="Components"
               title={
                 <Typography variant="h2">
-                  Simple,{' '}
-                  <GradientText>
-                    good looking <br />, and reliable Components
-                  </GradientText>
+                  Simple, <GradientText>good looking</GradientText>, and reliable components
                 </Typography>
               }
               description="Foundational pre-built components that look beautiful by default, building off of years from the Material UI experience."
