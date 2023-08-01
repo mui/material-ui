@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen, ErrorBoundary, act, fireEvent } from 'test/utils';
-import useAutocomplete, { createFilterOptions } from '@mui/base/useAutocomplete';
 import { spy } from 'sinon';
+import useAutocomplete, { createFilterOptions } from '@mui/base/useAutocomplete';
 
 describe('useAutocomplete', () => {
   const { render } = createRenderer();

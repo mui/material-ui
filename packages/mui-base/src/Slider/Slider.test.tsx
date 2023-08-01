@@ -1,8 +1,3 @@
-import Slider, {
-  sliderClasses as classes,
-  SliderRootSlotProps,
-  SliderValueLabelSlotProps,
-} from '@mui/base/Slider';
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy, stub } from 'sinon';
@@ -14,6 +9,11 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
+import Slider, {
+  sliderClasses as classes,
+  SliderRootSlotProps,
+  SliderValueLabelSlotProps,
+} from '@mui/base/Slider';
 
 type Touches = Array<Pick<Touch, 'identifier' | 'clientX' | 'clientY'>>;
 

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function ToggleGroupUsage() {
   const [value, setValue] = React.useState('bold');
@@ -16,7 +16,7 @@ export default function ToggleGroupUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },

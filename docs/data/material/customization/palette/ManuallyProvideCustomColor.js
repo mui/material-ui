@@ -4,6 +4,10 @@ import Button from '@mui/material/Button';
 import { Box, Stack } from '@mui/system';
 import { Typography } from '@mui/material';
 
+// Augment the palette to include an ochre color
+
+// Update the Button's color options to include an ochre option
+
 const theme = createTheme({
   palette: {
     ochre: {

@@ -3,8 +3,8 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import { CardActions, CardContent } from '@mui/joy';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function CardUsage() {
   return (
@@ -56,7 +56,7 @@ export default function CardUsage() {
             <Typography fontWeight="lg" textColor="inherit">
               Yosemite
             </Typography>
-            <Typography level="body2">April 24 to May 02, 2021</Typography>
+            <Typography level="body-sm">April 24 to May 02, 2021</Typography>
             <CardActions>
               <Button size="sm">Explore</Button>
             </CardActions>

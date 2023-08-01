@@ -17,20 +17,24 @@ export default function LinkLevels() {
       <Link href="#levels" level="h4">
         H4
       </Link>
-      <Link href="#levels" level="h5">
-        H5
+      <Link href="#levels" level="title-lg">
+        Title Large
       </Link>
-      <Link href="#levels" level="h6">
-        H6
+      <Link href="#levels" level="title-md">
+        Title Medium
       </Link>
-      <Link href="#levels" level="body1">
-        Body 1
+      <Link href="#levels" level="title-sm">
+        Title Small
       </Link>
-      <Link href="#levels" level="body2">
-        Body 2
+      <Link href="#levels" level="title-lg">
+        Body Large
       </Link>
-      <Link href="#levels" level="body3">
-        Body 3
+      <Link href="#levels">Body Medium</Link>
+      <Link href="#levels" level="body-sm">
+        Body Small
+      </Link>
+      <Link href="#levels" level="body-xs">
+        Body Extra Small
       </Link>
     </Box>
   );
