@@ -109,7 +109,7 @@ However, if there's a specific chart visualization you'd like us to prioritize, 
 
 ## Discord
 
-<img src="/static/blog/mui-x-mid-v6-features/discord.png" alt="" width="2400" height="600" style="margin-bottom: 16px;" />
+<img src="/static/blog/mui-x-mid-v6-features/discord.png" alt="" width="640" height="320" style="margin-bottom: 16px;" />
 
 MUI is now on Discord!
 
