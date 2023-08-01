@@ -8,6 +8,7 @@ import {
   TreeViewProps,
   SingleSelectTreeViewProps,
   MultiSelectTreeViewProps,
+  TreeView as AliasedTreeView,
 } from '@mui/x-tree-view/TreeView';
 import {
   TreeItem,

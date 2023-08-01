@@ -7,6 +7,7 @@ import TreeView, {
   TreeViewProps,
   SingleSelectTreeViewProps,
   MultiSelectTreeViewProps,
+  TreeView as AliasedTreeView,
 } from '@mui/lab/TreeView';
 import TreeItem, {
   useTreeItem,
