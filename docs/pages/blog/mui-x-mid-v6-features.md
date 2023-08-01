@@ -25,7 +25,7 @@ Now that we reached [MUI X v6.10.x](https://github.com/mui/mui-x/releases), it'
 - [Discord](#Discord)
 - [What's next](#whats-next)
 
-## Date pickers
+## Date Pickers
 
 ### Support for time zones
 
