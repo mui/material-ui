@@ -14,14 +14,14 @@
     "max": { "description": "The maximum value." },
     "min": { "description": "The minimum value." },
     "onChange": {
-      "description": "Callback fired after the value is clamped and changes - when the &lt;input&gt; is blurred or when the stepper buttons are triggered. Called with <code>undefined</code> when the value is unset.",
+      "description": "Callback fired after the value is clamped and changes - when the <code>input</code> is blurred or when the stepper buttons are triggered. Called with <code>undefined</code> when the value is unset.",
       "typeDescriptions": {
         "event": "The event source of the callback",
         "value": "The new value of the component"
       }
     },
     "onInputChange": {
-      "description": "Callback fired when the &lt;input&gt; value changes after each keypress, before clamping is applied. Note that <code>event.target.value</code> may contain values that fall outside of <code>min</code> and <code>max</code> or are otherwise &quot;invalid&quot;.",
+      "description": "Callback fired when the <code>input</code> value changes after each keypress, before clamping is applied. Note that <code>event.target.value</code> may contain values that fall outside of <code>min</code> and <code>max</code> or are otherwise &quot;invalid&quot;.",
       "typeDescriptions": { "event": "The event source of the callback." }
     },
     "readOnly": {

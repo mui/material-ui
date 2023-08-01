@@ -16,9 +16,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref
           children: '▴',
         },
         decrementButton: {
-          // it's flipped with CSS, the downward pointing
-          // triangle looks weird
-          children: '▴',
+          children: '▾',
         },
       }}
       {...props}
@@ -105,12 +103,18 @@ const StyledInputElement = styled('input')(
 
 const StyledButton = styled('button')(
   ({ theme }) => `
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  appearance: none;
+  padding: 0;
   width: 19px;
   height: 19px;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: system-ui, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  line-height: 1;
+  line-height: 1.2;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 0;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
@@ -133,7 +137,6 @@ const StyledButton = styled('button')(
   &.${numberInputClasses.decrementButton} {
     grid-column: 2/3;
     grid-row: 2/3;
-    transform: rotate(180deg);
   }
 `,
 );

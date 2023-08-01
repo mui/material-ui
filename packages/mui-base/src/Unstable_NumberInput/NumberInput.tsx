@@ -223,7 +223,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
    */
   onBlur: PropTypes.func,
   /**
-   * Callback fired after the value is clamped and changes - when the <input> is blurred or when
+   * Callback fired after the value is clamped and changes - when the `input` is blurred or when
    * the stepper buttons are triggered.
    * Called with `undefined` when the value is unset.
    *
@@ -236,7 +236,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
-   * Callback fired when the <input> value changes after each keypress, before clamping is applied.
+   * Callback fired when the `input` value changes after each keypress, before clamping is applied.
    * Note that `event.target.value` may contain values that fall outside of `min` and `max` or
    * are otherwise "invalid".
    *

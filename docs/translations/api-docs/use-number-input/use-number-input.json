@@ -15,10 +15,10 @@
     "max": { "description": "The maximum value." },
     "min": { "description": "The minimum value." },
     "onChange": {
-      "description": "Callback fired after the value is clamped and changes - when the <input> is blurred or when\nthe stepper buttons are triggered.\nCalled with <code>undefined</code> when the value is unset."
+      "description": "Callback fired after the value is clamped and changes - when the <code>input</code> is blurred or when\nthe stepper buttons are triggered.\nCalled with <code>undefined</code> when the value is unset."
     },
     "onInputChange": {
-      "description": "Callback fired when the <input> value changes after each keypress, before clamping is applied.\nNote that <code>event.target.value</code> may contain values that fall outside of <code>min</code> and <code>max</code> or\nare otherwise &quot;invalid&quot;."
+      "description": "Callback fired when the <code>input</code> value changes after each keypress, before clamping is applied.\nNote that <code>event.target.value</code> may contain values that fall outside of <code>min</code> and <code>max</code> or\nare otherwise &quot;invalid&quot;."
     },
     "readOnly": {
       "description": "If <code>true</code>, the <code>input</code> element becomes read-only. The stepper buttons remain active,\nwith the addition that they are now keyboard focusable."
