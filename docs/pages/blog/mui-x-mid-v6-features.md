@@ -21,7 +21,7 @@ Now that we reached [MUI X v6.10.x](https://github.com/mui/mui-x/releases), it'
   - [Copy and Paste](#copy-and-paste)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
   - [Filter on Column headers](#filter-on-column-headers)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
   - [Performance Enhancements: Smoother Scrolling and Expanding Rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
-- [Charts - Alpha version](#charts---alpha-version)
+- [Charts - Alpha version](#charts-alpha-version)
 - [Discord](#Discord)
 - [What's next](#whats-next)
 
