@@ -49,6 +49,14 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 ### Docs
 
+- &#8203;<!-- 49 -->[docs] Update Joy UI's package README (#38262) @ZeeshanTamboli
+- &#8203;<!-- 48 -->[docs][base-ui] Add new batch of coming soon pages (#38025) @danilo-leal
+- &#8203;<!-- 44 -->[docs] fix links to standardized examples (#38193) @emmanuel-ferdman
+- &#8203;<!-- 43 -->[docs-infra] Small design polish to the Diamond Sponsor container (#38257) @danilo-leal
+- &#8203;<!-- 42 -->[docs-infra] Show props in the table of content (#38173) @alexfauquette
+- &#8203;<!-- 41 -->[docs-infra] Polish API page design (#38196) @oliviertassinari
+- &#8203;<!-- 40 -->[docs-infra] Search with productCategory when product is missing (#38239) @oliviertassinari
+- &#8203;<!-- 39 -->[docs][material] Revise and update Examples doc (#38205) @samuelsycamore
 - &#8203;<!-- 38 -->[docs] Fix typo in notifications.json @mbrookes
 - &#8203;<!-- 37 -->[docs-infra] Remove leftover standardNavIcon (#38252) @DiegoAndai
 - &#8203;<!-- 34 -->[docs][base] Add Tailwind CSS & plain CSS demos on the Popper page (#37953) @zanivan
@@ -70,6 +78,9 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 ### Core
 
+- &#8203;<!-- 47 -->[blog] Fix blog post slug Base UI (#38254) @oliviertassinari
+- &#8203;<!-- 46 -->[core] Use native Node's fetch instead of node-fetch package (#38263) @michaldudak
+- &#8203;<!-- 45 -->[core] Remove dead code @oliviertassinari
 - &#8203;<!-- 29 -->[core] Polish Stack test to closer CSS injection order @oliviertassinari
 - &#8203;<!-- 28 -->[core] Remove unnecessary `Required` utility type from Typography font style type (#38203) @ZeeshanTamboli
 - &#8203;<!-- 27 -->[core] Fix generate Proptypes script skipping unstable items (#38198) @mj12albert
