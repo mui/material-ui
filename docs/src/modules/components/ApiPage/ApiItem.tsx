@@ -125,8 +125,18 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         fill: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
       },
     },
-
-    marginBottom: 36,
+    '& code.Api-code': {
+      ...theme.typography.caption,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightRegular,
+      padding: '1px 4px',
+      border: '1px solid',
+      borderColor: alpha(darkTheme.palette.primary[100], 0.5),
+      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+    },
+    '&>hr': {
+      margin: '20px 0',
+    },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
@@ -168,6 +178,10 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         '.MuiAlert-icon svg': {
           fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
         },
+      },
+      '& code.Api-code': {
+        borderColor: alpha(darkTheme.palette.primary[400], 0.1),
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
       },
     },
   }),

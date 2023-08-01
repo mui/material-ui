@@ -1,9 +1,8 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { alpha, styled } from '@mui/material/styles';
+import {  styled } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
-  brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ApiItem from './ApiItem';
@@ -13,15 +12,6 @@ const StyledApiItem = styled(ApiItem)(
     '.slot-classname': {
       ...theme.typography.body2,
       fontWeight: theme.typography.fontWeightSemiBold,
-      code: {
-        ...theme.typography.caption,
-        fontFamily: theme.typography.fontFamilyCode,
-        fontWeight: theme.typography.fontWeightRegular,
-        padding: '1px 4px',
-        border: '1px solid',
-        borderColor: alpha(darkTheme.palette.primary[100], 0.5),
-        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
-      },
     },
     '& .slot-description-title': {
       ...theme.typography.body2,
@@ -34,10 +24,6 @@ const StyledApiItem = styled(ApiItem)(
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .slot-classname': {
         color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
-        code: {
-          borderColor: alpha(darkTheme.palette.primary[800], 0.4),
-          backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
-        },
       },
     },
   }),
@@ -69,7 +55,7 @@ export default function SlotsList(props: SlotsListProps) {
             {className && (
               <p className="slot-classname">
                 <span>{t('api-docs.globalClass')}:</span>{' '}
-                <code dangerouslySetInnerHTML={{ __html: className }} />
+                <code dangerouslySetInnerHTML={{ __html: className }} className="Api-code" />
               </p>
             )}
             {slotDescriptions[name] && (

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
@@ -25,6 +25,9 @@ const additionalPropsInfoText = {
 
 const StyledApiItem = styled(ApiItem)(
   ({ theme }) => ({
+    '& .prop-list-description': {
+      marginBottom: 10,
+    },
     '& .prop-list-additional-info': {
       display: 'flex',
       flexDirection: 'column',
@@ -43,15 +46,6 @@ const StyledApiItem = styled(ApiItem)(
     '& .prop-list-default-props': {
       ...theme.typography.body2,
       fontWeight: theme.typography.fontWeightSemiBold,
-      code: {
-        ...theme.typography.caption,
-        fontFamily: theme.typography.fontFamilyCode,
-        fontWeight: theme.typography.fontWeightRegular,
-        padding: '1px 4px',
-        border: '1px solid',
-        borderColor: alpha(darkTheme.palette.primary[100], 0.5),
-        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
-      },
     },
     '& .prop-list-signature': {
       p: {
@@ -89,10 +83,6 @@ const StyledApiItem = styled(ApiItem)(
 
       '& .prop-list-default-props': {
         color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
-        code: {
-          borderColor: alpha(darkTheme.palette.primary[800], 0.4),
-          backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
-        },
       },
     },
   }),
@@ -226,7 +216,7 @@ export default function PropertiesTable(props) {
                       <p>{t('api-docs.default')}:</p>
                     </div>
                     <div className="prop-list-content">
-                      <code>{propDefault}</code>
+                      <code className="Api-code">{propDefault}</code>
                     </div>
                   </div>
                 )}
