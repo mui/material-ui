@@ -18,6 +18,36 @@ const additionalPropsInfoText = {
     'To learn how to add your own variants, check out <a href="/joy-ui/customization/themed-components/#extend-variants">Themed components—Extend variants</a>.',
 };
 
+const getHash = ({ componentName, propName }) =>
+  `${componentName ? `${componentName}-` : ''}prop-${propName}`;
+
+export const getPropsToC = ({
+  componentName,
+  componentProps,
+  inheritance,
+  themeDefaultProps,
+  t,
+  hash,
+}) => ({
+  text: t('api-docs.props'),
+  hash: hash ?? 'props',
+  children: [
+    ...Object.entries(componentProps)
+      .filter(([, propData]) => propData.description !== '@ignore')
+      .map(([propName]) => ({
+        text: propName,
+        hash: getHash({ propName, componentName }),
+        children: [],
+      })),
+    ...(inheritance
+      ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+      : []),
+    ...(themeDefaultProps
+      ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
+      : []),
+  ],
+});
+
 export default function PropertiesTable(props) {
   const {
     properties,
@@ -27,7 +57,6 @@ export default function PropertiesTable(props) {
   } = props;
   const t = useTranslate();
 
-  const hashPrefix = componentName ? `${componentName}-` : '';
   return (
     <div>
       {Object.entries(properties)
@@ -42,7 +71,7 @@ export default function PropertiesTable(props) {
           return (
             <ApiItem
               key={propName}
-              id={`${hashPrefix}prop-${propName}`}
+              id={getHash({ componentName, propName })}
               title={propName}
               note={
                 (propData.required && !showOptionalAbbr && 'Required') ||
