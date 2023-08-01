@@ -22,7 +22,7 @@ export default function SlotsList(props: SlotsListProps) {
             key={className}
             description={defaultValue}
             title={name}
-            note="Required"
+            note=""
             type="slots"
           >
             {className && (
