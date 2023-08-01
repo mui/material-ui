@@ -6,10 +6,8 @@ githubLabel: 'component: Pagination'
 
 # Pagination 🚧
 
-<p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
+<p class="description">The Pagination component lets the user select a specific page from a range of pages.</p>
 
 :::warning
-💡 The Base UI Pagination component isn't implemented yet but it's planned!
-
-Upvote [this GitHub issue](https://github.com/mui/material-ui/issues/38042) if you want it to land faster!
+The Base UI Pagination component isn't available yet, but you can upvote [this GitHub issue](https://github.com/mui/material-ui/issues/38042) to see it arrive sooner.
 :::
