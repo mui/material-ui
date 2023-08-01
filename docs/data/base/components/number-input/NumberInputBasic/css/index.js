@@ -9,7 +9,7 @@ export default function NumberInputBasic() {
         slotProps={{
           root: { className: 'CustomNumberInput' },
           input: { className: 'input' },
-          decrementButton: { className: 'btn decrement', children: '▴' },
+          decrementButton: { className: 'btn decrement', children: '▾' },
           incrementButton: { className: 'btn increment', children: '▴' },
         }}
         aria-label="Demo number input"
@@ -104,9 +104,15 @@ function Styles() {
       }
 
       .CustomNumberInput .btn {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        appearance: none;
+        padding: 0;
         width: 19px;
         height: 19px;
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: system-ui, sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         line-height: 1;
@@ -132,7 +138,6 @@ function Styles() {
         &.decrement {
           grid-column: 2/3;
           grid-row: 2/3;
-          transform: rotate(180deg);
         }
       }
       `}
