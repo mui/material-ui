@@ -7,7 +7,7 @@ tags: ['News']
 card: true
 ---
 
-<a href="https://mui.com/r/discord "><img src="/static/blog/2023-discord-announcement/discord.png" width="1200" height="640" style="margin-bottom: 16px;" alt="Discord banner with link" /></a>
+<a href="https://mui.com/r/discord"><img src="/static/blog/2023-discord-announcement/discord.png" width="1200" height="640" style="margin-bottom: 16px;" alt="Discord banner with link" /></a>
 
 ## Why we are on Discord?
 
