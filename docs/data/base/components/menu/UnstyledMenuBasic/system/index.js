@@ -5,7 +5,7 @@ import MenuButton from '@mui/base/MenuButton';
 import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
 
-export default function UnstyledMenuSimple() {
+export default function MenuSimple() {
   const createHandleMenuClick = (menuItem) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);

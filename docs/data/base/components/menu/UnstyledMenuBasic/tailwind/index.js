@@ -10,7 +10,7 @@ function useIsDarkMode() {
   return theme.palette.mode === 'dark';
 }
 
-export default function UnstyledMenuSimple() {
+export default function MenuSimple() {
   // Replace this with your app logic for determining dark mode
   const isDarkMode = useIsDarkMode();
 

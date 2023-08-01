@@ -5,7 +5,7 @@ import MenuButton from '@mui/base/MenuButton';
 import Dropdown from '@mui/base/Dropdown';
 import { useTheme } from '@mui/system';
 
-export default function UnstyledMenuSimple() {
+export default function MenuSimple() {
   const createHandleMenuClick = (menuItem: string) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
