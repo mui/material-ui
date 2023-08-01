@@ -11,7 +11,7 @@ These are the best places to start asking questions and looking for answers when
 ### Stack Overflow
 
 [Stack Overflow](https://stackoverflow.com/) contains a wealth of information about Material UI and other MUI products, spanning many years and countless discussion threads.
-Head here to see if your problem has already been resolved by the community, or else [post a question](https://stackoverflow.com/questions/tagged/mui) to get help from community experts as well as MUI maintainers.
+Head here to see if your problem has already been resolved by the community, or else [post a question](https://stackoverflow.com/questions/tagged/material-ui) to get help from community experts as well as MUI maintainers.
 
 :::success
 If you're using an older version of Material UI, you may find answers on SO with links to content that no longer exists in the latest version of the documentation.
@@ -37,7 +37,7 @@ If you think you've found a bug, or you have an idea for a new feature, please [
 
 ### Social media
 
-The MUI community is active on both [Twitter](https://twitter.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/11290418/).
+The MUI community is active on both [Twitter](https://twitter.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/mui/).
 These are great platforms to share what you're working on and seek guidance from others.
 
 Please keep in mind that we don't actively monitor direct messages on the company's social media accounts, so this is _not_ a good way to get in touch with us directly.
