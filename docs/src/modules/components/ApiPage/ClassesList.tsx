@@ -38,6 +38,12 @@ export default function ClassesList(props: ClassesListProps) {
         .map((item) => {
           const isGlobalStateClass = !!componentClasses.globalClasses[item.classes];
           const cssClassName = `.${item.className}`;
+
+          const description =
+            classDescriptions[item.classes] &&
+            classDescriptions[item.classes].description
+              .replace(/{{conditions}}/, classDescriptions[item.classes].conditions!)
+              .replace(/{{nodeName}}/, classDescriptions[item.classes].nodeName!);
           return (
             <ApiItem
               id={`${hashPrefix}classes-${item.className}`}
@@ -45,17 +51,10 @@ export default function ClassesList(props: ClassesListProps) {
               note={isGlobalStateClass ? t('api-docs.state') : ''}
               title={cssClassName}
               type="classes"
-            >
-              <p
-                dangerouslySetInnerHTML={{
-                  __html:
-                    classDescriptions[item.classes] &&
-                    classDescriptions[item.classes].description
-                      .replace(/{{conditions}}/, classDescriptions[item.classes].conditions!)
-                      .replace(/{{nodeName}}/, classDescriptions[item.classes].nodeName!),
-                }}
-              />
-            </ApiItem>
+              description={description}
+            />
+
+            // </ApiItem>
           );
         })}
     </div>

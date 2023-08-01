@@ -20,7 +20,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       fontSize: 13,
       fontFamily: theme.typography.fontFamilyCode,
       display: 'flex',
-      alignItems: 'flex-end',
+      alignItems: 'flex-start',
       position: 'relative',
       marginBottom: 8,
       marginLeft: -40,
@@ -82,6 +82,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         letterSpacing: '1px',
         textTransform: 'uppercase',
         color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
+        textAlign: 'center',
         fontWeight: theme.typography.fontWeightBold,
       },
       [theme.breakpoints.up('lg')]: {
@@ -263,7 +264,7 @@ export type ApiItemProps = {
   description?: string;
   note?: string;
   type?: DescriptionType;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 function ApiItem(props: ApiItemProps) {
@@ -307,6 +308,8 @@ function ApiItem(props: ApiItemProps) {
 
         <span className="MuiApi-item-title">{title}</span>
 
+        {note && <span className="MuiApi-item-note">{note}</span>}
+
         <span
           className={`MuiApi-item-description${
             isExtended ? ' MuiApi-item-description-extended' : ''
@@ -320,7 +323,7 @@ function ApiItem(props: ApiItemProps) {
             .replace(/&nbsp;/g, ' ')
             .replace(/&#124;/g, '|')}
         />
-        {isOverflow && (
+        {(isOverflow || children) && (
           <div className="MuiApi-item-extend-description">
             <IconButton size="small" onClick={() => setIsExtended((prev) => !prev)}>
               {isExtended ? (
@@ -331,9 +334,8 @@ function ApiItem(props: ApiItemProps) {
             </IconButton>
           </div>
         )}
-        {note && <span className="MuiApi-item-note">{note}</span>}
       </div>
-      {children}
+      {isExtended ? children : null}
       <Divider />
     </Root>
   );

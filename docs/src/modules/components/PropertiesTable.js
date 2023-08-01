@@ -62,7 +62,6 @@ export default function PropertiesTable(props) {
       {Object.entries(properties)
         .filter(([, propData]) => propData.description !== '@ignore')
         .map(([propName, propData]) => {
-          // ApiItem
           const typeName = propData.type?.description || propData.type.name;
           const propDefault = propData.default;
           const propDescription = propertiesDescriptions[propName];
@@ -79,15 +78,8 @@ export default function PropertiesTable(props) {
                 ''
               }
               type="props"
+              description={propDescription?.description ?? ''}
             >
-              {propDescription?.description && (
-                <p
-                  className="prop-list-description"
-                  dangerouslySetInnerHTML={{
-                    __html: propDescription?.description,
-                  }}
-                />
-              )}
               {propDescription?.requiresRef && (
                 <Alert
                   severity="warning"
