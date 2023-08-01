@@ -79,7 +79,7 @@ You can also customize the header filter cell for a specific column using the `r
 
 For more details on how to use and customize the filters, check out its [documentation page](https://mui.com/x/react-data-grid/filtering/header-filters/).
 
-### **Performance Enhancements: Smoother Scrolling and Expanding Rows**
+### Performance Enhancements: Smoother Scrolling and Expanding Rows
 
 The Data Grid received significant performance improvements in MUI X v6, particularly concerning the data grid's scrolling efficiency and the expansion of children's rows.
 
