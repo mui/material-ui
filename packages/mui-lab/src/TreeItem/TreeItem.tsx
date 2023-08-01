@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { TreeItem as XTreeItem, TreeItemProps } from '@mui/x-tree-view/TreeItem';
 
 let warnedOnce = false;
@@ -32,5 +33,16 @@ const TreeItem = React.forwardRef(function DeprecatedTreeItem(
 
   return <XTreeItem {...props} ref={ref} />;
 });
+
+TreeItem.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+} as any;
 
 export default TreeItem;
