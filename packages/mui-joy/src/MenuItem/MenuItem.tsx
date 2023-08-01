@@ -7,6 +7,7 @@ import useMenuItem from '@mui/base/useMenuItem';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
+import { useVariantColor } from '../styles/variantColorInheritance';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import { MenuItemOwnerState, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
 import RowListContext from '../List/RowListContext';
@@ -60,15 +61,19 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     disabled: disabledProp = false,
     component = 'li',
     selected = false,
-    color: colorProp = selected ? 'primary' : 'neutral',
+    color: colorProp = 'neutral',
     orientation = 'horizontal',
-    variant = 'plain',
+    variant: variantProp = 'plain',
     slots = {},
     slotProps = {},
     ...other
   } = props;
+  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor(
+    inProps.variant,
+    inProps.color,
+  );
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const color = getColor(inProps.color, inheritedColor);
 
   const { getRootProps, disabled, focusVisible } = useMenuItem({
     disabled: disabledProp,
@@ -117,10 +122,10 @@ MenuItem.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default selected ? 'primary' : 'neutral'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

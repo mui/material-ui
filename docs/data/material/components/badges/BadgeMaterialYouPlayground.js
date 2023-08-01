@@ -1,7 +1,7 @@
 import * as React from 'react';
-import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDemo';
 import Badge from '@mui/material-next/Badge';
 import MailIcon from '@mui/icons-material/Mail';
+import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDemo';
 
 export default function BadgeMaterialYouPlayground() {
   return (

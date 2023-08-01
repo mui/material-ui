@@ -481,7 +481,7 @@ const Root = styled('div')(
       '& :not(pre) > code': {
         // inline code block
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        borderColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[600]})`,
+        borderColor: alpha(darkTheme.palette.primaryDark[600], 0.6),
         backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
       },
       '& strong': {

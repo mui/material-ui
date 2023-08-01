@@ -10,6 +10,7 @@ import {
   strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import { spy } from 'sinon';
+import Box from '@mui/system/Box';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Chip, { chipClasses } from '@mui/material/Chip';
@@ -21,7 +22,6 @@ import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Tooltip from '@mui/material/Tooltip';
-import Box from '@mui/system/Box';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);

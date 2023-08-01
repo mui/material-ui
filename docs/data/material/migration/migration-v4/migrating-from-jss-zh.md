@@ -17,7 +17,7 @@ v5中最大的变化之一是将JSS替换为[Emotion](https://emotion.sh/docs/in
 请注意，你可以继续使用JSS为组件添加重写（例如`makeStyles`, `withStyles`），即使在迁移到v5之后。 然后，如果在任何时候你想转移到新的样式引擎，你可以逐步重构你的组件。
 
 :::info
-如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion和JSS一起工作，可以看一下这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration)。
+如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion和JSS一起工作，可以看一下这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration)。
 :::
 
 本文档回顾了从JSS迁移的所有必要步骤。

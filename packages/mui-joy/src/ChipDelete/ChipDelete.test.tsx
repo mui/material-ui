@@ -51,7 +51,7 @@ describe('<ChipDelete />', () => {
           <ChipDelete />
         </Chip>,
       );
-      expect(getByRole('button')).to.have.class(classes.variantSolid);
+      expect(getByRole('button')).to.have.class(classes.variantSoft);
     });
 
     it('use variant prop if provided', () => {
