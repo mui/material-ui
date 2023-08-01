@@ -1,6 +1,5 @@
 import { test as base, expect, Page } from '@playwright/test';
 import kebabCase from 'lodash/kebabCase';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
@@ -53,23 +52,6 @@ test.describe('Material docs', () => {
       );
     });
 
-    test('should have correct API link to mui-base', async ({ page }) => {
-      await page.goto('/material-ui/react-tabs/');
-
-      await expect(page.locator('a[href="/base/api/tab-panel-unstyled/"]')).toContainText(
-        '<TabPanelUnstyled />',
-      );
-      await expect(page.locator('a[href="/base/api/tab-unstyled/"]')).toContainText(
-        '<TabUnstyled />',
-      );
-      await expect(page.locator('a[href="/base/api/tabs-list-unstyled/"]')).toContainText(
-        '<TabsListUnstyled />',
-      );
-      await expect(page.locator('a[href="/base/api/tabs-unstyled/"]')).toContainText(
-        '<TabsUnstyled />',
-      );
-    });
-
     test('should have correct link for sidebar anchor', async ({ page }) => {
       await page.goto('/material-ui/react-card/');
 
@@ -113,6 +95,41 @@ test.describe('Material docs', () => {
 
       await expect(anchor).toHaveAttribute('href', '/material-ui/material-icons/');
       await expect(anchor).toHaveText('Material Icons');
+    });
+
+    test('should have correct API links when name of components conflicts with Base UI', async ({
+      page,
+    }) => {
+      await page.goto('/material-ui/react-button/');
+
+      const anchors = page.locator('div > h2#api ~ ul a');
+
+      const firstAnchor = anchors.first();
+      const textContent = await firstAnchor.textContent();
+
+      await expect(textContent).toEqual('<Button />');
+      await expect(firstAnchor).toHaveAttribute('href', '/material-ui/api/button/');
+    });
+
+    ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'].forEach((component) => {
+      test(`should have correct API link when linking Base UI component ${component}`, async ({
+        page,
+      }) => {
+        await page.goto(`/material-ui/react-${kebabCase(component || '')}/`);
+
+        const anchors = page.locator('div > h2#api ~ ul a');
+
+        const firstAnchor = anchors.first();
+        const textContent = await firstAnchor.textContent();
+
+        await expect(textContent).toEqual(`<${component} />`);
+        await expect(firstAnchor).toHaveAttribute(
+          'href',
+          `/base-ui/react-${kebabCase(component || '')}/components-api/#${kebabCase(
+            component || '',
+          )}`,
+        );
+      });
     });
   });
 

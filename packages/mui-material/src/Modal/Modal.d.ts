@@ -2,7 +2,10 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '@mui/base';
-import { ModalUnstyledTypeMap, ModalUnstyledClasses } from '@mui/base/ModalUnstyled';
+import {
+  ModalTypeMap as BaseModalTypeMap,
+  ModalClasses as BaseModalClasses,
+} from '@mui/base/Modal';
 import { Theme } from '../styles';
 import Backdrop, { BackdropProps } from '../Backdrop';
 import { OverridableComponent } from '../OverridableComponent';
@@ -13,8 +16,11 @@ export interface ModalOwnerState extends ModalProps {
   exited: boolean;
 }
 
-export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
-  props: P & {
+export interface ModalTypeMap<
+  DefaultComponent extends React.ElementType = 'div',
+  AdditionalProps = {},
+> {
+  props: AdditionalProps & {
     /**
      * A backdrop component. This prop enables custom backdrop rendering.
      * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
@@ -38,7 +44,7 @@ export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<ModalUnstyledClasses>;
+    classes?: Partial<BaseModalClasses>;
     /**
      * @ignore
      */
@@ -88,8 +94,8 @@ export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
-  } & Omit<ModalUnstyledTypeMap['props'], 'slotProps'>;
-  defaultComponent: D;
+  } & Omit<BaseModalTypeMap['props'], 'slotProps'>;
+  defaultComponent: DefaultComponent;
 }
 
 type ModalRootProps = NonNullable<ModalTypeMap['props']['slotProps']>['root'];
@@ -126,8 +132,10 @@ export type ModalClasses = Record<ModalClassKey, string>;
 export declare const modalClasses: ModalClasses;
 
 export type ModalProps<
-  D extends React.ElementType = ModalTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ModalTypeMap<D, P>, D>;
+  RootComponent extends React.ElementType = ModalTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ModalTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Modal;

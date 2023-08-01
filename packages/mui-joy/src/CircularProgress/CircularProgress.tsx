@@ -1,3 +1,4 @@
+'use client';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import clsx from 'clsx';
@@ -45,6 +46,10 @@ const useUtilityClasses = (ownerState: CircularProgressOwnerState) => {
   return composeClasses(slots, getCircularProgressUtilityClass, {});
 };
 
+function getThickness(slot: 'track' | 'progress', defaultValue: string) {
+  return `var(--CircularProgress-${slot}Thickness, var(--CircularProgress-thickness, ${defaultValue}))`;
+}
+
 const CircularProgressRoot = styled('span', {
   name: 'JoyCircularProgress',
   slot: 'Root',
@@ -61,39 +66,37 @@ const CircularProgressRoot = styled('span', {
     '--CircularProgress-percent': ownerState.value, // 0 - 100
     '--CircularProgress-linecap': 'round',
     ...(ownerState.size === 'sm' && {
-      '--CircularProgress-trackThickness': '3px',
-      '--CircularProgress-progressThickness': '3px',
       '--_root-size': 'var(--CircularProgress-size, 24px)', // use --_root-size to let other components overrides via --CircularProgress-size
+      '--_track-thickness': getThickness('track', '3px'),
+      '--_progress-thickness': getThickness('progress', '3px'),
     }),
     ...(ownerState.instanceSize === 'sm' && {
       '--CircularProgress-size': '24px',
     }),
     ...(ownerState.size === 'md' && {
-      '--CircularProgress-trackThickness': '6px',
-      '--CircularProgress-progressThickness': '6px',
+      '--_track-thickness': getThickness('track', '6px'),
+      '--_progress-thickness': getThickness('progress', '6px'),
       '--_root-size': 'var(--CircularProgress-size, 40px)',
     }),
     ...(ownerState.instanceSize === 'md' && {
       '--CircularProgress-size': '40px',
     }),
     ...(ownerState.size === 'lg' && {
-      '--CircularProgress-trackThickness': '8px',
-      '--CircularProgress-progressThickness': '8px',
+      '--_track-thickness': getThickness('track', '8px'),
+      '--_progress-thickness': getThickness('progress', '8px'),
       '--_root-size': 'var(--CircularProgress-size, 64px)',
     }),
     ...(ownerState.instanceSize === 'lg' && {
       '--CircularProgress-size': '64px',
     }),
     ...(ownerState.thickness && {
-      '--CircularProgress-trackThickness': `${ownerState.thickness}px`,
-      '--CircularProgress-progressThickness': `${ownerState.thickness}px`,
+      '--_track-thickness': `${ownerState.thickness}px`,
+      '--_progress-thickness': `${ownerState.thickness}px`,
     }),
     // internal variables
-    '--_thickness-diff':
-      'calc(var(--CircularProgress-trackThickness) - var(--CircularProgress-progressThickness))',
+    '--_thickness-diff': 'calc(var(--_track-thickness) - var(--_progress-thickness))',
     '--_inner-size': 'calc(var(--_root-size) - 2 * var(--variant-borderWidth, 0px))',
-    '--_outlined-inset':
-      'max(var(--CircularProgress-trackThickness), var(--CircularProgress-progressThickness))',
+    '--_outlined-inset': 'max(var(--_track-thickness), var(--_progress-thickness))',
     width: 'var(--_root-size)',
     height: 'var(--_root-size)',
     borderRadius: 'var(--_root-size)',
@@ -150,9 +153,9 @@ const CircularProgressTrack = styled('circle', {
 })<{ ownerState: CircularProgressOwnerState }>({
   cx: '50%',
   cy: '50%',
-  r: 'calc(var(--_inner-size) / 2 - var(--CircularProgress-trackThickness) / 2 + min(0px, var(--_thickness-diff) / 2))',
+  r: 'calc(var(--_inner-size) / 2 - var(--_track-thickness) / 2 + min(0px, var(--_thickness-diff) / 2))',
   fill: 'transparent',
-  strokeWidth: 'var(--CircularProgress-trackThickness)',
+  strokeWidth: 'var(--_track-thickness)',
   stroke: 'var(--CircularProgress-trackColor)',
 });
 
@@ -163,13 +166,13 @@ const CircularProgressProgress = styled('circle', {
 })<{ ownerState: CircularProgressOwnerState }>(
   {
     '--_progress-radius':
-      'calc(var(--_inner-size) / 2 - var(--CircularProgress-progressThickness) / 2 - max(0px, var(--_thickness-diff) / 2))',
+      'calc(var(--_inner-size) / 2 - var(--_progress-thickness) / 2 - max(0px, var(--_thickness-diff) / 2))',
     '--_progress-length': 'calc(2 * 3.1415926535 * var(--_progress-radius))', // the circumference around the progress
     cx: '50%',
     cy: '50%',
     r: 'var(--_progress-radius)',
     fill: 'transparent',
-    strokeWidth: 'var(--CircularProgress-progressThickness)',
+    strokeWidth: 'var(--_progress-thickness)',
     stroke: 'var(--CircularProgress-progressColor)',
     strokeLinecap: 'var(--CircularProgress-linecap, round)' as 'round', // can't use CSS variable directly, need to cast type.
     strokeDasharray: 'var(--_progress-length)',
@@ -216,6 +219,9 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     thickness,
     determinate = false,
     value = determinate ? 0 : 25, // `25` is the 1/4 of the circle.
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -233,12 +239,13 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: CircularProgressRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       role: 'progressbar',
@@ -259,21 +266,21 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   const [SlotSvg, svgProps] = useSlot('svg', {
     className: classes.svg,
     elementType: CircularProgressSvg,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotTrack, trackProps] = useSlot('track', {
     className: classes.track,
     elementType: CircularProgressTrack,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotProgress, progressProps] = useSlot('progress', {
     className: classes.progress,
     elementType: CircularProgressProgress,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -306,9 +313,14 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The boolean to select a variant.
    * Use indeterminate when there is no progress value.
@@ -324,6 +336,26 @@ CircularProgress.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    progress: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    svg: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    progress: PropTypes.elementType,
+    root: PropTypes.elementType,
+    svg: PropTypes.elementType,
+    track: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

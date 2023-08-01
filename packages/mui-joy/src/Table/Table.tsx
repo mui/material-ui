@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -10,13 +11,16 @@ import styled from '../styles/styled';
 import { getTableUtilityClass } from './tableClasses';
 import { TableProps, TableOwnerState, TableTypeMap } from './TableProps';
 import { TypographyInheritContext } from '../Typography/Typography';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TableOwnerState) => {
-  const { size, variant, color, borderAxis, stickyHeader, noWrap, hoverRow } = ownerState;
+  const { size, variant, color, borderAxis, stickyHeader, stickyFooter, noWrap, hoverRow } =
+    ownerState;
   const slots = {
     root: [
       'root',
       stickyHeader && 'stickyHeader',
+      stickyFooter && 'stickyFooter',
       noWrap && 'noWrap',
       hoverRow && 'hoverRow',
       borderAxis && `borderAxis${capitalize(borderAxis)}`,
@@ -30,17 +34,12 @@ const useUtilityClasses = (ownerState: TableOwnerState) => {
 };
 
 const tableSelector = {
-  getColumn(col: number | string) {
-    if (typeof col === 'number' && col < 0) {
-      return `& tr > *:nth-last-child(${Math.abs(col)})`;
-    }
-    return `& tr > *:nth-child(${col})`;
-  },
   /**
-   * Except first column
+   * According to https://www.w3.org/TR/2014/REC-html5-20141028/tabular-data.html#the-tr-element,
+   * `tr` can only have `td | th` as children, so using :first-of-type is better than :first-child to prevent emotion SSR warning
    */
   getColumnExceptFirst() {
-    return '& tr > *:not(:first-child)';
+    return '& tr > *:not(:first-of-type), & tr > th + td, & tr > td + th';
   },
   /**
    * Every cell in the table
@@ -61,13 +60,13 @@ const tableSelector = {
     return '& thead th';
   },
   getHeaderCellOfRow(row: number | string) {
-    return `& thead tr:nth-child(${row}) th`;
+    return `& thead tr:nth-of-type(${row}) th`;
   },
   getBottomHeaderCell() {
     return '& thead th:not([colspan])';
   },
   getHeaderNestedFirstColumn() {
-    return '& thead tr:not(:first-of-type) th:not([colspan]):first-child';
+    return '& thead tr:not(:first-of-type) th:not([colspan]):first-of-type';
   },
   /**
    * The body cell that contains data
@@ -76,30 +75,33 @@ const tableSelector = {
     return '& td';
   },
   getDataCellExceptLastRow() {
-    return '& tr:not(:last-child) > td';
+    return '& tr:not(:last-of-type) > td';
   },
   /**
    * The body cell either `td` or `th`
    */
   getBodyCellExceptLastRow() {
-    return `${this.getDataCellExceptLastRow()}, & tr:not(:last-child) > th[scope="row"]`;
+    return `${this.getDataCellExceptLastRow()}, & tr:not(:last-of-type) > th[scope="row"]`;
   },
   getBodyCellOfRow(row: number | string) {
     if (typeof row === 'number' && row < 0) {
-      return `& tbody tr:nth-last-child(${Math.abs(row)}) td, & tbody tr:nth-last-child(${Math.abs(
+      return `& tbody tr:nth-last-of-type(${Math.abs(
         row,
-      )}) th[scope="row"]`;
+      )}) td, & tbody tr:nth-last-of-type(${Math.abs(row)}) th[scope="row"]`;
     }
-    return `& tbody tr:nth-child(${row}) td, & tbody tr:nth-child(${row}) th[scope="row"]`;
+    return `& tbody tr:nth-of-type(${row}) td, & tbody tr:nth-of-type(${row}) th[scope="row"]`;
   },
   getBodyRow(row?: number | string) {
     if (row === undefined) {
       return `& tbody tr`;
     }
-    return `& tbody tr:nth-child(${row})`;
+    return `& tbody tr:nth-of-type(${row})`;
   },
   getFooterCell() {
     return '& tfoot th, & tfoot td';
+  },
+  getFooterFirstRowCell() {
+    return `& tfoot tr:not(:last-of-type) th, & tfoot tr:not(:last-of-type) td`;
   },
 };
 
@@ -118,25 +120,23 @@ const TableRoot = styled('table', {
         '--unstable_TableCell-height': 'var(--TableCell-height, 32px)',
         '--TableCell-paddingX': '0.25rem',
         '--TableCell-paddingY': '0.25rem',
-        fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
         '--unstable_TableCell-height': 'var(--TableCell-height, 40px)',
         '--TableCell-paddingX': '0.5rem',
         '--TableCell-paddingY': '0.375rem',
-        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
         '--unstable_TableCell-height': 'var(--TableCell-height, 48px)',
         '--TableCell-paddingX': '0.75rem',
         '--TableCell-paddingY': '0.5rem',
-        fontSize: theme.vars.fontSize.md,
       }),
       tableLayout: 'fixed',
       width: '100%',
       borderSpacing: '0px',
       borderCollapse: 'separate',
-      color: theme.vars.palette.text.primary,
+      borderRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
+      ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '& caption': {
         color: theme.vars.palette.text.tertiary,
@@ -168,20 +168,20 @@ const TableRoot = styled('table', {
       [tableSelector.getHeaderCell()]: {
         verticalAlign: 'bottom',
         // Automatic radius adjustment with Sheet
-        '&:first-child': {
+        '&:first-of-type': {
           borderTopLeftRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
-        '&:last-child': {
+        '&:last-of-type': {
           borderTopRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
       '& tfoot tr > *': {
         backgroundColor: `var(--TableCell-footBackground, ${theme.vars.palette.background.level1})`,
         // Automatic radius adjustment with Sheet
-        '&:first-child': {
+        '&:first-of-type': {
           borderBottomLeftRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
-        '&:last-child': {
+        '&:last-of-type': {
           borderBottomRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
@@ -229,11 +229,11 @@ const TableRoot = styled('table', {
     },
     (ownerState.borderAxis === 'y' || ownerState.borderAxis === 'both') && {
       // insert border on the left of first column and right of the last column
-      [tableSelector.getColumn(1)]: {
+      '& tr > *:first-of-type': {
         borderLeftWidth: 1,
         borderLeftStyle: 'solid',
       },
-      [tableSelector.getColumn(-1)]: {
+      '& tr > *:last-of-type:not(:first-of-type)': {
         borderRightWidth: 1,
         borderRightStyle: 'solid',
       },
@@ -241,29 +241,41 @@ const TableRoot = styled('table', {
     ownerState.stripe && {
       [tableSelector.getBodyRow(ownerState.stripe)]: {
         // For customization, a table cell can look for this variable with a fallback value.
-        background: `var(--TableRow-stripeBackground, ${theme.vars.palette.background.level1})`,
+        background: `var(--TableRow-stripeBackground, ${theme.vars.palette.background.level2})`,
         color: theme.vars.palette.text.primary,
       },
     },
     ownerState.hoverRow && {
       [tableSelector.getBodyRow()]: {
         '&:hover': {
-          background: `var(--TableRow-hoverBackground, ${theme.vars.palette.background.level2})`,
+          background: `var(--TableRow-hoverBackground, ${theme.vars.palette.background.level3})`,
         },
       },
     },
     ownerState.stickyHeader && {
       // The column header
-      [tableSelector.getHeadCell()]: {
+      [tableSelector.getHeaderCell()]: {
         position: 'sticky',
         top: 0,
-      },
-      [tableSelector.getHeaderCell()]: {
         zIndex: theme.vars.zIndex.table,
       },
       [tableSelector.getHeaderCellOfRow(2)]: {
         // support upto 2 rows for the sticky header
         top: 'var(--unstable_TableCell-height)',
+      },
+    },
+    ownerState.stickyFooter && {
+      // The column header
+      [tableSelector.getFooterCell()]: {
+        position: 'sticky',
+        bottom: 0,
+        zIndex: theme.vars.zIndex.table,
+        color: theme.vars.palette.text.secondary,
+        fontWeight: theme.vars.fontWeight.lg,
+      },
+      [tableSelector.getFooterFirstRowCell()]: {
+        // support upto 2 rows for the sticky footer
+        bottom: 'var(--unstable_TableCell-height)',
       },
     },
   ];
@@ -296,6 +308,9 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     color: colorProp = 'neutral',
     stripe,
     stickyHeader = false,
+    stickyFooter = false,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -312,21 +327,23 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     variant,
     stripe,
     stickyHeader,
+    stickyFooter,
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
+
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: TableRoot,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
     <TypographyInheritContext.Provider value>
-      <TableRoot
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      >
-        {children}
-      </TableRoot>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
     </TypographyInheritContext.Provider>
   );
 }) as OverridableComponent<TableTypeMap>;
@@ -357,7 +374,7 @@ Table.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -388,7 +405,28 @@ Table.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * Set the header sticky.
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
+   * If `true`, the footer always appear at the bottom of the overflow table.
+   *
+   * ⚠️ It doesn't work with IE11.
+   * @default false
+   */
+  stickyFooter: PropTypes.bool,
+  /**
+   * If `true`, the header always appear at the top of the overflow table.
    *
    * ⚠️ It doesn't work with IE11.
    * @default false

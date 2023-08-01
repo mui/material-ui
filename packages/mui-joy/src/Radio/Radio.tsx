@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
@@ -58,22 +59,24 @@ const RadioRoot = styled('span', {
   return [
     {
       '--Icon-fontSize': 'var(--Radio-size)',
+      '--Icon-color': 'currentColor',
       ...(ownerState.size === 'sm' && {
         '--Radio-size': '1rem',
-        '--Radio-gap': '0.375rem',
-        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.375rem' },
+        '--Radio-gap': '0.5rem',
+        // --FormHelperText-margin is equal to --Radio-size + --Radio-gap but we can't use calc() with CSS variables because the FormHelperText is a sibling element
+        '& ~ *': { '--FormHelperText-margin': '0 0 0 1.5rem' },
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Radio-size': '1.25rem',
-        '--Radio-gap': '0.5rem',
-        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.75rem' },
+        '--Radio-gap': '0.625rem',
+        '& ~ *': { '--FormHelperText-margin': '0.25rem 0 0 1.875rem' },
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Radio-size': '1.5rem',
-        '--Radio-gap': '0.625rem',
-        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.125rem' },
+        '--Radio-gap': '0.75rem',
+        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.25rem' },
         fontSize: theme.vars.fontSize.lg,
       }),
       position: ownerState.overlay ? 'initial' : 'relative',
@@ -111,6 +114,10 @@ const RadioRadio = styled('span', {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
       margin: 0,
       boxSizing: 'border-box',
       width: 'var(--Radio-size)',
@@ -123,6 +130,9 @@ const RadioRadio = styled('span', {
       ...(ownerState.disableIcon && {
         display: 'contents',
       }),
+      [`&.${radioClasses.checked}`]: {
+        '--Icon-color': 'currentColor',
+      },
     },
     ...(!ownerState.disableIcon
       ? [
@@ -255,6 +265,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     size: sizeProp = 'md',
     uncheckedIcon,
     value,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -318,33 +331,34 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: RadioRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotRadio, radioProps] = useSlot('radio', {
     className: classes.radio,
     elementType: RadioRadio,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotIcon, iconProps] = useSlot('icon', {
     className: classes.icon,
     elementType: RadioIcon,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotAction, actionProps] = useSlot('action', {
     className: classes.action,
     elementType: RadioAction,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -360,7 +374,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     },
     className: classes.input,
     elementType: RadioInput,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: () => getInputProps({ onChange: radioGroup?.onChange }),
     ownerState,
   });
@@ -371,7 +385,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     },
     className: classes.label,
     elementType: RadioLabel,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -421,9 +435,14 @@ Radio.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -491,6 +510,30 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    radio: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    action: PropTypes.elementType,
+    icon: PropTypes.elementType,
+    input: PropTypes.elementType,
+    label: PropTypes.elementType,
+    radio: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

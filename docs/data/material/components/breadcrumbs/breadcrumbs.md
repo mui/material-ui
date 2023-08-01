@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Breadcrumbs component
 components: Breadcrumbs, Link, Typography
 githubLabel: 'component: breadcrumbs'
@@ -8,7 +8,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
 
 # Breadcrumbs
 
-<p class="description">Breadcrumbs consist of a list of links that help a user visualize a page's location within the hierarchical structure of a website, and allow navigation up to any of its "ancestors".</p>
+<p class="description">A breadcrumbs is a list of links that help visualize a page's location within a site's hierarchical structure, it allows navigation up to any of the ancestors.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
@@ -244,13 +245,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   // Support autofill.
   const handleChange = (event) => {
-    const index = childrenArray.map((child) => child.props.value).indexOf(event.target.value);
+    const child = childrenArray.find((childItem) => childItem.props.value === event.target.value);
 
-    if (index === -1) {
+    if (child === undefined) {
       return;
     }
 
-    const child = childrenArray[index];
     setValueState(child.props.value);
 
     if (onChange) {

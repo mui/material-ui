@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type TabSlot = 'root';
+
+export interface TabSlots {
+  /**
+   * The component that renders the root.
+   * @default 'button'
+   */
+  root?: React.ElementType;
+}
+
+export type TabSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TabSlots,
+  {
+    root: SlotProps<'button', {}, TabOwnerState>;
+  }
+>;
 
 export interface TabPropsColorOverrides {}
 export interface TabPropsVariantOverrides {}
@@ -26,6 +42,20 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     disabled?: boolean;
     /**
+     * If `true`, the pseudo element indicator is hidden.
+     * @default false
+     */
+    disableIndicator?: boolean;
+    /**
+     * The indicator's position when the Tab is selected.
+     * @default row ? 'bottom' : 'right'
+     */
+    indicatorPlacement?: 'top' | 'bottom' | 'left' | 'right';
+    /**
+     * If `true`, the indicator stay within the padding based on the `Tabs` orientation.
+     */
+    indicatorInset?: boolean;
+    /**
      * The content direction flow.
      * @default 'horizontal'
      */
@@ -47,7 +77,7 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, TabPropsVariantOverrides>;
-  };
+  } & TabSlotsAndSlotProps;
   defaultComponent: D;
 }
 

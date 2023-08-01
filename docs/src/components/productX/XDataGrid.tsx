@@ -5,17 +5,17 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import LibraryAddCheckRounded from '@mui/icons-material/LibraryAddCheckRounded';
+import SortByAlphaRounded from '@mui/icons-material/SortByAlphaRounded';
+import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
+import FilterAltRounded from '@mui/icons-material/FilterAltRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import LibraryAddCheckRounded from '@mui/icons-material/LibraryAddCheckRounded';
-import SortByAlphaRounded from '@mui/icons-material/SortByAlphaRounded';
-import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
-import FilterAltRounded from '@mui/icons-material/FilterAltRounded';
 import Frame from 'docs/src/components/action/Frame';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
@@ -228,7 +228,7 @@ export default function XDataGrid() {
               {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />}
               <StylingInfo
                 appeared={demo === DEMOS[3] || demo === DEMOS[4]}
-                content={
+                stylingContent={
                   <React.Fragment>
                     <Typography fontWeight="bold" color="#fff" variant="body2">
                       {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}

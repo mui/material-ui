@@ -1,8 +1,5 @@
 import * as React from 'react';
-import ButtonUnstyled, {
-  ButtonUnstyledProps,
-  buttonUnstyledClasses,
-} from '@mui/base/ButtonUnstyled';
+import Button, { ButtonProps, buttonClasses } from '@mui/base/Button';
 import { styled, Theme } from '@mui/system';
 
 const ButtonRoot = React.forwardRef(function ButtonRoot(
@@ -23,10 +20,10 @@ const ButtonRoot = React.forwardRef(function ButtonRoot(
 });
 
 const SvgButton = React.forwardRef(function SvgButton(
-  props: ButtonUnstyledProps,
+  props: ButtonProps,
   ref: React.ForwardedRef<any>,
 ) {
-  return <ButtonUnstyled {...props} component={CustomButtonRoot} ref={ref} />;
+  return <Button {...props} slots={{ root: CustomButtonRoot }} ref={ref} />;
 });
 
 export default function UnstyledButtonCustom() {
@@ -74,7 +71,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
   }
 
   &:hover,
-  &.${buttonUnstyledClasses.focusVisible} {
+  &.${buttonClasses.focusVisible} {
     .borderEffect {
       stroke-dashoffset: -600;
     }
@@ -85,12 +82,12 @@ const CustomButtonRoot = styled(ButtonRoot)(
   }
 
   &:focus,
-  &.${buttonUnstyledClasses.focusVisible} {
+  &.${buttonClasses.focusVisible} {
     outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
     outline-offset: 2px;
   }
 
-  &.${buttonUnstyledClasses.active} { 
+  &.${buttonClasses.active} { 
     & .bg {
       fill: var(--active-color);
       transition: fill 300ms ease-out;
@@ -103,7 +100,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
     & .content {
       font-size: 0.875rem;
       font-family: IBM Plex Sans, sans-serif;
-      font-weight: 500;
+      font-weight: 600;
       line-height: 1.5;
       height: 100%;
       display: flex;

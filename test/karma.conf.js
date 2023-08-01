@@ -1,5 +1,5 @@
-const playwright = require('playwright');
 const path = require('path');
+const playwright = require('playwright');
 const webpack = require('webpack');
 
 const CI = Boolean(process.env.CI);

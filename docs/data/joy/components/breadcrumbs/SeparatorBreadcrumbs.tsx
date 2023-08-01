@@ -7,18 +7,9 @@ import Typography from '@mui/joy/Typography';
 export default function SeparatorBreadcrumbs() {
   return (
     <Breadcrumbs separator={<KeyboardArrowLeft />} aria-label="breadcrumbs">
-      <Typography fontSize="inherit">Amy</Typography>
+      <Typography>Amy</Typography>
       {['Characters', 'Futurama', 'TV Shows', 'Home'].map((item: string) => (
-        <Link
-          // `preventDefault` is for demo purposes
-          // and is generally not needed in your app
-          onClick={(event) => event.preventDefault()}
-          key={item}
-          underline="hover"
-          color="neutral"
-          fontSize="inherit"
-          href="/"
-        >
+        <Link key={item} color="neutral" href="#separators">
           {item}
         </Link>
       ))}

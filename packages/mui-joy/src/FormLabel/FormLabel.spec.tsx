@@ -1,6 +1,6 @@
 import * as React from 'react';
-import FormLabel, { FormLabelOwnerState } from '@mui/joy/FormLabel';
 import { expectType } from '@mui/types';
+import FormLabel, { FormLabelOwnerState } from '@mui/joy/FormLabel';
 
 <FormLabel component="div" />;
 

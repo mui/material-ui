@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Tree View React component
 components: TreeView, TreeItem
 githubLabel: 'component: tree view'
@@ -28,6 +28,14 @@ Tree views also support multi-selection.
 ## Controlled tree view
 
 The tree view also offers a controlled API.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 {{"demo": "ControlledTreeView.js"}}
 

@@ -1,20 +1,30 @@
 import { EventHandlers } from '../utils/types';
 import { UseButtonRootSlotProps } from '../useButton';
+import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
 
 interface UseMenuItemRootSlotOwnProps {
   role: 'menuitem';
-  tabIndex?: number;
-  id?: string;
+  ref: React.RefCallback<Element> | null;
+}
+
+export interface MenuItemMetadata {
+  id: string;
+  disabled: boolean;
+  label?: string;
+  ref: React.RefObject<HTMLElement>;
 }
 
 export type UseMenuItemRootSlotProps<TOther = {}> = TOther &
   UseMenuItemRootSlotOwnProps &
-  UseButtonRootSlotProps<TOther>;
+  UseButtonRootSlotProps<TOther> & {
+    onClick: MuiCancellableEventHandler<React.MouseEvent>;
+  };
 
 export interface UseMenuItemParameters {
   disabled?: boolean;
+  id?: string;
   onClick?: React.MouseEventHandler<any>;
-  ref: React.Ref<any>;
+  rootRef: React.Ref<Element>;
   label?: string;
 }
 
@@ -29,17 +39,26 @@ export interface UseMenuItemReturnValue {
   ) => UseMenuItemRootSlotProps<TOther>;
   /**
    * If `true`, the component is disabled.
-   * @default false
    */
   disabled: boolean;
   /**
    * If `true`, the component is being focused using keyboard.
-   * @default false
    */
   focusVisible: boolean;
   /**
    * If `true`, the component is being highlighted.
-   * @default false
    */
   highlighted: boolean;
+  /**
+   * 0-based index of the item in the menu.
+   */
+  index: number;
+  /**
+   * The ref to the component's root DOM element.
+   */
+  rootRef: React.RefCallback<Element> | null;
+  /**
+   * Total number of items in the menu.
+   */
+  totalItemCount: number;
 }

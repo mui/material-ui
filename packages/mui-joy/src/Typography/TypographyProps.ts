@@ -18,17 +18,17 @@ export interface TypographySlots {
    * The component that renders the root.
    * @default 'a'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
 }
 
 export interface TypographyPropsColorOverrides {}
@@ -66,7 +66,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
       gutterBottom?: boolean;
       /**
        * Applies the theme typography styles.
-       * @default 'body1'
+       * @default 'body-md'
        */
       level?: keyof TypographySystem | 'inherit';
       /**
@@ -79,11 +79,13 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        *   h2: 'h2',
        *   h3: 'h3',
        *   h4: 'h4',
-       *   h5: 'h5',
-       *   h6: 'h6',
-       *   body1: 'p',
-       *   body2: 'p',
-       *   body3: 'p',
+       *   'title-lg': 'p',
+       *   'title-md': 'p',
+       *   'title-sm': 'p',
+       *   'body-lg': 'p',
+       *   'body-md': 'p',
+       *   'body-sm': 'p',
+       *   'body-xs': 'span',
        *   inherit: 'p',
        * }
        */

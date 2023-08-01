@@ -1,6 +1,6 @@
 import { mkdirSync } from 'fs';
-import * as fse from 'fs-extra';
 import path from 'path';
+import * as fse from 'fs-extra';
 import kebabCase from 'lodash/kebabCase';
 import * as yargs from 'yargs';
 import findComponents from './utils/findComponents';
@@ -149,7 +149,7 @@ const SETTINGS: Settings[] = [
         entryPointPath: 'src/index.d.ts',
       }),
     ],
-    getApiPages: () => findApiPages('docs/pages/base/api'),
+    getApiPages: () => findApiPages('docs/pages/base-ui/api'),
     getComponentInfo: getBaseComponentInfo,
     getHookInfo: getBaseHookInfo,
   },
@@ -207,12 +207,13 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
           if (
             component.filename.includes('ThemeProvider') ||
             component.filename.includes('CssVarsProvider') ||
+            (component.filename.includes('mui-material') && component.filename.includes('Grid2')) ||
             (component.filename.includes('mui-joy') &&
               // Box's demo isn't ready
               // Container's demo isn't ready
               // Grid has problem with react-docgen
-              // Stack has problem with react-docgen
-              component.filename.match(/(Box|Container|ColorInversion|Grid|Stack)/))
+              component.filename.match(/(Box|Container|ColorInversion|Grid)/)) ||
+            (component.filename.includes('mui-system') && component.filename.match(/GlobalStyles/))
           ) {
             return false;
           }

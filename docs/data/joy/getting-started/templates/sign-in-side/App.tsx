@@ -13,7 +13,6 @@ import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
-import customTheme from './theme';
 import GoogleIcon from './GoogleIcon';
 
 interface FormElements extends HTMLFormControlsCollection {
@@ -40,6 +39,7 @@ function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
       size="sm"
       variant="plain"
       color="neutral"
+      aria-label="toggle light/dark mode"
       {...props}
       onClick={(event) => {
         if (mode === 'light') {
@@ -60,11 +60,7 @@ function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
  */
 export default function JoySignInSideTemplate() {
   return (
-    <CssVarsProvider
-      defaultMode="dark"
-      disableTransitionOnChange
-      theme={customTheme}
-    >
+    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
       <CssBaseline />
       <GlobalStyles
         styles={{
@@ -159,11 +155,11 @@ export default function JoySignInSideTemplate() {
             }}
           >
             <div>
-              <Typography component="h2" fontSize="xl2" fontWeight="lg">
-                Welcome back
+              <Typography component="h1" fontSize="xl2" fontWeight="lg">
+                Sign in to your account
               </Typography>
-              <Typography level="body2" sx={{ my: 1, mb: 3 }}>
-                Let&apos;s get started! Please enter your details.
+              <Typography level="body-sm" sx={{ my: 1, mb: 3 }}>
+                Welcome back
               </Typography>
             </div>
             <form
@@ -180,11 +176,11 @@ export default function JoySignInSideTemplate() {
             >
               <FormControl required>
                 <FormLabel>Email</FormLabel>
-                <Input placeholder="Enter your email" type="email" name="email" />
+                <Input type="email" name="email" />
               </FormControl>
               <FormControl required>
                 <FormLabel>Password</FormLabel>
-                <Input placeholder="•••••••" type="password" name="password" />
+                <Input type="password" name="password" />
               </FormControl>
               <Box
                 sx={{
@@ -195,7 +191,7 @@ export default function JoySignInSideTemplate() {
               >
                 <Checkbox size="sm" label="Remember for 30 days" name="persistent" />
                 <Link fontSize="sm" href="#replace-with-a-link" fontWeight="lg">
-                  Forgot password
+                  Forgot your password?
                 </Link>
               </Box>
               <Button type="submit" fullWidth>
@@ -212,7 +208,7 @@ export default function JoySignInSideTemplate() {
             </Button>
           </Box>
           <Box component="footer" sx={{ py: 3 }}>
-            <Typography level="body3" textAlign="center">
+            <Typography level="body-xs" textAlign="center">
               © Your company {new Date().getFullYear()}
             </Typography>
           </Box>
@@ -234,10 +230,10 @@ export default function JoySignInSideTemplate() {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundImage:
-            'url(https://images.unsplash.com/photo-1527181152855-fc03fc7949c8)',
+            'url(https://images.unsplash.com/photo-1527181152855-fc03fc7949c8?auto=format&w=1000&dpr=2)',
           [theme.getColorSchemeSelector('dark')]: {
             backgroundImage:
-              'url(https://images.unsplash.com/photo-1572072393749-3ca9c8ea0831)',
+              'url(https://images.unsplash.com/photo-1572072393749-3ca9c8ea0831?auto=format&w=1000&dpr=2)',
           },
         })}
       />

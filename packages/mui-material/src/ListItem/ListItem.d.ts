@@ -84,8 +84,8 @@ export interface ListItemBaseProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ListItemTypeMap<P, D extends React.ElementType> {
-  props: P &
+export interface ListItemTypeMap<AdditionalProps, DefaultComponent extends React.ElementType> {
+  props: AdditionalProps &
     ListItemBaseProps & {
       /**
        * The components used for each slot inside.
@@ -132,7 +132,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
         root?: React.ElementType;
       };
     };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -177,9 +177,11 @@ declare const ListItem: ExtendButtonBase<
     >
   >;
 
-export type ListItemProps<D extends React.ElementType = 'li', P = {}> = OverrideProps<
-  ListItemTypeMap<P, D>,
-  D
->;
+export type ListItemProps<
+  RootComponent extends React.ElementType = 'li',
+  AdditionalProps = {},
+> = OverrideProps<ListItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default ListItem;

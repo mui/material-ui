@@ -1,18 +1,18 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { ButtonUnstyledProps } from '@mui/base/ButtonUnstyled';
+import { ButtonProps } from '@mui/base/Button';
 import useButton from '@mui/base/useButton';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
 const CustomButton = React.forwardRef(function CustomButton(
-  props: ButtonUnstyledProps,
+  props: ButtonProps,
   ref: React.ForwardedRef<any>,
 ) {
-  const { children } = props;
-  const { active, disabled, focusVisible, getRootProps } = useButton({
+  const { children, disabled } = props;
+  const { active, focusVisible, getRootProps } = useButton({
     ...props,
-    ref,
+    rootRef: ref,
   });
 
   const classes = {
@@ -44,15 +44,16 @@ const blue = {
 };
 
 const CustomButtonRoot = styled('button')`
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: bold;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
+  line-height: 1.5;
   background-color: ${blue[500]};
-  padding: 12px 24px;
-  border-radius: 12px;
   color: white;
-  transition: all 150ms ease;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 8px 16px;
   cursor: pointer;
+  transition: all 150ms ease;
   border: none;
 
   &:hover {
@@ -64,7 +65,7 @@ const CustomButtonRoot = styled('button')`
   }
 
   &.focusVisible {
-    box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
+    box-shadow: 0 4px 20px 0 rgb(61 71 82 / 0.1), 0 0 0 5px rgb(0 127 255 / 0.5);
     outline: none;
   }
 

@@ -15,9 +15,12 @@ import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
 } from '@mui/joy/Autocomplete';
+import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import Chip, { chipClasses } from '@mui/joy/Chip';
 import ChipDelete from '@mui/joy/ChipDelete';
-import { ThemeProvider } from '@mui/joy/styles';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
+import { ThemeProvider, styled } from '@mui/joy/styles';
 
 function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -37,7 +40,9 @@ function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
 describe('Joy <Autocomplete />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Autocomplete options={[]} />, () => ({
+  const StyledInput = styled('input')({});
+
+  describeConformance(<Autocomplete options={['one', 'two']} defaultValue="one" open />, () => ({
     classes,
     inheritComponent: 'div',
     render,
@@ -46,7 +51,31 @@ describe('Joy <Autocomplete />', () => {
     muiName: 'JoyAutocomplete',
     testDeepOverrides: { slotName: 'popupIndicator', slotClassName: classes.popupIndicator },
     testVariantProps: { size: 'lg' },
-    skip: ['componentsProp', 'classesRoot'],
+    skip: [
+      'componentsProp',
+      'classesRoot',
+      // https://github.com/facebook/react/issues/11565
+      'reactTestRenderer',
+    ],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      input: {
+        testWithComponent: React.forwardRef<HTMLInputElement>((props, ref) => (
+          <StyledInput ref={ref} {...props} data-testid="custom" />
+        )),
+        testWithElement: null,
+        expectedClassName: classes.input,
+      },
+      listbox: {
+        testWithComponent: React.forwardRef<HTMLUListElement>((props, ref) => (
+          <AutocompleteListbox ref={ref} {...props} data-testid="custom" />
+        )),
+        testWithElement: null,
+        expectedClassName: classes.listbox,
+      },
+    },
   }));
 
   describeJoyColorInversion(<Autocomplete options={[]} open />, {
@@ -554,6 +583,7 @@ describe('Joy <Autocomplete />', () => {
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
     function Test(props: any) {
+      const { key, ...others } = props;
       return (
         <div
           onKeyDown={(event) => {
@@ -562,7 +592,7 @@ describe('Joy <Autocomplete />', () => {
             }
           }}
         >
-          <Autocomplete autoFocus options={['one', 'two']} {...props} />
+          <Autocomplete autoFocus options={['one', 'two']} key={key} {...others} />
         </div>
       );
     }
@@ -1260,6 +1290,46 @@ describe('Joy <Autocomplete />', () => {
   });
 
   describe('prop: options', () => {
+    it('should scroll selected option into view when multiple elements with role as listbox available', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      render(
+        <React.Fragment>
+          <Autocomplete
+            defaultValue={'six'}
+            options={['one', 'two', 'three', 'four', 'five', 'six']}
+            slotProps={{
+              listbox: {
+                'data-testid': 'autocomplete-listbox',
+                sx: {
+                  height: '40px',
+                },
+              },
+              input: {
+                'data-testid': 'autocomplete-input',
+              },
+            }}
+            autoFocus
+          />
+          <Select defaultValue="1">
+            <Option value="1">1</Option>
+            <Option value="2">2</Option>
+          </Select>
+        </React.Fragment>,
+      );
+      const autocompleteInput = screen.getByTestId('autocomplete-input');
+
+      act(() => {
+        autocompleteInput.focus();
+      });
+      fireEvent.keyDown(autocompleteInput, { key: 'ArrowDown' });
+
+      const autocompleteListbox = screen.getByTestId('autocomplete-listbox');
+
+      checkHighlightIs(autocompleteListbox, 'six');
+      expect(autocompleteListbox.scrollTop).to.greaterThan(0);
+    });
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const { setProps } = render(<Autocomplete open options={['one', 'two']} autoFocus />);
       const textbox = screen.getByRole('combobox');
@@ -1356,6 +1426,30 @@ describe('Joy <Autocomplete />', () => {
       // Options are updated and autocomplete re-renders; reset the highlight since two doesn't exist in the new options.
       setProps({ options: ['one', 'three', 'four'] });
       checkHighlightIs(listbox, null);
+    });
+
+    it('should reset the highlight when the input changed', () => {
+      const filterOptions = createFilterOptions({});
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          autoHighlight
+          autoFocus
+          options={['one', 'two', 'three']}
+          filterOptions={filterOptions}
+        />,
+      );
+      const textbox = getByRole('combobox');
+      const listbox = getByRole('listbox');
+
+      fireEvent.change(textbox, { target: { value: 't' } });
+      checkHighlightIs(listbox, 'two');
+
+      fireEvent.change(textbox, { target: { value: '' } });
+      checkHighlightIs(listbox, 'one');
+
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(textbox).has.value('one');
     });
 
     it('should not select undefined', () => {

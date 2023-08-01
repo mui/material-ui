@@ -16,10 +16,12 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'"
+      "default": "'primary'",
+      "additionalPropsInfo": { "joy-color": true }
     },
+    "component": { "type": { "name": "elementType" } },
     "invisible": { "type": { "name": "bool" }, "default": "false" },
     "max": { "type": { "name": "number" }, "default": "99" },
     "showZero": { "type": { "name": "bool" }, "default": "false" },
@@ -28,20 +30,35 @@
         "name": "union",
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
-      "default": "'md'"
+      "default": "'md'",
+      "additionalPropsInfo": { "joy-size": true }
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ badge?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ badge?: elementType, root?: elementType }" },
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'solid'"
+      "default": "'solid'",
+      "additionalPropsInfo": { "joy-variant": true }
     }
   },
   "name": "Badge",
@@ -50,13 +67,13 @@
     {
       "name": "root",
       "description": "The component that renders the root.",
-      "default": "'div'",
+      "default": "'span'",
       "class": ".MuiBadge-root"
     },
     {
       "name": "badge",
       "description": "The component that renders the badge.",
-      "default": "'div'",
+      "default": "'span'",
       "class": ".MuiBadge-badge"
     }
   ],
@@ -68,7 +85,6 @@
       "anchorOriginTopRight",
       "colorContext",
       "colorDanger",
-      "colorInfo",
       "colorNeutral",
       "colorPrimary",
       "colorSuccess",

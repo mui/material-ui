@@ -16,7 +16,7 @@ tags: ['MUI X', 'News']
 - [Data Grid - feature highlights ✨](#data-grid-features-highlights-✨)
   - [ApiRef moved to the MIT (Community) version](#apiref-moved-to-the-mit-community-version)
   - [Improved column menu](#improved-column-menu)
-  - [Row pinning is now stable](#row-pinning-is-now-stable) [<span class="plan-pro"></span>](/x/introduction/licensing/#premium-plan)
+  - [Row pinning is now stable](#row-pinning-is-now-stable) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
   - [Aggregation is now stable](#aggregation-is-now-stable) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
   - [Cell selection](#cell-selection) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
   - [Use web workers to export data to excel files](#use-web-workers-to-export-data-to-excel-files) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
@@ -251,7 +251,7 @@ If you're coming from previous versions, we recommend you check our migration gu
 
 We also provide codemods to automate some of the necessary updates in your codebase.
 
-```sh
+```bash
 npx @mui/x-codemod v6.0.0/preset-safe <path>
 ```
 

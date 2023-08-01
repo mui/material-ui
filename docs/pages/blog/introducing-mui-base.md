@@ -7,7 +7,7 @@ tags: ['News', 'MUI Core']
 card: true
 ---
 
-<a href="/base/getting-started/overview/"><img src="/static/blog/introducing-mui-base/hero-image.png" style="width: 692px; aspect-ratio: 132/61; margin-bottom: 24px;" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" /></a>
+<a href="/base-ui/getting-started/"><img src="/static/blog/introducing-mui-base/hero-image.png" style="width: 692px; aspect-ratio: 132/61; margin-bottom: 24px;" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" /></a>
 
 While Material UI is excellent for building sleek user interfaces that adhere closely to Material Design, it can become unwieldy when your design system diverges significantly from the defaults.
 We get it.
@@ -42,8 +42,8 @@ Base UI offers two kinds of building blocks: unstyled components and hooks.
 Components are more straightforward to use of the two.
 Place a component on a page, add your own styles, and it's ready to go!
 It's important to note that you are not limited to the styling options available in Material UI.
-You can, of course, still use [MUI System](https://mui.com/system/getting-started/overview/), but if you prefer Emotion, Tailwind CSS, plain CSS, or any other styling engine, they are available too!
-Check out the [Working with Tailwind CSS guide](/base/guides/working-with-tailwind-css/) for an example of using this library.
+You can, of course, still use [MUI System](https://mui.com/system/getting-started/), but if you prefer Emotion, Tailwind CSS, plain CSS, or any other styling engine, they are available too!
+Check out the [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for an example of using this library.
 
 In contrast to Material UI, Base UI's components do not have any default styles.
 They provide functionality and structure, while designers and developers are responsible for the visuals.
@@ -84,7 +84,7 @@ function MySwitch(props: UseSwitchParameters) {
 ## What's included
 
 The initial version of the library contains 17 components.
-Check out the [Base UI documentation](/base/getting-started/overview/) for details.
+Check out the [Base UI documentation](/base-ui/getting-started/) for details.
 
 You can track our progress in adding new components—and comment to influence our priorities—in [this dedicated GitHub issue](https://github.com/mui/material-ui/issues/27170).
 
@@ -98,17 +98,17 @@ In the future, Base UI will also be used as the foundation for Material UI compo
 
 Give Base UI a try today by installing the package via npm:
 
-```sh
+```bash
 npm install @mui/base
 ```
 
 or yarn:
 
-```sh
+```bash
 yarn add @mui/base
 ```
 
-Check out [the docs](/base/getting-started/overview/), play with the components, and be sure to let us know what you think!
+Check out [the docs](/base-ui/getting-started/), play with the components, and be sure to let us know what you think!
 
 If you find any bugs or want to share ideas for improvements, please don't hesitate to open an issue in the [MUI Core repository on GitHub](https://github.com/mui/material-ui/issues/new/choose).
 Be sure to include "[base]" in the issue title to help us keep things organized.

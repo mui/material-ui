@@ -17,6 +17,13 @@ export const DISABLE_CSS_TRANSITION =
 
 export default function createCssVarsProvider(options) {
   const {
+    themeId,
+    /**
+     * This `theme` object needs to follow a certain structure to
+     * be used correctly by the finel `CssVarsProvider`. It should have a
+     * `colorSchemes` key with the light and dark (and any other) palette.
+     * It should also ideally have a vars object created using `prepareCssVars`.
+     */
     theme: defaultTheme = {},
     attribute: defaultAttribute = DEFAULT_ATTRIBUTE,
     modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
@@ -70,13 +77,14 @@ export default function createCssVarsProvider(options) {
     const ctx = React.useContext(ColorSchemeContext);
     const nested = !!ctx && !disableNestedContext;
 
+    const scopedTheme = themeProp[themeId];
     const {
       colorSchemes = {},
       components = {},
       generateCssVars = () => ({ vars: {}, css: {} }),
       cssVarPrefix,
       ...restThemeProp
-    } = themeProp;
+    } = scopedTheme || themeProp;
     const allColorSchemes = Object.keys(colorSchemes);
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
@@ -271,7 +279,12 @@ export default function createCssVarsProvider(options) {
             <GlobalStyles styles={otherColorSchemesStyleSheet} />
           </React.Fragment>
         )}
-        <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>{children}</ThemeProvider>
+        <ThemeProvider
+          themeId={scopedTheme ? themeId : undefined}
+          theme={resolveTheme ? resolveTheme(theme) : theme}
+        >
+          {children}
+        </ThemeProvider>
       </React.Fragment>
     );
 

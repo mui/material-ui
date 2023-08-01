@@ -6,14 +6,14 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/material-next-ts
 cd material-next-ts
 ```
 
 Install it and run:
 
-```sh
+```bash
 npm install
 npm run dev
 ```
@@ -41,4 +41,4 @@ More information [in the documentation](https://mui.com/material-ui/guides/routi
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.

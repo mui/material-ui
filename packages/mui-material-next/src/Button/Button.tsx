@@ -1,6 +1,6 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import {
   elementTypeAcceptingRef,
   refType,
@@ -8,7 +8,7 @@ import {
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
 import useButton from '@mui/base/useButton';
-import { EventHandlers } from '@mui/base/utils';
+import { EventHandlers, useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
 import TouchRipple from './TouchRipple';
@@ -431,13 +431,9 @@ const Button = React.forwardRef(function Button<
     fullWidth = false,
     LinkComponent = 'a',
     onBlur,
-    onClick,
     onContextMenu,
     onDragLeave,
-    onFocus,
     onFocusVisible,
-    onKeyDown,
-    onKeyUp,
     onMouseDown,
     onMouseLeave,
     onMouseUp,
@@ -472,7 +468,7 @@ const Button = React.forwardRef(function Button<
     // @ts-ignore
     to: props.to,
     type,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   React.useImperativeHandle(
@@ -525,6 +521,22 @@ const Button = React.forwardRef(function Button<
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootProps = useSlotProps({
+    elementType: ButtonRoot,
+    getSlotProps: (otherHandlers: EventHandlers) =>
+      getRootProps({
+        ...otherHandlers,
+        ...getRippleHandlers(props),
+      }),
+    externalForwardedProps: other,
+    externalSlotProps: {},
+    additionalProps: {
+      as: ComponentProp,
+    },
+    ownerState,
+    className: [classes.root, className],
+  });
+
   const startIcon = startIconProp && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
       {startIconProp}
@@ -538,13 +550,7 @@ const Button = React.forwardRef(function Button<
   );
 
   return (
-    <ButtonRoot
-      as={ComponentProp}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...getRootProps(getRippleHandlers(props) as unknown as EventHandlers)}
-      {...other}
-    >
+    <ButtonRoot {...rootProps}>
       {startIcon}
       {children}
       {endIcon}
@@ -649,10 +655,6 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
   onContextMenu: PropTypes.func,
   /**
    * @ignore
@@ -661,19 +663,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
   onFocusVisible: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyUp: PropTypes.func,
   /**
    * @ignore
    */

@@ -1,15 +1,17 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Button component
 components: Button, IconButton
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base/react-button/
+unstyled: /base-ui/react-button/
 ---
 
 # Button
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Introduction
 
@@ -17,8 +19,6 @@ Buttons communicate actions that users can take.
 The Joy UI Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
 
 {{"demo": "ButtonUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 
@@ -50,7 +50,7 @@ See [Loading indicator](#loading-indicator) and [Loading position](#loading-posi
 
 ### Variants
 
-The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
+The Button component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "ButtonVariants.js"}}
 

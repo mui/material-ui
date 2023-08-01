@@ -1,4 +1,5 @@
-export * from '@mui/base/ModalUnstyled';
+'use client';
+export { ModalManager } from '@mui/base/Modal';
 
 export { default } from './Modal';
 export * from './Modal';

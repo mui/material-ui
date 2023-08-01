@@ -1,15 +1,13 @@
 import * as React from 'react';
-import MenuUnstyled, { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
-import MenuItemUnstyled, {
-  menuItemUnstyledClasses,
-} from '@mui/base/MenuItemUnstyled';
-import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Dropdown from '@mui/base/Dropdown';
+import Menu from '@mui/base/Menu';
+import MenuButton from '@mui/base/MenuButton';
+import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
 
 function MenuSection({ children, label }: MenuSectionProps) {
   return (
-    <MenuSectionRoot>
+    <MenuSectionRoot role="group">
       <MenuSectionLabel>{label}</MenuSectionLabel>
       <ul>{children}</ul>
     </MenuSectionRoot>
@@ -17,78 +15,16 @@ function MenuSection({ children, label }: MenuSectionProps) {
 }
 
 export default function WrappedMenuItems() {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-  const isOpen = Boolean(anchorEl);
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const menuActions = React.useRef<MenuUnstyledActions>(null);
-  const preventReopen = React.useRef(false);
-
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (preventReopen.current) {
-      event.preventDefault();
-      preventReopen.current = false;
-      return;
-    }
-
-    if (isOpen) {
-      setAnchorEl(null);
-    } else {
-      setAnchorEl(event.currentTarget);
-    }
-  };
-
-  const handleButtonMouseDown = () => {
-    if (isOpen) {
-      // Prevents the menu from reopening right after closing
-      // when clicking the button.
-      preventReopen.current = true;
-    }
-  };
-
-  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setAnchorEl(event.currentTarget);
-      if (event.key === 'ArrowUp') {
-        menuActions.current?.highlightLastItem();
-      }
-    }
-  };
-
-  const close = () => {
-    setAnchorEl(null);
-    buttonRef.current!.focus();
-  };
-
   const createHandleMenuClick = (menuItem: string) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
-      close();
     };
   };
 
   return (
-    <div>
-      <TriggerButton
-        type="button"
-        onClick={handleButtonClick}
-        onKeyDown={handleButtonKeyDown}
-        onMouseDown={handleButtonMouseDown}
-        ref={buttonRef}
-        aria-controls={isOpen ? 'wrapped-menu' : undefined}
-        aria-expanded={isOpen || undefined}
-        aria-haspopup="menu"
-      >
-        Options
-      </TriggerButton>
-      <MenuUnstyled
-        actions={menuActions}
-        open={isOpen}
-        onClose={close}
-        anchorEl={anchorEl}
-        slots={{ root: Popper, listbox: StyledListbox }}
-        slotProps={{ listbox: { id: 'simple-menu' } }}
-      >
+    <Dropdown>
+      <TriggerButton>Options</TriggerButton>
+      <Menu slots={{ listbox: StyledListbox }}>
         <MenuSection label="Navigation">
           <StyledMenuItem onClick={createHandleMenuClick('Back')}>
             Back
@@ -117,8 +53,8 @@ export default function WrappedMenuItems() {
           </StyledMenuItem>
         </MenuSection>
         <li className="helper">Current zoom level: 100%</li>
-      </MenuUnstyled>
-    </div>
+      </Menu>
+    </Dropdown>
   );
 }
 
@@ -158,11 +94,12 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 16px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  z-index: 1;
   `,
 );
 
-const StyledMenuItem = styled(MenuItemUnstyled)(
+const StyledMenuItem = styled(MenuItem)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -174,31 +111,31 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
     border-bottom: none;
   }
 
-  &.${menuItemUnstyledClasses.focusVisible} {
+  &.${menuItemClasses.focusVisible} {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.${menuItemUnstyledClasses.disabled} {
+  &.${menuItemClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
 
-  &:hover:not(.${menuItemUnstyledClasses.disabled}) {
+  &:hover:not(.${menuItemClasses.disabled}) {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
   `,
 );
 
-const TriggerButton = styled('button')(
+const TriggerButton = styled(MenuButton)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
   border-radius: 12px;
-  padding: 12px 16px;
+  padding: 8px 14px;
   line-height: 1.5;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
@@ -213,16 +150,12 @@ const TriggerButton = styled('button')(
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &.${buttonUnstyledClasses.focusVisible} {
+  &:focus-visible {
     border-color: ${blue[400]};
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
   `,
 );
-
-const Popper = styled(PopperUnstyled)`
-  z-index: 1;
-`;
 
 interface MenuSectionProps {
   children: React.ReactNode;

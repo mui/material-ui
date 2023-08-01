@@ -1,17 +1,19 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_capitalize as capitalize, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
-import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
-import useMenu from '@mui/base/useMenu';
+import useMenu, { MenuProvider } from '@mui/base/useMenu';
+import { ListActionTypes } from '@mui/base/useList';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
+import GroupListContext from '../List/GroupListContext';
 import { MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: MenuListOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -35,13 +37,13 @@ const MenuListRoot = styled(StyledList, {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
-    '--List-radius': theme.vars.radius.sm,
     '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.surface,
     '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
+    borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
     overflow: 'auto',
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
@@ -72,23 +74,31 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     size = 'md',
     variant = 'outlined',
     color: colorProp = 'neutral',
+    onItemsChange,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
+  const {
+    contextValue: menuContextValue,
+    getListboxProps,
+    dispatch,
+  } = useMenu({
     listboxRef: ref,
-    listboxId: idProp,
+    id: idProp,
+    onItemsChange,
   });
 
   React.useImperativeHandle(
     actions,
     () => ({
-      highlightFirstItem,
-      highlightLastItem,
+      dispatch,
+      resetHighlight: () => dispatch({ type: ListActionTypes.resetHighlight, event: null }),
     }),
-    [highlightFirstItem, highlightLastItem],
+    [dispatch],
   );
 
   const ownerState = {
@@ -101,35 +111,25 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const listboxProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: MenuListRoot,
     getSlotProps: getListboxProps,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps,
     ownerState,
     className: classes.root,
   });
 
-  const menuContextValue = React.useMemo(
-    () =>
-      ({
-        ...contextValue,
-        getListboxProps,
-        open: true,
-      } as MenuUnstyledContextType),
-    [contextValue, getListboxProps],
-  );
-
   return (
-    <MenuListRoot {...listboxProps}>
-      <MenuUnstyledContext.Provider value={menuContextValue}>
-        <ListProvider nested>{children}</ListProvider>
-      </MenuUnstyledContext.Provider>
-    </MenuListRoot>
+    <SlotRoot {...rootProps}>
+      <MenuProvider value={menuContextValue}>
+        <GroupListContext.Provider value="menu">
+          <ListProvider nested>{children}</ListProvider>
+        </GroupListContext.Provider>
+      </MenuProvider>
+    </SlotRoot>
   );
 }) as OverridableComponent<MenuListTypeMap>;
 
@@ -142,15 +142,7 @@ MenuList.propTypes /* remove-proptypes */ = {
    * A ref with imperative actions.
    * It allows to select the first or last menu item.
    */
-  actions: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.shape({
-        highlightFirstItem: PropTypes.func.isRequired,
-        highlightLastItem: PropTypes.func.isRequired,
-      }),
-    }),
-  ]),
+  actions: refType,
   /**
    * @ignore
    */
@@ -160,7 +152,7 @@ MenuList.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -173,6 +165,10 @@ MenuList.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
+   * Function called when the items displayed in the menu change.
+   */
+  onItemsChange: PropTypes.func,
+  /**
    * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
    * @default 'md'
    */
@@ -180,6 +176,20 @@ MenuList.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

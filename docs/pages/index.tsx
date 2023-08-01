@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
 import NoSsr from '@mui/material/NoSsr';
 import Divider from '@mui/material/Divider';
+import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Hero from 'docs/src/components/home/Hero';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
@@ -50,11 +50,17 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <References companies={CORE_CUSTOMERS} />
+        <Divider />
         <ProductSuite />
+        <Divider />
         <ValueProposition />
+        <Divider />
         <DesignSystemComponents />
+        <Divider />
         <Testimonials />
+        <Divider />
         <Sponsors />
+        <Divider />
         <HeroEnd />
         <Divider />
       </main>

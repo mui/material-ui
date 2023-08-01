@@ -1,7 +1,23 @@
 import * as React from 'react';
-import InputUnstyled from '@mui/base/InputUnstyled';
+import Input from '@mui/base/Input';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
+
+const CustomInput = React.forwardRef(function CustomInput(props, ref) {
+  return (
+    <Input
+      slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
+      {...props}
+      ref={ref}
+    />
+  );
+});
+
+export default function InputMultilineAutosize() {
+  return (
+    <CustomInput aria-label="Demo input" multiline placeholder="Type something…" />
+  );
+}
 
 const blue = {
   100: '#DAECFF',
@@ -31,8 +47,8 @@ const StyledInputElement = styled('input')(
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
@@ -60,9 +76,9 @@ const StyledTextareaElement = styled(TextareaAutosize)(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
-  line-height: 1.5;
-  padding: 12px;
-  border-radius: 12px;
+  line-height: 1.5rem;
+  padding: 8px 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
@@ -83,19 +99,3 @@ const StyledTextareaElement = styled(TextareaAutosize)(
   }
 `,
 );
-
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  return (
-    <InputUnstyled
-      slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
-      {...props}
-      ref={ref}
-    />
-  );
-});
-
-export default function UnstyledInputBasic() {
-  return (
-    <CustomInput aria-label="Demo input" multiline placeholder="Type something…" />
-  );
-}

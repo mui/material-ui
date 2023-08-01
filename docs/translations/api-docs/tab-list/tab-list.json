@@ -1,6 +1,8 @@
 {
   "componentDescription": "",
-  "propDescriptions": { "children": "A list of <code>&lt;Tab /&gt;</code> elements." },
+  "propDescriptions": {
+    "children": { "description": "A list of <code>&lt;Tab /&gt;</code> elements." }
+  },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "vertical": {
@@ -20,7 +22,7 @@
     "centered": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the flex container element",
-      "conditions": "<code>centered={true}</code> & <code>!variant=\"scrollable\"</code>"
+      "conditions": "<code>centered={true}</code> &amp; <code>!variant=\"scrollable\"</code>"
     },
     "scroller": {
       "description": "Styles applied to {{nodeName}}.",

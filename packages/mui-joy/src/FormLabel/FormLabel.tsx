@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
@@ -31,7 +32,7 @@ const FormLabelRoot = styled('label', {
   fontFamily: theme.vars.fontFamily.body,
   fontSize: `var(--FormLabel-fontSize, ${theme.vars.fontSize.sm})`,
   fontWeight: theme.vars.fontWeight.md,
-  lineHeight: theme.vars.lineHeight.md,
+  lineHeight: `var(--FormLabel-lineHeight, ${theme.vars.lineHeight.sm})`,
   color: `var(--FormLabel-color, ${theme.vars.palette.text.primary})`,
   margin: 'var(--FormLabel-margin, 0px)',
 }));
@@ -59,7 +60,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     name: 'JoyFormLabel',
   });
 
-  const { children, component = 'label', ...other } = props;
+  const { children, component = 'label', slots = {}, slotProps = {}, ...other } = props;
   const formControl = React.useContext(FormControlContext);
   const required = inProps.required ?? formControl?.required ?? false;
 
@@ -69,7 +70,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   };
 
   const classes = useUtilityClasses();
-  const externalForwardedProps = { ...other, component };
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
@@ -117,6 +118,22 @@ FormLabel.propTypes /* remove-proptypes */ = {
    * The asterisk is added if required=`true`
    */
   required: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    asterisk: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    asterisk: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
