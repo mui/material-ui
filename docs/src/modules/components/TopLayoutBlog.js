@@ -54,11 +54,6 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/67129314',
     github: 'danilo-leal',
   },
-  m4theushw: {
-    name: 'Matheus Wichman',
-    avatar: 'https://avatars.githubusercontent.com/u/42154031',
-    github: 'm4theushw',
-  },
   flaviendelangle: {
     name: 'Flavien Delangle',
     avatar: 'https://avatars.githubusercontent.com/u/3309670',
