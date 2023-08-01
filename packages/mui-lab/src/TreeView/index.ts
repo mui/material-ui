@@ -1,4 +1,4 @@
-export { TreeView as default } from '@mui/x-tree-view/TreeView';
+export { default } from './TreeView';
 export { treeViewClasses, getTreeViewUtilityClass } from '@mui/x-tree-view/TreeView';
 export type {
   TreeViewClassKey,

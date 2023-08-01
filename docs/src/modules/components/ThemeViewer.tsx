@@ -4,8 +4,8 @@ import { styled } from '@mui/system';
 import Box from '@mui/material/Box';
 import ExpandIcon from '@mui/icons-material/ExpandMore';
 import CollapseIcon from '@mui/icons-material/ChevronRight';
-import TreeView from '@mui/lab/TreeView';
-import MuiTreeItem, { treeItemClasses } from '@mui/lab/TreeItem';
+import { TreeView } from '@mui/x-tree-view/TreeView';
+import { TreeItem as MuiTreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
 import { lighten } from '@mui/material/styles';
 
 function getType(value: any) {

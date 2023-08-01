@@ -1,0 +1,36 @@
+import * as React from 'react';
+import { TreeItem as XTreeItem, TreeItemProps } from '@mui/x-tree-view/TreeItem';
+
+let warnedOnce = false;
+
+const warn = () => {
+  if (!warnedOnce) {
+    console.warn(
+      [
+        'MUI: The TreeItem component was moved from `@mui/lab` to `@mui/x-tree-view`.',
+        'The component will no longer be exported from `@mui/lab` in the first release of October 2023.',
+        '',
+        "You should use `import { TreeItem } from '@mui/x-tree-view'`",
+        "or `import { TreeItem } from '@mui/x-tree-view/TreeItem'`",
+        '',
+        'More information about this migration on our blog: INSERT BLOG POST.',
+      ].join('\n'),
+    );
+
+    warnedOnce = true;
+  }
+};
+
+/**
+ * @ignore - do not document.
+ */
+const TreeItem = React.forwardRef(function DeprecatedTreeItem(
+  props: TreeItemProps,
+  ref: React.Ref<HTMLLIElement>,
+) {
+  warn();
+
+  return <XTreeItem {...props} ref={ref} />;
+});
+
+export default TreeItem;

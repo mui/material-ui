@@ -4,8 +4,13 @@ import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
-import TreeView from '@mui/lab/TreeView';
-import MuiTreeItem, { useTreeItem, TreeItemProps, TreeItemContentProps } from '@mui/lab/TreeItem';
+import { TreeView } from '@mui/x-tree-view/TreeView';
+import {
+  TreeItem as MuiTreeItem,
+  useTreeItem,
+  TreeItemProps,
+  TreeItemContentProps,
+} from '@mui/x-tree-view/TreeItem';
 import Typography from '@mui/material/Typography';
 import AddBoxOutlined from '@mui/icons-material/AddBoxOutlined';
 import IndeterminateCheckBoxOutlined from '@mui/icons-material/IndeterminateCheckBoxOutlined';
@@ -302,15 +307,15 @@ export default function XDateRangeDemo() {
           </Typography>
           <Chip
             variant="outlined"
-            label="Labs"
-            color="primary"
+            label="Alpha"
+            color="warning"
             size="small"
             sx={(theme) => ({
               pb: 0.2,
               fontWeight: theme.typography.fontWeightSemiBold,
-              color: (theme.vars || theme).palette.primary[300],
-              borderColor: alpha(theme.palette.primary[300], 0.3),
-              background: alpha(theme.palette.primary[800], 0.3),
+              color: (theme.vars || theme).palette.warning[300],
+              borderColor: alpha(theme.palette.warning[300], 0.3),
+              background: alpha(theme.palette.warning[800], 0.3),
             })}
           />
         </Box>
