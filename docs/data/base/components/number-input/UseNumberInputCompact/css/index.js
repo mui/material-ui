@@ -123,10 +123,10 @@ function Styles() {
         background: ${isDarkMode ? grey[800] : grey[200]};
         border-color: ${isDarkMode ? grey[800] : grey[200]};
         overflow: auto;
+      }
 
-        &:hover {
-          border-color: ${cyan[500]};
-        }
+      .CompactNumberInput:hover {
+        border-color: ${cyan[500]};
       }
 
       .CompactNumberInput .input {
@@ -145,30 +145,30 @@ function Styles() {
         border: 0;
         color: inherit;
         background: ${isDarkMode ? grey[900] : grey[50]};
+      }
 
-        &:hover {
-          cursor: pointer;
-          background: ${cyan[500]};
-          color: ${grey[50]};
-        }
+      .CompactNumberInput .btn:hover {
+        cursor: pointer;
+        background: ${cyan[500]};
+        color: ${grey[50]};
+      }
 
-        &:focus-visible {
-          outline: 0;
-          background: ${cyan[500]};
-          color: ${isDarkMode ? grey[300] : grey[50]};
-        }
+      .CompactNumberInput .btn:focus-visible {
+        outline: 0;
+        background: ${cyan[500]};
+        color: ${isDarkMode ? grey[300] : grey[50]};
+      }
 
-        &.increment {
-          grid-area: increment;
-          border-top-left-radius: 0.35rem;
-          border-top-right-radius: 0.35rem;
-        }
+      .CompactNumberInput .btn.increment {
+        grid-area: increment;
+        border-top-left-radius: 0.35rem;
+        border-top-right-radius: 0.35rem;
+      }
 
-        &.decrement {
-          grid-area: decrement;
-          border-bottom-left-radius: 0.35rem;
-          border-bottom-right-radius: 0.35rem;
-        }
+      .CompactNumberInput .btn.decrement {
+        grid-area: decrement;
+        border-bottom-left-radius: 0.35rem;
+        border-bottom-right-radius: 0.35rem;
       }
 
       .layout {

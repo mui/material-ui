@@ -72,19 +72,15 @@ function Styles() {
         grid-template-columns: 1fr 19px;
         grid-template-rows: 1fr 1fr;
         overflow: hidden;
+      }
 
-        &:hover {
-          border-color: ${cyan[400]};
-        }
+      .CustomNumberInput:hover {
+        border-color: ${cyan[400]};
+      }
 
-        &.${numberInputClasses.focused} {
-          border-color: ${cyan[400]};
-          box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
-        }
-
-        &:focus-visible {
-          outline: 0;
-        }
+      .CustomNumberInput.${numberInputClasses.focused} {
+        border-color: ${cyan[400]};
+        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
       }
 
       .CustomNumberInput .input {
@@ -100,6 +96,10 @@ function Styles() {
         border: 0;
         border-radius: inherit;
         padding: 8px 12px;
+        outline: 0;
+      }
+
+      .CustomNumberInput .input:focus-visible {
         outline: 0;
       }
 
@@ -123,22 +123,22 @@ function Styles() {
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 120ms;
+      }
 
-        &:hover {
-          background: ${isDarkMode ? grey[800] : grey[50]};
-          border-color: ${isDarkMode ? grey[600] : grey[300]};
-          cursor: pointer;
-        }
+      .CustomNumberInput .btn:hover {
+        background: ${isDarkMode ? grey[800] : grey[50]};
+        border-color: ${isDarkMode ? grey[600] : grey[300]};
+        cursor: pointer;
+      }
 
-        &.increment {
-          grid-column: 2/3;
-          grid-row: 1/2;
-        }
+      .CustomNumberInput .btn.increment {
+        grid-column: 2/3;
+        grid-row: 1/2;
+      }
 
-        &.decrement {
-          grid-column: 2/3;
-          grid-row: 2/3;
-        }
+      .CustomNumberInput .btn.decrement {
+        grid-column: 2/3;
+        grid-row: 2/3;
       }
       `}
     </style>

@@ -100,19 +100,19 @@ function Styles() {
         min-width: 0;
         width: 4rem;
         text-align: center;
+      }
 
-        &:hover {
-          border-color: ${cyan[400]};
-        }
+      .QuantityInput .input:hover {
+        border-color: ${cyan[400]};
+      }
 
-        &:focus {
-          border-color: ${cyan[400]};
-          box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
-        }
+      .QuantityInput .input:focus {
+        border-color: ${cyan[400]};
+        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
+      }
 
-        &:focus-visible {
-          outline: 0;
-        }
+      .QuantityInput .input:focus-visible {
+        outline: 0;
       }
 
       .QuantityInput .btn {
@@ -135,19 +135,19 @@ function Styles() {
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 120ms;
+      }
 
-        &:hover {
-          background: ${isDarkMode ? cyan[800] : cyan[100]};
-          cursor: pointer;
-        }
+      .QuantityInput .btn:hover {
+        background: ${isDarkMode ? cyan[800] : cyan[100]};
+        cursor: pointer;
+      }
 
-        &:focus-visible {
-          outline: 0;
-        }
+      .QuantityInput .btn:focus-visible {
+        outline: 0;
+      }
 
-        &.increment {
-          order: 1;
-        }
+      .QuantityInput .btn.increment {
+        order: 1;
       }
       `}
     </style>

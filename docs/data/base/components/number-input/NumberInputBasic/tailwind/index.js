@@ -16,17 +16,17 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref
         }),
         input: {
           className:
-            'col-start-1 col-end-2 row-start-1 row-end-3 text-sm leading-normal text-slate-900 bg-inherit border-0 rounded-[inherit] dark:text-slate-300 px-3 py-2 outline-0',
+            'col-start-1 col-end-2 row-start-1 row-end-3 text-sm leading-normal text-slate-900 bg-inherit border-0 rounded-[inherit] dark:text-slate-300 px-3 py-2 outline-0 focus-visible:outline-0 focus-visible:outline-none',
         },
         incrementButton: {
           children: '▴',
           className:
-            "font-['system-ui'] flex flex-row flex-nowrap justify-center items-center appearance-none p-0 w-[19px] h-[19px] text-sm box-border leading-none border-0 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-300 transition-all duration-[120ms] hover:cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 border-slate-300 dark:border-slate-600 col-start-2 col-end-3 row-start-1 row-end-2",
+            'font-[system-ui] flex flex-row flex-nowrap justify-center items-center appearance-none p-0 w-[19px] h-[19px] text-sm box-border leading-[1.2] border-0 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-300 transition-all duration-[120ms] hover:cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 border-slate-300 dark:border-slate-600 col-start-2 col-end-3 row-start-1 row-end-2',
         },
         decrementButton: {
           children: '▾',
           className:
-            "font-['system-ui'] flex flex-row flex-nowrap justify-center items-center appearance-none p-0 w-[19px] h-[19px] text-sm box-border leading-none border-0 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-300 transition-all duration-[120ms] hover:cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 border-slate-300 dark:border-slate-600 col-start-2 col-end-3 row-start-2 row-end-3",
+            'font-[system-ui] flex flex-row flex-nowrap justify-center items-center appearance-none p-0 w-[19px] h-[19px] text-sm box-border leading-[1.2] border-0 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-300 transition-all duration-[120ms] hover:cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 border-slate-300 dark:border-slate-600 col-start-2 col-end-3 row-start-2 row-end-3',
         },
       }}
       {...props}
