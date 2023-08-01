@@ -46,7 +46,7 @@ export default function DiamondSponsors() {
             display: 'flex',
             flexDirection: 'column',
             gap: 0.5,
-            padding: theme.spacing(0.5, 2, 2, 2),
+            padding: theme.spacing(1.5, 2, 2, 2),
             background: '#FFF',
             borderTop: '1px solid',
             borderColor: (theme.vars || theme).palette.grey[100],
@@ -91,6 +91,7 @@ export default function DiamondSponsors() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                borderRadius: '12px',
                 boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
                 transition: theme.transitions.create(['color', 'border-color']),
                 '&:hover': {
