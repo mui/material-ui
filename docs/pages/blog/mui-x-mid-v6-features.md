@@ -1,7 +1,7 @@
 ---
 title: MUI X improvements, Charts in Alpha, Discord, and more!
 description: Support for time zones, a new filtering UI, charts and Discord
-date: 2023-07-30T00:00:00.000Z
+date: 2023-08-07T00:00:00.000Z
 authors: ['richbustos', 'josefreitas']
 card: true
 tags: ['MUI X', 'News']
