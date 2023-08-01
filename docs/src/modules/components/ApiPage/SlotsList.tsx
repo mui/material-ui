@@ -1,9 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import {  styled } from '@mui/material/styles';
-import {
-  brandingDarkTheme as darkTheme,
-} from 'docs/src/modules/brandingTheme';
+import { styled } from '@mui/material/styles';
+import { brandingDarkTheme as darkTheme } from 'docs/src/modules/brandingTheme';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ApiItem from './ApiItem';
 
