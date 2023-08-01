@@ -7,7 +7,7 @@ import TreeView, {
   TreeViewProps,
   SingleSelectTreeViewProps,
   MultiSelectTreeViewProps,
-  TreeView as AliasedTreeView,
+  treeViewClasses as classes,
 } from '@mui/lab/TreeView';
 import TreeItem, {
   useTreeItem,
@@ -18,4 +18,5 @@ import TreeItem, {
   TreeItemProps,
   TreeItemContentProps,
 } from '@mui/lab/TreeItem';
+import AliasTreeV from '@mui/lab/TreeItem'
 import Timeline from '@mui/lab/Timeline';

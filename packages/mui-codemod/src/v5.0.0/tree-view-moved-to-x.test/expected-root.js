@@ -16,7 +16,7 @@ import {
   getTreeItemUtilityClass,
   TreeItemProps,
   TreeItemContentProps,
-  TreeView as AliasedTreeView,
+  treeViewClasses as classes,
 } from '@mui/x-tree-view';
 
 import { Timeline } from '@mui/lab';

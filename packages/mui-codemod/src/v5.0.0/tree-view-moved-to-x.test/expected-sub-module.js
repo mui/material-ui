@@ -8,7 +8,7 @@ import {
   TreeViewProps,
   SingleSelectTreeViewProps,
   MultiSelectTreeViewProps,
-  TreeView as AliasedTreeView,
+  treeViewClasses as classes,
 } from '@mui/x-tree-view/TreeView';
 import {
   TreeItem,
@@ -20,4 +20,5 @@ import {
   TreeItemProps,
   TreeItemContentProps,
 } from '@mui/x-tree-view/TreeItem';
+import { TreeItem as AliasTreeV } from '@mui/x-tree-view/TreeItem';
 import Timeline from '@mui/lab/Timeline';
