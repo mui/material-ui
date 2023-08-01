@@ -28,6 +28,7 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import teamMembers from 'docs/data/about/teamMembers.json';
 /**
  * Import data from: https://tools-public.mui.com/prod/pages/nSwYn51
 
@@ -36,7 +37,6 @@ curl 'https://tools-public.mui.com/prod/api/data/muicomabout/queryAbout' \
   --data-raw '{}' \
   --compressed
 */
-import teamMembers from 'docs/data/about/teamMembers.json';
 
 interface Profile {
   name: string;

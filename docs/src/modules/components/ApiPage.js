@@ -263,7 +263,6 @@ import { ${pageContent.name} } from '${source}';`}
             <br />
           </React.Fragment>
         )}
-        <Divider />
         <div
           className="MuiCallout-root MuiCallout-info"
           dangerouslySetInnerHTML={{ __html: refHint }}
@@ -286,7 +285,7 @@ import { ${pageContent.name} } from '${source}';`}
         {pageContent.themeDefaultProps && (
           <React.Fragment>
             <Heading hash="theme-default-props" level="h3" />
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: t('api-docs.themeDefaultPropsDescription')
                   .replace(/{{muiName}}/, pageContent.muiName)
@@ -300,6 +299,7 @@ import { ${pageContent.name} } from '${source}';`}
           <React.Fragment>
             <Heading hash="css" />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.cssDescription') }} />
+            <br />
             <CSSList componentStyles={componentStyles} classDescriptions={classDescriptions} />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span

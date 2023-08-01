@@ -1,12 +1,10 @@
 import type { MuiPage } from 'docs/src/MuiPage';
-import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 import pagesApi from 'docs/data/joy/pagesApi';
 
 const pages: readonly MuiPage[] = [
   {
     pathname: '/joy-ui/getting-started-group',
     title: 'Getting started',
-    icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/joy-ui/getting-started', title: 'Overview' },
       { pathname: '/joy-ui/getting-started/installation' },
@@ -28,7 +26,6 @@ const pages: readonly MuiPage[] = [
   {
     pathname: '/joy-ui/react-',
     title: 'Components',
-    icon: standardNavIcons.ToggleOnIcon,
     children: [
       {
         pathname: '/joy-ui/components/inputs',
@@ -76,14 +73,14 @@ const pages: readonly MuiPage[] = [
           { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
           { pathname: '/joy-ui/react-skeleton', newFeature: true },
-          { pathname: '/joy-ui/react-snackbar', comingSoon: true },
+          { pathname: '/joy-ui/react-snackbar', planned: true },
         ],
       },
       {
         pathname: '/joy-ui/components/surfaces',
         subheader: 'surfaces',
         children: [
-          { pathname: '/joy-ui/react-accordion', comingSoon: true },
+          { pathname: '/joy-ui/react-accordion', planned: true },
           { pathname: '/joy-ui/react-card' },
           { pathname: '/joy-ui/react-sheet' },
         ],
@@ -93,7 +90,7 @@ const pages: readonly MuiPage[] = [
         subheader: 'navigation',
         children: [
           { pathname: '/joy-ui/react-breadcrumbs' },
-          { pathname: '/joy-ui/react-drawer', comingSoon: true },
+          { pathname: '/joy-ui/react-drawer', planned: true },
           { pathname: '/joy-ui/react-link' },
           { pathname: '/joy-ui/react-menu' },
           { pathname: '/joy-ui/react-tabs' },
@@ -114,12 +111,10 @@ const pages: readonly MuiPage[] = [
   {
     title: 'APIs',
     pathname: '/joy-ui/api',
-    icon: standardNavIcons.CodeIcon,
     children: pagesApi,
   },
   {
     pathname: '/joy-ui/customization',
-    icon: standardNavIcons.CreateIcon,
     children: [
       { pathname: '/joy-ui/customization/approaches' },
       { pathname: '/joy-ui/customization/dark-mode' },
@@ -147,7 +142,6 @@ const pages: readonly MuiPage[] = [
   {
     pathname: '/joy-ui/guides',
     title: 'How-to guides',
-    icon: standardNavIcons.VisibilityIcon,
     children: [
       {
         pathname: '/joy-ui/guides/overriding-component-structure',
@@ -170,7 +164,6 @@ const pages: readonly MuiPage[] = [
   {
     pathname: '/joy-ui/migration',
     title: 'Migration',
-    icon: standardNavIcons.BookIcon,
     children: [
       {
         pathname: '/joy-ui/migration/migrating-default-theme',
