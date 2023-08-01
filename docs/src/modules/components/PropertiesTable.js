@@ -53,7 +53,7 @@ export default function PropertiesTable(props) {
             >
               {propDescription?.description && (
                 <p
-                  className="prop-list-description"
+                  className="prop-list-description" // This className is used by Algolia
                   dangerouslySetInnerHTML={{
                     __html: propDescription?.description,
                   }}
@@ -88,7 +88,7 @@ export default function PropertiesTable(props) {
                 .filter((key) => propData.additionalInfo?.[key])
                 .map((key) => (
                   <p
-                    className="prop-list-description"
+                    className="prop-list-additional-description"
                     key={key}
                     dangerouslySetInnerHTML={{
                       __html: additionalPropsInfoText[key],

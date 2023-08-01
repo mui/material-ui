@@ -303,7 +303,11 @@ function ApiItem(props: ApiItemProps) {
           </svg>
         </a>
 
-        <span className="MuiApi-item-title">{title}</span>
+        <span
+          className="MuiApi-item-title" // This className is used by Algolia
+        >
+          {title}
+        </span>
 
         <span
           className={`MuiApi-item-description${
