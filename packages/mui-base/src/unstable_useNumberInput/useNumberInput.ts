@@ -93,7 +93,6 @@ export default function useNumberInput(
     if (!formControlContext && disabledProp && focused) {
       setFocused(false);
 
-      // @ts-ignore
       onBlur?.();
     }
   }, [formControlContext, disabledProp, focused, onBlur]);

@@ -38,7 +38,7 @@ export interface UseNumberInputParameters {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error?: boolean;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  onBlur?: (event?: React.FocusEvent) => void;
   onClick?: React.MouseEventHandler;
   /**
    * Callback fired when the `input` value changes after each keypress, before clamping is applied.
