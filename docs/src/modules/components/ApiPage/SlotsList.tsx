@@ -7,7 +7,7 @@ import ApiItem from './ApiItem';
 
 const StyledApiItem = styled(ApiItem)(
   ({ theme }) => ({
-    '.slot-classname': {
+    '.slot-classname, .slot-default-element': {
       ...theme.typography.body2,
       fontWeight: theme.typography.fontWeightSemiBold,
     },
@@ -45,11 +45,15 @@ export default function SlotsList(props: SlotsListProps) {
           <StyledApiItem
             id={`${hashPrefix}slots-${className}`}
             key={className}
-            description={defaultValue}
+            description=""
             title={name}
             note=""
             type="slots"
           >
+            <p className="slot-default-element">
+              <span>{t('api-docs.default')}:</span> <code className="Api-code">{defaultValue}</code>
+            </p>
+
             {className && (
               <p className="slot-classname">
                 <span>{t('api-docs.globalClass')}:</span>{' '}
