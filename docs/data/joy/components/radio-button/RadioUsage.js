@@ -1,9 +1,9 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function RadioUsage() {
   return (

@@ -13,14 +13,14 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import DoneRounded from '@mui/icons-material/DoneRounded';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import DoneRounded from '@mui/icons-material/DoneRounded';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 const savedScrollTop = {};
@@ -172,6 +172,7 @@ PersistScroll.propTypes = {
 const ToolbarDiv = styled('div')(({ theme }) => ({
   padding: theme.spacing(1.6, 2),
   paddingRight: 0,
+  flexShrink: 0,
   height: 'var(--MuiDocs-header-height)',
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
@@ -248,7 +249,7 @@ function reduceChildRoutes(context) {
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
-        comingSoon={page.comingSoon}
+        planned={page.planned}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -280,7 +281,7 @@ function reduceChildRoutes(context) {
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
-        comingSoon={page.comingSoon}
+        planned={page.planned}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -413,7 +414,7 @@ export default function AppNavDrawer(props) {
           />
         </ToolbarDiv>
         <Divider />
-        <Box sx={{ pt: 0.5, pb: 4, overflowY: 'auto', flexGrow: 1 }}>{navItems}</Box>
+        <Box sx={{ pt: 0.5, pb: 5, overflowY: 'auto', flexGrow: 1 }}>{navItems}</Box>
         <DiamondSponsors />
       </React.Fragment>
     );

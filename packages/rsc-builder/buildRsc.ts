@@ -1,6 +1,6 @@
+import path from 'path';
 import * as yargs from 'yargs';
 import * as fse from 'fs-extra';
-import path from 'path';
 import findComponents from '../api-docs-builder/utils/findComponents';
 import findHooks from '../api-docs-builder/utils/findHooks';
 

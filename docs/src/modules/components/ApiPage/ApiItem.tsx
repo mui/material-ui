@@ -2,13 +2,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
+import Divider from '@mui/material/Divider';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { IconButton } from '@mui/material';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { IconButton } from '@mui/material';
 
 type DescriptionType = 'props' | 'classes' | 'CSS' | 'slots';
 
@@ -21,8 +22,8 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       display: 'flex',
       alignItems: 'flex-end',
       position: 'relative',
-      marginBottom: 12,
-      marginLeft: -32,
+      marginBottom: 8,
+      marginLeft: -40,
       '& .MuiApi-item-link-visual': {
         display: 'none',
         flexShrink: 0,
@@ -42,7 +43,6 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
       '&>span, &>div': {
         fontWeight: theme.typography.fontWeightRegular,
-        borderBottom: 'solid 1px',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
       },
       '&>*': {
@@ -54,16 +54,13 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         marginLeft: 32,
         borderWidth: '1px',
         borderStyle: 'solid',
-        borderTopLeftRadius: 8,
-        borderTopRightRadius: 8,
-        borderBottomLeftRadius: 8,
+        borderRadius: 8,
         fontWeight: theme.typography.fontWeightSemiBold,
         color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       },
       '& .MuiApi-item-description': {
-        padding: '2px 10px 2px 10px',
-        paddingBottom: 3,
+        padding: '4px 6px',
         flexGrow: 1,
         textOverflow: 'ellipsis',
         overflow: 'hidden',
@@ -139,6 +136,9 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
       marginBottom: 16,
     },
+    '& .prop-list-description': {
+      marginBottom: 10,
+    },
     '& .prop-list-additional-info': {
       display: 'flex',
       flexDirection: 'column',
@@ -189,7 +189,9 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
       },
     },
-    marginBottom: 36,
+    '&>hr': {
+      margin: '20px 0',
+    },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
@@ -247,7 +249,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       '& .prop-list-default-props': {
         color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
         code: {
-          borderColor: alpha(darkTheme.palette.primary[800], 0.4),
+          borderColor: alpha(darkTheme.palette.primary[400], 0.1),
           backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
         },
       },
@@ -332,6 +334,7 @@ function ApiItem(props: ApiItemProps) {
         {note && <span className="MuiApi-item-note">{note}</span>}
       </div>
       {children}
+      <Divider />
     </Root>
   );
 }
