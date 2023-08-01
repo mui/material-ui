@@ -14,8 +14,8 @@
     "min": { "type": { "name": "number", "description": "number" } },
     "onBlur": {
       "type": {
-        "name": "React.FocusEventHandler&lt;HTMLInputElement&gt;",
-        "description": "React.FocusEventHandler&lt;HTMLInputElement&gt;"
+        "name": "(event?: React.FocusEvent) =&gt; void",
+        "description": "(event?: React.FocusEvent) =&gt; void"
       }
     },
     "onChange": {
