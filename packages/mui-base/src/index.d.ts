@@ -130,3 +130,6 @@ export * from './useTabs';
 
 export { default as useTabsList } from './useTabsList';
 export * from './useTabsList';
+
+export { default as unstable_useModal } from './unstable_useModal';
+export * from './unstable_useModal';

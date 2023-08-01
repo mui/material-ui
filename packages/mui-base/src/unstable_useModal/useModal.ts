@@ -4,51 +4,40 @@ import {
   unstable_ownerDocument as ownerDocument,
   unstable_useForkRef as useForkRef,
   unstable_useEventCallback as useEventCallback,
+  unstable_createChainedFunction as createChainedFunction,
 } from '@mui/utils';
-import { ModalManager, ModalOwnProps, ariaHidden } from '@mui/base/Modal';
-import { EventHandlers, extractEventHandlers } from '@mui/base/utils';
+import { EventHandlers, extractEventHandlers } from '../utils';
+import { ModalOwnProps, ariaHidden } from '../Modal';
+import ModalManager from '../Modal/ModalManager';
+import {
+  UseModalParameters,
+  UseModalRootSlotProps,
+  UseModalBackdropSlotProps,
+} from './useModal.types';
 
-export interface UseModalRootSlotOwnProps {
-  role: React.AriaRole;
-  onKeyDown: React.KeyboardEventHandler;
-  ref: React.RefCallback<Element> | null;
+function getContainer(container: ModalOwnProps['container']) {
+  return typeof container === 'function' ? container() : container;
 }
 
-export interface UseModalBackdropSlotOwnProps {
-  'aria-hidden': React.AriaAttributes['aria-hidden'];
-  onClick: React.MouseEventHandler;
-  open?: boolean;
-}
-
-export type UseModalBackdropSlotProps<TOther = {}> = TOther & UseModalBackdropSlotOwnProps;
-
-export type UseModalRootSlotProps<TOther = {}> = TOther & UseModalRootSlotOwnProps;
-
-type UseModalParameters = Pick<
-  ModalOwnProps,
-  'container' | 'disableEscapeKeyDown' | 'disableScrollLock' | 'open'
-> & {
-  'aria-hidden'?: React.AriaAttributes['aria-hidden'];
-  onClose?: {
-    bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown' | 'closeClick'): void;
-  }['bivarianceHack'];
-  onKeyDown?: React.KeyboardEventHandler;
-  ref: React.Ref<HTMLElement>;
-};
-
-function getContainer(container: UseModalParameters['container']) {
-  return (typeof container === 'function' ? container() : container) as HTMLElement;
+function getHasTransition(children: ModalOwnProps['children']) {
+  return children ? children.props.hasOwnProperty('in') : false;
 }
 
 // A modal manager used to track and manage the state of open Modals.
 // Modals don't open on the server so this won't conflict with concurrent requests.
-const manager = new ModalManager();
+const defaultManager = new ModalManager();
 
 const useModal = (parameters: UseModalParameters) => {
   const {
     container,
     disableEscapeKeyDown = false,
     disableScrollLock = false,
+    // @ts-ignore internal logic - Base UI supports the manager as a prop too
+    manager = defaultManager,
+    closeAfterTransition = false,
+    onTransitionEnter,
+    onTransitionExited,
+    children,
     onClose,
     open,
     ref,
@@ -59,6 +48,8 @@ const useModal = (parameters: UseModalParameters) => {
   const mountNodeRef = React.useRef<null | HTMLElement>(null);
   const modalRef = React.useRef<null | HTMLDivElement>(null);
   const handleRef = useForkRef(modalRef, ref);
+  const [exited, setExited] = React.useState(!open);
+  const hasTransition = getHasTransition(children);
 
   let ariaHiddenProp = true;
   if (
@@ -95,7 +86,7 @@ const useModal = (parameters: UseModalParameters) => {
     }
   });
 
-  const isTopModal = () => manager.isTopModal(getModal());
+  const isTopModal = React.useCallback(() => manager.isTopModal(getModal()), [manager]);
 
   const handlePortalRef = useEventCallback((node: HTMLElement) => {
     mountNodeRef.current = node;
@@ -113,7 +104,7 @@ const useModal = (parameters: UseModalParameters) => {
 
   const handleClose = React.useCallback(() => {
     manager.remove(getModal(), ariaHiddenProp);
-  }, [ariaHiddenProp]);
+  }, [ariaHiddenProp, manager]);
 
   React.useEffect(() => {
     return () => {
@@ -124,10 +115,10 @@ const useModal = (parameters: UseModalParameters) => {
   React.useEffect(() => {
     if (open) {
       handleOpen();
-    } else {
+    } else if (!hasTransition || !closeAfterTransition) {
       handleClose();
     }
-  }, [open, handleClose, handleOpen]);
+  }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
 
   const createHandleKeyDown = (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
     otherHandlers.onKeyDown?.(event);
@@ -194,12 +185,42 @@ const useModal = (parameters: UseModalParameters) => {
     };
   };
 
+  const getTransitionProps = () => {
+    const handleEnter = () => {
+      setExited(false);
+
+      if (onTransitionEnter) {
+        onTransitionEnter();
+      }
+    };
+
+    const handleExited = () => {
+      setExited(true);
+
+      if (onTransitionExited) {
+        onTransitionExited();
+      }
+
+      if (closeAfterTransition) {
+        handleClose();
+      }
+    };
+
+    return {
+      onEnter: createChainedFunction(handleEnter, children.props.onEnter),
+      onExited: createChainedFunction(handleExited, children.props.onExited),
+    };
+  };
+
   return {
     getRootProps,
     getBackdropProps,
+    getTransitionProps,
     rootRef: handleRef,
     portalRef: handlePortalRef,
     isTopModal,
+    exited,
+    hasTransition,
   };
 };
 

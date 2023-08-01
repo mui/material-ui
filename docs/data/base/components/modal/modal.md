@@ -2,6 +2,7 @@
 productId: base-ui
 title: React Modal component
 components: Modal
+hooks: useModal
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
