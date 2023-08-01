@@ -2,11 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
-import Alert from '@mui/material/Alert';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ApiItem from './ApiPage/ApiItem';
 
