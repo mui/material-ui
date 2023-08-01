@@ -109,10 +109,28 @@ export default function ComponentsApiContent(props) {
       slotGuideLink = '/base-ui/guides/overriding-component-structure/';
     }
 
-    const source = filename
-      .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
+    // convert paths like `/packages/mui-base/src/Input...` to `@mui/base/Input...`
+    const packageAndFilename = filename.replace(
+      /\/packages\/mui(-(.+?))?\/src/,
+      (match, dash, pkg) => `@mui/${pkg}`,
+    );
+
+    const source = packageAndFilename
       // convert things like `/Table/Table.js` to ``
       .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
+
+    let importName = pageContent.name;
+    let namedImportPath = `${source}/${importName}`;
+    let defaultImportPath = source;
+
+    if (/Unstable_/.test(source)) {
+      namedImportPath = source.replace(/\/[^/]*$/, '');
+      defaultImportPath = packageAndFilename
+        .replace(/Unstable_/, '')
+        .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
+
+      importName = `Unstable_${importName} as ${importName}`;
+    }
 
     // The `ref` is forwarded to the root element.
     let refHint = t('api-docs.refRootElement');
@@ -146,9 +164,9 @@ export default function ComponentsApiContent(props) {
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode
             code={`
-import ${pageContent.name} from '${source}/${pageContent.name}';
+import ${importName} from '${namedImportPath}';
 // ${t('or')}
-import { ${pageContent.name} } from '${source}';`}
+import { ${importName} } from '${defaultImportPath}';`}
             language="jsx"
           />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
