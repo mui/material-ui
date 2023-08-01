@@ -2066,6 +2066,17 @@
     "@babel/runtime" "^7.22.6"
     "@mui/utils" "^5.13.7"
 
+"@mui/x-tree-view@https://pkg.csb.dev/mui/mui-x/commit/1f23b33d/@mui/x-tree-view":
+  version "6.0.0-alpha.0"
+  resolved "https://pkg.csb.dev/mui/mui-x/commit/1f23b33d/@mui/x-tree-view#93cbc61c818ed2d6c40554cdbada969f7dcbaab1"
+  dependencies:
+    "@babel/runtime" "^7.22.6"
+    "@mui/utils" "^5.13.7"
+    "@types/react-transition-group" "^4.4.6"
+    clsx "^1.2.1"
+    prop-types "^15.8.1"
+    react-transition-group "^4.4.5"
+
 "@next/env@13.4.12":
   version "13.4.12"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-13.4.12.tgz#0b88115ab817f178bf9dc0c5e7b367277595b58d"
