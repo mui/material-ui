@@ -82,7 +82,7 @@ export default function DiamondSponsors() {
           {t('diamondSponsors')}
         </Button>
         <Stack
-          divider={<Divider />}
+          divider={<Divider sx={{ m: '0 12px' }} />}
           sx={[
             (theme) => ({
               '& a': {
