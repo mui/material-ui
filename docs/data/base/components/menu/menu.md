@@ -23,7 +23,7 @@ It renders an unordered list (`<ul>`) by default.
 Use the Menu Item to add items to the Menu.
 These are rendered as `<li>` elements.
 
-{{"demo": "UnstyledMenuIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "MenuIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Components
 
