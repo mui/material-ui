@@ -38,7 +38,7 @@ There are a plethora of reasons why you should join, but ultimately, it came dow
 3. **Networking and collaboration opportunities**:
    We want this to be a safe place where you can join, have fun, and meet new people.
    Someone is out there using this same tool as you(_ahem_, MUI).
-   We created two awesome channels to help you find work opportunities(We can create more, just tell us!)
+   We created two awesome channels to help you find work opportunities (and we can always create more—just let us know what you need)!
    1. 🎨 │ Show-Off
       - Show off your MUI projects! Get wild. Ask questions.
         If you have MUI related questions that is blocking you from your project, ask here.
