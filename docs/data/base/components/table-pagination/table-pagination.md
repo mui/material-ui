@@ -25,7 +25,7 @@ Table Pagination renders its internal elements in a `<td>` tag by default so it 
 You can use the `slots.root` prop to render a different root element—for example, if you need to place the pagination controls outside of the table.
 See the [Slot props section](#slot-props) for details.
 
-{{"demo": "UnstyledPaginationIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledPaginationIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
