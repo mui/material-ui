@@ -32,7 +32,7 @@ There are a plethora of reasons why you should join, but here are the three bigg
    Want to hear what the MUI team is up to?
    Get the latest update with the products you're using?
    Want to give us real-time feedback?
-   Heck, do you want to see if other's are facing the same issue you're having?
+   Heck, do you want to see if others are facing the same issue you're having?
    Discord is a great place for us to get together and chat(Keep on the lookout for #voice-meetups)!
 
 3. **Networking and collaboration opportunities**:
