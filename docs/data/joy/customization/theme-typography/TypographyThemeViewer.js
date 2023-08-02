@@ -62,11 +62,13 @@ export default function TypographyThemeViewer() {
   return (
     <Box
       sx={{
+        marginBottom: '-9px',
         maxWidth: '100%',
         overflowX: 'scroll',
         border: '1px solid',
         borderColor: 'divider',
-        borderRadius: 'md',
+        borderTopLeftRadius: '12px',
+        borderTopRightRadius: '12px',
       }}
     >
       <Table>
