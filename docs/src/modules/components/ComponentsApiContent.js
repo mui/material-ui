@@ -119,9 +119,10 @@ export default function ComponentsApiContent(props) {
       // convert things like `/Table/Table.js` to ``
       .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
-    let importName = pageContent.name;
-    let namedImportPath = `${source}/${importName}`;
+    const namedImportName = pageContent.name;
+    let namedImportPath = `${source}/${namedImportName}`;
     let defaultImportPath = source;
+    let defaultImportName = namedImportName;
 
     if (/Unstable_/.test(source)) {
       namedImportPath = source.replace(/\/[^/]*$/, '');
@@ -129,7 +130,7 @@ export default function ComponentsApiContent(props) {
         .replace(/Unstable_/, '')
         .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
-      importName = `Unstable_${importName} as ${importName}`;
+      defaultImportName = `Unstable_${namedImportName} as ${namedImportName}`;
     }
 
     // The `ref` is forwarded to the root element.
@@ -164,9 +165,9 @@ export default function ComponentsApiContent(props) {
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode
             code={`
-import ${importName} from '${namedImportPath}';
+import ${namedImportName} from '${namedImportPath}';
 // ${t('or')}
-import { ${importName} } from '${defaultImportPath}';`}
+import { ${defaultImportName} } from '${defaultImportPath}';`}
             language="jsx"
           />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
