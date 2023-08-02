@@ -61,7 +61,6 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
       '& .MuiApi-item-description': {
         padding: '4px 6px',
-        flexGrow: 1,
         textOverflow: 'ellipsis',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
@@ -77,9 +76,10 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         placeItems: 'end',
       },
       '& .MuiApi-item-note': {
-        padding: '2px 6px',
+        paddingTop: 5,
         fontSize: 11,
         letterSpacing: '1px',
+        lineHeight: 1.6,
         textTransform: 'uppercase',
         color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
         fontWeight: theme.typography.fontWeightBold,
@@ -135,7 +135,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
     },
     '&>hr': {
-      margin: '20px 0',
+      margin: '24px 0',
     },
   }),
   ({ theme }) => ({
