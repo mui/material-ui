@@ -185,7 +185,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
           disableEnforceFocus={disableEnforceFocus}
           disableAutoFocus={disableAutoFocus}
           disableRestoreFocus={disableRestoreFocus}
-          isEnabled={() => isTopModal}
+          isEnabled={isTopModal}
           open={open}
         >
           {React.cloneElement(children, childProps)}

@@ -101,7 +101,7 @@ export interface UseModalReturnValue {
   /**
    * If `true`, the modal is the top most one.
    */
-  isTopModal: boolean;
+  isTopModal: () => boolean;
   /**
    * If `true`, the exiting transition finished (to be used for unmounting the component).
    */
