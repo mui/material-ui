@@ -14,10 +14,7 @@
     "ModalProps": { "type": { "name": "object" }, "default": "{}" },
     "onClose": {
       "type": { "name": "func" },
-      "signature": {
-        "type": "function(event: object, reason: string) => void",
-        "describedArgs": ["event", "reason"]
-      }
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] }
     },
     "open": { "type": { "name": "bool" }, "default": "false" },
     "PaperProps": { "type": { "name": "object" }, "default": "{}" },
