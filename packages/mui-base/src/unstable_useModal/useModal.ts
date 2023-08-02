@@ -7,19 +7,19 @@ import {
   unstable_createChainedFunction as createChainedFunction,
 } from '@mui/utils';
 import { EventHandlers, extractEventHandlers } from '../utils';
-import { ModalOwnProps, ariaHidden } from '../Modal';
-import ModalManager from '../Modal/ModalManager';
+import ModalManager, { ariaHidden } from '../Modal/ModalManager';
 import {
   UseModalParameters,
+  UseModalReturnValue,
   UseModalRootSlotProps,
   UseModalBackdropSlotProps,
 } from './useModal.types';
 
-function getContainer(container: ModalOwnProps['container']) {
+function getContainer(container: UseModalParameters['container']) {
   return typeof container === 'function' ? container() : container;
 }
 
-function getHasTransition(children: ModalOwnProps['children']) {
+function getHasTransition(children: UseModalParameters['children']) {
   return children ? children.props.hasOwnProperty('in') : false;
 }
 
