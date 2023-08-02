@@ -126,10 +126,9 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     transitionDuration: transitionDurationProp = 'auto',
     TransitionProps: { onEntering, ...TransitionProps } = {},
     disableMarginThreshold = false,
+    disableScrollLock = false,
     ...other
   } = props;
-
-  const disableScrollLock = props.disableScrollLock ?? false;
 
   const externalPaperSlotProps = slotProps?.paper ?? PaperPropsProp;
 
@@ -247,20 +246,16 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const widthThreshold = containerWindow.innerWidth - marginThreshold;
 
       // Check if the vertical axis needs shifting
-      if (top < marginThreshold) {
+      if (!disableMarginThreshold && top < marginThreshold) {
         const diff = top - marginThreshold;
 
-        if (!disableMarginThreshold || top >= -1) {
-          top -= diff;
-        }
+        top -= diff;
 
         elemTransformOrigin.vertical += diff;
-      } else if (bottom > heightThreshold) {
+      } else if (!disableMarginThreshold && bottom > heightThreshold) {
         const diff = bottom - heightThreshold;
 
-        if (!disableMarginThreshold || bottom <= window.innerHeight + 1) {
-          top -= diff;
-        }
+        top -= diff;
 
         elemTransformOrigin.vertical += diff;
       }
@@ -416,7 +411,10 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const { slotProps: rootSlotPropsProp, ...rootProps } = useSlotProps({
     elementType: RootSlot,
     externalSlotProps: slotProps?.root || {},
-    externalForwardedProps: other,
+    externalForwardedProps: {
+      disableScrollLock,
+      ...other,
+    },
     additionalProps: {
       ref,
       slotProps: { backdrop: { invisible: true } },
