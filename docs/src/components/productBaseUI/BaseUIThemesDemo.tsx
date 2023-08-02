@@ -8,7 +8,7 @@ import Dropdown from '@mui/base/Dropdown';
 import Menu from '@mui/base/Menu';
 import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
 import MenuButton from '@mui/base/MenuButton';
-import Modal from '@mui/base/Modal';
+import Modal, { modalClasses } from '@mui/base/Modal';
 import Option from '@mui/base/Option';
 import Popper from '@mui/base/Popper';
 import Select from '@mui/base/Select';
@@ -558,9 +558,10 @@ const StyledModal = styled(Modal)`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition-property: visibility;
-  transition-delay: ${({ open }) => (open ? 0 : '200ms')};
-  visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
+
+  &.${modalClasses.hidden} {
+    visibility: hidden;
+  }
 `;
 
 const StyledBackdrop = styled(Backdrop)`
@@ -573,7 +574,33 @@ const StyledBackdrop = styled(Backdrop)`
   transition: opacity 0.3s ease;
 `;
 
-const Dialog = styled('div')({
+const AnimatedElement = React.forwardRef(function AnimatedElement(
+  props: {
+    in?: boolean;
+    onEnter?: () => void;
+    onExited?: () => void;
+    children: React.ReactNode;
+  },
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
+  const { in: inProp, onEnter = () => {}, onExited = () => {}, ...other } = props;
+
+  React.useEffect(() => {
+    if (inProp) {
+      onEnter();
+    }
+  }, [inProp, onEnter]);
+
+  const handleTransitionEnd = React.useCallback(() => {
+    if (!inProp) {
+      onExited();
+    }
+  }, [inProp, onExited]);
+
+  return <div onTransitionEnd={handleTransitionEnd} data-open={inProp} {...other} ref={ref} />;
+});
+
+const Dialog = styled(AnimatedElement)({
   backgroundColor: 'var(--muidocs-palette-background-paper)',
   borderRadius: 'min(var(--border-radius) * 2, 32px)',
   border: 'var(--border-width) solid',
@@ -1021,10 +1048,11 @@ export default function BaseUIThemesDemo() {
             aria-describedby="unstyled-modal-description"
             open={openModal}
             onClose={handleCloseModal}
+            closeAfterTransition
             slots={{ backdrop: StyledBackdrop }}
             keepMounted
           >
-            <Dialog data-open={openModal}>
+            <Dialog in={openModal}>
               <Box
                 component="h2"
                 id="unstyled-modal-title"
