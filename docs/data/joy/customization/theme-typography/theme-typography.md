@@ -4,8 +4,7 @@
 
 ## Default system
 
-Joy UI's theme includes, by default, a thoughtfully designed 11 levels typography system to help you create consistent UIs.
-Hover over each cell in the table below to see the preview value.
+Joy UI's default theme includes a built-in typography system of 11 distinct levels—including semantic HTML headers as well as a comparable system for body text—to help you ensure consistency across your interface.
 
 {{"demo": "TypographyThemeViewer.js", "bg": "inline"}}
 
@@ -39,14 +38,14 @@ The [CSS Baseline](/joy-ui/react-css-baseline/) component applies `body-md` as t
 
 #### sx prop
 
-Customize the typographic styles via the `sx` prop using `typography: $level`:
+Customize the typographic styles via the `sx` prop using `typography: 'some-level'`:
 
 ```jsx
 // to apply the `theme.typography['body-sm']` styles:
 <Box sx={{ typography: 'body-sm' }}>Small text</Box>
 ```
 
-#### styled function
+#### Applying theme styles to custom components
 
 Use the [`styled`](/joy-ui/customization/approaches/#reusable-component) function to create a custom component and apply styles from `theme.typography.*`:
 
@@ -64,7 +63,7 @@ const Tag = styled('span')((theme) => ({
 
 ## Customizations
 
-To customize any of the default levels, provide their name as key and an object containing the CSS rules as value to the `theme.typography` node.
+To customize a default level, provide its name as a key along with an object containing the CSS rules as a value to the `theme.typography` node.
 
 The example below illustrates the customization of the `h1` level:
 
@@ -97,7 +96,7 @@ declare module '@mui/joy/styles' {
 
 ### Adding more levels
 
-To add a new level, define it as a key-value pair in the `theme.typography` node, where thekey is the name of the new level and the value is an object containing the CSS rules.
+To add a new level, define it as a key-value pair in the `theme.typography` node, where the key is the name of the new level and the value is an object containing the CSS rules.
 
 The demo below shows how to add a new level called `kbd`:
 
