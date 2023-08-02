@@ -138,13 +138,14 @@ const StyledStepperButton = styled('button')(
 
     &.increment,
     &.decrement {
-      background: ${theme.palette.mode === 'dark' ? grey[600] : grey[200]};
-
       &:hover {
         cursor: pointer;
         background: ${blue[400]};
         color: ${grey[50]};
       }
+
+      background: ${theme.palette.mode === 'dark' ? grey[600] : grey[200]};
+      color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
     }
 
     &.increment {
