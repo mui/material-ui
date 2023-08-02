@@ -34,9 +34,13 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ## Inter font
 
-Joy UI is designed to use the [Inter](https://fonts.google.com/specimen/Inter)
+Joy UI uses the [Inter](https://fonts.google.com/specimen/Inter)
 font by default.
-You may add it to your project with npm via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
+Add it to your project via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
+
+### Fontsource
+
+Run one of the following commands to add Inter through Fontsource to your Joy UI project:
 
 <codeblock storageKey="package-manager">
 ```bash npm
@@ -48,7 +52,7 @@ yarn add @fontsource/inter
 ```
 
 ```bash pnpm
-yarn add @fontsource/public-sans
+yarn add @fontsource/inter
 ```
 
 </codeblock>
@@ -61,7 +65,7 @@ import '@fontsource/inter';
 
 ### Google Web Fonts
 
-To install the Inter font in your project using the Google Web Fonts CDN, add the following code snippet inside your project's `<head />` tag:
+To install Inter through the Google Web Fonts CDN, add the following code inside your project's `<head />` tag:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com" />
