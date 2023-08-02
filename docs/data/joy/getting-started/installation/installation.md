@@ -34,7 +34,7 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ## Inter font
 
-Joy UI uses the [Inter](https://fonts.google.com/specimen/Inter)
+Joy UI uses the [Inter](https://rsms.me/inter/)
 font by default.
 Add it to your project via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
 
