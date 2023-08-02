@@ -303,9 +303,8 @@ module.exports = {
     {
       files: ['docs/data/base/components/modal/UseModal.js'],
       rules: {
-        'func-names': 'off',
         'consistent-return': 'off',
-        'prefer-template': 'off',
+        'func-names': 'off',
         'no-else-return': 'off',
         'prefer-template': 'off',
       },

@@ -69,7 +69,10 @@
       "required": true
     },
     "hasTransition": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
-    "isTopModal": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "isTopModal": {
+      "type": { "name": "() =&gt; boolean", "description": "() =&gt; boolean" },
+      "required": true
+    },
     "portalRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" },
       "required": true
