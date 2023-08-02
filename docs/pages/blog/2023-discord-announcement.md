@@ -14,7 +14,7 @@ Majority of our discussions and interactions with you have been through our [Twi
 
 That's why we've officially launched our [Discord Server](https://mui.com/r/discord/)—and we'd love for you to be a part of our community!
 
-Come join to engage in lively discussions, share your projects, and interact with the MUI team & others!
+Come join to engage in lively discussions, share your projects, and interact with the MUI team as well as developers just like you from all around the world.
 
 ## Why you should join our Discord Server?
 
