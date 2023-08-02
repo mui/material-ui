@@ -47,7 +47,7 @@ There are a plethora of reasons why you should join, but ultimately, it came dow
    2. 📝 │ Freelance
       - Looking for some help on completing your vision?
         Use this channel to find work or market yourself for work.
-        We have over 1000s of developers and designers using MUI.
+        There are thousands of developers, designers, and teams using MUI.
         You're bound to find someone to help you complete your project.
 
 Overall, Discord's combination of real-time communication, community building features, organizational capabilities, and developer-friendly features make it a valuable tool for our community to connect, collaborate, and grow together!
