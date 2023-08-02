@@ -133,6 +133,7 @@ const StyledStepperButton = styled('button')(
   font-size: 0.875rem;
   box-sizing: border-box;
   border: 0;
+  padding: 0;
   color: inherit;
   background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
 

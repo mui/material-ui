@@ -140,6 +140,11 @@ const StyledStepperButton = styled('button')(
     font-size: 0.875rem;
     box-sizing: border-box;
     border: 0;
+    padding: 0;
+
+    & > svg {
+      transform: scale(0.8);
+    }
 
     &.increment,
     &.decrement {
