@@ -10,8 +10,9 @@ const GLOBAL_STATE_CLASSES: string[] = [
   'disabled',
   'error',
   'expanded',
-  'focusVisible',
   'focused',
+  'focusVisible',
+  'open',
   'required',
   'selected',
 ];

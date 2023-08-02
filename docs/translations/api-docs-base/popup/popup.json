@@ -34,7 +34,11 @@
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },
-    "open": { "description": "" }
+    "open": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the popup is open"
+    }
   },
   "slotDescriptions": { "root": "The component that renders the root." }
 }

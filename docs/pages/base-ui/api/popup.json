@@ -55,7 +55,7 @@
       "class": ".MuiPopup-root"
     }
   ],
-  "classes": { "classes": ["open"], "globalClasses": {} },
+  "classes": { "classes": ["open"], "globalClasses": { "open": "Mui-open" } },
   "spread": true,
   "muiName": "MuiPopup",
   "forwardsRefTo": "HTMLDivElement",

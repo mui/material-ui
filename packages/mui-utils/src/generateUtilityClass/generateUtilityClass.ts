@@ -5,11 +5,12 @@ export type GlobalStateSlot =
   | 'checked'
   | 'completed'
   | 'disabled'
-  | 'readOnly'
   | 'error'
   | 'expanded'
   | 'focused'
   | 'focusVisible'
+  | 'open'
+  | 'readOnly'
   | 'required'
   | 'selected';
 
@@ -18,11 +19,12 @@ const globalStateClassesMapping: Record<GlobalStateSlot, string> = {
   checked: 'checked',
   completed: 'completed',
   disabled: 'disabled',
-  readOnly: 'readOnly',
   error: 'error',
   expanded: 'expanded',
   focused: 'focused',
   focusVisible: 'focusVisible',
+  open: 'open',
+  readOnly: 'readOnly',
   required: 'required',
   selected: 'selected',
 };

@@ -4,7 +4,7 @@ import generateUtilityClasses from '../generateUtilityClasses';
 export interface PopupClasses {
   /** Class name applied to the root element. */
   root: string;
-
+  /** Class name applied to the root element when the popup is open. */
   open: string;
 }
 

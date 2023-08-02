@@ -20,10 +20,7 @@ The Popper is a utility component for creating various kinds of popups.
 It relies on the third-party [Floating UI](https://floating-ui.com/) library for positioning.
 
 :::info
-Base UI also offers the [Popper](/base-ui/react-popper/) component, which features a very similar API.
-It's based on the [Popper](https://popper.js.org/) library, which is in maintenance mode.
-
-We recommend using the Popup component instead.
+The Popup component is intended to replace the [Popper](/base-ui/popper/) component, which will be phased out in a future release of Base UI.
 :::
 
 ## Component
