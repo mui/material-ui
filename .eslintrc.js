@@ -299,18 +299,16 @@ module.exports = {
         'no-console': 'off',
       },
     },
-    // demos - proptype generation 
+    // demos - proptype generation
     {
-      files: [
-        'docs/data/base/components/modal/UseModal.js',
-      ],
+      files: ['docs/data/base/components/modal/UseModal.js'],
       rules: {
         'func-names': 'off',
         'consistent-return': 'off',
         'prefer-template': 'off',
         'no-else-return': 'off',
-        'prefer-template': 'off'
-      }
+        'prefer-template': 'off',
+      },
     },
     {
       files: ['docs/data/**/*.tsx'],
