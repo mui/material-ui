@@ -52,7 +52,7 @@ yarn add @fontsource/inter
 ```
 
 ```bash pnpm
-yarn add @fontsource/inter
+pnpm add @fontsource/inter
 ```
 
 </codeblock>
