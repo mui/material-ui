@@ -21,10 +21,10 @@ Come join to engage in lively discussions, share your projects, and interact wit
 There are a plethora of reasons why you should join, but here are the three biggest benefits:
 
 1. **Real-time communication with our community**:
-   As mentioned above, our communication with the community has often been slow and scattered across too many different platforms.
-   Members would either file an issue on Github, tweet us, or send us a message directly on our website.
+   As mentioned above, our communication with the community has often been slow and _scattered_ across too many different platforms.
+   Developers would either file an issue on Github, tweet us, or send us a message directly on our website.
 
-   _Discord provides real-time chat capabilities_, allowing you to communicate and collaborate with us and other members, instantly.
+   _Discord provides real-time chat capabilities_, allowing you to communicate and collaborate with us and other developers, instantly.
 
    What's a better way to get a real-time response from the MUI team and other users?!
 
