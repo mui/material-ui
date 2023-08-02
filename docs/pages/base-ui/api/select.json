@@ -27,7 +27,7 @@
         "description": "{ listbox?: elementType, popper?: elementType, root?: elementType }"
       },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "value": { "type": { "name": "any" } }
   },

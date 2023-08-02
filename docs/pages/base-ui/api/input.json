@@ -29,7 +29,7 @@
         "description": "{ input?: elementType, root?: elementType, textarea?: elementType }"
       },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "startAdornment": { "type": { "name": "node" } },
     "type": {

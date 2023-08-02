@@ -330,7 +330,7 @@ import { ${pageContent.name} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        {componentSlots?.length ? (
+        {componentSlots?.length > 0 ? (
           <React.Fragment>
             <Heading hash="slots" />
             {slotGuideLink && (
