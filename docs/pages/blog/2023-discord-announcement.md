@@ -18,7 +18,7 @@ Come join to engage in lively discussions, share your projects, and interact wit
 
 ## Why you should join our Discord Server?
 
-There are a plethora of reasons why you should join, but ultimately, it came down to 3 things:
+There are a plethora of reasons why you should join, but here are the three biggest benefits:
 
 1. **Real-time communication with our community**:
    As mentioned above, our communication with the community was quite slow.
