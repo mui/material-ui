@@ -151,6 +151,35 @@ This is done for accessibility purposes, but it can potentially create issues fo
 
 If the user needs to interact with another part of the page—for example, to interact with a chatbot window while a modal is open in the parent app—you can disable the default behavior with the `disableEnforceFocus` prop.
 
+## Hook
+
+```js
+import useModal from '@mui/base/unstable_useModal';
+```
+
+The `useModal` hook lets you apply the functionality of a modal to a fully custom component.
+It returns props to be placed on the custom component, along with fields representing the component's internal state.
+
+Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+
+:::info
+Hooks give you the most room for customization, but require more work to implement.
+With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
+:::
+
+The following demo shows how to build the same modal as the one found in the section above, but with the `useModal` hook:
+
+{{"demo": "UseModal.js", "defaultCodeOpen": true}}
+
+If you use a ref to store a reference to the root element, pass it to the `useModal`'s `ref` parameter, as shown in the demo above.
+It will get merged with a ref used internally in the hook.
+
+:::warning
+Do not add the `ref` parameter to the root element manually, as the correct ref is already a part of the object returned by the `getRootProps` function.
+:::
+
 ## Accessibility
 
 See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) for complete details on accessibility best practices.

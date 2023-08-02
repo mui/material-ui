@@ -135,7 +135,6 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      ref: rootRef,
       role: 'presentation',
     },
     getSlotProps: getRootProps,
@@ -149,7 +148,6 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     externalSlotProps: slotProps.backdrop,
     additionalProps: {
       'aria-hidden': true,
-      onClick: onBackdropClick,
       open,
     },
     getSlotProps: (otherHandlers: EventHandlers) => {
@@ -187,7 +185,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
           disableEnforceFocus={disableEnforceFocus}
           disableAutoFocus={disableAutoFocus}
           disableRestoreFocus={disableRestoreFocus}
-          isEnabled={isTopModal}
+          isEnabled={() => isTopModal}
           open={open}
         >
           {React.cloneElement(children, childProps)}
