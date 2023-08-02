@@ -12,7 +12,7 @@ card: true
 This year, one of our highest priorities has been to create a central hub for the MUI community.
 Majority of our discussions and interactions with you have been through our [Twitter](https://twitter.com/MUI_hq), [GitHub](https://github.com/mui), and [marketing page](https://mui.com/).
 
-That's why we have officially launched our [Discord Server](https://mui.com/r/discord/) and would love for you to be part of our community!
+That's why we've officially launched our [Discord Server](https://mui.com/r/discord/)—and we'd love for you to be a part of our community!
 
 Come join to engage in lively discussions, share your projects, and interact with the MUI team & others!
 
