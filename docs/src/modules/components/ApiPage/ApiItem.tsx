@@ -135,7 +135,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
     },
     '&>hr': {
-      margin: '24px 0',
+      margin: '18px 0',
     },
   }),
   ({ theme }) => ({
