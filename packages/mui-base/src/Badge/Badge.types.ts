@@ -78,12 +78,14 @@ export interface BadgeTypeMap<
 /**
  * Utility to create component types that inherit props from Badge.
  */
-export interface ExtendBadgeTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & BadgeTypeMap['props'];
-  defaultComponent: M['defaultComponent'];
+export interface ExtendBadgeTypeMap<TypeMap extends OverridableTypeMap> {
+  props: TypeMap['props'] & BadgeTypeMap['props'];
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
-export type ExtendBadge<M extends OverridableTypeMap> = OverridableComponent<ExtendBadgeTypeMap<M>>;
+export type ExtendBadge<TypeMap extends OverridableTypeMap> = OverridableComponent<
+  ExtendBadgeTypeMap<TypeMap>
+>;
 
 export type BadgeProps<
   RootComponentType extends React.ElementType = BadgeTypeMap['defaultComponent'],

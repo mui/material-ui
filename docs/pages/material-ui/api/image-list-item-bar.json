@@ -5,7 +5,7 @@
       "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
       "default": "'right'"
     },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "position": {
       "type": {
         "name": "enum",
@@ -18,7 +18,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "title": { "type": { "name": "node" } }
   },

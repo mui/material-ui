@@ -54,7 +54,7 @@ export default function App() {
   });
 
   return (
-    <>
+    <React.Fragment>
       <div {...getRootProps()}>
         <input {...getInputProps()} />
       </div>
@@ -65,7 +65,7 @@ export default function App() {
           ))}
         </ul>
       )}
-    </>
+    </React.Fragment>
   );
 }
 ```
@@ -158,7 +158,7 @@ export default function App(props) {
   const rootRef = useForkRef(ref, setAnchorEl);
 
   return (
-    <>
+    <React.Fragment>
       <div {...getRootProps()} ref={rootRef}>
         <input {...getInputProps()} />
       </div>
@@ -173,7 +173,7 @@ export default function App(props) {
           )}
         </Popper>
       )}
-    </>
+    </React.Fragment>
   );
 }
 ```

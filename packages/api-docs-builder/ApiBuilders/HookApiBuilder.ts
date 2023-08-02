@@ -1,11 +1,11 @@
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import path from 'path';
 import * as ts from 'typescript';
 import * as astTypes from 'ast-types';
 import * as _ from 'lodash';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
-import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
@@ -70,8 +70,18 @@ export interface ReactApi extends ReactDocgenApi {
   }>;
   translations: {
     hookDescription: string;
-    parametersDescriptions: { [key: string]: string | undefined };
-    returnValueDescriptions: { [key: string]: string | undefined };
+    parametersDescriptions: {
+      [key: string]: {
+        description: string;
+        deprecated?: string;
+      };
+    };
+    returnValueDescriptions: {
+      [key: string]: {
+        description: string;
+        deprecated?: string;
+      };
+    };
   };
 }
 
@@ -276,13 +286,27 @@ const attachTranslations = (reactApi: ReactApi) => {
 
   (reactApi.parameters ?? []).forEach(({ name: propName, description }) => {
     if (description) {
-      translations.parametersDescriptions[propName] = generateTranslationDescription(description);
+      translations.parametersDescriptions[propName] = {
+        description: generateTranslationDescription(description),
+      };
+      const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
+      if (deprecation !== null) {
+        translations.parametersDescriptions[propName].deprecated =
+          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+      }
     }
   });
 
   (reactApi.returnValue ?? []).forEach(({ name: propName, description }) => {
     if (description) {
-      translations.returnValueDescriptions[propName] = generateTranslationDescription(description);
+      translations.returnValueDescriptions[propName] = {
+        description: generateTranslationDescription(description),
+      };
+      const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
+      if (deprecation !== null) {
+        translations.parametersDescriptions[propName].deprecated =
+          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+      }
     }
   });
 

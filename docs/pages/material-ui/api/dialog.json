@@ -10,7 +10,7 @@
       "deprecationInfo": "Use <code>slots.backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
     },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
     "fullScreen": { "type": { "name": "bool" }, "default": "false" },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
@@ -26,7 +26,13 @@
       "deprecated": true,
       "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
     },
-    "onClose": { "type": { "name": "func" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
     "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
     "PaperProps": { "type": { "name": "object" }, "default": "{}" },
     "scroll": {
@@ -37,7 +43,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
     "transitionDuration": {

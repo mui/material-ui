@@ -22,6 +22,7 @@
 /r/ts-issue-template https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEHOCcQyGFijBkAGzJ06BOaPzAIouABEsICAAoAlKzsXDwAmvJQQhAqWBpAA 302
 /r/custom-component-variants /material-ui/customization/how-to-customize/#adding-new-component-variants 302
 /r/migration-v4 /material-ui/migration/migration-v4/ 302
+/r/discord https://discord.com/invite/tewQuNeUyS 302
 
 # Legacy redirection
 # Added in chronological order (the last line is the most recent one)
@@ -486,6 +487,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /base-ui/getting-started/overview/ /base-ui/getting-started/ 301
 /base-ui/react-components/ /base-ui/all-components/ 301
 /system/getting-started/overview/ /system/getting-started/ 301
+/blog/introducing-mui-base/ /blog/introducing-base-ui/ 301
 
 # Proxies
 

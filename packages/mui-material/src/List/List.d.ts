@@ -4,8 +4,11 @@ import { Theme } from '..';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
 import { ListClasses } from './listClasses';
 
-export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
-  props: P & {
+export interface ListTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'ul',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -35,18 +38,20 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**
  * utility to create component types that inherit props from List.
  */
-export interface ExtendListTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ListTypeMap['props'];
-  defaultComponent: M['defaultComponent'];
+export interface ExtendListTypeMap<TypeMap extends OverridableTypeMap> {
+  props: TypeMap['props'] & ListTypeMap['props'];
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
-export type ExtendList<M extends OverridableTypeMap> = OverridableComponent<ExtendListTypeMap<M>>;
+export type ExtendList<TypeMap extends OverridableTypeMap> = OverridableComponent<
+  ExtendListTypeMap<TypeMap>
+>;
 
 /**
  *
@@ -62,8 +67,10 @@ export type ExtendList<M extends OverridableTypeMap> = OverridableComponent<Exte
 declare const List: ExtendList<ListTypeMap>;
 
 export type ListProps<
-  D extends React.ElementType = ListTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ListTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ListTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ListTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default List;

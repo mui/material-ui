@@ -3,7 +3,13 @@
     "checked": { "type": { "name": "bool" } },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "slotProps": {
@@ -18,7 +24,8 @@
         "name": "shape",
         "description": "{ input?: elementType, root?: elementType, thumb?: elementType, track?: elementType<br>&#124;&nbsp;null }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     }
   },
   "name": "Switch",

@@ -37,7 +37,7 @@ export default function SignUp() {
           <Typography level="h4" component="h1">
             <strong>Welcome 👋</strong>
           </Typography>
-          <Typography level="body2">Sign up for an account.</Typography>
+          <Typography level="body-sm">Sign up for an account.</Typography>
         </div>
         <FormControl>
           <FormLabel>Email</FormLabel>

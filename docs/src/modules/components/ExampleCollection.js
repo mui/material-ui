@@ -27,13 +27,13 @@ const examples = [
   },
   {
     name: 'Remix',
-    label: 'View example',
+    label: 'View TS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-remix-ts',
     src: '/static/images/examples/remix.svg',
   },
   {
-    name: 'Tailwind CSS + CRA + TypeScript',
-    label: 'View example',
+    name: 'Tailwind CSS + CRA',
+    label: 'View TS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-cra-tailwind-ts',
     src: '/static/images/examples/tailwindcss.svg',
   },
@@ -42,6 +42,7 @@ const examples = [
     label: 'View JS example',
     tsLabel: 'View TS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-vite',
+    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-vite-ts',
     src: '/static/images/examples/vite.svg',
   },
   {
@@ -55,25 +56,25 @@ const examples = [
   },
   {
     name: 'Gatsby',
-    label: 'View example',
+    label: 'View JS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-gatsby',
     src: '/static/images/examples/gatsby.svg',
   },
   {
     name: 'Preact',
-    label: 'View example',
+    label: 'View JS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-preact',
     src: '/static/images/examples/preact.svg',
   },
   {
     name: 'CDN',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-via-cdn',
-    label: 'View example',
+    label: 'View JS example',
     src: <FilterDramaIcon />,
   },
   {
     name: 'Express.js (server-rendered)',
-    label: 'View example',
+    label: 'View JS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-express-ssr',
     src: '/static/images/examples/express.png',
   },
@@ -96,13 +97,13 @@ export default function ExampleCollection() {
                 backgroundImage: 'none',
                 borderRadius: 1,
                 border: '1px solid',
-                borderColor: 'grey.200',
+                borderColor: 'divider',
                 boxShadow: 'none',
               },
               (theme) =>
                 theme.applyDarkStyles({
                   bgcolor: 'transparent',
-                  borderColor: 'primaryDark.700',
+                  borderColor: 'divider',
                 }),
             ]}
           >

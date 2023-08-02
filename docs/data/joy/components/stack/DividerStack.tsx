@@ -8,7 +8,7 @@ import { styled } from '@mui/joy/styles';
 const Item = styled(Sheet)(({ theme }) => ({
   backgroundColor:
     theme.palette.mode === 'dark' ? theme.palette.background.level1 : '#fff',
-  ...theme.typography.body2,
+  ...theme.typography['body-sm'],
   padding: theme.spacing(1),
   textAlign: 'center',
   borderRadius: 4,

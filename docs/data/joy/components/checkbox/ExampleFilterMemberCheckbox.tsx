@@ -20,7 +20,7 @@ export default function ExampleFilterMemberCheckbox() {
       variant="outlined"
       sx={{
         p: 2,
-        bgcolor: 'background.body',
+
         borderRadius: 'sm',
         width: 360,
         maxWidth: '100%',
@@ -30,7 +30,7 @@ export default function ExampleFilterMemberCheckbox() {
         id="member"
         sx={{
           textTransform: 'uppercase',
-          fontSize: 'xs2',
+          fontSize: 'xs',
           letterSpacing: 'lg',
           fontWeight: 'lg',
           color: 'text.secondary',
