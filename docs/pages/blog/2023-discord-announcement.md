@@ -7,7 +7,7 @@ tags: ['News']
 card: true
 ---
 
-<a href="https://mui.com/r/discord"><img src="/static/blog/2023-discord-announcement/discord.png" width="1200" height="640" style="margin-bottom: 16px;" alt="Discord banner with link" /></a>
+<a href="https://mui.com/r/discord"><img src="/static/blog/2023-discord-announcement/discord.png" width="1280" height="640" style="margin-bottom: 16px;" alt="Discord banner with link" /></a>
 
 Creating a place where we can interact with our community has been our priority for this year.
 Majority of our discussions and interactions with you have been through our [Twitter](https://twitter.com/MUI_hq), [GitHub](https://github.com/mui), and [marketing page](https://mui.com/).
