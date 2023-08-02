@@ -1,23 +1,16 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  elementAcceptingRef,
-  HTMLElementType,
-  unstable_ownerDocument as ownerDocument,
-  unstable_useForkRef as useForkRef,
-  unstable_useEventCallback as useEventCallback,
-} from '@mui/utils';
-import { EventHandlers } from '../utils';
+import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
+import { EventHandlers, useSlotProps } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import { ModalOwnerState, ModalProps, ModalTypeMap } from './Modal.types';
 import composeClasses from '../composeClasses';
 import Portal from '../Portal';
 import useModal from '../unstable_useModal';
 import FocusTrap from '../FocusTrap';
+import { ModalOwnerState, ModalProps, ModalTypeMap } from './Modal.types';
 import { getModalUtilityClass } from './modalClasses';
-import { useSlotProps } from '../utils';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: ModalOwnerState) => {
   const { open, exited } = ownerState;

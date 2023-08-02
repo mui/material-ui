@@ -2,7 +2,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { Box, styled, Theme } from '@mui/system';
-import Portal, { PortalProps } from '@mui/base/Portal';
+import Portal from '@mui/base/Portal';
 import FocusTrap from '@mui/base/FocusTrap';
 import Button from '@mui/base/Button';
 import useModal from '@mui/base/unstable_useModal';
@@ -39,7 +39,7 @@ export default function UseModal() {
 interface ModalProps {
   children: React.ReactElement;
   closeAfterTransition?: boolean;
-  container?: PortalProps['container'];
+  container?: Element | (() => Element | null) | null;
   disableAutoFocus?: boolean;
   disableEnforceFocus?: boolean;
   disableEscapeKeyDown?: boolean;

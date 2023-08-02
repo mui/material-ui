@@ -170,8 +170,8 @@ export default function useModal(parameters: UseModalParameters): UseModalReturn
     const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseModalParameters>;
 
     // The custom event handlers shouldn't be spreaded on the root element
-    delete propsEventHandlers['onTransitionEnter'];
-    delete propsEventHandlers['onTransitionExited'];
+    delete propsEventHandlers.onTransitionEnter;
+    delete propsEventHandlers.onTransitionExited;
 
     const externalEventHandlers = {
       ...propsEventHandlers,
