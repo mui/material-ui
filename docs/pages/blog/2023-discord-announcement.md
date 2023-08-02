@@ -43,7 +43,7 @@ There are a plethora of reasons why you should join, but ultimately, it came dow
       - Show off your MUI projects! Get wild. Ask questions.
         If you have MUI related questions that is blocking you from your project, ask here.
         Someone may be facing it as well.
-        Or use this channel to simply boast 😉.
+        Or use this channel simply to boast. 😉
    2. 📝 │ Freelance
       - Looking for some help on completing your vision?
         Use this channel to find work or market yourself for work.
