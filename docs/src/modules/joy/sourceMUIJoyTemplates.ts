@@ -1,7 +1,7 @@
 const templateMap = new Map<string, { files: Record<string, string>; codeVariant: 'TS' | 'JS' }>();
 // @ts-ignore
 const req = require.context(
-  '../../../data/joy/getting-started/templates/?raw',
+  '../../../data/joy/getting-started/templates/mui/?raw',
   true,
   /^\.\/[^/]+\/.*\.(js|tsx|ts)$/,
 );
@@ -25,10 +25,11 @@ export interface TemplateData {
   codeVariant: 'TS' | 'JS';
 }
 
-export default function sourceJoyTemplates() {
+export default function sourceJoyMUITemplates() {
   return {
     names: Array.from(templateMap.keys()),
     templates: Array.from(templateMap.values()),
     map: new Map(templateMap),
   };
 }
+

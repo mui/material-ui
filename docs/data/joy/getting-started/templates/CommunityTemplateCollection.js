@@ -14,7 +14,7 @@ import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import Visibility from '@mui/icons-material/Visibility';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
-import sourceJoyMUITemplates from 'docs/src/modules/joy/sourceMUIJoyTemplates';
+import sourceJoyCommunityTemplates from 'docs/src/modules/joy/sourceCommunityJoyTemplates';
 
 /**
  * To display a template on the site:
@@ -33,53 +33,29 @@ import sourceJoyMUITemplates from 'docs/src/modules/joy/sourceMUIJoyTemplates';
  * @type {Object.<string, Author | undefined>}
  */
 const AUTHORS = {
-  team: {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  messages: {
+    name: 'Steve Ernstberger',
+    link: 'https://twitter.com/SteveEberger',
   },
-  files: {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
-  },
-  email: {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
-  },
-  'sign-in-side': {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
-  },
-  'order-dashboard': {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
-  },
-  'profile-dashboard': {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
-  },
-  'framesx-web-blocks': {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  'rental-dashboard': {
+    name: 'Steve Ernstberger',
+    link: 'https://twitter.com/steveeberger',
   },
 };
 const DESIGNS = {
-  'order-dashboard': {
+  'rental-dashboard': {
     name: 'Untitled UI',
     link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
   },
-  'profile-dashboard': {
+  messages: {
     name: 'Untitled UI',
     link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
-  },
-  'framesx-web-blocks': {
-    name: 'Frames X',
-    link: 'https://framesxfigma.buninux.com/',
   },
 };
 
 export default function TemplateCollection() {
   const newTemplates = []; // Stay at the top of the page with `new` badge
-  const { names: templateNames, map: templateMap } = sourceJoyMUITemplates();
+  const { names: templateNames, map: templateMap } = sourceJoyCommunityTemplates();
   const names = [
     ...newTemplates,
     ...templateNames.filter((name) => !newTemplates.includes(name)),
