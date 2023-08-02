@@ -7,14 +7,26 @@ import Link from 'docs/src/modules/components/Link';
 import NpmCopyButton from 'docs/src/components/action/NpmCopyButton';
 
 interface GetStartedButtons2Props extends BoxProps {
-  getStartedUrl?: string;
-  learnUrl?: string;
-  learnLabel?: string;
+  primaryUrl?: string;
+  primaryLabel?: string;
+  secondaryUrl?: string;
+  secondaryLabel?: string;
   installation?: string;
+  targetPrimary?: string;
+  targetSecondary?: string;
 }
 
 export default function GetStartedButtons2(props: GetStartedButtons2Props) {
-  const { getStartedUrl = ROUTES.documentation, learnUrl, learnLabel, ...other } = props;
+  const {
+    primaryLabel,
+    primaryUrl = ROUTES.documentation,
+    secondaryUrl,
+    secondaryLabel,
+    installation,
+    targetPrimary = '_self',
+    targetSecondary = '_self',
+    ...other
+  } = props;
   return (
     <React.Fragment>
       <Box
@@ -29,33 +41,35 @@ export default function GetStartedButtons2(props: GetStartedButtons2Props) {
         }}
       >
         <Button
-          href={getStartedUrl}
+          href={primaryUrl}
           component={Link}
           noLinkStyle
           size="large"
           variant="contained"
           endIcon={<KeyboardArrowRightRounded />}
+          target={targetPrimary}
           sx={{
             flexShrink: 0,
             mr: { xs: 0, md: 1.5 },
             mb: { xs: 2, md: 0 },
           }}
         >
-          Get started
+          {primaryLabel}
         </Button>
         <Button
-          href={learnUrl}
+          href={secondaryUrl}
           component={Link}
           noLinkStyle
           variant="outlined"
           size="large"
+          target={targetSecondary}
           color="secondary"
           endIcon={<KeyboardArrowRightRounded />}
         >
-          {learnLabel}
+          {secondaryLabel}
         </Button>
       </Box>
-      <NpmCopyButton installation="npm install @mui/base" sx={{ mt: 2 }} />
+      {installation ? <NpmCopyButton installation={installation} sx={{ mt: 2 }} /> : null}
     </React.Fragment>
   );
 }

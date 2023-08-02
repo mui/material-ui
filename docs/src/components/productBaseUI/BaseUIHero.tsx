@@ -83,9 +83,10 @@ export default function BaseUIHero() {
             engine or theme.
           </Typography>
           <GetStartedButtons2
-            getStartedUrl={ROUTES.baseDocs}
-            learnUrl={ROUTES.baseQuickstart}
-            learnLabel="Learn Base UI"
+            primaryUrl={ROUTES.baseDocs}
+            primaryLabel="Get started"
+            secondaryUrl={ROUTES.baseQuickstart}
+            secondaryLabel="Learn Base UI"
             installation="npm install @mui/base"
           />
         </Box>
