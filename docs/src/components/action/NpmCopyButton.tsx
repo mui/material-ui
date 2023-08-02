@@ -20,8 +20,6 @@ const StyledButton = styled(Button)`
   vertical-align: middle;
   text-decoration: none;
   text-transform: initial;
-  scroll-snap-margin-top: calc(var(--MuiDocs-header-height) + 32px);
-  scroll-margin-top: calc(var(--MuiDocs-header-height) + 32px);
   min-width: 64px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
