@@ -36,7 +36,7 @@
     "slots": {
       "type": { "name": "shape", "description": "{ backdrop?: elementType, root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     }
   },
   "name": "Modal",
