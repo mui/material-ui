@@ -22,7 +22,7 @@ There are a plethora of reasons why you should join, but here are the three bigg
 
 1. **Real-time communication with our community**:
    As mentioned above, our communication with the community has often been slow and _scattered_ across too many different platforms.
-   Developers would either file an issue on Github, tweet us, or send us a message directly on our website.
+   Developers are frequently unsure whether to open an issue on Github, tweet at us, or send us an email when they have a question or want to share feedback.
 
    _Discord provides real-time chat capabilities_, allowing you to communicate and collaborate with us and other developers, instantly.
 
