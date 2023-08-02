@@ -56,10 +56,10 @@ export default function HooksApiContent(props) {
 
     const { parametersDescriptions, returnValueDescriptions } = descriptions[key][userLanguage];
 
-    const source = filename
-      .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
-      // convert things like `/Table/Table.js` to ``
-      .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
+    const source = filename.replace(
+      /\/packages\/mui(-(.+?))?\/src/,
+      (match, dash, pkg) => `@mui/${pkg}`,
+    );
 
     const hookNameKebabCase = kebabCase(hookName);
 
