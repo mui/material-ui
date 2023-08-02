@@ -89,9 +89,13 @@ The [Typography](/joy-ui/react-typography/) component replaces HTML header, para
 
 :::info
 The `level` prop gives you access to a pre-defined scale of typographic values.
-Joy UI provides 13 typographic levels out of the box:
+Joy UI provides 11 typographic levels out of the box.
 
-`display1 | display2 | h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | body4 | body5`
+Four heading levels: `'h1' | 'h2' | 'h3' | 'h4'`
+
+Three title levels: `'title-lg' | 'title-md' | 'title-sm'`
+
+Four body levels: `'body-lg' | 'body-md' | 'body-sm' | 'body-xs'`
 
 :::
 
