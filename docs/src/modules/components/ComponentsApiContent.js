@@ -119,18 +119,18 @@ export default function ComponentsApiContent(props) {
       // convert things like `/Table/Table.js` to ``
       .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
-    const namedImportName = pageContent.name;
-    let namedImportPath = `${source}/${namedImportName}`;
-    let defaultImportPath = source;
-    let defaultImportName = namedImportName;
+    const defaultImportName = pageContent.name;
+    let defaultImportPath = `${source}/${defaultImportName}`;
+    let namedImportPath = source;
+    let namedImportName = defaultImportName;
 
     if (/Unstable_/.test(source)) {
-      namedImportPath = source.replace(/\/[^/]*$/, '');
-      defaultImportPath = packageAndFilename
+      defaultImportPath = source.replace(/\/[^/]*$/, '');
+      namedImportPath = packageAndFilename
         .replace(/Unstable_/, '')
         .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
-      defaultImportName = `Unstable_${namedImportName} as ${namedImportName}`;
+      namedImportName = `Unstable_${defaultImportName} as ${defaultImportName}`;
     }
 
     // The `ref` is forwarded to the root element.
@@ -165,9 +165,9 @@ export default function ComponentsApiContent(props) {
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode
             code={`
-import ${namedImportName} from '${namedImportPath}';
+import ${defaultImportName} from '${defaultImportPath}';
 // ${t('or')}
-import { ${defaultImportName} } from '${defaultImportPath}';`}
+import { ${namedImportName} } from '${namedImportPath}';`}
             language="jsx"
           />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
