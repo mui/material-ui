@@ -29,7 +29,7 @@ There are a plethora of reasons why you should join, but here are the three bigg
    What's a better way to get a real-time response from the MUI team and other users?!
 
 2. **Community building**:
-   Want to hear what MUI team is up to?
+   Want to hear what the MUI team is up to?
    Get the latest update with the products you're using?
    Want to give us real-time feedback?
    Heck, do you want to see if other's are facing the same issue you're having?
