@@ -12,9 +12,9 @@ card: true
 Creating a place where we can interact with our community has been our priority for this year.
 Majority of our discussions and interactions with you have been through our [Twitter](https://twitter.com/mui_hq), [GitHub](https://github.com/mui), and [marketing page](https://mui.com/).
 
-We have officially launched our [Discord Server](https://mui.com/r/discord/) and would love for you to be part of our community!
+That's why we have officially launched our [Discord Server](https://mui.com/r/discord/) and would love for you to be part of our community!
 
-Come join to engage in lively discussions, share your projects, and interact with the MUI team and others!
+Come join to engage in lively discussions, share your projects, and interact with the MUI team & others!
 
 ## Why you should join our Discord Server?
 
@@ -38,7 +38,7 @@ There are a plethora of reasons why you should join, but ultimately, it came dow
 3. **Networking and collaboration opportunities**:
    We want this to be a safe place where you can join, have fun, and meet new people.
    Someone is out there using this same tool as you(_ahem_, MUI).
-   We created two awesome channels to help you find working working opportunities(We can create more, just tell us!)
+   We created two awesome channels to help you find work opportunities(We can create more, just tell us!)
    1. 🎨 │ Show-Off
       - Show off your MUI projects! Get wild. Ask questions.
         If you have MUI related questions that is blocking you from your project, ask here.
