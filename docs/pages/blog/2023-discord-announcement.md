@@ -26,7 +26,7 @@ There are a plethora of reasons why you should join, but here are the three bigg
 
    _Discord provides real-time chat capabilities_, allowing you to communicate and collaborate with us and other members, instantly.
 
-   What's a better way to get a real-time response from the MUI team and MUI users?!
+   What's a better way to get a real-time response from the MUI team and other users?!
 
 2. **Community building**:
    Want to hear what MUI team is up to?
