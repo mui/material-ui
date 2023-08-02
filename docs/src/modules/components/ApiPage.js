@@ -11,12 +11,12 @@ import AlertTitle from '@mui/material/AlertTitle';
 import ReviewsRoundedIcon from '@mui/icons-material/ReviewsRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
+import PropertiesTable, { getPropsToC } from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-import CSSList from './ApiPage/CSSList';
+import CSSList, { getCssToC } from './ApiPage/CSSList';
 import ClassesList from './ApiPage/ClassesList';
 import SlotsList from './ApiPage/SlotsList';
 
@@ -172,8 +172,18 @@ export default function ApiPage(props) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    createTocEntry('props'),
-    componentStyles.classes.length > 0 && createTocEntry('css'),
+    getPropsToC({
+      t,
+      componentName: pageContent.name,
+      componentProps,
+      inheritance,
+      themeDefaultProps: pageContent.themeDefaultProps,
+    }),
+    ...getCssToC({
+      t,
+      componentName: pageContent.name,
+      componentStyles,
+    }),
     componentSlots?.length > 0 && createTocEntry('slots'),
     hasClasses && createTocEntry('classes'),
   ].filter(Boolean);
@@ -251,7 +261,11 @@ import { ${pageContent.name} } from '${source}';`}
 
         <Heading hash="props" />
         <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
-        <PropertiesTable properties={componentProps} propertiesDescriptions={propDescriptions} />
+        <PropertiesTable
+          properties={componentProps}
+          propertiesDescriptions={propDescriptions}
+          componentName={pageContent.name}
+        />
         {cssComponent && (
           <React.Fragment>
             <span
@@ -300,7 +314,11 @@ import { ${pageContent.name} } from '${source}';`}
             <Heading hash="css" />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.cssDescription') }} />
             <br />
-            <CSSList componentStyles={componentStyles} classDescriptions={classDescriptions} />
+            <CSSList
+              componentStyles={componentStyles}
+              classDescriptions={classDescriptions}
+              componentName={pageContent.name}
+            />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
               dangerouslySetInnerHTML={{
@@ -312,7 +330,7 @@ import { ${pageContent.name} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        {componentSlots?.length ? (
+        {componentSlots?.length > 0 ? (
           <React.Fragment>
             <Heading hash="slots" />
             {slotGuideLink && (
@@ -322,7 +340,11 @@ import { ${pageContent.name} } from '${source}';`}
                 }}
               />
             )}
-            <SlotsList componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
+            <SlotsList
+              componentSlots={componentSlots}
+              slotDescriptions={slotDescriptions}
+              componentName={pageContent.name}
+            />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
               dangerouslySetInnerHTML={{

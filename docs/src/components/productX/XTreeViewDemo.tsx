@@ -50,16 +50,16 @@ const CustomContent = React.forwardRef(function CustomContent(
 
   const icon = iconProp || expansionIcon || displayIcon;
 
-  const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     preventSelection(event);
   };
 
-  const handleExpansionClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleExpansionClick = (event: React.MouseEvent<HTMLDivElement>) => {
     handleExpansion(event);
     handleSelection(event);
   };
 
-  const handleSelectionClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleSelectionClick = (event: React.MouseEvent<HTMLDivElement>) => {
     handleSelection(event);
   };
 
@@ -209,13 +209,14 @@ const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => [
   }),
 ]);
 
-function TreeItem(
+const TreeItem = React.forwardRef(function TreeItem(
   props: TreeItemProps & {
     ContentProps?: { lastNestedChild?: boolean };
   },
+  ref: React.Ref<HTMLLIElement>,
 ) {
-  return <StyledTreeItem ContentComponent={CustomContent} {...props} />;
-}
+  return <StyledTreeItem ContentComponent={CustomContent} {...props} ref={ref} />;
+});
 
 export default function XDateRangeDemo() {
   return (
