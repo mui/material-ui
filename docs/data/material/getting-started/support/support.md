@@ -45,7 +45,7 @@ If you think you've found a bug in the codebase, or you have an idea for a new f
 
 ### Social media
 
-The MUI community is active on both [Twitter](https://twitter.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/11290418/).
+The MUI community is active on both [Twitter](https://twitter.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/mui/).
 These are great platforms to share what you're working on and connect with other developers.
 
 Please keep in mind that we don't actively monitor direct messages on the company's social media accounts, so this is _not_ a good way to get in touch with us directly.
