@@ -43,7 +43,7 @@
   },
   "peerDependencies": {
     "@types/styled-components": "^5.1.14",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.1 || ^6.0.0"
   },
   "peerDependenciesMeta": {
     "@types/styled-components": {

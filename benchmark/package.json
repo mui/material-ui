@@ -28,7 +28,7 @@
     "react-redux": "^8.1.2",
     "redux": "^4.2.1",
     "serve-handler": "^6.1.5",
-    "styled-components": "^5.3.11",
+    "styled-components": "^6.0.7",
     "theme-ui": "^0.16.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^4.10.0"
