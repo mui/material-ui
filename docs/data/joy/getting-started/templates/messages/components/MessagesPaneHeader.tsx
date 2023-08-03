@@ -38,11 +38,11 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
           <i data-feather="chevron-left" />
         </IconButton>
         <Avatar size="lg" src={sender.avatar} />
-
         <div>
           <Typography
             fontWeight="lg"
             fontSize="lg"
+            component="h2"
             noWrap
             endDecorator={
               sender.online ? (
@@ -66,7 +66,7 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
             {sender.name}
           </Typography>
 
-          <Typography level="body2">{sender.username}</Typography>
+          <Typography level="body-sm">{sender.username}</Typography>
         </div>
       </Stack>
       <Stack spacing={1} direction="row" alignItems="center">

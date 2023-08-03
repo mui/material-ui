@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import Select, { SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
-import useOption, { SelectOption } from '@mui/base/useOption';
-import Option, { OptionProps, optionClasses } from '@mui/base/Option';
-import OptionGroup from '@mui/base/OptionGroup';
 import {
   createMount,
   createRenderer,
@@ -14,6 +10,10 @@ import {
   act,
   screen,
 } from 'test/utils';
+import Select, { SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
+import useOption, { SelectOption } from '@mui/base/useOption';
+import Option, { OptionProps, optionClasses } from '@mui/base/Option';
+import OptionGroup from '@mui/base/OptionGroup';
 
 describe('<Select />', () => {
   const mount = createMount();

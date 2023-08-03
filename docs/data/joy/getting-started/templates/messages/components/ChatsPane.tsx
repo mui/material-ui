@@ -31,6 +31,7 @@ export default function ChatsPane({
       <Stack direction="row" spacing={1} alignItems="center" p={2} pb={1.5}>
         <Typography
           fontSize={{ xs: 'md', md: 'lg' }}
+          component="h1"
           fontWeight="lg"
           endDecorator={
             <Chip

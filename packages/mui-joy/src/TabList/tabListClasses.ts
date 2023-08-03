@@ -9,8 +9,6 @@ export interface TabListClasses {
   colorNeutral: string;
   /** Classname applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Classname applied to the root element if `color="info"`. */
-  colorInfo: string;
   /** Classname applied to the root element if `color="success"`. */
   colorSuccess: string;
   /** Classname applied to the root element if `color="warning"`. */
@@ -44,7 +42,6 @@ const tabListClasses: TabListClasses = generateUtilityClasses('MuiTabList', [
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',

@@ -77,17 +77,17 @@ The minimum supported version of React has been increased from v16.8.0 to v17.0.
 
 If you are using a React version below 17.0.0, update your packages to at least v4.11.2 for Material UI and v17.0.0 for React.
 
-With npm:
+<codeblock storageKey="package-manager">
 
-```bash
+```bash npm
 npm install @material-ui/core@^4.11.2 react@^17.0.0
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn upgrade @material-ui/core@^4.11.2 react@^17.0.0
 ```
+
+</codeblock>
 
 ### Update TypeScript
 
@@ -147,47 +147,44 @@ function App() {
 
 Install the Material UI v5 packages.
 
-With npm:
-
-```bash
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/material @mui/styles
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn add @mui/material @mui/styles
 ```
+
+</codeblock>
 
 If you're using `@material-ui/lab` or `@material-ui/icons`, you will need to install the new packages.
 
 ### `@material-ui/lab`
 
-With npm:
-
-```bash
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/lab
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn add @mui/lab
 ```
 
+</codeblock>
+
 ### `@material-ui/icons`
 
-With npm:
-
-```bash
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/icons-material
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn add @mui/icons-material
 ```
+
+</codeblock>
 
 ### Date and time pickers
 
@@ -199,17 +196,17 @@ See [Migration from the lab](https://mui.com/x/migration/migration-pickers-lab/)
 
 Next, add the Emotion packages.
 
-With npm:
+<codeblock storageKey="package-manager">
 
-```bash
+```bash npm
 npm install @emotion/react @emotion/styled
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn add @emotion/react @emotion/styled
 ```
+
+</codeblock>
 
 #### styled-components (optional)
 

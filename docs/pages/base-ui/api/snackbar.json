@@ -3,7 +3,13 @@
     "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
     "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
     "exited": { "type": { "name": "bool" }, "default": "true" },
-    "onClose": { "type": { "name": "func" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent<any> | Event, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
     "open": { "type": { "name": "bool" } },
     "resumeHideDuration": { "type": { "name": "number" } },
     "slotProps": {
@@ -15,7 +21,8 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     }
   },
   "name": "Snackbar",

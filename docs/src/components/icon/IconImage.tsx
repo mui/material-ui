@@ -11,9 +11,9 @@ export type IconImageProps = {
     | 'product-toolpad'
     | 'product-templates'
     | 'product-designkits'
-    | 'block-green'
-    | 'block-blue'
-    | 'block-gold'
+    | 'x-plan-pro'
+    | 'x-plan-premium'
+    | 'x-plan-community'
     | 'yes'
     | 'no'
     | 'time'
@@ -59,22 +59,20 @@ export default function IconImage(props: IconImageProps) {
   let defaultHeight;
   let category = '';
   let mode = `-${theme.palette.mode}`;
+
   if (name.startsWith('product-')) {
     defaultWidth = 36;
     defaultHeight = 36;
-  }
-  if (name.startsWith('block-')) {
+  } else if (name.startsWith('x-plan-')) {
     category = 'pricing/';
     mode = '';
     defaultWidth = 13;
     defaultHeight = 15;
-  }
-  if (['yes', 'no', 'time'].indexOf(name) !== -1) {
+  } else if (['yes', 'no', 'time'].indexOf(name) !== -1) {
     category = 'pricing/';
     defaultWidth = 18;
     defaultHeight = 18;
-  }
-  if (
+  } else if (
     [
       'spotify',
       'amazon',
@@ -99,14 +97,16 @@ export default function IconImage(props: IconImageProps) {
   ) {
     category = 'companies/';
   }
+
   const width = widthProp ?? defaultWidth;
   const height = heightProp ?? defaultHeight;
 
-  if (!mounted && neverHydrated && !!theme.vars) {
+  if (!mounted && neverHydrated && !!theme.vars && mode !== '') {
     // Prevent hydration mismatch between the light and dark mode image source.
     return <Box component="span" sx={{ width, height, display: 'inline-block' }} />;
   }
-  const element = (
+
+  const child = (
     <Img
       src={`/static/branding/${category}${name}${mode}.svg`}
       alt=""
@@ -116,8 +116,10 @@ export default function IconImage(props: IconImageProps) {
       {...other}
     />
   );
-  if (!title) {
-    return element;
+
+  if (title) {
+    return <Tooltip title={title}>{child}</Tooltip>;
   }
-  return <Tooltip title={title}>{element}</Tooltip>;
+
+  return child;
 }

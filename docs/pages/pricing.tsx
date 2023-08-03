@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
+import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import HeroPricing from 'docs/src/components/pricing/HeroPricing';
 import PricingTable from 'docs/src/components/pricing/PricingTable';
@@ -13,7 +13,7 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
-import { LicenseTypeProvider } from 'docs/src/components/pricing/LicenseTypeContext';
+import { LicensingModelProvider } from 'docs/src/components/pricing/LicensingModelContext';
 
 export default function Pricing() {
   return (
@@ -27,7 +27,7 @@ export default function Pricing() {
       <main id="main-content">
         <HeroPricing />
         <Divider />
-        <LicenseTypeProvider>
+        <LicensingModelProvider>
           {/* Mobile, Tablet */}
           <Container sx={{ display: { xs: 'block', md: 'none' }, pb: 3, mt: '-1px' }}>
             <PricingList />
@@ -36,10 +36,14 @@ export default function Pricing() {
           <Container sx={{ display: { xs: 'none', md: 'block' } }}>
             <PricingTable />
           </Container>
-        </LicenseTypeProvider>
-        <Testimonials />
+        </LicensingModelProvider>
+        <Divider />
         <PricingWhatToExpect />
+        <Divider />
         <PricingFAQ />
+        <Divider />
+        <Testimonials />
+        <Divider />
         <HeroEnd />
         <Divider />
       </main>

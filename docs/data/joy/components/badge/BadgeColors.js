@@ -15,9 +15,6 @@ export default function BadgeColors() {
       <Badge badgeContent={'D'} color="danger">
         <Typography fontSize="xl">💌</Typography>
       </Badge>
-      <Badge badgeContent={'I'} color="info">
-        <Typography fontSize="xl">💌</Typography>
-      </Badge>
       <Badge badgeContent={'S'} color="success">
         <Typography fontSize="xl">💌</Typography>
       </Badge>

@@ -5,6 +5,7 @@ import {
   getTitle,
   getHeaders,
   prepareMarkdown,
+  getCodeblock,
 } from './parseMarkdown';
 
 describe('parseMarkdown', () => {
@@ -155,6 +156,45 @@ authors:
       it('ignores possible code', () => {
         expect(getContents('# SomeGuide\n```jsx\n<Button props={{\nfoo: 1\n}}')).to.deep.equal([
           '# SomeGuide\n```jsx\n<Button props={{\nfoo: 1\n}}',
+        ]);
+      });
+    });
+
+    describe('Split markdown into an array, separating codeblocks', () => {
+      it('uses a `<codeblock>` tag to split', () => {
+        expect(
+          getContents(
+            [
+              '## Tabs',
+              '',
+              '<codeblock storageKey="package-manager">',
+              '',
+              '```bash npm',
+              'npm install @mui/material @emotion/react @emotion/styled',
+              '```',
+              '',
+              '```bash yarn',
+              'yarn add @mui/material @emotion/react @emotion/styled',
+              '```',
+              '',
+              '</codeblock>',
+            ].join('\n'),
+          ),
+        ).to.deep.equal([
+          '## Tabs\n\n',
+          [
+            '<codeblock storageKey="package-manager">',
+            '',
+            '```bash npm',
+            'npm install @mui/material @emotion/react @emotion/styled',
+            '```',
+            '',
+            '```bash yarn',
+            'yarn add @mui/material @emotion/react @emotion/styled',
+            '```',
+            '',
+            '</codeblock>',
+          ].join('\n'),
         ]);
       });
     });
@@ -520,6 +560,55 @@ https://developers.google.com/search/docs/advanced/appearance/title-link
 It needs to have fewer than 170 characters—ideally less than 160. For more details, see:
 https://ahrefs.com/blog/meta-description/#4-be-concise
 `);
+    });
+  });
+
+  describe('getCodeblock', () => {
+    it('should return undefined if no codeblock found', () => {
+      const codeblock = getCodeblock('## Tabs');
+      expect(codeblock).to.equal(undefined);
+    });
+
+    it('should return the codeblock', () => {
+      const codeblock = getCodeblock(
+        [
+          '<codeblock storageKey="package-manager">',
+          '',
+          '```bash npm',
+          'npm install @mui/material @emotion/react @emotion/styled',
+          '# `@emotion/react` and `@emotion/styled` are peer dependencies',
+          '```',
+          '',
+          '```sh yarn',
+          'yarn add @mui/material @emotion/react @emotion/styled',
+          '# `@emotion/react` and `@emotion/styled` are peer dependencies',
+          '```',
+          '',
+          '</codeblock>',
+        ].join('\n'),
+      );
+      expect(codeblock).to.deep.equal({
+        type: 'codeblock',
+        storageKey: 'package-manager',
+        data: [
+          {
+            language: 'bash',
+            tab: 'npm',
+            code: [
+              'npm install @mui/material @emotion/react @emotion/styled',
+              '# `@emotion/react` and `@emotion/styled` are peer dependencies',
+            ].join('\n'),
+          },
+          {
+            language: 'sh',
+            tab: 'yarn',
+            code: [
+              'yarn add @mui/material @emotion/react @emotion/styled',
+              '# `@emotion/react` and `@emotion/styled` are peer dependencies',
+            ].join('\n'),
+          },
+        ],
+      });
     });
   });
 

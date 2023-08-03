@@ -2,10 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { describeConformance, createRenderer, fireEvent, act } from 'test/utils';
+import { camelCase } from 'lodash';
 import Button, { buttonClasses as classes } from '@mui/material-next/Button';
 import * as useTouchRipple from '@mui/material-next/Button/useTouchRipple';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
-import { camelCase } from 'lodash';
 
 describe('<Button />', () => {
   const { render, renderToString } = createRenderer();

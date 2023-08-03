@@ -26,7 +26,8 @@
         "name": "shape",
         "description": "{ listbox?: elementType, popper?: elementType, root?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "value": { "type": { "name": "any" } }
   },

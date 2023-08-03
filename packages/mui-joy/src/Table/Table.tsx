@@ -120,26 +120,23 @@ const TableRoot = styled('table', {
         '--unstable_TableCell-height': 'var(--TableCell-height, 32px)',
         '--TableCell-paddingX': '0.25rem',
         '--TableCell-paddingY': '0.25rem',
-        fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
         '--unstable_TableCell-height': 'var(--TableCell-height, 40px)',
         '--TableCell-paddingX': '0.5rem',
         '--TableCell-paddingY': '0.375rem',
-        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
         '--unstable_TableCell-height': 'var(--TableCell-height, 48px)',
         '--TableCell-paddingX': '0.75rem',
         '--TableCell-paddingY': '0.5rem',
-        fontSize: theme.vars.fontSize.md,
       }),
       tableLayout: 'fixed',
       width: '100%',
       borderSpacing: '0px',
       borderCollapse: 'separate',
       borderRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
-      color: theme.vars.palette.text.primary,
+      ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '& caption': {
         color: theme.vars.palette.text.tertiary,
@@ -244,14 +241,14 @@ const TableRoot = styled('table', {
     ownerState.stripe && {
       [tableSelector.getBodyRow(ownerState.stripe)]: {
         // For customization, a table cell can look for this variable with a fallback value.
-        background: `var(--TableRow-stripeBackground, ${theme.vars.palette.background.level1})`,
+        background: `var(--TableRow-stripeBackground, ${theme.vars.palette.background.level2})`,
         color: theme.vars.palette.text.primary,
       },
     },
     ownerState.hoverRow && {
       [tableSelector.getBodyRow()]: {
         '&:hover': {
-          background: `var(--TableRow-hoverBackground, ${theme.vars.palette.background.level2})`,
+          background: `var(--TableRow-hoverBackground, ${theme.vars.palette.background.level3})`,
         },
       },
     },
@@ -377,7 +374,7 @@ Table.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

@@ -2,17 +2,17 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
+import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `
@@ -72,7 +72,7 @@ const startLine = [32, 25, 5];
 const endLine = [44, 30, 8];
 const scrollTo = [540, 320, 0];
 
-const useResizeHandle = (
+export const useResizeHandle = (
   target: React.MutableRefObject<HTMLDivElement | null>,
   options?: { minWidth?: string; maxWidth?: string },
 ) => {
@@ -162,7 +162,7 @@ export default function MaterialStyling() {
   }, [index]);
 
   return (
-    <Section bg="gradient">
+    <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
@@ -204,26 +204,22 @@ export default function MaterialStyling() {
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{
-                bgcolor: 'background.paper',
                 overflow: 'auto',
               }}
             >
               <Box
                 ref={objectRef}
                 style={{ touchAction: dragging ? 'none' : 'auto' }}
-                sx={(theme) => ({
+                sx={{
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   position: 'relative',
-                  p: 2,
+                  p: 5,
                   pr: 3,
                   minHeight: index === 2 ? 280 : 'initial',
-                  bgcolor: 'grey.100',
-                  ...theme.applyDarkStyles({
-                    bgcolor: 'primaryDark.700',
-                  }),
-                })}
+                  backgroundColor: 'transparent',
+                }}
               >
                 {index === 2 && (
                   <React.Fragment>
@@ -237,7 +233,7 @@ export default function MaterialStyling() {
                           right: 0,
                           top: 0,
                           height: '100%',
-                          color: 'grey.600',
+                          color: 'grey.500',
                           '&:hover': {
                             color: 'grey.700',
                           },
@@ -274,8 +270,8 @@ export default function MaterialStyling() {
                           typography: 'caption',
                           left: -30,
                           color: 'text.secondary',
-                          borderRadius: '2px',
-                          bgcolor: 'grey.300',
+                          borderRadius: '4px',
+                          bgcolor: 'grey.200',
                           px: 0.5,
                           ...theme.applyDarkStyles({
                             bgcolor: 'grey.800',
@@ -291,8 +287,8 @@ export default function MaterialStyling() {
                           typography: 'caption',
                           left: 7,
                           color: 'text.secondary',
-                          borderRadius: '2px',
-                          bgcolor: 'grey.300',
+                          borderRadius: '4px',
+                          bgcolor: 'grey.200',
                           px: 0.5,
                           ...theme.applyDarkStyles({
                             bgcolor: 'grey.800',

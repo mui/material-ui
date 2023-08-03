@@ -11,7 +11,7 @@ export default function BasicSkeleton() {
         <Skeleton variant="overlay">
           <img
             alt=""
-            src="https://images.unsplash.com/photo-1686548812883-9d3777f4c137"
+            src="https://images.unsplash.com/photo-1686548812883-9d3777f4c137?h=400&fit=crop&auto=format&dpr=2"
           />
         </Skeleton>
       </AspectRatio>

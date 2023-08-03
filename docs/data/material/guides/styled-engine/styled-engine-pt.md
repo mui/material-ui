@@ -98,8 +98,8 @@ If you are using create-react-app, there is a ready-to-use template in the examp
 
 <!-- #default-branch-switch -->
 
-- [create-react-app](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components)
-- [create-react-app with TypeScript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
+- [create-react-app](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components)
+- [create-react-app with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts)
 - [and many others](https://github.com/mui/material-ui/tree/master/examples)
 
 :::warning

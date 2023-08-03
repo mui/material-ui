@@ -4,9 +4,10 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "selected ? 'primary' : 'neutral'"
+      "default": "'neutral'",
+      "additionalInfo": { "joy-color": true }
     },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
@@ -19,14 +20,16 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'contained'<br>&#124;&nbsp;'light'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
-      "default": "'plain'"
+      "default": "'plain'",
+      "additionalInfo": { "joy-variant": true }
     }
   },
   "name": "MenuItem",
@@ -43,7 +46,6 @@
     "classes": [
       "colorContext",
       "colorDanger",
-      "colorInfo",
       "colorNeutral",
       "colorPrimary",
       "colorSuccess",

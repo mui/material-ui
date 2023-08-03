@@ -37,17 +37,16 @@ export default function Home() {
           <Typography level="h4" component="h1">
             <strong>Welcome back 👋</strong>
           </Typography>
-          <Typography level="body2">Sign in to continue.</Typography>
+          <Typography level="body-sm">Sign in to continue.</Typography>
         </div>
-        <FormControl>
+        <FormControl id="email">
           <FormLabel>Email</FormLabel>
           <Input name="email" type="email" placeholder="johndoe@email.com" />
         </FormControl>
-        <FormControl>
+        <FormControl id="password">
           <FormLabel>Password</FormLabel>
           <Input name="password" type="password" placeholder="password" />
         </FormControl>
-
         <Button sx={{ mt: 1 }}>Log in</Button>
         <Typography
           endDecorator={<Link href="/sign-up">Sign up</Link>}

@@ -2,18 +2,18 @@ import * as React from 'react';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Grid from '@mui/joy/Grid';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Sheet from '@mui/joy/Sheet';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Stack, { StackProps } from '@mui/joy/Stack';
 import { styled } from '@mui/joy/styles';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
 const Item = styled(Sheet)(({ theme }) => ({
   backgroundColor:
     theme.palette.mode === 'dark' ? theme.palette.background.level1 : '#fff',
-  ...theme.typography.body2,
+  ...theme.typography['body-sm'],
   padding: theme.spacing(1),
   textAlign: 'center',
   borderRadius: 4,

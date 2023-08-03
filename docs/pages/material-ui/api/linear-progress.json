@@ -1,6 +1,6 @@
 {
   "props": {
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -12,7 +12,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "number" } },
     "valueBuffer": { "type": { "name": "number" } },

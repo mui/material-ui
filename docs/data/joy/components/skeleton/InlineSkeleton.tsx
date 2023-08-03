@@ -20,7 +20,7 @@ export default function InlineSkeleton() {
           <Skeleton loading={loading}>A heading</Skeleton>
         </Typography>
         <Typography
-          level="body3"
+          level="body-xs"
           sx={{ mt: 1, mb: 2, position: 'relative', overflow: 'hidden' }}
         >
           <Skeleton loading={loading}>HISTORY, PURPOSE AND USAGE</Skeleton>

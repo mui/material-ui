@@ -1,11 +1,10 @@
-import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
+import type { MuiPage } from 'docs/src/MuiPage';
 import pagesApi from 'docs/data/base/pagesApi';
 
-const pages = [
+const pages: readonly MuiPage[] = [
   {
     pathname: '/base-ui/getting-started-group',
     title: 'Getting started',
-    icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/base-ui/getting-started', title: 'Overview' },
       { pathname: '/base-ui/getting-started/quickstart', title: 'Quickstart' },
@@ -16,7 +15,6 @@ const pages = [
   {
     pathname: '/base-ui/react-',
     title: 'Components',
-    icon: standardNavIcons.ToggleOnIcon,
     children: [
       { pathname: '/base-ui/all-components', title: 'All components' },
       {
@@ -25,22 +23,26 @@ const pages = [
         children: [
           { pathname: '/base-ui/react-autocomplete', title: 'Autocomplete' },
           { pathname: '/base-ui/react-button', title: 'Button' },
-          { pathname: '/base-ui/react-checkbox', title: 'Checkbox', comingSoon: true },
+          { pathname: '/base-ui/react-checkbox', title: 'Checkbox', planned: true },
           { pathname: '/base-ui/react-input', title: 'Input' },
-          { pathname: '/base-ui/react-radio-button', title: 'Radio Button', comingSoon: true },
+          { pathname: '/base-ui/react-radio-button', title: 'Radio Button', planned: true },
+          { pathname: '/base-ui/react-rating', title: 'Rating', planned: true },
           { pathname: '/base-ui/react-select', title: 'Select' },
           { pathname: '/base-ui/react-slider', title: 'Slider' },
           { pathname: '/base-ui/react-switch', title: 'Switch' },
+          {
+            pathname: '/base-ui/react-toggle-button-group',
+            title: 'Toggle Button Group',
+            planned: true,
+          },
         ],
       },
       {
         pathname: '/base-ui/components/data-display',
         subheader: 'data-display',
         children: [
-          {
-            pathname: '/base-ui/react-badge',
-            title: 'Badge',
-          },
+          { pathname: '/base-ui/react-badge', title: 'Badge' },
+          { pathname: '/base-ui/react-tooltip', title: 'Tooltip', planned: true },
         ],
       },
       {
@@ -60,7 +62,7 @@ const pages = [
           {
             pathname: '/base-ui/react-accordion',
             title: 'Accordion',
-            comingSoon: true,
+            planned: true,
           },
         ],
       },
@@ -68,7 +70,9 @@ const pages = [
         pathname: '/base-ui/components/navigation',
         subheader: 'navigation',
         children: [
+          { pathname: '/base-ui/react-drawer', title: 'Drawer', planned: true },
           { pathname: '/base-ui/react-menu', title: 'Menu' },
+          { pathname: '/base-ui/react-pagination', title: 'Pagination', planned: true },
           { pathname: '/base-ui/react-table-pagination', title: 'Table Pagination' },
           { pathname: '/base-ui/react-tabs', title: 'Tabs' },
         ],
@@ -92,13 +96,11 @@ const pages = [
   {
     title: 'APIs',
     pathname: '/base-ui/api',
-    icon: standardNavIcons.CodeIcon,
     children: pagesApi,
   },
   {
     pathname: '/base-ui/guides',
     title: 'How-to guides',
-    icon: standardNavIcons.VisibilityIcon,
     children: [
       {
         pathname: '/base-ui/guides/working-with-tailwind-css',

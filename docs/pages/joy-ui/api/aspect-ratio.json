@@ -4,9 +4,10 @@
     "color": {
       "type": {
         "name": "enum",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
+        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
-      "default": "'neutral'"
+      "default": "'neutral'",
+      "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
     "maxHeight": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
@@ -31,20 +32,23 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ content?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'soft'"
+      "default": "'soft'",
+      "additionalInfo": { "joy-variant": true }
     }
   },
   "name": "AspectRatio",
@@ -67,7 +71,6 @@
     "classes": [
       "colorContext",
       "colorDanger",
-      "colorInfo",
       "colorNeutral",
       "colorPrimary",
       "colorSuccess",

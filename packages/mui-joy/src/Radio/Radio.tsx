@@ -59,22 +59,24 @@ const RadioRoot = styled('span', {
   return [
     {
       '--Icon-fontSize': 'var(--Radio-size)',
+      '--Icon-color': 'currentColor',
       ...(ownerState.size === 'sm' && {
         '--Radio-size': '1rem',
-        '--Radio-gap': '0.375rem',
-        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.375rem' },
+        '--Radio-gap': '0.5rem',
+        // --FormHelperText-margin is equal to --Radio-size + --Radio-gap but we can't use calc() with CSS variables because the FormHelperText is a sibling element
+        '& ~ *': { '--FormHelperText-margin': '0 0 0 1.5rem' },
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Radio-size': '1.25rem',
-        '--Radio-gap': '0.5rem',
-        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.75rem' },
+        '--Radio-gap': '0.625rem',
+        '& ~ *': { '--FormHelperText-margin': '0.25rem 0 0 1.875rem' },
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Radio-size': '1.5rem',
-        '--Radio-gap': '0.625rem',
-        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.125rem' },
+        '--Radio-gap': '0.75rem',
+        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.25rem' },
         fontSize: theme.vars.fontSize.lg,
       }),
       position: ownerState.overlay ? 'initial' : 'relative',
@@ -112,6 +114,10 @@ const RadioRadio = styled('span', {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
       margin: 0,
       boxSizing: 'border-box',
       width: 'var(--Radio-size)',
@@ -124,6 +130,9 @@ const RadioRadio = styled('span', {
       ...(ownerState.disableIcon && {
         display: 'contents',
       }),
+      [`&.${radioClasses.checked}`]: {
+        '--Icon-color': 'currentColor',
+      },
     },
     ...(!ownerState.disableIcon
       ? [
@@ -426,7 +435,7 @@ Radio.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
