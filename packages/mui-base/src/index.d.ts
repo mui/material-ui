@@ -38,6 +38,9 @@ export * from './Modal';
 
 export { default as NoSsr } from './NoSsr';
 
+export { default as Unstable_NumberInput } from './Unstable_NumberInput';
+export * from './Unstable_NumberInput';
+
 export { default as OptionGroup } from './OptionGroup';
 export * from './OptionGroup';
 
@@ -103,6 +106,9 @@ export * from './useMenuButton';
 
 export { default as useMenuItem } from './useMenuItem';
 export * from './useMenuItem';
+
+export { default as unstable_useNumberInput } from './unstable_useNumberInput';
+export * from './unstable_useNumberInput';
 
 export { default as useOption } from './useOption';
 export * from './useOption';
