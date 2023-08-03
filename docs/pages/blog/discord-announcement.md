@@ -29,11 +29,9 @@ There are a plethora of reasons why you should join, but here are the three bigg
    What's a better way to get a real-time response from the MUI team and other users?!
 
 2. **Community building**:
-   Want to hear what the MUI team is up to?
-   Get the latest update with the products you're using?
-   Want to give us real-time feedback?
-   Heck, do you want to see if others are facing the same issue you're having?
-   Discord is a great place for us to get together and chat! (Keep a lookout for #voice-meetups!)
+   Discord is a great place for us to get together and chat!
+   For so long, there wasn't a way for us to get together.
+   We have big plans to set up events such as hack-a-thons, monthly office hours with our Developer Advocates, speaking events with MUI founders, and the list goes on.
 
 3. **Networking and collaboration opportunities**:
    We want this to be a safe place where you can join, have fun, and meet new people.
