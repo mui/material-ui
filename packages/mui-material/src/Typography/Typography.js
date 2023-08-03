@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_extendSxProp as extendSxProp } from '@mui/system';
+import { unstable_extendSxProp as extendSxProp, getPath } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import styled from '../styles/styled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
@@ -29,6 +29,7 @@ const useUtilityClasses = (ownerState) => {
 export const TypographyRoot = styled('span', {
   name: 'MuiTypography',
   slot: 'Root',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) && prop !== 'color',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
@@ -43,6 +44,10 @@ export const TypographyRoot = styled('span', {
   },
 })(({ theme, ownerState }) => ({
   margin: 0,
+  color:
+    getPath(theme, `palette.${ownerState.color}.main`, false) ||
+    getPath(theme, `palette.${ownerState.color}`, false) ||
+    ownerState.color,
   ...(ownerState.variant && theme.typography[ownerState.variant]),
   ...(ownerState.align !== 'inherit' && {
     textAlign: ownerState.align,
@@ -89,25 +94,27 @@ const transformDeprecatedColors = (color) => {
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiTypography' });
-  const color = transformDeprecatedColors(themeProps.color);
-  const props = extendSxProp({ ...themeProps, color });
+  const props = { ...extendSxProp(themeProps), color: themeProps.color };
 
   const {
     align = 'inherit',
     className,
+    // eslint-disable-next-line react/prop-types
+    color,
     component,
     gutterBottom = false,
     noWrap = false,
     paragraph = false,
     variant = 'body1',
     variantMapping = defaultVariantMapping,
+    sx,
     ...other
   } = props;
 
   const ownerState = {
     ...props,
     align,
-    color,
+    color: transformDeprecatedColors(color),
     className,
     component,
     gutterBottom,
@@ -130,6 +137,11 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
       ref={ref}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
+      color={color}
+      sx={[
+        ...(!Object.keys(colorTransformations).includes(color) ? [{ color }] : []),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...other}
     />
   );
