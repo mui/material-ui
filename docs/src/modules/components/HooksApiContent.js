@@ -63,8 +63,11 @@ export default function HooksApiContent(props) {
 
     const hookNameKebabCase = kebabCase(hookName);
 
-    const hookImportModule = source.split('/').slice(2, 3)[0];
-    const hookImportModuleCleaned = hookImportModule.replace('unstable_', '');
+    let defaultImportName = hookName;
+
+    if (/unstable_/.test(filename)) {
+      defaultImportName = `unstable_${hookName} as ${hookName}`;
+    }
 
     return (
       <React.Fragment key={`hook-api-${key}`}>
@@ -75,10 +78,7 @@ export default function HooksApiContent(props) {
             code={`
 import ${hookName} from '${source.split('/').slice(0, -1).join('/')}';
 // ${t('or')}
-import { ${hookName === hookImportModuleCleaned ? hookImportModule : hookName} } from '${source
-              .split('/')
-              .slice(0, 2)
-              .join('/')}';`}
+import { ${defaultImportName} } from '${source.split('/').slice(0, 2).join('/')}';`}
             language="jsx"
           />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
