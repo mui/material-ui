@@ -13,7 +13,7 @@
     "rowsPerPage": { "type": { "name": "custom", "description": "integer" }, "required": true },
     "ActionsComponent": { "type": { "name": "elementType" }, "default": "TablePaginationActions" },
     "backIconButtonProps": { "type": { "name": "object" } },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "getItemAriaLabel": {
       "type": { "name": "func" },
@@ -48,7 +48,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "TablePagination",

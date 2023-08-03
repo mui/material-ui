@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "position": {
       "type": {
         "name": "enum",
@@ -13,7 +13,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "TimelineItem",

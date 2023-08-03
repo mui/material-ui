@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "custom", "description": "node" }, "required": true },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "defaultExpanded": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableGutters": { "type": { "name": "bool" }, "default": "false" },
@@ -19,7 +19,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
     "TransitionProps": { "type": { "name": "object" } }

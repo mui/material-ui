@@ -1,9 +1,6 @@
 import { DropdownAction, DropdownActionTypes, DropdownState } from './useDropdown.types';
 
-export default function dropdownReducer(
-  state: DropdownState,
-  action: DropdownAction,
-): DropdownState {
+export function dropdownReducer(state: DropdownState, action: DropdownAction): DropdownState {
   switch (action.type) {
     case DropdownActionTypes.blur:
       return { open: false };

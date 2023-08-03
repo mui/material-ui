@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Menu from '@mui/base/Menu';
-import MenuButton from '@mui/base/MenuButton';
-import MenuItem from '@mui/base/MenuItem';
-import Dropdown from '@mui/base/Dropdown';
+import { Menu } from '@mui/base/Menu';
+import { MenuButton } from '@mui/base/MenuButton';
+import { MenuItem } from '@mui/base/MenuItem';
+import { Dropdown } from '@mui/base/Dropdown';
 import { useTheme } from '@mui/system';
 
 function useIsDarkMode() {

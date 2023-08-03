@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getOptionGroupUtilityClass } from './optionGroupClasses';
 import {
   OptionGroupLabelSlotProps,
@@ -118,4 +118,4 @@ OptionGroup.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default OptionGroup;
+export { OptionGroup };

@@ -251,7 +251,7 @@ Copy and paste the code below into the file:
 
 ```tsx
 import * as React from 'react';
-import Slider, { SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
+import { Slider, SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
 
 const Slider = React.forwardRef(function Slider(
   props: SliderProps,
@@ -334,7 +334,7 @@ To do this, it's not enough to just use classes for the thumb—we need also to 
 +++ b/src/Slider.tsx
 @@ -1,6 +1,17 @@
  import * as React from 'react';
- import Slider, { SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
+ import { Slider, SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
 
 +const Thumb = React.forwardRef(function Thumb(
 +  props: SliderThumbSlotProps,
@@ -397,7 +397,7 @@ Create a `Button.tsx` file and copy the following code:
 
 ```tsx
 import * as React from 'react';
-import Button, { ButtonOwnerState, ButtonProps } from '@mui/base/Button';
+import { Button, ButtonOwnerState, ButtonProps } from '@mui/base/Button';
 
 const Button = React.forwardRef(function Button(
   props: ButtonProps,

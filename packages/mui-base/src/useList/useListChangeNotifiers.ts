@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import useMessageBus from '../utils/useMessageBus';
+import { useMessageBus } from '../utils/useMessageBus';
 
 const SELECTION_CHANGE_TOPIC = 'select:change-selection';
 const HIGHLIGHT_CHANGE_TOPIC = 'select:change-highlight';
@@ -27,9 +27,9 @@ export interface ListChangeNotifiers<ItemValue> {
 /**
  * @ignore - internal hook.
  *
- * This hook is used to notify any interested components about changes in the Select's selection and highlight.
+ * This hook is used to notify any interested components about changes in the list's selection and highlight.
  */
-export default function useSelectChangeNotifiers<Item>(): ListChangeNotifiers<Item> {
+export function useListChangeNotifiers<Item>(): ListChangeNotifiers<Item> {
   const messageBus = useMessageBus();
 
   const notifySelectionChanged = React.useCallback(
