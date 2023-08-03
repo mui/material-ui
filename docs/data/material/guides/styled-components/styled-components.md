@@ -106,5 +106,6 @@ MUI provides boilerplate examples of Create React App with Material UI and style
 - [create-react-app with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts)
 
 :::warning
-`@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/material-ui/getting-started/installation/) for more info.
+`@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself.
+See the [Installation guide](/material-ui/getting-started/installation/) for more info.
 :::
