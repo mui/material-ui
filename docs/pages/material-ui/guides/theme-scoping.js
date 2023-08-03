@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import * as pageProps from 'docs/data/material/guides/multiple-styling-solutions/multiple-styling-solutions.md?@mui/markdown';
+import * as pageProps from 'docs/data/material/guides/theme-scoping/theme-scoping.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs {...pageProps} />;
