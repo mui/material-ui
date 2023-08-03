@@ -1,22 +1,30 @@
 /**
  * Finds the last segment of the path starting with @mui/base.
  *
- * @example @mui/base/Menu ➔ Menu
- * @example @mui/base/utils/Foo ➔ Foo
+ * @example '@mui/base/Menu' ➔ 'Menu'
+ * @example '@mui/base' ➔ null
  */
-function getBaseImportIdentifier(path) {
+function getBaseImportIdentifier(path, filePath) {
   const source = path?.node?.source?.value;
   if (!source) {
     return null;
   }
 
-  const baseImportPathMatch = source.match(/@mui\/base\/(?:(?:.*)\/)*([^/]+)/);
+  const baseImportPathMatch = source.match(/@mui\/base\/(.+)/);
 
   if (baseImportPathMatch == null) {
     return null;
   }
 
-  return baseImportPathMatch[1];
+  if (baseImportPathMatch[1]?.includes('/')) {
+    console.warn(
+      `WARNING: ${filePath}: "${source}" is more than one level deep. This is not supported.`,
+    );
+
+    return null;
+  }
+
+  return baseImportPathMatch[1] ?? null;
 }
 
 /**
@@ -31,7 +39,7 @@ export default function transformer(file, api, options) {
   const withTransformedImports = j(file.source)
     .find(j.ImportDeclaration)
     .forEach((path) => {
-      const baseImportPath = getBaseImportIdentifier(path);
+      const baseImportPath = getBaseImportIdentifier(path, file.path);
       if (baseImportPath === null) {
         return;
       }

@@ -38,6 +38,27 @@ describe('@mui/codemod', () => {
         const expected = read('./base-use-named-exports.test/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
+      it('warns when deep import is found but transforms all the valid ones', () => {
+        let actual;
+        const filePath = require.resolve('./base-use-named-exports.test/actual-with-warning.js');
+        expect(() => {
+          actual = transform(
+            {
+              source: read('./base-use-named-exports.test/actual-with-warning.js'),
+              path: filePath,
+            },
+            { jscodeshift },
+            {},
+          );
+        }).toWarnDev(
+          `WARNING: ${filePath}: "@mui/base/utils/ClassNameConfigurator" is more than one level deep. This is not supported.`,
+        );
+
+        const expected = read('./base-use-named-exports.test/expected-with-warning.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+        expect(actual);
+      });
     });
   });
 });
