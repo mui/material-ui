@@ -33,7 +33,7 @@ yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
 :::info
-💡 Take a look at the [Styled Engine guide](/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+Take a look at the [styled-components guide](/material-ui/guides/styled-components/) for more information on configuration.
 :::
 
 ## Fonte Roboto

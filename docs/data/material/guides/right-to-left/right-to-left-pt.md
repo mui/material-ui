@@ -49,7 +49,9 @@ npm install stylis stylis-plugin-rtl
 ```
 
 :::warning
-**Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/material-ui/guides/styled-engine/), make sure to install the correct version.
+Only Emotion is compatible with version 2 of the plugin. 
+styled-components requires version 1. 
+If you're using [styled-components instead of Emotion](/material-ui/guides/styled-components/), make sure to install the correct version.
 :::
 
 In case you are using `jss` (up to v4) or with the legacy `@mui/styles` package, you need [`jss-rtl`](https://github.com/alitaheri/jss-rtl) to flip the styles.

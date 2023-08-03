@@ -97,7 +97,7 @@ By default, Material UI uses [Emotion](https://emotion.sh/docs/styled) as its st
 If you plan to stick with Emotion, then `@mui/styled-engine` is a dependency in your app, and you don't need to install it separately.
 
 If you prefer to use [styled-components](https://styled-components.com/docs/basics#getting-started), then you need to install `@mui/styled-engine-sc` in place of the Emotion packages.
-See the [Styled engine guide](/material-ui/guides/styled-engine/) for more details.
+See the [styled-components guide](/material-ui/guides/styled-components/) for more details.
 
 In either case, you won't interact much with either of these packages beyond installation—they're used internally in `@mui/system`.
 

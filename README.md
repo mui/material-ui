@@ -98,7 +98,7 @@ npm install @mui/system @emotion/react @emotion/styled
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
-Or if you want to use `styled-components` as a styling engine:
+Or if you want to use styled-components as a styling engine:
 
 **npm:**
 
@@ -112,7 +112,7 @@ npm install @mui/material @mui/styled-engine-sc styled-components
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
-Visit our [`styled-engine` guide](https://mui.com/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+Visit our [styled-components guide](https://mui.com/material-ui/guides/styled-components/) for more information on configuration.
 
 ## Sponsors
 
