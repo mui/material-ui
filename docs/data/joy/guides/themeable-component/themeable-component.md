@@ -36,7 +36,7 @@ Though you can give these slots any names you prefer, we recommend using `root` 
 
 {{"demo": "StatSlots.js", "hideToolbar": true}}
 
-Use the `styled` API with `name`, `slot`, and `overridesResolver` parameters to create the slots, as shown below:
+Use the `styled` API with `name` and `slot` parameters to create the slots, as shown below:
 
 ```js
 import * as React from 'react';
@@ -58,17 +58,15 @@ const StatRoot = styled('div', {
 const StatValue = styled('div', {
   name: 'JoyStat',
   slot: 'value',
-  overridesResolver: (props, styles) => styles.value,
 })(({ theme }) => ({
-  ...theme.typography.h3,
+  ...theme.typography.h2,
 }));
 
 const StatUnit = styled('div', {
   name: 'JoyStat',
   slot: 'unit',
-  overridesResolver: (props, styles) => styles.unit,
 })(({ theme }) => ({
-  ...theme.typography.body2,
+  ...theme.typography['body-sm'],
   color: theme.vars.palette.text.tertiary,
 }));
 ```
@@ -140,7 +138,7 @@ const theme = extendTheme({
 
 ### 3. Style the slot with ownerState
 
-When you need to style the slot-based props or internal state, wrap them in the `ownerState` object and pass it to each slot as a prop. 
+When you need to style the slot-based props or internal state, wrap them in the `ownerState` object and pass it to each slot as a prop.
 The `ownerState` is a special name that will not spread to the DOM via the `styled` API.
 
 Add a `variant` prop to the `Stat` component and use it to style the `root` slot, as shown below:
@@ -297,13 +295,10 @@ declare module '@mui/joy/styles' {
 }
 ```
 
-:::success
-:::
-
 ---
 
 ## Template
 
 This template is the final product of the step-by-step guide above, demonstrating how to build a custom component that can be styled with the theme as if it was a built-in component.
 
-{{"demo": "StatFullTemplate.js"}}
+{{"demo": "StatFullTemplate.js", "defaultCodeOpen": true}}
