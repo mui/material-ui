@@ -330,7 +330,7 @@ import { ${pageContent.name} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        {componentSlots?.length ? (
+        {componentSlots?.length > 0 ? (
           <React.Fragment>
             <Heading hash="slots" />
             {slotGuideLink && (
@@ -371,7 +371,6 @@ import { ${pageContent.name} } from '${source}';`}
               componentName={pageContent.name}
               classDescriptions={classDescriptions}
             />
-            <Divider />
           </React.Fragment>
         ) : null}
         <DesignInfo />

@@ -17,7 +17,7 @@ export interface MenuProviderProps {
  *
  * @ignore - do not document.
  */
-export default function MenuProvider(props: MenuProviderProps) {
+export function MenuProvider(props: MenuProviderProps) {
   const { value, children } = props;
 
   const {

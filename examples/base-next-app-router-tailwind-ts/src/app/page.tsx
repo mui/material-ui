@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Switch from '@mui/base/Switch';
+import { Switch } from '@mui/base/Switch';
 import { Select, SelectOption, Slider } from './components';
 
 function Heading(props: { children: React.ReactNode }) {

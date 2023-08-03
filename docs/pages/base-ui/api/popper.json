@@ -43,7 +43,7 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "transition": { "type": { "name": "bool" }, "default": "false" }
   },

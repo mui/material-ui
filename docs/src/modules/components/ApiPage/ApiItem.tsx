@@ -61,7 +61,6 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
       '& .MuiApi-item-description': {
         padding: '4px 6px',
-        flexGrow: 1,
         textOverflow: 'ellipsis',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
@@ -77,9 +76,10 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         placeItems: 'end',
       },
       '& .MuiApi-item-note': {
-        padding: '2px 6px',
+        paddingTop: 5,
         fontSize: 11,
         letterSpacing: '1px',
+        lineHeight: 1.6,
         textTransform: 'uppercase',
         color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
         fontWeight: theme.typography.fontWeightBold,
@@ -125,72 +125,17 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         fill: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
       },
     },
-    '& .prop-list-notes': {
-      ...theme.typography.body2,
-      fontWeight: theme.typography.fontWeightMedium,
-      padding: 12,
+    '& code.Api-code': {
+      ...theme.typography.caption,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightRegular,
+      padding: '1px 4px',
       border: '1px solid',
-      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
-      borderRadius: 8,
-      backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
-      color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
-      marginBottom: 16,
-    },
-    '& .prop-list-description': {
-      marginBottom: 10,
-    },
-    '& .prop-list-additional-info': {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 8,
-      '& .prop-list-title': {
-        paddingRight: 5,
-        whiteSpace: 'nowrap',
-        p: {
-          ...theme.typography.body2,
-          margin: 0,
-          fontWeight: theme.typography.fontWeightSemiBold,
-        },
-      },
-      '&>div': { display: 'flex', alignItems: 'baseline' },
-    },
-    '& .prop-list-default-props': {
-      ...theme.typography.body2,
-      fontWeight: theme.typography.fontWeightSemiBold,
-      code: {
-        ...theme.typography.caption,
-        fontFamily: theme.typography.fontFamilyCode,
-        fontWeight: theme.typography.fontWeightRegular,
-        padding: '1px 4px',
-        border: '1px solid',
-        borderColor: alpha(darkTheme.palette.primary[100], 0.5),
-        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
-      },
-    },
-    '& .prop-list-signature': {
-      p: {
-        ...theme.typography.body2,
-        fontWeight: theme.typography.fontWeightSemiBold,
-        marginBottom: 8,
-      },
-      ul: {
-        paddingLeft: 24,
-        marginTop: 2,
-        marginBottom: 0,
-      },
-      '&>code': {
-        borderRadius: 8,
-        padding: 12,
-        width: '100%',
-        marginBottom: 8,
-        color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[50]})`,
-        border: '1px solid',
-        borderColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
-        backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
-      },
+      borderColor: alpha(darkTheme.palette.primary[100], 0.5),
+      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
     },
     '&>hr': {
-      margin: '20px 0',
+      margin: '18px 0',
     },
   }),
   ({ theme }) => ({
@@ -234,24 +179,9 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
           fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
         },
       },
-      '& .prop-list-additional-info': {
-        '& .prop-list-title': {
-          p: {
-            color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
-          },
-        },
-      },
-      '& .prop-list-notes': {
-        borderColor: alpha(darkTheme.palette.grey[800], 0.5),
-        backgroundColor: alpha(darkTheme.palette.warning[800], 0.2),
-        color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
-      },
-      '& .prop-list-default-props': {
-        color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
-        code: {
-          borderColor: alpha(darkTheme.palette.primary[400], 0.1),
-          backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
-        },
+      '& code.Api-code': {
+        borderColor: alpha(darkTheme.palette.primary[400], 0.1),
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
       },
     },
   }),
@@ -267,7 +197,7 @@ export type ApiItemProps = {
 };
 
 function ApiItem(props: ApiItemProps) {
-  const { title, description, note, children, type, id } = props;
+  const { title, description, note, children, type, id, ...other } = props;
   const descriptionRef = React.useRef<HTMLSpanElement>(null);
   const [isOverflow, setIsOverflow] = React.useState(false);
   const [isExtended, setIsExtended] = React.useState(false);
@@ -289,7 +219,7 @@ function ApiItem(props: ApiItemProps) {
   }, []);
 
   return (
-    <Root ownerState={{ type }}>
+    <Root ownerState={{ type }} {...other}>
       <div id={id} className="MuiApi-item-header">
         <a
           className="MuiApi-item-link-visual"
@@ -305,7 +235,11 @@ function ApiItem(props: ApiItemProps) {
           </svg>
         </a>
 
-        <span className="MuiApi-item-title">{title}</span>
+        <span
+          className="MuiApi-item-title" // This className is used by Algolia
+        >
+          {title}
+        </span>
 
         <span
           className={`MuiApi-item-description${
