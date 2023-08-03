@@ -9,23 +9,27 @@ import Link from 'docs/src/modules/components/Link';
 import NpmCopyButton from 'docs/src/components/action/NpmCopyButton';
 
 interface GetStartedButtonsProps extends BoxProps {
-  primaryCTA?: string;
-  primaryCTAto: string;
-  secondaryCTA?: string;
-  secondaryCTAto?: string;
+  primaryLabel?: string;
+  primaryUrl: string;
+  primaryUrlTarget?: string;
+  secondaryLabel?: string;
+  secondaryUrl?: string;
+  secondaryUrlTarget?: string;
   installation?: string;
-  installationAlternative?: string;
+  altInstallation?: string;
 }
 
 export default function GetStartedButtons(props: GetStartedButtonsProps) {
   const [copied, setCopied] = React.useState(false);
   const {
-    primaryCTA = 'Get started',
-    primaryCTAto,
-    secondaryCTA,
-    secondaryCTAto,
+    primaryLabel = 'Get started',
+    primaryUrl,
+    primaryUrlTarget,
+    secondaryLabel,
+    secondaryUrl,
+    secondaryUrlTarget,
     installation,
-    installationAlternative,
+    altInstallation,
     ...other
   } = props;
 
@@ -50,8 +54,10 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
         }}
       >
         <Button
-          href={primaryCTAto}
+          href={primaryUrl}
           component={Link}
+          target={primaryUrlTarget ? '_blank' : ''}
+          rel={primaryUrlTarget ? 'noopener' : ''}
           noLinkStyle
           size="large"
           variant="contained"
@@ -62,7 +68,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
             mb: { xs: 2, md: 0 },
           }}
         >
-          {primaryCTA}
+          {primaryLabel}
         </Button>
         {installation ? (
           <Button
@@ -85,23 +91,23 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
             {installation}
           </Button>
         ) : null}
-        {secondaryCTA ? (
+        {secondaryLabel ? (
           <Button
-            href={secondaryCTAto}
+            href={secondaryUrl}
             component={Link}
+            target={secondaryUrlTarget ? '_blank' : ''}
+            rel={secondaryUrlTarget ? 'noopener' : ''}
             noLinkStyle
             variant="outlined"
             size="large"
             color="secondary"
             endIcon={<KeyboardArrowRightRounded />}
           >
-            {secondaryCTA}
+            {secondaryLabel}
           </Button>
         ) : null}
       </Box>
-      {installationAlternative ? (
-        <NpmCopyButton installation={installationAlternative} sx={{ mt: 2 }} />
-      ) : null}
+      {altInstallation ? <NpmCopyButton installation={altInstallation} sx={{ mt: 2 }} /> : null}
     </React.Fragment>
   );
 }

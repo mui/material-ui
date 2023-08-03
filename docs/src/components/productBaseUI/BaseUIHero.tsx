@@ -84,10 +84,10 @@ export default function BaseUIHero() {
             engine or theme.
           </Typography>
           <GetStartedButtons
-            primaryCTAto={ROUTES.baseDocs}
-            secondaryCTA="Learn Base UI"
-            secondaryCTAto={ROUTES.baseQuickstart}
-            installationAlternative="npm install @mui/base"
+            primaryUrl={ROUTES.baseDocs}
+            secondaryLabel="Learn Base UI"
+            secondaryUrl={ROUTES.baseQuickstart}
+            altInstallation="npm install @mui/base"
           />
         </Box>
       }

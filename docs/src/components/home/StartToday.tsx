@@ -22,7 +22,7 @@ export default function StartToday() {
           }
           description="Find out why MUI's tools are trusted by thousands of open-source developers and teams around the world."
         />
-        <GetStartedButtons primaryCTA="Discover the Core libraries" primaryCTAto="/core/" />
+        <GetStartedButtons primaryLabel="Discover the Core libraries" primaryUrl="/core/" />
       </Grid>
       <Grid item xs={12} sm={6} md={6} container spacing={2}>
         <Grid item xs={12} md={6}>
