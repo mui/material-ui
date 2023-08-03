@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -7,7 +8,7 @@ import {
   useSlotProps,
   unstable_composeClasses as composeClasses,
 } from '@mui/base';
-import useSlider, { valueToPercent } from '@mui/base/useSlider';
+import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
@@ -302,7 +303,9 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
   overridesResolver: (props, styles) => styles.valueLabel,
 })(({ theme, ownerState }) => ({
   [`&.${sliderClasses.valueLabelOpen}`]: {
-    transform: 'translateY(-100%) scale(1)',
+    transform: `${
+      ownerState.orientation === 'vertical' ? 'translateY(-50%)' : 'translateY(-100%)'
+    } scale(1)`,
   },
   zIndex: 1,
   whiteSpace: 'nowrap',
@@ -311,7 +314,9 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
   transition: theme.transitions.create(['transform'], {
     duration: theme.transitions.duration.shortest,
   }),
-  transform: 'translateY(-100%) scale(0)',
+  transform: `${
+    ownerState.orientation === 'vertical' ? 'translateY(-50%)' : 'translateY(-100%)'
+  } scale(0)`,
   position: 'absolute',
   backgroundColor: (theme.vars || theme).palette.grey[600],
   borderRadius: 2,
@@ -335,18 +340,18 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
     },
   }),
   ...(ownerState.orientation === 'vertical' && {
-    right: '30px',
-    top: '24px',
+    right: ownerState.size === 'small' ? '20px' : '30px',
+    top: '50%',
     transformOrigin: 'right center',
     '&:before': {
       position: 'absolute',
       content: '""',
       width: 8,
       height: 8,
-      transform: 'translate(-50%, 50%) rotate(45deg)',
+      transform: 'translate(-50%, -50%) rotate(45deg)',
       backgroundColor: 'inherit',
-      right: '-20%',
-      top: '25%',
+      right: -8,
+      top: '50%',
     },
   }),
   ...(ownerState.size === 'small' && {
@@ -565,7 +570,8 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     values,
     trackOffset,
     trackLeap,
-  } = useSlider({ ...ownerState, ref });
+    getThumbStyle,
+  } = useSlider({ ...ownerState, rootRef: ref });
 
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
   ownerState.dragging = dragging;
@@ -763,7 +769,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
               })}
               style={{
                 ...style,
-                pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+                ...getThumbStyle(index),
                 ...thumbProps.style,
               }}
             >

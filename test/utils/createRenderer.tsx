@@ -357,6 +357,10 @@ interface Clock {
    * Runs the current test suite (i.e. `describe` block) with fake timers.
    */
   withFakeTimers(): void;
+  /**
+   * Restore the real timer
+   */
+  restore(): void;
 }
 
 type ClockConfig = undefined | number | Date;
@@ -426,6 +430,9 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
         mode = defaultMode;
       });
     },
+    restore() {
+      clock?.restore();
+    },
   };
 }
 
@@ -441,11 +448,6 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
    */
   clock?: 'fake' | 'real';
   clockConfig?: ClockConfig;
-  /**
-   * To disable SSR warnings when using CSS pseudo selectors, e.g. :first-child
-   * https://github.com/emotion-js/emotion/issues/1105#issuecomment-1058225197
-   */
-  emotionCompat?: true;
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
@@ -454,7 +456,6 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
-    emotionCompat,
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
@@ -519,10 +520,6 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     profiler = new UsedProfiler(test);
 
     emotionCache = createEmotionCache({ key: 'emotion-client-render' });
-
-    if (emotionCompat) {
-      emotionCache.compat = true;
-    }
 
     serverContainer = document.createElement('div');
     document.body.appendChild(serverContainer);

@@ -27,7 +27,7 @@ Need to refer back to an older version of the docs? Check out [the v4 documentat
 :::
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration).
 :::
 
 ## Why you should migrate
@@ -129,13 +129,13 @@ Install the Material UI v5 packages.
 
 With npm:
 
-```sh
+```bash
 npm install @mui/material @mui/styles
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/material @mui/styles
 ```
 
@@ -145,13 +145,13 @@ If you're using `@material-ui/lab` or `@material-ui/icons`, you will need to ins
 
 With npm:
 
-```sh
+```bash
 npm install @mui/lab
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/lab
 ```
 
@@ -159,13 +159,13 @@ yarn add @mui/lab
 
 With npm:
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 
@@ -179,13 +179,13 @@ Next, add the Emotion packages.
 
 With npm:
 
-```sh
+```bash
 npm install @emotion/react @emotion/styled
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @emotion/react @emotion/styled
 ```
 
@@ -279,7 +279,7 @@ Make sure that your application still runs without errors after running each cod
 
 This codemod contains most of the transformers that are necessary for migration. It should be only applied **once per folder.**
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
@@ -311,7 +311,7 @@ createMuiTheme({
 
 If you want to keep `variant="standard"` in your components, run this codemod or else configure the corresponding default theme props.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/variant-prop <path>
 ```
 
@@ -341,7 +341,7 @@ createMuiTheme({
 
 If you want to keep `underline="hover"`, run this codemod or else configure the corresponding default theme props.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 

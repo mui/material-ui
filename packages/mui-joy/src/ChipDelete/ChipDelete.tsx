@@ -1,17 +1,20 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useButton from '@mui/base/useButton';
-import { useSlotProps } from '@mui/base/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useButton } from '@mui/base/useButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useVariantColor } from '../styles/variantColorInheritance';
 import { useColorInversion } from '../styles/ColorInversion';
 import Cancel from '../internal/svg-icons/Cancel';
-import chipDeleteClasses, { getChipDeleteUtilityClass } from './chipDeleteClasses';
+import { getChipDeleteUtilityClass } from './chipDeleteClasses';
 import { ChipDeleteProps, ChipDeleteOwnerState, ChipDeleteTypeMap } from './ChipDeleteProps';
 import ChipContext from '../Chip/ChipContext';
+import useSlot from '../utils/useSlot';
+import { StyledIconButton } from '../IconButton/IconButton';
 
 const useUtilityClasses = (ownerState: ChipDeleteOwnerState) => {
   const { focusVisible, variant, color, disabled } = ownerState;
@@ -28,43 +31,19 @@ const useUtilityClasses = (ownerState: ChipDeleteOwnerState) => {
   return composeClasses(slots, getChipDeleteUtilityClass, {});
 };
 
-const ChipDeleteRoot = styled('button', {
+const ChipDeleteRoot = styled(StyledIconButton as unknown as 'button', {
   name: 'JoyChipDelete',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ChipDeleteOwnerState }>(({ theme, ownerState }) => [
-  {
-    '--Icon-margin': 'initial', // prevent overrides from parent
-    pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
-    cursor: 'pointer',
-    width: 'var(--Chip-deleteSize, 2rem)',
-    height: 'var(--Chip-deleteSize, 2rem)',
-    borderRadius: 'var(--Chip-deleteRadius, 50%)',
-    margin: 'var(--Chip-deleteMargin)',
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1, // overflow above sibling button or anchor
-    border: 'none', // reset user agent stylesheet
-    background: 'none', // reset user agent stylesheet
-    padding: '0px', // reset user agent stylesheet
-    [theme.focus.selector]: theme.focus.default,
-  },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
-  { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
-  {
-    [`&.${chipDeleteClasses.disabled}`]:
-      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-  },
-]);
+})<{ ownerState: ChipDeleteOwnerState }>({
+  '--IconButton-size': 'var(--Chip-deleteSize, 2rem)',
+  '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.3)',
+  pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
+  borderRadius: 'var(--Chip-deleteRadius, 50%)',
+  zIndex: 1, // overflow above sibling button or anchor
+  padding: 0, // reset user agent stylesheet
+});
 
-const chipVariantMapping = {
-  plain: 'outlined',
-  outlined: 'soft',
-  soft: 'solid',
-  solid: 'solid',
-} as const;
 /**
  *
  * Demos:
@@ -82,20 +61,25 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   });
 
   const {
-    component,
     children,
-    variant: variantProp,
-    color: colorProp,
+    variant: variantProp = 'plain',
+    color: colorProp = 'neutral',
     disabled: disabledProp,
     onKeyDown,
     onDelete,
     onClick,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const chipContext = React.useContext(ChipContext);
-  const variant = variantProp || chipVariantMapping[chipContext.variant!] || 'solid';
+  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor(
+    inProps.variant,
+    inProps.color,
+  );
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp || chipContext.color || 'primary');
+  const color = getColor(inProps.color, inheritedColor);
   const disabled = disabledProp ?? chipContext.disabled;
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
@@ -104,7 +88,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   const { focusVisible, getRootProps } = useButton({
     ...props,
     disabled,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   const ownerState = {
@@ -116,6 +100,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const handleClickDelete = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (!disabled && onDelete) {
@@ -138,11 +123,11 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     }
   };
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: ChipDeleteRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: {},
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       as: component,
@@ -153,7 +138,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   });
 
   const { onDelete: excludeOnDelete, ...restOfRootProps } = rootProps;
-  return <ChipDeleteRoot {...restOfRootProps}>{children ?? <Cancel />}</ChipDeleteRoot>;
+  return <SlotRoot {...restOfRootProps}>{children ?? <Cancel />}</SlotRoot>;
 }) as OverridableComponent<ChipDeleteTypeMap>;
 
 ChipDelete.propTypes /* remove-proptypes */ = {
@@ -167,10 +152,10 @@ ChipDelete.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -198,6 +183,20 @@ ChipDelete.propTypes /* remove-proptypes */ = {
    */
   onKeyDown: PropTypes.func,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -207,7 +206,7 @@ ChipDelete.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'solid'
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

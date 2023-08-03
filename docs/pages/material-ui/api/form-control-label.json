@@ -2,7 +2,7 @@
   "props": {
     "control": { "type": { "name": "element" }, "required": true },
     "checked": { "type": { "name": "bool" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ typography?: object }" },
       "default": "{}"
@@ -18,7 +18,14 @@
       },
       "default": "'end'"
     },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent) => void",
+        "describedArgs": ["event"]
+      }
+    },
+    "required": { "type": { "name": "bool" } },
     "slotProps": {
       "type": { "name": "shape", "description": "{ typography?: object }" },
       "default": "{}"
@@ -27,7 +34,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "any" } }
   },
@@ -40,9 +48,15 @@
       "labelPlacementBottom",
       "disabled",
       "label",
-      "error"
+      "error",
+      "required",
+      "asterisk"
     ],
-    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error" },
+    "globalClasses": {
+      "disabled": "Mui-disabled",
+      "error": "Mui-error",
+      "required": "Mui-required"
+    },
     "name": "MuiFormControlLabel"
   },
   "spread": true,

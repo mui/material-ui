@@ -1,12 +1,31 @@
+const querystring = require('node:querystring');
 const { WebClient } = require('@slack/web-api');
 const { App, AwsLambdaReceiver } = require('@slack/bolt');
-const querystring = require('node:querystring');
 const { JWT } = require('google-auth-library');
 const { sheets } = require('@googleapis/sheets');
 
-const slackChannelIds = {
-  'mui-x': 'C04U3R2V9UK',
-  'mui-core': 'C041SDSF32L',
+const X_FEEBACKS_CHANNEL_ID = 'C04U3R2V9UK';
+const JOY_FEEBACKS_CHANNEL_ID = 'C050VE13HDL';
+const TOOLPAD_FEEBACKS_CHANNEL_ID = 'C050MHU703Z';
+const CORE_FEEBACKS_CHANNEL_ID = 'C041SDSF32L';
+const DESIGN_FEEDBACKS_CHANNEL_ID = 'C05HHSFH2QJ';
+
+const getSlackChannelId = (url, specialCases) => {
+  const { isDesignFeedback } = specialCases;
+
+  if (isDesignFeedback) {
+    return DESIGN_FEEDBACKS_CHANNEL_ID;
+  }
+  if (url.includes('/x/')) {
+    return X_FEEBACKS_CHANNEL_ID;
+  }
+  if (url.includes('/joy-ui/')) {
+    return JOY_FEEBACKS_CHANNEL_ID;
+  }
+  if (url.includes('/toolpad/')) {
+    return TOOLPAD_FEEBACKS_CHANNEL_ID;
+  }
+  return CORE_FEEBACKS_CHANNEL_ID;
 };
 
 const spreadSheetsIds = {
@@ -97,8 +116,16 @@ exports.handler = async (event, context, callback) => {
 
     if (data.callback_id === 'send_feedback') {
       // We send the feedback to the appopiate slack channel
-      const { rating, comment, currentLocationURL, commmentSectionURL, commmentSectionTitle } =
-        data;
+      const {
+        rating,
+        comment,
+        currentLocationURL,
+        commmentSectionURL: inCommmentSectionURL,
+        commmentSectionTitle,
+      } = data;
+
+      const isDesignFeedback = inCommmentSectionURL.includes('#new-docs-api-feedback');
+      const commmentSectionURL = isDesignFeedback ? '' : inCommmentSectionURL;
 
       const simpleSlackMessage = [
         `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
@@ -110,11 +137,12 @@ exports.handler = async (event, context, callback) => {
         }`,
       ].join('\n\n');
 
-      const isDocsX = currentLocationURL.includes('/x/');
       await slackClient.chat.postMessage({
-        channel: slackChannelIds[isDocsX ? 'mui-x' : 'mui-core'],
+        channel: getSlackChannelId(currentLocationURL, { isDesignFeedback }),
         text: simpleSlackMessage,
         as_user: true,
+        unfurl_links: false,
+        unfurl_media: false,
       });
     } else {
       const handler = await awsLambdaReceiver.start();

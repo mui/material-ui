@@ -1,3 +1,4 @@
+'use client';
 // reexports from system for module augmentation
 export type { BreakpointOverrides } from '@mui/system';
 
@@ -22,8 +23,6 @@ export type {
   PaletteNeutralOverrides,
   PaletteDanger,
   PaletteDangerOverrides,
-  PaletteInfo,
-  PaletteInfoOverrides,
   PaletteSuccess,
   PaletteSuccessOverrides,
   PaletteWarning,
@@ -41,14 +40,12 @@ export type {
   FontSizeOverrides,
   FontWeight,
   FontWeightOverrides,
-  LetterSpacing,
-  LetterSpacingOverrides,
   LineHeight,
   LineHeightOverrides,
   TypographySystem,
   TypographySystemOverrides,
 } from './types/typography';
-export type { Components } from './components';
+export type { Components, StyleOverrides } from './components';
 export type {
   VariantPlain,
   VariantPlainHover,
@@ -77,6 +74,7 @@ export type {
   ThemeCssVar,
   ThemeCssVarOverrides,
 } from './types/theme';
+export { default as THEME_ID } from './identifier';
 export { CssVarsProvider, useColorScheme, getInitColorSchemeScript } from './CssVarsProvider';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 export { default as styled } from './styled';

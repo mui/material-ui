@@ -3,7 +3,6 @@
   "extends": ["dtslint/dtslint.json"],
   "jsRules": {},
   "rules": {
-    "deprecation": true,
     // $ExpectError -> @ts-expect-error
     // $ExpectType -> `expectType` from `@mui/types`
     // Don't disable this rule unless you made sure `tsc` runs on the same files

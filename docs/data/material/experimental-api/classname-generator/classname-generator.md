@@ -120,7 +120,7 @@ Now, the `Mui` class is gone.
 
 ## Framework examples
 
-Always create an intializer file to hoist the `ClassNameGenerator` call to the top.
+Always create an initializer file to hoist the `ClassNameGenerator` call to the top.
 
 ```js
 // create a new file called `MuiClassNameSetup.js` at the root or src folder.

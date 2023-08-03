@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Chip from '@mui/material/Chip';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
@@ -79,7 +79,7 @@ const PRODUCTS = [
     name: 'MUI Toolpad',
     description: 'Low-code admin builder.',
     href: ROUTES.productToolpad,
-    chip: 'Alpha',
+    chip: 'Beta',
   },
 ];
 
@@ -95,7 +95,7 @@ const DOCS = [
     href: ROUTES.joyDocs,
   },
   {
-    name: 'MUI Base',
+    name: 'Base UI',
     description: 'Unstyled React components and low-level hooks.',
     href: ROUTES.baseDocs,
   },
@@ -224,7 +224,12 @@ export default function HeaderNavDropdown() {
                           >
                             {item.name}
                             {item.chip ? (
-                              <Chip size="small" label={item.chip} color="grey" />
+                              <Chip
+                                size="small"
+                                label={item.chip}
+                                color="primary"
+                                variant="outlined"
+                              />
                             ) : null}
                           </Box>
                           <Typography variant="body2" color="text.secondary">
@@ -270,7 +275,12 @@ export default function HeaderNavDropdown() {
                           >
                             {item.name}
                             {item.chip ? (
-                              <Chip size="small" label={item.chip} color="grey" />
+                              <Chip
+                                size="small"
+                                label={item.chip}
+                                color="primary"
+                                variant="outlined"
+                              />
                             ) : null}
                           </Box>
                           <Typography variant="body2" color="text.secondary">

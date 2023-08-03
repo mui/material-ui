@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'
@@ -69,8 +69,14 @@ The component has two states that can be controlled:
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-:::warning
 These two states are isolated, and should be controlled independently.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
 {{"demo": "ControllableStates.js"}}
@@ -136,7 +142,7 @@ related to the rendering of JSX.
 The Autocomplete component is built on this hook.
 
 ```tsx
-import useAutocomplete from '@mui/base/useAutocomplete';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 ```
 
 The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
@@ -229,6 +235,16 @@ Pay specific attention to the `ref` and `inputProps` keys.
 
 {{"demo": "CustomInputAutocomplete.js"}}
 
+### Globally Customized Options
+
+To globally customize the Autocomplete options for all components in your app,
+you can use the [theme default props](/material-ui/customization/theme-components/#theme-default-props) and set the `renderOption` property in the `defaultProps` key.
+The `renderOption` property takes the `ownerState` as the fourth parameter, which includes props and internal component state.
+To display the label, you can use the `getOptionLabel` prop from the `ownerState`.
+This approach enables different options for each Autocomplete component while keeping the options styling consistent.
+
+{{"demo": "GloballyCustomizedOptions.js"}}
+
 ### GitHub's picker
 
 This demo reproduces GitHub's label picker:
@@ -236,6 +252,12 @@ This demo reproduces GitHub's label picker:
 {{"demo": "GitHubLabel.js"}}
 
 Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
+
+### Hint
+
+The following demo shows how to add a hint feature to the Autocomplete using the `renderInput` and `filterOptions` props:
+
+{{"demo": "AutocompleteHint.js"}}
 
 ## Highlights
 

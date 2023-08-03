@@ -44,13 +44,9 @@ export default function DialogVerticalScroll() {
           setLayout(undefined);
         }}
       >
-        <ModalDialog
-          aria-labelledby="dialog-vertical-scroll-title"
-          aria-describedby="dialog-vertical-scroll-description"
-          layout={layout}
-        >
+        <ModalDialog aria-labelledby="dialog-vertical-scroll-title" layout={layout}>
           <ModalClose />
-          <Typography id="dialog-vertical-scroll-title" component="h2">
+          <Typography id="dialog-vertical-scroll-title" level="h2">
             Vertical scroll example
           </Typography>
           <FormControl

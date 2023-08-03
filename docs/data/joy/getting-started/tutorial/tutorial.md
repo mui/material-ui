@@ -64,7 +64,7 @@ Replace your basic Sheet from the previous step with the following `sx`-styled S
   sx={{
     width: 300,
     mx: 'auto', // margin left & right
-    my: 4, // margin top & botom
+    my: 4, // margin top & bottom
     py: 3, // padding top & bottom
     px: 2, // padding left & right
     display: 'flex',
@@ -87,13 +87,12 @@ To go deeper, read about the `sx` prop in the [MUI System documentation](/system
 
 The [Typography](/joy-ui/react-typography/) component replaces HTML header, paragraph, and span tags to help maintain a consistent hierarchy of text on the page.
 
-:::info
 The `level` prop gives you access to a pre-defined scale of typographic values.
-Joy UI provides 13 typographic levels out of the box:
+Joy UI provides 11 typographic levels out of the box.
 
-`display1 | display2 | h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | body4 | body5`
-
-:::
+- Four heading levels: `'h1' | 'h2' | 'h3' | 'h4'`
+- Three title levels: `'title-lg' | 'title-md' | 'title-sm'`
+- Four body levels: `'body-lg' | 'body-md' | 'body-sm' | 'body-xs'`
 
 Add an import for Typography with the rest of your imports:
 
@@ -108,7 +107,7 @@ Replace `Welcome!` inside your Sheet component with this `<div>`:
   <Typography level="h4" component="h1">
     Welcome!
   </Typography>
-  <Typography level="body2">Sign in to continue.</Typography>
+  <Typography level="body-sm">Sign in to continue.</Typography>
 </div>
 ```
 

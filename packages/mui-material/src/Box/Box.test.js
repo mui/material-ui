@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createRenderer, describeConformance } from 'test/utils';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
 

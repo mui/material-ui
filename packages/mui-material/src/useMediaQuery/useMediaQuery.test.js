@@ -1,17 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   act,
   createRenderer,
   screen,
   RenderCounter,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { stub } from 'sinon';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { ThemeProvider } from '@mui/material/styles';
 
 const usesUseSyncExternalStore = React.useSyncExternalStore !== undefined;
 
@@ -72,7 +72,7 @@ describe('useMediaQuery', () => {
     beforeEach(() => {
       matchMediaInstances = [];
       const fakeMatchMedia = createMatchMedia(1200, matchMediaInstances);
-      // can't stub non-existent properties with sinon
+      // can't stub nonexistent properties with sinon
       // jsdom does not implement window.matchMedia
       if (window.matchMedia === undefined) {
         window.matchMedia = fakeMatchMedia;
@@ -304,7 +304,7 @@ describe('useMediaQuery', () => {
   });
 
   describe('server-side', () => {
-    it('should use the ssr match media ponyfill', () => {
+    it('should use the SSR match media implementation', () => {
       function MyComponent() {
         const matches = useMediaQuery('(min-width:2000px)');
 
@@ -344,7 +344,7 @@ describe('useMediaQuery', () => {
         render(<MyComponent />);
       }).toErrorDev([
         'MUI: The `query` argument provided is invalid',
-        !strictModeDoubleLoggingSupressed && 'MUI: The `query` argument provided is invalid',
+        !strictModeDoubleLoggingSuppressed && 'MUI: The `query` argument provided is invalid',
       ]);
     });
   });

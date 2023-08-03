@@ -148,7 +148,7 @@ const blacklist = [
   'docs-getting-started-supported-components/MaterialUIComponents.png', // No public components
   'docs-landing', // Mostly images, redundant
   'docs-production-error', // No components, page for DX
-  'docs-styles-advanced', // Redudant
+  'docs-styles-advanced', // Redundant
   'docs-styles-basics/StressTest.png', // Need interaction
   'docs-versions', // No public components
   /^docs-guides-.*/, // No public components
@@ -275,11 +275,7 @@ function App(props) {
   React.useEffect(() => {
     webfontloader.load({
       google: {
-        families: [
-          'Roboto:300,400,500,700',
-          'Public Sans:300,400,500,600,700,800,900',
-          'Material+Icons',
-        ],
+        families: ['Roboto:300,400,500,700', 'Inter:300,400,500,600,700,800,900', 'Material+Icons'],
       },
       custom: {
         families: ['Font Awesome 5 Free:n9'],

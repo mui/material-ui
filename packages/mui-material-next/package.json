@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-next",
-  "version": "6.0.0-alpha.79",
+  "version": "6.0.0-alpha.95",
   "private": false,
   "author": "MUI Team",
   "description": "v6-alpha: React components that implement Google's Material Design",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/material-ui/getting-started/overview/",
+  "homepage": "https://mui.com/material-ui/getting-started/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
@@ -58,16 +58,16 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.21.0",
-    "@mui/base": "5.0.0-alpha.123",
-    "@mui/material": "^5.11.15",
-    "@mui/system": "^5.11.15",
-    "@mui/types": "^7.2.3",
-    "@mui/utils": "^5.11.13",
-    "@popperjs/core": "^2.11.7",
-    "@types/react-transition-group": "^4.4.5",
-    "clsx": "^1.2.1",
-    "csstype": "^3.1.1",
+    "@babel/runtime": "^7.22.6",
+    "@mui/base": "5.0.0-beta.9",
+    "@mui/material": "^5.14.3",
+    "@mui/system": "^5.14.3",
+    "@mui/types": "^7.2.4",
+    "@mui/utils": "^5.14.3",
+    "@popperjs/core": "^2.11.8",
+    "@types/react-transition-group": "^4.4.6",
+    "clsx": "^2.0.0",
+    "csstype": "^3.1.2",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0",
     "react-transition-group": "^4.4.5"

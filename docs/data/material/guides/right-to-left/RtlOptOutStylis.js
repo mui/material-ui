@@ -30,10 +30,10 @@ const ltrCache = createCache({
   key: 'mui',
 });
 
-export default function RtlOptOut() {
+export default function RtlOptOutStylis() {
   const [rtl, setRtl] = React.useState(false);
 
-  const handleChage = () => {
+  const handleChange = () => {
     setRtl(!rtl);
   };
 
@@ -41,7 +41,7 @@ export default function RtlOptOut() {
     <React.Fragment>
       <div>
         <FormControlLabel
-          control={<Switch checked={rtl} onChange={handleChage} />}
+          control={<Switch checked={rtl} onChange={handleChange} />}
           label="RTL"
         />
       </div>

@@ -10,27 +10,27 @@ export interface ChipSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the label.
    * @default 'span'
    */
-  label: React.ElementType;
+  label?: React.ElementType;
   /**
    * The component that renders the action.
    * @default 'button'
    */
-  action: React.ElementType;
+  action?: React.ElementType;
   /**
    * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
 }
 
 export interface ChipPropsColorOverrides {}
@@ -64,7 +64,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       children?: React.ReactNode;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
-       * @default 'primary'
+       * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, ChipPropsColorOverrides>;
       /**
@@ -96,7 +96,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       sx?: SxProps;
       /**
        * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-       * @default 'solid'
+       * @default 'soft'
        */
       variant?: OverridableStringUnion<VariantProp, ChipPropsVariantOverrides>;
     };

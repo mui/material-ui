@@ -73,7 +73,7 @@ export interface UseSliderParameters {
   /**
    * The ref attached to the root of the Slider.
    */
-  ref: React.Ref<any>;
+  rootRef?: React.Ref<Element>;
   /**
    * A transformation function, to change the scale of the slider.
    * @param {any} x
@@ -110,7 +110,7 @@ export interface Mark {
 
 export type UseSliderRootSlotOwnProps = {
   onMouseDown: React.MouseEventHandler;
-  ref: React.Ref<any>;
+  ref: React.RefCallback<Element> | null;
 };
 
 export type UseSliderRootSlotProps<TOther = {}> = Omit<TOther, keyof UseSliderRootSlotOwnProps> &
@@ -134,7 +134,7 @@ export type UseSliderHiddenInputOwnProps = {
   onBlur: React.FocusEventHandler;
   onChange: React.ChangeEventHandler;
   onFocus: React.FocusEventHandler;
-  step?: number;
+  step?: number | 'any';
   style: React.CSSProperties;
   tabIndex?: number;
   type?: React.InputHTMLAttributes<HTMLInputElement>['type'];
@@ -170,12 +170,10 @@ export interface AxisProps<T extends Axis> {
 export interface UseSliderReturnValue {
   /**
    * The active index of the slider.
-   * @default -1
    */
   active: number;
   /**
    * The orientation of the slider.
-   * @default horizontal
    */
   axis: Axis;
   /**
@@ -184,7 +182,6 @@ export interface UseSliderReturnValue {
   axisProps: { [key in Axis]: AxisProps<key> };
   /**
    * If `true`, the slider is being dragged.
-   * @default false
    */
   dragging: boolean;
   /**
@@ -216,18 +213,27 @@ export interface UseSliderReturnValue {
     otherHandlers?: TOther,
   ) => UseSliderThumbSlotProps<TOther>;
   /**
+   * Resolver for the thumb slot's style prop.
+   * @param index of the currently moved thumb
+   * @returns props that should be spread on the style prop of thumb slot
+   */
+  getThumbStyle: (index: number) => object;
+  /**
    * The marks of the slider. Marks indicate predetermined values to which the user can move the slider.
    */
   marks: Mark[];
   /**
    * The thumb index for the current value when in hover state.
-   * @default -1
    */
   open: number;
   /**
    * If `true`, the slider is a range slider when the `value` prop passed is an array.
    */
   range: boolean;
+  /**
+   * Ref to the root slot's DOM node.
+   */
+  rootRef: React.RefCallback<Element> | null;
   /**
    * The track leap for the current value of the slider.
    */

@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { usePreviousProps } from '@mui/utils';
 import { UseBadgeParameters, UseBadgeReturnValue } from './useBadge.types';
@@ -6,13 +7,13 @@ import { UseBadgeParameters, UseBadgeReturnValue } from './useBadge.types';
  *
  * Demos:
  *
- * - [Unstyled badge](https://mui.com/base/react-badge/#hook)
+ * - [Badge](https://mui.com/base-ui/react-badge/#hook)
  *
  * API:
  *
- * - [useBadge API](https://mui.com/base/api/use-badge/)
+ * - [useBadge API](https://mui.com/base-ui/react-badge/hooks-api/#use-badge)
  */
-export default function useBadge(parameters: UseBadgeParameters): UseBadgeReturnValue {
+export function useBadge(parameters: UseBadgeParameters): UseBadgeReturnValue {
   const {
     badgeContent: badgeContentProp,
     invisible: invisibleProp = false,

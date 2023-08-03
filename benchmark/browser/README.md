@@ -2,7 +2,7 @@
 
 This project is used when running the following command:
 
-```sh
+```bash
 yarn benchmark:browser
 ```
 
@@ -12,9 +12,9 @@ You should use these numbers exclusively for comparing performance between diffe
 
 ## Output
 
-For compareable results ask a maintainer to approve the CircleCI job `benchmark`.
+For comparable results ask a maintainer to approve the CircleCI job `benchmark`.
 
-```sh
+```bash
 noop (baseline):
   02.53 ±00.11ms
 Grid (html):

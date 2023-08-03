@@ -1,11 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Button component
 components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://m2.material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base/react-button/
+unstyled: /base-ui/react-button/
 ---
 
 # Button
@@ -77,17 +77,13 @@ Note that the documentation [avoids](/material-ui/guides/api/#native-properties)
 
 {{"demo": "ColorButtons.js"}}
 
-In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info.
+In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/material-ui/customization/palette/#custom-colors) examples for more info.
 
 ## Sizes
 
 For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "ButtonSizes.js"}}
-
-## Upload button
-
-{{"demo": "UploadButtons.js"}}
 
 ## Buttons with icons and label
 
@@ -130,7 +126,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
 You can take advantage of this lower-level component to build custom interactions.
 
-{{"demo": "ButtonBase.js"}}
+{{"demo": "ButtonBaseDemo.js"}}
 
 ## Third-party routing library
 

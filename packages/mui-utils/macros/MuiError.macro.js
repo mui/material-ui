@@ -1,7 +1,7 @@
-const { createMacro, MacroError } = require('babel-plugin-macros');
-const helperModuleImports = require('@babel/helper-module-imports');
 const fs = require('fs');
 const path = require('path');
+const { createMacro, MacroError } = require('babel-plugin-macros');
+const helperModuleImports = require('@babel/helper-module-imports');
 
 function invertObject(object) {
   const inverted = {};
@@ -66,7 +66,7 @@ function muiError({ references, babel, config, source }) {
    *
    * Supported nodes
    * - `'just a literal'`
-   * - `'a literal' + 'concateneded' + 'with +'`
+   * - `'a literal' + 'concatenated' + 'with +'`
    * Cannot evaluate template literals or Array.prototype.join etc.
    *
    * @param {import('@babel/core').types.Node} node

@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 import * as path from 'path';
 import * as fse from 'fs-extra';
-import * as ttp from 'typescript-to-proptypes';
 import * as prettier from 'prettier';
 import glob from 'fast-glob';
 import * as _ from 'lodash';
 import * as yargs from 'yargs';
+import * as ttp from 'typescript-to-proptypes';
 import {
   fixBabelGeneratorIssues,
   fixLineEndings,
@@ -205,6 +205,8 @@ async function generateProptypes(
 
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
 
+  // If the component inherits the props from some unstyled components
+  // we don't want to add those propTypes again in the Material UI/Joy UI propTypes
   const unstyledFile = getUnstyledFilename(tsFile, true);
   const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
 
@@ -322,20 +324,24 @@ async function run(argv: HandlerArgv) {
 
   const files = _.flatten(allFiles)
     .filter((filePath) => {
-      const folderName = path.basename(path.dirname(filePath));
+      // Filter out files where the directory name and filename doesn't match
+      // Example: Modal/ModalManager.d.ts
+      let folderName = path.basename(path.dirname(filePath));
       const fileName = path.basename(filePath).replace(/(\.d\.ts|\.tsx|\.ts)/g, '');
 
-      return (
-        // Filter out files where the directory name and filename doesn't match
-        // Example: Modal/ModalManager.d.ts
-        fileName === folderName
-      );
+      // An exception is if the folder name starts with Unstable_/unstable_
+      // Example: Unstable_Grid2/Grid2.tsx
+      if (/(u|U)nstable_/g.test(folderName)) {
+        folderName = folderName.slice(9);
+      }
+
+      return fileName === folderName;
     })
     .filter((filePath) => {
       return filePattern.test(filePath);
     });
   // May not be able to understand all files due to mismatch in TS versions.
-  // Check `programm.getSyntacticDiagnostics()` if referenced files could not be compiled.
+  // Check `program.getSyntacticDiagnostics()` if referenced files could not be compiled.
   const program = ttp.createTSProgram(files, tsconfig);
 
   const promises = files.map<Promise<void>>(async (tsFile) => {

@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, fireEvent } from 'test/utils';
+import { spy, stub } from 'sinon';
+import { describeConformance, createRenderer, fireEvent, act } from 'test/utils';
+import { camelCase } from 'lodash';
 import Button, { buttonClasses as classes } from '@mui/material-next/Button';
+import * as useTouchRipple from '@mui/material-next/Button/useTouchRipple';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<Button />', () => {
@@ -178,5 +181,59 @@ describe('<Button />', () => {
     fireEvent.mouseDown(button);
 
     expect(button).to.have.class(classes.active);
+  });
+
+  describe('Event handlers', () => {
+    const events = ['click', 'focus', 'mouse-down', 'mouse-up'];
+    const withFocusEvents = ['key-down', 'key-up'];
+
+    const eventHandlers = [
+      ...events.map((event) => ({
+        name: camelCase(`on-${event}`),
+        triggerFunction: fireEvent[camelCase(event)],
+      })),
+      ...withFocusEvents.map((event) => ({
+        name: camelCase(`on-${event}`),
+        triggerFunction: (target) => {
+          target.focus();
+          fireEvent[camelCase(event)](document.activeElement);
+        },
+      })),
+    ];
+
+    eventHandlers.forEach(({ name, triggerFunction }) => {
+      it(`should call ${name} handler`, () => {
+        const handleSpy = spy();
+        const handlerProp = { [name]: handleSpy };
+
+        const { container } = render(<Button {...handlerProp} />);
+        const button = container.querySelector('button');
+
+        act(() => {
+          triggerFunction(button);
+        });
+
+        expect(handleSpy.callCount).to.equal(1);
+      });
+    });
+  });
+
+  describe('Ripple', () => {
+    it('should call ripple mouse down handler', () => {
+      const mouseDownSpy = spy();
+      stub(useTouchRipple, 'default').returns({
+        enableTouchRipple: true,
+        getRippleHandlers: () => ({
+          onMouseDown: mouseDownSpy,
+        }),
+      });
+      const { getByRole } = render(<Button>Hello World</Button>);
+
+      expect(mouseDownSpy.callCount).to.equal(0);
+
+      fireEvent.mouseDown(getByRole('button'));
+
+      expect(mouseDownSpy.callCount).to.equal(1);
+    });
   });
 });

@@ -9,12 +9,14 @@ import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import NProgressBar from '@mui/docs/NProgressBar';
+import { debounce } from '@mui/material/utils';
+import NextLink from 'next/link';
+import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
@@ -22,9 +24,7 @@ import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { debounce } from '@mui/material/utils';
-import NextLink from 'next/link';
-import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 
 const nProgressStart = debounce(() => {
@@ -64,6 +64,8 @@ export function NextNProgressBar() {
   return <NProgressBar />;
 }
 
+const sx = { minWidth: { sm: 160 } };
+
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 export function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false);
@@ -75,11 +77,11 @@ export function DeferredAppSearch() {
     <React.Fragment>
       {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
-        <React.Suspense fallback={<Box sx={{ minWidth: { sm: 200 } }} />}>
-          <AppSearch />
+        <React.Suspense fallback={<Box sx={sx} />}>
+          <AppSearch sx={sx} />
         </React.Suspense>
       ) : (
-        <Box sx={{ minWidth: { sm: 200 } }} />
+        <Box sx={sx} />
       )}
     </React.Fragment>
   );
@@ -115,11 +117,11 @@ const StyledAppBar = styled(AppBar, {
     borderColor: (theme.vars || theme).palette.grey[100],
     borderWidth: 0,
     borderBottomWidth: 'thin',
-    backgroundColor: 'rgba(255,255,255,0.8)',
+    backgroundColor: 'rgba(255,255,255,0.9)',
     color: (theme.vars || theme).palette.grey[800],
     ...theme.applyDarkStyles({
       borderColor: alpha(theme.palette.primary[100], 0.08),
-      backgroundColor: alpha(theme.palette.primaryDark[900], 0.7),
+      backgroundColor: alpha(theme.palette.primaryDark[900], 0.8),
       color: (theme.vars || theme).palette.grey[500],
     }),
   };
@@ -154,6 +156,8 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
   };
 });
 
+export const HEIGHT = 64;
+
 export default function AppFrame(props) {
   const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
@@ -175,7 +179,7 @@ export default function AppFrame(props) {
         <GlobalStyles
           styles={{
             ':root': {
-              '--MuiDocs-header-height': '64px',
+              '--MuiDocs-header-height': `${HEIGHT}px`,
             },
           }}
         />
@@ -196,7 +200,7 @@ export default function AppFrame(props) {
               aria-label={t('goToHome')}
               sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
             >
-              <SvgMuiLogo width={30} />
+              <SvgMuiLogomark width={30} />
             </Box>
           </NextLink>
           <GrowingDiv />

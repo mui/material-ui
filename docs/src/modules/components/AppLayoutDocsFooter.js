@@ -35,6 +35,9 @@ const PaginationDiv = styled('div')(({ theme }) => {
 
 const PageLinkButton = styled(Button)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightMedium,
+  ...theme.applyDarkStyles({
+    color: (theme.vars || theme).palette.primary[300],
+  }),
 }));
 
 const FeedbackGrid = styled(Grid)(({ theme }) => {
@@ -128,7 +131,7 @@ async function postFeedbackOnSlack(data) {
   /**
    Not used because I ignore how to encode that with:
       'content-type': 'application/x-www-form-urlencoded'
-   
+
    const complexSlackMessage = {
      blocks: [
        {
@@ -241,6 +244,7 @@ function usePageNeighbours() {
 }
 
 const EMPTY_SECTION = { hash: '', text: '' };
+const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API content design' }];
 
 export default function AppLayoutDocsFooter(props) {
   const { tableOfContents = [] } = props;
@@ -308,7 +312,7 @@ export default function AppLayoutDocsFooter(props) {
       setCommentOpen(true);
     }
 
-    // Manualy move focus if commment is already open.
+    // Manually move focus if comment is already open.
     // If the comment is closed, onEntered will call focus itself;
     if (inputRef.current) {
       inputRef.current.focus();
@@ -353,11 +357,14 @@ export default function AppLayoutDocsFooter(props) {
     const eventListener = (event) => {
       const feedbackHash = event.target.getAttribute('data-feedback-hash');
       if (feedbackHash) {
-        const section = sectionOptions.find((item) => item.hash === feedbackHash) || EMPTY_SECTION;
+        const section =
+          [...sectionOptions, ...SPEACIAL_FEEDBACK_HASH].find(
+            (item) => item.hash === feedbackHash,
+          ) || EMPTY_SECTION;
         setCommentOpen(true);
         setCommentedSection(section);
 
-        // Manualy move focus if commment is already open.
+        // Manually move focus if comment is already open.
         // If the comment is closed, onEntered will call focus itself;
         if (inputRef.current) {
           inputRef.current.focus();

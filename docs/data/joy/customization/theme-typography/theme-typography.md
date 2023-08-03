@@ -1,6 +1,6 @@
 # Theme typography
 
-<p class="description">Learn about the typography system and how to customize it.</p>
+<p class="description">Learn about the default theme's typography system and how to customize it.</p>
 
 Joy UI includes a typography system within the theme to help you create consistent text across your application. You can customize the default system or start from scratch depending on your needs.
 
@@ -8,7 +8,7 @@ Joy UI includes a typography system within the theme to help you create consiste
 
 The default system consists of 13 built-in levels:
 
-- `body1` - the baseline typography for the application, used as the default configuration in the [Typography](/joy-ui/react-typography/) and [CssBaseline](/joy-ui/react-css-baseline/) components.
+- `body-md` - the baseline typography for the application, used as the default configuration in the [Typography](/joy-ui/react-typography/) and [CssBaseline](/joy-ui/react-css-baseline/) components.
 - `body2` through `body5` - can be used for secondary and tertiary information.
 - The `h1` to `h6` levels follow the semantic HTML headings.
 - The `display1` and `display2` usually appear as taglines for marketing and landing pages.
@@ -40,10 +40,8 @@ Use `undefined` as a value to remove any unneeded levels:
 ```js
 const customTheme = extendTheme({
   typography: {
-    h5: undefined,
-    h6: undefined,
-    body4: undefined,
-    body5: undefined,
+    'title-sm': undefined,
+    'title-xs': undefined,
   },
 });
 ```
@@ -54,10 +52,8 @@ For TypeScript, you must augment the theme structure to exclude the default leve
 // You can put this to any file that's included in your tsconfig
 declare module '@mui/joy/styles' {
   interface TypographySystemOverrides {
-    h5: false;
-    h6: false;
-    body4: false;
-    body5: false;
+    'title-sm': false;
+    'title-xs': false;
   }
 }
 ```
@@ -87,8 +83,8 @@ There are several ways that you can use the theme typography in your application
 - [Typography](/joy-ui/react-typography/) component: use the `level` prop to change between theme typography levels:
 
   ```jsx
-  // use the `theme.typography.body2` styles
-  <Typography level="body2">Secondary info</Typography>
+  // use the `theme.typography['body-sm']` styles
+  <Typography level="body-sm">Secondary info</Typography>
   ```
 
 - [CSS Baseline](/joy-ui/react-css-baseline/) component: by default, it applies the `body1` level to the global stylesheet:
@@ -96,15 +92,15 @@ There are several ways that you can use the theme typography in your application
   ```jsx
   <CssBaseline />
 
-  // inherits the `theme.typography.body1` styles
+  // inherits the `theme.typography['body-md']` styles
   <p>Hello World</p>
   ```
 
 - [`sx`](/joy-ui/customization/approaches/#sx-prop) prop: use `typography: $level` to get the specific theme typography level:
 
   ```jsx
-  // to apply the `theme.typography.body2` styles:
-  <Box sx={{ typography: 'body2' }}>Small text</Box>
+  // to apply the `theme.typography['body-sm']` styles:
+  <Box sx={{ typography: 'body-sm' }}>Small text</Box>
   ```
 
 - [`styled`](/joy-ui/customization/approaches/#reusable-component): create a custom component and apply the style from `theme.typography.*` directly:
@@ -113,7 +109,7 @@ There are several ways that you can use the theme typography in your application
   import { styled } from '@mui/joy/styles';
 
   const Tag = styled('span')((theme) => ({
-    ...theme.typography.body2,
+    ...theme.typography['body-sm'],
     color: 'inherit',
     borderRadius: theme.vars.radius.xs,
     boxShadow: theme.vars.shadow.sm,
@@ -124,20 +120,21 @@ There are several ways that you can use the theme typography in your application
 ## Common examples
 
 Here is a collection of well-known typography systems that you can use with Joy UI.
+Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add your favorite if it's not here. ❤️
 
-### Fluent (Microsoft)
+### Microsoft's Fluent
 
 - Design resource: [Figma](https://www.figma.com/community/file/836828295772957889)
 - Font: [Segoe UI](https://learn.microsoft.com/en-us/typography/font-list/segoe-ui)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-fluent-typography-system-j86fct?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:360px; border:0; border-radius: 4px; overflow:hidden;"
+     style="width:100%; height:360px; border:0; border-radius: 12px; overflow:hidden;"
      title="Joy UI - Fluent Typography System"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-### Human Interface Guidelines (Apple)
+### Apple's Human Interface Guidelines
 
 - Design resource: [Sketch library](https://developer.apple.com/design/resources/)
 - Font: [San Francisco (SF)](https://developer.apple.com/fonts/)
@@ -149,18 +146,14 @@ Here is a collection of well-known typography systems that you can use with Joy 
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-### Material Design 3 (Google)
+### Google's Material Design 3
 
 - Design resource: [Figma](https://www.figma.com/community/file/1035203688168086460)
 - Font: [Roboto](https://fonts.google.com/specimen/Roboto)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-material-3-typography-system-lx044f?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     style="width:100%; height:500px; border:0; border-radius: 12px; overflow:hidden;"
      title="Joy UI - Joy UI - Material 3 Typography System"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
-
-:::info
-Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add your favorite typography system. ❤️
-:::

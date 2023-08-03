@@ -2,9 +2,9 @@ import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
 import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
 import { PrefetchStoreTemplateImages } from 'docs/src/components/home/StoreTemplatesBanner';
@@ -47,58 +47,46 @@ function ProductSuite() {
     rootMargin: '200px',
   });
   return (
-    <Box
-      ref={ref}
-      sx={(theme) => ({
-        bgcolor: 'grey.50',
-        py: { xs: 4, sm: 6, md: 8 },
-        overflow: 'hidden',
-        ...theme.applyDarkStyles({
-          bgcolor: 'primaryDark.900',
-        }),
-      })}
-    >
-      <Container>
-        <Grid container spacing={2}>
-          <Grid item md={6}>
-            <Box maxWidth={500}>
-              <SectionHeadline
-                overline="Products"
-                title={
-                  <Typography variant="h2" sx={{ my: 1 }}>
-                    Every component you need is <GradientText>ready for production</GradientText>
-                  </Typography>
-                }
-                description="Build at an accelerated pace without sacrificing flexibility or control."
-              />
-            </Box>
-            <Box sx={{ mt: 4 }} />
-            <ProductsSwitcher
-              inView={inView}
-              productIndex={productIndex}
-              setProductIndex={setProductIndex}
+    <Section bg="gradient" ref={ref}>
+      <Grid container spacing={2}>
+        <Grid item md={6}>
+          <Box maxWidth={500}>
+            <SectionHeadline
+              overline="Products"
+              title={
+                <Typography variant="h2" sx={{ my: 1 }}>
+                  Every component you need is <GradientText>ready for production</GradientText>
+                </Typography>
+              }
+              description="Build at an accelerated pace without sacrificing flexibility or control."
             />
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={6}
-            sx={productIndex === 0 ? { minHeight: { xs: 777, sm: 757, md: 'unset' } } : {}}
-          >
-            {inView && (
-              <React.Fragment>
-                <PrefetchStoreTemplateImages />
-                <PrefetchDesignKitImages />
-                {productIndex === 0 && <CoreShowcase />}
-                {productIndex === 1 && <AdvancedShowcase />}
-                {productIndex === 2 && <StoreTemplatesBanner />}
-                {productIndex === 3 && <DesignKits />}
-              </React.Fragment>
-            )}
-          </Grid>
+          </Box>
+          <Box sx={{ mt: 4 }} />
+          <ProductsSwitcher
+            inView={inView}
+            productIndex={productIndex}
+            setProductIndex={setProductIndex}
+          />
         </Grid>
-      </Container>
-    </Box>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={productIndex === 0 ? { minHeight: { xs: 777, sm: 757, md: 'unset' } } : {}}
+        >
+          {inView && (
+            <React.Fragment>
+              <PrefetchStoreTemplateImages />
+              <PrefetchDesignKitImages />
+              {productIndex === 0 && <CoreShowcase />}
+              {productIndex === 1 && <AdvancedShowcase />}
+              {productIndex === 2 && <StoreTemplatesBanner />}
+              {productIndex === 3 && <DesignKits />}
+            </React.Fragment>
+          )}
+        </Grid>
+      </Grid>
+    </Section>
   );
 }
 

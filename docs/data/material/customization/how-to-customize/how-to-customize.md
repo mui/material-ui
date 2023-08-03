@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 components: GlobalStyles
 ---
 
@@ -23,9 +23,9 @@ To change the styles of _one single instance_ of a component, you can use one of
 The [`sx` prop](/system/getting-started/the-sx-prop/) is the best option for adding style overrides to a single instance of a component in most cases.
 It can be used with all Material UI components.
 
-{{"demo": "SxProp.js" }}
+{{"demo": "SxProp.js"}}
 
-#### Overriding nested component styles
+### Overriding nested component styles
 
 To customize a specific part of a component, you can use the class name provided by Material UI inside the `sx` prop. As an example, let's say you want to change the `Slider` component's thumb from a circle to a square.
 
@@ -113,6 +113,7 @@ You can rely on the following [global class names](/system/styles/advanced/#clas
 | expanded      | `.Mui-expanded`     |
 | focus visible | `.Mui-focusVisible` |
 | focused       | `.Mui-focused`      |
+| readOnly      | `.Mui-readOnly`     |
 | required      | `.Mui-required`     |
 | selected      | `.Mui-selected`     |
 

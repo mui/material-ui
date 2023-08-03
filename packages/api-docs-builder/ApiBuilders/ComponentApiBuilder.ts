@@ -5,7 +5,6 @@ import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
-import * as prettier from 'prettier';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import { Link } from 'mdast';
@@ -13,6 +12,7 @@ import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-doc
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
+import { ComponentInfo, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
@@ -20,12 +20,18 @@ import createDescribeableProp, {
   DescribeablePropDescriptor,
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
-import parseStyles, { Styles } from '../utils/parseStyles';
-import { ComponentInfo } from '../buildApiUtils';
+import parseStyles, { Classes, Styles } from '../utils/parseStyles';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import parseSlots, { Slot } from '../utils/parseSlots';
+import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
 
-const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
+export type AdditionalPropsInfo = {
+  cssApi?: boolean;
+  sx?: boolean;
+  slotsApi?: boolean;
+  'joy-size'?: boolean;
+  'joy-color'?: boolean;
+  'joy-variant'?: boolean;
+};
 
 export interface ReactApi extends ReactDocgenApi {
   demos: ReturnType<ComponentInfo['getDemos']>;
@@ -45,7 +51,7 @@ export interface ReactApi extends ReactDocgenApi {
   /**
    * If `true`, the component supports theme default props customization.
    * If `null`, we couldn't infer this information.
-   * If `undefined`, it's not applicable in this context, e.g. unstyled components.
+   * If `undefined`, it's not applicable in this context, e.g. Base UI components.
    */
   themeDefaultProps: boolean | undefined | null;
   /**
@@ -53,6 +59,7 @@ export interface ReactApi extends ReactDocgenApi {
    */
   src: string;
   styles: Styles;
+  classes: Classes;
   slots: Slot[];
   propsTable: _.Dictionary<{
     default: string | undefined;
@@ -60,37 +67,25 @@ export interface ReactApi extends ReactDocgenApi {
     type: { name: string | undefined; description: string | undefined };
     deprecated: true | undefined;
     deprecationInfo: string | undefined;
+    signature: undefined | { type: string; describedArgs?: string[]; returned?: string };
+    additionalInfo?: AdditionalPropsInfo;
   }>;
   translations: {
     componentDescription: string;
-    propDescriptions: { [key: string]: string | undefined };
+    propDescriptions: {
+      [key: string]: {
+        description: string;
+        requiresRef?: boolean;
+        deprecated?: string;
+        typeDescriptions?: { [t: string]: string };
+      };
+    };
     classDescriptions: { [key: string]: { description: string; conditions?: string } };
     slotDescriptions?: { [key: string]: string };
   };
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
-
-export function writePrettifiedFile(
-  filename: string,
-  data: string,
-  prettierConfigPath: string = DEFAULT_PRETTIER_CONFIG_PATH,
-  options: object = {},
-) {
-  const prettierConfig = prettier.resolveConfig.sync(filename, {
-    config: prettierConfigPath,
-  });
-  if (prettierConfig === null) {
-    throw new Error(
-      `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
-    );
-  }
-
-  writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
-    encoding: 'utf8',
-    ...options,
-  });
-}
 
 /**
  * Produces markdown of the description that can be hosted anywhere.
@@ -135,6 +130,7 @@ async function annotateComponentDefinition(api: ReactApi) {
   const HOST = 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
+  const fileName = path.parse(api.filename).name;
   const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
   const typesAST = await babel.parseAsync(typesSource, {
     configFile: false,
@@ -149,6 +145,11 @@ async function annotateComponentDefinition(api: ReactApi) {
   let end = null;
   traverse(typesAST, {
     ExportDefaultDeclaration(babelPath) {
+      if (api.filename.includes('mui-base')) {
+        // Base UI does not use default exports.
+        return;
+      }
+
       /**
        * export default function Menu() {}
        */
@@ -200,11 +201,72 @@ async function annotateComponentDefinition(api: ReactApi) {
         end = start;
       }
     },
+
+    ExportNamedDeclaration(babelPath) {
+      if (!api.filename.includes('mui-base')) {
+        return;
+      }
+
+      let node: babel.Node = babelPath.node;
+
+      if (node.declaration == null) {
+        // export { Menu };
+        node.specifiers.forEach((specifier) => {
+          if (specifier.type === 'ExportSpecifier' && specifier.local.name === fileName) {
+            const binding = babelPath.scope.bindings[specifier.local.name];
+
+            if (babel.types.isFunctionDeclaration(binding.path.node)) {
+              // For function declarations the binding is equal to the declaration
+              // /**
+              //  */
+              // function Component() {}
+              node = binding.path.node;
+            } else {
+              // For variable declarations the binding points to the declarator.
+              // /**
+              //  */
+              // const Component = () => {}
+              node = binding.path.parentPath!.node;
+            }
+          }
+        });
+      } else if (babel.types.isFunctionDeclaration(node.declaration)) {
+        // export function Menu() {}
+        if (node.declaration.id?.name === fileName) {
+          node = node.declaration;
+        }
+      } else {
+        return;
+      }
+
+      const { leadingComments } = node;
+      const leadingCommentBlocks =
+        leadingComments != null
+          ? leadingComments.filter(({ type }) => type === 'CommentBlock')
+          : null;
+      const jsdocBlock = leadingCommentBlocks != null ? leadingCommentBlocks[0] : null;
+      if (leadingCommentBlocks != null && leadingCommentBlocks.length > 1) {
+        throw new Error(
+          `Should only have a single leading jsdoc block but got ${
+            leadingCommentBlocks.length
+          }:\n${leadingCommentBlocks
+            .map(({ type, value }, index) => `#${index} (${type}): ${value}`)
+            .join('\n')}`,
+        );
+      }
+      if (jsdocBlock?.start != null && jsdocBlock?.end != null) {
+        start = jsdocBlock.start;
+        end = jsdocBlock.end;
+      } else if (node.start != null) {
+        start = node.start - 1;
+        end = start;
+      }
+    },
   });
 
   if (end === null || start === 0) {
     throw new TypeError(
-      "Don't know where to insert the jsdoc block. Probably no `default export` found",
+      `${api.filename}: Don't know where to insert the jsdoc block. Probably no default export or named export matching the file name was found.`,
     );
   }
 
@@ -267,17 +329,19 @@ function extractClassConditions(descriptions: any) {
 
       if (conditions && conditions[6]) {
         classConditions[className] = {
-          description: description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
-          nodeName: conditions[3],
-          conditions: conditions[6].replace(/`(.*?)`/g, '<code>$1</code>'),
+          description: renderMarkdownInline(
+            description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
+          ),
+          nodeName: renderMarkdownInline(conditions[3]),
+          conditions: renderMarkdownInline(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
         };
       } else if (conditions && conditions[3] && conditions[3] !== 'the root element') {
         classConditions[className] = {
-          description: description.replace(stylesRegex, '$1{{nodeName}}$5.'),
-          nodeName: conditions[3],
+          description: renderMarkdownInline(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
+          nodeName: renderMarkdownInline(conditions[3]),
         };
       } else {
-        classConditions[className] = { description };
+        classConditions[className] = { description: renderMarkdownInline(description) };
       }
     }
   });
@@ -334,7 +398,9 @@ const generateApiPage = (
   apiPagesDirectory: string,
   translationPagesDirectory: string,
   reactApi: ReactApi,
+  onlyJsonFile: boolean = false,
 ) => {
+  const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -363,9 +429,17 @@ const generateApiPage = (
       name: reactApi.styles.name,
     },
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
+    ...((reactApi.classes?.classes.length > 0 ||
+      (reactApi.classes?.globalClasses &&
+        Object.keys(reactApi.classes.globalClasses).length > 0)) && {
+      classes: {
+        classes: reactApi.classes.classes,
+        globalClasses: reactApi.classes.globalClasses,
+      },
+    }),
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
-    muiName: reactApi.apiPathname.startsWith('/joy-ui')
+    muiName: normalizedApiPathname.startsWith('/joy-ui')
       ? reactApi.muiName.replace('Mui', 'Joy')
       : reactApi.muiName,
     forwardsRefTo: reactApi.forwardsRefTo,
@@ -387,33 +461,35 @@ const generateApiPage = (
     JSON.stringify(pageContent),
   );
 
-  writePrettifiedFile(
-    path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
-    `import * as React from 'react';
-import ApiPage from 'docs/src/modules/components/ApiPage';
-import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './${kebabCase(reactApi.name)}.json';
+  if (!onlyJsonFile) {
+    writePrettifiedFile(
+      path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
+      `import * as React from 'react';
+  import ApiPage from 'docs/src/modules/components/ApiPage';
+  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+  import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
-export default function Page(props) {
-  const { descriptions, pageContent } = props;
-  return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
-}
+  export default function Page(props) {
+    const { descriptions, pageContent } = props;
+    return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+  }
 
-Page.getInitialProps = () => {
-  const req = require.context(
-    '${translationPagesDirectory}/${kebabCase(reactApi.name)}',
-    false,
-    /${kebabCase(reactApi.name)}.*.json$/,
-  );
-  const descriptions = mapApiPageTranslations(req);
+  Page.getInitialProps = () => {
+    const req = require.context(
+      '${translationPagesDirectory}/${kebabCase(reactApi.name)}',
+      false,
+      /${kebabCase(reactApi.name)}.*.json$/,
+    );
+    const descriptions = mapApiPageTranslations(req);
 
-  return {
-    descriptions,
-    pageContent: jsonPageContent,
+    return {
+      descriptions,
+      pageContent: jsonPageContent,
+    };
   };
-};
-`.replace(/\r?\n/g, reactApi.EOL),
-  );
+  `.replace(/\r?\n/g, reactApi.EOL),
+    );
+  }
 };
 
 const attachTranslations = (reactApi: ReactApi) => {
@@ -430,34 +506,21 @@ const attachTranslations = (reactApi: ReactApi) => {
       prop = null;
     }
     if (prop) {
-      let description = generatePropDescription(prop, propName);
-      description = renderMarkdownInline(description);
+      const { deprecated, jsDocText, signatureArgs, signatureReturn, requiresRef } =
+        generatePropDescription(prop, propName);
+      // description = renderMarkdownInline(`${description}`);
 
-      if (propName === 'classes') {
-        description += ' See <a href="#css">CSS API</a> below for more details.';
-      } else if (propName === 'sx') {
-        description +=
-          ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
-      } else if (propName === 'slots' && !reactApi.apiPathname.startsWith('/material-ui')) {
-        description += ' See <a href="#slots">Slots API</a> below for more details.';
-      } else if (reactApi.apiPathname.startsWith('/joy-ui')) {
-        switch (propName) {
-          case 'size':
-            description +=
-              ' To learn how to add custom sizes to the component, check out <a href="/joy-ui/customization/themed-components/#extend-sizes">Themed components—Extend sizes</a>.';
-            break;
-          case 'color':
-            description +=
-              ' To learn how to add your own colors, check out <a href="/joy-ui/customization/themed-components/#extend-colors">Themed components—Extend colors</a>.';
-            break;
-          case 'variant':
-            description +=
-              ' To learn how to add your own variants, check out <a href="/joy-ui/customization/themed-components/#extend-variants">Themed components—Extend variants</a>.';
-            break;
-          default:
-        }
-      }
-      translations.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
+      const typeDescriptions: { [t: string]: string } = {};
+      (signatureArgs || []).concat(signatureReturn || []).forEach(({ name, description }) => {
+        typeDescriptions[name] = renderMarkdownInline(description);
+      });
+
+      translations.propDescriptions[propName] = {
+        description: renderMarkdownInline(jsDocText),
+        requiresRef: requiresRef || undefined,
+        deprecated: renderMarkdownInline(deprecated) || undefined,
+        typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
+      };
     }
   });
 
@@ -475,20 +538,25 @@ const attachTranslations = (reactApi: ReactApi) => {
   /**
    * CSS class descriptions.
    */
-  translations.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
+  translations.classDescriptions = extractClassConditions(
+    reactApi.styles.classes.length || Object.keys(reactApi.styles.globalClasses).length
+      ? reactApi.styles.descriptions
+      : reactApi.classes.descriptions,
+  );
 
   reactApi.translations = translations;
 };
 
 const attachPropsTable = (reactApi: ReactApi) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
+  type Pair = [string, ReactApi['propsTable'][string]];
   const componentProps: ReactApi['propsTable'] = _.fromPairs(
-    Object.entries(reactApi.props!).map(([propName, propDescriptor]) => {
+    Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
       let prop: DescribeablePropDescriptor | null;
       try {
         prop = createDescribeableProp(propDescriptor, propName);
       } catch (error) {
-        propErrors.push([propName, error as Error]);
+        propErrors.push([`[${reactApi.name}] \`${propName}\``, error as Error]);
         prop = null;
       }
       if (prop === null) {
@@ -498,6 +566,11 @@ const attachPropsTable = (reactApi: ReactApi) => {
 
       const defaultValue = propDescriptor.jsdocDefaultValue?.value;
 
+      const {
+        signature: signatureType,
+        signatureArgs,
+        signatureReturn,
+      } = generatePropDescription(prop, propName);
       const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
       const chainedPropType = getChained(prop.type);
 
@@ -508,6 +581,39 @@ const attachPropsTable = (reactApi: ReactApi) => {
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
 
+      const additionalPropsInfo: AdditionalPropsInfo = {};
+
+      const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
+
+      if (propName === 'classes') {
+        additionalPropsInfo.cssApi = true;
+      } else if (propName === 'sx') {
+        additionalPropsInfo.sx = true;
+      } else if (propName === 'slots' && !normalizedApiPathname.startsWith('/material-ui')) {
+        additionalPropsInfo.slotsApi = true;
+      } else if (normalizedApiPathname.startsWith('/joy-ui')) {
+        switch (propName) {
+          case 'size':
+            additionalPropsInfo['joy-size'] = true;
+            break;
+          case 'color':
+            additionalPropsInfo['joy-color'] = true;
+            break;
+          case 'variant':
+            additionalPropsInfo['joy-variant'] = true;
+            break;
+          default:
+        }
+      }
+
+      let signature: ReactApi['propsTable'][string]['signature'];
+      if (signatureType !== undefined) {
+        signature = {
+          type: signatureType,
+          describedArgs: signatureArgs?.map((arg) => arg.name),
+          returned: signatureReturn?.name,
+        };
+      }
       return [
         propName,
         {
@@ -522,6 +628,9 @@ const attachPropsTable = (reactApi: ReactApi) => {
           deprecated: !!deprecation || undefined,
           deprecationInfo:
             renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
+          signature,
+          additionalInfo:
+            Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
         },
       ];
     }),
@@ -590,11 +699,15 @@ export default async function generateComponentApi(
               }
 
               definitions.forEach((definition) => {
-                if (definition.value?.callee) {
-                  const definitionName = definition.value.callee.name;
+                // definition.value.expression is defined when the source is in TypeScript.
+                const expression = definition.value.expression
+                  ? definition.get('expression')
+                  : definition;
+                if (expression.value?.callee) {
+                  const definitionName = expression.value.callee.name;
 
                   if (definitionName === `create${name}`) {
-                    node = definition;
+                    node = expression;
                   }
                 }
               });
@@ -647,10 +760,21 @@ export default async function generateComponentApi(
   reactApi.spread = testInfo.spread ?? spread;
   reactApi.themeDefaultProps = testInfo.themeDefaultProps;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
-  reactApi.slots = parseSlots({ project, componentName: reactApi.name, muiName: reactApi.muiName });
+
+  // Both `slots` and `classes` are empty if
+  // interface `${componentName}Slots` wasn't found.
+  // Currently, Base UI and Joy UI components support this interface
+  const { slots, classes } = parseSlotsAndClasses({
+    project,
+    componentName: reactApi.name,
+    muiName: reactApi.muiName,
+  });
+  reactApi.slots = slots;
+  reactApi.classes = classes;
+
   reactApi.styles = parseStyles({ project, componentName: reactApi.name });
 
-  if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
+  if (reactApi.styles.classes.length > 0 && !filename.includes('mui-base')) {
     reactApi.styles.name = reactApi.muiName;
   }
   reactApi.styles.classes.forEach((key) => {
@@ -658,20 +782,43 @@ export default async function generateComponentApi(
     reactApi.styles.globalClasses[key] = globalClass;
   });
 
+  // if `reactApi.classes` and `reactApi.styles` both exist,
+  // API documentation includes both "CSS" Section and "State classes" Section;
+  // we either want (1) "Slots" section and "State classes" section, or (2) "CSS" section
+  if (
+    (reactApi.styles.classes?.length || Object.keys(reactApi.styles.globalClasses || {})?.length) &&
+    (reactApi.classes.classes?.length || Object.keys(reactApi.classes.globalClasses || {})?.length)
+  ) {
+    reactApi.styles.classes = [];
+    reactApi.styles.globalClasses = {};
+  }
+
   attachPropsTable(reactApi);
   attachTranslations(reactApi);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.name);
 
+  const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
+  const normalizedFilename = reactApi.filename.replace(/\\/g, '/');
+
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    const translationPagesDirectory =
-      reactApi.apiPathname.indexOf('/joy-ui/') === 0
-        ? 'docs/translations/api-docs-joy'
-        : 'docs/translations/api-docs';
+    let translationPagesDirectory = 'docs/translations/api-docs';
+    if (normalizedApiPathname.startsWith('/joy-ui') && normalizedFilename.includes('mui-joy/src')) {
+      translationPagesDirectory = 'docs/translations/api-docs-joy';
+    } else if (
+      normalizedApiPathname.startsWith('/base') &&
+      normalizedFilename.includes('mui-base/src')
+    ) {
+      translationPagesDirectory = 'docs/translations/api-docs-base';
+    }
+
     generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
-    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi);
+
+    // Once we have the tabs API in all projects, we can make this default
+    const generateOnlyJsonFile = normalizedApiPathname.startsWith('/base');
+    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
 
     // Add comment about demo & api links (including inherited component) to the component file
     await annotateComponentDefinition(reactApi);

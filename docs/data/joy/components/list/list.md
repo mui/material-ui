@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React List component
 components: List, ListDivider, ListItem, ListItemButton, ListItemContent, ListItemDecorator, ListSubheader
 githubLabel: 'component: list'
@@ -165,6 +165,13 @@ The `ListItemButton` and the secondary action render as siblings so that the ren
     <button>            {/* IconButton */}
 ```
 
+### Selected
+
+Use the `selected` prop to signal whether a `ListItemButton` is selected or not.
+It applies `color="primary"` and a few extra styles (e.g. font weight) to visually communicate the selected state.
+
+:::info
+A selected `ListItemButton` does not apply `:hover` and `:active` global variant styles.
 :::
 
 The `selected` prop in the `ListItemButton` component can be used to indicate whether an item is currently selected or not.

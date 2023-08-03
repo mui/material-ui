@@ -6,16 +6,24 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+        "description": "'danger'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'neutral'"
+      "default": "'neutral'",
+      "additionalInfo": { "joy-color": true }
     },
+    "component": { "type": { "name": "elementType" } },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "disableIcon": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "node" } },
     "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "overlay": { "type": { "name": "bool" }, "default": "false" },
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
@@ -24,13 +32,30 @@
         "name": "union",
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
-      "default": "'md'"
+      "default": "'md'",
+      "additionalInfo": { "joy-size": true }
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: func<br>&#124;&nbsp;object, icon?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, radio?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: elementType, icon?: elementType, input?: elementType, label?: elementType, radio?: elementType, root?: elementType }"
+      },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "uncheckedIcon": { "type": { "name": "node" } },
     "value": { "type": { "name": "any" } },
@@ -39,7 +64,8 @@
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'outlined'"
+      "default": "'outlined'",
+      "additionalInfo": { "joy-variant": true }
     }
   },
   "name": "Radio",
@@ -82,6 +108,30 @@
       "class": ".MuiRadio-label"
     }
   ],
+  "classes": {
+    "classes": [
+      "checked",
+      "colorContext",
+      "colorDanger",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyRadio",

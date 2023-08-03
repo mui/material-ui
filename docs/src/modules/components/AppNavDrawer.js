@@ -1,10 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import Menu from '@mui/material/Menu';
@@ -14,19 +13,15 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
-import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
-import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
-import { pathnameToLanguage, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
-import PageContext from 'docs/src/modules/components/PageContext';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
+import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
+import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
+import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import PageContext from 'docs/src/modules/components/PageContext';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
-import materialPkgJson from '../../../../packages/mui-material/package.json';
-import joyPkgJson from '../../../../packages/mui-joy/package.json';
-import basePkgJson from '../../../../packages/mui-base/package.json';
-import systemPkgJson from '../../../../packages/mui-system/package.json';
 
 const savedScrollTop = {};
 
@@ -44,8 +39,8 @@ function ProductDrawerButton(props) {
     <React.Fragment>
       <Button
         id="mui-product-selector"
-        aria-controls="drawer-open-button"
         aria-haspopup="true"
+        aria-controls={open ? 'drawer-open-button' : undefined}
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
@@ -94,7 +89,8 @@ ProductDrawerButton.propTypes = {
   productName: PropTypes.string,
 };
 
-function ProductIdentifier({ name, metadata, versionSelector }) {
+function ProductIdentifier(props) {
+  const { name, metadata, versionSelector } = props;
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Typography
@@ -119,36 +115,52 @@ function ProductIdentifier({ name, metadata, versionSelector }) {
 
 ProductIdentifier.propTypes = {
   metadata: PropTypes.string,
-  name: PropTypes.string,
-  versionSelector: PropTypes.element,
+  name: PropTypes.string.isRequired,
+  versionSelector: PropTypes.element.isRequired,
 };
+
+// To match scrollMarginBottom
+const browserUrlPreviewMarge = 120;
 
 function PersistScroll(props) {
   const { slot, children, enabled } = props;
   const rootRef = React.useRef();
 
   useEnhancedEffect(() => {
-    const parent = rootRef.current ? rootRef.current.parentElement : null;
-    const activeElement = parent.querySelector('.app-drawer-active');
+    const scrollContainer = rootRef.current ? rootRef.current.parentElement : null;
+    const activeDrawerLink = scrollContainer.querySelector('.app-drawer-active');
 
-    if (!enabled || !parent || !activeElement || !activeElement.scrollIntoView) {
+    if (!enabled || !scrollContainer || !activeDrawerLink || !activeDrawerLink.scrollIntoView) {
       return undefined;
     }
 
-    parent.scrollTop = savedScrollTop[slot];
+    scrollContainer.scrollTop = savedScrollTop[slot];
 
-    const activeBox = activeElement.getBoundingClientRect();
+    const activeBox = activeDrawerLink.getBoundingClientRect();
 
-    if (activeBox.top < 0 || activeBox.top > window.innerHeight) {
-      parent.scrollTop += activeBox.top - 8 - 32;
+    if (activeBox.top < 0 || activeBox.bottom + browserUrlPreviewMarge > window.innerHeight) {
+      // Scroll the least possible from the initial render, e.g. server-side, scrollTop = 0.
+      activeDrawerLink.scrollIntoView({ block: 'nearest' });
     }
 
     return () => {
-      savedScrollTop[slot] = parent.scrollTop;
+      savedScrollTop[slot] = scrollContainer.scrollTop;
     };
   }, [enabled, slot]);
 
-  return <div ref={rootRef}>{children}</div>;
+  return (
+    <Box
+      sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}
+      ref={rootRef}
+    >
+      {children}
+    </Box>
+  );
 }
 
 PersistScroll.propTypes = {
@@ -158,12 +170,12 @@ PersistScroll.propTypes = {
 };
 
 const ToolbarDiv = styled('div')(({ theme }) => ({
-  padding: theme.spacing(1.45, 2),
+  padding: theme.spacing(1.6, 2),
   paddingRight: 0,
+  flexShrink: 0,
   height: 'var(--MuiDocs-header-height)',
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
-  flexGrow: 1,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -178,18 +190,11 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-const AppNavPaperComponent = styled('div')(({ theme }) => {
+const AppNavPaperComponent = styled('div')(() => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-    paddingBottom: theme.spacing(5),
-    [theme.breakpoints.up('xs')]: {
-      borderRadius: '0px 10px 10px 0px',
-    },
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: '0px',
-    },
   };
 });
 
@@ -197,7 +202,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List sx={{ my: 0.5 }}>
+    <List>
       {pages.reduce(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),
@@ -213,13 +218,12 @@ function renderNavItems(options) {
  */
 function reduceChildRoutes(context) {
   const { onClose, activePageParents, items, depth, t } = context;
-  let { page } = context;
+  const { page } = context;
   if (page.inSideNav === false) {
     return items;
   }
 
   const title = pageToTitleI18n(page, t);
-
   if (page.children && page.children.length >= 1) {
     const topLevel =
       activePageParents.map((parentPage) => parentPage.pathname).indexOf(page.pathname) !== -1;
@@ -231,22 +235,27 @@ function reduceChildRoutes(context) {
     }
 
     const subheader = Boolean(page.subheader);
-
+    const [path, hash] = firstChild.pathname.split('#');
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
         title={title}
-        href={firstChild.pathname}
+        href={{
+          pathname: path,
+          ...(firstChild.query && { query: firstChild.query }),
+          ...(hash && { hash }),
+        }}
         legacy={page.legacy}
         newFeature={page.newFeature}
-        comingSoon={page.comingSoon}
+        planned={page.planned}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
         topLevel={topLevel && !page.subheader}
-        openImmediately={topLevel || subheader}
+        initiallyExpanded={topLevel || subheader}
+        expandable={!subheader}
       >
         {renderNavItems({
           onClose,
@@ -258,18 +267,21 @@ function reduceChildRoutes(context) {
       </AppNavDrawerItem>,
     );
   } else {
-    page = page.children && page.children.length === 1 ? page.children[0] : page;
-
+    const [path, hash] = page.pathname.split('#');
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
         title={title}
-        href={page.pathname}
+        href={{
+          pathname: path,
+          ...(page.query && { query: page.query }),
+          ...(hash && { hash }),
+        }}
         legacy={page.legacy}
         newFeature={page.newFeature}
-        comingSoon={page.comingSoon}
+        planned={page.planned}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -288,17 +300,12 @@ const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigato
 
 export default function AppNavDrawer(props) {
   const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
-  const { activePageParents, pages } = React.useContext(PageContext);
-  const router = useRouter();
+  const { activePageParents, pages, productIdentifier } = React.useContext(PageContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const userLanguage = useUserLanguage();
-  const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
   const t = useTranslate();
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
   const drawer = React.useMemo(() => {
-    const { canonicalAs } = pathnameToLanguage(router.asPath);
-
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
 
     const renderVersionSelector = (versions, sx) => {
@@ -391,149 +398,36 @@ export default function AppNavDrawer(props) {
                 pr: '12px',
                 mr: '4px',
                 borderRight: '1px solid',
-                borderColor: (theme.vars || theme).palette.grey[200],
+                borderColor: (theme.vars || theme).palette.divider,
                 ...theme.applyDarkStyles({
-                  borderColor: alpha(theme.palette.primary[100], 0.08),
+                  borderColor: (theme.vars || theme).palette.divider,
                 }),
               })}
             >
-              <SvgMuiLogo width={30} />
+              <SvgMuiLogomark width={30} />
             </Box>
           </NextLink>
-          {canonicalAs.startsWith('/material-ui/') && (
-            <ProductIdentifier
-              name="Material UI"
-              metadata="MUI Core"
-              versionSelector={renderVersionSelector([
-                { text: `v${materialPkgJson.version}`, current: true },
-                {
-                  text: 'v4',
-                  href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
-                },
-                {
-                  text: 'View all versions',
-                  href: `https://mui.com${languagePrefix}/versions/`,
-                },
-              ])}
-            />
-          )}
-          {canonicalAs.startsWith('/joy-ui/') && (
-            <ProductIdentifier
-              name="Joy UI"
-              metadata="MUI Core"
-              versionSelector={renderVersionSelector([
-                { text: `v${joyPkgJson.version}`, current: true },
-              ])}
-            />
-          )}
-          {canonicalAs.startsWith('/system/') && (
-            <ProductIdentifier
-              name="MUI System"
-              metadata="MUI Core"
-              versionSelector={renderVersionSelector([
-                { text: `v${systemPkgJson.version}`, current: true },
-                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
-                {
-                  text: 'View all versions',
-                  href: `https://mui.com${languagePrefix}/versions/`,
-                },
-              ])}
-            />
-          )}
-          {canonicalAs.startsWith('/base/') && (
-            <ProductIdentifier
-              name="MUI Base"
-              metadata="MUI Core"
-              versionSelector={renderVersionSelector([
-                { text: `v${basePkgJson.version}`, current: true },
-              ])}
-            />
-          )}
-          {canonicalAs.startsWith('/x/introduction/') && (
-            <ProductIdentifier name="Advanced components" metadata="MUI X" />
-          )}
-          {(canonicalAs.startsWith('/x/react-data-grid/') ||
-            canonicalAs.startsWith('/x/api/data-grid/')) && (
-            <ProductIdentifier
-              name="Data Grid"
-              metadata="MUI X"
-              versionSelector={renderVersionSelector([
-                // DATA_GRID_VERSION is set from the X repo
-                {
-                  text: 'v6',
-                  ...(process.env.DATA_GRID_VERSION.startsWith('6')
-                    ? {
-                        text: `v${process.env.DATA_GRID_VERSION}`,
-                        current: true,
-                      }
-                    : {
-                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
-                      }),
-                },
-                {
-                  text: 'v5',
-                  ...(process.env.DATA_GRID_VERSION.startsWith('5')
-                    ? {
-                        text: `v${process.env.DATA_GRID_VERSION}`,
-                        current: true,
-                      }
-                    : {
-                        href: `https://v5.mui.com${languagePrefix}/components/data-grid/`,
-                      }),
-                },
-                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
-              ])}
-            />
-          )}
-          {(canonicalAs.startsWith('/x/react-date-pickers/') ||
-            canonicalAs.startsWith('/x/api/date-pickers/')) && (
-            <ProductIdentifier
-              name="Date pickers"
-              metadata="MUI X"
-              versionSelector={renderVersionSelector([
-                // DATE_PICKERS_VERSION is set from the X repo
-                {
-                  ...(process.env.DATE_PICKERS_VERSION.startsWith('6')
-                    ? {
-                        text: `v${process.env.DATE_PICKERS_VERSION}`,
-                        current: true,
-                      }
-                    : {
-                        text: `v6`,
-                        href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
-                      }),
-                },
-                {
-                  ...(process.env.DATE_PICKERS_VERSION.startsWith('5')
-                    ? {
-                        text: `v${process.env.DATE_PICKERS_VERSION}`,
-                        current: true,
-                      }
-                    : {
-                        text: `v5`,
-                        href: `https://v5.mui.com${languagePrefix}/components/data-grid/`,
-                      }),
-                },
-              ])}
-            />
-          )}
-          {canonicalAs.startsWith('/toolpad/') && (
-            <ProductIdentifier name="Toolpad" metadata="MUI Toolpad" />
-          )}
+          <ProductIdentifier
+            name={productIdentifier.name}
+            metadata={productIdentifier.metadata}
+            versionSelector={renderVersionSelector(productIdentifier.versions)}
+          />
         </ToolbarDiv>
-        <Divider
-          sx={(theme) => ({
-            borderColor: (theme.vars || theme).palette.grey[100],
-            ...theme.applyDarkStyles({
-              borderColor: alpha(theme.palette.primary[100], 0.08),
-            }),
-          })}
-        />
+        <Divider />
+        <Box sx={{ pt: 0.5, pb: 5, overflowY: 'auto', flexGrow: 1 }}>{navItems}</Box>
         <DiamondSponsors />
-        {navItems}
       </React.Fragment>
     );
-  }, [activePageParents, pages, onClose, languagePrefix, t, anchorEl, setAnchorEl, router.asPath]);
+  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (!productIdentifier) {
+      throw new Error('docs-infra: missing productIdentifier in PageContext');
+    }
+    if (!productIdentifier.versions) {
+      throw new Error('docs-infra: missing productIdentifier.versions in PageContext');
+    }
+  }
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>

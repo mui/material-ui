@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -41,7 +42,9 @@ const TextareaRoot = styled('div', {
       '--Textarea-radius': theme.vars.radius.sm,
       '--Textarea-gap': '0.5rem',
       '--Textarea-placeholderColor': 'inherit',
-      '--Textarea-placeholderOpacity': 0.5,
+      '--Textarea-placeholderOpacity': 0.64,
+      '--Textarea-decoratorColor': theme.vars.palette.text.icon,
+      '--Textarea-focused': '0',
       '--Textarea-focusedThickness': theme.vars.focus.thickness,
       ...(ownerState.color === 'context'
         ? {
@@ -58,14 +61,14 @@ const TextareaRoot = styled('div', {
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
         '--Textarea-paddingInline': '0.5rem',
         '--Textarea-decoratorChildHeight': 'min(1.5rem, var(--Textarea-minHeight))',
-        '--Icon-fontSize': '1.25rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl,
       }),
       ...(ownerState.size === 'md' && {
         '--Textarea-minHeight': '2.5rem',
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))',
         '--Textarea-paddingInline': '0.75rem',
         '--Textarea-decoratorChildHeight': 'min(2rem, var(--Textarea-minHeight))',
-        '--Icon-fontSize': '1.5rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       ...(ownerState.size === 'lg' && {
         '--Textarea-minHeight': '3rem',
@@ -73,7 +76,7 @@ const TextareaRoot = styled('div', {
         '--Textarea-paddingInline': '1rem',
         '--Textarea-gap': '0.75rem',
         '--Textarea-decoratorChildHeight': 'min(2.375rem, var(--Textarea-minHeight))',
-        '--Icon-fontSize': '1.75rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       // variables for controlling child components
       '--_Textarea-paddingBlock':
@@ -94,13 +97,9 @@ const TextareaRoot = styled('div', {
       paddingInlineStart: `var(--Textarea-paddingInline)`, // the paddingInlineEnd is added to the textarea. It looks better when the scrollbar appears.
       paddingBlock: 'var(--Textarea-paddingBlock)',
       borderRadius: 'var(--Textarea-radius)',
-      fontFamily: theme.vars.fontFamily.body,
-      fontSize: theme.vars.fontSize.md,
-      lineHeight: theme.vars.lineHeight.md,
-      ...(ownerState.size === 'sm' && {
-        fontSize: theme.vars.fontSize.sm,
-        lineHeight: theme.vars.lineHeight.sm,
-      }),
+      ...theme.typography[`body-${ownerState.size!}`],
+      ...variantStyle,
+      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       '&:before': {
         boxSizing: 'border-box',
         content: '""',
@@ -114,24 +113,18 @@ const TextareaRoot = styled('div', {
         zIndex: 1,
         borderRadius: 'inherit',
         margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
+        boxShadow: `var(--Textarea-focusedInset, inset) 0 0 0 calc(var(--Textarea-focused) * var(--Textarea-focusedThickness)) var(--Textarea-focusedHighlight)`,
       },
     },
     {
-      // variant styles
-      ...variantStyle,
-      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
-      [`&:hover:not(.${textareaClasses.focused})`]: {
+      '&:hover': {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        backgroundColor: null, // it is not common to change background on hover for Input
+        backgroundColor: null, // it is not common to change background on hover for Textarea
         cursor: 'text',
       },
       [`&.${textareaClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-      [`&.${textareaClasses.focused}`]: {
-        '&:before': {
-          boxShadow: `inset 0 0 0 var(--Textarea-focusedThickness) var(--Textarea-focusedHighlight)`,
-        },
-      },
+      '&:focus-within::before': { '--Textarea-focused': '1' },
     },
   ];
 });
@@ -156,10 +149,6 @@ const TextareaInput = styled(TextareaAutosize, {
   fontStyle: 'inherit',
   fontWeight: 'inherit',
   lineHeight: 'inherit',
-  '&:-webkit-autofill': {
-    WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: 'currentColor',
-  },
   '&::-webkit-input-placeholder': {
     color: 'var(--Textarea-placeholderColor)',
     opacity: 'var(--Textarea-placeholderOpacity)',
@@ -185,27 +174,27 @@ const TextareaStartDecorator = styled('div', {
   name: 'JoyTextarea',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: TextareaOwnerState }>(({ theme }) => ({
+})<{ ownerState: TextareaOwnerState }>({
   display: 'flex',
   marginInlineStart: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
   marginInlineEnd: 'var(--Textarea-paddingBlock)',
   marginBlockEnd: 'var(--Textarea-gap)',
-  color: theme.vars.palette.text.tertiary,
+  color: 'var(--Textarea-decoratorColor)',
   cursor: 'initial',
-}));
+});
 
 const TextareaEndDecorator = styled('div', {
   name: 'JoyTextarea',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: TextareaOwnerState }>(({ theme }) => ({
+})<{ ownerState: TextareaOwnerState }>({
   display: 'flex',
   marginInlineStart: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
   marginInlineEnd: 'var(--Textarea-paddingBlock)',
   marginBlockStart: 'var(--Textarea-gap)',
-  color: theme.vars.palette.text.tertiary,
+  color: 'var(--Textarea-decoratorColor)',
   cursor: 'initial',
-}));
+});
 /**
  *
  * Demos:
@@ -239,6 +228,9 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     endDecorator,
     minRows,
     maxRows,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = useForwardedInput<TextareaProps>(props, textareaClasses);
 
@@ -271,12 +263,13 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: [classes.root, rootStateClasses],
     elementType: TextareaRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getRootProps,
     ownerState,
   });
@@ -293,7 +286,7 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
       minRows,
       maxRows,
     },
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getInputProps,
     ownerState,
   });
@@ -301,14 +294,14 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: TextareaStartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: TextareaEndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -339,7 +332,7 @@ Textarea.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

@@ -2,7 +2,7 @@
   "props": {
     "checked": { "type": { "name": "bool" } },
     "checkedIcon": { "type": { "name": "node" }, "default": "<CheckBoxIcon />" },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -19,7 +19,13 @@
     "indeterminateIcon": { "type": { "name": "node" }, "default": "<IndeterminateCheckBoxIcon />" },
     "inputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "required": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
@@ -32,13 +38,23 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "any" } }
   },
   "name": "Checkbox",
   "styles": {
-    "classes": ["root", "checked", "disabled", "indeterminate", "colorPrimary", "colorSecondary"],
+    "classes": [
+      "root",
+      "checked",
+      "disabled",
+      "indeterminate",
+      "colorPrimary",
+      "colorSecondary",
+      "sizeSmall",
+      "sizeMedium"
+    ],
     "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
     "name": "MuiCheckbox"
   },

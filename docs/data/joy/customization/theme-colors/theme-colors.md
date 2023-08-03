@@ -1,6 +1,6 @@
 # Theme colors
 
-<p class="description">Learn about the theme's default colors and how to customize them.</p>
+<p class="description">Learn about the default theme's color palette and how to customize it.</p>
 
 ## Default tokens
 

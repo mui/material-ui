@@ -13,19 +13,17 @@ export interface BadgeClasses {
   anchorOriginTopLeft: string;
   /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`. */
   anchorOriginBottomLeft: string;
-  /** Styles applied to the badge `span` element if `color="primary"`. */
+  /** Class name applied to the badge `span` element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the badge `span` element if `color="danger"`. */
+  /** Class name applied to the badge `span` element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the badge `span` element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the badge `span` element if `color="neutral"`. */
+  /** Class name applied to the badge `span` element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the badge `span` element if `color="success"`. */
+  /** Class name applied to the badge `span` element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the badge `span` element if `color="warning"`. */
+  /** Class name applied to the badge `span` element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element when color inversion is triggered. */
+  /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
   /** State class applied to the badge `span` element if `invisible={true}`. */
   invisible: string;
@@ -33,19 +31,19 @@ export interface BadgeClasses {
   locationInside: string;
   /** State class applied to the badge `span` element if `location="outside"`. */
   locationOutside: string;
-  /** Styles applied to the badge `span` element if `size="sm"`. */
+  /** Class name applied to the badge `span` element if `size="sm"`. */
   sizeSm: string;
-  /** Styles applied to the badge `span` element if `size="md"`. */
+  /** Class name applied to the badge `span` element if `size="md"`. */
   sizeMd: string;
-  /** Styles applied to the badge `span` element if `size="lg"`. */
+  /** Class name applied to the badge `span` element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `variant="plain"`. */
+  /** Class name applied to the root element if `variant="plain"`. */
   variantPlain: string;
-  /** Styles applied to the badge `span` element if `variant="outlined"`. */
+  /** Class name applied to the badge `span` element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the badge `span` element if `variant="soft"`. */
+  /** Class name applied to the badge `span` element if `variant="soft"`. */
   variantSoft: string;
-  /** Styles applied to the badge `span` element if `variant="solid"`. */
+  /** Class name applied to the badge `span` element if `variant="solid"`. */
   variantSolid: string;
 }
 
@@ -64,7 +62,6 @@ const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'anchorOriginBottomLeft',
   'colorPrimary',
   'colorDanger',
-  'colorInfo',
   'colorNeutral',
   'colorSuccess',
   'colorWarning',

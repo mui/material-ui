@@ -35,7 +35,7 @@ describe('integerPropType', () => {
     }).toErrorDev(errorMessage);
   }
 
-  describe('passes on undefined but failes on null value', () => {
+  describe('passes on undefined but fails on null value', () => {
     beforeEach(() => {
       PropTypes.resetWarningCache();
     });

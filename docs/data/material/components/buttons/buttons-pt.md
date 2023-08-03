@@ -1,11 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React para Botão
 components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://m2.material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base/react-button/
+unstyled: /base-ui/react-button/
 ---
 
 # Button
@@ -71,17 +71,13 @@ Note that the documentation [avoids](/material-ui/guides/api/#native-properties)
 
 {{"demo": "ColorButtons.js"}}
 
-Além de usar as cores de botão padrão, você pode adicionar outras personalizadas ou desativar as que não forem necessárias. See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info.
+Além de usar as cores de botão padrão, você pode adicionar outras personalizadas ou desativar as que não forem necessárias. See the [Adding new colors](/material-ui/customization/palette/#custom-colors) examples for more info.
 
 ## Tamanhos
 
 For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "ButtonSizes.js"}}
-
-## Botão de upload
-
-{{"demo": "UploadButtons.js"}}
 
 ## Botões com ícones e rótulo
 

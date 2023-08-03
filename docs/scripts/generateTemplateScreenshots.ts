@@ -1,6 +1,6 @@
-import { chromium } from 'playwright';
 import fs from 'fs/promises';
 import path from 'path';
+import { chromium } from 'playwright';
 
 const host = process.env.DEPLOY_PREVIEW || 'http://localhost:3000';
 const directory = 'docs/public/static/screenshots';
