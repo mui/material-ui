@@ -51,6 +51,6 @@ There are a plethora of reasons why you should join, but here are the three bigg
 Overall, we're super excited to have you join our community.
 Come show off your projects, introduce yourself in the **"👋 | new-members"** channel, or just ask general questions in the forums.
 
-As always, we would love to hear from you
+As always, we would love to hear from you.
 
 **See you on our [Discord Server!](https://mui.com/r/discord/)**
