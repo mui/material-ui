@@ -16,6 +16,7 @@
     }
   },
   "name": "Menu",
+  "imports": ["import Menu from '@mui/base/Menu';", "import { Menu } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

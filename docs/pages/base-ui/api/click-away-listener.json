@@ -19,6 +19,10 @@
     }
   },
   "name": "ClickAwayListener",
+  "imports": [
+    "import ClickAwayListener from '@mui/base/ClickAwayListener';",
+    "import { ClickAwayListener } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
   "themeDefaultProps": null,

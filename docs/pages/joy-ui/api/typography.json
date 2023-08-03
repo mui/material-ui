@@ -56,6 +56,10 @@
     }
   },
   "name": "Typography",
+  "imports": [
+    "import Typography from '@mui/joy/Typography';",
+    "import { Typography } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

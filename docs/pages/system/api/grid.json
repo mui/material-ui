@@ -61,6 +61,7 @@
     "xsOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } }
   },
   "name": "Grid",
+  "imports": ["import Grid from '@mui/system/Grid';", "import { Grid } from '@mui/system';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "themeDefaultProps": true,

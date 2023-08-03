@@ -19,6 +19,7 @@
     }
   },
   "name": "Badge",
+  "imports": ["import Badge from '@mui/base/Badge';", "import { Badge } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

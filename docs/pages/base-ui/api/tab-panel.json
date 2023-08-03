@@ -13,6 +13,10 @@
     "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
   },
   "name": "TabPanel",
+  "imports": [
+    "import TabPanel from '@mui/base/TabPanel';",
+    "import { TabPanel } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

@@ -26,6 +26,10 @@
     }
   },
   "name": "Snackbar",
+  "imports": [
+    "import Snackbar from '@mui/base/Snackbar';",
+    "import { Snackbar } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

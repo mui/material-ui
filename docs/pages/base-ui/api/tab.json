@@ -20,6 +20,7 @@
     "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
   },
   "name": "Tab",
+  "imports": ["import Tab from '@mui/base/Tab';", "import { Tab } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

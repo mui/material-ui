@@ -12,6 +12,10 @@
     }
   },
   "name": "MenuItem",
+  "imports": [
+    "import MenuItem from '@mui/base/MenuItem';",
+    "import { MenuItem } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

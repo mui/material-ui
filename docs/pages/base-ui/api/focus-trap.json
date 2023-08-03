@@ -15,6 +15,10 @@
     }
   },
   "name": "FocusTrap",
+  "imports": [
+    "import FocusTrap from '@mui/base/FocusTrap';",
+    "import { FocusTrap } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
   "themeDefaultProps": null,

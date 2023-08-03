@@ -25,6 +25,7 @@
     "useFlexGap": { "type": { "name": "bool" } }
   },
   "name": "Stack",
+  "imports": ["import Stack from '@mui/joy/Stack';", "import { Stack } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

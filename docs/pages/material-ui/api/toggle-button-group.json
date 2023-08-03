@@ -40,6 +40,10 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "ToggleButtonGroup",
+  "imports": [
+    "import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';",
+    "import { ToggleButtonGroup } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "vertical", "disabled", "grouped", "groupedHorizontal", "groupedVertical"],
     "globalClasses": { "disabled": "Mui-disabled" },

@@ -32,6 +32,7 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "Select",
+  "imports": ["import Select from '@mui/base/Select';", "import { Select } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

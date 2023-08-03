@@ -14,6 +14,10 @@
     }
   },
   "name": "MenuButton",
+  "imports": [
+    "import MenuButton from '@mui/base/MenuButton';",
+    "import { MenuButton } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

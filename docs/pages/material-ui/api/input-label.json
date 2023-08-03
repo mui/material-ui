@@ -37,6 +37,10 @@
     }
   },
   "name": "InputLabel",
+  "imports": [
+    "import InputLabel from '@mui/material/InputLabel';",
+    "import { InputLabel } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
