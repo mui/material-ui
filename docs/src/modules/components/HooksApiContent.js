@@ -56,20 +56,25 @@ export default function HooksApiContent(props) {
 
     const { parametersDescriptions, returnValueDescriptions } = descriptions[key][userLanguage];
 
-    const source = filename
-      .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
-      // convert things like `/Table/Table.js` to ``
-      .replace(/\/([^/]+)\/\1\.(js|ts|tsx)$/, '');
+    const rootImportPath = filename.replace(
+      /\/packages\/mui(?:-(.+?))?\/src\/.*/,
+      (match, pkg) => `@mui/${pkg}`,
+    );
+
+    const subdirectoryImportPath = filename.replace(
+      /\/packages\/mui(?:-(.+?))?\/src\/([^\\/]+)\/.*/,
+      (match, pkg, directory) => `@mui/${pkg}/${directory}`,
+    );
 
     const hookNameKebabCase = kebabCase(hookName);
 
-    const useNamedImports = source === '@mui/base';
+    const useNamedImports = rootImportPath === '@mui/base';
 
     const subpathImport = useNamedImports
-      ? `import { ${hookName} } from '${source}/${hookName}';`
-      : `import ${hookName} from '${source}/${hookName}';`;
+      ? `import { ${hookName} } from '${subdirectoryImportPath}';`
+      : `import ${hookName} from '${subdirectoryImportPath}';`;
 
-    const rootImport = `import { ${hookName} } from '${source}';`;
+    const rootImport = `import { ${hookName} } from '${rootImportPath}';`;
 
     const importInstructions = `${subpathImport}
 // ${t('or')}
