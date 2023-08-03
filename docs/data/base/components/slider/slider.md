@@ -31,7 +31,7 @@ Sliders are ideal for interface controls that benefit from a visual representati
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Slider from '@mui/base/Slider';
+import { Slider } from '@mui/base/Slider';
 
 export default function MyApp() {
   return <Slider />;
@@ -135,7 +135,7 @@ The same applies for props specific to custom primitive elements:
 ## Hook
 
 ```js
-import useSlider from '@mui/base/useSlider';
+import { useSlider } from '@mui/base/useSlider';
 ```
 
 The `useSlider` hook lets you apply the functionality of a slider to a fully custom component.

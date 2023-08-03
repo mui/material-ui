@@ -5,7 +5,7 @@ import {
   unstable_useId as useId,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
-import useButton from '../useButton';
+import { useButton } from '../useButton';
 import {
   ButtonClickAction,
   SelectAction,
@@ -17,15 +17,15 @@ import {
   UseSelectParameters,
   UseSelectReturnValue,
 } from './useSelect.types';
-import useList, { UseListParameters } from '../useList';
+import { useList, UseListParameters } from '../useList';
 import { EventHandlers } from '../utils/types';
-import defaultOptionStringifier from './defaultOptionStringifier';
+import { defaultOptionStringifier } from './defaultOptionStringifier';
 import { SelectProviderValue } from './SelectProvider';
 import { useCompoundParent } from '../utils/useCompound';
 import { SelectOption } from '../useOption/useOption.types';
-import selectReducer from './selectReducer';
-import combineHooksSlotProps from '../utils/combineHooksSlotProps';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
+import { selectReducer } from './selectReducer';
+import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 
 function preventDefault(event: React.SyntheticEvent) {
   event.preventDefault();
@@ -370,4 +370,4 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   };
 }
 
-export default useSelect;
+export { useSelect };

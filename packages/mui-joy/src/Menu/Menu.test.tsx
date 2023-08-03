@@ -9,7 +9,7 @@ import {
   fireEvent,
   describeJoyColorInversion,
 } from 'test/utils';
-import PopperUnstyled from '@mui/base/Popper';
+import { Popper as PopperUnstyled } from '@mui/base/Popper';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
 import Menu, { menuClasses as classes } from '@mui/joy/Menu';

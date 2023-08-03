@@ -1,7 +1,4 @@
 'use client';
-export { default } from './NumberInput';
-
-export { default as numberInputClasses } from './numberInputClasses';
+export { NumberInput as Unstable_NumberInput } from './NumberInput';
 export * from './numberInputClasses';
-
 export * from './NumberInput.types';
