@@ -6,12 +6,12 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 const StyledLink = styled(MuiLink)(({ theme }) => ({
   position: 'fixed',
   padding: theme.spacing(1, 2),
-  backgroundColor: (theme.vars || theme).palette.secondary[700],
-  color: '#fff',
-  outlineOffset: 2,
-  '&:hover': {
-    color: '#fff',
-  },
+  backgroundColor: (theme.vars || theme).palette.primary[50],
+  border: '1px solid',
+  borderColor: (theme.vars || theme).palette.primary[100],
+  color: (theme.vars || theme).palette.primary[600],
+  outlineOffset: 5,
+  outlineColor: (theme.vars || theme).palette.primary[300],
   borderRadius: theme.shape.borderRadius,
   left: theme.spacing(2),
   zIndex: theme.zIndex.tooltip + 1,
@@ -20,6 +20,10 @@ const StyledLink = styled(MuiLink)(({ theme }) => ({
     easing: theme.transitions.easing.easeIn,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  '&:hover': {
+    backgroundColor: (theme.vars || theme).palette.primary[100],
+    color: (theme.vars || theme).palette.primary[700],
+  },
   '&:focus': {
     top: theme.spacing(2),
     transition: theme.transitions.create('top', {
@@ -39,6 +43,16 @@ const StyledLink = styled(MuiLink)(({ theme }) => ({
   '@media print': {
     display: 'none',
   },
+  ...theme.applyDarkStyles({
+    backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+    borderColor: (theme.vars || theme).palette.primaryDark[400],
+    color: (theme.vars || theme).palette.grey[100],
+    outlineColor: (theme.vars || theme).palette.primary[500],
+    '&:hover': {
+      backgroundColor: (theme.vars || theme).palette.primaryDark[500],
+      color: (theme.vars || theme).palette.grey[50],
+    },
+  }),
 }));
 
 export default function SkipLink() {
