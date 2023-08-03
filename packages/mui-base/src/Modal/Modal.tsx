@@ -11,10 +11,10 @@ import {
 } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { ModalOwnerState, ModalOwnProps, ModalProps, ModalTypeMap } from './Modal.types';
-import composeClasses from '../composeClasses';
-import Portal from '../Portal';
-import ModalManager, { ariaHidden } from './ModalManager';
-import FocusTrap from '../FocusTrap';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { Portal } from '../Portal';
+import { ModalManager, ariaHidden } from './ModalManager';
+import { FocusTrap } from '../FocusTrap';
 import { getModalUtilityClass } from './modalClasses';
 import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
@@ -437,4 +437,4 @@ Modal.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Modal;
+export { Modal };

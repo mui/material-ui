@@ -9,7 +9,7 @@ import {
   useSlotProps,
   unstable_composeClasses as composeClasses,
 } from '@mui/base';
-import useSlider, { valueToPercent } from '@mui/base/useSlider';
+import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { shouldForwardProp } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';

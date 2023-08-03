@@ -7,7 +7,7 @@
         "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'neutral'",
-      "additionalPropsInfo": { "joy-color": true }
+      "additionalInfo": { "joy-color": true }
     },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
@@ -21,7 +21,7 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "variant": {
       "type": {
@@ -29,7 +29,7 @@
         "description": "'contained'<br>&#124;&nbsp;'light'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
       "default": "'plain'",
-      "additionalPropsInfo": { "joy-variant": true }
+      "additionalInfo": { "joy-variant": true }
     }
   },
   "name": "MenuItem",

@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import composeClasses from '../composeClasses';
-import useSwitch from '../useSwitch';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { useSwitch } from '../useSwitch';
 import {
   SwitchProps,
   SwitchOwnerState,
@@ -203,4 +203,4 @@ Switch.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Switch;
+export { Switch };

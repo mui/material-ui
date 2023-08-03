@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Select, { selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
+import { Select, selectClasses } from '@mui/base/Select';
+import { Option, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
 import { Popper } from '@mui/base';
 

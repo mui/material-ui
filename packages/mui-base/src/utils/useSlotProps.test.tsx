@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer } from 'test/utils';
 import { EventHandlers } from '@mui/base';
-import useSlotProps, { UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';
+import { useSlotProps, UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';
 
 const { render } = createRenderer();
 

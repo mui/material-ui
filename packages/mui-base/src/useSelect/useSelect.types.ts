@@ -3,7 +3,7 @@ import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
 import { EventHandlers } from '../utils/types';
 import { SelectProviderValue } from './SelectProvider';
-import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
+import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 export type SelectChangeEventType =
   | React.MouseEvent<Element, MouseEvent>

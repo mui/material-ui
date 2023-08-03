@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useAutocomplete from '@mui/base/useAutocomplete';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 import { styled } from '@mui/system';
 
 const options = ['Firefox', 'Google Chrome', 'Microsoft Edge', 'Safari', 'Opera'];
