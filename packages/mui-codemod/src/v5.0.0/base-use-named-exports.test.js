@@ -18,7 +18,7 @@ describe('@mui/codemod', () => {
             path: require.resolve('./base-use-named-exports.test/actual.js'),
           },
           { jscodeshift },
-          {},
+          { printOptions: { quote: 'single' } },
         );
 
         const expected = read('./base-use-named-exports.test/expected.js');
@@ -32,7 +32,7 @@ describe('@mui/codemod', () => {
             path: require.resolve('./base-use-named-exports.test/expected.js'),
           },
           { jscodeshift },
-          {},
+          { printOptions: { quote: 'single' } },
         );
 
         const expected = read('./base-use-named-exports.test/expected.js');
@@ -49,7 +49,7 @@ describe('@mui/codemod', () => {
               path: filePath,
             },
             { jscodeshift },
-            {},
+            { printOptions: { quote: 'single' } },
           );
         }).toWarnDev(
           `WARNING: ${filePath}: "@mui/base/utils/ClassNameConfigurator" is more than one level deep. This is not supported.`,

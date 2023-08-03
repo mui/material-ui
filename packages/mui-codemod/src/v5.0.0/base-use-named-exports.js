@@ -1,3 +1,25 @@
+// certain exports don't match the directory they are in:
+const nameMapping = {
+  className: 'Unstable_ClassNameGenerator',
+  composeClasses: 'unstable_composeClasses',
+  generateUtilityClass: 'unstable_generateUtilityClass',
+  generateUtilityClasses: 'unstable_generateUtilityClasses',
+  NumberInput: 'Unstable_NumberInput',
+};
+
+// renamed directories to match the export:
+const pathMapping = {
+  '@mui/base/className': '@mui/base/ClassNameGenerator',
+};
+
+function getExportedIdentifier(importPath) {
+  return nameMapping[importPath] ?? importPath;
+}
+
+function getTransformedPath(originalPath) {
+  return pathMapping[originalPath] ?? originalPath;
+}
+
 /**
  * Finds the last segment of the path starting with @mui/base.
  *
@@ -50,8 +72,13 @@ export default function transformer(file, api, options) {
         }
 
         // import Y from @mui/base/X ➔ import { X as Y } from @mui/base/X
-        return j.importSpecifier(j.identifier(baseImportPath), specifier.local);
+        return j.importSpecifier(
+          j.identifier(getExportedIdentifier(baseImportPath)),
+          specifier.local,
+        );
       });
+
+      path.node.source = j.stringLiteral(getTransformedPath(path.node.source.value));
     })
     .toSource(printOptions);
 
@@ -79,9 +106,11 @@ export default function transformer(file, api, options) {
         // export { default as Y } from @mui/base/X ➔ export { X as Y } from @mui/base/X
         return j.exportSpecifier.from({
           exported: j.identifier(specifier.exported.name),
-          local: j.identifier(baseImportPath),
+          local: j.identifier(getExportedIdentifier(baseImportPath)),
         });
       });
+
+      path.node.source = j.stringLiteral(getTransformedPath(path.node.source.value));
     })
     .toSource(printOptions);
 }
