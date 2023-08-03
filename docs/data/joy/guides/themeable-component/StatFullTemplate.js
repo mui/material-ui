@@ -24,14 +24,14 @@ const StatValue = styled('div', {
   name: 'JoyStat',
   slot: 'value',
 })(({ theme }) => ({
-  ...theme.typography.h3,
+  ...theme.typography.h2,
 }));
 
 const StatUnit = styled('div', {
   name: 'JoyStat',
   slot: 'unit',
 })(({ theme }) => ({
-  ...theme.typography.body2,
+  ...theme.typography['body-sm'],
   color: theme.vars.palette.text.tertiary,
 }));
 

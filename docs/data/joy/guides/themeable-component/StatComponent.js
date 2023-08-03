@@ -12,11 +12,11 @@ const StatRoot = styled('div')(({ theme }) => ({
 }));
 
 const StatValue = styled('div')(({ theme }) => ({
-  ...theme.typography.h3,
+  ...theme.typography.h2,
 }));
 
 const StatUnit = styled('div')(({ theme }) => ({
-  ...theme.typography.body2,
+  ...theme.typography['body-sm'],
   color: theme.vars.palette.text.tertiary,
 }));
 
