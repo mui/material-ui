@@ -132,6 +132,7 @@ const CustomTablePagination = React.forwardRef<
           ...props.slotProps?.select,
           className: clsx(
             'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl bg-transparent hover:bg-slate-20 hover:dark:bg-slate-800 focus:outline-0 focus:shadow-outline-purple-xs',
+            // @ts-ignore use module augmentation for adding the `className` in the slot props interface
             props.slotProps?.select?.className,
           ),
         },
@@ -139,28 +140,33 @@ const CustomTablePagination = React.forwardRef<
           ...props.slotProps?.actions,
           className: clsx(
             'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl text-center [&>button]:my-0 [&>button]:mx-2 [&>button]:border-transparent [&>button]:rounded-sm [&>button]:bg-transparent [&>button:hover]:bg-slate-50 [&>button:hover]:dark:bg-slate-800 [&>button:focus]:outline-0 [&>button:focus]:shadow-outline-purple-xs',
+            // @ts-ignore use module augmentation for adding the `className` in the slot props interface
             props.slotProps?.actions?.className,
           ),
         },
         spacer: {
           ...props.slotProps?.spacer,
+          // @ts-ignore use module augmentation for adding the `className` in the slot props interface
           className: clsx('hidden', props.slotProps?.spacer?.className),
         },
         toolbar: {
           ...props.slotProps?.toolbar,
           className: clsx(
             'flex flex-col items-start gap-2.5 md:flex-row md:items-center',
+            // @ts-ignore use module augmentation for adding the `className` in the slot props interface
             props.slotProps?.toolbar?.className,
           ),
         },
         selectLabel: {
           ...props.slotProps?.selectLabel,
+          // @ts-ignore use module augmentation for adding the `className` in the slot props interface
           className: clsx('m-0', props.slotProps?.selectLabel?.className),
         },
         displayedRows: {
           ...props.slotProps?.displayedRows,
           className: clsx(
             'm-0 md:ml-auto',
+            // @ts-ignore use module augmentation for adding the `className` in the slot props interface
             props.slotProps?.displayedRows?.className,
           ),
         },
@@ -168,33 +174,6 @@ const CustomTablePagination = React.forwardRef<
     />
   );
 });
-
-declare module '@mui/base/TablePagination' {
-  interface TablePaginationRootSlotPropsOverrides {
-    className?: string;
-  }
-  interface TablePaginationActionsSlotPropsOverrides {
-    className?: string;
-  }
-  interface TablePaginationSelectSlotPropsOverrides {
-    className?: string;
-  }
-  interface TablePaginationSelectLabelSlotPropsOverrides {
-    className?: string;
-  }
-  interface TablePaginationMenuItemSlotPropsOverrides {
-    className?: string;
-  }
-  interface TablePaginationDisplayedRowsSlotPropsOverrides {
-    className?: string;
-  }
-  interface TablePaginationToolbarSlotPropsOverrides {
-    className?: string;
-  }
-  interface TablePaginationSpacerSlotPropsOverrides {
-    className?: string;
-  }
-}
 
 function createData(name: string, calories: number, fat: number) {
   return { name, calories, fat };

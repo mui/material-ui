@@ -172,7 +172,6 @@ CustomTablePagination.propTypes = {
     actions: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({
-        className: PropTypes.string,
         count: PropTypes.number,
         direction: PropTypes.oneOf(['ltr', 'rtl']),
         getItemAriaLabel: PropTypes.func,
