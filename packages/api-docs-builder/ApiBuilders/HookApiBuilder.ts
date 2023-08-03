@@ -508,39 +508,33 @@ const extractInfoFromType = (typeName: string, project: TypeScriptProject): Pars
  * @returns an array of import command
  */
 const getHookImports = (name: string, filename: string) => {
-  let source;
+  const githubPath = toGitHubPath(filename);
+  const rootImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/.*/,
+    (match, pkg) => `@mui/${pkg}`,
+  );
 
-  if (filename.includes('/packages/mui-material')) {
-    source = '@mui/material';
-  } else if (filename.includes('/packages/mui-joy')) {
-    source = '@mui/joy';
-  } else if (filename.includes('/packages/mui-base')) {
-    source = '@mui/base';
-  } else if (filename.includes('/packages/mui-system')) {
-    source = '@mui/system';
-  } else if (filename.includes('/packages/mui-lab')) {
-    source = '@mui/lab';
-  } else {
-    throw new Error(
-      `MUI: Error for infering package. The file ${filename} as no associated package.`,
-    );
-  }
+  const subdirectoryImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/([^\\/]+)\/.*/,
+    (match, pkg, directory) => `@mui/${pkg}/${directory}`,
+  );
 
-  const namedImportPath = source;
   let namedImportName = name;
-
-  let defaultImportPath = `${source}/${name}`;
   const defaultImportName = name;
 
-  if (/unstable_/.test(filename)) {
+  if (/unstable_/.test(githubPath)) {
     namedImportName = `unstable_${name} as ${name}`;
-    defaultImportPath = `${source}/unstable_${name}`;
   }
 
-  return [
-    `import ${defaultImportName} from '${defaultImportPath}';`,
-    `import { ${namedImportName} } from '${namedImportPath}';`,
-  ];
+  const useNamedImports = rootImportPath === '@mui/base';
+
+  const subpathImport = useNamedImports
+    ? `import { ${namedImportName} } from '${subdirectoryImportPath}';`
+    : `import ${defaultImportName} from '${subdirectoryImportPath}';`;
+
+  const rootImport = `import { ${namedImportName} } from '${rootImportPath}';`;
+
+  return [subpathImport, rootImport];
 };
 
 export default async function generateHookApi(hooksInfo: HookInfo, project: TypeScriptProject) {
