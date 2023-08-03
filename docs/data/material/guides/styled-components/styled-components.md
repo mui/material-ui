@@ -1,10 +1,6 @@
 # Using styled-components
 
-<p class="description">Learn how to use styled-components with Material UI instead of Emotion.</p>
-
-By default, Material UI uses [Emotion](https://github.com/emotion-js/emotion) to generate CSS styles.
-All components rely on the `styled()` API to inject CSS into the page.
-This API is supported by multiple popular styling libraries, which makes it possible to switch between them in Material UI.
+<p class="description">Learn how to use styled-components instead of Emotion with Material UI.</p>
 
 :::error
 As of late 2021, [styled-components](https://github.com/styled-components/styled-components) is **not compatible** with server-rendered Material UI projects.
@@ -13,6 +9,10 @@ See [this GitHub issue](https://github.com/mui/material-ui/issues/29742) for mor
 
 We **strongly recommend** using Emotion for SSR projects.
 :::
+
+By default, Material UI uses [Emotion](https://github.com/emotion-js/emotion) to generate CSS styles.
+All components rely on the `styled()` API to inject CSS into the page.
+This API is supported by multiple popular styling libraries, which makes it possible to switch between them in Material UI.
 
 MUI provides two different packages to wrap your chosen styling solution for compatibility with Material UI:
 
@@ -106,8 +106,8 @@ MUI provides boilerplate examples of Create React App with Material UI and style
 
 <!-- #default-branch-switch -->
 
-- [create-react-app](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components)
-- [create-react-app with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts)
+- [Material UI + CRA + styled-components (JavaScript)](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components)
+- [Material UI + CRA + styled-components (TypeScript)](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts)
 
 :::warning
 `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself.
