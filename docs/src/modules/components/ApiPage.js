@@ -141,11 +141,6 @@ export default function ApiPage(props) {
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, pageContent.name);
 
-  const source = filename
-    .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
-    // convert things like `/Table/Table.js` to ``
-    .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
-
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
 
@@ -240,11 +235,10 @@ export default function ApiPage(props) {
         />
         <Heading hash="import" />
         <HighlightedCode
-          code={`
-import ${pageContent.name} from '${source}/${pageContent.name}';
+          code={pageContent.imports.join(`
 // ${t('or')}
-import { ${pageContent.name} } from '${source}';`}
-          language="jsx"
+`)}
+          language="bash"
         />
         <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
         {componentDescription ? (

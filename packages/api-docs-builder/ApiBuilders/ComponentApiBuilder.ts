@@ -70,6 +70,10 @@ export interface ReactApi extends ReactDocgenApi {
     signature: undefined | { type: string; describedArgs?: string[]; returned?: string };
     additionalInfo?: AdditionalPropsInfo;
   }>;
+  /**
+   * Different ways to import components
+   */
+  imports: string[];
   translations: {
     componentDescription: string;
     propDescriptions: {
@@ -351,6 +355,7 @@ const generateApiPage = (
       }),
     ),
     name: reactApi.name,
+    imports: reactApi.imports,
     styles: {
       classes: reactApi.styles.classes,
       globalClasses: _.fromPairs(
@@ -585,6 +590,33 @@ const attachPropsTable = (reactApi: ReactApi) => {
 };
 
 /**
+ * Helper to get the import options
+ * @param name The name of the component
+ * @param filename The filename where its defined (to infer the package)
+ * @returns an array of import command
+ */
+const getComponentImports = (name: string, filename: string) => {
+  let source;
+
+  if (filename.includes('/packages/mui-material')) {
+    source = '@mui/material';
+  } else if (filename.includes('/packages/mui-joy')) {
+    source = '@mui/joy';
+  } else if (filename.includes('/packages/mui-base')) {
+    source = '@mui/base';
+  } else if (filename.includes('/packages/mui-system')) {
+    source = '@mui/system';
+  } else if (filename.includes('/packages/mui-lab')) {
+    source = '@mui/lab';
+  } else {
+    throw new Error(
+      `MUI: Error for infering package. The file ${filename} as no associated package.`,
+    );
+  }
+
+  return [`import ${name} from '${source}/${name}';`, `import { ${name} } from '${source}';`];
+};
+/**
  * - Build react component (specified filename) api by lookup at its definition (.d.ts or ts)
  *   and then generate the API page + json data
  * - Generate the translations
@@ -675,6 +707,7 @@ export default async function generateComponentApi(
   }
   reactApi.filename = filename;
   reactApi.name = name;
+  reactApi.imports = getComponentImports(name, filename);
   reactApi.muiName = muiName;
   reactApi.apiPathname = apiPathname;
   reactApi.EOL = EOL;
