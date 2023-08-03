@@ -53,4 +53,4 @@ Come show off your projects, introduce yourself in the **"👋 | new-members"** 
 
 As always, we would love to hear from you.
 
-**See you on our [Discord Server!](https://mui.com/r/discord/)**
+**See you on our [Discord Server](https://mui.com/r/discord/)!**
