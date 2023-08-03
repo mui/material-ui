@@ -59,7 +59,7 @@ In this case, instead of overriding all the styles on the Material UI `Switch` c
 
 ```js
 import { styled } from '@mui/material/styles';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
+import { SwitchUnstyled, switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
 
 const Root = styled('span')(`
   position: relative;

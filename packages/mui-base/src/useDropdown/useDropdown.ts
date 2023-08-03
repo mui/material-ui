@@ -6,8 +6,8 @@ import { DropdownActionTypes, DropdownState, UseDropdownParameters } from './use
 
 import type { DropdownContextValue } from './DropdownContext';
 import { StateChangeCallback } from '../utils/useControllableReducer.types';
-import dropdownReducer from './dropdownReducer';
-import useControllableReducer from '../utils/useControllableReducer';
+import { dropdownReducer } from './dropdownReducer';
+import { useControllableReducer } from '../utils/useControllableReducer';
 
 /**
  *
@@ -19,7 +19,7 @@ import useControllableReducer from '../utils/useControllableReducer';
  *
  * - [useDropdown API](https://mui.com/base-ui/react-menu/hooks-api/#use-dropdown)
  */
-export default function useDropdown(parameters: UseDropdownParameters = {}) {
+export function useDropdown(parameters: UseDropdownParameters = {}) {
   const { defaultOpen, onOpenChange, open: openProp } = parameters;
   const [popupId, setPopupId] = React.useState<string>('');
   const [triggerElement, setTriggerElement] = React.useState<HTMLElement | null>(null);
