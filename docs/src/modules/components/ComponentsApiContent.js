@@ -158,13 +158,13 @@ export default function ComponentsApiContent(props) {
 
     const componentNameKebabCase = kebabCase(componentName);
 
-    const useNamedImports = source === '@mui/base';
+    const useNamedImports = source.startsWith('@mui/base');
 
     const subpathImport = useNamedImports
-      ? `import { ${pageContent.name} } from '${source}/${pageContent.name}';`
-      : `import ${pageContent.name} from '${source}/${pageContent.name}';`;
+      ? `import { ${namedImportName} } from '${defaultImportPath}';`
+      : `import ${defaultImportName} from '${defaultImportPath}';`;
 
-    const rootImport = `import { ${pageContent.name} } from '${source}';`;
+    const rootImport = `import { ${namedImportName} } from '${namedImportPath}';`;
 
     const importInstructions = `${subpathImport}
 // ${t('or')}

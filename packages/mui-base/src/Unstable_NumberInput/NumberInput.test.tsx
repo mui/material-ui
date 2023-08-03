@@ -3,7 +3,8 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
 import { act, createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
-import NumberInput, {
+import {
+  Unstable_NumberInput as NumberInput,
   numberInputClasses,
   NumberInputOwnerState,
 } from '@mui/base/Unstable_NumberInput';

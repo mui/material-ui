@@ -77,10 +77,10 @@ export default function HooksApiContent(props) {
     const useNamedImports = rootImportPath === '@mui/base';
 
     const subpathImport = useNamedImports
-      ? `import { ${hookName} } from '${subdirectoryImportPath}';`
-      : `import ${hookName} from '${subdirectoryImportPath}';`;
+      ? `import { ${defaultImportName} } from '${subdirectoryImportPath}';`
+      : `import ${defaultImportName} from '${subdirectoryImportPath}';`;
 
-    const rootImport = `import { ${hookName} } from '${rootImportPath}';`;
+    const rootImport = `import { ${defaultImportName} } from '${rootImportPath}';`;
 
     const importInstructions = `${subpathImport}
 // ${t('or')}

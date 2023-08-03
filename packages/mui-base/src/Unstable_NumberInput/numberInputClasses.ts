@@ -1,5 +1,5 @@
-import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
 
 export interface NumberInputClasses {
   /** Class name applied to the root element. */
@@ -32,7 +32,7 @@ export function getNumberInputUtilityClass(slot: string): string {
   return generateUtilityClass('MuiNumberInput', slot);
 }
 
-const numberInputClasses: NumberInputClasses = generateUtilityClasses('MuiNumberInput', [
+export const numberInputClasses: NumberInputClasses = generateUtilityClasses('MuiNumberInput', [
   'root',
   'formControl',
   'focused',
@@ -45,5 +45,3 @@ const numberInputClasses: NumberInputClasses = generateUtilityClasses('MuiNumber
   // 'adornedStart',
   // 'adornedEnd',
 ]);
-
-export default numberInputClasses;

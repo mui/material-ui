@@ -1,5 +1,6 @@
 import * as React from 'react';
-import useNumberInput, {
+import {
+  unstable_useNumberInput as useNumberInput,
   UseNumberInputParameters,
 } from '@mui/base/unstable_useNumberInput';
 import { useTheme } from '@mui/system';

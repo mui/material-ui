@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useNumberInput from '@mui/base/unstable_useNumberInput';
+import { unstable_useNumberInput as useNumberInput } from '@mui/base/unstable_useNumberInput';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import clsx from 'clsx';
 

@@ -12,7 +12,7 @@ import {
   UseNumberInputReturnValue,
 } from './useNumberInput.types';
 import { clamp, isNumber } from './utils';
-import extractEventHandlers from '../utils/extractEventHandlers';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 
 type StepDirection = 'up' | 'down';
 
@@ -34,9 +34,7 @@ function parseInput(v: string): string {
  *
  * - [useNumberInput API](https://mui.com/base-ui/react-number-input/hooks-api/#use-number-input)
  */
-export default function useNumberInput(
-  parameters: UseNumberInputParameters,
-): UseNumberInputReturnValue {
+export function useNumberInput(parameters: UseNumberInputParameters): UseNumberInputReturnValue {
   const {
     min,
     max,
