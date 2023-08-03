@@ -64,7 +64,10 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### `base-use-named-exports`
 
-Base UI default exports were changed to named ones.
+Base UI default exports were changed to named ones. Previously we had a mix of default and named ones.
+This was changed to improve consistency and avoid problems some bundlers have with default exports.
+See https://github.com/mui/material-ui/issues/21862 for more context.
+
 This codemod updates the import and re-export statements.
 
 ```diff
