@@ -60,6 +60,22 @@ describe('Joy <Input />', () => {
     expect(screen.getByTestId('end')).toBeVisible();
   });
 
+  it('should have endDecorator when passed in slots', () => {
+    function EndDecorator() {
+      return <span data-testid="end">end</span>;
+    }
+    render(<Input slots={{ endDecorator: EndDecorator }} />);
+    expect(screen.getByTestId('end')).toBeVisible();
+  });
+
+  it('should have startDecorator when passed in slots', () => {
+    function StartDecorator() {
+      return <span data-testid="start">end</span>;
+    }
+    render(<Input slots={{ startDecorator: StartDecorator }} />);
+    expect(screen.getByTestId('start')).toBeVisible();
+  });
+
   describe('prop: required', () => {
     it('should pass to `input` element', () => {
       const { getByRole } = render(<Input required />);

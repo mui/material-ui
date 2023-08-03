@@ -334,12 +334,14 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   return (
     <SlotRoot {...rootProps}>
-      {startDecorator && (
+      {(endDecorator ?? startDecoratorProps.ownerState.slots?.startDecorator) && (
         <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
 
       <SlotInput {...inputProps} />
-      {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+      {(endDecorator ?? endDecoratorProps.ownerState.slots?.endDecorator) && (
+        <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>
+      )}
     </SlotRoot>
   );
 }) as OverridableComponent<InputTypeMap>;
