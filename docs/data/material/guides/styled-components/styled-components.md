@@ -20,9 +20,13 @@ MUI provides two different packages to wrap your chosen styling solution for com
 - `@mui/styled-engine-sc`: a similar wrapper, but specifically tailored for styled-components. You must install and implement this package to use styled-components with Material UI.
 
 These two packages implement the same interface, making them interchangeable.
-By default, `@mui/material` has `@mui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@mui/styled-engine-sc`.
 
-## With yarn
+## Bundler configuration
+
+By default, `@mui/material` has `@mui/styled-engine` as a dependency.
+To use styled-components, you need to configure your bundler to replace it with `@mui/styled-engine-sc`.
+
+### With yarn
 
 If you're using yarn, you can configure it using a package resolution:
 
@@ -42,9 +46,9 @@ If you're using yarn, you can configure it using a package resolution:
  }
 ```
 
-## With npm
+### With npm
 
-Because package resolutions aren't available, you must update your bundler's config to add this alias.
+Because package resolutions aren't available with npm, you must update your bundler's config to add this alias.
 The example below shows how to do this with Webpack:
 
 **webpack.config.js**
@@ -74,7 +78,7 @@ For TypeScript, you must also update the `tsconfig.json` as shown here:
  }
 ```
 
-## Next.js
+### Next.js
 
 **next.config.js**
 
