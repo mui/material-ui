@@ -16,8 +16,8 @@ We **strongly recommend** using Emotion for SSR projects.
 
 MUI provides two different packages to wrap your chosen styling solution for compatibility with Material UI:
 
-- `@mui/styled-engine` - a thin wrapper around Emotion's [`styled()`](https://emotion.sh/docs/styled) API that includes required utilities like the `<GlobalStyles />` component, the `css` and `keyframe` helpers, and more. This is the default, and you do not need to install it.
-- `@mui/styled-engine-sc` - a similar wrapper, but specifically tailored for styled-components. You must install and implement this package to use styled-components with Material UI.
+- `@mui/styled-engine`: a thin wrapper around Emotion's [`styled()`](https://emotion.sh/docs/styled) API that includes required utilities like the `<GlobalStyles />` component, the `css` and `keyframe` helpers, and more. This is the default, and you do not need to install it.
+- `@mui/styled-engine-sc`: a similar wrapper, but specifically tailored for styled-components. You must install and implement this package to use styled-components with Material UI.
 
 These two packages implement the same interface, making them interchangeable.
 By default, `@mui/material` has `@mui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@mui/styled-engine-sc`.
