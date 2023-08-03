@@ -48,6 +48,11 @@ There are a plethora of reasons why you should join, but here are the three bigg
         There are thousands of developers, designers, and teams using MUI.
         You're bound to find someone to help you complete your project.
 
-Overall, Discord's combination of real-time communication, community building features, organizational capabilities, and developer-friendly features make it a valuable tool for our community to connect, collaborate, and grow together!
+## Chat with you soon
+
+Overall, we're super excited to have you join our community.
+Come show off your projects, introduce yourself in the **"👋 | new-members"** channel, or just ask general questions in the forums.
+
+As always, we would love to hear from you
 
 **See you on our [Discord Server!](https://mui.com/r/discord/)**
