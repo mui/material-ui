@@ -43,8 +43,8 @@
   },
   "name": "NumberInput",
   "imports": [
-    "import NumberInput from '@mui/base/NumberInput';",
-    "import { NumberInput } from '@mui/base';"
+    "import NumberInput from '@mui/base/Unstable_NumberInput';",
+    "import { Unstable_NumberInput as NumberInput } from '@mui/base';"
   ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,

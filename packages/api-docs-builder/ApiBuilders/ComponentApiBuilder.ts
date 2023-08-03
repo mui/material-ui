@@ -614,7 +614,21 @@ const getComponentImports = (name: string, filename: string) => {
     );
   }
 
-  return [`import ${name} from '${source}/${name}';`, `import { ${name} } from '${source}';`];
+  const namedImportPath = source;
+  let namedImportName = name;
+
+  let defaultImportPath = `${source}/${name}`;
+  const defaultImportName = name;
+
+  if (/Unstable_/.test(filename)) {
+    namedImportName = `Unstable_${name} as ${name}`;
+    defaultImportPath = `${source}/Unstable_${name}`;
+  }
+
+  return [
+    `import ${defaultImportName} from '${defaultImportPath}';`,
+    `import { ${namedImportName} } from '${namedImportPath}';`,
+  ];
 };
 
 /**

@@ -453,7 +453,21 @@ const getHookImports = (name: string, filename: string) => {
     );
   }
 
-  return [`import ${name} from '${source}/${name}';`, `import { ${name} } from '${source}';`];
+  const namedImportPath = source;
+  let namedImportName = name;
+
+  let defaultImportPath = `${source}/${name}`;
+  const defaultImportName = name;
+
+  if (/unstable_/.test(filename)) {
+    namedImportName = `unstable_${name} as ${name}`;
+    defaultImportPath = `${source}/unstable_${name}`;
+  }
+
+  return [
+    `import ${defaultImportName} from '${defaultImportPath}';`,
+    `import { ${namedImportName} } from '${namedImportPath}';`,
+  ];
 };
 
 export default async function generateHookApi(hooksInfo: HookInfo, project: TypeScriptProject) {
