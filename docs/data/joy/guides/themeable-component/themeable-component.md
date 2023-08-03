@@ -1,14 +1,14 @@
-# Themeable Component
+# Themeable component
 
 <p class="description">Create your own themeable component with Joy UI theming feature.</p>
 
 ## Introduction
 
-Joy UI provides a powerful theming feature that lets you to add your own component to the theme as if it's one of the built-in components.
+Joy UI provides a powerful theming feature that lets you add your own components to the theme and treat them as if they're built-in components.
 
-If you are building a component library on top of Joy UI, you can follow the step-by-step guide below on how to create a custom component that is themeable across multiple projects.
+If you are building a component library on top of Joy UI, you can follow the step-by-step guide below to create a custom component that is themeable across multiple projects.
 
-Otherwise, you can skip the step-by-step guide and use the [template](#template) as a starting point for your component.
+Alternatively, you can use the provided [template](#template) as a starting point for your component.
 
 :::info
 You don't need to connect your component to the theme if you are only using it in a single project.
@@ -16,27 +16,27 @@ You don't need to connect your component to the theme if you are only using it i
 
 ## Step-by-step guide
 
-We are going to build a statistics component that looks like this:
+This guide will walk you through how to build this statistics component, which accepts the app's theme as though it were a built-in Joy UI component:
 
 {{"demo": "StatComponent.js", "hideToolbar": true}}
 
 ### 1. Create the component slots
 
-The slots let your users customize each part of the component by targeting the slot's name in [theme's styleOverrides](/joy-ui/customization/themed-components/#theme-style-overrides).
+Slots let you customize each individual element of the component by targeting its respective name in the [theme's styleOverrides](/joy-ui/customization/themed-components/#theme-style-overrides).
 
-In this example, we are going to create 3 slots for the statistics component:
+This statistics component is composed of three slots:
 
 - `root`: the container of the component
 - `value`: the number of the statistics
 - `unit`: the unit or description of the statistics
 
 :::success
-We recommend to use `root` as the name of the slot that is the outermost container of the component to follow Joy UI consistency.
+Though you can give these slots any names you prefer, we recommend using `root` for the outermost container element for consistency with the rest of the library.
 :::
 
 {{"demo": "StatSlots.js", "hideToolbar": true}}
 
-Use `styled` API with `name`, `slot`, and `overridesResolver` parameters to create the slots.
+Use the `styled` API with `name`, `slot`, and `overridesResolver` parameters to create the slots, as shown below:
 
 ```js
 import * as React from 'react';
@@ -75,7 +75,7 @@ const StatUnit = styled('div', {
 
 ### 2. Create the component
 
-Now we can create the component by using the slots in the previous step.
+Assemble the component using the slots created in the previous step:
 
 ```js
 // /path/to/Stat.js
@@ -110,7 +110,7 @@ const Stat = React.forwardRef(function Stat(props, ref) {
 export default Stat;
 ```
 
-At this point, your users will be able to theme the `Stat` component like this:
+At this point, you'll be able to apply the theme to the `Stat` component like this:
 
 ```js
 import { extendTheme } from '@mui/joy/styles';
@@ -140,9 +140,10 @@ const theme = extendTheme({
 
 ### 3. Style the slot with ownerState
 
-When you need to style the slot based props or internal state, wrap them in `ownerState` object and pass to each slot as a prop. The `ownerState` is a special name that will not spread to DOM by the `styled` API.
+When you need to style the slot-based props or internal state, wrap them in the `ownerState` object and pass it to each slot as a prop. 
+The `ownerState` is a special name that will not spread to the DOM via the `styled` API.
 
-In this example, we are going to add a `variant` prop to the `Stat` component and use it to style the `root` slot.
+Add a `variant` prop to the `Stat` component and use it to style the `root` slot, as shown below:
 
 ```diff
   const Stat = React.forwardRef(function Stat(props, ref) {
@@ -188,7 +189,7 @@ Then you can read `ownerState` in the slot to style it based on the `variant` pr
 
 ### 4. Support theme default props
 
-To let your users customize the default props of your component for different projects, you need to use the `useThemeProps` API.
+To customize your component's default props for different projects, you need to use the `useThemeProps` API.
 
 ```diff
 + import { useThemeProps } from '@mui/joy/styles';
@@ -207,7 +208,7 @@ To let your users customize the default props of your component for different pr
   });
 ```
 
-Then your users can customize the default props of your component like this:
+Then you can customize the default props of your component like this:
 
 ```js
 import { extendTheme } from '@mui/joy/styles';
@@ -225,7 +226,7 @@ const theme = extendTheme({
 
 ## TypeScript
 
-If you use TypeScript, you should create interfaces for the component props and ownerState.
+If you use TypeScript, you must create interfaces for the component props and ownerState:
 
 ```js
 interface StatProps {
@@ -280,7 +281,7 @@ const Stat = React.forwardRef<HTMLDivElement, StatProps>(function Stat(inProps, 
 });
 ```
 
-Finally, you have to add the Stat component the theme types.
+Finally, add the Stat component to the theme types.
 
 ```ts
 import { Theme, StyleOverrides } from '@mui/joy/styles';
@@ -297,13 +298,12 @@ declare module '@mui/joy/styles' {
 ```
 
 :::success
-🍾 Congratulations! You have successfully built a themeable component!.
 :::
 
 ---
 
 ## Template
 
-You can use the following template to create your own component. It is the full code of the `Stat` component in this guide.
+This template is the final product of the step-by-step guide above, demonstrating how to build a custom component that can be styled with the theme as if it was a built-in component.
 
 {{"demo": "StatFullTemplate.js"}}
