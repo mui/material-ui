@@ -488,6 +488,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /base-ui/react-components/ /base-ui/all-components/ 301
 /system/getting-started/overview/ /system/getting-started/ 301
 /blog/introducing-mui-base/ /blog/introducing-base-ui/ 301
+/material-ui/guides/styled-engine/ /material-ui/guides/styled-components/ 301
 
 # Proxies
 
