@@ -415,6 +415,7 @@
     "/material-ui/guides/typescript": "TypeScript",
     "/material-ui/guides/interoperability": "Style library interoperability",
     "/material-ui/guides/styled-components": "Using styled-components",
+    "/material-ui/guides/theme-scoping": "Theme scoping",
     "/material-ui/guides/minimizing-bundle-size": "Minimizing bundle size",
     "/material-ui/guides/composition": "Composition",
     "/material-ui/guides/routing": "Routing",
