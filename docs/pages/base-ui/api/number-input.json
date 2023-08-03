@@ -36,12 +36,16 @@
         "description": "{ decrementButton?: elementType, incrementButton?: elementType, input?: elementType, root?: elementType }"
       },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "step": { "type": { "name": "number" } },
     "value": { "type": { "name": "any" } }
   },
   "name": "NumberInput",
+  "imports": [
+    "import NumberInput from '@mui/base/NumberInput';",
+    "import { NumberInput } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "muiName": "MuiNumberInput",
