@@ -15,7 +15,7 @@ const getPageLinks = (markdown) => {
       hrefs.push(href);
     }
   };
-  marked(markdown, { renderer });
+  marked(markdown, { mangle: false, headerIds: false, renderer });
   return hrefs;
 };
 
@@ -28,7 +28,7 @@ const getJsFilesInFolder = (folderPath) => {
       return [...acc, ...filesInFolder];
     }
     if (file.name.endsWith('.js') || file.name.endsWith('.tsx')) {
-      return [...acc, path.join(folderPath, file.name)];
+      return [...acc, path.join(folderPath, file.name).replace(/\\/g, '/')];
     }
     return acc;
   }, []);

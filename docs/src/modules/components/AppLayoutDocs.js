@@ -15,6 +15,8 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
 
+const TOC_WIDTH = 242;
+
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
 })(({ disableToc, theme }) => ({
@@ -22,13 +24,13 @@ const Main = styled('main', {
   width: '100%',
   ...(disableToc
     ? {
-        [theme.breakpoints.up('lg')]: {
-          marginRight: '5%',
+        [theme.breakpoints.up('md')]: {
+          marginRight: TOC_WIDTH / 2,
         },
       }
     : {
         [theme.breakpoints.up('md')]: {
-          gridTemplateColumns: '1fr 242px',
+          gridTemplateColumns: `1fr ${TOC_WIDTH}px`,
         },
       }),
   '& .markdown-body .comment-link': {
@@ -37,18 +39,30 @@ const Main = styled('main', {
 }));
 
 const StyledAppContainer = styled(AppContainer, {
-  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'hasTabs',
-})(({ disableAd, hasTabs, theme }) => {
+  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'hasTabs' && prop !== 'disableToc',
+})(({ disableAd, hasTabs, disableToc, theme }) => {
   return {
     position: 'relative',
     // By default, a grid item cannot be smaller than the size of its content.
     // https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
     minWidth: 0,
+    ...(disableToc
+      ? {
+          // 105ch ≈ 930px
+          maxWidth: `calc(105ch + ${TOC_WIDTH / 2}px)`,
+        }
+      : {
+          // We're mostly hosting text content so max-width by px does not make sense considering font-size is system-adjustable.
+          fontFamily: 'Arial',
+          // 105ch ≈ 930px
+          maxWidth: '105ch',
+        }),
     ...(!disableAd && {
       ...(!hasTabs && {
+        // Sync with material-ui/docs/src/modules/components/Ad.js container
         '&& .description': {
-          paddingBottom: 4 * 10 + 126,
-          marginBottom: 3 * 10,
+          paddingBottom: `calc(${theme.spacing(4)} + 126px)`,
+          marginBottom: theme.spacing(3),
         },
         '&& .description.ad': {
           paddingBottom: 0,
@@ -57,7 +71,7 @@ const StyledAppContainer = styled(AppContainer, {
       }),
       ...(hasTabs && {
         '&& .component-tabs .MuiTabs-root': {
-          marginBottom: 4 * 10 + 4 * 10 + 126,
+          marginBottom: `calc(${theme.spacing(4)} + 126px + 40px)`,
         },
         '&& .component-tabs.ad .MuiTabs-root': {
           marginBottom: 0,
@@ -141,7 +155,7 @@ export default function AppLayoutDocs(props) {
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
+          <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs} disableToc={disableToc}>
             <ActionsDiv>
               <EditPage sourceLocation={location} />
             </ActionsDiv>

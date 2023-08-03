@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 
@@ -10,7 +10,7 @@ export default function EditPage(props) {
   const { sourceLocation } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
-  const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
+  const CROWDIN_ROOT_URL = 'https://crowdin.com/project/material-ui-docs/';
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
   const crowdInPath = sourceLocation.substring(0, sourceLocation.lastIndexOf('/'));
 

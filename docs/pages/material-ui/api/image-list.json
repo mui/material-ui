@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" }, "required": true },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "cols": { "type": { "name": "custom", "description": "integer" }, "default": "2" },
     "component": { "type": { "name": "elementType" } },
     "gap": { "type": { "name": "number" }, "default": "4" },
@@ -13,7 +13,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 import Stack from '@mui/material/Stack';
 
 export default function UnstyledButtonsSimple() {
@@ -9,7 +9,7 @@ export default function UnstyledButtonsSimple() {
         Button
       </Button>
       <Button
-        className="cursor-pointer disabled:cursor-not-allowed text-sm bg-violet-500 text-white rounded-md font-semibold px-6 py-2 border-none disabled:opacity-50"
+        className="cursor-pointer disabled:cursor-not-allowed text-sm bg-violet-500 text-white rounded-md font-semibold px-4 py-2 border-none disabled:opacity-50"
         disabled
       >
         Disabled

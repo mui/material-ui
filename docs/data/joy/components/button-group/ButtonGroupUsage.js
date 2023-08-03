@@ -1,9 +1,9 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function ButtonUsage() {
   return (
@@ -12,7 +12,7 @@ export default function ButtonUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },

@@ -30,7 +30,7 @@ The Badge component creates a badge that is applied to its child element.
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Badge from '@mui/base/Badge';
+import { Badge } from '@mui/base/Badge';
 
 export default function MyApp() {
   return <Badge>{/* the element that the badge is attached to */}</Badge>;
@@ -96,7 +96,7 @@ The same applies for props specific to custom primitive elements:
 ## Hook
 
 ```jsx
-import useBadge from '@mui/base/useBadge';
+import { useBadge } from '@mui/base/useBadge';
 ```
 
 The `useBadge` hook lets you apply the functionality of a badge to a fully custom component.
@@ -125,7 +125,7 @@ When this content is a number, there are additional props you can use for furthe
 
 The following demo shows how to create and style a typical numerical badge that's attached to a generic box element:
 
-{{"demo": "UnstyledBadge.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledBadge", "defaultCodeOpen": false}}
 
 ### Badge visibility
 

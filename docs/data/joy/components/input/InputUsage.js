@@ -1,6 +1,6 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Input from '@mui/joy/Input';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function InputUsage() {
   return (
@@ -9,7 +9,7 @@ export default function InputUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },

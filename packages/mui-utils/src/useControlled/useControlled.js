@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
 import * as React from 'react';
 

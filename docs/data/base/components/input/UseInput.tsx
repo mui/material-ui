@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useInput from '@mui/base/useInput';
+import { useInput } from '@mui/base/useInput';
 import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 
@@ -52,7 +52,7 @@ const StyledInputElement = styled('input')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
-  line-height: 1.5rem;
+  line-height: 1.5;
   padding: 8px 12px;
   border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};

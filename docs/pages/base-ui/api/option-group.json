@@ -14,7 +14,8 @@
         "name": "shape",
         "description": "{ label?: elementType, list?: elementType, root?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     }
   },
   "name": "OptionGroup",

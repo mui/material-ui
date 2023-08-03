@@ -28,7 +28,8 @@
         "name": "shape",
         "description": "{ input?: elementType, root?: elementType, textarea?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "startAdornment": { "type": { "name": "node" } },
     "type": {

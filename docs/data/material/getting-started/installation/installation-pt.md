@@ -8,13 +8,13 @@ O Material UI está disponível como um [pacote npm](https://www.npmjs.com/packa
 
 Para instalar e salvar as dependências do seu `pacote.json`, execute o seguinte comando **npm** abaixo:
 
-```sh
+```bash
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
 Ou **yarn**
 
-```sh
+```bash
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -24,11 +24,11 @@ Por favor, note que [react](https://www.npmjs.com/package/react) >= 17.0.0 and [
 
 Material UI está usando a biblioteca [emotion](https://emotion.sh/docs/introduction) como o motor de estilo padrão. Se você quiser usar [`styled-components`](https://styled-components.com/), execute:
 
-```sh
+```bash
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
-```sh
+```bash
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
@@ -66,13 +66,13 @@ In order to use prebuilt SVG Material icons, such as those found in the [icons d
 
 Com **npm**:
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 Com **yarn**:
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 
@@ -85,7 +85,7 @@ Dois arquivos do Universal Module Definition (**UMD**) são fornecidos:
 - um para desenvolvimento: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
 - um para produção: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
 
-You can follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/cdn) to quickly get started.
+You can follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/material-via-cdn) to quickly get started.
 
 ⚠️ Using this approach in **production** is **discouraged** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
 

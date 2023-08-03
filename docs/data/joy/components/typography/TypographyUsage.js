@@ -1,7 +1,7 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
+import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
-import { Box } from '@mui/joy';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function TypographyUsages() {
   return (
@@ -13,30 +13,28 @@ export default function TypographyUsages() {
           knob: 'select',
           defaultValue: 'h1',
           options: [
-            'display1',
-            'display2',
             'h1',
             'h2',
             'h3',
             'h4',
-            'h5',
-            'h6',
-            'body1',
-            'body2',
-            'body3',
+            'title-lg',
+            'title-md',
+            'title-sm',
+            'body-lg',
+            'body-md',
+            'body-sm',
+            'body-xs',
           ],
         },
 
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'neutral',
         },
 
         {
           propName: 'variant',
-          knob: 'select',
-          defaultValue: 'plain',
+          knob: 'radio',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
 

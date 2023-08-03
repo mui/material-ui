@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import { Slider as BaseSlider } from '@mui/base/Slider';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
-import BaseSlider from '@mui/base/Slider';
 import Slider, { sliderClasses as classes } from '@mui/material-next/Slider';
 
 function createTouches(touches) {
@@ -830,14 +830,14 @@ describe('<Slider />', () => {
     });
 
     it('should be respected when using custom value label', () => {
-      function ValueLabelComponent(props) {
+      const ValueLabelComponent = React.forwardRef((props, ref) => {
         const { value, open } = props;
         return (
-          <span data-testid="value-label" className={open ? 'open' : ''}>
+          <span data-testid="value-label" className={open ? 'open' : ''} ref={ref}>
             {value}
           </span>
         );
-      }
+      });
       ValueLabelComponent.propTypes = { value: PropTypes.number };
 
       const { setProps } = render(
@@ -1092,10 +1092,14 @@ describe('<Slider />', () => {
 
   describe('prop: ValueLabelComponent', () => {
     it('receives the formatted value', () => {
-      function ValueLabelComponent(props) {
+      const ValueLabelComponent = React.forwardRef((props, ref) => {
         const { value } = props;
-        return <span data-testid="value-label">{value}</span>;
-      }
+        return (
+          <span data-testid="value-label" ref={ref}>
+            {value}
+          </span>
+        );
+      });
       ValueLabelComponent.propTypes = { value: PropTypes.string };
 
       const { getByTestId } = render(
@@ -1435,6 +1439,62 @@ describe('<Slider />', () => {
     expect(container.querySelector(`.${classes.markActive}`)).toHaveComputedStyle({
       height: '10px',
       width: '10px',
+    });
+  });
+
+  describe('overlapping state', () => {
+    it('should apply thumb overlap classes', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getAllByRole } = render(<Slider sx={{ width: 100 }} value={[0, 0]} />);
+
+      const [firstThumb, lastThumb] = document.querySelectorAll(`.${classes.thumb}`);
+      const firstThumbInput = getAllByRole('slider')[0];
+      act(() => {
+        firstThumbInput.focus();
+      });
+
+      expect(firstThumb).to.have.class(classes.thumbOverlap);
+      expect(lastThumb).not.to.have.class(classes.thumbOverlap);
+    });
+
+    it('should overlap last active thumb', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getAllByRole } = render(<Slider sx={{ width: 100 }} value={[0, 0]} />);
+
+      const [firstThumb, lastThumb] = document.querySelectorAll(`.${classes.thumb}`);
+
+      const lastThumbInput = getAllByRole('slider')[1];
+      act(() => {
+        lastThumbInput.focus();
+      });
+
+      expect(firstThumb).not.to.have.class(classes.thumbOverlap);
+      expect(lastThumb).to.have.class(classes.thumbOverlap);
+    });
+
+    it('should apply value label overlap classes', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getAllByRole } = render(
+        <Slider sx={{ width: 100 }} value={[0, 0]} valueLabelDisplay="on" />,
+      );
+
+      const [firstValueLabel, lastValueLabel] = document.querySelectorAll(`.${classes.valueLabel}`);
+      const firstThumbInput = getAllByRole('slider')[0];
+      act(() => {
+        firstThumbInput.focus();
+      });
+
+      expect(firstValueLabel).to.have.class(classes.valueLabelOverlap);
+      expect(lastValueLabel).not.to.have.class(classes.valueLabelOverlap);
     });
   });
 });

@@ -2,27 +2,29 @@
 
 <p class="description">Get started with Base UI, a library of headless ("unstyled") React UI components and low-level hooks.</p>
 
+:::info
+If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](/base-ui/guides/next-js-app-router/).
+:::
+
 ## Installation
 
 `@mui/base` is completely standalone – run one of the following commands to add Base UI to your React project:
 
-### With npm
+<codeblock storageKey="package-manager">
 
-```sh
+```bash npm
 npm install @mui/base
 ```
 
-### With yarn
-
-```sh
+```bash yarn
 yarn add @mui/base
 ```
 
-### With pnpm
-
-```sh
+```bash pnpm
 pnpm add @mui/base
 ```
+
+</codeblock>
 
 ### Peer dependencies
 
@@ -54,7 +56,7 @@ The code snippets below demonstrate the basic implementation of each:
 
 ```tsx
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 export default function App() {
   return <Button>Click Me</Button>;
@@ -65,7 +67,7 @@ export default function App() {
 
 ```tsx
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 
 export default function App() {
   const { getRootProps } = useButton();
@@ -141,7 +143,7 @@ Interpolations or arguments that are functions called by `styled` receive the `t
 import * as React from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { styled } from '@mui/system';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 const theme = {
   colors: {
@@ -171,7 +173,7 @@ The demos below show how to create the Primer button using MUI System:
 
 ```tsx
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 import { styled } from '@mui/system';
 
 const GitHubButton = styled(Button)(
@@ -192,7 +194,7 @@ export default function App() {
 
 ```tsx
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 import { styled } from '@mui/system';
 
 const GitHubButton = styled('button')(

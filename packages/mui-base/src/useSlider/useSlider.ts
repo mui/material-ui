@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import {
   unstable_ownerDocument as ownerDocument,
@@ -201,7 +202,7 @@ function doesSupportTouchActionNone() {
  *
  * - [useSlider API](https://mui.com/base-ui/react-slider/hooks-api/#use-slider)
  */
-export default function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
+export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
   const {
     'aria-labelledby': ariaLabelledby,
     defaultValue,

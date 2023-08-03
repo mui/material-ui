@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, Box } from '@mui/system';
-import Badge, { badgeClasses } from '@mui/base/Badge';
+import { Badge, badgeClasses } from '@mui/base/Badge';
 
 const blue = {
   100: '#DAECFF',

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/base/Button';
-import Input, { InputProps, inputClasses } from '@mui/base/Input';
+import { Button } from '@mui/base/Button';
+import { Input, InputProps, inputClasses } from '@mui/base/Input';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/system';
@@ -146,7 +146,7 @@ const StyledInputElement = styled('input')(
   font-size: 0.875rem;
   font-family: inherit;
   font-weight: 400;
-  line-height: 1.5rem;
+  line-height: 1.5;
   flex-grow: 1;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: inherit;

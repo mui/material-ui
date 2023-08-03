@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Input from '@mui/base/Input';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { Input } from '@mui/base/Input';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
 const CustomInput = React.forwardRef(function CustomInput(props, ref) {
@@ -46,7 +46,7 @@ const StyledInputElement = styled('input')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
-  line-height: 1.5rem;
+  line-height: 1.5;
   padding: 8px 12px;
   border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};

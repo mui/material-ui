@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
@@ -68,4 +69,4 @@ if (process.env.NODE_ENV !== 'production') {
   (NoSsr as any)['propTypes' + ''] = exactProp(NoSsr.propTypes);
 }
 
-export default NoSsr;
+export { NoSsr };

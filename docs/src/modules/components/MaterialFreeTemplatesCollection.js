@@ -6,8 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { alpha } from '@mui/material/styles';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 

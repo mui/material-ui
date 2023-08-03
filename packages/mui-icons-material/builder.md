@@ -6,7 +6,7 @@ This tool generates MUI SvgIcon components for a set of svg icons.
 
 The build script downloads and builds the Material Design Icons.
 
-```sh
+```bash
 yarn install
 yarn build
 cd build

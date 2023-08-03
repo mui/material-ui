@@ -35,7 +35,7 @@ To learn more about implementing a custom Autocomplete, you can explore the [`us
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this hook as follows:
 
 ```jsx
-import useAutocomplete from '@mui/base/useAutocomplete';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 
 export default function App() {
   const {
@@ -54,7 +54,7 @@ export default function App() {
   });
 
   return (
-    <>
+    <React.Fragment>
       <div {...getRootProps()}>
         <input {...getInputProps()} />
       </div>
@@ -65,7 +65,7 @@ export default function App() {
           ))}
         </ul>
       )}
-    </>
+    </React.Fragment>
   );
 }
 ```
@@ -118,8 +118,14 @@ The useAutocomplete hook has two states that can be controlled:
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-:::warning
 These two states are isolated, and should be controlled independently.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
 {{"demo": "ControlledStates.js"}}
@@ -133,8 +139,8 @@ Base UI provides a [`<Popper />`](/base-ui/react-popper/) component built around
 To render the listbox in Base UI's Popper, the `ref`s must be merged as follows:
 
 ```jsx
-import useAutocomplete from '@mui/base/useAutocomplete';
-import Popper from '@mui/base/Popper';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
+import { Popper } from '@mui/base/Popper';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 
 export default function App(props) {
@@ -152,7 +158,7 @@ export default function App(props) {
   const rootRef = useForkRef(ref, setAnchorEl);
 
   return (
-    <>
+    <React.Fragment>
       <div {...getRootProps()} ref={rootRef}>
         <input {...getInputProps()} />
       </div>
@@ -167,7 +173,7 @@ export default function App(props) {
           )}
         </Popper>
       )}
-    </>
+    </React.Fragment>
   );
 }
 ```

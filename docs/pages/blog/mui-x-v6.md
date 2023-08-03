@@ -251,7 +251,7 @@ If you're coming from previous versions, we recommend you check our migration gu
 
 We also provide codemods to automate some of the necessary updates in your codebase.
 
-```sh
+```bash
 npx @mui/x-codemod v6.0.0/preset-safe <path>
 ```
 

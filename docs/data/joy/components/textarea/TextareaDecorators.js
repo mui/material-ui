@@ -28,7 +28,7 @@ export default function TextareaDecorators() {
         </Box>
       }
       endDecorator={
-        <Typography level="body3" sx={{ ml: 'auto' }}>
+        <Typography level="body-xs" sx={{ ml: 'auto' }}>
           {text.length} character(s)
         </Typography>
       }

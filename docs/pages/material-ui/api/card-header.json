@@ -2,7 +2,7 @@
   "props": {
     "action": { "type": { "name": "node" } },
     "avatar": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "disableTypography": { "type": { "name": "bool" }, "default": "false" },
     "subheader": { "type": { "name": "node" } },
@@ -11,7 +11,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "title": { "type": { "name": "node" } },
     "titleTypographyProps": { "type": { "name": "object" } }

@@ -1616,6 +1616,8 @@ Change the default `indicatorColor` and `textColor` prop values to "primary".
 
 This is done to match the most common use cases with Material Design.
 
+If you'd prefer to keep the v4 color styles, use `"secondary"` and `"inherit"`, respectively, as shown below:
+
 ```diff
 -<Tabs />
 +<Tabs indicatorColor="secondary" textColor="inherit" />

@@ -12,12 +12,13 @@ import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBan
 import featureToggle from 'docs/src/featureToggle';
 
 const Nav = styled('nav')(({ theme }) => ({
-  top: 0,
+  top: 'var(--MuiDocs-header-height)',
+  marginTop: 'var(--MuiDocs-header-height)',
   paddingLeft: 2, // Fix truncated focus outline style
   position: 'sticky',
-  height: '100vh',
+  height: 'calc(100vh - var(--MuiDocs-header-height))',
   overflowY: 'auto',
-  paddingTop: `calc(var(--MuiDocs-header-height) + ${theme.spacing(4)})`,
+  paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(4),
   paddingRight: theme.spacing(4), // We can't use `padding` as stylis-plugin-rtl doesn't swap it
   display: 'none',
@@ -233,8 +234,8 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
+      <TableOfContentsBanner />
       <NoSsr>
-        <TableOfContentsBanner />
         {showSurveyBanner && (
           <Link
             href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=docs"

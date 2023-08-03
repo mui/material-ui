@@ -2,11 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer } from 'test/utils';
+import { ClassNames } from '@emotion/react';
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import FormLabel from '@mui/material/FormLabel';
 import InputLabel, { inputLabelClasses as classes } from '@mui/material/InputLabel';
-import { ClassNames } from '@emotion/react';
 
 describe('<InputLabel />', () => {
   const { render } = createRenderer();

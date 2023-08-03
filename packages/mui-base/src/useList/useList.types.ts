@@ -8,7 +8,7 @@ import {
 } from '../utils/useControllableReducer.types';
 import { EventHandlers } from '../utils';
 import type { ListContextValue } from './ListContext';
-import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
+import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 type ListActionContextRequiredKeys =
   | 'disabledItemsFocusable'
@@ -136,7 +136,7 @@ export interface UseListParameters<
    */
   isItemDisabled?: (itemValue: ItemValue, index: number) => boolean;
   /**
-   * Ref of the list root DOM element.
+   * Ref to the list root DOM element.
    */
   rootRef?: React.Ref<Element>;
   /**

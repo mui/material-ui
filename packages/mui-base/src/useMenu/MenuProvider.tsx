@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { ListContext, ListContextValue } from '../useList/ListContext';
 import { MenuItemMetadata } from '../useMenuItem';
@@ -16,7 +17,7 @@ export interface MenuProviderProps {
  *
  * @ignore - do not document.
  */
-export default function MenuProvider(props: MenuProviderProps) {
+export function MenuProvider(props: MenuProviderProps) {
   const { value, children } = props;
 
   const {

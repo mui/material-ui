@@ -14,7 +14,8 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
   },

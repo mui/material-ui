@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useControlled as useControlled } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import FormControlContext from './FormControlContext';
+import { FormControlContext } from './FormControlContext';
 import { getFormControlUtilityClass } from './formControlClasses';
 import {
   FormControlProps,
@@ -13,7 +14,7 @@ import {
   FormControlRootSlotProps,
 } from './FormControl.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function hasValue(value: unknown) {
@@ -220,4 +221,4 @@ FormControl.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default FormControl;
+export { FormControl };
