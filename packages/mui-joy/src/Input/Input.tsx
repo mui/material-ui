@@ -334,7 +334,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   return (
     <SlotRoot {...rootProps}>
-      {(endDecorator ?? startDecoratorProps.ownerState.slots?.startDecorator) && (
+      {(startDecorator ?? startDecoratorProps.ownerState.slots?.startDecorator) && (
         <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
 
