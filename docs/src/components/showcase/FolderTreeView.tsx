@@ -41,11 +41,11 @@ const CustomContent = React.forwardRef(function CustomContent(
 
   const icon = iconProp || expansionIcon || displayIcon;
 
-  const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     preventSelection(event);
   };
 
-  const handleExpansionClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleExpansionClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     handleExpansion(event);
   };
 
@@ -169,13 +169,14 @@ const StyledTreeItem = styled(TreeItem)(({ theme }) => [
   }),
 ]);
 
-function CustomTreeItem(
+const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   props: TreeItemProps & {
     ContentProps?: { lastNestedChild?: boolean };
   },
+  ref: React.Ref<HTMLLIElement>,
 ) {
-  return <StyledTreeItem ContentComponent={CustomContent} {...props} />;
-}
+  return <StyledTreeItem ContentComponent={CustomContent} {...props} ref={ref} />;
+});
 
 export default function FolderTreeView() {
   return (
