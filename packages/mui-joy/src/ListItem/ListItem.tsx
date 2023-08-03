@@ -7,7 +7,7 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { composeClasses } from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { MenuButtonOwnerState, MenuButtonProps } from './MenuButton.types';
 import { useSlotProps } from '../utils';
 import { useMenuButton } from '../useMenuButton';
-import { composeClasses } from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getMenuButtonUtilityClass } from './menuButtonClasses';
 

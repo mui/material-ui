@@ -5,7 +5,7 @@ import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { MenuItemOwnerState, MenuItemProps, MenuItemTypeMap } from './MenuItem.types';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import { useMenuItem } from '../useMenuItem';
-import { composeClasses } from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 

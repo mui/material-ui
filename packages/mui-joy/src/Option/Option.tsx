@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { composeClasses } from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useOption } from '@mui/base/useOption';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import useSlot from '../utils/useSlot';

@@ -1,1 +1,1 @@
-export { unstable_composeClasses as composeClasses } from '@mui/utils';
+export { unstable_composeClasses } from '@mui/utils';

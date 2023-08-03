@@ -7,7 +7,7 @@ import { MenuOwnerState, MenuProps, MenuRootSlotProps, MenuTypeMap } from './Men
 import { getMenuUtilityClass } from './menuClasses';
 import { useMenu } from '../useMenu';
 import { MenuProvider } from '../useMenu/MenuProvider';
-import { composeClasses } from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { Popper } from '../Popper';
 import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';

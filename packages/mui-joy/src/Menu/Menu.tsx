@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { composeClasses } from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useMenu, MenuProvider } from '@mui/base/useMenu';
 import { ListActionTypes } from '@mui/base/useList';
 import { Popper } from '@mui/base/Popper';

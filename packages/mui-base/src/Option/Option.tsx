@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import { composeClasses } from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { OptionProps, OptionOwnerState, OptionType } from './Option.types';
 import { getOptionUtilityClass } from './optionClasses';
 import { useSlotProps } from '../utils';

@@ -10,7 +10,7 @@ import {
 } from '@mui/utils';
 import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
 import PropTypes from 'prop-types';
-import { composeClasses } from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { Portal } from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';

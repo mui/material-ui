@@ -13,7 +13,7 @@ import {
 import { useSelect, SelectValue } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import { Popper } from '../Popper';
-import { composeClasses } from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSelectUtilityClass } from './selectClasses';
 import { defaultOptionStringifier } from '../useSelect/defaultOptionStringifier';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';

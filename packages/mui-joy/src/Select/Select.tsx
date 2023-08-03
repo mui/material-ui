@@ -7,7 +7,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { Popper, PopperProps } from '@mui/base/Popper';
 import { useSelect, SelectProvider } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
-import { composeClasses } from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';

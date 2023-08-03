@@ -8,7 +8,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_capitalize as capitalize,
 } from '@mui/utils';
-import { composeClasses } from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import {
   useAutocomplete,
   AutocompleteGroupedOption,

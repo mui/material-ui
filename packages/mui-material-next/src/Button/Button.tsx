@@ -9,7 +9,7 @@ import {
 } from '@mui/utils';
 import { useButton } from '@mui/base/useButton';
 import { EventHandlers, useSlotProps } from '@mui/base/utils';
-import { composeClasses } from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
 import TouchRipple from './TouchRipple';
 import { TouchRippleActions } from './TouchRipple.types';

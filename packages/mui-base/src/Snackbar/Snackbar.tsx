@@ -9,7 +9,7 @@ import {
   SnackbarTypeMap,
   SnackbarClickAwayListenerSlotProps,
 } from './Snackbar.types';
-import { composeClasses } from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSnackbarUtilityClass } from './snackbarClasses';
 import { useSnackbar } from '../useSnackbar';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';

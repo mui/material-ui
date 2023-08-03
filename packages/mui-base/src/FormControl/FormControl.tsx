@@ -14,7 +14,7 @@ import {
   FormControlRootSlotProps,
 } from './FormControl.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import { composeClasses } from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function hasValue(value: unknown) {

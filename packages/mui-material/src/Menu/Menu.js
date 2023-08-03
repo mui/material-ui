@@ -3,7 +3,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { composeClasses } from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { HTMLElementType } from '@mui/utils';
 import MenuList from '../MenuList';

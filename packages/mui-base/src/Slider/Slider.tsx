@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { isHostComponent } from '../utils/isHostComponent';
-import { composeClasses } from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSliderUtilityClass } from './sliderClasses';
 import { useSlider, valueToPercent } from '../useSlider';
 import { useSlotProps } from '../utils/useSlotProps';

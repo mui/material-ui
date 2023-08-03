@@ -11,7 +11,7 @@ import {
 } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { ModalOwnerState, ModalOwnProps, ModalProps, ModalTypeMap } from './Modal.types';
-import { composeClasses } from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { Portal } from '../Portal';
 import { ModalManager, ariaHidden } from './ModalManager';
 import { FocusTrap } from '../FocusTrap';
