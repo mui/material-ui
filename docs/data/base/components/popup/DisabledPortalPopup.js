@@ -62,6 +62,14 @@ const StyledPopup = styled(Popup)`
   z-index: 1;
 `;
 
+const grey = {
+  50: '#f6f8fa',
+  200: '#d0d7de',
+  500: '#6e7781',
+  700: '#424a53',
+  900: '#24292f',
+};
+
 const PopupBody = styled('div')(
   ({ theme }) => `
   width: max-content;
@@ -70,9 +78,14 @@ const PopupBody = styled('div')(
   align-items: center;
   padding: 16px;
   margin: 8px;
-  background-color: ${theme.palette.mode === 'dark' ? '#121212' : '#efefef'};
-  box-shadow: 0 0 10px 0 rgb(0 0 0 / 0.05), 0 3px 2px -2px rgb(0 0 0 / 0.1);
   border-radius: 8px;
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  box-shadow: ${
+    theme.palette.mode === 'dark'
+      ? `0px 4px 8px rgb(0 0 0 / 0.7)`
+      : `0px 4px 8px rgb(0 0 0 / 0.1)`
+  };
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
 `,
