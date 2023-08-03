@@ -238,7 +238,7 @@ export default function ApiPage(props) {
           code={pageContent.imports.join(`
 // ${t('or')}
 `)}
-          language="bash"
+          language="jsx"
         />
         <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
         {componentDescription ? (
