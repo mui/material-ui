@@ -444,11 +444,9 @@ const attachTranslations = (reactApi: ReactApi) => {
       // description = renderMarkdownInline(`${description}`);
 
       const typeDescriptions: { [t: string]: string } = {};
-      [...(signatureArgs ?? []), ...(signatureReturn ? [signatureReturn] : [])].forEach(
-        ({ name, description }) => {
-          typeDescriptions[name] = renderMarkdownInline(description);
-        },
-      );
+      (signatureArgs || []).concat(signatureReturn || []).forEach(({ name, description }) => {
+        typeDescriptions[name] = renderMarkdownInline(description);
+      });
 
       translations.propDescriptions[propName] = {
         description: renderMarkdownInline(jsDocText),
@@ -484,13 +482,14 @@ const attachTranslations = (reactApi: ReactApi) => {
 
 const attachPropsTable = (reactApi: ReactApi) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
+  type Pair = [string, ReactApi['propsTable'][string]];
   const componentProps: ReactApi['propsTable'] = _.fromPairs(
-    Object.entries(reactApi.props!).map(([propName, propDescriptor]) => {
+    Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
       let prop: DescribeablePropDescriptor | null;
       try {
         prop = createDescribeableProp(propDescriptor, propName);
       } catch (error) {
-        propErrors.push([propName, error as Error]);
+        propErrors.push([`[${reactApi.name}] \`${propName}\``, error as Error]);
         prop = null;
       }
       if (prop === null) {
@@ -540,7 +539,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
         }
       }
 
-      let signature;
+      let signature: ReactApi['propsTable'][string]['signature'];
       if (signatureType !== undefined) {
         signature = {
           type: signatureType,
@@ -563,7 +562,8 @@ const attachPropsTable = (reactApi: ReactApi) => {
           deprecationInfo:
             renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
           signature,
-          ...(Object.keys(additionalPropsInfo).length === 0 ? {} : { additionalPropsInfo }),
+          additionalInfo:
+            Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
         },
       ];
     }),

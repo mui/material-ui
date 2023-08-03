@@ -4,8 +4,11 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ImageListItemClasses } from './imageListItemClasses';
 
-export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
-  props: P & {
+export interface ImageListItemTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'li',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component, normally an `<img>`.
      */
@@ -29,7 +32,7 @@ export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -44,8 +47,10 @@ export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'
 declare const ImageListItem: OverridableComponent<ImageListItemTypeMap>;
 
 export type ImageListItemProps<
-  D extends React.ElementType = ImageListItemTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ImageListItemTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ImageListItemTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ImageListItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default ImageListItem;

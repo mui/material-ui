@@ -83,8 +83,11 @@ type Breakpoints = IfEquals<
   CustomBreakpoints
 >;
 
-export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
+export interface GridTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps &
     SystemProps<Theme> & {
       /**
        * The content of the component.
@@ -150,7 +153,7 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       zeroMinWidth?: boolean;
     } & Breakpoints;
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -166,8 +169,10 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
 declare const Grid: OverridableComponent<GridTypeMap>;
 
 export type GridProps<
-  D extends React.ElementType = GridTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<GridTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = GridTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<GridTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Grid;

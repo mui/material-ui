@@ -4,9 +4,9 @@ import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
 import { alpha, styled } from '@mui/material/styles';
 import { shouldForwardProp } from '@mui/system';
-import Frame from 'docs/src/components/action/Frame';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Frame from 'docs/src/components/action/Frame';
 
 const AspectRatioImage = styled('div', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',

@@ -4,8 +4,8 @@ import { useInView } from 'react-intersection-observer';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import { alpha } from '@mui/material/styles';
+import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 
 const UserFeedbacks = dynamic(() => import('./UserFeedbacks'));
 

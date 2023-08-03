@@ -1,8 +1,8 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Divider from '@mui/joy/Divider';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function DividerUsage() {
   return (

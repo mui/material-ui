@@ -238,17 +238,22 @@
     "/base-ui/react-checkbox": "Checkbox",
     "/base-ui/react-input": "Input",
     "/base-ui/react-radio-button": "Radio Button",
+    "/base-ui/react-rating": "Rating",
     "/base-ui/react-select": "Select",
     "/base-ui/react-slider": "Slider",
     "/base-ui/react-switch": "Switch",
+    "/base-ui/react-toggle-button-group": "Toggle Button Group",
     "data-display": "Data display",
     "/base-ui/react-badge": "Badge",
+    "/base-ui/react-tooltip": "Tooltip",
     "feedback": "Feedback",
     "/base-ui/react-snackbar": "Snackbar",
     "surfaces": "Surfaces",
     "/base-ui/react-accordion": "Accordion",
     "navigation": "Navigation",
+    "/base-ui/react-drawer": "Drawer",
     "/base-ui/react-menu": "Menu",
+    "/base-ui/react-pagination": "Pagination",
     "/base-ui/react-table-pagination": "Table Pagination",
     "/base-ui/react-tabs": "Tabs",
     "utils": "Utils",
@@ -512,6 +517,8 @@
     "/joy-ui/guides/overriding-component-structure": "Overriding component structure",
     "/joy-ui/guides/using-joy-ui-and-material-ui-together": "Joy UI and Material UI together",
     "/joy-ui/guides/using-icon-libraries": "Using icon libraries",
-    "/joy-ui/guides/next-js-app-router": "Next.js App Router"
+    "/joy-ui/guides/next-js-app-router": "Next.js App Router",
+    "/joy-ui/migration": "Migration",
+    "/joy-ui/migration/migrating-default-theme": "Migrating the default theme"
   }
 }

@@ -19,7 +19,7 @@ export default function Pagination() {
         >
           <i data-feather="arrow-left" />
         </IconButton>
-        <Typography level="body2" mx="auto">
+        <Typography level="body-sm" mx="auto">
           Page 1 of 10
         </Typography>
         <IconButton

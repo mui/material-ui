@@ -10,12 +10,18 @@
     "component": {
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
+    "disableUnderline": {
+      "description": "If <code>true</code>, the TabList&#39;s underline will disappear."
+    },
     "size": { "description": "The size of the component." },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
+    "sticky": { "description": "If provided, the TabList will have postion <code>sticky</code>." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
+    "tabFlex": { "description": "The flex value of the Tab." },
+    "underlinePlacement": { "description": "The placement of the TabList&#39;s underline." },
     "variant": {
       "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use."
     }
@@ -30,9 +36,6 @@
     },
     "colorDanger": {
       "description": "Classname applied to the root element if <code>color=&quot;danger&quot;</code>."
-    },
-    "colorInfo": {
-      "description": "Classname applied to the root element if <code>color=&quot;info&quot;</code>."
     },
     "colorSuccess": {
       "description": "Classname applied to the root element if <code>color=&quot;success&quot;</code>."
