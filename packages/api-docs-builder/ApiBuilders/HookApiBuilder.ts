@@ -51,6 +51,10 @@ export interface ReactApi extends ReactDocgenApi {
   name: string;
   description: string;
   /**
+   * Different ways to import components
+   */
+  imports: string[];
+  /**
    * result of path.readFileSync from the `filename` in utf-8
    */
   src: string;
@@ -343,6 +347,7 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
     ),
     name: reactApi.name,
     filename: toGitHubPath(reactApi.filename),
+    imports: reactApi.imports,
     demos: `<ul>${reactApi.demos
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
@@ -423,6 +428,34 @@ const extractInfoFromType = (typeName: string, project: TypeScriptProject): Pars
   return result;
 };
 
+/**
+ * Helper to get the import options
+ * @param name The name of the hook
+ * @param filename The filename where its defined (to infer the package)
+ * @returns an array of import command
+ */
+const getHookImports = (name: string, filename: string) => {
+  let source;
+
+  if (filename.includes('/packages/mui-material')) {
+    source = '@mui/material';
+  } else if (filename.includes('/packages/mui-joy')) {
+    source = '@mui/joy';
+  } else if (filename.includes('/packages/mui-base')) {
+    source = '@mui/base';
+  } else if (filename.includes('/packages/mui-system')) {
+    source = '@mui/system';
+  } else if (filename.includes('/packages/mui-lab')) {
+    source = '@mui/lab';
+  } else {
+    throw new Error(
+      `MUI: Error for infering package. The file ${filename} as no associated package.`,
+    );
+  }
+
+  return [`import ${name} from '${source}/${name}';`, `import { ${name} } from '${source}';`];
+};
+
 export default async function generateHookApi(hooksInfo: HookInfo, project: TypeScriptProject) {
   const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
     hooksInfo;
@@ -461,6 +494,7 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
   }
   reactApi.filename = filename;
   reactApi.name = name;
+  reactApi.imports = getHookImports(name, filename);
   reactApi.apiPathname = apiPathname;
   reactApi.EOL = EOL;
   reactApi.demos = getDemos();
