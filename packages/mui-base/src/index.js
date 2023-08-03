@@ -13,6 +13,7 @@ export * from './MenuButton';
 export * from './MenuItem';
 export * from './Modal';
 export { NoSsr } from './NoSsr';
+export * from './Unstable_NumberInput';
 export * from './OptionGroup';
 export * from './Option';
 export { Popper } from './Popper';
@@ -35,6 +36,8 @@ export * from './useInput';
 export * from './useMenu';
 export * from './useMenuButton';
 export * from './useMenuItem';
+
+export * from './unstable_useNumberInput';
 export * from './useOption';
 export * from './useSelect';
 export * from './useSlider';

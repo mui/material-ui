@@ -109,10 +109,29 @@ export default function ComponentsApiContent(props) {
       slotGuideLink = '/base-ui/guides/overriding-component-structure/';
     }
 
-    const source = filename
-      .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
+    // convert paths like `/packages/mui-base/src/Input...` to `@mui/base/Input...`
+    const packageAndFilename = filename.replace(
+      /\/packages\/mui(-(.+?))?\/src/,
+      (match, dash, pkg) => `@mui/${pkg}`,
+    );
+
+    const source = packageAndFilename
       // convert things like `/Table/Table.js` to ``
       .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
+
+    const defaultImportName = pageContent.name;
+    let defaultImportPath = `${source}/${defaultImportName}`;
+    let namedImportPath = source;
+    let namedImportName = defaultImportName;
+
+    if (/Unstable_/.test(source)) {
+      defaultImportPath = source.replace(/\/[^/]*$/, '');
+      namedImportPath = packageAndFilename
+        .replace(/Unstable_/, '')
+        .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
+
+      namedImportName = `Unstable_${defaultImportName} as ${defaultImportName}`;
+    }
 
     // The `ref` is forwarded to the root element.
     let refHint = t('api-docs.refRootElement');

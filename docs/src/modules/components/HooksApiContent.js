@@ -68,6 +68,12 @@ export default function HooksApiContent(props) {
 
     const hookNameKebabCase = kebabCase(hookName);
 
+    let defaultImportName = hookName;
+
+    if (/unstable_/.test(filename)) {
+      defaultImportName = `unstable_${hookName} as ${hookName}`;
+    }
+
     const useNamedImports = rootImportPath === '@mui/base';
 
     const subpathImport = useNamedImports
