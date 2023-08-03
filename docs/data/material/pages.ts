@@ -186,6 +186,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/typescript', title: 'TypeScript' },
       { pathname: '/material-ui/guides/interoperability', title: 'Style library interoperability' },
       { pathname: '/material-ui/guides/styled-components', title: 'Using styled-components' },
+      { pathname: '/material-ui/guides/theme-scoping' },
       { pathname: '/material-ui/guides/minimizing-bundle-size' },
       { pathname: '/material-ui/guides/composition' },
       { pathname: '/material-ui/guides/routing' },
