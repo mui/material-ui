@@ -5,7 +5,7 @@
     "disablePortal": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Portal",
-  "imports": ["import Portal from '@mui/base/Portal';", "import { Portal } from '@mui/base';"],
+  "imports": ["import { Portal } from '@mui/base/Portal';", "import { Portal } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
   "themeDefaultProps": null,

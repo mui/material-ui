@@ -105,7 +105,7 @@
   "name": "useSlider",
   "filename": "/packages/mui-base/src/useSlider/useSlider.ts",
   "imports": [
-    "import useSlider from '@mui/base/useSlider';",
+    "import { useSlider } from '@mui/base/useSlider';",
     "import { useSlider } from '@mui/base';"
   ],
   "demos": "<ul><li><a href=\"/base-ui/react-slider/#hook\">Slider</a></li></ul>"

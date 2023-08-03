@@ -6,7 +6,7 @@
   },
   "name": "Dropdown",
   "imports": [
-    "import Dropdown from '@mui/base/Dropdown';",
+    "import { Dropdown } from '@mui/base/Dropdown';",
     "import { Dropdown } from '@mui/base';"
   ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },

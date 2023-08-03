@@ -14,7 +14,7 @@
   },
   "name": "TabPanel",
   "imports": [
-    "import TabPanel from '@mui/base/TabPanel';",
+    "import { TabPanel } from '@mui/base/TabPanel';",
     "import { TabPanel } from '@mui/base';"
   ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },

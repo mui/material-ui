@@ -29,7 +29,7 @@
     }
   },
   "name": "Switch",
-  "imports": ["import Switch from '@mui/base/Switch';", "import { Switch } from '@mui/base';"],
+  "imports": ["import { Switch } from '@mui/base/Switch';", "import { Switch } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

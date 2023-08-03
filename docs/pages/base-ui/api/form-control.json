@@ -18,7 +18,7 @@
   },
   "name": "FormControl",
   "imports": [
-    "import FormControl from '@mui/base/FormControl';",
+    "import { FormControl } from '@mui/base/FormControl';",
     "import { FormControl } from '@mui/base';"
   ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },

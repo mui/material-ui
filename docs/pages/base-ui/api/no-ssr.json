@@ -5,7 +5,7 @@
     "fallback": { "type": { "name": "node" }, "default": "null" }
   },
   "name": "NoSsr",
-  "imports": ["import NoSsr from '@mui/base/NoSsr';", "import { NoSsr } from '@mui/base';"],
+  "imports": ["import { NoSsr } from '@mui/base/NoSsr';", "import { NoSsr } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
   "themeDefaultProps": null,
