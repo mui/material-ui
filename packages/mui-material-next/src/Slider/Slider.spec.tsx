@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Slider from '@mui/material-next/Slider';
 import { expectType } from '@mui/types';
+import Slider from '@mui/material-next/Slider';
 import { SliderOwnerState } from './Slider.types';
 
 function testOnChange() {
