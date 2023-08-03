@@ -71,6 +71,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     size: sizeProp,
     slots = {},
     slotProps = {},
+    keepMounted = false,
     ...other
   } = props;
 
@@ -106,6 +107,10 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     className: classes.root,
   });
 
+  if (keepMounted) {
+    return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  }
+
   return <SlotRoot {...rootProps}>{!hidden && children}</SlotRoot>;
 }) as OverridableComponent<TabPanelTypeMap>;
 
@@ -131,6 +136,11 @@ TabPanel.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * prevent unmounted the tab panel children component when tab is switched
+   * @default false
+   */
+  keepMounted: PropTypes.bool,
   /**
    * The size of the component.
    */
