@@ -1,5 +1,5 @@
-import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
 
 export interface TabPanelClasses {
   /** Class name applied to the root element. */
@@ -14,6 +14,7 @@ export function getTabPanelUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTabPanel', slot);
 }
 
-const tabPanelClasses: TabPanelClasses = generateUtilityClasses('MuiTabPanel', ['root', 'hidden']);
-
-export default tabPanelClasses;
+export const tabPanelClasses: TabPanelClasses = generateUtilityClasses('MuiTabPanel', [
+  'root',
+  'hidden',
+]);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NumberInput from '@mui/base/Unstable_NumberInput';
+import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
 import clsx from 'clsx';
 
 const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref) {

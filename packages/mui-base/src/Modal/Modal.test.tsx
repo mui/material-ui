@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
-import Modal, { modalClasses as classes, ModalRootSlotProps } from '@mui/base/Modal';
+import { Modal, modalClasses as classes, ModalRootSlotProps } from '@mui/base/Modal';
 
 describe('<Modal />', () => {
   const mount = createMount();

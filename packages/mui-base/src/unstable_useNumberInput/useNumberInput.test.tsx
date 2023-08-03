@@ -1,9 +1,12 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import * as React from 'react';
 import userEvent from '@testing-library/user-event';
 import { createRenderer, screen } from 'test/utils';
-import useNumberInput, { UseNumberInputParameters } from './index';
+import {
+  unstable_useNumberInput as useNumberInput,
+  UseNumberInputParameters,
+} from '@mui/base/unstable_useNumberInput';
 
 describe('useNumberInput', () => {
   const { render } = createRenderer();

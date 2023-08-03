@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import { TabsContext } from '@mui/base/Tabs';
-import TabsList, { tabsListClasses } from '@mui/base/TabsList';
+import { TabsList, tabsListClasses } from '@mui/base/TabsList';
 
 describe('<TabsList />', () => {
   const { render } = createRenderer();
