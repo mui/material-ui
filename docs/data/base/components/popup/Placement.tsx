@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Popup, { PopupPlacement } from '@mui/base/Popup';
-import styled from '@emotion/styled';
+import { styled, css, Theme } from '@mui/system';
 
 function Radio({ value, ...props }: JSX.IntrinsicElements['input']) {
   return (
@@ -109,23 +109,37 @@ export default function Placement() {
   );
 }
 
-const PopupBody = styled('div')`
-  padding: 0.5rem 1rem;
-  border: 1px solid;
-  border-color: rgb(0 0 0 / 0.2);
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 0.1);
-  min-height: 3rem;
-  display: flex;
-  align-items: center;
-`;
+const grey = {
+  50: '#f6f8fa',
+  200: '#d0d7de',
+  500: '#6e7781',
+  700: '#424a53',
+  900: '#24292f',
+};
 
-const Anchor = styled('span')`
-  display: inline-block;
-  background-color: rgb(0 0 0 / 0.05);
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-`;
+const PopupBody = styled('div')(
+  ({ theme }: { theme: Theme }) => css`
+    padding: 0.5rem 1rem;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    border-radius: 8px;
+    box-shadow: ${theme.palette.mode === 'dark'
+      ? `0px 4px 8px rgb(0 0 0 / 0.7)`
+      : `0px 4px 8px rgb(0 0 0 / 0.1)`};
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+  `,
+);
+
+const Anchor = styled('span')(
+  ({ theme }: { theme: Theme }) => css`
+    display: inline-block;
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  `,
+);
 
 const PlacementFormBackground = styled('div')`
   background-color: rgb(0 0 0 / 0.05);
