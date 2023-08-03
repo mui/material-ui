@@ -8,20 +8,29 @@ Welcome to the MUI community!
 Our tools are used by thousands of developers and teams all around the world, many of whom actively engage with the community through various online platforms.
 These are the best places to start asking questions and looking for answers when you need help.
 
+### Discord
+
+MUI maintains an official [Discord server](https://mui.com/r/discord/) for real-time updates and discussions.
+This is a great place to post if you need help troubleshooting or you're looking for feedback on a project.
+
+
 ### Stack Overflow
 
 [Stack Overflow](https://stackoverflow.com/) contains a wealth of information about Material UI and other MUI products, spanning many years and countless discussion threads.
-Head here to see if your problem has already been resolved by the community, or else [post a question](https://stackoverflow.com/questions/tagged/material-ui) to get help from community experts as well as MUI maintainers.
+Head here to see if your problem has already been resolved by the community, or else [post a question](https://stackoverflow.com/questions/tagged/mui) to get help from community experts as well as MUI maintainers.
 
 :::success
 If you're using an older version of Material UI, you may find answers on SO with links to content that no longer exists in the latest version of the documentation.
-To access any previous version of the docs, add `v[number]` at the beginning of the URL—for example, [v4.mui.com](https://v4.mui.com/) takes you to the v4 docs.
+Visit the [MUI Versions](https://mui.com/versions/) page to find the archived documentation that corresponds to your version.
 :::
 
 ### GitHub
 
 MUI uses GitHub issues to track bug reports and feature requests.
-If you think you've found a bug, or you have an idea for a new feature, please [search the issues on GitHub](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed) before opening a new one, to ensure you're not creating a duplicate.
+
+(Need help debugging your app? Try [Discord](#discord) instead.)
+
+If you think you've found a bug in the codebase, or you have an idea for a new feature, please [search the issues on GitHub](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed) before opening a new one, to ensure you're not creating a duplicate.
 
 - [Open an issue on MUI Core](https://github.com/mui/material-ui/issues/new/choose): for issues related to Material UI, Base UI, Joy UI, and MUI System.
 - [Open an issue on MUI X](https://github.com/mui/mui-x/issues/new/choose): for issues related to the Data Grid, Date and Time Pickers, and Charts.
@@ -37,8 +46,8 @@ If you think you've found a bug, or you have an idea for a new feature, please [
 
 ### Social media
 
-The MUI community is active on both [Twitter](https://twitter.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/mui/).
-These are great platforms to share what you're working on and seek guidance from others.
+The MUI community is active on both [Twitter](https://twitter.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/11290418/).
+These are great platforms to share what you're working on and connect with other developers.
 
 Please keep in mind that we don't actively monitor direct messages on the company's social media accounts, so this is _not_ a good way to get in touch with us directly.
 
@@ -88,4 +97,14 @@ and
   data-ga-event-action="tidelift"
   href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
 request a demo today
-</a>.
+</a>
+
+## Custom work
+
+If your team gets stuck and needs help getting unblocked, MUI's engineers may be available on a contract basis.
+
+Keep in mind that the work must be directly related to MUI's products—we don't accept general web development or React work.
+
+Our contracting price starts at $200/hour or $1,500/day.
+
+[Send us an email](mailto:custom-work@mui.com) summarizing of your needs, and we'll let you know whether we can help (or else try to suggest alternatives).
