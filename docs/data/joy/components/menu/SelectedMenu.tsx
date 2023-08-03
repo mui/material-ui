@@ -24,16 +24,10 @@ export default function SelectedMenu() {
         >
           Random project
         </MenuItem>
-        <MenuItem
-          {...(selectedIndex === 1 && { selected: true, variant: 'soft' })}
-          onClick={createHandleClose(1)}
-        >
+        <MenuItem selected={selectedIndex === 1} onClick={createHandleClose(1)}>
           Production - web
         </MenuItem>
-        <MenuItem
-          {...(selectedIndex === 2 && { selected: true, variant: 'soft' })}
-          onClick={createHandleClose(2)}
-        >
+        <MenuItem selected={selectedIndex === 2} onClick={createHandleClose(2)}>
           Staging - web
         </MenuItem>
       </Menu>

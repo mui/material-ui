@@ -30,7 +30,7 @@ export default function IconsRadio() {
             position: 'absolute',
             top: '-8px',
             right: '-8px',
-            bgcolor: 'background.body',
+            bgcolor: 'background.surface',
             borderRadius: '50%',
           },
         },
@@ -42,7 +42,6 @@ export default function IconsRadio() {
           variant="outlined"
           sx={{
             borderRadius: 'md',
-            bgcolor: 'background.body',
             boxShadow: 'sm',
             display: 'flex',
             flexDirection: 'column',

@@ -79,12 +79,7 @@ export default function FirstSidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton
-            selected
-            variant="soft"
-            color="neutral"
-            onClick={() => openSidebar()}
-          >
+          <ListItemButton selected onClick={() => openSidebar()}>
             <i data-feather="flag" />
           </ListItemButton>
         </ListItem>

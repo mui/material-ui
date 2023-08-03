@@ -66,14 +66,35 @@ This can be achieved by either using a color object or by providing the colors d
 
 The most direct way to customize a palette color is to import and apply one or more [color objects](/material-ui/customization/color/#2014-material-design-color-palettes), as shown below:
 
-{{"demo": "UsingColorObject.js", "defaultCodeOpen": true }}
+{{"demo": "UsingColorObject.js", "defaultCodeOpen": true}}
 
 #### Providing the colors directly
 
 To modify each color directly, provide an object with one or more of the color tokens.
 Only the `main` token is required; `light`, `dark`, and `contrastText` are optional, and if not provided, then their values are calculated automatically:
 
-{{"demo": "ManuallyProvidePaletteColor.js" }}
+```js
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#FF5733',
+      // light: will be calculated from palette.primary.main,
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
+    },
+    secondary: {
+      main: '#E0C2FF',
+      light: '#F5EBFF',
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: '#47008F',
+    },
+  },
+});
+```
+
+{{"demo": "ManuallyProvidePaletteColor.js", "defaultCodeOpen": false}}
 
 ### Contrast threshold
 
@@ -82,7 +103,7 @@ The `contrastText` token is calculated using the `contrastThreshold` value, to m
 A higher contrast threshold value increases the point at which a background color is considered light, and thus given a dark `contrastText`.
 Note that the contrast threshold follows a non-linear curve, and defaults to a value of 3 which indicates a minimum contrast ratio of 3:1.
 
-{{"demo": "ContrastThreshold.js" }}
+{{"demo": "ContrastThreshold.js", "defaultCodeOpen": false}}
 
 ### Tonal offset
 
@@ -97,7 +118,7 @@ For example, the tonal offset default value `0.2` shifts the luminance by approx
 
 The tonal offset value can be either a number between 0 and 1 (which would apply to both `light` and `dark` tokens) or an object with `light` and `dark` keys specified:
 
-{{"demo": "TonalOffset.js" }}
+{{"demo": "TonalOffset.js", "defaultCodeOpen": false}}
 
 ## Custom colors
 
@@ -111,19 +132,73 @@ To add custom colors, you must either provide the tokens manually, or generate t
 
 The most straightforward approach is to define all tokens—`main`, `light`, `dark`, and `contrastText`—manually:
 
-{{"demo": "ManuallyProvideCustomColor.js" }}
+```jsx
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    ochre: {
+      main: '#E3D026',
+      light: '#E9DB5D',
+      dark: '#A29415',
+      contrastText: '#242105',
+    },
+  },
+});
+```
+
+{{"demo": "ManuallyProvideCustomColor.js", "defaultCodeOpen": false}}
 
 If you need to manipulate colors, `@mui/material/styles` provides [a set of utilities](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) to help with this.
 The following example uses the `alpha` and `getContrastRatio` utilities to define tokens using opacity:
 
-{{"demo": "UsingStylesUtils.js" }}
+```jsx
+import { createTheme, alpha, getContrastRatio } from '@mui/material/styles';
+
+const violetBase = '#7F00FF';
+const violetMain = alpha(violetBase, 0.7);
+
+const theme = createTheme({
+  palette: {
+    violet: {
+      main: violetMain,
+      light: alpha(violetBase, 0.5),
+      dark: alpha(violetBase, 0.9),
+      contrastText: getContrastRatio(violetMain, '#fff') > 4.5 ? '#fff' : '#111',
+    },
+  },
+});
+```
+
+{{"demo": "UsingStylesUtils.js", "defaultCodeOpen": false}}
 
 ### Generate tokens using augmentColor utility
 
 Alternatively, you can generate the `light`, `dark` and `contrastText` tokens using the palette's `augmentColor` utility, which is the same function used for the default palette colors.
 This requires creating the theme in two steps and providing the `main` token on which the other will be based on:
 
-{{"demo": "UsingAugmentColor.js" }}
+```jsx
+import { createTheme } from '@mui/material/styles';
+
+let theme = createTheme({
+  // Theme customization goes here as usual, including tonalOffset and/or
+  // contrastThreshold as the augmentColor() function relies on these
+});
+
+theme = createTheme(theme, {
+  // Custom colors created with augmentColor go here
+  palette: {
+    salmon: theme.palette.augmentColor({
+      color: {
+        main: '#FF5733',
+      },
+      name: 'salmon',
+    }),
+  },
+});
+```
+
+{{"demo": "UsingAugmentColor.js", "defaultCodeOpen": false}}
 
 The [contrast threshold](#contrast-threshold) and [tonal offset](#tonal-offset) values will apply for the colors defined using this utility.
 
@@ -172,7 +247,23 @@ declare module '@mui/material/Button' {
 
 To add a new [color token](#color-tokens), include it in the color's object as follows:
 
-{{"demo": "AddingColorTokens.js" }}
+```jsx
+import { createTheme } from '@mui/material/styles';
+import { blue } from '@mui/material/colors';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: blue[300],
+      main: blue[500],
+      dark: blue[700],
+      darker: blue[900],
+    },
+  },
+});
+```
+
+{{"demo": "AddingColorTokens.js", "defaultCodeOpen": false}}
 
 ### TypeScript
 
@@ -209,6 +300,11 @@ const theme = createTheme({
   },
 });
 ```
+
+:::warning
+The `contrastThreshold` parameter can produce counterproductive results.\
+Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/u/DanHollick/t/sle13GMW2Brp) this new algorithm).
+:::
 
 ## Picking colors
 

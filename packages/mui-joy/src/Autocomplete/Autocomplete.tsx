@@ -18,6 +18,7 @@ import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import styled from '../styles/styled';
+import { VariantColorProvider, getChildVariantAndColor } from '../styles/variantColorInheritance';
 // slot components
 import { StyledIconButton } from '../IconButton/IconButton';
 // default render components
@@ -59,13 +60,6 @@ const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
     <List>{params.children}</List>
   </ListItem>
 );
-
-const defaultVariantMapping = {
-  plain: 'plain',
-  outlined: 'plain',
-  soft: 'soft',
-  solid: 'solid',
-};
 
 const useUtilityClasses = (ownerState: OwnerState) => {
   const {
@@ -213,14 +207,15 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
-})<{ ownerState: OwnerState }>(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>({
   alignSelf: 'center',
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
-  ...(ownerState.popupOpen && {
+  [`&.${autocompleteClasses.popupIndicatorOpen}`]: {
     transform: 'rotate(180deg)',
-  }),
-}));
+    '--Icon-color': 'currentColor',
+  },
+});
 
 const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocomplete',
@@ -361,7 +356,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const formControl = React.useContext(FormControlContext);
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
+  const rootColor = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
+  const color = getColor(inProps.color, rootColor);
   const disabled = disabledProp ?? formControl?.disabled ?? false;
 
   const {
@@ -545,8 +541,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || defaultVariantMapping[variant] || 'plain',
-      color: mergedProps.color || 'neutral',
+      variant:
+        mergedProps.variant || getChildVariantAndColor(variant, rootColor).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, rootColor).color || 'neutral',
+      disableColorInversion: !!inProps.color,
     }),
     additionalProps: {
       'aria-label': clearText,
@@ -562,8 +560,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || defaultVariantMapping[variant] || 'plain',
-      color: mergedProps.color || 'neutral',
+      variant:
+        mergedProps.variant || getChildVariantAndColor(variant, rootColor).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, rootColor).color || 'neutral',
+      disableColorInversion: !!inProps.color,
     }),
     additionalProps: {
       disabled,
@@ -581,8 +581,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || 'outlined',
-      color: mergedProps.color || 'neutral',
+      variant: mergedProps.variant || variant,
+      color: mergedProps.color || (!mergedProps.disablePortal ? rootColor : color),
       disableColorInversion: !mergedProps.disablePortal,
     }),
     additionalProps: {
@@ -642,8 +642,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     externalForwardedProps,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
-      variant: mergedProps.variant || 'plain',
-      color: mergedProps.color || 'neutral',
+      variant:
+        mergedProps.variant || getChildVariantAndColor(variant, rootColor).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, rootColor).color || 'neutral',
       disableColorInversion: !listboxProps.disablePortal,
     }),
     additionalProps: {
@@ -685,41 +686,43 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   let popup = null;
   if (anchorEl) {
     popup = (
-      <ListProvider nested>
-        <SlotListbox
-          {...listboxProps}
-          className={clsx(
-            listboxProps.className,
-            listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
-          )}
-          // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
-          modifiers={modifiers}
-          {...(!props.slots?.listbox && {
-            as: Popper,
-            slots: { root: listboxProps.as || 'ul' },
-          })}
-        >
-          {groupedOptions.map((option, index) => {
-            if (groupBy) {
-              const typedOption = option as AutocompleteGroupedOption;
-              return renderGroup({
-                key: String(typedOption.key),
-                group: typedOption.group,
-                children: typedOption.options.map((option2, index2) =>
-                  renderListOption(option2, typedOption.index + index2),
-                ),
-              });
-            }
-            return renderListOption(option, index);
-          })}
-          {loading && groupedOptions.length === 0 ? (
-            <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
-          ) : null}
-          {groupedOptions.length === 0 && !freeSolo && !loading ? (
-            <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
-          ) : null}
-        </SlotListbox>
-      </ListProvider>
+      <VariantColorProvider variant={variant} color={rootColor}>
+        <ListProvider nested>
+          <SlotListbox
+            {...listboxProps}
+            className={clsx(
+              listboxProps.className,
+              listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
+            )}
+            // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
+            modifiers={modifiers}
+            {...(!props.slots?.listbox && {
+              as: Popper,
+              slots: { root: listboxProps.as || 'ul' },
+            })}
+          >
+            {groupedOptions.map((option, index) => {
+              if (groupBy) {
+                const typedOption = option as AutocompleteGroupedOption;
+                return renderGroup({
+                  key: String(typedOption.key),
+                  group: typedOption.group,
+                  children: typedOption.options.map((option2, index2) =>
+                    renderListOption(option2, typedOption.index + index2),
+                  ),
+                });
+              }
+              return renderListOption(option, index);
+            })}
+            {loading && groupedOptions.length === 0 ? (
+              <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
+            ) : null}
+            {groupedOptions.length === 0 && !freeSolo && !loading ? (
+              <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
+            ) : null}
+          </SlotListbox>
+        </ListProvider>
+      </VariantColorProvider>
     );
 
     if (!listboxProps.disablePortal) {
@@ -811,7 +814,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null

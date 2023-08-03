@@ -71,7 +71,7 @@ function ColorShowcase({ title, color }: { title: string; color: string }) {
 
 export default function TonalOffset() {
   return (
-    <Stack direction="row" gap={8}>
+    <Stack direction={{ xs: 'column', sm: 'row' }} gap={8}>
       <ThemeProvider theme={defaultTonalOffsetTheme}>
         <ColorShowcase title="Default tonal offset" color="primary" />
       </ThemeProvider>

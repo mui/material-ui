@@ -15,10 +15,15 @@ import styled, { rootShouldForwardProp } from '../styles/styled';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, indeterminate, color } = ownerState;
+  const { classes, indeterminate, color, size } = ownerState;
 
   const slots = {
-    root: ['root', indeterminate && 'indeterminate', `color${capitalize(color)}`],
+    root: [
+      'root',
+      indeterminate && 'indeterminate',
+      `color${capitalize(color)}`,
+      `size${capitalize(size)}`,
+    ],
   };
 
   const composedClasses = composeClasses(slots, getCheckboxUtilityClass, classes);

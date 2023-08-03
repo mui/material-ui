@@ -4,7 +4,7 @@
     "classes": {
       "type": { "name": "object" },
       "default": "{}",
-      "additionalPropsInfo": { "cssApi": true }
+      "additionalInfo": { "cssApi": true }
     },
     "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
     "input": { "type": { "name": "element" }, "default": "<Input />" },
@@ -21,7 +21,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "any" } },
     "variant": {

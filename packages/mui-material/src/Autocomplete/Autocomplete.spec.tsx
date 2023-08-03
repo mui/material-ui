@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { expectType } from '@mui/types';
 import Autocomplete, {
   AutocompleteOwnerState,
   AutocompleteProps,
   AutocompleteRenderGetTagProps,
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { expectType } from '@mui/types';
 import { ChipTypeMap } from '@mui/material/Chip';
 
 interface MyAutocompleteProps<

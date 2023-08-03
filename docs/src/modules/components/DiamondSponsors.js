@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import Divider from '@mui/material/Divider';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 // import Link from 'docs/src/modules/components/Link';
 
 const Root = styled('div')(() => ({
@@ -46,7 +46,7 @@ export default function DiamondSponsors() {
             display: 'flex',
             flexDirection: 'column',
             gap: 0.5,
-            padding: theme.spacing(0.5, 2, 2, 2),
+            padding: theme.spacing(1.5, 2, 2, 2),
             background: '#FFF',
             borderTop: '1px solid',
             borderColor: (theme.vars || theme).palette.grey[100],
@@ -82,7 +82,7 @@ export default function DiamondSponsors() {
           {t('diamondSponsors')}
         </Button>
         <Stack
-          divider={<Divider />}
+          divider={<Divider sx={{ m: '0 12px' }} />}
           sx={[
             (theme) => ({
               '& a': {
@@ -91,6 +91,7 @@ export default function DiamondSponsors() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                borderRadius: '12px',
                 boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
                 transition: theme.transitions.create(['color', 'border-color']),
                 '&:hover': {
