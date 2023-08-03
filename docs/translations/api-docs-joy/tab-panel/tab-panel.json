@@ -8,6 +8,9 @@
     "component": {
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
+    "keepMounted": {
+      "description": "prevent unmounted the tab panel children component when tab is switched"
+    },
     "size": { "description": "The size of the component." },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
