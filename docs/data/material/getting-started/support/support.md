@@ -13,7 +13,6 @@ These are the best places to start asking questions and looking for answers when
 MUI maintains an official [Discord server](https://mui.com/r/discord/) for real-time updates and discussions.
 This is a great place to post if you need help troubleshooting or you're looking for feedback on a project.
 
-
 ### Stack Overflow
 
 [Stack Overflow](https://stackoverflow.com/) contains a wealth of information about Material UI and other MUI products, spanning many years and countless discussion threads.
@@ -96,7 +95,7 @@ and
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
   href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
-request a demo today
+request a demo today.
 </a>
 
 ## Custom work
