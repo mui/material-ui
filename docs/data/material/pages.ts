@@ -143,7 +143,6 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
-          { pathname: '/material-ui/react-tree-view', title: 'Tree View' },
         ],
       },
     ],
