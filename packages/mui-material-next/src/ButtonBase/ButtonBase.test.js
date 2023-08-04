@@ -467,7 +467,7 @@ describe('<ButtonBase />', () => {
 
       it('should not crash when changes enableRipple from false to true', () => {
         function App() {
-          /** @type {React.MutableRefObject<import('./ButtonBase').ButtonBaseActions | null>} */
+          /** @type {React.MutableRefObject<import('./ButtonBase.types').ButtonBaseActions | null>} */
           const buttonRef = React.useRef(null);
           const [enableRipple, setRipple] = React.useState(false);
 
@@ -1127,7 +1127,7 @@ describe('<ButtonBase />', () => {
   describe('prop: action', () => {
     it('should be able to focus visible the button', () => {
       /**
-       * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions>}
+       * @type {React.RefObject<import('./ButtonBase.types').ButtonBaseActions>}
        */
       const buttonActionsRef = React.createRef();
       const { getByText } = render(

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { OverrideProps, OverridableComponent, OverridableTypeMap } from '@mui/types';
 import { Theme } from '../styles';
-import { TouchRippleActions, TouchRippleProps } from './TouchRipple';
-import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
+import { TouchRippleActions, TouchRippleProps } from '../Button/TouchRipple.types';
 import { ButtonBaseClasses } from './buttonBaseClasses';
 
 export interface ButtonBaseTypeMap<
@@ -106,21 +106,6 @@ export type ExtendButtonBase<TypeMap extends OverridableTypeMap> = ((
 ) => JSX.Element) &
   OverridableComponent<ExtendButtonBaseTypeMap<TypeMap>>;
 
-/**
- * `ButtonBase` contains as few styles as possible.
- * It aims to be a simple building block for creating a button.
- * It contains a load of style reset and some focus/ripple logic.
- *
- * Demos:
- *
- * - [Button](https://mui.com/material-ui/react-button/)
- *
- * API:
- *
- * - [ButtonBase API](https://mui.com/material-ui/api/button-base/)
- */
-declare const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap>;
-
 export type ButtonBaseProps<
   RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   AdditionalProps = {},
@@ -128,8 +113,13 @@ export type ButtonBaseProps<
   component?: React.ElementType;
 };
 
+export interface ButtonBaseOwnerState extends ButtonBaseProps {
+  /**
+   * If `true`, the button's focus is visible.
+   */
+  focusVisible?: boolean;
+}
+
 export interface ButtonBaseActions {
   focusVisible(): void;
 }
-
-export default ButtonBase;
