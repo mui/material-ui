@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React para Cartão
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 githubLabel: 'component: card'

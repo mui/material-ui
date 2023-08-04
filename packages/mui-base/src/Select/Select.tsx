@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
@@ -9,15 +10,15 @@ import {
   SelectRootSlotProps,
   SelectType,
 } from './Select.types';
-import useSelect, { SelectValue } from '../useSelect';
+import { useSelect, SelectValue } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import Popper from '../Popper';
-import composeClasses from '../composeClasses';
+import { Popper } from '../Popper';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSelectUtilityClass } from './selectClasses';
-import defaultOptionStringifier from '../useSelect/defaultOptionStringifier';
+import { defaultOptionStringifier } from '../useSelect/defaultOptionStringifier';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { SelectOption } from '../useOption';
-import SelectProvider from '../useSelect/SelectProvider';
+import { SelectProvider } from '../useSelect/SelectProvider';
 
 function defaultRenderValue<OptionValue>(
   selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
@@ -87,11 +88,11 @@ function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Select](https://mui.com/base-ui/react-select/)
  *
  * API:
  *
- * - [Select API](https://mui.com/base/react-select/components-api/#select)
+ * - [Select API](https://mui.com/base-ui/react-select/components-api/#select)
  */
 const Select = React.forwardRef(function Select<
   OptionValue extends {},
@@ -102,9 +103,9 @@ const Select = React.forwardRef(function Select<
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
+    areOptionsEqual,
     autoFocus,
     children,
-    component,
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
@@ -115,7 +116,7 @@ const Select = React.forwardRef(function Select<
     name,
     onChange,
     onListboxOpenChange,
-    optionStringifier = defaultOptionStringifier,
+    getOptionAsString = defaultOptionStringifier,
     renderValue: renderValueProp,
     slotProps = {},
     slots = {},
@@ -130,7 +131,7 @@ const Select = React.forwardRef(function Select<
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
-  const Button = component ?? slots.root ?? 'button';
+  const Button = slots.root ?? 'button';
   const ListboxRoot = slots.listbox ?? 'ul';
   const PopperComponent = slots.popper ?? Popper;
 
@@ -157,6 +158,7 @@ const Select = React.forwardRef(function Select<
     value,
     open,
   } = useSelect({
+    areOptionsEqual,
     buttonRef: handleButtonRef,
     defaultOpen: defaultListboxOpen,
     defaultValue,
@@ -166,7 +168,7 @@ const Select = React.forwardRef(function Select<
     open: listboxOpenProp,
     onChange,
     onOpenChange: onListboxOpenChange,
-    optionStringifier,
+    getOptionAsString,
     value: valueProp,
   });
 
@@ -257,6 +259,14 @@ Select.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * A function used to determine if two options' values are equal.
+   * By default, reference equality is used.
+   *
+   * There is a performance impact when using the `areOptionsEqual` prop (proportional to the number of options).
+   * Therefore, it's recommented to use the default reference equality comparison whenever possible.
+   */
+  areOptionsEqual: PropTypes.func,
+  /**
    * If `true`, the select element is focused during the first mount
    * @default false
    */
@@ -265,11 +275,6 @@ Select.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the select will be initially open.
    * @default false
@@ -284,6 +289,14 @@ Select.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  getOptionAsString: PropTypes.func,
   /**
    * A function to convert the currently selected value to a string.
    * Used to set a value of a hidden input associated with the select,
@@ -321,14 +334,6 @@ Select.propTypes /* remove-proptypes */ = {
    */
   onListboxOpenChange: PropTypes.func,
   /**
-   * A function used to convert the option label to a string.
-   * It's useful when labels are elements and need to be converted to plain text
-   * to enable navigation using character keys on a keyboard.
-   *
-   * @default defaultOptionStringifier
-   */
-  optionStringifier: PropTypes.func,
-  /**
    * Function that customizes the rendering of the selected value.
    */
   renderValue: PropTypes.func,
@@ -336,7 +341,7 @@ Select.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  slotProps: PropTypes.shape({
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -358,4 +363,4 @@ Select.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default Select;
+export { Select };

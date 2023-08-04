@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
-import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
+import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { MenuProvider } from '@mui/base/useMenu';
 
 const dummyGetItemState = () => ({
@@ -45,6 +45,7 @@ describe('<MenuItem />', () => {
       },
     },
     skip: [
+      'componentProp',
       'reactTestRenderer', // Need to be wrapped in MenuContext
     ],
   }));

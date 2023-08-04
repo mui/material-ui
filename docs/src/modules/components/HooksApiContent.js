@@ -56,25 +56,42 @@ export default function HooksApiContent(props) {
 
     const { parametersDescriptions, returnValueDescriptions } = descriptions[key][userLanguage];
 
-    const source = filename
-      .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
-      // convert things like `/Table/Table.js` to ``
-      .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
+    const rootImportPath = filename.replace(
+      /\/packages\/mui(?:-(.+?))?\/src\/.*/,
+      (match, pkg) => `@mui/${pkg}`,
+    );
+
+    const subdirectoryImportPath = filename.replace(
+      /\/packages\/mui(?:-(.+?))?\/src\/([^\\/]+)\/.*/,
+      (match, pkg, directory) => `@mui/${pkg}/${directory}`,
+    );
 
     const hookNameKebabCase = kebabCase(hookName);
+
+    let defaultImportName = hookName;
+
+    if (/unstable_/.test(filename)) {
+      defaultImportName = `unstable_${hookName} as ${hookName}`;
+    }
+
+    const useNamedImports = rootImportPath === '@mui/base';
+
+    const subpathImport = useNamedImports
+      ? `import { ${defaultImportName} } from '${subdirectoryImportPath}';`
+      : `import ${defaultImportName} from '${subdirectoryImportPath}';`;
+
+    const rootImport = `import { ${defaultImportName} } from '${rootImportPath}';`;
+
+    const importInstructions = `${subpathImport}
+// ${t('or')}
+${rootImport}`;
 
     return (
       <React.Fragment key={`hook-api-${key}`}>
         <MarkdownElement>
           <Heading hash={hookNameKebabCase} text={`${hookName} API`} />
           <Heading text="import" hash={`${hookNameKebabCase}-import`} level="h3" />
-          <HighlightedCode
-            code={`
-import ${hookName} from '${source.split('/').slice(0, -1).join('/')}';
-// ${t('or')}
-import { ${hookName} } from '${source.split('/').slice(0, 2).join('/')}';`}
-            language="jsx"
-          />
+          <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           <Heading text="parameters" hash={`${hookNameKebabCase}-parameters`} level="h3" />
           {Object.keys(parameters).length > 0 ? (

@@ -1,9 +1,51 @@
 import * as React from 'react';
-import Select, { SelectProps, selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
-import OptionGroup, { OptionGroupProps } from '@mui/base/OptionGroup';
-import Popper from '@mui/base/Popper';
+import { Select, SelectProps, selectClasses } from '@mui/base/Select';
+import { Option, optionClasses } from '@mui/base/Option';
+import { OptionGroup, OptionGroupProps } from '@mui/base/OptionGroup';
+import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
+
+export default function UnstyledSelectGrouping() {
+  return (
+    <CustomSelect>
+      <CustomOptionGroup label="Hobbits">
+        <StyledOption value="Frodo">Frodo</StyledOption>
+        <StyledOption value="Sam">Sam</StyledOption>
+        <StyledOption value="Merry">Merry</StyledOption>
+        <StyledOption value="Pippin">Pippin</StyledOption>
+      </CustomOptionGroup>
+      <CustomOptionGroup label="Elves">
+        <StyledOption value="Galadriel">Galadriel</StyledOption>
+        <StyledOption value="Legolas">Legolas</StyledOption>
+      </CustomOptionGroup>
+    </CustomSelect>
+  );
+}
+
+function CustomSelect(props: SelectProps<string, false>) {
+  const slots: SelectProps<string, false>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} slots={slots} />;
+}
+
+const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
+  props: OptionGroupProps,
+  ref: React.ForwardedRef<any>,
+) {
+  const slots: OptionGroupProps['slots'] = {
+    root: StyledGroupRoot,
+    label: StyledGroupHeader,
+    list: StyledGroupOptions,
+    ...props.slots,
+  };
+
+  return <OptionGroup {...props} ref={ref} slots={slots} />;
+});
 
 const blue = {
   100: '#DAECFF',
@@ -32,15 +74,17 @@ const StyledButton = styled('button')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
   min-width: 320px;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
   text-align: left;
   line-height: 1.5;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -83,7 +127,9 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
@@ -151,45 +197,3 @@ const StyledGroupOptions = styled('ul')`
 const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
-
-function CustomSelect(props: SelectProps<string, false>) {
-  const slots: SelectProps<string, false>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <Select {...props} slots={slots} />;
-}
-
-const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
-  props: OptionGroupProps,
-  ref: React.ForwardedRef<any>,
-) {
-  const slots: OptionGroupProps['slots'] = {
-    root: StyledGroupRoot,
-    label: StyledGroupHeader,
-    list: StyledGroupOptions,
-    ...props.slots,
-  };
-
-  return <OptionGroup {...props} ref={ref} slots={slots} />;
-});
-
-export default function UnstyledSelectGrouping() {
-  return (
-    <CustomSelect>
-      <CustomOptionGroup label="Hobbits">
-        <StyledOption value="Frodo">Frodo</StyledOption>
-        <StyledOption value="Sam">Sam</StyledOption>
-        <StyledOption value="Merry">Merry</StyledOption>
-        <StyledOption value="Pippin">Pippin</StyledOption>
-      </CustomOptionGroup>
-      <CustomOptionGroup label="Elves">
-        <StyledOption value="Galadriel">Galadriel</StyledOption>
-        <StyledOption value="Legolas">Legolas</StyledOption>
-      </CustomOptionGroup>
-    </CustomSelect>
-  );
-}

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { renderHook } from '@testing-library/react';
-import useSelect from './useSelect';
+import { useSelect } from './useSelect';
 
 describe('useSelect', () => {
   describe('param: options', () => {

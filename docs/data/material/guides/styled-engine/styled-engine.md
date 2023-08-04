@@ -2,9 +2,9 @@
 
 <p class="description">Configuring your preferred styling library.</p>
 
-The default style library used for generating CSS styles for MUI components is [emotion](https://github.com/emotion-js/emotion).
-All of the MUI components rely on the `styled()` API to inject CSS into the page.
-This API is supported by multiple popular styling libraries, which makes it possible to switch between them in MUI.
+The default style library used for generating CSS styles for Material UI components is [Emotion](https://github.com/emotion-js/emotion).
+All of the Material UI components rely on the `styled()` API to inject CSS into the page.
+This API is supported by multiple popular styling libraries, which makes it possible to switch between them in Material UI.
 
 ## How to switch to styled-components
 
@@ -150,7 +150,7 @@ The theme of Material UI will be separated from the other library, so when you u
 Render Material UI's theme provider below Theme UI's provider and assign the material theme to the `THEME_ID` property.
 
 ```js
-import { ThemeProvider as ThemeUIThemeProvider } from 'theme-ui';
+import { ThemeUIProvider } from 'theme-ui';
 import { createTheme as materialCreateTheme, THEME_ID } from '@mui/material/styles';
 
 const themeUITheme = {
@@ -170,11 +170,11 @@ const materialTheme = materialCreateTheme();
 
 function App() {
   return (
-    <ThemeUIThemeProvider theme={themeUITheme}>
+    <ThemeUIProvider theme={themeUITheme}>
       <MaterialThemeProvider theme={{ [THEME_ID]: materialTheme }}>
         Theme UI components and Material UI components
       </MaterialThemeProvider>
-    </ThemeUIThemeProvider>
+    </ThemeUIProvider>
   );
 }
 ```

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Button, { ButtonProps, ButtonRootSlotProps } from '@mui/base/Button';
 import { expectType } from '@mui/types';
+import { Button, ButtonProps, ButtonRootSlotProps } from '@mui/base/Button';
 
 const CustomButtonRoot = React.forwardRef(function CustomButtonRoot(props: ButtonRootSlotProps) {
   const { ownerState, ...other } = props;
@@ -34,6 +34,16 @@ const polymorphicComponentTest = () => {
       <Button invalidProp={0} />
 
       <Button slots={{ root: 'a' }} href="#" />
+
+      <Button
+        ref={(elem) => {
+          expectType<HTMLButtonElement | null, typeof elem>(elem);
+        }}
+        onClick={(e) => {
+          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
+        }}
+        type="submit"
+      />
 
       <Button<typeof CustomComponent>
         slots={{ root: CustomComponent }}

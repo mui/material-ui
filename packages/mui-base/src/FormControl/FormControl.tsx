@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
 import { unstable_useControlled as useControlled } from '@mui/utils';
-import FormControlContext from './FormControlContext';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import { FormControlContext } from './FormControlContext';
 import { getFormControlUtilityClass } from './formControlClasses';
 import {
   FormControlProps,
@@ -13,7 +14,7 @@ import {
   FormControlRootSlotProps,
 } from './FormControl.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function hasValue(value: unknown) {
@@ -63,7 +64,7 @@ function useUtilityClasses(ownerState: FormControlOwnerState) {
  *
  * Demos:
  *
- * - [Form Control](https://mui.com/base/react-form-control/)
+ * - [Form Control](https://mui.com/base-ui/react-form-control/)
  * - [Input](https://mui.com/joy-ui/react-input/)
  * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
  * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
@@ -72,7 +73,7 @@ function useUtilityClasses(ownerState: FormControlOwnerState) {
  *
  * API:
  *
- * - [FormControl API](https://mui.com/base/react-form-control/components-api/#form-control)
+ * - [FormControl API](https://mui.com/base-ui/react-form-control/components-api/#form-control)
  */
 const FormControl = React.forwardRef(function FormControl<
   RootComponentType extends React.ElementType,
@@ -80,7 +81,6 @@ const FormControl = React.forwardRef(function FormControl<
   const {
     defaultValue,
     children,
-    component,
     disabled = false,
     error = false,
     onChange,
@@ -145,7 +145,7 @@ const FormControl = React.forwardRef(function FormControl<
     return children;
   };
 
-  const Root = component ?? slots.root ?? 'div';
+  const Root = slots.root ?? 'div';
   const rootProps: WithOptionalOwnerState<FormControlRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -163,7 +163,7 @@ const FormControl = React.forwardRef(function FormControl<
       <Root {...rootProps} />
     </FormControlContext.Provider>
   );
-}) as OverridableComponent<FormControlTypeMap>;
+}) as PolymorphicComponent<FormControlTypeMap>;
 
 FormControl.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -177,11 +177,6 @@ FormControl.propTypes /* remove-proptypes */ = {
     PropTypes.node,
     PropTypes.func,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * @ignore
    */
@@ -226,4 +221,4 @@ FormControl.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default FormControl;
+export { FormControl };

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, createRenderer, describeConformanceUnstyled, fireEvent } from 'test/utils';
-import FormControl, { formControlClasses, useFormControlContext } from '@mui/base/FormControl';
+import { FormControl, formControlClasses, useFormControlContext } from '@mui/base/FormControl';
 
 describe('<FormControl />', () => {
   const mount = createMount();
@@ -20,6 +20,7 @@ describe('<FormControl />', () => {
         expectedClassName: formControlClasses.root,
       },
     },
+    skip: ['componentProp'],
   }));
 
   describe('initial state', () => {

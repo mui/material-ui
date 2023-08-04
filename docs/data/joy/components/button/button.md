@@ -1,10 +1,10 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Button component
 components: Button, IconButton
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base/react-button/
+unstyled: /base-ui/react-button/
 ---
 
 # Button
@@ -50,7 +50,7 @@ See [Loading indicator](#loading-indicator) and [Loading position](#loading-posi
 
 ### Variants
 
-The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
+The Button component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "ButtonVariants.js"}}
 

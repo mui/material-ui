@@ -1,11 +1,12 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { MenuItemOwnerState, MenuItemProps, MenuItemTypeMap } from './MenuItem.types';
 import { getMenuItemUtilityClass } from './menuItemClasses';
-import useMenuItem from '../useMenuItem';
-import composeClasses from '../composeClasses';
-import useSlotProps from '../utils/useSlotProps';
+import { useMenuItem } from '../useMenuItem';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function useUtilityClasses(ownerState: MenuItemOwnerState) {
@@ -22,11 +23,11 @@ function useUtilityClasses(ownerState: MenuItemOwnerState) {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base/react-menu/)
+ * - [Menu](https://mui.com/base-ui/react-menu/)
  *
  * API:
  *
- * - [MenuItem API](https://mui.com/base/react-menu/components-api/#menu-item)
+ * - [MenuItem API](https://mui.com/base-ui/react-menu/components-api/#menu-item)
  */
 const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends React.ElementType>(
   props: MenuItemProps<RootComponentType>,
@@ -35,7 +36,6 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
   const {
     children,
     disabled: disabledProp = false,
-    component,
     label,
     slotProps = {},
     slots = {},
@@ -52,7 +52,7 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = component ?? slots.root ?? 'li';
+  const Root = slots.root ?? 'li';
   const rootProps = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
@@ -63,7 +63,7 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
   });
 
   return <Root {...rootProps}>{children}</Root>;
-}) as OverridableComponent<MenuItemTypeMap>;
+}) as PolymorphicComponent<MenuItemTypeMap>;
 
 MenuItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -74,11 +74,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * @ignore
    */
@@ -105,4 +100,4 @@ MenuItem.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default MenuItem;
+export { MenuItem };

@@ -1,6 +1,5 @@
-import { OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface OptionGroupRootSlotPropsOverrides {}
 export interface OptionGroupLabelSlotPropsOverrides {}
@@ -63,9 +62,7 @@ export interface OptionGroupTypeMap<
 
 export type OptionGroupProps<
   RootComponentType extends React.ElementType = OptionGroupTypeMap['defaultComponent'],
-> = OverrideProps<OptionGroupTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<OptionGroupTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type OptionGroupOwnerState = OptionGroupOwnProps;
 

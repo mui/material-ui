@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
-import OptionGroup, { optionGroupClasses } from '@mui/base/OptionGroup';
+import { OptionGroup, optionGroupClasses } from '@mui/base/OptionGroup';
 
 describe('<OptionGroup />', () => {
   const mount = createMount();
@@ -25,6 +25,7 @@ describe('<OptionGroup />', () => {
       },
     },
     skip: [
+      'componentProp',
       'ownerStatePropagation', // the component does not have its own state
     ],
   }));

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function ListVariables() {
   return (
@@ -12,9 +12,21 @@ export default function ListVariables() {
       childrenAccepted
       data={[
         {
-          var: '--Tabs-gap',
-          defaultValue: '4px',
+          var: '--Tabs-spacing',
+          defaultValue: '16px',
           helperText: "Controls TabList's gap and TabPanel's padding.",
+        },
+        {
+          var: '--Tab-indicatorThickness',
+          defaultValue: '2px',
+        },
+        {
+          var: '--Tab-indicatorSize',
+          defaultValue: '0px',
+        },
+        {
+          var: '--Tab-indicatorRadius',
+          defaultValue: '0px',
         },
       ]}
       renderDemo={(sx) => (

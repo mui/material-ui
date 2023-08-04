@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { OverridableComponent, OverridableTypeMap, OverrideProps, Simplify } from '@mui/types';
+import { OverridableComponent, OverridableTypeMap, Simplify } from '@mui/types';
 import { PortalProps } from '../Portal';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface ModalRootSlotPropsOverrides {}
 export interface ModalBackdropSlotPropsOverrides {}
@@ -91,6 +91,14 @@ export interface ModalOwnProps {
     bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
   }['bivarianceHack'];
   /**
+   * A function called when a transition enters.
+   */
+  onTransitionEnter?: () => void;
+  /**
+   * A function called when a transition has exited.
+   */
+  onTransitionExited?: () => void;
+  /**
    * If `true`, the component is shown.
    */
   open: boolean;
@@ -133,16 +141,18 @@ export interface ModalTypeMap<
 /**
  * Utility to create component types that inherit props from Modal.
  */
-export interface ExtendModalTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ModalTypeMap['props'];
-  defaultComponent: M['defaultComponent'];
+export interface ExtendModalTypeMap<TypeMap extends OverridableTypeMap> {
+  props: TypeMap['props'] & ModalTypeMap['props'];
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
-export type ExtendModal<M extends OverridableTypeMap> = OverridableComponent<ExtendModalTypeMap<M>>;
+export type ExtendModal<TypeMap extends OverridableTypeMap> = OverridableComponent<
+  ExtendModalTypeMap<TypeMap>
+>;
 
 export type ModalProps<
   RootComponentType extends React.ElementType = ModalTypeMap['defaultComponent'],
-> = OverrideProps<ModalTypeMap<{}, RootComponentType>, RootComponentType>;
+> = PolymorphicProps<ModalTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type ModalOwnerState = Simplify<
   ModalOwnProps & {

@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { GlobalStyles } from '@mui/system';
@@ -36,7 +37,7 @@ function CssBaseline(props: CssBaselineProps) {
           }
           const defaultTypographyLevel =
             (theme as unknown as { components: Components<Theme> }).components?.JoyTypography
-              ?.defaultProps?.level ?? 'body1';
+              ?.defaultProps?.level ?? 'body-md';
           return {
             html: {
               WebkitFontSmoothing: 'antialiased',
@@ -51,7 +52,7 @@ function CssBaseline(props: CssBaselineProps) {
               boxSizing: 'inherit',
             },
             'strong, b': {
-              fontWeight: 'bold',
+              fontWeight: theme.vars.fontWeight.lg,
             },
             body: {
               margin: 0, // Remove the margin in all browsers.

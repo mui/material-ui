@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: React Tabs components
 components: Tabs, Tab, TabPanel, TabsList
 hooks: useTab, useTabPanel, useTabs, useTabsList
@@ -30,13 +30,13 @@ Tabs are implemented using a collection of related components:
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
-import Tab from '@mui/base/Tab';
-import TabsList from '@mui/base/TabsList';
-import TabPanel from '@mui/base/TabPanel';
-import Tabs from '@mui/base/Tabs';
+import { Tab } from '@mui/base/Tab';
+import { TabsList } from '@mui/base/TabsList';
+import { TabPanel } from '@mui/base/TabPanel';
+import { Tabs } from '@mui/base/Tabs';
 
 export default function MyApp() {
   return (
@@ -65,7 +65,7 @@ The following demo omits the `value` prop from the Tab components, and also defi
 
 The next demo shows how to apply custom styles to a set of tabs:
 
-{{"demo": "UnstyledTabsCustomized.js"}}
+{{"demo": "UnstyledTabsCustomized"}}
 
 ### Anatomy
 
@@ -84,28 +84,52 @@ The Tab components are each composed of a root slot with no interior slots:
 </div>
 ```
 
-### Slot props
+### Custom structure
 
-:::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
+Use the `slots` prop to override the root or any other interior slot:
 
 ```jsx
-<Tab component="span" />
+<Tab slots={{ root: 'span' }} />
 ```
 
 If you provide a non-interactive element such as a `<span>`, the Tab components will automatically add the necessary accessibility attributes.
 
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
+:::
+
 ## Customization
+
+### Vertical
+
+Tab components can be arranged vertically as well as horizontally.
+
+When vertical, you must set `orientation="vertical"` on the `<Tabs />` component so the user can navigate with the up and down arrow keys (rather than the default left-to-right behavior for horizontal tabs).
+
+{{"demo": "UnstyledTabsVertical.js"}}
+
+### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Tab<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Tab<'button'> slots={{ root: 'button' }} onClick={() => {}} />
+```
 
 ### Third-party routing library
 
 A common use case for tabs is to implement client-side navigation that doesn't require an HTTP round-trip to the server.
 
-The Tab component provides the `component` prop to handle this use case—see [the Material UI documentation on routing](/material-ui/guides/routing/#tabs) for more details.
+The Tab component provides the `slots` prop to handle this, as shown below:
+
+{{"demo": "UnstyledTabsRouting.js"}}
 
 ## Accessibility
 

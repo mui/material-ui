@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ButtonTypeMap, ButtonRootSlotProps, ButtonOwnerState } from './Button.types';
-import useButton from '../useButton';
+import { useButton } from '../useButton';
 import { WithOptionalOwnerState } from '../utils/types';
 import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
@@ -23,11 +24,11 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
  *
  * Demos:
  *
- * - [Button](https://mui.com/base/react-button/)
+ * - [Button](https://mui.com/base-ui/react-button/)
  *
  * API:
  *
- * - [Button API](https://mui.com/base/react-button/components-api/#button)
+ * - [Button API](https://mui.com/base-ui/react-button/components-api/#button)
  */
 const Button = React.forwardRef(function Button<RootComponentType extends React.ElementType>(
   props: ButtonProps<RootComponentType>,
@@ -147,4 +148,4 @@ Button.propTypes /* remove-proptypes */ = {
   to: PropTypes.string,
 } as any;
 
-export default Button;
+export { Button };

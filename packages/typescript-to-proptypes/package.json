@@ -21,25 +21,25 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.0",
+    "@types/babel__core": "^7.20.1",
     "@types/doctrine": "^0.0.5",
-    "@types/lodash": "^4.14.194",
-    "@types/node": "^16.18.24",
-    "@types/prettier": "^2.7.2",
-    "@types/react": "^18.0.26",
-    "@types/uuid": "^8.3.4",
-    "fast-glob": "^3.2.12",
-    "prettier": "^2.8.7",
-    "rimraf": "^3.0.2"
+    "@types/lodash": "^4.14.196",
+    "@types/node": "^18.17.1",
+    "@types/prettier": "^2.7.3",
+    "@types/react": "^18.2.17",
+    "@types/uuid": "^9.0.2",
+    "fast-glob": "^3.3.1",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.1"
   },
   "dependencies": {
-    "@babel/core": "^7.21.3",
+    "@babel/core": "^7.22.9",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
-    "@babel/plugin-syntax-jsx": "^7.18.6",
-    "@babel/types": "^7.21.3",
+    "@babel/plugin-syntax-jsx": "^7.22.5",
+    "@babel/types": "^7.22.5",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
     "typescript": "^4.9.5",
-    "uuid": "^8.3.2"
+    "uuid": "^9.0.0"
   }
 }

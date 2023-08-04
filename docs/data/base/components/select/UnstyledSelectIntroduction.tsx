@@ -1,13 +1,38 @@
 import * as React from 'react';
-import Select, {
+import {
+  Select,
   selectClasses,
   SelectProps,
   SelectRootSlotProps,
 } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
+import { Option, optionClasses } from '@mui/base/Option';
+import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+
+export default function UnstyledSelectIntroduction() {
+  return (
+    <CustomSelect defaultValue={10}>
+      <StyledOption value={10}>Documentation</StyledOption>
+      <StyledOption value={20}>Components</StyledOption>
+      <StyledOption value={30}>Features</StyledOption>
+    </CustomSelect>
+  );
+}
+
+const CustomSelect = React.forwardRef(function CustomSelect<
+  TValue extends {},
+  Multiple extends boolean,
+>(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} ref={ref} slots={slots} />;
+});
 
 const blue = {
   100: '#DAECFF',
@@ -52,16 +77,16 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
   min-width: 320px;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
   text-align: left;
   line-height: 1.5;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   position: relative;
+  box-shadow: 0px 2px 24px ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -101,7 +126,9 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
@@ -145,27 +172,3 @@ const StyledOption = styled(Option)(
 const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
-
-const CustomSelect = React.forwardRef(function CustomSelect<
-  TValue extends {},
-  Multiple extends boolean,
->(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
-  const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <Select {...props} ref={ref} slots={slots} />;
-});
-
-export default function UnstyledSelectIntroduction() {
-  return (
-    <CustomSelect defaultValue={10}>
-      <StyledOption value={10}>Documentation</StyledOption>
-      <StyledOption value={20}>Components</StyledOption>
-      <StyledOption value={30}>Features</StyledOption>
-    </CustomSelect>
-  );
-}

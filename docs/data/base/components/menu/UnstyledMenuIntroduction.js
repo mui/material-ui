@@ -1,85 +1,21 @@
 import * as React from 'react';
-import Menu from '@mui/base/Menu';
-import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
-import Popper from '@mui/base/Popper';
+import { Dropdown } from '@mui/base/Dropdown';
+import { Menu } from '@mui/base/Menu';
+import { MenuButton } from '@mui/base/MenuButton';
+import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
-import { ListActionTypes } from '@mui/base/useList';
 
 export default function UnstyledMenuIntroduction() {
-  const [buttonElement, setButtonElement] = React.useState(null);
-
-  const [isOpen, setOpen] = React.useState(false);
-  const menuActions = React.useRef(null);
-  const preventReopen = React.useRef(false);
-
-  const updateAnchor = React.useCallback((node) => {
-    setButtonElement(node);
-  }, []);
-
-  const handleButtonClick = (event) => {
-    if (preventReopen.current) {
-      event.preventDefault();
-      preventReopen.current = false;
-      return;
-    }
-
-    setOpen((open) => !open);
-  };
-
-  const handleButtonMouseDown = () => {
-    if (isOpen) {
-      // Prevents the menu from reopening right after closing
-      // when clicking the button.
-      preventReopen.current = true;
-    }
-  };
-
-  const handleButtonKeyDown = (event) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setOpen(true);
-      if (event.key === 'ArrowUp') {
-        // Focus the last item when pressing ArrowUp.
-        menuActions.current?.dispatch({
-          type: ListActionTypes.keyDown,
-          key: event.key,
-          event,
-        });
-      }
-    }
-  };
-
   const createHandleMenuClick = (menuItem) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
-      setOpen(false);
-      buttonElement?.focus();
     };
   };
+
   return (
-    <div>
-      <TriggerButton
-        type="button"
-        onClick={handleButtonClick}
-        onKeyDown={handleButtonKeyDown}
-        onMouseDown={handleButtonMouseDown}
-        ref={updateAnchor}
-        aria-controls={isOpen ? 'simple-menu' : undefined}
-        aria-expanded={isOpen || undefined}
-        aria-haspopup="menu"
-      >
-        My account
-      </TriggerButton>
-      <Menu
-        actions={menuActions}
-        open={isOpen}
-        onOpenChange={(open) => {
-          setOpen(open);
-        }}
-        anchorEl={buttonElement}
-        slots={{ root: StyledPopper, listbox: StyledListbox }}
-        slotProps={{ listbox: { id: 'simple-menu' } }}
-      >
+    <Dropdown>
+      <TriggerButton>My account</TriggerButton>
+      <Menu slots={{ listbox: StyledListbox }}>
         <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
           Profile
         </StyledMenuItem>
@@ -90,7 +26,7 @@ export default function UnstyledMenuIntroduction() {
           Log out
         </StyledMenuItem>
       </Menu>
-    </div>
+    </Dropdown>
   );
 }
 
@@ -131,6 +67,7 @@ const StyledListbox = styled('ul')(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  z-index: 1;
   `,
 );
 
@@ -163,14 +100,15 @@ const StyledMenuItem = styled(MenuItem)(
   `,
 );
 
-const TriggerButton = styled('button')(
+const TriggerButton = styled(MenuButton)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
+  font-weight: 600;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
   border-radius: 12px;
-  padding: 12px 16px;
+  padding: 8px 14px;
   line-height: 1.5;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
@@ -185,13 +123,9 @@ const TriggerButton = styled('button')(
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &:focus {
+  &:focus-visible {
     border-color: ${blue[400]};
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
   `,
 );
-
-const StyledPopper = styled(Popper)`
-  z-index: 1;
-`;

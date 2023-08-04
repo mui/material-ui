@@ -2,7 +2,7 @@
   "props": {
     "active": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "direction": {
       "type": { "name": "enum", "description": "'asc'<br>&#124;&nbsp;'desc'" },
       "default": "'asc'"
@@ -13,7 +13,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "TableSortLabel",

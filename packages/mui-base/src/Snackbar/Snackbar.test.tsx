@@ -8,7 +8,7 @@ import {
   describeConformanceUnstyled,
   fireEvent,
 } from 'test/utils';
-import Snackbar, { snackbarClasses as classes } from '@mui/base/Snackbar';
+import { Snackbar, snackbarClasses as classes } from '@mui/base/Snackbar';
 
 describe('<Snackbar />', () => {
   const { clock, render: clientRender } = createRenderer({ clock: 'fake' });
@@ -46,6 +46,7 @@ describe('<Snackbar />', () => {
           expectedClassName: classes.root,
         },
       },
+      skip: ['componentProp'],
     }),
   );
 

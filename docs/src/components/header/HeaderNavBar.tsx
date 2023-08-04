@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
+import ButtonBase from '@mui/material/ButtonBase';
 import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
 import { unstable_debounce as debounce } from '@mui/utils';
@@ -24,9 +26,10 @@ const Navigation = styled('nav')(({ theme }) => [
       color: (theme.vars || theme).palette.text.primary,
       ...theme.typography.body2,
       fontWeight: theme.typography.fontWeightBold,
-      '& > a, & > div': {
+      '& > a, & > button': {
         display: 'inline-block',
         color: 'inherit',
+        font: 'inherit',
         textDecoration: 'none',
         padding: theme.spacing('8px', 1),
         borderRadius: (theme.vars || theme).shape.borderRadius,
@@ -51,7 +54,7 @@ const Navigation = styled('nav')(({ theme }) => [
   },
   theme.applyDarkStyles({
     '& li': {
-      '& > a, & > div': {
+      '& > a, & > button': {
         '&:hover': {
           backgroundColor: (theme.vars || theme).palette.primaryDark[700],
           color: (theme.vars || theme).palette.primaryDark[200],
@@ -144,67 +147,31 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
   },
 );
 
-function getNextIndex(eventKey: KeyboardEvent['key'], currentIndex: number, length: number) {
-  if (eventKey === 'ArrowLeft') {
-    return currentIndex === 0 ? length - 1 : currentIndex - 1;
-  }
-  if (eventKey === 'ArrowRight') {
-    return currentIndex === length - 1 ? 0 : currentIndex + 1;
-  }
-  return currentIndex;
-}
-
 export default function HeaderNavBar() {
   const [subMenuOpen, setSubMenuOpen] = React.useState<null | 'products' | 'docs'>(null);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
   const navRef = React.useRef<HTMLUListElement | null>(null);
-  const productsMenuRef = React.useRef<HTMLDivElement | null>(null);
-  const docsMenuRef = React.useRef<HTMLDivElement | null>(null);
+  const productsMenuRef = React.useRef<HTMLButtonElement | null>(null);
+  const docsMenuRef = React.useRef<HTMLButtonElement | null>(null);
   React.useEffect(() => {
     if (typeof subMenuIndex === 'number') {
       document.getElementById(PRODUCT_IDS[subMenuIndex])?.focus();
     }
   }, [subMenuIndex]);
-  function handleLeftRightArrow(
-    event: React.KeyboardEvent,
-    target: EventTarget | HTMLElement | null = event.target,
-  ) {
-    if (navRef.current) {
-      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-        let i = 0;
-        while (i < navRef.current.children.length) {
-          const child = navRef.current.children.item(i);
-          if (child && (target === child || child.contains(target as Node))) {
-            const prevSibling = navRef.current.children.item(
-              getNextIndex(event.key, i, navRef.current.children.length),
-            );
-            const htmlElement = prevSibling ? (prevSibling.firstChild as HTMLElement) : null;
-            if (htmlElement) {
-              htmlElement.focus();
-            }
-          }
-          i += 1;
-        }
-      }
-    }
-  }
+
   function handleKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Tab' && !event.shiftKey) {
-      event.preventDefault();
-      handleLeftRightArrow(
-        new KeyboardEvent('keydown', { key: 'ArrowRight' }) as unknown as React.KeyboardEvent,
-        productsMenuRef.current?.parentElement,
-      );
+    let menuItem;
+
+    if (subMenuOpen === 'products') {
+      menuItem = productsMenuRef.current!;
+    } else if (subMenuOpen === 'docs') {
+      menuItem = docsMenuRef.current!;
+    } else {
+      return;
     }
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+
+    if (event.key === 'ArrowDown' && subMenuOpen === 'products') {
       event.preventDefault();
-      handleLeftRightArrow(event, productsMenuRef.current?.parentElement);
-    }
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      if (event.target === productsMenuRef.current) {
-        setSubMenuOpen('products');
-      }
       setSubMenuIndex((prevValue) => {
         if (prevValue === null) {
           return 0;
@@ -215,7 +182,7 @@ export default function HeaderNavBar() {
         return prevValue + 1;
       });
     }
-    if (event.key === 'ArrowUp') {
+    if (event.key === 'ArrowUp' && subMenuOpen === 'products') {
       event.preventDefault();
       setSubMenuIndex((prevValue) => {
         if (prevValue === null) {
@@ -227,7 +194,8 @@ export default function HeaderNavBar() {
         return prevValue - 1;
       });
     }
-    if (event.key === 'Escape') {
+    if (event.key === 'Escape' || event.key === 'Tab') {
+      menuItem.focus();
       setSubMenuOpen(null);
       setSubMenuIndex(null);
     }
@@ -238,13 +206,15 @@ export default function HeaderNavBar() {
     [setSubMenuOpen],
   );
 
-  const setSubMenuOpenUndebounce = React.useMemo(
-    () => (value: typeof subMenuOpen) => {
-      setSubMenuOpenDebounced.clear();
-      setSubMenuOpen(value);
-    },
-    [setSubMenuOpen, setSubMenuOpenDebounced],
-  );
+  const setSubMenuOpenUndebounce = (value: typeof subMenuOpen) => () => {
+    setSubMenuOpenDebounced.clear();
+    setSubMenuOpen(value);
+  };
+
+  const handleClickMenu = (value: typeof subMenuOpen) => () => {
+    setSubMenuOpenDebounced.clear();
+    setSubMenuOpen(subMenuOpen ? null : value);
+  };
 
   React.useEffect(() => {
     return () => {
@@ -254,25 +224,24 @@ export default function HeaderNavBar() {
 
   return (
     <Navigation>
-      <ul ref={navRef} role="menubar" onKeyDown={handleLeftRightArrow}>
+      <ul ref={navRef} onKeyDown={handleKeyDown}>
         <li
-          role="none"
-          onMouseEnter={() => setSubMenuOpenUndebounce('products')}
-          onFocus={() => setSubMenuOpenUndebounce('products')}
+          onMouseEnter={setSubMenuOpenUndebounce('products')}
+          onFocus={setSubMenuOpenUndebounce('products')}
           onMouseLeave={() => setSubMenuOpenDebounced(null)}
-          onBlur={() => setSubMenuOpenUndebounce(null)}
+          onBlur={setSubMenuOpenUndebounce(null)}
         >
-          <div
-            role="menuitem"
-            tabIndex={0}
+          <ButtonBase
             ref={productsMenuRef}
             aria-haspopup
             aria-expanded={subMenuOpen === 'products' ? 'true' : 'false'}
-            onKeyDown={handleKeyDown}
+            onClick={handleClickMenu('products')}
+            aria-controls={subMenuOpen === 'products' ? 'products-popper' : undefined}
           >
             Products
-          </div>
+          </ButtonBase>
           <Popper
+            id="products-popper"
             open={subMenuOpen === 'products'}
             anchorEl={productsMenuRef.current}
             transition
@@ -317,61 +286,51 @@ export default function HeaderNavBar() {
                       }),
                   ]}
                 >
-                  <ul role="menu">
-                    <li role="none">
+                  <ul>
+                    <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[0]}
-                        role="menuitem"
                         href={ROUTES.productCore}
                         icon={<IconImage name="product-core" />}
                         name="MUI Core"
                         description="Ready-to-use foundational React components, free forever."
-                        onKeyDown={handleKeyDown}
                       />
                     </li>
-                    <li role="none">
+                    <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[1]}
-                        role="menuitem"
                         href={ROUTES.productAdvanced}
                         icon={<IconImage name="product-advanced" />}
                         name="MUI X"
                         description="Advanced and powerful components for complex use cases."
-                        onKeyDown={handleKeyDown}
                       />
                     </li>
-                    <li role="none">
+                    <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[2]}
-                        role="menuitem"
                         href={ROUTES.productTemplates}
                         icon={<IconImage name="product-templates" />}
                         name="Templates"
                         description="Fully built, out-of-the-box, templates for your application."
-                        onKeyDown={handleKeyDown}
                       />
                     </li>
-                    <li role="none">
+                    <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[3]}
-                        role="menuitem"
                         href={ROUTES.productDesignKits}
                         icon={<IconImage name="product-designkits" />}
                         name="Design kits"
                         description="Our components available in your favorite design tool."
-                        onKeyDown={handleKeyDown}
                       />
                     </li>
-                    <li role="none">
+                    <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[4]}
-                        role="menuitem"
                         href={ROUTES.productToolpad}
                         icon={<IconImage name="product-toolpad" />}
                         name="MUI Toolpad"
-                        chip={<Chip label="Alpha" size="small" color="grey" />}
+                        chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
                         description="Low-code admin builder."
-                        onKeyDown={handleKeyDown}
                       />
                     </li>
                   </ul>
@@ -381,22 +340,22 @@ export default function HeaderNavBar() {
           </Popper>
         </li>
         <li
-          role="none"
-          onMouseEnter={() => setSubMenuOpenUndebounce('docs')}
-          onFocus={() => setSubMenuOpenUndebounce('docs')}
+          onMouseEnter={setSubMenuOpenUndebounce('docs')}
+          onFocus={setSubMenuOpenUndebounce('docs')}
           onMouseLeave={() => setSubMenuOpenDebounced(null)}
-          onBlur={() => setSubMenuOpenUndebounce(null)}
+          onBlur={setSubMenuOpenUndebounce(null)}
         >
-          <div
-            role="menuitem"
-            tabIndex={0}
+          <ButtonBase
             ref={docsMenuRef}
             aria-haspopup
             aria-expanded={subMenuOpen === 'docs' ? 'true' : 'false'}
+            onClick={handleClickMenu('docs')}
+            aria-controls={subMenuOpen === 'docs' ? 'docs-popper' : undefined}
           >
             Docs
-          </div>
+          </ButtonBase>
           <Popper
+            id="docs-popper"
             open={subMenuOpen === 'docs'}
             anchorEl={docsMenuRef.current}
             transition
@@ -425,7 +384,7 @@ export default function HeaderNavBar() {
                     },
                   })}
                 >
-                  <ul role="menu">
+                  <ul>
                     <MuiProductSelector />
                   </ul>
                 </Paper>
@@ -433,20 +392,14 @@ export default function HeaderNavBar() {
             )}
           </Popper>
         </li>
-        <li role="none">
-          <Link role="menuitem" href={ROUTES.pricing}>
-            Pricing
-          </Link>
+        <li>
+          <Link href={ROUTES.pricing}>Pricing</Link>
         </li>
-        <li role="none">
-          <Link role="menuitem" href={ROUTES.about}>
-            About us
-          </Link>
+        <li>
+          <Link href={ROUTES.about}>About us</Link>
         </li>
-        <li role="none">
-          <Link role="menuitem" href={ROUTES.blog}>
-            Blog
-          </Link>
+        <li>
+          <Link href={ROUTES.blog}>Blog</Link>
         </li>
       </ul>
     </Navigation>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
-import Tab, { tabClasses } from '@mui/base/Tab';
+import { Tab, tabClasses } from '@mui/base/Tab';
 import { TabsListProvider, TabsListProviderValue } from '../useTabsList';
 import { TabsContext } from '../Tabs';
 
@@ -65,6 +65,7 @@ describe('<Tab />', () => {
     },
     skip: [
       'reactTestRenderer', // Need to be wrapped with TabsContext
+      'componentProp',
     ],
   }));
 });

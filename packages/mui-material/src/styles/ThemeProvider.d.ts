@@ -12,6 +12,6 @@ export interface ThemeProviderProps<Theme = DefaultTheme> {
  *
  * - [ThemeProvider API](https://mui.com/material-ui/customization/theming/#themeprovider)
  */
-export default function ThemeProvider<T = DefaultTheme>(
-  props: ThemeProviderProps<T>,
-): React.ReactElement<ThemeProviderProps<T>>;
+export default function ThemeProvider<Theme = DefaultTheme>(
+  props: ThemeProviderProps<Theme>,
+): React.ReactElement<ThemeProviderProps<Theme>>;

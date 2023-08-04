@@ -1,9 +1,52 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Select, { selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
+import { Select, selectClasses } from '@mui/base/Select';
+import { Option, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
 import { Popper } from '@mui/base';
+
+export default function UnstyledSelectRichOptions() {
+  return (
+    <CustomSelect>
+      {countries.map((c) => (
+        <StyledOption key={c.code} value={c.code} label={c.label}>
+          <img
+            loading="lazy"
+            width="20"
+            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
+            srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
+            alt={`Flag of ${c.label}`}
+          />
+          {c.label} ({c.code}) +{c.phone}
+        </StyledOption>
+      ))}
+    </CustomSelect>
+  );
+}
+
+const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} ref={ref} slots={slots} />;
+});
+
+CustomSelect.propTypes = {
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
+  }),
+};
 
 const blue = {
   100: '#DAECFF',
@@ -32,15 +75,17 @@ const StyledButton = styled('button')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
   min-width: 320px;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
   text-align: left;
   line-height: 1.5;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -84,7 +129,9 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
@@ -132,49 +179,6 @@ const StyledOption = styled(Option)(
 const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
-
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
-  const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <Select {...props} ref={ref} slots={slots} />;
-});
-
-CustomSelect.propTypes = {
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    listbox: PropTypes.elementType,
-    popper: PropTypes.func,
-    root: PropTypes.elementType,
-  }),
-};
-
-export default function UnstyledSelectRichOptions() {
-  return (
-    <CustomSelect>
-      {countries.map((c) => (
-        <StyledOption key={c.code} value={c.code} label={c.label}>
-          <img
-            loading="lazy"
-            width="20"
-            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
-            srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
-            alt={`Flag of ${c.label}`}
-          />
-          {c.label} ({c.code}) +{c.phone}
-        </StyledOption>
-      ))}
-    </CustomSelect>
-  );
-}
 
 const countries = [
   { code: 'AD', label: 'Andorra', phone: '376' },

@@ -20,7 +20,7 @@ const Root = styled('div')(
       lineHeight: 1.5, // Developers likes when the code is dense.
       margin: theme.spacing(2, 'auto'),
       padding: theme.spacing(2),
-      backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
+      backgroundColor: '#0F1924', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
       color: '#f8f8f2',
       colorScheme: 'dark',
       borderRadius: `var(--muidocs-shape-borderRadius, ${
@@ -51,9 +51,11 @@ const Root = styled('div')(
     // inline code block
     '& :not(pre) > code': {
       display: 'inline-block',
-      padding: '0 5px',
+      padding: '0 4px',
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-      backgroundColor: alpha(lightTheme.palette.primary.light, 0.15),
+      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+      border: '1px solid',
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       borderRadius: 5,
       fontSize: lightTheme.typography.pxToRem(13),
       direction: 'ltr /*! @noflip */',
@@ -61,10 +63,11 @@ const Root = styled('div')(
     '& h1': {
       ...lightTheme.typography.h3,
       fontSize: lightTheme.typography.pxToRem(36),
-      fontFamily: `"PlusJakartaSans-ExtraBold", ${lightTheme.typography.fontFamilySystem}`,
+      fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
       margin: '10px 0',
       color: `var(--muidocs-palette-primaryDark-900, ${lightTheme.palette.primaryDark[900]})`,
-      fontWeight: 800,
+      fontWeight: 600,
+      letterSpacing: -0.2,
     },
     '& .description': {
       ...lightTheme.typography.subtitle1,
@@ -76,27 +79,28 @@ const Root = styled('div')(
     },
     '& h2': {
       ...lightTheme.typography.h5,
-      fontFamily: lightTheme.typography.fontFamilySystem,
-      fontWeight: 700,
+      fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
+      fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '40px 0 4px',
     },
     '& h3': {
       ...lightTheme.typography.h6,
-      fontFamily: lightTheme.typography.fontFamilySystem,
+      fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '24px 0 8px',
     },
     '& h4': {
       ...lightTheme.typography.subtitle1,
-      fontFamily: lightTheme.typography.fontFamilySystem,
+      fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '24px 0 8px',
     },
     '& h5': {
       ...lightTheme.typography.subtitle2,
+      fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '20px 0 8px',
@@ -129,26 +133,28 @@ const Root = styled('div')(
         textDecoration: 'none',
       },
       '&:hover .anchor-link, & .comment-link': {
-        lineHeight: '21.5px',
         position: 'absolute',
         textAlign: 'center',
-        marginLeft: 10,
+        marginLeft: 8,
         marginTop: 5,
         height: 26,
         width: 26,
+        lineHeight: '21px',
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         border: '1px solid',
-        borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+        borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
         borderRadius: 8,
         color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
         cursor: 'pointer',
         display: 'inline-block',
         '&:hover': {
-          color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+          backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
+          borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
+          color: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
         },
         '& svg': {
-          width: '0.875rem',
-          height: '0.875rem',
+          height: '14px',
+          width: '14px',
           fill: 'currentColor',
           pointerEvents: 'none',
         },
@@ -157,15 +163,16 @@ const Root = styled('div')(
         display: 'none', // So we can have the comment button opt-in.
         top: 0,
         right: 0,
-        opacity: 0.5,
         transition: theme.transitions.create('opacity', {
           duration: theme.transitions.duration.shortest,
         }),
-        '&:hover': {
-          opacity: 1,
-        },
         '& svg': {
+          opacity: 0.6,
+          marginBottom: 1,
           verticalAlign: 'middle',
+        },
+        '&:hover': {
+          '&>svg': { opacity: 1 },
         },
       },
     },
@@ -378,33 +385,44 @@ const Root = styled('div')(
       position: 'relative',
       // Font size reset to fix a bug with Safari 16.0 when letterSpacing is set
       fontSize: 10,
-      '&:hover': {
-        '& .MuiCode-copy': {
-          display: 'block',
-        },
-      },
     },
     '& .MuiCode-copy': {
-      minWidth: 64,
-      display: 'none',
-      backgroundColor: alpha(lightTheme.palette.primaryDark[600], 0.5),
+      display: 'inline-flex',
+      flexDirection: 'row-reverse',
+      alignItems: 'center',
+      width: 26,
+      height: 26,
       cursor: 'pointer',
       position: 'absolute',
       top: theme.spacing(1),
       right: theme.spacing(1),
+      padding: theme.spacing(0.5),
       fontFamily: 'inherit',
-      fontSize: lightTheme.typography.pxToRem(13),
       fontWeight: 500,
-      padding: theme.spacing(0.5, 1),
-      borderRadius: 4,
-      border: `1px solid`,
-      borderColor: lightTheme.palette.primaryDark[500],
-      color: lightTheme.palette.primaryDark[50],
+      borderRadius: 6,
+      border: 'none',
+      backgroundColor: 'transparent',
+      color: '#FFF',
+      opacity: 0.6,
+      transition: theme.transitions.create(['background', 'borderColor', 'display'], {
+        duration: theme.transitions.duration.shortest,
+      }),
+      '& svg': {
+        userSelect: 'none',
+        width: theme.typography.pxToRem(16),
+        height: theme.typography.pxToRem(16),
+        display: 'inline-block',
+        fill: 'currentcolor',
+        flexShrink: 0,
+        fontSize: '18px',
+        margin: 'auto',
+      },
+      '& .MuiCode-copied-icon': {
+        display: 'none',
+      },
       '&:hover, &:focus': {
         opacity: 1,
-        color: '#fff',
-        backgroundColor: alpha(lightTheme.palette.primaryDark[600], 0.7),
-        borderColor: lightTheme.palette.primaryDark[500],
+        backgroundColor: lightTheme.palette.primaryDark[500],
         '& .MuiCode-copyKeypress': {
           display: 'block',
           // Approximate no hover capabilities with no keyboard
@@ -416,12 +434,20 @@ const Root = styled('div')(
       },
       '& .MuiCode-copyKeypress': {
         display: 'none',
+        position: 'absolute',
+        right: 26,
       },
       '&[data-copied]': {
         // style of the button when it is in copied state.
         borderColor: lightTheme.palette.primary[700],
         color: '#fff',
         backgroundColor: lightTheme.palette.primaryDark[600],
+        '& .MuiCode-copy-icon': {
+          display: 'none',
+        },
+        '& .MuiCode-copied-icon': {
+          display: 'block',
+        },
       },
       '&:focus-visible': {
         outline: '2px solid',
@@ -432,16 +458,10 @@ const Root = styled('div')(
     '& .MuiCode-copyKeypress': {
       pointerEvents: 'none',
       userSelect: 'none',
-      position: 'absolute',
-      left: '50%',
-      top: '100%',
-      minWidth: '100%',
-      marginTop: theme.spacing(0.5),
+      marginRight: theme.spacing(1.2),
+      marginBottom: theme.spacing(0.2),
       whiteSpace: 'nowrap',
-      transform: 'translateX(-50%)',
-      '& > span': {
-        opacity: 0.72,
-      },
+      opacity: 0.6,
     },
     '& li': {
       // tight lists https://spec.commonmark.org/0.30/#tight
@@ -461,6 +481,8 @@ const Root = styled('div')(
       '& :not(pre) > code': {
         // inline code block
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+        borderColor: alpha(darkTheme.palette.primaryDark[600], 0.6),
+        backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
       },
       '& strong': {
         color: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
@@ -488,11 +510,13 @@ const Root = styled('div')(
       },
       '& h1, & h2, & h3, & h4': {
         '&:hover .anchor-link, & .comment-link': {
-          color: `var(--muidocs-palette-text-secondary, ${darkTheme.palette.text.secondary})`,
-          backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.3),
-          borderColor: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
+          color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+          backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
           '&:hover': {
-            color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+            borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
+            backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
+            color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
           },
         },
       },
@@ -531,7 +555,7 @@ const Root = styled('div')(
       '& .MuiCallout-root': {
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
-          backgroundColor: alpha(darkTheme.palette.error[700], 0.15),
+          backgroundColor: alpha(darkTheme.palette.error[700], 0.25),
           borderColor: alpha(lightTheme.palette.error[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-error-100, ${darkTheme.palette.error[100]})`,
@@ -550,7 +574,7 @@ const Root = styled('div')(
         },
         '&.MuiCallout-success': {
           color: `var(--muidocs-palette-success-50, ${darkTheme.palette.success[50]})`,
-          backgroundColor: alpha(darkTheme.palette.success[700], 0.15),
+          backgroundColor: alpha(darkTheme.palette.success[700], 0.2),
           borderColor: alpha(lightTheme.palette.success[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-success-200, ${darkTheme.palette.success[200]})`,
@@ -561,7 +585,7 @@ const Root = styled('div')(
         },
         '&.MuiCallout-warning': {
           color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
-          backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
+          backgroundColor: alpha(darkTheme.palette.warning[700], 0.2),
           borderColor: alpha(darkTheme.palette.warning[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,

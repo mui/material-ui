@@ -1,18 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import useMenu, { MenuProvider } from '@mui/base/useMenu';
-import useMenuItem from '@mui/base/useMenuItem';
-import Popper from '@mui/base/Popper';
+import { useMenu, MenuProvider } from '@mui/base/useMenu';
+import { useMenuItem } from '@mui/base/useMenuItem';
+import { Popper } from '@mui/base/Popper';
 import { GlobalStyles } from '@mui/system';
+import { useDropdown, DropdownContext } from '@mui/base/useDropdown';
+import { useMenuButton } from '@mui/base/useMenuButton';
 
 const Menu = React.forwardRef(function Menu(props, ref) {
-  const { children, onOpenChange, open, ...other } = props;
+  const { children, ...other } = props;
 
   const { contextValue, getListboxProps } = useMenu({
     listboxRef: ref,
-    onOpenChange,
-    open,
   });
 
   return (
@@ -24,8 +24,6 @@ const Menu = React.forwardRef(function Menu(props, ref) {
 
 Menu.propTypes = {
   children: PropTypes.node,
-  onOpenChange: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
 };
 
 const MenuItem = React.forwardRef(function MenuItem(props, ref) {
@@ -41,9 +39,9 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
 
   return (
     <li
-      className={clsx(classes)}
       {...other}
       {...getRootProps({ onClick: onClick ?? (() => {}) })}
+      className={clsx(classes)}
     >
       {children}
     </li>
@@ -55,78 +53,39 @@ MenuItem.propTypes = {
   onClick: PropTypes.func,
 };
 
+const MenuButton = React.forwardRef(function MenuButton(props, forwardedRef) {
+  const { getRootProps: getButtonProps } = useMenuButton({ rootRef: forwardedRef });
+
+  return (
+    <button type="button" {...props} {...getButtonProps()} className="button" />
+  );
+});
+
 export default function UseMenu() {
-  const [buttonElement, setButtonElement] = React.useState(null);
-
-  const [isOpen, setOpen] = React.useState(false);
-  const preventReopen = React.useRef(false);
-
-  const updateAnchor = React.useCallback((node) => {
-    setButtonElement(node);
-  }, []);
-
-  const handleOnClick = (event) => {
-    if (preventReopen.current) {
-      event.preventDefault();
-      preventReopen.current = false;
-      return;
-    }
-
-    setOpen((open) => !open);
-  };
-
-  const handleButtonMouseDown = () => {
-    if (isOpen) {
-      // Prevents the menu from reopening right after closing
-      // when clicking the button.
-      preventReopen.current = true;
-    }
-  };
-
-  const handleButtonKeyDown = (event) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setOpen(true);
-    }
-  };
+  const { contextValue: dropdownContextValue, open } = useDropdown();
+  const buttonRef = React.useRef(null);
 
   const createHandleMenuClick = (menuItem) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
-      setOpen(false);
-      buttonElement?.focus();
     };
   };
 
   return (
     <React.Fragment>
       <GlobalStyles styles={styles} />
-      <button
-        type="button"
-        className="button"
-        onClick={handleOnClick}
-        onMouseDown={handleButtonMouseDown}
-        onKeyDown={handleButtonKeyDown}
-        ref={updateAnchor}
-        aria-controls="hooks-menu"
-        aria-expanded={isOpen || undefined}
-        aria-haspopup="menu"
-      >
-        Commands
-      </button>
-      <Popper open={isOpen} anchorEl={buttonElement}>
-        <Menu
-          onOpenChange={(open) => {
-            setOpen(open);
-          }}
-          open={isOpen}
-          id="hooks-menu"
-        >
-          <MenuItem onClick={createHandleMenuClick('Cut')}>Cut</MenuItem>
-          <MenuItem onClick={createHandleMenuClick('Copy')}>Copy</MenuItem>
-          <MenuItem onClick={createHandleMenuClick('Paste')}>Paste</MenuItem>
-        </Menu>
-      </Popper>
+      <DropdownContext.Provider value={dropdownContextValue}>
+        <MenuButton ref={buttonRef}>Theme</MenuButton>
+        <Popper open={open} anchorEl={buttonRef.current}>
+          <Menu id="hooks-menu">
+            <MenuItem onClick={createHandleMenuClick('OS Default')}>
+              OS default
+            </MenuItem>
+            <MenuItem onClick={createHandleMenuClick('Light')}>Light</MenuItem>
+            <MenuItem onClick={createHandleMenuClick('Dark')}>Dark</MenuItem>
+          </Menu>
+        </Popper>
+      </DropdownContext.Provider>
     </React.Fragment>
   );
 }
@@ -162,17 +121,19 @@ const styles = `
     margin: 10px 0;
     min-width: 200px;
     background: #fff;
-    border: 1px solid ${grey[300]};
+    border: 1px solid ${grey[200]};
     border-radius: 0.75em;
     color: ${grey[900]};
     overflow: auto;
     outline: 0px;
+    box-shadow: 0px 2px 16px ${grey[200]};
   }
 
   .mode-dark .menu-root {
     background: ${grey[900]};
     border-color: ${grey[700]};
     color: ${grey[300]};
+    box-shadow: 0px 2px 16px ${grey[900]};
   }
 
   .menu-item {
@@ -222,7 +183,7 @@ const styles = `
     box-sizing: border-box;
     min-height: calc(1.5em + 22px);
     border-radius: 12px;
-    padding: 12px 16px;
+    padding: 8px 14px;
     line-height: 1.5;
     background: #fff;
     border: 1px solid ${grey[200]};
@@ -238,7 +199,7 @@ const styles = `
       border-color: ${grey[300]};
     }
   
-    &:focus {
+    &:focus-visible {
       border-color: ${blue[400]};
       outline: 3px solid ${blue[200]};
     }

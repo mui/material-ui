@@ -6,7 +6,7 @@
 
 运行下面的命令，使用 **npm** 将 Joy UI 添加到您的项目。
 
-```sh
+```bash
 npm install @mui/joy @emotion/response @emotion/styled
 npm start
 ```
@@ -15,7 +15,7 @@ npm start
 
 运行下面的命令，使用 **npm** 将 Joy UI 添加到您的项目。
 
-```sh
+```bash
 yarn add @mui/joy @emotion/react @emotion/styled
 yarn start
 ```

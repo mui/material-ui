@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import TabsList, { TabsListRootSlotProps } from '@mui/base/TabsList';
+import { TabsList, TabsListRootSlotProps } from '@mui/base/TabsList';
 
 function Root(props: TabsListRootSlotProps) {
   const { ownerState, ...other } = props;
@@ -20,19 +20,23 @@ const polymorphicComponentTest = () => {
       {/* @ts-expect-error */}
       <TabsList invalidProp={0} />
 
-      <TabsList component="a" href="#" />
+      <TabsList<'a'> slots={{ root: 'a' }} href="#" />
 
-      <TabsList component={CustomComponent} stringProp="test" numberProp={0} />
+      <TabsList<typeof CustomComponent>
+        slots={{ root: CustomComponent }}
+        stringProp="test"
+        numberProp={0}
+      />
       {/* @ts-expect-error */}
-      <TabsList component={CustomComponent} />
+      <TabsList<typeof CustomComponent> slots={{ root: CustomComponent }} />
 
-      <TabsList
-        component="button"
+      <TabsList<'button'>
+        slots={{ root: 'button' }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
       <TabsList<'button'>
-        component="button"
+        slots={{ root: 'button' }}
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}

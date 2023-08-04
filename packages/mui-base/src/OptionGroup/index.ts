@@ -1,6 +1,6 @@
-export { default } from './OptionGroup';
+'use client';
+export { OptionGroup } from './OptionGroup';
 
 export * from './OptionGroup.types';
 
-export { default as optionGroupClasses } from './optionGroupClasses';
 export * from './optionGroupClasses';

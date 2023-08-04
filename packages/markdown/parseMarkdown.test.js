@@ -5,11 +5,12 @@ import {
   getTitle,
   getHeaders,
   prepareMarkdown,
+  getCodeblock,
 } from './parseMarkdown';
 
 describe('parseMarkdown', () => {
   const defaultParams = {
-    pageFilename: '/test',
+    fileRelativeContext: 'test/bar',
     options: {
       env: {},
     },
@@ -158,10 +159,49 @@ authors:
         ]);
       });
     });
+
+    describe('Split markdown into an array, separating codeblocks', () => {
+      it('uses a `<codeblock>` tag to split', () => {
+        expect(
+          getContents(
+            [
+              '## Tabs',
+              '',
+              '<codeblock storageKey="package-manager">',
+              '',
+              '```bash npm',
+              'npm install @mui/material @emotion/react @emotion/styled',
+              '```',
+              '',
+              '```bash yarn',
+              'yarn add @mui/material @emotion/react @emotion/styled',
+              '```',
+              '',
+              '</codeblock>',
+            ].join('\n'),
+          ),
+        ).to.deep.equal([
+          '## Tabs\n\n',
+          [
+            '<codeblock storageKey="package-manager">',
+            '',
+            '```bash npm',
+            'npm install @mui/material @emotion/react @emotion/styled',
+            '```',
+            '',
+            '```bash yarn',
+            'yarn add @mui/material @emotion/react @emotion/styled',
+            '```',
+            '',
+            '</codeblock>',
+          ].join('\n'),
+        ]);
+      });
+    });
   });
 
   describe('prepareMarkdown', () => {
-    it('returns the table of contents with html and emojis stripped', () => {
+    it('returns the table of contents with html and emojis preserved and <a> tags stripped', () => {
       const markdown = `
 # Support
 
@@ -171,6 +211,8 @@ authors:
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 ### Unofficial 👍
 ### Warning ⚠️
+### Header with Pro plan [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+### Header with \`code\`
 `;
 
       const {
@@ -185,9 +227,23 @@ authors:
       expect(toc).to.have.deep.ordered.members([
         {
           children: [
-            { hash: 'github', level: 3, text: 'GitHub' },
-            { hash: 'unofficial', level: 3, text: 'Unofficial' },
-            { hash: 'warning', level: 3, text: 'Warning' },
+            {
+              hash: 'github',
+              level: 3,
+              text: 'GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />',
+            },
+            { hash: 'unofficial', level: 3, text: 'Unofficial 👍' },
+            { hash: 'warning', level: 3, text: 'Warning ⚠️' },
+            {
+              hash: 'header-with-pro-plan',
+              level: 3,
+              text: 'Header with Pro plan <span class="plan-pro"></span>',
+            },
+            {
+              hash: 'header-with-code',
+              level: 3,
+              text: 'Header with code',
+            },
           ],
           hash: 'community-help-free',
           level: 2,
@@ -439,7 +495,147 @@ authors:
           ...defaultParams,
           translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
         });
-      }).to.throw(/\[foo]\(\/foo\) in \/docs\/test\/index\.md is missing a trailing slash/);
+      }).to.throw(`docs-infra: Missing trailing slash. The following link:
+[foo](/foo) in /test/bar/index.md is missing a trailing slash, please add it.
+
+See https://ahrefs.com/blog/trailing-slash/ for more details.
+`);
     });
+
+    it('should report missing leading splashes', () => {
+      const markdown = `
+# Localization
+
+<p class="description">Foo</p>
+
+[bar](/bar/)
+[foo](foo/)
+`;
+
+      expect(() => {
+        prepareMarkdown({
+          ...defaultParams,
+          translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
+        });
+      }).to.throw(`docs-infra: Missing leading slash. The following link:
+[foo](foo/) in /test/bar/index.md is missing a leading slash, please add it.
+`);
+    });
+
+    it('should report title too long', () => {
+      const markdown = `
+# Foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+<p class="description">Foo</p>
+
+`;
+
+      expect(() => {
+        prepareMarkdown({
+          ...defaultParams,
+          translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
+        });
+      }).to
+        .throw(`docs-infra: The title "Foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" is too long (117 characters).
+It needs to have fewer than 70 characters—ideally less than 60. For more details, see:
+https://developers.google.com/search/docs/advanced/appearance/title-link
+`);
+    });
+
+    it('should report description too long', () => {
+      const markdown = `
+# Foo
+
+<p class="description">Fooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</p>
+
+`;
+
+      expect(() => {
+        prepareMarkdown({
+          ...defaultParams,
+          translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
+        });
+      }).to
+        .throw(`docs-infra: The description "Fooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" is too long (188 characters).
+It needs to have fewer than 170 characters—ideally less than 160. For more details, see:
+https://ahrefs.com/blog/meta-description/#4-be-concise
+`);
+    });
+  });
+
+  describe('getCodeblock', () => {
+    it('should return undefined if no codeblock found', () => {
+      const codeblock = getCodeblock('## Tabs');
+      expect(codeblock).to.equal(undefined);
+    });
+
+    it('should return the codeblock', () => {
+      const codeblock = getCodeblock(
+        [
+          '<codeblock storageKey="package-manager">',
+          '',
+          '```bash npm',
+          'npm install @mui/material @emotion/react @emotion/styled',
+          '# `@emotion/react` and `@emotion/styled` are peer dependencies',
+          '```',
+          '',
+          '```sh yarn',
+          'yarn add @mui/material @emotion/react @emotion/styled',
+          '# `@emotion/react` and `@emotion/styled` are peer dependencies',
+          '```',
+          '',
+          '</codeblock>',
+        ].join('\n'),
+      );
+      expect(codeblock).to.deep.equal({
+        type: 'codeblock',
+        storageKey: 'package-manager',
+        data: [
+          {
+            language: 'bash',
+            tab: 'npm',
+            code: [
+              'npm install @mui/material @emotion/react @emotion/styled',
+              '# `@emotion/react` and `@emotion/styled` are peer dependencies',
+            ].join('\n'),
+          },
+          {
+            language: 'sh',
+            tab: 'yarn',
+            code: [
+              'yarn add @mui/material @emotion/react @emotion/styled',
+              '# `@emotion/react` and `@emotion/styled` are peer dependencies',
+            ].join('\n'),
+          },
+        ],
+      });
+    });
+  });
+
+  it('should not accept sh', () => {
+    const markdown = `
+# Foo
+
+<p class="description">Fo</p>
+
+\`\`\`sh
+npm install @mui/material
+\`\`\`
+
+`;
+
+    expect(() => {
+      prepareMarkdown({
+        ...defaultParams,
+        translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
+      });
+    }).to.throw(`docs-infra: Unsupported language: "sh" in:
+
+\`\`\`sh
+npm install @mui/material
+\`\`\`
+
+Use "bash" instead.
+`);
   });
 });

@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: React Button component and hook
 components: Button
 hooks: useButton
@@ -25,10 +25,10 @@ The Button component replaces the native HTML `<button>` element, and offers exp
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 export default function MyApp() {
   return <Button>{/* button text */}</Button>;
@@ -42,7 +42,7 @@ The Button behaves similar to the native HTML `<button>`, so it wraps around the
 The following demo shows how to create and style two basic buttons.
 Notice that the second button cannot be clicked due to the `disabled` prop:
 
-{{"demo": "UnstyledButtonsSimple.js", "defaultCodeOpen": true}}
+{{"demo": "UnstyledButtonsSimple"}}
 
 ### Anatomy
 
@@ -64,7 +64,7 @@ Use the `slots.root` prop to override the root slot with a custom element:
 
 :::info
 The `slots` prop is available on all non-utility Base components.
-See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
 :::
 
 If you provide a non-interactive element such as a `<span>`, the Button component will automatically add the necessary accessibility attributes.
@@ -80,7 +80,7 @@ Similarly, `<Button slots={{ root: "span" }} type="reset">` will not reset its p
 
 #### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom compoenent's props directly on the compnent:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
 <Button<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
@@ -95,7 +95,7 @@ The same applies for props specific to custom primitive elements:
 ## Hook
 
 ```js
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 ```
 
 The `useButton` hook lets you apply the functionality of a button to a fully custom component.
@@ -135,6 +135,12 @@ You can even use SVGs, as the following demo illustrates:
 
 {{"demo": "UnstyledButtonCustom.js", "defaultCodeOpen": false}}
 
+### Using with links
+
+The following demo illustrates how to use the Button as a link, whether using the Base UI Button itself for the `href`, or with the [Next.js Link component](https://nextjs.org/learn/basics/navigate-between-pages/link-component):
+
+{{"demo": "UnstyledLinkButton.js", "defaultCodeOpen": true}}
+
 ### Focus on disabled buttons
 
 Similarly to the native HTML `<button>` element, the Button component can't receive focus when it's disabled.
@@ -146,7 +152,7 @@ Instead, `aria-disabled` is used, which makes the button focusable.
 
 This should be used whenever the disabled button needs to be read by screen readers.
 
-Base UI uses this prop internally in [menu items](/base/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
+Base UI uses this prop internally in [menu items](/base-ui/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
 
 The following demo shows how the `focusableWhenDisabled` prop works—use the <kbd class="key">Tab</kbd> key to navigate within this document to see that only the second button accepts the focus:
 

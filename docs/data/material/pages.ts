@@ -4,10 +4,10 @@ import { MuiPage } from 'docs/src/MuiPage';
 
 const pages: MuiPage[] = [
   {
-    pathname: '/material-ui/getting-started',
-    icon: standardNavIcons.DescriptionIcon,
+    pathname: '/material-ui/getting-started-group',
+    title: 'Getting started',
     children: [
-      { pathname: '/material-ui/getting-started/overview' },
+      { pathname: '/material-ui/getting-started', title: 'Overview' },
       { pathname: '/material-ui/getting-started/installation' },
       { pathname: '/material-ui/getting-started/usage' },
       { pathname: '/material-ui/getting-started/example-projects' },
@@ -23,7 +23,6 @@ const pages: MuiPage[] = [
   {
     pathname: '/material-ui/react-',
     title: 'Components',
-    icon: standardNavIcons.ToggleOnIcon,
     children: [
       {
         pathname: '/material-ui/components/inputs',
@@ -152,12 +151,10 @@ const pages: MuiPage[] = [
   {
     title: 'Component API',
     pathname: '/material-ui/api',
-    icon: standardNavIcons.CodeIcon,
     children: pagesApi,
   },
   {
     pathname: '/material-ui/customization',
-    icon: standardNavIcons.CreateIcon,
     children: [
       {
         pathname: '/material-ui/customization/theme',
@@ -183,7 +180,6 @@ const pages: MuiPage[] = [
   {
     pathname: '/material-ui/guides',
     title: 'How-to guides',
-    icon: standardNavIcons.VisibilityIcon,
     children: [
       { pathname: '/material-ui/guides/api', title: 'API design approach' },
       { pathname: '/material-ui/guides/understand-mui-packages', title: 'Understand MUI packages' },
@@ -204,12 +200,15 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
+      {
+        pathname: '/material-ui/guides/next-js-app-router',
+        title: 'Next.js App Router',
+      },
     ],
   },
   {
     pathname: '/material-ui/experimental-api',
     title: 'Experimental APIs',
-    icon: standardNavIcons.ExperimentIcon,
     children: [
       {
         pathname: '/material-ui/experimental-api/classname-generator',
@@ -226,17 +225,12 @@ const pages: MuiPage[] = [
             pathname: '/material-ui/experimental-api/css-theme-variables/migration',
             title: 'Migrating to CSS variables',
           },
-          {
-            pathname: '/material-ui/experimental-api/css-variables',
-            title: 'TODO merge with other pages',
-          },
         ],
       },
     ],
   },
   {
     pathname: '/material-ui/discover-more',
-    icon: standardNavIcons.AddIcon,
     children: [
       { pathname: '/material-ui/discover-more/showcase' },
       { pathname: '/material-ui/discover-more/related-projects' },
@@ -245,13 +239,11 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/discover-more/backers', title: 'Sponsors & Backers' },
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
-      { pathname: '/material-ui/discover-more/languages' },
     ],
   },
   {
     pathname: '/material-ui/migration',
     title: 'Migration',
-    icon: standardNavIcons.BookIcon,
     children: [
       {
         pathname: '/material-ui/migration/migration-grid-v2',

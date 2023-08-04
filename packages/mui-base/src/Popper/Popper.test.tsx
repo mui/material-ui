@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, createMount, describeConformanceUnstyled, screen } from 'test/utils';
-import Popper, { popperClasses } from '@mui/base/Popper';
+import { Popper, popperClasses } from '@mui/base/Popper';
 
 describe('<Popper />', () => {
   const { render } = createRenderer();
@@ -21,6 +21,7 @@ describe('<Popper />', () => {
     skip: [
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
+      'componentProp',
     ],
     slots: {
       root: {
@@ -37,8 +38,7 @@ describe('<Popper />', () => {
       <Popper
         anchorEl={() => document.createElement('div')}
         open
-        component={CustomComponent}
-        ownerState={{ id: 'id' }}
+        slots={{ root: CustomComponent }}
       />,
     );
 
