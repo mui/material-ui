@@ -27,7 +27,7 @@ For instance, you may want to show an additional element asking the user to ente
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import FormControl from '@mui/base/FormControl';
+import { FormControl } from '@mui/base/FormControl';
 
 export default function MyApp() {
   return (

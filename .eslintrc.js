@@ -460,5 +460,12 @@ module.exports = {
         'import/extensions': ['error', 'ignorePackages'],
       },
     },
+    {
+      files: ['packages/mui-base/src/**/**{.ts,.tsx}'],
+      rules: {
+        'import/no-default-export': 'error',
+        'import/prefer-default-export': 'off',
+      },
+    },
   ],
 };

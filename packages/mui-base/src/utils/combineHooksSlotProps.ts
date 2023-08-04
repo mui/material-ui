@@ -14,7 +14,7 @@ import { EventHandlers } from './types';
  * @param getFirstProps - A getter function that returns the props for the first slot. It receives the external event handlers as its argument.
  * @param getSecondProps - A getter function that returns the props for the second slot. It receives the result of the getFirstProps function as its argument.
  */
-export default function combineHooksSlotProps<
+export function combineHooksSlotProps<
   ExternalHandlers extends EventHandlers,
   FirstSlotProps extends ExternalHandlers,
   SecondSlotProps extends ExternalHandlers,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { EventHandlers } from '../utils/types';
-import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
+import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 export interface UseButtonParameters {
   /**

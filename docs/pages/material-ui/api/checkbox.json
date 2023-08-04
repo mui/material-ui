@@ -2,7 +2,7 @@
   "props": {
     "checked": { "type": { "name": "bool" } },
     "checkedIcon": { "type": { "name": "node" }, "default": "<CheckBoxIcon />" },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -39,13 +39,22 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "any" } }
   },
   "name": "Checkbox",
   "styles": {
-    "classes": ["root", "checked", "disabled", "indeterminate", "colorPrimary", "colorSecondary"],
+    "classes": [
+      "root",
+      "checked",
+      "disabled",
+      "indeterminate",
+      "colorPrimary",
+      "colorSecondary",
+      "sizeSmall",
+      "sizeMedium"
+    ],
     "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
     "name": "MuiCheckbox"
   },

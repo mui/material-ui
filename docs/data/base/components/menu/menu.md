@@ -32,10 +32,10 @@ These are rendered as `<li>` elements.
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
-import Menu from '@mui/base/Menu';
-import MenuButton from '@mui/base/MenuButton';
-import MenuItem from '@mui/base/MenuItem';
-import Dropdown from '@mui/base/Dropdown';
+import { Menu } from '@mui/base/Menu';
+import { MenuButton } from '@mui/base/MenuButton';
+import { MenuItem } from '@mui/base/MenuItem';
+import { Dropdown } from '@mui/base/Dropdown';
 
 export default function MyApp() {
   return (
@@ -147,10 +147,10 @@ On the Menu Button, these classes are available:
 ## Hooks
 
 ```jsx
-import useMenu from '@mui/base/useMenu';
-import useMenuItem from '@mui/base/useMenuItem';
-import useMenuButton from '@mui/base/useMenuButton';
-import useDropdown from '@mui/base/useDropdown';
+import { useMenu } from '@mui/base/useMenu';
+import { useMenuItem } from '@mui/base/useMenuItem';
+import { useMenuButton } from '@mui/base/useMenuButton';
+import { useDropdown } from '@mui/base/useDropdown';
 ```
 
 The `useMenu` and `useMenuItem` hooks let you apply the functionality of the Menu to fully custom components.
