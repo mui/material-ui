@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { expectType } from '@mui/types';
-import Button, { ButtonProps, ButtonRootSlotProps } from '@mui/base/Button';
+import { Button, ButtonProps, ButtonRootSlotProps } from '@mui/base/Button';
 
 const CustomButtonRoot = React.forwardRef(function CustomButtonRoot(props: ButtonRootSlotProps) {
   const { ownerState, ...other } = props;

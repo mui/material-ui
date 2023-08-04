@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Badge from '@mui/base/Badge';
+import { Badge } from '@mui/base/Badge';
 import { useTheme } from '@mui/system';
 
 function useIsDarkMode() {

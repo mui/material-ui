@@ -3,7 +3,6 @@
  */
 const path = require('path');
 const fse = require('fs-extra');
-const fetch = require('node-fetch');
 const lodash = require('lodash');
 
 const ARTIFACT_SERVER = 'https://s3.eu-central-1.amazonaws.com/mui-org-ci';

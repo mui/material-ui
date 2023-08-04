@@ -109,10 +109,29 @@ export default function ComponentsApiContent(props) {
       slotGuideLink = '/base-ui/guides/overriding-component-structure/';
     }
 
-    const source = filename
-      .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
+    // convert paths like `/packages/mui-base/src/Input...` to `@mui/base/Input...`
+    const packageAndFilename = filename.replace(
+      /\/packages\/mui(-(.+?))?\/src/,
+      (match, dash, pkg) => `@mui/${pkg}`,
+    );
+
+    const source = packageAndFilename
       // convert things like `/Table/Table.js` to ``
       .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
+
+    const defaultImportName = pageContent.name;
+    let defaultImportPath = `${source}/${defaultImportName}`;
+    let namedImportPath = source;
+    let namedImportName = defaultImportName;
+
+    if (/Unstable_/.test(source)) {
+      defaultImportPath = source.replace(/\/[^/]*$/, '');
+      namedImportPath = packageAndFilename
+        .replace(/Unstable_/, '')
+        .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
+
+      namedImportName = `Unstable_${defaultImportName} as ${defaultImportName}`;
+    }
 
     // The `ref` is forwarded to the root element.
     let refHint = t('api-docs.refRootElement');
@@ -139,18 +158,24 @@ export default function ComponentsApiContent(props) {
 
     const componentNameKebabCase = kebabCase(componentName);
 
+    const useNamedImports = source.startsWith('@mui/base');
+
+    const subpathImport = useNamedImports
+      ? `import { ${namedImportName} } from '${defaultImportPath}';`
+      : `import ${defaultImportName} from '${defaultImportPath}';`;
+
+    const rootImport = `import { ${namedImportName} } from '${namedImportPath}';`;
+
+    const importInstructions = `${subpathImport}
+// ${t('or')}
+${rootImport}`;
+
     return (
       <React.Fragment key={`component-api-${key}`}>
         <MarkdownElement>
           <Heading hash={componentNameKebabCase} text={`${componentName} API`} />
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
-          <HighlightedCode
-            code={`
-import ${pageContent.name} from '${source}/${pageContent.name}';
-// ${t('or')}
-import { ${pageContent.name} } from '${source}';`}
-            language="jsx"
-          />
+          <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           <Heading text="props" hash={`${componentNameKebabCase}-props`} level="h3" />
           <p dangerouslySetInnerHTML={{ __html: spreadHint }} />

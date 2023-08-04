@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Select, { selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
+import { Select, selectClasses } from '@mui/base/Select';
+import { Option, optionClasses } from '@mui/base/Option';
+import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {

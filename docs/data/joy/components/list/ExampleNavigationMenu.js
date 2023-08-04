@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Popper from '@mui/base/Popper';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Popper } from '@mui/base/Popper';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import Chip from '@mui/joy/Chip';
