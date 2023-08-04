@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Popup, PopupPlacement } from '@mui/base/Popup';
+import { Unstable_Popup as Popup, PopupPlacement } from '@mui/base/Unstable_Popup';
 import { styled, css, Theme } from '@mui/system';
 
 function Radio({ value, ...props }: JSX.IntrinsicElements['input']) {

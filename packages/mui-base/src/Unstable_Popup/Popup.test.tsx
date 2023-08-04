@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { act, createRenderer, createMount, describeConformanceUnstyled } from 'test/utils';
-import { Popup, popupClasses, PopupProps } from '@mui/base/Popup';
+import { Unstable_Popup as Popup, popupClasses, PopupProps } from '@mui/base/Unstable_Popup';
 
 describe('<Popup />', () => {
   const { render } = createRenderer();

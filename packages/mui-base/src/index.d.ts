@@ -16,7 +16,7 @@ export * from './Unstable_NumberInput';
 export * from './OptionGroup';
 export * from './Option';
 export * from './Popper';
-export * from './Popup';
+export * from './Unstable_Popup';
 export * from './Portal';
 export * from './Select';
 export * from './Slider';

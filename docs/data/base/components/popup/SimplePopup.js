@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Popup } from '@mui/base/Popup';
+import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
 import { styled } from '@mui/system';
 
 export default function SimplePopup() {

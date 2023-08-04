@@ -20,7 +20,7 @@ The Popper is a utility component for creating various kinds of popups.
 It relies on the third-party [Floating UI](https://floating-ui.com/) library for positioning.
 
 :::info
-The Popup component is intended to replace the [Popper](/base-ui/react-popper/) component, which will be phased out in a future release of Base UI.
+The Popup component, once stable, is intended to replace the [Popper](/base-ui/react-popper/) component, which will be phased out in a future release of Base UI.
 :::
 
 ## Component
@@ -30,7 +30,7 @@ The Popup component is intended to replace the [Popper](/base-ui/react-popper/) 
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Popup from '@mui/base/Popup';
+import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
 
 export default function MyApp() {
   return <Popup>{/* the popup's content */}</Popup>;

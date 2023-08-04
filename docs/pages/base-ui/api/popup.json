@@ -37,7 +37,7 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "strategy": {
       "type": { "name": "enum", "description": "'absolute'<br>&#124;&nbsp;'fixed'" },
@@ -59,7 +59,7 @@
   "spread": true,
   "muiName": "MuiPopup",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-base/src/Popup/Popup.tsx",
+  "filename": "/packages/mui-base/src/Unstable_Popup/Popup.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-popup/\">Popup</a></li></ul>",
   "cssComponent": false

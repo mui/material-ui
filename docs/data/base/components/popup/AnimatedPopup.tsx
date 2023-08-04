@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { styled, Theme } from '@mui/system';
-import { Popup, PopupChildrenProps } from '@mui/base/Popup';
+import {
+  Unstable_Popup as Popup,
+  PopupChildrenProps,
+} from '@mui/base/Unstable_Popup';
 
 export default function AnimatedPopup() {
   const [anchor, setAnchor] = React.useState<HTMLButtonElement | null>(null);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Popup } from '@mui/base/Popup';
+import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
 import { styled, css } from '@mui/system';
 
 function Radio({ value, ...props }) {
