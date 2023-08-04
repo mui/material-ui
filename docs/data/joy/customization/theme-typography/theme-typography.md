@@ -116,7 +116,17 @@ declare module '@mui/joy/styles' {
 ### Changing the default font
 
 Joy UI uses the [Inter](https://rsms.me/inter/) font by default.
-To change it, do this...
+
+To change it, override the theme `fontFamily` property:
+
+```js
+extendTheme({
+  fontFamily: {
+    display: 'Noto Sans', // applies to `h1`–`h4`
+    body: 'Noto Sans', // applies to `title-*` and `body-*`
+  },
+});
+```
 
 ## Common examples
 
