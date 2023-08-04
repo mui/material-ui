@@ -1,6 +1,6 @@
 ---
-title: MUI X improvements, Charts in Alpha, Discord, and more!
-description: Support for time zones, a new filtering UI, charts and Discord
+title: MUI X improvements, Charts in Alpha, Filtering, and more!
+description: Support for time zones, a new filtering UI, charts and more..
 date: 2023-08-07T00:00:00.000Z
 authors: ['richbustos', 'josefreitas']
 card: true
@@ -14,15 +14,17 @@ Now that we reached [MUI X v6.10.x](https://github.com/mui/mui-x/releases), it'
 
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [Date Pickers](#date-pickers)
-  - [Support for Time zones](#support-for-time-zones)
-  - [Digital Clock](#digital-clock)
+  - [Support for time zones](#support-for-time-zones)
+  - [Digital clock](#digital-clock)
 - [Data Grid](#data-grid)
-  - [Copy and Paste](#copy-and-paste)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
-  - [Filter on Column headers](#filter-on-column-headers)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+  - [Copy and Paste ](#copy-and-paste-)
+  - [Filter on column headers ](#filter-on-column-headers-)
   - [Performance Enhancements: Smoother Scrolling and Expanding Rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
-- [Charts - Alpha version](#charts---alpha-version)
+- [Charts - alpha version 🎁](#charts---alpha-version-)
 - [What's next](#whats-next)
+- [Feedback](#feedback)
 
 ## Date Pickers
 
@@ -32,7 +34,9 @@ No more hassle displaying dates on the time zones of your choice. 🌎
 
 You can effortlessly display and select dates and times in different time zones, without worrying about the conversion logic and keeping the stored value consistent with your backend.
 
-<img src="/static/blog/mui-x-mid-v6-features/timezone.gif" alt="" width="2400" height="600" style="margin-bottom: 16px;" />
+<video preload="metadata" autoplay muted loop controls>
+  <source src="/static/blog/mui-x-mid-v6-features/timezone.mp4" type="video/mp4">
+</video>
 
 Use adapters to control the original value and set the `timezone` prop to define in which timezone the Date, Time, or DateTime should be displayed.
 
@@ -95,7 +99,7 @@ And it ships with a couple of rad palettes, specially crafted by our designers!
 
 Checkout a video highlighting some of our Charts!
 
-<video width="400" height="400" preload="metadata" autoplay muted loop playsinline controls>
+<video width="416" preload="metadata" autoplay muted loop playsinline controls>
   <source src="/static/blog/mui-x-mid-v6-features/charts_final_v1.mov" type="video/mp4">
 </video>
 
