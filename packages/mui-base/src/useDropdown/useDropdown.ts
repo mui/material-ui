@@ -1,13 +1,10 @@
 'use client';
-
 import * as React from 'react';
-
-import { DropdownActionTypes, DropdownState, UseDropdownParameters } from './useDropdown.types';
-
 import type { DropdownContextValue } from './DropdownContext';
-import { StateChangeCallback } from '../utils/useControllableReducer.types';
-import { dropdownReducer } from './dropdownReducer';
 import { useControllableReducer } from '../utils/useControllableReducer';
+import { StateChangeCallback } from '../utils/useControllableReducer.types';
+import { DropdownActionTypes, DropdownState, UseDropdownParameters } from './useDropdown.types';
+import { dropdownReducer } from './dropdownReducer';
 
 /**
  *
