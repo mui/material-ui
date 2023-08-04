@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Popup from '@mui/base/Popup';
+import { Popup } from '@mui/base/Popup';
 import { Box, styled } from '@mui/system';
 
 export default function DisabledPortalPopup() {

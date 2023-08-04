@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Popup from '@mui/base/Popup';
-import { styled, Theme } from '@mui/system';
+import { Popup } from '@mui/base/Popup';
+import { styled } from '@mui/system';
 
 export default function SimplePopup() {
   const [anchor, setAnchor] = React.useState<null | HTMLElement>(null);

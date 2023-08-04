@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Popup from '@mui/base/Popup';
+import { Popup } from '@mui/base/Popup';
 import { styled } from '@mui/system';
 
 export default function SimplePopup() {

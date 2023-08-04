@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/system';
-import Popup from '@mui/base/Popup';
+import { Popup } from '@mui/base/Popup';
 
 export default function AnimatedPopup() {
   const [anchor, setAnchor] = React.useState(null);

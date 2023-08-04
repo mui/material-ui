@@ -7,8 +7,8 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import composeClasses from '../composeClasses';
-import Portal from '../Portal';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { Portal } from '../Portal';
 import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getPopupUtilityClass } from './popupClasses';
@@ -291,4 +291,4 @@ Popup.propTypes /* remove-proptypes */ = {
   withTransition: PropTypes.bool,
 } as any;
 
-export default Popup;
+export { Popup };
