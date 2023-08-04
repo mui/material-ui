@@ -2,23 +2,23 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 // Base UI imports
-import Badge, { badgeClasses } from '@mui/base/Badge';
-import Input, { InputProps } from '@mui/base/Input';
-import Dropdown from '@mui/base/Dropdown';
-import Menu from '@mui/base/Menu';
-import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
-import MenuButton from '@mui/base/MenuButton';
-import Modal, { modalClasses } from '@mui/base/Modal';
-import Option from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
-import Select from '@mui/base/Select';
-import Slider, { sliderClasses } from '@mui/base/Slider';
-import Snackbar from '@mui/base/Snackbar';
+import { Badge, badgeClasses } from '@mui/base/Badge';
+import { Input, InputProps } from '@mui/base/Input';
+import { Dropdown } from '@mui/base/Dropdown';
+import { Menu } from '@mui/base/Menu';
+import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
+import { MenuButton } from '@mui/base/MenuButton';
+import { Modal } from '@mui/base/Modal';
+import { Option } from '@mui/base/Option';
+import { Popper } from '@mui/base/Popper';
+import { Select } from '@mui/base/Select';
+import { Slider, sliderClasses } from '@mui/base/Slider';
+import { Snackbar } from '@mui/base/Snackbar';
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
-import Switch, { switchClasses } from '@mui/base/Switch';
-import Tab from '@mui/base/Tab';
-import Tabs from '@mui/base/Tabs';
-import TabsList from '@mui/base/TabsList';
+import { Switch, switchClasses } from '@mui/base/Switch';
+import { Tab } from '@mui/base/Tab';
+import { Tabs } from '@mui/base/Tabs';
+import { TabsList } from '@mui/base/TabsList';
 
 // Other packages
 import { css, styled, keyframes } from '@mui/system';

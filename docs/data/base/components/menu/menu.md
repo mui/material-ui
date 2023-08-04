@@ -23,7 +23,7 @@ It renders an unordered list (`<ul>`) by default.
 Use the Menu Item to add items to the Menu.
 These are rendered as `<li>` elements.
 
-{{"demo": "UnstyledMenuIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "MenuIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Components
 
@@ -32,10 +32,10 @@ These are rendered as `<li>` elements.
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
-import Menu from '@mui/base/Menu';
-import MenuButton from '@mui/base/MenuButton';
-import MenuItem from '@mui/base/MenuItem';
-import Dropdown from '@mui/base/Dropdown';
+import { Menu } from '@mui/base/Menu';
+import { MenuButton } from '@mui/base/MenuButton';
+import { MenuItem } from '@mui/base/MenuItem';
+import { Dropdown } from '@mui/base/Dropdown';
 
 export default function MyApp() {
   return (
@@ -60,7 +60,7 @@ The following demo shows how to create and style a Menu component.
 Click **Dashboard** to view the menu.
 Notice that it uses the built-in [Popper](/base-ui/react-popper/) component to break out of its parent container visually:
 
-{{"demo": "UnstyledMenuBasic"}}
+{{"demo": "MenuSimple"}}
 
 The Dropdown should be the outermost component—all other menu-related components must be placed as its children (not necessarily as direct ones).
 If you need to control the open state of the menu or react to its changes, place an `open`/`onOpenChange` props on the Dropdown.
@@ -147,10 +147,10 @@ On the Menu Button, these classes are available:
 ## Hooks
 
 ```jsx
-import useMenu from '@mui/base/useMenu';
-import useMenuItem from '@mui/base/useMenuItem';
-import useMenuButton from '@mui/base/useMenuButton';
-import useDropdown from '@mui/base/useDropdown';
+import { useMenu } from '@mui/base/useMenu';
+import { useMenuItem } from '@mui/base/useMenuItem';
+import { useMenuButton } from '@mui/base/useMenuButton';
+import { useDropdown } from '@mui/base/useDropdown';
 ```
 
 The `useMenu` and `useMenuItem` hooks let you apply the functionality of the Menu to fully custom components.
