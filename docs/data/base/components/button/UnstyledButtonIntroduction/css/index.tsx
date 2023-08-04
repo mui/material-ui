@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Button, { buttonClasses } from '@mui/base/Button';
+import { Button, buttonClasses } from '@mui/base/Button';
 import Stack from '@mui/material/Stack';
 
-export default function UnstyledButtonIntroduction() {
+export default function UnstyledButtonsIntroduction() {
   return (
     <React.Fragment>
       <Stack spacing={2} direction="row">

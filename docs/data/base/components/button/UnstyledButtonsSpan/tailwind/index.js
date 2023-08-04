@@ -1,23 +1,36 @@
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import PropTypes from 'prop-types';
+import { Button } from '@mui/base/Button';
 import Stack from '@mui/material/Stack';
+import clsx from 'clsx';
 
 export default function UnstyledButtonsSimple() {
   return (
     <Stack spacing={2} direction="row">
-      <Button
-        slots={{ root: 'span' }}
-        className="cursor-pointer disabled:cursor-not-allowed text-sm bg-violet-500 hover:bg-violet-600 active:bg-violet-700 text-white rounded-md font-semibold px-4 py-2 border-none disabled:opacity-50"
-      >
+      <CustomButton className="hover:bg-violet-600 active:bg-violet-700">
         Button
-      </Button>
-      <Button
-        slots={{ root: 'span' }}
-        className="cursor-pointer disabled:cursor-not-allowed text-sm bg-violet-500 text-white rounded-md font-semibold px-4 py-2 border-none disabled:opacity-50"
-        disabled
-      >
+      </CustomButton>
+      <CustomButton disabled slots={{ root: 'span' }}>
         Disabled
-      </Button>
+      </CustomButton>
     </Stack>
   );
 }
+
+const CustomButton = React.forwardRef((props, ref) => {
+  const { className, ...other } = props;
+  return (
+    <Button
+      ref={ref}
+      className={clsx(
+        'cursor-pointer disabled:cursor-not-allowed text-sm bg-violet-500 text-white rounded-md font-semibold px-4 py-2 border-none disabled:opacity-50',
+        className,
+      )}
+      {...other}
+    />
+  );
+});
+
+CustomButton.propTypes = {
+  className: PropTypes.string,
+};
