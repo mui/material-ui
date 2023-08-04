@@ -8,7 +8,7 @@ import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
 import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { MenuButton } from '@mui/base/MenuButton';
-import { Modal } from '@mui/base/Modal';
+import { Modal, modalClasses } from '@mui/base/Modal';
 import { Option } from '@mui/base/Option';
 import { Popper } from '@mui/base/Popper';
 import { Select } from '@mui/base/Select';
