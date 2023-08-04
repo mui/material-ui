@@ -5,8 +5,8 @@ import { MenuButton } from '@mui/base/MenuButton';
 import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
 
-export default function UnstyledMenuIntroduction() {
-  const createHandleMenuClick = (menuItem: string) => {
+export default function MenuSimple() {
+  const createHandleMenuClick = (menuItem) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
     };
@@ -14,13 +14,13 @@ export default function UnstyledMenuIntroduction() {
 
   return (
     <Dropdown>
-      <TriggerButton>My account</TriggerButton>
+      <TriggerButton>Dashboard</TriggerButton>
       <Menu slots={{ listbox: StyledListbox }}>
         <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
           Profile
         </StyledMenuItem>
         <StyledMenuItem onClick={createHandleMenuClick('My account')}>
-          Language settings
+          My account
         </StyledMenuItem>
         <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
           Log out
@@ -31,8 +31,10 @@ export default function UnstyledMenuIntroduction() {
 }
 
 const blue = {
+  50: '#F0F7FF',
   100: '#DAECFF',
   200: '#99CCF3',
+  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
@@ -66,7 +68,7 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 16px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
   z-index: 1;
   `,
 );
@@ -103,16 +105,16 @@ const StyledMenuItem = styled(MenuItem)(
 const TriggerButton = styled(MenuButton)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
   font-weight: 600;
+  font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 8px 14px;
+  border-radius: 8px;
+  padding: 8px 16px;
   line-height: 1.5;
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  background: transparent;
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? blue[300] : blue[500]};
+  cursor: pointer;
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
