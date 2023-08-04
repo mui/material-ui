@@ -95,7 +95,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     hasTransition,
   } = useModal({
     ...propsWithDefaults,
-    ref: forwardedRef,
+    rootRef: forwardedRef,
   });
 
   const ownerState = {
