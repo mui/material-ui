@@ -3,10 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Box, styled } from '@mui/system';
-import Portal from '@mui/base/Portal';
-import FocusTrap from '@mui/base/FocusTrap';
-import Button from '@mui/base/Button';
-import useModal from '@mui/base/unstable_useModal';
+import { Portal } from '@mui/base/Portal';
+import { FocusTrap } from '@mui/base/FocusTrap';
+import { Button } from '@mui/base/Button';
+import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import Fade from '@mui/material/Fade';
 
 export default function UseModal() {
@@ -74,14 +74,13 @@ const Modal = React.forwardRef(function Modal(props, forwardedRef) {
     getRootProps,
     getBackdropProps,
     getTransitionProps,
-    rootRef,
     portalRef,
     isTopModal,
     exited,
     hasTransition,
   } = useModal({
     ...propsWithDefaults,
-    ref: forwardedRef,
+    rootRef: forwardedRef,
   });
 
   const classes = {
@@ -102,14 +101,11 @@ const Modal = React.forwardRef(function Modal(props, forwardedRef) {
 
   const rootProps = {
     ...other,
-    ref: rootRef,
-    role: 'presentation',
     className: clsx(classes),
     ...getRootProps(other),
   };
 
   const backdropProps = {
-    'aria-hidden': true,
     open,
     ...getBackdropProps(),
   };

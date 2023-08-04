@@ -88,7 +88,6 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     getRootProps,
     getBackdropProps,
     getTransitionProps,
-    rootRef,
     portalRef,
     isTopModal,
     exited,
@@ -172,7 +171,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
        * is not meant for humans to interact with directly.
        * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
        */}
-      <Root {...rootProps} ref={rootRef}>
+      <Root {...rootProps}>
         {!hideBackdrop && BackdropComponent ? <BackdropComponent {...backdropProps} /> : null}
         <FocusTrap
           disableEnforceFocus={disableEnforceFocus}
