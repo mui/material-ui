@@ -104,8 +104,8 @@ You can use these `styled-component` examples as a reference:
 
 <!-- #default-branch-switch -->
 
-- [create-react-app](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components)
-- [create-react-app with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts)
+- [create-react-app](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
+- [create-react-app with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
 - [and many others](https://github.com/mui/material-ui/tree/master/examples)
 
 :::warning
