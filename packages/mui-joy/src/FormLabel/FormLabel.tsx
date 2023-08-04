@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { FormLabelProps, FormLabelTypeMap } from './FormLabelProps';

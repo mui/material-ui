@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NumberInput from '@mui/base/Unstable_NumberInput';
+import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import NumberInput, {
+import {
+  Unstable_NumberInput as NumberInput,
   NumberInputProps,
   numberInputClasses,
 } from '@mui/base/Unstable_NumberInput';

@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { getNumberInputUtilityClass } from './numberInputClasses';
-import useNumberInput from '../unstable_useNumberInput';
+import { unstable_useNumberInput as useNumberInput } from '../unstable_useNumberInput';
 import {
   NumberInputOwnerState,
   NumberInputProps,
@@ -13,7 +13,7 @@ import {
   NumberInputDecrementButtonSlotProps,
   NumberInputTypeMap,
 } from './NumberInput.types';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -294,4 +294,4 @@ NumberInput.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default NumberInput;
+export { NumberInput };

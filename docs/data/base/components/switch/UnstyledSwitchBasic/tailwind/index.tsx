@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Switch from '@mui/base/Switch';
+import { Switch } from '@mui/base/Switch';
 import { useTheme } from '@mui/system';
 
 function useIsDarkMode() {

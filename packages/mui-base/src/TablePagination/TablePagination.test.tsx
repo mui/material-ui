@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import { describeConformanceUnstyled, fireEvent, createRenderer, createMount } from 'test/utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableRow from '@mui/material/TableRow';
-import TablePagination, {
+import {
+  TablePagination,
   tablePaginationClasses as classes,
   LabelDisplayedRowsArgs,
 } from '@mui/base/TablePagination';

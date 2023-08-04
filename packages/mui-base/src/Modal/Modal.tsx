@@ -5,11 +5,11 @@ import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import { EventHandlers, useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import composeClasses from '../composeClasses';
-import Portal from '../Portal';
-import useModal from '../unstable_useModal';
-import FocusTrap from '../FocusTrap';
 import { ModalOwnerState, ModalProps, ModalTypeMap } from './Modal.types';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { Portal } from '../Portal';
+import { unstable_useModal as useModal } from '../unstable_useModal';
+import { FocusTrap } from '../FocusTrap';
 import { getModalUtilityClass } from './modalClasses';
 
 const useUtilityClasses = (ownerState: ModalOwnerState) => {
@@ -308,4 +308,4 @@ Modal.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Modal;
+export { Modal };

@@ -1,3 +1,3 @@
 'use client';
-export { default } from './useOption';
+export { useOption } from './useOption';
 export * from './useOption.types';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button, { ButtonProps, buttonClasses } from '@mui/base/Button';
+import { Button, ButtonProps, buttonClasses } from '@mui/base/Button';
 import { styled, Theme } from '@mui/system';
 
 const ButtonRoot = React.forwardRef(function ButtonRoot(
