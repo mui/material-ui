@@ -9,9 +9,9 @@ import {
   UseButtonReturnValue,
   UseButtonRootSlotProps,
 } from './useButton.types';
-import extractEventHandlers from '../utils/extractEventHandlers';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 /**
  *
  * Demos:
@@ -22,7 +22,7 @@ import MuiCancellableEvent from '../utils/muiCancellableEvent';
  *
  * - [useButton API](https://mui.com/base-ui/react-button/hooks-api/#use-button)
  */
-export default function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
+export function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
   const {
     disabled = false,
     focusableWhenDisabled,

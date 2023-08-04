@@ -3018,6 +3018,11 @@
     "@testing-library/dom" "^9.0.0"
     "@types/react-dom" "^18.0.0"
 
+"@testing-library/user-event@^14.4.3":
+  version "14.4.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.4.3.tgz#af975e367743fa91989cd666666aec31a8f50591"
+  integrity sha512-kCUc5MEwaEMakkO5x7aoD+DLi02ehmEM2QCGWvNqAS1dV/fAvORWEjnjsEIvml59M7Y5kCkWN6fCCyPOe8OL6Q==
+
 "@theme-ui/color-modes@^0.16.0":
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/@theme-ui/color-modes/-/color-modes-0.16.0.tgz#7e137b7b17be56a4620e90d9a68d6c32cc97e92e"

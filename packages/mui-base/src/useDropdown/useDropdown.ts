@@ -1,10 +1,10 @@
 'use client';
 import * as React from 'react';
 import { type DropdownContextValue } from './DropdownContext';
-import useControllableReducer from '../utils/useControllableReducer';
+import { useControllableReducer } from '../utils/useControllableReducer';
 import { StateChangeCallback } from '../utils/useControllableReducer.types';
 import { DropdownActionTypes, DropdownState, UseDropdownParameters } from './useDropdown.types';
-import dropdownReducer from './dropdownReducer';
+import { dropdownReducer } from './dropdownReducer';
 
 /**
  *
@@ -16,7 +16,7 @@ import dropdownReducer from './dropdownReducer';
  *
  * - [useDropdown API](https://mui.com/base-ui/react-menu/hooks-api/#use-dropdown)
  */
-export default function useDropdown(parameters: UseDropdownParameters = {}) {
+export function useDropdown(parameters: UseDropdownParameters = {}) {
   const { defaultOpen, onOpenChange, open: openProp } = parameters;
   const [popupId, setPopupId] = React.useState<string>('');
   const [triggerElement, setTriggerElement] = React.useState<HTMLElement | null>(null);

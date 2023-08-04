@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Switch, { switchClasses } from '@mui/base/Switch';
+import { Switch, switchClasses } from '@mui/base/Switch';
 import { useTheme } from '@mui/system';
 
 export default function UnstyledSwitches() {

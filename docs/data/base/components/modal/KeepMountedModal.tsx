@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled, Box, Theme } from '@mui/system';
-import Modal from '@mui/base/Modal';
+import { Modal } from '@mui/base/Modal';
 
 export default function KeepMountedModal() {
   const [open, setOpen] = React.useState(false);

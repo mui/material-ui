@@ -24,6 +24,10 @@ module.exports = [
   { pathname: '/base-ui/react-menu/components-api/#menu-item', title: 'MenuItem' },
   { pathname: '/base-ui/react-modal/components-api/#modal', title: 'Modal' },
   { pathname: '/base-ui/react-no-ssr/components-api/#no-ssr', title: 'NoSsr' },
+  {
+    pathname: '/base-ui/react-number-input/components-api/#number-input',
+    title: 'NumberInput',
+  },
   { pathname: '/base-ui/react-select/components-api/#option', title: 'Option' },
   {
     pathname: '/base-ui/react-select/components-api/#option-group',
@@ -69,6 +73,10 @@ module.exports = [
     title: 'useMenuButton',
   },
   { pathname: '/base-ui/react-menu/hooks-api/#use-menu-item', title: 'useMenuItem' },
+  {
+    pathname: '/base-ui/react-number-input/hooks-api/#use-number-input',
+    title: 'useNumberInput',
+  },
   { pathname: '/base-ui/react-select/hooks-api/#use-option', title: 'useOption' },
   { pathname: '/base-ui/react-select/hooks-api/#use-select', title: 'useSelect' },
   { pathname: '/base-ui/react-slider/hooks-api/#use-slider', title: 'useSlider' },
