@@ -126,9 +126,6 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     elementType: Root,
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
-    additionalProps: {
-      role: 'presentation',
-    },
     getSlotProps: getRootProps,
     className: classes.root,
     ownerState,
@@ -138,10 +135,6 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
   const backdropProps = useSlotProps({
     elementType: BackdropComponent,
     externalSlotProps: slotProps.backdrop,
-    additionalProps: {
-      'aria-hidden': true,
-      open,
-    },
     getSlotProps: (otherHandlers: EventHandlers) => {
       return getBackdropProps({
         ...otherHandlers,

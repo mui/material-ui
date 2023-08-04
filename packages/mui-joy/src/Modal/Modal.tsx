@@ -112,7 +112,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const { getRootProps, getBackdropProps, rootRef, portalRef, isTopModal } = useModal({
     ...ownerState,
-    ref,
+    rootRef: ref,
   });
 
   const classes = useUtilityClasses(ownerState);
