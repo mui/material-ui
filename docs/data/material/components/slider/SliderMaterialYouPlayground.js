@@ -1,7 +1,7 @@
 import * as React from 'react';
-import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDemo';
 import Slider from '@mui/material-next/Slider';
 import Box from '@mui/material/Box';
+import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDemo';
 
 export default function ButtonUsage() {
   return (

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -13,6 +12,9 @@ import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
@@ -23,11 +25,18 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
 import IconImage from 'docs/src/components/icon/IconImage';
-import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
-import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
-import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
+import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import teamMembers from 'docs/data/about/teamMembers.json';
+/**
+ * Import data from: https://tools-public.mui.com/prod/pages/nSwYn51
+
+curl 'https://tools-public.mui.com/prod/api/data/muicomabout/queryAbout' \
+  -H 'content-type: application/json' \
+  --data-raw '{}' \
+  --compressed
+*/
 
 interface Profile {
   name: string;
@@ -249,303 +258,6 @@ function Widget({
     </Paper>
   );
 }
-
-const teamMembers: Array<Profile> = [
-  {
-    src: '/static/branding/about/olivier.png',
-    name: 'Olivier Tassinari',
-    title: 'Co-founder, CEO',
-    location: 'Paris, France',
-    locationCountry: 'fr',
-    about: 'Exercise addict and lifelong learner',
-    twitter: 'olivtassinari',
-    github: 'oliviertassinari',
-  },
-  {
-    name: 'Matt Brookes',
-    src: '/static/branding/about/matt.png',
-    title: 'Co-founder, Head of Sales',
-    location: 'London, UK',
-    locationCountry: 'gb',
-    about: "When I'm not 👨🏻‍💻, I'm 🧗🏼‍♂️",
-    twitter: 'randomtechdude',
-    github: 'mbrookes',
-  },
-  {
-    name: 'Marija Najdova',
-    src: '/static/branding/about/marija.png',
-    title: 'Engineering Manager - Core',
-    location: 'Skopje, North Macedonia',
-    locationCountry: 'mk',
-    about: 'I do karate 🥋 and read 📚. A lot!',
-    twitter: 'marijanajdova',
-    github: 'mnajdova',
-  },
-  {
-    name: 'Danail Hadjiatanasov',
-    src: '/static/branding/about/danail.png',
-    title: 'Engineering Manager - X',
-    location: 'Sofia, Bulgaria',
-    locationCountry: 'bg',
-    about: 'Boringly normal, geek deep down. I like 🚗  and 🏂',
-    twitter: 'danail_h',
-    github: 'DanailH',
-  },
-  {
-    name: 'Matheus Wichman',
-    src: '/static/branding/about/matheus.png',
-    title: 'React Community Engineer - X',
-    location: 'Esteio, Brazil',
-    locationCountry: 'br',
-    about: 'I like road cycling 🚲, DIY 🛠 and aviation ✈!',
-    github: 'm4theushw',
-  },
-  {
-    name: 'Michał Dudak',
-    src: '/static/branding/about/michal.png',
-    title: 'Software Engineer - Core',
-    location: 'Silesia, Poland',
-    locationCountry: 'pl',
-    about: 'Motorcyclist, gamer, and coder (UI and more!)',
-    twitter: 'michaldudak',
-    github: 'michaldudak',
-  },
-  {
-    name: 'Siriwat Kunaporn',
-    src: '/static/branding/about/siriwat.png',
-    title: 'Software Engineer - Core',
-    location: 'Bangkok, Thailand',
-    locationCountry: 'th',
-    about: 'UI Lover and ⛷ skiing newbie.',
-    twitter: 'siriwatknp',
-    github: 'siriwatknp',
-  },
-  {
-    name: 'Danilo Leal',
-    src: '/static/branding/about/danilo.png',
-    title: 'Lead Designer',
-    location: 'São Paulo, Brazil',
-    locationCountry: 'br',
-    about: 'Music production, hiking, and traveling!',
-    github: 'danilo-leal',
-    twitter: 'danilobleal',
-  },
-  {
-    name: 'Flavien Delangle',
-    src: '/static/branding/about/flavien.png',
-    title: 'Tech Lead - X',
-    location: 'Lille, France',
-    about: 'Love cycling 🚴‍♂️ and reading 📚',
-    locationCountry: 'fr',
-    github: 'flaviendelangle',
-  },
-  {
-    name: 'Benny Joo',
-    src: '/static/branding/about/benny.png',
-    title: 'Junior Software Engineer - Core',
-    location: 'London, UK',
-    locationCountry: 'gb',
-    about: 'Love reading 📚 and working out 🏋️‍♂️',
-    github: 'hbjORbj',
-  },
-  {
-    src: '/static/branding/about/alexandre.png',
-    name: 'Alexandre Fauquette',
-    title: 'Software Engineer - X',
-    location: 'Nancy, France',
-    locationCountry: 'fr',
-    about: 'Love hacking and cycling 🚴‍♂️',
-    twitter: 'AleFauquette',
-    github: 'alexfauquette',
-  },
-  {
-    src: '/static/branding/about/bharat.png',
-    name: 'Bharat Kashyap',
-    title: 'Software Engineer - Toolpad',
-    location: 'New Delhi, India',
-    locationCountry: 'in',
-    about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
-    twitter: 'bharattttttt',
-    github: 'bharatkashyap',
-  },
-  {
-    src: '/static/branding/about/jan.png',
-    name: 'Jan Potoms',
-    title: 'Tech Lead - Toolpad',
-    location: 'Brussels, Belgium',
-    locationCountry: 'be',
-    about: 'Always curious, I enjoy cinema and hiking',
-    github: 'janpot',
-  },
-  {
-    src: '/static/branding/about/prakhar.png',
-    name: 'Prakhar Gupta',
-    title: 'Product Manager - Toolpad',
-    location: 'New Delhi, India',
-    locationCountry: 'in',
-    about: 'Into sports and hiking!',
-    twitter: 'gprakhar123',
-    github: 'prakhargupta1',
-  },
-  {
-    src: '/static/branding/about/jose.png',
-    name: 'José Freitas',
-    title: 'Technical Product Manager - X',
-    location: 'Augsburg, Germany',
-    locationCountry: 'de',
-    about: 'Art, fiction, and bar philosophy',
-    twitter: 'zehdefreitas',
-    github: 'joserodolfofreitas',
-  },
-  {
-    src: '/static/branding/about/andrii.png',
-    name: 'Andrii Cherniavskyi',
-    title: 'Tech Lead - X',
-    location: 'Wrocław, Poland',
-    locationCountry: 'pl',
-    about: 'Love playing music - electric and bass guitar 🎸',
-    twitter: 'iamcherniavskii',
-    github: 'cherniavskii',
-  },
-  {
-    src: '/static/branding/about/sycamore.png',
-    name: 'Sam Sycamore',
-    title: 'Developer Advocate',
-    location: 'Saint Paul, Minnesota, USA',
-    locationCountry: 'us',
-    about: 'Musician and edible wild plant enthusiast 🌱',
-    twitter: 'tanoaksam',
-    github: 'samuelsycamore',
-  },
-  {
-    src: '/static/branding/about/pedro.png',
-    name: 'Pedro Ferreira',
-    title: 'Software Engineer - Toolpad',
-    location: 'Porto, Portugal',
-    locationCountry: 'pt',
-    about: 'Passionate about videogames and football',
-    github: 'apedroferreira',
-  },
-  {
-    src: '/static/branding/about/gerda.png',
-    name: 'Gerda Mostonaite',
-    title: 'Senior Designer - X',
-    location: 'New York, USA',
-    locationCountry: 'us',
-    about: '🎨 Art & design, traveling, and asking questions',
-    github: 'gerdadesign',
-  },
-  {
-    src: '/static/branding/about/greg.png',
-    name: 'Greg Abaoag',
-    title: 'Executive Assistant',
-    location: 'Philippines',
-    locationCountry: 'ph',
-    about: 'Loves DIY, singing and learning',
-    github: 'gzrae',
-  },
-  {
-    src: '/static/branding/about/tina.png',
-    name: 'Tina Deinekhovska',
-    title: 'Business Administrator',
-    location: 'London, UK',
-    locationCountry: 'gb',
-    about: 'Empathic art-lover, incurable optimist keen on biking, gardening',
-  },
-  {
-    src: '/static/branding/about/lukas.png',
-    name: 'Lukas Tyla',
-    title: 'Software Engineer - X',
-    location: 'Vilnius, Lithuania',
-    locationCountry: 'lt',
-    about: 'Learning and experimenting 📚',
-    github: 'LukasTy',
-  },
-  {
-    src: '/static/branding/about/bilal.png',
-    name: 'Bilal Shafi',
-    title: 'Software Engineer - X',
-    location: 'Islamabad, Pakistan',
-    locationCountry: 'pk',
-    about: 'DIY 🛠️, Learning 📚 and 🏓',
-    twitter: 'MBilalShafi',
-    github: 'MBilalShafi',
-  },
-  {
-    src: '/static/branding/about/albert.png',
-    name: 'Albert Yu',
-    title: 'Software Engineer - Core',
-    location: 'Hong Kong',
-    locationCountry: 'hk',
-    about: 'Minimalist, dog lover 🏔🐕',
-    github: 'mj12albert',
-    twitter: 'mj12albert',
-  },
-  {
-    src: '/static/branding/about/mikaila.png',
-    name: 'Mikaila Read',
-    title: 'Senior People & Culture Partner',
-    location: 'Newcastle Upon Tyne, UK',
-    locationCountry: 'gb',
-    about: '🧗‍♂️ Amateur indoor climber & ex-philosophy geek',
-  },
-  {
-    src: '/static/branding/about/romain.png',
-    name: 'Romain Grégoire',
-    title: 'Software Engineer - X',
-    location: 'Montréal, Canada',
-    locationCountry: 'ca',
-    about: 'Open-source tinkerer',
-    github: 'romgrk',
-  },
-  {
-    src: '/static/branding/about/rich.png',
-    name: 'Rich Bustos',
-    title: 'Developer Advocate',
-    location: 'Daly City, CA, USA',
-    locationCountry: 'us',
-    about: 'I enjoy collecting sports cards and practicing jiu-jitsu',
-    github: 'richbustos',
-  },
-  {
-    src: '/static/branding/about/victor.png',
-    name: 'Victor Zanivan',
-    title: 'Senior Designer - Core',
-    location: 'São Paulo, Brazil',
-    locationCountry: 'br',
-    about: 'Very geek 🎮 and love to watch/play football ⚽️',
-    github: 'zanivan',
-    twitter: 'Zanivan_',
-  },
-  {
-    name: 'Diego Andai',
-    src: '/static/branding/about/diego.png',
-    title: 'Software Engineer - Core',
-    location: 'Santiago, Chile',
-    locationCountry: 'cl',
-    about: 'I love tennis 🎾 and cats 🐈',
-    twitter: 'DiegoAndaiC',
-    github: 'DiegoAndai',
-  },
-  {
-    name: 'Brijesh Bittu',
-    src: '/static/branding/about/brijesh.png',
-    title: 'Software Engineer - Core',
-    location: 'Bengaluru, India',
-    locationCountry: 'in',
-    about: '🏊🏼 Swimming and 🚗 driving newbie. Loves cooking.',
-    github: 'brijeshb42',
-  },
-  {
-    name: 'David Cnoops',
-    src: '/static/branding/about/david.png',
-    title: 'Design Engineer - Core',
-    location: 'Leuven, Belgium',
-    locationCountry: 'be',
-    about: 'Volleyball, Cycling, Parenting, Movies',
-    github: 'DavidCnoops',
-  },
-];
 
 const contributors = [
   {
@@ -795,11 +507,20 @@ function AboutContent() {
         </Typography>
         <Box sx={{ pt: 2 }}>
           <Grid container spacing={2}>
-            {teamMembers.map((profile) => (
-              <Grid key={profile.name} item xs={12} sm={6} md={3}>
-                <Person {...profile} />
-              </Grid>
-            ))}
+            {(teamMembers as Array<Profile>).map((profileJson) => {
+              const profile = {
+                src: `/static/branding/about/${profileJson.name
+                  .split(' ')
+                  .map((x) => x.toLowerCase())
+                  .join('-')}.png`,
+                ...profileJson,
+              };
+              return (
+                <Grid key={profile.name} item xs={12} sm={6} md={3}>
+                  <Person {...profile} />
+                </Grid>
+              );
+            })}
           </Grid>
         </Box>
       </Container>

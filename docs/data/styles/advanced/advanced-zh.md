@@ -407,7 +407,7 @@ function render() {
 
 <!-- #default-branch-switch -->
 
-请参考 [这个Gatsby项目的例子](https://github.com/mui/material-ui/tree/master/examples/gatsby)，了解最新的使用范例。
+请参考 [这个Gatsby项目的例子](https://github.com/mui/material-ui/tree/master/examples/material-gatsby)，了解最新的使用范例。
 
 ### Next.js
 
@@ -415,7 +415,7 @@ function render() {
 
 <!-- #default-branch-switch -->
 
-请参考[这个例子项目](https://github.com/mui/material-ui/tree/master/examples/nextjs)，了解最新的使用范例。
+请参考[这个例子项目](https://github.com/mui/material-ui/tree/master/examples/material-next)，了解最新的使用范例。
 
 ## 类名（Class names）
 

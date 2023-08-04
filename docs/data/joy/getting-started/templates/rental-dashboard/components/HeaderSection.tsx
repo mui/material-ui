@@ -24,7 +24,7 @@ export default function HeaderSection() {
         >
           232 stays in Melbourne
         </Typography>
-        <Typography level="body1" color="neutral">
+        <Typography level="body-md" color="neutral">
           Book your next stay at one of our properties.
         </Typography>
       </div>

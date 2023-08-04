@@ -121,7 +121,7 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.class(classes.colorPrimary);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { container } = render(<Badge color={color} {...defaultProps} />);
 

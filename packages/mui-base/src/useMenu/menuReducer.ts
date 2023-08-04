@@ -6,7 +6,7 @@ export type MenuActionContext = ListActionContext<string> & {
   listboxRef: React.RefObject<HTMLElement>;
 };
 
-export default function menuReducer(
+export function menuReducer(
   state: MenuInternalState,
   action: ActionWithContext<ListAction<string>, MenuActionContext>,
 ) {

@@ -1,9 +1,6 @@
-import { createTheme } from '@mui/material/styles';
-import { lime, purple } from '@mui/material/colors';
-
-const theme = createTheme({
-  palette: {
-    primary: lime,
-    secondary: purple,
-  },
-});
+<ThemeProvider theme={theme}>
+  <Button variant="contained">Primary</Button>
+  <Button variant="contained" color="secondary" sx={{ ml: 2 }}>
+    Secondary
+  </Button>
+</ThemeProvider>

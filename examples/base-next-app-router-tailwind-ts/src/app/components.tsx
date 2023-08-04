@@ -1,9 +1,14 @@
 'use client';
 import * as React from 'react';
 import clsx from 'clsx';
-import BaseSelect, { SelectProps, SelectOwnerState, SelectRootSlotProps } from '@mui/base/Select';
-import Option, { OptionProps, OptionOwnerState } from '@mui/base/Option';
-import BaseSlider, { SliderProps, SliderOwnerState } from '@mui/base/Slider';
+import {
+  Select as BaseSelect,
+  SelectProps,
+  SelectOwnerState,
+  SelectRootSlotProps,
+} from '@mui/base/Select';
+import { Option, OptionProps, OptionOwnerState } from '@mui/base/Option';
+import { Slider as BaseSlider, SliderProps, SliderOwnerState } from '@mui/base/Slider';
 
 const SelectButton = React.forwardRef(function SelectButton<
   TValue extends {},
