@@ -6,15 +6,13 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListDivider from '@mui/joy/ListDivider';
 import Typography, { typographyClasses } from '@mui/joy/Typography';
-import Dropdown from '@mui/joy/Dropdown';
+import Dropdown, { DropdownProps } from '@mui/joy/Dropdown';
 import MenuButton from '@mui/joy/MenuButton';
 import { Theme } from '@mui/joy';
 
-type MenuBarButtonProps = {
-  children: React.ReactNode;
-  open: boolean;
-  onOpen: (event?: React.KeyboardEvent | React.MouseEvent) => void;
-  onKeyDown: (event: React.KeyboardEvent) => void;
+type MenuBarButtonProps = Pick<DropdownProps, 'children' | 'open'> & {
+  onOpen: () => void;
+  onKeyDown: React.KeyboardEventHandler;
   menu: JSX.Element;
   onMouseEnter: React.MouseEventHandler;
 };
@@ -25,12 +23,7 @@ const MenuBarButton = React.forwardRef(
     ref: React.ForwardedRef<HTMLButtonElement>,
   ) => {
     return (
-      <Dropdown
-        open={open}
-        onOpenChange={() => {
-          onOpen();
-        }}
-      >
+      <Dropdown open={open} onOpenChange={onOpen}>
         <MenuButton
           {...props}
           slots={{ root: ListItemButton }}

@@ -12,12 +12,7 @@ import MenuButton from '@mui/joy/MenuButton';
 const MenuBarButton = React.forwardRef(
   ({ children, menu, open, onOpen, onKeyDown, ...props }, ref) => {
     return (
-      <Dropdown
-        open={open}
-        onOpenChange={() => {
-          onOpen();
-        }}
-      >
+      <Dropdown open={open} onOpenChange={onOpen}>
         <MenuButton
           {...props}
           slots={{ root: ListItemButton }}
