@@ -8,6 +8,7 @@
 /examples/material-ui-gatsby/public/
 /examples/material-ui-preact/config
 /examples/material-ui-preact/scripts
+/examples/material-ui-nextjs/src
 /packages/mui-codemod/lib
 /packages/mui-codemod/src/*/*.test/*
 /packages/mui-icons-material/fixtures
