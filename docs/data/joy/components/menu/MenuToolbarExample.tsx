@@ -6,11 +6,22 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListDivider from '@mui/joy/ListDivider';
 import Typography, { typographyClasses } from '@mui/joy/Typography';
-import Dropdown from '@mui/joy/Dropdown';
+import Dropdown, { DropdownProps } from '@mui/joy/Dropdown';
 import MenuButton from '@mui/joy/MenuButton';
+import { Theme } from '@mui/joy';
+
+type MenuBarButtonProps = Pick<DropdownProps, 'children' | 'open'> & {
+  onOpen: DropdownProps['onOpenChange'];
+  onKeyDown: React.KeyboardEventHandler;
+  menu: JSX.Element;
+  onMouseEnter: React.MouseEventHandler;
+};
 
 const MenuBarButton = React.forwardRef(
-  ({ children, menu, open, onOpen, onKeyDown, ...props }, ref) => {
+  (
+    { children, menu, open, onOpen, onKeyDown, ...props }: MenuBarButtonProps,
+    ref: React.ForwardedRef<HTMLButtonElement>,
+  ) => {
     return (
       <Dropdown open={open} onOpenChange={onOpen}>
         <MenuButton
@@ -32,7 +43,7 @@ const MenuBarButton = React.forwardRef(
           placement: 'bottom-start',
           disablePortal: false,
           variant: 'soft',
-          sx: (theme) => ({
+          sx: (theme: Theme) => ({
             width: 288,
             boxShadow: '0 2px 8px 0px rgba(0 0 0 / 0.38)',
             '--List-padding': 'var(--ListDivider-gap)',
@@ -54,10 +65,10 @@ const MenuBarButton = React.forwardRef(
 );
 
 export default function MenuToolbarExample() {
-  const menus = React.useRef([]);
-  const [menuIndex, setMenuIndex] = React.useState(null);
+  const menus = React.useRef<Array<HTMLButtonElement>>([]);
+  const [menuIndex, setMenuIndex] = React.useState<null | number>(null);
 
-  const renderShortcut = (text) => (
+  const renderShortcut = (text: string) => (
     <Typography level="body-sm" textColor="text.tertiary" ml="auto">
       {text}
     </Typography>
@@ -83,7 +94,7 @@ export default function MenuToolbarExample() {
     }
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'ArrowRight') {
       openNextMenu();
     }
@@ -92,22 +103,23 @@ export default function MenuToolbarExample() {
     }
   };
 
-  const createHandleButtonKeyDown = (index) => (event) => {
-    if (event.key === 'ArrowRight') {
-      if (index === menus.current.length - 1) {
-        menus.current[0]?.focus();
-      } else {
-        menus.current[index + 1]?.focus();
+  const createHandleButtonKeyDown =
+    (index: number) => (event: React.KeyboardEvent) => {
+      if (event.key === 'ArrowRight') {
+        if (index === menus.current.length - 1) {
+          menus.current[0]?.focus();
+        } else {
+          menus.current[index + 1]?.focus();
+        }
       }
-    }
-    if (event.key === 'ArrowLeft') {
-      if (index === 0) {
-        menus.current[menus.current.length]?.focus();
-      } else {
-        menus.current[index - 1]?.focus();
+      if (event.key === 'ArrowLeft') {
+        if (index === 0) {
+          menus.current[menus.current.length]?.focus();
+        } else {
+          menus.current[index - 1]?.focus();
+        }
       }
-    }
-  };
+    };
 
   const itemProps = {
     onClick: () => setMenuIndex(null),
@@ -139,7 +151,7 @@ export default function MenuToolbarExample() {
             }
           }}
           ref={(instance) => {
-            menus.current[0] = instance;
+            menus.current[0] = instance!;
           }}
           menu={
             <Menu
@@ -184,7 +196,7 @@ export default function MenuToolbarExample() {
             }
           }}
           ref={(instance) => {
-            menus.current[1] = instance;
+            menus.current[1] = instance!;
           }}
           menu={
             <Menu
@@ -225,7 +237,7 @@ export default function MenuToolbarExample() {
             }
           }}
           ref={(instance) => {
-            menus.current[2] = instance;
+            menus.current[2] = instance!;
           }}
           menu={
             <Menu
