@@ -7,7 +7,7 @@ function useIsDarkMode() {
   return theme.palette.mode === 'dark';
 }
 
-export default function UnstyledInputBasic() {
+export default function UnstyledInputIntroduction() {
   // Replace this with your app logic for determining dark modes
   const isDarkMode = useIsDarkMode();
 

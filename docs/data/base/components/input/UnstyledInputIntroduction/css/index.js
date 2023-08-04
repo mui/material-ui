@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Input } from '@mui/base/Input';
 import { useTheme } from '@mui/system';
 
-export default function UnstyledInputBasic() {
+export default function UnstyledInputIntroduction() {
   return (
     <React.Fragment>
       <Input
