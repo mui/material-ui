@@ -11,7 +11,7 @@ import MenuButton from '@mui/joy/MenuButton';
 import { Theme } from '@mui/joy';
 
 type MenuBarButtonProps = Pick<DropdownProps, 'children' | 'open'> & {
-  onOpen: () => void;
+  onOpen: DropdownProps['onOpenChange'];
   onKeyDown: React.KeyboardEventHandler;
   menu: JSX.Element;
   onMouseEnter: React.MouseEventHandler;
