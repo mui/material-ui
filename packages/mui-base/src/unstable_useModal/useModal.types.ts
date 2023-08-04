@@ -1,4 +1,5 @@
 import { PortalProps } from '../Portal';
+import { EventHandlers } from '../utils';
 
 export interface UseModalRootSlotOwnProps {
   role: React.AriaRole;
@@ -68,7 +69,7 @@ export type UseModalParameters = {
    * If `true`, the component is shown.
    */
   open: boolean;
-  ref: React.Ref<Element>;
+  rootRef: React.Ref<Element>;
 };
 
 export interface UseModalReturnValue {
@@ -77,27 +78,33 @@ export interface UseModalReturnValue {
    * @param externalProps props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: (externalProps?: any) => React.HTMLAttributes<HTMLDivElement>;
+  getRootProps: <TOther extends EventHandlers = {}>(
+    externalProps?: TOther,
+  ) => UseModalRootSlotProps<TOther>;
   /**
    * Resolver for the backdrop slot's props.
    * @param externalProps props for the backdrop slot
    * @returns props that should be spread on the backdrop slot
    */
-  getBackdropProps: (externalProps?: any) => React.HTMLAttributes<HTMLDivElement>;
+  getBackdropProps: <TOther extends EventHandlers = {}>(
+    externalProps?: TOther,
+  ) => UseModalBackdropSlotProps<TOther>;
   /**
    * Resolver for the transition related props.
    * @param externalProps props for the transition element
    * @returns props that should be spread on the transition element
    */
-  getTransitionProps: (externalProps?: any) => { onEnter: () => void; onExited: () => void };
+  getTransitionProps: <TOther extends EventHandlers = {}>(
+    externalProps?: TOther,
+  ) => { onEnter: () => void; onExited: () => void };
   /**
    * A ref to the component's root DOM element.
    */
-  rootRef: React.Ref<Element>;
+  rootRef: React.RefCallback<Element> | null;
   /**
    * A ref to the component's portal DOM element.
    */
-  portalRef: React.Ref<Element>;
+  portalRef: React.RefCallback<Element> | null;
   /**
    * If `true`, the modal is the top most one.
    */

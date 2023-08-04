@@ -47,6 +47,4 @@ export * from './useTab';
 export * from './useTabPanel';
 export * from './useTabs';
 export * from './useTabsList';
-
-export { default as unstable_useModal } from './unstable_useModal';
 export * from './unstable_useModal';

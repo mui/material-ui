@@ -5,7 +5,7 @@
       "required": true
     },
     "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
-    "ref": {
+    "rootRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" },
       "required": true
     },
@@ -49,22 +49,22 @@
     "exited": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getBackdropProps": {
       "type": {
-        "name": "(externalProps?: any) =&gt; React.HTMLAttributes&lt;HTMLDivElement&gt;",
-        "description": "(externalProps?: any) =&gt; React.HTMLAttributes&lt;HTMLDivElement&gt;"
+        "name": "&lt;TOther extends EventHandlers = {}&gt;(externalProps?: TOther) =&gt; UseModalBackdropSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends EventHandlers = {}&gt;(externalProps?: TOther) =&gt; UseModalBackdropSlotProps&lt;TOther&gt;"
       },
       "required": true
     },
     "getRootProps": {
       "type": {
-        "name": "(externalProps?: any) =&gt; React.HTMLAttributes&lt;HTMLDivElement&gt;",
-        "description": "(externalProps?: any) =&gt; React.HTMLAttributes&lt;HTMLDivElement&gt;"
+        "name": "&lt;TOther extends EventHandlers = {}&gt;(externalProps?: TOther) =&gt; UseModalRootSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends EventHandlers = {}&gt;(externalProps?: TOther) =&gt; UseModalRootSlotProps&lt;TOther&gt;"
       },
       "required": true
     },
     "getTransitionProps": {
       "type": {
-        "name": "(externalProps?: any) =&gt; { onEnter: () =&gt; void; onExited: () =&gt; void }",
-        "description": "(externalProps?: any) =&gt; { onEnter: () =&gt; void; onExited: () =&gt; void }"
+        "name": "&lt;TOther extends EventHandlers = {}&gt;(externalProps?: TOther) =&gt; { onEnter: () =&gt; void; onExited: () =&gt; void }",
+        "description": "&lt;TOther extends EventHandlers = {}&gt;(externalProps?: TOther) =&gt; { onEnter: () =&gt; void; onExited: () =&gt; void }"
       },
       "required": true
     },
@@ -74,11 +74,17 @@
       "required": true
     },
     "portalRef": {
-      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" },
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
       "required": true
     },
     "rootRef": {
-      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" },
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
       "required": true
     }
   },

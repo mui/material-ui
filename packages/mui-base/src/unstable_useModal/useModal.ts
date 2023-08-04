@@ -7,7 +7,7 @@ import {
   unstable_createChainedFunction as createChainedFunction,
 } from '@mui/utils';
 import { EventHandlers, extractEventHandlers } from '../utils';
-import ModalManager, { ariaHidden } from '../Modal/ModalManager';
+import { ModalManager, ariaHidden } from './ModalManager';
 import {
   UseModalParameters,
   UseModalReturnValue,
@@ -36,7 +36,7 @@ const defaultManager = new ModalManager();
  *
  * - [useModal API](https://mui.com/base-ui/react-modal/hooks-api/#use-modal)
  */
-export default function useModal(parameters: UseModalParameters): UseModalReturnValue {
+export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,
     disableEscapeKeyDown = false,
@@ -49,14 +49,14 @@ export default function useModal(parameters: UseModalParameters): UseModalReturn
     children,
     onClose,
     open,
-    ref,
+    rootRef,
   } = parameters;
 
   // @ts-ignore internal logic
   const modal = React.useRef<{ modalRef: HTMLDivElement; mount: HTMLElement }>({});
   const mountNodeRef = React.useRef<null | HTMLElement>(null);
   const modalRef = React.useRef<null | HTMLDivElement>(null);
-  const handleRef = useForkRef(modalRef, ref);
+  const handleRef = useForkRef(modalRef, rootRef);
   const [exited, setExited] = React.useState(!open);
   const hasTransition = getHasTransition(children);
 
