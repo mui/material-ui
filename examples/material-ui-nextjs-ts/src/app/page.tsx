@@ -77,14 +77,14 @@ export default function HomePage() {
             </CardActionArea>
           </Grid>
           <Grid sm={6}>
-            <CardActionArea href="https://mui.com/material-ui/getting-started/templates/">
+            <CardActionArea href="https://mui.com/r/discord/">
               <Card elevation={3}>
                 <CardContent>
                   <Typography variant="h6" component="h2">
                     Community
                   </Typography>
                   <Typography variant="body2">
-                    Cards are surfaces that display content and actions on a single topic.
+                    Join our Discord Server, the new central hub for our community
                   </Typography>
                 </CardContent>
               </Card>
