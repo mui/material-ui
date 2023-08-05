@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
-export default function EmptyTextarea() {
+export default function UnstyledTextareaIntroduction() {
   const blue = {
     100: '#DAECFF',
     200: '#b6daff',
@@ -40,16 +40,16 @@ export default function EmptyTextarea() {
     box-shadow: 0px 2px 24px ${
       theme.palette.mode === 'dark' ? blue[900] : blue[100]
     };
-  
+
     &:hover {
       border-color: ${blue[400]};
     }
-  
+
     &:focus {
       border-color: ${blue[400]};
       box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
     }
-  
+
     // firefox
     &:focus-visible {
       outline: 0;

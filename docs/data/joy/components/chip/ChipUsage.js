@@ -2,7 +2,7 @@ import * as React from 'react';
 import Chip from '@mui/joy/Chip';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function ChipUsages() {
+export default function ChipUsage() {
   return (
     <JoyUsageDemo
       componentName="Chip"
