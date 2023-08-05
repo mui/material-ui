@@ -165,7 +165,7 @@ module.exports = function setKarmaConfig(config) {
           browser: 'safari',
           // We support 12.5 on iOS.
           // However, 12.x is very flaky on desktop (mobile is always flaky).
-          browser_version: '13.0',
+          browser_version: '14',
         },
         edge: {
           base: 'BrowserStack',
