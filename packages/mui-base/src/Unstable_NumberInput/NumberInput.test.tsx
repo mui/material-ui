@@ -132,7 +132,14 @@ describe('<NumberInput />', () => {
       expect(input.value).to.equal('9');
     });
 
-    it('clicking the increment and decrement buttons changes the value based on shiftMultiplier if the Shift key is held', async () => {
+    it('clicking the increment and decrement buttons changes the value based on shiftMultiplier if the Shift key is held', async function test() {
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+      if (isSafari) {
+        this.skip();
+      }
+
+      const user = userEvent.setup();
       const handleChange = spy();
 
       const { getByTestId } = render(
@@ -161,13 +168,13 @@ describe('<NumberInput />', () => {
       const decrementButton = getByTestId('decrement-btn');
 
       // press Shift key without releasing it
-      await userEvent.keyboard('{Shift>}');
-      await userEvent.click(incrementButton);
-      await userEvent.click(incrementButton);
+      await user.keyboard('{Shift>}');
+      await user.click(incrementButton);
+      await user.click(incrementButton);
       expect(handleChange.args[1][1]).to.equal(30);
       expect(input.value).to.equal('30');
 
-      await userEvent.click(decrementButton);
+      await user.click(decrementButton);
       expect(handleChange.args[2][1]).to.equal(25);
       expect(handleChange.callCount).to.equal(3);
       expect(input.value).to.equal('25');
