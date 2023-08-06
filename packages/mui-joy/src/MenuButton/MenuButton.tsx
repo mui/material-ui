@@ -179,7 +179,7 @@ const MenuButton = React.forwardRef(function MenuButton(
       ownerState,
     },
   );
-  // console.log(rootProps,ownerState);
+
   return (
     <SlotRoot {...rootProps}>
       {(startDecorator || (loading && loadingPosition === 'start')) && (
