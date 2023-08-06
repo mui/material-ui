@@ -133,7 +133,6 @@ describe('<NumberInput />', () => {
     });
 
     it('clicking the increment and decrement buttons changes the value based on shiftMultiplier if the Shift key is held', async () => {
-      const user = userEvent.setup();
       const handleChange = spy();
 
       const { getByTestId } = render(
@@ -162,21 +161,19 @@ describe('<NumberInput />', () => {
       const decrementButton = getByTestId('decrement-btn');
 
       // press Shift key without releasing it
-      await user.keyboard('{Shift>}');
-      await user.click(incrementButton);
-      await user.click(incrementButton);
+      await userEvent.keyboard('{Shift>}');
+      await userEvent.click(incrementButton);
+      await userEvent.click(incrementButton);
       expect(handleChange.args[1][1]).to.equal(30);
       expect(input.value).to.equal('30');
 
-      await user.click(decrementButton);
+      await userEvent.click(decrementButton);
       expect(handleChange.args[2][1]).to.equal(25);
       expect(handleChange.callCount).to.equal(3);
       expect(input.value).to.equal('25');
     });
 
     it('clicking on the stepper buttons will focus the input', async () => {
-      const user = userEvent.setup();
-
       const { getByTestId } = render(
         <NumberInput
           defaultValue={10}
@@ -202,7 +199,7 @@ describe('<NumberInput />', () => {
 
       expect(document.activeElement).to.equal(document.body);
 
-      await user.click(incrementButton);
+      await userEvent.click(incrementButton);
 
       expect(document.activeElement).to.equal(input);
 
@@ -212,7 +209,7 @@ describe('<NumberInput />', () => {
 
       expect(document.activeElement).to.equal(document.body);
 
-      await user.click(decrementButton);
+      await userEvent.click(decrementButton);
 
       expect(document.activeElement).to.equal(input);
     });
@@ -220,7 +217,6 @@ describe('<NumberInput />', () => {
 
   describe('keyboard interaction', () => {
     it('ArrowUp and ArrowDown changes the value', async () => {
-      const user = userEvent.setup();
       const handleChange = spy();
 
       const { getByTestId } = render(
@@ -233,22 +229,21 @@ describe('<NumberInput />', () => {
 
       const input = getByTestId('input') as HTMLInputElement;
 
-      await user.click(input);
+      await userEvent.click(input);
 
-      await user.keyboard('[ArrowUp]');
-      await user.keyboard('[ArrowUp]');
+      await userEvent.keyboard('[ArrowUp]');
+      await userEvent.keyboard('[ArrowUp]');
       expect(handleChange.callCount).to.equal(2);
       expect(handleChange.args[1][1]).to.equal(12);
       expect(input.value).to.equal('12');
 
-      await user.keyboard('[ArrowDown]');
+      await userEvent.keyboard('[ArrowDown]');
       expect(handleChange.callCount).to.equal(3);
       expect(handleChange.args[2][1]).to.equal(11);
       expect(input.value).to.equal('11');
     });
 
     it('ArrowUp and ArrowDown changes the value based on a custom step', async () => {
-      const user = userEvent.setup();
       const handleChange = spy();
 
       const { getByTestId } = render(
@@ -262,21 +257,20 @@ describe('<NumberInput />', () => {
 
       const input = getByTestId('input') as HTMLInputElement;
 
-      await user.click(input);
+      await userEvent.click(input);
 
-      await user.keyboard('[ArrowUp]');
-      await user.keyboard('[ArrowUp]');
+      await userEvent.keyboard('[ArrowUp]');
+      await userEvent.keyboard('[ArrowUp]');
       expect(handleChange.args[1][1]).to.equal(20);
       expect(input.value).to.equal('20');
 
-      await user.keyboard('[ArrowDown]');
+      await userEvent.keyboard('[ArrowDown]');
       expect(handleChange.args[2][1]).to.equal(15);
       expect(handleChange.callCount).to.equal(3);
       expect(input.value).to.equal('15');
     });
 
     it('ArrowUp and ArrowDown changes the value based on shiftMultiplier if the Shift key is held', async () => {
-      const user = userEvent.setup();
       const handleChange = spy();
 
       const { getByTestId } = render(
@@ -290,21 +284,20 @@ describe('<NumberInput />', () => {
 
       const input = getByTestId('input') as HTMLInputElement;
 
-      await user.click(input);
+      await userEvent.click(input);
 
-      await user.keyboard('{Shift>}[ArrowUp]/');
+      await userEvent.keyboard('{Shift>}[ArrowUp]/');
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(25);
       expect(input.value).to.equal('25');
 
-      await user.keyboard('{Shift>}[ArrowDown][ArrowDown]{/Shift}');
+      await userEvent.keyboard('{Shift>}[ArrowDown][ArrowDown]{/Shift}');
       expect(handleChange.args[2][1]).to.equal(15);
       expect(handleChange.callCount).to.equal(3);
       expect(input.value).to.equal('15');
     });
 
     it('PageUp and PageDown changes the value based on shiftMultiplier', async () => {
-      const user = userEvent.setup();
       const handleChange = spy();
 
       const { getByTestId } = render(
@@ -318,20 +311,19 @@ describe('<NumberInput />', () => {
 
       const input = getByTestId('input') as HTMLInputElement;
 
-      await user.click(input);
+      await userEvent.click(input);
 
-      await user.keyboard('[PageUp]');
+      await userEvent.keyboard('[PageUp]');
       expect(handleChange.args[0][1]).to.equal(25);
       expect(input.value).to.equal('25');
 
-      await user.keyboard('[PageDown][PageDown]');
+      await userEvent.keyboard('[PageDown][PageDown]');
       expect(handleChange.args[2][1]).to.equal(15);
       expect(handleChange.callCount).to.equal(3);
       expect(input.value).to.equal('15');
     });
 
     it('sets value to max when Home is pressed', async () => {
-      const user = userEvent.setup();
       const handleChange = spy();
 
       const { getByTestId } = render(
@@ -345,15 +337,14 @@ describe('<NumberInput />', () => {
 
       const input = getByTestId('input') as HTMLInputElement;
 
-      await user.click(input);
+      await userEvent.click(input);
 
-      await user.keyboard('[Home]');
+      await userEvent.keyboard('[Home]');
       expect(handleChange.args[0][1]).to.equal(50);
       expect(input.value).to.equal('50');
     });
 
     it('sets value to min when End is pressed', async () => {
-      const user = userEvent.setup();
       const handleChange = spy();
 
       const { getByTestId } = render(
@@ -367,15 +358,14 @@ describe('<NumberInput />', () => {
 
       const input = getByTestId('input') as HTMLInputElement;
 
-      await user.click(input);
+      await userEvent.click(input);
 
-      await user.keyboard('[End]');
+      await userEvent.keyboard('[End]');
       expect(handleChange.args[0][1]).to.equal(1);
       expect(input.value).to.equal('1');
     });
 
     it('sets value to min when the input has no value and ArrowUp is pressed', async () => {
-      const user = userEvent.setup();
       const handleChange = spy();
 
       const { getByTestId } = render(
@@ -388,15 +378,14 @@ describe('<NumberInput />', () => {
 
       const input = getByTestId('input') as HTMLInputElement;
 
-      await user.click(input);
+      await userEvent.click(input);
 
-      await user.keyboard('[ArrowUp]');
+      await userEvent.keyboard('[ArrowUp]');
       expect(handleChange.args[0][1]).to.equal(5);
       expect(input.value).to.equal('5');
     });
 
     it('sets value to max when the input has no value and ArrowDown is pressed', async () => {
-      const user = userEvent.setup();
       const handleChange = spy();
 
       const { getByTestId } = render(
@@ -409,16 +398,14 @@ describe('<NumberInput />', () => {
 
       const input = getByTestId('input') as HTMLInputElement;
 
-      await user.click(input);
+      await userEvent.click(input);
 
-      await user.keyboard('[ArrowDown]');
+      await userEvent.keyboard('[ArrowDown]');
       expect(handleChange.args[0][1]).to.equal(9);
       expect(input.value).to.equal('9');
     });
 
     it('only includes the input element in the tab order', async () => {
-      const user = userEvent.setup();
-
       const { getByTestId } = render(
         <NumberInput slotProps={{ input: { 'data-testid': 'input' } } as any} />,
       );
@@ -426,10 +413,10 @@ describe('<NumberInput />', () => {
       const input = getByTestId('input') as HTMLInputElement;
       expect(document.activeElement).to.equal(document.body);
 
-      await user.keyboard('[Tab]');
+      await userEvent.keyboard('[Tab]');
       expect(document.activeElement).to.equal(input);
 
-      await user.keyboard('[Tab]');
+      await userEvent.keyboard('[Tab]');
       expect(document.activeElement).to.equal(document.body);
     });
   });
