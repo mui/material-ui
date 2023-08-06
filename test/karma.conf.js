@@ -231,11 +231,11 @@ module.exports = function setKarmaConfig(config) {
         safari: {
           base: 'BrowserStack',
           os: 'OS X',
-          os_version: 'Big Sur',
+          os_version: 'Catalina',
           browser: 'safari',
           // We support 12.5 on iOS.
           // However, 12.x is very flaky on desktop (mobile is always flaky).
-          browser_version: '14.1',
+          browser_version: '13.0',
         },
         edge: {
           base: 'BrowserStack',
