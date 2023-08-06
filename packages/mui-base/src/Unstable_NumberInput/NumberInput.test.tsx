@@ -95,7 +95,6 @@ describe('<NumberInput />', () => {
 
   describe('step buttons', () => {
     it('clicking the increment and decrement buttons changes the value', async () => {
-      const user = userEvent.setup();
       const handleChange = spy();
 
       const { getByTestId } = render(
@@ -122,12 +121,12 @@ describe('<NumberInput />', () => {
       const incrementButton = getByTestId('increment-btn');
       const decrementButton = getByTestId('decrement-btn');
 
-      await user.click(incrementButton);
+      await userEvent.click(incrementButton);
       expect(handleChange.args[0][1]).to.equal(11);
       expect(input.value).to.equal('11');
 
-      await user.click(decrementButton);
-      await user.click(decrementButton);
+      await userEvent.click(decrementButton);
+      await userEvent.click(decrementButton);
       expect(handleChange.callCount).to.equal(3);
       expect(handleChange.args[2][1]).to.equal(9);
       expect(input.value).to.equal('9');
