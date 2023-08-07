@@ -2,7 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
-import { act, createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
+import {
+  act,
+  createMount,
+  createRenderer,
+  describeConformanceUnstyled,
+  fireEvent,
+} from 'test/utils';
 import {
   Unstable_NumberInput as NumberInput,
   numberInputClasses,
@@ -133,13 +139,6 @@ describe('<NumberInput />', () => {
     });
 
     it('clicking the increment and decrement buttons changes the value based on shiftMultiplier if the Shift key is held', async function test() {
-      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-      if (isSafari) {
-        this.skip();
-      }
-
-      const user = userEvent.setup();
       const handleChange = spy();
 
       const { getByTestId } = render(
@@ -167,14 +166,12 @@ describe('<NumberInput />', () => {
       const incrementButton = getByTestId('increment-btn');
       const decrementButton = getByTestId('decrement-btn');
 
-      // press Shift key without releasing it
-      await user.keyboard('{Shift>}');
-      await user.click(incrementButton);
-      await user.click(incrementButton);
+      fireEvent.click(incrementButton, { shiftKey: true });
+      fireEvent.click(incrementButton, { shiftKey: true });
       expect(handleChange.args[1][1]).to.equal(30);
       expect(input.value).to.equal('30');
 
-      await user.click(decrementButton);
+      fireEvent.click(decrementButton, { shiftKey: true });
       expect(handleChange.args[2][1]).to.equal(25);
       expect(handleChange.callCount).to.equal(3);
       expect(input.value).to.equal('25');
