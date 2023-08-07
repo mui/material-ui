@@ -3,7 +3,7 @@ import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
-export type AccordionSummarySlot = 'root' | 'button';
+export type AccordionSummarySlot = 'root' | 'button' | 'indicator';
 
 export interface AccordionSummarySlots {
   /**
