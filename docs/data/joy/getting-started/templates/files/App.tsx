@@ -23,6 +23,7 @@ import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
+import MenuButton from '@mui/joy/MenuButton';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -163,19 +164,22 @@ export default function FilesExample() {
             <Menu
               id="app-selector"
               control={
-                <IconButton
-                  size="sm"
-                  variant="soft"
-                  color="neutral"
+                <MenuButton
+                  slots={{ root: IconButton }}
                   aria-label="Apps"
+                  slotProps={{
+                    root: { variant: 'soft', color: 'neutral', size: 'sm' },
+                  }}
                 >
                   <GridViewRoundedIcon />
-                </IconButton>
+                </MenuButton>
               }
               menus={[
                 {
                   label: 'Email',
+                  active: true,
                   href: '/joy-ui/getting-started/templates/email/',
+                  'aria-current': 'page',
                 },
                 {
                   label: 'Team',
@@ -183,8 +187,6 @@ export default function FilesExample() {
                 },
                 {
                   label: 'Files',
-                  active: true,
-                  'aria-current': 'page',
                   href: '/joy-ui/getting-started/templates/files/',
                 },
               ]}

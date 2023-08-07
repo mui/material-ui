@@ -21,6 +21,7 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Slider from '@mui/joy/Slider';
 import Sheet from '@mui/joy/Sheet';
+import MenuButton from '@mui/joy/MenuButton';
 
 // Icons import
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
@@ -217,25 +218,26 @@ export default function TeamExample() {
             <Menu
               id="app-selector"
               control={
-                <IconButton
-                  size="sm"
-                  variant="soft"
-                  color="neutral"
+                <MenuButton
+                  slots={{ root: IconButton }}
                   aria-label="Apps"
+                  slotProps={{
+                    root: { variant: 'soft', color: 'neutral', size: 'sm' },
+                  }}
                 >
                   <GridViewRoundedIcon />
-                </IconButton>
+                </MenuButton>
               }
               menus={[
                 {
                   label: 'Email',
+                  active: true,
                   href: '/joy-ui/getting-started/templates/email/',
+                  'aria-current': 'page',
                 },
                 {
                   label: 'Team',
-                  active: true,
                   href: '/joy-ui/getting-started/templates/team/',
-                  'aria-current': 'page',
                 },
                 {
                   label: 'Files',
