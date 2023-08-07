@@ -9,7 +9,9 @@ export default function UnstyledButtonsSimple() {
       <CustomButton className="hover:bg-violet-600 active:bg-violet-700">
         Button
       </CustomButton>
-      <CustomButton disabled>Disabled</CustomButton>
+      <CustomButton disabled slots={{ root: 'span' }}>
+        Disabled
+      </CustomButton>
     </Stack>
   );
 }
