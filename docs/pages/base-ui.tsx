@@ -19,7 +19,7 @@ export default function Core() {
         title="Base UI: Ship accessible & sleek components"
         description={`Base UI is a library of headless ("unstyled") React UI components and low-level hooks.
         You can style them with any CSS solutions like PostCSS or Tailwind CSS.`}
-        card="/static/blog/introducing-mui-base/card.png"
+        card="/static/blog/introducing-base-ui/card.png"
       >
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"

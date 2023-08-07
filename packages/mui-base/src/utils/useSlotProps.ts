@@ -1,13 +1,14 @@
 'use client';
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import appendOwnerState, { AppendOwnerStateReturnType } from './appendOwnerState';
-import mergeSlotProps, {
+import { appendOwnerState, AppendOwnerStateReturnType } from './appendOwnerState';
+import {
+  mergeSlotProps,
   MergeSlotPropsParameters,
   MergeSlotPropsResult,
   WithCommonProps,
 } from './mergeSlotProps';
-import resolveComponentProps from './resolveComponentProps';
+import { resolveComponentProps } from './resolveComponentProps';
 
 export type UseSlotPropsParameters<
   ElementType extends React.ElementType,
@@ -62,7 +63,7 @@ export type UseSlotPropsResult<
  *
  * @param parameters.getSlotProps - A function that returns the props to be passed to the slot component.
  */
-export default function useSlotProps<
+export function useSlotProps<
   ElementType extends React.ElementType,
   SlotProps,
   AdditionalProps,
