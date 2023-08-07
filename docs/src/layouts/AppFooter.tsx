@@ -16,6 +16,7 @@ import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
+import SvgDiscord from 'docs/src/icons/SvgDiscord';
 
 interface AppFooterProps {
   stackOverflowUrl?: string;
@@ -227,6 +228,16 @@ export default function AppFooter(props: AppFooterProps) {
                 <SvgStackOverflow fontSize="small" />
               </IconButton>
             ) : null}
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://mui.com/r/discord/"
+              aria-label="Discord"
+              title="Discord"
+              size="small"
+            >
+              <SvgDiscord fontSize="small" />
+            </IconButton>
           </Stack>
         </Box>
       </Box>
