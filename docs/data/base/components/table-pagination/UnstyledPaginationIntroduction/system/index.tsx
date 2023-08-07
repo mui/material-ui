@@ -164,6 +164,10 @@ const CustomTablePagination = styled(TablePagination)(
     &:focus {
       outline: 1px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
     }
+
+    &:disabled {
+      opacity: 0.5;
+    }
   }
   `,
 );

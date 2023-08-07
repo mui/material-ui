@@ -180,6 +180,10 @@ function Styles() {
       .CustomTablePagination .${classes.actions} > button:focus {
         outline: 1px solid ${isDarkMode ? cyan[400] : cyan[200]};
       }
+
+      .CustomTablePagination .${classes.actions} > button:disabled {
+        opacity: 0.5;
+      }
       `}
     </style>
   );

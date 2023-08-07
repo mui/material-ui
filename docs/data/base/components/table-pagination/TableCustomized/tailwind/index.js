@@ -113,6 +113,8 @@ export default function TableCustomized() {
   );
 }
 
+const callable = (fn, args) => (typeof fn === 'function' ? fn(args) : fn);
+
 const CustomTablePagination = React.forwardRef((props, ref) => {
   return (
     <TablePagination
@@ -121,41 +123,62 @@ const CustomTablePagination = React.forwardRef((props, ref) => {
       className={clsx('CustomTablePagination p-1.5', props.className)}
       slotProps={{
         ...props.slotProps,
-        select: {
-          ...props.slotProps?.select,
-          className: clsx(
-            'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl bg-transparent hover:bg-slate-20 hover:dark:bg-slate-800 focus:outline-0 focus:shadow-outline-purple-xs',
-            props.slotProps?.select?.className,
-          ),
+        select: (ownerState) => {
+          const resolvedSlotProps = callable(props.slotProps?.select, ownerState);
+          return {
+            ...resolvedSlotProps,
+            className: clsx(
+              'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl bg-transparent hover:bg-slate-20 hover:dark:bg-slate-800 focus:outline-0 focus:shadow-outline-purple-xs',
+              resolvedSlotProps?.className,
+            ),
+          };
         },
-        actions: {
-          ...props.slotProps?.actions,
-          className: clsx(
-            'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl text-center [&>button]:my-0 [&>button]:mx-2 [&>button]:border-transparent [&>button]:rounded-sm [&>button]:bg-transparent [&>button:hover]:bg-slate-50 [&>button:hover]:dark:bg-slate-800 [&>button:focus]:outline-0 [&>button:focus]:shadow-outline-purple-xs',
-            props.slotProps?.actions?.className,
-          ),
+        actions: (ownerState) => {
+          const resolvedSlotProps = callable(props.slotProps?.actions, ownerState);
+          return {
+            ...resolvedSlotProps,
+            className: clsx(
+              'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl text-center [&>button]:my-0 [&>button]:mx-2 [&>button]:border-transparent [&>button]:rounded-sm [&>button]:bg-transparent [&>button:hover]:bg-slate-50 [&>button:hover]:dark:bg-slate-800 [&>button:focus]:outline-0 [&>button:focus]:shadow-outline-purple-xs',
+              resolvedSlotProps?.className,
+            ),
+          };
         },
-        spacer: {
-          ...props.slotProps?.spacer,
-          className: clsx('hidden', props.slotProps?.spacer?.className),
+        spacer: (ownerState) => {
+          const resolvedSlotProps = callable(props.slotProps?.spacer, ownerState);
+          return {
+            ...resolvedSlotProps,
+            className: clsx('hidden', resolvedSlotProps?.className),
+          };
         },
-        toolbar: {
-          ...props.slotProps?.toolbar,
-          className: clsx(
-            'flex flex-col items-start gap-2.5 md:flex-row md:items-center',
-            props.slotProps?.toolbar?.className,
-          ),
+        toolbar: (ownerState) => {
+          const resolvedSlotProps = callable(props.slotProps?.toolbar, ownerState);
+          return {
+            ...resolvedSlotProps,
+            className: clsx(
+              'flex flex-col items-start gap-2.5 md:flex-row md:items-center',
+              resolvedSlotProps?.className,
+            ),
+          };
         },
-        selectLabel: {
-          ...props.slotProps?.selectLabel,
-          className: clsx('m-0', props.slotProps?.selectLabel?.className),
+        selectLabel: (ownerState) => {
+          const resolvedSlotProps = callable(
+            props.slotProps?.selectLabel,
+            ownerState,
+          );
+          return {
+            ...resolvedSlotProps,
+            className: clsx('m-0', resolvedSlotProps?.className),
+          };
         },
-        displayedRows: {
-          ...props.slotProps?.displayedRows,
-          className: clsx(
-            'm-0 md:ml-auto',
-            props.slotProps?.displayedRows?.className,
-          ),
+        displayedRows: (ownerState) => {
+          const resolvedSlotProps = callable(
+            props.slotProps?.displayedRows,
+            ownerState,
+          );
+          return {
+            ...resolvedSlotProps,
+            className: clsx('m-0 md:ml-auto', resolvedSlotProps?.className),
+          };
         },
       }}
     />
