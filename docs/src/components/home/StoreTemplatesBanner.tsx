@@ -24,7 +24,7 @@ const Image = styled('img')(({ theme }) => ({
     width: 450,
     height: 450 / ratio,
   },
-  border: '6px solid',
+  border: '4px solid',
   borderColor: (theme.vars || theme).palette.grey[400],
   borderRadius: (theme.vars || theme).shape.borderRadius,
   objectFit: 'cover',
@@ -281,12 +281,12 @@ export default function StoreTemplatesBanner() {
           pointerEvents: 'none',
           zIndex: 10,
           background: `linear-gradient(to right, ${
-            (theme.vars || theme).palette.grey[50]
+            (theme.vars || theme).palette.primary[50]
           }, ${transparent})`,
           ...theme.applyDarkStyles({
             background: `linear-gradient(to right, ${
               (theme.vars || theme).palette.primaryDark[900]
-            }, ${alpha(theme.palette.primaryDark[900], 0)})`,
+            }, ${alpha(theme.palette.primary[900], 0)})`,
           }),
         })}
       />

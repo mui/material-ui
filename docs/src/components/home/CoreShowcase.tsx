@@ -61,7 +61,7 @@ export default function CoreShowcase() {
                     border: '1px solid',
                     borderColor:
                       mode === 'dark'
-                        ? globalTheme.palette.primaryDark[500]
+                        ? globalTheme.palette.primaryDark[600]
                         : globalTheme.palette.grey[200],
                   },
                 },
@@ -102,17 +102,17 @@ export default function CoreShowcase() {
                     '&.MuiChip-colorSuccess': {
                       backgroundColor:
                         mode === 'dark'
-                          ? globalTheme.palette.success[900]
+                          ? globalTheme.palette.success[800]
                           : globalTheme.palette.success[100],
                       color:
                         mode === 'dark'
                           ? globalTheme.palette.success[100]
-                          : globalTheme.palette.success[900],
+                          : globalTheme.palette.success[800],
                     },
                     '&.MuiChip-colorDefault': {
                       backgroundColor:
                         mode === 'dark'
-                          ? globalTheme.palette.grey[900]
+                          ? globalTheme.palette.primaryDark[600]
                           : globalTheme.palette.grey[200],
                       color:
                         mode === 'dark'
