@@ -16,36 +16,39 @@ export default function AccordionDepthPanel() {
       transition="0.2s"
       sx={{
         maxWidth: 400,
-        '--List-radius': '6px',
+        borderRadius: 'lg',
         [`& .${accordionSummaryClasses.button}:hover`]: {
           bgcolor: 'transparent',
         },
         [`& .${accordionDetailsClasses.root}`]: {
           boxShadow: (theme) => `inset 0 1px ${theme.vars.palette.divider}`,
           [`&.${accordionDetailsClasses.expanded}`]: {
-            paddingBlockStart: 'calc(2 * var(--ListItem-paddingY))',
+            paddingBlock: '1rem',
           },
         },
       }}
     >
       <Accordion defaultExpanded>
-        <AccordionSummary>First Header</AccordionSummary>
+        <AccordionSummary>First accordion</AccordionSummary>
         <AccordionDetails variant="soft">
-          Content of the first accordion.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
         </AccordionDetails>
       </Accordion>
       <ListDivider />
       <Accordion>
-        <AccordionSummary>Second Header</AccordionSummary>
+        <AccordionSummary>Second accordion</AccordionSummary>
         <AccordionDetails variant="soft">
-          Content of the second accordion.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
         </AccordionDetails>
       </Accordion>
       <ListDivider />
       <Accordion>
-        <AccordionSummary>Third Header</AccordionSummary>
+        <AccordionSummary>Third accordion</AccordionSummary>
         <AccordionDetails variant="soft">
-          Content of the third accordion.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
         </AccordionDetails>
       </Accordion>
     </AccordionGroup>

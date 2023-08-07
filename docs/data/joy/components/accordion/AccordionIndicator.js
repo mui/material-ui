@@ -21,16 +21,25 @@ export default function AccordionIndicator() {
       }}
     >
       <Accordion>
-        <AccordionSummary indicator={<AddIcon />}>First Header</AccordionSummary>
-        <AccordionDetails>Content of the first accordion.</AccordionDetails>
+        <AccordionSummary indicator={<AddIcon />}>First accordion</AccordionSummary>
+        <AccordionDetails>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </AccordionDetails>
       </Accordion>
       <Accordion>
-        <AccordionSummary indicator={<AddIcon />}>Second Header</AccordionSummary>
-        <AccordionDetails>Content of the second accordion.</AccordionDetails>
+        <AccordionSummary indicator={<AddIcon />}>Second accordion</AccordionSummary>
+        <AccordionDetails>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </AccordionDetails>
       </Accordion>
       <Accordion>
-        <AccordionSummary indicator={<AddIcon />}>Third Header</AccordionSummary>
-        <AccordionDetails>Content of the third accordion.</AccordionDetails>
+        <AccordionSummary indicator={<AddIcon />}>Third accordion</AccordionSummary>
+        <AccordionDetails>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </AccordionDetails>
       </Accordion>
     </AccordionGroup>
   );

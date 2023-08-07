@@ -15,7 +15,7 @@ export default function AccordionSizes() {
         size="sm"
         buttonFlex={1}
         value={size}
-        onChange={(event, newValue) => setSize(newValue)}
+        onChange={(event, newValue) => setSize(newValue || size)}
       >
         <Button value="sm">Small</Button>
         <Button value="md">Medium</Button>
@@ -23,16 +23,25 @@ export default function AccordionSizes() {
       </ToggleButtonGroup>
       <AccordionGroup size={size}>
         <Accordion>
-          <AccordionSummary>First Header</AccordionSummary>
-          <AccordionDetails>Content of the first accordion.</AccordionDetails>
+          <AccordionSummary>First accordion</AccordionSummary>
+          <AccordionDetails>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.
+          </AccordionDetails>
         </Accordion>
         <Accordion>
-          <AccordionSummary>Second Header</AccordionSummary>
-          <AccordionDetails>Content of the second accordion.</AccordionDetails>
+          <AccordionSummary>Second accordion</AccordionSummary>
+          <AccordionDetails>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.
+          </AccordionDetails>
         </Accordion>
         <Accordion>
-          <AccordionSummary>Third Header</AccordionSummary>
-          <AccordionDetails>Content of the third accordion.</AccordionDetails>
+          <AccordionSummary>Third accordion</AccordionSummary>
+          <AccordionDetails>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.
+          </AccordionDetails>
         </Accordion>
       </AccordionGroup>
     </Stack>

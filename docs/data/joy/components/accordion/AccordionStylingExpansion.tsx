@@ -10,26 +10,38 @@ export default function AccordionStylingExpansion() {
       sx={{
         maxWidth: 400,
         [`& .${accordionClasses.root}.${accordionClasses.expanded}`]: {
-          mb: 2,
+          mb: 1,
           bgcolor: 'background.level1',
         },
         '& [aria-expanded="true"]': {
           color: 'primary.500',
           boxShadow: (theme) => `inset 0 -1px 0 ${theme.vars.palette.divider}`,
+          '&:hover': {
+            bgcolor: 'transparent',
+          },
         },
       }}
     >
       <Accordion>
-        <AccordionSummary>First Header</AccordionSummary>
-        <AccordionDetails>Content of the first accordion.</AccordionDetails>
+        <AccordionSummary>First accordion</AccordionSummary>
+        <AccordionDetails>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </AccordionDetails>
       </Accordion>
       <Accordion>
-        <AccordionSummary>Second Header</AccordionSummary>
-        <AccordionDetails>Content of the second accordion.</AccordionDetails>
+        <AccordionSummary>Second accordion</AccordionSummary>
+        <AccordionDetails>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </AccordionDetails>
       </Accordion>
       <Accordion>
-        <AccordionSummary>Third Header</AccordionSummary>
-        <AccordionDetails>Content of the third accordion.</AccordionDetails>
+        <AccordionSummary>Third accordion</AccordionSummary>
+        <AccordionDetails>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </AccordionDetails>
       </Accordion>
     </AccordionGroup>
   );

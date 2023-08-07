@@ -48,7 +48,10 @@ export default function ButtonUsage() {
         )
       }
       renderDemo={({ disabled, ...props }) => (
-        <AccordionGroup {...props} sx={{ mb: 3, width: 300, maxWidth: '100%' }}>
+        <AccordionGroup
+          {...props}
+          sx={{ width: 300, maxWidth: '100%', alignSelf: 'flex-start' }}
+        >
           <Accordion disabled={disabled}>
             <AccordionSummary>First Header</AccordionSummary>
             <AccordionDetails>Content of the first accordion.</AccordionDetails>

@@ -8,16 +8,25 @@ export default function AccordionDisabled() {
   return (
     <AccordionGroup sx={{ maxWidth: 400 }}>
       <Accordion disabled>
-        <AccordionSummary>First Header</AccordionSummary>
-        <AccordionDetails>Content of the first accordion.</AccordionDetails>
+        <AccordionSummary>First accordion</AccordionSummary>
+        <AccordionDetails>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </AccordionDetails>
       </Accordion>
       <Accordion disabled>
-        <AccordionSummary>Second Header</AccordionSummary>
-        <AccordionDetails>Content of the second accordion.</AccordionDetails>
+        <AccordionSummary>Second accordion</AccordionSummary>
+        <AccordionDetails>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </AccordionDetails>
       </Accordion>
       <Accordion expanded disabled>
-        <AccordionSummary>Third Header</AccordionSummary>
-        <AccordionDetails>Content of the third accordion.</AccordionDetails>
+        <AccordionSummary>Third accordion</AccordionSummary>
+        <AccordionDetails>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </AccordionDetails>
       </Accordion>
     </AccordionGroup>
   );

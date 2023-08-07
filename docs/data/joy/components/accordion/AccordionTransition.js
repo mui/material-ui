@@ -12,7 +12,7 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import BrandingProvider from 'docs/src/BrandingProvider';
 
 export default function AccordionTransition() {
-  const [transition, setTransition] = React.useState('0.4s ease');
+  const [transition, setTransition] = React.useState('0.2s ease');
   return (
     <Stack alignItems="center" spacing={2} sx={{ flex: 1 }}>
       <RadioGroup
@@ -22,17 +22,15 @@ export default function AccordionTransition() {
           setTransition(event.target.value);
         }}
       >
-        <Radio value="0.3s linear" label="Linear" />
-        <Radio value="0.4s ease" label="Easing" />
-        <Radio value="0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6)" label="Bouncy" />
+        <Radio value="0.2s ease" label="Easing" />
         <Radio value="mix" label="Mix" />
       </RadioGroup>
       <AccordionGroup
         transition={
           transition === 'mix'
             ? {
-                initial: '0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6)',
-                expanded: '0.3s ease',
+                initial: '0.3s ease-out',
+                expanded: '0.2s ease',
               }
             : transition
         }
@@ -73,8 +71,8 @@ export default function AccordionTransition() {
             code={`<AccordionGroup transition=${
               transition === 'mix'
                 ? `{{
-  initial: "0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6)",
-  expanded: "0.3s ease",
+  initial: "0.3s ease-out",
+  expanded: "0.2s ease",
 }}`
                 : `"${transition}"`
             }>`}
