@@ -35,8 +35,8 @@ const Button = styled(ButtonUnstyled)(({ theme }) => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.shortest,
   }),
-  '-webkit-tap-highlight-color': 'transparent',
-  '-webkit-font-smoothing': 'subpixel-antialiased',
+  WebkitTapHighlightColor: 'transparent',
+  WebkitFontSmoothing: 'subpixel-antialiased',
   '& svg': {
     display: 'inline-block',
     position: 'absolute',
