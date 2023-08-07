@@ -59,20 +59,21 @@ describe('Joy <Menu />', () => {
     ],
   }));
 
-  const anchorEl = document.createElement('div');
-  anchorEl.setAttribute('aria-controls', 'test');
-
-  describeJoyColorInversion(
-    <Menu open disablePortal anchorEl={() => anchorEl} data-testid="test-element" />,
-    {
-      muiName: 'JoyMenu',
-      classes,
-      portalSlot: 'root',
-    },
-  );
+  describeJoyColorInversion(<Menu disablePortal data-testid="test-element" />, {
+    muiName: 'JoyMenu',
+    classes,
+    portalSlot: 'root',
+    wrapper: (node) => (
+      <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>
+    ),
+  });
 
   it('should render with `ul` by default', () => {
-    render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
+    render(
+      <DropdownContext.Provider value={testContext}>
+        <Menu data-testid="popover" />
+      </DropdownContext.Provider>,
+    );
     expect(screen.getByTestId('popover')).to.have.tagName('ul');
   });
 
@@ -100,34 +101,42 @@ describe('Joy <Menu />', () => {
 
   it('renders its children only when open', () => {
     const { setProps } = render(
-      <Menu anchorEl={anchorEl} open={false}>
-        <div data-testid="children" />
-      </Menu>,
+      <DropdownContext.Provider value={{ ...testContext, state: { open: false } }}>
+        <Menu>
+          <div data-testid="children" />
+        </Menu>
+      </DropdownContext.Provider>,
     );
 
     expect(screen.queryByTestId('children')).to.equal(null);
 
-    setProps({ open: true });
+    setProps({ value: testContext });
 
     expect(screen.getByTestId('children')).not.to.equal(null);
   });
 
   it('should have role="menu"', () => {
-    render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
+    render(
+      <DropdownContext.Provider value={testContext}>
+        <Menu data-testid="popover" />
+      </DropdownContext.Provider>,
+    );
 
     expect(screen.getByTestId('popover')).to.have.attribute('role', 'menu');
   });
 
   it('ignores invalid children', () => {
     render(
-      <Menu anchorEl={anchorEl} open>
-        {null}
-        <span role="menuitem">hello</span>
-        {/* testing conditional rendering */}
-        {false && <span role="menuitem">hello</span>}
-        {undefined}
-        foo
-      </Menu>,
+      <DropdownContext.Provider value={testContext}>
+        <Menu>
+          {null}
+          <span role="menuitem">hello</span>
+          {/* testing conditional rendering */}
+          {false && <span role="menuitem">hello</span>}
+          {undefined}
+          foo
+        </Menu>
+      </DropdownContext.Provider>,
     );
 
     expect(screen.getAllByRole('menuitem')).to.have.length(1);
@@ -135,19 +144,31 @@ describe('Joy <Menu />', () => {
 
   describe('classnames', () => {
     it('size prop', () => {
-      render(<Menu anchorEl={anchorEl} data-testid="menu" open size="sm" />);
+      render(
+        <DropdownContext.Provider value={testContext}>
+          <Menu data-testid="menu" size="sm" />
+        </DropdownContext.Provider>,
+      );
 
       expect(screen.getByTestId('menu')).to.have.class(classes.sizeSm);
     });
 
     it('variant prop', () => {
-      render(<Menu anchorEl={anchorEl} data-testid="menu" open variant="soft" />);
+      render(
+        <DropdownContext.Provider value={testContext}>
+          <Menu data-testid="menu" variant="soft" />
+        </DropdownContext.Provider>,
+      );
 
       expect(screen.getByTestId('menu')).to.have.class(classes.variantSoft);
     });
 
     it('color prop', () => {
-      render(<Menu anchorEl={anchorEl} data-testid="menu" open color="primary" />);
+      render(
+        <DropdownContext.Provider value={testContext}>
+          <Menu data-testid="menu" color="primary" />
+        </DropdownContext.Provider>,
+      );
 
       expect(screen.getByTestId('menu')).to.have.class(classes.colorPrimary);
     });
