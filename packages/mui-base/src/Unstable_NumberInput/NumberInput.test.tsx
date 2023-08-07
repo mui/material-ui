@@ -15,7 +15,7 @@ import {
   NumberInputOwnerState,
 } from '@mui/base/Unstable_NumberInput';
 
-// TODO for v6 initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file
+// TODO v6: initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file
 // currently the setup() method uses the ClipboardEvent constructor which is incompatible with our lowest supported version of iOS Safari (12.2) https://github.com/mui/material-ui/blob/master/.browserslistrc#L44
 // userEvent.setup() requires Safari 14 or up to work
 
@@ -142,7 +142,7 @@ describe('<NumberInput />', () => {
       expect(input.value).to.equal('9');
     });
 
-    it('clicking the increment and decrement buttons changes the value based on shiftMultiplier if the Shift key is held', async function test() {
+    it('clicking the increment and decrement buttons changes the value based on shiftMultiplier if the Shift key is held', async () => {
       const handleChange = spy();
 
       const { getByTestId } = render(
