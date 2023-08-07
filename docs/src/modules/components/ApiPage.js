@@ -258,13 +258,11 @@ import { ${pageContent.name} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-
-        <Heading hash="props" />
-        <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
         <PropertiesTable
           properties={componentProps}
           propertiesDescriptions={propDescriptions}
           componentName={pageContent.name}
+          spreadHint={spreadHint}
         />
         {cssComponent && (
           <React.Fragment>

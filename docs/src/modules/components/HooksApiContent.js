@@ -93,20 +93,24 @@ ${rootImport}`;
           <Heading text="import" hash={`${hookNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
-          <Heading text="parameters" hash={`${hookNameKebabCase}-parameters`} level="h3" />
           {Object.keys(parameters).length > 0 ? (
             <PropertiesTable
               properties={parameters}
               propertiesDescriptions={parametersDescriptions}
+              level="h3"
+              title="api-docs.parameters"
+              titleHash={`${hookNameKebabCase}-parameters`}
             />
           ) : (
             <span>{t('api-docs.hooksNoParameters')}</span>
           )}
-          <Heading text="return-value" hash={`${hookNameKebabCase}-return-value`} level="h3" />
           <PropertiesTable
             showOptionalAbbr
             properties={returnValue}
             propertiesDescriptions={returnValueDescriptions}
+            level="h3"
+            title="api-docs.returnValue"
+            titleHash={`${hookNameKebabCase}-return-value`}
           />
           <br />
         </MarkdownElement>

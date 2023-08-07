@@ -177,12 +177,13 @@ ${rootImport}`;
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
-          <Heading text="props" hash={`${componentNameKebabCase}-props`} level="h3" />
-          <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
           <PropertiesTable
             properties={componentProps}
             propertiesDescriptions={propDescriptions}
             componentName={componentName}
+            spreadHint={spreadHint}
+            level="h3"
+            headHash={`${componentNameKebabCase}-props`}
           />
           <br />
           {cssComponent && (

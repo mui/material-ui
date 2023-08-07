@@ -1,8 +1,8 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { alpha, styled } from '@mui/material/styles';
-import Divider from '@mui/material/Divider';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { IconButton } from '@mui/material';
@@ -11,19 +11,33 @@ import {
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
 
+const TITLE_MAX_WIDTH = 250;
 type DescriptionType = 'props' | 'classes' | 'CSS' | 'slots';
 
 const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
   ({ theme }) => ({
-    '& .MuiApi-item-header': {
-      ...theme.typography.caption,
-      fontSize: 13,
-      fontFamily: theme.typography.fontFamilyCode,
-      display: 'flex',
-      alignItems: 'flex-start',
-      position: 'relative',
-      marginBottom: 8,
-      marginLeft: -40,
+    ...theme.typography.caption,
+    fontSize: 13,
+    fontFamily: theme.typography.fontFamilyCode,
+    display: 'table-row',
+    position: 'relative',
+    marginBottom: 8,
+    fontWeight: theme.typography.fontWeightRegular,
+    lineHeight: 1.6,
+    '&>div': {
+      borderBottom: `solid ${theme.palette.divider} 1px`,
+      padding: '18px 0',
+    },
+    '& .MuiApi-item-title-cell': {
+      display: 'table-cell',
+      width: 'max-content',
+      maxWidth: TITLE_MAX_WIDTH,
+      '&>p': {
+        display: 'flex',
+        alignItems: 'flex-start',
+        marginLeft: -40,
+        width: 'max-content',
+      },
       '& .MuiApi-item-link-visual': {
         display: 'none',
         flexShrink: 0,
@@ -33,22 +47,16 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         height: 26,
         width: 26,
-        lineHeight: '30px',
         textAlign: 'center',
+        lineHeight: '30px',
         '& svg': {
           fill: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
           height: '14px',
           width: '14px',
         },
       },
-      '&>span, &>div': {
-        fontWeight: theme.typography.fontWeightRegular,
-        borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
-      },
-      '&>*': {
-        height: 26,
-      },
       '& .MuiApi-item-title': {
+        borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
         flexShrink: 0,
         padding: '2px 6px',
         marginLeft: 32,
@@ -58,55 +66,52 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         fontWeight: theme.typography.fontWeightSemiBold,
         color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+        maxWidth: TITLE_MAX_WIDTH,
+        wordWrap: 'break-word',
       },
-      '& .MuiApi-item-description': {
-        padding: '4px 6px',
-        textOverflow: 'ellipsis',
-        overflow: 'hidden',
-        whiteSpace: 'nowrap',
-        '&.MuiApi-item-description-extended': {
-          whiteSpace: 'normal',
-          alignSelf: 'start',
-          height: 'auto',
+    },
+    '& .MuiApi-item-content': {
+      display: 'table-cell',
+      verticalAlign: 'top',
+      paddingLeft: 6,
+    },
+    '& .MuiApi-item-content-colapsed': {
+      '& .MuiApi-colapsable': {
+        display: 'none',
+      },
+    },
+    '& .MuiApi-item-note': {
+      fontSize: 11,
+      marginRight: 6,
+      letterSpacing: '1px',
+      float: 'left',
+      textTransform: 'uppercase',
+      color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
+      fontWeight: theme.typography.fontWeightBold,
+      lineHeight: '24px',
+    },
+    '& .MuiApi-expend-button': { float: 'right' },
+    [theme.breakpoints.up('lg')]: {
+      '&:hover, &:target': {
+        '.MuiApi-item-link-visual': {
+          display: 'inline-block',
+        },
+        '.MuiApi-item-title': {
+          marginLeft: 6,
+        },
+        '.MuiApi-item-link-visual:hover': {
+          cursor: 'pointer',
+          backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
+          borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
+          '& svg': {
+            fill: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
+          },
         },
       },
-      '& .MuiApi-item-extend-description': {
-        alignItems: 'center',
-        display: 'flex',
-        placeItems: 'end',
-      },
-      '& .MuiApi-item-note': {
-        paddingTop: 5,
-        fontSize: 11,
-        lineHeight: '24px',
-        letterSpacing: '1px',
-        textTransform: 'uppercase',
-        color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
-        textAlign: 'center',
-        fontWeight: theme.typography.fontWeightBold,
-      },
-      [theme.breakpoints.up('lg')]: {
-        '&:hover, &:target': {
-          '.MuiApi-item-link-visual': {
-            display: 'inline-block',
-          },
-          '.MuiApi-item-title': {
-            marginLeft: 6,
-          },
-          '.MuiApi-item-link-visual:hover': {
-            cursor: 'pointer',
-            backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
-            borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
-            '& svg': {
-              fill: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
-            },
-          },
-        },
-        '&:target': {
-          '.MuiApi-item-link-visual': {
-            '&>svg': {
-              transform: 'rotate(90deg) translateX(-0.5px) translateY(0.1px)',
-            },
+      '&:target': {
+        '.MuiApi-item-link-visual': {
+          '&>svg': {
+            transform: 'rotate(90deg) translateX(-0.5px) translateY(0.1px)',
           },
         },
       },
@@ -134,9 +139,6 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       border: '1px solid',
       borderColor: alpha(darkTheme.palette.primary[100], 0.5),
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
-    },
-    '&>hr': {
-      margin: '18px 0',
     },
   }),
   ({ theme }) => ({
@@ -194,83 +196,74 @@ export type ApiItemProps = {
   description?: string;
   note?: string;
   type?: DescriptionType;
+  isExtendable?: boolean;
+  className?: string;
   children?: React.ReactNode;
 };
 
 function ApiItem(props: ApiItemProps) {
-  const { title, description, note, children, type, id, ...other } = props;
-  const descriptionRef = React.useRef<HTMLSpanElement>(null);
-  const [isOverflow, setIsOverflow] = React.useState(false);
+  const { title, description, note, children, type, id, isExtendable, className, ...other } = props;
+
   const [isExtended, setIsExtended] = React.useState(false);
 
-  React.useEffect(() => {
-    const handler = () => {
-      if (descriptionRef.current === null) {
-        return;
-      }
-      setIsOverflow(descriptionRef.current.scrollWidth > descriptionRef.current.offsetWidth);
-    };
-
-    handler();
-
-    window.addEventListener('resize', handler);
-    return () => {
-      window.removeEventListener('resize', handler);
-    };
-  }, []);
-
   return (
-    <Root ownerState={{ type }} {...other}>
-      <div id={id} className="MuiApi-item-header">
-        <a
-          className="MuiApi-item-link-visual"
-          href={`#${id}`}
-          onClick={() => {
-            navigator.clipboard.writeText(
-              `${window.location.origin}${window.location.pathname}#${id}`,
-            );
-          }}
-        >
-          <svg>
-            <use xlinkHref="#anchor-link-icon" />
-          </svg>
-        </a>
+    <Root
+      ownerState={{ type }}
+      {...other}
+      id={id}
+      className={clsx(
+        `MuiApi-item-header ${isExtendable ? 'MuiApi-item-header-extendable' : ''}`,
+        className,
+      )}
+    >
+      <div className="MuiApi-item-title-cell">
+        <p>
+          <a
+            className="MuiApi-item-link-visual"
+            href={`#${id}`}
+            onClick={() => {
+              navigator.clipboard.writeText(
+                `${window.location.origin}${window.location.pathname}#${id}`,
+              );
+            }}
+          >
+            <svg>
+              <use xlinkHref="#anchor-link-icon" />
+            </svg>
+          </a>
 
-        <span
-          className="MuiApi-item-title" // This className is used by Algolia
-        >
-          {title}
-        </span>
-
-        {note && <span className="MuiApi-item-note">{note}</span>}
-
-        <span
-          className={`MuiApi-item-description${
-            isExtended ? ' MuiApi-item-description-extended' : ''
-          }`}
-          ref={descriptionRef}
-          dangerouslySetInnerHTML={{
-            __html: isExtended ? description! : (description ?? '').replace(/<br>/g, ' '),
-          }}
-          title={(description ?? '')
-            .replace(/<br>/g, ' ')
-            .replace(/&nbsp;/g, ' ')
-            .replace(/&#124;/g, '|')}
-        />
-        {(isOverflow || children) && (
-          <div className="MuiApi-item-extend-description">
-            <IconButton size="small" onClick={() => setIsExtended((prev) => !prev)}>
-              {isExtended ? (
-                <KeyboardArrowDownIcon fontSize="small" color="primary" />
-              ) : (
-                <KeyboardArrowUpIcon fontSize="small" color="primary" />
-              )}
-            </IconButton>
-          </div>
-        )}
+          <span
+            className="MuiApi-item-title" // This className is used by Algolia
+          >
+            {title}
+          </span>
+        </p>
       </div>
-      {isExtended ? children : null}
-      <Divider />
+      <div
+        className={`MuiApi-item-content ${
+          isExtendable && !isExtended ? 'MuiApi-item-content-colapsed' : ''
+        }`}
+      >
+        {note && <span className="MuiApi-item-note">{note}</span>}
+        {isExtendable && (
+          <IconButton
+            onClick={() => setIsExtended((prev) => !prev)}
+            className="MuiApi-expend-button"
+            size="small"
+          >
+            {isExtended ? (
+              <KeyboardArrowDownIcon color="primary" />
+            ) : (
+              <KeyboardArrowUpIcon color="primary" />
+            )}
+          </IconButton>
+        )}
+
+        {children}
+      </div>
+      {/* </div> */}
+
+      {/* <Divider /> */}
     </Root>
   );
 }
