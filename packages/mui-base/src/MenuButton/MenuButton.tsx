@@ -1,8 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { MenuButtonOwnerState, MenuButtonProps } from './MenuButton.types';
-import { useSlotProps } from '../utils';
+import { MenuButtonOwnerState, MenuButtonProps, MenuButtonRootSlotProps } from './MenuButton.types';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useMenuButton } from '../useMenuButton';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
@@ -39,6 +39,7 @@ const MenuButton = React.forwardRef(function MenuButton(
     slots = {},
     slotProps = {},
     focusableWhenDisabled = false,
+    renderRoot,
     ...other
   } = props;
 
@@ -59,7 +60,7 @@ const MenuButton = React.forwardRef(function MenuButton(
   const classes = useUtilityClasses(ownerState);
 
   const Root = slots.root || 'button';
-  const rootProps = useSlotProps({
+  const rootProps: WithOptionalOwnerState<MenuButtonRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
     externalForwardedProps: other,
@@ -67,12 +68,20 @@ const MenuButton = React.forwardRef(function MenuButton(
     additionalProps: {
       ref: forwardedRef,
       type: 'button',
+      children,
     },
     ownerState,
     className: classes.root,
   });
 
-  return <Root {...rootProps}>{children}</Root>;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const { ownerState: _, ...otherRootProps } = rootProps;
+
+  return renderRoot ? (
+    renderRoot(otherRootProps, ownerState)
+  ) : (
+    <Root {...rootProps}>{children}</Root>
+  );
 });
 
 MenuButton.propTypes /* remove-proptypes */ = {

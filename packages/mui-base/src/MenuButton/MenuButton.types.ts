@@ -1,3 +1,4 @@
+import { UseMenuButtonRootSlotProps } from '../useMenuButton';
 import { SlotComponentProps } from '../utils/types';
 
 export interface MenuButtonRootSlotPropsOverrides {}
@@ -35,6 +36,11 @@ export interface MenuButtonProps {
   slotProps?: {
     root?: SlotComponentProps<'button', MenuButtonRootSlotPropsOverrides, MenuButtonOwnerState>;
   };
+
+  renderRoot?: (
+    props: Omit<MenuButtonRootSlotProps, 'ownerState'>,
+    ownerState: MenuButtonOwnerState,
+  ) => React.JSX.Element;
 }
 
 export interface MenuButtonSlots {
@@ -49,4 +55,9 @@ export type MenuButtonOwnerState = MenuButtonProps & {
   active: boolean;
   focusableWhenDisabled: boolean;
   open: boolean;
+};
+
+export type MenuButtonRootSlotProps = UseMenuButtonRootSlotProps & {
+  ownerState: MenuButtonOwnerState;
+  children?: React.ReactNode;
 };

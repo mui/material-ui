@@ -17,7 +17,7 @@ export interface UseMenuButtonParameters {
   rootRef?: React.Ref<HTMLElement>;
 }
 
-interface UseMenuButtonRootSlotProps {
+export interface UseMenuButtonRootSlotProps {
   'aria-haspopup': 'menu';
   'aria-expanded': boolean;
   'aria-controls': string;
