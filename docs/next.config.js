@@ -10,8 +10,6 @@ const {
   LANGUAGES_IN_PROGRESS,
 } = require('./config');
 
-const workspaceRoot = path.join(__dirname, '../');
-
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
 const vercelDeploy = Boolean(process.env.VERCEL);
 const isDeployPreview = Boolean(process.env.PULL_REQUEST_ID);
@@ -19,6 +17,22 @@ const isDeployPreview = Boolean(process.env.PULL_REQUEST_ID);
 const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
 module.exports = withDocsInfra({
+  experimental: {
+    transpilePackages: [
+      '@mui/material',
+      '@mui/docs',
+      '@mui/icons-material',
+      '@mui/lab',
+      '@mui/styled-engine',
+      '@mui/styles',
+      '@mui/system',
+      '@mui/private-theming',
+      '@mui/utils',
+      '@mui/base',
+      '@mui/material-next',
+      '@mui/joy',
+    ],
+  },
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -83,6 +97,24 @@ module.exports = withDocsInfra({
           '.tsx',
           ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
         ],
+        alias: {
+          ...config.resolve.alias,
+          '@mui/material': path.resolve(__dirname, '../packages/mui-material/src'),
+          '@mui/docs': path.resolve(__dirname, '../packages/mui-docs/src'),
+          '@mui/icons-material': path.resolve(__dirname, '../packages/mui-icons-material/lib'),
+          '@mui/lab': path.resolve(__dirname, '../packages/mui-lab/src'),
+          '@mui/styled-engine': path.resolve(__dirname, '../packages/mui-styled-engine/src'),
+          '@mui/styles': path.resolve(__dirname, '../packages/mui-styles/src'),
+          '@mui/system': path.resolve(__dirname, '../packages/mui-system/src'),
+          '@mui/private-theming': path.resolve(__dirname, '../packages/mui-private-theming/src'),
+          '@mui/utils': path.resolve(__dirname, '../packages/mui-utils/src'),
+          '@mui/base': path.resolve(__dirname, '../packages/mui-base/src'),
+          '@mui/material-next': path.resolve(__dirname, '../packages/mui-material-next/src'),
+          '@mui/joy': path.resolve(__dirname, '../packages/mui-joy/src'),
+          docs: path.resolve(__dirname, './'),
+          modules: path.resolve(__dirname, '../modules'),
+          pages: path.resolve(__dirname, './pages'),
+        },
       },
       module: {
         ...config.module,
@@ -112,52 +144,6 @@ module.exports = withDocsInfra({
                 type: 'asset/source',
               },
             ],
-          },
-          // transpile 3rd party packages with dependencies in this repository
-          {
-            test: /\.(js|mjs|jsx)$/,
-            resourceQuery: { not: [/raw/] },
-            include:
-              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                // on the server we use the transpiled commonJS build, on client ES6 modules
-                // babel needs to figure out in what context to parse the file
-                sourceType: 'unambiguous',
-                plugins: [
-                  [
-                    'babel-plugin-module-resolver',
-                    {
-                      alias: {
-                        // all packages in this monorepo
-                        '@mui/material': '../packages/mui-material/src',
-                        '@mui/docs': '../packages/mui-docs/src',
-                        '@mui/icons-material': '../packages/mui-icons-material/lib',
-                        '@mui/lab': '../packages/mui-lab/src',
-                        '@mui/styled-engine': '../packages/mui-styled-engine/src',
-                        '@mui/styles': '../packages/mui-styles/src',
-                        '@mui/system': '../packages/mui-system/src',
-                        '@mui/private-theming': '../packages/mui-private-theming/src',
-                        '@mui/utils': '../packages/mui-utils/src',
-                        '@mui/base': '../packages/mui-base/src',
-                        '@mui/material-next': '../packages/mui-material-next/src',
-                        '@mui/joy': '../packages/mui-joy/src',
-                      },
-                      // transformFunctions: ['require'],
-                    },
-                  ],
-                ],
-              },
-            },
-          },
-          // required to transpile ../packages/
-          {
-            test: /\.(js|mjs|tsx|ts)$/,
-            resourceQuery: { not: [/raw/] },
-            include: [workspaceRoot],
-            exclude: /(node_modules|mui-icons-material)/,
-            use: options.defaultLoaders.babel,
           },
           {
             resourceQuery: /raw/,
