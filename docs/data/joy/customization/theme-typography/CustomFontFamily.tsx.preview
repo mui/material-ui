@@ -1,0 +1,4 @@
+<CssVarsProvider theme={customTheme}>
+  <CssBaseline />
+  <Typography>Hello I am SF Pro Text</Typography>
+</CssVarsProvider>
