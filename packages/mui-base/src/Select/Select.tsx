@@ -276,6 +276,10 @@ Select.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * If `true`, the select will be initially open.
    * @default false
    */
