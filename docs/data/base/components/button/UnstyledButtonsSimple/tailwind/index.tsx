@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 import Stack from '@mui/material/Stack';
 
 export default function UnstyledButtonsSimple() {

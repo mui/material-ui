@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Box, styled, Theme } from '@mui/system';
-import Modal from '@mui/base/Modal';
+import { Modal } from '@mui/base/Modal';
 import Fade from '@mui/material/Fade';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 export default function TransitionsModal() {
   const [open, setOpen] = React.useState(false);

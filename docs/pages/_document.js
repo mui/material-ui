@@ -4,12 +4,12 @@ import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import createEmotionCache from 'docs/src/createEmotionCache';
-import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { getInitColorSchemeScript as getMuiInitColorSchemeScript } from '@mui/material/styles';
 import { getInitColorSchemeScript as getJoyInitColorSchemeScript } from '@mui/joy/styles';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import createEmotionCache from 'docs/src/createEmotionCache';
+import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -81,7 +81,7 @@ export default class MyDocument extends Document {
           <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
             rel="stylesheet"
           />
           {/* ========== Font preload (prevent font flash) ============= */}

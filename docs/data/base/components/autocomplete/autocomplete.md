@@ -35,7 +35,7 @@ To learn more about implementing a custom Autocomplete, you can explore the [`us
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this hook as follows:
 
 ```jsx
-import useAutocomplete from '@mui/base/useAutocomplete';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 
 export default function App() {
   const {
@@ -139,8 +139,8 @@ Base UI provides a [`<Popper />`](/base-ui/react-popper/) component built around
 To render the listbox in Base UI's Popper, the `ref`s must be merged as follows:
 
 ```jsx
-import useAutocomplete from '@mui/base/useAutocomplete';
-import Popper from '@mui/base/Popper';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
+import { Popper } from '@mui/base/Popper';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 
 export default function App(props) {

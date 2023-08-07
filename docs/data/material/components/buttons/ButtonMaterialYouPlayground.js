@@ -1,8 +1,8 @@
 import * as React from 'react';
-import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDemo';
 import Box from '@mui/material/Box';
 import Button from '@mui/material-next/Button';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDemo';
 
 export default function ButtonUsage() {
   const [variant, setVariant] = React.useState('text');

@@ -3,7 +3,7 @@ import * as React from 'react';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { FormControlState, useFormControlContext } from '../FormControl';
-import extractEventHandlers from '../utils/extractEventHandlers';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 import {
   UseInputInputSlotProps,
   UseInputParameters,
@@ -20,7 +20,7 @@ import {
  *
  * - [useInput API](https://mui.com/base-ui/react-input/hooks-api/#use-input)
  */
-export default function useInput(parameters: UseInputParameters): UseInputReturnValue {
+export function useInput(parameters: UseInputParameters): UseInputReturnValue {
   const {
     defaultValue: defaultValueProp,
     disabled: disabledProp = false,

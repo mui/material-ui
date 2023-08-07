@@ -1,8 +1,8 @@
 import * as React from 'react';
 import NextLink from 'next/link';
 import JoyLink from '@mui/material/Link';
-import Button, { ButtonOwnerState } from '@mui/joy/Button';
 import { expectType } from '@mui/types';
+import Button, { ButtonOwnerState } from '@mui/joy/Button';
 
 <Button>Button</Button>;
 
@@ -29,7 +29,6 @@ function handleClick4(event: React.MouseEvent<HTMLDivElement>) {}
 <Button color="primary">Button</Button>;
 <Button color="neutral">Button</Button>;
 <Button color="danger">Button</Button>;
-<Button color="info">Button</Button>;
 <Button color="success">Button</Button>;
 <Button color="warning">Button</Button>;
 // @ts-expect-error no `black` color

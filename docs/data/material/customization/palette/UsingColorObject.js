@@ -2,7 +2,6 @@ import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { lime, purple } from '@mui/material/colors';
 import Button from '@mui/material/Button';
-import { Stack } from '@mui/system';
 
 const theme = createTheme({
   palette: {
@@ -14,12 +13,10 @@ const theme = createTheme({
 export default function UsingColorObject() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack direction="row" gap={4}>
-        <Button variant="contained">Primary</Button>
-        <Button variant="contained" color="secondary">
-          Secondary
-        </Button>
-      </Stack>
+      <Button variant="contained">Primary</Button>
+      <Button variant="contained" color="secondary" sx={{ ml: 2 }}>
+        Secondary
+      </Button>
     </ThemeProvider>
   );
 }

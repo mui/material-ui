@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
-import { getAllBlogPosts, BlogPost } from 'docs/lib/sourcing';
 import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Section from 'docs/src/layouts/Section';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -15,6 +13,10 @@ import Pagination from '@mui/material/Pagination';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import Chip from '@mui/material/Chip';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -24,10 +26,8 @@ import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import Link from 'docs/src/modules/components/Link';
 import generateRssFeed from 'docs/scripts/generateRSSFeed';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import YouTubeIcon from '@mui/icons-material/YouTube';
+import Section from 'docs/src/layouts/Section';
+import { getAllBlogPosts, BlogPost } from 'docs/lib/sourcing';
 
 export const getStaticProps = () => {
   const data = getAllBlogPosts();

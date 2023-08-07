@@ -37,7 +37,7 @@ const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
 
 export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerState }>(
   ({ theme, ownerState }) => {
-    const radius = resolveSxValue({ theme, ownerState }, 'borderRadius');
+    const { borderRadius: radius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
     const firstChildRadius =
       ownerState.orientation === 'vertical'
         ? 'var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius) var(--unstable_childRadius)'
@@ -71,24 +71,15 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
           ownerState.variant === 'outlined' ? '1px' : 'calc(var(--ButtonGroup-connected) * 1px)',
         ...(ownerState.color !== 'context' && {
           '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.outlinedBorder,
-          ...(ownerState.variant === 'solid' && {
-            '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[400],
-          }),
         }),
         '--ButtonGroup-radius': theme.vars.radius.sm,
         '--Divider-inset': '0.5rem',
-        '--variant-borderWidth': '0px', // prevent inheritance from above to children
         '--unstable_childRadius':
           'calc((1 - var(--ButtonGroup-connected)) * var(--ButtonGroup-radius) - var(--variant-borderWidth, 0px))', // for internal usage
         ...styles,
         display: 'flex',
         borderRadius: 'var(--ButtonGroup-radius)',
         flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
-        // single Button or IconButton
-        [`& > :only-child`]: {
-          '--Button-radius': 'var(--ButtonGroup-radius)',
-          '--IconButton-radius': 'var(--ButtonGroup-radius)',
-        },
         // first Button or IconButton
         [`& > [data-first-child]`]: {
           '--Button-radius': firstChildRadius,
@@ -127,6 +118,11 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
             borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
           }),
         },
+        // single Button or IconButton
+        [`& > :only-child`]: {
+          '--Button-radius': 'var(--ButtonGroup-radius)',
+          '--IconButton-radius': 'var(--ButtonGroup-radius)',
+        },
         [`& > :not([data-first-child]):not(:only-child)`]: {
           '--Button-margin': margin,
           '--IconButton-margin': margin,
@@ -160,15 +156,6 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
             width: '100%', // for button to fill its wrapper.
           },
         }),
-      },
-      {
-        [theme.getColorSchemeSelector('dark')]: {
-          ...(ownerState.color !== 'context' && {
-            ...(ownerState.variant !== 'outlined' && {
-              '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[700],
-            }),
-          }),
-        },
       },
       radius !== undefined && {
         '--ButtonGroup-radius': radius,
@@ -301,7 +288,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

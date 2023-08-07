@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Select, { selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
+import { Select, selectClasses } from '@mui/base/Select';
+import { Option, optionClasses } from '@mui/base/Option';
+import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
@@ -74,37 +74,7 @@ const Button = React.forwardRef(function Button(props, ref) {
 
 Button.propTypes = {
   children: PropTypes.node,
-  ownerState: PropTypes.shape({
-    active: PropTypes.bool.isRequired,
-    autoFocus: PropTypes.bool,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    defaultListboxOpen: PropTypes.bool,
-    defaultValue: PropTypes.any,
-    disabled: PropTypes.bool.isRequired,
-    focusVisible: PropTypes.bool.isRequired,
-    getOptionAsString: PropTypes.func,
-    getSerializedValue: PropTypes.func,
-    listboxId: PropTypes.string,
-    listboxOpen: PropTypes.bool,
-    multiple: PropTypes.bool,
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    onListboxOpenChange: PropTypes.func,
-    open: PropTypes.bool.isRequired,
-    renderValue: PropTypes.func,
-    slotProps: PropTypes.shape({
-      listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-      popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    }),
-    slots: PropTypes.shape({
-      listbox: PropTypes.elementType,
-      popper: PropTypes.func,
-      root: PropTypes.elementType,
-    }),
-    value: PropTypes.any,
-  }).isRequired,
+  ownerState: PropTypes.object.isRequired,
 };
 
 const StyledButton = styled(Button, { shouldForwardProp: () => true })(
@@ -161,7 +131,9 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 

@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { FormHelperTextProps, FormHelperTextTypeMap } from './FormHelperTextProps';
 import { getFormHelperTextUtilityClass } from './formHelperTextClasses';
@@ -28,8 +28,8 @@ const FormHelperTextRoot = styled('div', {
   alignItems: 'center',
   fontFamily: theme.vars.fontFamily.body,
   fontSize: `var(--FormHelperText-fontSize, ${theme.vars.fontSize.sm})`,
-  lineHeight: theme.vars.lineHeight.sm,
-  color: `var(--FormHelperText-color, ${theme.vars.palette.text.secondary})`,
+  lineHeight: `var(--FormHelperText-lineHeight, ${theme.vars.lineHeight.sm})`,
+  color: `var(--FormHelperText-color, ${theme.vars.palette.text.tertiary})`,
   margin: 'var(--FormHelperText-margin, 0px)',
   [`.${formLabelClasses.root} + &`]: {
     '--FormHelperText-margin': '0px', // remove the margin if the helper text is next to the form label.
