@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 import * as path from 'path';
 import * as fse from 'fs-extra';
-import * as ttp from 'typescript-to-proptypes';
 import * as prettier from 'prettier';
 import glob from 'fast-glob';
 import * as _ from 'lodash';
 import * as yargs from 'yargs';
+import * as ttp from 'typescript-to-proptypes';
 import {
   fixBabelGeneratorIssues,
   fixLineEndings,
@@ -210,7 +210,9 @@ async function generateProptypes(
   const unstyledFile = getUnstyledFilename(tsFile, true);
   const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
 
+  // TODO remove, should only have .types.ts
   const propsFile = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, 'Props.ts');
+  const propsFileAlternative = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, '.types.ts');
   const generatedForTypeScriptFile = sourceFile === tsFile;
   const result = ttp.inject(proptypes, sourceContent, {
     disablePropTypesTypeChecking: generatedForTypeScriptFile,
@@ -263,7 +265,8 @@ async function generateProptypes(
         const isExternal = filename !== tsFile;
         const implementedByUnstyledVariant =
           filename === unstyledFile || filename === unstyledPropsFile;
-        const implementedBySelfPropsFile = filename === propsFile;
+        const implementedBySelfPropsFile =
+          filename === propsFile || filename === propsFileAlternative;
         if (!isExternal || implementedByUnstyledVariant || implementedBySelfPropsFile) {
           shouldDocument = true;
         }

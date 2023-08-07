@@ -3,11 +3,11 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Section from 'docs/src/layouts/Section';
-import GradientText from 'docs/src/components/typography/GradientText';
 import Palette from '@mui/icons-material/Palette';
 import LibraryBooks from '@mui/icons-material/LibraryBooks';
 import CodeRounded from '@mui/icons-material/CodeRounded';
+import GradientText from 'docs/src/components/typography/GradientText';
+import Section from 'docs/src/layouts/Section';
 
 const content = [
   {

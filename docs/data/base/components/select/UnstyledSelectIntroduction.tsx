@@ -1,11 +1,12 @@
 import * as React from 'react';
-import Select, {
+import {
+  Select,
   selectClasses,
   SelectProps,
   SelectRootSlotProps,
 } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
+import { Option, optionClasses } from '@mui/base/Option';
+import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 

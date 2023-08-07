@@ -33,7 +33,7 @@ function ModeToggle() {
   );
 }
 
-export default function App() {
+export default function LoginFinal() {
   return (
     <CssVarsProvider>
       <main>

@@ -282,9 +282,9 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui/material-ui) under the [`/examples`](https://github.com/mui/material-ui/tree/HEAD/examples) folder:
 
-- [本教程的参考实现](https://github.com/mui/material-ui/tree/HEAD/examples/ssr)
-- [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/gatsby)
-- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript))
+- [本教程的参考实现](https://github.com/mui/material-ui/tree/HEAD/examples/material-express-ssr)
+- [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/material-gatsby)
+- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/material-next) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/material-next-ts))
 
 ## 故障排除（Troubleshooting）
 

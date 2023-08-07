@@ -7,9 +7,9 @@ import {
   describeJoyColorInversion,
   fireEvent,
 } from 'test/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Avatar, { AvatarClassKey, avatarClasses as classes } from '@mui/joy/Avatar';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import PersonIcon from '../internal/svg-icons/Person';
 
 describe('<Avatar />', () => {

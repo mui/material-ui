@@ -1,6 +1,6 @@
 import * as React from 'react';
 import copy from 'clipboard-copy';
-import Button, { ButtonProps } from '@mui/base/Button';
+import { Button, ButtonProps } from '@mui/base/Button';
 import { styled, SxProps } from '@mui/system';
 import { Theme } from '@mui/material/styles';
 import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';

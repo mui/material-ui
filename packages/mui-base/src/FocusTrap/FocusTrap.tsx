@@ -424,4 +424,4 @@ if (process.env.NODE_ENV !== 'production') {
   (FocusTrap as any)['propTypes' + ''] = exactProp(FocusTrap.propTypes);
 }
 
-export default FocusTrap;
+export { FocusTrap };

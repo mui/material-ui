@@ -1,6 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
+    "className": { "type": { "name": "string" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "onChange": { "type": { "name": "func" } },
@@ -12,7 +13,7 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "value": { "type": { "name": "any" } }
   },
