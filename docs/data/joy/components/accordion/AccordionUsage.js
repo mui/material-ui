@@ -1,9 +1,9 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import AccordionGroup from '@mui/joy/AccordionGroup';
 import Accordion from '@mui/joy/Accordion';
 import AccordionDetails from '@mui/joy/AccordionDetails';
 import AccordionSummary from '@mui/joy/AccordionSummary';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function ButtonUsage() {
   return (
