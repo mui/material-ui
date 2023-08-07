@@ -78,6 +78,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 07 -->[examples][material-ui] Add Material UI + Next.js (App Router) example in JS (#38323) @samuelsycamore
 - &#8203;<!-- 27 -->[blog] Discord announcement blog (#38258) @richbustos
 - &#8203;<!-- 26 -->[blog] Fix 301 links to Toolpad @oliviertassinari
+- &#8203;<!-- 03 -->[website] Adjust styles of the Product section on the homepage (#38366) @danilo-leal
 - &#8203;<!-- 02 -->[website] Add Nora teamMember card to 'About' (#38358) @noraleonte
 - &#8203;<!-- 01 -->[website] Fix image layout shift (#38326) @oliviertassinari
 
@@ -85,6 +86,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 24 -->[core] Fix docs demo export function consistency (#38191) @oliviertassinari
 - &#8203;<!-- 23 -->[core] Fix the link-check script on Windows (#38276) @michaldudak
+- &#8203;<!-- 26 -->[core] Use @testing-library/user-event direct API (#38325) @mj12albert
 - &#8203;<!-- 19 -->[docs-infra] Consider files ending with .types.ts as props files (#37533) @mnajdova
 - &#8203;<!-- 18 -->[docs-infra] Fix skip to content design (#38304) @oliviertassinari
 - &#8203;<!-- 17 -->[docs-infra] Add a general round of polish to the API content display (#38282) @danilo-leal
