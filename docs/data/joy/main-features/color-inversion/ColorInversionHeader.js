@@ -9,6 +9,8 @@ import ListDivider from '@mui/joy/ListDivider';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
+import MenuButton from '@mui/joy/MenuButton';
+import Dropdown from '@mui/joy/Dropdown';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Chip from '@mui/joy/Chip';
@@ -19,7 +21,6 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 
 export default function ColorInversionHeader() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const [color, setColor] = React.useState('primary');
   return (
     <Sheet
@@ -53,53 +54,51 @@ export default function ColorInversionHeader() {
         <ColorLensRoundedIcon fontSize="small" />
       </IconButton>
       <Box sx={{ flex: 1, display: 'flex', gap: 1, px: 2 }}>
-        <Chip
-          variant="outlined"
-          onClick={(event) => {
-            setAnchorEl(event.currentTarget);
-          }}
-          endDecorator={<KeyboardArrowDownIcon />}
-        >
-          Main
-        </Chip>
-        <Menu
-          variant="outlined"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={() => setAnchorEl(null)}
-          placement="bottom-start"
-          disablePortal
-          size="sm"
-          sx={{
-            '--ListItemDecorator-size': '24px',
-            '--ListItem-minHeight': '40px',
-            '--ListDivider-gap': '4px',
-            minWidth: 200,
-          }}
-        >
-          <MenuItem onClick={() => setAnchorEl(null)}>
-            <ListItemDecorator>
-              <BubbleChartIcon />
-            </ListItemDecorator>
-            Products
-          </MenuItem>
-          <ListDivider />
-          <MenuItem onClick={() => setAnchorEl(null)}>Pricing</MenuItem>
-          <MenuItem onClick={() => setAnchorEl(null)}>
-            Case studies{' '}
-            <Chip
-              variant="outlined"
-              size="sm"
-              sx={{
-                ml: 'auto',
-                bgcolor: (theme) =>
-                  `rgba(${theme.vars.palette.primary.mainChannel} / 0.1)`,
-              }}
-            >
-              Beta
-            </Chip>
-          </MenuItem>
-        </Menu>
+        <Dropdown>
+          <MenuButton
+            slots={{ root: Chip }}
+            slotProps={{
+              root: { variant: 'outlined', endDecorator: <KeyboardArrowDownIcon /> },
+            }}
+          >
+            Main
+          </MenuButton>
+          <Menu
+            variant="outlined"
+            placement="bottom-start"
+            disablePortal
+            size="sm"
+            sx={{
+              '--ListItemDecorator-size': '24px',
+              '--ListItem-minHeight': '40px',
+              '--ListDivider-gap': '4px',
+              minWidth: 200,
+            }}
+          >
+            <MenuItem>
+              <ListItemDecorator>
+                <BubbleChartIcon />
+              </ListItemDecorator>
+              Products
+            </MenuItem>
+            <ListDivider />
+            <MenuItem>Pricing</MenuItem>
+            <MenuItem>
+              Case studies{' '}
+              <Chip
+                variant="outlined"
+                size="sm"
+                sx={{
+                  ml: 'auto',
+                  bgcolor: (theme) =>
+                    `rgba(${theme.vars.palette.primary.mainChannel} / 0.1)`,
+                }}
+              >
+                Beta
+              </Chip>
+            </MenuItem>
+          </Menu>
+        </Dropdown>
       </Box>
       <Box sx={{ display: 'flex', flexShrink: 0, gap: 2 }}>
         <Button

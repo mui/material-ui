@@ -7,6 +7,8 @@ import Card from '@mui/joy/Card';
 import IconButton from '@mui/joy/IconButton';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
+import MenuButton from '@mui/joy/MenuButton';
+import Dropdown from '@mui/joy/Dropdown';
 import ListDivider from '@mui/joy/ListDivider';
 import Tooltip from '@mui/joy/Tooltip';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
@@ -26,7 +28,6 @@ const modifiers = [
 
 export default function ColorInversionPopup() {
   const [color, setColor] = React.useState('danger');
-  const [menuButton, setMenuButton] = React.useState(null);
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, py: 4 }}>
       <Button
@@ -66,25 +67,17 @@ export default function ColorInversionPopup() {
             listbox: { disablePortal: true, modifiers, sx: { maxHeight: 140 } },
           }}
         />
-        <Button
-          variant="soft"
-          endDecorator={<KeyboardArrowDownIcon />}
-          onClick={(event) => setMenuButton(event.currentTarget)}
-        >
-          Actions
-        </Button>
-        <Menu
-          disablePortal
-          modifiers={modifiers}
-          anchorEl={menuButton}
-          open={!!menuButton}
-          onClose={() => setMenuButton(null)}
-        >
-          <MenuItem>New tab</MenuItem>
-          <MenuItem>New window</MenuItem>
-          <ListDivider />
-          <MenuItem>Delete</MenuItem>
-        </Menu>
+        <Dropdown>
+          <MenuButton variant="soft" endDecorator={<KeyboardArrowDownIcon />}>
+            Actions
+          </MenuButton>
+          <Menu disablePortal modifiers={modifiers}>
+            <MenuItem>New tab</MenuItem>
+            <MenuItem>New window</MenuItem>
+            <ListDivider />
+            <MenuItem>Delete</MenuItem>
+          </Menu>
+        </Dropdown>
         <Tooltip
           title="Bookmark"
           disablePortal
