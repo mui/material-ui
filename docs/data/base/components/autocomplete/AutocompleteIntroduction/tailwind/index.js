@@ -8,7 +8,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearIcon from '@mui/icons-material/Clear';
 import clsx from 'clsx';
 
-const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, ref) {
+const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   const {
     disableClearable = false,
     disabled = false,
@@ -121,7 +121,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
   );
 });
 
-CustomAutocomplete.propTypes = {
+Autocomplete.propTypes = {
   /**
    * If `true`, the input can't be cleared.
    * @default false
@@ -160,7 +160,7 @@ CustomAutocomplete.propTypes = {
 
 export default function AutocompleteIntroduction() {
   return (
-    <CustomAutocomplete
+    <Autocomplete
       options={top100Films}
       isOptionEqualToValue={(option, value) => option.label === value.label}
     />

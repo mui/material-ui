@@ -7,7 +7,7 @@ import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearIcon from '@mui/icons-material/Clear';
 
-const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
+const Autocomplete = React.forwardRef(function Autocomplete(
   props: UseAutocompleteProps<(typeof top100Films)[number], false, false, false>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -97,7 +97,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
 });
 
 export default function AutocompleteIntroduction() {
-  return <CustomAutocomplete options={top100Films} />;
+  return <Autocomplete options={top100Films} />;
 }
 
 const blue = {

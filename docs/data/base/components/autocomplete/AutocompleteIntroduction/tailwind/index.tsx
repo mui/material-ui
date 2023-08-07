@@ -7,7 +7,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearIcon from '@mui/icons-material/Clear';
 import clsx from 'clsx';
 
-const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
+const Autocomplete = React.forwardRef(function Autocomplete(
   props: UseAutocompleteProps<(typeof top100Films)[number], false, false, false>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -124,7 +124,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
 
 export default function AutocompleteIntroduction() {
   return (
-    <CustomAutocomplete
+    <Autocomplete
       options={top100Films}
       isOptionEqualToValue={(option, value) => option.label === value.label}
     />

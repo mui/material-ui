@@ -4,7 +4,7 @@ import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 
-const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, ref) {
+const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   const {
     getRootProps,
     getInputProps,
@@ -59,11 +59,7 @@ export default function UseAutocompletePopper() {
   const handleChange = (event, newValue) => setValue(newValue);
 
   return (
-    <CustomAutocomplete
-      options={top100Films}
-      value={value}
-      onChange={handleChange}
-    />
+    <Autocomplete options={top100Films} value={value} onChange={handleChange} />
   );
 }
 

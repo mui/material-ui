@@ -1,1 +1,1 @@
-<CustomAutocomplete options={top100Films} />
+<Autocomplete options={top100Films} />
