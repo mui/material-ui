@@ -275,7 +275,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       }
 
       // Check if the horizontal axis needs shifting
-      if (left < marginThreshold) {
+      if (!disableMarginThreshold && left < marginThreshold) {
         const diff = left - marginThreshold;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
@@ -411,10 +411,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const { slotProps: rootSlotPropsProp, ...rootProps } = useSlotProps({
     elementType: RootSlot,
     externalSlotProps: slotProps?.root || {},
-    externalForwardedProps: {
-      disableScrollLock,
-      ...other,
-    },
+    externalForwardedProps: other,
     additionalProps: {
       ref,
       slotProps: { backdrop: { invisible: true } },
@@ -426,7 +423,10 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   });
 
   return (
-    <RootSlot {...rootProps} {...(!isHostComponent(RootSlot) && { slotProps: rootSlotPropsProp })}>
+    <RootSlot
+      {...rootProps}
+      {...(!isHostComponent(RootSlot) && { slotProps: rootSlotPropsProp, disableScrollLock })}
+    >
       <TransitionComponent
         appear
         in={open}
