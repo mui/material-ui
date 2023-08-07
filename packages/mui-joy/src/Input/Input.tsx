@@ -334,12 +334,12 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   return (
     <SlotRoot {...rootProps}>
-      {(startDecorator ?? startDecoratorProps.ownerState.slots?.startDecorator) && (
+      {(startDecorator ?? slots?.startDecorator) && (
         <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
 
       <SlotInput {...inputProps} />
-      {(endDecorator ?? endDecoratorProps.ownerState.slots?.endDecorator) && (
+      {(endDecorator ?? slots?.endDecorator) && (
         <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>
       )}
     </SlotRoot>
