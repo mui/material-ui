@@ -100,7 +100,7 @@ Following demo showcases how to customize font family using `extendTheme` functi
 
 {{"demo": "CustomFontFamily.js"}}
 
-## Adding more levels
+### Adding more levels
 
 To add a new level, define it as a key-value pair in the `theme.typography` node, where the key is the name of the new level and the value is an object containing the CSS rules.
 
