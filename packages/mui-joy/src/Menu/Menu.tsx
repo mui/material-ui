@@ -17,7 +17,7 @@ import ColorInversion, {
   ColorInversionProvider,
   useColorInversion,
 } from '../styles/ColorInversion';
-import { MenuTypeMap, MenuOwnerState } from './MenuProps';
+import { MenuTypeMap, MenuOwnerState, MenuProps } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
 import { ListOwnerState } from '../List';
 
@@ -78,7 +78,10 @@ const MenuRoot = styled(StyledList, {
  * - [Menu API](https://mui.com/joy-ui/api/menu/)
  * - inherits [Popper API](https://mui.com/base-ui/api/popper/)
  */
-const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTMLUListElement>) {
+const Menu = React.forwardRef(function Menu(
+  inProps: MenuProps,
+  ref: React.ForwardedRef<HTMLUListElement>,
+) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyMenu',
@@ -278,18 +281,9 @@ Menu.propTypes /* remove-proptypes */ = {
     }),
   ),
   /**
-   * Triggered when focus leaves the menu and the menu should close.
-   */
-  onClose: PropTypes.func,
-  /**
    * Function called when the items displayed in the menu change.
    */
   onItemsChange: PropTypes.func,
-  /**
-   * Controls whether the menu is displayed.
-   * @default false
-   */
-  open: PropTypes.bool,
   /**
    * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
    * @default 'md'

@@ -51,18 +51,9 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     invertedColors?: boolean;
     /**
-     * Triggered when focus leaves the menu and the menu should close.
-     */
-    onClose?: () => void;
-    /**
      * Function called when the items displayed in the menu change.
      */
     onItemsChange?: (items: string[]) => void;
-    /**
-     * Controls whether the menu is displayed.
-     * @default false
-     */
-    open?: boolean;
     /**
      * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
      * @default 'md'
@@ -87,4 +78,6 @@ export type MenuProps<
   P = { component?: React.ElementType },
 > = OverrideProps<MenuTypeMap<P, D>, D>;
 
-export interface MenuOwnerState extends ApplyColorInversion<MenuProps> {}
+export interface MenuOwnerState extends ApplyColorInversion<MenuProps> {
+  open: boolean;
+}

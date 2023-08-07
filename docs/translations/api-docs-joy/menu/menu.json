@@ -22,11 +22,9 @@
     "modifiers": {
       "description": "Popper.js is based on a &quot;plugin-like&quot; architecture, most of its features are fully encapsulated &quot;modifiers&quot;.<br>A modifier is a function that is called each time Popper.js needs to compute the position of the popper. For this reason, modifiers should be very performant to avoid bottlenecks. To learn how to create a modifier, <a href=\"https://popper.js.org/docs/v2/modifiers/\">read the modifiers documentation</a>."
     },
-    "onClose": { "description": "Triggered when focus leaves the menu and the menu should close." },
     "onItemsChange": {
       "description": "Function called when the items displayed in the menu change."
     },
-    "open": { "description": "Controls whether the menu is displayed." },
     "size": {
       "description": "The size of the component (affect other nested list* components because the <code>Menu</code> inherits <code>List</code>)."
     },
