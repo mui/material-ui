@@ -31,7 +31,7 @@ const Label = styled('div')(({ theme }) => ({
   backgroundColor: '#ff5252',
 }));
 
-export default function StatComponent() {
+export default function StatSlots() {
   return (
     <StatRoot
       sx={{ outline: '1px solid #ff5252', outlineOffset: 4, position: 'relative' }}
