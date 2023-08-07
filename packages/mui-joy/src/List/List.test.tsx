@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
+import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
 import List, { listClasses as classes } from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -101,31 +102,44 @@ describe('Joy <List />', () => {
   });
 
   describe('Menu - integration', () => {
-    const element = document.createElement('div');
-    element.setAttribute('aria-controls', 'test');
+    const testContext: DropdownContextValue = {
+      dispatch: () => {},
+      popupId: 'menu-popup',
+      registerPopup: () => {},
+      registerTrigger: () => {},
+      state: { open: true },
+      triggerElement: document.createElement('div'),
+    };
+
     it('should have role="group" inside Menu', () => {
       render(
-        <Menu open anchorEl={() => element}>
-          <List />
-        </Menu>,
+        <DropdownContext.Provider value={testContext}>
+          <Menu>
+            <List />
+          </Menu>
+        </DropdownContext.Provider>,
       );
       expect(screen.getByRole('group')).toBeVisible();
     });
 
     it('should inherit size', () => {
       render(
-        <Menu size="sm" open anchorEl={() => element}>
-          <List />
-        </Menu>,
+        <DropdownContext.Provider value={testContext}>
+          <Menu size="sm">
+            <List />
+          </Menu>
+        </DropdownContext.Provider>,
       );
       expect(screen.getByRole('group')).to.have.class(classes.nesting);
     });
 
     it('should use instance size', () => {
       render(
-        <Menu size="sm" open anchorEl={() => element}>
-          <List size="lg" />
-        </Menu>,
+        <DropdownContext.Provider value={testContext}>
+          <Menu size="sm">
+            <List size="lg" />
+          </Menu>
+        </DropdownContext.Provider>,
       );
       expect(screen.getByRole('group')).to.have.class(classes.sizeLg);
     });
