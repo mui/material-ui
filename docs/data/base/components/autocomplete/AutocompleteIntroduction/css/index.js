@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useAutocomplete from '@mui/base/useAutocomplete';
-import Button from '@mui/base/Button';
-import Input from '@mui/base/Input';
-import Popper from '@mui/base/Popper';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
+import { Button } from '@mui/base/Button';
+import { Input } from '@mui/base/Input';
+import { Popper } from '@mui/base/Popper';
 import { useTheme } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
