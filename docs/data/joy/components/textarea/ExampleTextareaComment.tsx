@@ -38,8 +38,7 @@ export default function ExampleTextareaComment() {
             <Dropdown>
               <MenuButton
                 slots={{ root: IconButton }}
-                variant="plain"
-                color="neutral"
+                slotProps={{ root: { variant: 'plain', color: 'neutral' } }}
               >
                 <FormatBold />
                 <KeyboardArrowDown fontSize="md" />
