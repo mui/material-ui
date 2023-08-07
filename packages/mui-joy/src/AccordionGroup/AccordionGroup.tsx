@@ -64,11 +64,11 @@ const AccordionGroupRoot = styled(StyledList as unknown as 'div', {
  *
  * Demos:
  *
- * - [Card](https://mui.com/joy-ui/react-card/)
+ * - [Accordion](https://mui.com/joy-ui/react-accordion/)
  *
  * API:
  *
- * - [AccordionGroup API](https://mui.com/joy-ui/api/card-content/)
+ * - [AccordionGroup API](https://mui.com/joy-ui/api/accordion-group/)
  */
 const AccordionGroup = React.forwardRef(function AccordionGroup(inProps, ref) {
   const props = useThemeProps<typeof inProps & AccordionGroupProps>({
@@ -125,19 +125,20 @@ AccordionGroup.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
-  className: PropTypes.string,
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
-   * The component orientation.
-   * @default 'vertical'
+   * The size of the component (affect other nested list* components).
+   * @default 'md'
    */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * The props used for each slot inside.
    * @default {}
@@ -160,6 +161,21 @@ AccordionGroup.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The CSS transition for the Accordion details.
+   */
+  transition: PropTypes.oneOfType([
+    PropTypes.shape({
+      expanded: PropTypes.string.isRequired,
+      initial: PropTypes.string.isRequired,
+    }),
+    PropTypes.string,
+  ]),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'plain'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default AccordionGroup;

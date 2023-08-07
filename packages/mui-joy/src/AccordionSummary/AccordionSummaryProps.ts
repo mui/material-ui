@@ -50,6 +50,7 @@ export interface AccordionSummaryTypeMap<P = {}, D extends React.ElementType = '
     color?: OverridableStringUnion<ColorPaletteProp, AccordionSummaryPropsColorOverrides>;
     /**
      * The indicator element to display.
+     * @default <KeyboardArrowDown />
      */
     indicator?: React.ReactNode;
     /**

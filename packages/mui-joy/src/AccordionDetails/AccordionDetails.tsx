@@ -66,11 +66,11 @@ const AccordionDetailsContent = styled('div', {
  *
  * Demos:
  *
- * - [Card](https://mui.com/joy-ui/react-card/)
+ * - [Accordion](https://mui.com/joy-ui/react-accordion/)
  *
  * API:
  *
- * - [AccordionDetails API](https://mui.com/joy-ui/api/card-content/)
+ * - [AccordionDetails API](https://mui.com/joy-ui/api/accordion-details/)
  */
 const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref) {
   const props = useThemeProps<typeof inProps & AccordionDetailsProps>({
@@ -142,24 +142,21 @@ AccordionDetails.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
-  className: PropTypes.string,
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
-   * The component orientation.
-   * @default 'vertical'
-   */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-  /**
    * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
+    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -167,6 +164,7 @@ AccordionDetails.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    content: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**
@@ -177,6 +175,11 @@ AccordionDetails.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'plain'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default AccordionDetails;

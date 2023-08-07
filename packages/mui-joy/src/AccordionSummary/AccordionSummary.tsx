@@ -71,11 +71,11 @@ const AccordionSummaryIndicator = styled('span', {
  *
  * Demos:
  *
- * - [Card](https://mui.com/joy-ui/react-card/)
+ * - [Accordion](https://mui.com/joy-ui/react-accordion/)
  *
  * API:
  *
- * - [AccordionSummary API](https://mui.com/joy-ui/api/card-content/)
+ * - [AccordionSummary API](https://mui.com/joy-ui/api/accordion-summary/)
  */
 const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref) {
   const props = useThemeProps<typeof inProps & AccordionSummaryProps>({
@@ -178,24 +178,27 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
-  className: PropTypes.string,
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
-   * The component orientation.
-   * @default 'vertical'
+   * The indicator element to display.
+   * @default <KeyboardArrowDown />
    */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  indicator: PropTypes.node,
   /**
    * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
+    button: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -203,6 +206,8 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    button: PropTypes.elementType,
+    indicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**
@@ -213,6 +218,11 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'plain'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default AccordionSummary;
