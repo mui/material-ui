@@ -7,6 +7,8 @@ import Textarea from '@mui/joy/Textarea';
 import IconButton from '@mui/joy/IconButton';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
+import Dropdown from '@mui/joy/Dropdown';
+import MenuButton from '@mui/joy/MenuButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import FormatBold from '@mui/icons-material/FormatBold';
 import FormatItalic from '@mui/icons-material/FormatItalic';
@@ -16,7 +18,6 @@ import Check from '@mui/icons-material/Check';
 export default function ExampleTextareaComment() {
   const [italic, setItalic] = React.useState(false);
   const [fontWeight, setFontWeight] = React.useState('normal');
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   return (
     <FormControl>
       <FormLabel>Your comment</FormLabel>
@@ -34,39 +35,37 @@ export default function ExampleTextareaComment() {
               flex: 'auto',
             }}
           >
-            <IconButton
-              variant="plain"
-              color="neutral"
-              onClick={(event) => setAnchorEl(event.currentTarget)}
-            >
-              <FormatBold />
-              <KeyboardArrowDown fontSize="md" />
-            </IconButton>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={() => setAnchorEl(null)}
-              size="sm"
-              placement="bottom-start"
-              sx={{ '--ListItemDecorator-size': '24px' }}
-            >
-              {['200', 'normal', 'bold'].map((weight) => (
-                <MenuItem
-                  key={weight}
-                  selected={fontWeight === weight}
-                  onClick={() => {
-                    setFontWeight(weight);
-                    setAnchorEl(null);
-                  }}
-                  sx={{ fontWeight: weight }}
-                >
-                  <ListItemDecorator>
-                    {fontWeight === weight && <Check fontSize="sm" />}
-                  </ListItemDecorator>
-                  {weight === '200' ? 'lighter' : weight}
-                </MenuItem>
-              ))}
-            </Menu>
+            <Dropdown>
+              <MenuButton
+                slots={{ root: IconButton }}
+                variant="plain"
+                color="neutral"
+              >
+                <FormatBold />
+                <KeyboardArrowDown fontSize="md" />
+              </MenuButton>
+              <Menu
+                size="sm"
+                placement="bottom-start"
+                sx={{ '--ListItemDecorator-size': '24px' }}
+              >
+                {['200', 'normal', 'bold'].map((weight) => (
+                  <MenuItem
+                    key={weight}
+                    selected={fontWeight === weight}
+                    onClick={() => {
+                      setFontWeight(weight);
+                    }}
+                    sx={{ fontWeight: weight }}
+                  >
+                    <ListItemDecorator>
+                      {fontWeight === weight && <Check fontSize="sm" />}
+                    </ListItemDecorator>
+                    {weight === '200' ? 'lighter' : weight}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Dropdown>
             <IconButton
               variant={italic ? 'soft' : 'plain'}
               color={italic ? 'primary' : 'neutral'}
