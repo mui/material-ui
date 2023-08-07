@@ -80,6 +80,7 @@ const Root = styled('div')(
     '& h2': {
       ...lightTheme.typography.h5,
       fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
+      fontSize: theme.typography.pxToRem(24),
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '40px 0 4px',
@@ -87,16 +88,17 @@ const Root = styled('div')(
     '& h3': {
       ...lightTheme.typography.h6,
       fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
+      fontSize: theme.typography.pxToRem(20),
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
-      margin: '24px 0 8px',
+      margin: '24px 0 4px',
     },
     '& h4': {
       ...lightTheme.typography.subtitle1,
       fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
-      margin: '24px 0 8px',
+      margin: '20px 0 6px',
     },
     '& h5': {
       ...lightTheme.typography.subtitle2,
