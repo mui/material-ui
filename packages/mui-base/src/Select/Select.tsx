@@ -10,15 +10,15 @@ import {
   SelectRootSlotProps,
   SelectType,
 } from './Select.types';
-import useSelect, { SelectValue } from '../useSelect';
+import { useSelect, SelectValue } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import Popper from '../Popper';
-import composeClasses from '../composeClasses';
+import { Popper } from '../Popper';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSelectUtilityClass } from './selectClasses';
-import defaultOptionStringifier from '../useSelect/defaultOptionStringifier';
+import { defaultOptionStringifier } from '../useSelect/defaultOptionStringifier';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { SelectOption } from '../useOption';
-import SelectProvider from '../useSelect/SelectProvider';
+import { SelectProvider } from '../useSelect/SelectProvider';
 
 function defaultRenderValue<OptionValue>(
   selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
@@ -367,4 +367,4 @@ Select.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default Select;
+export { Select };

@@ -4,9 +4,9 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Link from 'docs/src/modules/components/Link';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import { alpha } from '@mui/material/styles';
+import Link from 'docs/src/modules/components/Link';
 
 export default function EarlyBird() {
   return (

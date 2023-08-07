@@ -7,9 +7,9 @@ import {
   describeJoyColorInversion,
   fireEvent,
 } from 'test/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Chip, { ChipClassKey, chipClasses as classes } from '@mui/joy/Chip';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<Chip />', () => {
   const { render } = createRenderer();

@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 import * as path from 'path';
 import * as fse from 'fs-extra';
-import * as ttp from 'typescript-to-proptypes';
 import * as prettier from 'prettier';
 import glob from 'fast-glob';
 import * as _ from 'lodash';
 import * as yargs from 'yargs';
+import * as ttp from 'typescript-to-proptypes';
 import {
   fixBabelGeneratorIssues,
   fixLineEndings,

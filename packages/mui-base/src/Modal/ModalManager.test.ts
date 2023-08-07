@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { unstable_getScrollbarSize as getScrollbarSize } from '@mui/utils';
-import ModalManager from './ModalManager';
+import { ModalManager } from './ModalManager';
 
 interface Modal {
   mount: Element;

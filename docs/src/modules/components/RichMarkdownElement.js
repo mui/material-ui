@@ -1,5 +1,5 @@
-import * as React from 'react';
 import path from 'path';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
