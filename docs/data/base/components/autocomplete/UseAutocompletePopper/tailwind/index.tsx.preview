@@ -1,5 +1,0 @@
-<CustomAutocomplete
-  options={top100Films}
-  value={value}
-  onChange={handleChange}
-/>

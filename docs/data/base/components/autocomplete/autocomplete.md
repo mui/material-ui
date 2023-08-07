@@ -76,7 +76,7 @@ The useAutocomplete hook requires a list of `options` to be displayed when the t
 
 The following demo shows how to create a simple combobox, apply some styling, and write the selected value to a state variable using the `onChange` prop:
 
-{{"demo": "UseAutocomplete"}}
+{{"demo": "UseAutocomplete.js"}}
 
 ## Customization
 
@@ -128,7 +128,7 @@ These two states are isolated, and should be controlled independently.
 Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
-{{"demo": "ControlledStates"}}
+{{"demo": "ControlledStates.js"}}
 
 ### Using a portal
 
@@ -180,4 +180,4 @@ export default function App(props) {
 
 Here's a complete demo that renders the listbox inside a Popper:
 
-{{"demo": "UseAutocompletePopper", "defaultCodeOpen": false}}
+{{"demo": "UseAutocompletePopper.js", "defaultCodeOpen": false}}
