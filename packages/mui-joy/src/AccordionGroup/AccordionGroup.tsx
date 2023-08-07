@@ -77,7 +77,6 @@ const AccordionGroup = React.forwardRef(function AccordionGroup(inProps, ref) {
   });
 
   const {
-    className,
     component = 'div',
     color = 'neutral',
     children,

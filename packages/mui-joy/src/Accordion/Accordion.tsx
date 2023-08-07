@@ -73,7 +73,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 
   const {
     accordionId: idOverride,
-    className,
     component = 'div',
     color = 'neutral',
     children,

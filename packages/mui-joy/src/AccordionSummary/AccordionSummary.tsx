@@ -84,7 +84,6 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
   });
 
   const {
-    className,
     component = 'div',
     color = 'neutral',
     children,

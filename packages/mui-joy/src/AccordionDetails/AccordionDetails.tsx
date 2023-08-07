@@ -79,7 +79,6 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
   });
 
   const {
-    className,
     component = 'div',
     children,
     color = 'neutral',

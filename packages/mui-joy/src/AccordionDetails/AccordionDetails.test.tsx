@@ -19,6 +19,9 @@ describe('<AccordionDetails />', () => {
       root: {
         expectedClassName: classes.root,
       },
+      content: {
+        expectedClassName: classes.content,
+      },
     },
   }));
 });

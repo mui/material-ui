@@ -3,6 +3,9 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface AccordionDetailsClasses {
   /** Class name applied to the root element. */
   root: string;
+  /** Class name applied to the content element. */
+  content: string;
+  /** Class name applied to the root element when expanded. */
   expanded: string;
 }
 
@@ -14,7 +17,7 @@ export function getAccordionDetailsUtilityClass(slot: string): string {
 
 const accordionDetailsClasses: AccordionDetailsClasses = generateUtilityClasses(
   'MuiAccordionDetails',
-  ['root', 'expanded'],
+  ['root', 'content', 'expanded'],
 );
 
 export default accordionDetailsClasses;
