@@ -37,7 +37,6 @@ const Button = styled(ButtonUnstyled)(({ theme }) => ({
   }),
   '-webkit-tap-highlight-color': 'transparent',
   '-webkit-font-smoothing': 'subpixel-antialiased',
-
   '& svg': {
     display: 'inline-block',
     position: 'absolute',
@@ -50,10 +49,8 @@ const Button = styled(ButtonUnstyled)(({ theme }) => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-
   '&:hover, & .Mui-focusVisible': {
     color: (theme.vars || theme).palette.primary.main,
-
     '& svg': {
       opacity: 1,
     },
