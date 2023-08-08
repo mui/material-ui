@@ -8,7 +8,7 @@ _Aug 8, 2023_
 
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎉 Added [Number input](https://mui.com/base-ui/react-number-input) component & [useNumber](https://mui.com/base-ui/react-number-input#hook) hook in [Base UI](https://mui.com/base-ui/getting-started/) @mj12albert
+- 🎉 Added [Number input](https://mui.com/base-ui/react-number-input) component & [useNumberInput](https://mui.com/base-ui/react-number-input#hook) hook in [Base UI](https://mui.com/base-ui/getting-started/) @mj12albert
 
 ### `@mui/material@5.14.4`
 
