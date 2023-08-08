@@ -10,8 +10,8 @@ const pages: readonly MuiPage[] = [
     pathname: '/experiments/docs/components',
     children: [
       { pathname: '/experiments/docs/callouts' },
-      { pathname: '/experiments/docs/demos' },
       { pathname: '/experiments/docs/codeblock' },
+      { pathname: '/experiments/docs/demos' },
     ],
   },
   {
