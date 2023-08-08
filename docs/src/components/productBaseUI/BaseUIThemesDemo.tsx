@@ -113,7 +113,7 @@ const StyledTab = styled('button')({
   },
 
   '&:focus-visible': {
-    outline: '2px solid var(--muidocs-palette-primary-500)',
+    outline: '3px solid var(--muidocs-palette-primary-300)',
     outlineOffset: -6,
   },
 
@@ -156,8 +156,7 @@ const StyledSelectButton = styled('button')({
   },
 
   '&:focus-visible': {
-    outline: '2px solid var(--muidocs-palette-primary-500)',
-    outlineOffset: '2px',
+    outline: '3px solid var(--muidocs-palette-primary-300)',
   },
 
   '& svg:last-child': {
@@ -195,8 +194,7 @@ const StyledModalButton = styled('button')({
   },
 
   '&:focus-visible': {
-    outline: '2px solid var(--muidocs-palette-primary-500)',
-    outlineOffset: '2px',
+    outline: '3px solid var(--muidocs-palette-primary-300)',
   },
 
   '[data-mui-color-scheme="dark"] &': {
@@ -232,8 +230,7 @@ const StyledSnackbarButton = styled('button')({
   },
 
   '&:focus-visible': {
-    outline: '2px solid var(--muidocs-palette-primary-500)',
-    outlineOffset: '2px',
+    outline: '3px solid var(--muidocs-palette-primary-300)',
   },
 
   '[data-mui-color-scheme="dark"] &': {
@@ -271,8 +268,7 @@ const StyledViewCode = styled(Link)({
   },
 
   '&:focus-visible': {
-    outline: '2px solid var(--muidocs-palette-primary-500)',
-    outlineOffset: '2px',
+    outline: '3px solid var(--muidocs-palette-primary-300)',
   },
 
   '[data-mui-color-scheme="dark"] &': {
@@ -515,8 +511,7 @@ const StyledSwitch = styled('span')(`
 
   &.${switchClasses.focusVisible} {
     border-radius: max(2px, var(--border-radius) * 4);
-    outline: 2px solid var(--muidocs-palette-primary-500);
-    outline-offset: 2px;
+    outline: 3px solid var(--muidocs-palette-primary-300);
   }
 
   &.${switchClasses.checked} {
@@ -672,8 +667,7 @@ const StyledMenuItem = styled(MenuItem)(
 
 
   &.${menuItemClasses.focusVisible} {
-    outline: 2px solid var(--muidocs-palette-primary-500);
-    outline-offset: 2px;
+    outline: 3px solid var(--muidocs-palette-primary-300);
     background-color: ${
       theme.palette.mode === 'dark'
         ? 'var(--muidocs-palette-grey-800)'
@@ -721,8 +715,7 @@ const StyledMenuButton = styled(MenuButton)({
   borderRadius: 'var(--avatar-radius)',
 
   '&:focus-visible': {
-    outline: '2px solid var(--muidocs-palette-primary-500)',
-    outlineOffset: '2px',
+    outline: '3px solid var(--muidocs-palette-primary-300)',
   },
 });
 
