@@ -99,12 +99,12 @@ For more details on how to use and customize the filters, check out its [documen
 
 The Data Grid received significant performance improvements in MUI X v6, particularly concerning its scrolling efficiency and the expansion of child rows.
 
-These performance upgrades are part of our ongoing commitment to provide end-users with a superior experience.
+These performance upgrades are part of our ongoing commitment to provide end users with a superior experience.
 We always strive to ensure that MUI X remains performant and efficient, particularly when dealing with large and complex data.
 
 ## Charts - alpha version 🎁
 
-We are delighted to announce the upcoming expansion of MUI X– a brand-new suite of components specifically designed for building and easily customizing appealing charts.
+We are delighted to announce the upcoming expansion of MUI X: a brand-new suite of components for building and customizing charts.
 
 With MUI X Charts, you can choose from a wide range of chart types, including line charts, bar charts, pie charts, area charts, scatter plots, and more. Each chart type is thoughtfully crafted with attention to detail, ensuring that the visual representations are not only aesthetically pleasing but also highly effective in conveying complex data.
 
