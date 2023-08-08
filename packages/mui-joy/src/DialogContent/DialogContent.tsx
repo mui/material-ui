@@ -1,45 +1,46 @@
 'use client';
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getCardContentUtilityClass } from './cardContentClasses';
-import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
-import { CardContentProps, CardContentTypeMap } from './CardContentProps';
+import { getDialogContentUtilityClass } from './dialogContentClasses';
+import {
+  DialogContentProps,
+  DialogContentOwnerState,
+  DialogContentTypeMap,
+} from './DialogContentProps';
 import useSlot from '../utils/useSlot';
+import ModalDialogVariantColorContext from '../ModalDialog/ModalDialogVariantColorContext';
+import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
+import { StyledCardContentRoot } from '../CardContent/CardContent';
 
 const useUtilityClasses = () => {
   const slots = {
     root: ['root'],
   };
 
-  return composeClasses(slots, getCardContentUtilityClass, {});
+  return composeClasses(slots, getDialogContentUtilityClass, {});
 };
 
-export const StyledCardContentRoot = styled('div')<{ ownerState: CardContentProps }>(
-  ({ ownerState }) => ({
-    display: 'flex',
-    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-    flex: 1, // fill the available space in the Card and also shrink if needed
-    zIndex: 1,
-    columnGap: 'var(--Card-padding)',
-    padding: 'var(--unstable_padding)',
-    [`.${cardOverflowClasses.root} > &`]: {
-      '--unstable_padding': 'calc(var(--Card-padding) * 0.75) 0px',
-    },
-  }),
-);
-
-const CardContentRoot = styled(StyledCardContentRoot, {
-  name: 'JoyCardContent',
+const DialogContentRoot = styled(StyledCardContentRoot, {
+  name: 'JoyDialogContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardContentProps }>({});
+})<{ ownerState: DialogContentOwnerState }>(({ ownerState }) => ({
+  display: 'flex',
+  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+  flex: 1, // fill the available space in the Card and also shrink if needed
+  zIndex: 1,
+  columnGap: 'var(--Card-padding)',
+  padding: 'var(--unstable_padding)',
+  [`.${cardOverflowClasses.root} > &`]: {
+    '--unstable_padding': 'calc(var(--Card-padding) * 0.75) 0px',
+  },
+}));
 /**
- * ⚠️ CardContent must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
+ * ⚠️ DialogContent must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
  * Demos:
  *
@@ -47,13 +48,14 @@ const CardContentRoot = styled(StyledCardContentRoot, {
  *
  * API:
  *
- * - [CardContent API](https://mui.com/joy-ui/api/card-content/)
+ * - [DialogContent API](https://mui.com/joy-ui/api/card-content/)
  */
-const CardContent = React.forwardRef(function CardContent(inProps, ref) {
-  const props = useThemeProps<typeof inProps & CardContentProps>({
+const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
+  const props = useThemeProps<typeof inProps & DialogContentProps>({
     props: inProps,
-    name: 'JoyCardContent',
+    name: 'JoyDialogContent',
   });
+  const context = React.useContext(ModalDialogVariantColorContext);
 
   const {
     className,
@@ -76,22 +78,25 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
-    className: clsx(classes.root, className),
-    elementType: CardContentRoot,
+    className: classes.root,
+    elementType: DialogContentRoot,
     externalForwardedProps,
     ownerState,
+    additionalProps: {
+      id: context?.describedBy,
+    },
   });
 
   return <SlotRoot {...rootProps}>{children}</SlotRoot>;
-}) as OverridableComponent<CardContentTypeMap>;
+}) as OverridableComponent<DialogContentTypeMap>;
 
-CardContent.propTypes /* remove-proptypes */ = {
+DialogContent.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * Used to render icon or text elements inside the CardContent if `src` is not set.
+   * Used to render icon or text elements inside the DialogContent if `src` is not set.
    * This can be an element, or just a string.
    */
   children: PropTypes.node,
@@ -133,4 +138,4 @@ CardContent.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default CardContent;
+export default DialogContent;

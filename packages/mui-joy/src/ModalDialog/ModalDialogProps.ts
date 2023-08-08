@@ -42,6 +42,11 @@ export interface ModalDialogTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     layout?: 'center' | 'fullscreen';
     /**
+     * The component orientation.
+     * @default 'vertical'
+     */
+    orientation?: 'horizontal' | 'vertical';
+    /**
      * The size of the component.
      * @default 'md'
      */

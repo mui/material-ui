@@ -114,6 +114,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
   const {
     className,
     children,
+    orientation = 'vertical',
     color: colorProp = 'neutral',
     component = 'div',
     variant = 'outlined',
@@ -164,16 +165,33 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     <ModalDialogSizeContext.Provider value={size}>
       <ModalDialogVariantColorContext.Provider value={contextValue}>
         <SlotRoot {...rootProps}>
-          {React.Children.map(children, (child) => {
+          {React.Children.map(children, (child, index) => {
             if (!React.isValidElement(child)) {
               return child;
             }
+            const extraProps: Record<string, any> = {};
             if (isMuiElement(child, ['Divider'])) {
-              const extraProps: Record<string, any> = {};
               extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
-              return React.cloneElement(child, extraProps);
+
+              const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
+              extraProps.orientation =
+                'orientation' in child.props ? child.props.orientation : dividerOrientation;
             }
-            return child;
+            if (isMuiElement(child, ['CardOverflow'])) {
+              if (orientation === 'horizontal') {
+                extraProps['data-parent'] = 'Card-horizontal';
+              }
+              if (orientation === 'vertical') {
+                extraProps['data-parent'] = 'Card-vertical';
+              }
+            }
+            if (index === 0) {
+              extraProps['data-first-child'] = '';
+            }
+            if (index === React.Children.count(children) - 1) {
+              extraProps['data-last-child'] = '';
+            }
+            return React.cloneElement(child, extraProps);
           })}
         </SlotRoot>
       </ModalDialogVariantColorContext.Provider>

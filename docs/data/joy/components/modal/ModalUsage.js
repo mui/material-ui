@@ -3,7 +3,10 @@ import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
-import Typography from '@mui/joy/Typography';
+import CardOverflow from '@mui/joy/CardOverflow';
+import Divider from '@mui/joy/Divider';
+import DialogTitle from '@mui/joy/DialogTitle';
+import DialogContent from '@mui/joy/DialogContent';
 import JoyUsageDemo, {
   prependLinesSpace,
 } from 'docs/src/modules/components/JoyUsageDemo';
@@ -51,26 +54,18 @@ ${prependLinesSpace(code, 2)}
             Open modal
           </Button>
           <Modal open={open} onClose={() => setOpen(false)}>
-            <ModalDialog
-              {...props}
-              aria-labelledby="modal-usage-title"
-              aria-describedby="modal-usage-description"
-            >
-              <ModalClose />
-              <Typography
-                id="modal-usage-title"
-                level="h2"
-                color={props.variant === 'solid' ? 'inherit' : undefined}
+            <ModalDialog {...props}>
+              <CardOverflow
+                variant="soft"
+                sx={{ borderBottom: '1px solid', borderColor: 'divider' }}
               >
-                Modal title
-              </Typography>
-              <Typography
-                id="modal-usage-description"
-                color={props.variant === 'solid' ? 'inherit' : undefined}
-              >
+                <DialogTitle>Modal title</DialogTitle>
+                <ModalClose />
+              </CardOverflow>
+              <DialogContent>
                 A description of the dialog should give primary message or purpose of
                 the dialog.
-              </Typography>
+              </DialogContent>
             </ModalDialog>
           </Modal>
         </React.Fragment>
