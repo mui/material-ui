@@ -10,12 +10,7 @@ const StyledApiItem = styled(ApiItem)(
     '.slot-classname, .slot-default-element': {
       ...theme.typography.body2,
       fontWeight: theme.typography.fontWeightSemiBold,
-    },
-    '& .slot-description-title': {
-      ...theme.typography.body2,
-      fontWeight: theme.typography.fontWeightSemiBold,
-      paddingRight: 5,
-      whiteSpace: 'nowrap',
+      marginBottom: 8,
     },
   }),
   ({ theme }) => ({
@@ -50,24 +45,20 @@ export default function SlotsList(props: SlotsListProps) {
             note=""
             type="slots"
           >
+            {slotDescriptions[name] && (
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: slotDescriptions[name] || '',
+                }}
+              />
+            )}
             <p className="slot-default-element">
               <span>{t('api-docs.default')}:</span> <code className="Api-code">{defaultValue}</code>
             </p>
-
             {className && (
               <p className="slot-classname">
                 <span>{t('api-docs.globalClass')}:</span>{' '}
                 <code dangerouslySetInnerHTML={{ __html: className }} className="Api-code" />
-              </p>
-            )}
-            {slotDescriptions[name] && (
-              <p>
-                <span className="slot-description-title">{t('api-docs.description')}:</span>{' '}
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: slotDescriptions[name] || '',
-                  }}
-                />
               </p>
             )}
           </StyledApiItem>

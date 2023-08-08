@@ -203,7 +203,7 @@ interface Container {
  * Simplified, but inspired by react-overlay's ModalManager class.
  * Used by the Modal to ensure proper styling of containers.
  */
-export default class ModalManager {
+export class ModalManager {
   private containers: Container[];
 
   private modals: Modal[];

@@ -6,15 +6,15 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
 import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
-import menuReducer from './menuReducer';
-import DropdownContext, { DropdownContextValue } from '../useDropdown/DropdownContext';
-import useList from '../useList';
+import { menuReducer } from './menuReducer';
+import { DropdownContext, DropdownContextValue } from '../useDropdown/DropdownContext';
+import { useList } from '../useList';
 import { MenuItemMetadata } from '../useMenuItem';
 import { DropdownActionTypes } from '../useDropdown';
 import { EventHandlers } from '../utils';
 import { useCompoundParent } from '../utils/useCompound';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
-import combineHooksSlotProps from '../utils/combineHooksSlotProps';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 
 const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
   dispatch: () => {},
@@ -35,7 +35,7 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
  *
  * - [useMenu API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu)
  */
-export default function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
+export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
   const { listboxRef: listboxRefProp, onItemsChange, id: idParam } = parameters;
 
   const rootRef = React.useRef<HTMLElement | null>(null);

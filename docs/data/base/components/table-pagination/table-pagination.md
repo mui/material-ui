@@ -34,7 +34,7 @@ See the [Slot props section](#slot-props) for details.
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import TablePagination from '@mui/base/TablePagination';
+import { TablePagination } from '@mui/base/TablePagination';
 
 export default function MyApp() {
   return (

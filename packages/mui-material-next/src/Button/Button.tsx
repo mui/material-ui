@@ -7,9 +7,9 @@ import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 import { EventHandlers, useSlotProps } from '@mui/base/utils';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
 import TouchRipple from './TouchRipple';
 import { TouchRippleActions } from './TouchRipple.types';
@@ -701,6 +701,14 @@ Button.propTypes /* remove-proptypes */ = {
    * Element placed before the children.
    */
   startIcon: PropTypes.node,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * @default 0
    */

@@ -69,7 +69,6 @@ const StyledApiItem = styled(ApiItem)(
         backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
       },
     },
-    marginBottom: 36,
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {

@@ -371,7 +371,6 @@ import { ${pageContent.name} } from '${source}';`}
               componentName={pageContent.name}
               classDescriptions={classDescriptions}
             />
-            <Divider />
           </React.Fragment>
         ) : null}
         <DesignInfo />

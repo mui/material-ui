@@ -9,7 +9,8 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import Slider, {
+import {
+  Slider,
   sliderClasses as classes,
   SliderRootSlotProps,
   SliderValueLabelSlotProps,

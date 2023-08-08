@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useTheme } from '@mui/system';
-import TablePagination from '@mui/base/TablePagination';
+import { TablePagination } from '@mui/base/TablePagination';
 
 function useIsDarkMode() {
   const theme = useTheme();

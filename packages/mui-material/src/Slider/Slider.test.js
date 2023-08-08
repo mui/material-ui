@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
-import BaseSlider from '@mui/base/Slider';
+import { Slider as BaseSlider } from '@mui/base/Slider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
 
