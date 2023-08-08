@@ -132,7 +132,7 @@ const SliderRoot = styled('span', {
       '@media print': {
         colorAdjust: 'exact',
       },
-    },
+    } as const,
   ];
 });
 
@@ -170,7 +170,7 @@ const SliderRail = styled('span', {
     ...(ownerState.track === 'inverted' && {
       opacity: 1,
     }),
-  },
+  } as const,
 ]);
 
 const SliderTrack = styled('span', {
@@ -206,7 +206,7 @@ const SliderTrack = styled('span', {
       ...(ownerState.track === false && {
         display: 'none',
       }),
-    },
+    } as const,
   ];
 });
 

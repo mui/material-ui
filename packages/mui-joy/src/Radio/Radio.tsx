@@ -102,7 +102,7 @@ const RadioRoot = styled('span', {
           marginBlockStart:
             ownerState.orientation === 'horizontal' ? undefined : 'var(--RadioGroup-gap)',
         }),
-    },
+    } as const,
   ];
 });
 
@@ -133,7 +133,7 @@ const RadioRadio = styled('span', {
       [`&.${radioClasses.checked}`]: {
         '--Icon-color': 'currentColor',
       },
-    },
+    } as const,
     ...(!ownerState.disableIcon
       ? [
           {
@@ -169,7 +169,7 @@ const RadioAction = styled('span', {
     right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
     [theme.focus.selector]: theme.focus.default,
-  },
+  } as const,
   ...(ownerState.disableIcon
     ? [
         theme.variants[ownerState.variant!]?.[ownerState.color!],

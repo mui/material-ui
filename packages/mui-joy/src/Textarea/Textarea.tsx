@@ -115,7 +115,7 @@ const TextareaRoot = styled('div', {
         margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
         boxShadow: `var(--Textarea-focusedInset, inset) 0 0 0 calc(var(--Textarea-focused) * var(--Textarea-focusedThickness)) var(--Textarea-focusedHighlight)`,
       },
-    },
+    } as const,
     {
       '&:hover': {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],

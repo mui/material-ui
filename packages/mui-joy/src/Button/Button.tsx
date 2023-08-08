@@ -149,7 +149,7 @@ export const getButtonStyles = ({
         width: '100%',
       }),
       [theme.focus.selector]: theme.focus.default,
-    },
+    } as const,
     {
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '&:hover': {
