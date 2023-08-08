@@ -1,5 +1,5 @@
 ---
-title: MUI X improvements, Charts in Alpha, Filtering, and more!
+title: Latest MUI X improvements: Charts in alpha, Data Grid filtering, and more
 description: Support for time zones, a new filtering UI, charts and more..
 date: 2023-08-07T00:00:00.000Z
 authors: ['richbustos', 'josefreitas']
