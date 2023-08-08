@@ -84,7 +84,11 @@ For more details on how to use clipboard copy and paste, check out the [feature'
 This feature allows users to quickly filter the data without needing any additional menu and can be activated using the `unstable_headerFilters` prop.
 
 The new filter fields are displayed below the headers and are synchronized with the filter panel, but for those seeking more simplicity, disable the default filter panel using `disableColumnFilter` prop and set filters to use only the default operator.
-You can also customize the header filter cell for a specific column using the `renderHeaderFilter` method of `GridColDef`
+You can also customize the header filter cell for a specific column using the `renderHeaderFilter` method of `GridColDef`.
+
+<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline controls>
+  <source src="/static/blog/mui-x-mid-v6-features/header_filter.mp4" type="video/mp4">
+</video>
 
 For more details on how to use and customize the filters, check out its [documentation page](https://mui.com/x/react-data-grid/filtering/header-filters/).
 
