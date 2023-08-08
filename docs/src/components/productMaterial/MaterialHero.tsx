@@ -247,7 +247,9 @@ export default function MaterialHero() {
           </Typography>
           <GetStartedButtons
             primaryUrl={ROUTES.materialDocs}
-            installation="npm install @mui/material @emotion/react @emotion/styled"
+            secondaryLabel="View templates"
+            secondaryUrl={ROUTES.freeTemplates}
+            altInstallation="npm install @mui/material @emotion/react @emotion/styled"
           />
         </Box>
       }
