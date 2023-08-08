@@ -68,7 +68,7 @@ Check out all the possibilities in [documentation](https://mui.com/x/react-date-
 
 After setting the prop `experimentalFeatures={{ clipboardPaste: true }}` you can copy and paste data directly from and to your Data Grid.
 
-This new feature is extremely versatile, and you can exchange data from other fields, other grids, and even directly from and to Microsoft Excel.
+This new feature is extremely versatile, and you can exchange data from other fields, other grids, and even directly from and to the spreadsheet tool of your choice.
 
 <video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline controls>
   <source src="/static/blog/mui-x-mid-v6-features/copy_paste.mov" type="video/mp4">
