@@ -4,25 +4,10 @@
 
 ## Quickstart
 
-The following code snippet demonstrates a simple app that uses the Material UI [Button](/material-ui/react-button/) component:
+After [installation](/material-ui/getting-started/installation/), import any Material UI component and start playing around with them.
+For example, try changing the `variant` on the [Button](/material-ui/react-button/) to `outlined` to see how the style changes:
 
-```jsx
-import * as React from 'react';
-import Button from '@mui/material/Button';
-
-export default function MyApp() {
-  return (
-    <div>
-      <Button variant="contained">Hello World</Button>
-    </div>
-  );
-}
-```
-
-You can play around with this code in the interactive Code Sandbox demo below.
-Try changing the `variant` on the Button to `outlined` to see how the style changes:
-
-{{"demo": "Usage.js", "hideToolbar": true, "bg": true}}
+{{"demo": "ButtonUsage.js"}}
 
 ## Globals
 
