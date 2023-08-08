@@ -58,17 +58,16 @@ export default function HooksApiContent(props) {
 
     const hookNameKebabCase = kebabCase(hookName);
 
+    const importInstructions = imports.join(`
+// ${t('or')}
+`);
+
     return (
       <React.Fragment key={`hook-api-${key}`}>
         <MarkdownElement>
           <Heading hash={hookNameKebabCase} text={`${hookName} API`} />
           <Heading text="import" hash={`${hookNameKebabCase}-import`} level="h3" />
-          <HighlightedCode
-            code={imports.join(`
-// ${t('or')}
-`)}
-            language="jsx"
-          />
+          <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           <Heading text="parameters" hash={`${hookNameKebabCase}-parameters`} level="h3" />
           {Object.keys(parameters).length > 0 ? (
