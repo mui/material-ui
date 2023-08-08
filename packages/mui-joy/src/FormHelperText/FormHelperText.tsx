@@ -8,6 +8,7 @@ import { styled, useThemeProps } from '../styles';
 import { FormHelperTextProps, FormHelperTextTypeMap } from './FormHelperTextProps';
 import { getFormHelperTextUtilityClass } from './formHelperTextClasses';
 import FormControlContext from '../FormControl/FormControlContext';
+import formControlClasses from '../FormControl/formControlClasses';
 import formLabelClasses from '../FormLabel/formLabelClasses';
 import useSlot from '../utils/useSlot';
 
@@ -24,8 +25,10 @@ const FormHelperTextRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormHelperTextProps }>(({ theme }) => ({
+  '--Icon-fontSize': 'calc(var(--FormHelperText-lineHeight) * 1em)',
   display: 'flex',
   alignItems: 'center',
+  gap: '2px',
   fontFamily: theme.vars.fontFamily.body,
   fontSize: `var(--FormHelperText-fontSize, ${theme.vars.fontSize.sm})`,
   lineHeight: `var(--FormHelperText-lineHeight, ${theme.vars.lineHeight.sm})`,
@@ -33,6 +36,9 @@ const FormHelperTextRoot = styled('div', {
   margin: 'var(--FormHelperText-margin, 0px)',
   [`.${formLabelClasses.root} + &`]: {
     '--FormHelperText-margin': '0px', // remove the margin if the helper text is next to the form label.
+  },
+  [`.${formControlClasses.error} &`]: {
+       '--Icon-color': 'currentColor',
   },
 }));
 /**
