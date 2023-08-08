@@ -59,16 +59,16 @@ const blue = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7',
+  400: '#B2BAC2',
+  500: '#A0AAB4',
+  600: '#6F7E8C',
+  700: '#3E5060',
+  800: '#2D3843',
+  900: '#1A2027',
 };
 
 const Root = styled('div')(
@@ -121,7 +121,7 @@ const CustomTablePagination = styled(TablePagination)(
   }
 
   & .${classes.select}{
-    padding: 2px 6px;
+    padding: 2px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     border-radius: 50px;
     background-color: transparent;
@@ -159,7 +159,7 @@ const CustomTablePagination = styled(TablePagination)(
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
 
     &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
+      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
     }
 
     &:focus {
@@ -167,7 +167,7 @@ const CustomTablePagination = styled(TablePagination)(
     }
 
     &:disabled {
-      opacity: 0.5;
+      opacity: 0.3;
     }
   }
   `,
