@@ -80,7 +80,7 @@ const Root = styled('div')(
     '& h2': {
       ...lightTheme.typography.h5,
       fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
-      fontSize: theme.typography.pxToRem(24),
+      fontSize: theme.typography.pxToRem(26),
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '40px 0 4px',
