@@ -12,6 +12,7 @@ import { DialogTitleProps, DialogTitleOwnerState, DialogTitleTypeMap } from './D
 import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
 import useSlot from '../utils/useSlot';
 import ModalDialogVariantColorContext from '../ModalDialog/ModalDialogVariantColorContext';
+import ModalDialogSizeContext from '../ModalDialog/ModalDialogSizeContext';
 
 const useUtilityClasses = (ownerState: DialogTitleOwnerState) => {
   const { level, color, variant } = ownerState;
@@ -74,6 +75,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     props: inProps,
     name: 'JoyDialogTitle',
   });
+  const size = React.useContext(ModalDialogSizeContext);
   const context = React.useContext(ModalDialogVariantColorContext);
 
   const {
@@ -81,7 +83,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     children,
     variant,
     color: colorProp,
-    level = 'title-lg',
+    level,
     slots = {},
     slotProps = {},
     ...other
@@ -97,7 +99,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     component,
     color,
     variant,
-    level,
+    level: ({ sm: 'title-md', md: 'title-lg', lg: 'h4' } as const)[size || 'md'] || 'title-lg',
   };
 
   const classes = useUtilityClasses(ownerState);

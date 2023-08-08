@@ -13,8 +13,9 @@ import {
 } from './DialogContentProps';
 import useSlot from '../utils/useSlot';
 import ModalDialogVariantColorContext from '../ModalDialog/ModalDialogVariantColorContext';
-import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
 import { StyledCardContentRoot } from '../CardContent/CardContent';
+import modalDialogClasses from '../ModalDialog/modalDialogClasses';
+import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -28,15 +29,12 @@ const DialogContentRoot = styled(StyledCardContentRoot, {
   name: 'JoyDialogContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: DialogContentOwnerState }>(({ ownerState }) => ({
-  display: 'flex',
-  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-  flex: 1, // fill the available space in the Card and also shrink if needed
-  zIndex: 1,
-  columnGap: 'var(--Card-padding)',
-  padding: 'var(--unstable_padding)',
-  [`.${cardOverflowClasses.root} > &`]: {
-    '--unstable_padding': 'calc(var(--Card-padding) * 0.75) 0px',
+})<{ ownerState: DialogContentOwnerState }>(({ theme }) => ({
+  color: theme.vars.palette.text.tertiary,
+  overflow: 'auto',
+  margin: 'var(--unstable_DialogContent-margin)',
+  [`.${modalDialogClasses.root} > .${dialogTitleClasses.root} + &`]: {
+    '--unstable_DialogContent-margin': 'calc(var(--Card-padding) * -0.375) 0 0 0',
   },
 }));
 /**
