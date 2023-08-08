@@ -35,7 +35,7 @@
     }
   },
   "name": "ListSubheader",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiListSubheader" },
   "slots": [
     {
       "name": "root",

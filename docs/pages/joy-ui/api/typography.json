@@ -56,7 +56,7 @@
     }
   },
   "name": "Typography",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTypography" },
   "slots": [
     {
       "name": "root",

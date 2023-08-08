@@ -9,7 +9,7 @@
     }
   },
   "name": "ModalOverflow",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiModalOverflow" },
   "slots": [
     {
       "name": "root",

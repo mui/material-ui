@@ -24,7 +24,7 @@
     }
   },
   "name": "FormLabel",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root", "asterisk"], "globalClasses": {}, "name": "MuiFormLabel" },
   "slots": [
     {
       "name": "root",

@@ -40,7 +40,7 @@
     }
   },
   "name": "AutocompleteListbox",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAutocompleteListbox" },
   "slots": [
     {
       "name": "root",

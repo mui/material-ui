@@ -36,7 +36,7 @@
     }
   },
   "name": "CardOverflow",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiCardOverflow" },
   "slots": [
     {
       "name": "root",

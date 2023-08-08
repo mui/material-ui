@@ -51,7 +51,7 @@
     }
   },
   "name": "IconButton",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiIconButton" },
   "slots": [
     {
       "name": "root",

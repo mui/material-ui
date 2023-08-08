@@ -53,7 +53,7 @@
     }
   },
   "name": "TabList",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTabList" },
   "slots": [
     {
       "name": "root",

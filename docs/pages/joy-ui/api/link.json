@@ -61,7 +61,7 @@
     }
   },
   "name": "Link",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiLink" },
   "slots": [
     {
       "name": "root",

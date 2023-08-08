@@ -68,7 +68,7 @@
     }
   },
   "name": "Button",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiButton" },
   "slots": [
     {
       "name": "root",

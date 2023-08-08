@@ -92,7 +92,7 @@
     }
   },
   "name": "Tooltip",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTooltip" },
   "slots": [
     {
       "name": "root",

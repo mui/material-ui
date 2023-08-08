@@ -64,7 +64,7 @@
     }
   },
   "name": "ToggleButtonGroup",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiToggleButtonGroup" },
   "slots": [
     {
       "name": "root",

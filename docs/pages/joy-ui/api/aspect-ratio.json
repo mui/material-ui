@@ -52,7 +52,7 @@
     }
   },
   "name": "AspectRatio",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAspectRatio" },
   "slots": [
     {
       "name": "root",

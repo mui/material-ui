@@ -25,7 +25,7 @@
     "useFlexGap": { "type": { "name": "bool" } }
   },
   "name": "Stack",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiStack" },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiStack",

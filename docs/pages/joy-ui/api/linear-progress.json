@@ -46,7 +46,7 @@
     }
   },
   "name": "LinearProgress",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiLinearProgress" },
   "slots": [
     {
       "name": "root",

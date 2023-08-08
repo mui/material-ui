@@ -33,7 +33,7 @@
     }
   },
   "name": "MenuItem",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiMenuItem" },
   "slots": [
     {
       "name": "root",

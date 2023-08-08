@@ -54,7 +54,7 @@
     }
   },
   "name": "Chip",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiChip" },
   "slots": [
     {
       "name": "root",

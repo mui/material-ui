@@ -43,7 +43,7 @@
     }
   },
   "name": "ModalClose",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiModalClose" },
   "slots": [
     {
       "name": "root",

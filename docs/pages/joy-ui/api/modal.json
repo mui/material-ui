@@ -40,7 +40,7 @@
     }
   },
   "name": "Modal",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root", "backdrop"], "globalClasses": {}, "name": "MuiModal" },
   "slots": [
     {
       "name": "root",

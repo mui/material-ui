@@ -28,7 +28,7 @@
     }
   },
   "name": "CardActions",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCardActions" },
   "slots": [
     {
       "name": "root",

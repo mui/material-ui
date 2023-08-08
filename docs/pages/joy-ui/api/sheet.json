@@ -37,7 +37,7 @@
     }
   },
   "name": "Sheet",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSheet" },
   "slots": [
     {
       "name": "root",

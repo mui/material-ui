@@ -35,7 +35,7 @@
     }
   },
   "name": "Textarea",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTextarea" },
   "slots": [
     {
       "name": "root",

@@ -44,7 +44,7 @@
     }
   },
   "name": "AvatarGroup",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAvatarGroup" },
   "slots": [
     {
       "name": "root",

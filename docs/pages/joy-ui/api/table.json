@@ -61,7 +61,7 @@
     }
   },
   "name": "Table",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTable" },
   "slots": [
     {
       "name": "root",

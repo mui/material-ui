@@ -20,7 +20,7 @@
     }
   },
   "name": "CardCover",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCardCover" },
   "slots": [
     {
       "name": "root",

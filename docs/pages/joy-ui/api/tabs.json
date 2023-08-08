@@ -56,7 +56,7 @@
     }
   },
   "name": "Tabs",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTabs" },
   "slots": [
     {
       "name": "root",

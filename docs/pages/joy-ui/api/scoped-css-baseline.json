@@ -21,7 +21,7 @@
     }
   },
   "name": "ScopedCssBaseline",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiScopedCssBaseline" },
   "slots": [
     {
       "name": "root",

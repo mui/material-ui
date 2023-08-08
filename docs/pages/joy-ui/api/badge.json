@@ -62,7 +62,7 @@
     }
   },
   "name": "Badge",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiBadge" },
   "slots": [
     {
       "name": "root",

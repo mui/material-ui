@@ -63,7 +63,7 @@
     }
   },
   "name": "Switch",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSwitch" },
   "slots": [
     {
       "name": "root",

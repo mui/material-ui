@@ -46,7 +46,7 @@
     "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'" }
   },
   "name": "SvgIcon",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSvgIcon" },
   "slots": [
     {
       "name": "root",

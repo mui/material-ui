@@ -42,7 +42,7 @@
     }
   },
   "name": "FormControl",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiFormControl" },
   "slots": [
     {
       "name": "root",

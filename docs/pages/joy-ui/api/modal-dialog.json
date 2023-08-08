@@ -51,7 +51,7 @@
     }
   },
   "name": "ModalDialog",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiModalDialog" },
   "slots": [
     {
       "name": "root",

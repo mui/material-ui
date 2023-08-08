@@ -61,7 +61,7 @@
     }
   },
   "name": "Select",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSelect" },
   "slots": [
     {
       "name": "root",

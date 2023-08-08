@@ -73,7 +73,7 @@
     }
   },
   "name": "Checkbox",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiCheckbox" },
   "slots": [
     {
       "name": "root",

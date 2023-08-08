@@ -50,7 +50,7 @@
     }
   },
   "name": "ListItemButton",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiListItemButton" },
   "slots": [
     {
       "name": "root",

@@ -52,7 +52,7 @@
     }
   },
   "name": "CircularProgress",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiCircularProgress" },
   "slots": [
     {
       "name": "root",

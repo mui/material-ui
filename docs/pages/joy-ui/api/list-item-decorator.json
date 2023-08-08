@@ -20,7 +20,7 @@
     }
   },
   "name": "ListItemDecorator",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiListItemDecorator" },
   "slots": [
     {
       "name": "root",

@@ -30,7 +30,7 @@
     }
   },
   "name": "Divider",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiDivider" },
   "slots": [
     {
       "name": "root",

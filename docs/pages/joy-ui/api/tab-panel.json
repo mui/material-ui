@@ -47,7 +47,7 @@
     }
   },
   "name": "TabPanel",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTabPanel" },
   "slots": [
     {
       "name": "root",

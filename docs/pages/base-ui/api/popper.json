@@ -48,7 +48,7 @@
     "transition": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Popper",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": null },
   "spread": true,
   "muiName": "MuiPopper",
   "forwardsRefTo": "HTMLDivElement",

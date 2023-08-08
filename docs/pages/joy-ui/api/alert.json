@@ -53,7 +53,7 @@
     }
   },
   "name": "Alert",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAlert" },
   "slots": [
     {
       "name": "root",

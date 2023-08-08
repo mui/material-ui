@@ -46,7 +46,7 @@
     }
   },
   "name": "ListItem",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiListItem" },
   "slots": [
     {
       "name": "root",

@@ -49,7 +49,7 @@
     "wrap": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "List",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiList" },
   "slots": [
     {
       "name": "root",

@@ -38,7 +38,7 @@
     }
   },
   "name": "ChipDelete",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiChipDelete" },
   "slots": [
     {
       "name": "root",

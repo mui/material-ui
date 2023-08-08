@@ -35,7 +35,7 @@
     }
   },
   "name": "Breadcrumbs",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiBreadcrumbs" },
   "slots": [
     {
       "name": "root",

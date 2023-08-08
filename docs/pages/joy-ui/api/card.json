@@ -49,7 +49,7 @@
     }
   },
   "name": "Card",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiCard" },
   "slots": [
     {
       "name": "root",
