@@ -24,10 +24,10 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
   const {
     primaryLabel = 'Get started',
     primaryUrl,
-    primaryUrlTarget,
+    primaryUrlTarget = '_self',
     secondaryLabel,
     secondaryUrl,
-    secondaryUrlTarget,
+    secondaryUrlTarget = '_self',
     installation,
     altInstallation,
     ...other
@@ -56,7 +56,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
         <Button
           href={primaryUrl}
           component={Link}
-          target={primaryUrlTarget ? '_blank' : ''}
+          target={primaryUrlTarget}
           rel={primaryUrlTarget ? 'noopener' : ''}
           noLinkStyle
           size="large"
@@ -95,7 +95,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
           <Button
             href={secondaryUrl}
             component={Link}
-            target={secondaryUrlTarget ? '_blank' : ''}
+            target={secondaryUrlTarget}
             rel={secondaryUrlTarget ? 'noopener' : ''}
             noLinkStyle
             variant="outlined"
