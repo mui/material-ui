@@ -70,6 +70,9 @@ import {
   CircularProgressSlot,
 } from '../CircularProgress/CircularProgressProps';
 import { ContainerProps, ContainerSlot } from '../Container/ContainerProps';
+import { DialogActionsProps, DialogActionsSlot } from '../DialogActions/DialogActionsProps';
+import { DialogContentProps, DialogContentSlot } from '../DialogContent/DialogContentProps';
+import { DialogTitleProps, DialogTitleSlot } from '../DialogTitle/DialogTitleProps';
 import {
   ScopedCssBaselineProps,
   ScopedCssBaselineOwnerState,
@@ -289,6 +292,18 @@ export interface Components<Theme = unknown> {
   JoyContainer?: {
     defaultProps?: Partial<ContainerProps>;
     styleOverrides?: StyleOverrides<ContainerSlot, ContainerProps, Theme>;
+  };
+  JoyDialogActions?: {
+    defaultProps?: Partial<DialogActionsProps>;
+    styleOverrides?: StyleOverrides<DialogActionsSlot, DialogActionsProps, Theme>;
+  };
+  JoyDialogContent?: {
+    defaultProps?: Partial<DialogContentProps>;
+    styleOverrides?: StyleOverrides<DialogContentSlot, DialogContentProps, Theme>;
+  };
+  JoyDialogTitle?: {
+    defaultProps?: Partial<DialogTitleProps>;
+    styleOverrides?: StyleOverrides<DialogTitleSlot, DialogTitleProps, Theme>;
   };
   JoyScopedCssBaseline?: {
     defaultProps?: Partial<ScopedCssBaselineProps>;

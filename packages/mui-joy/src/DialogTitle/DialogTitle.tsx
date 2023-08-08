@@ -44,10 +44,7 @@ const DialogTitleRoot = styled('h2', {
     gap: 'clamp(4px, 0.375em, 0.75rem)',
     margin: 'var(--unstable_DialogTitle-margin, 0px)',
     ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
-    ...(ownerState.color &&
-      ownerState.color !== 'context' && {
-        color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
-      }),
+    color: 'inherit',
     ...(ownerState.variant && {
       borderRadius: theme.vars.radius.xs,
       paddingBlock: 'min(0.1em, 4px)',
@@ -99,7 +96,9 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     component,
     color,
     variant,
-    level: ({ sm: 'title-md', md: 'title-lg', lg: 'h4' } as const)[size || 'md'] || 'title-lg',
+    level:
+      level ??
+      (({ sm: 'title-md', md: 'title-lg', lg: 'h4' } as const)[size || 'md'] || 'title-lg'),
   };
 
   const classes = useUtilityClasses(ownerState);

@@ -30,7 +30,7 @@ const DialogContentRoot = styled(StyledCardContentRoot, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: DialogContentOwnerState }>(({ theme }) => ({
-  color: theme.vars.palette.text.tertiary,
+  color: `var(--DialogContent-color, ${theme.vars.palette.text.tertiary})`,
   overflow: 'auto',
   margin: 'var(--unstable_DialogContent-margin)',
   [`.${modalDialogClasses.root} > .${dialogTitleClasses.root} + &`]: {
@@ -56,7 +56,6 @@ const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
   const context = React.useContext(ModalDialogVariantColorContext);
 
   const {
-    className,
     component = 'div',
     children,
     orientation = 'vertical',

@@ -39,10 +39,15 @@ const ModalDialogRoot = styled(StyledCardRoot, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalDialogOwnerState }>(({ theme, ownerState }) => ({
-  '--ModalDialog-minWidth': ownerState.minWidth,
-  '--ModalDialog-maxWidth': ownerState.maxWidth,
+  '--ModalDialog-minWidth':
+    typeof ownerState.minWidth === 'number' ? `${ownerState.minWidth}px` : ownerState.minWidth,
+  '--ModalDialog-maxWidth':
+    typeof ownerState.maxWidth === 'number' ? `${ownerState.maxWidth}px` : ownerState.maxWidth,
   '--ModalClose-radius':
     'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
+  ...(ownerState.variant === 'solid' && {
+    '--DialogContent-color': 'currentColor',
+  }),
   ...(ownerState.size === 'sm' && {
     '--Card-padding': '0.625rem',
     '--ModalDialog-titleOffset': theme.spacing(0.25),

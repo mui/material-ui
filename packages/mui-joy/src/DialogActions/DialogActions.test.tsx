@@ -11,7 +11,7 @@ describe('<DialogActions />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'DialogActions',
+    muiName: 'JoyDialogActions',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     skip: ['classesRoot', 'componentsProp', 'themeVariants'],

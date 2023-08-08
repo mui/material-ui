@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
@@ -41,7 +40,6 @@ const DialogActions = React.forwardRef(function DialogActions(inProps, ref) {
   });
 
   const {
-    className,
     component = 'div',
     children,
     buttonFlex,
@@ -63,7 +61,7 @@ const DialogActions = React.forwardRef(function DialogActions(inProps, ref) {
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
-    className: clsx(classes.root, className),
+    className: classes.root,
     elementType: DialogActionsRoot,
     externalForwardedProps,
     ownerState,

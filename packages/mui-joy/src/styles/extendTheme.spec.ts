@@ -19,6 +19,9 @@ import { ChipDeleteOwnerState } from '@mui/joy/ChipDelete';
 import { CircularProgressOwnerState } from '@mui/joy/CircularProgress';
 import { ContainerProps } from '@mui/joy/Container';
 import { ScopedCssBaselineOwnerState } from '@mui/joy/ScopedCssBaseline';
+import { DialogActionsOwnerState } from '@mui/joy/DialogActions';
+import { DialogContentOwnerState } from '@mui/joy/DialogContent';
+import { DialogTitleOwnerState } from '@mui/joy/DialogTitle';
 import { DividerOwnerState } from '@mui/joy/Divider';
 import { FormControlOwnerState } from '@mui/joy/FormControl';
 import { FormHelperTextOwnerState } from '@mui/joy/FormHelperText';
@@ -499,6 +502,45 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<ScopedCssBaselineOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyDialogActions: {
+      defaultProps: {
+        buttonFlex: 1,
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DialogActionsOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyDialogContent: {
+      defaultProps: {
+        orientation: 'horizontal',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DialogContentOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyDialogTitle: {
+      defaultProps: {
+        level: 'title-md',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DialogTitleOwnerState & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};
