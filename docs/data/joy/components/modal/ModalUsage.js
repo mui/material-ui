@@ -3,8 +3,6 @@ import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
-import CardOverflow from '@mui/joy/CardOverflow';
-import Divider from '@mui/joy/Divider';
 import DialogTitle from '@mui/joy/DialogTitle';
 import DialogContent from '@mui/joy/DialogContent';
 import JoyUsageDemo, {
@@ -55,14 +53,9 @@ ${prependLinesSpace(code, 2)}
           </Button>
           <Modal open={open} onClose={() => setOpen(false)}>
             <ModalDialog {...props}>
-              <CardOverflow
-                variant="soft"
-                sx={{ borderBottom: '1px solid', borderColor: 'divider' }}
-              >
-                <DialogTitle>Modal title</DialogTitle>
-                <ModalClose />
-              </CardOverflow>
-              <DialogContent>
+              <ModalClose />
+              <DialogTitle sx={{ color: 'inherit' }}>Modal title</DialogTitle>
+              <DialogContent sx={{ color: 'inherit' }}>
                 A description of the dialog should give primary message or purpose of
                 the dialog.
               </DialogContent>
