@@ -123,7 +123,7 @@ Your input can directly influence our development schedule, so don't hesitate to
 
 ## What's next
 
-We'll soon announce what's coming for v7, for now one of our major milestones is moving the [TreeView component](https://mui.com/material-ui/react-tree-view/) from the lab to a stable release.
+We'll follow up soon to announce what's coming for v7, but for now one of our major goals is to move the [Tree View component](https://mui.com/material-ui/react-tree-view/) from the lab to a stable release.
 You can find additional information about other future developments in our [public roadmap](https://github.com/mui/mui-x/projects/1).
 
 ## Feedback
