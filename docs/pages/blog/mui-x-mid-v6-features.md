@@ -9,7 +9,7 @@ tags: ['MUI X', 'News']
 
 <img src="/static/blog/mui-x-mid-v6-features/intro.png" alt="" width="2400" height="600" style="margin-bottom: 16px;" />
 
-Since the first v6 stable release, we have continuously rolled out new major features.
+Since the first v6 stable release, we've continuously rolled out new major features.
 Now that we reached [MUI X v6.11.x](https://github.com/mui/mui-x/releases), it's time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
 
 ## Table of contents
