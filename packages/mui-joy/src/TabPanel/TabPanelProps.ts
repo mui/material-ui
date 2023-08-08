@@ -54,7 +54,7 @@ export interface TabPanelTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       variant?: OverridableStringUnion<VariantProp, TabPanelPropsVariantOverrides>;
       /**
-       * prevent unmounted the tab panel children component when tab is switched
+       * Always keep the children in the DOM.
        * @default false
        */
       keepMounted?: boolean;

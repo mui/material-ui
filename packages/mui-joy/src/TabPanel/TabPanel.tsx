@@ -137,7 +137,7 @@ TabPanel.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * prevent unmounted the tab panel children component when tab is switched
+   * Always keep the children in the DOM.
    * @default false
    */
   keepMounted: PropTypes.bool,
