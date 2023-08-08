@@ -1,5 +1,103 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.4
+
+<!-- generated comparing v5.14.3..master -->
+
+_Aug 8, 2023_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 🎉 Added [Number input](https://mui.com/base-ui/react-number-input) component & [useNumberInput](https://mui.com/base-ui/react-number-input#hook) hook in [Base UI](https://mui.com/base-ui/getting-started/) @mj12albert
+
+### `@mui/material@5.14.4`
+
+- &#8203;<!-- 25 -->[Checkbox][material] Add size classes (#38182) @michaldudak
+- &#8203;<!-- 03 -->[Typography] Improve inherit variant logic (#38123) @ZeeshanTamboli
+
+### `@mui/system@5.14.4`
+
+- &#8203;<!-- 34 -->Revert "[Box] Remove `component` from TypeMap (#38168)" (#38356) @michaldudak
+
+### `@mui/base@5.0.0-beta.10`
+
+#### Breaking changes
+
+- &#8203;<!-- 32 -->[base] Ban default exports (#38200) @michaldudak
+
+  Base UI default exports were changed to named ones. Previously we had a mix of default and named ones.
+  This was changed to improve consistency and avoid problems some bundlers have with default exports.
+  See https://github.com/mui/material-ui/issues/21862 for more context.
+
+  ```diff
+  - import Button, { buttonClasses } from '@mui/base/Button';
+  + import { Button, buttonClasses } from '@mui/base/Button';
+  - import BaseMenu from '@mui/base/Menu';
+  + import { Menu as BaseMenu } from '@mui/base/Menu';
+  ```
+
+  Additionally, the `ClassNameGenerator` has been moved to the directory matching its name:
+
+  ```diff
+  - import ClassNameGenerator from '@mui/base/className';
+  + import { ClassNameGenerator } from '@mui/base/ClassNameGenerator';
+  ```
+
+  A codemod is provided to help with the migration:
+
+  ```bash
+  npx @mui/codemod v5.0.0/base-use-named-imports <path>
+  ```
+
+#### Changes
+
+- &#8203;<!-- 31 -->[base] Create useNumberInput and NumberInput (#36119) @mj12albert
+- &#8203;<!-- 28 -->[Select][base] Fix flicker on click of controlled Select button (#37855) @VishruthR
+- &#8203;<!-- 09 -->[Dropdown] Fix imports of types (#38296) @yash-thakur
+
+### `@mui/joy@5.0.0-beta.1`
+
+- &#8203;<!-- 06 -->[joy-ui][MenuButton] Fix disable of `MenuButton` (#38342) @sai6855
+
+### Docs
+
+- &#8203;<!-- 33 -->[docs][AppBar] Fix `ResponsiveAppBar` demo logo href (#38346) @iownthegame
+- &#8203;<!-- 30 -->[docs][base] Add Tailwind CSS + plain CSS demo on the Button page (#38240) @alisasanib
+- &#8203;<!-- 29 -->[docs][Menu][base] Remove `Unstyled` prefix from demos' function names (#38270) @sai6855
+- &#8203;<!-- 22 -->[docs] Add themeable component guide (#37908) @siriwatknp
+- &#8203;<!-- 21 -->[docs] Fix Joy UI demo background color (#38307) @oliviertassinari
+- &#8203;<!-- 20 -->[docs] Update API docs for Number Input component (#38301) @ZeeshanTamboli
+- &#8203;<!-- 14 -->[docs][joy-ui] Revise the theme typography page (#38285) @danilo-leal
+- &#8203;<!-- 13 -->[docs][joy-ui] Add TS demo for Menu Bar (#38308) @sai6855
+- &#8203;<!-- 10 -->[docs][joy-ui] Updated Typography callout at getting started (#38289) @zanivan
+- &#8203;<!-- 12 -->[docs][joy-ui] Fix the Inter font installation instructions (#38284) @danilo-leal
+- &#8203;<!-- 11 -->[docs][material] Add note to Autocomplete about ref forwarding (#38305) @samuelsycamore
+- &#8203;<!-- 05 -->[docs][Skeleton] Make the demos feel more realistic (#38212) @oliviertassinari
+
+- &#8203;<!-- 08 -->[examples] Swap Next.js examples between App Router and Pages Router; update naming convention (#38204) @samuelsycamore
+- &#8203;<!-- 07 -->[examples][material-ui] Add Material UI + Next.js (App Router) example in JS (#38323) @samuelsycamore
+- &#8203;<!-- 27 -->[blog] Discord announcement blog (#38258) @richbustos
+- &#8203;<!-- 26 -->[blog] Fix 301 links to Toolpad @oliviertassinari
+- &#8203;<!-- 04 -->[website] Updating Charts demo with real charts usage for MUI X marketing page (#38317) @richbustos
+- &#8203;<!-- 03 -->[website] Adjust styles of the Product section on the homepage (#38366) @danilo-leal
+- &#8203;<!-- 02 -->[website] Add Nora teamMember card to 'About' (#38358) @noraleonte
+- &#8203;<!-- 01 -->[website] Fix image layout shift (#38326) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 24 -->[core] Fix docs demo export function consistency (#38191) @oliviertassinari
+- &#8203;<!-- 23 -->[core] Fix the link-check script on Windows (#38276) @michaldudak
+- &#8203;<!-- 26 -->[core] Use @testing-library/user-event direct API (#38325) @mj12albert
+- &#8203;<!-- 29 -->[core] Port GitHub workflow for ensuring triage label is present (#38312) @DanailH
+- &#8203;<!-- 19 -->[docs-infra] Consider files ending with .types.ts as props files (#37533) @mnajdova
+- &#8203;<!-- 18 -->[docs-infra] Fix skip to content design (#38304) @oliviertassinari
+- &#8203;<!-- 17 -->[docs-infra] Add a general round of polish to the API content display (#38282) @danilo-leal
+- &#8203;<!-- 16 -->[docs-infra] Make the side nav collapse animation snappier (#38259) @danilo-leal
+- &#8203;<!-- 15 -->[docs-infra] New Component API design followup (#38183) @cherniavskii
+- &#8203;<!-- 06 -->[test] Remove unnecessary `async` keyword from test (#38373) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @alisasanib, @cherniavskii, @DanailH, @danilo-leal, @iownthegame, @michaldudak, @mj12albert, @mnajdova, @noraleonte, @oliviertassinari, @richbustos, @sai6855, @samuelsycamore, @siriwatknp, @VishruthR, @yash-thakur, @zanivan, @ZeeshanTamboli
+
 ## 5.14.3
 
 <!-- generated comparing v5.14.2..master -->
