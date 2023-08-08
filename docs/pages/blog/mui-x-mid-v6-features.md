@@ -106,7 +106,8 @@ We always strive to ensure that MUI X remains performant and efficient, particul
 
 We are delighted to announce the upcoming expansion of MUI X: a brand-new suite of components for building and customizing charts.
 
-With MUI X Charts, you can choose from a wide range of chart types, including line charts, bar charts, pie charts, area charts, scatter plots, and more. Each chart type is thoughtfully crafted with attention to detail, ensuring that the visual representations are not only aesthetically pleasing but also highly effective in conveying complex data.
+With MUI X Charts, you can choose from a wide range of chart types, including line charts, bar charts, pie charts, area charts, scatter plots, and more. 
+Each chart type is thoughtfully crafted with attention to detail, ensuring that the visual representations are not only aesthetically pleasing, but also highly effective in conveying complex data.
 
 And it ships with a couple of rad palettes, specially crafted by our designers!
 
