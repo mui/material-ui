@@ -567,7 +567,7 @@ const Root = styled('div')(
         '&.MuiCallout-info': {
           color: `var(--muidocs-palette-primary-50, ${darkTheme.palette.primary[50]})`,
           backgroundColor: alpha(darkTheme.palette.grey[700], 0.2),
-          borderColor: `var(--muidocs-palette-primary-800, ${darkTheme.palette.grey[800]})`,
+          borderColor: `var(--muidocs-palette-grey-800, ${darkTheme.palette.grey[800]})`,
           '& strong': {
             color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
           },
