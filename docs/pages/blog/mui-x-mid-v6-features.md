@@ -19,9 +19,9 @@ Now that we've reached [MUI X v6.11.x](https://github.com/mui/mui-x/releases), 
   - [Support for time zones](#support-for-time-zones)
   - [Digital clock](#digital-clock)
 - [Data Grid](#data-grid)
-  - [Copy and Paste](#copy-and-paste)
+  - [Copy and paste](#copy-and-paste)
   - [Filter on column headers](#filter-on-column-headers)
-  - [Performance Enhancements: Smoother Scrolling and Expanding Rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
+  - [Performance enhancements: smoother scrolling and expanding rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
 - [Charts - alpha version 🎁](#charts---alpha-version-)
 - [What's next](#whats-next)
 - [Feedback](#feedback)
@@ -66,27 +66,28 @@ Check out all the possibilities in the [Date Pickers—Digital clock documentati
 
 ## Data Grid
 
-### Copy and Paste[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+### Copy and paste[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
 
-After setting the prop `experimentalFeatures={{ clipboardPaste: true }}` you can copy and paste data directly from and to your Data Grid.
+After setting the `experimentalFeatures={{ clipboardPaste: true }}` prop, you can copy and paste data directly to and from your Data Grid.
 
-This new feature is extremely versatile, and you can exchange data from other fields, other grids, and even directly from and to the spreadsheet tool of your choice.
+This new feature is extremely versatile, and you can exchange data from other fields, other grids, and even directly to and from the spreadsheet tool of your choice.
 
 <video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline controls>
   <source src="/static/blog/mui-x-mid-v6-features/copy_paste.mov" type="video/mp4">
 </video>
 
 This feature is integrated with the editing API, so pasted data can be persisted using the `processRowUpdate` prop to update your data source through your usual editing validation process.
-Furthermore, the callbacks `clipboardPasteStart` and `clipboardPasteEnd` are fired during the clipboard paste operation, which can be useful for extra customizations around the event.
+The callbacks `clipboardPasteStart` and `clipboardPasteEnd` are fired during the clipboard paste operation, which can be useful for extra customizations around the event.
 
-For more details on how to use clipboard copy and paste, check out the [feature's page](https://mui.com/x/react-data-grid/clipboard/).
+For more details on how to use clipboard copy and paste, check out the [Data Grid—Clipboard documentation](https://mui.com/x/react-data-grid/clipboard/).
 
 ### Filter on column headers[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
-This feature allows users to quickly filter the data without needing any additional menu and can be activated using the `unstable_headerFilters` prop.
+Filtering on column headers gives users the ability to quickly filter data without any additional menu.
+Use the the `unstable_headerFilters` prop to activate this feature.
 
-The new filter fields are displayed below the headers and are synchronized with the filter panel, but for those seeking more simplicity, disable the default filter panel using `disableColumnFilter` prop and set filters to use only the default operator.
-You can also customize the header filter cell for a specific column using the `renderHeaderFilter` method of `GridColDef`.
+The new filter fields are displayed below the headers, and are synchronized with the filter panel.
+If you prefer more simplicity, you can disable the default filter panel using the `disableColumnFilter` prop, and set filters to use only the default operator.
 
 <video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline controls>
   <source src="/static/blog/mui-x-mid-v6-features/header_filter.mp4" type="video/mp4">
@@ -94,7 +95,7 @@ You can also customize the header filter cell for a specific column using the `r
 
 For more details on how to use and customize the filters, check out its [documentation page](https://mui.com/x/react-data-grid/filtering/header-filters/).
 
-### Performance Enhancements: Smoother Scrolling and Expanding Rows
+### Performance enhancements: smoother scrolling and expanding rows
 
 The Data Grid received significant performance improvements in MUI X v6, particularly concerning the data grid's scrolling efficiency and the expansion of children's rows.
 
