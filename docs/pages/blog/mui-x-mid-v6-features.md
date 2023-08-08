@@ -19,9 +19,9 @@ Now that we've reached [MUI X v6.11.x](https://github.com/mui/mui-x/releases), 
   - [Support for time zones](#support-for-time-zones)
   - [Digital clock](#digital-clock)
 - [Data Grid](#data-grid)
-  - [Copy and paste](#copy-and-paste)
+  - [Copy and Paste](#copy-and-paste)
   - [Filter on column headers](#filter-on-column-headers)
-  - [Performance enhancements: smoother scrolling and expanding rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
+  - [Performance Enhancements: Smoother Scrolling and Expanding Rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
 - [Charts - alpha version 🎁](#charts---alpha-version-)
 - [What's next](#whats-next)
 - [Feedback](#feedback)
@@ -30,15 +30,15 @@ Now that we've reached [MUI X v6.11.x](https://github.com/mui/mui-x/releases), 
 
 ### Support for time zones
 
-No more hassle displaying dates on the time zones of your choice. 🌎
+No more hassle displaying dates in the time zones of your choice. 🌎
 
-You can effortlessly display and select dates and times in different time zones, without worrying about the conversion logic and keeping the stored value consistent with your backend.
+You can effortlessly display and select dates and times in different time zones, without worrying about conversion logic or maintaining consistency with your backend.
 
 <video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop controls>
   <source src="/static/blog/mui-x-mid-v6-features/timezone.mp4" type="video/mp4">
 </video>
 
-Use adapters to control the original value and set the `timezone` prop to define in which timezone the Date, Time, or DateTime should be displayed.
+Use adapters to control the original value and set the `timezone` prop to define which time zone the Date, Time, or DateTime should be displayed in.
 
 ```tsx
 <TimePicker
@@ -49,18 +49,20 @@ Use adapters to control the original value and set the `timezone` prop to define
 />
 ```
 
-Please check the [full instructions](https://mui.com/x/react-date-pickers/timezone/) for more information on using this feature in your application.
+Check the [full instructions](https://mui.com/x/react-date-pickers/timezone/) for more information on using this feature in your application.
 
 ### Digital clock
 
-This feature is an alternative to the analog clock on time pickers; the original proposal was mainly focused on mobile devices, whereas the new interface is designed for a desktop experience or better time precision.
-This new addition makes our date pickers even more versatile and user-friendly and is available as the default variant for desktops on both [TimePicker](https://mui.com/x/react-date-pickers/time-picker/) and [DateTimePicker](https://mui.com/x/react-date-pickers/date-time-picker/).
+The digital clock is an alternative to the Time Pickers' analog clock.
+The original proposal was mainly focused on mobile devices, whereas the new interface is designed for a desktop experience for better time precision.
+This new addition makes our Date Pickers even more versatile and user-friendly than before.
+It's available as the default variant for desktops on both the [Time Picker](https://mui.com/x/react-date-pickers/time-picker/) and the [Date Time Picker](https://mui.com/x/react-date-pickers/date-time-picker/).
 
 <video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop controls>
   <source src="/static/blog/mui-x-mid-v6-features/timepicker.mp4" type="video/mp4">
 </video>
 
-Check out all the possibilities in [documentation](https://mui.com/x/react-date-pickers/digital-clock/), and let us know your thoughts!
+Check out all the possibilities in the [Date Pickers—Digital clock documentation](https://mui.com/x/react-date-pickers/digital-clock/), and let us know your thoughts!
 
 ## Data Grid
 
