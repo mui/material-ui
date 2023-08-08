@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { CssVarsProvider, extendTheme, THEME_ID } from '@mui/joy/styles';
 import Head from 'docs/src/modules/components/Head';
 import Divider from '@mui/material/Divider';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
@@ -13,6 +14,8 @@ import JoyUITestimonial from 'docs/src/components/productJoyUI/JoyUITestimonial'
 import JoyUIEnd from 'docs/src/components/productJoyUI/JoyUIEnd';
 import JoyUITemplates from 'docs/src/components/productJoyUI/JoyUITemplates';
 
+const theme = extendTheme();
+
 export default function Core() {
   return (
     <BrandingCssVarsProvider>
@@ -24,21 +27,23 @@ export default function Core() {
       />
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
-      <main id="main-content">
-        <JoyUIHero />
-        <JoyUISummary />
-        <Divider />
-        <JoyUIComponents />
-        <Divider />
-        <JoyUIFeatures />
-        <Divider />
-        <JoyUITemplates />
-        <Divider />
-        <JoyUITestimonial />
-        <Divider />
-        <JoyUIEnd />
-        <Divider />
-      </main>
+      <CssVarsProvider theme={{ [THEME_ID]: theme }}>
+        <main id="main-content">
+          <JoyUIHero />
+          <JoyUISummary />
+          <Divider />
+          <JoyUIComponents />
+          <Divider />
+          <JoyUIFeatures />
+          <Divider />
+          <JoyUITemplates />
+          <Divider />
+          <JoyUITestimonial />
+          <Divider />
+          <JoyUIEnd />
+          <Divider />
+        </main>
+      </CssVarsProvider>
       <AppFooter />
     </BrandingCssVarsProvider>
   );

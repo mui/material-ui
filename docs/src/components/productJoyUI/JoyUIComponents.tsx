@@ -14,6 +14,7 @@ import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
 import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
+import TabsUsage from 'docs/data/joy/components/tabs/TabsUsage';
 
 const DEMOS = ['Tabs', 'Radio', 'Menu', 'Input', 'Select', 'Slider', 'Button', 'Alert'] as const;
 
@@ -32,7 +33,7 @@ export default function JoyUIComponents() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid md={5} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
             <SectionHeadline
               overline="Components"
@@ -53,22 +54,8 @@ export default function JoyUIComponents() {
             <More disableStartIcon />
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
-          <Frame sx={{ height: '100%' }}>
-            <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
-              Demo
-            </Frame.Demo>
-            <Frame.Info
-              sx={{
-                minHeight: 200,
-                position: 'relative',
-                overflow: 'hidden',
-                pt: 5,
-              }}
-            >
-              {/* <SliderUsage /> */}
-            </Frame.Info>
-          </Frame>
+        <Grid xs={12} md={7}>
+          <TabsUsage />
         </Grid>
       </Grid>
     </Section>
