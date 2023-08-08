@@ -42,6 +42,14 @@ export interface ModalDialogTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     invertedColors?: boolean;
     /**
+     * The maximum width of the component.
+     */
+    maxWidth?: number | string;
+    /**
+     * The minimum width of the component.
+     */
+    minWidth?: number | string;
+    /**
      * The layout of the dialog
      * @default 'center'
      */

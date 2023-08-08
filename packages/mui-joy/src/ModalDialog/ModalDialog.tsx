@@ -39,13 +39,15 @@ const ModalDialogRoot = styled(StyledCardRoot, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalDialogOwnerState }>(({ theme, ownerState }) => ({
+  '--ModalDialog-minWidth': ownerState.minWidth,
+  '--ModalDialog-maxWidth': ownerState.maxWidth,
   '--ModalClose-radius':
     'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
   ...(ownerState.size === 'sm' && {
     '--Card-padding': '0.625rem',
     '--ModalDialog-titleOffset': theme.spacing(0.25),
     '--ModalDialog-descriptionOffset': theme.spacing(0.25),
-    '--ModalClose-inset': theme.spacing(1.25),
+    '--ModalClose-inset': theme.spacing(1),
   }),
   ...(ownerState.size === 'md' && {
     '--ModalDialog-titleOffset': theme.spacing(0.25),
@@ -121,6 +123,8 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     variant = 'outlined',
     size = 'md',
     layout = 'center',
+    maxWidth = '425px',
+    minWidth = '300px',
     slots = {},
     slotProps = {},
     ...other
@@ -132,6 +136,8 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     ...props,
     color,
     component,
+    maxWidth,
+    minWidth,
     layout,
     size,
     variant,
