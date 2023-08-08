@@ -25,6 +25,10 @@ import Typography from '@mui/joy/Typography';
 
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import SearchIcon from '@mui/icons-material/Search';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
+import BlockIcon from '@mui/icons-material/Block';
+import RotateRightIcon from '@mui/icons-material/RotateRight';
 
 const rows = [
   {
@@ -279,24 +283,26 @@ export default function OrderTable() {
         className="OrderTableContainer"
         variant="outlined"
         sx={{
-          width: '100%',
-          borderRadius: 'md',
+          // width: '100%',
+          borderRadius: 'sm',
           flex: 1,
           overflow: 'auto',
-          minHeight: 0,
+          // minHeight: 0,
         }}
       >
         <Table
           aria-labelledby="tableTitle"
+          size="md"
           stickyHeader
           hoverRow
           sx={{
-            '--TableCell-headBackground': (theme) =>
-              theme.vars.palette.background.level1,
-            '--Table-headerUnderlineThickness': '1px',
-            '--TableRow-hoverBackground': (theme) =>
-              theme.vars.palette.background.level1,
-            '--TableCell-paddingY': '12px',
+            //   '--TableCell-headBackground': (theme) =>
+            //     theme.vars.palette.background.level1,
+            //   '--Table-headerUnderlineThickness': '1px',
+            //   '--TableRow-hoverBackground': (theme) =>
+            //     theme.vars.palette.background.level1,
+            '--TableCell-paddingY': '8px',
+            '--TableCell-paddingX': '12px',
           }}
         >
           <thead>
@@ -327,7 +333,7 @@ export default function OrderTable() {
                   component="button"
                   onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
                   fontWeight="lg"
-                  endDecorator={<i data-feather="arrow-down" />}
+                  endDecorator={<ArrowDropDownIcon />}
                   sx={{
                     '& svg': {
                       transition: '0.2s',
@@ -349,7 +355,7 @@ export default function OrderTable() {
           <tbody>
             {stableSort(rows, getComparator(order, 'id')).map((row) => (
               <tr key={row.id}>
-                <td style={{ textAlign: 'center' }}>
+                <td style={{ textAlign: 'center', width: 120 }}>
                   <Checkbox
                     checked={selected.includes(row.id)}
                     color={selected.includes(row.id) ? 'primary' : undefined}
@@ -365,7 +371,7 @@ export default function OrderTable() {
                   />
                 </td>
                 <td>
-                  <Typography fontWeight="md">{row.id}</Typography>
+                  <Typography level="body-sm">{row.id}</Typography>
                 </td>
                 <td>{row.date}</td>
                 <td>
@@ -374,9 +380,9 @@ export default function OrderTable() {
                     size="sm"
                     startDecorator={
                       {
-                        Paid: <i data-feather="check" />,
-                        Refunded: <i data-feather="corner-up-left" />,
-                        Cancelled: <i data-feather="x" />,
+                        Paid: <DoneAllIcon />,
+                        Refunded: <RotateRightIcon />,
+                        Cancelled: <BlockIcon />,
                       }[row.status]
                     }
                     color={
@@ -394,17 +400,8 @@ export default function OrderTable() {
                   <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                     <Avatar size="sm">{row.customer.initial}</Avatar>
                     <div>
-                      <Typography
-                        fontWeight="lg"
-                        level="body-xs"
-                        textColor="text.primary"
-                        lineHeight="md"
-                      >
-                        {row.customer.name}
-                      </Typography>
-                      <Typography level="body-xs" lineHeight="md">
-                        {row.customer.email}
-                      </Typography>
+                      <Typography level="title-sm">{row.customer.name}</Typography>
+                      <Typography level="body-sm">{row.customer.email}</Typography>
                     </div>
                   </Box>
                 </td>
