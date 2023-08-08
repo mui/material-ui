@@ -13,12 +13,23 @@ import SecondSidebar from './components/SecondSidebar';
 import OrderTable from './components/OrderTable';
 import Header from './components/Header';
 import ColorSchemeToggle from './components/ColorSchemeToggle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
+//icon
+import HomeIcon from '@mui/icons-material/Home';
+import DownloadIcon from '@mui/icons-material/Download';
+import DescriptionIcon from '@mui/icons-material/Description';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 export default function JoyOrderDashboardTemplate() {
+  const theme = useTheme();
   const status = useScript(`https://unpkg.com/feather-icons`);
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const buttonSize = isSmallScreen ? 'md' : 'sm';
 
   useEnhancedEffect(() => {
     // Feather icon setup: https://github.com/feathericons/feather#4-replace
@@ -31,17 +42,6 @@ export default function JoyOrderDashboardTemplate() {
 
   return (
     <CssVarsProvider disableTransitionOnChange>
-      <GlobalStyles
-        styles={(theme) => ({
-          '[data-feather], .feather': {
-            color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
-            margin: 'var(--Icon-margin)',
-            fontSize: `var(--Icon-fontSize, ${theme.vars.fontSize.xl})`,
-            width: '1em',
-            height: '1em',
-          },
-        })}
-      />
       <CssBaseline />
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
         <Header />
@@ -74,18 +74,7 @@ export default function JoyOrderDashboardTemplate() {
           })}
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Breadcrumbs
-              size="sm"
-              aria-label="breadcrumbs"
-              separator={<i data-feather="chevron-right" />}
-              sx={{
-                '--Breadcrumbs-gap': '1rem',
-                '--Icon-fontSize': '16px',
-                fontWeight: 'lg',
-                color: 'neutral.400',
-                px: 0,
-              }}
-            >
+            <Breadcrumbs size="sm" aria-label="breadcrumbs" separator="/ ">
               <Link
                 underline="none"
                 color="neutral"
@@ -93,7 +82,7 @@ export default function JoyOrderDashboardTemplate() {
                 href="#some-link"
                 aria-label="Home"
               >
-                <i data-feather="home" />
+                {<HomeIcon />}
               </Link>
               <Link
                 underline="hover"
@@ -132,14 +121,16 @@ export default function JoyOrderDashboardTemplate() {
               <Button
                 variant="outlined"
                 color="neutral"
-                startDecorator={<i data-feather="download-cloud" />}
+                startDecorator={<DownloadIcon />}
+                size={buttonSize}
               >
                 Download PDF
               </Button>
               <Button
                 variant="outlined"
                 color="neutral"
-                startDecorator={<i data-feather="table" />}
+                startDecorator={<DescriptionIcon />}
+                size={buttonSize}
               >
                 Download CSV
               </Button>

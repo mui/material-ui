@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { ColorPaletteProp } from '@mui/joy/styles';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -20,6 +22,9 @@ import Sheet from '@mui/joy/Sheet';
 import Checkbox from '@mui/joy/Checkbox';
 import IconButton, { iconButtonClasses } from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
+
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import SearchIcon from '@mui/icons-material/Search';
 
 const rows = [
   {
@@ -164,15 +169,18 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 }
 
 export default function OrderTable() {
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const buttonSize = mobile ? 'md' : 'sm';
   const [order, setOrder] = React.useState<Order>('desc');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [open, setOpen] = React.useState(false);
   const renderFilters = () => (
     <React.Fragment>
-      <FormControl size="sm">
+      <FormControl size={buttonSize}>
         <FormLabel>Status</FormLabel>
         <Select
-          size="md"
+          size={buttonSize}
           placeholder="Filter by status"
           slotProps={{ button: { sx: { whiteSpace: 'nowrap' } } }}
         >
@@ -183,16 +191,16 @@ export default function OrderTable() {
         </Select>
       </FormControl>
 
-      <FormControl size="sm">
+      <FormControl size={buttonSize}>
         <FormLabel>Category</FormLabel>
-        <Select size="md" placeholder="All">
+        <Select size={buttonSize} placeholder="All">
           <Option value="all">All</Option>
         </Select>
       </FormControl>
 
-      <FormControl size="sm">
+      <FormControl size={buttonSize}>
         <FormLabel>Customer</FormLabel>
-        <Select size="md" placeholder="All">
+        <Select size={buttonSize} placeholder="All">
           <Option value="all">All</Option>
         </Select>
       </FormControl>
@@ -212,18 +220,18 @@ export default function OrderTable() {
         }}
       >
         <Input
-          size="md"
+          size={buttonSize}
           placeholder="Search"
-          startDecorator={<i data-feather="search" />}
+          startDecorator={<SearchIcon />}
           sx={{ flexGrow: 1 }}
         />
         <IconButton
-          size="sm"
+          size={buttonSize}
           variant="outlined"
           color="neutral"
           onClick={() => setOpen(true)}
         >
-          <i data-feather="filter" />
+          <FilterAltIcon />
         </IconButton>
         <Modal open={open} onClose={() => setOpen(false)}>
           <ModalDialog aria-labelledby="filter-modal" layout="fullscreen">
@@ -262,11 +270,7 @@ export default function OrderTable() {
       >
         <FormControl sx={{ flex: 1 }} size="sm">
           <FormLabel>Search for order</FormLabel>
-          <Input
-            size="md"
-            placeholder="Search"
-            startDecorator={<i data-feather="search" />}
-          />
+          <Input size="sm" placeholder="Search" startDecorator={<SearchIcon />} />
         </FormControl>
 
         {renderFilters()}
