@@ -7,7 +7,6 @@ import { ThemeProvider } from '@emotion/react';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
-import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material/InputBase';
 import { createTheme } from '@mui/material/styles';
 
@@ -536,33 +535,6 @@ describe('<InputBase />', () => {
           );
         }).not.toErrorDev();
       });
-
-      it('should not warn when toggling between inputs', () => {
-        // this will ensure that deregistering was called during unmount
-        function ToggleFormInputs() {
-          const [flag, setFlag] = React.useState(true);
-
-          return (
-            <FormControl>
-              {flag ? (
-                <InputBase />
-              ) : (
-                <Select native>
-                  <option value="">empty</option>
-                </Select>
-              )}
-              <button type="button" onClick={() => setFlag(!flag)}>
-                toggle
-              </button>
-            </FormControl>
-          );
-        }
-
-        const { getByText } = render(<ToggleFormInputs />);
-        expect(() => {
-          fireEvent.click(getByText('toggle'));
-        }).not.toErrorDev();
-      });
     });
   });
 
@@ -653,23 +625,6 @@ describe('<InputBase />', () => {
       );
 
       expect(getByTestId('adornment')).not.to.equal(null);
-    });
-
-    it('should allow a Select as an adornment', () => {
-      render(
-        <TextField
-          value=""
-          name="text"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <Select value="" name="suffix" />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
-        />,
-      );
     });
   });
 
