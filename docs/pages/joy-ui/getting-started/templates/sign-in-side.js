@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import SignInSideTemplate from 'docs/data/joy/getting-started/templates/sign-in-side/App';
+import SignInSideTemplate from 'docs/data/joy/getting-started/templates/mui/sign-in-side/App';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 
 export default function SignInSide() {
