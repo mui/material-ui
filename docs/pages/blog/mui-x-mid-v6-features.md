@@ -97,7 +97,7 @@ For more details on how to use and customize the filters, check out its [documen
 
 ### Performance enhancements: smoother scrolling and expanding rows
 
-The Data Grid received significant performance improvements in MUI X v6, particularly concerning the data grid's scrolling efficiency and the expansion of children's rows.
+The Data Grid received significant performance improvements in MUI X v6, particularly concerning its scrolling efficiency and the expansion of child rows.
 
 These performance upgrades are part of our ongoing commitment to provide end-users with a superior experience.
 We always strive to ensure that MUI X remains performant and efficient, particularly when dealing with large and complex data.
