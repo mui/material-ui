@@ -107,7 +107,7 @@ With MUI X Charts, you can choose from a wide range of chart types, including li
 
 And it ships with a couple of rad palettes, specially crafted by our designers!
 
-Checkout a video highlighting some of our Charts!
+Check out the video below, highlighting some of our Charts:
 
 <video preload="metadata" autoplay muted loop playsinline controls>
   <source src="/static/blog/mui-x-mid-v6-features/charts_final_v1.mov" type="video/mp4">
