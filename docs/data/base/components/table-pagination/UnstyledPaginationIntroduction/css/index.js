@@ -161,7 +161,7 @@ function Styles() {
       }
 
       .CustomTablePagination .${classes.actions} {
-        padding: 2px;
+        padding: 2px 6px;
         border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
         border-radius: 50px;
         text-align: center;

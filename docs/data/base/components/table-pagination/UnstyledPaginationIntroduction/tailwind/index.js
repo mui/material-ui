@@ -32,7 +32,7 @@ export default function UnstyledPaginationIntroduction() {
     >
       <table
         aria-label="custom pagination table"
-        className="text-sm [&>th]:p-4 [&>td]:p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md w-full"
+        className="text-sm [&>th]:p-4 [&>td]:p-4 border border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-xl shadow-md w-full"
       >
         <tfoot>
           <tr>
