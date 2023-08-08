@@ -10,7 +10,7 @@ import {
   unstable_useId as useId,
 } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogOwnerState, ModalDialogTypeMap } from './ModalDialogProps';
 import ModalDialogSizeContext from './ModalDialogSizeContext';
@@ -114,6 +114,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
   const {
     className,
     children,
+    invertedColors = false,
     orientation = 'vertical',
     color: colorProp = 'neutral',
     component = 'div',
@@ -161,7 +162,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     },
   });
 
-  return (
+  const result = (
     <ModalDialogSizeContext.Provider value={size}>
       <ModalDialogVariantColorContext.Provider value={contextValue}>
         <SlotRoot {...rootProps}>
@@ -197,6 +198,10 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
       </ModalDialogVariantColorContext.Provider>
     </ModalDialogSizeContext.Provider>
   );
+  if (invertedColors) {
+    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
+  }
+  return result;
 }) as OverridableComponent<ModalDialogTypeMap>;
 
 ModalDialog.propTypes /* remove-proptypes */ = {

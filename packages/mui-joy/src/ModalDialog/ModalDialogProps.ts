@@ -37,6 +37,11 @@ export interface ModalDialogTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     color?: OverridableStringUnion<ColorPaletteProp, ModalDialogPropsColorOverrides>;
     /**
+     * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+     * @default false
+     */
+    invertedColors?: boolean;
+    /**
      * The layout of the dialog
      * @default 'center'
      */
