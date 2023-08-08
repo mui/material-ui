@@ -54,8 +54,8 @@ ${prependLinesSpace(code, 2)}
           <Modal open={open} onClose={() => setOpen(false)}>
             <ModalDialog {...props}>
               <ModalClose />
-              <DialogTitle sx={{ color: 'inherit' }}>Modal title</DialogTitle>
-              <DialogContent sx={{ color: 'inherit' }}>
+              <DialogTitle>Modal title</DialogTitle>
+              <DialogContent>
                 A description of the dialog should give primary message or purpose of
                 the dialog.
               </DialogContent>

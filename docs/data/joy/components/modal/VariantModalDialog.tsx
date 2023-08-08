@@ -54,10 +54,8 @@ export default function VariantModalDialog() {
       <Modal open={!!variant} onClose={() => setVariant(undefined)}>
         <ModalDialog variant={variant}>
           <ModalClose />
-          <DialogTitle sx={{ color: 'inherit' }}>Modal Dialog</DialogTitle>
-          <DialogContent sx={{ color: 'inherit' }}>
-            This is a `{variant}` modal dialog.
-          </DialogContent>
+          <DialogTitle>Modal Dialog</DialogTitle>
+          <DialogContent>This is a `{variant}` modal dialog.</DialogContent>
         </ModalDialog>
       </Modal>
     </React.Fragment>
