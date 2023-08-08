@@ -6,68 +6,24 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getCardActionsUtilityClass } from './cardActionsClasses';
-import { CardActionsProps, CardActionsOwnerState, CardActionsTypeMap } from './CardActionsProps';
+import { getDialogActionsUtilityClass } from './dialogActionsClasses';
+import { DialogActionsProps, DialogActionsTypeMap } from './DialogActionsProps';
 import useSlot from '../utils/useSlot';
-import buttonClasses from '../Button/buttonClasses';
-import iconButtonClasses from '../IconButton/iconButtonClasses';
-import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
-import dividerClasses from '../Divider/dividerClasses';
+import { StyledCardActionsRoot } from '../CardActions/CardActions';
 
 const useUtilityClasses = () => {
   const slots = {
     root: ['root'],
   };
 
-  return composeClasses(slots, getCardActionsUtilityClass, {});
+  return composeClasses(slots, getDialogActionsUtilityClass, {});
 };
 
-export const StyledCardActionsRoot = styled('div')<{ ownerState: CardActionsOwnerState }>(
-  ({ ownerState }) => {
-    return {
-      '--Button-radius': 'var(--Card-childRadius)',
-      '--IconButton-radius': 'var(--Card-childRadius)',
-      display: 'flex',
-      ...(ownerState.orientation?.startsWith('horizontal') && {
-        alignItems: 'center', // it is common to have children aligned center in horizontal orientation, but not vertically.
-      }),
-      flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-      ...(ownerState.orientation === 'horizontal-reverse' && {
-        flexDirection: 'row-reverse',
-      }),
-      zIndex: 1, // render above Link's overlay
-      gap: 'calc(0.625 * var(--Card-padding))',
-      padding: 'var(--unstable_padding)',
-      '--unstable_padding': 'calc(0.75 * var(--Card-padding)) 0 0 0',
-      [`.${cardOverflowClasses.root} > &`]: {
-        '--unstable_padding': 'calc(0.75 * var(--Card-padding)) 0 var(--Card-padding)',
-      },
-      [`.${dividerClasses.root} + &`]: {
-        '--unstable_padding': '0',
-      },
-      ...(ownerState.buttonFlex
-        ? {
-            [`& > :not(.${iconButtonClasses.root})`]: {
-              flex: ownerState.buttonFlex,
-            },
-            [`& > :not(button) > .${buttonClasses.root}`]: {
-              width: '100%', // for button to fill its wrapper.
-            },
-          }
-        : {
-            [`& > .${buttonClasses.root}:only-child`]: {
-              flex: 'auto',
-            },
-          }),
-    };
-  },
-);
-
-const CardActionsRoot = styled(StyledCardActionsRoot, {
-  name: 'JoyCardActions',
+const DialogActionsRoot = styled(StyledCardActionsRoot, {
+  name: 'JoyDialogActions',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardActionsOwnerState }>({});
+})<{ ownerState: DialogActionsProps }>({});
 /**
  *
  * Demos:
@@ -76,12 +32,12 @@ const CardActionsRoot = styled(StyledCardActionsRoot, {
  *
  * API:
  *
- * - [CardActions API](https://mui.com/joy-ui/api/card-actions/)
+ * - [DialogActions API](https://mui.com/joy-ui/api/card-actions/)
  */
-const CardActions = React.forwardRef(function CardActions(inProps, ref) {
-  const props = useThemeProps<typeof inProps & CardActionsProps>({
+const DialogActions = React.forwardRef(function DialogActions(inProps, ref) {
+  const props = useThemeProps<typeof inProps & DialogActionsProps>({
     props: inProps,
-    name: 'JoyCardActions',
+    name: 'JoyDialogActions',
   });
 
   const {
@@ -89,7 +45,7 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
     component = 'div',
     children,
     buttonFlex,
-    orientation = 'horizontal',
+    orientation = 'horizontal-reverse',
     slots = {},
     slotProps = {},
     ...other
@@ -108,15 +64,15 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
-    elementType: CardActionsRoot,
+    elementType: DialogActionsRoot,
     externalForwardedProps,
     ownerState,
   });
 
   return <SlotRoot {...rootProps}>{children}</SlotRoot>;
-}) as OverridableComponent<CardActionsTypeMap>;
+}) as OverridableComponent<DialogActionsTypeMap>;
 
-CardActions.propTypes /* remove-proptypes */ = {
+DialogActions.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -126,7 +82,7 @@ CardActions.propTypes /* remove-proptypes */ = {
    */
   buttonFlex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * Used to render icon or text elements inside the CardActions if `src` is not set.
+   * Used to render icon or text elements inside the DialogActions if `src` is not set.
    * This can be an element, or just a string.
    */
   children: PropTypes.node,
@@ -168,4 +124,4 @@ CardActions.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default CardActions;
+export default DialogActions;
