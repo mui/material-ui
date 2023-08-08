@@ -283,11 +283,11 @@ export default function OrderTable() {
         className="OrderTableContainer"
         variant="outlined"
         sx={{
-          // width: '100%',
+          width: '100%',
           borderRadius: 'sm',
-          flex: 1,
+          flexShrink: 1,
           overflow: 'auto',
-          // minHeight: 0,
+          minHeight: 0,
         }}
       >
         <Table
@@ -301,7 +301,7 @@ export default function OrderTable() {
             //   '--Table-headerUnderlineThickness': '1px',
             //   '--TableRow-hoverBackground': (theme) =>
             //     theme.vars.palette.background.level1,
-            '--TableCell-paddingY': '8px',
+            '--TableCell-paddingY': '12px',
             '--TableCell-paddingX': '12px',
           }}
         >

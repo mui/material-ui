@@ -26,10 +26,10 @@ const useEnhancedEffect =
 
 export default function JoyOrderDashboardTemplate() {
   const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
   const status = useScript(`https://unpkg.com/feather-icons`);
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const buttonSize = isSmallScreen ? 'md' : 'sm';
+  const buttonSize = mobile ? 'md' : 'sm';
 
   useEnhancedEffect(() => {
     // Feather icon setup: https://github.com/feathericons/feather#4-replace
