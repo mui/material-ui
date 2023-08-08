@@ -4,9 +4,9 @@
 
 <!-- generated comparing v5.14.3..master -->
 
-_Aug 7, 2023_
+_Aug 8, 2023_
 
-A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🎉 Added [Number input](https://mui.com/base-ui/react-number-input) component & [useNumber](https://mui.com/base-ui/react-number-input#hook) hook in [Base UI](https://mui.com/base-ui/getting-started/) @mj12albert
 
@@ -78,6 +78,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 07 -->[examples][material-ui] Add Material UI + Next.js (App Router) example in JS (#38323) @samuelsycamore
 - &#8203;<!-- 27 -->[blog] Discord announcement blog (#38258) @richbustos
 - &#8203;<!-- 26 -->[blog] Fix 301 links to Toolpad @oliviertassinari
+- &#8203;<!-- 04 -->[website] Updating Charts demo with real charts usage for MUI X marketing page (#38317) @richbustos
 - &#8203;<!-- 03 -->[website] Adjust styles of the Product section on the homepage (#38366) @danilo-leal
 - &#8203;<!-- 02 -->[website] Add Nora teamMember card to 'About' (#38358) @noraleonte
 - &#8203;<!-- 01 -->[website] Fix image layout shift (#38326) @oliviertassinari
@@ -87,13 +88,15 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 24 -->[core] Fix docs demo export function consistency (#38191) @oliviertassinari
 - &#8203;<!-- 23 -->[core] Fix the link-check script on Windows (#38276) @michaldudak
 - &#8203;<!-- 26 -->[core] Use @testing-library/user-event direct API (#38325) @mj12albert
+- &#8203;<!-- 29 -->[core] Port GitHub workflow for ensuring triage label is present (#38312) @DanailH
 - &#8203;<!-- 19 -->[docs-infra] Consider files ending with .types.ts as props files (#37533) @mnajdova
 - &#8203;<!-- 18 -->[docs-infra] Fix skip to content design (#38304) @oliviertassinari
 - &#8203;<!-- 17 -->[docs-infra] Add a general round of polish to the API content display (#38282) @danilo-leal
 - &#8203;<!-- 16 -->[docs-infra] Make the side nav collapse animation snappier (#38259) @danilo-leal
 - &#8203;<!-- 15 -->[docs-infra] New Component API design followup (#38183) @cherniavskii
+- &#8203;<!-- 06 -->[test] Remove unnecessary `async` keyword from test (#38373) @ZeeshanTamboli
 
-All contributors of this release in alphabetical order: @alisasanib, @cherniavskii, @danilo-leal, @iownthegame, @michaldudak, @mj12albert, @mnajdova, @noraleonte, @oliviertassinari, @richbustos, @sai6855, @samuelsycamore, @siriwatknp, @VishruthR, @yash-thakur, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @alisasanib, @cherniavskii, @DanailH, @danilo-leal, @iownthegame, @michaldudak, @mj12albert, @mnajdova, @noraleonte, @oliviertassinari, @richbustos, @sai6855, @samuelsycamore, @siriwatknp, @VishruthR, @yash-thakur, @zanivan, @ZeeshanTamboli
 
 ## 5.14.3
 
