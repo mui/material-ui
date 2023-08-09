@@ -7,6 +7,7 @@ import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
 import useThemeProps from '../styles/useThemeProps';
+import capitalize from '../utils/capitalize';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
@@ -18,7 +19,7 @@ const useUtilityClasses = (ownerState) => {
       formControl && 'formControl',
       !disableAnimation && 'animated',
       shrink && 'shrink',
-      size === 'small' && 'sizeSmall',
+      size && `size${capitalize(size)}`,
       variant,
     ],
     asterisk: [required && 'asterisk'],
