@@ -9,12 +9,13 @@ export default function AccordionStylingExpansion() {
     <AccordionGroup
       sx={{
         maxWidth: 400,
+        borderRadius: 'md',
         [`& .${accordionClasses.root}.${accordionClasses.expanded}`]: {
           mb: 1,
           bgcolor: 'background.level1',
+          borderRadius: 'lg',
         },
         '& [aria-expanded="true"]': {
-          color: 'primary.500',
           boxShadow: (theme) => `inset 0 -1px 0 ${theme.vars.palette.divider}`,
           '&:hover': {
             bgcolor: 'transparent',
