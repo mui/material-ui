@@ -43,6 +43,10 @@
     }
   },
   "name": "ModalClose",
+  "imports": [
+    "import ModalClose from '@mui/joy/ModalClose';",
+    "import { ModalClose } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

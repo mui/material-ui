@@ -44,6 +44,10 @@
     }
   },
   "name": "AvatarGroup",
+  "imports": [
+    "import AvatarGroup from '@mui/joy/AvatarGroup';",
+    "import { AvatarGroup } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

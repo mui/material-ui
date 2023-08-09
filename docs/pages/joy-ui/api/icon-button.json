@@ -51,6 +51,10 @@
     }
   },
   "name": "IconButton",
+  "imports": [
+    "import IconButton from '@mui/joy/IconButton';",
+    "import { IconButton } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

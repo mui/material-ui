@@ -54,6 +54,7 @@
     }
   },
   "name": "Chip",
+  "imports": ["import Chip from '@mui/joy/Chip';", "import { Chip } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

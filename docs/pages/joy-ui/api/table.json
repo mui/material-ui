@@ -61,6 +61,7 @@
     }
   },
   "name": "Table",
+  "imports": ["import Table from '@mui/joy/Table';", "import { Table } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

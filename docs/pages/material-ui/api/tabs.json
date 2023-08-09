@@ -73,6 +73,7 @@
     "visibleScrollbar": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Tabs",
+  "imports": ["import Tabs from '@mui/material/Tabs';", "import { Tabs } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

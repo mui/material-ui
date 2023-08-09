@@ -27,6 +27,7 @@
     }
   },
   "name": "Table",
+  "imports": ["import Table from '@mui/material/Table';", "import { Table } from '@mui/material';"],
   "styles": { "classes": ["root", "stickyHeader"], "globalClasses": {}, "name": "MuiTable" },
   "spread": true,
   "themeDefaultProps": true,

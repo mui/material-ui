@@ -13,6 +13,10 @@
     }
   },
   "name": "SnackbarContent",
+  "imports": [
+    "import SnackbarContent from '@mui/material/SnackbarContent';",
+    "import { SnackbarContent } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "message", "action"],
     "globalClasses": {},

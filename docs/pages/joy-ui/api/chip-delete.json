@@ -38,6 +38,10 @@
     }
   },
   "name": "ChipDelete",
+  "imports": [
+    "import ChipDelete from '@mui/joy/ChipDelete';",
+    "import { ChipDelete } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

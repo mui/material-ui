@@ -12,6 +12,10 @@
     }
   },
   "name": "TableHead",
+  "imports": [
+    "import TableHead from '@mui/material/TableHead';",
+    "import { TableHead } from '@mui/material';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableHead" },
   "spread": true,
   "themeDefaultProps": true,

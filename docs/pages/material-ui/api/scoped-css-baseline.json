@@ -13,6 +13,10 @@
     }
   },
   "name": "ScopedCssBaseline",
+  "imports": [
+    "import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';",
+    "import { ScopedCssBaseline } from '@mui/material';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiScopedCssBaseline" },
   "spread": true,
   "themeDefaultProps": true,

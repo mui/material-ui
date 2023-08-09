@@ -14,6 +14,7 @@
     }
   },
   "name": "Option",
+  "imports": ["import { Option } from '@mui/base/Option';", "import { Option } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

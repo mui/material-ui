@@ -17,6 +17,10 @@
     }
   },
   "name": "ListItemText",
+  "imports": [
+    "import ListItemText from '@mui/material/ListItemText';",
+    "import { ListItemText } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "multiline", "dense", "inset", "primary", "secondary"],
     "globalClasses": {},

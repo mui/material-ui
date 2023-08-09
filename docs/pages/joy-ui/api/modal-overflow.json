@@ -9,6 +9,10 @@
     }
   },
   "name": "ModalOverflow",
+  "imports": [
+    "import ModalOverflow from '@mui/joy/ModalOverflow';",
+    "import { ModalOverflow } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
