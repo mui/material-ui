@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { ColorPaletteProp } from '@mui/joy/styles';
-
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -324,7 +323,7 @@ export default function OrderTable() {
     </React.Fragment>
   );
   return (
-    <React.Fragment>
+    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
       <Sheet
         className="SearchAndFilters-mobile"
         sx={{
@@ -597,6 +596,6 @@ export default function OrderTable() {
           Next
         </Button>
       </Box>
-    </React.Fragment>
+    </Box>
   );
 }

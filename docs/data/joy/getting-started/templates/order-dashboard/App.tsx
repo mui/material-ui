@@ -18,6 +18,7 @@ import useScript from './useScript';
 import FirstSidebar from './components/FirstSidebar';
 import SecondSidebar from './components/SecondSidebar';
 import OrderTable from './components/OrderTable';
+import OrderList from './components/OrderList';
 import Header from './components/Header';
 import ColorSchemeToggle from './components/ColorSchemeToggle';
 
@@ -48,7 +49,10 @@ export default function JoyOrderDashboardTemplate() {
         <FirstSidebar />
         <Divider orientation="vertical" />
         <SecondSidebar />
-        <Divider orientation="vertical" />
+        <Divider
+          orientation="vertical"
+          sx={{ display: { xs: 'none', sm: 'block' } }}
+        />
         <Box
           component="main"
           className="MainContent"
@@ -110,16 +114,18 @@ export default function JoyOrderDashboardTemplate() {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              mt: 1,
+              my: 1,
               gap: 1,
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: { xs: 'start', sm: 'auto' },
               flexWrap: 'wrap',
               justifyContent: 'space-between',
-              '& > *': {
-                minWidth: 'clamp(0px, (500px - 100%) * 999, 100%)',
-              },
+              // '& > *': {
+              //   minWidth: 'clamp(0px, (500px - 100%) * 999, 100%)',
+              // },
             }}
           >
-            <Typography level="h1">Orders</Typography>
+            <Typography level="h2">Orders</Typography>
             <Button
               color="primary"
               startDecorator={<DownloadRoundedIcon />}
@@ -129,6 +135,7 @@ export default function JoyOrderDashboardTemplate() {
             </Button>
           </Box>
           <OrderTable />
+          <OrderList />
         </Box>
       </Box>
     </CssVarsProvider>
