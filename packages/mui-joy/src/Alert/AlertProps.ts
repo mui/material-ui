@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AlertSlot = 'root' | 'startDecorator' | 'endDecorator';
@@ -49,11 +49,6 @@ export interface AlertTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       endDecorator?: React.ReactNode;
       /**
-       * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
-       * @default false
-       */
-      invertedColors?: boolean;
-      /**
        * The ARIA role attribute of the element.
        * @default 'alert'
        */
@@ -85,4 +80,4 @@ export type AlertProps<
   P = { component?: React.ElementType },
 > = OverrideProps<AlertTypeMap<P, D>, D>;
 
-export interface AlertOwnerState extends ApplyColorInversion<AlertProps> {}
+export interface AlertOwnerState extends AlertProps {}

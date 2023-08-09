@@ -15,8 +15,6 @@ export interface AspectRatioClasses {
   colorSuccess: string;
   /** Class name applied to the content element if `color="warning"`. */
   colorWarning: string;
-  /** Class name applied to the root element when color inversion is triggered. */
-  colorContext: string;
   /** Class name applied to the content element if `variant="plain"`. */
   variantPlain: string;
   /** Class name applied to the content element if `variant="outlined"`. */
@@ -41,7 +39,6 @@ const aspectRatioClasses: AspectRatioClasses = generateUtilityClasses('MuiAspect
   'colorDanger',
   'colorSuccess',
   'colorWarning',
-  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

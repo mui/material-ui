@@ -178,6 +178,6 @@ export interface ColorSystem {
 
 export type ApplyColorInversion<T extends { color?: ColorPaletteProp | 'inherit' }> = Simplify<
   Omit<T, 'color'> & {
-    color: T['color'] | 'context';
+    color: T['color'];
   }
 >;
