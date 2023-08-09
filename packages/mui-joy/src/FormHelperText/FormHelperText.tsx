@@ -38,7 +38,7 @@ const FormHelperTextRoot = styled('div', {
     '--FormHelperText-margin': '0px', // remove the margin if the helper text is next to the form label.
   },
   [`.${formControlClasses.error} &`]: {
-       '--Icon-color': 'currentColor',
+    '--Icon-color': 'currentColor',
   },
 }));
 /**
