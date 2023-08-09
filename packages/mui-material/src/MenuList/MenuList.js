@@ -287,7 +287,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
 MenuList.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * If `true`, will focus the `[role="menu"]` container and move into tab order.

@@ -339,7 +339,7 @@ const Popper = React.forwardRef(function Popper<RootComponentType extends React.
 Popper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),

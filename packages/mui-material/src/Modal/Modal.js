@@ -157,7 +157,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 Modal.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * A backdrop component. This prop enables custom backdrop rendering.

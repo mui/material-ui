@@ -20,10 +20,10 @@
     "url": "https://opencollective.com/mui"
   },
   "scripts": {
-    "build": "mkdir build && yarn build:copy-files",
+    "build": "mkdir build && pnpm build:copy-files",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build"
+    "release": "pnpm build && npm publish build"
   },
   "publishConfig": {
     "access": "public"

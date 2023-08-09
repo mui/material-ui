@@ -52,7 +52,7 @@ async function run(argv) {
     args.push(`--grep '${argv.testNamePattern}'`);
   }
 
-  const mochaProcess = childProcess.spawn('yarn', args, {
+  const mochaProcess = childProcess.spawn('pnpm', args, {
     env: {
       ...process.env,
       BABEL_ENV: 'test',

@@ -96,7 +96,7 @@ const Badge = React.forwardRef(function Badge<RootComponentType extends React.El
 Badge.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The content rendered within the badge.

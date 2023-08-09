@@ -101,7 +101,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
 Menu.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * A ref with imperative actions that can be performed on the menu.

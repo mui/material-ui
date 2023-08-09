@@ -97,7 +97,7 @@ const SliderRoot = styled('span', {
 SliderRoot.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * @ignore
@@ -137,7 +137,7 @@ const SliderRail = styled('span', {
 SliderRail.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * @ignore
@@ -191,7 +191,7 @@ const SliderTrack = styled('span', {
 SliderTrack.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * @ignore
@@ -287,7 +287,7 @@ const SliderThumb = styled('span', {
 SliderThumb.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * @ignore
@@ -363,7 +363,7 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
 StyledSliderValueLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * @ignore
@@ -405,7 +405,7 @@ const SliderMark = styled('span', {
 SliderMark.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * @ignore
@@ -447,7 +447,7 @@ const SliderMarkLabel = styled('span', {
 SliderMarkLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * @ignore
@@ -795,7 +795,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
 Slider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * The label of the slider.

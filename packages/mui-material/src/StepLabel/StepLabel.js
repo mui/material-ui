@@ -193,7 +193,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
 StepLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * In most cases will simply be a string containing a title for the label.

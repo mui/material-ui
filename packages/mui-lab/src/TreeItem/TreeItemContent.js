@@ -72,7 +72,7 @@ const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
 TreeItemContent.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * Override or extend the styles applied to the component.

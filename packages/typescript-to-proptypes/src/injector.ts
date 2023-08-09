@@ -197,7 +197,7 @@ function plugin(
 
     // `Component.propTypes` already exists
     if (originalPropTypesPath !== null) {
-      originalPropTypesPath.replaceWith(babel.template.ast(placeholder) as babelTypes.Statement);
+      originalPropTypesPath.replaceWith(babel.template.ast(placeholder) as babel.Node);
     } else if (!emptyPropTypes && babelTypes.isExportNamedDeclaration(path.parent)) {
       // in:
       // export function Component() {}

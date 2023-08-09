@@ -214,7 +214,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 LinearProgress.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * @ignore

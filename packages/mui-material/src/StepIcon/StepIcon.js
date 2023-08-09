@@ -116,7 +116,7 @@ const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
 StepIcon.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * Whether this step is active.

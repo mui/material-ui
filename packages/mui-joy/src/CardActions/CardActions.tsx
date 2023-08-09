@@ -115,7 +115,7 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
 CardActions.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The CSS `flex` for the Button and its wrapper.

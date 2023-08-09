@@ -143,7 +143,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
 SvgIcon.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * Node passed into the SVG element.

@@ -202,7 +202,7 @@ if (require.main === module) {
 
   parseDocFolder(path.join(docsSpaceRoot, './pages/'), availableLinks, usedLinks);
 
-  write('Broken links found by `yarn docs:link-check` that exist:\n');
+  write('Broken links found by `pnpm docs:link-check` that exist:\n');
   Object.keys(usedLinks)
     .filter((link) => link.startsWith('/'))
     .filter((link) => !availableLinks[link])

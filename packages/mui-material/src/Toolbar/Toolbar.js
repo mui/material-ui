@@ -78,7 +78,7 @@ const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {
 Toolbar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * The Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.

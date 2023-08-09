@@ -28,9 +28,9 @@
     "url": "https://opencollective.com/mui"
   },
   "scripts": {
-    "build": "shx cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
-    "build:lib": "yarn build:node && yarn build:stable",
-    "build:lib:clean": "rimraf lib/ && yarn build:lib",
+    "build": "shx cp -r lib/ build/ && pnpm build:typings && pnpm build:copy-files",
+    "build:lib": "pnpm build:node && pnpm build:stable",
+    "build:lib:clean": "rimraf lib/ && pnpm build:lib",
     "build:legacy": "echo 'Skip legacy build'",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
@@ -38,9 +38,9 @@
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:typings": "node ./scripts/create-typings.mjs",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build",
+    "release": "pnpm build && npm publish build",
     "src:download": "node ./scripts/download.mjs",
-    "src:icons": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-icons --renameFilter ./renameFilters/material-design-icons.mjs && yarn build:lib:clean",
+    "src:icons": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-icons --renameFilter ./renameFilters/material-design-icons.mjs && pnpm build:lib:clean",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-icons-material/**/*.test.{mjs,js,ts,tsx}'",
     "test:built-typings": "tslint -p test/generated-types/tsconfig.json \"test/generated-types/*.{ts,tsx}\"",
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""

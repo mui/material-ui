@@ -159,7 +159,7 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
 CardOverflow.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * Used to render icon or text elements inside the CardOverflow if `src` is not set.

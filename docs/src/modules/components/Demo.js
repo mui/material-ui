@@ -395,7 +395,7 @@ export default function Demo(props) {
       [
         `The following demos use TS directly: ${demoOptions.demo}.`,
         '',
-        'Please run "yarn docs:typescript:formatted" to generate a JS version and reference it:',
+        'Please run "pnpm docs:typescript:formatted" to generate a JS version and reference it:',
         `{{"demo": "${demoOptions.demo.replace(/\.(.*)$/, '.js')}", …}}.`,
         '',
         "Otherwise, if it's not a code demo hide the toolbar:",

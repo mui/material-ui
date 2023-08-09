@@ -93,7 +93,7 @@ const TableRow = React.forwardRef(function TableRow(inProps, ref) {
 TableRow.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * Should be valid <tr> children such as `TableCell`.

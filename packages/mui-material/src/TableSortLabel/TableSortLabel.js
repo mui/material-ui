@@ -127,7 +127,7 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
 TableSortLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * If `true`, the label will have the active styling (should be true for the sorted column).

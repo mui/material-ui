@@ -142,7 +142,7 @@ module.exports = function setKarmaConfig(config) {
               loader: 'babel-loader',
               options: {
                 // We have to apply `babel-plugin-module-resolve` to the files in `@mui/x-date-pickers`.
-                // Otherwise we can't import `@mui/material` from `@mui/x-date-pickers` in `yarn test:karma`.
+                // Otherwise we can't import `@mui/material` from `@mui/x-date-pickers` in `pnpm test:karma`.
                 sourceType: 'unambiguous',
                 plugins: [
                   [

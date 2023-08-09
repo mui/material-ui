@@ -4,5 +4,21 @@
   "private": true,
   "scripts": {
     "typescript": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.1",
+    "@mui/utils": "workspace:*",
+    "@testing-library/dom": "^9.3.1",
+    "@types/chai": "^4.3.5",
+    "@types/prop-types": "^15.7.5",
+    "@types/react": "^18.2.19",
+    "@types/react-dom": "^18.2.7",
+    "chai": "^4.3.7",
+    "playwright": "^1.36.2",
+    "prop-types": "^15.8.1",
+    "react-is": "^18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

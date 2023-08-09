@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn gatsby build && concurrently --success first --kill-others \"yarn gatsby serve\" \"node testGatsbyIntegration\""
+    "start": "pnpm gatsby build && concurrently --success first --kill-others \"pnpm gatsby serve\" \"node testGatsbyIntegration\""
   },
   "dependencies": {
     "@emotion/core": "11.0.0",

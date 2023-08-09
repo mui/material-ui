@@ -215,7 +215,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
 OutlinedInput.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.

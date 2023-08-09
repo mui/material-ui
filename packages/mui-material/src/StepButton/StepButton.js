@@ -91,7 +91,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
 StepButton.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
