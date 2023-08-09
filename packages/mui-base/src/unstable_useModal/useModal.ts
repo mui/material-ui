@@ -169,7 +169,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   ): UseModalRootSlotProps<TOther> => {
     const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseModalParameters>;
 
-    // The custom event handlers shouldn't be spreaded on the root element
+    // The custom event handlers shouldn't be spread on the root element
     delete propsEventHandlers.onTransitionEnter;
     delete propsEventHandlers.onTransitionExited;
 
