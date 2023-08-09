@@ -23,7 +23,7 @@ import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
 export const rootOverridesResolver = (props, styles) => {
   const { ownerState } = props;
-  console.log(styles);
+
   return [
     styles.root,
     ownerState.formControl && styles.formControl,
@@ -41,7 +41,7 @@ export const rootOverridesResolver = (props, styles) => {
 export const inputOverridesResolver = (props, styles) => {
   const { ownerState } = props;
 
-  const a = [
+  return [
     styles.input,
     ownerState.size === 'small' && styles.inputSizeSmall,
     ownerState.multiline && styles.inputMultiline,
@@ -50,8 +50,6 @@ export const inputOverridesResolver = (props, styles) => {
     ownerState.endAdornment && styles.inputAdornedEnd,
     ownerState.hiddenLabel && styles.inputHiddenLabel,
   ];
-  console.log(styles);
-  return a;
 };
 
 const useUtilityClasses = (ownerState) => {
