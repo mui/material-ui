@@ -2,7 +2,7 @@
   "props": {
     "action": { "type": { "name": "node" } },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "closeText": { "type": { "name": "string" }, "default": "'Close'" },
     "color": {
       "type": {
@@ -28,7 +28,13 @@
         "description": "{ error?: node, info?: node, success?: node, warning?: node }"
       }
     },
-    "onClose": { "type": { "name": "func" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "role": { "type": { "name": "string" }, "default": "'alert'" },
     "severity": {
       "type": {
@@ -52,7 +58,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {

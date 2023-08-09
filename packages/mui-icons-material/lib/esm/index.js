@@ -1,3 +1,4 @@
+'use client';
 export { default as Abc } from './Abc';
 export { default as AbcOutlined } from './AbcOutlined';
 export { default as AbcRounded } from './AbcRounded';
@@ -5652,6 +5653,7 @@ export { default as MicOutlined } from './MicOutlined';
 export { default as MicRounded } from './MicRounded';
 export { default as MicSharp } from './MicSharp';
 export { default as MicTwoTone } from './MicTwoTone';
+export { default as Microsoft } from './Microsoft';
 export { default as Microwave } from './Microwave';
 export { default as MicrowaveOutlined } from './MicrowaveOutlined';
 export { default as MicrowaveRounded } from './MicrowaveRounded';

@@ -7,9 +7,9 @@ import {
   describeJoyColorInversion,
   fireEvent,
 } from 'test/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Avatar, { AvatarClassKey, avatarClasses as classes } from '@mui/joy/Avatar';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import PersonIcon from '../internal/svg-icons/Person';
 
 describe('<Avatar />', () => {
@@ -60,7 +60,7 @@ describe('<Avatar />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(<Avatar data-testid="root" color={color} />);
 
@@ -277,5 +277,11 @@ describe('<Avatar />', () => {
 
       expect(avatar).to.have.class(classes.colorNeutral);
     });
+  });
+
+  it('should render first letter of alt when src or srcSet are not available', () => {
+    const { container } = render(<Avatar className="my-avatar" alt="Hello World!" />);
+    const avatar = container.firstChild;
+    expect(avatar).to.have.text('H');
   });
 });

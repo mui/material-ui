@@ -5,7 +5,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Switch from '@mui/joy/Switch';
 
-export default function SwitchLabel() {
+export default function SwitchControl() {
   const [checked, setChecked] = React.useState<boolean>(false);
   return (
     <FormControl
@@ -22,7 +22,7 @@ export default function SwitchLabel() {
           setChecked(event.target.checked)
         }
         color={checked ? 'success' : 'neutral'}
-        variant="outlined"
+        variant={checked ? 'solid' : 'outlined'}
         endDecorator={checked ? 'On' : 'Off'}
         slotProps={{
           endDecorator: {

@@ -13,7 +13,7 @@ This section assumes that you've already installed Joy UI in your app—see [Ins
 
 #### yarn
 
-```sh
+```bash
 yarn add @mui/icons-material @mui/material
 ```
 
@@ -39,7 +39,7 @@ You can keep track of the progress in [this issue](https://github.com/mui/materi
 
 #### npm
 
-```sh
+```bash
 npm install @mui/icons-material @mui/material
 ```
 
@@ -205,7 +205,7 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
 ### Lucide
 
 - [Browse icons](https://icon-sets.iconify.design/)
-- [Installation—React](https://lucide.dev/docs/lucide-react)
+- [Installation—React](https://lucide.dev/guide/packages/lucide-react)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-lucide-sy7hio?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
      style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"

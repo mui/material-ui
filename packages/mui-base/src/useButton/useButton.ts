@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import {
   unstable_useForkRef as useForkRef,
@@ -8,20 +9,20 @@ import {
   UseButtonReturnValue,
   UseButtonRootSlotProps,
 } from './useButton.types';
-import extractEventHandlers from '../utils/extractEventHandlers';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 /**
  *
  * Demos:
  *
- * - [Button](https://mui.com/base/react-button/#hook)
+ * - [Button](https://mui.com/base-ui/react-button/#hook)
  *
  * API:
  *
- * - [useButton API](https://mui.com/base/react-button/hooks-api/#use-button)
+ * - [useButton API](https://mui.com/base-ui/react-button/hooks-api/#use-button)
  */
-export default function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
+export function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
   const {
     disabled = false,
     focusableWhenDisabled,

@@ -124,7 +124,7 @@ function getUsedProps(
   return usedProps;
 }
 
-function flattenTsAsExpression(node: object | null | undefined) {
+function flattenTsAsExpression(node: babel.types.Node | null | undefined) {
   if (babelTypes.isTSAsExpression(node)) {
     return node.expression as babel.Node;
   }

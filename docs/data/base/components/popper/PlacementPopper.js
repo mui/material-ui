@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Popper from '@mui/base/Popper';
+import { Popper } from '@mui/base/Popper';
 
 function Radio({ value, ...props }) {
   return (
@@ -102,7 +102,6 @@ PlacementForm.propTypes = {
 export default function PlacementPopper() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [placement, setPlacement] = React.useState(undefined);
-
   return (
     <div style={{ width: '100%' }}>
       <PlacementForm setPlacement={setPlacement} />

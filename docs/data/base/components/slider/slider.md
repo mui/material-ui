@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: React Slider component and hook
 components: Slider
 hooks: useSlider
@@ -28,10 +28,10 @@ Sliders are ideal for interface controls that benefit from a visual representati
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Slider from '@mui/base/Slider';
+import { Slider } from '@mui/base/Slider';
 
 export default function MyApp() {
   return <Slider />;
@@ -43,7 +43,7 @@ export default function MyApp() {
 The following demo shows how to create and style two basic sliders.
 Notice that both are set to a default value of 10 with the `defaultValue` prop, and the second slider cannot be adjusted due to the `disabled` prop:
 
-{{"demo": "UnstyledSlider.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledSliderBasic", "defaultCodeOpen": false}}
 
 ### Anatomy
 
@@ -108,7 +108,7 @@ Use the `slots` prop to override the root or any other interior slot:
 
 :::info
 The `slots` prop is available on all non-utility Base components.
-See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.
@@ -135,7 +135,7 @@ The same applies for props specific to custom primitive elements:
 ## Hook
 
 ```js
-import useSlider from '@mui/base/useSlider';
+import { useSlider } from '@mui/base/useSlider';
 ```
 
 The `useSlider` hook lets you apply the functionality of a slider to a fully custom component.
@@ -151,6 +151,14 @@ You may not need to use hooks unless you find that you're limited by the customi
 :::
 
 ## Customization
+
+### Vertical
+
+Slider components can be arranged vertically as well as horizontally.
+
+When vertical, you must set `orientation="vertical"` on the `<Slider />` component so the user can navigate with the up and down arrow keys (rather than the default left-to-right behavior for horizontal sliders).
+
+{{"demo": "VerticalSlider.js"}}
 
 ### Discrete sliders
 

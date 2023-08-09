@@ -34,6 +34,7 @@ module.exports = {
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
+    'eslint-plugin-filenames',
   ],
   settings: {
     'import/resolver': {
@@ -200,6 +201,7 @@ module.exports = {
     'react/no-invalid-html-attribute': 'off',
 
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
+    'lines-around-directive': 'off',
   },
   overrides: [
     {
@@ -274,6 +276,7 @@ module.exports = {
         ],
       },
     },
+    // Next.js entry points pages
     {
       files: ['docs/pages/**/*.js'],
       rules: {
@@ -282,12 +285,7 @@ module.exports = {
     },
     // demos
     {
-      files: [
-        'docs/src/pages/**/*.js',
-        'docs/src/pages/**/*.tsx',
-        'docs/data/**/*.js',
-        'docs/data/**/*.tsx',
-      ],
+      files: ['docs/src/pages/**/*{.tsx,.js}', 'docs/data/**/*{.tsx,.js}'],
       rules: {
         // This most often reports data that is defined after the component definition.
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
@@ -295,6 +293,18 @@ module.exports = {
         'react/prop-types': 'off',
         'no-alert': 'off',
         'no-console': 'off',
+      },
+    },
+    {
+      files: ['docs/data/**/*{.tsx,.js}'],
+      excludedFiles: [
+        'docs/data/joy/getting-started/templates/**/*.tsx',
+        'docs/data/**/css/*{.tsx,.js}',
+        'docs/data/**/system/*{.tsx,.js}',
+        'docs/data/**/tailwind/*{.tsx,.js}',
+      ],
+      rules: {
+        'filenames/match-exported': ['error'],
       },
     },
     {
@@ -444,6 +454,13 @@ module.exports = {
       files: ['scripts/**/*.mjs', 'packages/**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
+      },
+    },
+    {
+      files: ['packages/mui-base/src/**/**{.ts,.tsx}'],
+      rules: {
+        'import/no-default-export': 'error',
+        'import/prefer-default-export': 'off',
       },
     },
   ],

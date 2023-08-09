@@ -1,9 +1,9 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Select component
 components: Select, Option
 githubLabel: 'component: select'
-unstyled: /base/react-select/
+unstyled: /base-ui/react-select/
 ---
 
 # Select

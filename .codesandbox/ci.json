@@ -1,7 +1,7 @@
 {
   "buildCommand": "build:codesandbox",
   "installCommand": "install:codesandbox",
-  "node": "14",
+  "node": "18",
   "packages": [
     "packages/mui-material",
     "packages/mui-codemod",
@@ -36,10 +36,10 @@
   },
   "sandboxes": [
     "material-ui-issue-latest-s2dsx",
-    "/examples/material-cra",
-    "/examples/material-cra-ts",
-    "/examples/joy-cra-ts",
-    "/examples/base-cra-ts"
+    "/examples/material-ui-cra",
+    "/examples/material-ui-cra-ts",
+    "/examples/joy-ui-cra-ts",
+    "/examples/base-ui-cra-ts"
   ],
   "silent": true
 }

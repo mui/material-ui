@@ -1,6 +1,6 @@
 # Style library interoperability
 
-<p class="description">While you can use the Emotion-based styling solution provided by Material UI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
+<p class="description">While you can use the Emotion-based styling solution provided by Material UI, you can also use the one you already know, from plain CSS to styled-components.</p>
 
 This guide aims to document the most popular alternatives,
 but you should find that the principles applied here can be adapted to other libraries.
@@ -294,8 +294,8 @@ however, you would like to use `styled-components`, you can configure your app b
 
 <!-- #default-branch-switch -->
 
-- [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components)
-- [Create React App with styled-components and typescript](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts)
+- [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
+- [Create React App with styled-components and typescript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
 
 Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 
@@ -612,7 +612,7 @@ It works exactly like styled components. You can [use the same guide](/material-
 
 ### Setup
 
-If you are used to Tailwind CSS and want to use it together with the Material UI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-cra-tailwind-ts) example project.
+If you are used to Tailwind CSS and want to use it together with the Material UI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-tailwind-ts) example project.
 If you use a different framework, or already have set up your project, follow these steps:
 
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
@@ -703,6 +703,16 @@ const theme = createTheme({
       },
     },
     MuiPopper: {
+      defaultProps: {
+        container: rootElement,
+      },
+    },
+    MuiDialog: {
+      defaultProps: {
+        container: rootElement,
+      },
+    },
+    MuiModal: {
       defaultProps: {
         container: rootElement,
       },

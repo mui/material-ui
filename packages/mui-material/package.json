@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "5.13.2",
+  "version": "5.14.4",
   "private": false,
   "author": "MUI Team",
   "description": "React components that implement Google's Material Design.",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/material-ui/getting-started/overview/",
+  "homepage": "https://mui.com/material-ui/getting-started/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
@@ -32,7 +32,7 @@
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
-    "build:umd": "cross-env BABEL_ENV=stable rollup -c scripts/rollup.config.js",
+    "build:umd": "cross-env BABEL_ENV=stable rollup -c scripts/rollup.config.mjs",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
@@ -60,14 +60,14 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.21.0",
-    "@mui/base": "5.0.0-beta.2",
-    "@mui/core-downloads-tracker": "^5.13.2",
-    "@mui/system": "^5.13.2",
+    "@babel/runtime": "^7.22.6",
+    "@mui/base": "5.0.0-beta.10",
+    "@mui/core-downloads-tracker": "^5.14.4",
+    "@mui/system": "^5.14.4",
     "@mui/types": "^7.2.4",
-    "@mui/utils": "^5.13.1",
+    "@mui/utils": "^5.14.4",
     "@types/react-transition-group": "^4.4.6",
-    "clsx": "^1.2.1",
+    "clsx": "^2.0.0",
     "csstype": "^3.1.2",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0",

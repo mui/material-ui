@@ -7,9 +7,9 @@ import {
   describeJoyColorInversion,
   fireEvent,
 } from 'test/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Chip, { ChipClassKey, chipClasses as classes } from '@mui/joy/Chip';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<Chip />', () => {
   const { render } = createRenderer();
@@ -27,7 +27,7 @@ describe('<Chip />', () => {
       refInstanceof: window.HTMLDivElement,
       testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
       testComponentPropWith: 'span',
-      testVariantProps: { variant: 'soft' },
+      testVariantProps: { variant: 'solid' },
       testCustomVariant: true,
       slots: {
         root: { expectedClassName: classes.root },
@@ -69,10 +69,10 @@ describe('<Chip />', () => {
     it('contained by default', () => {
       const { getByTestId } = render(<Chip data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.variantSolid);
+      expect(getByTestId('root')).to.have.class(classes.variantSoft);
     });
 
-    (['outlined', 'soft', 'solid'] as const).forEach((variant) => {
+    (['outlined', 'plain', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(<Chip data-testid="root" variant={variant} />);
 
@@ -87,10 +87,10 @@ describe('<Chip />', () => {
     it('adds a primary class by default', () => {
       const { getByTestId } = render(<Chip data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.colorPrimary);
+      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(<Chip data-testid="root" color={color} />);
 

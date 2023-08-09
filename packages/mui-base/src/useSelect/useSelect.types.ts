@@ -3,7 +3,7 @@ import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
 import { EventHandlers } from '../utils/types';
 import { SelectProviderValue } from './SelectProvider';
-import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
+import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 export type SelectChangeEventType =
   | React.MouseEvent<Element, MouseEvent>
@@ -20,6 +20,14 @@ export interface SelectOptionDefinition<Value> {
 }
 
 export interface UseSelectParameters<OptionValue, Multiple extends boolean = false> {
+  /**
+   * A function used to determine if two options' values are equal.
+   * By default, reference equality is used.
+   *
+   * There is a performance impact when using the `areOptionsEqual` prop (proportional to the number of options).
+   * Therefore, it's recommented to use the default reference equality comparison whenever possible.
+   */
+  areOptionsEqual?: (a: OptionValue, b: OptionValue) => boolean;
   /**
    * If `true`, the select will be open by default.
    * @default false
@@ -101,7 +109,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
 }
 
 interface UseSelectButtonSlotEventHandlers {
-  onClick: MuiCancellableEventHandler<React.MouseEvent>;
+  onMouseDown: MuiCancellableEventHandler<React.MouseEvent>;
 }
 
 export type UseSelectButtonSlotProps<TOther = {}> = UseListRootSlotProps<

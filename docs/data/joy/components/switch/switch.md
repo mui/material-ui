@@ -1,9 +1,9 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Switch component
 components: Switch
 githubLabel: 'component: switch'
-unstyled: /base/react-switch/
+unstyled: /base-ui/react-switch/
 ---
 
 # Switch
@@ -35,6 +35,14 @@ export default function MyApp() {
 ### Controlled
 
 To create a controlled switch, use the `checked` and `onChange` props.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 {{"demo": "SwitchControlled.js"}}
 
@@ -111,7 +119,7 @@ You can also find the Material Design switch design, out of the box, in [Materia
 
 {{"demo": "ExampleMaterialSwitch.js"}}
 
-### Fluent
+### Fluent UI
 
 Here's how you'd customize Joy UI's switch to make it look like [Microsoft's Fluent UI](https://developer.microsoft.com/en-us/fluentui#/controls/web/toggle):
 

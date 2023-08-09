@@ -1,8 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import Chip from '@mui/material/Chip';
 import TreeView from '@mui/lab/TreeView';
 import MuiTreeItem, { useTreeItem, TreeItemProps, TreeItemContentProps } from '@mui/lab/TreeItem';
 import Typography from '@mui/material/Typography';
@@ -14,8 +15,8 @@ import PhotoOutlined from '@mui/icons-material/PhotoOutlined';
 import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
-import Frame from 'docs/src/components/action/Frame';
 import Button from '@mui/material/Button';
+import Frame from 'docs/src/components/action/Frame';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps & { lastNestedChild?: boolean },
@@ -286,26 +287,44 @@ export default function XDateRangeDemo() {
           </TreeView>
         </Paper>
       </Frame.Demo>
+
       <Frame.Info data-mui-color-scheme="dark">
         <Box
           sx={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
+            lineHeight: 1,
+            mb: 0.5,
           }}
         >
           <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-            🧪&nbsp;&nbsp;&nbsp;Experiment with the lab version now!
+            Experiment with the Tree View now!
           </Typography>
-          <Button
+          <Chip
             variant="outlined"
-            href="/material-ui/react-tree-view"
-            component="a"
-            sx={{ color: 'primary.300', flexShrink: 0 }}
-          >
-            View more demos
-          </Button>
+            label="Labs"
+            color="primary"
+            size="small"
+            sx={(theme) => ({
+              pb: 0.2,
+              fontWeight: theme.typography.fontWeightSemiBold,
+              color: (theme.vars || theme).palette.primary[300],
+              borderColor: alpha(theme.palette.primary[300], 0.3),
+              background: alpha(theme.palette.primary[800], 0.3),
+            })}
+          />
         </Box>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          Play with the component and let us know what you think!
+        </Typography>
+        <Button
+          variant="outlined"
+          href="/material-ui/react-tree-view"
+          component="a"
+          sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
+        >
+          View the documentation
+        </Button>
       </Frame.Info>
     </Frame>
   );

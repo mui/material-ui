@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
@@ -211,6 +212,13 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   // item and use the first valid item as a fallback
   React.Children.forEach(children, (child, index) => {
     if (!React.isValidElement(child)) {
+      if (activeItemIndex === index) {
+        activeItemIndex += 1;
+        if (activeItemIndex >= children.length) {
+          // there are no focusable items within the list.
+          activeItemIndex = -1;
+        }
+      }
       return;
     }
 
@@ -251,6 +259,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       if (autoFocusItem) {
         newChildProps.autoFocus = true;
       }
+
       if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
         newChildProps.tabIndex = 0;
       }

@@ -8,7 +8,6 @@ import Typography from '@mui/joy/Typography';
 
 export default function SizeModalDialog() {
   const [size, setSize] = React.useState(undefined);
-
   return (
     <React.Fragment>
       <Stack direction="row" alignItems="center" spacing={1}>
@@ -44,10 +43,10 @@ export default function SizeModalDialog() {
           size={size}
         >
           <ModalClose />
-          <Typography id="size-modal-title" component="h2">
+          <Typography id="size-modal-title" level="h2">
             Modal Dialog
           </Typography>
-          <Typography id="size-modal-description" level="inherit">
+          <Typography id="size-modal-description">
             This is a `{size}` modal dialog.
           </Typography>
         </ModalDialog>

@@ -5079,7 +5079,6 @@ Here are some highlights ✨:
   https://mui.com/lab/breadcrumbs
 - 📝 AppBar and Textfield demos in TypeScript (#13229) @eps1lon
 - 📝 Prepare support for 5 new documentation languages
-  https://translate.mui.com/project/material-ui-docs
 - And many more 🐛 bug fixes and 📝 documentation improvements.
 
 ### `@material-ui/core@v3.9.2`

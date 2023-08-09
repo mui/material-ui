@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import { Slider as BaseSlider } from '@mui/base/Slider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import BaseSlider from '@mui/base/Slider';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
 
 function createTouches(touches) {
@@ -293,6 +293,34 @@ describe('<Slider />', () => {
       expect(slider1.getAttribute('aria-valuenow')).to.equal('31');
       expect(slider2.getAttribute('aria-valuenow')).to.equal('32');
       expect(document.activeElement).to.have.attribute('data-index', '1');
+    });
+
+    it('custom marks with restricted float values should support keyboard', () => {
+      const getMarks = (value) => value.map((val) => ({ value: val, label: val }));
+
+      const { getByRole } = render(<Slider step={null} marks={getMarks([0.5, 30.45, 90.53])} />);
+      const slider = getByRole('slider');
+
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.change(slider, { target: { value: '0.4' } });
+      expect(slider.getAttribute('aria-valuenow')).to.equal('0.5');
+
+      fireEvent.change(slider, { target: { value: '30' } });
+      expect(slider.getAttribute('aria-valuenow')).to.equal('30.45');
+
+      fireEvent.change(slider, { target: { value: '90' } });
+      expect(slider.getAttribute('aria-valuenow')).to.equal('90.53');
+
+      fireEvent.change(slider, { target: { value: '100' } });
+      expect(slider.getAttribute('aria-valuenow')).to.equal('90.53');
+
+      fireEvent.change(slider, { target: { value: '30' } });
+      expect(slider.getAttribute('aria-valuenow')).to.equal('30.45');
+
+      expect(document.activeElement).to.have.attribute('data-index', '0');
     });
 
     it('should focus the slider when dragging', () => {

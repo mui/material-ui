@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -13,7 +14,6 @@ import { ColorInversionProvider, useColorInversion } from '../styles/ColorInvers
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
-import { CardRowContext } from './CardContext';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
@@ -36,55 +36,67 @@ const CardRoot = styled('div', {
   name: 'JoyCard',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => [
-  {
-    // a context variable for any child component
-    '--Card-childRadius':
-      'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
-    // AspectRatio integration
-    '--AspectRatio-radius': 'var(--Card-childRadius)',
-    // Link integration
-    '--unstable_actionMargin': 'calc(-1 * var(--variant-borderWidth, 0px))',
-    // Link, Radio, Checkbox integration
-    '--unstable_actionRadius': resolveSxValue(
-      { theme, ownerState },
-      'borderRadius',
-      'var(--Card-radius)',
-    ),
-    // CardCover integration
-    '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
-    // CardOverflow integration
-    '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
-    '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
-    // Divider integration
-    '--Divider-inset': 'calc(-1 * var(--Card-padding))',
-    ...(ownerState.size === 'sm' && {
-      '--Card-radius': theme.vars.radius.sm,
-      '--Card-padding': '0.5rem',
-    }),
-    ...(ownerState.size === 'md' && {
-      '--Card-radius': theme.vars.radius.md,
-      '--Card-padding': '1rem',
-      fontSize: theme.vars.fontSize.md,
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Card-radius': theme.vars.radius.lg,
-      '--Card-padding': '1.5rem',
-    }),
-    padding: 'var(--Card-padding)',
-    borderRadius: 'var(--Card-radius)',
-    boxShadow: theme.shadow.sm,
-    backgroundColor: theme.vars.palette.background.surface,
-    fontFamily: theme.vars.fontFamily.body,
-    position: 'relative',
-    display: 'flex',
-    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-  },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ownerState.color !== 'context' &&
-    ownerState.invertedColors &&
-    theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
-]);
+})<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => {
+  const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
+    'p',
+    'padding',
+    'borderRadius',
+  ]);
+  return [
+    {
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
+      // a context variable for any child component
+      '--Card-childRadius':
+        'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
+      // AspectRatio integration
+      '--AspectRatio-radius': 'var(--Card-childRadius)',
+      // Link integration
+      '--unstable_actionMargin': 'calc(-1 * var(--variant-borderWidth, 0px))',
+      // Link, Radio, Checkbox integration
+      '--unstable_actionRadius': 'var(--Card-radius)',
+      // CardCover integration
+      '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
+      // CardOverflow integration
+      '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
+      '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
+      // Divider integration
+      '--Divider-inset': 'calc(-1 * var(--Card-padding))',
+      ...(ownerState.size === 'sm' && {
+        '--Card-radius': theme.vars.radius.sm,
+        '--Card-padding': '0.5rem',
+        gap: '0.375rem 0.5rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Card-radius': theme.vars.radius.md,
+        '--Card-padding': '1rem',
+        gap: '0.75rem 1rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Card-radius': theme.vars.radius.lg,
+        '--Card-padding': '1.5rem',
+        gap: '1rem 1.5rem',
+      }),
+      padding: 'var(--Card-padding)',
+      borderRadius: 'var(--Card-radius)',
+      boxShadow: theme.shadow.sm,
+      backgroundColor: theme.vars.palette.background.surface,
+      position: 'relative',
+      display: 'flex',
+      flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+      ...theme.typography[`body-${ownerState.size!}`],
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    },
+    ownerState.color !== 'context' &&
+      ownerState.invertedColors &&
+      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
+    p !== undefined && { '--Card-padding': p },
+    padding !== undefined && { '--Card-padding': padding },
+    borderRadius !== undefined && { '--Card-radius': borderRadius },
+  ];
+});
 
 /**
  *
@@ -139,30 +151,36 @@ const Card = React.forwardRef(function Card(inProps, ref) {
   });
 
   const result = (
-    <CardRowContext.Provider value={orientation === 'horizontal'}>
-      <SlotRoot {...rootProps}>
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement(child)) {
-            return child;
-          }
-          const extraProps: Record<string, any> = {};
-          if (isMuiElement(child, ['Divider'])) {
-            extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+    <SlotRoot {...rootProps}>
+      {React.Children.map(children, (child, index) => {
+        if (!React.isValidElement(child)) {
+          return child;
+        }
+        const extraProps: Record<string, any> = {};
+        if (isMuiElement(child, ['Divider'])) {
+          extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
 
-            const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
-            extraProps.orientation =
-              'orientation' in child.props ? child.props.orientation : dividerOrientation;
+          const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
+          extraProps.orientation =
+            'orientation' in child.props ? child.props.orientation : dividerOrientation;
+        }
+        if (isMuiElement(child, ['CardOverflow'])) {
+          if (orientation === 'horizontal') {
+            extraProps['data-parent'] = 'Card-horizontal';
           }
-          if (index === 0) {
-            extraProps['data-first-child'] = '';
+          if (orientation === 'vertical') {
+            extraProps['data-parent'] = 'Card-vertical';
           }
-          if (index === React.Children.count(children) - 1) {
-            extraProps['data-last-child'] = '';
-          }
-          return React.cloneElement(child, extraProps);
-        })}
-      </SlotRoot>
-    </CardRowContext.Provider>
+        }
+        if (index === 0) {
+          extraProps['data-first-child'] = '';
+        }
+        if (index === React.Children.count(children) - 1) {
+          extraProps['data-last-child'] = '';
+        }
+        return React.cloneElement(child, extraProps);
+      })}
+    </SlotRoot>
   );
 
   if (invertedColors) {
@@ -190,7 +208,7 @@ Card.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

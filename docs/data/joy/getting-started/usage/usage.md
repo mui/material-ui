@@ -48,5 +48,5 @@ It fixes some inconsistencies across browsers and devices while providing resets
 
 ### Default font
 
-Joy UI uses the Public Sans font by default.
-See [Installation—Public Sans font](/joy-ui/getting-started/installation/#public-sans-font) for complete details.
+Joy UI uses the Inter font by default.
+See [Installation—Inter font](/joy-ui/getting-started/installation/#inter-font) for complete details.

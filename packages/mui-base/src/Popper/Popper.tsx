@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import {
   chainPropTypes,
@@ -9,8 +10,8 @@ import {
 } from '@mui/utils';
 import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
 import PropTypes from 'prop-types';
-import composeClasses from '../composeClasses';
-import Portal from '../Portal';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { Portal } from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import {
@@ -238,11 +239,11 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
  *
  * Demos:
  *
- * - [Popper](https://mui.com/base/react-popper/)
+ * - [Popper](https://mui.com/base-ui/react-popper/)
  *
  * API:
  *
- * - [Popper API](https://mui.com/base/react-popper/components-api/#popper)
+ * - [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
  */
 const Popper = React.forwardRef(function Popper<RootComponentType extends React.ElementType>(
   props: PopperProps<RootComponentType>,
@@ -538,4 +539,4 @@ Popper.propTypes /* remove-proptypes */ = {
   transition: PropTypes.bool,
 } as any;
 
-export default Popper;
+export { Popper };

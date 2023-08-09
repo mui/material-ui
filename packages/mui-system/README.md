@@ -8,7 +8,7 @@ Install the package in your project directory with:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 // with npm
 npm install @mui/system @emotion/react @emotion/styled
 
@@ -20,4 +20,4 @@ yarn add @mui/system @emotion/react @emotion/styled
 
 <!-- #default-branch-switch -->
 
-[The documentation](https://mui.com/system/getting-started/overview/)
+[The documentation](https://mui.com/system/getting-started/)

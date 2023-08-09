@@ -2,7 +2,7 @@
   "props": {
     "autoComplete": { "type": { "name": "string" } },
     "autoFocus": { "type": { "name": "bool" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -32,7 +32,13 @@
     "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "multiline": { "type": { "name": "bool" }, "default": "false" },
     "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
@@ -50,7 +56,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "type": { "type": { "name": "string" }, "default": "'text'" },
     "value": { "type": { "name": "any" } }

@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: No SSR React component
 components: NoSsr
 ---
@@ -28,10 +28,10 @@ This component can be useful in a variety of situations:
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import NoSsr from '@mui/base/NoSsr';
+import { NoSsr } from '@mui/base/NoSsr';
 
 export default function MyApp() {
   return <NoSsr>{/* element to be rendered on the client side */}</NoSsr>;

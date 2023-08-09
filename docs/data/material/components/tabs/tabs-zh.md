@@ -1,11 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Tabs（选项卡）组件
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: tabs'
 materialDesign: https://m2.material.io/components/tabs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
-unstyled: /base/react-tabs/
+unstyled: /base-ui/react-tabs/
 ---
 
 # Tabs 选项卡

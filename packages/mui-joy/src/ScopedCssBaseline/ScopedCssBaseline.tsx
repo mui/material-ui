@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -46,11 +47,11 @@ const ScopedCssBaselineRoot = styled('div', {
     // Fix font resize problem in iOS
     WebkitTextSizeAdjust: '100%',
     color: theme.vars.palette.text.primary,
-    ...(theme.typography.body1 as any),
+    ...theme.typography['body-md'],
     backgroundColor: theme.vars.palette.background.body,
     '@media print': {
       // Save printer ink.
-      backgroundColor: theme.vars.palette.common.white,
+      backgroundColor: '#fff',
     },
     '& *, & *::before, & *::after': {
       boxSizing: 'inherit',
