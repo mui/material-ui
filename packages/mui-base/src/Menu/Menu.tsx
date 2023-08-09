@@ -112,6 +112,10 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * Function called when the items displayed in the menu change.
    */
   onItemsChange: PropTypes.func,

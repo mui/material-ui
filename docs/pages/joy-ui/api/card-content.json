@@ -24,6 +24,10 @@
     }
   },
   "name": "CardContent",
+  "imports": [
+    "import CardContent from '@mui/joy/CardContent';",
+    "import { CardContent } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

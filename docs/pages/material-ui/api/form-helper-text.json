@@ -24,6 +24,10 @@
     }
   },
   "name": "FormHelperText",
+  "imports": [
+    "import FormHelperText from '@mui/material/FormHelperText';",
+    "import { FormHelperText } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

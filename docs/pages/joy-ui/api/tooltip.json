@@ -92,6 +92,7 @@
     }
   },
   "name": "Tooltip",
+  "imports": ["import Tooltip from '@mui/joy/Tooltip';", "import { Tooltip } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

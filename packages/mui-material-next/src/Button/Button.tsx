@@ -482,6 +482,26 @@ Button.propTypes /* remove-proptypes */ = {
    */
   startIcon: PropTypes.node,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * @default 0
+   */
+  tabIndex: PropTypes.number,
+  /**
+   * Props applied to the `TouchRipple` element.
+   */
+  TouchRippleProps: PropTypes.object,
+  /**
+   * @ignore
+   */
+  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
+  /**
    * The variant to use.
    * @default 'text'
    */

@@ -28,6 +28,10 @@
     }
   },
   "name": "CardActions",
+  "imports": [
+    "import CardActions from '@mui/joy/CardActions';",
+    "import { CardActions } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

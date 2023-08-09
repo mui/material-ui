@@ -20,6 +20,10 @@
     }
   },
   "name": "ListItemDecorator",
+  "imports": [
+    "import ListItemDecorator from '@mui/joy/ListItemDecorator';",
+    "import { ListItemDecorator } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

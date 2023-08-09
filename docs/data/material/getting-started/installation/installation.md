@@ -2,7 +2,7 @@
 
 <p class="description">Install Material UI, the world's most popular React UI framework.</p>
 
-:::warning
+:::success
 We are currently working on supporting React Server Components in Material UI.
 
 All components and hooks are exported as [Client Components](https://nextjs.org/docs/getting-started/react-essentials#client-components) with the `"use client"` directive.
@@ -51,9 +51,7 @@ pnpm add @mui/material @mui/styled-engine-sc styled-components
 
 </codeblock>
 
-:::warning
 Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more information about how to configure styled-components.
-:::
 
 ## Peer dependencies
 
@@ -70,9 +68,8 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ## Roboto font
 
-Material UI is designed to use the [Roboto](https://fonts.google.com/specimen/Roboto)
-font by default.
-You may add it to your project with npm via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
+Material UI uses the [Roboto](https://fonts.google.com/specimen/Roboto) font by default.
+Add it to your project via Fontsource, or with the Google Fonts CDN.
 
 <codeblock storageKey="package-manager">
 
@@ -105,7 +102,7 @@ Fontsource can be configured to load specific subsets, weights and styles. Mater
 
 ### Google Web Fonts
 
-To install the Roboto font in your project using the Google Web Fonts CDN, add the following code snippet inside your project's `<head />` tag:
+To install Roboto through the Google Web Fonts CDN, add the following code inside your project's <head /> tag:
 
 ```html
 <link
@@ -154,7 +151,7 @@ For instance, via Google Web Fonts:
 ## CDN
 
 You can start using Material UI right away with minimal front-end infrastructure by installing it via CDN, which is a great option for rapid prototyping.
-Follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/material-via-cdn) to get started.
+Follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/material-ui-via-cdn) to get started.
 
 :::error
 We do _not_ recommend using this approach in production.

@@ -49,6 +49,10 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "Switch",
+  "imports": [
+    "import Switch from '@mui/material/Switch';",
+    "import { Switch } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

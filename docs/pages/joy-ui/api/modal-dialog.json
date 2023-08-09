@@ -51,6 +51,10 @@
     }
   },
   "name": "ModalDialog",
+  "imports": [
+    "import ModalDialog from '@mui/joy/ModalDialog';",
+    "import { ModalDialog } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

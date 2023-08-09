@@ -12,6 +12,10 @@
     }
   },
   "name": "TabsList",
+  "imports": [
+    "import { TabsList } from '@mui/base/TabsList';",
+    "import { TabsList } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
