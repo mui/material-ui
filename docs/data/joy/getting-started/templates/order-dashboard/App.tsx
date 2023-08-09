@@ -59,8 +59,8 @@ export default function JoyOrderDashboardTemplate() {
               md: 6,
             },
             pt: {
-              xs: (theme) => `calc(${theme.spacing(2)} + var(--Header-height))`,
-              sm: (theme) => `calc(${theme.spacing(2)} + var(--Header-height))`,
+              xs: 'calc(12px + var(--Header-height))',
+              sm: 'calc(12px + var(--Header-height))',
               md: 3,
             },
             pb: {
