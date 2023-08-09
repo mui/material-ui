@@ -40,6 +40,29 @@ describe('<Radio />', () => {
     });
   });
 
+  describe('prop: size', () => {
+    it('add sizeSmall class to the root element when the size prop equals "small"', () => {
+      const { getByRole } = render(<Radio size="small" />);
+      const radio = getByRole('radio');
+      const root = radio.parentElement;
+      expect(root).to.have.class(classes.sizeSmall);
+    });
+
+    it('add sizeMedium class to the root element when the size prop equals "medium"', () => {
+      const { getByRole } = render(<Radio size="medium" />);
+      const radio = getByRole('radio');
+      const root = radio.parentElement;
+      expect(root).to.have.class(classes.sizeMedium);
+    });
+
+    it('add sizeMedium class to the root element when the size is not explicitly provided', () => {
+      const { getByRole } = render(<Radio />);
+      const radio = getByRole('radio');
+      const root = radio.parentElement;
+      expect(root).to.have.class(classes.sizeMedium);
+    });
+  });
+
   describe('with FormControl', () => {
     describe('enabled', () => {
       it('should not have the disabled class', () => {

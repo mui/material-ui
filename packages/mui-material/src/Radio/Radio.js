@@ -15,10 +15,10 @@ import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, color } = ownerState;
+  const { classes, color, size } = ownerState;
 
   const slots = {
-    root: ['root', `color${capitalize(color)}`],
+    root: ['root', `color${capitalize(color)}`, `size${capitalize(size)}`],
   };
 
   return {
