@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { ColorPaletteProp } from '@mui/joy/styles';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -281,18 +280,15 @@ function RowMenu() {
 }
 
 export default function OrderTable() {
-  const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const buttonSize = mobile ? 'md' : 'sm';
   const [order, setOrder] = React.useState<Order>('desc');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [open, setOpen] = React.useState(false);
   const renderFilters = () => (
     <React.Fragment>
-      <FormControl size={buttonSize}>
+      <FormControl size="sm">
         <FormLabel>Status</FormLabel>
         <Select
-          size={buttonSize}
+          size="sm"
           placeholder="Filter by status"
           slotProps={{ button: { sx: { whiteSpace: 'nowrap' } } }}
         >
@@ -303,9 +299,9 @@ export default function OrderTable() {
         </Select>
       </FormControl>
 
-      <FormControl size={buttonSize}>
+      <FormControl size="sm">
         <FormLabel>Category</FormLabel>
-        <Select size={buttonSize} placeholder="All">
+        <Select size="sm" placeholder="All">
           <Option value="all">All</Option>
           <Option value="refund">Refund</Option>
           <Option value="purchase">Purchase</Option>
@@ -313,9 +309,9 @@ export default function OrderTable() {
         </Select>
       </FormControl>
 
-      <FormControl size={buttonSize}>
+      <FormControl size="sm">
         <FormLabel>Customer</FormLabel>
-        <Select size={buttonSize} placeholder="All">
+        <Select size="sm" placeholder="All">
           <Option value="all">All</Option>
           <Option value="olivia">Olivia Rhye</Option>
           <Option value="steve">Steve Hampton</Option>
@@ -341,13 +337,13 @@ export default function OrderTable() {
         }}
       >
         <Input
-          size={buttonSize}
+          size="sm"
           placeholder="Search"
           startDecorator={<SearchIcon />}
           sx={{ flexGrow: 1 }}
         />
         <IconButton
-          size={buttonSize}
+          size="sm"
           variant="outlined"
           color="neutral"
           onClick={() => setOpen(true)}
