@@ -500,6 +500,25 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [handleClose, open]);
 
+  React.useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    /**
+     * @param {Event} nativeEvent
+     */
+    function handleScroll(nativeEvent) {
+      handleClose(nativeEvent);
+    }
+
+    document.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleClose, open]);
+
   const handleRef = useForkRef(children.ref, focusVisibleRef, setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
