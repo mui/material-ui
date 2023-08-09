@@ -8,12 +8,9 @@ import SvgIcon from '@mui/joy/SvgIcon';
 
 function Copyright() {
   return (
-    <Typography level="body2" color="neutral" align="center">
+    <Typography level="body-md" color="neutral" sx={{ textAlign: 'center' }}>
       {'Copyright © '}
-      <Link href="https://mui.com/" color="neutral">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
+      <Link href="https://mui.com/">Your Website</Link> {new Date().getFullYear()}.
     </Typography>
   );
 }
