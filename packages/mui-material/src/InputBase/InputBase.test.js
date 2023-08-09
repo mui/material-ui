@@ -131,6 +131,22 @@ describe('<InputBase />', () => {
     });
   });
 
+  describe('prop: size', () => {
+    it('add sizeSmall class to the root element when the size prop equals "small"', () => {
+      const { getByRole } = render(<InputBase size="small" />);
+      const input = getByRole('textbox');
+      const root = input.parentElement;
+      expect(root).to.have.class(classes.sizeSmall);
+    });
+
+    it('add sizeMedium class to the root element when the size prop equals "medium"', () => {
+      const { getByRole } = render(<InputBase size="medium" />);
+      const input = getByRole('textbox');
+      const root = input.parentElement;
+      expect(root).to.have.class(classes.sizeMedium);
+    });
+  });
+
   describe('prop: readonly', () => {
     it('should render a readonly <input />', () => {
       const { getByRole } = render(<InputBase readOnly />);

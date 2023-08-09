@@ -132,6 +132,11 @@
       "nodeName": "the input element",
       "conditions": "<code>size=\"small\"</code>"
     },
+    "sizeMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
     "multiline": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
