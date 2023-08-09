@@ -61,10 +61,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const hasTransition = getHasTransition(children);
 
   let ariaHiddenProp = true;
-  if (
-    parameters['aria-hidden'] === 'false' ||
-    (typeof parameters['aria-hidden'] === 'boolean' && !parameters['aria-hidden'])
-  ) {
+  if (parameters['aria-hidden'] === 'false' || parameters['aria-hidden'] === false) {
     ariaHiddenProp = false;
   }
 
