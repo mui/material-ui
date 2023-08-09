@@ -163,6 +163,11 @@
       "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     },
+    "sizeMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
     "thumbColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
