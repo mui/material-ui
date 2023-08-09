@@ -109,34 +109,6 @@ describe('<InputBase />', () => {
       // // check if focus not initiated again
       expect(handleFocus.callCount).to.equal(1);
     });
-
-    // IE11 bug
-    it('should not respond the focus event when disabled', () => {
-      const handleFocus = spy();
-      // non-native input simulating how IE11 treats disabled inputs
-      const { getByRole } = render(
-        <div onFocus={handleFocus}>
-          <InputBase
-            disabled
-            slots={{
-              input: 'div',
-            }}
-            slotProps={{
-              input: {
-                role: 'textbox',
-                tabIndex: -1,
-              },
-            }}
-            onFocus={handleFocus}
-          />
-        </div>,
-      );
-
-      act(() => {
-        getByRole('textbox').focus();
-      });
-      expect(handleFocus.called).to.equal(false);
-    });
   });
 
   describe('prop: readonly', () => {

@@ -346,14 +346,6 @@ const InputBase = React.forwardRef(function InputBase<
   }, [value, checkDirty, isControlled]);
 
   const handleFocus = (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    // Fix a bug with IE11 where the focus/blur events are triggered
-    // while the component is disabled.
-    if (disabledProp) {
-      // `fcs.disabled` or disabled from FormControlContext if integrated
-      event.stopPropagation();
-      return;
-    }
-
     if (onFocus) {
       onFocus(event);
     }
