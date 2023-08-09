@@ -22,6 +22,10 @@ import Sheet from '@mui/joy/Sheet';
 import Checkbox from '@mui/joy/Checkbox';
 import IconButton, { iconButtonClasses } from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
+import Menu from '@mui/joy/Menu';
+import MenuButton from '@mui/joy/MenuButton';
+import MenuItem from '@mui/joy/MenuItem';
+import Dropdown from '@mui/joy/Dropdown';
 // icons
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import SearchIcon from '@mui/icons-material/Search';
@@ -31,6 +35,7 @@ import BlockIcon from '@mui/icons-material/Block';
 import AutorenewRoundedIcon from '@mui/icons-material/AutorenewRounded';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 
 const rows = [
   {
@@ -253,6 +258,26 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
     return a[1] - b[1];
   });
   return stabilizedThis.map((el) => el[0]);
+}
+
+function RowMenu() {
+  return (
+    <Dropdown>
+      <MenuButton
+        slots={{ root: IconButton }}
+        slotProps={{ root: { variant: 'plain', color: 'neutral', size: 'sm' } }}
+      >
+        <MoreHorizRoundedIcon />
+      </MenuButton>
+      <Menu size="sm" sx={{ minWidth: 140 }}>
+        <MenuItem>Edit</MenuItem>
+        <MenuItem>Rename</MenuItem>
+        <MenuItem>Move</MenuItem>
+        <Divider />
+        <MenuItem color="danger">Delete</MenuItem>
+      </Menu>
+    </Dropdown>
+  );
 }
 
 export default function OrderTable() {
@@ -497,12 +522,12 @@ export default function OrderTable() {
                   </Box>
                 </td>
                 <td>
-                  <Link level="body-xs" component="button">
-                    Download
-                  </Link>
-                  <Link level="body-xs" component="button" color="neutral" ml={2}>
-                    Archive
-                  </Link>
+                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                    <Link level="body-xs" component="button">
+                      Download
+                    </Link>
+                    <RowMenu />
+                  </Box>
                 </td>
               </tr>
             ))}
