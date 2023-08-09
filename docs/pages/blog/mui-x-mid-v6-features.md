@@ -20,7 +20,7 @@ Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases), 
   - [Digital clock](#digital-clock)
 - [Data Grid](#data-grid)
   - [Copy and paste](#copy-and-paste)
-  - [Filter on column headers ](#filter-on-column-headers-)
+  - [Filter on column headers](#filter-on-column-headers)
   - [Performance enhancements: smoother scrolling and expanding rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
 - [Charts - alpha version 🎁](#charts---alpha-version-)
 - [What's next](#whats-next)
@@ -81,7 +81,7 @@ The callbacks `clipboardPasteStart` and `clipboardPasteEnd` are fired during the
 
 For more details on how to use clipboard copy and paste, check out the [Data Grid—Clipboard documentation](https://mui.com/x/react-data-grid/clipboard/).
 
-### Filter on column headers [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+### Filter on column headers[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
 Filtering on column headers gives users the ability to quickly filter data without any additional menu.
 Use the the `unstable_headerFilters` prop to activate this feature.
