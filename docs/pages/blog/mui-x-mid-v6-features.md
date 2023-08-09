@@ -22,7 +22,7 @@ Now that we've reached [MUI X v6.11.x](https://github.com/mui/mui-x/releases), 
   - [Copy and paste](#copy-and-paste)
   - [Filter on column headers](#filter-on-column-headers)
   - [Performance enhancements: smoother scrolling and expanding rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
-- [Charts - alpha version 🎁](#charts---alpha-version-)
+- [Charts - alpha version 🎁](#charts-alpha-version)
 - [What's next](#whats-next)
 - [Feedback](#feedback)
 
