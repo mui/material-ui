@@ -12,7 +12,9 @@ import {
 } from '@mui/base';
 import { useInput } from '@mui/base/useInput';
 import {
+  refType,
   unstable_capitalize as capitalize,
+  unstable_useForkRef as useForkRef,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
 // import formControlState from '@mui/material/FormControl/formControlState';
@@ -295,7 +297,9 @@ const InputBase = React.forwardRef(function InputBase<
 
   const { current: isControlled } = React.useRef(value != null);
 
-  const inputRef = React.useRef();
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleInputRef = useForkRef(inputRef, inputRefProp);
 
   // TODO: integrate FormControl
   const muiFormControl = useFormControl();
@@ -457,7 +461,7 @@ const InputBase = React.forwardRef(function InputBase<
     onFocus: handleFocus,
     required,
     value,
-    inputRef: inputRefProp,
+    inputRef: handleInputRef,
   });
 
   const ownerState = {
@@ -614,12 +618,7 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * Pass a ref to the `input` element.
    */
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.any.isRequired,
-    }),
-  ]),
+  inputRef: refType,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
