@@ -323,7 +323,7 @@ export default function OrderTable() {
     </React.Fragment>
   );
   return (
-    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+    <React.Fragment>
       <Sheet
         className="SearchAndFilters-mobile"
         sx={{
@@ -394,6 +394,7 @@ export default function OrderTable() {
         className="OrderTableContainer"
         variant="outlined"
         sx={{
+          display: { xs: 'none', sm: 'initial' },
           width: '100%',
           borderRadius: 'sm',
           flexShrink: 1,
@@ -530,30 +531,6 @@ export default function OrderTable() {
         </Table>
       </Sheet>
       <Box
-        className="Pagination-mobile"
-        sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}
-      >
-        <IconButton
-          aria-label="previous page"
-          variant="outlined"
-          color="neutral"
-          size="sm"
-        >
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        <Typography level="body-sm" mx="auto">
-          Page 1 of 10
-        </Typography>
-        <IconButton
-          aria-label="next page"
-          variant="outlined"
-          color="neutral"
-          size="sm"
-        >
-          <KeyboardArrowRightIcon />
-        </IconButton>
-      </Box>
-      <Box
         className="Pagination-laptopUp"
         sx={{
           pt: 2,
@@ -596,6 +573,6 @@ export default function OrderTable() {
           Next
         </Button>
       </Box>
-    </Box>
+    </React.Fragment>
   );
 }

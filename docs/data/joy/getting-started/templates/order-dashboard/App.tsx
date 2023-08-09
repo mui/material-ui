@@ -113,11 +113,10 @@ export default function JoyOrderDashboardTemplate() {
           <Box
             sx={{
               display: 'flex',
-              alignItems: 'center',
               my: 1,
               gap: 1,
               flexDirection: { xs: 'column', sm: 'row' },
-              alignItems: { xs: 'start', sm: 'auto' },
+              alignItems: { xs: 'start', sm: 'center' },
               flexWrap: 'wrap',
               justifyContent: 'space-between',
               // '& > *': {
