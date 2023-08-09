@@ -19,7 +19,7 @@ import ButtonBase, { buttonBaseClasses as classes } from '@mui/material-next/But
 import { ButtonBaseActions } from './ButtonBase.types';
 import { TouchRippleActions } from './TouchRipple.types';
 
-describe.only('<ButtonBase />', () => {
+describe('<ButtonBase />', () => {
   const { render } = createRenderer();
 
   // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14156632/
