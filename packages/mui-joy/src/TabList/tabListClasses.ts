@@ -1,7 +1,7 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface TabListClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
   /** Classname applied to the root element if `color="primary"`. */
   colorPrimary: string;
@@ -9,13 +9,11 @@ export interface TabListClasses {
   colorNeutral: string;
   /** Classname applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Classname applied to the root element if `color="info"`. */
-  colorInfo: string;
   /** Classname applied to the root element if `color="success"`. */
   colorSuccess: string;
   /** Classname applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element when color inversion is triggered. */
+  /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
   /** Classname applied to the root element if `variant="plain"`. */
   variantPlain: string;
@@ -44,7 +42,6 @@ const tabListClasses: TabListClasses = generateUtilityClasses('MuiTabList', [
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',

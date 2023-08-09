@@ -10,7 +10,7 @@ If you still can't find what you're looking for, you can refer to our [support p
 
 - **口口相传**。 Evangelize MUI by [linking to mui.com](https://mui.com/) on your website, every backlink matters. 在 [Twitter 上关注我们](https://twitter.com/MaterialUI) ，点赞并转发一些重要的新闻。 Follow us on [Twitter](https://twitter.com/MUI_hq), like and retweet the important news. 或者只是与您的朋友谈论我们。
 - **给我们反馈** 。 告诉我们一些做得好的地方或者可以改进的地方。 请给您最希望看到能够解决的问题投票（👍）。
-- **帮助新用户** 。 You can answer questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/mui).
+- **帮助新用户** 。 You can answer questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **做出一些改变吧**。
   - 编辑文档。 每个页面右上角都有一个“编辑此页面”的链接。
   - 通过 [创建一个问题](https://github.com/mui/material-ui/issues/new) 来报告错误或缺少的功能 。
@@ -171,7 +171,7 @@ If you are using webpack, you can change the way it will [resolve](https://webpa
 
 One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
 
-```sh
+```bash
 lerna bootstrap --hoist
 ```
 
@@ -229,7 +229,7 @@ The documentation site is using a custom theme. Hence, the color palette is diff
 
 ## 为什么我看到的颜色和文档这里的颜色大相径庭？
 
-Components like the [Portal](/base/api/portal/#props) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. It seems convenient to simply pass a ref object in those props and let MUI access the current value. This works in a simple scenario:
+Components like the [Portal](/base-ui/api/portal/#props) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. It seems convenient to simply pass a ref object in those props and let MUI access the current value. This works in a simple scenario:
 
 ```jsx
 function App() {

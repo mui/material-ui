@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { BadgeUnstyledTypeMap, ExtendBadgeUnstyledTypeMap } from '@mui/base/BadgeUnstyled';
+import { BadgeTypeMap as BaseBadgeTypeMap, ExtendBadgeTypeMap } from '@mui/base/Badge';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BadgeClasses } from './badgeClasses';
@@ -16,10 +16,10 @@ export interface BadgeOrigin {
 }
 
 export type BadgeTypeMap<
-  D extends React.ElementType = 'span',
-  P = {},
-> = ExtendBadgeUnstyledTypeMap<{
-  props: P & {
+  DefaultComponent extends React.ElementType = 'span',
+  AdditionalProps = {},
+> = ExtendBadgeTypeMap<{
+  props: AdditionalProps & {
     /**
      * The anchor of the badge.
      * @default {
@@ -55,7 +55,7 @@ export type BadgeTypeMap<
      *
      * @default {}
      */
-    componentsProps?: BadgeUnstyledTypeMap['props']['slotProps'];
+    componentsProps?: BaseBadgeTypeMap['props']['slotProps'];
     /**
      * The components used for each slot inside.
      *
@@ -83,7 +83,7 @@ export type BadgeTypeMap<
      */
     variant?: OverridableStringUnion<'standard' | 'dot', BadgePropsVariantOverrides>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }>;
 
 type BadgeRootProps = NonNullable<BadgeTypeMap['props']['slotProps']>['root'];
@@ -106,8 +106,10 @@ export declare const BadgeMark: React.FC<BadgeBadgeProps>;
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 
 export type BadgeProps<
-  D extends React.ElementType = BadgeTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BadgeTypeMap<D, P>, D>;
+  RootComponent extends React.ElementType = BadgeTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BadgeTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Badge;

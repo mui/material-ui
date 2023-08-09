@@ -131,9 +131,16 @@ export const style = ({ ownerState, theme }: StyleFunctionProps) => {
     }
 
     const styleFromPropValue = (propValue: string | number | null, breakpoint?: Breakpoint) => {
+      if (ownerState.useFlexGap) {
+        return { gap: getValue(transformer, propValue) };
+      }
       return {
-        '& > :not(style) + :not(style)': {
+        // The useFlexGap={false} implement relies on each child to give up control of the margin.
+        // We need to reset the margin to avoid double spacing.
+        '& > :not(style):not(style)': {
           margin: 0,
+        },
+        '& > :not(style) ~ :not(style)': {
           [`margin${getSideFromDirection(
             breakpoint ? directionValues[breakpoint] : ownerState.direction,
           )}`]: getValue(transformer, propValue),
@@ -184,12 +191,14 @@ export default function createStack(
       divider,
       children,
       className,
+      useFlexGap = false,
       ...other
     } = props;
 
     const ownerState = {
       direction,
       spacing,
+      useFlexGap,
     };
 
     const classes = useUtilityClasses();

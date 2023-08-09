@@ -1,9 +1,9 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import Box from '@mui/joy/Box';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import MailIcon from '@mui/icons-material/Mail';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function InputVariables() {
   return (
@@ -43,7 +43,7 @@ export default function InputVariables() {
           defaultValue: '12px',
         },
         {
-          var: '--Input-decorator-childHeight',
+          var: '--Input-decoratorChildHeight',
           defaultValue: '32px',
         },
       ]}

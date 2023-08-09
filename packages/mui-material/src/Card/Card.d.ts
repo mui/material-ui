@@ -3,15 +3,18 @@ import { SxProps } from '@mui/system';
 import { DistributiveOmit } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 import { Theme } from '..';
-import { PaperProps } from '../Paper';
+import { PaperOwnProps } from '../Paper';
 import { CardClasses } from './cardClasses';
 
 // TODO: v6 remove this interface, it is not used
 export interface CardPropsColorOverrides {}
 
-export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    DistributiveOmit<PaperProps, 'classes'> & {
+export interface CardTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps &
+    DistributiveOmit<PaperOwnProps, 'classes'> & {
       /**
        * Override or extend the styles applied to the component.
        */
@@ -26,7 +29,7 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps<Theme>;
     };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -44,8 +47,10 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
 declare const Card: OverridableComponent<CardTypeMap>;
 
 export type CardProps<
-  D extends React.ElementType = CardTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<CardTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = CardTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<CardTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Card;

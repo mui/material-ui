@@ -9,43 +9,44 @@ export default function ExampleFluentSwitch() {
       checked={checked}
       onChange={(event) => setChecked(event.target.checked)}
       sx={(theme) => ({
-        '--Switch-track-width': '40px',
-        '--Switch-track-height': '20px',
-        '--Switch-thumb-size': '12px',
-        '--Switch-thumb-background': 'rgb(96, 94, 92)',
-        '--Switch-track-borderColor': 'rgb(96, 94, 92)',
-        '--Switch-track-background': theme.vars.palette.background.body,
+        display: 'inherit',
+        '--Switch-trackWidth': '40px',
+        '--Switch-trackHeight': '20px',
+        '--Switch-thumbSize': '12px',
+        '--Switch-thumbBackground': 'rgb(96, 94, 92)',
+        '--Switch-trackBorderColor': 'rgb(96, 94, 92)',
+        '--Switch-trackBackground': theme.vars.palette.background.body,
         '&:hover': {
-          '--Switch-track-borderColor': 'rgb(50, 49, 48)',
-          '--Switch-track-background': theme.vars.palette.background.body,
+          '--Switch-trackBorderColor': 'rgb(50, 49, 48)',
+          '--Switch-trackBackground': theme.vars.palette.background.body,
         },
         [`&.${switchClasses.checked}`]: {
-          '--Switch-track-background': '#0078D4',
+          '--Switch-trackBackground': '#0078D4',
           '&:hover': {
-            '--Switch-track-background': '#106EBE',
+            '--Switch-trackBackground': '#106EBE',
           },
         },
         [`&.${switchClasses.disabled}`]: {
-          '--Switch-thumb-color': '#C8C6C4',
-          '--Switch-track-borderColor': '#C8C6C4',
+          '--Switch-thumbColor': '#C8C6C4',
+          '--Switch-trackBorderColor': '#C8C6C4',
         },
         [`&.${switchClasses.disabled}.${switchClasses.checked}`]: {
-          '--Switch-track-background': '#C8C6C4',
-          '--Switch-thumb-color': '#F3F2F1',
+          '--Switch-trackBackground': '#C8C6C4',
+          '--Switch-thumbColor': '#F3F2F1',
         },
         [theme.getColorSchemeSelector('dark')]: {
-          '--Switch-track-borderColor': 'rgb(161, 159, 157)',
-          '--Switch-track-background': 'rgb(27, 26, 25)',
-          '--Switch-thumb-background': 'rgb(161, 159, 157)',
+          '--Switch-trackBorderColor': 'rgb(161, 159, 157)',
+          '--Switch-trackBackground': 'rgb(27, 26, 25)',
+          '--Switch-thumbBackground': 'rgb(161, 159, 157)',
           '&:hover': {
-            '--Switch-track-borderColor': '#fff',
-            '--Switch-thumb-background': '#fff',
+            '--Switch-trackBorderColor': '#fff',
+            '--Switch-thumbBackground': '#fff',
           },
           [`&.${switchClasses.checked}`]: {
-            '--Switch-track-background': 'rgb(40, 153, 245)',
-            '--Switch-thumb-background': 'rgb(27, 26, 25)',
+            '--Switch-trackBackground': 'rgb(40, 153, 245)',
+            '--Switch-thumbBackground': 'rgb(27, 26, 25)',
             '&:hover': {
-              '--Switch-track-background': 'rgb(108, 184, 246)',
+              '--Switch-trackBackground': 'rgb(108, 184, 246)',
             },
           },
         },

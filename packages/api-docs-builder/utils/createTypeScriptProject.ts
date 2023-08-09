@@ -1,6 +1,6 @@
-import * as ts from 'typescript';
 import path from 'path';
 import fs from 'fs';
+import * as ts from 'typescript';
 
 export interface TypeScriptProject {
   name: string;

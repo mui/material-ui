@@ -23,7 +23,7 @@ function ModeToggle() {
 
   return (
     <Button
-      variant="outlined"
+      variant="soft"
       onClick={() => {
         setMode(mode === 'light' ? 'dark' : 'light');
       }}
@@ -33,7 +33,7 @@ function ModeToggle() {
   );
 }
 
-export default function App() {
+export default function LoginFinal() {
   return (
     <CssVarsProvider>
       <main>
@@ -42,7 +42,7 @@ export default function App() {
           sx={{
             width: 300,
             mx: 'auto', // margin left & right
-            my: 4, // margin top & botom
+            my: 4, // margin top & bottom
             py: 3, // padding top & bottom
             px: 2, // padding left & right
             display: 'flex',
@@ -57,7 +57,7 @@ export default function App() {
             <Typography level="h4" component="h1">
               <b>Welcome!</b>
             </Typography>
-            <Typography level="body2">Sign in to continue.</Typography>
+            <Typography level="body-sm">Sign in to continue.</Typography>
           </div>
           <FormControl>
             <FormLabel>Email</FormLabel>

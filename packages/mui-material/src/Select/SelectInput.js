@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { refType } from '@mui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
@@ -27,6 +28,7 @@ const SelectSelect = styled('div', {
       // Win specificity over the input base
       { [`&.${selectClasses.select}`]: styles.select },
       { [`&.${selectClasses.select}`]: styles[ownerState.variant] },
+      { [`&.${selectClasses.error}`]: styles.error },
       { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
@@ -83,10 +85,10 @@ function isEmpty(display) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, disabled, multiple, open } = ownerState;
+  const { classes, variant, disabled, multiple, open, error } = ownerState;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled', multiple && 'multiple'],
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
   };
@@ -109,6 +111,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     defaultValue,
     disabled,
     displayEmpty,
+    error = false,
     IconComponent,
     inputRef: inputRefProp,
     labelId,
@@ -242,13 +245,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   // Support autofill.
   const handleChange = (event) => {
-    const index = childrenArray.map((child) => child.props.value).indexOf(event.target.value);
+    const child = childrenArray.find((childItem) => childItem.props.value === event.target.value);
 
-    if (index === -1) {
+    if (child === undefined) {
       return;
     }
 
-    const child = childrenArray[index];
     setValueState(child.props.value);
 
     if (onChange) {
@@ -350,7 +352,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   }
 
-  const items = childrenArray.map((child, index, arr) => {
+  const items = childrenArray.map((child) => {
     if (!React.isValidElement(child)) {
       return null;
     }
@@ -391,26 +393,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       foundMatch = true;
     }
 
-    if (child.props.value === undefined) {
-      return React.cloneElement(child, {
-        'aria-readonly': true,
-        role: 'option',
-      });
-    }
-
-    const isFirstSelectableElement = () => {
-      if (value) {
-        return selected;
-      }
-      const firstSelectableElement = arr.find(
-        (item) => item?.props?.value !== undefined && item.props.disabled !== true,
-      );
-      if (child === firstSelectableElement) {
-        return true;
-      }
-      return selected;
-    };
-
     return React.cloneElement(child, {
       'aria-selected': selected ? 'true' : 'false',
       onClick: handleItemClick(child),
@@ -427,10 +409,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         }
       },
       role: 'option',
-      selected:
-        arr[0]?.props?.value === undefined || arr[0]?.props?.disabled === true
-          ? isFirstSelectableElement()
-          : selected,
+      selected,
       value: undefined, // The value is most likely not a valid HTML attribute.
       'data-value': child.props.value, // Instead, we provide it as a data attribute.
     });
@@ -498,6 +477,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     variant,
     value,
     open,
+    error,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -533,6 +513,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         )}
       </SelectSelect>
       <SelectNativeInput
+        aria-invalid={error}
         value={Array.isArray(value) ? value.join(',') : value}
         name={name}
         ref={inputRef}
@@ -629,6 +610,10 @@ SelectInput.propTypes = {
    * If `true`, the selected item is displayed even if its value is empty.
    */
   displayEmpty: PropTypes.bool,
+  /**
+   * If `true`, the `select input` will indicate an error.
+   */
+  error: PropTypes.bool,
   /**
    * The icon that displays the arrow.
    */

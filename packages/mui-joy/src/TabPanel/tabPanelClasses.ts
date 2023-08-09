@@ -11,10 +11,30 @@ export interface TabPanelClasses {
   sizeMd: string;
   /** Classname applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `orientation="horizontal"`. */
+  /** Class name applied to the root element if `orientation="horizontal"`. */
   horizontal: string;
-  /** Styles applied to the root element if `orientation="vertical"`. */
+  /** Class name applied to the root element if `orientation="vertical"`. */
   vertical: string;
+  /** Classname applied to the root element if `color="primary"`. */
+  colorPrimary: string;
+  /** Classname applied to the root element if `color="neutral"`. */
+  colorNeutral: string;
+  /** Classname applied to the root element if `color="danger"`. */
+  colorDanger: string;
+  /** Classname applied to the root element if `color="success"`. */
+  colorSuccess: string;
+  /** Classname applied to the root element if `color="warning"`. */
+  colorWarning: string;
+  /** Class name applied to the root element when color inversion is triggered. */
+  colorContext: string;
+  /** Classname applied to the root element if `variant="plain"`. */
+  variantPlain: string;
+  /** Classname applied to the root element if `variant="outlined"`. */
+  variantOutlined: string;
+  /** Classname applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Classname applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type TabPanelClassKey = keyof TabPanelClasses;
@@ -31,6 +51,16 @@ const tabListClasses: TabPanelClasses = generateUtilityClasses('MuiTabPanel', [
   'sizeLg',
   'horizontal',
   'vertical',
+  'colorPrimary',
+  'colorNeutral',
+  'colorDanger',
+  'colorSuccess',
+  'colorWarning',
+  'colorContext',
+  'variantPlain',
+  'variantOutlined',
+  'variantSoft',
+  'variantSolid',
 ]);
 
 export default tabListClasses;

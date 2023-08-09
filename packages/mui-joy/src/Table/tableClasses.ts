@@ -1,70 +1,69 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface TableClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element when color inversion is triggered. */
+  /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
-  /** Styles applied to the root element if `variant="plain"`. */
+  /** Class name applied to the root element if `variant="plain"`. */
   variantPlain: string;
-  /** Styles applied to the root element if `variant="outlined"`. */
+  /** Class name applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="soft"`. */
+  /** Class name applied to the root element if `variant="soft"`. */
   variantSoft: string;
-  /** Styles applied to the root element if `variant="solid"`. */
+  /** Class name applied to the root element if `variant="solid"`. */
   variantSolid: string;
-  /** Styles applied to the root element if `size="sm"`. */
+  /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
-  /** Styles applied to the root element if `size="md"`. */
+  /** Class name applied to the root element if `size="md"`. */
   sizeMd: string;
-  /** Styles applied to the root element if `size="lg"`. */
+  /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `stickyHeader` is true. */
+  /** Class name applied to the root element if `stickyHeader` is true. */
   stickyHeader: string;
-  /** Styles applied to the root element if `noWrap` is true. */
+  /** Class name applied to the root element if `stickyFooter` is true. */
+  stickyFooter: string;
+  /** Class name applied to the root element if `noWrap` is true. */
   noWrap: string;
-  /** Styles applied to the root element if `hoverRow` is true. */
+  /** Class name applied to the root element if `hoverRow` is true. */
   hoverRow: string;
-  /** Styles applied to the root element if `borderAxis="none"`. */
+  /** Class name applied to the root element if `borderAxis="none"`. */
   borderAxisNone: string;
-  /** Styles applied to the root element if `borderAxis="x"`. */
+  /** Class name applied to the root element if `borderAxis="x"`. */
   borderAxisX: string;
-  /** Styles applied to the root element if `borderAxis="xBetween"`. */
+  /** Class name applied to the root element if `borderAxis="xBetween"`. */
   borderAxisXBetween: string;
-  /** Styles applied to the root element if `borderAxis="y"`. */
+  /** Class name applied to the root element if `borderAxis="y"`. */
   borderAxisY: string;
-  /** Styles applied to the root element if `borderAxis="yBetween"`. */
+  /** Class name applied to the root element if `borderAxis="yBetween"`. */
   borderAxisYBetween: string;
-  /** Styles applied to the root element if `borderAxis="both"`. */
+  /** Class name applied to the root element if `borderAxis="both"`. */
   borderAxisBoth: string;
-  /** Styles applied to the root element if `borderAxis="bothBetween"`. */
+  /** Class name applied to the root element if `borderAxis="bothBetween"`. */
   borderAxisBothBetween: string;
 }
 
 export type TableClassKey = keyof TableClasses;
 
 export function getTableUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTable', slot);
+  return generateUtilityClass('MuiTable', slot);
 }
 
-const tableClasses: TableClasses = generateUtilityClasses('JoyTable', [
+const tableClasses: TableClasses = generateUtilityClasses('MuiTable', [
   'root',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',
@@ -76,6 +75,7 @@ const tableClasses: TableClasses = generateUtilityClasses('JoyTable', [
   'sizeMd',
   'sizeLg',
   'stickyHeader',
+  'stickyFooter',
   'noWrap',
   'hoverRow',
   'borderAxisNone',

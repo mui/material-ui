@@ -2,7 +2,7 @@
   "props": {
     "checked": { "type": { "name": "bool" } },
     "checkedIcon": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -24,7 +24,13 @@
     "id": { "type": { "name": "string" } },
     "inputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "required": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
@@ -37,11 +43,16 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "any" } }
   },
   "name": "Switch",
+  "imports": [
+    "import Switch from '@mui/material/Switch';",
+    "import { Switch } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
@@ -62,6 +73,8 @@
     "name": "MuiSwitch"
   },
   "spread": false,
+  "themeDefaultProps": false,
+  "muiName": "MuiSwitch",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Switch/Switch.js",
   "inheritance": { "component": "IconButton", "pathname": "/material-ui/api/icon-button/" },

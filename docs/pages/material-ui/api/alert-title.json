@@ -1,17 +1,24 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "AlertTitle",
+  "imports": [
+    "import AlertTitle from '@mui/material/AlertTitle';",
+    "import { AlertTitle } from '@mui/material';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAlertTitle" },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiAlertTitle",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AlertTitle/AlertTitle.js",
   "inheritance": null,

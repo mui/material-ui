@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React List component
 components: List, ListDivider, ListItem, ListItemButton, ListItemContent, ListItemDecorator, ListSubheader
 githubLabel: 'component: list'
@@ -62,7 +62,7 @@ To learn how to add more sizes to the component, check out [Themed components—
 
 Use the `ListItemDecorator` component to add supporting icons or elements to the list item.
 
-It comes with a minimum set width that you can adjust via the `--List-decorator-size` CSS variable within the `List` component.
+It comes with a minimum set width that you can adjust via the `--ListItemDecorator-size` CSS variable within the `List` component.
 
 {{"demo": "DecoratedList.js"}}
 
@@ -102,7 +102,7 @@ It works by default on both light and dark modes.
 Use the `nested` prop, within the `ListItem` component, to create a nested list.
 Note that layout and spacing of the nested list remain intact, as if it isn't nested.
 
-The nested list inherits the list `size` and a few other CSS variables, such as `--List-radius` and `--List-item-radius` from the root `List` component to adjust the design consistently.
+The nested list inherits the list `size` and a few other CSS variables, such as `--List-radius` and `--ListItem-radius` from the root `List` component to adjust the design consistently.
 
 {{"demo": "NestedList.js"}}
 
@@ -169,7 +169,7 @@ The `ListItemButton` and the secondary action render as siblings, that way, the 
 ### Selected
 
 Use the `selected` prop to signal whether a `ListItemButton` is selected or not.
-It applies `color="primary"` and a few extra styles (e.g. font weight) to visually communicate the selected state.
+It applies `color="primary"` of the active variant to visually communicate the selected state.
 
 :::info
 A selected `ListItemButton` does not apply `:hover` and `:active` global variant styles.

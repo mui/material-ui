@@ -1,4 +1,4 @@
-import { SxProps as SystemSxProps, SxConfig, CSSObject } from '@mui/system';
+import { SxProps as SystemSxProps } from '@mui/system';
 import {
   CssVarsTheme as MD2Theme,
   SupportedColorScheme,
@@ -21,13 +21,22 @@ export interface MD3Tones {
   99: string;
   100: string;
 }
+
+export interface MD3NeutralTones extends MD3Tones {
+  17: string;
+  22: string;
+  92: string;
+}
 export interface MD3Palettes {
   primary: MD3Tones;
   secondary: MD3Tones;
   tertiary: MD3Tones;
-  neutral: MD3Tones;
+  neutral: MD3NeutralTones;
   neutralVariant: MD3Tones;
   error: MD3Tones;
+  info: MD3Tones;
+  warning: MD3Tones;
+  success: MD3Tones;
   common: {
     black: string;
     white: string;
@@ -55,6 +64,15 @@ export interface MD3ColorSchemeTokens {
   errorContainer: string;
   onErrorContainer: string;
 
+  info: string;
+  onInfo: string;
+
+  warning: string;
+  onWarning: string;
+
+  success: string;
+  onSuccess: string;
+
   background: string;
   onBackground: string;
 
@@ -62,6 +80,8 @@ export interface MD3ColorSchemeTokens {
   onSurface: string;
   surfaceVariant: string;
   onSurfaceVariant: string;
+  surfaceContainerHigh: string;
+  surfaceContainerHighest: string;
 
   inverseSurface: string;
   inverseOnSurface: string;
@@ -108,10 +128,16 @@ export interface TypescaleValue {
   small: {
     family: string;
     weight: string;
+    lineHeight: number;
+    size: number;
+    tracking: number;
   };
   medium: {
     family: string;
     weight: string;
+    lineHeight: number;
+    size: number;
+    tracking: number;
   };
   large: {
     family: string;
@@ -246,7 +272,6 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
   };
   palette: MD2Theme['palette'];
   vars: MD2Theme['vars'] & {
-    palette: MD2Theme['vars']['palette'];
     ref: {
       palette: MD3Palettes;
       typeface: any;
@@ -260,8 +285,10 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
       shape: MD3Shape;
     };
   };
-  unstable_sxConfig: SxConfig;
-  unstable_sx: (props: SystemSxProps<Theme>) => CSSObject;
+  generateCssVars: (colorScheme?: SupportedColorScheme) => {
+    css: Record<string, string | number>;
+    vars: Theme['vars'];
+  };
 }
 
 export type SxProps = SystemSxProps<Theme>;

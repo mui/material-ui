@@ -1,17 +1,18 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import useTabs from '@mui/base/useTabs';
-import { TabsContext } from '@mui/base/TabsUnstyled';
-import { useSlotProps } from '@mui/base/utils';
-import { SheetRoot } from '../Sheet/Sheet';
+import { useTabs, TabsProvider } from '@mui/base/useTabs';
+import { getPath } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
+import { resolveSxValue } from '../styles/styleUtils';
 import { useColorInversion } from '../styles/ColorInversion';
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsTypeMap } from './TabsProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabsOwnerState) => {
   const { orientation, variant, color, size } = ownerState;
@@ -29,27 +30,54 @@ const useUtilityClasses = (ownerState: TabsOwnerState) => {
   return composeClasses(slots, getTabsUtilityClass, {});
 };
 
-const TabsRoot = styled(SheetRoot, {
+const TabsRoot = styled('div', {
   name: 'JoyTabs',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabsOwnerState }>(({ ownerState }) => ({
-  ...(ownerState.size === 'sm' && {
-    '--Tabs-gap': '3px',
-  }),
-  ...(ownerState.size === 'md' && {
-    '--Tabs-gap': '4px',
-  }),
-  ...(ownerState.size === 'lg' && {
-    '--Tabs-gap': '0.5rem',
-  }),
-  display: 'flex',
-  flexDirection: 'column',
-  ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-  }),
-}));
+})<{ ownerState: TabsOwnerState }>(({ ownerState, theme }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const { bgcolor, backgroundColor, background, p, padding } = resolveSxValue(
+    { theme, ownerState },
+    ['bgcolor', 'backgroundColor', 'background', 'p', 'padding'],
+  );
+  const resolvedBg =
+    (getPath(theme, `palette.${bgcolor}`) as string) ||
+    bgcolor ||
+    (getPath(theme, `palette.${backgroundColor}`) as string) ||
+    backgroundColor ||
+    background ||
+    variantStyle?.backgroundColor ||
+    variantStyle?.background ||
+    theme.vars.palette.background.surface;
+  return {
+    ...(ownerState.size === 'sm' && {
+      '--Tabs-spacing': '0.75rem',
+    }),
+    ...(ownerState.size === 'md' && {
+      '--Tabs-spacing': '1rem',
+    }),
+    ...(ownerState.size === 'lg' && {
+      '--Tabs-spacing': '1.25rem',
+    }),
+    '--Tab-indicatorThickness': '2px',
+    '--Icon-color':
+      ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+        ? 'currentColor'
+        : theme.vars.palette.text.icon,
+    '--TabList-stickyBackground': resolvedBg === 'transparent' ? 'initial' : resolvedBg, // for sticky TabList
+    display: 'flex',
+    flexDirection: 'column',
+    ...(ownerState.orientation === 'vertical' && {
+      flexDirection: 'row',
+    }),
+    backgroundColor: theme.vars.palette.background.surface,
+    position: 'relative',
+    ...theme.typography[`body-${ownerState.size!}`],
+    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    ...(p !== undefined && { '--Tabs-padding': p }),
+    ...(padding !== undefined && { '--Tabs-padding': padding }),
+  };
+});
 /**
  *
  * Demos:
@@ -78,12 +106,14 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     variant = 'plain',
     color: colorProp = 'neutral',
     size = 'md',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
   const defaultValue = defaultValueProp || (valueProp === undefined ? 0 : undefined);
-  const { tabsContextValue } = useTabs({ ...props, orientation, defaultValue });
+  const { contextValue } = useTabs({ ...props, orientation, defaultValue });
 
   const ownerState = {
     ...props,
@@ -95,11 +125,12 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const tabsRootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: TabsRoot,
-    externalSlotProps: {},
-    externalForwardedProps: other,
+    externalForwardedProps,
     additionalProps: {
       ref,
       as: component,
@@ -110,11 +141,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   return (
     // @ts-ignore `defaultValue` between HTMLDiv and TabsProps is conflicted.
-    <TabsRoot {...tabsRootProps}>
-      <TabsContext.Provider value={tabsContextValue}>
+    <SlotRoot {...rootProps}>
+      <TabsProvider value={contextValue}>
         <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
-      </TabsContext.Provider>
-    </TabsRoot>
+      </TabsProvider>
+    </SlotRoot>
   );
 }) as OverridableComponent<TabsTypeMap>;
 
@@ -132,7 +163,7 @@ Tabs.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -143,7 +174,7 @@ Tabs.propTypes /* remove-proptypes */ = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The direction of the text.
    * @default 'ltr'
@@ -172,6 +203,20 @@ Tabs.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -181,11 +226,11 @@ Tabs.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this prop to `false`.
+   * If you don't want any selected `Tab`, you can set this prop to `null`.
    */
-  value: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

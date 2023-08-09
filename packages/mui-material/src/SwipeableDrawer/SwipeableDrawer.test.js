@@ -305,7 +305,7 @@ describe('<SwipeableDrawer />', () => {
           const handleOpen = spy();
           render(
             <SwipeableDrawer
-              acnhor={params.anchor}
+              anchor={params.anchor}
               onOpen={handleOpen}
               onClose={() => {}}
               open={false}

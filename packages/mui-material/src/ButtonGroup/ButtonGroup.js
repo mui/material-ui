@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
@@ -114,6 +115,9 @@ const ButtonGroupRoot = styled('div', {
             : `1px solid ${
                 theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
               }`,
+          [`&.${buttonGroupClasses.disabled}`]: {
+            borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
+          },
         }),
       ...(ownerState.variant === 'text' &&
         ownerState.orientation === 'vertical' && {
@@ -122,6 +126,9 @@ const ButtonGroupRoot = styled('div', {
             : `1px solid ${
                 theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
               }`,
+          [`&.${buttonGroupClasses.disabled}`]: {
+            borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
+          },
         }),
       ...(ownerState.variant === 'text' &&
         ownerState.color !== 'inherit' && {

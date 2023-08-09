@@ -1,2 +1,2 @@
-export { default } from './useAutocomplete';
+'use client';
 export * from './useAutocomplete';

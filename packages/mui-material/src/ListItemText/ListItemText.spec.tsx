@@ -13,7 +13,7 @@ function typographyPropsTest() {
     primaryTypographyProps={{
       component: 'a',
       // @ts-expect-error
-      htmlFor: 'not-existance-attribute',
+      htmlFor: 'nonexistent-attribute',
     }}
   />;
   <ListItemText
@@ -42,7 +42,7 @@ function secondaryTypographyPropsTest() {
     secondaryTypographyProps={{
       component: 'a',
       // @ts-expect-error
-      htmlFor: 'not-existance-attribute',
+      htmlFor: 'nonexistent-attribute',
     }}
   />;
   <ListItemText
@@ -78,12 +78,12 @@ function mixedTypographyPropsTest() {
     primaryTypographyProps={{
       component: 'a',
       // @ts-expect-error
-      htmlFor: 'not-existance-attribute',
+      htmlFor: 'nonexistent-attribute',
     }}
     secondaryTypographyProps={{
       component: 'a',
       // @ts-expect-error
-      htmlFor: 'not-existance-attribute',
+      htmlFor: 'nonexistent-attribute',
     }}
   />;
   <ListItemText

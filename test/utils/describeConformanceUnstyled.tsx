@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { ClassNameConfigurator } from '@mui/base/utils';
 import { MuiRenderResult, RenderOptions, screen } from './createRenderer';
 import createDescribe from './createDescribe';
 import {
@@ -101,7 +102,7 @@ function testPropForwarding(
 }
 
 function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledConformanceOptions) {
-  const { render, slots, testComponentPropWith: Element = 'div' } = getOptions();
+  const { render, slots, skip, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -152,7 +153,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
     }
 
     if (slotOptions.isOptional) {
-      it(`alows omitting the optional ${slotName} slot by providing null`, () => {
+      it(`allows omitting the optional ${slotName} slot by providing null`, () => {
         const components = {
           [slotName]: null,
         };
@@ -164,6 +165,10 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
   });
 
   it('uses the component provided in the `component` prop when both `component` and `slots.root` are provided', () => {
+    if (skip && skip.indexOf('componentProp') >= 0) {
+      return;
+    }
+
     const RootComponentA = React.forwardRef(
       ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
         // @ts-ignore
@@ -318,6 +323,28 @@ function testOwnerStatePropagation(
   });
 }
 
+function testDisablingClassGeneration(
+  element: React.ReactElement,
+  getOptions: () => UnstyledConformanceOptions,
+) {
+  const { render } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  it(`does not generate any class names if placed within a ClassNameConfigurator`, () => {
+    render(<ClassNameConfigurator disableDefaultClasses>{element}</ClassNameConfigurator>);
+
+    const elementsWithClasses = document.querySelectorAll(`[class]`);
+
+    elementsWithClasses.forEach((el: Element) => {
+      // There can be empty class attributes as clsx returns an empty string given falsy arguments.
+      expect(el.className.trim()).to.equal('');
+    });
+  });
+}
+
 const fullSuite = {
   componentProp: testComponentProp,
   slotsProp: testSlotsProp,
@@ -328,6 +355,7 @@ const fullSuite = {
   reactTestRenderer: testReactTestRenderer,
   refForwarding: describeRef,
   ownerStatePropagation: testOwnerStatePropagation,
+  disableClassGeneration: testDisablingClassGeneration,
 };
 
 function describeConformanceUnstyled(

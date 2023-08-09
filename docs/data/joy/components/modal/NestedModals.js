@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
@@ -8,7 +9,7 @@ function randomBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export default function NestedModals({ random }) {
+function NestedModals({ random }) {
   const [open, setOpen] = React.useState(false);
   return (
     <React.Fragment>
@@ -27,7 +28,7 @@ export default function NestedModals({ random }) {
             },
           })}
         >
-          <Typography id="nested-modal-title" component="h2">
+          <Typography id="nested-modal-title" level="h2">
             Infinite modals
           </Typography>
           <Typography id="nested-modal-description" textColor="text.tertiary">
@@ -39,3 +40,9 @@ export default function NestedModals({ random }) {
     </React.Fragment>
   );
 }
+
+NestedModals.propTypes = {
+  random: PropTypes.bool,
+};
+
+export default NestedModals;

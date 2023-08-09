@@ -1,3 +1,4 @@
+import { expectType } from '@mui/types';
 import { AlertOwnerState } from '@mui/joy/Alert';
 import { AspectRatioOwnerState } from '@mui/joy/AspectRatio';
 import { AutocompleteOwnerState } from '@mui/joy/Autocomplete';
@@ -35,11 +36,13 @@ import { ListItemButtonOwnerState } from '@mui/joy/ListItemButton';
 import { ListItemContentOwnerState } from '@mui/joy/ListItemContent';
 import { ListItemDecoratorOwnerState } from '@mui/joy/ListItemDecorator';
 import { MenuOwnerState } from '@mui/joy/Menu';
+import { MenuButtonOwnerState } from '@mui/joy/MenuButton';
 import { MenuItemOwnerState } from '@mui/joy/MenuItem';
 import { MenuListOwnerState } from '@mui/joy/MenuList';
 import { ModalOwnerState } from '@mui/joy/Modal';
 import { ModalCloseOwnerState } from '@mui/joy/ModalClose';
 import { ModalDialogOwnerState } from '@mui/joy/ModalDialog';
+import { ModalOverflowOwnerState } from '@mui/joy/ModalOverflow';
 import { OptionOwnerState } from '@mui/joy/Option';
 import { RadioOwnerState } from '@mui/joy/Radio';
 import { RadioGroupOwnerState } from '@mui/joy/RadioGroup';
@@ -58,15 +61,14 @@ import { TableOwnerState } from '@mui/joy/Table';
 import { TextareaOwnerState } from '@mui/joy/Textarea';
 import { TooltipOwnerState } from '@mui/joy/Tooltip';
 import { TypographyOwnerState } from '@mui/joy/Typography';
-import { expectType } from '@mui/types';
 
 extendTheme({
   colorInversion: (theme) => ({
     soft: {
       primary: {
-        '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-darkChannel')} / 0.4)`,
+        '--variant-plainColor': `rgba(${theme.getCssVar('palette-primary-darkChannel')} / 0.4)`,
         [theme.getColorSchemeSelector('dark')]: {
-          '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-lightChannel')} / 0.4)`,
+          '--variant-plainColor': `rgba(${theme.getCssVar('palette-primary-lightChannel')} / 0.4)`,
         },
       },
     },
@@ -593,7 +595,7 @@ extendTheme({
     },
     JoyLink: {
       defaultProps: {
-        level: 'body2',
+        level: 'body-md',
       },
       styleOverrides: {
         root: ({ ownerState }) => {
@@ -723,6 +725,19 @@ extendTheme({
         },
       },
     },
+    JoyMenuButton: {
+      defaultProps: {
+        size: 'sm',
+        variant: 'outlined',
+        color: 'neutral',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<MenuButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
     JoyMenuItem: {
       defaultProps: {
         variant: 'outlined',
@@ -785,6 +800,17 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<ModalDialogOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyModalOverflow: {
+      defaultProps: {},
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<ModalOverflowOwnerState & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};
@@ -1098,7 +1124,7 @@ extendTheme({
     },
     JoyTypography: {
       defaultProps: {
-        level: 'body2',
+        level: 'body-md',
         variant: 'outlined',
         color: 'neutral',
       },

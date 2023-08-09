@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import { debounce } from '@mui/material/utils';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -22,6 +21,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
+import * as mui from '@mui/icons-material';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
@@ -46,7 +46,7 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
-import * as mui from '@mui/icons-material';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import synonyms from './synonyms';
 
 const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
@@ -138,9 +138,17 @@ const Icons = React.memo(function Icons(props) {
         eventAction: 'click',
         eventLabel: icon.name,
       });
+      window.gtag('event', 'material-icons', {
+        eventAction: 'click',
+        eventLabel: icon.name,
+      });
       window.ga('send', {
         hitType: 'event',
         eventCategory: 'material-icons-theme',
+        eventAction: 'click',
+        eventLabel: icon.theme,
+      });
+      window.gtag('event', 'material-icons-theme', {
         eventAction: 'click',
         eventLabel: icon.theme,
       });
@@ -391,9 +399,10 @@ DialogDetails.propTypes = {
   selectedIcon: PropTypes.object,
 };
 
-const Form = styled('form')(({ theme }) => ({
-  margin: theme.spacing(2, 0),
-}));
+const Form = styled('form')({
+  position: 'sticky',
+  top: 80,
+});
 
 const Paper = styled(MuiPaper)(({ theme }) => ({
   position: 'sticky',
@@ -403,6 +412,9 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   alignItems: 'center',
   marginBottom: theme.spacing(2),
   width: '100%',
+  borderRadius: '12px',
+  border: '1px solid',
+  borderColor: theme.palette.divider,
 }));
 
 function formatNumber(value) {
@@ -499,6 +511,10 @@ export default function SearchIcons() {
                 eventAction: 'no-results',
                 eventLabel: value,
               });
+              window.gtag('event', 'material-icons', {
+                eventAction: 'no-results',
+                eventLabel: value,
+              });
             }
           });
         }
@@ -526,9 +542,12 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid container sx={{ minHeight: 500 }}>
+    <Grid container sx={{ minHeight: 500, my: 2 }}>
       <Grid item xs={12} sm={3}>
         <Form>
+          <Typography fontWeight={500} sx={{ mb: 1 }}>
+            Filter the style
+          </Typography>
           <RadioGroup>
             {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
               (currentTheme) => {
@@ -537,6 +556,7 @@ export default function SearchIcons() {
                     key={currentTheme}
                     control={
                       <Radio
+                        size="small"
                         checked={theme === currentTheme}
                         onChange={() => setTheme(currentTheme)}
                         value={currentTheme}

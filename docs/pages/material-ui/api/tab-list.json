@@ -1,6 +1,7 @@
 {
   "props": { "children": { "type": { "name": "node" } } },
   "name": "TabList",
+  "imports": ["import TabList from '@mui/lab/TabList';", "import { TabList } from '@mui/lab';"],
   "styles": {
     "classes": [
       "root",
@@ -21,6 +22,8 @@
     "name": "MuiTabList"
   },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiTabList",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/TabList/TabList.js",
   "inheritance": { "component": "Tabs", "pathname": "/material-ui/api/tabs/" },

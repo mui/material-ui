@@ -1,3 +1,4 @@
+export { default as THEME_ID } from './identifier';
 export {
   default as createTheme,
   default as unstable_createMuiStrictModeTheme,
@@ -133,6 +134,7 @@ export type {
   ColorSystemOptions,
 } from './experimental_extendTheme';
 export { default as getOverlayAlpha } from './getOverlayAlpha';
+export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 
 // Private methods for creating parts of the theme
 export { default as private_createTypography } from './createTypography';

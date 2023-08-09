@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
+import {
+  unstable_createCssVarsProvider as createCssVarsProvider,
+  unstable_createCssVarsTheme as createCssVarsTheme,
+} from '@mui/system';
 
 const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
-  theme: {
+  theme: createCssVarsTheme({
     colorSchemes: {
       light: {
         background: {
@@ -15,14 +18,14 @@ const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         },
       },
     },
-  },
+  }),
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',
   },
 });
 
-const nestedTheme = {
+const nestedTheme = createCssVarsTheme({
   cssVarPrefix: 'nested',
   colorSchemes: {
     light: {
@@ -36,7 +39,7 @@ const nestedTheme = {
       },
     },
   },
-};
+});
 
 function DarkMode() {
   const { setMode } = useColorScheme();

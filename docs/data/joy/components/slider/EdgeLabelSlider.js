@@ -32,7 +32,7 @@ export default function EdgeLabelSlider() {
               transform: 'none',
             },
             [`& .${sliderClasses.valueLabel}`]: {
-              left: 'calc(var(--Slider-thumb-size) / 2)',
+              left: 'calc(var(--Slider-thumbSize) / 2)',
               borderBottomLeftRadius: 0,
               '&::before': {
                 left: 0,
@@ -46,7 +46,7 @@ export default function EdgeLabelSlider() {
               transform: 'translateX(-100%)',
             },
             [`& .${sliderClasses.valueLabel}`]: {
-              right: 'calc(var(--Slider-thumb-size) / 2)',
+              right: 'calc(var(--Slider-thumbSize) / 2)',
               borderBottomRightRadius: 0,
               '&::before': {
                 left: 'initial',

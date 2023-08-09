@@ -46,7 +46,7 @@ export default function createMount(options: CreateMountOptions = {}) {
 
   function computeTestName(test: Test | undefined) {
     let current: Test | Suite | undefined = test;
-    const titles = [];
+    const titles: string[] = [];
     while (current != null) {
       titles.push(current.title);
       current = current.parent;

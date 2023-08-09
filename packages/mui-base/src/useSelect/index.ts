@@ -1,2 +1,4 @@
-export { default } from './useSelect';
+'use client';
+export { useSelect } from './useSelect';
 export * from './useSelect.types';
+export * from './SelectProvider';

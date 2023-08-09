@@ -1,6 +1,6 @@
 import * as React from 'react';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Popper } from '@mui/base/Popper';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
@@ -23,8 +23,8 @@ const Listbox = React.forwardRef<HTMLUListElement, any>((props, ref) => (
     sx={{
       '--List-padding': '0px',
       '--List-radius': '0px',
-      '--List-item-paddingX': '8px',
-      '--List-item-paddingY': '8px',
+      '--ListItem-paddingX': '8px',
+      '--ListItem-paddingY': '8px',
       minWidth: '100%',
     }}
   />
@@ -59,7 +59,7 @@ export default function GitHubLabel() {
           color="neutral"
           component="button"
           underline="none"
-          level="body3"
+          level="body-xs"
           aria-describedby={id}
           onClick={handleClick}
           sx={{
@@ -80,13 +80,12 @@ export default function GitHubLabel() {
         <List
           size="sm"
           sx={{
-            '--List-radius': '0px',
             '--List-gap': '3px',
-            '--List-item-minHeight': '20px',
-            '--List-item-paddingX': '4px',
-            '--List-item-paddingY': '0.15em',
-            '--List-item-radius': '2px',
-            '--List-item-fontSize': '13px',
+            '--ListItem-minHeight': '20px',
+            '--ListItem-paddingX': '4px',
+            '--ListItem-paddingY': '0.15em',
+            '--ListItem-radius': '2px',
+            fontSize: '13px',
           }}
         >
           {value.map((label) => (
@@ -103,12 +102,7 @@ export default function GitHubLabel() {
           ))}
         </List>
       </Box>
-      <PopperUnstyled
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        placement="bottom-start"
-      >
+      <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-start">
         <ClickAwayListener onClickAway={handleClose}>
           <Sheet
             variant="outlined"
@@ -184,10 +178,8 @@ export default function GitHubLabel() {
                     }}
                   />
                   <Box sx={{ flexGrow: 1 }}>
-                    <Typography fontSize="sm">{option.name}</Typography>
-                    <Typography level="body3" textColor="text.secondary">
-                      {option.description}
-                    </Typography>
+                    <Typography level="title-sm">{option.name}</Typography>
+                    <Typography level="body-xs">{option.description}</Typography>
                   </Box>
                   <CloseIcon sx={{ visibility: selected ? 'visible' : 'hidden' }} />
                 </AutocompleteOption>
@@ -211,7 +203,7 @@ export default function GitHubLabel() {
             />
           </Sheet>
         </ClickAwayListener>
-      </PopperUnstyled>
+      </Popper>
     </React.Fragment>
   );
 }

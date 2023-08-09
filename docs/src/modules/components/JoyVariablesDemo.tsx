@@ -9,11 +9,11 @@ import Sheet from '@mui/joy/Sheet';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Input, { inputClasses } from '@mui/joy/Input';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
 interface DataItem {
   var: string;
@@ -49,7 +49,6 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
         component="button"
         underline="none"
         fontSize="xs"
-        letterSpacing="md"
         textTransform="uppercase"
         fontWeight="lg"
         endDecorator={
@@ -142,7 +141,7 @@ export default function JoyVariablesDemo(props: {
           boxShadow: 'sm',
         }}
       >
-        <List component="div" sx={{ '--List-padding': '1rem', '--List-divider-gap': '0px' }}>
+        <List component="div" sx={{ '--List-padding': '1rem', '--ListDivider-gap': '0px' }}>
           <Box
             sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
           >
@@ -185,7 +184,7 @@ export default function JoyVariablesDemo(props: {
                       endDecorator={
                         <React.Fragment>
                           {typeof resolvedValue === 'string' ? (
-                            <Typography level="body3" mr={0.5}>
+                            <Typography level="body-xs" mr={0.5}>
                               px
                             </Typography>
                           ) : null}

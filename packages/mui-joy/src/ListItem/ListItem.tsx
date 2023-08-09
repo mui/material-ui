@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -6,8 +7,7 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
-import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -18,6 +18,7 @@ import RowListContext from '../List/RowListContext';
 import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
 import ListSubheaderDispatch from '../ListSubheader/ListSubheaderContext';
+import GroupListContext from '../List/GroupListContext';
 
 const useUtilityClasses = (ownerState: ListItemOwnerState) => {
   const { sticky, nested, nesting, variant, color } = ownerState;
@@ -44,43 +45,43 @@ const ListItemRoot = styled('li', {
 })<{ ownerState: ListItemOwnerState }>(({ theme, ownerState }) => [
   !ownerState.nested && {
     // add negative margin to ListItemButton equal to this ListItem padding
-    '--List-itemButton-marginInline': `calc(-1 * var(--List-item-paddingLeft)) calc(-1 * var(--List-item-paddingRight))`,
-    '--List-itemButton-marginBlock': 'calc(-1 * var(--List-item-paddingY))',
+    '--ListItemButton-marginInline': `calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))`,
+    '--ListItemButton-marginBlock': 'calc(-1 * var(--ListItem-paddingY))',
     alignItems: 'center',
-    marginInline: 'var(--List-item-marginInline)',
+    marginInline: 'var(--ListItem-marginInline)',
   },
   ownerState.nested && {
     // add negative margin to NestedList equal to this ListItem padding
-    '--NestedList-marginRight': 'calc(-1 * var(--List-item-paddingRight))',
-    '--NestedList-marginLeft': 'calc(-1 * var(--List-item-paddingLeft))',
-    '--NestedList-item-paddingLeft': `calc(var(--List-item-paddingLeft) + var(--List-nestedInsetStart))`,
+    '--NestedList-marginRight': 'calc(-1 * var(--ListItem-paddingRight))',
+    '--NestedList-marginLeft': 'calc(-1 * var(--ListItem-paddingLeft))',
+    '--NestedListItem-paddingLeft': `calc(var(--ListItem-paddingLeft) + var(--List-nestedInsetStart))`,
     // add negative margin to ListItem, ListItemButton to make them start from the edge.
-    '--List-itemButton-marginBlock': '0px',
-    '--List-itemButton-marginInline':
-      'calc(-1 * var(--List-item-paddingLeft)) calc(-1 * var(--List-item-paddingRight))',
-    '--List-item-marginInline':
-      'calc(-1 * var(--List-item-paddingLeft)) calc(-1 * var(--List-item-paddingRight))',
+    '--ListItemButton-marginBlock': '0px',
+    '--ListItemButton-marginInline':
+      'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
+    '--ListItem-marginInline':
+      'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
     flexDirection: 'column',
   },
   // Base styles
   {
     // Integration with control elements, eg. Checkbox, Radio.
-    '--internal-action-radius': 'calc(var(--List-item-radius) - var(--variant-borderWidth, 0px))',
+    '--unstable_actionRadius': 'calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px))',
     ...(ownerState.startAction && {
-      '--internal-startActionWidth': '2rem', // to add sufficient padding-left on ListItemButton
+      '--unstable_startActionWidth': '2rem', // to add sufficient padding-left on ListItemButton
     }),
     ...(ownerState.endAction && {
-      '--internal-endActionWidth': '2.5rem', // to add sufficient padding-right on ListItemButton
+      '--unstable_endActionWidth': '2.5rem', // to add sufficient padding-right on ListItemButton
     }),
     boxSizing: 'border-box',
-    borderRadius: 'var(--List-item-radius)',
+    borderRadius: 'var(--ListItem-radius)',
     display: 'flex',
     flex: 'none', // prevent children from shrinking when the List's height is limited.
     position: 'relative',
-    paddingBlockStart: ownerState.nested ? 0 : 'var(--List-item-paddingY)',
-    paddingBlockEnd: ownerState.nested ? 0 : 'var(--List-item-paddingY)',
-    paddingInlineStart: 'var(--List-item-paddingLeft)',
-    paddingInlineEnd: 'var(--List-item-paddingRight)',
+    paddingBlockStart: ownerState.nested ? 0 : 'var(--ListItem-paddingY)',
+    paddingBlockEnd: ownerState.nested ? 0 : 'var(--ListItem-paddingY)',
+    paddingInlineStart: 'var(--ListItem-paddingLeft)',
+    paddingInlineEnd: 'var(--ListItem-paddingRight)',
     ...(ownerState['data-first-child'] === undefined && {
       ...(ownerState.row
         ? {
@@ -95,15 +96,13 @@ const ListItemRoot = styled('li', {
         marginInlineStart: 'var(--List-gap)',
         marginBlockStart: 'var(--List-gap)',
       }),
-    minBlockSize: 'var(--List-item-minHeight)',
-    fontSize: 'var(--List-item-fontSize)',
-    fontFamily: theme.vars.fontFamily.body,
+    minBlockSize: 'var(--ListItem-minHeight)',
     ...(ownerState.sticky && {
       // sticky in list item can be found in grouped options
       position: 'sticky',
-      top: 'var(--List-item-stickyTop, 0px)', // integration with Menu and Select.
+      top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
       zIndex: 1,
-      background: 'var(--List-item-stickyBackground)',
+      background: `var(--ListItem-stickyBackground, ${theme.vars.palette.background.body})`,
     }),
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -116,9 +115,9 @@ const ListItemStartAction = styled('div', {
 })<{ ownerState: ListItemOwnerState }>(({ ownerState }) => ({
   display: 'inherit',
   position: 'absolute',
-  top: ownerState.nested ? 'calc(var(--List-item-minHeight) / 2)' : '50%',
+  top: ownerState.nested ? 'calc(var(--ListItem-minHeight) / 2)' : '50%',
   left: 0,
-  transform: 'translate(var(--List-item-startActionTranslateX), -50%)',
+  transform: 'translate(var(--ListItem-startActionTranslateX), -50%)',
   zIndex: 1, // to stay on top of ListItemButton (default `position: relative`).
 }));
 
@@ -129,9 +128,9 @@ const ListItemEndAction = styled('div', {
 })<{ ownerState: ListItemOwnerState }>(({ ownerState }) => ({
   display: 'inherit',
   position: 'absolute',
-  top: ownerState.nested ? 'calc(var(--List-item-minHeight) / 2)' : '50%',
+  top: ownerState.nested ? 'calc(var(--ListItem-minHeight) / 2)' : '50%',
   right: 0,
-  transform: 'translate(var(--List-item-endActionTranslateX), -50%)',
+  transform: 'translate(var(--ListItem-endActionTranslateX), -50%)',
 }));
 /**
  *
@@ -149,8 +148,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     name: 'JoyListItem',
   });
 
-  const menuContext = React.useContext(MenuUnstyledContext);
-
+  const group = React.useContext(GroupListContext);
   const listComponent = React.useContext(ComponentListContext);
   const row = React.useContext(RowListContext);
   const wrap = React.useContext(WrapListContext);
@@ -167,6 +165,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     startAction,
     endAction,
     role: roleProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -178,7 +178,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const component =
     componentProp || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined);
 
-  let role = menuContext ? 'none' : undefined;
+  let role = group === 'menu' ? 'none' : undefined;
 
   if (listComponent) {
     // ListItem can be used inside Menu to create nested menus, so it should have role="none"
@@ -205,7 +205,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
@@ -276,7 +276,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -298,6 +298,24 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endAction: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startAction: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    endAction: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startAction: PropTypes.elementType,
+  }),
+  /**
    * The element to display at the start of ListItem.
    */
   startAction: PropTypes.node,
@@ -315,7 +333,7 @@ ListItem.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

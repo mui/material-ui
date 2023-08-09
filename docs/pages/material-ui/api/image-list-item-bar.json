@@ -5,7 +5,7 @@
       "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
       "default": "'right'"
     },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "position": {
       "type": {
         "name": "enum",
@@ -18,11 +18,16 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "title": { "type": { "name": "node" } }
   },
   "name": "ImageListItemBar",
+  "imports": [
+    "import ImageListItemBar from '@mui/material/ImageListItemBar';",
+    "import { ImageListItemBar } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
@@ -42,6 +47,8 @@
     "name": "MuiImageListItemBar"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiImageListItemBar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ImageListItemBar/ImageListItemBar.js",
   "inheritance": null,

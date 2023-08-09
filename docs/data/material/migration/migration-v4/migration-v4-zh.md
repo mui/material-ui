@@ -26,7 +26,7 @@ V5最大的变化之一是将JSS替换为[Emotion](https://emotion.sh/docs/intro
 需要参考旧版本的文档吗？ 在这里查看[v4的文档](https://v4.mui.com/)
 :::
 
-如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion 和 JSS一起工作，请看这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration)
+如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion 和 JSS一起工作，请看这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration)
 :::
 
 ## 为什么你应该迁移
@@ -128,13 +128,13 @@ function App() {
 
 With npm:
 
-```sh
+```bash
 npm install @mui/material @mui/styles
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/material @mui/styles
 ```
 
@@ -144,13 +144,13 @@ yarn add @mui/material @mui/styles
 
 With npm:
 
-```sh
+```bash
 npm install @mui/lab
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/lab
 ```
 
@@ -158,19 +158,19 @@ yarn add @mui/lab
 
 With npm:
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 
 ### 日期和时间选择器
 
-日期和时间选择器组件已被移至MUI X。 如果你正在使用`@material-ui/date-pickers`或`@mui/lab`软件包中的挑选器，你将需要迁移到`@mui/x-date-pickers`。 详见[从实验室](https://mui.com/x/react-date-pickers/migration-lab/)迁移。
+日期和时间选择器组件已被移至MUI X。 如果你正在使用`@material-ui/date-pickers`或`@mui/lab`软件包中的挑选器，你将需要迁移到`@mui/x-date-pickers`。 详见[从实验室](https://mui.com/x/migration/migration-pickers-lab/)迁移。
 
 ### 对等依赖关系
 
@@ -178,13 +178,13 @@ yarn add @mui/icons-material
 
 With npm:
 
-```sh
+```bash
 npm install @emotion/react @emotion/styled
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @emotion/react @emotion/styled
 ```
 
@@ -278,7 +278,7 @@ const ChipWithGreenIcon = () => (
 
 This codemod contains most of the transformers that are necessary for migration. 它应该只在**每个文件夹**中应用一次。
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
@@ -309,7 +309,7 @@ createMuiTheme({
 
 如果你想在你的组件中保留`variant="standard"`，请运行这个codemod或者配置相应的默认主题props。
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/variant-prop <path>
 ```
 
@@ -339,7 +339,7 @@ createMuiTheme({
 
 如果你想保留`underline="hover"`，请运行这个codemod，否则就配置相应的默认主题props。
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 

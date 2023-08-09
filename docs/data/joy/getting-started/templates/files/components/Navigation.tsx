@@ -16,7 +16,7 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 export default function Navigation() {
   return (
-    <List size="sm" sx={{ '--List-item-radius': '8px', '--List-gap': '4px' }}>
+    <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
       <ListItem nested>
         <ListSubheader>
           Browse
@@ -36,8 +36,8 @@ export default function Navigation() {
           }}
         >
           <ListItem>
-            <ListItemButton variant="soft" color="primary">
-              <ListItemDecorator sx={{ color: 'inherit' }}>
+            <ListItemButton selected>
+              <ListItemDecorator>
                 <FolderOpenIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>My files</ListItemContent>
@@ -77,7 +77,7 @@ export default function Navigation() {
           aria-labelledby="nav-list-tags"
           size="sm"
           sx={{
-            '--List-decorator-size': '32px',
+            '--ListItemDecorator-size': '32px',
           }}
         >
           <ListItem>

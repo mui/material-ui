@@ -4,15 +4,22 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+        "description": "'danger'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'neutral'"
+      "default": "'neutral'",
+      "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
     "defaultValue": { "type": { "name": "any" } },
     "disableIcon": { "type": { "name": "bool" }, "default": "false" },
     "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'vertical'"
@@ -23,13 +30,24 @@
         "name": "union",
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
-      "default": "'md'"
+      "default": "'md'",
+      "additionalInfo": { "joy-size": true }
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "any" } },
     "variant": {
@@ -37,15 +55,49 @@
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'plain'"
+      "default": "'plain'",
+      "additionalInfo": { "joy-variant": true }
     }
   },
   "name": "RadioGroup",
+  "imports": [
+    "import RadioGroup from '@mui/joy/RadioGroup';",
+    "import { RadioGroup } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiRadioGroup-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorDanger",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "horizontal",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid",
+      "vertical"
+    ],
+    "globalClasses": {}
+  },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyRadioGroup",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/RadioGroup/RadioGroup.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-radio/\">Radio Group</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-radio-button/\">Radio</a></li></ul>",
   "cssComponent": false
 }

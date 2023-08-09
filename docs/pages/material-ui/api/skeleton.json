@@ -8,14 +8,15 @@
       "default": "'pulse'"
     },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "height": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -27,6 +28,10 @@
     "width": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
   },
   "name": "Skeleton",
+  "imports": [
+    "import Skeleton from '@mui/material/Skeleton';",
+    "import { Skeleton } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
@@ -44,6 +49,8 @@
     "name": "MuiSkeleton"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSkeleton",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Skeleton/Skeleton.js",
   "inheritance": null,

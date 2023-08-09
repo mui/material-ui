@@ -28,7 +28,7 @@ Need to refer back to an older version of the docs? Check out [the v4 documentat
 :::
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts-v4-v5-migration).
 :::
 
 ## Why you should migrate
@@ -64,7 +64,7 @@ The default bundle supports the following minimum versions:
 - Edge 91 (up from 14)
 - Firefox 78 (up from 52)
 - Safari 14 (macOS) and 12.5 (iOS) (up from 10)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/HEAD/.browserslistrc#L11))
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/v5.0.0/.browserslistrc#L11))
 
 Material UI no longer supports IE 11.
 If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
@@ -77,17 +77,17 @@ The minimum supported version of React has been increased from v16.8.0 to v17.0.
 
 If you are using a React version below 17.0.0, update your packages to at least v4.11.2 for Material UI and v17.0.0 for React.
 
-With npm:
+<codeblock storageKey="package-manager">
 
-```sh
-npm update @material-ui/core@^4.11.2 react@^17.0.0
+```bash npm
+npm install @material-ui/core@^4.11.2 react@^17.0.0
 ```
 
-With yarn:
-
-```sh
+```bash yarn
 yarn upgrade @material-ui/core@^4.11.2 react@^17.0.0
 ```
+
+</codeblock>
 
 ### Update TypeScript
 
@@ -147,69 +147,66 @@ function App() {
 
 Install the Material UI v5 packages.
 
-With npm:
-
-```sh
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/material @mui/styles
 ```
 
-With yarn:
-
-```sh
+```bash yarn
 yarn add @mui/material @mui/styles
 ```
+
+</codeblock>
 
 If you're using `@material-ui/lab` or `@material-ui/icons`, you will need to install the new packages.
 
 ### `@material-ui/lab`
 
-With npm:
-
-```sh
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/lab
 ```
 
-With yarn:
-
-```sh
+```bash yarn
 yarn add @mui/lab
 ```
 
+</codeblock>
+
 ### `@material-ui/icons`
 
-With npm:
-
-```sh
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/icons-material
 ```
 
-With yarn:
-
-```sh
+```bash yarn
 yarn add @mui/icons-material
 ```
+
+</codeblock>
 
 ### Date and time pickers
 
 The date and time picker components have been moved to MUI X.
 If you are using `@material-ui/date-pickers` or the pickers in the `@mui/lab` package, you will need to migrate to `@mui/x-date-pickers`.
-See [Migration from the lab](https://mui.com/x/react-date-pickers/migration-lab/) for details.
+See [Migration from the lab](https://mui.com/x/migration/migration-pickers-lab/) for details.
 
 ### Peer dependencies
 
 Next, add the Emotion packages.
 
-With npm:
+<codeblock storageKey="package-manager">
 
-```sh
+```bash npm
 npm install @emotion/react @emotion/styled
 ```
 
-With yarn:
-
-```sh
+```bash yarn
 yarn add @emotion/react @emotion/styled
 ```
+
+</codeblock>
 
 #### styled-components (optional)
 
@@ -301,7 +298,7 @@ Make sure that your application still runs without errors after running each cod
 
 This codemod contains most of the transformers that are necessary for migration. It should be only applied **once per folder.**
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
@@ -333,7 +330,7 @@ createMuiTheme({
 
 If you want to keep `variant="standard"` in your components, run this codemod or else configure the corresponding default theme props.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/variant-prop <path>
 ```
 
@@ -363,7 +360,7 @@ createMuiTheme({
 
 If you want to keep `underline="hover"`, run this codemod or else configure the corresponding default theme props.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 

@@ -1,23 +1,24 @@
+'use client';
 import * as React from 'react';
 import {
   unstable_useControlled as useControlled,
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types';
+import { UseSwitchParameters, UseSwitchReturnValue } from './useSwitch.types';
 
 /**
  * The basic building block for creating custom switches.
  *
  * Demos:
  *
- * - [Unstyled Switch](https://mui.com/base/react-switch/#hook)
+ * - [Switch](https://mui.com/base-ui/react-switch/#hook)
  *
  * API:
  *
- * - [useSwitch API](https://mui.com/base/api/use-switch/)
+ * - [useSwitch API](https://mui.com/base-ui/react-switch/hooks-api/#use-switch)
  */
-export default function useSwitch(props: UseSwitchParameters) {
+export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
   const {
     checked: checkedProp,
     defaultChecked,
@@ -66,7 +67,7 @@ export default function useSwitch(props: UseSwitchParameters) {
     isFocusVisibleRef.current = focusVisible;
   }, [focusVisible, isFocusVisibleRef]);
 
-  const inputRef = React.useRef<any>(null);
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
 
   const createHandleFocus =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
@@ -99,16 +100,14 @@ export default function useSwitch(props: UseSwitchParameters) {
       otherProps.onBlur?.(event);
     };
 
-  const handleRefChange = useForkRef(focusVisibleRef, inputRef);
+  const handleInputRef = useForkRef(focusVisibleRef, inputRef);
 
-  const getInputProps = (
-    otherProps: React.HTMLAttributes<HTMLInputElement> = {},
-  ): UseSwitchInputSlotProps => ({
+  const getInputProps: UseSwitchReturnValue['getInputProps'] = (otherProps = {}) => ({
     checked: checkedProp,
     defaultChecked,
     disabled,
     readOnly,
-    ref: handleRefChange,
+    ref: handleInputRef,
     required,
     type: 'checkbox',
     ...otherProps,
@@ -122,6 +121,7 @@ export default function useSwitch(props: UseSwitchParameters) {
     disabled: Boolean(disabled),
     focusVisible,
     getInputProps,
+    inputRef: handleInputRef,
     readOnly: Boolean(readOnly),
   };
 }

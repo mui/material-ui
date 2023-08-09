@@ -17,7 +17,7 @@ v5中最大的变化之一是将JSS替换为[Emotion](https://emotion.sh/docs/in
 请注意，你可以继续使用JSS为组件添加重写（例如`makeStyles`, `withStyles`），即使在迁移到v5之后。 然后，如果在任何时候你想转移到新的样式引擎，你可以逐步重构你的组件。
 
 :::info
-如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion和JSS一起工作，可以看一下这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration)。
+如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion和JSS一起工作，可以看一下这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration)。
 :::
 
 本文档回顾了从JSS迁移的所有必要步骤。
@@ -36,7 +36,7 @@ v5中最大的变化之一是将JSS替换为[Emotion](https://emotion.sh/docs/in
 如果你以后想完善它们，你可以参考下面几节中的例子。
 :::
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/jss-to-styled <path>
 ```
 
@@ -110,7 +110,6 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
  import Chip from '@mui/material/Chip';
 -import makeStyles from '@mui/styles/makeStyles';
 +import Box from '@mui/material/Box';
-+import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
 -  wrapper: {
@@ -125,7 +124,7 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
  function App() {
 -  const classes = useStyles();
    return (
--    <div>
+-    <div className={classes.wrapper}>
 -      <Chip className={classes.chip} label="Chip" />
 -    </div>
 +    <Box sx={{ display: 'flex' }}>
@@ -197,13 +196,13 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
 
 使用npm：
 
-```sh
+```bash
 npm install tss-react
 ```
 
 用 yarn：
 
-```sh
+```bash
 yarn add tss-react
 ```
 
@@ -211,14 +210,14 @@ yarn add tss-react
 
 我们提供了[一个codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-tss-react)来帮助将JSS样式迁移到`tss-react` API。
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/jss-to-tss-react <path>
 ```
 
 示例转换：
 
 ```diff
- import React from 'react';
+ import * as React from 'react';
 -import makeStyles from '@material-ui/styles/makeStyles';
 +import { makeStyles } from 'tss-react/mui';
  import Button from '@mui/material/Button';
@@ -452,7 +451,7 @@ tss-react_不是_由MUI维护的。
 
 
 
-```sh
+```bash
 npm uninstall @mui/styles
 ```
 
@@ -461,7 +460,7 @@ npm uninstall @mui/styles
 
 
 
-```sh
+```bash
 yarn remove @mui/styles
 ```
 

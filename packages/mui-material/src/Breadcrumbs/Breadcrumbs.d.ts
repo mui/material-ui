@@ -1,11 +1,22 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { SlotComponentProps } from '@mui/base';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BreadcrumbsClasses } from './breadcrumbsClasses';
+import SvgIcon from '../SvgIcon';
 
-export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
-  props: P & {
+export interface BreadcrumbsCollapsedIconSlotPropsOverrides {}
+
+export interface BreadcrumbsOwnerState extends BreadcrumbsProps {
+  expanded: boolean;
+}
+
+export interface BreadcrumbsTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'nav',
+> {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -14,6 +25,29 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<BreadcrumbsClasses>;
+    /**
+     * The components used for each slot inside the Breadcumb.
+     * Either a string to use a HTML element or a component.
+     * @default {}
+     */
+    slots?: {
+      CollapsedIcon?: React.ElementType;
+    };
+    /**
+     * The props used for each slot inside the Breadcumb.
+     * @default {}
+     */
+    slotProps?: {
+      /**
+       * Props applied to the CollapsedIcon slot.
+       * @default {}
+       */
+      collapsedIcon?: SlotComponentProps<
+        typeof SvgIcon,
+        BreadcrumbsCollapsedIconSlotPropsOverrides,
+        BreadcrumbsOwnerState
+      >;
+    };
     /**
      * Override the default label for the expand button.
      *
@@ -48,7 +82,7 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -64,8 +98,10 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
 declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;
 
 export type BreadcrumbsProps<
-  D extends React.ElementType = BreadcrumbsTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BreadcrumbsTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = BreadcrumbsTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BreadcrumbsTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Breadcrumbs;

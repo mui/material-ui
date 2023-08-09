@@ -35,6 +35,9 @@ const PaginationDiv = styled('div')(({ theme }) => {
 
 const PageLinkButton = styled(Button)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightMedium,
+  ...theme.applyDarkStyles({
+    color: (theme.vars || theme).palette.primary[300],
+  }),
 }));
 
 const FeedbackGrid = styled(Grid)(({ theme }) => {
@@ -97,14 +100,38 @@ async function postFeedback(data) {
 async function postFeedbackOnSlack(data) {
   const { rating, comment, commentedSection } = data;
 
+  const sentData = {
+    callback_id: 'send_feedback',
+    rating,
+    comment,
+    currentLocationURL: window.location.href,
+    commmentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
+    commmentSectionTitle: commentedSection.text,
+  };
   if (!comment || comment.length < 10) {
     return 'ignored';
+  }
+
+  try {
+    const res = await fetch(`${window.location.origin}/.netlify/functions/feedback-management/`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      // Seems tricky but it's to match how slack send data
+      body: `payload=${encodeURIComponent(JSON.stringify(sentData))}`,
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    }
+    return 'sent';
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 
   /**
    Not used because I ignore how to encode that with:
       'content-type': 'application/x-www-form-urlencoded'
-   
+
    const complexSlackMessage = {
      blocks: [
        {
@@ -142,28 +169,6 @@ async function postFeedbackOnSlack(data) {
      ],
    };
   */
-
-  const simpleSlackMessage = [
-    `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
-    `>${comment.split('\n').join('\n>')}`,
-    `sent from ${window.location.href}${
-      commentedSection.text
-        ? ` (from section <${window.location.origin}${window.location.pathname}#${commentedSection.hash}|${commentedSection.text})>`
-        : ''
-    }`,
-  ].join('\n\n');
-
-  try {
-    await fetch(`https://hooks.slack.com/services/${process.env.SLACK_FEEDBACKS_TOKEN}`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body: JSON.stringify({ text: simpleSlackMessage }),
-    });
-    return 'sent';
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
 }
 
 async function getUserFeedback(id) {
@@ -239,6 +244,7 @@ function usePageNeighbours() {
 }
 
 const EMPTY_SECTION = { hash: '', text: '' };
+const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API content design' }];
 
 export default function AppLayoutDocsFooter(props) {
   const { tableOfContents = [] } = props;
@@ -306,7 +312,7 @@ export default function AppLayoutDocsFooter(props) {
       setCommentOpen(true);
     }
 
-    // Manualy move focus if commment is already open.
+    // Manually move focus if comment is already open.
     // If the comment is closed, onEntered will call focus itself;
     if (inputRef.current) {
       inputRef.current.focus();
@@ -351,11 +357,14 @@ export default function AppLayoutDocsFooter(props) {
     const eventListener = (event) => {
       const feedbackHash = event.target.getAttribute('data-feedback-hash');
       if (feedbackHash) {
-        const section = sectionOptions.find((item) => item.hash === feedbackHash) || EMPTY_SECTION;
+        const section =
+          [...sectionOptions, ...SPEACIAL_FEEDBACK_HASH].find(
+            (item) => item.hash === feedbackHash,
+          ) || EMPTY_SECTION;
         setCommentOpen(true);
         setCommentedSection(section);
 
-        // Manualy move focus if commment is already open.
+        // Manually move focus if comment is already open.
         // If the comment is closed, onEntered will call focus itself;
         if (inputRef.current) {
           inputRef.current.focus();

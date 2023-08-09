@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type TableSlot = 'root';
+
+export interface TableSlots {
+  /**
+   * The component that renders the root.
+   * @default 'table'
+   */
+  root?: React.ElementType;
+}
+
+export type TableSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TableSlots,
+  {
+    root: SlotProps<'table', {}, TableOwnerState>;
+  }
+>;
 
 export interface TablePropsSizeOverrides {}
 export interface TablePropsColorOverrides {}
@@ -48,12 +64,19 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', TablePropsSizeOverrides>;
     /**
-     * Set the header sticky.
+     * If `true`, the header always appear at the top of the overflow table.
      *
      * ⚠️ It doesn't work with IE11.
      * @default false
      */
     stickyHeader?: boolean;
+    /**
+     * If `true`, the footer always appear at the bottom of the overflow table.
+     *
+     * ⚠️ It doesn't work with IE11.
+     * @default false
+     */
+    stickyFooter?: boolean;
     /**
      * The odd or even row of the table body will have subtle background color.
      */
@@ -63,11 +86,11 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, TablePropsVariantOverrides>;
-  };
+  } & TableSlotsAndSlotProps;
   defaultComponent: D;
 }
 

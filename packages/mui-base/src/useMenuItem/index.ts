@@ -1,2 +1,3 @@
-export { default } from './useMenuItem';
+'use client';
+export { useMenuItem } from './useMenuItem';
 export * from './useMenuItem.types';

@@ -1,6 +1,7 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -110,7 +111,9 @@ const InputLabelRoot = styled(FormLabel, {
     ...(ownerState.shrink && {
       userSelect: 'none',
       pointerEvents: 'auto',
-      maxWidth: 'calc(133% - 24px)',
+      // Theoretically, we should have (8+5)*2/0.75 = 34px
+      // but it feels a better when it bleeds a bit on the left, so 32px.
+      maxWidth: 'calc(133% - 32px)',
       transform: 'translate(14px, -9px) scale(0.75)',
     }),
   }),

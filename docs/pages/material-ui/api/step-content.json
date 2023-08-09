@@ -1,12 +1,13 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
     "transitionDuration": {
@@ -19,12 +20,18 @@
     "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "StepContent",
+  "imports": [
+    "import StepContent from '@mui/material/StepContent';",
+    "import { StepContent } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "last", "transition"],
     "globalClasses": {},
     "name": "MuiStepContent"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStepContent",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/StepContent/StepContent.js",
   "inheritance": null,

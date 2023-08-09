@@ -3,7 +3,7 @@
     "aria-label": { "type": { "name": "custom", "description": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
     "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -30,8 +30,17 @@
     },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableSwap": { "type": { "name": "bool" }, "default": "false" },
-    "getAriaLabel": { "type": { "name": "func" } },
-    "getAriaValueText": { "type": { "name": "func" } },
+    "getAriaLabel": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(index: number) => string", "describedArgs": ["index"] }
+    },
+    "getAriaValueText": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: number, index: number) => string",
+        "describedArgs": ["value", "index"]
+      }
+    },
     "marks": {
       "type": {
         "name": "union",
@@ -42,13 +51,29 @@
     "max": { "type": { "name": "number" }, "default": "100" },
     "min": { "type": { "name": "number" }, "default": "0" },
     "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
-    "onChangeCommitted": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: Event, value: number | Array<number>, activeThumb: number) => void",
+        "describedArgs": ["event", "value", "activeThumb"]
+      }
+    },
+    "onChangeCommitted": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent | Event, value: number | Array<number>) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
-    "scale": { "type": { "name": "func" }, "default": "function Identity(x) {\n  return x;\n}" },
+    "scale": {
+      "type": { "name": "func" },
+      "default": "function Identity(x) {\n  return x;\n}",
+      "signature": { "type": "function(x: any) => any", "describedArgs": [] }
+    },
     "size": {
       "type": {
         "name": "union",
@@ -75,7 +100,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "tabIndex": { "type": { "name": "number" } },
     "track": {
@@ -98,6 +124,10 @@
     }
   },
   "name": "Slider",
+  "imports": [
+    "import Slider from '@mui/material/Slider';",
+    "import { Slider } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
@@ -135,6 +165,8 @@
     "name": "MuiSlider"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSlider",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Slider/Slider.js",
   "inheritance": null,

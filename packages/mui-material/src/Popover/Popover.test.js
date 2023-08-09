@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy, stub, match } from 'sinon';
 import { act, createMount, createRenderer, describeConformance, screen } from 'test/utils';
 import PropTypes from 'prop-types';
 import Grow from '@mui/material/Grow';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
-import Popover, { popoverClasses as classes } from '@mui/material/Popover';
+import Popover, { popoverClasses as classes, PopoverPaper } from '@mui/material/Popover';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
+import styled from '../styles/styled';
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
   const handleMocks = React.useCallback((paperInstance) => {
@@ -34,6 +35,14 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
   );
 });
 
+const ReplacementPaper = styled(Paper, {
+  name: 'ReplacementPaper',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => styles.paper,
+})({
+  backgroundColor: 'red',
+});
+
 describe('<Popover />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
   const mount = createMount();
@@ -45,14 +54,26 @@ describe('<Popover />', () => {
     muiName: 'MuiPopover',
     refInstanceof: window.HTMLDivElement,
     testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      paper: {
+        expectedClassName: classes.paper,
+        testWithComponent: React.forwardRef((props, ref) => (
+          <ReplacementPaper ref={ref} {...props} data-testid="custom" />
+        )),
+      },
+    },
     skip: [
-      'rootClass', // portal, can't determin the root
+      'rootClass', // portal, can't determine the root
       'componentProp',
       'componentsProp',
-      'themeDefaultProps', // portal, can't determin the root
-      'themeStyleOverrides', // portal, can't determin the root
+      'themeDefaultProps', // portal, can't determine the root
+      'themeStyleOverrides', // portal, can't determine the root
       'themeVariants',
       'reactTestRenderer', // react-transition-group issue
+      'slotPropsCallback', // not supported yet
     ],
   }));
 
@@ -66,7 +87,17 @@ describe('<Popover />', () => {
         return <div data-testid="backdrop" data-invisible={invisible} />;
       }
       render(
-        <Popover open anchorEl={document.createElement('div')} BackdropComponent={TestBackdrop}>
+        <Popover
+          open
+          anchorEl={document.createElement('div')}
+          slotProps={{
+            root: {
+              slots: {
+                backdrop: TestBackdrop,
+              },
+            },
+          }}
+        >
           <div />
         </Popover>,
       );
@@ -285,8 +316,8 @@ describe('<Popover />', () => {
   });
 
   describe('paper', () => {
-    it('should have Paper as a child of Transition', () => {
-      render(
+    it('should have PopoverPaper as a child of Transition', () => {
+      const wrapper = mount(
         <Popover
           anchorEl={document.createElement('div')}
           open
@@ -296,6 +327,7 @@ describe('<Popover />', () => {
         </Popover>,
       );
 
+      expect(wrapper.find(PopoverPaper)).to.have.lengthOf(1);
       expect(screen.getByTestId('paper')).not.to.equal(null);
     });
 
@@ -320,27 +352,46 @@ describe('<Popover />', () => {
         </Popover>,
       );
 
-      expect(wrapper.find(Paper).props().elevation).to.equal(8);
+      expect(wrapper.find(PopoverPaper).props().elevation).to.equal(8);
 
       wrapper.setProps({ elevation: 16 });
-      expect(wrapper.find(Paper).props().elevation).to.equal(16);
+      expect(wrapper.find(PopoverPaper).props().elevation).to.equal(16);
     });
   });
 
-  describe('PaperProps.ref', () => {
-    it('should position popover correctly', () => {
-      const handleEntering = spy();
-      render(
-        <Popover
-          anchorEl={document.createElement('div')}
-          open
-          PaperProps={{ 'data-testid': 'Popover', ref: () => null }}
-          TransitionProps={{ onEntering: handleEntering }}
-        >
-          <div />
-        </Popover>,
-      );
-      expect(handleEntering.args[0][0]).toHaveInlineStyle({ top: '16px', left: '16px' });
+  describe('prop: PaperProps', () => {
+    describe('ref', () => {
+      it('should position popover correctly', () => {
+        const handleEntering = spy();
+        render(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open
+            PaperProps={{ 'data-testid': 'Popover', ref: () => null }}
+            TransitionProps={{ onEntering: handleEntering }}
+          >
+            <div />
+          </Popover>,
+        );
+        expect(handleEntering.args[0][0]).toHaveInlineStyle({ top: '16px', left: '16px' });
+      });
+    });
+
+    describe('className', () => {
+      it('should add the className to the paper', () => {
+        const className = 'MyPaperClassName';
+        render(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open
+            PaperProps={{ 'data-testid': 'paper', className }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        expect(screen.getByTestId('paper')).to.have.class(className);
+      });
     });
   });
 
@@ -368,6 +419,33 @@ describe('<Popover />', () => {
         expect(element.style.transformOrigin).to.match(/-16px -16px( 0px)?/);
       });
     });
+
+    describe('paper styles', () => {
+      it('should have opacity 1 only after onEntering has been called', () => {
+        const onEnteringSpy = spy();
+        const paperRenderSpy = spy(PopoverPaper, 'render');
+
+        const wrapper = mount(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open={false}
+            TransitionProps={{
+              onEntering: onEnteringSpy,
+            }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        wrapper.setProps({ open: true });
+
+        expect(
+          paperRenderSpy
+            .withArgs(match({ style: { opacity: 1 } }))
+            .firstCall.calledAfter(onEnteringSpy.lastCall),
+        ).to.equal(true);
+      });
+    });
   });
 
   describe('prop: anchorEl', () => {
@@ -379,6 +457,38 @@ describe('<Popover />', () => {
         </Popover>,
       );
       expect(anchorElSpy.callCount).to.be.greaterThanOrEqual(1);
+    });
+
+    it('should accept a virtual element', () => {
+      const top = 100;
+      const left = 300;
+      const virtualElement = {
+        nodeType: 1,
+        getBoundingClientRect: () => ({
+          x: 0,
+          y: 0,
+          top,
+          left,
+          bottom: 0,
+          right: 0,
+          height: 0,
+          width: 0,
+        }),
+      };
+      render(
+        <Popover
+          open
+          anchorEl={virtualElement}
+          transitionDuration={0}
+          slotProps={{ paper: { 'data-testid': 'paper' } }}
+        >
+          <div />
+        </Popover>,
+      );
+      expect(screen.getByTestId('paper')).toHaveInlineStyle({
+        top: `${top}px`,
+        left: `${left}px`,
+      });
     });
   });
 
@@ -501,7 +611,7 @@ describe('<Popover />', () => {
           'prop',
           'MockedPopover',
         );
-      }).toErrorDev('It should be an Element instance');
+      }).toErrorDev('It should be an Element or PopoverVirtualElement instance');
     });
 
     it('warns if a component for the Paper is used that cant hold a ref', () => {
@@ -901,5 +1011,45 @@ describe('<Popover />', () => {
         </ThemeProvider>,
       ),
     ).not.to.throw();
+  });
+
+  describe('prop: slotProps', () => {
+    describe('paper', () => {
+      it('should override PaperProps', () => {
+        const slotPropsElevation = 12;
+        const paperPropsElevation = 14;
+
+        const wrapper = mount(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open
+            PaperProps={{ elevation: paperPropsElevation }}
+            slotProps={{ paper: { elevation: slotPropsElevation } }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        expect(slotPropsElevation).not.to.equal(paperPropsElevation);
+        expect(wrapper.find(PopoverPaper).props().elevation).to.equal(slotPropsElevation);
+      });
+
+      it('should position popover correctly when ref is provided', () => {
+        const handleEntering = spy();
+        const paperRef = { current: null };
+        render(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open
+            slotProps={{ paper: { ref: paperRef } }}
+            TransitionProps={{ onEntering: handleEntering }}
+          >
+            <div />
+          </Popover>,
+        );
+        expect(paperRef.current).not.to.equal(null);
+        expect(handleEntering.args[0][0]).toHaveInlineStyle({ top: '16px', left: '16px' });
+      });
+    });
   });
 });

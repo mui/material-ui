@@ -1,7 +1,9 @@
+import { OverridableRecord } from './utils';
+
 /**
  * From lowest to highest value
  */
-export interface ZIndex {
+export interface DefaultZIndex {
   badge: number;
   /**
    * For sticky `th` cells
@@ -14,3 +16,5 @@ export interface ZIndex {
   modal: number;
   tooltip: number;
 }
+export interface ZIndexOverrides {}
+export interface ZIndex extends OverridableRecord<DefaultZIndex, ZIndexOverrides, number> {}

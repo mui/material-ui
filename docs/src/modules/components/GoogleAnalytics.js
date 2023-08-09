@@ -1,11 +1,12 @@
 import * as React from 'react';
-import loadScript from 'docs/src/modules/utils/loadScript';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useRouter } from 'next/router';
+import loadScript from 'docs/src/modules/utils/loadScript';
 import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
+import { useNoSsrCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import { useRouter } from 'next/router';
 
 // So we can write code like:
 //
@@ -35,6 +36,10 @@ function handleClick(event) {
         eventAction: element.getAttribute('data-ga-event-action'),
         eventLabel: element.getAttribute('data-ga-event-label'),
       });
+      window.gtag('event', category, {
+        eventAction: element.getAttribute('data-ga-event-action'),
+        eventLabel: element.getAttribute('data-ga-event-label'),
+      });
       break;
     }
 
@@ -60,24 +65,41 @@ function GoogleAnalytics() {
   }, []);
 
   const router = useRouter();
+  const timeout = React.useRef();
 
   React.useEffect(() => {
     // Wait for the title to be updated.
-    setTimeout(() => {
+    // React fires useEffect twice in dev mode
+    clearTimeout(timeout.current);
+    timeout.current = setTimeout(() => {
       const { canonicalAsServer } = pathnameToLanguage(window.location.pathname);
       window.ga('set', { page: canonicalAsServer });
       window.ga('send', { hitType: 'pageview' });
+
+      // https://developers.google.com/analytics/devguides/collection/ga4/views?client_type=gtag
+      window.gtag('event', 'page_view', {
+        page_title: document.title,
+        page_location: canonicalAsServer,
+        productId: document.querySelector('meta[name="mui:productId"]').content,
+        productCategoryId: document.querySelector('meta[name="mui:productCategoryId"]').content,
+      });
     });
   }, [router.route]);
 
   const codeVariant = useNoSsrCodeVariant();
   React.useEffect(() => {
     window.ga('set', 'dimension1', codeVariant);
+    window.gtag('set', 'user_properties', {
+      codeVariant,
+    });
   }, [codeVariant]);
 
   const userLanguage = useUserLanguage();
   React.useEffect(() => {
     window.ga('set', 'dimension2', userLanguage);
+    window.gtag('set', 'user_properties', {
+      userLanguage,
+    });
   }, [userLanguage]);
 
   React.useEffect(() => {
@@ -88,6 +110,9 @@ function GoogleAnalytics() {
     function trackDevicePixelRation() {
       const devicePixelRatio = Math.round(window.devicePixelRatio * 10) / 10;
       window.ga('set', 'dimension3', devicePixelRatio);
+      window.gtag('set', 'user_properties', {
+        devicePixelRatio,
+      });
     }
 
     trackDevicePixelRation();
@@ -111,8 +136,24 @@ function GoogleAnalytics() {
 
   React.useEffect(() => {
     window.ga('set', 'dimension4', colorSchemeOS);
+    window.gtag('set', 'user_properties', {
+      colorSchemeOS,
+    });
+  }, [colorSchemeOS]);
+
+  React.useEffect(() => {
     window.ga('set', 'dimension5', colorScheme);
-  }, [colorSchemeOS, colorScheme]);
+    window.gtag('set', 'user_properties', {
+      colorScheme,
+    });
+  }, [colorScheme]);
+
+  const codeStylingVariant = useNoSsrCodeStyling();
+  React.useEffect(() => {
+    window.gtag('set', 'user_properties', {
+      codeStylingVariant,
+    });
+  }, [codeStylingVariant]);
 
   return null;
 }

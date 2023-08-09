@@ -2,6 +2,23 @@
 
 If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the MUI community. Here are a few guidelines that will help you along the way.
 
+## Summary
+
+- [Code of Conduct](#code-of-conduct)
+- [A large spectrum of contributions](#a-large-spectrum-of-contributions)
+- [Your first Pull Request](#your-first-pull-request)
+- [Sending a Pull Request](#sending-a-pull-request)
+  - [Trying changes on the documentation site](#trying-changes-on-the-documentation-site)
+  - [Trying changes on the playground](#trying-changes-on-the-playground)
+  - [How to increase the chance of being accepted?](#how-to-increase-the-chance-of-being-accepted)
+  - [CI checks and how to fix them](#ci-checks-and-how-to-fix-them)
+  - [Updating the component API documentation](#updating-the-component-api-documentation)
+  - [Coding style](#coding-style)
+- [How to add a new demo in the documentation](#how-to-add-a-new-demo-in-the-documentation)
+- [How can I use a change that wasn't released yet?](#how-can-i-use-a-change-that-wasnt-released-yet)
+- [Roadmap](#roadmap)
+- [License](#license)
+
 ## Code of Conduct
 
 MUI has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it.
@@ -40,7 +57,7 @@ When in doubt, keep your Pull Requests small. To give a Pull Request the best ch
 
 2. Clone the fork to your local machine and add upstream remote:
 
-```sh
+```bash
 git clone https://github.com/<your username>/material-ui.git
 cd material-ui
 git remote add upstream https://github.com/mui/material-ui.git
@@ -50,26 +67,26 @@ git remote add upstream https://github.com/mui/material-ui.git
 
 3. Synchronize your local `master` branch with the upstream one:
 
-```sh
+```bash
 git checkout master
 git pull upstream master
 ```
 
 4. Install the dependencies with yarn (npm isn't supported):
 
-```sh
+```bash
 yarn install
 ```
 
 5. Create a new topic branch:
 
-```sh
+```bash
 git checkout -b my-topic-branch
 ```
 
 6. Make changes, commit and push to your fork:
 
-```sh
+```bash
 git push -u origin HEAD
 ```
 
@@ -85,7 +102,7 @@ It's the local development environment used by the maintainers.
 
 To get started:
 
-```sh
+```bash
 yarn start
 ```
 
@@ -103,7 +120,7 @@ You might face the following problems:
 
 To solve these problems—you can use the playground:
 
-```sh
+```bash
 yarn docs:create-playground && yarn start
 ```
 
@@ -134,7 +151,7 @@ Make sure the following is true:
 Because we will only merge a Pull Request for which all tests pass. The following items need to be true:
 
 - The code is formatted. If the code was changed, run `yarn prettier`.
-- The code is linted. If the code was changed, run `yarn lint`.
+- The code is linted. If the code was changed, run `yarn eslint`.
 - The code is type-safe. If TypeScript sources/declarations were changed, `yarn typescript` passed.
 - The API docs are up-to-date. If API was changed, run `yarn proptypes && yarn docs:api`.
 - The demos are up-to-date. If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes. See [about writing demos](#3-write-the-content-of-the-demo).
@@ -146,7 +163,7 @@ If your pull request addresses an open issue, make sure to link the PR to that i
 Use any [supported GitHub keyword](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) in the PR description to automatically link them.
 This makes it easier to understand where the PR is coming from, and also speeds things up as the issue gets closed when the PR is merged.
 
-#### Checks and how to fix them
+### CI checks and how to fix them
 
 If any of the checks fails click on the _Details_
 link and review the logs of the build to find out why it failed.
@@ -154,57 +171,58 @@ For CircleCI you need to log in first.
 No further permissions are required to view the build logs.
 The following section gives an overview of what each check is responsible for.
 
-##### ci/codesandbox
+#### ci/codesandbox
 
 This task should not fail in isolation. It creates multiple sandboxes on CodeSandbox.com that use the version
 of MUI that was built from this Pull Request. Use it to test more complex scenarios.
 
-##### ci/circleci: checkout
+#### ci/circleci: checkout
 
 A preflight check to see if the dependencies and lockfile are ok. Running `yarn`
 and `yarn deduplicate` should fix most of the issues.
 
-##### ci/circleci: test_static
+#### ci/circleci: test_static
 
 Checks code format, and lints the repository. The log of the failed build should explain
-how to fix the issues.
+how to fix the issues. It also runs commands that generate or change some files
+(like `yarn docs:api` for API documentation). If the CI job fails you might need to run them locally and commit the changes.
 
-##### ci/circleci: test_unit-1
+#### ci/circleci: test_unit-1
 
 Runs the unit tests in a `jsdom` environment. If this fails then `yarn test:unit`
 should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
 If `yarn test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
-##### ci/circleci: test_browser-1
+#### ci/circleci: test_browser-1
 
 Runs the unit tests in multiple browsers (via BrowserStack). The log of the failed
 build should list which browsers failed. If Chrome failed then `yarn test:karma`
 should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
 If `yarn test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
-##### ci/circleci: test_regression-1
+#### ci/circleci: test_regression-1
 
 Renders tests in `test/regressions/tests` and makes screenshots. This step shouldn't
 fail if the others pass. Otherwise, a maintainer will take a look. The screenshots
 are evaluated in another step.
 
-##### ci/circleci: test_types
+#### ci/circleci: test_types
 
 Typechecks the repository. The log of the failed build should list all issues.
 
-##### ci/circleci: test_bundle_size_monitor
+#### ci/circleci: test_bundle_size_monitor
 
 This task is mostly responsible for monitoring the bundle size. It will only report
 the size if the change exceeds a certain threshold. If it fails there's usually
 something wrong with the way the packages or docs were built.
 
-##### argos
+#### argos
 
 Evaluates the screenshots taken in `test/regressions/tests` and fails if it detects
 differences. This doesn't necessarily mean your Pull Request will be rejected as a failure
 might be intended. Clicking on _Details_ will show you the differences.
 
-##### deploy/netlify
+#### deploy/netlify
 
 Renders a preview of the docs with your changes if it succeeds. Otherwise `yarn docs:build`
 or `yarn docs:export` usually fail locally as well.
@@ -224,7 +242,7 @@ on _Details_ to find out more about them.
 The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the [JSDoc](https://jsdoc.app/about-getting-started.html) in the TypeScript declarations.
 Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/mui-material/src/Button/Button.d.ts` for `<Button>`) and then run:
 
-```sh
+```bash
 $ yarn proptypes
 $ yarn docs:api
 ```
@@ -234,7 +252,7 @@ $ yarn docs:api
 Please follow the coding style of the project. MUI uses prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
 
 - `yarn prettier` reformats the code.
-- `yarn lint` runs manually the linting rules.
+- `yarn eslint` runs manually the linting rules.
 
 Finally, when you submit a Pull Request, they are run again by our continuous integration tools, but hopefully, your code is already clean!
 
@@ -246,7 +264,7 @@ If, for example, you want to add new demos for the button component, you have to
 
 In this case, you are going to add the new file to the following directory:
 
-```sh
+```bash
 docs/src/pages/components/buttons/
 ```
 
@@ -307,7 +325,7 @@ Alternatively, you can open the Netlify preview of the documentation, and open a
 You can also package and test your changes locally.
 The following example shows how to package `@mui/material`, but you can package any MUI module with this process:
 
-```sh
+```bash
 $> cd packages/mui-material # or path to any other mui package
 $packages\mui-material> yarn build
 $packages\mui-material> cd ./build
@@ -317,21 +335,14 @@ $packages\mui-material> npm pack
 Navigate to the build folder of your respective package and locate a file with the format `mui-material-x.x.x.tar.gz`.
 Copy this file and move it to the project directory you want to test in, then run:
 
-```sh
+```bash
 $test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
 ```
 
-:::info
-If you have already installed this package, your changes will not be reflected when you reinstall it.
-As a quick fix, you can temporarily bump the version number in your `package.json` before running `yarn build`.
-:::
-
-## Translations
-
-Translations are handled via [Crowdin](https://translate.mui.com).
-You don't need to apply any changes to localized versions of our markdown files
-i.e. files having a `-locale` suffix. Crowdin automatically takes care of syncing
-these changes across the localized versions.
+> **Note**
+>
+> If you have already installed this package, your changes will not be reflected when you reinstall it.
+> As a quick fix, you can temporarily bump the version number in your `package.json` before running `yarn build`.
 
 ## Roadmap
 

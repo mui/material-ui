@@ -38,7 +38,6 @@ import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
-import teamTheme from './theme';
 import Menu from './components/Menu';
 import Layout from './components/Layout';
 
@@ -49,14 +48,14 @@ function ColorSchemeToggle() {
     setMounted(true);
   }, []);
   if (!mounted) {
-    return <IconButton size="sm" variant="outlined" color="primary" />;
+    return <IconButton size="sm" variant="soft" color="neutral" />;
   }
   return (
     <IconButton
       id="toggle-mode"
       size="sm"
-      variant="outlined"
-      color="primary"
+      variant="soft"
+      color="neutral"
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');
@@ -72,7 +71,7 @@ function ColorSchemeToggle() {
 
 function TeamNav() {
   return (
-    <List size="sm" sx={{ '--List-item-radius': '8px', '--List-gap': '4px' }}>
+    <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
       <ListItem nested>
         <ListSubheader>
           Browse
@@ -92,8 +91,8 @@ function TeamNav() {
           }}
         >
           <ListItem>
-            <ListItemButton variant="soft" color="primary">
-              <ListItemDecorator sx={{ color: 'inherit' }}>
+            <ListItemButton selected>
+              <ListItemDecorator>
                 <PeopleRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>People</ListItemContent>
@@ -115,7 +114,7 @@ function TeamNav() {
               <ListItemContent>Policies</ListItemContent>
               <Chip
                 variant="soft"
-                color="info"
+                color="neutral"
                 size="sm"
                 sx={{ borderRadius: 'sm' }}
               >
@@ -132,7 +131,7 @@ function TeamNav() {
 export default function TeamExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
-    <CssVarsProvider disableTransitionOnChange theme={teamTheme}>
+    <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
@@ -166,7 +165,7 @@ export default function TeamExample() {
             </IconButton>
             <IconButton
               size="sm"
-              variant="solid"
+              variant="soft"
               sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
             >
               <GroupRoundedIcon />
@@ -177,12 +176,13 @@ export default function TeamExample() {
           </Box>
           <Input
             size="sm"
+            variant="outlined"
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
-              <IconButton variant="outlined" size="sm" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
-                  /
+              <IconButton variant="outlined" color="neutral">
+                <Typography fontWeight="lg" fontSize="sm" textColor="text.icon">
+                  ⌘ + k
                 </Typography>
               </IconButton>
             }
@@ -192,21 +192,23 @@ export default function TeamExample() {
                 xs: 'none',
                 sm: 'flex',
               },
+              boxShadow: 'sm',
             }}
           />
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
             <IconButton
               size="sm"
               variant="outlined"
-              color="primary"
+              color="neutral"
               sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
             >
               <SearchRoundedIcon />
             </IconButton>
+
             <IconButton
               size="sm"
-              variant="outlined"
-              color="primary"
+              variant="soft"
+              color="neutral"
               component="a"
               href="/blog/first-look-at-joy/"
             >
@@ -217,8 +219,8 @@ export default function TeamExample() {
               control={
                 <IconButton
                   size="sm"
-                  variant="outlined"
-                  color="primary"
+                  variant="soft"
+                  color="neutral"
                   aria-label="Apps"
                 >
                   <GridViewRoundedIcon />
@@ -257,15 +259,7 @@ export default function TeamExample() {
               justifyContent: 'space-between',
             }}
           >
-            <Typography
-              fontSize="xs2"
-              textColor="text.tertiary"
-              textTransform="uppercase"
-              letterSpacing="md"
-              fontWeight="lg"
-            >
-              Filter by
-            </Typography>
+            <Typography level="title-sm">Filter by</Typography>
             <Button size="sm" variant="plain" sx={{ fontSize: 'xs', px: 1 }}>
               Clear filters
             </Button>
@@ -278,8 +272,8 @@ export default function TeamExample() {
                 justifyContent: 'space-between',
               }}
             >
-              <Typography level="body2" textColor="text.primary">
-                By keywords
+              <Typography level="body-sm" textColor="text.primary">
+                Keywords
               </Typography>
               <IconButton
                 size="sm"
@@ -343,7 +337,7 @@ export default function TeamExample() {
                 justifyContent: 'space-between',
               }}
             >
-              <Typography level="body2" textColor="text.primary">
+              <Typography level="body-sm" textColor="text.primary">
                 Location
               </Typography>
               <IconButton
@@ -395,7 +389,7 @@ export default function TeamExample() {
                 justifyContent: 'space-between',
               }}
             >
-              <Typography level="body2" textColor="text.primary">
+              <Typography level="body-sm" textColor="text.primary">
                 Education
               </Typography>
               <IconButton
@@ -425,7 +419,7 @@ export default function TeamExample() {
                 justifyContent: 'space-between',
               }}
             >
-              <Typography level="body2" textColor="text.primary">
+              <Typography level="body-sm" textColor="text.primary">
                 Previous experience
               </Typography>
               <IconButton
@@ -466,11 +460,11 @@ export default function TeamExample() {
                   />
                   <Box>
                     <Typography>Andrew Smith</Typography>
-                    <Typography level="body3">UI Designer</Typography>
+                    <Typography level="body-xs">UI Designer</Typography>
                   </Box>
                 </Box>
                 <Divider component="div" sx={{ my: 2 }} />
-                <List sx={{ '--List-decorator-size': '48px' }}>
+                <List sx={{ '--ListItemDecorator-size': '48px' }}>
                   <ListItem sx={{ alignItems: 'flex-start' }}>
                     <ListItemDecorator
                       sx={{
@@ -480,34 +474,35 @@ export default function TeamExample() {
                           height: '100%',
                           width: '2px',
                           bgcolor: 'divider',
-                          left: 'calc(var(--List-item-paddingLeft) + 15px)',
+                          left: 'calc(var(--ListItem-paddingLeft) + 15px)',
                           top: '50%',
                         },
                       }}
                     >
                       <Avatar
                         size="sm"
-                        src="https://seeklogo.com/images/D/dribbble-logo-143FF96D65-seeklogo.com.png"
+                        src="https://www.vectorlogo.zone/logos/dribbble/dribbble-icon.svg"
                       />
                     </ListItemDecorator>
                     <ListItemContent>
                       <Typography fontSize="sm">Senior designer</Typography>
-                      <Typography level="body3">Dribbble</Typography>
+                      <Typography level="body-xs">Dribbble</Typography>
                     </ListItemContent>
-                    <Typography level="body2">2015-now</Typography>
+                    <Typography level="body-sm">2015-now</Typography>
                   </ListItem>
                   <ListItem sx={{ alignItems: 'flex-start' }}>
                     <ListItemDecorator>
                       <Avatar
                         size="sm"
-                        src="https://seeklogo.com/images/P/pinterest-logo-CA98998DCB-seeklogo.com.png"
+                        src="https://www.vectorlogo.zone/logos/pinterest/pinterest-icon.svg"
+                        sx={{ backgroundColor: 'background.body' }}
                       />
                     </ListItemDecorator>
                     <ListItemContent>
                       <Typography fontSize="sm">Designer</Typography>
-                      <Typography level="body3">Pinterest</Typography>
+                      <Typography level="body-xs">Pinterest</Typography>
                     </ListItemContent>
-                    <Typography level="body2">2012-2015</Typography>
+                    <Typography level="body-sm">2012-2015</Typography>
                   </ListItem>
                 </List>
                 <Button

@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
-import { getDisplayName } from '@mui/utils';
+import { getDisplayName, unstable_capitalize as capitalize } from '@mui/utils';
 import createTheme from './createTheme';
 import propsToClassKey from './propsToClassKey';
 import styleFunctionSx from './styleFunctionSx';
@@ -73,19 +73,33 @@ export function shouldForwardProp(prop) {
 export const systemDefaultTheme = createTheme();
 
 const lowercaseFirstLetter = (string) => {
+  if (!string) {
+    return string;
+  }
   return string.charAt(0).toLowerCase() + string.slice(1);
 };
 
+function resolveTheme({ defaultTheme, theme, themeId }) {
+  return isEmpty(theme) ? defaultTheme : theme[themeId] || theme;
+}
+
+function defaultOverridesResolver(slot) {
+  if (!slot) {
+    return null;
+  }
+  return (props, styles) => styles[slot];
+}
+
 export default function createStyled(input = {}) {
   const {
+    themeId,
     defaultTheme = systemDefaultTheme,
     rootShouldForwardProp = shouldForwardProp,
     slotShouldForwardProp = shouldForwardProp,
   } = input;
 
   const systemSx = (props) => {
-    const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-    return styleFunctionSx({ ...props, theme });
+    return styleFunctionSx({ ...props, theme: resolveTheme({ ...props, defaultTheme, themeId }) });
   };
   systemSx.__mui_systemSx = true;
 
@@ -98,7 +112,9 @@ export default function createStyled(input = {}) {
       slot: componentSlot,
       skipVariantsResolver: inputSkipVariantsResolver,
       skipSx: inputSkipSx,
-      overridesResolver,
+      // TODO v6: remove `lowercaseFirstLetter()` in the next major release
+      // For more details: https://github.com/mui/material-ui/pull/37908
+      overridesResolver = defaultOverridesResolver(lowercaseFirstLetter(componentSlot)),
       ...options
     } = inputOptions;
 
@@ -106,7 +122,9 @@ export default function createStyled(input = {}) {
     const skipVariantsResolver =
       inputSkipVariantsResolver !== undefined
         ? inputSkipVariantsResolver
-        : (componentSlot && componentSlot !== 'Root') || false;
+        : // TODO v6: remove `Root` in the next major release
+          // For more details: https://github.com/mui/material-ui/pull/37908
+          (componentSlot && componentSlot !== 'Root' && componentSlot !== 'root') || false;
 
     const skipSx = inputSkipSx || false;
 
@@ -114,13 +132,17 @@ export default function createStyled(input = {}) {
 
     if (process.env.NODE_ENV !== 'production') {
       if (componentName) {
+        // TODO v6: remove `lowercaseFirstLetter()` in the next major release
+        // For more details: https://github.com/mui/material-ui/pull/37908
         label = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
       }
     }
 
     let shouldForwardPropOption = shouldForwardProp;
 
-    if (componentSlot === 'Root') {
+    // TODO v6: remove `Root` in the next major release
+    // For more details: https://github.com/mui/material-ui/pull/37908
+    if (componentSlot === 'Root' || componentSlot === 'root') {
       shouldForwardPropOption = rootShouldForwardProp;
     } else if (componentSlot) {
       // any other slot specified
@@ -142,10 +164,10 @@ export default function createStyled(input = {}) {
             // component stays as a function. This condition makes sure that we do not interpolate functions
             // which are basically components used as a selectors.
             return typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg
-              ? ({ theme: themeInput, ...other }) => {
+              ? (props) => {
                   return stylesArg({
-                    theme: isEmpty(themeInput) ? defaultTheme : themeInput,
-                    ...other,
+                    ...props,
+                    theme: resolveTheme({ ...props, defaultTheme, themeId }),
                   });
                 }
               : stylesArg;
@@ -156,7 +178,7 @@ export default function createStyled(input = {}) {
 
       if (componentName && overridesResolver) {
         expressionsWithDefaultTheme.push((props) => {
-          const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
+          const theme = resolveTheme({ ...props, defaultTheme, themeId });
           const styleOverrides = getStyleOverrides(componentName, theme);
 
           if (styleOverrides) {
@@ -174,7 +196,7 @@ export default function createStyled(input = {}) {
 
       if (componentName && !skipVariantsResolver) {
         expressionsWithDefaultTheme.push((props) => {
-          const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
+          const theme = resolveTheme({ ...props, defaultTheme, themeId });
           return variantsResolver(
             props,
             getVariantStyles(componentName, theme),
@@ -203,8 +225,11 @@ export default function createStyled(input = {}) {
         styleArg.__emotion_real !== styleArg
       ) {
         // If the type is function, we need to define the default theme.
-        transformedStyleArg = ({ theme: themeInput, ...other }) =>
-          styleArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...other });
+        transformedStyleArg = (props) =>
+          styleArg({
+            ...props,
+            theme: resolveTheme({ ...props, defaultTheme, themeId }),
+          });
       }
 
       const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
@@ -212,12 +237,16 @@ export default function createStyled(input = {}) {
       if (process.env.NODE_ENV !== 'production') {
         let displayName;
         if (componentName) {
-          displayName = `${componentName}${componentSlot || ''}`;
+          displayName = `${componentName}${capitalize(componentSlot || '')}`;
         }
         if (displayName === undefined) {
           displayName = `Styled(${getDisplayName(tag)})`;
         }
         Component.displayName = displayName;
+      }
+
+      if (tag.muiName) {
+        Component.muiName = tag.muiName;
       }
 
       return Component;

@@ -1,11 +1,14 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import composeClasses from '@mui/base/composeClasses';
-import useOption from '@mui/base/useOption';
-import { useSlotProps } from '@mui/base/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useOption } from '@mui/base/useOption';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import useSlot from '../utils/useSlot';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
+import { useVariantColor } from '../styles/variantColorInheritance';
 import { OptionOwnerState, ExtendOption, OptionTypeMap } from './OptionProps';
 import optionClasses, { getOptionUtilityClass } from './optionClasses';
 import RowListContext from '../List/RowListContext';
@@ -20,14 +23,14 @@ const useUtilityClasses = (ownerState: OptionOwnerState) => {
   return composeClasses(slots, getOptionUtilityClass, {});
 };
 
-const OptionRoot = styled(StyledListItemButton as unknown as 'button', {
+const OptionRoot = styled(StyledListItemButton as unknown as 'li', {
   name: 'JoyOption',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: OptionOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
   return {
-    [`&.${optionClasses.highlighted}`]: {
+    [`&.${optionClasses.highlighted}:not([aria-selected="true"])`]: {
       backgroundColor: variantStyle?.backgroundColor,
     },
   };
@@ -42,7 +45,7 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'button', {
  *
  * - [Option API](https://mui.com/joy-ui/api/option/)
  */
-const Option = React.forwardRef(function Option(inProps, ref) {
+const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef<HTMLLIElement>) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyOption',
@@ -54,23 +57,35 @@ const Option = React.forwardRef(function Option(inProps, ref) {
     disabled = false,
     value,
     label,
-    variant = 'plain',
+    variant: variantProp = 'plain',
     color: colorProp = 'neutral',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
   const row = React.useContext(RowListContext);
+  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor(
+    inProps.variant,
+    inProps.color,
+  );
+  const optionRef = React.useRef<HTMLLIElement>(null);
+  const combinedRef = useForkRef(optionRef, ref);
+
+  const computedLabel =
+    label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
 
   const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
+    label: computedLabel,
     value,
-    optionRef: ref,
+    rootRef: combinedRef,
   });
 
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, selected ? 'primary' : colorProp);
+  const color = getColor(inProps.color, inheritedColor);
 
-  const ownerState = {
+  const ownerState: OptionOwnerState = {
     ...props,
     disabled,
     selected,
@@ -83,20 +98,18 @@ const Option = React.forwardRef(function Option(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     getSlotProps: getRootProps,
     elementType: OptionRoot,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps,
     className: classes.root,
     ownerState,
   });
 
-  return <OptionRoot {...rootProps}>{children}</OptionRoot>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as ExtendOption<OptionTypeMap>;
 
 Option.propTypes /* remove-proptypes */ = {
@@ -113,7 +126,7 @@ Option.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -132,6 +145,20 @@ Option.propTypes /* remove-proptypes */ = {
    */
   label: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -142,9 +169,9 @@ Option.propTypes /* remove-proptypes */ = {
   /**
    * The option value.
    */
-  value: PropTypes.any,
+  value: PropTypes.any.isRequired,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

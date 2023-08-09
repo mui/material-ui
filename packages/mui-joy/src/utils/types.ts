@@ -1,6 +1,6 @@
 import { SxProps } from '../styles/types';
 
-type SlotCommonProps = {
+export type SlotCommonProps = {
   component?: React.ElementType;
   sx?: SxProps;
 };
@@ -19,14 +19,20 @@ export type SlotProps<TSlotComponent extends React.ElementType, TOverrides, TOwn
       Record<string, unknown>);
 
 /**
- * Use T to make sure that K contains all of the keys of T
+ * Use the keys of `Slots` to make sure that K contains all of the keys
  *
- * @example CreateSlotsAndSlotProps<'root' | 'decorator', { root: ..., decorator: ... }>
+ * @example CreateSlotsAndSlotProps<{ root: React.ElementType, decorator: React.ElementType }, { root: ..., decorator: ... }>
  */
-export type CreateSlotsAndSlotProps<T extends string, K extends Record<T, any>> = {
-  slots?: {
-    [P in keyof K]?: React.ElementType;
-  };
+export type CreateSlotsAndSlotProps<Slots, K extends Record<keyof Slots, any>> = {
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots?: Slots;
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
   slotProps?: {
     [P in keyof K]?: K[P];
   };

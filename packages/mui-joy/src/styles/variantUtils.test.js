@@ -290,18 +290,18 @@ describe('variant utils', () => {
   });
 
   describe('createVariant', () => {
-    it('should only create style with properties from palette variables', () => {
+    it('should create style with properties from palette with default value', () => {
       const result = createVariant('outlinedActive', {
         getCssVar: createGetCssVar('joy'),
         palette: {
           primary: {
-            outlinedActiveBorder: 'some-color',
+            outlinedActiveBorder: '#aaa',
             outlinedActiveBg: null, // background-color will not be created
           },
         },
       });
       expect(result.primary).to.deep.include({
-        borderColor: 'var(--joy-palette-primary-outlinedActiveBorder)',
+        borderColor: 'var(--joy-palette-primary-outlinedActiveBorder, #aaa)',
       });
     });
 
@@ -310,21 +310,21 @@ describe('variant utils', () => {
         getCssVar: createGetCssVar('joy'),
         palette: {
           customColor: {
-            softColor: 'some-color',
-            softBg: 'some-color',
-            softHoverColor: 'some-color',
+            softColor: '#aaa',
+            softBg: '#bbb',
+            softHoverColor: '#ccc',
           },
         },
       };
       const softResult = createVariant('soft', theme);
       expect(softResult.customColor).to.deep.include({
-        color: 'var(--joy-palette-customColor-softColor)',
-        backgroundColor: 'var(--joy-palette-customColor-softBg)',
+        color: 'var(--joy-palette-customColor-softColor, #aaa)',
+        backgroundColor: 'var(--joy-palette-customColor-softBg, #bbb)',
       });
 
       const softHoverResult = createVariant('softHover', theme);
       expect(softHoverResult.customColor).to.deep.include({
-        color: 'var(--joy-palette-customColor-softHoverColor)',
+        color: 'var(--joy-palette-customColor-softHoverColor, #ccc)',
       });
     });
 

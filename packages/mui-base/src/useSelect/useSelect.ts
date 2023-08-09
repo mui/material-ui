@@ -1,53 +1,64 @@
+'use client';
 import * as React from 'react';
-import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
-import useButton from '../useButton';
 import {
-  SelectOption,
+  unstable_useForkRef as useForkRef,
+  unstable_useId as useId,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+} from '@mui/utils';
+import { useButton } from '../useButton';
+import {
+  ButtonClickAction,
+  SelectAction,
+  SelectActionTypes,
+  SelectInternalState,
+  SelectValue,
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
-  UseSelectMultiParameters,
-  UseSelectMultiResult,
-  UseSelectOptionSlotProps,
   UseSelectParameters,
-  UseSelectSingleParameters,
-  UseSelectSingleResult,
+  UseSelectReturnValue,
 } from './useSelect.types';
-import useListbox, {
-  ListboxReducer,
-  defaultListboxReducer,
-  ActionTypes,
-  UseListboxParameters,
-} from '../useListbox';
+import { useList, UseListParameters } from '../useList';
 import { EventHandlers } from '../utils/types';
-import defaultOptionStringifier from '../SelectUnstyled/defaultOptionStringifier';
-import useSelectChangeNotifiers from './useSelectChangeNotifiers';
+import { defaultOptionStringifier } from './defaultOptionStringifier';
+import { SelectProviderValue } from './SelectProvider';
+import { useCompoundParent } from '../utils/useCompound';
+import { SelectOption } from '../useOption/useOption.types';
+import { selectReducer } from './selectReducer';
+import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 
-function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
-function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;
+function preventDefault(event: React.SyntheticEvent) {
+  event.preventDefault();
+}
+
 /**
  *
  * Demos:
  *
- * - [Unstyled Select](https://mui.com/base/react-select/#hook)
+ * - [Select](https://mui.com/base-ui/react-select/#hooks)
  *
  * API:
  *
- * - [useSelect API](https://mui.com/base/api/use-select/)
+ * - [useSelect API](https://mui.com/base-ui/react-select/hooks-api/#use-select)
  */
-function useSelect<TValue>(props: UseSelectParameters<TValue>) {
+function useSelect<OptionValue, Multiple extends boolean = false>(
+  props: UseSelectParameters<OptionValue, Multiple>,
+): UseSelectReturnValue<OptionValue, Multiple> {
   const {
+    areOptionsEqual,
     buttonRef: buttonRefProp,
+    defaultOpen = false,
     defaultValue: defaultValueProp,
     disabled = false,
     listboxId: listboxIdProp,
     listboxRef: listboxRefProp,
-    multiple = false,
+    multiple = false as Multiple,
     onChange,
     onHighlightChange,
     onOpenChange,
-    open = false,
-    options,
-    optionStringifier = defaultOptionStringifier,
+    open: openProp,
+    options: optionsParam,
+    getOptionAsString = defaultOptionStringifier,
     value: valueProp,
   } = props;
 
@@ -57,325 +68,306 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   const listboxRef = React.useRef<HTMLElement | null>(null);
   const listboxId = useId(listboxIdProp);
 
-  let defaultValue = defaultValueProp;
+  let defaultValue: OptionValue[] | undefined;
   if (valueProp === undefined && defaultValueProp === undefined) {
-    defaultValue = multiple ? [] : null;
+    defaultValue = [];
+  } else if (defaultValueProp !== undefined) {
+    if (multiple) {
+      defaultValue = defaultValueProp as OptionValue[];
+    } else {
+      defaultValue = defaultValueProp == null ? [] : [defaultValueProp as OptionValue];
+    }
   }
 
-  const optionsMap = React.useMemo(() => {
-    const map = new Map<TValue, SelectOption<TValue>>();
-    options.forEach((option) => {
-      map.set(option.value, option);
-    });
-    return map;
-  }, [options]);
+  const value = React.useMemo(() => {
+    if (valueProp !== undefined) {
+      if (multiple) {
+        return valueProp as OptionValue[];
+      }
 
-  // prevents closing the listbox on keyUp right after opening it
-  const ignoreEnterKeyUp = React.useRef(false);
-
-  // prevents reopening the listbox when button is clicked
-  // (listbox closes on lost focus, then immediately reopens on click)
-  const ignoreClick = React.useRef(false);
-
-  // Ensure the listbox is focused after opening
-  const [listboxFocusRequested, requestListboxFocus] = React.useState(false);
-
-  const focusListboxIfRequested = React.useCallback(() => {
-    if (listboxFocusRequested && listboxRef.current != null) {
-      listboxRef.current.focus();
-      requestListboxFocus(false);
+      return valueProp == null ? [] : [valueProp as OptionValue];
     }
-  }, [listboxFocusRequested]);
 
-  const handleListboxRef = useForkRef(listboxRefProp, listboxRef, focusListboxIfRequested);
+    return undefined;
+  }, [valueProp, multiple]);
 
-  const {
-    notifySelectionChanged,
-    notifyHighlightChanged,
-    registerHighlightChangeHandler,
-    registerSelectionChangeHandler,
-  } = useSelectChangeNotifiers<TValue>();
+  const { subitems, contextValue: compoundComponentContextValue } = useCompoundParent<
+    OptionValue,
+    SelectOption<OptionValue>
+  >();
 
-  React.useEffect(() => {
-    focusListboxIfRequested();
-  }, [focusListboxIfRequested]);
+  const options = React.useMemo(() => {
+    if (optionsParam != null) {
+      return new Map(
+        optionsParam.map((option, index) => [
+          option.value,
+          {
+            value: option.value,
+            label: option.label,
+            disabled: option.disabled,
+            ref: React.createRef<HTMLElement>(),
+            id: `${listboxId}_${index}`,
+          },
+        ]),
+      );
+    }
 
-  React.useEffect(() => {
-    requestListboxFocus(open);
-  }, [open]);
+    return subitems;
+  }, [optionsParam, subitems, listboxId]);
 
-  const createHandleMouseDown =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent<HTMLElement>) => {
-      otherHandlers?.onMouseDown?.(event);
-      if (!event.defaultPrevented && open) {
-        ignoreClick.current = true;
-      }
-    };
-
-  const createHandleButtonClick =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
-      otherHandlers?.onClick?.(event);
-      if (!event.defaultPrevented && !ignoreClick.current) {
-        onOpenChange?.(!open);
-      }
-
-      ignoreClick.current = false;
-    };
-
-  const createHandleButtonKeyDown =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
-      otherHandlers?.onKeyDown?.(event);
-      if (event.defaultPrevented) {
-        return;
-      }
-
-      if (event.key === 'Enter') {
-        ignoreEnterKeyUp.current = true;
-      }
-
-      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-        event.preventDefault();
-        onOpenChange?.(true);
-      }
-    };
-
-  const createHandleListboxKeyUp =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
-      otherHandlers?.onKeyUp?.(event);
-      if (event.defaultPrevented) {
-        return;
-      }
-
-      const closingKeys = multiple ? ['Escape'] : ['Escape', 'Enter', ' '];
-
-      if (open && !ignoreEnterKeyUp.current && closingKeys.includes(event.key)) {
-        buttonRef?.current?.focus();
-      }
-
-      ignoreEnterKeyUp.current = false;
-    };
-
-  const createHandleListboxItemClick = React.useCallback(
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
-      otherHandlers?.onClick?.(event);
-      if (event.defaultPrevented) {
-        return;
-      }
-
-      if (!multiple) {
-        onOpenChange?.(false);
-      }
-    },
-    [multiple, onOpenChange],
-  );
-
-  const createHandleListboxBlur =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
-      otherHandlers?.onBlur?.(event);
-      if (!event.defaultPrevented) {
-        onOpenChange?.(false);
-      }
-    };
-
-  const listboxReducer: ListboxReducer<TValue> = React.useCallback(
-    (state, action) => {
-      const newState = defaultListboxReducer(state, action);
-
-      // change selection when listbox is closed
-      if (
-        action.type === ActionTypes.keyDown &&
-        !open &&
-        (action.event.key === 'ArrowUp' || action.event.key === 'ArrowDown')
-      ) {
-        return {
-          ...newState,
-          selectedValue: newState.highlightedValue,
-        };
-      }
-
-      if (
-        action.type === ActionTypes.blur ||
-        action.type === ActionTypes.setValue ||
-        action.type === ActionTypes.optionsChange
-      ) {
-        return {
-          ...newState,
-          highlightedValue: newState.selectedValue as TValue,
-        };
-      }
-
-      return newState;
-    },
-    [open],
-  );
+  const handleListboxRef = useForkRef(listboxRefProp, listboxRef);
 
   const {
     getRootProps: getButtonRootProps,
     active: buttonActive,
     focusVisible: buttonFocusVisible,
+    rootRef: mergedButtonRef,
   } = useButton({
     disabled,
-    ref: handleButtonRef,
+    rootRef: handleButtonRef,
   });
 
-  const optionValues = React.useMemo(() => options.map((o) => o.value), [options]);
+  const optionValues = React.useMemo(() => Array.from(options.keys()), [options]);
 
-  let useListboxParameters: UseListboxParameters<TValue>;
+  const getOptionByValue = React.useCallback(
+    (valueToGet: OptionValue) => {
+      // This can't be simply `options.get(valueToGet)` because of the `areOptionsEqual` prop.
+      // If it's provided, we assume that the user wants to compare the options by value.
+      if (areOptionsEqual !== undefined) {
+        const similarValue = optionValues.find((optionValue) =>
+          areOptionsEqual(optionValue, valueToGet),
+        )!;
+        return options.get(similarValue);
+      }
 
-  const isOptionDisabled = React.useCallback(
-    (valueToCheck: TValue) => {
-      const option = optionsMap.get(valueToCheck);
+      return options.get(valueToGet);
+    },
+    [options, areOptionsEqual, optionValues],
+  );
+
+  const isItemDisabled = React.useCallback(
+    (valueToCheck: OptionValue) => {
+      const option = getOptionByValue(valueToCheck);
       return option?.disabled ?? false;
     },
-    [optionsMap],
+    [getOptionByValue],
   );
 
   const stringifyOption = React.useCallback(
-    (valueToCheck: TValue) => {
-      const option = optionsMap.get(valueToCheck);
+    (valueToCheck: OptionValue) => {
+      const option = getOptionByValue(valueToCheck);
       if (!option) {
         return '';
       }
 
-      return optionStringifier(option);
+      return getOptionAsString(option);
     },
-    [optionsMap, optionStringifier],
+    [getOptionByValue, getOptionAsString],
   );
 
-  if (props.multiple) {
-    const onChangeMultiple = onChange as (
-      e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-      value: TValue[],
-    ) => void;
-    useListboxParameters = {
-      defaultValue: defaultValue as TValue[],
-      id: listboxId,
-      isOptionDisabled,
-      listboxRef: handleListboxRef,
-      multiple: true,
-      onChange: (e, newValues) => {
-        onChangeMultiple?.(e, newValues);
-      },
-      onHighlightChange: (e, newValue) => {
-        onHighlightChange?.(e, newValue ?? null);
-      },
-      options: optionValues,
-      optionStringifier: stringifyOption,
-      value: valueProp as TValue[],
-    };
-  } else {
-    const onChangeSingle = onChange as (
-      e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-      value: TValue | null,
-    ) => void;
-    useListboxParameters = {
-      defaultValue: defaultValue as TValue | null,
-      id: listboxId,
-      isOptionDisabled,
-      listboxRef: handleListboxRef,
-      multiple: false,
-      onChange: (e, newValue: TValue | null) => {
-        onChangeSingle?.(e, newValue);
-      },
-      onHighlightChange: (e, newValue) => {
-        onHighlightChange?.(e, newValue);
-      },
-      options: optionValues,
-      optionStringifier: stringifyOption,
-      stateReducer: listboxReducer,
-      value: valueProp as TValue | null,
-    };
-  }
+  const controlledState = React.useMemo(
+    () => ({
+      selectedValues: value,
+      open: openProp,
+    }),
+    [value, openProp],
+  );
+
+  const getItemId = React.useCallback(
+    (itemValue: OptionValue) => options.get(itemValue)?.id,
+    [options],
+  );
+
+  const handleSelectionChange = React.useCallback(
+    (
+      event:
+        | React.MouseEvent<Element, MouseEvent>
+        | React.KeyboardEvent<Element>
+        | React.FocusEvent<Element, Element>
+        | null,
+      newValues: OptionValue[],
+    ) => {
+      if (multiple) {
+        onChange?.(event, newValues as SelectValue<OptionValue, Multiple>);
+      } else {
+        onChange?.(event, (newValues[0] ?? null) as SelectValue<OptionValue, Multiple>);
+      }
+    },
+    [multiple, onChange],
+  );
+
+  const handleHighlightChange = React.useCallback(
+    (
+      event:
+        | React.MouseEvent<Element, MouseEvent>
+        | React.KeyboardEvent<Element>
+        | React.FocusEvent<Element, Element>
+        | null,
+      newValue: OptionValue | null,
+    ) => {
+      onHighlightChange?.(event, newValue ?? null);
+    },
+    [onHighlightChange],
+  );
+
+  const handleStateChange = React.useCallback(
+    (event: React.SyntheticEvent | null, field: string, fieldValue: any) => {
+      if (field === 'open') {
+        onOpenChange?.(fieldValue as boolean);
+        if (fieldValue === false && event?.type !== 'blur') {
+          buttonRef.current?.focus();
+        }
+      }
+    },
+    [onOpenChange],
+  );
+
+  const useListParameters: UseListParameters<
+    OptionValue,
+    SelectInternalState<OptionValue>,
+    SelectAction,
+    { multiple: boolean }
+  > = {
+    getInitialState: () => ({
+      highlightedValue: null,
+      selectedValues: defaultValue ?? [],
+      open: defaultOpen,
+    }),
+    getItemId,
+    controlledProps: controlledState,
+    itemComparer: areOptionsEqual,
+    isItemDisabled,
+    rootRef: mergedButtonRef,
+    onChange: handleSelectionChange,
+    onHighlightChange: handleHighlightChange,
+    onStateChange: handleStateChange,
+    reducerActionContext: React.useMemo(() => ({ multiple }), [multiple]),
+    items: optionValues,
+    getItemAsString: stringifyOption,
+    selectionMode: multiple ? 'multiple' : 'single',
+    stateReducer: selectReducer,
+  };
 
   const {
+    dispatch,
     getRootProps: getListboxRootProps,
-    getOptionProps: getListboxOptionProps,
-    getOptionState,
-    highlightedOption,
-    selectedOption,
-  } = useListbox(useListboxParameters);
+    contextValue: listContextValue,
+    state: { open, highlightedValue: highlightedOption, selectedValues: selectedOptions },
+    rootRef: mergedListRootRef,
+  } = useList(useListParameters);
 
-  React.useEffect(() => {
-    notifySelectionChanged(selectedOption);
-  }, [selectedOption, notifySelectionChanged]);
+  const createHandleButtonMouseDown =
+    (otherHandlers?: Record<string, React.EventHandler<any>>) =>
+    (event: React.MouseEvent & MuiCancellableEvent) => {
+      otherHandlers?.onMouseDown?.(event);
+      if (!event.defaultMuiPrevented) {
+        const action: ButtonClickAction = {
+          type: SelectActionTypes.buttonClick,
+          event,
+        };
 
-  React.useEffect(() => {
-    notifyHighlightChanged(highlightedOption);
-  }, [highlightedOption, notifyHighlightChanged]);
+        dispatch(action);
+      }
+    };
 
-  const getButtonProps = <TOther extends EventHandlers>(
+  useEnhancedEffect(() => {
+    // Scroll to the currently highlighted option.
+    if (highlightedOption != null) {
+      const optionRef = getOptionByValue(highlightedOption)?.ref;
+      if (!listboxRef.current || !optionRef?.current) {
+        return;
+      }
+
+      const listboxClientRect = (listboxRef.current as HTMLElement).getBoundingClientRect();
+      const optionClientRect = optionRef.current.getBoundingClientRect();
+
+      if (optionClientRect.top < listboxClientRect.top) {
+        listboxRef.current.scrollTop -= listboxClientRect.top - optionClientRect.top;
+      } else if (optionClientRect.bottom > listboxClientRect.bottom) {
+        listboxRef.current.scrollTop += optionClientRect.bottom - listboxClientRect.bottom;
+      }
+    }
+  }, [highlightedOption, getOptionByValue]);
+
+  const getOptionMetadata = React.useCallback(
+    (optionValue: OptionValue) => getOptionByValue(optionValue),
+    [getOptionByValue],
+  );
+
+  const getSelectTriggerProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
-  ): UseSelectButtonSlotProps<TOther> => {
+  ) => {
     return {
-      ...getButtonRootProps({
-        ...otherHandlers,
-        onClick: createHandleButtonClick(otherHandlers),
-        onMouseDown: createHandleMouseDown(otherHandlers),
-        onKeyDown: createHandleButtonKeyDown(otherHandlers),
-      }),
+      ...otherHandlers,
+      onMouseDown: createHandleButtonMouseDown(otherHandlers),
+      ref: mergedListRootRef,
       role: 'combobox' as const,
       'aria-expanded': open,
-      'aria-haspopup': 'listbox' as const,
       'aria-controls': listboxId,
     };
   };
 
+  const getButtonProps = <TOther extends EventHandlers>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseSelectButtonSlotProps<TOther> => {
+    const listboxAndButtonProps = combineHooksSlotProps(getButtonRootProps, getListboxRootProps);
+    const combinedProps = combineHooksSlotProps(listboxAndButtonProps, getSelectTriggerProps);
+    return combinedProps(otherHandlers);
+  };
+
   const getListboxProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
-  ): UseSelectListboxSlotProps<TOther> =>
-    getListboxRootProps({
+  ): UseSelectListboxSlotProps<TOther> => {
+    return {
       ...otherHandlers,
-      onBlur: createHandleListboxBlur(otherHandlers),
-      onKeyUp: createHandleListboxKeyUp(otherHandlers),
-    });
-
-  const getOptionProps = React.useCallback(
-    <TOther extends EventHandlers>(
-      optionValue: TValue,
-      otherHandlers: TOther = {} as TOther,
-    ): UseSelectOptionSlotProps<TOther> => {
-      return getListboxOptionProps(optionValue, {
-        ...otherHandlers,
-        onClick: createHandleListboxItemClick(otherHandlers),
-      });
-    },
-    [getListboxOptionProps, createHandleListboxItemClick],
-  );
+      id: listboxId,
+      role: 'listbox' as const,
+      'aria-multiselectable': multiple ? 'true' : undefined,
+      ref: handleListboxRef,
+      onMouseDown: preventDefault, // to prevent the button from losing focus when interacting with the listbox
+    };
+  };
 
   React.useDebugValue({
-    selectedOption,
+    selectedOptions,
     highlightedOption,
     open,
   });
 
-  const contextValue = React.useMemo(
+  const contextValue: SelectProviderValue<OptionValue> = React.useMemo(
     () => ({
-      listboxRef,
-      getOptionProps,
-      getOptionState,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
+      ...listContextValue,
+      ...compoundComponentContextValue,
     }),
-    [
-      getOptionProps,
-      getOptionState,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
-    ],
+    [listContextValue, compoundComponentContextValue],
   );
+
+  let selectValue: SelectValue<OptionValue, Multiple>;
+  if (props.multiple) {
+    selectValue = selectedOptions as SelectValue<OptionValue, Multiple>;
+  } else {
+    selectValue = (selectedOptions.length > 0 ? selectedOptions[0] : null) as SelectValue<
+      OptionValue,
+      Multiple
+    >;
+  }
 
   return {
     buttonActive,
     buttonFocusVisible,
+    buttonRef: mergedButtonRef,
+    contextValue,
     disabled,
+    dispatch,
     getButtonProps,
     getListboxProps,
-    contextValue,
+    getOptionMetadata,
+    listboxRef: mergedListRootRef,
     open,
-    value: selectedOption,
+    options: optionValues,
+    value: selectValue,
     highlightedOption,
   };
 }
 
-export default useSelect;
+export { useSelect };

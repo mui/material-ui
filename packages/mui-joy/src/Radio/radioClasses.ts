@@ -17,21 +17,19 @@ export interface RadioClasses {
   checked: string;
   /** State class applied to the root, action slots if `disabled`. */
   disabled: string;
-  /** Class applied to the root element if the switch has visible focus */
+  /** Class name applied to the root element if the switch has visible focus */
   focusVisible: string;
   /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the root element if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
   /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
   /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element when color inversion is triggered. */
+  /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
   /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
@@ -65,7 +63,6 @@ const radioClasses: RadioClasses = generateUtilityClasses('MuiRadio', [
   'focusVisible',
   'colorPrimary',
   'colorDanger',
-  'colorInfo',
   'colorNeutral',
   'colorSuccess',
   'colorWarning',

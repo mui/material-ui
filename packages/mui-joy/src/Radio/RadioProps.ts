@@ -6,6 +6,39 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type RadioSlot = 'root' | 'radio' | 'icon' | 'action' | 'input' | 'label';
 
+export interface RadioSlots {
+  /**
+   * The component that renders the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the radio.
+   * @default 'span'
+   */
+  radio?: React.ElementType;
+  /**
+   * The component that renders the icon.
+   * @default 'span'
+   */
+  icon?: React.ElementType;
+  /**
+   * The component that renders the action.
+   * @default 'span'
+   */
+  action?: React.ElementType;
+  /**
+   * The component that renders the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
+  /**
+   * The component that renders the label.
+   * @default 'label'
+   */
+  label?: React.ElementType;
+}
+
 export interface RadioPropsVariantOverrides {}
 
 export interface RadioPropsColorOverrides {}
@@ -13,7 +46,7 @@ export interface RadioPropsColorOverrides {}
 export interface RadioPropsSizeOverrides {}
 
 export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  RadioSlot,
+  RadioSlots,
   {
     root: SlotProps<'span', {}, RadioOwnerState>;
     radio: SlotProps<'span', {}, RadioOwnerState>;
@@ -26,7 +59,6 @@ export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
-    RadioSlotsAndSlotProps &
     UseSwitchParameters & {
       /**
        * The icon to display when the component is checked.
@@ -74,7 +106,7 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       uncheckedIcon?: React.ReactNode;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'outlined'
        */
       variant?: OverridableStringUnion<VariantProp, RadioPropsVariantOverrides>;
@@ -82,7 +114,7 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The value of the component. The DOM API casts this to a string.
        */
       value?: unknown;
-    };
+    } & RadioSlotsAndSlotProps;
   defaultComponent: D;
 }
 

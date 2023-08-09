@@ -1,21 +1,22 @@
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import path from 'path';
 import * as ts from 'typescript';
 import * as astTypes from 'ast-types';
 import * as _ from 'lodash';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
-import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
-import { toGitHubPath, writePrettifiedFile, computeApiDescription } from './ComponentApiBuilder';
+import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
 import {
   getSymbolDescription,
   getSymbolJSDocTags,
   HookInfo,
   stringifySymbol,
+  writePrettifiedFile,
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
@@ -50,6 +51,10 @@ export interface ReactApi extends ReactDocgenApi {
   name: string;
   description: string;
   /**
+   * Different ways to import components
+   */
+  imports: string[];
+  /**
    * result of path.readFileSync from the `filename` in utf-8
    */
   src: string;
@@ -69,8 +74,18 @@ export interface ReactApi extends ReactDocgenApi {
   }>;
   translations: {
     hookDescription: string;
-    parametersDescriptions: { [key: string]: string | undefined };
-    returnValueDescriptions: { [key: string]: string | undefined };
+    parametersDescriptions: {
+      [key: string]: {
+        description: string;
+        deprecated?: string;
+      };
+    };
+    returnValueDescriptions: {
+      [key: string]: {
+        description: string;
+        deprecated?: string;
+      };
+    };
   };
 }
 
@@ -79,16 +94,17 @@ export interface ReactApi extends ReactDocgenApi {
  * /**
  * * Demos:
  * *
- * * - [Unstyled Button](https://mui.com/base/react-button/)
+ * * - [Button](https://mui.com/base-ui/react-button/)
  * *
  * * API:
  * *
- * * - [useButton API](https://mui.com/base/api/use-button/)
+ * * - [useButton API](https://mui.com/base-ui/api/use-button/)
  */
 async function annotateHookDefinition(api: ReactApi) {
   const HOST = 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
+  const fileName = path.parse(api.filename).name;
   const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
   const typesAST = await babel.parseAsync(typesSource, {
     configFile: false,
@@ -103,6 +119,11 @@ async function annotateHookDefinition(api: ReactApi) {
   let end = null;
   traverse(typesAST, {
     ExportDefaultDeclaration(babelPath) {
+      if (api.filename.includes('mui-base')) {
+        // Base UI does not use default exports.
+        return;
+      }
+
       /**
        * export default function Menu() {}
        */
@@ -154,11 +175,78 @@ async function annotateHookDefinition(api: ReactApi) {
         end = start;
       }
     },
+
+    ExportNamedDeclaration(babelPath) {
+      if (!api.filename.includes('mui-base')) {
+        return;
+      }
+
+      let node: babel.Node = babelPath.node;
+
+      if (babel.types.isTSDeclareFunction(node.declaration)) {
+        // export function useHook() in .d.ts
+        if (node.declaration.id?.name !== fileName) {
+          return;
+        }
+      } else if (node.declaration == null) {
+        // export { useHook };
+
+        node.specifiers.forEach((specifier) => {
+          if (specifier.type === 'ExportSpecifier' && specifier.local.name === fileName) {
+            const binding = babelPath.scope.bindings[specifier.local.name];
+
+            if (babel.types.isFunctionDeclaration(binding.path.node)) {
+              // For function declarations the binding is equal to the declaration
+              // /**
+              //  */
+              // function useHook() {}
+              node = binding.path.node;
+            } else {
+              // For variable declarations the binding points to the declarator.
+              // /**
+              //  */
+              // const useHook = () => {}
+              node = binding.path.parentPath!.node;
+            }
+          }
+        });
+      } else if (babel.types.isFunctionDeclaration(node.declaration)) {
+        // export function useHook() in .ts
+        if (node.declaration.id?.name !== fileName) {
+          return;
+        }
+      } else {
+        return;
+      }
+
+      const { leadingComments } = node;
+      const leadingCommentBlocks =
+        leadingComments != null
+          ? leadingComments.filter(({ type }) => type === 'CommentBlock')
+          : null;
+      const jsdocBlock = leadingCommentBlocks != null ? leadingCommentBlocks[0] : null;
+      if (leadingCommentBlocks != null && leadingCommentBlocks.length > 1) {
+        throw new Error(
+          `Should only have a single leading jsdoc block but got ${
+            leadingCommentBlocks.length
+          }:\n${leadingCommentBlocks
+            .map(({ type, value }, index) => `#${index} (${type}): ${value}`)
+            .join('\n')}`,
+        );
+      }
+      if (jsdocBlock?.start != null && jsdocBlock?.end != null) {
+        start = jsdocBlock.start;
+        end = jsdocBlock.end;
+      } else if (node.start != null) {
+        start = node.start - 1;
+        end = start;
+      }
+    },
   });
 
   if (end === null || start === 0) {
     throw new TypeError(
-      "Don't know where to insert the jsdoc block. Probably no `default export` found",
+      `${api.filename}: Don't know where to insert the jsdoc block. Probably no default export found`,
     );
   }
 
@@ -173,7 +261,7 @@ async function annotateHookDefinition(api: ReactApi) {
       'Demos:',
       '',
       ...api.demos.map((item) => {
-        return `- [${item.name}](${
+        return `- [${item.demoPageTitle}](${
           item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
         })`;
       }),
@@ -225,7 +313,7 @@ const attachTable = (
       const typeDescription = (propDescriptor.typeStr ?? '')
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt')
+        .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
       return {
@@ -263,10 +351,7 @@ const attachTable = (
 };
 
 const generateTranslationDescription = (description: string) => {
-  return description
-    .replace(/\n@default.*$/, '')
-    .replace(/`([a-z]|[A-Z]|\()/g, '<code>$1')
-    .replace(/`/g, '</code>');
+  return renderMarkdownInline(description.replace(/\n@default.*$/, ''));
 };
 
 const attachTranslations = (reactApi: ReactApi) => {
@@ -278,20 +363,34 @@ const attachTranslations = (reactApi: ReactApi) => {
 
   (reactApi.parameters ?? []).forEach(({ name: propName, description }) => {
     if (description) {
-      translations.parametersDescriptions[propName] = generateTranslationDescription(description);
+      translations.parametersDescriptions[propName] = {
+        description: generateTranslationDescription(description),
+      };
+      const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
+      if (deprecation !== null) {
+        translations.parametersDescriptions[propName].deprecated =
+          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+      }
     }
   });
 
   (reactApi.returnValue ?? []).forEach(({ name: propName, description }) => {
     if (description) {
-      translations.returnValueDescriptions[propName] = generateTranslationDescription(description);
+      translations.returnValueDescriptions[propName] = {
+        description: generateTranslationDescription(description),
+      };
+      const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
+      if (deprecation !== null) {
+        translations.parametersDescriptions[propName].deprecated =
+          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+      }
     }
   });
 
   reactApi.translations = translations;
 };
 
-const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -321,42 +420,15 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
     ),
     name: reactApi.name,
     filename: toGitHubPath(reactApi.filename),
+    imports: reactApi.imports,
     demos: `<ul>${reactApi.demos
-      .map((item) => `<li><a href="${item.demoPathname}">${item.name}</a></li>`)
+      .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
   };
 
   writePrettifiedFile(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
-  );
-
-  writePrettifiedFile(
-    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
-    `import * as React from 'react';
-import HookApiPage from 'docs/src/modules/components/HookApiPage';
-import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './${kebabCase(reactApi.name)}.json';
-
-export default function Page(props) {
-  const { descriptions, pageContent } = props;
-  return <HookApiPage descriptions={descriptions} pageContent={pageContent} />;
-}
-
-Page.getInitialProps = () => {
-  const req = require.context(
-    'docs/translations/api-docs/${kebabCase(reactApi.name)}',
-    false,
-    /${kebabCase(reactApi.name)}.*.json$/,
-  );
-  const descriptions = mapApiPageTranslations(req);
-
-  return {
-    descriptions,
-    pageContent: jsonPageContent,
-  };
-};
-`.replace(/\r?\n/g, reactApi.EOL),
   );
 };
 
@@ -397,19 +469,16 @@ const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) =>
   });
 };
 
-const extractInfoFromInterface = (
-  interfaceName: string,
-  project: TypeScriptProject,
-): ParsedProperty[] => {
+const extractInfoFromType = (typeName: string, project: TypeScriptProject): ParsedProperty[] => {
   // Generate the params
   let result: ParsedProperty[] = [];
 
   try {
-    const exportedSymbol = project.exports[interfaceName];
+    const exportedSymbol = project.exports[typeName];
     const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
     // @ts-ignore
     const typeDeclaration = type?.symbol?.declarations?.[0];
-    if (!typeDeclaration || !ts.isInterfaceDeclaration(typeDeclaration)) {
+    if (!typeDeclaration) {
       return [];
     }
 
@@ -426,13 +495,49 @@ const extractInfoFromInterface = (
       .filter((property) => !property.tags.ignore)
       .sort((a, b) => a.name.localeCompare(b.name));
   } catch (e) {
-    console.error(`No declaration for ${interfaceName}`);
+    console.error(`No declaration for ${typeName}`);
   }
 
   return result;
 };
 
-const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) => {
+/**
+ * Helper to get the import options
+ * @param name The name of the hook
+ * @param filename The filename where its defined (to infer the package)
+ * @returns an array of import command
+ */
+const getHookImports = (name: string, filename: string) => {
+  const githubPath = toGitHubPath(filename);
+  const rootImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/.*/,
+    (match, pkg) => `@mui/${pkg}`,
+  );
+
+  const subdirectoryImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/([^\\/]+)\/.*/,
+    (match, pkg, directory) => `@mui/${pkg}/${directory}`,
+  );
+
+  let namedImportName = name;
+  const defaultImportName = name;
+
+  if (/unstable_/.test(githubPath)) {
+    namedImportName = `unstable_${name} as ${name}`;
+  }
+
+  const useNamedImports = rootImportPath === '@mui/base';
+
+  const subpathImport = useNamedImports
+    ? `import { ${namedImportName} } from '${subdirectoryImportPath}';`
+    : `import ${defaultImportName} from '${subdirectoryImportPath}';`;
+
+  const rootImport = `import { ${namedImportName} } from '${rootImportPath}';`;
+
+  return [subpathImport, rootImport];
+};
+
+export default async function generateHookApi(hooksInfo: HookInfo, project: TypeScriptProject) {
   const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
     hooksInfo;
 
@@ -460,8 +565,8 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
     { filename },
   );
 
-  const parameters = extractInfoFromInterface(`${upperFirst(name)}Parameters`, project);
-  const returnValue = extractInfoFromInterface(`${upperFirst(name)}ReturnValue`, project);
+  const parameters = extractInfoFromType(`${upperFirst(name)}Parameters`, project);
+  const returnValue = extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
 
   // Ignore what we might have generated in `annotateHookDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
@@ -470,6 +575,7 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
   }
   reactApi.filename = filename;
   reactApi.name = name;
+  reactApi.imports = getHookImports(name, filename);
   reactApi.apiPathname = apiPathname;
   reactApi.EOL = EOL;
   reactApi.demos = getDemos();
@@ -496,13 +602,11 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
     generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
-    generateApiPage(apiPagesDirectory, reactApi);
+    generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file
     await annotateHookDefinition(reactApi);
   }
 
   return reactApi;
-};
-
-export default generateHookApi;
+}

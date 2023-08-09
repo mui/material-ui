@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -6,7 +7,7 @@ import {
   unstable_capitalize as capitalize,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import useSlider, { valueToPercent } from '@mui/base/useSlider';
+import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -58,15 +59,13 @@ const sliderColorVariables =
     const styles =
       theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      ...(styles.border && {
-        '--variant-borderWidth': styles['--variant-borderWidth'],
-      }),
-      '--Slider-track-color': styles.color,
-      '--Slider-thumb-background': styles.color,
-      '--Slider-thumb-color': styles.backgroundColor || theme.vars.palette.background.surface,
-      '--Slider-track-background': styles.backgroundColor || theme.vars.palette.background.surface,
-      '--Slider-track-borderColor': styles.borderColor,
-      '--Slider-rail-background': theme.vars.palette.background.level2,
+      ...(!data.state && { '--variant-borderWidth': styles['--variant-borderWidth'] ?? '0px' }),
+      '--Slider-trackColor': styles.color,
+      '--Slider-thumbBackground': styles.color,
+      '--Slider-thumbColor': styles.backgroundColor || theme.vars.palette.background.surface,
+      '--Slider-trackBackground': styles.backgroundColor || theme.vars.palette.background.surface,
+      '--Slider-trackBorderColor': styles.borderColor,
+      '--Slider-railBackground': theme.vars.palette.background.level2,
     };
   };
 
@@ -78,33 +77,32 @@ const SliderRoot = styled('span', {
   const getColorVariables = sliderColorVariables({ theme, ownerState });
   return [
     {
-      '--variant-borderWidth': '0px', // prevent using --variant-borderWidth from the outer scope
-      '--Slider-size': 'max(42px, max(var(--Slider-thumb-size), var(--Slider-track-size)))', // Reach 42px touch target, about ~8mm on screen.
-      '--Slider-track-radius': 'var(--Slider-size)',
-      '--Slider-mark-background': theme.vars.palette.text.tertiary,
+      '--Slider-size': 'max(42px, max(var(--Slider-thumbSize), var(--Slider-trackSize)))', // Reach 42px touch target, about ~8mm on screen.
+      '--Slider-trackRadius': 'var(--Slider-size)',
+      '--Slider-markBackground': theme.vars.palette.text.tertiary,
       [`& .${sliderClasses.markActive}`]: {
-        '--Slider-mark-background': 'var(--Slider-track-color)',
+        '--Slider-markBackground': 'var(--Slider-trackColor)',
       },
       ...(ownerState.size === 'sm' && {
-        '--Slider-mark-size': '2px',
-        '--Slider-track-size': '4px',
-        '--Slider-thumb-size': '10px',
-        '--Slider-valueLabel-arrowSize': '6px',
+        '--Slider-markSize': '2px',
+        '--Slider-trackSize': '4px',
+        '--Slider-thumbSize': '14px',
+        '--Slider-valueLabelArrowSize': '6px',
       }),
       ...(ownerState.size === 'md' && {
-        '--Slider-mark-size': '2px',
-        '--Slider-track-size': '6px',
-        '--Slider-thumb-size': '14px',
-        '--Slider-valueLabel-arrowSize': '8px',
+        '--Slider-markSize': '2px',
+        '--Slider-trackSize': '6px',
+        '--Slider-thumbSize': '18px',
+        '--Slider-valueLabelArrowSize': '8px',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Slider-mark-size': '3px',
-        '--Slider-track-size': '10px',
-        '--Slider-thumb-size': '20px',
-        '--Slider-valueLabel-arrowSize': '10px',
+        '--Slider-markSize': '3px',
+        '--Slider-trackSize': '8px',
+        '--Slider-thumbSize': '24px',
+        '--Slider-valueLabelArrowSize': '10px',
       }),
-      '--Slider-thumb-radius': 'calc(var(--Slider-thumb-size) / 2)',
-      '--Slider-thumb-width': 'var(--Slider-thumb-size)',
+      '--Slider-thumbRadius': 'calc(var(--Slider-thumbSize) / 2)',
+      '--Slider-thumbWidth': 'var(--Slider-thumbSize)',
       ...getColorVariables(),
       '&:hover': {
         ...getColorVariables({ state: 'Hover' }),
@@ -148,22 +146,22 @@ const SliderRail = styled('span', {
     position: 'absolute',
     backgroundColor:
       ownerState.track === 'inverted'
-        ? 'var(--Slider-track-background)'
-        : 'var(--Slider-rail-background)',
+        ? 'var(--Slider-trackBackground)'
+        : 'var(--Slider-railBackground)',
     border:
       ownerState.track === 'inverted'
-        ? 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)'
+        ? 'var(--variant-borderWidth, 0px) solid var(--Slider-trackBorderColor)'
         : 'initial',
-    borderRadius: 'var(--Slider-track-radius)',
+    borderRadius: 'var(--Slider-trackRadius)',
     ...(ownerState.orientation === 'horizontal' && {
-      height: 'var(--Slider-track-size)',
+      height: 'var(--Slider-trackSize)',
       top: '50%',
       left: 0,
       right: 0,
       transform: 'translateY(-50%)',
     }),
     ...(ownerState.orientation === 'vertical' && {
-      width: 'var(--Slider-track-size)',
+      width: 'var(--Slider-trackSize)',
       top: 0,
       bottom: 0,
       left: '50%',
@@ -184,26 +182,26 @@ const SliderTrack = styled('span', {
     {
       display: 'block',
       position: 'absolute',
-      color: 'var(--Slider-track-color)',
+      color: 'var(--Slider-trackColor)',
       border:
         ownerState.track === 'inverted'
           ? 'initial'
-          : 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)',
+          : 'var(--variant-borderWidth, 0px) solid var(--Slider-trackBorderColor)',
       backgroundColor:
         ownerState.track === 'inverted'
-          ? 'var(--Slider-rail-background)'
-          : 'var(--Slider-track-background)',
+          ? 'var(--Slider-railBackground)'
+          : 'var(--Slider-trackBackground)',
       ...(ownerState.orientation === 'horizontal' && {
-        height: 'var(--Slider-track-size)',
+        height: 'var(--Slider-trackSize)',
         top: '50%',
         transform: 'translateY(-50%)',
-        borderRadius: 'var(--Slider-track-radius) 0 0 var(--Slider-track-radius)',
+        borderRadius: 'var(--Slider-trackRadius) 0 0 var(--Slider-trackRadius)',
       }),
       ...(ownerState.orientation === 'vertical' && {
-        width: 'var(--Slider-track-size)',
+        width: 'var(--Slider-trackSize)',
         left: '50%',
         transform: 'translateX(-50%)',
-        borderRadius: '0 0 var(--Slider-track-radius) var(--Slider-track-radius)',
+        borderRadius: '0 0 var(--Slider-trackRadius) var(--Slider-trackRadius)',
       }),
       ...(ownerState.track === false && {
         display: 'none',
@@ -223,14 +221,21 @@ const SliderThumb = styled('span', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: 'var(--Slider-thumb-width)',
-  height: 'var(--Slider-thumb-size)',
-  border: 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)',
-  borderRadius: 'var(--Slider-thumb-radius)',
-  boxShadow: 'var(--Slider-thumb-shadow)',
-  color: 'var(--Slider-thumb-color)',
-  backgroundColor: 'var(--Slider-thumb-background)',
-  [theme.focus.selector]: theme.focus.default,
+  width: 'var(--Slider-thumbWidth)',
+  height: 'var(--Slider-thumbSize)',
+  border: 'var(--variant-borderWidth, 0px) solid var(--Slider-trackBorderColor)',
+  borderRadius: 'var(--Slider-thumbRadius)',
+  boxShadow: 'var(--Slider-thumbShadow)',
+  color: 'var(--Slider-thumbColor)',
+  backgroundColor: 'var(--Slider-thumbBackground)',
+  [theme.focus.selector]: {
+    ...theme.focus.default,
+    outlineOffset: 0,
+    outlineWidth: 'max(4px, var(--Slider-thumbSize) / 3.6)',
+    ...(ownerState.color !== 'context' && {
+      outlineColor: `rgba(${theme.vars.palette?.[ownerState.color!]?.mainChannel} / 0.32)`,
+    }),
+  },
   ...(ownerState.orientation === 'horizontal' && {
     top: '50%',
     transform: 'translate(-50%, -50%)',
@@ -251,7 +256,7 @@ const SliderThumb = styled('span', {
     width: '100%',
     height: '100%',
     border: '2px solid',
-    borderColor: 'var(--Slider-thumb-color)',
+    borderColor: 'var(--Slider-thumbColor)',
     borderRadius: 'inherit',
   },
 }));
@@ -263,28 +268,28 @@ const SliderMark = styled('span', {
 })<{ ownerState: SliderOwnerState & { percent?: number } }>(({ ownerState }) => {
   return {
     position: 'absolute',
-    width: 'var(--Slider-mark-size)',
-    height: 'var(--Slider-mark-size)',
-    borderRadius: 'var(--Slider-mark-size)',
-    backgroundColor: 'var(--Slider-mark-background)',
+    width: 'var(--Slider-markSize)',
+    height: 'var(--Slider-markSize)',
+    borderRadius: 'var(--Slider-markSize)',
+    backgroundColor: 'var(--Slider-markBackground)',
     ...(ownerState.orientation === 'horizontal' && {
       top: '50%',
-      transform: `translate(calc(var(--Slider-mark-size) / -2), -50%)`,
+      transform: `translate(calc(var(--Slider-markSize) / -2), -50%)`,
       ...(ownerState.percent === 0 && {
-        transform: `translate(min(var(--Slider-mark-size), 3px), -50%)`,
+        transform: `translate(min(var(--Slider-markSize), 3px), -50%)`,
       }),
       ...(ownerState.percent === 100 && {
-        transform: `translate(calc(var(--Slider-mark-size) * -1 - min(var(--Slider-mark-size), 3px)), -50%)`,
+        transform: `translate(calc(var(--Slider-markSize) * -1 - min(var(--Slider-markSize), 3px)), -50%)`,
       }),
     }),
     ...(ownerState.orientation === 'vertical' && {
       left: '50%',
-      transform: 'translate(-50%, calc(var(--Slider-mark-size) / 2))',
+      transform: 'translate(-50%, calc(var(--Slider-markSize) / 2))',
       ...(ownerState.percent === 0 && {
-        transform: `translate(-50%, calc(min(var(--Slider-mark-size), 3px) * -1))`,
+        transform: `translate(-50%, calc(min(var(--Slider-markSize), 3px) * -1))`,
       }),
       ...(ownerState.percent === 100 && {
-        transform: `translate(-50%, calc(var(--Slider-mark-size) * 1 + min(var(--Slider-mark-size), 3px)))`,
+        transform: `translate(-50%, calc(var(--Slider-markSize) * 1 + min(var(--Slider-markSize), 3px)))`,
       }),
     }),
   };
@@ -323,19 +328,19 @@ const SliderValueLabel = styled('span', {
   bottom: 0,
   transformOrigin: 'bottom center',
   transform:
-    'translateY(calc((var(--Slider-thumb-size) + var(--Slider-valueLabel-arrowSize)) * -1)) scale(0)',
+    'translateY(calc((var(--Slider-thumbSize) + var(--Slider-valueLabelArrowSize)) * -1)) scale(0)',
   position: 'absolute',
   backgroundColor: theme.vars.palette.background.tooltip,
   boxShadow: theme.shadow.sm,
   borderRadius: theme.vars.radius.xs,
   color: '#fff',
   '&::before': {
-    display: 'var(--Slider-valueLabel-arrowDisplay)',
+    display: 'var(--Slider-valueLabelArrowDisplay)',
     position: 'absolute',
     content: '""',
     color: theme.vars.palette.background.tooltip,
     bottom: 0,
-    border: 'calc(var(--Slider-valueLabel-arrowSize) / 2) solid',
+    border: 'calc(var(--Slider-valueLabelArrowSize) / 2) solid',
     borderColor: 'currentColor',
     borderRightColor: 'transparent',
     borderBottomColor: 'transparent',
@@ -346,7 +351,7 @@ const SliderValueLabel = styled('span', {
   },
   [`&.${sliderClasses.valueLabelOpen}`]: {
     transform:
-      'translateY(calc((var(--Slider-thumb-size) + var(--Slider-valueLabel-arrowSize)) * -1)) scale(1)',
+      'translateY(calc((var(--Slider-thumbSize) + var(--Slider-valueLabelArrowSize)) * -1)) scale(1)',
   },
 }));
 
@@ -369,11 +374,11 @@ const SliderMarkLabel = styled('span', {
   position: 'absolute',
   whiteSpace: 'nowrap',
   ...(ownerState.orientation === 'horizontal' && {
-    top: 'calc(50% + 4px + (max(var(--Slider-track-size), var(--Slider-thumb-size)) / 2))',
+    top: 'calc(50% + 4px + (max(var(--Slider-trackSize), var(--Slider-thumbSize)) / 2))',
     transform: 'translateX(-50%)',
   }),
   ...(ownerState.orientation === 'vertical' && {
-    left: 'calc(50% + 8px + (max(var(--Slider-track-size), var(--Slider-thumb-size)) / 2))',
+    left: 'calc(50% + 8px + (max(var(--Slider-trackSize), var(--Slider-thumbSize)) / 2))',
     transform: 'translateY(50%)',
   }),
 }));
@@ -428,6 +433,9 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     color: colorProp = 'primary',
     size = 'md',
     variant = 'solid',
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion('solid');
@@ -439,6 +447,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     classes: classesProp,
     disabled,
     defaultValue,
+    disableSwap,
     isRtl,
     max,
     min,
@@ -468,7 +477,8 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     values,
     trackOffset,
     trackLeap,
-  } = useSlider({ ...ownerState, ref });
+    getThumbStyle,
+  } = useSlider({ ...ownerState, rootRef: ref });
 
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
   ownerState.dragging = dragging;
@@ -479,12 +489,13 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: SliderRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getRootProps,
     ownerState,
   });
@@ -492,7 +503,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotRail, railProps] = useSlot('rail', {
     className: classes.rail,
     elementType: SliderRail,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -502,21 +513,21 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     },
     className: classes.track,
     elementType: SliderTrack,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotMark, markProps] = useSlot('mark', {
     className: classes.mark,
     elementType: SliderMark,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotMarkLabel, markLabelProps] = useSlot('markLabel', {
     className: classes.markLabel,
     elementType: SliderMarkLabel,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       'aria-hidden': true,
@@ -526,7 +537,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotThumb, thumbProps] = useSlot('thumb', {
     className: classes.thumb,
     elementType: SliderThumb,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getThumbProps,
     ownerState,
   });
@@ -534,7 +545,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotInput, inputProps] = useSlot('input', {
     className: classes.input,
     elementType: SliderInput,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getHiddenInputProps,
     ownerState,
   });
@@ -542,7 +553,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotValueLabel, valueLabelProps] = useSlot('valueLabel', {
     className: classes.valueLabel,
     elementType: SliderValueLabel,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -613,7 +624,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
             })}
             style={{
               ...style,
-              pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+              ...getThumbStyle(index),
               ...thumbProps.style,
             }}
           >
@@ -677,9 +688,14 @@ Slider.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -790,6 +806,34 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    valueLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    mark: PropTypes.elementType,
+    markLabel: PropTypes.elementType,
+    rail: PropTypes.elementType,
+    root: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.elementType,
+    valueLabel: PropTypes.elementType,
+  }),
+  /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.
    * We recommend (max - min) to be evenly divisible by the step.
@@ -848,7 +892,7 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

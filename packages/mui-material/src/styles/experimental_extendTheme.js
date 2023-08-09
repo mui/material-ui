@@ -8,7 +8,9 @@ import {
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_defaultSxConfig as defaultSxConfig,
   unstable_styleFunctionSx as styleFunctionSx,
+  unstable_prepareCssVars as prepareCssVars,
 } from '@mui/system';
+import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
 
@@ -59,7 +61,12 @@ const silent = (fn) => {
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
 export default function extendTheme(options = {}, ...args) {
-  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'mui', ...input } = options;
+  const {
+    colorSchemes: colorSchemesInput = {},
+    cssVarPrefix = 'mui',
+    shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    ...input
+  } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
   const { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
@@ -106,6 +113,13 @@ export default function extendTheme(options = {}, ...args) {
   Object.keys(theme.colorSchemes).forEach((key) => {
     const palette = theme.colorSchemes[key].palette;
 
+    const setCssVarColor = (cssVar) => {
+      const tokens = cssVar.split('-');
+      const color = tokens[1];
+      const colorToken = tokens[2];
+      return getCssVar(cssVar, palette[color][colorToken]);
+    };
+
     // attach black & white channels to common node
     if (key === 'light') {
       setColor(palette.common, 'background', '#fff');
@@ -120,6 +134,7 @@ export default function extendTheme(options = {}, ...args) {
       'Alert',
       'AppBar',
       'Avatar',
+      'Button',
       'Chip',
       'FilledInput',
       'LinearProgress',
@@ -138,10 +153,10 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Alert, 'infoColor', safeDarken(palette.info.light, 0.6));
       setColor(palette.Alert, 'successColor', safeDarken(palette.success.light, 0.6));
       setColor(palette.Alert, 'warningColor', safeDarken(palette.warning.light, 0.6));
-      setColor(palette.Alert, 'errorFilledBg', getCssVar('palette-error-main'));
-      setColor(palette.Alert, 'infoFilledBg', getCssVar('palette-info-main'));
-      setColor(palette.Alert, 'successFilledBg', getCssVar('palette-success-main'));
-      setColor(palette.Alert, 'warningFilledBg', getCssVar('palette-warning-main'));
+      setColor(palette.Alert, 'errorFilledBg', setCssVarColor('palette-error-main'));
+      setColor(palette.Alert, 'infoFilledBg', setCssVarColor('palette-info-main'));
+      setColor(palette.Alert, 'successFilledBg', setCssVarColor('palette-success-main'));
+      setColor(palette.Alert, 'warningFilledBg', setCssVarColor('palette-warning-main'));
       setColor(
         palette.Alert,
         'errorFilledColor',
@@ -166,15 +181,17 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Alert, 'infoStandardBg', safeLighten(palette.info.light, 0.9));
       setColor(palette.Alert, 'successStandardBg', safeLighten(palette.success.light, 0.9));
       setColor(palette.Alert, 'warningStandardBg', safeLighten(palette.warning.light, 0.9));
-      setColor(palette.Alert, 'errorIconColor', getCssVar('palette-error-main'));
-      setColor(palette.Alert, 'infoIconColor', getCssVar('palette-info-main'));
-      setColor(palette.Alert, 'successIconColor', getCssVar('palette-success-main'));
-      setColor(palette.Alert, 'warningIconColor', getCssVar('palette-warning-main'));
-      setColor(palette.AppBar, 'defaultBg', getCssVar('palette-grey-100'));
-      setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-400'));
-      setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-400'));
-      setColor(palette.Chip, 'defaultAvatarColor', getCssVar('palette-grey-700'));
-      setColor(palette.Chip, 'defaultIconColor', getCssVar('palette-grey-700'));
+      setColor(palette.Alert, 'errorIconColor', setCssVarColor('palette-error-main'));
+      setColor(palette.Alert, 'infoIconColor', setCssVarColor('palette-info-main'));
+      setColor(palette.Alert, 'successIconColor', setCssVarColor('palette-success-main'));
+      setColor(palette.Alert, 'warningIconColor', setCssVarColor('palette-warning-main'));
+      setColor(palette.AppBar, 'defaultBg', setCssVarColor('palette-grey-100'));
+      setColor(palette.Avatar, 'defaultBg', setCssVarColor('palette-grey-400'));
+      setColor(palette.Button, 'inheritContainedBg', setCssVarColor('palette-grey-300'));
+      setColor(palette.Button, 'inheritContainedHoverBg', setCssVarColor('palette-grey-A100'));
+      setColor(palette.Chip, 'defaultBorder', setCssVarColor('palette-grey-400'));
+      setColor(palette.Chip, 'defaultAvatarColor', setCssVarColor('palette-grey-700'));
+      setColor(palette.Chip, 'defaultIconColor', setCssVarColor('palette-grey-700'));
       setColor(palette.FilledInput, 'bg', 'rgba(0, 0, 0, 0.06)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(0, 0, 0, 0.09)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(0, 0, 0, 0.12)');
@@ -184,7 +201,11 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBg', safeLighten(palette.info.main, 0.62));
       setColor(palette.LinearProgress, 'successBg', safeLighten(palette.success.main, 0.62));
       setColor(palette.LinearProgress, 'warningBg', safeLighten(palette.warning.main, 0.62));
-      setColor(palette.Skeleton, 'bg', `rgba(${getCssVar('palette-text-primaryChannel')} / 0.11)`);
+      setColor(
+        palette.Skeleton,
+        'bg',
+        `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.11)`,
+      );
       setColor(palette.Slider, 'primaryTrack', safeLighten(palette.primary.main, 0.62));
       setColor(palette.Slider, 'secondaryTrack', safeLighten(palette.secondary.main, 0.62));
       setColor(palette.Slider, 'errorTrack', safeLighten(palette.error.main, 0.62));
@@ -203,10 +224,10 @@ export default function extendTheme(options = {}, ...args) {
         'fabHoverBg',
         safeEmphasize(palette.background.paper, 0.15),
       );
-      setColor(palette.StepConnector, 'border', getCssVar('palette-grey-400'));
-      setColor(palette.StepContent, 'border', getCssVar('palette-grey-400'));
-      setColor(palette.Switch, 'defaultColor', getCssVar('palette-common-white'));
-      setColor(palette.Switch, 'defaultDisabledColor', getCssVar('palette-grey-100'));
+      setColor(palette.StepConnector, 'border', setCssVarColor('palette-grey-400'));
+      setColor(palette.StepContent, 'border', setCssVarColor('palette-grey-400'));
+      setColor(palette.Switch, 'defaultColor', setCssVarColor('palette-common-white'));
+      setColor(palette.Switch, 'defaultDisabledColor', setCssVarColor('palette-grey-100'));
       setColor(palette.Switch, 'primaryDisabledColor', safeLighten(palette.primary.main, 0.62));
       setColor(palette.Switch, 'secondaryDisabledColor', safeLighten(palette.secondary.main, 0.62));
       setColor(palette.Switch, 'errorDisabledColor', safeLighten(palette.error.main, 0.62));
@@ -220,10 +241,10 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Alert, 'infoColor', safeLighten(palette.info.light, 0.6));
       setColor(palette.Alert, 'successColor', safeLighten(palette.success.light, 0.6));
       setColor(palette.Alert, 'warningColor', safeLighten(palette.warning.light, 0.6));
-      setColor(palette.Alert, 'errorFilledBg', getCssVar('palette-error-dark'));
-      setColor(palette.Alert, 'infoFilledBg', getCssVar('palette-info-dark'));
-      setColor(palette.Alert, 'successFilledBg', getCssVar('palette-success-dark'));
-      setColor(palette.Alert, 'warningFilledBg', getCssVar('palette-warning-dark'));
+      setColor(palette.Alert, 'errorFilledBg', setCssVarColor('palette-error-dark'));
+      setColor(palette.Alert, 'infoFilledBg', setCssVarColor('palette-info-dark'));
+      setColor(palette.Alert, 'successFilledBg', setCssVarColor('palette-success-dark'));
+      setColor(palette.Alert, 'warningFilledBg', setCssVarColor('palette-warning-dark'));
       setColor(
         palette.Alert,
         'errorFilledColor',
@@ -248,17 +269,19 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Alert, 'infoStandardBg', safeDarken(palette.info.light, 0.9));
       setColor(palette.Alert, 'successStandardBg', safeDarken(palette.success.light, 0.9));
       setColor(palette.Alert, 'warningStandardBg', safeDarken(palette.warning.light, 0.9));
-      setColor(palette.Alert, 'errorIconColor', getCssVar('palette-error-main'));
-      setColor(palette.Alert, 'infoIconColor', getCssVar('palette-info-main'));
-      setColor(palette.Alert, 'successIconColor', getCssVar('palette-success-main'));
-      setColor(palette.Alert, 'warningIconColor', getCssVar('palette-warning-main'));
-      setColor(palette.AppBar, 'defaultBg', getCssVar('palette-grey-900'));
-      setColor(palette.AppBar, 'darkBg', getCssVar('palette-background-paper')); // specific for dark mode
-      setColor(palette.AppBar, 'darkColor', getCssVar('palette-text-primary')); // specific for dark mode
-      setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-600'));
-      setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-700'));
-      setColor(palette.Chip, 'defaultAvatarColor', getCssVar('palette-grey-300'));
-      setColor(palette.Chip, 'defaultIconColor', getCssVar('palette-grey-300'));
+      setColor(palette.Alert, 'errorIconColor', setCssVarColor('palette-error-main'));
+      setColor(palette.Alert, 'infoIconColor', setCssVarColor('palette-info-main'));
+      setColor(palette.Alert, 'successIconColor', setCssVarColor('palette-success-main'));
+      setColor(palette.Alert, 'warningIconColor', setCssVarColor('palette-warning-main'));
+      setColor(palette.AppBar, 'defaultBg', setCssVarColor('palette-grey-900'));
+      setColor(palette.AppBar, 'darkBg', setCssVarColor('palette-background-paper')); // specific for dark mode
+      setColor(palette.AppBar, 'darkColor', setCssVarColor('palette-text-primary')); // specific for dark mode
+      setColor(palette.Avatar, 'defaultBg', setCssVarColor('palette-grey-600'));
+      setColor(palette.Button, 'inheritContainedBg', setCssVarColor('palette-grey-800'));
+      setColor(palette.Button, 'inheritContainedHoverBg', setCssVarColor('palette-grey-700'));
+      setColor(palette.Chip, 'defaultBorder', setCssVarColor('palette-grey-700'));
+      setColor(palette.Chip, 'defaultAvatarColor', setCssVarColor('palette-grey-300'));
+      setColor(palette.Chip, 'defaultIconColor', setCssVarColor('palette-grey-300'));
       setColor(palette.FilledInput, 'bg', 'rgba(255, 255, 255, 0.09)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(255, 255, 255, 0.13)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(255, 255, 255, 0.12)');
@@ -268,7 +291,11 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBg', safeDarken(palette.info.main, 0.5));
       setColor(palette.LinearProgress, 'successBg', safeDarken(palette.success.main, 0.5));
       setColor(palette.LinearProgress, 'warningBg', safeDarken(palette.warning.main, 0.5));
-      setColor(palette.Skeleton, 'bg', `rgba(${getCssVar('palette-text-primaryChannel')} / 0.13)`);
+      setColor(
+        palette.Skeleton,
+        'bg',
+        `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.13)`,
+      );
       setColor(palette.Slider, 'primaryTrack', safeDarken(palette.primary.main, 0.5));
       setColor(palette.Slider, 'secondaryTrack', safeDarken(palette.secondary.main, 0.5));
       setColor(palette.Slider, 'errorTrack', safeDarken(palette.error.main, 0.5));
@@ -287,10 +314,10 @@ export default function extendTheme(options = {}, ...args) {
         'fabHoverBg',
         safeEmphasize(palette.background.paper, 0.15),
       );
-      setColor(palette.StepConnector, 'border', getCssVar('palette-grey-600'));
-      setColor(palette.StepContent, 'border', getCssVar('palette-grey-600'));
-      setColor(palette.Switch, 'defaultColor', getCssVar('palette-grey-300'));
-      setColor(palette.Switch, 'defaultDisabledColor', getCssVar('palette-grey-600'));
+      setColor(palette.StepConnector, 'border', setCssVarColor('palette-grey-600'));
+      setColor(palette.StepContent, 'border', setCssVarColor('palette-grey-600'));
+      setColor(palette.Switch, 'defaultColor', setCssVarColor('palette-grey-300'));
+      setColor(palette.Switch, 'defaultDisabledColor', setCssVarColor('palette-grey-600'));
       setColor(palette.Switch, 'primaryDisabledColor', safeDarken(palette.primary.main, 0.55));
       setColor(palette.Switch, 'secondaryDisabledColor', safeDarken(palette.secondary.main, 0.55));
       setColor(palette.Switch, 'errorDisabledColor', safeDarken(palette.error.main, 0.55));
@@ -350,6 +377,15 @@ export default function extendTheme(options = {}, ...args) {
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
+  const parserConfig = {
+    prefix: cssVarPrefix,
+    shouldSkipGeneratingVar,
+  };
+  const { vars: themeVars, generateCssVars } = prepareCssVars(theme, parserConfig);
+  theme.vars = themeVars;
+  theme.generateCssVars = generateCssVars;
+
+  theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...input?.unstable_sxConfig,

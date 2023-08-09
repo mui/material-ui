@@ -1,0 +1,10 @@
+<Chip
+  sx={{
+    height: 'auto',
+    '& .MuiChip-label': {
+      display: 'block',
+      whiteSpace: 'normal',
+    },
+  }}
+  label="This is a chip that has multiple lines."
+/>

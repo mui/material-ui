@@ -357,6 +357,27 @@ describe('cssVarsParser', () => {
         shadows: ['var(--shadows-0)', 'var(--shadows-1)', 'var(--shadows-2)'],
       });
     });
+
+    it('should add a fallback value', () => {
+      const { varsWithDefaults } = cssVarsParser({
+        palette: {
+          primary: {
+            main: '#000',
+            alias: 'var(--palette-primary-main)',
+            alias2: 'var(--palette-primary-alias)',
+          },
+        },
+      });
+      expect(varsWithDefaults).to.deep.equal({
+        palette: {
+          primary: {
+            main: 'var(--palette-primary-main, #000)',
+            alias: 'var(--palette-primary-alias, var(--palette-primary-main))',
+            alias2: 'var(--palette-primary-alias2, var(--palette-primary-alias))',
+          },
+        },
+      });
+    });
   });
 
   it('does nothing if deep value is not string or number', () => {

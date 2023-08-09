@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
@@ -8,10 +9,10 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
-import Portal from '@mui/base/Portal';
-import FocusTrap from '@mui/base/FocusTrap';
-import { ModalManager } from '@mui/base/ModalUnstyled';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { Portal } from '@mui/base/Portal';
+import { FocusTrap } from '@mui/base/FocusTrap';
+import { ModalManager } from '@mui/base/Modal';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { getModalUtilityClass } from './modalClasses';
@@ -50,6 +51,11 @@ const ModalRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalOwnerState }>(({ ownerState, theme }) => ({
+  '--unstable_popup-zIndex': `calc(${theme.vars.zIndex.modal} + 1)`,
+  '& ~ [role="listbox"]': {
+    // target all the listbox (Autocomplete, Menu, Select, etc.) that uses portal
+    '--unstable_popup-zIndex': `calc(${theme.vars.zIndex.modal} + 1)`,
+  },
   position: 'fixed',
   zIndex: theme.vars.zIndex.modal,
   right: 0,
@@ -88,7 +94,7 @@ const ModalBackdrop = styled('div', {
  *
  * - [Modal API](https://mui.com/joy-ui/api/modal/)
  */
-const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
+const Modal = React.forwardRef(function ModalU(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyModal',
@@ -108,6 +114,9 @@ const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
     onClose,
     onKeyDown,
     open,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -199,6 +208,7 @@ const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target !== event.currentTarget) {
@@ -240,7 +250,7 @@ const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
     ref: handleRef,
     className: classes.root,
     elementType: ModalRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -252,7 +262,7 @@ const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
     },
     className: classes.backdrop,
     elementType: ModalBackdrop,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -300,6 +310,11 @@ Modal.propTypes /* remove-proptypes */ = {
    * A single child content element.
    */
   children: elementAcceptingRef.isRequired,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -378,6 +393,22 @@ Modal.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

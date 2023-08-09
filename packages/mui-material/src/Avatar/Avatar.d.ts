@@ -7,8 +7,11 @@ import { AvatarClasses } from './avatarClasses';
 
 export interface AvatarPropsVariantOverrides {}
 
-export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
+export interface AvatarTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & {
     /**
      * Used in combination with `src` or `srcSet` to
      * provide an alt attribute for the rendered `img` element.
@@ -56,7 +59,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
       AvatarPropsVariantOverrides
     >;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -72,8 +75,10 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
 declare const Avatar: OverridableComponent<AvatarTypeMap>;
 
 export type AvatarProps<
-  D extends React.ElementType = AvatarTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<AvatarTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = AvatarTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<AvatarTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Avatar;

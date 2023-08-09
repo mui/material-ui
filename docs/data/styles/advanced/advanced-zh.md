@@ -2,9 +2,9 @@
 
 <p class="description">本节包含了 @mui/core/styles 的一些更多的进阶用法。</p>
 
-> ⚠️ `@mui/styles` 是MUI的_**传统**_样式解决方案。 它依赖于[JSS](https://cssinjs.org/)作为样式解决方案，在 `@mui/material `中已经不使用了，在v5中被废弃。 If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/overview/) documentation which is the recommended alternative.
+> ⚠️ `@mui/styles` 是MUI的_**传统**_样式解决方案。 它依赖于[JSS](https://cssinjs.org/)作为样式解决方案，在 `@mui/material `中已经不使用了，在v5中被废弃。 If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/) documentation which is the recommended alternative.
 
-> ⚠️ `@mui/styles` 与  [React.StrictMode](https://reactjs.org/docs/strict-mode.html) 或 React 18 不兼容。
+> ⚠️ `@mui/styles` 与  [React.StrictMode](https://react.dev/reference/react/StrictMode) 或 React 18 不兼容。
 
 ## Theming 主题
 
@@ -407,7 +407,7 @@ function render() {
 
 <!-- #default-branch-switch -->
 
-请参考 [这个Gatsby项目的例子](https://github.com/mui/material-ui/tree/master/examples/gatsby)，了解最新的使用范例。
+请参考 [这个Gatsby项目的例子](https://github.com/mui/material-ui/tree/master/examples/material-gatsby)，了解最新的使用范例。
 
 ### Next.js
 
@@ -415,7 +415,7 @@ function render() {
 
 <!-- #default-branch-switch -->
 
-请参考[这个例子项目](https://github.com/mui/material-ui/tree/master/examples/nextjs)，了解最新的使用范例。
+请参考[这个例子项目](https://github.com/mui/material-ui/tree/master/examples/material-next)，了解最新的使用范例。
 
 ## 类名（Class names）
 

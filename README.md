@@ -7,13 +7,13 @@
 
 **MUI Core** contains foundational React UI component libraries for shipping new features faster.
 
-- [_Material UI_](https://mui.com/material-ui/getting-started/overview/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
+- [_Material UI_](https://mui.com/material-ui/getting-started/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
 
-- [_Joy UI_](https://mui.com/joy-ui/getting-started/overview/) is a beautifully designed library of React UI components.
+- [_Joy UI_](https://mui.com/joy-ui/getting-started/) is a beautifully designed library of React UI components.
 
-- [_MUI Base_](https://mui.com/base/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+- [_Base UI_](https://mui.com/base-ui/getting-started/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
 
-- [_MUI System_](https://mui.com/system/getting-started/overview/) is a collection of CSS utilities to help you rapidly lay out custom designs.
+- [_MUI System_](https://mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
 <div align="center">
 
@@ -41,13 +41,13 @@ Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -63,23 +63,23 @@ yarn add @mui/material @emotion/react @emotion/styled
 **Note:** `@next` only points to pre-releases.
 Use `@latest` for the latest stable release.
 
-### MUI Base
+### Base UI
 
-MUI Base is available as an [npm package](https://www.npmjs.com/package/@mui/base).
+Base UI is available as an [npm package](https://www.npmjs.com/package/@mui/base).
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/base
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/base
 ```
 
-**Note**: MUI Base is still in alpha.
+**Note**: Base UI is still in beta.
 We are adding new components regularly and you're welcome to contribute!
 
 ### MUI System
@@ -88,13 +88,13 @@ MUI System is available as an [npm package](https://www.npmjs.com/package/@mui/s
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
@@ -102,13 +102,13 @@ Or if you want to use `styled-components` as a styling engine:
 
 **npm:**
 
-```sh
+```bash
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
 **yarn:**
 
-```sh
+```bash
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
@@ -132,15 +132,13 @@ via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://ww
 
 <p>
   <a href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=192" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
-  <a href="https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-rig ht: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/24789812?s=192" alt="bit.dev" title="The fastest way to share code" loading="lazy" /></a>
   <a href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=192" alt="text-em-all.com" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
-  <a href="https://netticasinohex.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/netticasinohex-com/71d7417/logo/192.png" alt="netticasinohex.com" title="A real giant among casino guides" loading="lazy" /></a>
+  <a href="https://open.spotify.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/spotify/f37ea28/logo/192.png" alt="Spotify" title="Music service to access to millions of songs" loading="lazy" /></a>
   <a href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://mui.com/static/sponsors/megafamous.png" alt="megafamous.com" title="The best place to buy Instagram followers & likes." loading="lazy" /></a>
   <a href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/192.png" alt="dialmycalls.com" title="Send text messages, calls & emails to thousands with ease." loading="lazy" /></a>
   <a href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/192.png" alt="goread.io" title="Instagram followers, likes, power likes, views, comments, saves in minutes." loading="lazy" /></a>
   <a href="https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/icons8/7fa1641/logo/192.png" alt="Icons8" title="We provide the neat icons, photos, illustrations, and music. Developers, use our API to insert all the content we have into your apps." loading="lazy"></a>
   <a href="https://ipinfo.ai?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/ipinfoai/04f41d5/logo/192.png" alt="ipinfo.ai" title="We offer various IP data API services, including IP Geolocation Data, ASN Data, Company Data, IP Ranges Data, Abuse Contacts Data, Anonymous Browsing Detection, etc." loading="lazy"></a>
-  <a href="https://ridicorp.com?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/ridi-corporation/175dcf3/logo/192.png" alt="RIDI" title="RIDI is a South Korean digital content platform that offers webcomics, webnovels, animations, eBooks, and more." loading="lazy"></a>
 </p>
 
 Gold Sponsors are those who have pledged \$500/month or more to MUI.
@@ -170,7 +168,7 @@ For more options, see the [`Button` component page](https://mui.com/material-ui/
 
 ## Questions
 
-For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/tagged/mui) instead of GitHub issues.
+For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui) instead of GitHub issues.
 Use the "mui" tag on Stack Overflow to make it easier for the community to find your question.
 
 ## Examples
@@ -179,10 +177,10 @@ Our documentation features [a collection of example projects using Material UI](
 
 ## Documentation
 
-- [Material UI](https://mui.com/material-ui/getting-started/overview/)
-- [Joy UI](https://mui.com/joy-ui/getting-started/overview/)
-- [MUI Base](https://mui.com/base/getting-started/overview/)
-- [MUI System](https://mui.com/system/getting-started/overview/)
+- [Material UI](https://mui.com/material-ui/getting-started/)
+- [Joy UI](https://mui.com/joy-ui/getting-started/)
+- [Base UI](https://mui.com/base-ui/getting-started/)
+- [MUI System](https://mui.com/system/getting-started/)
 
 ## Premium themes
 
@@ -219,7 +217,7 @@ These great services sponsor MUI's core infrastructure:
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/github-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/github-lightmode.svg">
-  <img alt="GitHub logo" src="/docs/public/static/readme/github-darkmode.svg">
+  <img alt="GitHub logo" src="/docs/public/static/readme/github-lightmode.svg" width="80" height="43">
 </picture>
 
 [GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
@@ -227,7 +225,7 @@ These great services sponsor MUI's core infrastructure:
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/netlify-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/netlify-lightmode.svg">
-  <img alt="Netlify logo" src="/docs/public/static/readme/netlify-darkmode.svg">
+  <img alt="Netlify logo" src="/docs/public/static/readme/netlify-lightmode.svg" width="100" height="27" style="margin-top: 1rem;">
 </picture>
 
 [Netlify](https://www.netlify.com/) lets us distribute the documentation.
@@ -235,11 +233,11 @@ These great services sponsor MUI's core infrastructure:
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/browserstack-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/browserstack-lightmode.svg">
-  <img alt="GitHub logo" src="/docs/public/static/readme/browserstack-darkmode.svg">
+  <img alt="BrowserStack logo" src="/docs/public/static/readme/browserstack-lightmode.svg" width="140" height="25" style="margin-top: 1rem;">
 </picture>
 
 [BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
 
-<img loading="lazy" alt="CodeCov logo" src="https://github.com/codecov.png?size=70" width="35" height="35">
+<img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=70" width="35" height="35" style="margin-top: 1rem;">
 
 [CodeCov](https://about.codecov.io/) lets us monitor test coverage.
