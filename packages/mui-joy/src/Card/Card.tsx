@@ -10,7 +10,6 @@ import {
 } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
@@ -89,9 +88,6 @@ const CardRoot = styled('div', {
       ...theme.typography[`body-${ownerState.size!}`],
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     },
-    ownerState.color !== 'context' &&
-      ownerState.invertedColors &&
-      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
     p !== undefined && { '--Card-padding': p },
     padding !== undefined && { '--Card-padding': padding },
     borderRadius !== undefined && { '--Card-radius': borderRadius },
@@ -116,9 +112,8 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const {
     className,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     component = 'div',
-    invertedColors = false,
     size = 'md',
     variant = 'plain',
     children,
@@ -127,8 +122,6 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -150,7 +143,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     ownerState,
   });
 
-  const result = (
+  return (
     <SlotRoot {...rootProps}>
       {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) {
@@ -182,11 +175,6 @@ const Card = React.forwardRef(function Card(inProps, ref) {
       })}
     </SlotRoot>
   );
-
-  if (invertedColors) {
-    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
-  }
-  return result;
 }) as OverridableComponent<CardTypeMap>;
 
 Card.propTypes /* remove-proptypes */ = {

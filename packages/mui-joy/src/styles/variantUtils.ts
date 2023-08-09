@@ -1,6 +1,6 @@
 import { CSSObject, unstable_createGetCssVar as createGetCssVar } from '@mui/system';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
-import { DefaultColorPalette, PaletteVariant } from './types/colorSystem';
+import { ColorPaletteProp, DefaultColorPalette, PaletteVariant } from './types/colorSystem';
 import { VariantKey } from './types/variants';
 
 export const isVariantPalette = (colorPalette: string | number | Record<string, any>) =>
@@ -115,45 +115,20 @@ export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
       if (isVariantPalette(colorPalette) && typeof colorPalette === 'object') {
         result = {
           ...result,
-          [color]: createVariantStyle(variant, colorPalette, (variantVar) =>
-            getCssVar(`palette-${color}-${variantVar}`, palette[color][variantVar]),
+          [color]: createVariantStyle(
+            variant,
+            colorPalette,
+            (variantVar) =>
+              `var(--variant-${variantVar}, ${getCssVar(
+                `palette-${color}-${variantVar}`,
+                palette[color][variantVar],
+              )})`,
           ),
         };
       }
     });
   }
 
-  result.context = createVariantStyle(variant, {
-    plainColor: 'var(--variant-plainColor)',
-    plainHoverColor: `var(--variant-plainHoverColor)`,
-    plainHoverBg: 'var(--variant-plainHoverBg)',
-    plainActiveBg: 'var(--variant-plainActiveBg)',
-    plainDisabledColor: 'var(--variant-plainDisabledColor)',
-
-    outlinedColor: 'var(--variant-outlinedColor)',
-    outlinedBorder: 'var(--variant-outlinedBorder)',
-    outlinedHoverColor: `var(--variant-outlinedHoverColor)`,
-    outlinedHoverBorder: `var(--variant-outlinedHoverBorder)`,
-    outlinedHoverBg: `var(--variant-outlinedHoverBg)`,
-    outlinedActiveBg: `var(--variant-outlinedActiveBg)`,
-    outlinedDisabledColor: `var(--variant-outlinedDisabledColor)`,
-    outlinedDisabledBorder: `var(--variant-outlinedDisabledBorder)`,
-
-    softColor: 'var(--variant-softColor)',
-    softBg: 'var(--variant-softBg)',
-    softHoverColor: 'var(--variant-softHoverColor)',
-    softHoverBg: 'var(--variant-softHoverBg)',
-    softActiveBg: 'var(--variant-softActiveBg)',
-    softDisabledColor: 'var(--variant-softDisabledColor)',
-    softDisabledBg: 'var(--variant-softDisabledBg)',
-
-    solidColor: 'var(--variant-solidColor)',
-    solidBg: 'var(--variant-solidBg)',
-    solidHoverBg: 'var(--variant-solidHoverBg)',
-    solidActiveBg: 'var(--variant-solidActiveBg)',
-    solidDisabledColor: 'var(--variant-solidDisabledColor)',
-    solidDisabledBg: 'var(--variant-solidDisabledBg)',
-  });
   return result;
 };
 
@@ -418,4 +393,67 @@ export const createSolidInversion = (theme: ThemeFragment, addDefaultValues?: bo
     }
   });
   return result;
+};
+
+export const inverseSolid = (color: ColorPaletteProp) => (theme: ThemeFragment) => {
+  const getCssVarDefault = createGetCssVar(theme.cssVarPrefix);
+  const prefixVar = createPrefixVar(theme.cssVarPrefix);
+  const getCssVar = (cssVar: string) => {
+    const tokens = cssVar.split('-');
+    return getCssVarDefault(cssVar, theme.palette[tokens[1]][tokens[2]]);
+  };
+
+  return {
+    colorScheme: 'dark',
+    '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
+    [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
+    [prefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
+    [prefixVar('--palette-background-surface')]: 'rgba(0 0 0 / 0.06)',
+    [prefixVar('--palette-background-popup')]: getCssVar(`palette-${color}-700`),
+    [prefixVar('--palette-background-level1')]: `rgba(${getCssVar(
+      `palette-${color}-darkChannel`,
+    )} / 0.2)`,
+    [prefixVar('--palette-background-level2')]: `rgba(${getCssVar(
+      `palette-${color}-darkChannel`,
+    )} / 0.36)`,
+    [prefixVar('--palette-background-level3')]: `rgba(${getCssVar(
+      `palette-${color}-darkChannel`,
+    )} / 0.6)`,
+    [prefixVar('--palette-text-primary')]: getCssVar(`palette-common-white`),
+    [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-200`),
+    [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-300`),
+    [prefixVar('--palette-text-icon')]: getCssVar(`palette-${color}-200`),
+    [prefixVar('--palette-divider')]: `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.32)`,
+
+    '--variant-plainColor': getCssVar(`palette-${color}-50`),
+    '--variant-plainHoverColor': `#fff`,
+    '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.12)`,
+    '--variant-plainActiveBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.32)`,
+    '--variant-plainDisabledColor': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.72)`,
+
+    '--variant-outlinedColor': getCssVar(`palette-${color}-50`),
+    '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.5)`,
+    '--variant-outlinedHoverColor': `#fff`,
+    '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-300`),
+    '--variant-outlinedHoverBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.12)`,
+    '--variant-outlinedActiveBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.32)`,
+    '--variant-outlinedDisabledColor': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.72)`,
+    '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
+
+    '--variant-softColor': getCssVar(`palette-common-white`),
+    '--variant-softHoverColor': getCssVar(`palette-common-white`),
+    '--variant-softBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.24)`,
+    '--variant-softHoverBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.36)`,
+    '--variant-softActiveBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.16)`,
+    '--variant-softActiveColor': `#fff`,
+    '--variant-softDisabledColor': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.72)`,
+    '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.1)`,
+
+    '--variant-solidColor': getCssVar(`palette-${color}-${color === 'neutral' ? '600' : '500'}`),
+    '--variant-solidBg': getCssVar(`palette-common-white`),
+    '--variant-solidHoverBg': getCssVar(`palette-common-white`),
+    '--variant-solidActiveBg': getCssVar(`palette-${color}-100`),
+    '--variant-solidDisabledColor': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.72)`,
+    '--variant-solidDisabledBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.1)`,
+  };
 };

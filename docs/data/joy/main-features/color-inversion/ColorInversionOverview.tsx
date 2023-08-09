@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { inverseSolid } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import Chip from '@mui/joy/Chip';
@@ -12,8 +13,9 @@ export default function ColorInversionOverview() {
     <Card
       variant="solid"
       color="primary"
-      invertedColors
-      sx={{ gap: 2, maxWidth: 300, boxShadow: 'md' }}
+      sx={[
+        { gap: 2, maxWidth: 300, boxShadow: 'md', '& *': inverseSolid('primary') },
+      ]}
     >
       <Chip
         size="sm"
@@ -29,9 +31,7 @@ export default function ColorInversionOverview() {
       >
         <BookmarkOutlinedIcon />
       </IconButton>
-      <Typography fontSize="xl2" fontWeight="lg">
-        Learn how to build super fast websites.
-      </Typography>
+      <Typography level="h3">Learn how to build super fast websites.</Typography>
       <Button variant="solid" endDecorator={<KeyboardArrowRightIcon />}>
         Read more
       </Button>
