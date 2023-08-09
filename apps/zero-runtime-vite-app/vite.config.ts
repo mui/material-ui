@@ -21,6 +21,9 @@ export default defineConfig({
       themeArgs: {
         theme,
       },
+      babelOptions: {
+        plugins: ['@babel/plugin-syntax-jsx'],
+      },
     }),
     reactPlugin(),
     splitVendorChunkPlugin(),
