@@ -38,13 +38,13 @@ You can effortlessly display and select dates and times in different time zones,
   <source src="/static/blog/mui-x-mid-v6-features/timezone.mp4" type="video/mp4">
 </video>
 
-Use adapters to control the original value and set the `timezone` prop to define which time zone the Date, Time, or DateTime should be displayed in.
+Set the `timezone` prop to define which time zone the Date, Time, or DateTime should be displayed in.
 
 ```tsx
 <TimePicker
-  value={value} // Can be in any timezone of your choice
+  value={value}
   onChange={setValue}
-  timezone="Pacific/Honolulu"
+  timezone="Pacific/Honolulu" // Can be in any timezone of your choice
   label={'Rendered in "Pacific/Honolulu"'}
 />
 ```
