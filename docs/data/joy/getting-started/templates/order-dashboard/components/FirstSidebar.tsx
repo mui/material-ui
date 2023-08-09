@@ -6,24 +6,20 @@ import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Sheet from '@mui/joy/Sheet';
+// icons
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
+import DynamicFeedRoundedIcon from '@mui/icons-material/DynamicFeedRounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
+
 import MuiLogo from './MuiLogo';
 import { openSidebar } from '../utils';
-
-import HomeIcon from '@mui/icons-material/Home';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
-import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
-import FlagIcon from '@mui/icons-material/Flag';
-import PeopleIcon from '@mui/icons-material/People';
-import SupportIcon from '@mui/icons-material/Support';
-import SettingsIcon from '@mui/icons-material/Settings';
 
 export default function FirstSidebar() {
   return (
     <Sheet
       className="FirstSidebar"
-      variant="plain"
-      color="neutral"
       sx={{
         position: {
           xs: 'fixed',
@@ -38,13 +34,12 @@ export default function FirstSidebar() {
         height: '100dvh',
         width: 'var(--FirstSidebar-width)',
         top: 0,
-        p: 1.5,
-        py: 3,
+        p: 2,
         flexShrink: 0,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 2,
+        gap: 1,
       }}
     >
       <GlobalStyles
@@ -55,35 +50,20 @@ export default function FirstSidebar() {
         }}
       />
       <MuiLogo />
-      <List sx={{ '--ListItem-radius': '6px', '--List-gap': '8px' }}>
+      <List size="sm" sx={{ '--ListItem-radius': '6px', '--List-gap': '8px' }}>
         <ListItem>
           <ListItemButton>
-            <HomeIcon />
+            <HomeRoundedIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton selected variant="soft" onClick={() => openSidebar()}>
-            <BarChartIcon />
+            <DashboardRoundedIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton onClick={() => openSidebar()}>
-            <LayersIcon />
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton onClick={() => openSidebar()}>
-            <AssignmentTurnedInIcon />
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton onClick={() => openSidebar()}>
-            <FlagIcon />
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton onClick={() => openSidebar()}>
-            <PeopleIcon />
+            <DynamicFeedRoundedIcon />
           </ListItemButton>
         </ListItem>
       </List>
@@ -92,17 +72,17 @@ export default function FirstSidebar() {
           mt: 'auto',
           flexGrow: 0,
           '--ListItem-radius': '8px',
-          '--List-gap': '8px',
+          '--List-gap': '4px',
         }}
       >
         <ListItem>
           <ListItemButton>
-            <SupportIcon />
+            <SupportRoundedIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <SettingsIcon />
+            <SettingsRoundedIcon />
           </ListItemButton>
         </ListItem>
       </List>

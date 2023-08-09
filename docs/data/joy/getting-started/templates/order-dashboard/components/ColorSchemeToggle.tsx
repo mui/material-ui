@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useColorScheme } from '@mui/joy/styles';
 import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
 
-import ModeNightIcon from '@mui/icons-material/ModeNight';
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeIcon from '@mui/icons-material/LightMode';
 
 export default function ColorSchemeToggle({
@@ -31,7 +31,7 @@ export default function ColorSchemeToggle({
     <IconButton
       id="toggle-mode"
       size="sm"
-      variant="soft"
+      variant="outlined"
       color="neutral"
       {...props}
       onClick={(event) => {
@@ -54,7 +54,7 @@ export default function ColorSchemeToggle({
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <ModeNightIcon />
+      <DarkModeRoundedIcon />
       <LightModeIcon />
     </IconButton>
   );

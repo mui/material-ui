@@ -1,25 +1,24 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import Chip from '@mui/joy/Chip';
+import Sheet from '@mui/joy/Sheet';
 import List from '@mui/joy/List';
 import ListSubheader from '@mui/joy/ListSubheader';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
-import IconButton from '@mui/joy/IconButton';
-import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
-import { closeSidebar } from '../utils';
-
+// icons
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
 import StarsIcon from '@mui/icons-material/Stars';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import LogoutIcon from '@mui/icons-material/Logout';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
+import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
+import AnalyticsRoundedIcon from '@mui/icons-material/AnalyticsRounded';
+
+import { closeSidebar } from '../utils';
 
 export default function SecondSidebar() {
   return (
@@ -45,7 +44,6 @@ export default function SecondSidebar() {
       <Sheet
         className="SecondSidebar"
         color="neutral"
-        variant="outlined"
         sx={{
           position: {
             xs: 'fixed',
@@ -60,7 +58,6 @@ export default function SecondSidebar() {
           height: '100dvh',
           top: 0,
           p: 2,
-          py: 3,
           flexShrink: 0,
           display: 'flex',
           flexDirection: 'column',
@@ -68,13 +65,15 @@ export default function SecondSidebar() {
         }}
       >
         <List
+          size="sm"
           sx={{
             '--ListItem-radius': '6px',
-            '--ListItem-minHeight': '8px',
-            '--List-gap': '8px',
+            '--List-gap': '6px',
           }}
         >
-          <ListSubheader role="presentation">Dashboard</ListSubheader>
+          <ListSubheader role="presentation" sx={{ fontWeight: 700 }}>
+            Dashboard
+          </ListSubheader>
           <ListItem>
             <ListItemButton onClick={() => closeSidebar()}>
               <ListItemDecorator>
@@ -86,28 +85,9 @@ export default function SecondSidebar() {
           <ListItem>
             <ListItemButton onClick={() => closeSidebar()}>
               <ListItemDecorator>
-                <NotificationsIcon />
-              </ListItemDecorator>
-              <ListItemContent>Notification</ListItemContent>
-              <Chip color="warning" size="sm">
-                10
-              </Chip>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton onClick={() => closeSidebar()}>
-              <ListItemDecorator>
                 <InsertChartIcon />
               </ListItemDecorator>
               <ListItemContent>Analytics</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton onClick={() => closeSidebar()}>
-              <ListItemDecorator>
-                <StarsIcon />
-              </ListItemDecorator>
-              <ListItemContent>Saved reports</ListItemContent>
             </ListItemButton>
           </ListItem>
           <ListItem>
@@ -121,29 +101,55 @@ export default function SecondSidebar() {
           <ListItem>
             <ListItemButton onClick={() => closeSidebar()}>
               <ListItemDecorator>
-                <AccountBoxIcon />
+                <StarsIcon />
               </ListItemDecorator>
-              <ListItemContent>User reports</ListItemContent>
+              <ListItemContent>Saved reports</ListItemContent>
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton onClick={() => closeSidebar()}>
               <ListItemDecorator>
-                <ManageAccountsIcon />
+                <AccountBoxIcon />
               </ListItemDecorator>
-              <ListItemContent>Manage notifications</ListItemContent>
+              <ListItemContent>User reports</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListSubheader role="presentation" sx={{ fontWeight: 700, mt: 2 }}>
+            Workspace
+          </ListSubheader>
+          <ListItem>
+            <ListItemButton onClick={() => closeSidebar()}>
+              <ListItemDecorator>
+                <PeopleRoundedIcon />
+              </ListItemDecorator>
+              <ListItemContent>Groups</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton onClick={() => closeSidebar()}>
+              <ListItemDecorator>
+                <BadgeRoundedIcon />
+              </ListItemDecorator>
+              <ListItemContent>Authentication</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton onClick={() => closeSidebar()}>
+              <ListItemDecorator>
+                <CreditCardRoundedIcon />
+              </ListItemDecorator>
+              <ListItemContent>Billing</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton onClick={() => closeSidebar()}>
+              <ListItemDecorator>
+                <AnalyticsRoundedIcon />
+              </ListItemDecorator>
+              <ListItemContent>Analytics</ListItemContent>
             </ListItemButton>
           </ListItem>
         </List>
-        <Box sx={{ pl: 1, mt: 'auto', display: 'flex', alignItems: 'center' }}>
-          <div>
-            <Typography level="title-sm">Olivia Ryhe</Typography>
-            <Typography level="body-sm">olivia@email.com</Typography>
-          </div>
-          <IconButton variant="plain" sx={{ ml: 'auto' }}>
-            <LogoutIcon />
-          </IconButton>
-        </Box>
       </Sheet>
     </React.Fragment>
   );

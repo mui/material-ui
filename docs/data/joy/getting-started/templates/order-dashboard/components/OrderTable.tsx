@@ -22,13 +22,13 @@ import Sheet from '@mui/joy/Sheet';
 import Checkbox from '@mui/joy/Checkbox';
 import IconButton, { iconButtonClasses } from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
-
+// icons
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import DoneAllIcon from '@mui/icons-material/DoneAll';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import BlockIcon from '@mui/icons-material/Block';
-import RotateRightIcon from '@mui/icons-material/RotateRight';
+import AutorenewRoundedIcon from '@mui/icons-material/AutorenewRounded';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
@@ -36,13 +36,12 @@ const rows = [
   {
     id: 'INV-1234',
     date: 'Feb 3, 2023',
-    status: 'Paid',
+    status: 'Refunded',
     customer: {
       initial: 'O',
       name: 'Olivia Ryhe',
       email: 'olivia@email.com',
     },
-    subscription: 'Yearly',
   },
   {
     id: 'INV-1233',
@@ -53,18 +52,16 @@ const rows = [
       name: 'Steve Hampton',
       email: 'steve.hamp@email.com',
     },
-    subscription: 'Monthly',
   },
   {
     id: 'INV-1232',
     date: 'Feb 3, 2023',
-    status: 'Paid',
+    status: 'Refunded',
     customer: {
       initial: 'C',
       name: 'Ciaran Murray',
       email: 'ciaran.murray@email.com',
     },
-    subscription: 'Yearly',
   },
   {
     id: 'INV-1231',
@@ -75,18 +72,16 @@ const rows = [
       name: 'Maria Macdonald',
       email: 'maria.mc@email.com',
     },
-    subscription: 'Yearly',
   },
   {
     id: 'INV-1230',
     date: 'Feb 3, 2023',
-    status: 'Paid',
+    status: 'Cancelled',
     customer: {
       initial: 'C',
       name: 'Charles Fulton',
       email: 'fulton@email.com',
     },
-    subscription: 'Yearly',
   },
   {
     id: 'INV-1229',
@@ -97,18 +92,16 @@ const rows = [
       name: 'Jay Hooper',
       email: 'hooper@email.com',
     },
-    subscription: 'Yearly',
   },
   {
     id: 'INV-1228',
     date: 'Feb 3, 2023',
-    status: 'Cancelled',
+    status: 'Refunded',
     customer: {
       initial: 'K',
       name: 'Krystal Stevens',
       email: 'k.stevens@email.com',
     },
-    subscription: 'Monthly',
   },
   {
     id: 'INV-1227',
@@ -119,7 +112,6 @@ const rows = [
       name: 'Sachin Flynn',
       email: 's.flyn@email.com',
     },
-    subscription: 'Monthly',
   },
   {
     id: 'INV-1226',
@@ -130,7 +122,96 @@ const rows = [
       name: 'Bradley Rosales',
       email: 'brad123@email.com',
     },
-    subscription: 'Monthly',
+  },
+  {
+    id: 'INV-1234',
+    date: 'Feb 3, 2023',
+    status: 'Paid',
+    customer: {
+      initial: 'O',
+      name: 'Olivia Ryhe',
+      email: 'olivia@email.com',
+    },
+  },
+  {
+    id: 'INV-1233',
+    date: 'Feb 3, 2023',
+    status: 'Cancelled',
+    customer: {
+      initial: 'S',
+      name: 'Steve Hampton',
+      email: 'steve.hamp@email.com',
+    },
+  },
+  {
+    id: 'INV-1232',
+    date: 'Feb 3, 2023',
+    status: 'Paid',
+    customer: {
+      initial: 'C',
+      name: 'Ciaran Murray',
+      email: 'ciaran.murray@email.com',
+    },
+  },
+  {
+    id: 'INV-1231',
+    date: 'Feb 3, 2023',
+    status: 'Refunded',
+    customer: {
+      initial: 'M',
+      name: 'Maria Macdonald',
+      email: 'maria.mc@email.com',
+    },
+  },
+  {
+    id: 'INV-1230',
+    date: 'Feb 3, 2023',
+    status: 'Paid',
+    customer: {
+      initial: 'C',
+      name: 'Charles Fulton',
+      email: 'fulton@email.com',
+    },
+  },
+  {
+    id: 'INV-1229',
+    date: 'Feb 3, 2023',
+    status: 'Cancelled',
+    customer: {
+      initial: 'J',
+      name: 'Jay Hooper',
+      email: 'hooper@email.com',
+    },
+  },
+  {
+    id: 'INV-1228',
+    date: 'Feb 3, 2023',
+    status: 'Cancelled',
+    customer: {
+      initial: 'K',
+      name: 'Krystal Stevens',
+      email: 'k.stevens@email.com',
+    },
+  },
+  {
+    id: 'INV-1227',
+    date: 'Feb 3, 2023',
+    status: 'Paid',
+    customer: {
+      initial: 'S',
+      name: 'Sachin Flynn',
+      email: 's.flyn@email.com',
+    },
+  },
+  {
+    id: 'INV-1226',
+    date: 'Feb 3, 2023',
+    status: 'Cancelled',
+    customer: {
+      initial: 'B',
+      name: 'Bradley Rosales',
+      email: 'brad123@email.com',
+    },
   },
 ];
 
@@ -201,6 +282,9 @@ export default function OrderTable() {
         <FormLabel>Category</FormLabel>
         <Select size={buttonSize} placeholder="All">
           <Option value="all">All</Option>
+          <Option value="refund">Refund</Option>
+          <Option value="purchase">Purchase</Option>
+          <Option value="debit">Debit</Option>
         </Select>
       </FormControl>
 
@@ -208,6 +292,12 @@ export default function OrderTable() {
         <FormLabel>Customer</FormLabel>
         <Select size={buttonSize} placeholder="All">
           <Option value="all">All</Option>
+          <Option value="olivia">Olivia Rhye</Option>
+          <Option value="steve">Steve Hampton</Option>
+          <Option value="ciaran">Ciaran Murray</Option>
+          <Option value="marina">Marina Macdonald</Option>
+          <Option value="charles">Charles Fulton</Option>
+          <Option value="jay">Jay Hoper</Option>
         </Select>
       </FormControl>
     </React.Fragment>
@@ -282,6 +372,7 @@ export default function OrderTable() {
       </Box>
       <Sheet
         className="OrderTableContainer"
+        variant="outlined"
         sx={{
           width: '100%',
           borderRadius: 'sm',
@@ -292,24 +383,21 @@ export default function OrderTable() {
       >
         <Table
           aria-labelledby="tableTitle"
-          variant="outlined"
-          size="md"
           stickyHeader
           hoverRow
           sx={{
-            //   '--TableCell-headBackground': (theme) =>
-            //     theme.vars.palette.background.level1,
-            //   '--Table-headerUnderlineThickness': '1px',
-            //   '--TableRow-hoverBackground': (theme) =>
-            //     theme.vars.palette.background.level1,
-            '--TableCell-paddingY': '12px',
-            '--TableCell-paddingX': '12px',
+            '--TableCell-headBackground': 'var(--joy-palette-background-level1)',
+            '--Table-headerUnderlineThickness': '1px',
+            '--TableRow-hoverBackground': 'var(--joy-palette-background-level1)',
+            '--TableCell-paddingY': '4px',
+            '--TableCell-paddingX': '8px',
           }}
         >
           <thead>
             <tr>
-              <th style={{ width: 48, textAlign: 'center', padding: 12 }}>
+              <th style={{ width: 48, textAlign: 'center', padding: '12px 6px' }}>
                 <Checkbox
+                  size="sm"
                   indeterminate={
                     selected.length > 0 && selected.length !== rows.length
                   }
@@ -327,7 +415,7 @@ export default function OrderTable() {
                   sx={{ verticalAlign: 'text-bottom' }}
                 />
               </th>
-              <th style={{ width: 140, padding: 12 }}>
+              <th style={{ width: 120, padding: '12px 6px' }}>
                 <Link
                   underline="none"
                   color="primary"
@@ -346,11 +434,10 @@ export default function OrderTable() {
                   Invoice
                 </Link>
               </th>
-              <th style={{ width: 120, padding: 12 }}>Date</th>
-              <th style={{ width: 120, padding: 12 }}>Status</th>
-              <th style={{ width: 220, padding: 12 }}>Customer</th>
-              <th style={{ width: 120, padding: 12 }}>Subscription</th>
-              <th style={{ width: 160, padding: 12 }}> </th>
+              <th style={{ width: 140, padding: '12px 6px' }}>Date</th>
+              <th style={{ width: 140, padding: '12px 6px' }}>Status</th>
+              <th style={{ width: 240, padding: '12px 6px' }}>Customer</th>
+              <th style={{ width: 140, padding: '12px 6px' }}> </th>
             </tr>
           </thead>
           <tbody>
@@ -358,6 +445,7 @@ export default function OrderTable() {
               <tr key={row.id}>
                 <td style={{ textAlign: 'center', width: 120 }}>
                   <Checkbox
+                    size="sm"
                     checked={selected.includes(row.id)}
                     color={selected.includes(row.id) ? 'primary' : undefined}
                     onChange={(event) => {
@@ -372,17 +460,19 @@ export default function OrderTable() {
                   />
                 </td>
                 <td>
-                  <Typography level="body-sm">{row.id}</Typography>
+                  <Typography level="body-xs">{row.id}</Typography>
                 </td>
-                <td>{row.date}</td>
+                <td>
+                  <Typography level="body-xs">{row.date}</Typography>
+                </td>
                 <td>
                   <Chip
                     variant="soft"
                     size="sm"
                     startDecorator={
                       {
-                        Paid: <DoneAllIcon />,
-                        Refunded: <RotateRightIcon />,
+                        Paid: <CheckRoundedIcon />,
+                        Refunded: <AutorenewRoundedIcon />,
                         Cancelled: <BlockIcon />,
                       }[row.status]
                     }
@@ -401,23 +491,17 @@ export default function OrderTable() {
                   <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                     <Avatar size="sm">{row.customer.initial}</Avatar>
                     <div>
-                      <Typography level="title-sm">{row.customer.name}</Typography>
-                      <Typography level="body-sm">{row.customer.email}</Typography>
+                      <Typography level="body-xs">{row.customer.name}</Typography>
+                      <Typography level="body-xs">{row.customer.email}</Typography>
                     </div>
                   </Box>
                 </td>
-                <td>{row.subscription}</td>
                 <td>
-                  <Link level="title-sm" component="button" color="neutral">
-                    Archive
-                  </Link>
-                  <Link
-                    level="title-sm"
-                    component="button"
-                    color="primary"
-                    sx={{ ml: 2 }}
-                  >
+                  <Link level="body-xs" component="button">
                     Download
+                  </Link>
+                  <Link level="body-xs" component="button" color="neutral" ml={2}>
+                    Archive
                   </Link>
                 </td>
               </tr>
@@ -452,7 +536,7 @@ export default function OrderTable() {
       <Box
         className="Pagination-laptopUp"
         sx={{
-          pt: 4,
+          pt: 2,
           gap: 1,
           [`& .${iconButtonClasses.root}`]: { borderRadius: '50%' },
           display: {
@@ -463,7 +547,7 @@ export default function OrderTable() {
       >
         <Button
           size="sm"
-          variant="plain"
+          variant="outlined"
           color="neutral"
           startDecorator={<KeyboardArrowLeftIcon />}
         >
@@ -485,7 +569,7 @@ export default function OrderTable() {
 
         <Button
           size="sm"
-          variant="plain"
+          variant="outlined"
           color="neutral"
           endDecorator={<KeyboardArrowRightIcon />}
         >

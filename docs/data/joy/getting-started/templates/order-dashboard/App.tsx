@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
-import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
+import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+// icons
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
+
 import useScript from './useScript';
 import FirstSidebar from './components/FirstSidebar';
 import SecondSidebar from './components/SecondSidebar';
 import OrderTable from './components/OrderTable';
 import Header from './components/Header';
 import ColorSchemeToggle from './components/ColorSchemeToggle';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-
-//icon
-import HomeIcon from '@mui/icons-material/Home';
-import DownloadIcon from '@mui/icons-material/Download';
-import DescriptionIcon from '@mui/icons-material/Description';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -46,11 +46,13 @@ export default function JoyOrderDashboardTemplate() {
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
         <Header />
         <FirstSidebar />
+        <Divider orientation="vertical" />
         <SecondSidebar />
+        <Divider orientation="vertical" />
         <Box
           component="main"
           className="MainContent"
-          sx={(theme) => ({
+          sx={{
             px: {
               xs: 2,
               md: 6,
@@ -71,22 +73,34 @@ export default function JoyOrderDashboardTemplate() {
             minWidth: 0,
             height: '100dvh',
             gap: 1,
-          })}
+          }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Breadcrumbs size="sm" aria-label="breadcrumbs" separator="/ ">
+            <Breadcrumbs
+              size="sm"
+              aria-label="breadcrumbs"
+              separator={<ChevronRightRoundedIcon fontSize="sm" />}
+            >
               <Link
                 underline="none"
                 color="neutral"
                 href="#some-link"
                 aria-label="Home"
               >
-                {<HomeIcon />}
+                <HomeRoundedIcon />
               </Link>
-              <Link underline="hover" color="neutral" href="#some-link">
+              <Link
+                underline="hover"
+                color="neutral"
+                href="#some-link"
+                fontSize={12}
+                fontWeight={500}
+              >
                 Dashboard
               </Link>
-              <Typography color="primary">Orders</Typography>
+              <Typography color="primary" fontWeight={500} fontSize={12}>
+                Orders
+              </Typography>
             </Breadcrumbs>
             <ColorSchemeToggle
               sx={{ ml: 'auto', display: { xs: 'none', md: 'inline-flex' } }}
@@ -96,35 +110,23 @@ export default function JoyOrderDashboardTemplate() {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              my: 1,
+              mt: 1,
               gap: 1,
               flexWrap: 'wrap',
+              justifyContent: 'space-between',
               '& > *': {
                 minWidth: 'clamp(0px, (500px - 100%) * 999, 100%)',
-                flexGrow: 1,
               },
             }}
           >
             <Typography level="h1">Orders</Typography>
-            <Box sx={{ flex: 999 }} />
-            <Box sx={{ display: 'flex', gap: 1, '& > *': { flexGrow: 1 } }}>
-              <Button
-                variant="outlined"
-                color="neutral"
-                startDecorator={<DownloadIcon />}
-                size={buttonSize}
-              >
-                Download PDF
-              </Button>
-              <Button
-                variant="outlined"
-                color="neutral"
-                startDecorator={<DescriptionIcon />}
-                size={buttonSize}
-              >
-                Download CSV
-              </Button>
-            </Box>
+            <Button
+              color="primary"
+              startDecorator={<DownloadRoundedIcon />}
+              size={buttonSize}
+            >
+              Download PDF
+            </Button>
           </Box>
           <OrderTable />
         </Box>

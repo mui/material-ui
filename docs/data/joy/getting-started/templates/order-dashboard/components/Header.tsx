@@ -1,12 +1,11 @@
 import * as React from 'react';
 import GlobalStyles from '@mui/joy/GlobalStyles';
-import IconButton from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
-import MuiLogo from './MuiLogo';
+import IconButton from '@mui/joy/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { toggleSidebar } from '../utils';
-
-import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Header() {
   return (
@@ -14,14 +13,16 @@ export default function Header() {
       sx={{
         display: { xs: 'flex', md: 'none' },
         alignItems: 'center',
+        justifyContent: 'space-between',
         position: 'fixed',
         top: 0,
         width: '100vw',
         height: 'var(--Header-height)',
         zIndex: 9995,
-        py: 1,
-        px: 2,
+        p: 2,
         gap: 1,
+        borderBottom: '1px solid',
+        borderColor: 'background.level1',
         boxShadow: 'sm',
       }}
     >
@@ -43,7 +44,6 @@ export default function Header() {
       >
         <MenuIcon />
       </IconButton>
-      <MuiLogo variant="plain" sx={{ boxShadow: 'none', mr: 'auto' }} />
       <ColorSchemeToggle id={undefined} />
     </Sheet>
   );
