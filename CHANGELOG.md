@@ -3736,7 +3736,7 @@ _Jul 4, 2022_
 
 A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
-- 🐛 Fixed an issue causing Typescript errors when building a project with Material UI v5.8.6 (@michaldudak)
+- 🐛 Fixed an issue causing TypeScript errors when building a project with Material UI v5.8.6 (@michaldudak)
 - 🐛 Fixed a few bugs in Material UI components. Thanks @henriqueholtz, @jake-collibra, @MattiasMartens and @TimoWilhelm!
 - many other 🐛 bug fixes and 📚 documentation improvements
 
@@ -3765,7 +3765,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 ### `@mui/base@5.0.0-alpha.88`
 
-- [base] Remove a type incompatible with Typescript 3.5 (#33361) @michaldudak
+- [base] Remove a type incompatible with TypeScript 3.5 (#33361) @michaldudak
 - [BadgeUnstyled] Export BadgeUnstyledOwnProps interface to fix typescript compiler error (#33314) @aaronlademann-wf
 - [TablePaginationUnstyled] Accept callbacks in componentsProps (#33309) @michaldudak
 
