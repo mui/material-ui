@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'remix';
+import { Link } from '@remix-run/react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
