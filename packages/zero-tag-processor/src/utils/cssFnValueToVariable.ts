@@ -1,17 +1,13 @@
 import type { ExpressionValue } from '@linaria/utils';
 import { type ParseResult, parseExpression } from '@babel/parser';
 import type { Expression } from '@linaria/tags';
-import unitLessKeys from '@emotion/unitless';
+import isUnitLess from './isUnitLess';
 
 interface StyleObj {
   [key: string]: string | number | Function | StyleObj;
 }
 
-function isUnitLess(key: string) {
-  return key in unitLessKeys && unitLessKeys[key] === 1;
-}
-
-function iterate(
+function iterateAndReplaceFunctions(
   styleObj: unknown,
   expressionValue: ExpressionValue | null,
   getVariableName: (cssKey: string, source: string, hasUnit: boolean) => string,
@@ -23,7 +19,7 @@ function iterate(
 
     if (typeof value === 'object') {
       if (!Array.isArray(value)) {
-        iterate(value, expressionValue, getVariableName, acc);
+        iterateAndReplaceFunctions(value, expressionValue, getVariableName, acc);
       }
       return;
     }
@@ -36,7 +32,7 @@ function iterate(
       const expression = parseExpression(fnString);
       const unitLess = isUnitLess(key);
       const variableId = getVariableName(key, fnString, unitLess);
-      acc.push([variableId, expression, isUnitLess(key)]);
+      acc.push([variableId, expression, unitLess]);
       css[key] = `var(--${variableId})`;
     } catch (ex) {
       const err = expressionValue?.buildCodeFrameError('Could not parse function expression.');
@@ -51,12 +47,15 @@ function iterate(
   });
 }
 
+/**
+ * Goes through the css object and identifies any keys where the value is a function and replaces the function with a variable id.
+ */
 export default function cssFnValueToVariable(
   styleObj: unknown,
   expressionValue: ExpressionValue | null,
   getVariableName: (cssKey: string, source: string, hasUnit: boolean) => string,
 ) {
   const acc: [string, ParseResult<Expression>, boolean][] = [];
-  iterate(styleObj, expressionValue, getVariableName, acc);
+  iterateAndReplaceFunctions(styleObj, expressionValue, getVariableName, acc);
   return acc;
 }

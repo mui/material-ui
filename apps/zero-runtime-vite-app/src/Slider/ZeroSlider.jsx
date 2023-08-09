@@ -540,7 +540,6 @@ const SliderMark = styled('span', {
     {
       props: {
         markActive: true,
-        __fromOwnerState: false,
       },
       style: {
         backgroundColor: (theme.vars || theme).palette.background.paper,
@@ -590,7 +589,6 @@ const SliderMarkLabel = styled('span', {
     {
       props: {
         markLabelActive: true,
-        __fromOwnerState: false,
       },
       style: {
         color: (theme.vars || theme).palette.text.primary,

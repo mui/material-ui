@@ -18,7 +18,13 @@ const Button = styled('button', {
   },
 );
 
-const HalfWidth = styled('div')({
+const ShowCaseDiv = styled('div')({
+  [`.${Button}`]: {
+    color: '#f94564',
+  },
+});
+
+const HalfWidth = styled.div({
   marginLeft: '20px',
   width: '50%',
   maxHeight: 100,
@@ -41,6 +47,9 @@ export default function App() {
       <Button isRed={count % 2 === 1} onClick={() => setCount(count + 1)}>
         Click Count {count}
       </Button>
+      <ShowCaseDiv>
+        <Button>This button&apos;s text color has been overridden.</Button>
+      </ShowCaseDiv>
       <div>
         <div>
           <label>
@@ -95,7 +104,7 @@ export default function App() {
         </div>
       </div>
       <div>
-        <HalfWidth>
+        <HalfWidth sx={{ color: 'red' }}>
           <Slider
             aria-label="Small steps"
             defaultValue={50}

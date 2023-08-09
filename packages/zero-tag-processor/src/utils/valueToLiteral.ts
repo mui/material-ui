@@ -1,7 +1,10 @@
 import type { types as t } from '@babel/core';
 import { type ExpressionValue, isSerializable } from '@linaria/utils';
 
-export default function valueToLiteral(value: unknown, ex?: ExpressionValue): t.Expression {
+/**
+ * Converts a javascript primitive to its Babel AST node representation.
+ */
+export default function valueToLiteral(value: unknown, expression?: ExpressionValue): t.Expression {
   if (value === undefined) {
     return {
       type: 'Identifier',
@@ -40,7 +43,7 @@ export default function valueToLiteral(value: unknown, ex?: ExpressionValue): t.
     if (Array.isArray(value)) {
       return {
         type: 'ArrayExpression',
-        elements: value.map((v) => valueToLiteral(v, ex)),
+        elements: value.map((v) => valueToLiteral(v, expression)),
       };
     }
 
@@ -57,7 +60,7 @@ export default function valueToLiteral(value: unknown, ex?: ExpressionValue): t.
               type: 'StringLiteral',
               value: key,
             },
-        value: valueToLiteral(v, ex),
+        value: valueToLiteral(v, expression),
         computed: false,
         shorthand: false,
       })),
@@ -65,8 +68,8 @@ export default function valueToLiteral(value: unknown, ex?: ExpressionValue): t.
   }
 
   throw (
-    ex?.buildCodeFrameError(
-      `The expression evaluated to '${value}', which is probably a mistake. If you want it to be inserted into CSS, explicitly cast or transform the value to a string, e.g. - 'String(${ex.source})'.`,
+    expression?.buildCodeFrameError(
+      `The expression evaluated to '${value}', which is probably a mistake. If you want it to be inserted into CSS, explicitly cast or transform the value to a string, e.g. - 'String(${expression.source})'.`,
     ) ?? new Error('Could not convert value to literal.')
   );
 }

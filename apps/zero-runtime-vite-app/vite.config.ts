@@ -4,11 +4,13 @@ import linaria from '@linaria/vite';
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme();
-// theme.palette.Slider = theme.palette.Slider ?? {};
+// @TODO - Make this part of the main package
 // @ts-ignore
 theme.applyDarkStyles = function applyDarkStyles(obj) {
   return {
-    ':where([data-mui-color-scheme="dark"]) &': obj,
+    // @TODO - Use custom stylis plugin as in docs/src/createEmotionCache.ts
+    // so that we don't need to use *
+    '* :where([data-mui-color-scheme="dark"]) &': obj,
   };
 };
 

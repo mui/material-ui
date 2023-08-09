@@ -31,7 +31,7 @@
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "mkdir -p ../../node_modules/@emotion/unitless/dist/declarations/types && cp src/types/emotion__unitless.d.ts ../../node_modules/@emotion/unitless/dist/declarations/types/index.d.ts && node ../../scripts/buildTypes.mjs",
+    "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "yarn build && npm publish build",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/zero-babel-plugin/**/*.test.{js,ts,tsx}'",
@@ -41,7 +41,6 @@
   "dependencies": {
     "@babel/parser": "^7.22.7",
     "@emotion/css": "^11.11.2",
-    "@emotion/unitless": "^0.8.1",
     "@linaria/tags": "^4.5.4",
     "@linaria/utils": "^4.5.3",
     "@mui/system": "^5.14.4"

@@ -1,9 +1,9 @@
 // @TODO - Implement correct style definitions
 
 type HTMLElements = keyof JSX.IntrinsicElements;
-type StyledFn = {
+interface StyledFn {
   (...args: any[]): any;
-};
+}
 type StyledIndex = {
   [key in HTMLElements]: (...args: any[]) => any;
 };

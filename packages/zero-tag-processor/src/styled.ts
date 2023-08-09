@@ -126,7 +126,10 @@ export default class StyledProcessor extends BaseProcessor {
 
   constructor(params: Params, ...args: TailProcessorParams) {
     super(params, ...args);
-    validateParams(params, ['callee', '*', '...'], BaseProcessor.SKIP);
+    if (params.length === 2) {
+      // no need to do any processing if it is an already transformed call.
+      throw BaseProcessor.SKIP;
+    }
     validateParams(params, ['callee', ['call', 'member'], ['call', 'template']], 'Invalid params');
     // console.log(params);
     const [call, memberOrCall, styleCall] = params;
@@ -164,6 +167,7 @@ export default class StyledProcessor extends BaseProcessor {
     styleArgs.forEach((item) => {
       if (!Array.isArray(item)) {
         if ('kind' in item) {
+          // push item in dependencies so that they get evaluated and we receive its value in build call.
           this.dependencies.push(item);
         }
       }
@@ -186,11 +190,26 @@ export default class StyledProcessor extends BaseProcessor {
     }`;
   }
 
-  doEvaltimeReplacement(): void {
+  /**
+   * There are 2 main phases in Linaria's processing, Evaltime and Runtime. During Evaltime, Linaria prepares minimal code that gets evaluated to get the actual values of the styled arguments. Here, we mostly want to replace the styled calls with a simple string/object of its classname. This is necessary for class composition. For ex, you could potentially do this -
+   * ```js
+   * const Component = styled(...)(...)
+   * const Component2 = styled()({
+   *   [`.${Component} &`]: {
+   *      color: 'red'
+   *   }
+   * })
+   * ```
+   * to further target `Component` rendered inside `Component2`.
+   */
+  doEvaltimeReplacement() {
     this.replacer(this.value, false);
   }
 
   /**
+   * This is called by linaria after evaluating the code. Here, we get access to
+   * the actual values of the `styled` arguments which we can use to generate our styles.
+   *
    * Order of processing styles -
    * 1. CSS directly declared in styled call
    * 2. CSS declared in theme object's styledOverrides
@@ -198,6 +217,8 @@ export default class StyledProcessor extends BaseProcessor {
    * 3. Variants declared in theme object
    */
   build(values: ValueCache): void {
+    // all the variant definitions are collected here so that we can
+    // variant styles after base styles for more specific targetting.
     const variantsAccumulator: VariantData[] = [];
     this.styleArgs.forEach((styleArg) => {
       this.processStyle(values, styleArg, variantsAccumulator);
@@ -241,7 +262,25 @@ export default class StyledProcessor extends BaseProcessor {
   }
 
   /**
-   * This replaces the original styled call during bundling.
+   * This is the runtime phase where all of the css have been transformed and we finally want to replace the `styled` call with the code that we want in the final bundle. In this particular case, we replace the `styled` calls with
+   * ```js
+   * const Component = styled('div', {
+   *  displayName: 'Component',
+   *  name: 'MuiSlider',
+   *  slot: 'root',
+   *  classes: ['class', 'class-1', '...'],
+   *  vars: {
+   *    'var-id': [(props) => props.isRed ? 'red' : 'blue', false],
+   *    // ...
+   *  },
+   *  variants: [{
+   *    props: {
+   *    },
+   *    className: 'class-variant-1',
+   *  }],
+   *  // ...
+   * })
+   * ```
    */
   doRuntimeReplacement(): void {
     const t = this.astService;
@@ -260,12 +299,15 @@ export default class StyledProcessor extends BaseProcessor {
     const argProperties: ReturnType<
       typeof t.objectProperty | typeof t.spreadElement | typeof t.objectMethod
     >[] = [];
-    argProperties.push(
-      t.objectProperty(
-        t.identifier('classes'),
-        t.arrayExpression(this.baseClasses.map((cls) => t.stringLiteral(cls))),
-      ),
-    );
+
+    if (this.baseClasses.length) {
+      argProperties.push(
+        t.objectProperty(
+          t.identifier('classes'),
+          t.arrayExpression(this.baseClasses.map((cls) => t.stringLiteral(cls))),
+        ),
+      );
+    }
 
     const varProperties: ReturnType<typeof t.objectProperty>[] = this.collectedVariables.map(
       ([variableId, expression, isUnitLess]) =>
@@ -274,10 +316,15 @@ export default class StyledProcessor extends BaseProcessor {
           t.arrayExpression([expression, t.booleanLiteral(isUnitLess)]),
         ),
     );
-    argProperties.push(t.objectProperty(t.identifier('vars'), t.objectExpression(varProperties)));
-    argProperties.push(
-      t.objectProperty(t.identifier('variants'), valueToLiteral(this.collectedVariants)),
-    );
+    if (varProperties.length) {
+      argProperties.push(t.objectProperty(t.identifier('vars'), t.objectExpression(varProperties)));
+    }
+    if (this.collectedVariants.length) {
+      argProperties.push(
+        t.objectProperty(t.identifier('variants'), valueToLiteral(this.collectedVariants)),
+      );
+    }
+
     if (this.componentMetaArg) {
       const parsedMeta = parseExpression(this.componentMetaArg.source);
       if (parsedMeta.type === 'ObjectExpression') {
@@ -295,6 +342,9 @@ export default class StyledProcessor extends BaseProcessor {
     );
   }
 
+  /**
+   * Generates css for object directly provided as arguments in the styled call.
+   */
   processStyle(values: ValueCache, styleArg: ExpressionValue, variantsAccumulator?: VariantData[]) {
     if (styleArg.kind === ValueType.CONST) {
       if (typeof styleArg.value === 'string') {
@@ -313,41 +363,9 @@ export default class StyledProcessor extends BaseProcessor {
     }
   }
 
-  processVariant(variant: VariantData) {
-    const { displayName } = this.options;
-    const className = this.getClassName(displayName ? 'variant' : undefined);
-    const styleObjOrFn = variant.style;
-    const finalStyle = this.processCss(styleObjOrFn, null);
-    this.collectedStyles.push([className, finalStyle, null]);
-    this.collectedVariants.push({
-      props: variant.props,
-      className,
-    });
-  }
-
-  processCss(
-    styleObjOrFn: Function | object,
-    styleArg: ExpressionValue | null,
-    variantsAccumulator?: VariantData[],
-  ) {
-    const { themeArgs } = this.options as IOptions;
-    const styleObj = typeof styleObjOrFn === 'function' ? styleObjOrFn(themeArgs) : styleObjOrFn;
-    if (styleObj.variants) {
-      variantsAccumulator?.push(...styleObj.variants);
-      delete styleObj.variants;
-    }
-    const res = cssFnValueToVariable(
-      styleObj,
-      styleArg,
-      (cssKey: string, source: string, hasUnit: boolean) =>
-        this.getCustomVariableId(cssKey, source, hasUnit),
-    );
-    if (res.length) {
-      this.collectedVariables.push(...res);
-    }
-    return processCssObject(styleObj, themeArgs);
-  }
-
+  /**
+   * Generates css for styleOverride objects in the theme object.
+   */
   processOverrides(values: ValueCache, variantsAccumulator?: VariantData[]) {
     if (!this.componentMetaArg) {
       return;
@@ -390,6 +408,44 @@ export default class StyledProcessor extends BaseProcessor {
     }
   }
 
+  /**
+   * Generates css for all the variants collected after processing direct css and styleOverride css.
+   */
+  processVariant(variant: VariantData) {
+    const { displayName } = this.options;
+    const className = this.getClassName(displayName ? 'variant' : undefined);
+    const styleObjOrFn = variant.style;
+    const finalStyle = this.processCss(styleObjOrFn, null);
+    this.collectedStyles.push([className, finalStyle, null]);
+    this.collectedVariants.push({
+      props: variant.props,
+      className,
+    });
+  }
+
+  processCss(
+    styleObjOrFn: Function | object,
+    styleArg: ExpressionValue | null,
+    variantsAccumulator?: VariantData[],
+  ) {
+    const { themeArgs } = this.options as IOptions;
+    const styleObj = typeof styleObjOrFn === 'function' ? styleObjOrFn(themeArgs) : styleObjOrFn;
+    if (styleObj.variants) {
+      variantsAccumulator?.push(...styleObj.variants);
+      delete styleObj.variants;
+    }
+    const res = cssFnValueToVariable(
+      styleObj,
+      styleArg,
+      (cssKey: string, source: string, hasUnit: boolean) =>
+        this.getCustomVariableId(cssKey, source, hasUnit),
+    );
+    if (res.length) {
+      this.collectedVariables.push(...res);
+    }
+    return processCssObject(styleObj, themeArgs);
+  }
+
   // Implementation taken from Linaria - https://github.com/callstack/linaria/blob/master/packages/react/src/processors/styled.ts#L284
   protected getCustomVariableId(cssKey: string, source: string, hasUnit: boolean) {
     const context = this.getVariableContext(cssKey, source, hasUnit);
@@ -430,23 +486,6 @@ export default class StyledProcessor extends BaseProcessor {
 
   get value(): Expression {
     const t = this.astService;
-    let extendsNode: string | null = null;
-    if (typeof this.component !== 'string' && this.component?.node.name) {
-      extendsNode = this.component.node.name;
-    }
-    const newNode = t.objectExpression([
-      t.objectProperty(t.identifier('displayName'), t.stringLiteral(this.displayName)),
-      t.objectProperty(
-        t.identifier('__linaria'),
-        t.objectExpression([
-          t.objectProperty(t.identifier('className'), t.stringLiteral(this.className)),
-          t.objectProperty(
-            t.stringLiteral('extends'),
-            extendsNode ? t.callExpression(t.identifier(extendsNode), []) : t.nullLiteral(),
-          ),
-        ]),
-      ),
-    ]);
-    return newNode;
+    return t.stringLiteral(this.className);
   }
 }
