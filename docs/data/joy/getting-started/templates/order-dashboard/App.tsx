@@ -47,7 +47,10 @@ export default function JoyOrderDashboardTemplate() {
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
         <Header />
         <FirstSidebar />
-        <Divider orientation="vertical" />
+        <Divider
+          orientation="vertical"
+          sx={{ display: { xs: 'none', sm: 'block' } }}
+        />
         <SecondSidebar />
         <Divider
           orientation="vertical"
