@@ -7,8 +7,6 @@ import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
 // icons
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
@@ -26,11 +24,7 @@ const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 export default function JoyOrderDashboardTemplate() {
-  const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
   const status = useScript(`https://unpkg.com/feather-icons`);
-
-  const buttonSize = mobile ? 'md' : 'sm';
 
   useEnhancedEffect(() => {
     // Feather icon setup: https://github.com/feathericons/feather#4-replace
@@ -65,8 +59,8 @@ export default function JoyOrderDashboardTemplate() {
               md: 6,
             },
             pt: {
-              xs: `calc(${theme.spacing(2)} + var(--Header-height))`,
-              sm: `calc(${theme.spacing(2)} + var(--Header-height))`,
+              xs: (theme) => `calc(${theme.spacing(2)} + var(--Header-height))`,
+              sm: (theme) => `calc(${theme.spacing(2)} + var(--Header-height))`,
               md: 3,
             },
             pb: {
@@ -128,7 +122,7 @@ export default function JoyOrderDashboardTemplate() {
             <Button
               color="primary"
               startDecorator={<DownloadRoundedIcon />}
-              size={buttonSize}
+              size="sm"
             >
               Download PDF
             </Button>
