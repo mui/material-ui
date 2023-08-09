@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "5.14.1",
+  "version": "5.14.4",
   "bin": "./codemod.js",
   "private": false,
   "author": "MUI Team",

@@ -11,8 +11,8 @@ import { LANGUAGES_IGNORE_PAGES } from 'docs/config';
  * File to keep in sync with:
  *
  * - /docs/src/modules/components/Link.tsx
- * - /examples/material-next/src/Link.js
- * - /examples/material-next-ts/src/Link.tsx
+ * - /examples/material-ui-nextjs/src/Link.js
+ * - /examples/material-ui-nextjs-ts/src/Link.tsx
  */
 
 // Add support for the sx prop for consistency with the other branches.
@@ -64,7 +64,7 @@ export type LinkProps = {
   linkAs?: NextLinkProps['as']; // Useful when the as prop is shallow by styled().
   noLinkStyle?: boolean;
 } & Omit<NextLinkComposedProps, 'to' | 'linkAs' | 'href'> &
-  Omit<MuiLinkProps, 'href' | 'component'>;
+  Omit<MuiLinkProps, 'href'>;
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/api-reference/next/link

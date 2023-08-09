@@ -73,9 +73,12 @@ export interface TypographyOwnProps extends SystemProps<Theme> {
   >;
 }
 
-export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
-  props: P & TypographyOwnProps;
-  defaultComponent: D;
+export interface TypographyTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'span',
+> {
+  props: AdditionalProps & TypographyOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -92,8 +95,10 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
 declare const Typography: OverridableComponent<TypographyTypeMap>;
 
 export type TypographyProps<
-  D extends React.ElementType = TypographyTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TypographyTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TypographyTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Typography;

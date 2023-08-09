@@ -43,6 +43,31 @@ The `Select` component is similar to the native HTML's `<select>` and `<option>`
 
 {{"demo": "SelectBasic.js"}}
 
+### Variants
+
+The Select component supports the four global variants: `outlined` (default), `plain`, `soft`, and `solid`.
+
+The variant and color values are propagated to the Select's `button` and `listbox` slots.
+
+{{"demo": "SelectVariants.js"}}
+
+:::info
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::
+
+To customize the variant and color for a specific slot, use `slotProps`:
+
+```js
+<Select
+  variant="plain"
+  slotProps={{
+    listbox: {
+      variant: 'outlined',
+    },
+  }}
+/>
+```
+
 ### Decorators
 
 Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the select.
@@ -131,6 +156,12 @@ To control the placement of the listbox, use `placement`:
 ```
 
 :::
+
+#### Placement
+
+To align `listbox` position to `Select` while displaying long options, use `slotProps` prop to position listbox slot:
+
+{{"demo": "SelectPosition.js"}}
 
 #### Controlling the open state
 

@@ -8,7 +8,7 @@ import Typography from '@mui/joy/Typography';
 export default function GroupCheckboxes() {
   return (
     <Box>
-      <Typography id="sandwich-group" level="body2" fontWeight="lg" mb={1}>
+      <Typography id="sandwich-group" level="body-sm" fontWeight="lg" mb={1}>
         Sandwich Dressings
       </Typography>
       <Box role="group" aria-labelledby="sandwich-group">

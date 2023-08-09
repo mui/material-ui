@@ -149,7 +149,7 @@ This is because the custom component isn't prepared to receive the `ownerState` 
 If you need to use the `ownerState` to propagate some props to a third-party component, you must create a custom wrapper for this purpose. 
 But if you don't need the `ownerState` and just want to resolve the error, you can use the `prepareForSlot` utility:
 
-{{"demo": "CreateSlot.js", "defaultCodeOpen": true}}
+{{"demo": "PrepareForSlot.js", "defaultCodeOpen": true}}
 
 ### Customizing slot props
 

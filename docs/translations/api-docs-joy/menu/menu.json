@@ -4,9 +4,6 @@
     "actions": {
       "description": "A ref with imperative actions. It allows to select the first or last menu item."
     },
-    "anchorEl": {
-      "description": "An HTML element, <a href=\"https://popper.js.org/docs/v2/virtual-elements/\">virtualElement</a>, or a function that returns either. It&#39;s used to set the position of the popper. The return value will passed as the reference object of the Popper instance."
-    },
     "color": {
       "description": "The color of the component. It supports those theme colors that make sense for this component."
     },
@@ -54,9 +51,6 @@
     },
     "colorDanger": {
       "description": "Classname applied to the root element if <code>color=&quot;danger&quot;</code>."
-    },
-    "colorInfo": {
-      "description": "Classname applied to the root element if <code>color=&quot;info&quot;</code>."
     },
     "colorSuccess": {
       "description": "Classname applied to the root element if <code>color=&quot;success&quot;</code>."

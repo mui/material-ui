@@ -71,8 +71,8 @@ const SkeletonRoot = styled('span', {
     ownerState.variant !== 'inline' &&
     css`
       &::before {
-        animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
-        background: ${theme.vars.palette.background.level2};
+        animation: ${pulseKeyframe} 2s ease-in-out 0.5s infinite;
+        background: ${theme.vars.palette.background.level3};
       }
     `,
   ({ ownerState, theme }) =>
@@ -80,8 +80,8 @@ const SkeletonRoot = styled('span', {
     ownerState.variant === 'inline' &&
     css`
       &::after {
-        animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
-        background: ${theme.vars.palette.background.level2};
+        animation: ${pulseKeyframe} 2s ease-in-out 0.5s infinite;
+        background: ${theme.vars.palette.background.level3};
       }
     `,
   ({ ownerState, theme }) =>
@@ -89,7 +89,7 @@ const SkeletonRoot = styled('span', {
     css`
       /* Fix bug in Safari https://bugs.webkit.org/show_bug.cgi?id=68196 */
       -webkit-mask-image: -webkit-radial-gradient(white, black);
-      background: ${theme.vars.palette.background.level2};
+      background: ${theme.vars.palette.background.level3};
 
       &::after {
         content: ' ';
@@ -156,7 +156,7 @@ const SkeletonRoot = styled('span', {
           position: 'absolute',
         },
         ...(!ownerState.animation && {
-          backgroundColor: theme.vars.palette.background.level2,
+          backgroundColor: theme.vars.palette.background.level3,
         }),
         ...(ownerState.level !== 'inherit' && {
           ...theme.typography[ownerState.level!],
@@ -170,7 +170,7 @@ const SkeletonRoot = styled('span', {
           position: 'absolute',
         },
         ...(!ownerState.animation && {
-          backgroundColor: theme.vars.palette.background.level2,
+          backgroundColor: theme.vars.palette.background.level3,
         }),
         ...(ownerState.level !== 'inherit' && {
           ...theme.typography[ownerState.level!],
@@ -192,10 +192,10 @@ const SkeletonRoot = styled('span', {
             height: '1em',
             ...theme.typography[ownerState.level || defaultLevel],
             ...(ownerState.animation === 'wave' && {
-              backgroundColor: theme.vars.palette.background.level2,
+              backgroundColor: theme.vars.palette.background.level3,
             }),
             ...(!ownerState.animation && {
-              backgroundColor: theme.vars.palette.background.level2,
+              backgroundColor: theme.vars.palette.background.level3,
             }),
           },
           '&::after': {
@@ -212,7 +212,7 @@ const SkeletonRoot = styled('span', {
         position: 'initial',
         borderRadius: 'min(0.15em, 6px)',
         ...(!ownerState.animation && {
-          backgroundColor: theme.vars.palette.background.level2,
+          backgroundColor: theme.vars.palette.background.level3,
         }),
         ...(ownerState.level !== 'inherit' && {
           ...theme.typography[ownerState.level!],
@@ -221,7 +221,7 @@ const SkeletonRoot = styled('span', {
         '&::before': {
           position: 'absolute',
           zIndex: 'var(--unstable_pseudo-zIndex)',
-          backgroundColor: theme.vars.palette.background.level2,
+          backgroundColor: theme.vars.palette.background.level3,
         },
         ...(ownerState.animation === 'pulse' && {
           '&::after': {
@@ -232,7 +232,7 @@ const SkeletonRoot = styled('span', {
             right: 0,
             bottom: 0,
             zIndex: 'var(--unstable_pseudo-zIndex)',
-            backgroundColor: theme.vars.palette.background.level2,
+            backgroundColor: theme.vars.palette.background.level3,
           },
         }),
       },
@@ -279,7 +279,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     overlay = false,
     loading = true,
     variant = 'overlay',
-    level = variant === 'text' ? 'body1' : 'inherit',
+    level = variant === 'text' ? 'body-md' : 'inherit',
     height,
     width,
     sx,
@@ -373,10 +373,23 @@ Skeleton.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Applies the theme typography styles.
-   * @default variant === 'text' ? 'body1' : 'inherit'
+   * @default variant === 'text' ? 'body-md' : 'inherit'
    */
   level: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['body1', 'body2', 'body3', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'inherit']),
+    PropTypes.oneOf([
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'title-lg',
+      'title-md',
+      'title-sm',
+      'body-lg',
+      'body-md',
+      'body-sm',
+      'body-xs',
+      'inherit',
+    ]),
     PropTypes.string,
   ]),
   /**

@@ -33,10 +33,10 @@ Tabs are implemented using a collection of related components:
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
-import Tab from '@mui/base/Tab';
-import TabsList from '@mui/base/TabsList';
-import TabPanel from '@mui/base/TabPanel';
-import Tabs from '@mui/base/Tabs';
+import { Tab } from '@mui/base/Tab';
+import { TabsList } from '@mui/base/TabsList';
+import { TabPanel } from '@mui/base/TabPanel';
+import { Tabs } from '@mui/base/Tabs';
 
 export default function MyApp() {
   return (

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Popover, PaperProps } from '@mui/material';
 import { expectType } from '@mui/types';
+import { Popover, PaperProps } from '@mui/material';
 
 const paperProps: PaperProps<'span'> = {
   component: 'span',
@@ -12,7 +12,7 @@ function Test() {
   return (
     <React.Fragment>
       <Popover open />;
-      <Popover open PaperProps={paperProps} />;
+      <Popover open PaperProps={paperProps} />
     </React.Fragment>
   );
 }

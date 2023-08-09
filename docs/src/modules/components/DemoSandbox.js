@@ -119,7 +119,7 @@ DemoIframe.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-// Use the default MUI theme for the demos
+// Use the default Material UI theme for the demos
 function getTheme(outerTheme) {
   const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
   const isCustomized =

@@ -1,7 +1,7 @@
-import * as ts from 'typescript';
-import * as prettier from 'prettier';
 import fs from 'fs';
 import path from 'path';
+import * as ts from 'typescript';
+import * as prettier from 'prettier';
 import kebabCase from 'lodash/kebabCase';
 import { getHeaders, getTitle } from '@mui/markdown';
 import { getLineFeed } from '@mui-internal/docs-utilities';
@@ -589,6 +589,39 @@ export function generateBaseUIApiPages() {
     ) {
       const { components, hooks } = markdownHeaders;
 
+      const tokens = markdown.pathname.split('/');
+      const name = tokens[tokens.length - 1];
+      const importStatement = `docs/data${markdown.pathname}/${name}.md`;
+      const demosSource = `
+import * as React from 'react';
+import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
+import AppFrame from 'docs/src/modules/components/AppFrame';
+import * as pageProps from '${importStatement}?@mui/markdown';
+
+export default function Page(props) {
+  const { userLanguage, ...other } = props;
+  return <MarkdownDocs {...pageProps} {...other} />;
+}
+
+Page.getLayout = (page) => {
+  return <AppFrame>{page}</AppFrame>;
+};
+      `;
+
+      const componentPageDirectory = `docs/pages/${productName}-ui/react-${componentName}/`;
+      if (!fs.existsSync(componentPageDirectory)) {
+        fs.mkdirSync(componentPageDirectory, { recursive: true });
+      }
+      writePrettifiedFile(
+        path.join(process.cwd(), `${componentPageDirectory}/index.js`),
+        demosSource,
+      );
+
+      if ((!components || components.length === 0) && (!hooks || hooks.length === 0)) {
+        // Early return if it's a markdown file without components/hooks.
+        return;
+      }
+
       let apiTabImportStatements = '';
       let staticProps = 'export const getStaticProps = () => {';
       let componentsApiDescriptions = '';
@@ -596,7 +629,7 @@ export function generateBaseUIApiPages() {
       let hooksApiDescriptions = '';
       let hooksPageContents = '';
 
-      if (components) {
+      if (components && components.length > 0) {
         components.forEach((component: string) => {
           const componentNameKebabCase = kebabCase(component);
           apiTabImportStatements += `import ${component}ApiJsonPageContent from '../../api/${componentNameKebabCase}.json';`;
@@ -613,7 +646,7 @@ export function generateBaseUIApiPages() {
         });
       }
 
-      if (hooks) {
+      if (hooks && hooks.length > 0) {
         hooks.forEach((hook: string) => {
           const hookNameKebabCase = kebabCase(hook);
           apiTabImportStatements += `import ${hook}ApiJsonPageContent from '../../api/${hookNameKebabCase}.json';`;
@@ -645,25 +678,6 @@ export function generateBaseUIApiPages() {
 
       staticProps += ` },},};};`;
 
-      const tokens = markdown.pathname.split('/');
-      const name = tokens[tokens.length - 1];
-      const importStatement = `docs/data${markdown.pathname}/${name}.md`;
-      const demosSource = `
-import * as React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
-import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from '${importStatement}?@mui/markdown';
-
-export default function Page(props) {
-  const { userLanguage, ...other } = props;
-  return <MarkdownDocs {...pageProps} {...other} />;
-}
-
-Page.getLayout = (page) => {
-  return <AppFrame>{page}</AppFrame>;
-};
-      `;
-
       const tabsApiSource = `
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
@@ -691,24 +705,14 @@ export const getStaticPaths = () => {
 ${staticProps}
       `;
 
-      const componentPageDirectory = `docs/pages/${productName}-ui/react-${componentName}/`;
-      if (!fs.existsSync(componentPageDirectory)) {
-        fs.mkdirSync(componentPageDirectory, { recursive: true });
-      }
-      const demosSourcePath = path.join(process.cwd(), `${componentPageDirectory}/index.js`);
-      writePrettifiedFile(demosSourcePath, demosSource);
-
-      if ((components ?? []).length === 0 && (hooks ?? []).length === 0) {
-        // Early return if it's a markdown file without components/hooks.
-        return;
-      }
-
       const docsTabsPagesDirectory = `${componentPageDirectory}/[docsTab]`;
       if (!fs.existsSync(docsTabsPagesDirectory)) {
         fs.mkdirSync(docsTabsPagesDirectory, { recursive: true });
       }
-      const tabsApiPath = path.join(process.cwd(), `${docsTabsPagesDirectory}/index.js`);
-      writePrettifiedFile(tabsApiPath, tabsApiSource);
+      writePrettifiedFile(
+        path.join(process.cwd(), `${docsTabsPagesDirectory}/index.js`),
+        tabsApiSource,
+      );
     }
   });
 }

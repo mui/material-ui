@@ -20,11 +20,12 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "useFlexGap": { "type": { "name": "bool" } }
   },
   "name": "Stack",
+  "imports": ["import Stack from '@mui/system/Stack';", "import { Stack } from '@mui/system';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "themeDefaultProps": true,

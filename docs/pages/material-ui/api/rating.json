@@ -1,6 +1,6 @@
 {
   "props": {
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "defaultValue": { "type": { "name": "number" }, "default": "null" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "emptyIcon": { "type": { "name": "node" }, "default": "<StarBorder fontSize=\"inherit\" />" },
@@ -46,11 +46,15 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "number" } }
   },
   "name": "Rating",
+  "imports": [
+    "import Rating from '@mui/material/Rating';",
+    "import { Rating } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

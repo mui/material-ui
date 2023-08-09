@@ -29,7 +29,7 @@
         "description": "{ input?: elementType, root?: elementType, textarea?: elementType }"
       },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "startAdornment": { "type": { "name": "node" } },
     "type": {
@@ -42,6 +42,7 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "Input",
+  "imports": ["import { Input } from '@mui/base/Input';", "import { Input } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

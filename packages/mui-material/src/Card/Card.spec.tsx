@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
 import { expectType } from '@mui/types';
+import Card from '@mui/material/Card';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
   function CustomComponent() {
@@ -24,6 +24,7 @@ function CardTest() {
           expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof event>(event);
         }}
       />
+      <Card component="a" href="test" />
 
       <Card component={CustomComponent} stringProp="test" numberProp={0} />
       {/* @ts-expect-error missing stringProp and numberProp */}

@@ -37,8 +37,8 @@ It also includes Option for creating the options on the list, and Option Group f
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
-import Select from '@mui/base/Select';
-import Option from '@mui/base/Option';
+import { Select } from '@mui/base/Select';
+import { Option } from '@mui/base/Option';
 
 export default function MyApp() {
   return (
@@ -62,7 +62,7 @@ The following demo shows how to create and style a Select component.
 The value(s) chosen in the Select can be posted to a server using a standard HTML form.
 When the `name` prop is set, the Select will render a hidden input with the selected value.
 
-{{"demo": "UnstyledSelectForm.js" }}
+{{"demo": "UnstyledSelectForm.js"}}
 
 Note how the second Select in the demo above renders a hidden input with the name provided as a prop.
 
@@ -207,7 +207,7 @@ The same applies for props specific to custom primitive elements:
 ## Hooks
 
 ```js
-import useSelect from '@mui/base/useSelect';
+import { useSelect } from '@mui/base/useSelect';
 ```
 
 The `useSelect` hook lets you apply the functionality of a select to a fully custom component.

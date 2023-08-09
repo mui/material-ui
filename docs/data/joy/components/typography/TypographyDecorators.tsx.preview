@@ -2,8 +2,12 @@
   The icon automatically adjusts to the scale
 </Typography>
 <Typography
-  level="h6"
-  endDecorator={<Chip size="sm">123</Chip>}
+  level="body-lg"
+  endDecorator={
+    <Chip component="span" size="sm">
+      123
+    </Chip>
+  }
   justifyContent="center"
 >
   The display also changes to flexbox

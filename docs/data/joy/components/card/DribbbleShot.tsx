@@ -105,7 +105,7 @@ export default function DribbbleShot() {
         </Chip>
         <Link
           href="#dribbble-shot"
-          level="body3"
+          level="body-xs"
           underline="none"
           startDecorator={<Favorite />}
           sx={{
@@ -119,7 +119,7 @@ export default function DribbbleShot() {
         </Link>
         <Link
           href="#dribbble-shot"
-          level="body3"
+          level="body-xs"
           underline="none"
           startDecorator={<Visibility />}
           sx={{

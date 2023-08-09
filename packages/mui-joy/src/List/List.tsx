@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
+import { resolveSxValue } from '../styles/styleUtils';
 import { useColorInversion } from '../styles/ColorInversion';
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
@@ -34,6 +35,11 @@ const useUtilityClasses = (ownerState: ListOwnerState) => {
 };
 
 export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme, ownerState }) => {
+  const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
+    'p',
+    'padding',
+    'borderRadius',
+  ]);
   function applySizeVars(size: ListProps['size']) {
     if (size === 'sm') {
       return {
@@ -41,9 +47,8 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--ListItem-minHeight': '2rem',
         '--ListItem-paddingY': '0.25rem',
         '--ListItem-paddingX': '0.5rem',
-        '--ListItem-fontSize': theme.vars.fontSize.sm,
         '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
-        '--Icon-fontSize': '1.125rem',
+        '--Icon-fontSize': theme.vars.fontSize.lg,
       };
     }
     if (size === 'md') {
@@ -52,9 +57,8 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--ListItem-minHeight': '2.5rem',
         '--ListItem-paddingY': '0.375rem',
         '--ListItem-paddingX': '0.75rem',
-        '--ListItem-fontSize': theme.vars.fontSize.md,
         '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
-        '--Icon-fontSize': '1.25rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl,
       };
     }
     if (size === 'lg') {
@@ -63,9 +67,8 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--ListItem-minHeight': '3rem',
         '--ListItem-paddingY': '0.5rem',
         '--ListItem-paddingX': '1rem',
-        '--ListItem-fontSize': theme.vars.fontSize.md,
         '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
-        '--Icon-fontSize': '1.5rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
       };
     }
     return {};
@@ -91,7 +94,6 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
     !ownerState.nesting && {
       ...applySizeVars(ownerState.size),
       '--List-gap': '0px',
-      '--ListItemDecorator-color': theme.vars.palette.text.tertiary,
       '--List-nestedInsetStart': '0px',
       '--ListItem-paddingLeft': 'var(--ListItem-paddingX)',
       '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
@@ -103,6 +105,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       '--ListItem-startActionTranslateX': 'calc(0.5 * var(--ListItem-paddingLeft))',
       '--ListItem-endActionTranslateX': 'calc(-0.5 * var(--ListItem-paddingRight))',
       margin: 'initial',
+      ...theme.typography[`body-${ownerState.size!}`],
       // --List-padding is not declared to let list uses --ListDivider-gap by default.
       ...(ownerState.orientation === 'horizontal'
         ? {
@@ -135,6 +138,11 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       position: 'relative', // for sticky ListItem
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '--unstable_List-borderWidth': 'var(--variant-borderWidth, 0px)', // For children to lookup the List's border width.
+      ...(borderRadius !== undefined && {
+        '--List-radius': borderRadius,
+      }),
+      ...(p !== undefined && { '--List-padding': p }),
+      ...(padding !== undefined && { '--List-padding': padding }),
     },
   ];
 });
@@ -251,7 +259,7 @@ List.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
