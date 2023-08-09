@@ -14,7 +14,6 @@ import { useInput } from '@mui/base/useInput';
 import {
   refType,
   unstable_capitalize as capitalize,
-  unstable_useForkRef as useForkRef,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
 // import formControlState from '@mui/material/FormControl/formControlState';
@@ -297,10 +296,6 @@ const InputBase = React.forwardRef(function InputBase<
 
   const { current: isControlled } = React.useRef(value != null);
 
-  const inputRef = React.useRef<HTMLInputElement>(null);
-
-  const handleInputRef = useForkRef(inputRef, inputRefProp);
-
   // TODO: integrate FormControl
   const muiFormControl = useFormControl();
 
@@ -325,7 +320,7 @@ const InputBase = React.forwardRef(function InputBase<
   const onFilled = muiFormControl && muiFormControl.onFilled;
   const onEmpty = muiFormControl && muiFormControl.onEmpty;
 
-  // TODO: keep this?
+  // TODO: needs FormControl & Outlined/FilledInput
   const checkDirty = React.useCallback(
     (obj: any) => {
       if (isFilled(obj)) {
@@ -382,13 +377,6 @@ const InputBase = React.forwardRef(function InputBase<
     }
   };
 
-  // Check the input state on mount, in case it was filled by the user
-  // or auto filled by the browser before the hydration (for SSR).
-  React.useEffect(() => {
-    checkDirty(inputRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const handleClick = (event: React.PointerEvent) => {
     if (onClick /* && !fcs.disabled */) {
       onClick(event);
@@ -425,11 +413,6 @@ const InputBase = React.forwardRef(function InputBase<
   }
   */
 
-  const handleAutoFill = (event: React.AnimationEvent) => {
-    // Provide a fake value as Chrome might not let you access it for security reasons.
-    checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef.current : { value: 'x' });
-  };
-
   React.useEffect(() => {
     if (muiFormControl) {
       muiFormControl.setAdornedStart(Boolean(startAdornment));
@@ -443,6 +426,7 @@ const InputBase = React.forwardRef(function InputBase<
     // formControlContext,
     error: errorState,
     disabled: disabledState,
+    inputRef,
   } = useInput({
     disabled: disabledProp,
     defaultValue,
@@ -453,7 +437,7 @@ const InputBase = React.forwardRef(function InputBase<
     onFocus: handleFocus,
     required,
     value,
-    inputRef: handleInputRef,
+    inputRef: inputRefProp,
   });
 
   const ownerState = {
@@ -523,6 +507,18 @@ const InputBase = React.forwardRef(function InputBase<
     ownerState,
     className: classes.input,
   });
+
+  const handleAutoFill = (event: React.AnimationEvent) => {
+    // Provide a fake value as Chrome might not let you access it for security reasons.
+    checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef : { value: 'x' });
+  };
+
+  // Check the input state on mount, in case it was filled by the user
+  // or auto filled by the browser before the hydration (for SSR).
+  React.useEffect(() => {
+    checkDirty(inputRef);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <React.Fragment>
