@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import FormControl, { formControlClasses as classes } from '@mui/joy/FormControl';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
@@ -42,12 +42,11 @@ describe('<FormControl />', () => {
       expect(getByTestId('root')).not.to.have.class(classes.colorNeutral);
       expect(getByTestId('root')).not.to.have.class(classes.colorPrimary);
       expect(getByTestId('root')).not.to.have.class(classes.colorDanger);
-      expect(getByTestId('root')).not.to.have.class(classes.colorInfo);
       expect(getByTestId('root')).not.to.have.class(classes.colorSuccess);
       expect(getByTestId('root')).not.to.have.class(classes.colorWarning);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(<FormControl data-testid="root" color={color} />);
 

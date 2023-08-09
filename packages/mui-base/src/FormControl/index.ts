@@ -1,6 +1,7 @@
-export { default } from './FormControl';
+'use client';
+export { FormControl } from './FormControl';
 
-export { default as FormControlContext } from './FormControlContext';
+export { FormControlContext } from './FormControlContext';
 
 export type {
   FormControlProps,
@@ -9,7 +10,6 @@ export type {
   UseFormControlContextReturnValue,
 } from './FormControl.types';
 
-export { default as formControlClasses } from './formControlClasses';
 export * from './formControlClasses';
 
-export { default as useFormControlContext } from './useFormControlContext';
+export { useFormControlContext } from './useFormControlContext';

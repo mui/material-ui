@@ -45,7 +45,7 @@ const theme = createTheme({
 
 When using either `emotion` or `styled-components`, you need [`stylis-plugin-rtl`](https://github.com/styled-components/stylis-plugin-rtl) to flip the styles.
 
-```sh
+```bash
 npm install stylis stylis-plugin-rtl
 ```
 
@@ -55,7 +55,7 @@ Only Emotion is compatible with version 2 of the plugin. `styled-components` req
 
 In case you are using `jss` (up to v4) or with the legacy `@mui/styles` package, you need [`jss-rtl`](https://github.com/alitaheri/jss-rtl) to flip the styles.
 
-```sh
+```bash
 npm install jss-rtl
 ```
 

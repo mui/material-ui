@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Input from '@mui/base/Input';
+import { Input } from '@mui/base/Input';
 import { useTheme } from '@mui/system';
 
 export default function UnstyledInputBasic() {
@@ -59,8 +59,8 @@ function Styles() {
         font-size: 0.875rem;
         font-weight: 400;
         line-height: 1.5;
-        padding: 12px;
-        border-radius: 12px;
+        padding: 8px 12px;
+        border-radius: 8px;
         color: ${isDarkMode ? grey[300] : grey[900]};
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};

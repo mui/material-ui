@@ -3,6 +3,22 @@ const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
 
+/**
+ * Option used by `marked` the library parsing markdown.
+ */
+const markedOptions = {
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  headerPrefix: false,
+  headerIds: false,
+  mangle: false,
+};
+
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
 const descriptionRegExp = /<p class="description">(.*?)<\/p>/s;
@@ -151,16 +167,18 @@ function getHeaders(markdown) {
     return headers;
   } catch (err) {
     throw new Error(
-      `docs-infra: ${err.message} in getHeader(markdown) with markdown: \n\n${header}`,
+      `docs-infra: ${err.message} in getHeader(markdown) with markdown: \n\n${header}\n`,
     );
   }
 }
 
 function getContents(markdown) {
-  return markdown
+  const rep = markdown
     .replace(headerRegExp, '') // Remove header information
-    .split(/^{{("(?:demo|component)":[^}]*)}}$/gm) // Split markdown into an array, separating demos
+    .split(/^{{("(?:demo|component)":.*)}}$/gm) // Split markdown into an array, separating demos
+    .flatMap((text) => text.split(/^(<codeblock.*?<\/codeblock>)$/gmsu))
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
+  return rep;
 }
 
 function getTitle(markdown) {
@@ -182,11 +200,31 @@ function getDescription(markdown) {
   return matches[1].trim().replace(/`/g, '');
 }
 
+function getCodeblock(content) {
+  if (content.startsWith('<codeblock')) {
+    const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+    const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
+      ([, language, tab, code]) => ({ language, tab, code }),
+    );
+
+    const blocksData = blocks.filter(
+      (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
+    );
+
+    return {
+      type: 'codeblock',
+      data: blocksData,
+      storageKey,
+    };
+  }
+  return undefined;
+}
+
 /**
  * @param {string} markdown
  */
 function renderInline(markdown) {
-  return marked.parseInline(markdown);
+  return marked.parseInline(markdown, markedOptions);
 }
 
 // Help rank mui.com on component searches first.
@@ -238,13 +276,10 @@ function createRender(context) {
         return `<h${level}>${headingHtml}</h${level}>`;
       }
 
-      const headingText = headingHtml
-        .replace(
-          /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])\uFE0F?/g,
-          '',
-        ) // remove emojis
-        .replace(/<\/?[^>]+(>|$)/g, '') // remove HTML
-        .trim();
+      // Remove links to avoid nested links in the TOCs
+      let headingText = headingHtml.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
+      // Remove `code` tags
+      headingText = headingText.replace(/<code\b[^>]*>/i, '').replace(/<\/code>/i, '');
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first
@@ -276,7 +311,7 @@ function createRender(context) {
         });
       } else if (level === 3) {
         if (!toc[toc.length - 1]) {
-          throw new Error(`docs-infra: Missing parent level for: ${headingText}`);
+          throw new Error(`docs-infra: Missing parent level for: ${headingText}\n`);
         }
 
         toc[toc.length - 1].children.push({
@@ -343,19 +378,14 @@ function createRender(context) {
 
       return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
-      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>\n`;
-    };
-
-    const markedOptions = {
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      highlight: prism,
-      renderer,
+      }</code></pre>${[
+        '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
+        '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
+        '<use class="MuiCode-copy-icon" xlink:href="#copy-icon" />',
+        '<use class="MuiCode-copied-icon" xlink:href="#copied-icon" />',
+        '</svg>',
+        '<span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
+      ].join('')}\n`;
     };
 
     marked.use({
@@ -393,7 +423,7 @@ function createRender(context) {
       ],
     });
 
-    return marked(markdown, markedOptions);
+    return marked(markdown, { ...markedOptions, renderer });
   }
 
   return render;
@@ -402,7 +432,7 @@ function createRender(context) {
 const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
 
 /**
- * @param {string} product
+ * @param {string} productId
  * @example 'material'
  * @param {string} componentPkg
  * @example 'mui-base'
@@ -410,17 +440,23 @@ const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'Tex
  * @example 'Button'
  * @returns {string}
  */
-function resolveComponentApiUrl(product, componentPkg, component) {
-  if (!product) {
+function resolveComponentApiUrl(productId, componentPkg, component) {
+  if (!productId) {
     return `/api/${kebabCase(component)}/`;
   }
-  if (product === 'date-pickers') {
+  if (productId === 'x-date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
+  }
+  if (productId === 'x-charts') {
+    return `/x/api/charts/${kebabCase(component)}/`;
+  }
+  if (productId === 'x-tree-view') {
+    return `/x/api/tree-view/${kebabCase(component)}/`;
   }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
   }
-  return `/${product}/api/${kebabCase(component)}/`;
+  return `/${productId}/api/${kebabCase(component)}/`;
 }
 
 /**
@@ -451,7 +487,7 @@ function prepareMarkdown(config) {
       const description = headers.description || getDescription(markdown);
 
       if (title == null || title === '') {
-        throw new Error(`docs-infra: Missing title in the page: ${location}`);
+        throw new Error(`docs-infra: Missing title in the page: ${location}\n`);
       }
 
       if (title.length > 70) {
@@ -460,12 +496,13 @@ function prepareMarkdown(config) {
             `docs-infra: The title "${title}" is too long (${title.length} characters).`,
             'It needs to have fewer than 70 characters—ideally less than 60. For more details, see:',
             'https://developers.google.com/search/docs/advanced/appearance/title-link',
+            '',
           ].join('\n'),
         );
       }
 
       if (description == null || description === '') {
-        throw new Error(`docs-infra: Missing description in the page: ${location}`);
+        throw new Error(`docs-infra: Missing description in the page: ${location}\n`);
       }
 
       if (description.length > 170) {
@@ -474,6 +511,7 @@ function prepareMarkdown(config) {
             `docs-infra: The description "${description}" is too long (${description.length} characters).`,
             'It needs to have fewer than 170 characters—ideally less than 160. For more details, see:',
             'https://ahrefs.com/blog/meta-description/#4-be-concise',
+            '',
           ].join('\n'),
         );
       }
@@ -537,20 +575,46 @@ ${headers.hooks
           }
         }
 
+        const codeblock = getCodeblock(content);
+
+        if (codeblock) {
+          return codeblock;
+        }
+
         return render(content);
       });
 
       // fragment link symbol
-      rendered.unshift(`<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
-  <symbol id="anchor-link-icon" viewBox="0 0 16 16">
-    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" />
-  </symbol>
-</svg>`);
-      rendered.unshift(`<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
-<symbol id="comment-link-icon" viewBox="0 0 24 24">
-  <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 14v-2.47l6.88-6.88c.2-.2.51-.2.71 0l1.77 1.77c.2.2.2.51 0 .71L8.47 14H6zm12 0h-7.5l2-2H18v2z" />
-</symbol>
-</svg>`);
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="comment-link-icon" viewBox="0 0 24 24">
+      <path d="M5.025 14H6.95c.183 0 .35-.029.5-.087a1.24 1.24 0 0 0 .425-.288L13.65 7.9a.622.622 0 0 0 .2-.45.622.622 0 0 0-.2-.45l-2.3-2.3a.622.622 0 0 0-.45-.2.622.622 0 0 0-.45.2l-5.725 5.775a1.24 1.24 0 0 0-.287.425 1.37 1.37 0 0 0-.088.5v1.925c0 .184.067.342.2.475a.65.65 0 0 0 .475.2Zm5.325 0h5.725c.367 0 .68-.129.938-.387.258-.258.387-.57.387-.938 0-.366-.13-.679-.387-.937a1.277 1.277 0 0 0-.938-.388H13L10.35 14Zm-5.5 4.4-2.4 2.4c-.417.417-.896.509-1.437.275C.47 20.842.2 20.434.2 19.85V3.55c0-.733.258-1.358.775-1.875A2.554 2.554 0 0 1 2.85.9h16.3c.733 0 1.358.259 1.875.775.517.517.775 1.142.775 1.875v12.2c0 .734-.258 1.359-.775 1.875a2.554 2.554 0 0 1-1.875.775H4.85Z"/>
+      </symbol>
+      </svg>`,
+      );
+
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="anchor-link-icon" viewBox="0 0 12 6">
+          <path d="M8.9176 0.083252H7.1676C6.84677 0.083252 6.58427 0.345752 6.58427 0.666585C6.58427 0.987419 6.84677 1.24992 7.1676 1.24992H8.9176C9.8801 1.24992 10.6676 2.03742 10.6676 2.99992C10.6676 3.96242 9.8801 4.74992 8.9176 4.74992H7.1676C6.84677 4.74992 6.58427 5.01242 6.58427 5.33325C6.58427 5.65409 6.84677 5.91659 7.1676 5.91659H8.9176C10.5276 5.91659 11.8343 4.60992 11.8343 2.99992C11.8343 1.38992 10.5276 0.083252 8.9176 0.083252ZM3.6676 2.99992C3.6676 3.32075 3.9301 3.58325 4.25094 3.58325H7.75094C8.07177 3.58325 8.33427 3.32075 8.33427 2.99992C8.33427 2.67909 8.07177 2.41659 7.75094 2.41659H4.25094C3.9301 2.41659 3.6676 2.67909 3.6676 2.99992ZM4.83427 4.74992H3.08427C2.12177 4.74992 1.33427 3.96242 1.33427 2.99992C1.33427 2.03742 2.12177 1.24992 3.08427 1.24992H4.83427C5.1551 1.24992 5.4176 0.987419 5.4176 0.666585C5.4176 0.345752 5.1551 0.083252 4.83427 0.083252H3.08427C1.47427 0.083252 0.167603 1.38992 0.167603 2.99992C0.167603 4.60992 1.47427 5.91659 3.08427 5.91659H4.83427C5.1551 5.91659 5.4176 5.65409 5.4176 5.33325C5.4176 5.01242 5.1551 4.74992 4.83427 4.74992Z" />
+        </symbol>
+    </svg>`,
+      );
+
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="copy-icon" viewBox="0 0 24 24">
+      <path d="M15 20H5V7c0-.55-.45-1-1-1s-1 .45-1 1v13c0 1.1.9 2 2 2h10c.55 0 1-.45 1-1s-.45-1-1-1zm5-4V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2zm-2 0H9V4h9v12z" />
+      +</symbol>
+      </svg>`,
+      );
+
+      rendered.unshift(`
+      <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="copied-icon" viewBox="0 0 24 24">
+        <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.24 11.28L9.69 11.2c-.38-.39-.38-1.01 0-1.4.39-.39 1.02-.39 1.41 0l1.36 1.37 4.42-4.46c.39-.39 1.02-.39 1.41 0 .38.39.38 1.01 0 1.4l-5.13 5.17c-.37.4-1.01.4-1.4 0zM3 6c-.55 0-1 .45-1 1v13c0 1.1.9 2 2 2h13c.55 0 1-.45 1-1s-.45-1-1-1H5c-.55 0-1-.45-1-1V7c0-.55-.45-1-1-1z" />
+      </symbol>
+      </svg>`);
 
       docs[userLanguage] = {
         description,
@@ -569,6 +633,7 @@ module.exports = {
   createRender,
   getContents,
   getDescription,
+  getCodeblock,
   getHeaders,
   getTitle,
   prepareMarkdown,

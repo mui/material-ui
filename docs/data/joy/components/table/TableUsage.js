@@ -1,18 +1,18 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Box from '@mui/joy/Box';
 import Table from '@mui/joy/Table';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function ButtonUsage() {
+export default function TableUsage() {
   return (
     <JoyUsageDemo
       componentName="Table"
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'plain',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
@@ -46,7 +46,7 @@ export default function ButtonUsage() {
         {
           propName: 'stripe',
           knob: 'radio',
-          options: ['odd', 'even'],
+          options: ['undefined', 'odd', 'even'],
         },
       ]}
       getCodeBlock={(code) => `<Sheet>
@@ -55,7 +55,7 @@ export default function ButtonUsage() {
       renderDemo={(props) => (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <Typography
-            level="body3"
+            level="body-xs"
             justifyContent="center"
             textAlign="center"
             sx={{ mb: 2 }}

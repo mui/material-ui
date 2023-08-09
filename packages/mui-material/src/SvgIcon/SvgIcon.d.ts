@@ -9,8 +9,11 @@ export interface SvgIconPropsSizeOverrides {}
 
 export interface SvgIconPropsColorOverrides {}
 
-export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
-  props: P & {
+export interface SvgIconTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'svg',
+> {
+  props: AdditionalProps & {
     /**
      * Node passed into the SVG element.
      */
@@ -83,7 +86,7 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      */
     viewBox?: string;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -99,8 +102,10 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
 declare const SvgIcon: OverridableComponent<SvgIconTypeMap> & { muiName: string };
 
 export type SvgIconProps<
-  D extends React.ElementType = SvgIconTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<SvgIconTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = SvgIconTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<SvgIconTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default SvgIcon;

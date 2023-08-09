@@ -1,6 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
+    "className": { "type": { "name": "string" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "onChange": { "type": { "name": "func" } },
@@ -11,11 +12,16 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "value": { "type": { "name": "any" } }
   },
   "name": "FormControl",
+  "imports": [
+    "import { FormControl } from '@mui/base/FormControl';",
+    "import { FormControl } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "muiName": "MuiFormControl",

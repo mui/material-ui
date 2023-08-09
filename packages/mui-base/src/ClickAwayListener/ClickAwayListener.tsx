@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -257,4 +258,4 @@ if (process.env.NODE_ENV !== 'production') {
   (ClickAwayListener as any)['propTypes' + ''] = exactProp(ClickAwayListener.propTypes);
 }
 
-export default ClickAwayListener;
+export { ClickAwayListener };

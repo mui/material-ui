@@ -1,11 +1,12 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { MenuItemOwnerState, MenuItemProps, MenuItemTypeMap } from './MenuItem.types';
 import { getMenuItemUtilityClass } from './menuItemClasses';
-import useMenuItem from '../useMenuItem';
-import composeClasses from '../composeClasses';
-import useSlotProps from '../utils/useSlotProps';
+import { useMenuItem } from '../useMenuItem';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function useUtilityClasses(ownerState: MenuItemOwnerState) {
@@ -76,12 +77,20 @@ MenuItem.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  className: PropTypes.string,
+  /**
+   * @ignore
+   */
   disabled: PropTypes.bool,
   /**
    * A text representation of the menu item's content.
    * Used for keyboard text navigation matching.
    */
   label: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
   /**
    * The props used for each slot inside the MenuItem.
    * @default {}
@@ -99,4 +108,4 @@ MenuItem.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default MenuItem;
+export { MenuItem };

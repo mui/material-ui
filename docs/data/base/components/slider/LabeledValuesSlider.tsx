@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
-import Slider, { sliderClasses } from '@mui/base/Slider';
+import { Slider, sliderClasses } from '@mui/base/Slider';
 
 export default function LabeledValuesSlider() {
   return (
@@ -59,7 +59,7 @@ const StyledSlider = styled(Slider)(
   &:hover {
     opacity: 1;
   }
-  &.${sliderClasses.disabled} { 
+  &.${sliderClasses.disabled} {
     pointer-events: none;
     cursor: default;
     color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};

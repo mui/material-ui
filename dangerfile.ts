@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 // inspire by reacts dangerfile
 // danger has to be the first thing required!
 import { danger, markdown } from 'danger';
@@ -150,7 +151,9 @@ async function reportBundleSize() {
 
   const comparison = await loadLastComparison(upstreamRef);
 
-  const detailedComparisonRoute = `/size-comparison?circleCIBuildNumber=${circleCIBuildNumber}&baseRef=${danger.github.pr.base.ref}&baseCommit=${comparison.previous}&prNumber=${danger.github.pr.number}`;
+  const detailedComparisonQuery = `circleCIBuildNumber=${circleCIBuildNumber}&baseRef=${danger.github.pr.base.ref}&baseCommit=${comparison.previous}&prNumber=${danger.github.pr.number}`;
+  const detailedComparisonToolpadUrl = `https://tools-public.onrender.com/prod/pages/h71gdad?${detailedComparisonQuery}`;
+  const detailedComparisonRoute = `/size-comparison?${detailedComparisonQuery}`;
   const detailedComparisonUrl = `https://mui-dashboard.netlify.app${detailedComparisonRoute}`;
 
   const { all: allResults, main: mainResults } = sieveResults(Object.entries(comparison.bundles));
@@ -169,12 +172,14 @@ async function reportBundleSize() {
 
     const details = `## Bundle size report
 
+[Details of bundle changes (Toolpad)](${detailedComparisonToolpadUrl})
 [Details of bundle changes](${detailedComparisonUrl})`;
 
     markdown(details);
   } else {
     markdown(`## Bundle size report
 
+[No bundle size changes (Toolpad)](${detailedComparisonToolpadUrl})
 [No bundle size changes](${detailedComparisonUrl})`);
   }
 }

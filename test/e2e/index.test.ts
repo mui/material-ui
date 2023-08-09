@@ -232,7 +232,7 @@ describe('e2e', () => {
       await page.keyboard.down('ArrowDown'); // moves to 4th option
 
       const listbox = (await screen.getByRole('listbox'))!;
-      const focusedOption = (await listbox.$('.Joy-focused'))!;
+      const focusedOption = (await listbox.$('.Mui-focused'))!;
       const focusedOptionText = await focusedOption.innerHTML();
 
       expect(focusedOptionText).to.equal('four');

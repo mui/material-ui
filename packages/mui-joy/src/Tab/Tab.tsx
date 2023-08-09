@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useTab from '@mui/base/useTab';
+import { useTab } from '@mui/base/useTab';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
@@ -36,24 +37,82 @@ const TabRoot = styled(StyledListItemButton, {
   name: 'JoyTab',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabOwnerState }>(({ theme, ownerState }) => {
-  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  return {
-    justifyContent: 'center',
-    flexGrow: 1,
-    ...(!ownerState.row &&
-      ownerState.orientation === 'horizontal' && {
-        justifyContent: 'flex-start',
-      }),
-    ...(ownerState.selected && {
-      boxShadow: theme.shadow.sm,
-      fontWeight: 'initial',
-      ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
-    }),
-  };
-});
+})<{ ownerState: TabOwnerState }>(({ ownerState }) => [
+  {
+    flex: 'initial',
+    justifyContent: ownerState.row ? 'center' : 'initial',
+    '--unstable_ListItemDecorator-alignItems': 'center',
+    '--unstable_offset': 'min(calc(-1 * var(--variant-borderWidth, 0px)), -1px)',
+  },
+  !ownerState.disableIndicator && {
+    '&[aria-selected="true"]': {
+      '--Tab-indicatorColor': 'currentColor',
+      zIndex: 1, // to stay above other tab elements
+    },
+    // using pseudo element for showing active indicator is best for controlling the size and customization.
+    // for example, developers can customize the radius, width or background.
+    // (border and box-shadow are not flexible when it comes to customization).
+    '&::after': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      margin: 'auto',
+      background: 'var(--Tab-indicatorColor)',
+      borderRadius: 'var(--Tab-indicatorRadius)',
+    },
+  },
+  // the padding is to account for the indicator's thickness to make the text proportional.
+  !ownerState.disableIndicator &&
+    ownerState.indicatorPlacement === 'bottom' && {
+      paddingBottom:
+        'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness) - 1px)',
+      '&::after': {
+        height: 'var(--Tab-indicatorThickness)',
+        width: 'var(--Tab-indicatorSize)',
+        left: ownerState.indicatorInset ? 'var(--ListItem-paddingLeft)' : 'var(--unstable_offset)',
+        right: ownerState.indicatorInset
+          ? 'var(--ListItem-paddingRight)'
+          : 'var(--unstable_offset)',
+        bottom: 'calc(-1px - var(--unstable_TabList-underlineBottom, 0px))',
+      },
+    },
+  !ownerState.disableIndicator &&
+    ownerState.indicatorPlacement === 'top' && {
+      paddingTop:
+        'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness) - 1px)',
+      '&::after': {
+        height: 'var(--Tab-indicatorThickness)',
+        width: 'var(--Tab-indicatorSize)',
+        left: ownerState.indicatorInset ? 'var(--ListItem-paddingLeft)' : 'var(--unstable_offset)',
+        right: ownerState.indicatorInset
+          ? 'var(--ListItem-paddingRight)'
+          : 'var(--unstable_offset)',
+        top: 'calc(-1px - var(--unstable_TabList-underlineTop, 0px))',
+      },
+    },
+  !ownerState.disableIndicator &&
+    ownerState.indicatorPlacement === 'right' && {
+      paddingRight: 'calc(var(--ListItem-paddingRight) + var(--Tab-indicatorThickness) - 1px)',
+      '&::after': {
+        height: 'var(--Tab-indicatorSize)',
+        width: 'var(--Tab-indicatorThickness)',
+        top: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
+        bottom: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
+        right: 'calc(-1px - var(--unstable_TabList-underlineRight, 0px))',
+      },
+    },
+  !ownerState.disableIndicator &&
+    ownerState.indicatorPlacement === 'left' && {
+      paddingLeft: 'calc(var(--ListItem-paddingLeft) + var(--Tab-indicatorThickness) - 1px)',
+      '&::after': {
+        height: 'var(--Tab-indicatorSize)',
+        width: 'var(--Tab-indicatorThickness)',
+        top: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
+        bottom: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
+        left: 'calc(-1px - var(--unstable_TabList-underlineLeft, 0px))',
+      },
+    },
+]);
 /**
  *
  * Demos:
@@ -84,6 +143,8 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     orientation = 'horizontal',
     variant = 'plain',
     color: colorProp = 'neutral',
+    disableIndicator = false,
+    indicatorPlacement = row ? 'bottom' : 'right',
     slots = {},
     slotProps = {},
     ...other
@@ -112,6 +173,8 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   const ownerState = {
     ...props,
+    disableIndicator,
+    indicatorPlacement,
     orientation,
     row,
     active,
@@ -167,7 +230,7 @@ Tab.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -180,6 +243,20 @@ Tab.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the pseudo element indicator is hidden.
+   * @default false
+   */
+  disableIndicator: PropTypes.bool,
+  /**
+   * If `true`, the indicator stay within the padding based on the `Tabs` orientation.
+   */
+  indicatorInset: PropTypes.bool,
+  /**
+   * The indicator's position when the Tab is selected.
+   * @default row ? 'bottom' : 'right'
+   */
+  indicatorPlacement: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
   /**
    * Callback invoked when new value is being set.
    */

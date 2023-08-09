@@ -73,11 +73,26 @@ To customize the appearance of the options, use `renderOption` prop in combinati
 
 The autocomplete component supports the four global variants: `outlined` (default), `soft`, `solid`, and `plain`.
 
-{{"demo": "InputAppearance.js"}}
+The variant and color values are propagated to the Autocomplete's `input` and `listbox` slots.
+
+{{"demo": "AutocompleteVariants.js"}}
 
 :::info
 To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 :::
+
+To customize the variant and color for a specific slot, use `slotProps`:
+
+```js
+<Autocomplete
+  variant="plain"
+  slotProps={{
+    listbox: {
+      variant: 'outlined',
+    },
+  }}
+/>
+```
 
 ### Label
 
@@ -98,8 +113,14 @@ The component has two states that can be controlled:
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-:::warning
 These two states are isolated, and should be controlled independently.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
 {{"demo": "ControllableStates.js"}}

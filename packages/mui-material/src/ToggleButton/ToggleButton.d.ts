@@ -11,10 +11,10 @@ export interface ToggleButtonPropsSizeOverrides {}
 export interface ToggleButtonPropsColorOverrides {}
 
 export type ToggleButtonTypeMap<
-  P = {},
-  D extends React.ElementType = 'button',
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'button',
 > = ExtendButtonBaseTypeMap<{
-  props: P & {
+  props: AdditionalProps & {
     /**
      * The content of the component.
      */
@@ -82,7 +82,7 @@ export type ToggleButtonTypeMap<
      */
     value: NonNullable<unknown>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**
@@ -99,8 +99,10 @@ export type ToggleButtonTypeMap<
 declare const ToggleButton: ExtendButtonBase<ToggleButtonTypeMap>;
 
 export type ToggleButtonProps<
-  D extends React.ElementType = ToggleButtonTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ToggleButtonTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ToggleButtonTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ToggleButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default ToggleButton;

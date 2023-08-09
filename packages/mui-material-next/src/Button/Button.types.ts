@@ -19,8 +19,11 @@ export interface ButtonActions {
   focusVisible(): void;
 }
 
-export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
-  props: P & {
+export type ButtonTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'button',
+> = {
+  props: AdditionalProps & {
     /**
      * A ref for imperative actions.
      * It currently only supports `focusVisible()` action.
@@ -131,7 +134,7 @@ export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
       ButtonPropsVariantOverrides
     >;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 };
 
 export interface ButtonOwnerState extends ButtonProps {
@@ -150,17 +153,17 @@ export interface ButtonOwnerState extends ButtonProps {
  * This component has an additional overload if the `href` prop is set which
  * can make extension quite tricky
  */
-export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ButtonTypeMap['props'];
-  defaultComponent: M['defaultComponent'];
+export interface ExtendButtonTypeMap<TypeMap extends OverridableTypeMap> {
+  props: TypeMap['props'] & ButtonTypeMap['props'];
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
-export type ExtendButton<M extends OverridableTypeMap> = ((
-  props: { href: string } & OverrideProps<ExtendButtonTypeMap<M>, 'a'>,
+export type ExtendButton<TypeMap extends OverridableTypeMap> = ((
+  props: { href: string } & OverrideProps<ExtendButtonTypeMap<TypeMap>, 'a'>,
 ) => JSX.Element) &
-  OverridableComponent<ExtendButtonTypeMap<M>> & { propTypes?: any };
+  OverridableComponent<ExtendButtonTypeMap<TypeMap>> & { propTypes?: any };
 
 export type ButtonProps<
-  D extends React.ElementType = ButtonTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ButtonTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ButtonTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ButtonTypeMap<AdditionalProps, RootComponent>, RootComponent>;

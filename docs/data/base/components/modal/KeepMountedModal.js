@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, Box } from '@mui/system';
-import Modal from '@mui/base/Modal';
+import { Modal } from '@mui/base/Modal';
 
 export default function KeepMountedModal() {
   const [open, setOpen] = React.useState(false);
@@ -84,11 +84,8 @@ const StyledModal = styled(Modal)(`
 const StyledBackdrop = styled(Backdrop)`
   z-index: -1;
   position: fixed;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background-color: rgb(0 0 0 / 0.5);
   -webkit-tap-highlight-color: transparent;
 `;
 

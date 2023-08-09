@@ -8,8 +8,17 @@
     },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableSwap": { "type": { "name": "bool" }, "default": "false" },
-    "getAriaLabel": { "type": { "name": "func" } },
-    "getAriaValueText": { "type": { "name": "func" } },
+    "getAriaLabel": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(index: number) => string", "describedArgs": ["index"] }
+    },
+    "getAriaValueText": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: number, index: number) => string",
+        "describedArgs": ["value", "index"]
+      }
+    },
     "isRtl": { "type": { "name": "bool" }, "default": "false" },
     "marks": {
       "type": {
@@ -21,13 +30,29 @@
     "max": { "type": { "name": "number" }, "default": "100" },
     "min": { "type": { "name": "number" }, "default": "0" },
     "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
-    "onChangeCommitted": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: Event, value: number | Array<number>, activeThumb: number) => void",
+        "describedArgs": ["event", "value", "activeThumb"]
+      }
+    },
+    "onChangeCommitted": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent | Event, value: number | Array<number>) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
-    "scale": { "type": { "name": "func" }, "default": "function Identity(x) {\n  return x;\n}" },
+    "scale": {
+      "type": { "name": "func" },
+      "default": "function Identity(x) {\n  return x;\n}",
+      "signature": { "type": "function(x: any) => any", "describedArgs": [] }
+    },
     "slotProps": {
       "type": {
         "name": "shape",
@@ -40,7 +65,8 @@
         "name": "shape",
         "description": "{ input?: elementType, mark?: elementType, markLabel?: elementType, rail?: elementType, root?: elementType, thumb?: elementType, track?: elementType, valueLabel?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "step": { "type": { "name": "number" }, "default": "1" },
     "tabIndex": { "type": { "name": "number" } },
@@ -60,6 +86,7 @@
     }
   },
   "name": "Slider",
+  "imports": ["import { Slider } from '@mui/base/Slider';", "import { Slider } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

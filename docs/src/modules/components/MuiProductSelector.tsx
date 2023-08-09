@@ -127,7 +127,7 @@ export default function MuiProductSelector() {
             {products.map((product) => (
               <Chip
                 key={product.name}
-                color={pageContext.productId === product.id ? 'default' : undefined}
+                color={pageContext.productId === product.id ? 'primary' : undefined}
                 variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
                 component={Link}
                 href={product.href}

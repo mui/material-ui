@@ -43,7 +43,7 @@ Examples:
 
 To pass more options directly to jscodeshift, use `--jscodeshift="..."`. For example:
 
-```sh
+```bash
 npx @mui/codemod --jscodeshift="--run-in-band --verbose=2"
 ```
 
@@ -54,13 +54,32 @@ See all available options [here](https://github.com/facebook/jscodeshift#usage-c
 Options to [recast](https://github.com/benjamn/recast)'s printer can be provided
 through jscodeshift's `printOptions` command line argument
 
-```sh
+```bash
 npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"double\"}'"
 ```
 
 ## Included scripts
 
 ### v5.0.0
+
+### `base-use-named-exports`
+
+Base UI default exports were changed to named ones. Previously we had a mix of default and named ones.
+This was changed to improve consistency and avoid problems some bundlers have with default exports.
+See https://github.com/mui/material-ui/issues/21862 for more context.
+
+This codemod updates the import and re-export statements.
+
+```diff
+-  import BaseButton from '@mui/base/Button';
++  import { Button as BaseButton } from '@mui/base/Button';
+-  export { default as BaseSlider } from '@mui/base/Slider';
++  export { Slider as BaseSlider } from '@mui/base/Slider';
+```
+
+```bash
+npx @mui/codemod v5.0.0/base-use-named-exports <path>
+```
 
 ### `base-remove-unstyled-suffix`
 
@@ -71,7 +90,7 @@ The `Unstyled` suffix has been removed from all Base UI component names, includi
 +  <Input slots={{ root: 'a' }} href='url' />;
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/base-remove-unstyled-suffix <path>
 ```
 
@@ -86,7 +105,7 @@ This change only affects Base UI components.
 +  <Input slots={{ root: CustomRoot }} />
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/base-remove-component-prop <path>
 ```
 
@@ -101,7 +120,7 @@ Updates the names of the CSS variables of the Joy UI components to adapt to the 
 +  <Switch sx={{ '--Switch-trackWidth': '40px' }}>
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/rename-css-variables <path>
 ```
 
@@ -114,7 +133,7 @@ Updates the sources of the imports of the Base UI hooks to adapt to the new dire
 +  import useBadge from '@mui/base/useBadge';
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/base-hook-imports <path>
 ```
 
@@ -129,7 +148,7 @@ Renames the classname prefix from `'Joy'` to `'Mui'` for Joy UI components.
  />;
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/joy-rename-classname-prefix <path>
 ```
 
@@ -144,7 +163,7 @@ Transforms `row` prop to `orientation` prop across `Card`, `List` and `RadioGrou
  />;
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/joy-rename-row-prop <path>
 ```
 
@@ -162,7 +181,7 @@ This change only affects Joy UI Avatar component.
  />;
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/joy-avatar-remove-imgProps <path>
 ```
 
@@ -220,7 +239,7 @@ This change only affects Joy UI components.
 +</FormControl>
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/joy-text-field-to-input <path>
 ```
 
@@ -239,7 +258,7 @@ This change only affects Joy UI components.
  />;
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/joy-rename-components-to-slots <path>
 ```
 
@@ -249,7 +268,7 @@ The associated breaking change was done in [#34997](https://github.com/mui/mater
 
 Rename the imports of date and time pickers from `@mui/lab` to `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
 ```
 
@@ -257,7 +276,7 @@ npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
 
 A combination of all important transformers for migrating v4 to v5. ⚠️ This codemod should be run only once.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/preset-safe <path|folder>
 ```
 
@@ -324,7 +343,7 @@ Imports and inserts `adaptV4Theme` into `createTheme` (or `createMuiTheme`)
 +createTheme(adaptV4Theme({ palette: { ... }}))
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/adapter-v4 <path>
 ```
 
@@ -341,7 +360,7 @@ Renames `Autocomplete`'s `closeIcon` prop to `clearIcon`.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/autocomplete-rename-closeicon  <path>
 ```
 
@@ -360,7 +379,7 @@ Renames `Autocomplete`'s `getOptionSelected` to `isOptionEqualToValue`.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/autocomplete-rename-option  <path>
 ```
 
@@ -379,7 +398,7 @@ Updates the `Avatar`'s `variant` value and `classes` key from 'circle' to 'circu
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/avatar-circle-circular <path>
 ```
 
@@ -414,7 +433,7 @@ Renames the badge's props.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/badge-overlap-value <path>
 ```
 
@@ -438,7 +457,7 @@ This change only affects Base UI components.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/base-rename-components-to-slots <path>
 ```
 
@@ -457,7 +476,7 @@ Updates the Box API from separate system props to `sx`.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/box-borderradius-values <path>
 ```
 
@@ -472,7 +491,7 @@ Renames the Box `css` prop to `sx`
 +<Box sx={{ m: 2 }}>
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/box-rename-css <path>
 ```
 
@@ -493,7 +512,7 @@ Renames the Box `grid*Gap` props.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/box-rename-gap <path>
 ```
 
@@ -510,7 +529,7 @@ Removes the outdated `color` prop values.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/button-color-prop <path>
 ```
 
@@ -527,7 +546,7 @@ Removes the Chip `variant` prop if the value is `"default"`.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/chip-variant-prop <path>
 ```
 
@@ -544,7 +563,7 @@ Renames the CircularProgress `static` variant to `determinate`.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/circularprogress-variant <path>
 ```
 
@@ -563,7 +582,7 @@ Renames `Collapse`'s `collapsedHeight` prop to `collapsedSize`.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/collapse-rename-collapsedheight <path>
 ```
 
@@ -582,7 +601,7 @@ A generic codemod to rename any component prop.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/component-rename-prop <path> -- --component=Grid --from=prop --to=newProp
 ```
 
@@ -595,7 +614,7 @@ Renames private import from `core/styles/*` to `core/styles`
 +import { darken, lighten } from '@material-ui/core/styles';
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/core-styles-import <path>
 ```
 
@@ -608,7 +627,7 @@ Renames the function `createMuiTheme` to `createTheme`
 +import { createTheme } from '@material-ui/core/styles';
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/create-theme <path>
 ```
 
@@ -621,7 +640,7 @@ Remove `disableBackdropClick` prop from `<Dialog>`
 +<Dialog />
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/dialog-props <path>
 ```
 
@@ -636,7 +655,7 @@ Remove `disableTypography` prop from `<DialogTitle>`
 +<DialogTitle />
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/dialog-title-props <path>
 ```
 
@@ -653,7 +672,7 @@ Adds `prepend: true` to Emotion `createCache`
  });
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/create-theme <path>
 ```
 
@@ -661,7 +680,7 @@ npx @mui/codemod v5.0.0/create-theme <path>
 
 Renames `ExpansionPanel*` to `Accordion*`
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/expansion-panel-component <path>
 ```
 
@@ -674,7 +693,7 @@ You can find more details about this breaking change in [the migration guide](ht
 +<Fab variant="circular" />
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/fab-variant <path>
 ```
 
@@ -694,7 +713,7 @@ Renames the `fade` style utility import and calls to `alpha`.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/fade-rename-alpha <path>
 ```
 
@@ -711,7 +730,7 @@ Renames `Grid`'s `justify` prop to `justifyContent`.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/grid-justify-justifycontent <path>
 ```
 
@@ -721,7 +740,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 Renames `GridList*` to `ImageList*`
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/grid-list-component <path>
 ```
 
@@ -738,7 +757,7 @@ Adds `size="large"` if `size` is not defined to get the same appearance as v4.
 +<IconButton size="large" />
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/icon-button-size <path>
 ```
 
@@ -803,7 +822,7 @@ Replace JSS styling with `makeStyles` or `withStyles` to `styled` API.
  }
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/jss-to-styled <path>
 ```
 
@@ -875,7 +894,7 @@ Migrate JSS styling with `makeStyles` or `withStyles` to the corresponding `tss-
  export default App;
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/jss-to-tss-react <path>
 ```
 
@@ -903,7 +922,7 @@ Apply `underline="hover"` to `<Link />` that does not define `underline` prop (t
 +<Link underline="hover" />
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 
@@ -941,7 +960,7 @@ Moves JSS imports to `@material-ui/styles`
  import mergeClasses from '@material-ui/styles/mergeClasses';
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/material-ui-styles <path>
 ```
 
@@ -954,7 +973,7 @@ Renames `Omit` import from `@material-ui/types` to `DistributiveOmit`
 +import { DistributiveOmit } from '@material-ui/types';
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/material-ui-types <path>
 ```
 
@@ -971,7 +990,7 @@ Removes `disableBackdropClick` and `onEscapeKeyDown` from `<Modal>`
  />
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/modal-props <path>
 ```
 
@@ -995,7 +1014,7 @@ or
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/moved-lab-modules <path>
 ```
 
@@ -1020,7 +1039,7 @@ Renames `Pagination*`'s `shape` values from 'round' to 'circular'.
 +<PaginationItem shape="circular" />
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/pagination-round-circular <path>
 ```
 
@@ -1039,7 +1058,7 @@ Fix private import paths.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/optimal-imports <path>
 ```
 
@@ -1047,7 +1066,7 @@ npx @mui/codemod v5.0.0/optimal-imports <path>
 
 Removes `RootRef` from the codebase.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/root-ref <path>
 ```
 
@@ -1062,7 +1081,7 @@ You can find more details about this breaking change in [the migration guide](ht
 +<Skeleton variant="rectangular" />
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/skeleton-variant <path>
 ```
 
@@ -1072,7 +1091,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 Applies `StyledEngineProvider` to the files that contains `ThemeProvider`.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/styled-engine-provider <path>
 ```
 
@@ -1098,7 +1117,7 @@ Renames props in `Table*` components.
 
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/table-props <path>
 ```
 
@@ -1117,7 +1136,7 @@ Renames the `Tabs`'s `scrollButtons` prop values.
 +<Tabs scrollButtons={false} />
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/tabs-scroll-buttons <path>
 ```
 
@@ -1136,7 +1155,7 @@ Renames `TextField`'s rows props.
 +<TextareaAutosize minRows={3} maxRows={6} />
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/textarea-minmax-rows <path>
 ```
 
@@ -1149,7 +1168,7 @@ You can find more details about this breaking change in the migration guide.
 
 Adds `DefaultTheme` module augmentation to typescript projects.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/theme-augment <path>
 ```
 
@@ -1168,7 +1187,7 @@ Updates breakpoint values to match new logic. ⚠️ This mod is not idempotent,
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/theme-breakpoints <path>
 ```
 
@@ -1178,7 +1197,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 Renames `theme.breakpoints.width('md')` to `theme.breakpoints.values.md`.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/theme-breakpoints-width <path>
 ```
 
@@ -1191,7 +1210,7 @@ You can find more details about this breaking change in [the migration guide](ht
 +import { DeprecatedThemeOptions } from '@material-ui/core';
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/theme-options <path>
 ```
 
@@ -1213,7 +1232,7 @@ Renames `type` to `mode`.
 +theme.palette.mode === 'dark'
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/theme-palette-mode <path>
 ```
 
@@ -1223,7 +1242,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 Renames `MuiThemeProvider` to `ThemeProvider`.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/theme-provider <path>
 ```
 
@@ -1242,7 +1261,7 @@ Removes the 'px' suffix from some template strings.
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/theme-spacing <path>
 ```
 
@@ -1257,7 +1276,7 @@ Renames `theme.typography.round($number)` to `Math.round($number * 1e5) / 1e5`.
 +`${Math.round($number * 1e5) / 1e5}`
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/theme-typography-round <path>
 ```
 
@@ -1275,7 +1294,7 @@ Converts all `@mui/material` submodule imports to the root module:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/top-level-imports <path>
 ```
 
@@ -1285,7 +1304,7 @@ Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's u
 
 Renames import `transitions` to `createTransitions`
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/transitions <path>
 ```
 
@@ -1298,7 +1317,7 @@ Renames `useAutocomplete` related import from lab to core
 +import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/use-autocomplete <path>
 ```
 
@@ -1327,7 +1346,7 @@ Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/use-transitionprops <path>
 ```
 
@@ -1357,7 +1376,7 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/variant-prop <path>
 ```
 
@@ -1371,7 +1390,7 @@ Removes imported `withMobileDialog`, and inserts hardcoded version to prevent ap
 +const withMobileDialog = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="lg" fullScreen={false} />;
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/with-mobile-dialog <path>
 ```
 
@@ -1387,7 +1406,7 @@ Removes `withWidth` import, and inserts hardcoded version to prevent application
 +const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/with-width <path>
 ```
 
@@ -1448,7 +1467,7 @@ Replace every occurrence of `material-ui` related package with the new package n
 +"@mui/styled-engine-sc": "next",
 ```
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/mui-replace <path>
 ```
 
@@ -1468,7 +1487,7 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v4.0.0/theme-spacing-api <path>
 ```
 
@@ -1495,7 +1514,7 @@ Converts all `@material-ui/core` imports more than 1 level deep to the optimal f
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v4.0.0/optimal-imports <path>
 ```
 
@@ -1513,7 +1532,7 @@ Converts all `@material-ui/core` submodule imports to the root module:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v4.0.0/top-level-imports <path>
 ```
 
@@ -1534,7 +1553,7 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v1.0.0/import-path <path>
 ```
 
@@ -1561,7 +1580,7 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v1.0.0/color-imports <path>
 ```
 
@@ -1569,7 +1588,7 @@ npx @mui/codemod v1.0.0/color-imports <path>
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
 ```
 
@@ -1587,7 +1606,7 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v1.0.0/svg-icon-imports <path>
 ```
 
@@ -1605,7 +1624,7 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v1.0.0/menu-item-primary-text <path>
 ```
 
@@ -1629,6 +1648,6 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npx @mui/codemod v0.15.0/import-path <path>
 ```

@@ -28,7 +28,7 @@ function NestedModals({ random }) {
             },
           })}
         >
-          <Typography id="nested-modal-title" component="h2">
+          <Typography id="nested-modal-title" level="h2">
             Infinite modals
           </Typography>
           <Typography id="nested-modal-description" textColor="text.tertiary">

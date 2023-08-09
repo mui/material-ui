@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 import { extendTheme, Palette, styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Link from '@mui/joy/Link';
@@ -11,6 +10,7 @@ import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 import Check from '@mui/icons-material/Check';
+import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 
 const defaultTheme = extendTheme();
 
@@ -120,7 +120,7 @@ export default function PaletteThemeViewer() {
           zIndex: 1,
         }}
       >
-        <Typography level="body3" textColor="inherit" startDecorator={<Check />}>
+        <Typography level="body-xs" textColor="inherit" startDecorator={<Check />}>
           Copied
         </Typography>
       </Sheet>
@@ -202,7 +202,6 @@ export default function PaletteThemeViewer() {
                     fontSize="xs"
                     startDecorator={renderSwatch('light', token)}
                     fontFamily="code"
-                    letterSpacing="sm"
                     textAlign="left"
                     sx={{ alignItems: 'flex-start', cursor: 'copy' }}
                     onClick={() => copy(light[token])}
@@ -218,7 +217,6 @@ export default function PaletteThemeViewer() {
                     fontSize="xs"
                     startDecorator={renderSwatch('dark', token)}
                     fontFamily="code"
-                    letterSpacing="sm"
                     textAlign="left"
                     sx={{ alignItems: 'flex-start', cursor: 'copy' }}
                     onClick={() => copy(dark[token])}

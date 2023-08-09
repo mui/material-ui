@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button, { buttonClasses } from '@mui/base/Button';
+import { Button, buttonClasses } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
@@ -27,11 +27,12 @@ const grey = {
 const CustomButton = styled(Button)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 0.875rem;
+  line-height: 1.5;
   background-color: ${blue[500]};
-  padding: 12px 24px;
-  border-radius: 12px;
+  padding: 8px 16px;
+  border-radius: 8px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;

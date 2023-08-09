@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha } from '@mui/system';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
@@ -14,10 +15,15 @@ import styled, { rootShouldForwardProp } from '../styles/styled';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, indeterminate, color } = ownerState;
+  const { classes, indeterminate, color, size } = ownerState;
 
   const slots = {
-    root: ['root', indeterminate && 'indeterminate', `color${capitalize(color)}`],
+    root: [
+      'root',
+      indeterminate && 'indeterminate',
+      `color${capitalize(color)}`,
+      `size${capitalize(size)}`,
+    ],
   };
 
   const composedClasses = composeClasses(slots, getCheckboxUtilityClass, classes);

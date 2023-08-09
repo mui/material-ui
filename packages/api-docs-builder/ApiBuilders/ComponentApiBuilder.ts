@@ -24,6 +24,15 @@ import parseStyles, { Classes, Styles } from '../utils/parseStyles';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
 
+export type AdditionalPropsInfo = {
+  cssApi?: boolean;
+  sx?: boolean;
+  slotsApi?: boolean;
+  'joy-size'?: boolean;
+  'joy-color'?: boolean;
+  'joy-variant'?: boolean;
+};
+
 export interface ReactApi extends ReactDocgenApi {
   demos: ReturnType<ComponentInfo['getDemos']>;
   EOL: string;
@@ -58,10 +67,23 @@ export interface ReactApi extends ReactDocgenApi {
     type: { name: string | undefined; description: string | undefined };
     deprecated: true | undefined;
     deprecationInfo: string | undefined;
+    signature: undefined | { type: string; describedArgs?: string[]; returned?: string };
+    additionalInfo?: AdditionalPropsInfo;
   }>;
+  /**
+   * Different ways to import components
+   */
+  imports: string[];
   translations: {
     componentDescription: string;
-    propDescriptions: { [key: string]: string | undefined };
+    propDescriptions: {
+      [key: string]: {
+        description: string;
+        requiresRef?: boolean;
+        deprecated?: string;
+        typeDescriptions?: { [t: string]: string };
+      };
+    };
     classDescriptions: { [key: string]: { description: string; conditions?: string } };
     slotDescriptions?: { [key: string]: string };
   };
@@ -112,6 +134,7 @@ async function annotateComponentDefinition(api: ReactApi) {
   const HOST = 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
+  const fileName = path.parse(api.filename).name;
   const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
   const typesAST = await babel.parseAsync(typesSource, {
     configFile: false,
@@ -126,6 +149,11 @@ async function annotateComponentDefinition(api: ReactApi) {
   let end = null;
   traverse(typesAST, {
     ExportDefaultDeclaration(babelPath) {
+      if (api.filename.includes('mui-base')) {
+        // Base UI does not use default exports.
+        return;
+      }
+
       /**
        * export default function Menu() {}
        */
@@ -177,11 +205,72 @@ async function annotateComponentDefinition(api: ReactApi) {
         end = start;
       }
     },
+
+    ExportNamedDeclaration(babelPath) {
+      if (!api.filename.includes('mui-base')) {
+        return;
+      }
+
+      let node: babel.Node = babelPath.node;
+
+      if (node.declaration == null) {
+        // export { Menu };
+        node.specifiers.forEach((specifier) => {
+          if (specifier.type === 'ExportSpecifier' && specifier.local.name === fileName) {
+            const binding = babelPath.scope.bindings[specifier.local.name];
+
+            if (babel.types.isFunctionDeclaration(binding.path.node)) {
+              // For function declarations the binding is equal to the declaration
+              // /**
+              //  */
+              // function Component() {}
+              node = binding.path.node;
+            } else {
+              // For variable declarations the binding points to the declarator.
+              // /**
+              //  */
+              // const Component = () => {}
+              node = binding.path.parentPath!.node;
+            }
+          }
+        });
+      } else if (babel.types.isFunctionDeclaration(node.declaration)) {
+        // export function Menu() {}
+        if (node.declaration.id?.name === fileName) {
+          node = node.declaration;
+        }
+      } else {
+        return;
+      }
+
+      const { leadingComments } = node;
+      const leadingCommentBlocks =
+        leadingComments != null
+          ? leadingComments.filter(({ type }) => type === 'CommentBlock')
+          : null;
+      const jsdocBlock = leadingCommentBlocks != null ? leadingCommentBlocks[0] : null;
+      if (leadingCommentBlocks != null && leadingCommentBlocks.length > 1) {
+        throw new Error(
+          `Should only have a single leading jsdoc block but got ${
+            leadingCommentBlocks.length
+          }:\n${leadingCommentBlocks
+            .map(({ type, value }, index) => `#${index} (${type}): ${value}`)
+            .join('\n')}`,
+        );
+      }
+      if (jsdocBlock?.start != null && jsdocBlock?.end != null) {
+        start = jsdocBlock.start;
+        end = jsdocBlock.end;
+      } else if (node.start != null) {
+        start = node.start - 1;
+        end = start;
+      }
+    },
   });
 
   if (end === null || start === 0) {
     throw new TypeError(
-      "Don't know where to insert the jsdoc block. Probably no `default export` found",
+      `${api.filename}: Don't know where to insert the jsdoc block. Probably no default export or named export matching the file name was found.`,
     );
   }
 
@@ -333,6 +422,7 @@ const generateApiPage = (
       }),
     ),
     name: reactApi.name,
+    imports: reactApi.imports,
     styles: {
       classes: reactApi.styles.classes,
       globalClasses: _.fromPairs(
@@ -421,36 +511,21 @@ const attachTranslations = (reactApi: ReactApi) => {
       prop = null;
     }
     if (prop) {
-      let description = generatePropDescription(prop, propName);
-      description = renderMarkdownInline(description);
+      const { deprecated, jsDocText, signatureArgs, signatureReturn, requiresRef } =
+        generatePropDescription(prop, propName);
+      // description = renderMarkdownInline(`${description}`);
 
-      const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
+      const typeDescriptions: { [t: string]: string } = {};
+      (signatureArgs || []).concat(signatureReturn || []).forEach(({ name, description }) => {
+        typeDescriptions[name] = renderMarkdownInline(description);
+      });
 
-      if (propName === 'classes') {
-        description += ' See <a href="#css">CSS API</a> below for more details.';
-      } else if (propName === 'sx') {
-        description +=
-          ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
-      } else if (propName === 'slots' && !normalizedApiPathname.startsWith('/material-ui')) {
-        description += ' See <a href="#slots">Slots API</a> below for more details.';
-      } else if (normalizedApiPathname.startsWith('/joy-ui')) {
-        switch (propName) {
-          case 'size':
-            description +=
-              ' To learn how to add custom sizes to the component, check out <a href="/joy-ui/customization/themed-components/#extend-sizes">Themed components—Extend sizes</a>.';
-            break;
-          case 'color':
-            description +=
-              ' To learn how to add your own colors, check out <a href="/joy-ui/customization/themed-components/#extend-colors">Themed components—Extend colors</a>.';
-            break;
-          case 'variant':
-            description +=
-              ' To learn how to add your own variants, check out <a href="/joy-ui/customization/themed-components/#extend-variants">Themed components—Extend variants</a>.';
-            break;
-          default:
-        }
-      }
-      translations.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
+      translations.propDescriptions[propName] = {
+        description: renderMarkdownInline(jsDocText),
+        requiresRef: requiresRef || undefined,
+        deprecated: renderMarkdownInline(deprecated) || undefined,
+        typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
+      };
     }
   });
 
@@ -479,13 +554,14 @@ const attachTranslations = (reactApi: ReactApi) => {
 
 const attachPropsTable = (reactApi: ReactApi) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
+  type Pair = [string, ReactApi['propsTable'][string]];
   const componentProps: ReactApi['propsTable'] = _.fromPairs(
-    Object.entries(reactApi.props!).map(([propName, propDescriptor]) => {
+    Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
       let prop: DescribeablePropDescriptor | null;
       try {
         prop = createDescribeableProp(propDescriptor, propName);
       } catch (error) {
-        propErrors.push([propName, error as Error]);
+        propErrors.push([`[${reactApi.name}] \`${propName}\``, error as Error]);
         prop = null;
       }
       if (prop === null) {
@@ -495,6 +571,11 @@ const attachPropsTable = (reactApi: ReactApi) => {
 
       const defaultValue = propDescriptor.jsdocDefaultValue?.value;
 
+      const {
+        signature: signatureType,
+        signatureArgs,
+        signatureReturn,
+      } = generatePropDescription(prop, propName);
       const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
       const chainedPropType = getChained(prop.type);
 
@@ -505,6 +586,39 @@ const attachPropsTable = (reactApi: ReactApi) => {
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
 
+      const additionalPropsInfo: AdditionalPropsInfo = {};
+
+      const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
+
+      if (propName === 'classes') {
+        additionalPropsInfo.cssApi = true;
+      } else if (propName === 'sx') {
+        additionalPropsInfo.sx = true;
+      } else if (propName === 'slots' && !normalizedApiPathname.startsWith('/material-ui')) {
+        additionalPropsInfo.slotsApi = true;
+      } else if (normalizedApiPathname.startsWith('/joy-ui')) {
+        switch (propName) {
+          case 'size':
+            additionalPropsInfo['joy-size'] = true;
+            break;
+          case 'color':
+            additionalPropsInfo['joy-color'] = true;
+            break;
+          case 'variant':
+            additionalPropsInfo['joy-variant'] = true;
+            break;
+          default:
+        }
+      }
+
+      let signature: ReactApi['propsTable'][string]['signature'];
+      if (signatureType !== undefined) {
+        signature = {
+          type: signatureType,
+          describedArgs: signatureArgs?.map((arg) => arg.name),
+          returned: signatureReturn?.name,
+        };
+      }
       return [
         propName,
         {
@@ -519,6 +633,9 @@ const attachPropsTable = (reactApi: ReactApi) => {
           deprecated: !!deprecation || undefined,
           deprecationInfo:
             renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
+          signature,
+          additionalInfo:
+            Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
         },
       ];
     }),
@@ -537,6 +654,42 @@ const attachPropsTable = (reactApi: ReactApi) => {
   delete componentProps.undefined;
 
   reactApi.propsTable = componentProps;
+};
+
+/**
+ * Helper to get the import options
+ * @param name The name of the component
+ * @param filename The filename where its defined (to infer the package)
+ * @returns an array of import command
+ */
+const getComponentImports = (name: string, filename: string) => {
+  const githubPath = toGitHubPath(filename);
+  const rootImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/.*/,
+    (match, pkg) => `@mui/${pkg}`,
+  );
+
+  const subdirectoryImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/([^\\/]+)\/.*/,
+    (match, pkg, directory) => `@mui/${pkg}/${directory}`,
+  );
+
+  let namedImportName = name;
+  const defaultImportName = name;
+
+  if (/Unstable_/.test(githubPath)) {
+    namedImportName = `Unstable_${name} as ${name}`;
+  }
+
+  const useNamedImports = rootImportPath === '@mui/base';
+
+  const subpathImport = useNamedImports
+    ? `import { ${namedImportName} } from '${subdirectoryImportPath}';`
+    : `import ${defaultImportName} from '${subdirectoryImportPath}';`;
+
+  const rootImport = `import { ${namedImportName} } from '${rootImportPath}';`;
+
+  return [subpathImport, rootImport];
 };
 
 /**
@@ -630,6 +783,7 @@ export default async function generateComponentApi(
   }
   reactApi.filename = filename;
   reactApi.name = name;
+  reactApi.imports = getComponentImports(name, filename);
   reactApi.muiName = muiName;
   reactApi.apiPathname = apiPathname;
   reactApi.EOL = EOL;

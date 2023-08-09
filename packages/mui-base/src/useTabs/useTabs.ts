@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { unstable_useControlled as useControlled } from '@mui/utils';
 import { UseTabsParameters, UseTabsReturnValue } from './useTabs.types';
@@ -84,4 +85,4 @@ function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
   };
 }
 
-export default useTabs;
+export { useTabs };

@@ -1,6 +1,7 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import ClickAwayListener from '../ClickAwayListener';
+import { ClickAwayListener } from '../ClickAwayListener';
 import {
   SnackbarOwnerState,
   SnackbarProps,
@@ -8,9 +9,9 @@ import {
   SnackbarTypeMap,
   SnackbarClickAwayListenerSlotProps,
 } from './Snackbar.types';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSnackbarUtilityClass } from './snackbarClasses';
-import useSnackbar from '../useSnackbar';
+import { useSnackbar } from '../useSnackbar';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -189,4 +190,4 @@ Snackbar.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Snackbar;
+export { Snackbar };

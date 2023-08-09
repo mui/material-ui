@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { getToolbarUtilityClass } from './toolbarClasses';

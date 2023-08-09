@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import * as ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
@@ -15,6 +14,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import SearchIcon from '@mui/icons-material/Search';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
@@ -300,9 +300,21 @@ export default function AppSearch(props) {
 
   const search = `${t('algoliaSearch')}…`;
 
+  const optionalFilters = [];
+  if (pageContext.productId !== 'null') {
+    optionalFilters.push(`productId:${pageContext.productId}`);
+  } else if (pageContext.productCategoryId !== 'null') {
+    optionalFilters.push(`productCategoryId:${pageContext.productCategoryId}`);
+  }
+
   return (
     <React.Fragment>
-      <SearchButton ref={searchButtonRef} onClick={onOpen} {...props}>
+      <SearchButton
+        ref={searchButtonRef}
+        onClick={onOpen}
+        aria-labelledby="app-search-label"
+        {...props}
+      >
         <SearchIcon
           fontSize="small"
           sx={(theme) => ({
@@ -312,7 +324,7 @@ export default function AppSearch(props) {
             }),
           })}
         />
-        <SearchLabel>{search}</SearchLabel>
+        <SearchLabel id="app-search-label">{search}</SearchLabel>
         <Shortcut>
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {macOS ? '⌘' : 'Ctrl+'}K
@@ -327,7 +339,7 @@ export default function AppSearch(props) {
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
-              optionalFilters: [`productId:${pageContext.productId}`],
+              optionalFilters,
               attributesToRetrieve: [
                 // Copied from https://github.com/algolia/docsearch/blob/ce0c865cd8767e961ce3088b3155fc982d4c2e2e/packages/docsearch-react/src/DocSearchModal.tsx#L231
                 'hierarchy.lvl0',
