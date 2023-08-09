@@ -289,7 +289,7 @@ export default function GlobalCssSliderDeep() {
 
 ### Change the default styled engine
 
-By default, MUI components come with Emotion as their style engine.
+By default, Material UI components come with Emotion as their style engine.
 If, however, you would like to use styled-components, you can configure your app by following the [styled-components guide](/material-ui/guides/styled-components/) or starting with one of the example projects:
 
 <!-- #default-branch-switch -->
