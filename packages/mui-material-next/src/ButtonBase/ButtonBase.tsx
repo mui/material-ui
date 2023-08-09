@@ -230,6 +230,10 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -276,6 +280,19 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * @default 'a'
    */
   LinkComponent: PropTypes.elementType,
+  /**
+   * Callback fired when the component is focused with a keyboard.
+   * We trigger a `onFocus` callback too.
+   */
+  onFocusVisible: PropTypes.func,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * @default 0
    */

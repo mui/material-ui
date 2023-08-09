@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef, unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useSlotProps } from '@mui/base/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useThemeProps, alpha, shouldForwardProp } from '@mui/system';
@@ -460,6 +460,11 @@ Button.propTypes /* remove-proptypes */ = {
    */
   disableRipple: PropTypes.bool,
   /**
+   * If `true`, the touch ripple effect is disabled.
+   * @default false
+   */
+  disableTouchRipple: PropTypes.bool,
+  /**
    * Element placed after the children.
    */
   endIcon: PropTypes.node,
@@ -468,6 +473,10 @@ Button.propTypes /* remove-proptypes */ = {
    * @default false
    */
   fullWidth: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  href: PropTypes.string,
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.
@@ -493,14 +502,6 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
-  /**
-   * Props applied to the `TouchRipple` element.
-   */
-  TouchRippleProps: PropTypes.object,
-  /**
-   * @ignore
-   */
-  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
   /**
    * The variant to use.
    * @default 'text'
