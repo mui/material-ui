@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '@mui/types';
 import { Theme } from '../styles';
-import { TouchRippleActions, TouchRippleProps } from '../Button/TouchRipple.types';
+import { TouchRippleActions, TouchRippleProps } from './TouchRipple.types';
 import { ButtonBaseClasses } from './buttonBaseClasses';
 
 export interface ButtonBaseTypeMap<
@@ -62,6 +62,11 @@ export interface ButtonBaseTypeMap<
      */
     focusVisibleClassName?: string;
     /**
+     * The URL to link to when the button is clicked.
+     * If defined, an `a` element will be used as the root node.
+     */
+    href?: string;
+    /**
      * The component used to render a link when the `href` prop is provided.
      * @default 'a'
      */
@@ -87,6 +92,13 @@ export interface ButtonBaseTypeMap<
      * A ref that points to the `TouchRipple` element.
      */
     touchRippleRef?: React.Ref<TouchRippleActions>;
+    /**
+     * Type attribute applied to the root component.
+     * @default 'button'
+     */
+    type?:
+      | React.ButtonHTMLAttributes<HTMLButtonElement>['type']
+      | React.AnchorHTMLAttributes<HTMLAnchorElement>['type'];
   };
   defaultComponent: DefaultComponent;
 }
@@ -114,6 +126,10 @@ export type ButtonBaseProps<
 };
 
 export interface ButtonBaseOwnerState extends ButtonBaseProps {
+  /**
+   * If `true`, the button is active.
+   */
+  active?: boolean;
   /**
    * If `true`, the button's focus is visible.
    */

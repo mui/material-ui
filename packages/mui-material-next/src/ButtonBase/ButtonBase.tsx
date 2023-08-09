@@ -8,20 +8,24 @@ import {
   useButton,
   useSlotProps,
 } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
-import styled from '../styles/styled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import TouchRipple from '../Button/TouchRipple';
-import useTouchRipple from '../Button/useTouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
-import { ButtonBaseOwnerState, ButtonBaseProps, ButtonBaseTypeMap } from './ButtonBase.types';
-import { TouchRippleActions } from '../Button/TouchRipple.types';
+import {
+  ButtonBaseOwnerState,
+  ButtonBaseProps,
+  ButtonBaseTypeMap,
+  ExtendButtonBase,
+} from './ButtonBase.types';
+import TouchRipple from './TouchRipple';
+import useTouchRipple from './useTouchRipple';
+import { TouchRippleActions } from './TouchRipple.types';
 
 const useUtilityClasses = (ownerState: ButtonBaseOwnerState) => {
-  const { disabled, focusVisible, focusVisibleClassName, classes } = ownerState;
+  const { disabled, focusVisible, active, focusVisibleClassName, classes } = ownerState;
 
   const slots = {
-    root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
+    root: ['root', disabled && 'disabled', active && 'active', focusVisible && 'focusVisible'],
   };
 
   const composedClasses = composeClasses(slots, getButtonBaseUtilityClass, classes);
@@ -36,6 +40,7 @@ const useUtilityClasses = (ownerState: ButtonBaseOwnerState) => {
 export const ButtonBaseRoot = styled('button', {
   name: 'MuiButtonBase',
   slot: 'Root',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) && prop !== 'touchRippleRef',
   overridesResolver: (props, styles) => styles.root,
 })({
   display: 'inline-flex',
@@ -51,6 +56,7 @@ export const ButtonBaseRoot = styled('button', {
   margin: 0, // Remove the margin in Safari
   borderRadius: 0,
   padding: 0, // Remove the padding in Firefox
+  cursor: 'pointer',
   userSelect: 'none',
   verticalAlign: 'middle',
   MozAppearance: 'none', // Reset
@@ -68,7 +74,7 @@ export const ButtonBaseRoot = styled('button', {
   '@media print': {
     colorAdjust: 'exact',
   },
-});
+}) as React.ElementType<any>;
 
 /**
  * `ButtonBase` contains as few styles as possible.
@@ -98,24 +104,22 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     focusRipple = false,
     focusVisibleClassName,
     focusableWhenDisabled = false,
-    onFocusVisible,
     LinkComponent = 'a',
     tabIndex = 0,
     TouchRippleProps,
+    touchRippleRef,
     type,
     ...other
   } = props;
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
-  const { focusVisible, setFocusVisible, getRootProps } = useButton({
+  const { focusVisible, active, setFocusVisible, getRootProps } = useButton({
     disabled,
     focusableWhenDisabled,
     href: props.href,
     to: props.to,
-    onFocusVisible,
     tabIndex,
-    type,
     rootRef: handleRef,
   });
 
@@ -125,6 +129,7 @@ const ButtonBase = React.forwardRef(function ButtonBase<
   }
 
   const rippleRef = React.useRef<TouchRippleActions>(null);
+  const handleRippleRef = useForkRef(rippleRef, touchRippleRef);
   const { enableTouchRipple, getRippleHandlers } = useTouchRipple({
     disabled,
     disableRipple,
@@ -137,7 +142,7 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     () => ({
       focusVisible: () => {
         setFocusVisible(true);
-        buttonRef.current!.focus();
+        buttonRef.current?.focus();
       },
     }),
     [setFocusVisible],
@@ -153,6 +158,7 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     focusRipple,
     tabIndex,
     focusVisible,
+    active,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -160,11 +166,14 @@ const ButtonBase = React.forwardRef(function ButtonBase<
   const rootProps = useSlotProps({
     elementType: ButtonBaseRoot,
     getSlotProps: (otherHandlers: EventHandlers) => ({
+      // tabIndex should be handled by useButton after https://github.com/mui/material-ui/issues/38368 is fixed
       tabIndex,
       ...getRootProps({
         ...otherHandlers,
         ...getRippleHandlers(props),
       }),
+      // If provided, the type prop overrides useButton's type which is more restricted
+      ...(!!type && { type }),
     }),
     externalForwardedProps: other,
     externalSlotProps: {},
@@ -181,7 +190,7 @@ const ButtonBase = React.forwardRef(function ButtonBase<
       if (enableTouchRipple && !rippleRef.current) {
         console.error(
           [
-            'Material-UI: The `component` prop provided to ButtonBase is invalid.',
+            'MUI: The `component` prop provided to ButtonBase is invalid.',
             'Please make sure the children prop is rendered in this custom component.',
           ].join('\n'),
         );
@@ -194,11 +203,11 @@ const ButtonBase = React.forwardRef(function ButtonBase<
       {children}
       {enableTouchRipple ? (
         /* TouchRipple is only needed client-side, x2 boost on the server. */
-        <TouchRipple center={centerRipple} {...TouchRippleProps} ref={rippleRef} />
+        <TouchRipple center={centerRipple} {...TouchRippleProps} ref={handleRippleRef} />
       ) : null}
     </ButtonBaseRoot>
   );
-}) as OverridableComponent<ButtonBaseTypeMap>;
+}) as ExtendButtonBase<ButtonBaseTypeMap>;
 
 ButtonBase.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -258,15 +267,15 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
+   * The URL to link to when the button is clicked.
+   * If defined, an `a` element will be used as the root node.
+   */
+  href: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  /**
    * The component used to render a link when the `href` prop is provided.
    * @default 'a'
    */
   LinkComponent: PropTypes.elementType,
-  /**
-   * Callback fired when the component is focused with a keyboard.
-   * We trigger a `onFocus` callback too.
-   */
-  onFocusVisible: PropTypes.func,
   /**
    * @default 0
    */
@@ -276,9 +285,22 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    */
   TouchRippleProps: PropTypes.object,
   /**
-   * @ignore
+   * A ref that points to the `TouchRipple` element.
    */
-  type: PropTypes.oneOf(['button', 'reset', 'submit']),
+  touchRippleRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.shape({
+        start: PropTypes.func.isRequired,
+        stop: PropTypes.func.isRequired,
+      }),
+    }),
+  ]),
+  /**
+   * Type attribute applied to the root component.
+   * @default 'button'
+   */
+  type: PropTypes.string,
 } as any;
 
 export default ButtonBase;

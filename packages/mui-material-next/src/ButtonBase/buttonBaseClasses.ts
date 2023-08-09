@@ -10,6 +10,8 @@ export interface ButtonBaseClasses {
   disabled: string;
   /** State class applied to the root element if keyboard focused. */
   focusVisible: string;
+  /** State class applied to the root element if the element is active. */
+  active: string;
 }
 
 export type ButtonBaseClassKey = keyof ButtonBaseClasses;
@@ -22,6 +24,7 @@ const buttonBaseClasses: ButtonBaseClasses = generateUtilityClasses('MuiButtonBa
   'root',
   'disabled',
   'focusVisible',
+  'active',
 ]);
 
 export default buttonBaseClasses;

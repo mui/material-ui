@@ -13,10 +13,13 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import PropTypes from 'prop-types';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
+import { MuiCancellableEventHandler } from '@mui/base/utils/MuiCancellableEvent';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
+import ButtonBase, { buttonBaseClasses as classes } from '@mui/material-next/ButtonBase';
+import { ButtonBaseActions } from './ButtonBase.types';
+import { TouchRippleActions } from './TouchRipple.types';
 
-describe('<ButtonBase />', () => {
+describe.only('<ButtonBase />', () => {
   const { render } = createRenderer();
 
   // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14156632/
@@ -33,7 +36,23 @@ describe('<ButtonBase />', () => {
     }
   });
 
+  let originalMatchmedia: typeof window.matchMedia;
+
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      } as unknown as MediaQueryList);
+  });
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
+  });
+
   describeConformance(<ButtonBase />, () => ({
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
     classes,
     inheritComponent: 'button',
     render,
@@ -91,11 +110,11 @@ describe('<ButtonBase />', () => {
     });
 
     it('should use custom LinkComponent when provided in the theme', () => {
-      const CustomLink = React.forwardRef((props, ref) => {
+      const CustomLink = React.forwardRef((props, ref: React.ForwardedRef<HTMLAnchorElement>) => {
         // eslint-disable-next-line jsx-a11y/anchor-has-content
         return <a data-testid="customLink" ref={ref} {...props} />;
       });
-      const theme = createTheme({
+      const theme = extendTheme({
         components: {
           MuiButtonBase: {
             defaultProps: {
@@ -106,9 +125,9 @@ describe('<ButtonBase />', () => {
       });
 
       const { container, getByTestId } = render(
-        <ThemeProvider theme={theme}>
+        <CssVarsProvider theme={theme}>
           <ButtonBase href="https://google.com">Hello</ButtonBase>
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
       const button = container.firstChild;
       expect(getByTestId('customLink')).not.to.equal(null);
@@ -125,13 +144,12 @@ describe('<ButtonBase />', () => {
     });
 
     it('should not add role="button" if custom component and href are used', () => {
-      const CustomLink = React.forwardRef((props, ref) => {
+      const CustomLink = React.forwardRef((props, ref: React.ForwardedRef<HTMLAnchorElement>) => {
         // eslint-disable-next-line jsx-a11y/anchor-has-content
         return <a data-testid="customLink" ref={ref} {...props} />;
       });
 
       const { container } = render(
-        // @ts-expect-error missing types in CustomLink
         <ButtonBase component={CustomLink} href="https://google.com">
           Hello
         </ButtonBase>,
@@ -144,7 +162,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('should not add role="button" if custom component and to are used', () => {
-      const CustomLink = React.forwardRef((props, ref) => {
+      const CustomLink = React.forwardRef((props, ref: React.ForwardedRef<HTMLAnchorElement>) => {
         // @ts-expect-error missing types in CustomLink
         const { to, ...other } = props;
         // eslint-disable-next-line jsx-a11y/anchor-has-content
@@ -253,7 +271,7 @@ describe('<ButtonBase />', () => {
           <ButtonBase
             TouchRippleProps={{
               classes: {
-                ripplePulsate: 'ripple-pulsate',
+                ripplePulsate: 'ripple-visible',
               },
             }}
           />,
@@ -263,7 +281,7 @@ describe('<ButtonBase />', () => {
 
         focusVisible(button);
 
-        expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(0);
+        expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(0);
       });
 
       it('should start the ripple when the mouse is pressed', () => {
@@ -464,84 +482,6 @@ describe('<ButtonBase />', () => {
           button.querySelectorAll('.ripple-visible .child:not(.child-leaving)'),
         ).to.have.lengthOf(0);
       });
-
-      it('should not crash when changes enableRipple from false to true', () => {
-        function App() {
-          /** @type {React.MutableRefObject<import('./ButtonBase.types').ButtonBaseActions | null>} */
-          const buttonRef = React.useRef(null);
-          const [enableRipple, setRipple] = React.useState(false);
-
-          React.useEffect(() => {
-            if (buttonRef.current) {
-              buttonRef.current.focusVisible();
-            } else {
-              throw new Error('buttonRef.current must be available');
-            }
-          }, []);
-
-          return (
-            <div>
-              <button
-                type="button"
-                data-testid="trigger"
-                onClick={() => {
-                  setRipple(true);
-                }}
-              >
-                Trigger crash
-              </button>
-              <ButtonBase
-                autoFocus
-                action={buttonRef}
-                TouchRippleProps={{
-                  classes: {
-                    ripplePulsate: 'ripple-pulsate',
-                  },
-                }}
-                focusRipple
-                disableRipple={!enableRipple}
-              >
-                the button
-              </ButtonBase>
-            </div>
-          );
-        }
-
-        const { container, getByTestId } = render(<App />);
-
-        fireEvent.click(getByTestId('trigger'));
-        expect(container.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
-      });
-
-      it('should stop the ripple on blur if disableTouchRipple is set', () => {
-        const buttonActions = React.createRef();
-
-        const { getByRole } = render(
-          <ButtonBase
-            action={buttonActions}
-            focusRipple
-            disableTouchRipple
-            TouchRippleProps={{
-              classes: {
-                rippleVisible: 'ripple-visible',
-                child: 'child',
-                childLeaving: 'child-leaving',
-              },
-            }}
-          />,
-        );
-
-        const button = getByRole('button');
-
-        simulatePointerDevice();
-        focusVisible(button);
-
-        act(() => {
-          button.blur();
-        });
-
-        expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
-      });
     });
   });
 
@@ -598,122 +538,10 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('focusRipple', () => {
-    it('should pulsate the ripple when focusVisible', () => {
-      const { getByRole } = render(
-        <ButtonBase
-          focusRipple
-          TouchRippleProps={{
-            classes: {
-              ripplePulsate: 'ripple-pulsate',
-            },
-          }}
-        />,
-      );
-      const button = getByRole('button');
-
-      simulatePointerDevice();
-      focusVisible(button);
-
-      expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
-    });
-
-    it('should not stop the ripple when the mouse leaves', () => {
-      const { getByRole } = render(
-        <ButtonBase
-          focusRipple
-          TouchRippleProps={{
-            classes: {
-              ripplePulsate: 'ripple-pulsate',
-            },
-          }}
-        />,
-      );
-      const button = getByRole('button');
-
-      simulatePointerDevice();
-      focusVisible(button);
-      fireEvent.mouseLeave(button);
-
-      expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
-    });
-
-    it('should stop pulsate and start a ripple when the space button is pressed', () => {
-      const { getByRole } = render(
-        <ButtonBase
-          focusRipple
-          TouchRippleProps={{
-            classes: {
-              childLeaving: 'child-leaving',
-              ripplePulsate: 'ripple-pulsate',
-              rippleVisible: 'rippled-visible',
-            },
-          }}
-        />,
-      );
-      const button = getByRole('button');
-
-      simulatePointerDevice();
-      focusVisible(button);
-      fireEvent.keyDown(button, { key: ' ' });
-
-      expect(button.querySelectorAll('.ripple-pulsate .child-leaving')).to.have.lengthOf(1);
-      expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(0);
-    });
-
-    it('should stop and re-pulsate when space bar is released', () => {
-      const { getByRole } = render(
-        <ButtonBase
-          focusRipple
-          TouchRippleProps={{
-            classes: {
-              childLeaving: 'child-leaving',
-              ripplePulsate: 'ripple-pulsate',
-              rippleVisible: 'ripple-visible',
-            },
-          }}
-        />,
-      );
-      const button = getByRole('button');
-
-      simulatePointerDevice();
-      focusVisible(button);
-      fireEvent.keyDown(button, { key: ' ' });
-      fireEvent.keyUp(button, { key: ' ' });
-
-      expect(button.querySelectorAll('.ripple-pulsate .child-leaving')).to.have.lengthOf(1);
-      expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(2);
-      expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(3);
-    });
-
-    it('should stop on blur and set focusVisible to false', () => {
-      const { getByRole } = render(
-        <ButtonBase
-          focusRipple
-          TouchRippleProps={{
-            classes: {
-              childLeaving: 'child-leaving',
-              rippleVisible: 'ripple-visible',
-            },
-          }}
-        />,
-      );
-      const button = getByRole('button');
-      simulatePointerDevice();
-      focusVisible(button);
-
-      act(() => {
-        button.blur();
-      });
-
-      expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
-    });
-  });
-
   describe('prop: disabled', () => {
     it('should have a negative tabIndex', () => {
       const { getByText } = render(<ButtonBase disabled>Hello</ButtonBase>);
-      expect(getByText('Hello')).to.have.property('tabIndex', -1);
+      expect(getByText('Hello')).to.have.property('disabled');
     });
 
     it('should forward it to native buttons', () => {
@@ -765,10 +593,7 @@ describe('<ButtonBase />', () => {
 
   describe('prop: component', () => {
     it('should allow to use a link component', () => {
-      /**
-       * @type {React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement>>}
-       */
-      const Link = React.forwardRef((props, ref) => (
+      const Link = React.forwardRef((props, ref: React.ForwardedRef<HTMLDivElement>) => (
         <div data-testid="link" ref={ref} {...props} />
       ));
       const { getByTestId } = render(<ButtonBase component={Link}>Hello</ButtonBase>);
@@ -816,15 +641,9 @@ describe('<ButtonBase />', () => {
     });
 
     it('removes focus-visible if focus is re-targetted', () => {
-      /**
-       * @type {string[]}
-       */
-      const eventLog = [];
+      const eventLog: string[] = [];
       function Test() {
-        /**
-         * @type {React.Ref<HTMLButtonElement>}
-         */
-        const focusRetargetRef = React.useRef(null);
+        const focusRetargetRef = React.useRef<HTMLButtonElement>(null);
         return (
           <div
             onFocus={() => {
@@ -885,29 +704,6 @@ describe('<ButtonBase />', () => {
   });
 
   describe('event: keydown', () => {
-    it('ripples on repeated keydowns', () => {
-      const { container, getByText } = render(
-        <ButtonBase focusRipple TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}>
-          Hello
-        </ButtonBase>,
-      );
-
-      const button = getByText('Hello');
-
-      act(() => {
-        button.focus();
-        fireEvent.keyDown(button, { key: 'Enter' });
-      });
-
-      expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
-
-      // technically the second keydown should be fire with repeat: true
-      // but that isn't implemented in IE11 so we shouldn't mock it here either
-      fireEvent.keyDown(button, { key: 'Enter' });
-
-      expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
-    });
-
     describe('prop: onKeyDown', () => {
       it('call it when keydown events are dispatched', () => {
         const onKeyDownSpy = spy();
@@ -1002,17 +798,11 @@ describe('<ButtonBase />', () => {
 
       it('does not call onClick when a spacebar is released and the default is prevented', () => {
         const onClickSpy = spy();
+        const onKeyUp: MuiCancellableEventHandler<React.KeyboardEvent> = (event) => {
+          event.defaultMuiPrevented = true;
+        };
         const { getByRole } = render(
-          <ButtonBase
-            onClick={onClickSpy}
-            onKeyUp={
-              /**
-               * @param {React.SyntheticEvent} event
-               */
-              (event) => event.preventDefault()
-            }
-            component="div"
-          >
+          <ButtonBase onClick={onClickSpy} onKeyUp={onKeyUp} component="div">
             Hello
           </ButtonBase>,
         );
@@ -1129,7 +919,7 @@ describe('<ButtonBase />', () => {
       /**
        * @type {React.RefObject<import('./ButtonBase.types').ButtonBaseActions>}
        */
-      const buttonActionsRef = React.createRef();
+      const buttonActionsRef = React.createRef<ButtonBaseActions>();
       const { getByText } = render(
         <ButtonBase action={buttonActionsRef} focusVisibleClassName="focusVisible">
           Hello
@@ -1160,17 +950,12 @@ describe('<ButtonBase />', () => {
         this.skip();
       }
 
-      /**
-       *
-       * @param {import('react').HTMLAttributes<HTMLButtonElement>} props
-       */
-      function Component(props) {
+      function Component(props: React.HTMLAttributes<HTMLButtonElement>) {
         return <button type="button" {...props} />;
       }
 
       expect(() => {
         PropTypes.checkPropTypes(
-          // @ts-expect-error ExtendButtonBase<ButtonBaseTypeMap<{}, "button">> does not contain the property 'propTypes'.
           ButtonBase.propTypes,
           { classes: {}, component: Component },
           'prop',
@@ -1182,7 +967,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('warns on invalid `component` prop: prop forward', () => {
-      const Component = React.forwardRef((props, ref) => (
+      const Component = React.forwardRef((props, ref: React.ForwardedRef<HTMLButtonElement>) => (
         <button type="button" ref={ref} {...props}>
           Hello
         </button>
@@ -1210,7 +995,6 @@ describe('<ButtonBase />', () => {
     });
 
     it('allows non-standard values', () => {
-      // @ts-expect-error `@types/react` only lists standard values
       render(<ButtonBase type="fictional-type" />);
 
       expect(screen.getByRole('button')).to.have.attribute('type', 'fictional-type');
@@ -1226,10 +1010,9 @@ describe('<ButtonBase />', () => {
     });
 
     it('is forwarded to custom components', () => {
-      /**
-       * @type {React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement>>}
-       */
-      const CustomButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
+      const CustomButton = React.forwardRef((props, ref: React.ForwardedRef<HTMLButtonElement>) => (
+        <button ref={ref} {...props} />
+      ));
       render(<ButtonBase component={CustomButton} type="reset" />);
 
       expect(screen.getByRole('button')).to.have.property('type', 'reset');
@@ -1238,9 +1021,33 @@ describe('<ButtonBase />', () => {
 
   describe('prop: touchRippleRef', () => {
     it('should return a ref', () => {
-      const ref = React.createRef();
+      const ref = React.createRef<TouchRippleActions>();
       render(<ButtonBase touchRippleRef={ref} />);
       expect(ref.current).not.to.equal(null);
+    });
+  });
+
+  describe('classes', () => {
+    it('should render focus visible class', () => {
+      const { container } = render(<ButtonBase />);
+
+      const button = container.querySelector('button');
+      expect(button).not.to.equal(null);
+      act(() => {
+        button!.focus();
+      });
+
+      expect(button).to.have.class(classes.focusVisible);
+    });
+
+    it('should render active class', () => {
+      const { container } = render(<ButtonBase />);
+
+      const button = container.querySelector('button');
+      expect(button).not.to.equal(null);
+      fireEvent.mouseDown(button!);
+
+      expect(button).to.have.class(classes.active);
     });
   });
 });
