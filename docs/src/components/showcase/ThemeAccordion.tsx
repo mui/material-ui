@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FontDownloadRoundedIcon from '@mui/icons-material/FontDownloadRounded';
 import Folder from '@mui/icons-material/Folder';
 
 export default function ThemeAccordion() {
@@ -72,16 +73,16 @@ export default function ThemeAccordion() {
           onChange={handleChange('panel1')}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ color: 'primary.400' }} />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
             <Box sx={{ display: 'flex' }}>
-              <Folder fontSize="small" />
+              <FontDownloadRoundedIcon fontSize="small" />
               <div>
-                <Typography fontWeight={500}>Fonts</Typography>
+                <Typography fontWeight={500}>Typography</Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Typefaces used in this branding project.
+                  Fonts used in this website revamp project.
                 </Typography>
               </div>
             </Box>

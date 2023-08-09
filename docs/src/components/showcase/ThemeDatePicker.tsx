@@ -30,13 +30,17 @@ export default function ThemeDatePicker() {
               '& .MuiPickerStaticWrapper-content': {
                 bgcolor: 'initial',
               },
+              '& .MuiYearCalendar-root': {
+                width: '100%',
+              },
               '& .MuiDateCalendar-root': {
                 width: '100%',
                 '& .MuiPickersCalendarHeader-root': {
+                  margin: '12px 0',
                   paddingLeft: '18px',
                 },
                 '& .MuiTypography-caption': {
-                  color: 'grey.700',
+                  color: 'grey.500',
                   height: 24,
                 },
                 '[role="presentation"]': {
@@ -45,10 +49,18 @@ export default function ThemeDatePicker() {
                   },
                 },
                 '& .MuiPickersSlideTransition-root': {
-                  minHeight: 180,
+                  minHeight: 165,
                 },
                 '& .MuiPickersYear-yearButton': {
+                  flexBasis: '20%',
                   fontSize: '0.875rem',
+                  height: 'auto',
+                  width: 'auto',
+                  padding: '8px 12px',
+                  '&.Mui-selected': {
+                    color: '#fff',
+                    bgcolor: 'primary.main',
+                  },
                 },
                 '& [role="row"]': {
                   justifyContent: 'space-around',
@@ -87,11 +99,8 @@ export default function ThemeDatePicker() {
                   bgcolor: 'primaryDark.800',
                 },
                 '& .MuiDateCalendar-root': {
-                  '& .MuiTypography-caption': {
-                    color: 'grey.600',
-                  },
                   '& .MuiPickersDay-root': {
-                    color: 'primary.200',
+                    color: 'primary.100',
                   },
                 },
               }),

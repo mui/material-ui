@@ -27,7 +27,16 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
             ...(!disableTheming && {
               [`& .${iconButtonClasses.root}`]: {
                 border: '1px solid',
-                borderColor: 'grey.200',
+                bgcolor: 'primary.50',
+                color: 'primary.500',
+                borderColor: 'primary.200',
+              },
+              [`& .${iconButtonClasses.disabled}`]: {
+                height: 'fit-content',
+                bgcolor: 'transparent',
+                border: '1px solid',
+                borderColor: 'grey.100',
+                color: 'grey.300',
               },
             }),
           },
@@ -37,7 +46,15 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
                 bgcolor: 'primaryDark.900',
                 borderColor: 'primaryDark.700',
                 [`& .${iconButtonClasses.root}`]: {
+                  bgcolor: 'primary.900',
+                  color: 'primary.200',
+                  borderColor: 'primary.600',
+                },
+                [`& .${iconButtonClasses.disabled}`]: {
+                  bgcolor: 'transparent',
+                  border: '1px solid',
                   borderColor: 'primaryDark.600',
+                  color: 'primaryDark.400',
                 },
               })),
         ]}
@@ -58,36 +75,31 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
         <Stack direction="column" spacing={2} alignItems="center">
           <Stack direction="column" spacing={0.2} alignItems="center">
             <Typography color="text.primary" fontWeight={600} fontSize={15} mb={0}>
-              If This Ships Sinks (I Give In)
+              If This Ship Sinks (I Give In)
             </Typography>
             <Typography component="div" variant="caption" color="text.secondary" fontWeight={500}>
               Birds Of Tokyo
             </Typography>
           </Stack>
-          <Stack direction="row" spacing={1}>
-            <IconButton aria-label="shuffle" disabled size="small">
-              <ShuffleRoundedIcon fontSize="small" sx={{ color: 'primaryDark.500' }} />
+          <Stack direction="row" alignItems="center" spacing={1.5}>
+            <IconButton aria-label="shuffle" disabled size="small" sx={{ flexGrow: 0 }}>
+              <ShuffleRoundedIcon fontSize="small" />
             </IconButton>
             <IconButton aria-label="fast rewind" disabled size="small">
-              <FastRewindRounded fontSize="small" sx={{ color: 'primaryDark.500' }} />
+              <FastRewindRounded fontSize="small" />
             </IconButton>
             <IconButton
               aria-label={paused ? 'play' : 'pause'}
-              size="small"
               sx={{ mx: 1 }}
               onClick={() => setPaused((val) => !val)}
             >
-              {paused ? (
-                <PlayArrowRounded fontSize="small" sx={{ color: 'primary.500' }} />
-              ) : (
-                <PauseRounded fontSize="small" sx={{ color: 'primary.500' }} />
-              )}
+              {paused ? <PlayArrowRounded /> : <PauseRounded />}
             </IconButton>
             <IconButton aria-label="fast forward" disabled size="small">
-              <FastForwardRounded fontSize="small" sx={{ color: 'primaryDark.500' }} />
+              <FastForwardRounded fontSize="small" />
             </IconButton>
             <IconButton aria-label="loop" disabled size="small">
-              <LoopRoundedIcon fontSize="small" sx={{ color: 'primaryDark.500' }} />
+              <LoopRoundedIcon fontSize="small" />
             </IconButton>
           </Stack>
         </Stack>

@@ -59,7 +59,7 @@ export default function BasicTimeline() {
                 py: 0,
                 my: 0,
                 [`& .${timelineItemClasses.root}`]: {
-                  minHeight: 36,
+                  minHeight: 24,
                   '&:before': {
                     display: 'none',
                   },
@@ -73,7 +73,7 @@ export default function BasicTimeline() {
                   bgcolor: 'primary.500',
                 },
                 [`& .${timelineConnectorClasses.root}`]: {
-                  margin: '-15px 0',
+                  margin: '-8px 0',
                   bgcolor: 'primary.100',
                 },
                 [`& .${timelineContentClasses.root}`]: {

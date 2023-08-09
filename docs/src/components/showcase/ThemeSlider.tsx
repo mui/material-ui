@@ -30,6 +30,8 @@ export default function ThemeSlider() {
           getAriaLabel={() => 'Temperature'}
           getAriaValueText={valuetext}
           defaultValue={[25, 50]}
+          valueLabelFormat={valuetext}
+          valueLabelDisplay="on"
           marks={[
             { value: 0, label: '0ºC' },
             { value: 10 },
@@ -43,8 +45,6 @@ export default function ThemeSlider() {
             { value: 90 },
             { value: 100, label: '100ºC' },
           ]}
-          valueLabelFormat={valuetext}
-          valueLabelDisplay="on"
           sx={[
             {
               display: 'inline-block',
