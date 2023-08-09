@@ -577,10 +577,7 @@ InputBase.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -617,7 +614,12 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * Pass a ref to the `input` element.
    */
-  inputRef: refType,
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.any.isRequired,
+    }),
+  ]),
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
@@ -695,10 +697,7 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['medium', 'small']),
-    PropTypes.string,
-  ]),
+  size: PropTypes.oneOf(['small', 'medium']),
   /**
    * The props used for each slot inside the Input.
    * @default {}
