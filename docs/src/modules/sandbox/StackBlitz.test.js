@@ -36,6 +36,8 @@ describe('StackBlitz', () => {
   <head>
     <title>BasicButtons Material Demo</title>
     <!-- Fonts to support Material Design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -109,6 +111,8 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   <head>
     <title>BasicButtons Material Demo</title>
     <!-- Fonts to support Material Design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"

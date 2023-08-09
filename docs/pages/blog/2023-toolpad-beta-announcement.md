@@ -51,7 +51,7 @@ Easily create user interfaces by dragging and dropping pre-built components onto
 
 ### 2. Query builder UI
 
-A Postman-like query builder allows you to integrate any REST API quickly. A binding editor, which supports Javascript, allows you to wire query response directly to the components.
+A Postman-like query builder allows you to integrate any REST API quickly. A binding editor, which supports JavaScript, allows you to wire query response directly to the components.
 
 <a href="https://mui.com/toolpad/examples/npm-stats/">
 <img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/uiquery.png"  loading="lazy" width="2400" height="1394" />
