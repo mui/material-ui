@@ -10,7 +10,10 @@
       }
     },
     "onBlur": {
-      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+      "type": {
+        "name": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+      }
     },
     "onChange": {
       "type": {

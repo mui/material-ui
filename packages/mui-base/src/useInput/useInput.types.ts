@@ -16,7 +16,7 @@ export interface UseInputParameters {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error?: boolean;
-  onBlur?: React.FocusEventHandler;
+  onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onClick?: React.MouseEventHandler;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler;
@@ -44,7 +44,7 @@ export interface UseInputInputSlotOwnProps {
   defaultValue: string | number | readonly string[] | undefined;
   ref: React.RefCallback<HTMLInputElement> | null;
   value: string | number | readonly string[] | undefined;
-  onBlur: React.FocusEventHandler;
+  onBlur: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onFocus: React.FocusEventHandler;
   required: boolean;

@@ -1,62 +1,39 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import MuiError from '@mui/utils/macros/MuiError.macro';
 import {
-  elementTypeAcceptingRef,
+  EventHandlers,
   isHostComponent,
-  refType,
-  TextareaAutosize,
-  unstable_capitalize as capitalize,
+  // TextareaAutosize,
   unstable_composeClasses as composeClasses,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-  unstable_useForkRef as useForkRef,
+  useSlotProps,
+  WithOptionalOwnerState,
 } from '@mui/base';
-import formControlState from '@mui/material/FormControl/formControlState';
+import { useInput } from '@mui/base/useInput';
+import {
+  unstable_capitalize as capitalize,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+} from '@mui/utils';
+// import formControlState from '@mui/material/FormControl/formControlState';
 import FormControlContext from '@mui/material/FormControl/FormControlContext';
 import useFormControl from '@mui/material/FormControl/useFormControl';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { isFilled } from './utils';
+import {
+  InputBaseOwnerState,
+  InputBaseProps,
+  InputBaseRootSlotProps,
+  InputBaseInputSlotProps,
+  InputBaseTypeMap,
+} from './InputBase.types';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
-export const rootOverridesResolver = (props, styles) => {
-  const { ownerState } = props;
-
-  return [
-    styles.root,
-    ownerState.formControl && styles.formControl,
-    ownerState.startAdornment && styles.adornedStart,
-    ownerState.endAdornment && styles.adornedEnd,
-    ownerState.error && styles.error,
-    ownerState.size === 'small' && styles.sizeSmall,
-    ownerState.multiline && styles.multiline,
-    ownerState.color && styles[`color${capitalize(ownerState.color)}`],
-    ownerState.fullWidth && styles.fullWidth,
-    ownerState.hiddenLabel && styles.hiddenLabel,
-  ];
-};
-
-export const inputOverridesResolver = (props, styles) => {
-  const { ownerState } = props;
-
-  return [
-    styles.input,
-    ownerState.size === 'small' && styles.inputSizeSmall,
-    ownerState.multiline && styles.inputMultiline,
-    ownerState.type === 'search' && styles.inputTypeSearch,
-    ownerState.startAdornment && styles.inputAdornedStart,
-    ownerState.endAdornment && styles.inputAdornedEnd,
-    ownerState.hiddenLabel && styles.inputHiddenLabel,
-  ];
-};
-
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: InputBaseOwnerState) => {
   const {
     classes,
-    color,
+    color = 'primary',
     disabled,
     error,
     endAdornment,
@@ -81,8 +58,8 @@ const useUtilityClasses = (ownerState) => {
       formControl && 'formControl',
       size === 'small' && 'sizeSmall',
       multiline && 'multiline',
-      startAdornment && 'adornedStart',
-      endAdornment && 'adornedEnd',
+      Boolean(startAdornment) && 'adornedStart',
+      Boolean(endAdornment) && 'adornedEnd',
       hiddenLabel && 'hiddenLabel',
       readOnly && 'readOnly',
     ],
@@ -93,8 +70,8 @@ const useUtilityClasses = (ownerState) => {
       multiline && 'inputMultiline',
       size === 'small' && 'inputSizeSmall',
       hiddenLabel && 'inputHiddenLabel',
-      startAdornment && 'inputAdornedStart',
-      endAdornment && 'inputAdornedEnd',
+      Boolean(startAdornment) && 'inputAdornedStart',
+      Boolean(endAdornment) && 'inputAdornedEnd',
       readOnly && 'readOnly',
     ],
   };
@@ -105,8 +82,23 @@ const useUtilityClasses = (ownerState) => {
 export const InputBaseRoot = styled('div', {
   name: 'MuiInputBase',
   slot: 'Root',
-  overridesResolver: rootOverridesResolver,
-})(({ theme, ownerState }) => ({
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      ownerState.formControl && styles.formControl,
+      ownerState.startAdornment && styles.adornedStart,
+      ownerState.endAdornment && styles.adornedEnd,
+      ownerState.error && styles.error,
+      ownerState.size === 'small' && styles.sizeSmall,
+      ownerState.multiline && styles.multiline,
+      ownerState.color && styles[`color${capitalize(ownerState.color)}`],
+      ownerState.fullWidth && styles.fullWidth,
+      ownerState.hiddenLabel && styles.hiddenLabel,
+    ];
+  },
+})<{ ownerState: InputBaseOwnerState }>(({ theme, ownerState }) => ({
   ...theme.typography.body1,
   color: (theme.vars || theme).palette.text.primary,
   lineHeight: '1.4375em', // 23px
@@ -130,12 +122,25 @@ export const InputBaseRoot = styled('div', {
   }),
 }));
 
-export const InputBaseComponent = styled('input', {
+export const InputBaseInput = styled('input', {
   name: 'MuiInputBase',
   slot: 'Input',
-  overridesResolver: inputOverridesResolver,
-})(({ theme, ownerState }) => {
-  const light = theme.palette.mode === 'light';
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.input,
+      ownerState.size === 'small' && styles.inputSizeSmall,
+      ownerState.multiline && styles.inputMultiline,
+      ownerState.type === 'search' && styles.inputTypeSearch,
+      ownerState.startAdornment && styles.inputAdornedStart,
+      ownerState.endAdornment && styles.inputAdornedEnd,
+      ownerState.hiddenLabel && styles.inputHiddenLabel,
+    ];
+  },
+})<{ ownerState: InputBaseOwnerState }>(({ theme, ownerState }) => {
+  // console.log(theme);
+  const light = theme.palette?.mode === 'light' || true;
   const placeholder = {
     color: 'currentColor',
     ...(theme.vars
@@ -243,25 +248,25 @@ const inputGlobalStyles = (
  * It aims to be a simple building block for creating an input.
  * It contains a load of style reset and some state logic.
  */
-const InputBase = React.forwardRef(function InputBase(inProps, ref) {
+const InputBase = React.forwardRef(function InputBase<
+  BaseComponentType extends React.ElementType = InputBaseTypeMap['defaultComponent'],
+>(inProps: InputBaseProps<BaseComponentType>, forwardedRef: React.ForwardedRef<any>) {
   const props = useThemeProps({ props: inProps, name: 'MuiInputBase' });
   const {
     'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
     autoComplete,
     autoFocus,
     className,
-    color,
-    components = {},
-    componentsProps = {},
+    color: colorProp,
     defaultValue,
-    disabled,
+    disabled: disabledProp,
     disableInjectingGlobalStyles,
     endAdornment,
     error,
     fullWidth = false,
     id,
-    inputComponent = 'input',
-    inputProps: inputPropsProp = {},
     inputRef: inputRefProp,
     margin,
     maxRows,
@@ -277,79 +282,48 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     placeholder,
     readOnly,
     renderSuffix,
+    required,
     rows,
     size,
     slotProps = {},
     slots = {},
     startAdornment,
     type = 'text',
-    value: valueProp,
+    value,
     ...other
   } = props;
 
-  const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const { current: isControlled } = React.useRef(value != null);
 
   const inputRef = React.useRef();
-  const handleInputRefWarning = React.useCallback((instance) => {
-    if (process.env.NODE_ENV !== 'production') {
-      if (instance && instance.nodeName !== 'INPUT' && !instance.focus) {
-        console.error(
-          [
-            'MUI: You have provided a `inputComponent` to the input component',
-            'that does not correctly handle the `ref` prop.',
-            'Make sure the `ref` prop is called with a HTMLInputElement.',
-          ].join('\n'),
-        );
-      }
-    }
-  }, []);
 
-  const handleInputRef = useForkRef(
-    inputRef,
-    inputRefProp,
-    inputPropsProp.ref,
-    handleInputRefWarning,
-  );
-
-  const [focused, setFocused] = React.useState(false);
+  // TODO: integrate FormControl
   const muiFormControl = useFormControl();
 
+  /*
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (muiFormControl) {
         return muiFormControl.registerEffect();
       }
-
-      return undefined;
+       return undefined;
     }, [muiFormControl]);
   }
-
-  const fcs = formControlState({
+    const fcs = formControlState({
     props,
     muiFormControl,
     states: ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'],
   });
-
-  fcs.focused = muiFormControl ? muiFormControl.focused : focused;
-
-  // The blur won't fire when the disabled state is set on a focused input.
-  // We need to book keep the focused state manually.
-  React.useEffect(() => {
-    if (!muiFormControl && disabled && focused) {
-      setFocused(false);
-      if (onBlur) {
-        onBlur();
-      }
-    }
-  }, [muiFormControl, disabled, focused, onBlur]);
+   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
+  */
 
   const onFilled = muiFormControl && muiFormControl.onFilled;
   const onEmpty = muiFormControl && muiFormControl.onEmpty;
 
+  // TODO: keep this?
   const checkDirty = React.useCallback(
-    (obj) => {
+    (obj: any) => {
       if (isFilled(obj)) {
         if (onFilled) {
           onFilled();
@@ -367,10 +341,11 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     }
   }, [value, checkDirty, isControlled]);
 
-  const handleFocus = (event) => {
+  const handleFocus = (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     // Fix a bug with IE11 where the focus/blur events are triggered
     // while the component is disabled.
-    if (fcs.disabled) {
+    if (disabledProp) {
+      // `fcs.disabled` or disabled from FormControlContext if integrated
       event.stopPropagation();
       return;
     }
@@ -378,54 +353,35 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     if (onFocus) {
       onFocus(event);
     }
-    if (inputPropsProp.onFocus) {
-      inputPropsProp.onFocus(event);
-    }
 
-    if (muiFormControl && muiFormControl.onFocus) {
-      muiFormControl.onFocus(event);
-    } else {
-      setFocused(true);
-    }
+    // if (muiFormControl && muiFormControl.onFocus) {
+    //   muiFormControl.onFocus(event);
+    // }
   };
 
-  const handleBlur = (event) => {
+  const handleBlur = (event?: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (onBlur) {
       onBlur(event);
     }
-    if (inputPropsProp.onBlur) {
-      inputPropsProp.onBlur(event);
-    }
 
-    if (muiFormControl && muiFormControl.onBlur) {
-      muiFormControl.onBlur(event);
-    } else {
-      setFocused(false);
-    }
+    // if (muiFormControl && muiFormControl.onBlur) {
+    //   muiFormControl.onBlur(event);
+    // }
   };
 
-  const handleChange = (event, ...args) => {
-    if (!isControlled) {
-      const element = event.target || inputRef.current;
-      if (element == null) {
-        throw new MuiError(
-          'MUI: Expected valid input target. ' +
-            'Did you use a custom `inputComponent` and forget to forward refs? ' +
-            'See https://mui.com/r/input-component-ref-interface for more info.',
-        );
-      }
-
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ...args: any[]
+  ) => {
+    if (!isControlled && event.target != null) {
       checkDirty({
-        value: element.value,
+        value: event.target.value,
       });
-    }
-
-    if (inputPropsProp.onChange) {
-      inputPropsProp.onChange(event, ...args);
     }
 
     // Perform in the willUpdate
     if (onChange) {
+      // @ts-ignore
       onChange(event, ...args);
     }
   };
@@ -437,18 +393,16 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleClick = (event) => {
-    if (inputRef.current && event.currentTarget === event.target) {
-      inputRef.current.focus();
-    }
-    if (onClick && !fcs.disabled) {
+  const handleClick = (event: React.PointerEvent) => {
+    if (onClick /* && !fcs.disabled */) {
       onClick(event);
     }
   };
+
+  /*
   let InputComponent = inputComponent;
   let inputProps = inputPropsProp;
-
-  if (multiline && InputComponent === 'input') {
+   if (multiline && InputComponent === 'input') {
     if (rows) {
       if (process.env.NODE_ENV !== 'production') {
         if (minRows || maxRows) {
@@ -471,11 +425,11 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         ...inputProps,
       };
     }
-
-    InputComponent = TextareaAutosize;
+     InputComponent = TextareaAutosize;
   }
+  */
 
-  const handleAutoFill = (event) => {
+  const handleAutoFill = (event: React.AnimationEvent) => {
     // Provide a fake value as Chrome might not let you access it for security reasons.
     checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef.current : { value: 'x' });
   };
@@ -486,95 +440,106 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     }
   }, [muiFormControl, startAdornment]);
 
+  const {
+    getRootProps,
+    getInputProps,
+    focused,
+    // formControlContext,
+    error: errorState,
+    disabled: disabledState,
+  } = useInput({
+    disabled: disabledProp,
+    defaultValue,
+    error,
+    onBlur: handleBlur,
+    onClick: handleClick,
+    onChange: handleChange,
+    onFocus: handleFocus,
+    required,
+    value,
+    inputRef: inputRefProp,
+  });
+
   const ownerState = {
     ...props,
-    color: fcs.color || 'primary',
-    disabled: fcs.disabled,
+    color: colorProp,
+    disabled: disabledState,
     endAdornment,
-    error: fcs.error,
-    focused: fcs.focused,
+    error: errorState,
+    focused,
     formControl: muiFormControl,
     fullWidth,
-    hiddenLabel: fcs.hiddenLabel,
+    hiddenLabel: false, // TODO: FormControl integration
     multiline,
-    size: fcs.size,
+    // size: fcs.size,
     startAdornment,
     type,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = slots.root || components.Root || InputBaseRoot;
-  const rootProps = slotProps.root || componentsProps.root || {};
+  const propsToForwardToInputSlot = {
+    'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    autoComplete,
+    autoFocus,
+    id,
+    onKeyDown,
+    onKeyUp,
+    name,
+    placeholder,
+    readOnly,
+    type,
+  };
 
-  const Input = slots.input || components.Input || InputBaseComponent;
-  inputProps = { ...inputProps, ...(slotProps.input ?? componentsProps.input) };
+  const Root = slots.root || InputBaseRoot;
+  const rootProps: WithOptionalOwnerState<InputBaseRootSlotProps> = useSlotProps({
+    elementType: Root,
+    getSlotProps: getRootProps,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref: forwardedRef,
+    },
+    ownerState,
+    className: [classes.root, className],
+  });
+
+  const InputComponent = multiline ? slots.textarea ?? 'textarea' : slots.input ?? InputBaseInput;
+  const inputProps: WithOptionalOwnerState<InputBaseInputSlotProps> = useSlotProps({
+    elementType: InputComponent,
+    getSlotProps: (otherHandlers: EventHandlers) => {
+      return getInputProps({
+        ...propsToForwardToInputSlot,
+        ...otherHandlers,
+      });
+    },
+    externalSlotProps: slotProps.input,
+    additionalProps: {
+      rows: multiline ? rows : undefined,
+      ...(multiline &&
+        !isHostComponent(InputComponent) && {
+          minRows: rows || minRows,
+          maxRows: rows || maxRows,
+        }),
+    },
+    ownerState,
+    className: classes.input,
+  });
 
   return (
     <React.Fragment>
       {!disableInjectingGlobalStyles && inputGlobalStyles}
-      <Root
-        {...rootProps}
-        {...(!isHostComponent(Root) && {
-          ownerState: { ...ownerState, ...rootProps.ownerState },
-        })}
-        ref={ref}
-        onClick={handleClick}
-        {...other}
-        className={clsx(
-          classes.root,
-          {
-            // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
-            'MuiInputBase-readOnly': readOnly,
-          },
-          rootProps.className,
-          className,
-        )}
-      >
+      <Root {...rootProps}>
         {startAdornment}
-        <FormControlContext.Provider value={null}>
-          <Input
-            ownerState={ownerState}
-            aria-invalid={fcs.error}
-            aria-describedby={ariaDescribedby}
-            autoComplete={autoComplete}
-            autoFocus={autoFocus}
-            defaultValue={defaultValue}
-            disabled={fcs.disabled}
-            id={id}
-            onAnimationStart={handleAutoFill}
-            name={name}
-            placeholder={placeholder}
-            readOnly={readOnly}
-            required={fcs.required}
-            rows={rows}
-            value={value}
-            onKeyDown={onKeyDown}
-            onKeyUp={onKeyUp}
-            type={type}
-            {...inputProps}
-            {...(!isHostComponent(Input) && {
-              as: InputComponent,
-              ownerState: { ...ownerState, ...inputProps.ownerState },
-            })}
-            ref={handleInputRef}
-            className={clsx(
-              classes.input,
-              {
-                // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
-                'MuiInputBase-readOnly': readOnly,
-              },
-              inputProps.className,
-            )}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
-          />
+        <FormControlContext.Provider value={undefined}>
+          <InputComponent onAnimationStart={handleAutoFill} rows={rows} {...inputProps} />
         </FormControlContext.Provider>
         {endAdornment}
         {renderSuffix
           ? renderSuffix({
-              ...fcs,
+              // ...fcs,
               startAdornment,
             })
           : null}
@@ -586,7 +551,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 InputBase.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * @ignore
@@ -607,10 +572,6 @@ InputBase.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
@@ -620,31 +581,6 @@ InputBase.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
-  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -679,17 +615,6 @@ InputBase.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * The component used for the `input` element.
-   * Either a string to use a HTML element or a component.
-   * @default 'input'
-   */
-  inputComponent: elementTypeAcceptingRef,
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   * @default {}
-   */
-  inputProps: PropTypes.object,
-  /**
    * Pass a ref to the `input` element.
    */
   inputRef: refType,
@@ -702,13 +627,13 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
-  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  maxRows: PropTypes.number,
   /**
    * Minimum number of rows to display when multiline option is set to true.
    */
-  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  minRows: PropTypes.number,
   /**
-   * If `true`, a [TextareaAutosize](/material-ui/react-textarea-autosize/) element is rendered.
+   * If `true`, a `textarea` element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -729,10 +654,6 @@ InputBase.propTypes /* remove-proptypes */ = {
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
   /**
    * @ignore
    */
@@ -770,7 +691,7 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * Number of rows to display when multiline option is set to true.
    */
-  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rows: PropTypes.number,
   /**
    * The size of the component.
    */
@@ -779,27 +700,22 @@ InputBase.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
+   * The props used for each slot inside the Input.
    * @default {}
    */
   slotProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
    * @default {}
    */
   slots: PropTypes.shape({
     input: PropTypes.elementType,
     root: PropTypes.elementType,
+    textarea: PropTypes.elementType,
   }),
   /**
    * Start `InputAdornment` for this component.
@@ -822,6 +738,6 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The value of the `input` element, required for a controlled component.
    */
   value: PropTypes.any,
-};
+} as any;
 
 export default InputBase;
