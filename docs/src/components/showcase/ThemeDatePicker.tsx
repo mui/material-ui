@@ -78,7 +78,7 @@ export default function ThemeDatePicker() {
             (theme) =>
               theme.applyDarkStyles({
                 '& > div': {
-                  borderColor: 'primaryDark.500',
+                  borderColor: 'primaryDark.700',
                 },
                 [`& .${iconButtonClasses.root}`]: {
                   color: 'primary.300',

@@ -19,62 +19,41 @@ export default function TaskCard() {
           minHeight: 280,
           display: 'flex',
           flexDirection: 'column',
-          p: 2.5,
-          color: '#fff',
+          p: 3,
           background: `linear-gradient(to right bottom, ${
             (theme.vars || theme).palette.primary[500]
-          }, ${(theme.vars || theme).palette.primary[700]} 120%)`,
+          }, ${(theme.vars || theme).palette.primary[600]} 120%)`,
           boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
         })}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
           <ScheduleRounded fontSize="inherit" />
-          <Typography
-            color="rgba(255, 255, 255, 0.7)"
-            variant="caption"
-            fontWeight={500}
-            sx={{ ml: 0.5, mt: '1px' }}
-          >
+          <Typography variant="caption" fontWeight={600}>
             March 25th
           </Typography>
         </Box>
         <Box sx={{ my: 'auto' }}>
-          <Box
-            sx={{
-              width: 28,
-              height: 28,
-              bgcolor: '#fff',
-              borderRadius: 0.75,
-              p: '2px',
-            }}
-          >
-            <CodeRounded color="primary" />
-          </Box>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ mt: 1.5, fontWeight: 500, lineHeight: 1.2 }}
-          >
-            Check the docs for getting every component API
+          <CodeRounded color="white" />
+          <Typography variant="h6" component="div" fontWeight={600} sx={{ lineHeight: 1.4 }}>
+            Check out the docs for getting every component API
           </Typography>
         </Box>
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', gap: 1, py: 1 }}>
           <Avatar
             imgProps={{ 'aria-labelledby': 'demo-task-card-assignee-name' }}
             src="/static/images/avatar/1-sm.jpeg"
-            variant="rounded"
-            sx={{ border: '1px solid #fff' }}
+            sx={{ border: '2px solid #FFF' }}
           />
-          <Box sx={{ ml: 1 }}>
-            <Typography variant="body2" color="primary.200" fontWeight={500}>
+          <Box>
+            <Typography color="primary.200" fontWeight={600} fontSize={12}>
               Assigned to
             </Typography>
-            <Typography id="demo-task-card-assignee-name" fontWeight={500}>
+            <Typography id="demo-task-card-assignee-name" variant="body2" fontWeight={600}>
               Michael Scott
             </Typography>
           </Box>
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 0.5 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <LinearProgress
             aria-label="Progress"
             variant="determinate"
@@ -82,15 +61,15 @@ export default function TaskCard() {
             sx={{
               flexGrow: 1,
               borderRadius: 10,
-              backgroundColor: 'rgba(255,255,255,0.12)',
+              backgroundColor: 'primary.400',
               [`& .${linearProgressClasses.bar}`]: {
                 borderRadius: 10,
                 backgroundColor: '#fff',
               },
             }}
           />
-          <Typography color="#00C8FF" variant="body2" sx={{ ml: 2 }}>
-            <b>60%</b>
+          <Typography color="primary.50" variant="body2" fontWeight={700} sx={{ ml: 2 }}>
+            60%
           </Typography>
         </Box>
       </Card>

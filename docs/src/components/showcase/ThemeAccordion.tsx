@@ -9,6 +9,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Folder from '@mui/icons-material/Folder';
 
 export default function ThemeAccordion() {
+  const [expanded, setExpanded] = React.useState<string | false>('panel1');
+
+  const handleChange = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+    setExpanded(newExpanded ? panel : false);
+  };
+
   return (
     <Fade in timeout={700}>
       <Box
@@ -47,7 +53,8 @@ export default function ThemeAccordion() {
           (theme) =>
             theme.applyDarkStyles({
               [`& .${accordionClasses.root}`]: {
-                bgcolor: 'primaryDark.800',
+                bgcolor: 'primaryDark.900',
+                borderColor: 'primaryDark.700',
               },
               [`& .${accordionSummaryClasses.root}`]: {
                 [`& .${accordionSummaryClasses.content}`]: {
@@ -59,7 +66,11 @@ export default function ThemeAccordion() {
             }),
         ]}
       >
-        <Accordion variant="outlined">
+        <Accordion
+          variant="outlined"
+          expanded={expanded === 'panel1'}
+          onChange={handleChange('panel1')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -68,7 +79,7 @@ export default function ThemeAccordion() {
             <Box sx={{ display: 'flex' }}>
               <Folder fontSize="small" />
               <div>
-                <Typography>Fonts</Typography>
+                <Typography fontWeight={500}>Fonts</Typography>
                 <Typography variant="body2" color="text.secondary">
                   Typefaces used in this branding project.
                 </Typography>
@@ -77,12 +88,16 @@ export default function ThemeAccordion() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography variant="body2" color="text.secondary">
-              Tag line headings (h1, h2) use General Sans, whereas the rest of the elements use IBM
+              Tag line headings (h1, h2) use General Sans, whereas the rest of the website use IBM
               Plex Sans.
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion variant="outlined">
+        <Accordion
+          variant="outlined"
+          expanded={expanded === 'panel2'}
+          onChange={handleChange('panel2')}
+        >
           <AccordionSummary
             disabled
             expandIcon={<ExpandMoreIcon />}
