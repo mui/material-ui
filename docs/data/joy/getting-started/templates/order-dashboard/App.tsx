@@ -119,9 +119,6 @@ export default function JoyOrderDashboardTemplate() {
               alignItems: { xs: 'start', sm: 'center' },
               flexWrap: 'wrap',
               justifyContent: 'space-between',
-              // '& > *': {
-              //   minWidth: 'clamp(0px, (500px - 100%) * 999, 100%)',
-              // },
             }}
           >
             <Typography level="h2">Orders</Typography>
