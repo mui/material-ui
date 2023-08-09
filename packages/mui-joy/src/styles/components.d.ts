@@ -70,9 +70,21 @@ import {
   CircularProgressSlot,
 } from '../CircularProgress/CircularProgressProps';
 import { ContainerProps, ContainerSlot } from '../Container/ContainerProps';
-import { DialogActionsProps, DialogActionsSlot } from '../DialogActions/DialogActionsProps';
-import { DialogContentProps, DialogContentSlot } from '../DialogContent/DialogContentProps';
-import { DialogTitleProps, DialogTitleSlot } from '../DialogTitle/DialogTitleProps';
+import {
+  DialogActionsProps,
+  DialogActionsOwnerState,
+  DialogActionsSlot,
+} from '../DialogActions/DialogActionsProps';
+import {
+  DialogContentProps,
+  DialogContentOwnerState,
+  DialogContentSlot,
+} from '../DialogContent/DialogContentProps';
+import {
+  DialogTitleProps,
+  DialogTitleOwnerState,
+  DialogTitleSlot,
+} from '../DialogTitle/DialogTitleProps';
 import {
   ScopedCssBaselineProps,
   ScopedCssBaselineOwnerState,
@@ -295,15 +307,15 @@ export interface Components<Theme = unknown> {
   };
   JoyDialogActions?: {
     defaultProps?: Partial<DialogActionsProps>;
-    styleOverrides?: StyleOverrides<DialogActionsSlot, DialogActionsProps, Theme>;
+    styleOverrides?: StyleOverrides<DialogActionsSlot, DialogActionsOwnerState, Theme>;
   };
   JoyDialogContent?: {
     defaultProps?: Partial<DialogContentProps>;
-    styleOverrides?: StyleOverrides<DialogContentSlot, DialogContentProps, Theme>;
+    styleOverrides?: StyleOverrides<DialogContentSlot, DialogContentOwnerState, Theme>;
   };
   JoyDialogTitle?: {
     defaultProps?: Partial<DialogTitleProps>;
-    styleOverrides?: StyleOverrides<DialogTitleSlot, DialogTitleProps, Theme>;
+    styleOverrides?: StyleOverrides<DialogTitleSlot, DialogTitleOwnerState, Theme>;
   };
   JoyScopedCssBaseline?: {
     defaultProps?: Partial<ScopedCssBaselineProps>;
