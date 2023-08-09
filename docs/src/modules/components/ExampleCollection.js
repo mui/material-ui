@@ -93,7 +93,7 @@ export default function ExampleCollection() {
   return (
     <Grid container spacing={2}>
       {examples.map((example) => (
-        <Grid key={example.name} item xs={12} sm={6}>
+        <Grid key={example.name} xs={12} sm={6}>
           <Card
             sx={[
               {
