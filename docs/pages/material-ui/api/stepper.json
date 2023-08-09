@@ -20,6 +20,10 @@
     }
   },
   "name": "Stepper",
+  "imports": [
+    "import Stepper from '@mui/material/Stepper';",
+    "import { Stepper } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "horizontal", "vertical", "alternativeLabel"],
     "globalClasses": {},

@@ -256,10 +256,10 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     rootRef: mergedListRootRef,
   } = useList(useListParameters);
 
-  const createHandleButtonClick =
+  const createHandleButtonMouseDown =
     (otherHandlers?: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent & MuiCancellableEvent) => {
-      otherHandlers?.onClick?.(event);
+      otherHandlers?.onMouseDown?.(event);
       if (!event.defaultMuiPrevented) {
         const action: ButtonClickAction = {
           type: SelectActionTypes.buttonClick,
@@ -299,7 +299,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   ) => {
     return {
       ...otherHandlers,
-      onClick: createHandleButtonClick(otherHandlers),
+      onMouseDown: createHandleButtonMouseDown(otherHandlers),
       ref: mergedListRootRef,
       role: 'combobox' as const,
       'aria-expanded': open,

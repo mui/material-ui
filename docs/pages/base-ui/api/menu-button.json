@@ -1,5 +1,6 @@
 {
   "props": {
+    "className": { "type": { "name": "string" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "string" } },
@@ -14,6 +15,10 @@
     }
   },
   "name": "MenuButton",
+  "imports": [
+    "import { MenuButton } from '@mui/base/MenuButton';",
+    "import { MenuButton } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

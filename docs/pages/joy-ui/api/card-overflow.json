@@ -36,6 +36,10 @@
     }
   },
   "name": "CardOverflow",
+  "imports": [
+    "import CardOverflow from '@mui/joy/CardOverflow';",
+    "import { CardOverflow } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

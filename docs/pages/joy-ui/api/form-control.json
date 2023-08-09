@@ -42,6 +42,10 @@
     }
   },
   "name": "FormControl",
+  "imports": [
+    "import FormControl from '@mui/joy/FormControl';",
+    "import { FormControl } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

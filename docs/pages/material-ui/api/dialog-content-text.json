@@ -11,6 +11,10 @@
     }
   },
   "name": "DialogContentText",
+  "imports": [
+    "import DialogContentText from '@mui/material/DialogContentText';",
+    "import { DialogContentText } from '@mui/material';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogContentText" },
   "spread": true,
   "themeDefaultProps": true,

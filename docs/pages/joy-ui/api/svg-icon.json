@@ -46,6 +46,7 @@
     "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'" }
   },
   "name": "SvgIcon",
+  "imports": ["import SvgIcon from '@mui/joy/SvgIcon';", "import { SvgIcon } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

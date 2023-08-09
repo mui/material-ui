@@ -35,6 +35,7 @@
     }
   },
   "name": "Input",
+  "imports": ["import Input from '@mui/joy/Input';", "import { Input } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

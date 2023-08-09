@@ -11,6 +11,10 @@
     }
   },
   "name": "CardActionArea",
+  "imports": [
+    "import CardActionArea from '@mui/material/CardActionArea';",
+    "import { CardActionArea } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "focusVisible", "focusHighlight"],
     "globalClasses": { "focusVisible": "Mui-focusVisible" },

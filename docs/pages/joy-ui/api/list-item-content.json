@@ -20,6 +20,10 @@
     }
   },
   "name": "ListItemContent",
+  "imports": [
+    "import ListItemContent from '@mui/joy/ListItemContent';",
+    "import { ListItemContent } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

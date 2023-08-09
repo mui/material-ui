@@ -89,6 +89,7 @@ export default function ComponentsApiContent(props) {
       styles: componentStyles,
       slots: componentSlots,
       classes: componentClasses,
+      imports,
     } = pageContent;
 
     const { classDescriptions, propDescriptions, slotDescriptions } =
@@ -107,30 +108,6 @@ export default function ComponentsApiContent(props) {
       slotGuideLink = '/joy-ui/guides/overriding-component-structure/';
     } else if (isBaseComponent) {
       slotGuideLink = '/base-ui/guides/overriding-component-structure/';
-    }
-
-    // convert paths like `/packages/mui-base/src/Input...` to `@mui/base/Input...`
-    const packageAndFilename = filename.replace(
-      /\/packages\/mui(-(.+?))?\/src/,
-      (match, dash, pkg) => `@mui/${pkg}`,
-    );
-
-    const source = packageAndFilename
-      // convert things like `/Table/Table.js` to ``
-      .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
-
-    const defaultImportName = pageContent.name;
-    let defaultImportPath = `${source}/${defaultImportName}`;
-    let namedImportPath = source;
-    let namedImportName = defaultImportName;
-
-    if (/Unstable_/.test(source)) {
-      defaultImportPath = source.replace(/\/[^/]*$/, '');
-      namedImportPath = packageAndFilename
-        .replace(/Unstable_/, '')
-        .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
-
-      namedImportName = `Unstable_${defaultImportName} as ${defaultImportName}`;
     }
 
     // The `ref` is forwarded to the root element.
@@ -158,17 +135,9 @@ export default function ComponentsApiContent(props) {
 
     const componentNameKebabCase = kebabCase(componentName);
 
-    const useNamedImports = source.startsWith('@mui/base');
-
-    const subpathImport = useNamedImports
-      ? `import { ${namedImportName} } from '${defaultImportPath}';`
-      : `import ${defaultImportName} from '${defaultImportPath}';`;
-
-    const rootImport = `import { ${namedImportName} } from '${namedImportPath}';`;
-
-    const importInstructions = `${subpathImport}
+    const importInstructions = imports.join(`
 // ${t('or')}
-${rootImport}`;
+`);
 
     return (
       <React.Fragment key={`component-api-${key}`}>

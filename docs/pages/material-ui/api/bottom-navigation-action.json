@@ -15,6 +15,10 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "BottomNavigationAction",
+  "imports": [
+    "import BottomNavigationAction from '@mui/material/BottomNavigationAction';",
+    "import { BottomNavigationAction } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "selected", "iconOnly", "label"],
     "globalClasses": { "selected": "Mui-selected" },

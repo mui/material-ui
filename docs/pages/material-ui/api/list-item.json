@@ -67,6 +67,10 @@
     }
   },
   "name": "ListItem",
+  "imports": [
+    "import ListItem from '@mui/material/ListItem';",
+    "import { ListItem } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
