@@ -101,6 +101,12 @@ This example shows how to customize the accordion to create lines and depth to m
 
 {{"demo": "AccordionDepthPanel.js"}}
 
+### Customizing
+
+This example shows how to customize the accordion and craft diverse compositions using additional components.
+
+{{"demo": "AccordionFilter.js"}}
+
 ## Accessibility
 
 The built-in accessibility of the accordion follows [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
