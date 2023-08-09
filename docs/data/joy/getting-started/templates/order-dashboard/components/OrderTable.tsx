@@ -281,7 +281,6 @@ export default function OrderTable() {
       </Box>
       <Sheet
         className="OrderTableContainer"
-        variant="outlined"
         sx={{
           width: '100%',
           borderRadius: 'sm',
@@ -292,6 +291,7 @@ export default function OrderTable() {
       >
         <Table
           aria-labelledby="tableTitle"
+          variant="outlined"
           size="md"
           stickyHeader
           hoverRow
