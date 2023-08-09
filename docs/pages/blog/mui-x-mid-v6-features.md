@@ -19,10 +19,10 @@ Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases), 
   - [Support for time zones](#support-for-time-zones)
   - [Digital clock](#digital-clock)
 - [Data Grid](#data-grid)
-  - [Copy and paste](#copy-and-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
-  - [Copy and paste](#copy-and-paste) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+  - [Copy and paste](#copy-and-paste)
+  - [Filter on column headers ](#filter-on-column-headers-)
   - [Performance enhancements: smoother scrolling and expanding rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
-- [Charts - alpha version 🎁](#charts-alpha-version)
+- [Charts - alpha version 🎁](#charts---alpha-version-)
 - [What's next](#whats-next)
 - [Feedback](#feedback)
 
@@ -66,7 +66,7 @@ Check out all the possibilities in the [Date Pickers—Digital clock documentati
 
 ## Data Grid
 
-### Copy and paste [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+### Copy and paste[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
 
 After setting the `experimentalFeatures={{ clipboardPaste: true }}` prop, you can copy and paste data directly to and from your Data Grid.
 
