@@ -29,6 +29,8 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import BlockIcon from '@mui/icons-material/Block';
 import RotateRightIcon from '@mui/icons-material/RotateRight';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 const rows = [
   {
@@ -276,7 +278,6 @@ export default function OrderTable() {
           <FormLabel>Search for order</FormLabel>
           <Input size="sm" placeholder="Search" startDecorator={<SearchIcon />} />
         </FormControl>
-
         {renderFilters()}
       </Box>
       <Sheet
@@ -407,11 +408,11 @@ export default function OrderTable() {
                 </td>
                 <td>{row.subscription}</td>
                 <td>
-                  <Link fontWeight="lg" component="button" color="neutral">
+                  <Link level="title-sm" component="button" color="neutral">
                     Archive
                   </Link>
                   <Link
-                    fontWeight="lg"
+                    level="title-sm"
                     component="button"
                     color="primary"
                     sx={{ ml: 2 }}
@@ -434,7 +435,7 @@ export default function OrderTable() {
           color="neutral"
           size="sm"
         >
-          <i data-feather="arrow-left" />
+          <KeyboardArrowLeftIcon />
         </IconButton>
         <Typography level="body-sm" mx="auto">
           Page 1 of 10
@@ -445,7 +446,7 @@ export default function OrderTable() {
           color="neutral"
           size="sm"
         >
-          <i data-feather="arrow-right" />
+          <KeyboardArrowRightIcon />
         </IconButton>
       </Box>
       <Box
@@ -464,7 +465,7 @@ export default function OrderTable() {
           size="sm"
           variant="plain"
           color="neutral"
-          startDecorator={<i data-feather="arrow-left" />}
+          startDecorator={<KeyboardArrowLeftIcon />}
         >
           Previous
         </Button>
@@ -486,7 +487,7 @@ export default function OrderTable() {
           size="sm"
           variant="plain"
           color="neutral"
-          endDecorator={<i data-feather="arrow-right" />}
+          endDecorator={<KeyboardArrowRightIcon />}
         >
           Next
         </Button>

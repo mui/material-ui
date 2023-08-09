@@ -9,13 +9,21 @@ import Sheet from '@mui/joy/Sheet';
 import MuiLogo from './MuiLogo';
 import { openSidebar } from '../utils';
 
+import HomeIcon from '@mui/icons-material/Home';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import LayersIcon from '@mui/icons-material/Layers';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import FlagIcon from '@mui/icons-material/Flag';
+import PeopleIcon from '@mui/icons-material/People';
+import SupportIcon from '@mui/icons-material/Support';
+import SettingsIcon from '@mui/icons-material/Settings';
+
 export default function FirstSidebar() {
   return (
     <Sheet
       className="FirstSidebar"
       variant="plain"
       color="neutral"
-      invertedColors
       sx={{
         position: {
           xs: 'fixed',
@@ -37,8 +45,6 @@ export default function FirstSidebar() {
         flexDirection: 'column',
         alignItems: 'center',
         gap: 2,
-        borderRight: '1px solid',
-        borderColor: 'divider',
       }}
     >
       <GlobalStyles
@@ -49,40 +55,35 @@ export default function FirstSidebar() {
         }}
       />
       <MuiLogo />
-      <List sx={{ '--ListItem-radius': '8px', '--List-gap': '12px' }}>
+      <List sx={{ '--ListItem-radius': '6px', '--List-gap': '8px' }}>
         <ListItem>
           <ListItemButton>
-            <i data-feather="home" />
+            <HomeIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton
-            selected
-            variant="solid"
-            color="primary"
-            onClick={() => openSidebar()}
-          >
-            <i data-feather="bar-chart-2" />
+          <ListItemButton selected variant="soft" onClick={() => openSidebar()}>
+            <BarChartIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton onClick={() => openSidebar()}>
-            <i data-feather="layers" />
+            <LayersIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton onClick={() => openSidebar()}>
-            <i data-feather="check-square" />
+            <AssignmentTurnedInIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton onClick={() => openSidebar()}>
-            <i data-feather="flag" />
+            <FlagIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton onClick={() => openSidebar()}>
-            <i data-feather="users" />
+            <PeopleIcon />
           </ListItemButton>
         </ListItem>
       </List>
@@ -96,17 +97,17 @@ export default function FirstSidebar() {
       >
         <ListItem>
           <ListItemButton>
-            <i data-feather="life-buoy" />
+            <SupportIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <i data-feather="settings" />
+            <SettingsIcon />
           </ListItemButton>
         </ListItem>
       </List>
       <Divider />
-      <Avatar variant="outlined" src="/static/images/avatar/3.jpg" />
+      <Avatar variant="outlined" size="sm" src="/static/images/avatar/3.jpg" />
     </Sheet>
   );
 }

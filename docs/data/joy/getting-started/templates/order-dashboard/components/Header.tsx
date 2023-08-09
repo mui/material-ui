@@ -6,6 +6,8 @@ import MuiLogo from './MuiLogo';
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { toggleSidebar } from '../utils';
 
+import MenuIcon from '@mui/icons-material/Menu';
+
 export default function Header() {
   return (
     <Sheet
@@ -39,7 +41,7 @@ export default function Header() {
         color="neutral"
         size="sm"
       >
-        <i data-feather="menu" />
+        <MenuIcon />
       </IconButton>
       <MuiLogo variant="plain" sx={{ boxShadow: 'none', mr: 'auto' }} />
       <ColorSchemeToggle id={undefined} />

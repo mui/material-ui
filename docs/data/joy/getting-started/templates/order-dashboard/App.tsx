@@ -78,23 +78,15 @@ export default function JoyOrderDashboardTemplate() {
               <Link
                 underline="none"
                 color="neutral"
-                fontSize="inherit"
                 href="#some-link"
                 aria-label="Home"
               >
                 {<HomeIcon />}
               </Link>
-              <Link
-                underline="hover"
-                color="neutral"
-                fontSize="inherit"
-                href="#some-link"
-              >
+              <Link underline="hover" color="neutral" href="#some-link">
                 Dashboard
               </Link>
-              <Typography fontSize="inherit" variant="plain" color="primary">
-                Orders
-              </Typography>
+              <Typography color="primary">Orders</Typography>
             </Breadcrumbs>
             <ColorSchemeToggle
               sx={{ ml: 'auto', display: { xs: 'none', md: 'inline-flex' } }}
@@ -113,9 +105,7 @@ export default function JoyOrderDashboardTemplate() {
               },
             }}
           >
-            <Typography level="h1" fontSize="xl4">
-              Orders
-            </Typography>
+            <Typography level="h1">Orders</Typography>
             <Box sx={{ flex: 999 }} />
             <Box sx={{ display: 'flex', gap: 1, '& > *': { flexGrow: 1 } }}>
               <Button
