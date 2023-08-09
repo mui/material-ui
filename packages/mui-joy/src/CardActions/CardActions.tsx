@@ -11,6 +11,7 @@ import { CardActionsProps, CardActionsOwnerState, CardActionsTypeMap } from './C
 import useSlot from '../utils/useSlot';
 import buttonClasses from '../Button/buttonClasses';
 import iconButtonClasses from '../IconButton/iconButtonClasses';
+import cardClasses from '../Card/cardClasses';
 import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
 import dividerClasses from '../Divider/dividerClasses';
 
@@ -42,7 +43,7 @@ export const StyledCardActionsRoot = styled('div')<{ ownerState: CardActionsOwne
       [`.${cardOverflowClasses.root} > &`]: {
         '--unstable_padding': 'calc(0.75 * var(--Card-padding)) 0 var(--Card-padding)',
       },
-      [`.${dividerClasses.root} + &`]: {
+      [`.${cardClasses.root} > .${dividerClasses.root} + &`]: {
         '--unstable_padding': '0',
       },
       ...(ownerState.buttonFlex
