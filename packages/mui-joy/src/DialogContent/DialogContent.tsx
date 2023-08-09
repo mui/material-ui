@@ -42,11 +42,11 @@ const DialogContentRoot = styled(StyledCardContentRoot, {
  *
  * Demos:
  *
- * - [Card](https://mui.com/joy-ui/react-card/)
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
  *
  * API:
  *
- * - [DialogContent API](https://mui.com/joy-ui/api/card-content/)
+ * - [DialogContent API](https://mui.com/joy-ui/api/dialog-content/)
  */
 const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
   const props = useThemeProps<typeof inProps & DialogContentProps>({
@@ -93,14 +93,10 @@ DialogContent.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * Used to render icon or text elements inside the DialogContent if `src` is not set.
+   * Used to render icon or text elements inside the CardContent if `src` is not set.
    * This can be an element, or just a string.
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

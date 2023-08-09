@@ -33,7 +33,7 @@ export interface DialogActionsTypeMap<P = {}, D extends React.ElementType = 'div
     buttonFlex?: string | number;
     /**
      * The component orientation.
-     * @default 'horizontal'
+     * @default 'horizontal-reverse'
      */
     orientation?: 'horizontal' | 'horizontal-reverse' | 'vertical';
     /**

@@ -1,21 +1,16 @@
 {
-  "componentDescription": "",
+  "componentDescription": "⚠️ DialogTitle must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.",
   "propDescriptions": {
-    "children": { "description": "The content of the component." },
+    "children": {
+      "description": "Used to render icon or text elements inside the DialogTitle if <code>src</code> is not set. This can be an element, or just a string."
+    },
     "color": {
       "description": "The color of the component. It supports those theme colors that make sense for this component."
     },
     "component": {
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
-    "invertedColors": {
-      "description": "If <code>true</code>, the children with an implicit color prop invert their colors to match the component&#39;s variant and color."
-    },
-    "layout": { "description": "The layout of the dialog" },
-    "maxWidth": { "description": "The maximum width of the component." },
-    "minWidth": { "description": "The minimum width of the component." },
-    "orientation": { "description": "The component orientation." },
-    "size": { "description": "The size of the component." },
+    "level": { "description": "Applies the theme typography styles." },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "sx": {
@@ -27,6 +22,61 @@
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },
+    "h1": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"h1\"</code>"
+    },
+    "h2": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"h2\"</code>"
+    },
+    "h3": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"h3\"</code>"
+    },
+    "h4": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"h4\"</code>"
+    },
+    "title-lg": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"title-lg\"</code>"
+    },
+    "title-md": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"title-md\"</code>"
+    },
+    "title-sm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"title-sm\"</code>"
+    },
+    "body-lg": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"body-lg\"</code>"
+    },
+    "body-md": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"body-md\"</code>"
+    },
+    "body-sm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"body-sm\"</code>"
+    },
+    "body-xs": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"body-xs\"</code>"
+    },
     "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -76,31 +126,6 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"solid\"</code>"
-    },
-    "sizeSm": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"sm\"</code>"
-    },
-    "sizeMd": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"md\"</code>"
-    },
-    "sizeLg": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"lg\"</code>"
-    },
-    "layoutCenter": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>layout=\"center\"</code>"
-    },
-    "layoutFullscreen": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>layout=\"fullscreen\"</code>"
     }
   },
   "slotDescriptions": { "root": "The component that renders the root." }

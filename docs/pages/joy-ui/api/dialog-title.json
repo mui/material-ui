@@ -3,34 +3,18 @@
     "children": { "type": { "name": "node" } },
     "color": {
       "type": {
-        "name": "union",
-        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+        "name": "enum",
+        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
-      "default": "'neutral'",
       "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
-    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
-    "layout": {
+    "level": {
       "type": {
-        "name": "union",
-        "description": "'center'<br>&#124;&nbsp;'fullscreen'<br>&#124;&nbsp;string"
+        "name": "enum",
+        "description": "'body-lg'<br>&#124;&nbsp;'body-md'<br>&#124;&nbsp;'body-sm'<br>&#124;&nbsp;'body-xs'<br>&#124;&nbsp;'h1'<br>&#124;&nbsp;'h2'<br>&#124;&nbsp;'h3'<br>&#124;&nbsp;'h4'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'title-lg'<br>&#124;&nbsp;'title-md'<br>&#124;&nbsp;'title-sm'"
       },
-      "default": "'center'"
-    },
-    "maxWidth": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
-    "minWidth": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
-    "orientation": {
-      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'vertical'"
-    },
-    "size": {
-      "type": {
-        "name": "union",
-        "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
-      },
-      "default": "'md'",
-      "additionalInfo": { "joy-size": true }
+      "default": "'body-md'"
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
@@ -50,36 +34,41 @@
     },
     "variant": {
       "type": {
-        "name": "union",
-        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
+        "name": "enum",
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'"
       },
-      "default": "'outlined'",
       "additionalInfo": { "joy-variant": true }
     }
   },
-  "name": "ModalDialog",
+  "name": "DialogTitle",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiModalDialog-root"
+      "class": ".MuiDialogTitle-root"
     }
   ],
   "classes": {
     "classes": [
+      "body-lg",
+      "body-md",
+      "body-sm",
+      "body-xs",
       "colorContext",
       "colorDanger",
       "colorNeutral",
       "colorPrimary",
       "colorSuccess",
       "colorWarning",
-      "layoutCenter",
-      "layoutFullscreen",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "title-lg",
+      "title-md",
+      "title-sm",
       "variantOutlined",
       "variantPlain",
       "variantSoft",
@@ -89,9 +78,9 @@
   },
   "spread": true,
   "themeDefaultProps": true,
-  "muiName": "JoyModalDialog",
+  "muiName": "JoyDialogTitle",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-joy/src/ModalDialog/ModalDialog.tsx",
+  "filename": "/packages/mui-joy/src/DialogTitle/DialogTitle.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-modal/\">Modal</a></li></ul>",
   "cssComponent": false

@@ -27,11 +27,11 @@ const DialogActionsRoot = styled(StyledCardActionsRoot, {
  *
  * Demos:
  *
- * - [Card](https://mui.com/joy-ui/react-card/)
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
  *
  * API:
  *
- * - [DialogActions API](https://mui.com/joy-ui/api/card-actions/)
+ * - [DialogActions API](https://mui.com/joy-ui/api/dialog-actions/)
  */
 const DialogActions = React.forwardRef(function DialogActions(inProps, ref) {
   const props = useThemeProps<typeof inProps & DialogActionsProps>({
@@ -85,17 +85,13 @@ DialogActions.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
    * The component orientation.
-   * @default 'horizontal'
+   * @default 'horizontal-reverse'
    */
   orientation: PropTypes.oneOf(['horizontal-reverse', 'horizontal', 'vertical']),
   /**

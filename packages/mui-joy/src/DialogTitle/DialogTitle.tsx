@@ -61,11 +61,11 @@ const DialogTitleRoot = styled('h2', {
  *
  * Demos:
  *
- * - [Card](https://mui.com/joy-ui/react-card/)
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
  *
  * API:
  *
- * - [DialogTitle API](https://mui.com/joy-ui/api/card-content/)
+ * - [DialogTitle API](https://mui.com/joy-ui/api/dialog-title/)
  */
 const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
   const props = useThemeProps<typeof inProps & DialogTitleProps>({
@@ -128,19 +128,32 @@ DialogTitle.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * The color of the component. It supports those theme colors that make sense for this component.
    */
-  className: PropTypes.string,
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
-   * The component orientation.
-   * @default 'vertical'
+   * Applies the theme typography styles.
+   * @default 'body-md'
    */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  level: PropTypes.oneOf([
+    'body-lg',
+    'body-md',
+    'body-sm',
+    'body-xs',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'inherit',
+    'title-lg',
+    'title-md',
+    'title-sm',
+  ]),
   /**
    * The props used for each slot inside.
    * @default {}
@@ -163,6 +176,10 @@ DialogTitle.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default DialogTitle;

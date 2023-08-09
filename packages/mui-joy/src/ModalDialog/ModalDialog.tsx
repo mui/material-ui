@@ -128,8 +128,8 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     variant = 'outlined',
     size = 'md',
     layout = 'center',
-    maxWidth = '425px',
-    minWidth = '300px',
+    maxWidth,
+    minWidth,
     slots = {},
     slotProps = {},
     ...other
@@ -209,6 +209,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
       </ModalDialogVariantColorContext.Provider>
     </ModalDialogSizeContext.Provider>
   );
+
   if (invertedColors) {
     return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
   }
@@ -242,6 +243,11 @@ ModalDialog.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
+  /**
    * The layout of the dialog
    * @default 'center'
    */
@@ -249,6 +255,19 @@ ModalDialog.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['center', 'fullscreen']),
     PropTypes.string,
   ]),
+  /**
+   * The maximum width of the component.
+   */
+  maxWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The minimum width of the component.
+   */
+  minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The component orientation.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The size of the component.
    * @default 'md'
