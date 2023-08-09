@@ -3,14 +3,14 @@ title: Exciting MUI X improvements: v6.11.0
 description: Support for time zones, Charts in alpha, Data Grid filtering, and more.
 date: 2023-08-07T00:00:00.000Z
 authors: ['richbustos', 'josefreitas']
-card: true
+card: false
 tags: ['MUI X', 'News']
 ---
 
 <img src="/static/blog/mui-x-mid-v6-features/intro.png" alt="" width="2400" height="600" style="margin-bottom: 16px;" />
 
 Since the first v6 stable release, we've continuously rolled out new major features.
-Now that we've reached [MUI X v6.11.x](https://github.com/mui/mui-x/releases), it's time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
+Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases), it's time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
 
 ## Table of contents
 
@@ -19,8 +19,8 @@ Now that we've reached [MUI X v6.11.x](https://github.com/mui/mui-x/releases), 
   - [Support for time zones](#support-for-time-zones)
   - [Digital clock](#digital-clock)
 - [Data Grid](#data-grid)
-  - [Copy and paste](#copy-and-paste)
-  - [Filter on column headers](#filter-on-column-headers)
+  - [Copy and paste](#copy-and-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+  - [Copy and paste](#copy-and-paste) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
   - [Performance enhancements: smoother scrolling and expanding rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
 - [Charts - alpha version 🎁](#charts-alpha-version)
 - [What's next](#whats-next)
@@ -34,7 +34,7 @@ No more hassle displaying dates in the time zones of your choice. 🌎
 
 You can effortlessly display and select dates and times in different time zones, without worrying about conversion logic or maintaining consistency with your backend.
 
-<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop controls>
+<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop>
   <source src="/static/blog/mui-x-mid-v6-features/timezone.mp4" type="video/mp4">
 </video>
 
@@ -66,7 +66,7 @@ Check out all the possibilities in the [Date Pickers—Digital clock documentati
 
 ## Data Grid
 
-### Copy and paste[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+### Copy and paste [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
 
 After setting the `experimentalFeatures={{ clipboardPaste: true }}` prop, you can copy and paste data directly to and from your Data Grid.
 
@@ -81,7 +81,7 @@ The callbacks `clipboardPasteStart` and `clipboardPasteEnd` are fired during the
 
 For more details on how to use clipboard copy and paste, check out the [Data Grid—Clipboard documentation](https://mui.com/x/react-data-grid/clipboard/).
 
-### Filter on column headers[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+### Filter on column headers [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
 Filtering on column headers gives users the ability to quickly filter data without any additional menu.
 Use the the `unstable_headerFilters` prop to activate this feature.
@@ -113,13 +113,13 @@ And it ships with gorgeous palettes that were specially crafted by our designers
 
 Check out the video below, highlighting some of our Charts:
 
-<video preload="metadata" autoplay muted loop playsinline controls>
+<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline controls>
   <source src="/static/blog/mui-x-mid-v6-features/charts_final_v1.mov" type="video/mp4">
 </video>
 
 As we progress toward the stable version, we're committed to enhancing the overall experience for developers and users, so your feedback is fundamental!
 
-We will also steadily expand our portfolio with new chart types such as [Heat Map](https://mui.com/x/react-charts/heat-map/),[Funnel](https://mui.com/x/react-charts/funnel/), [Gantt](https://mui.com/x/react-charts/gantt/), and more.
+We will also steadily expand our portfolio with new chart types such as [Heat map](https://mui.com/x/react-charts/heat-map/), [Funnel](https://mui.com/x/react-charts/funnel/), [Gantt](https://mui.com/x/react-charts/gantt/), and more.
 If there's a specific chart visualization you'd like us to prioritize, we encourage you to upvote the respective [issue on GitHub](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+charts%22+label%3A%22waiting+for+%F0%9F%91%8D%22). 
 Your input can directly influence our development schedule, so don't hesitate to let us know what matters most to you!
 
