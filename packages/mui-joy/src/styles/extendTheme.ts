@@ -108,8 +108,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     success: colors.green,
     warning: colors.yellow,
     common: {
-      white: '#FCFCFD',
-      black: '#09090B',
+      white: '#fff',
+      black: '#000',
     },
   };
 
@@ -206,8 +206,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createLightModeVariantVariables('warning'),
       },
       common: {
-        white: '#FBFCFD',
-        black: '#0E0E10',
+        white: '#fff',
+        black: '#000',
       },
       text: {
         primary: getCssVarColor('palette-neutral-800'),
@@ -216,8 +216,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         icon: getCssVarColor('palette-neutral-500'),
       },
       background: {
-        body: getCssVarColor('palette-neutral-50'),
-        surface: getCssVarColor('palette-common-white'),
+        body: getCssVarColor('palette-common-white'),
+        surface: getCssVarColor('palette-neutral-50'),
         popup: getCssVarColor('palette-common-white'),
         level1: getCssVarColor('palette-neutral-100'),
         level2: getCssVarColor('palette-neutral-200'),
@@ -262,8 +262,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createDarkModeVariantVariables('warning'),
       },
       common: {
-        white: '#FBFCFD',
-        black: '#0E0E10',
+        white: '#fff',
+        black: '#000',
       },
       text: {
         primary: getCssVarColor('palette-neutral-100'),
