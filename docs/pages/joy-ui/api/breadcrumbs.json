@@ -39,7 +39,7 @@
     "import Breadcrumbs from '@mui/joy/Breadcrumbs';",
     "import { Breadcrumbs } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiBreadcrumbs" },
   "slots": [
     {
       "name": "root",

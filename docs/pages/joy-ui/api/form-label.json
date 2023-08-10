@@ -28,7 +28,7 @@
     "import FormLabel from '@mui/joy/FormLabel';",
     "import { FormLabel } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root", "asterisk"], "globalClasses": {}, "name": "MuiFormLabel" },
   "slots": [
     {
       "name": "root",

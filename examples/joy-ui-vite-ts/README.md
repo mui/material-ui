@@ -16,17 +16,8 @@ cd joy-ui-vite-ts
 Install it and run:
 
 ```bash
-# npm
 npm install
 npm run dev
-
-# yarn
-yarn
-yarn dev
-
-# pnpm
-pnpm install
-pnpm dev
 ```
 
 or:

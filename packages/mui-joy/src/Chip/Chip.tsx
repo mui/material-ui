@@ -100,7 +100,7 @@ const ChipRoot = styled('div', {
       [`&.${chipClasses.disabled}`]: {
         color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       },
-    },
+    } as const,
     ...(!ownerState.clickable
       ? [
           {
@@ -162,7 +162,7 @@ const ChipAction = styled('button', {
     textDecoration: 'none',
     borderRadius: 'inherit',
     [theme.focus.selector]: theme.focus.default,
-  },
+  } as const,
   {
     backgroundColor: theme.vars.palette.background.surface,
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],

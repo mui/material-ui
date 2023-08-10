@@ -214,11 +214,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
       ...otherHandlers,
     };
 
-    // onFocusVisible can be present on the props, but since it's not a valid React event handler,
-    // it must not be forwarded to the inner component.
-    delete externalEventHandlers.onFocusVisible;
-
-    return {
+    const props = {
       type,
       ...externalEventHandlers,
       ...buttonProps,
@@ -231,6 +227,13 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
       onMouseLeave: createHandleMouseLeave(externalEventHandlers),
       ref: handleRef,
     };
+
+    // onFocusVisible can be present on the props or parameters,
+    // but it's not a valid React event handler so it must not be forwarded to the inner component.
+    // If present, it will be handled by the focus handler.
+    delete props.onFocusVisible;
+
+    return props;
   };
 
   return {
