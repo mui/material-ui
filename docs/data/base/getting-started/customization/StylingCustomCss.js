@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Switch, { switchClasses } from '@mui/base/Switch';
+import { Switch, switchClasses } from '@mui/base/Switch';
 
 const css = `
   .my-switch {

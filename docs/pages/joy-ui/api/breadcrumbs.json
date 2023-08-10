@@ -9,7 +9,7 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'",
-      "additionalPropsInfo": { "joy-size": true }
+      "additionalInfo": { "joy-size": true }
     },
     "slotProps": {
       "type": {
@@ -24,17 +24,21 @@
         "description": "{ li?: elementType, ol?: elementType, root?: elementType, separator?: elementType }"
       },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "Breadcrumbs",
+  "imports": [
+    "import Breadcrumbs from '@mui/joy/Breadcrumbs';",
+    "import { Breadcrumbs } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": "MuiBreadcrumbs" },
   "slots": [
     {

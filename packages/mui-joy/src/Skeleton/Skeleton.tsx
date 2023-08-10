@@ -71,7 +71,7 @@ const SkeletonRoot = styled('span', {
     ownerState.variant !== 'inline' &&
     css`
       &::before {
-        animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
+        animation: ${pulseKeyframe} 2s ease-in-out 0.5s infinite;
         background: ${theme.vars.palette.background.level3};
       }
     `,
@@ -80,7 +80,7 @@ const SkeletonRoot = styled('span', {
     ownerState.variant === 'inline' &&
     css`
       &::after {
-        animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
+        animation: ${pulseKeyframe} 2s ease-in-out 0.5s infinite;
         background: ${theme.vars.palette.background.level3};
       }
     `,

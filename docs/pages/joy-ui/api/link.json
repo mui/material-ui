@@ -7,7 +7,7 @@
         "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'primary'",
-      "additionalPropsInfo": { "joy-color": true }
+      "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
@@ -33,7 +33,7 @@
         "description": "{ endDecorator?: elementType, root?: elementType, startDecorator?: elementType }"
       },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "startDecorator": { "type": { "name": "node" } },
     "sx": {
@@ -41,7 +41,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "textColor": { "type": { "name": "any" } },
     "underline": {
@@ -57,10 +57,11 @@
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
       "default": "'plain'",
-      "additionalPropsInfo": { "joy-variant": true }
+      "additionalInfo": { "joy-variant": true }
     }
   },
   "name": "Link",
+  "imports": ["import Link from '@mui/joy/Link';", "import { Link } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": "MuiLink" },
   "slots": [
     {

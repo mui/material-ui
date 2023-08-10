@@ -272,8 +272,9 @@ function AppWrapper(props) {
       pages,
       productIdentifier,
       productId,
+      productCategoryId,
     };
-  }, [productId, productIdentifier, router.pathname]);
+  }, [productId, productCategoryId, productIdentifier, router.pathname]);
 
   let fonts = [];
   if (pathnameToLanguage(router.asPath).canonicalAs.match(/onepirate/)) {

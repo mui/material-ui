@@ -61,6 +61,10 @@
     "xsOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } }
   },
   "name": "Grid",
+  "imports": [
+    "import Grid from '@mui/system/Unstable_Grid';",
+    "import { Unstable_Grid as Grid } from '@mui/system';"
+  ],
   "styles": {
     "classes": [
       "root",

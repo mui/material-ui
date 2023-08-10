@@ -1,5 +1,5 @@
-import generateUtilityClasses from '../generateUtilityClasses';
-import generateUtilityClass from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
 
 export interface SliderClasses {
   /** Class name applied to the root element. */
@@ -42,7 +42,7 @@ export function getSliderUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSlider', slot);
 }
 
-const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
+export const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'root',
   'active',
   'focusVisible',
@@ -60,5 +60,3 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'markLabelActive',
   'thumb',
 ]);
-
-export default sliderClasses;

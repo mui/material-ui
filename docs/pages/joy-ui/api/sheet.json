@@ -7,7 +7,7 @@
         "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'neutral'",
-      "additionalPropsInfo": { "joy-color": true }
+      "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
     "invertedColors": { "type": { "name": "bool" }, "default": "false" },
@@ -18,14 +18,14 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -33,10 +33,11 @@
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
       "default": "'plain'",
-      "additionalPropsInfo": { "joy-variant": true }
+      "additionalInfo": { "joy-variant": true }
     }
   },
   "name": "Sheet",
+  "imports": ["import Sheet from '@mui/joy/Sheet';", "import { Sheet } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": "MuiSheet" },
   "slots": [
     {

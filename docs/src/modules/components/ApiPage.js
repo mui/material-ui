@@ -11,12 +11,12 @@ import AlertTitle from '@mui/material/AlertTitle';
 import ReviewsRoundedIcon from '@mui/icons-material/ReviewsRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
+import PropertiesTable, { getPropsToC } from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-import CSSList from './ApiPage/CSSList';
+import CSSList, { getCssToC } from './ApiPage/CSSList';
 import ClassesList from './ApiPage/ClassesList';
 import SlotsList from './ApiPage/SlotsList';
 
@@ -141,11 +141,6 @@ export default function ApiPage(props) {
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, pageContent.name);
 
-  const source = filename
-    .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
-    // convert things like `/Table/Table.js` to ``
-    .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
-
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
 
@@ -172,8 +167,18 @@ export default function ApiPage(props) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    createTocEntry('props'),
-    componentStyles.classes.length > 0 && createTocEntry('css'),
+    getPropsToC({
+      t,
+      componentName: pageContent.name,
+      componentProps,
+      inheritance,
+      themeDefaultProps: pageContent.themeDefaultProps,
+    }),
+    ...getCssToC({
+      t,
+      componentName: pageContent.name,
+      componentStyles,
+    }),
     componentSlots?.length > 0 && createTocEntry('slots'),
     hasClasses && createTocEntry('classes'),
   ].filter(Boolean);
@@ -230,10 +235,9 @@ export default function ApiPage(props) {
         />
         <Heading hash="import" />
         <HighlightedCode
-          code={`
-import ${pageContent.name} from '${source}/${pageContent.name}';
+          code={pageContent.imports.join(`
 // ${t('or')}
-import { ${pageContent.name} } from '${source}';`}
+`)}
           language="jsx"
         />
         <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
@@ -251,7 +255,11 @@ import { ${pageContent.name} } from '${source}';`}
 
         <Heading hash="props" />
         <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
-        <PropertiesTable properties={componentProps} propertiesDescriptions={propDescriptions} />
+        <PropertiesTable
+          properties={componentProps}
+          propertiesDescriptions={propDescriptions}
+          componentName={pageContent.name}
+        />
         {cssComponent && (
           <React.Fragment>
             <span
@@ -263,7 +271,6 @@ import { ${pageContent.name} } from '${source}';`}
             <br />
           </React.Fragment>
         )}
-        <Divider />
         <div
           className="MuiCallout-root MuiCallout-info"
           dangerouslySetInnerHTML={{ __html: refHint }}
@@ -286,7 +293,7 @@ import { ${pageContent.name} } from '${source}';`}
         {pageContent.themeDefaultProps && (
           <React.Fragment>
             <Heading hash="theme-default-props" level="h3" />
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: t('api-docs.themeDefaultPropsDescription')
                   .replace(/{{muiName}}/, pageContent.muiName)
@@ -300,7 +307,12 @@ import { ${pageContent.name} } from '${source}';`}
           <React.Fragment>
             <Heading hash="css" />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.cssDescription') }} />
-            <CSSList componentStyles={componentStyles} classDescriptions={classDescriptions} />
+            <br />
+            <CSSList
+              componentStyles={componentStyles}
+              classDescriptions={classDescriptions}
+              componentName={pageContent.name}
+            />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
               dangerouslySetInnerHTML={{
@@ -312,7 +324,7 @@ import { ${pageContent.name} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        {componentSlots?.length ? (
+        {componentSlots?.length > 0 ? (
           <React.Fragment>
             <Heading hash="slots" />
             {slotGuideLink && (
@@ -322,7 +334,11 @@ import { ${pageContent.name} } from '${source}';`}
                 }}
               />
             )}
-            <SlotsList componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
+            <SlotsList
+              componentSlots={componentSlots}
+              slotDescriptions={slotDescriptions}
+              componentName={pageContent.name}
+            />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
               dangerouslySetInnerHTML={{
@@ -349,7 +365,6 @@ import { ${pageContent.name} } from '${source}';`}
               componentName={pageContent.name}
               classDescriptions={classDescriptions}
             />
-            <Divider />
           </React.Fragment>
         ) : null}
         <DesignInfo />

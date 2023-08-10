@@ -6,7 +6,7 @@
         "name": "union",
         "description": "'danger'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "additionalPropsInfo": { "joy-color": true }
+      "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
     "fontSize": {
@@ -24,7 +24,7 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'",
-      "additionalPropsInfo": { "joy-size": true }
+      "additionalInfo": { "joy-size": true }
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
@@ -33,19 +33,20 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "titleAccess": { "type": { "name": "string" } },
     "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'" }
   },
   "name": "SvgIcon",
+  "imports": ["import SvgIcon from '@mui/joy/SvgIcon';", "import { SvgIcon } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": "MuiSvgIcon" },
   "slots": [
     {

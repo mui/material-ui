@@ -1,6 +1,10 @@
 import * as React from 'react';
-import Select from '@mui/base/Select';
-import BaseOption, { OptionProps, OptionOwnerState } from '@mui/base/Option';
+import { Select } from '@mui/base/Select';
+import {
+  Option as BaseOption,
+  OptionProps,
+  OptionOwnerState,
+} from '@mui/base/Option';
 import { useTheme } from '@mui/system';
 
 const getOptionColorClasses = ({

@@ -33,10 +33,7 @@ export default function InlineSkeleton() {
           </Skeleton>
         </Typography>
       </Box>
-      <FormControl
-        orientation="horizontal"
-        sx={{ gap: 1, justifyContent: 'center' }}
-      >
+      <FormControl orientation="horizontal" sx={{ gap: 1 }}>
         <Switch
           size="sm"
           checked={loading}

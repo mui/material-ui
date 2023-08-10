@@ -46,7 +46,7 @@ async function createApp() {
   const umdPath = '/umd.js';
 
   let index = await fse.readFile(
-    path.join(rootPath, 'examples/material-via-cdn/index.html'),
+    path.join(rootPath, 'examples/material-ui-via-cdn/index.html'),
     'utf8',
   );
   index = index.replace(

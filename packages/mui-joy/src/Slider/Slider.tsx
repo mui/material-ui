@@ -7,7 +7,7 @@ import {
   unstable_capitalize as capitalize,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import useSlider, { valueToPercent } from '@mui/base/useSlider';
+import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';

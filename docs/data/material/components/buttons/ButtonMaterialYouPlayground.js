@@ -4,7 +4,7 @@ import Button from '@mui/material-next/Button';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDemo';
 
-export default function ButtonUsage() {
+export default function ButtonMaterialYouPlayground() {
   const [variant, setVariant] = React.useState('text');
   return (
     <MaterialYouUsageDemo

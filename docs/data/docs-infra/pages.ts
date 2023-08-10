@@ -1,26 +1,22 @@
 import type { MuiPage } from 'docs/src/MuiPage';
-import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 
 const pages: readonly MuiPage[] = [
   {
     pathname: '/experiments/docs/writing',
     title: 'Writing',
-    icon: standardNavIcons.DescriptionIcon,
     children: [{ pathname: '/experiments/docs/headers' }],
   },
   {
     pathname: '/experiments/docs/components',
-    icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/experiments/docs/callouts' },
-      { pathname: '/experiments/docs/demos' },
       { pathname: '/experiments/docs/codeblock' },
+      { pathname: '/experiments/docs/demos' },
     ],
   },
   {
     pathname: '/experiments/docs/main-parent',
     title: 'Main parent',
-    icon: standardNavIcons.DescriptionIcon,
     children: [
       {
         pathname: '/experiments/docs/first-level-child-1',
@@ -55,7 +51,6 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/x/react-data-grid-group',
-    icon: standardNavIcons.DescriptionIcon,
     title: 'Data Grid',
     children: [
       { pathname: '/x/react-data-grid', title: 'Overview' },
@@ -169,7 +164,6 @@ const pages: readonly MuiPage[] = [
   {
     pathname: '/x/migration-group',
     title: 'Migration',
-    icon: standardNavIcons.DescriptionIcon,
     children: [
       {
         pathname: '/x/migration-v6',

@@ -2,7 +2,7 @@
   "props": {
     "addEndListener": { "type": { "name": "func" } },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "collapsedSize": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "default": "'0px'"
@@ -24,7 +24,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "timeout": {
       "type": {
@@ -35,6 +35,10 @@
     }
   },
   "name": "Collapse",
+  "imports": [
+    "import Collapse from '@mui/material/Collapse';",
+    "import { Collapse } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "horizontal", "entered", "hidden", "wrapper", "wrapperInner"],
     "globalClasses": {},

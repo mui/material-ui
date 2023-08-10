@@ -56,7 +56,7 @@ The code snippets below demonstrate the basic implementation of each:
 
 ```tsx
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 export default function App() {
   return <Button>Click Me</Button>;
@@ -67,7 +67,7 @@ export default function App() {
 
 ```tsx
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 
 export default function App() {
   const { getRootProps } = useButton();
@@ -143,7 +143,7 @@ Interpolations or arguments that are functions called by `styled` receive the `t
 import * as React from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { styled } from '@mui/system';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 const theme = {
   colors: {
@@ -173,7 +173,7 @@ The demos below show how to create the Primer button using MUI System:
 
 ```tsx
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 import { styled } from '@mui/system';
 
 const GitHubButton = styled(Button)(
@@ -194,7 +194,7 @@ export default function App() {
 
 ```tsx
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 import { styled } from '@mui/system';
 
 const GitHubButton = styled('button')(

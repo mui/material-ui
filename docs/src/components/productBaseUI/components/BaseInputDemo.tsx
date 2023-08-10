@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { unstable_useId } from '@mui/material/utils';
 import Box from '@mui/material/Box';
-import InputUnstyled from '@mui/base/Input';
+import { Input as InputUnstyled } from '@mui/base/Input';
 import { styled, GlobalStyles } from '@mui/system';
 
 const fieldStyles = `
@@ -185,7 +185,7 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' | 'tailw
 
 BaseInputDemo.getCode = (styling?: 'system' | 'tailwindcss' | 'css') => {
   if (styling === 'system') {
-    return `import Input from '@mui/base/Input';
+    return `import { Input } from '@mui/base/Input';
 
 const Field = styled('div')\`${fieldStyles}\`;
 const StyledInput = styled('input')\`${inputStyles}/\`;
@@ -214,7 +214,7 @@ const FloatingLabelInput = React.forwardRef<
 `;
   }
   if (styling === 'css') {
-    return `import Input from '@mui/base/Input';
+    return `import { Input } from '@mui/base/Input';
 import './styles.css';
 
 const FloatingLabelInput = React.forwardRef<
@@ -241,7 +241,7 @@ ${CSS}
 `;
   }
   if (styling === 'tailwindcss') {
-    return `import Input from '@mui/base/Input';
+    return `import { Input } from '@mui/base/Input';
 
 const FloatingLabelInput = React.forwardRef(
   function FloatingLabelInput({ ownerState, id, ...props }, ref) {
