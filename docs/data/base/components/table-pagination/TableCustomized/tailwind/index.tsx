@@ -117,7 +117,8 @@ export default function TableCustomized() {
   );
 }
 
-const resolveSlotProps = (fn: any, args: any) => (typeof fn === 'function' ? fn(args) : fn);
+const resolveSlotProps = (fn: any, args: any) =>
+  typeof fn === 'function' ? fn(args) : fn;
 
 const CustomTablePagination = React.forwardRef<
   HTMLTableCellElement,
@@ -131,7 +132,10 @@ const CustomTablePagination = React.forwardRef<
       slotProps={{
         ...props.slotProps,
         select: (ownerState) => {
-          const resolvedSlotProps = resolveSlotProps(props.slotProps?.select, ownerState);
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.select,
+            ownerState,
+          );
           return {
             ...resolvedSlotProps,
             className: clsx(
@@ -141,7 +145,10 @@ const CustomTablePagination = React.forwardRef<
           };
         },
         actions: (ownerState) => {
-          const resolvedSlotProps = resolveSlotProps(props.slotProps?.actions, ownerState);
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.actions,
+            ownerState,
+          );
           return {
             ...resolvedSlotProps,
             className: clsx(
@@ -151,14 +158,20 @@ const CustomTablePagination = React.forwardRef<
           };
         },
         spacer: (ownerState) => {
-          const resolvedSlotProps = resolveSlotProps(props.slotProps?.spacer, ownerState);
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.spacer,
+            ownerState,
+          );
           return {
             ...resolvedSlotProps,
             className: clsx('hidden', resolvedSlotProps?.className),
           };
         },
         toolbar: (ownerState) => {
-          const resolvedSlotProps = resolveSlotProps(props.slotProps?.toolbar, ownerState);
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.toolbar,
+            ownerState,
+          );
           return {
             ...resolvedSlotProps,
             className: clsx(
