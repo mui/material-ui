@@ -127,8 +127,8 @@ Your input can directly influence our development schedule, so don't hesitate to
 
 ## What's next
 
-We'll follow up soon to announce what's coming for v7, but for now one of our major goals is to move the [Tree View component](https://mui.com/material-ui/react-tree-view/) from the lab to a stable release.
-You can find additional information about other future developments in our [public roadmap](https://github.com/mui/mui-x/projects/1).
+[Tree View](https://mui.com/x/react-tree-view/) will be migrating from the [lab](https://mui.com/material-ui/about-the-lab/) to Alpha and will be part of MUI X!
+Keep on the lookout for the next blog on steps for migration.
 
 ## Feedback
 
