@@ -56,7 +56,7 @@
     "import AspectRatio from '@mui/joy/AspectRatio';",
     "import { AspectRatio } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAspectRatio" },
   "slots": [
     {
       "name": "root",

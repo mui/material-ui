@@ -55,7 +55,7 @@
   },
   "name": "Chip",
   "imports": ["import Chip from '@mui/joy/Chip';", "import { Chip } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiChip" },
   "slots": [
     {
       "name": "root",

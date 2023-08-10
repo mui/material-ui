@@ -58,7 +58,7 @@
   "devDependencies": {
     "@popperjs/core": "^2.11.8",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^18.2.19"
+    "@types/react": "^18.2.20"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

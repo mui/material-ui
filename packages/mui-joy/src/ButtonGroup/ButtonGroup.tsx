@@ -156,7 +156,7 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
             width: '100%', // for button to fill its wrapper.
           },
         }),
-      },
+      } as const,
       radius !== undefined && {
         '--ButtonGroup-radius': radius,
       },

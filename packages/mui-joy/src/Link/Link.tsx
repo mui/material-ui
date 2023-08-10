@@ -140,7 +140,7 @@ const LinkRoot = styled('a', {
         borderStyle: 'none', // Remove Firefox dotted outline.
       },
       ...(ownerState.overlay
-        ? {
+        ? ({
             position: 'initial',
             '&::after': {
               content: '""',
@@ -156,12 +156,12 @@ const LinkRoot = styled('a', {
             [`${theme.focus.selector}`]: {
               '&::after': theme.focus.default,
             },
-          }
-        : {
+          } as const)
+        : ({
             position: 'relative',
             [theme.focus.selector]: theme.focus.default,
-          }),
-    },
+          } as const)),
+    } as const,
     ownerState.variant && {
       ...theme.variants[ownerState.variant]?.[ownerState.color!],
       '&:hover': theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],

@@ -57,7 +57,7 @@
   },
   "name": "Skeleton",
   "imports": ["import Skeleton from '@mui/joy/Skeleton';", "import { Skeleton } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSkeleton" },
   "slots": [
     {
       "name": "root",

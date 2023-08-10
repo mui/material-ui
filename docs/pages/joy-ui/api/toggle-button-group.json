@@ -68,7 +68,7 @@
     "import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';",
     "import { ToggleButtonGroup } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiToggleButtonGroup" },
   "slots": [
     {
       "name": "root",

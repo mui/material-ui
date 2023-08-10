@@ -87,7 +87,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       justifyContent: 'center',
       position: 'relative',
       [theme.focus.selector]: { '--Icon-color': 'currentColor', ...theme.focus.default },
-    },
+    } as const,
     {
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '&:hover': {

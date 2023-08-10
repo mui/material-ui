@@ -12,7 +12,7 @@
     "@testing-library/dom": "^9.3.1",
     "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^18.2.19",
+    "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "chai": "^4.3.7",
     "playwright": "^1.36.2",

@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^18.2.19",
+    "@types/react": "^18.2.20",
     "next": "^13.4.13"
   },
   "peerDependencies": {

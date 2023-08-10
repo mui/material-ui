@@ -45,6 +45,18 @@
     "test:built-typings": "tslint -p test/generated-types/tsconfig.json \"test/generated-types/*.{ts,tsx}\"",
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
+  "dependencies": {
+    "@babel/runtime": "^7.22.6"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.20",
+    "fs-extra": "^11.1.1",
+    "mustache": "^4.2.0",
+    "react": "^18.2.0",
+    "shx": "^0.3.4",
+    "svgo": "^2.8.0",
+    "yargs": "^17.7.2"
+  },
   "peerDependencies": {
     "@mui/material": "workspace:*",
     "@types/react": "^17.0.0 || ^18.0.0",
@@ -54,16 +66,6 @@
     "@types/react": {
       "optional": true
     }
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.22.6"
-  },
-  "devDependencies": {
-    "fs-extra": "^11.1.1",
-    "mustache": "^4.2.0",
-    "shx": "^0.3.4",
-    "svgo": "^2.8.0",
-    "yargs": "^17.7.2"
   },
   "sideEffects": false,
   "publishConfig": {

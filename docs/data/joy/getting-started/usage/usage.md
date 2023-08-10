@@ -4,21 +4,10 @@
 
 ## Quickstart
 
-The following code snippet demonstrates a simple app that uses the Joy UI [Button](/joy-ui/react-button/) component:
+After [installation](/joy-ui/getting-started/installation/), you can import any Joy UI component and start playing around.
+For example, try changing the `variant` on the [Button](/joy-ui/react-button/) to `soft` to see how the style changes:
 
-```jsx
-import * as React from 'react';
-import Button from '@mui/joy/Button';
-
-export default function MyApp() {
-  return <Button variant="solid">Hello World</Button>;
-}
-```
-
-You can play around with this code in the interactive Code Sandbox demo below.
-Try changing the `variant` on the Button to `soft` to see how the style changes:
-
-{{"demo": "Usage.js", "hideToolbar": true, "bg": true}}
+{{"demo": "ButtonUsage.js"}}
 
 ### CssVarsProvider
 

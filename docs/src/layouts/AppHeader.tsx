@@ -26,7 +26,7 @@ const Header = styled('header')(({ theme }) => [
     backdropFilter: 'blur(8px)',
     boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.grey[100]}`,
     backgroundColor: 'rgba(255,255,255,0.8)',
-  },
+  } as const,
   theme.applyDarkStyles({
     boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.primaryDark[700]}`,
     backgroundColor: alpha(theme.palette.primaryDark[900], 0.7),

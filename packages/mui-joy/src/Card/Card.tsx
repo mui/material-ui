@@ -88,7 +88,7 @@ const CardRoot = styled('div', {
       flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
       ...theme.typography[`body-${ownerState.size!}`],
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    },
+    } as const,
     ownerState.color !== 'context' &&
       ownerState.invertedColors &&
       theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
