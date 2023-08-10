@@ -74,7 +74,7 @@ export default function SecondSidebar() {
             '--List-gap': '6px',
           }}
         >
-          <ListSubheader role="presentation" sx={{ fontWeight: 700 }}>
+          <ListSubheader role="presentation" sx={{ fontWeight: 'lg' }}>
             Dashboard
           </ListSubheader>
           <ListItem>
