@@ -1,17 +1,19 @@
 import * as React from 'react';
 import AccordionGroup from '@mui/joy/AccordionGroup';
-import Accordion, { accordionClasses } from '@mui/joy/Accordion';
+import Accordion from '@mui/joy/Accordion';
 import AccordionDetails, {
   accordionDetailsClasses,
 } from '@mui/joy/AccordionDetails';
 import AccordionSummary, {
   accordionSummaryClasses,
 } from '@mui/joy/AccordionSummary';
-import ListDivider from '@mui/joy/ListDivider';
 import Switch from '@mui/joy/Switch';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import Avatar from '@mui/joy/Avatar';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import ListItemContent from '@mui/joy/ListItemContent';
 
 import AirplanemodeActiveRoundedIcon from '@mui/icons-material/AirplanemodeActiveRounded';
 import WifiRoundedIcon from '@mui/icons-material/WifiRounded';
@@ -26,7 +28,7 @@ import ZoomInRoundedIcon from '@mui/icons-material/ZoomInRounded';
 import SpatialTrackingRoundedIcon from '@mui/icons-material/SpatialTrackingRounded';
 import SettingsVoiceRoundedIcon from '@mui/icons-material/SettingsVoiceRounded';
 
-export default function AccordionStylingExpansion() {
+export default function AccordionFilter() {
   return (
     <AccordionGroup
       variant="plain"
@@ -34,138 +36,116 @@ export default function AccordionStylingExpansion() {
       sx={{
         maxWidth: 400,
         borderRadius: 'md',
-        [`& .${accordionDetailsClasses.root}`]: {
-          [`&.${accordionDetailsClasses.expanded}`]: {
+        [`& .${accordionDetailsClasses.content}.${accordionDetailsClasses.expanded}`]:
+          {
             paddingBlock: '1rem',
           },
+        [`& .${accordionSummaryClasses.button}`]: {
+          paddingBlock: '1rem',
         },
       }}
     >
       <Accordion>
-        <AccordionSummary>
-          <Stack direction="row" spacing={2} alignItems="center">
-            <Avatar color="primary">
-              <TapAndPlayRoundedIcon />
-            </Avatar>
-            <Stack sx={{ py: '8px' }}>
-              <Typography level="title-lg">Connections</Typography>
-              <Typography level="body-sm">
-                Activate or deactivate your connections
-              </Typography>
-            </Stack>
-          </Stack>
+        <AccordionSummary sx={{ gap: 2 }}>
+          <Avatar color="primary">
+            <TapAndPlayRoundedIcon />
+          </Avatar>
+          <ListItemContent sx={{ mx: 1 }}>
+            <Typography level="title-md">Connections</Typography>
+            <Typography level="body-sm">
+              Activate or deactivate your connections
+            </Typography>
+          </ListItemContent>
         </AccordionSummary>
         <AccordionDetails>
-          <Stack justifyContent="space-between" direction="row">
-            <Stack direction="row" spacing={1}>
-              <AirplanemodeActiveRoundedIcon />
-              <Typography level="title-md">Airplane Mode</Typography>
-            </Stack>
-            <Switch size="sm" />
-          </Stack>
-        </AccordionDetails>
-        <AccordionDetails>
-          <Stack justifyContent="space-between" direction="row">
-            <Stack direction="row" spacing={1}>
-              <WifiRoundedIcon />
-              <Typography level="title-md">Wi-Fi</Typography>
-            </Stack>
-            <Switch size="sm" />
-          </Stack>
-        </AccordionDetails>
-        <AccordionDetails>
-          <Stack justifyContent="space-between" direction="row">
-            <Stack direction="row" spacing={1}>
-              <BluetoothRoundedIcon />
-              <Typography level="title-md">Bluetooth</Typography>
-            </Stack>
-            <Switch size="sm" />
+          <Stack spacing={1.5}>
+            <FormControl orientation="horizontal" sx={{ gap: 1 }}>
+              <AirplanemodeActiveRoundedIcon fontSize="xl2" sx={{ mx: 1 }} />
+              <FormLabel>Airplane Mode</FormLabel>
+              <Switch size="sm" />
+            </FormControl>
+
+            <FormControl orientation="horizontal" sx={{ gap: 1 }}>
+              <WifiRoundedIcon fontSize="xl2" sx={{ mx: 1 }} />
+              <FormLabel>Wi-Fi</FormLabel>
+              <Switch size="sm" />
+            </FormControl>
+
+            <FormControl orientation="horizontal" sx={{ gap: 1 }}>
+              <BluetoothRoundedIcon fontSize="xl2" sx={{ mx: 1 }} />
+              <FormLabel>Bluetooth</FormLabel>
+              <Switch size="sm" />
+            </FormControl>
           </Stack>
         </AccordionDetails>
       </Accordion>
-      <ListDivider />
+
       <Accordion>
-        <AccordionSummary>
-          <Stack direction="row" spacing={2} alignItems="center">
-            <Avatar color="primary">
-              <EditNotificationsRoundedIcon />
-            </Avatar>
-            <Stack sx={{ py: '8px' }}>
-              <Typography level="title-lg">Notifications</Typography>
-              <Typography level="body-sm">
-                Enable or disable your notifications
-              </Typography>
-            </Stack>
-          </Stack>
+        <AccordionSummary sx={{ gap: 2 }}>
+          <Avatar color="success">
+            <EditNotificationsRoundedIcon />
+          </Avatar>
+          <ListItemContent sx={{ mx: 1 }}>
+            <Typography level="title-md">Notifications</Typography>
+            <Typography level="body-sm">
+              Enable or disable your notifications
+            </Typography>
+          </ListItemContent>
         </AccordionSummary>
         <AccordionDetails>
-          <Stack justifyContent="space-between" direction="row">
-            <Stack direction="row" spacing={1}>
-              <EmailRoundedIcon />
-              <Typography level="title-md">E-mal</Typography>
-            </Stack>
-            <Switch size="sm" />
-          </Stack>
-        </AccordionDetails>
-        <AccordionDetails>
-          <Stack justifyContent="space-between" direction="row">
-            <Stack direction="row" spacing={1}>
-              <MessageRoundedIcon />
-              <Typography level="title-md">Messages</Typography>
-            </Stack>
-            <Switch size="sm" />
-          </Stack>
-        </AccordionDetails>
-        <AccordionDetails>
-          <Stack justifyContent="space-between" direction="row">
-            <Stack direction="row" spacing={1}>
-              <AdUnitsRoundedIcon />
-              <Typography level="title-md">Push</Typography>
-            </Stack>
-            <Switch size="sm" />
+          <Stack spacing={1.5}>
+            <FormControl orientation="horizontal" sx={{ gap: 1 }}>
+              <EmailRoundedIcon fontSize="xl2" sx={{ mx: 1 }} />
+              <FormLabel>E-mail</FormLabel>
+              <Switch size="sm" />
+            </FormControl>
+
+            <FormControl orientation="horizontal" sx={{ gap: 1 }}>
+              <MessageRoundedIcon fontSize="xl2" sx={{ mx: 1 }} />
+              <FormLabel>Messages</FormLabel>
+              <Switch size="sm" />
+            </FormControl>
+
+            <FormControl orientation="horizontal" sx={{ gap: 1 }}>
+              <AdUnitsRoundedIcon fontSize="xl2" sx={{ mx: 1 }} />
+              <FormLabel>Push</FormLabel>
+              <Switch size="sm" />
+            </FormControl>
           </Stack>
         </AccordionDetails>
       </Accordion>
-      <ListDivider />
+
       <Accordion>
-        <AccordionSummary>
-          <Stack direction="row" spacing={2} alignItems="center">
-            <Avatar color="primary">
-              <AccessibilityNewRoundedIcon />
-            </Avatar>
-            <Stack sx={{ py: '8px' }}>
-              <Typography level="title-lg">Accessibility</Typography>
-              <Typography level="body-sm">
-                Toggle your accessibility settings
-              </Typography>
-            </Stack>
-          </Stack>
+        <AccordionSummary sx={{ gap: 2 }}>
+          <Avatar color="danger">
+            <AccessibilityNewRoundedIcon />
+          </Avatar>
+          <ListItemContent sx={{ mx: 1 }}>
+            <Typography level="title-md">Accessibility</Typography>
+            <Typography level="body-sm">
+              Toggle your accessibility settings
+            </Typography>
+          </ListItemContent>
         </AccordionSummary>
         <AccordionDetails>
-          <Stack justifyContent="space-between" direction="row">
-            <Stack direction="row" spacing={1}>
-              <ZoomInRoundedIcon />
-              <Typography level="title-md">Zoom</Typography>
-            </Stack>
-            <Switch size="sm" />
-          </Stack>
-        </AccordionDetails>
-        <AccordionDetails>
-          <Stack justifyContent="space-between" direction="row">
-            <Stack direction="row" spacing={1}>
-              <SpatialTrackingRoundedIcon />
-              <Typography level="title-md">Audio Descriptions</Typography>
-            </Stack>
-            <Switch size="sm" />
-          </Stack>
-        </AccordionDetails>
-        <AccordionDetails>
-          <Stack justifyContent="space-between" direction="row">
-            <Stack direction="row" spacing={1}>
-              <SettingsVoiceRoundedIcon />
-              <Typography level="title-md">Voice Control</Typography>
-            </Stack>
-            <Switch size="sm" />
+          <Stack spacing={1.5}>
+            <FormControl orientation="horizontal" sx={{ gap: 1 }}>
+              <ZoomInRoundedIcon fontSize="xl2" sx={{ mx: 1 }} />
+              <FormLabel>Zoom</FormLabel>
+              <Switch size="sm" />
+            </FormControl>
+
+            <FormControl orientation="horizontal" sx={{ gap: 1 }}>
+              <SpatialTrackingRoundedIcon fontSize="xl2" sx={{ mx: 1 }} />
+              <FormLabel>Audio Descriptions</FormLabel>
+              <Switch size="sm" />
+            </FormControl>
+
+            <FormControl orientation="horizontal" sx={{ gap: 1 }}>
+              <SettingsVoiceRoundedIcon fontSize="xl2" sx={{ mx: 1 }} />
+              <FormLabel>Voice Control</FormLabel>
+              <Switch size="sm" />
+            </FormControl>
           </Stack>
         </AccordionDetails>
       </Accordion>

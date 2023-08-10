@@ -37,19 +37,28 @@ export interface AccordionGroupTypeMap<P = {}, D extends React.ElementType = 'di
      */
     color?: OverridableStringUnion<ColorPaletteProp, AccordionGroupPropsColorOverrides>;
     /**
+     * If `true`, the divider between accordions will be hidden.
+     * @default false
+     */
+    disableDivider?: boolean;
+    /**
      * The size of the component (affect other nested list* components).
      * @default 'md'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', AccordionGroupPropsSizeOverrides>;
     /**
      * The CSS transition for the Accordion details.
+     * @default '0.2s ease'
      */
     transition?: string | { initial: string; expanded: string };
     /**
      * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
-    variant?: OverridableStringUnion<VariantProp, AccordionGroupPropsVariantOverrides>;
+    variant?: OverridableStringUnion<
+      Exclude<VariantProp, 'solid'>,
+      AccordionGroupPropsVariantOverrides
+    >;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

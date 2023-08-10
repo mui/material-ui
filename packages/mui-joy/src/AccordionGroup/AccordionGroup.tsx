@@ -16,6 +16,7 @@ import useSlot from '../utils/useSlot';
 import ListProvider from '../List/ListProvider';
 import { StyledList } from '../List/List';
 import accordionDetailsClasses from '../AccordionDetails/accordionDetailsClasses';
+import accordionClasses from '../Accordion/accordionClasses';
 
 const useUtilityClasses = (ownerState: AccordionGroupOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -35,7 +36,7 @@ const AccordionGroupRoot = styled(StyledList as unknown as 'div', {
   name: 'JoyAccordionGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AccordionGroupOwnerState }>(({ ownerState }) => {
+})<{ ownerState: AccordionGroupOwnerState }>(({ theme, ownerState }) => {
   let transition: Record<string, any> = {};
   if (ownerState.transition) {
     if (typeof ownerState.transition === 'string') {
@@ -56,6 +57,11 @@ const AccordionGroupRoot = styled(StyledList as unknown as 'div', {
     '--List-padding': '0px',
     '--ListDivider-gap': '0px',
     ...transition,
+    ...(!ownerState.disableDivider && {
+      [`& .${accordionClasses.root}:not([data-last-child])`]: {
+        '--Accordion-borderBottom': `1px solid ${theme.vars.palette.divider}`,
+      },
+    }),
   };
 });
 
@@ -80,7 +86,9 @@ const AccordionGroup = React.forwardRef(function AccordionGroup(inProps, ref) {
     component = 'div',
     color = 'neutral',
     children,
+    disableDivider = false,
     variant = 'plain',
+    transition = '0.2s ease',
     size = 'md',
     slots = {},
     slotProps = {},
@@ -93,7 +101,9 @@ const AccordionGroup = React.forwardRef(function AccordionGroup(inProps, ref) {
     ...props,
     component,
     color,
+    disableDivider,
     variant,
+    transition,
     size,
   };
 
@@ -135,6 +145,11 @@ AccordionGroup.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, the divider between accordions will be hidden.
+   * @default false
+   */
+  disableDivider: PropTypes.bool,
+  /**
    * The size of the component (affect other nested list* components).
    * @default 'md'
    */
@@ -163,6 +178,7 @@ AccordionGroup.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The CSS transition for the Accordion details.
+   * @default '0.2s ease'
    */
   transition: PropTypes.oneOfType([
     PropTypes.shape({
@@ -175,7 +191,7 @@ AccordionGroup.propTypes /* remove-proptypes */ = {
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft']),
 } as any;
 
 export default AccordionGroup;

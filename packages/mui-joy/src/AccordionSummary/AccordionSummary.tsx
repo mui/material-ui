@@ -140,8 +140,9 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     externalForwardedProps,
     additionalProps: {
       component: 'button',
+      id: `${accordionId}-summary`,
       'aria-expanded': expanded ? 'true' : 'false',
-      'aria-controls': accordionId,
+      'aria-controls': `${accordionId}-details`,
       disabled,
       onClick: handleClick,
     },

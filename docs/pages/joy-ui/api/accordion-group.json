@@ -10,6 +10,7 @@
       "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
+    "disableDivider": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },
       "default": "'md'",
@@ -35,12 +36,13 @@
       "type": {
         "name": "union",
         "description": "{ expanded: string, initial: string }<br>&#124;&nbsp;string"
-      }
+      },
+      "default": "'0.2s ease'"
     },
     "variant": {
       "type": {
         "name": "enum",
-        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'"
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'"
       },
       "default": "'plain'",
       "additionalInfo": { "joy-variant": true }

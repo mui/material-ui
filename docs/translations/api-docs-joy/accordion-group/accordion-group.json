@@ -10,6 +10,9 @@
     "component": {
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
+    "disableDivider": {
+      "description": "If <code>true</code>, the divider between accordions will be hidden."
+    },
     "size": { "description": "The size of the component (affect other nested list* components)." },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },

@@ -37,6 +37,7 @@ const AccordionRoot = styled(StyledListItem as unknown as 'div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AccordionOwnerState }>({
+  borderBottom: 'var(--Accordion-borderBottom)',
   '&[data-first-child]': {
     '--ListItem-radius': 'var(--unstable_List-childRadius) var(--unstable_List-childRadius) 0 0',
   },

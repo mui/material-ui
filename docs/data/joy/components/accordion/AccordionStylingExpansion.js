@@ -9,17 +9,24 @@ export default function AccordionStylingExpansion() {
     <AccordionGroup
       sx={{
         maxWidth: 400,
-        borderRadius: 'md',
+        [`& .${accordionClasses.root}`]: {
+          marginTop: '0.25rem',
+          transition: '0.2s ease',
+          '& button:not([aria-expanded="true"])': {
+            transition: '0.2s ease',
+            paddingBottom: '0.625rem',
+          },
+          '& button:hover': {
+            background: 'transparent',
+          },
+        },
         [`& .${accordionClasses.root}.${accordionClasses.expanded}`]: {
-          mb: 1,
-          bgcolor: 'background.level1',
+          bgcolor: 'background.body',
           borderRadius: 'lg',
+          boxShadow: 'xs',
         },
         '& [aria-expanded="true"]': {
           boxShadow: (theme) => `inset 0 -1px 0 ${theme.vars.palette.divider}`,
-          '&:hover': {
-            bgcolor: 'transparent',
-          },
         },
       }}
     >

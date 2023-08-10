@@ -60,11 +60,11 @@ Use the `disabled` prop to disable the accordion trigger.
 Note: the `disabled` prop only disables the accordion trigger, not the accordion content.
 :::
 
-### Divider
+### Removing divider
 
-Use [`ListDivider`](#divider) component to add a divider between accordions.
+Use `disableDivider` prop on the Accordion Group component to hide the divider between accordions.
 
-{{"demo": "AccordionDivider.js"}}
+{{"demo": "AccordionNoDivider.js"}}
 
 :::info
 💡 **Good to know**: the reason that ListDivider can be used is because the accordion family reuses styles from the [List](/joy-ui/react-list/) family.
@@ -101,7 +101,7 @@ This example shows how to customize the accordion to create lines and depth to m
 
 {{"demo": "AccordionDepthPanel.js"}}
 
-### Customizing
+### User settings
 
 This example shows how to customize the accordion and craft diverse compositions using additional components.
 

@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
@@ -36,15 +37,10 @@ const AccordionDetailsRoot = styled('div', {
   display: 'grid',
   gridTemplateRows: '1fr',
   marginInline: 'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
-  paddingInlineStart: 'var(--ListItem-paddingLeft)',
-  paddingInlineEnd: 'var(--ListItem-paddingRight)',
-  paddingBlockStart: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
-  paddingBlockEnd: 'calc(2 * var(--ListItem-paddingY))',
   transition: 'var(--AccordionDetails-transition)',
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   [`&:not(.${accordionDetailsClasses.expanded})`]: {
     gridTemplateRows: '0fr',
-    paddingBlock: 0,
   },
 }));
 
@@ -59,6 +55,16 @@ const AccordionDetailsContent = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   overflow: 'hidden', // required for user-provided transition to work
+  // Need to apply padding to content rather than root because the overflow.
+  // Otherwise, the focus ring of the children can be cut off.
+  paddingInlineStart: 'var(--ListItem-paddingLeft)',
+  paddingInlineEnd: 'var(--ListItem-paddingRight)',
+  paddingBlockStart: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
+  paddingBlockEnd: 'calc(2.5 * var(--ListItem-paddingY))',
+  transition: 'var(--AccordionDetails-transition)',
+  [`&:not(.${accordionDetailsClasses.expanded})`]: {
+    paddingBlock: 0,
+  },
 });
 
 /**
@@ -89,6 +95,32 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
   } = props;
 
   const { accordionId, expanded = false } = React.useContext(AccordionContext);
+  const rootRef = React.useRef<HTMLElement>(null);
+  const handleRef = useForkRef(rootRef, ref);
+
+  React.useEffect(() => {
+    // When accordion is closed, prevent tabbing into the details content.
+    if (rootRef.current) {
+      const elements = rootRef.current.querySelectorAll(
+        'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
+      );
+      elements.forEach((elm) => {
+        if (expanded) {
+          const prevTabIndex = elm.getAttribute('data-prev-tabindex');
+          if (!prevTabIndex || prevTabIndex === 'none') {
+            elm.removeAttribute('tabindex');
+            elm.removeAttribute('data-prev-tabindex');
+          } else {
+            elm.removeAttribute('data-prev-tabindex');
+            elm.setAttribute('tabindex', prevTabIndex);
+          }
+        } else {
+          elm.setAttribute('data-prev-tabindex', elm.getAttribute('tabindex') || 'none');
+          elm.setAttribute('tabindex', '-1');
+        }
+      });
+    }
+  }, [expanded]);
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
@@ -104,12 +136,13 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
   const classes = useUtilityClasses(ownerState);
 
   const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
+    ref: handleRef,
     className: classes.root,
     elementType: AccordionDetailsRoot,
     externalForwardedProps,
     additionalProps: {
-      'aria-labelledby': accordionId,
+      id: `${accordionId}-details`,
+      'aria-labelledby': `${accordionId}-summary`,
       role: 'region',
       hidden: expanded ? undefined : true,
     },
@@ -117,7 +150,6 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
   });
 
   const [SlotContent, contentProps] = useSlot('content', {
-    ref,
     className: classes.content,
     elementType: AccordionDetailsContent,
     externalForwardedProps,

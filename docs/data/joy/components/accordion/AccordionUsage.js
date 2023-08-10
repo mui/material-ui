@@ -14,7 +14,7 @@ export default function ButtonUsage() {
           propName: 'variant',
           knob: 'radio',
           defaultValue: 'plain',
-          options: ['plain', 'outlined', 'soft', 'solid'],
+          options: ['plain', 'outlined', 'soft'],
         },
         {
           propName: 'color',
@@ -50,7 +50,7 @@ export default function ButtonUsage() {
       renderDemo={({ disabled, ...props }) => (
         <AccordionGroup
           {...props}
-          sx={{ width: 300, maxWidth: '100%', alignSelf: 'flex-start' }}
+          sx={{ width: 300, maxWidth: '100%', alignSelf: 'flex-start', mb: 3 }}
         >
           <Accordion disabled={disabled}>
             <AccordionSummary>First Header</AccordionSummary>

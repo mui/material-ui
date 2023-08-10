@@ -7,7 +7,6 @@ import AccordionDetails, {
 import AccordionSummary, {
   accordionSummaryClasses,
 } from '@mui/joy/AccordionSummary';
-import ListDivider from '@mui/joy/ListDivider';
 
 export default function AccordionDepthPanel() {
   return (
@@ -20,10 +19,10 @@ export default function AccordionDepthPanel() {
         [`& .${accordionSummaryClasses.button}:hover`]: {
           bgcolor: 'transparent',
         },
-        [`& .${accordionDetailsClasses.root}`]: {
+        [`& .${accordionDetailsClasses.content}`]: {
           boxShadow: (theme) => `inset 0 1px ${theme.vars.palette.divider}`,
           [`&.${accordionDetailsClasses.expanded}`]: {
-            paddingBlock: '1rem',
+            paddingBlock: '0.75rem',
           },
         },
       }}
@@ -35,7 +34,6 @@ export default function AccordionDepthPanel() {
           tempor incididunt ut labore et dolore magna aliqua.
         </AccordionDetails>
       </Accordion>
-      <ListDivider />
       <Accordion>
         <AccordionSummary>Second accordion</AccordionSummary>
         <AccordionDetails variant="soft">
@@ -43,7 +41,6 @@ export default function AccordionDepthPanel() {
           tempor incididunt ut labore et dolore magna aliqua.
         </AccordionDetails>
       </Accordion>
-      <ListDivider />
       <Accordion>
         <AccordionSummary>Third accordion</AccordionSummary>
         <AccordionDetails variant="soft">

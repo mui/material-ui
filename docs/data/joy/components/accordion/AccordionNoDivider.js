@@ -3,11 +3,10 @@ import AccordionGroup from '@mui/joy/AccordionGroup';
 import Accordion from '@mui/joy/Accordion';
 import AccordionDetails from '@mui/joy/AccordionDetails';
 import AccordionSummary from '@mui/joy/AccordionSummary';
-import ListDivider from '@mui/joy/ListDivider';
 
-export default function AccordionDivider() {
+export default function AccordionNoDivider() {
   return (
-    <AccordionGroup sx={{ maxWidth: 400 }}>
+    <AccordionGroup disableDivider sx={{ maxWidth: 400 }}>
       <Accordion>
         <AccordionSummary>First accordion</AccordionSummary>
         <AccordionDetails>
@@ -15,7 +14,6 @@ export default function AccordionDivider() {
           tempor incididunt ut labore et dolore magna aliqua.
         </AccordionDetails>
       </Accordion>
-      <ListDivider />
       <Accordion>
         <AccordionSummary>Second accordion</AccordionSummary>
         <AccordionDetails>
@@ -23,7 +21,6 @@ export default function AccordionDivider() {
           tempor incididunt ut labore et dolore magna aliqua.
         </AccordionDetails>
       </Accordion>
-      <ListDivider />
       <Accordion>
         <AccordionSummary>Third accordion</AccordionSummary>
         <AccordionDetails>
