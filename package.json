@@ -192,7 +192,7 @@
     "serve": "^14.2.0",
     "sinon": "^15.2.0",
     "stylelint": "^15.10.2",
-    "stylelint-config-standard": "^33.0.0",
+    "stylelint-config-standard": "^34.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "stylis": "^4.2.0",
     "stylis-plugin-rtl": "^2.1.1",
