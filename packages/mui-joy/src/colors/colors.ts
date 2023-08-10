@@ -29,7 +29,7 @@ const colors = {
 
   //palette test 2
     grey: {
-      50:"#f4f7fc",
+      50:"#FBFCFE",
       100:"#e8eff6",
       200:"#dee6f0",
       300:"#d1dbe6",
