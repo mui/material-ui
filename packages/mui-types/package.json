@@ -37,6 +37,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "devDependencies": {
+    "@types/react": "^18.2.19"
+  },
   "peerDependencies": {
     "@types/react": "*"
   },

@@ -50,7 +50,8 @@
     "react-is": "^18.2.0"
   },
   "devDependencies": {
-    "@types/prop-types": "15.7.5",
+    "@types/prop-types": "^15.7.5",
+    "@types/react": "^18.2.19",
     "next": "^13.4.13"
   },
   "peerDependencies": {

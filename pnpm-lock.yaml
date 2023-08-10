@@ -1104,9 +1104,6 @@ importers:
       '@mui/utils':
         specifier: workspace:*
         version: link:../mui-utils
-      '@types/react':
-        specifier: ^17.0.0 || ^18.0.0
-        version: 18.2.19
       '@types/react-dom':
         specifier: ^17.0.0 || ^18.0.0
         version: 18.2.7
@@ -1130,8 +1127,11 @@ importers:
         version: 18.2.0
     devDependencies:
       '@types/prop-types':
-        specifier: 15.7.5
+        specifier: ^15.7.5
         version: 15.7.5
+      '@types/react':
+        specifier: 18.2.19
+        version: 18.2.19
       next:
         specifier: ^13.4.13
         version: 13.4.13(@babel/core@7.22.9)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
@@ -1490,9 +1490,9 @@ importers:
         version: 5.3.11(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
   packages/mui-types:
-    dependencies:
+    devDependencies:
       '@types/react':
-        specifier: '*'
+        specifier: 18.2.19
         version: 18.2.19
 
   packages/mui-utils:
