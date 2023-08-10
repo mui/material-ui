@@ -141,14 +141,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     softActiveColor: getCssVarColor(`palette-${color}-800`),
     softActiveBg: getCssVarColor(`palette-${color}-300`),
     softDisabledColor: getCssVarColor(`palette-neutral-400`),
-    softDisabledBg: getCssVarColor(`palette-${color}-50`),
+    softDisabledBg: getCssVarColor(`palette-neutral-50`),
 
     solidColor: getCssVarColor(`palette-common-white`),
     solidBg: getCssVarColor(`palette-${color}-500`),
     solidHoverBg: getCssVarColor(`palette-${color}-600`),
     solidActiveBg: getCssVarColor(`palette-${color}-700`),
     solidDisabledColor: getCssVarColor(`palette-neutral-400`),
-    solidDisabledBg: getCssVarColor(`palette-${color}-100`),
+    solidDisabledBg: getCssVarColor(`palette-neutral-50`),
   });
 
   const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -170,14 +170,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     softActiveColor: getCssVarColor(`palette-${color}-100`),
     softActiveBg: getCssVarColor(`palette-${color}-600`),
     softDisabledColor: getCssVarColor(`palette-neutral-500`),
-    softDisabledBg: getCssVarColor(`palette-${color}-900`),
+    softDisabledBg: getCssVarColor(`palette-neutral-900`),
 
     solidColor: getCssVarColor(`palette-common-white`),
     solidBg: getCssVarColor(`palette-${color}-500`),
     solidHoverBg: getCssVarColor(`palette-${color}-600`),
     solidActiveBg: getCssVarColor(`palette-${color}-700`),
     solidDisabledColor: getCssVarColor(`palette-neutral-500`),
-    solidDisabledBg: getCssVarColor(`palette-${color}-800`),
+    solidDisabledBg: getCssVarColor(`palette-neutral-900`),
   });
 
   const lightColorSystem = {
