@@ -32,6 +32,7 @@ export default function SecondSidebar() {
           left: 0,
           width: '100vw',
           height: '100vh',
+          opacity: 'var(--SideNavigation-slideIn)',
           backgroundColor: 'var(--joy-palette-background-backdrop)',
           transition: 'opacity 0.4s',
           transform: {
@@ -62,6 +63,8 @@ export default function SecondSidebar() {
           display: 'flex',
           flexDirection: 'column',
           gap: 2,
+          borderRight: '1px solid',
+          borderColor: 'divider',
         }}
       >
         <List

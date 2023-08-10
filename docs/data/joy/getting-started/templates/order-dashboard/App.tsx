@@ -4,7 +4,6 @@ import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
-import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 // icons
@@ -41,15 +40,7 @@ export default function JoyOrderDashboardTemplate() {
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
         <Header />
         <FirstSidebar />
-        <Divider
-          orientation="vertical"
-          sx={{ display: { xs: 'none', sm: 'block' } }}
-        />
         <SecondSidebar />
-        <Divider
-          orientation="vertical"
-          sx={{ display: { xs: 'none', sm: 'block' } }}
-        />
         <Box
           component="main"
           className="MainContent"

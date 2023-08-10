@@ -40,6 +40,8 @@ export default function FirstSidebar() {
         flexDirection: 'column',
         alignItems: 'center',
         gap: 1,
+        borderRight: '1px solid',
+        borderColor: 'divider',
       }}
     >
       <GlobalStyles
