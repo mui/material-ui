@@ -1,3 +1,4 @@
+'use client';
 /**
  * @ignore - do not document.
  */

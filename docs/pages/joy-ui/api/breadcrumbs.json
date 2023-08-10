@@ -8,7 +8,8 @@
         "name": "union",
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
-      "default": "'md'"
+      "default": "'md'",
+      "additionalInfo": { "joy-size": true }
     },
     "slotProps": {
       "type": {
@@ -22,16 +23,22 @@
         "name": "shape",
         "description": "{ li?: elementType, ol?: elementType, root?: elementType, separator?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "Breadcrumbs",
+  "imports": [
+    "import Breadcrumbs from '@mui/joy/Breadcrumbs';",
+    "import { Breadcrumbs } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

@@ -1,14 +1,15 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": { "type": { "name": "any" }, "default": "'primary'" },
     "component": { "type": { "name": "custom", "description": "element type" } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "TypographyClasses": { "type": { "name": "object" } },
     "underline": {
@@ -27,6 +28,7 @@
     }
   },
   "name": "Link",
+  "imports": ["import Link from '@mui/material/Link';", "import { Link } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

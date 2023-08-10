@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import {
@@ -10,18 +11,19 @@ import {
 } from './useList.types';
 import { ListActionTypes, ListAction } from './listActions.types';
 import { ListContextValue } from './ListContext';
-import defaultReducer from './listReducer';
-import useListChangeNotifiers from './useListChangeNotifiers';
-import useControllableReducer from '../utils/useControllableReducer';
+import { listReducer as defaultReducer } from './listReducer';
+import { useListChangeNotifiers } from './useListChangeNotifiers';
+import { useControllableReducer } from '../utils/useControllableReducer';
 import {
   ControllableReducerAction,
   StateChangeCallback,
   StateComparers,
 } from '../utils/useControllableReducer.types';
-import areArraysEqual from '../utils/areArraysEqual';
+import { areArraysEqual } from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
-import useLatest from '../utils/useLatest';
-import useTextNavigation from '../utils/useTextNavigation';
+import { useLatest } from '../utils/useLatest';
+import { useTextNavigation } from '../utils/useTextNavigation';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 
 const EMPTY_OBJECT = {};
 const NOOP = () => {};
@@ -82,6 +84,7 @@ function useList<
     getItemAsString = defaultItemStringifier,
     onChange,
     onHighlightChange,
+    onItemsChange,
     orientation = 'vertical',
     pageSize = 5,
     reducerActionContext = EMPTY_OBJECT as CustomActionContext,
@@ -250,7 +253,8 @@ function useList<
     });
 
     previousItems.current = items;
-  }, [items, itemComparer, dispatch]);
+    onItemsChange?.(items);
+  }, [items, itemComparer, dispatch, onItemsChange]);
 
   // Subitems are notified of changes to the highlighted and selected values.
   // This is not done via context because we don't want to trigger a re-render of all the subitems each time any of them changes state.
@@ -273,10 +277,10 @@ function useList<
 
   const createHandleKeyDown =
     (other: Record<string, React.EventHandler<any>>) =>
-    (event: React.KeyboardEvent<HTMLElement>) => {
+    (event: React.KeyboardEvent<HTMLElement> & MuiCancellableEvent) => {
       other.onKeyDown?.(event);
 
-      if (event.defaultPrevented) {
+      if (event.defaultMuiPrevented) {
         return;
       }
 
@@ -310,10 +314,11 @@ function useList<
     };
 
   const createHandleBlur =
-    (other: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent<HTMLElement>) => {
+    (other: Record<string, React.EventHandler<any>>) =>
+    (event: React.FocusEvent<HTMLElement> & MuiCancellableEvent) => {
       other.onBlur?.(event);
 
-      if (event.defaultPrevented) {
+      if (event.defaultMuiPrevented) {
         return;
       }
 
@@ -398,4 +403,4 @@ function useList<
   };
 }
 
-export default useList;
+export { useList };

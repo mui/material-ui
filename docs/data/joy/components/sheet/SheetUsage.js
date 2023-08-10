@@ -1,6 +1,6 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Sheet from '@mui/joy/Sheet';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function SheetUsage() {
   return (
@@ -9,7 +9,7 @@ export default function SheetUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'plain',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },

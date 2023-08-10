@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import { create } from 'jss';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
@@ -14,7 +13,6 @@ import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styl
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
 
@@ -121,7 +119,7 @@ DemoIframe.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-// Use the default MUI theme for the demos
+// Use the default Material UI theme for the demos
 function getTheme(outerTheme) {
   const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
   const isCustomized =
@@ -163,9 +161,14 @@ const jss = create({
  * to an `iframe` if `iframe={true}`.
  */
 function DemoSandbox(props) {
-  const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
-  const { children: childrenProp, iframe = false, name, onResetDemoClick, ...other } = props;
+  const {
+    children: childrenProp,
+    iframe = false,
+    name,
+    onResetDemoClick,
+    productId,
+    ...other
+  } = props;
   const Sandbox = iframe ? DemoIframe : React.Fragment;
   const sandboxProps = iframe ? { name, ...other } : {};
 
@@ -176,7 +179,7 @@ function DemoSandbox(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      {canonicalAs.startsWith('/joy-ui/') ? (
+      {productId === 'joy-ui' ? (
         children
       ) : (
         <StylesProvider jss={jss}>
@@ -192,6 +195,7 @@ DemoSandbox.propTypes = {
   iframe: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,
+  productId: PropTypes.string,
 };
 
 export default React.memo(DemoSandbox);

@@ -1,6 +1,4 @@
-export { default } from './Badge';
-
+'use client';
+export { Badge } from './Badge';
 export * from './Badge.types';
-
-export { default as badgeClasses } from './badgeClasses';
 export * from './badgeClasses';

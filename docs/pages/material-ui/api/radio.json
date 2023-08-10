@@ -2,7 +2,7 @@
   "props": {
     "checked": { "type": { "name": "bool" } },
     "checkedIcon": { "type": { "name": "node" }, "default": "<RadioButtonIcon checked />" },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -17,7 +17,13 @@
     "inputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "required": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
@@ -30,11 +36,13 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "any" } }
   },
   "name": "Radio",
+  "imports": ["import Radio from '@mui/material/Radio';", "import { Radio } from '@mui/material';"],
   "styles": {
     "classes": ["root", "checked", "disabled", "colorPrimary", "colorSecondary"],
     "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },

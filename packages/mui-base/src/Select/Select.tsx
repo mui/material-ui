@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
@@ -9,15 +10,15 @@ import {
   SelectRootSlotProps,
   SelectType,
 } from './Select.types';
-import useSelect, { SelectValue } from '../useSelect';
+import { useSelect, SelectValue } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import Popper from '../Popper';
-import composeClasses from '../composeClasses';
+import { Popper } from '../Popper';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSelectUtilityClass } from './selectClasses';
-import defaultOptionStringifier from '../useSelect/defaultOptionStringifier';
+import { defaultOptionStringifier } from '../useSelect/defaultOptionStringifier';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { SelectOption } from '../useOption';
-import SelectProvider from '../useSelect/SelectProvider';
+import { SelectProvider } from '../useSelect/SelectProvider';
 
 function defaultRenderValue<OptionValue>(
   selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
@@ -87,11 +88,11 @@ function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Select](https://mui.com/base-ui/react-select/)
  *
  * API:
  *
- * - [Select API](https://mui.com/base/react-select/components-api/#select)
+ * - [Select API](https://mui.com/base-ui/react-select/components-api/#select)
  */
 const Select = React.forwardRef(function Select<
   OptionValue extends {},
@@ -102,6 +103,7 @@ const Select = React.forwardRef(function Select<
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
+    areOptionsEqual,
     autoFocus,
     children,
     defaultValue,
@@ -156,6 +158,7 @@ const Select = React.forwardRef(function Select<
     value,
     open,
   } = useSelect({
+    areOptionsEqual,
     buttonRef: handleButtonRef,
     defaultOpen: defaultListboxOpen,
     defaultValue,
@@ -256,6 +259,14 @@ Select.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * A function used to determine if two options' values are equal.
+   * By default, reference equality is used.
+   *
+   * There is a performance impact when using the `areOptionsEqual` prop (proportional to the number of options).
+   * Therefore, it's recommented to use the default reference equality comparison whenever possible.
+   */
+  areOptionsEqual: PropTypes.func,
+  /**
    * If `true`, the select element is focused during the first mount
    * @default false
    */
@@ -264,6 +275,10 @@ Select.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * If `true`, the select will be initially open.
    * @default false
@@ -352,4 +367,4 @@ Select.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default Select;
+export { Select };

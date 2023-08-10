@@ -38,8 +38,11 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   showLastButton: boolean;
 }
 
-export interface TablePaginationTypeMap<P, D extends React.ElementType> {
-  props: P &
+export interface TablePaginationTypeMap<
+  AdditionalProps,
+  DefaultComponent extends React.ElementType,
+> {
+  props: AdditionalProps &
     TablePaginationBaseProps & {
       /**
        * The component used for displaying the actions.
@@ -144,7 +147,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        */
       sx?: SxProps<Theme>;
     };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -166,8 +169,8 @@ declare const TablePagination: OverridableComponent<
 export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
 
 export type TablePaginationProps<
-  D extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
-  P = {},
-> = OverrideProps<TablePaginationTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
+  AdditionalProps = {},
+> = OverrideProps<TablePaginationTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default TablePagination;

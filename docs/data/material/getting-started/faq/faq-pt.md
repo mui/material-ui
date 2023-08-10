@@ -10,7 +10,7 @@ Existem muitas maneiras de apoiar o Material-UI:
 
 - **Espalhe a palavra**. Evangelize Material-UI [vinculando o material-ui.com](https://material-ui.com/) no seu site, todo backlink conta. Siga-nos no [Twitter](https://twitter.com/MaterialUI), curta e retuíte as notícias importantes. Ou apenas fale sobre nós com os seus amigos.
 - **Dê-nos sua opinião**. Conte-nos o que estamos fazendo bem ou onde podemos melhorar. Por favor vote (👍) nos issues do GitHub que você está mais interessado em ver resolvidos.
-- **Ajude novos usuários**. You can answer questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/mui).
+- **Ajude novos usuários**. You can answer questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Faça as alterações acontecerem**.
   - Edite a documentação. Cada página da versão em inglês tem um link "EDIT THIS PAGE" no canto superior direito.
   - Reporte erros ou recursos faltantes [criando uma issue](https://github.com/mui/material-ui/issues/new).
@@ -170,7 +170,7 @@ If you are using webpack, you can change the way it will [resolve](https://webpa
 
 One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
 
-```sh
+```bash
 lerna bootstrap --hoist
 ```
 
@@ -228,7 +228,7 @@ The documentation site is using a custom theme. Hence, the color palette is diff
 
 ## Por que as cores que estou vendo são diferentes das que vejo aqui?
 
-Components like the [Portal](/base/api/portal/#props) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. It seems convenient to simply pass a ref object in those props and let MUI access the current value. This works in a simple scenario:
+Components like the [Portal](/base-ui/api/portal/#props) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. It seems convenient to simply pass a ref object in those props and let MUI access the current value. This works in a simple scenario:
 
 ```jsx
 function App() {
@@ -296,7 +296,8 @@ Instead of writing:
 
 return (
   <div
-    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${
+      selected ? 'Mui-selected' : ''
     }`}
   />
 );

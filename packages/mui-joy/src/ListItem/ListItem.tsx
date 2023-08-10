@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -6,7 +7,7 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -96,14 +97,12 @@ const ListItemRoot = styled('li', {
         marginBlockStart: 'var(--List-gap)',
       }),
     minBlockSize: 'var(--ListItem-minHeight)',
-    fontSize: 'var(--ListItem-fontSize)',
-    fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.sticky && {
       // sticky in list item can be found in grouped options
       position: 'sticky',
       top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
       zIndex: 1,
-      background: 'var(--ListItem-stickyBackground)',
+      background: `var(--ListItem-stickyBackground, ${theme.vars.palette.background.body})`,
     }),
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -277,7 +276,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

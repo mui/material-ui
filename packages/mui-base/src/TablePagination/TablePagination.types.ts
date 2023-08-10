@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
-import TablePaginationActions from './TablePaginationActions';
+import { TablePaginationActions } from './TablePaginationActions';
 import { ItemAriaLabelType } from './common.types';
 
 export interface LabelDisplayedRowsArgs {
@@ -222,7 +222,7 @@ export type TablePaginationSelectSlotProps = {
   children?: React.ReactNode;
   className?: string;
   id?: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
   ownerState: TablePaginationOwnerState;
   value: React.SelectHTMLAttributes<HTMLSelectElement>['value'];
 };

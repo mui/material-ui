@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: React Switch component and hook
 components: Switch
 hooks: useSwitch
@@ -25,10 +25,10 @@ The Switch component provides users with a switch for toggling between two mutua
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Switch from '@mui/base/Switch';
+import { Switch } from '@mui/base/Switch';
 
 export default function MyApp() {
   return <Switch />;
@@ -39,7 +39,7 @@ export default function MyApp() {
 
 The following demo shows how to assign styles and props to the Switch component:
 
-{{"demo": "UnstyledSwitches.js"}}
+{{"demo": "UnstyledSwitchBasic"}}
 
 ### Anatomy
 
@@ -63,7 +63,7 @@ Use the `slots` prop to override the root or any other interior slot:
 
 :::info
 The `slots` prop is available on all non-utility Base components.
-See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.
@@ -90,7 +90,7 @@ The same applies for props specific to custom primitive elements:
 ## Hook
 
 ```js
-import useSwitch from '@mui/base/useSwitch';
+import { useSwitch } from '@mui/base/useSwitch';
 ```
 
 The `useSwitch` hook lets you apply the functionality of a switch to a fully custom component.

@@ -1,0 +1,43 @@
+{
+  "props": {
+    "actions": { "type": { "name": "custom", "description": "ref" } },
+    "onItemsChange": { "type": { "name": "func" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ listbox?: elementType, root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    }
+  },
+  "name": "Menu",
+  "imports": ["import { Menu } from '@mui/base/Menu';", "import { Menu } from '@mui/base';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the popup element.",
+      "default": "'div'",
+      "class": ".MuiMenu-root"
+    },
+    {
+      "name": "listbox",
+      "description": "The component that renders the listbox.",
+      "default": "'ul'",
+      "class": ".MuiMenu-listbox"
+    }
+  ],
+  "classes": { "classes": ["expanded"], "globalClasses": { "expanded": "Mui-expanded" } },
+  "spread": true,
+  "muiName": "MuiMenu",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/Menu/Menu.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

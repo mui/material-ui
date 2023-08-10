@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -12,7 +12,13 @@
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "exclusive": { "type": { "name": "bool" }, "default": "false" },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.MouseEvent<HTMLElement>, value: any) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
@@ -28,11 +34,16 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "any" } }
   },
   "name": "ToggleButtonGroup",
+  "imports": [
+    "import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';",
+    "import { ToggleButtonGroup } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "vertical", "disabled", "grouped", "groupedHorizontal", "groupedVertical"],
     "globalClasses": { "disabled": "Mui-disabled" },

@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -45,38 +46,29 @@ const TooltipRoot = styled('div', {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     ...(ownerState.size === 'sm' && {
-      '--Icon-fontSize': '1rem',
+      '--Icon-fontSize': theme.vars.fontSize.md,
       '--Tooltip-arrowSize': '8px',
-      padding: theme.spacing(0.5, 0.625),
-      fontSize: theme.vars.fontSize.xs,
+      padding: theme.spacing(0.25, 0.625),
     }),
     ...(ownerState.size === 'md' && {
-      '--Icon-fontSize': '1.125rem',
+      '--Icon-fontSize': theme.vars.fontSize.lg,
       '--Tooltip-arrowSize': '10px',
-      padding: theme.spacing(0.625, 0.75),
-      fontSize: theme.vars.fontSize.sm,
+      padding: theme.spacing(0.5, 0.75),
     }),
     ...(ownerState.size === 'lg' && {
-      '--Icon-fontSize': '1.25rem',
+      '--Icon-fontSize': theme.vars.fontSize.xl,
       '--Tooltip-arrowSize': '12px',
       padding: theme.spacing(0.75, 1),
-      fontSize: theme.vars.fontSize.md,
     }),
     zIndex: theme.vars.zIndex.tooltip,
-    pointerEvents: 'none',
-    borderRadius: theme.vars.radius.xs,
+    borderRadius: theme.vars.radius.sm,
     boxShadow: theme.shadow.sm,
-    fontFamily: theme.vars.fontFamily.body,
-    fontWeight: theme.vars.fontWeight.md,
-    lineHeight: theme.vars.lineHeight.sm,
     wordWrap: 'break-word',
     position: 'relative',
-    ...(!ownerState.disableInteractive && {
-      pointerEvents: 'auto',
-    }),
-    ...(!ownerState.open && {
+    ...(ownerState.disableInteractive && {
       pointerEvents: 'none',
     }),
+    ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
     ...variantStyle,
     ...(!variantStyle.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
@@ -677,7 +669,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

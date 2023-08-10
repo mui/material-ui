@@ -82,7 +82,7 @@ export default function DribbbleShot() {
           </Box>
         </CardCover>
       </Box>
-      <Box sx={{ display: 'flex', gap: 1, mt: 1.5, alignItems: 'center' }}>
+      <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <Avatar
           src="https://images.unsplash.com/profile-1502669002421-a8d274ad2897?dpr=2&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff"
           size="sm"
@@ -105,7 +105,7 @@ export default function DribbbleShot() {
         </Chip>
         <Link
           href="#dribbble-shot"
-          level="body3"
+          level="body-xs"
           underline="none"
           startDecorator={<Favorite />}
           sx={{
@@ -119,7 +119,7 @@ export default function DribbbleShot() {
         </Link>
         <Link
           href="#dribbble-shot"
-          level="body3"
+          level="body-xs"
           underline="none"
           startDecorator={<Visibility />}
           sx={{

@@ -1,7 +1,7 @@
 {
   "props": {
     "active": { "type": { "name": "bool" }, "default": "false" },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "completed": { "type": { "name": "bool" }, "default": "false" },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" } },
@@ -9,10 +9,15 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "StepIcon",
+  "imports": [
+    "import StepIcon from '@mui/material/StepIcon';",
+    "import { StepIcon } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "text", "active", "completed", "error"],
     "globalClasses": { "active": "Mui-active", "completed": "Mui-completed", "error": "Mui-error" },

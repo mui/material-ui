@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Table component
 components: Table
 githubLabel: 'component: table'
@@ -161,12 +161,14 @@ declare module '@mui/joy/Table' {
 }
 ```
 
-### Sticky header
+### Sticky header and footer
 
-Set the `stickyHeader` prop to true to make the header follow the user as they scroll down the page.
+Set the `stickyHeader` to true to always stick the header at the top as users scroll the table.
+
+Set the `stickyFooter` to true to always stick the footer at the bottom of the table.
 
 :::success
-For `stickyHeader` to work correctly, the Table must be a child of a fixed-height element with overflow `auto` (or `scroll`).
+For `stickyHeader` and `stickyFooter` to work correctly, the Table must be a child of a fixed-height element with overflow `auto` (or `scroll`).
 We recommend wrapping your Table with [Sheet](/joy-ui/react-sheet/) for this purpose.
 See [usage with Sheet](#usage-with-sheet) to learn more.
 :::
@@ -281,6 +283,6 @@ Use `theme.variants.*` to apply global variant styles to the Table.
 
 ### Scrolling shadows
 
-Inspired by this article from Lea Verou on [CSS scrolling shadows](https://lea.verou.me/2012/04/background-attachment-local/), the shadows appear and hide when scrolling on the Table.
+Inspired by this article from Lea Verou on [CSS scrolling shadows](https://lea.verou.me/blog/2012/04/background-attachment-local/), the shadows appear and hide when scrolling on the Table.
 
 {{"demo": "TableScrollingShadows.js"}}

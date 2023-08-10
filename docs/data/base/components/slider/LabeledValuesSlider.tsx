@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
-import Slider, { sliderClasses } from '@mui/base/Slider';
+import { Slider, sliderClasses } from '@mui/base/Slider';
 
 export default function LabeledValuesSlider() {
   return (
@@ -47,7 +47,7 @@ const grey = {
 
 const StyledSlider = styled(Slider)(
   ({ theme }) => `
-  color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
+  color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 6px;
   width: 100%;
   padding: 16px 0;
@@ -59,7 +59,7 @@ const StyledSlider = styled(Slider)(
   &:hover {
     opacity: 1;
   }
-  &.${sliderClasses.disabled} { 
+  &.${sliderClasses.disabled} {
     pointer-events: none;
     cursor: default;
     color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};
@@ -71,8 +71,7 @@ const StyledSlider = styled(Slider)(
     width: 100%;
     height: 4px;
     border-radius: 2px;
-    background-color: currentColor;
-    opacity: 0.4;
+    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
   }
   & .${sliderClasses.track} {
     display: block;
@@ -100,6 +99,9 @@ const StyledSlider = styled(Slider)(
       )};
     }
     & .label {
+        font-family: IBM Plex Sans;
+        font-weight: 600;
+        font-size: 14px;
         background: unset;
         background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
         width: 32px;

@@ -1,7 +1,7 @@
 const childProcess = require('child_process');
+const path = require('path');
 const { chunk } = require('lodash');
 const glob = require('fast-glob');
-const path = require('path');
 const { promisify } = require('util');
 
 const exec = promisify(childProcess.exec);

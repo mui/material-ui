@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import NotchedOutline from './NotchedOutline';
 import useFormControl from '../FormControl/useFormControl';
 import formControlState from '../FormControl/formControlState';
@@ -153,7 +154,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['required'],
+    states: ['color', 'disabled', 'error', 'focused', 'hiddenLabel', 'size', 'required'],
   });
 
   const ownerState = {

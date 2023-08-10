@@ -15,7 +15,7 @@ function clampAvatars(avatars, options = { max: 5 }) {
   return { avatars: avatars.slice(0, maxAvatars).reverse(), surplus };
 }
 
-export default function GroupedAvatars() {
+export default function MaxAndTotalAvatars() {
   const dataFromTheServer = {
     people: [
       {
@@ -46,7 +46,6 @@ export default function GroupedAvatars() {
       {avatars.map((avatar) => (
         <Avatar key={avatar.alt} {...avatar} />
       ))}
-
       {!!surplus && <Avatar>+{surplus}</Avatar>}
     </AvatarGroup>
   );

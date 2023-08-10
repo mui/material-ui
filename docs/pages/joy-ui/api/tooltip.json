@@ -5,9 +5,10 @@
     "color": {
       "type": {
         "name": "enum",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
+        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
-      "default": "'neutral'"
+      "default": "'neutral'",
+      "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
     "describeChild": { "type": { "name": "bool" }, "default": "false" },
@@ -34,8 +35,20 @@
         "description": "Array&lt;{ data?: object, effect?: func, enabled?: bool, fn?: func, name?: any, options?: object, phase?: 'afterMain'<br>&#124;&nbsp;'afterRead'<br>&#124;&nbsp;'afterWrite'<br>&#124;&nbsp;'beforeMain'<br>&#124;&nbsp;'beforeRead'<br>&#124;&nbsp;'beforeWrite'<br>&#124;&nbsp;'main'<br>&#124;&nbsp;'read'<br>&#124;&nbsp;'write', requires?: Array&lt;string&gt;, requiresIfExists?: Array&lt;string&gt; }&gt;"
       }
     },
-    "onClose": { "type": { "name": "func" } },
-    "onOpen": { "type": { "name": "func" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent) => void",
+        "describedArgs": ["event"]
+      }
+    },
+    "onOpen": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "open": { "type": { "name": "bool" } },
     "placement": {
       "type": {
@@ -46,7 +59,8 @@
     },
     "size": {
       "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },
-      "default": "'md'"
+      "default": "'md'",
+      "additionalInfo": { "joy-size": true }
     },
     "slotProps": {
       "type": {
@@ -57,13 +71,15 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ arrow?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "title": { "type": { "name": "node" } },
     "variant": {
@@ -71,10 +87,12 @@
         "name": "enum",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'"
       },
-      "default": "'solid'"
+      "default": "'solid'",
+      "additionalInfo": { "joy-variant": true }
     }
   },
   "name": "Tooltip",
+  "imports": ["import Tooltip from '@mui/joy/Tooltip';", "import { Tooltip } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
@@ -94,7 +112,6 @@
     "classes": [
       "colorContext",
       "colorDanger",
-      "colorInfo",
       "colorNeutral",
       "colorPrimary",
       "colorSuccess",

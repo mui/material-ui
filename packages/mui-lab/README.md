@@ -8,7 +8,7 @@ Install the package in your project directory with:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 // with npm
 npm install @mui/lab
 
@@ -21,7 +21,7 @@ If you are not already using them in your project, you can install with:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 // with npm
 npm install @mui/material @emotion/react @emotion/styled
 

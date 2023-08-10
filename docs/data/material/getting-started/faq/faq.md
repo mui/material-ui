@@ -12,7 +12,7 @@ There are many ways to support MUI:
   Follow us on [Twitter](https://twitter.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
-  [Stack Overflow](https://stackoverflow.com/questions/tagged/mui).
+  [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**.
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui/material-ui/issues/new).
@@ -149,95 +149,6 @@ The ref is forwarded to the root element.
 
 indicating that you can access the DOM element with a ref.
 
-## I have several instances of styles on the page
-
-If you are seeing a warning message in the console like the one below, you probably have several instances of `@mui/styles` initialized on the page.
-
-:::warning
-It looks like there are several instances of `@mui/styles` initialized in this application.
-This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
-:::
-
-### Possible reasons
-
-There are several common reasons for this to happen:
-
-- You have another `@mui/styles` library somewhere in your dependencies.
-- You have a monorepo structure for your project (e.g, lerna, yarn workspaces) and `@mui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
-- You have several applications that are using `@mui/styles` running on the same page (e.g., several entry points in webpack are loaded on the same page).
-
-### Duplicated module in node_modules
-
-If you think that the issue may be in the duplication of the @mui/styles module somewhere in your dependencies, there are several ways to check this.
-You can use `npm ls @mui/styles`, `yarn list @mui/styles` or `find -L ./node_modules | grep /@mui/styles/package.json` commands in your application folder.
-
-If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @mui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
-
-If you identified that duplication is the issue that you are encountering there are several things you can try to solve it:
-
-If you are using npm you can try running `npm dedupe`.
-This command searches the local dependencies and tries to simplify the structure by moving common dependencies further up the tree.
-
-If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @mui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
-
-```diff
- resolve: {
-+  alias: {
-+    '@mui/styles': path.resolve(appFolder, 'node_modules', '@mui/styles'),
-+  },
- },
-```
-
-### Usage with Lerna
-
-One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
-
-```sh
-lerna bootstrap --hoist
-```
-
-Alternatively, you can remove @mui/styles from your package.json file and hoist it manually to your top-level package.json file.
-
-Example of a package.json file in a Lerna root folder
-
-```json
-{
-  "name": "my-monorepo",
-  "devDependencies": {
-    "lerna": "latest"
-  },
-  "dependencies": {
-    "@mui/styles": "^4.0.0"
-  },
-  "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "clean": "lerna clean",
-    "start": "lerna run start",
-    "build": "lerna run build"
-  }
-}
-```
-
-### Running multiple applications on one page
-
-If you have several applications running on one page, consider using one @mui/styles module for all of them. If you are using webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @mui/styles module:
-
-```diff
-  module.exports = {
-    entry: {
-+     vendor: ["@mui/styles"],
-      app1: "./src/app.1.js",
-      app2: "./src/app.2.js",
-    },
-    plugins: [
-+     new webpack.optimize.CommonsChunkPlugin({
-+       name: "vendor",
-+       minChunks: Infinity,
-+     }),
-    ]
-  }
-```
-
 ## My App doesn't render correctly on the server
 
 If it doesn't work, in 99% of cases it's a configuration issue.
@@ -254,7 +165,7 @@ page](/material-ui/customization/theming/) to learn about theme customization.
 
 ## Why does component X require a DOM node in a prop instead of a ref object?
 
-Components like the [Portal](/base/api/portal/#props) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively.
+Components like the [Portal](/base-ui/react-portal/components-api/) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively.
 It seems convenient to simply pass a ref object in those props and let Material UI access the current value.
 
 This works in a simple scenario:
@@ -357,7 +268,66 @@ return (
 
 If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled/#how-to-use-components-selector-api) docs page for instructions on how you can fix this.
 
-## [v4] Why aren't my components rendering correctly in production builds?
+## [legacy] I have several instances of styles on the page
+
+If you are seeing a warning message in the console like the one below, you probably have several instances of `@mui/styles` initialized on the page.
+
+:::warning
+It looks like there are several instances of `@mui/styles` initialized in this application.
+This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
+:::
+
+### Possible reasons
+
+There are several common reasons for this to happen:
+
+- You have another `@mui/styles` library somewhere in your dependencies.
+- You have a monorepo structure for your project (e.g, lerna, yarn workspaces) and `@mui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
+- You have several applications that are using `@mui/styles` running on the same page (e.g., several entry points in webpack are loaded on the same page).
+
+### Duplicated module in node_modules
+
+If you think that the issue may be in the duplication of the @mui/styles module somewhere in your dependencies, there are several ways to check this.
+You can use `npm ls @mui/styles`, `yarn list @mui/styles` or `find -L ./node_modules | grep /@mui/styles/package.json` commands in your application folder.
+
+If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @mui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
+
+If you identified that duplication is the issue that you are encountering there are several things you can try to solve it:
+
+If you are using npm you can try running `npm dedupe`.
+This command searches the local dependencies and tries to simplify the structure by moving common dependencies further up the tree.
+
+If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @mui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
+
+```diff
+ resolve: {
++  alias: {
++    '@mui/styles': path.resolve(appFolder, 'node_modules', '@mui/styles'),
++  },
+ },
+```
+
+### Running multiple applications on one page
+
+If you have several applications running on one page, consider using one @mui/styles module for all of them. If you are using webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @mui/styles module:
+
+```diff
+  module.exports = {
+    entry: {
++     vendor: ['@mui/styles'],
+      app1: './src/app.1.js',
+      app2: './src/app.2.js',
+    },
+    plugins: [
++     new webpack.optimize.CommonsChunkPlugin({
++       name: 'vendor',
++       minChunks: Infinity,
++     }),
+    ]
+  }
+```
+
+## [legacy] Why aren't my components rendering correctly in production builds?
 
 The #1 reason this happens is likely due to class name conflicts once your code is in a production bundle.
 For Material UI to work, the `className` values of all components on a page must be generated by a single instance of the [class name generator](/system/styles/advanced/#class-names).
@@ -366,7 +336,7 @@ To correct this issue, all components on the page need to be initialized such th
 
 You could end up accidentally using two class name generators in a variety of scenarios:
 
-- You accidentally **bundle** two versions of Material UI. You might have a dependency not correctly setting Material UI as a peer dependency.
+- You accidentally **bundle** two versions of `@mui/styles`. You might have a dependency not correctly setting Material UI as a peer dependency.
 - You are using `StylesProvider` for a **subset** of your React tree.
 - You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
 
@@ -376,7 +346,7 @@ If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plu
 
 Overall, it's simple to recover from this problem by wrapping each Material UI application with [`StylesProvider`](/system/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
-### [v4] CSS works only on first load and goes missing
+### [legacy] CSS works only on first load and goes missing
 
 The CSS is only generated on the first load of the page.
 Then, the CSS is missing on the server for consecutive requests.
@@ -403,7 +373,7 @@ Example of fix:
    const html = ReactDOMServer.renderToString(
 ```
 
-### [v4] React class name hydration mismatch
+### [legacy] React class name hydration mismatch
 
 :::warning
 **⚠️ Warning**
@@ -441,7 +411,7 @@ This generator needs to behave identically on the server and on the client. For 
 
 - You need to verify that your client and server are running the **exactly the same version** of Material UI.
   It is possible that a mismatch of even minor versions can cause styling problems.
-  To check version numbers, run `npm list @mui/material` in the environment where you build your application and also in your deployment environment.
+  To check version numbers, run `npm list @mui/styles` in the environment where you build your application and also in your deployment environment.
 
   You can also ensure the same version in different environments by specifying a specific Material UI version in the dependencies of your package.json.
 
@@ -450,8 +420,8 @@ This generator needs to behave identically on the server and on the client. For 
   ```diff
     "dependencies": {
       ...
-  -   "@mui/material": "^4.0.0",
-  +   "@mui/material": "4.0.0",
+  -   "@mui/styles": "^5.0.0",
+  +   "@mui/styles": "5.0.0",
       ...
     },
   ```

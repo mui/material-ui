@@ -1,2 +1,2 @@
-export { default } from './ClickAwayListener';
+'use client';
 export * from './ClickAwayListener';
