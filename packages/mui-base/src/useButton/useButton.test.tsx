@@ -170,7 +170,7 @@ describe('useButton', () => {
         expect(handleClickExternal.callCount).to.equal(0);
       });
 
-      it('handles onFocusVisible and removes it from props', () => {
+      it('handles onFocusVisible and does not include it in the root props', () => {
         interface WithFocusVisibleHandler {
           onFocusVisible: React.FocusEventHandler;
         }
