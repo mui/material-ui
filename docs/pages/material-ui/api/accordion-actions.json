@@ -12,6 +12,10 @@
     }
   },
   "name": "AccordionActions",
+  "imports": [
+    "import AccordionActions from '@mui/material/AccordionActions';",
+    "import { AccordionActions } from '@mui/material';"
+  ],
   "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiAccordionActions" },
   "spread": true,
   "themeDefaultProps": true,

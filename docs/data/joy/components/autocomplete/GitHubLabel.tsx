@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Popper from '@mui/base/Popper';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Popper } from '@mui/base/Popper';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';

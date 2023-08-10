@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import composeClasses from '../composeClasses';
-import useSwitch from '../useSwitch';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { useSwitch } from '../useSwitch';
 import {
   SwitchProps,
   SwitchOwnerState,
@@ -145,6 +145,10 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   checked: PropTypes.bool,
   /**
+   * Class name applied to the root element.
+   */
+  className: PropTypes.string,
+  /**
    * The default checked state. Use when the component is not controlled.
    */
   defaultChecked: PropTypes.bool,
@@ -203,4 +207,4 @@ Switch.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Switch;
+export { Switch };

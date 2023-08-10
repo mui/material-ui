@@ -59,6 +59,10 @@
     "transition": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Popper",
+  "imports": [
+    "import Popper from '@mui/material/Popper';",
+    "import { Popper } from '@mui/material';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "themeDefaultProps": false,

@@ -31,6 +31,10 @@
     }
   },
   "name": "Breadcrumbs",
+  "imports": [
+    "import Breadcrumbs from '@mui/material/Breadcrumbs';",
+    "import { Breadcrumbs } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "ol", "li", "separator"],
     "globalClasses": {},

@@ -60,6 +60,10 @@
     }
   },
   "name": "PaginationItem",
+  "imports": [
+    "import PaginationItem from '@mui/material/PaginationItem';",
+    "import { PaginationItem } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

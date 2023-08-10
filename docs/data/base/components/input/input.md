@@ -29,7 +29,7 @@ It can also be transformed into a `<textarea>` as needed.
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Input from '@mui/base/Input';
+import { Input } from '@mui/base/Input';
 
 export default function MyApp() {
   return <Input />;
@@ -91,7 +91,7 @@ The same applies for props specific to custom primitive elements:
 ## Hook
 
 ```js
-import useInput from '@mui/base/useInput';
+import { useInput } from '@mui/base/useInput';
 ```
 
 The `useInput` hook lets you apply the functionality of an input to a fully custom component.

@@ -27,6 +27,7 @@
     }
   },
   "name": "Icon",
+  "imports": ["import Icon from '@mui/material/Icon';", "import { Icon } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

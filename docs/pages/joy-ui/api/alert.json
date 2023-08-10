@@ -53,6 +53,7 @@
     }
   },
   "name": "Alert",
+  "imports": ["import Alert from '@mui/joy/Alert';", "import { Alert } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

@@ -22,6 +22,10 @@
     }
   },
   "name": "ListSubheader",
+  "imports": [
+    "import ListSubheader from '@mui/material/ListSubheader';",
+    "import { ListSubheader } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "colorPrimary", "colorInherit", "gutters", "inset", "sticky"],
     "globalClasses": {},

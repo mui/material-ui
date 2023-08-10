@@ -57,6 +57,7 @@ module.exports = withDocsInfra({
             '@mui/x-date-pickers',
             '@mui/x-date-pickers-pro',
             '@mui/x-data-grid-generator',
+            '@mui/x-charts',
             '@mui/x-tree-view',
             '@mui/x-license-pro',
           ].some((dep) => request.startsWith(dep));

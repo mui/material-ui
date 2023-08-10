@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
-import Slider, { sliderClasses } from '@mui/base/Slider';
+import { Slider, sliderClasses } from '@mui/base/Slider';
 
 export default function UnstyledSliderIntroduction() {
   return (

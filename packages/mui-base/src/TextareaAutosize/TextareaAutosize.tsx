@@ -312,4 +312,4 @@ TextareaAutosize.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default TextareaAutosize;
+export { TextareaAutosize };

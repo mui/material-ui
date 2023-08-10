@@ -12,12 +12,7 @@ import MenuButton from '@mui/joy/MenuButton';
 const MenuBarButton = React.forwardRef(
   ({ children, menu, open, onOpen, onKeyDown, ...props }, ref) => {
     return (
-      <Dropdown
-        open={open}
-        onOpenChange={() => {
-          onOpen();
-        }}
-      >
+      <Dropdown open={open} onOpenChange={onOpen}>
         <MenuButton
           {...props}
           slots={{ root: ListItemButton }}
@@ -148,11 +143,8 @@ export default function MenuToolbarExample() {
           }}
           menu={
             <Menu
-              onClose={(event) => {
+              onClose={() => {
                 menus.current[0]?.focus();
-                if (event && event.relatedTarget !== menus.current[0]) {
-                  setMenuIndex(null);
-                }
               }}
             >
               <ListItem nested>
@@ -196,11 +188,8 @@ export default function MenuToolbarExample() {
           }}
           menu={
             <Menu
-              onClose={(event) => {
+              onClose={() => {
                 menus.current[1]?.focus();
-                if (event && event.relatedTarget !== menus.current[1]) {
-                  setMenuIndex(null);
-                }
               }}
             >
               <ListItem nested>
@@ -240,11 +229,8 @@ export default function MenuToolbarExample() {
           }}
           menu={
             <Menu
-              onClose={(event) => {
+              onClose={() => {
                 menus.current[2]?.focus();
-                if (event && event.relatedTarget !== menus.current[2]) {
-                  setMenuIndex(null);
-                }
               }}
             >
               <MenuItem {...itemProps}>Select All {renderShortcut('⌘ A')}</MenuItem>

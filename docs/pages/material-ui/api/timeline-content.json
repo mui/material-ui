@@ -11,6 +11,10 @@
     }
   },
   "name": "TimelineContent",
+  "imports": [
+    "import TimelineContent from '@mui/lab/TimelineContent';",
+    "import { TimelineContent } from '@mui/lab';"
+  ],
   "styles": {
     "classes": [
       "root",

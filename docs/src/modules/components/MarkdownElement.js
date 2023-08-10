@@ -80,6 +80,7 @@ const Root = styled('div')(
     '& h2': {
       ...lightTheme.typography.h5,
       fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
+      fontSize: theme.typography.pxToRem(26),
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '40px 0 4px',
@@ -87,16 +88,17 @@ const Root = styled('div')(
     '& h3': {
       ...lightTheme.typography.h6,
       fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
+      fontSize: theme.typography.pxToRem(20),
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
-      margin: '24px 0 8px',
+      margin: '24px 0 4px',
     },
     '& h4': {
       ...lightTheme.typography.subtitle1,
       fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
-      margin: '24px 0 8px',
+      margin: '20px 0 6px',
     },
     '& h5': {
       ...lightTheme.typography.subtitle2,
@@ -567,7 +569,7 @@ const Root = styled('div')(
         '&.MuiCallout-info': {
           color: `var(--muidocs-palette-primary-50, ${darkTheme.palette.primary[50]})`,
           backgroundColor: alpha(darkTheme.palette.grey[700], 0.2),
-          borderColor: `var(--muidocs-palette-primary-800, ${darkTheme.palette.grey[800]})`,
+          borderColor: `var(--muidocs-palette-grey-800, ${darkTheme.palette.grey[800]})`,
           '& strong': {
             color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
           },

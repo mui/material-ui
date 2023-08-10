@@ -5,11 +5,11 @@ import { refType } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { MenuOwnerState, MenuProps, MenuRootSlotProps, MenuTypeMap } from './Menu.types';
 import { getMenuUtilityClass } from './menuClasses';
-import useMenu from '../useMenu';
-import MenuProvider from '../useMenu/MenuProvider';
-import composeClasses from '../composeClasses';
-import Popper from '../Popper';
-import useSlotProps from '../utils/useSlotProps';
+import { useMenu } from '../useMenu';
+import { MenuProvider } from '../useMenu/MenuProvider';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { Popper } from '../Popper';
+import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { WithOptionalOwnerState } from '../utils';
 import { ListActionTypes } from '../useList';
@@ -112,6 +112,10 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * Function called when the items displayed in the menu change.
    */
   onItemsChange: PropTypes.func,
@@ -134,4 +138,4 @@ Menu.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Menu;
+export { Menu };

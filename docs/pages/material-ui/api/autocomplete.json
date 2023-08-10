@@ -179,6 +179,10 @@
     "value": { "type": { "name": "custom", "description": "any" } }
   },
   "name": "Autocomplete",
+  "imports": [
+    "import Autocomplete from '@mui/material/Autocomplete';",
+    "import { Autocomplete } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
