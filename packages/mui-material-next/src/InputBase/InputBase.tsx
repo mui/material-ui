@@ -5,7 +5,7 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import {
   EventHandlers,
   isHostComponent,
-  // TextareaAutosize,
+  TextareaAutosize,
   unstable_composeClasses as composeClasses,
   useSlotProps,
   WithOptionalOwnerState,
@@ -23,10 +23,10 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { isFilled } from './utils';
 import {
+  InputBaseInputSlotProps,
   InputBaseOwnerState,
   InputBaseProps,
   InputBaseRootSlotProps,
-  InputBaseInputSlotProps,
   InputBaseTypeMap,
 } from './InputBase.types';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
@@ -383,36 +383,6 @@ const InputBase = React.forwardRef(function InputBase<
     }
   };
 
-  /*
-  let InputComponent = inputComponent;
-  let inputProps = inputPropsProp;
-   if (multiline && InputComponent === 'input') {
-    if (rows) {
-      if (process.env.NODE_ENV !== 'production') {
-        if (minRows || maxRows) {
-          console.warn(
-            'MUI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
-          );
-        }
-      }
-      inputProps = {
-        type: undefined,
-        minRows: rows,
-        maxRows: rows,
-        ...inputProps,
-      };
-    } else {
-      inputProps = {
-        type: undefined,
-        maxRows,
-        minRows,
-        ...inputProps,
-      };
-    }
-     InputComponent = TextareaAutosize;
-  }
-  */
-
   React.useEffect(() => {
     if (muiFormControl) {
       muiFormControl.setAdornedStart(Boolean(startAdornment));
@@ -486,8 +456,13 @@ const InputBase = React.forwardRef(function InputBase<
     className: [classes.root, className],
   });
 
-  const InputComponent = multiline ? slots.textarea ?? 'textarea' : slots.input ?? InputBaseInput;
-  const inputProps: WithOptionalOwnerState<InputBaseInputSlotProps> = useSlotProps({
+  const InputComponent = multiline
+    ? slots.textarea ?? TextareaAutosize
+    : slots.input ?? InputBaseInput;
+  const {
+    ownerState: inputOwnerState,
+    ...otherInputProps
+  }: WithOptionalOwnerState<InputBaseInputSlotProps> = useSlotProps({
     elementType: InputComponent,
     getSlotProps: (otherHandlers: EventHandlers) => {
       return getInputProps({
@@ -508,6 +483,18 @@ const InputBase = React.forwardRef(function InputBase<
     className: classes.input,
   });
 
+  if (process.env.NODE_ENV !== 'production') {
+    if (multiline) {
+      if (rows) {
+        if (minRows || maxRows) {
+          console.warn(
+            'MUI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
+          );
+        }
+      }
+    }
+  }
+
   const handleAutoFill = (event: React.AnimationEvent) => {
     // Provide a fake value as Chrome might not let you access it for security reasons.
     checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef : { value: 'x' });
@@ -519,6 +506,18 @@ const InputBase = React.forwardRef(function InputBase<
     checkDirty(inputRef);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  let inputProps: WithOptionalOwnerState<InputBaseInputSlotProps> = {
+    ...otherInputProps,
+  };
+
+  // manually stop passing ownerState to TextareaAutosize
+  if (InputComponent !== TextareaAutosize && !isHostComponent(InputComponent)) {
+    inputProps = {
+      ...inputProps,
+      ownerState: inputOwnerState,
+    };
+  }
 
   return (
     <React.Fragment>
