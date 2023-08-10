@@ -177,7 +177,7 @@ export default function PaletteThemeViewer() {
                     color="neutral"
                     textColor="inherit"
                     fontSize="sm"
-                    fontWeight={500}
+                    fontWeight="md"
                     textAlign="left"
                     onClick={() => copy(token)}
                     endDecorator={
