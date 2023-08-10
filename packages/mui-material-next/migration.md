@@ -106,18 +106,6 @@ The breaking changes in this section apply to the following components:
 
 So the examples below are interchangeable for these components.
 
-### Focus on disabled state
-
-When the root component is disabled, it no longer receives `tabIndex = -1`, which means it won't be focusable.
-If you need your button to be focusable when disabled, you can use the `focusableWhenDisabled` prop:
-
-```diff
--<Button>
-+<Button focusableWhenDisabled>
-   Button
- </Button>
-```
-
 ### Prevent default on `key-up` and `key-down` events
 
 If you need to prevent default on a `key-up` and/or `key-down` event, then besides calling `preventDefault` you'll need to set `event.defaultMuiPrevented` to `true` as follows:
@@ -137,6 +125,8 @@ If you need to prevent default on a `key-up` and/or `key-down` event, then besid
    Button
  </Button>
 ```
+
+This is so the default is also prevented when the `ButtonBase` root is not a native button, for example, when the root element used is a `span`.
 
 ## Slider
 
