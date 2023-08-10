@@ -171,9 +171,53 @@ describe('<InputBase />', () => {
     });
   });
 
-  // TODO: inputComponent prop is replaced by slots.input
-  describe.skip('prop: inputComponent', () => {
-    it('should accept any html component', () => {
+  describe('errors', () => {
+    it("throws on change if the target isn't mocked", () => {
+      /**
+       * This component simulates a custom input component that hides the inner
+       * input value for security reasons e.g. react-stripe-element.
+       *
+       * A ref is exposed to trigger a change event instead of using fireEvent.change
+       */
+      const BadInputComponent = React.forwardRef(function BadInputComponent(props, ref) {
+        const { onChange } = props;
+
+        // simulates const handleChange = () => onChange({}) and passing that
+        // handler to the onChange prop of `input`
+        React.useImperativeHandle(ref, () => () => onChange({}));
+
+        return <input />;
+      });
+
+      BadInputComponent.propTypes = {
+        onChange: PropTypes.func.isRequired,
+      };
+
+      const triggerChangeRef = React.createRef();
+
+      expect(() => {
+        render(
+          <InputBase
+            slots={{ input: BadInputComponent }}
+            slotProps={{
+              input: {
+                ref: triggerChangeRef,
+              },
+            }}
+          />,
+        );
+      }).toErrorDev([
+        'MUI: You have provided a `slots.input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
+        // React 18 Strict Effects run mount effects twice
+        React.version.startsWith('18') &&
+          'MUI: You have provided a `slots.input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
+      ]);
+    });
+  });
+
+  describe('prop: slots', () => {
+    // TODO: delete, covered by describeConformance
+    xit('should accept any html component', () => {
       const { getByTestId } = render(
         <InputBase inputComponent="span" inputProps={{ 'data-testid': 'input-component' }} />,
       );
@@ -184,15 +228,18 @@ describe('<InputBase />', () => {
       let injectedProps;
       const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
         injectedProps = props;
-        return <input ref={ref} {...props} />;
+        const { ownerState, ...other } = props;
+        return <input ref={ref} {...other} />;
       });
 
-      render(<InputBase inputComponent={MyInputBase} />);
+      render(<InputBase slots={{ input: MyInputBase }} />);
+
       expect(typeof injectedProps.onBlur).to.equal('function');
       expect(typeof injectedProps.onFocus).to.equal('function');
     });
 
-    describe('target mock implementations', () => {
+    // TODO: requires material-next/FormControl
+    describe.skip('target mock implementations', () => {
       it('can just mock the value', () => {
         const MockedValue = React.forwardRef(function MockedValue(props, ref) {
           const { onChange } = props;
@@ -242,43 +289,6 @@ describe('<InputBase />', () => {
 
         fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
         expect(getByTestId('filled')).to.have.text('filled: true');
-      });
-    });
-
-    describe('errors', () => {
-      it("throws on change if the target isn't mocked", () => {
-        /**
-         * This component simulates a custom input component that hides the inner
-         * input value for security reasons e.g. react-stripe-element.
-         *
-         * A ref is exposed to trigger a change event instead of using fireEvent.change
-         */
-        const BadInputComponent = React.forwardRef(function BadInputComponent(props, ref) {
-          const { onChange } = props;
-
-          // simulates const handleChange = () => onChange({}) and passing that
-          // handler to the onChange prop of `input`
-          React.useImperativeHandle(ref, () => () => onChange({}));
-
-          return <input />;
-        });
-
-        BadInputComponent.propTypes = {
-          onChange: PropTypes.func.isRequired,
-        };
-
-        const triggerChangeRef = React.createRef();
-
-        expect(() => {
-          render(
-            <InputBase inputProps={{ ref: triggerChangeRef }} inputComponent={BadInputComponent} />,
-          );
-        }).toErrorDev([
-          'MUI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
-          // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
-            'MUI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
-        ]);
       });
     });
   });
@@ -521,10 +531,11 @@ describe('<InputBase />', () => {
     });
   });
 
-  // TODO: replaced by slotProps.input
-  describe.skip('prop: inputProps', () => {
+  describe('prop: slotProps', () => {
     it('should apply the props on the input', () => {
-      const { container } = render(<InputBase inputProps={{ className: 'foo', maxLength: 5 }} />);
+      const { container } = render(
+        <InputBase slotProps={{ input: { className: 'foo', maxLength: 5 } }} />,
+      );
       const input = container.querySelector('input');
       expect(input).to.have.class('foo');
       expect(input).to.have.class(classes.input);
@@ -533,12 +544,12 @@ describe('<InputBase />', () => {
 
     it('should be able to get a ref', () => {
       const inputRef = React.createRef();
-      const { container } = render(<InputBase inputProps={{ ref: inputRef }} />);
+      const { container } = render(<InputBase slotProps={{ input: { ref: inputRef } }} />);
       expect(inputRef.current).to.equal(container.querySelector('input'));
     });
 
     it('should not repeat the same classname', () => {
-      const { container } = render(<InputBase inputProps={{ className: 'foo' }} />);
+      const { container } = render(<InputBase slotProps={{ input: { className: 'foo' } }} />);
       const input = container.querySelector('input');
       const matches = input.className.match(/foo/g);
       expect(input).to.have.class('foo');
@@ -546,14 +557,13 @@ describe('<InputBase />', () => {
     });
   });
 
-  // TODO: replaced by slots and slotProps
-  describe.skip('prop: inputComponent with prop: inputProps', () => {
+  describe('prop: slots and slotProps', () => {
     it('should call onChange inputProp callback with all params sent from custom inputComponent', () => {
       const INPUT_VALUE = 'material';
       const OUTPUT_VALUE = 'test';
 
       const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
-        const { onChange, ...other } = props;
+        const { onChange, ownerState, ...other } = props;
 
         const handleChange = (e) => {
           onChange(e.target.value, OUTPUT_VALUE);
@@ -572,7 +582,14 @@ describe('<InputBase />', () => {
       }
 
       const { getByRole } = render(
-        <InputBase inputComponent={MyInputBase} inputProps={{ onChange: parentHandleChange }} />,
+        <InputBase
+          slots={{ input: MyInputBase }}
+          slotProps={{
+            input: {
+              onChange: parentHandleChange,
+            },
+          }}
+        />,
       );
       const textbox = getByRole('textbox');
       fireEvent.change(textbox, { target: { value: INPUT_VALUE } });
