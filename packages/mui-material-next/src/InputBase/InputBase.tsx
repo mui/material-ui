@@ -99,29 +99,35 @@ export const InputBaseRoot = styled('div', {
       ownerState.hiddenLabel && styles.hiddenLabel,
     ];
   },
-})<{ ownerState: InputBaseOwnerState }>(({ theme, ownerState }) => ({
-  ...theme.typography.body1,
-  color: (theme.vars || theme).palette.text.primary,
-  lineHeight: '1.4375em', // 23px
-  boxSizing: 'border-box', // Prevent padding issue with fullWidth.
-  position: 'relative',
-  cursor: 'text',
-  display: 'inline-flex',
-  alignItems: 'center',
-  [`&.${inputBaseClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.text.disabled,
-    cursor: 'default',
-  },
-  ...(ownerState.multiline && {
-    padding: '4px 0 5px',
-    ...(ownerState.size === 'small' && {
-      paddingTop: 1,
+})<{ ownerState: InputBaseOwnerState }>(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+
+  return {
+    fontFamily: tokens.sys.typescale.body[ownerState.size || 'medium'].family,
+    fontWeight: tokens.sys.typescale.body[ownerState.size || 'medium'].weight,
+    letterSpacing: tokens.sys.typescale.body[ownerState.size || 'medium'].tracking,
+    color: tokens.palette.text.primary,
+    lineHeight: '1.4375em', // 23px
+    boxSizing: 'border-box', // Prevent padding issue with fullWidth.
+    position: 'relative',
+    cursor: 'text',
+    display: 'inline-flex',
+    alignItems: 'center',
+    [`&.${inputBaseClasses.disabled}`]: {
+      color: tokens.palette.text.disabled,
+      cursor: 'default',
+    },
+    ...(ownerState.multiline && {
+      padding: '4px 0 5px',
+      ...(ownerState.size === 'small' && {
+        paddingTop: 1,
+      }),
     }),
-  }),
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
-}));
+    ...(ownerState.fullWidth && {
+      width: '100%',
+    }),
+  };
+});
 
 export const InputBaseInput = styled('input', {
   name: 'MuiInputBase',
@@ -140,17 +146,11 @@ export const InputBaseInput = styled('input', {
     ];
   },
 })<{ ownerState: InputBaseOwnerState }>(({ theme, ownerState }) => {
-  // console.log(theme);
-  const light = theme.palette?.mode === 'light' || true;
+  const { vars: tokens } = theme;
+
   const placeholder = {
     color: 'currentColor',
-    ...(theme.vars
-      ? {
-          opacity: theme.vars.opacity.inputPlaceholder,
-        }
-      : {
-          opacity: light ? 0.42 : 0.5,
-        }),
+    opacity: tokens.opacity.inputPlaceholder,
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.shorter,
     }),
@@ -160,13 +160,9 @@ export const InputBaseInput = styled('input', {
     opacity: '0 !important',
   };
 
-  const placeholderVisible = theme.vars
-    ? {
-        opacity: theme.vars.opacity.inputPlaceholder,
-      }
-    : {
-        opacity: light ? 0.42 : 0.5,
-      };
+  const placeholderVisible = {
+    opacity: tokens.opacity.inputPlaceholder,
+  };
 
   return {
     font: 'inherit',
@@ -213,7 +209,7 @@ export const InputBaseInput = styled('input', {
     },
     [`&.${inputBaseClasses.disabled}`]: {
       opacity: 1, // Reset iOS opacity
-      WebkitTextFillColor: (theme.vars || theme).palette.text.disabled, // Fix opacity Safari bug
+      WebkitTextFillColor: tokens.palette.text.disabled, // Fix opacity Safari bug
     },
     '&:-webkit-autofill': {
       animationDuration: '5000s',
@@ -461,6 +457,7 @@ const InputBase = React.forwardRef(function InputBase<
   const InputComponent = multiline
     ? slots.textarea ?? TextareaAutosize
     : slots.input ?? InputBaseInput;
+
   const {
     ownerState: inputOwnerState,
     ...otherInputProps
