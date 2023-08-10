@@ -133,6 +133,7 @@ You can find additional information about other future developments in our [publ
 ## Feedback
 
 We are always happy to get feedback, so if you'd like to share your pain points and use cases, please leave your contact info with us through [this Google Form](https://forms.gle/vsBv6CLPz9h57xg8A).
-As usual, you're welcome to join the discussion by requesting or commenting on new features, or reporting bugs in our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose).
+As usual, you're welcome to request new features, report bugs and join the discussion in MUI X [GitHub repository](https://github.com/mui/mui-x/issues).
+If you haven't yet, join our growing community in the recently launched [MUI Discord server](https://mui.com/r/discord/).
 
 Cheers!
