@@ -56,8 +56,8 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)', // 1.5rem by default
-        '--CircularProgress-size': '24px',
-        '--CircularProgress-thickness': '3px',
+        '--CircularProgress-size': '20px',
+        '--CircularProgress-thickness': '2px',
         minWidth: 'var(--IconButton-size, 2.5rem)',
         minHeight: 'var(--IconButton-size, 2.5rem)',
         fontSize: theme.vars.fontSize.md,
@@ -65,8 +65,8 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       }),
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 3rem) / 1.714)', // 1.75rem by default
-        '--CircularProgress-size': '28px',
-        '--CircularProgress-thickness': '4px',
+        '--CircularProgress-size': '24px',
+        '--CircularProgress-thickness': '3px',
         minWidth: 'var(--IconButton-size, 3rem)',
         minHeight: 'var(--IconButton-size, 3rem)',
         fontSize: theme.vars.fontSize.lg,
@@ -138,7 +138,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color: colorProp = 'neutral',
     disabled: disabledProp,
     variant: variantProp = 'plain',
-    size: sizeProp = 'md',
+    size: sizeProp = 'sm',
     slots = {},
     slotProps = {},
     ...other
@@ -245,7 +245,7 @@ IconButton.propTypes /* remove-proptypes */ = {
   focusVisibleClassName: PropTypes.string,
   /**
    * The size of the component.
-   * @default 'md'
+   * @default 'sm'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),

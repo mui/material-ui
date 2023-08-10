@@ -113,8 +113,8 @@ export const getButtonStyles = ({
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': theme.vars.fontSize.xl,
-        '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
-        '--CircularProgress-thickness': '3px',
+        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '2px',
         '--Button-gap': '0.5rem',
         minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
@@ -123,8 +123,8 @@ export const getButtonStyles = ({
       }),
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': theme.vars.fontSize.xl2,
-        '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
-        '--CircularProgress-thickness': '4px',
+        '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '3px',
         '--Button-gap': '0.75rem',
         minHeight: 'var(--Button-minHeight, 3rem)',
         fontSize: theme.vars.fontSize.md,
@@ -196,7 +196,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     action,
     color: colorProp = 'primary',
     variant: variantProp = 'solid',
-    size: sizeProp = 'md',
+    size: sizeProp = 'sm',
     fullWidth = false,
     startDecorator,
     endDecorator,
@@ -385,7 +385,7 @@ Button.propTypes /* remove-proptypes */ = {
   loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
    * The size of the component.
-   * @default 'md'
+   * @default 'sm'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
