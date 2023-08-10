@@ -39,7 +39,7 @@
     "import ListSubheader from '@mui/joy/ListSubheader';",
     "import { ListSubheader } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiListSubheader" },
   "slots": [
     {
       "name": "root",

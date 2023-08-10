@@ -41,7 +41,7 @@
   },
   "name": "Modal",
   "imports": ["import Modal from '@mui/joy/Modal';", "import { Modal } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root", "backdrop"], "globalClasses": {}, "name": "MuiModal" },
   "slots": [
     {
       "name": "root",

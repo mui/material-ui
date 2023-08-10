@@ -63,7 +63,7 @@
   },
   "name": "Badge",
   "imports": ["import Badge from '@mui/joy/Badge';", "import { Badge } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiBadge" },
   "slots": [
     {
       "name": "root",

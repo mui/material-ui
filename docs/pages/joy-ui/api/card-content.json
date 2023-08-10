@@ -28,7 +28,7 @@
     "import CardContent from '@mui/joy/CardContent';",
     "import { CardContent } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCardContent" },
   "slots": [
     {
       "name": "root",
