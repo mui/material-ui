@@ -1,3 +1,5 @@
+import '@mui/zero-runtime/styles.css';
+
 import * as ReactDOMClient from 'react-dom/client';
 import * as React from 'react';
 

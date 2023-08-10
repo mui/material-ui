@@ -10,11 +10,13 @@ const Button = styled('button', {
     fontFamily: 'sans-serif',
     '--var-tag': 'h2',
     color: 'primary.main',
+    backgroundColor: ['primary.main', 'text.primary', 'background.paper'],
   }),
   {
     fontFamily: 'sans-serif',
     '--var-tag': 'h1',
-    color: (props: any) => (props.isRed ? 'red' : 'blue'),
+    // p: (props: any) => (props.isRed ? 10 : 20),
+    color: (props: any) => (props.isRed ? 'primary.main' : 'secondary.main'),
   },
 );
 
