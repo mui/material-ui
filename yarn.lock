@@ -198,7 +198,7 @@
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.22.9.tgz#71cdb00a1ce3a329ce4cbec3a44f9fef35669730"
   integrity sha512-5UamI7xkUcJ3i9qVDS+KFDEK8/7oJ55/sJMB1Ge7IEapr7KfdfV/HErR+koZwOfd+SgtFKOKRhRakdg++DcJpQ==
 
-"@babel/core@^7.12.3", "@babel/core@^7.13.16", "@babel/core@^7.22.10", "@babel/core@^7.7.5":
+"@babel/core@^7.12.3", "@babel/core@^7.13.16", "@babel/core@^7.22.10", "@babel/core@^7.22.9", "@babel/core@^7.7.5":
   version "7.22.10"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.22.10.tgz#aad442c7bcd1582252cb4576747ace35bc122f35"
   integrity sha512-fTmqbbUBAwCcre6zPzNngvsI0aNrPZe77AeqvDxWM9Nm+04RrJ3CAmGHA9f7lJQY6ZMhRztNemy4uslDxTX4Qw==
@@ -219,7 +219,7 @@
     json5 "^2.2.2"
     semver "^6.3.1"
 
-"@babel/generator@^7.12.11", "@babel/generator@^7.22.10", "@babel/generator@^7.6.2":
+"@babel/generator@^7.12.11", "@babel/generator@^7.22.10", "@babel/generator@^7.22.9", "@babel/generator@^7.6.2":
   version "7.22.10"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.22.10.tgz#c92254361f398e160645ac58831069707382b722"
   integrity sha512-79KIf7YiWjjdZ81JnLujDRApWtl7BxTqWD88+FFdQEIOG8LJ0etDOM7CXuIgGJa55sGOwZVwuEsaLEm0PJ5/+A==
@@ -1318,7 +1318,7 @@
     "@babel/parser" "^7.22.5"
     "@babel/types" "^7.22.5"
 
-"@babel/traverse@^7.1.6", "@babel/traverse@^7.22.10", "@babel/traverse@^7.22.5", "@babel/traverse@^7.4.5", "@babel/traverse@^7.8.3":
+"@babel/traverse@^7.1.6", "@babel/traverse@^7.22.10", "@babel/traverse@^7.22.5", "@babel/traverse@^7.22.8", "@babel/traverse@^7.4.5", "@babel/traverse@^7.8.3":
   version "7.22.10"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.22.10.tgz#20252acb240e746d27c2e82b4484f199cf8141aa"
   integrity sha512-Q/urqV4pRByiNNpb/f5OSv28ZlGJiFiiTh+GAHktbIrkPhPbl90+uW6SmpoLyZqutrg9AEaEf3Q/ZBRHBXgxig==
@@ -3244,6 +3244,13 @@
   dependencies:
     "@babel/types" "^7.0.0"
 
+"@types/babel__helper-plugin-utils@^7.10.0":
+  version "7.10.0"
+  resolved "https://registry.yarnpkg.com/@types/babel__helper-plugin-utils/-/babel__helper-plugin-utils-7.10.0.tgz#dcd2416f9c189d5837ab2a276368cf67134efe78"
+  integrity sha512-60YtHzhQ9HAkToHVV+TB4VLzBn9lrfgrsOjiJMtbv/c1jPdekBxaByd6DMsGBzROXWoIL6U3lEFvvbu69RkUoA==
+  dependencies:
+    "@types/babel__core" "*"
+
 "@types/babel__template@*":
   version "7.4.1"
   resolved "https://registry.yarnpkg.com/@types/babel__template/-/babel__template-7.4.1.tgz#3d1a48fd9d6c0edfd56f2ff578daed48f36c8969"
@@ -3517,6 +3524,13 @@
   integrity sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==
   dependencies:
     "@types/node" "*"
+
+"@types/lodash.get@^4.4.7":
+  version "4.4.7"
+  resolved "https://registry.yarnpkg.com/@types/lodash.get/-/lodash.get-4.4.7.tgz#1ea63d8b94709f6bc9e231f252b31440abe312cf"
+  integrity sha512-af34Mj+KdDeuzsJBxc/XeTtOx0SZHZNLd+hdrn+PcKGQs0EG2TJTzQAOTCZTgDJCArahlCzLWSy8c2w59JRz7Q==
+  dependencies:
+    "@types/lodash" "*"
 
 "@types/lodash.mergewith@4.6.7":
   version "4.6.7"

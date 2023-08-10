@@ -15,10 +15,10 @@ import type {
   ExpressionValue,
   LazyValue,
 } from '@linaria/utils';
-import type { Theme } from '@mui/material/styles';
-import type { ParseResult } from '@babel/parser';
 import { parseExpression } from '@babel/parser';
 import type { SourceLocation } from '@babel/types';
+import type { Theme } from '@mui/material/styles';
+import type { PluginCustomOptions } from './utils/cssFnValueToVariable';
 import cssFnValueToVariable from './utils/cssFnValueToVariable';
 import processCssObject from './utils/processCssObject';
 import valueToLiteral from './utils/valueToLiteral';
@@ -33,13 +33,7 @@ type VariantDataTransformed = {
   className: string;
 };
 
-export type CustomOptions = {
-  themeArgs?: {
-    theme: Theme;
-  };
-};
-
-type IOptions = IBaseOptions & CustomOptions;
+type IOptions = IBaseOptions & PluginCustomOptions;
 type ComponentNames = keyof Exclude<Theme['components'], undefined>;
 
 type ComponentMeta = {
@@ -114,7 +108,7 @@ export default class StyledProcessor extends BaseProcessor {
 
   collectedStyles: [string, string, ExpressionValue | null][] = [];
 
-  collectedVariables: [string, ParseResult<Expression>, boolean][] = [];
+  collectedVariables: [string, Expression, boolean][] = [];
 
   collectedOverrides: [string, string][] = [];
 
@@ -434,12 +428,14 @@ export default class StyledProcessor extends BaseProcessor {
       variantsAccumulator?.push(...styleObj.variants);
       delete styleObj.variants;
     }
-    const res = cssFnValueToVariable(
+    const res = cssFnValueToVariable({
       styleObj,
-      styleArg,
-      (cssKey: string, source: string, hasUnit: boolean) =>
+      expressionValue: styleArg,
+      getVariableName: (cssKey: string, source: string, hasUnit: boolean) =>
         this.getCustomVariableId(cssKey, source, hasUnit),
-    );
+      filename: this.context.filename,
+      options: this.options as IOptions,
+    });
     if (res.length) {
       this.collectedVariables.push(...res);
     }

@@ -30,7 +30,7 @@
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs styles.css",
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "yarn build && npm publish build",
@@ -53,7 +53,8 @@
   },
   "linaria": {
     "tags": {
-      "styled": "@mui/zero-tag-processor/styled"
+      "styled": "@mui/zero-tag-processor/styled",
+      "default": "@mui/zero-tag-processor/styled"
     }
   }
 }
