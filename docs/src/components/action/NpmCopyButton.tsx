@@ -1,68 +1,61 @@
 import * as React from 'react';
 import copy from 'clipboard-copy';
-import { Button, ButtonProps } from '@mui/base/Button';
-import { styled, SxProps } from '@mui/system';
-import { Theme } from '@mui/material/styles';
+import { Button as ButtonUnstyled, ButtonProps } from '@mui/base/Button';
+import { SxProps } from '@mui/system';
+import { styled, Theme } from '@mui/material/styles';
 import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
 import CheckRounded from '@mui/icons-material/CheckRounded';
 
-const StyledButton = styled(Button)`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  outline: 0;
-  border: 0;
-  margin: 0;
-  user-select: none;
-  vertical-align: middle;
-  text-decoration: none;
-  text-transform: initial;
-  scroll-snap-margin-top: calc(var(--MuiDocs-header-height) + 32px);
-  scroll-margin-top: calc(var(--MuiDocs-header-height) + 32px);
-  min-width: 64px;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  box-shadow: none;
-  border-radius: 6px;
-  cursor: copy;
-  padding: 0;
-  width: max-content;
-  background-color: transparent;
-  color: var(--muidocs-palette-grey-600);
-  font-family: Menlo, Consolas, 'Droid Sans Mono', monospace;
-  font-weight: 400;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  letter-spacing: 0;
-  -webkit-font-smoothing: subpixel-antialiased;
-  margin-top: 16px;
-
-  & svg {
-    display: inline-block;
-    position: absolute;
-    color: var(--muidocs-palette-primary-main);
-    right: -20px;
-    top: 1px;
-    opacity: 0;
-    transition-property: opacity;
-    transition-duration: 100ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  &:hover,
-  &.Mui-focusVisible {
-    color: var(--muidocs-palette-primary-main);
-
-    & svg {
-      opacity: 1;
-    }
-  }
-`;
+const Button = styled(ButtonUnstyled)(({ theme }) => ({
+  boxSizing: 'border-box',
+  position: 'relative',
+  minWidth: 64,
+  margin: 0,
+  marginTop: 16,
+  cursor: 'copy',
+  padding: 0,
+  width: 'max-content',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  verticalAlign: 'middle',
+  gap: 8,
+  outline: 0,
+  border: 0,
+  boxShadow: 'none',
+  backgroundColor: 'transparent',
+  color: (theme.vars || theme).palette.grey[600],
+  fontFamily: theme.typography.fontFamilyCode,
+  fontSize: theme.typography.pxToRem(12),
+  textDecoration: 'none',
+  textTransform: 'initial',
+  lineHeight: 1.5,
+  letterSpacing: 0,
+  transition: theme.transitions.create(['background-color', 'color'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.shortest,
+  }),
+  WebkitTapHighlightColor: 'transparent',
+  WebkitFontSmoothing: 'subpixel-antialiased',
+  '& svg': {
+    display: 'inline-block',
+    position: 'absolute',
+    right: -20,
+    top: 1,
+    opacity: 0,
+    color: (theme.vars || theme).palette.primary.main,
+    transition: theme.transitions.create('opacity', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  '&:hover, & .Mui-focusVisible': {
+    color: (theme.vars || theme).palette.primary.main,
+    '& svg': {
+      opacity: 1,
+    },
+  },
+}));
 
 export default function NpmCopyButton({
   installation,
@@ -79,18 +72,18 @@ export default function NpmCopyButton({
   };
   return (
     <Button
-      slots={{ root: StyledButton }}
-      onClick={(event) => {
+      onClick={(event: any) => {
         handleCopy();
         onClick?.(event);
       }}
       {...props}
     >
-      <strong>$</strong>&nbsp;{installation}
+      <strong>$</strong>
+      {installation}
       {copied ? (
         <CheckRounded color="primary" sx={{ fontSize: 15 }} />
       ) : (
-        <ContentCopyRounded sx={{ fontSize: 15 }} />
+        <ContentCopyRounded color="primary" sx={{ fontSize: 15 }} />
       )}
     </Button>
   );

@@ -23,6 +23,10 @@
     }
   },
   "name": "ListItemButton",
+  "imports": [
+    "import ListItemButton from '@mui/material/ListItemButton';",
+    "import { ListItemButton } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

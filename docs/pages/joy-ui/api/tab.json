@@ -57,7 +57,8 @@
     }
   },
   "name": "Tab",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import Tab from '@mui/joy/Tab';", "import { Tab } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTab" },
   "slots": [
     {
       "name": "root",

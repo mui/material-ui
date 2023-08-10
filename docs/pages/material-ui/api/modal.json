@@ -70,6 +70,7 @@
     }
   },
   "name": "Modal",
+  "imports": ["import Modal from '@mui/material/Modal';", "import { Modal } from '@mui/material';"],
   "styles": { "classes": ["root", "hidden", "backdrop"], "globalClasses": {}, "name": "MuiModal" },
   "spread": true,
   "themeDefaultProps": false,

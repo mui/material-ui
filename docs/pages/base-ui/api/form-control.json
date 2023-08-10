@@ -18,7 +18,20 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "FormControl",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import { FormControl } from '@mui/base/FormControl';",
+    "import { FormControl } from '@mui/base';"
+  ],
+  "styles": {
+    "classes": ["root", "disabled", "error", "filled", "focused", "required"],
+    "globalClasses": {
+      "disabled": "Mui-disabled",
+      "error": "Mui-error",
+      "focused": "Mui-focused",
+      "required": "Mui-required"
+    },
+    "name": null
+  },
   "spread": true,
   "muiName": "MuiFormControl",
   "forwardsRefTo": "HTMLDivElement",

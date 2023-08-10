@@ -10,7 +10,7 @@ import FilterDramaIcon from '@mui/icons-material/FilterDrama';
 
 const examples = [
   {
-    name: 'Next.js',
+    name: 'Next.js App Router',
     label: 'View JS example',
     tsLabel: 'View TS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs',
@@ -18,12 +18,21 @@ const examples = [
     src: '/static/images/examples/next.svg',
   },
   {
-    name: 'Create React App',
+    name: 'Vite.js',
     label: 'View JS example',
     tsLabel: 'View TS example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra',
-    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-ts',
-    src: '/static/images/examples/cra.svg',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite',
+    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-ts',
+    src: '/static/images/examples/vite.svg',
+  },
+  {
+    name: 'Next.js Pages Router',
+    label: 'View JS example',
+    tsLabel: 'View TS example',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-pages-router',
+    tsLink:
+      'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-pages-router-ts',
+    src: '/static/images/examples/next.svg',
   },
   {
     name: 'Remix',
@@ -38,12 +47,12 @@ const examples = [
     src: '/static/images/examples/tailwindcss.svg',
   },
   {
-    name: 'Vite.js',
+    name: 'Create React App',
     label: 'View JS example',
     tsLabel: 'View TS example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite',
-    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-ts',
-    src: '/static/images/examples/vite.svg',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra',
+    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-ts',
+    src: '/static/images/examples/cra.svg',
   },
   {
     name: 'styled-components',
@@ -84,7 +93,7 @@ export default function ExampleCollection() {
   return (
     <Grid container spacing={2}>
       {examples.map((example) => (
-        <Grid key={example.name} item xs={12} sm={6}>
+        <Grid key={example.name} xs={12} sm={6}>
           <Card
             sx={[
               {
@@ -128,6 +137,9 @@ export default function ExampleCollection() {
                   flexWrap: 'wrap',
                   alignItems: 'baseline',
                 }}
+                data-ga-event-category="material-ui-example"
+                data-ga-event-label={example.name}
+                data-ga-event-action="click"
               >
                 <Link
                   href={example.link}

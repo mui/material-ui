@@ -66,6 +66,10 @@
     }
   },
   "name": "TextField",
+  "imports": [
+    "import TextField from '@mui/material/TextField';",
+    "import { TextField } from '@mui/material';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTextField" },
   "spread": true,
   "themeDefaultProps": true,
