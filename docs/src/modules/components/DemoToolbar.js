@@ -11,7 +11,6 @@ import MDButton from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import MDToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
 import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
-import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import SvgIcon from '@mui/material/SvgIcon';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import Snackbar from '@mui/material/Snackbar';
@@ -109,38 +108,38 @@ const Button = styled(MDButton)(({ theme }) => ({
   flexShrink: 0,
   borderRadius: 999,
   border: 'none',
-  paddingLeft: theme.spacing(1),
-  paddingRight: theme.spacing(0.5),
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
-  color: theme.palette.primary.main,
+  color: theme.palette.text.secondary,
   '& svg': {
-    fill: theme.palette.primary.main,
+    color: theme.palette.text.secondary,
   },
   [`:hover`]: {
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-      : alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
+    backgroundColor: theme.palette.grey[50],
     '@media (hover: none)': {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.palette.grey[50],
     },
   },
   ...theme.applyDarkStyles({
-    color: theme.palette.primaryDark[200],
-    '& svg': {
-      fill: theme.palette.primaryDark[200],
+    [`:hover`]: {
+      backgroundColor: theme.palette.primaryDark[700],
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.primaryDark[700],
+      },
     },
   }),
 }));
 
 const MenuItem = styled(MDMenuItem)(({ theme }) => ({
+  padding: theme.spacing(1),
   [`& .${menuItemClasses.selected}`]: {
     backgroundColor: theme.palette.primary[50],
+  },
+}));
+
+const MenuDivider = styled(Divider)(() => ({
+  '&.MuiDivider-root': {
+    margin: 0,
   },
 }));
 
@@ -148,8 +147,8 @@ const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
     padding: theme.spacing(0, 1, 0.1, 1),
     fontSize: theme.typography.pxToRem(13),
-    borderRadius: 99,
     borderColor: 'grey.200',
+    borderRadius: '999px',
     '&.Mui-disabled': {
       opacity: 0.5,
     },
@@ -388,7 +387,6 @@ export default function DemoToolbar(props) {
   };
 
   const showSourceHint = demoHovered && !sourceHintSeen;
-
   let showCodeLabel;
   if (codeOpen) {
     showCodeLabel = showPreview ? t('hideFullSource') : t('hideSource');
@@ -521,6 +519,7 @@ export default function DemoToolbar(props) {
             aria-expanded={stylingMenuOpen ? 'true' : undefined}
             onClick={handleStylingButtonClick}
             {...getControlProps(0)}
+            sx={{ pr: 0.5 }}
           >
             {codeStylingLabels[styleSolution]}
             <ExpandMoreIcon />
@@ -562,56 +561,32 @@ export default function DemoToolbar(props) {
           </Box>
         </Fade>
         <Box sx={{ ml: 'auto' }}>
-          <ToggleCodeTooltip
+          <Button
+            aria-controls={openDemoSource ? demoSourceId : null}
+            data-ga-event-category="demo"
+            data-ga-event-label={demo.gaLabel}
+            data-ga-event-action="expand"
+            onClick={handleCodeOpenClick}
             showSourceHint={showSourceHint}
-            PopperProps={{ disablePortal: true }}
-            title={showCodeLabel}
-            placement="bottom"
+            {...getControlProps(3)}
           >
-            <IconButton
-              aria-controls={openDemoSource ? demoSourceId : null}
-              data-ga-event-category="demo"
-              data-ga-event-label={demo.gaLabel}
-              data-ga-event-action="expand"
-              onClick={handleCodeOpenClick}
-              color="default"
-              {...getControlProps(3)}
-              sx={{ borderRadius: 1 }}
-            >
-              <CodeRoundedIcon />
-            </IconButton>
-          </ToggleCodeTooltip>
+            {showCodeLabel}
+          </Button>
           {demoOptions.hideEditButton ? null : (
-            <React.Fragment>
-              <DemoTooltip title={t('codesandbox')} placement="bottom">
-                <IconButton
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demo.gaLabel}
-                  data-ga-event-action="codesandbox"
-                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox()}
-                  {...getControlProps(4)}
-                  sx={{ borderRadius: 1 }}
-                >
-                  <SvgIcon viewBox="0 0 1024 1024">
-                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                  </SvgIcon>
-                </IconButton>
-              </DemoTooltip>
-              <DemoTooltip title={t('stackblitz')} placement="bottom">
-                <IconButton
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demo.gaLabel}
-                  data-ga-event-action="stackblitz"
-                  onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
-                  {...getControlProps(5)}
-                  sx={{ borderRadius: 1 }}
-                >
-                  <SvgIcon viewBox="0 0 19 28">
-                    <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
-                  </SvgIcon>
-                </IconButton>
-              </DemoTooltip>
-            </React.Fragment>
+            <DemoTooltip title={t('codesandbox')} placement="bottom">
+              <IconButton
+                data-ga-event-category="demo"
+                data-ga-event-label={demo.gaLabel}
+                data-ga-event-action="codesandbox"
+                onClick={() => codeSandbox.createReactApp(demoData).openSandbox()}
+                {...getControlProps(4)}
+                sx={{ borderRadius: 1 }}
+              >
+                <SvgIcon viewBox="0 0 1024 1024">
+                  <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                </SvgIcon>
+              </IconButton>
+            </DemoTooltip>
           )}
           <DemoTooltip title={t('copySource')} placement="bottom">
             <IconButton
@@ -681,9 +656,10 @@ export default function DemoToolbar(props) {
         >
           {codeStylingLabels[CODE_STYLING.SYSTEM]}
           {styleSolution === CODE_STYLING.SYSTEM && (
-            <CheckIcon sx={{ fontSize: '0.85rem', ml: 2 }} />
+            <CheckIcon sx={{ fontSize: '0.85rem', ml: 'auto' }} />
           )}
         </MenuItem>
+        <MenuDivider />
         <MenuItem
           value={CODE_STYLING.TAILWIND}
           data-ga-event-category="demo"
@@ -697,6 +673,7 @@ export default function DemoToolbar(props) {
             <CheckIcon sx={{ fontSize: '0.85rem', ml: 2 }} />
           )}
         </MenuItem>
+        <MenuDivider />
         <MenuItem
           value={CODE_STYLING.CSS}
           data-ga-event-category="demo"
@@ -723,6 +700,21 @@ export default function DemoToolbar(props) {
           horizontal: 'right',
         }}
       >
+        {demoOptions.hideEditButton ? null : (
+          <React.Fragment>
+            <MenuItem
+              data-ga-event-category="demo"
+              data-ga-event-label={demo.gaLabel}
+              data-ga-event-action="stackblitz"
+              component="button"
+              onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
+              sx={{ width: '100%' }}
+            >
+              {t('stackblitz')}
+            </MenuItem>
+            <MenuDivider />
+          </React.Fragment>
+        )}
         <MenuItem
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
@@ -735,6 +727,7 @@ export default function DemoToolbar(props) {
         >
           {t('viewGitHub')}
         </MenuItem>
+        <MenuDivider />
         <MenuItem
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
@@ -743,6 +736,7 @@ export default function DemoToolbar(props) {
         >
           {t('copySourceLinkJS')}
         </MenuItem>
+        <MenuDivider />
         <MenuItem
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
