@@ -16,7 +16,6 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
-import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -415,7 +414,6 @@ export default function AppNavDrawer(props) {
         </ToolbarDiv>
         <Divider />
         <Box sx={{ pt: 0.5, pb: 5, overflowY: 'auto', flexGrow: 1 }}>{navItems}</Box>
-        <DiamondSponsors />
       </React.Fragment>
     );
   }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
