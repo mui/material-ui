@@ -185,7 +185,9 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     tabIndex?: number;
   }
 
-  const buttonProps: AdditionalButtonProps = {};
+  const buttonProps: AdditionalButtonProps = {
+    tabIndex,
+  };
 
   if (hostElementName === 'BUTTON') {
     buttonProps.type = type ?? 'button';
