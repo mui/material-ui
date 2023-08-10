@@ -19,6 +19,10 @@
     }
   },
   "name": "Container",
+  "imports": [
+    "import Container from '@mui/system/Container';",
+    "import { Container } from '@mui/system';"
+  ],
   "styles": {
     "classes": [
       "root",

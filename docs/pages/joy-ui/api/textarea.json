@@ -35,6 +35,7 @@
     }
   },
   "name": "Textarea",
+  "imports": ["import Textarea from '@mui/joy/Textarea';", "import { Textarea } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

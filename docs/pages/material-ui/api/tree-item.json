@@ -26,6 +26,7 @@
     "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "TreeItem",
+  "imports": ["import TreeItem from '@mui/lab/TreeItem';", "import { TreeItem } from '@mui/lab';"],
   "styles": {
     "classes": [
       "root",

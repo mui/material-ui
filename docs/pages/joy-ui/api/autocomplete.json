@@ -178,6 +178,10 @@
     }
   },
   "name": "Autocomplete",
+  "imports": [
+    "import Autocomplete from '@mui/joy/Autocomplete';",
+    "import { Autocomplete } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

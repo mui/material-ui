@@ -63,6 +63,7 @@
     }
   },
   "name": "Switch",
+  "imports": ["import Switch from '@mui/joy/Switch';", "import { Switch } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

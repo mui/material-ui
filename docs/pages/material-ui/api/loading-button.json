@@ -31,6 +31,10 @@
     }
   },
   "name": "LoadingButton",
+  "imports": [
+    "import LoadingButton from '@mui/lab/LoadingButton';",
+    "import { LoadingButton } from '@mui/lab';"
+  ],
   "styles": {
     "classes": [
       "root",

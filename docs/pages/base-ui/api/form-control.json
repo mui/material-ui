@@ -18,6 +18,10 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "FormControl",
+  "imports": [
+    "import { FormControl } from '@mui/base/FormControl';",
+    "import { FormControl } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "muiName": "MuiFormControl",

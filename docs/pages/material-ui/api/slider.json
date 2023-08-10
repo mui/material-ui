@@ -124,6 +124,10 @@
     }
   },
   "name": "Slider",
+  "imports": [
+    "import Slider from '@mui/material/Slider';",
+    "import { Slider } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

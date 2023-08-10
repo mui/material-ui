@@ -40,5 +40,50 @@
     "step": { "description": "The amount that the value changes on each increment or decrement." },
     "value": { "description": "The current value. Use when the component is controlled." }
   },
-  "classDescriptions": {}
+  "classDescriptions": {
+    "root": { "description": "Class name applied to the root element." },
+    "formControl": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the component is a descendant of <code>FormControl</code>"
+    },
+    "focused": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the component is focused"
+    },
+    "disabled": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "readOnly": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>readOnly={true}</code>"
+    },
+    "error": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>error={true}</code>"
+    },
+    "input": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the input element"
+    },
+    "incrementButton": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the increment button element"
+    },
+    "decrementButton": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the decrement button element"
+    }
+  },
+  "slotDescriptions": {
+    "root": "The component that renders the root.",
+    "input": "The component that renders the input.",
+    "incrementButton": "The component that renders the increment button.",
+    "decrementButton": "The component that renders the decrement button."
+  }
 }

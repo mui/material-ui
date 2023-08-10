@@ -20,6 +20,10 @@
     }
   },
   "name": "CardCover",
+  "imports": [
+    "import CardCover from '@mui/joy/CardCover';",
+    "import { CardCover } from '@mui/joy';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

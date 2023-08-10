@@ -24,6 +24,10 @@
     }
   },
   "name": "Avatar",
+  "imports": [
+    "import Avatar from '@mui/material/Avatar';",
+    "import { Avatar } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "colorDefault", "circular", "rounded", "square", "img", "fallback"],
     "globalClasses": {},
