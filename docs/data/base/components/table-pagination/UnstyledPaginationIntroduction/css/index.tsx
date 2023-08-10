@@ -188,7 +188,7 @@ function Styles() {
       }
 
       .CustomTablePagination .${classes.actions} > button:disabled {
-        opacity: 0.5;
+        opacity: 0.7;
       }
       `}
     </style>
