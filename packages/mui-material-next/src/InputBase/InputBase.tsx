@@ -285,7 +285,7 @@ const InputBase = React.forwardRef(function InputBase<
     renderSuffix,
     required,
     rows,
-    size,
+    size: sizeProp,
     slotProps = {},
     slots = {},
     startAdornment,
@@ -296,7 +296,7 @@ const InputBase = React.forwardRef(function InputBase<
 
   const { current: isControlled } = React.useRef(value != null);
 
-  // TODO: integrate FormControl
+  // TODO: integrate material-next/FormControl
   const muiFormControl = useFormControl();
 
   /*
@@ -320,7 +320,7 @@ const InputBase = React.forwardRef(function InputBase<
   const onFilled = muiFormControl && muiFormControl.onFilled;
   const onEmpty = muiFormControl && muiFormControl.onEmpty;
 
-  // TODO: needs FormControl & Outlined/FilledInput
+  // TODO: needs material-next/FormControl & material-next/Outlined|FilledInput
   const checkDirty = React.useCallback(
     (obj: any) => {
       if (isFilled(obj)) {
@@ -392,7 +392,8 @@ const InputBase = React.forwardRef(function InputBase<
   const {
     getRootProps,
     getInputProps,
-    focused,
+    focused: focusedState,
+    // TODO: what if this `formControlContext` is completely ignored and the component uses a completely separate one similar to Joy
     // formControlContext,
     error: errorState,
     disabled: disabledState,
@@ -410,18 +411,19 @@ const InputBase = React.forwardRef(function InputBase<
     inputRef: inputRefProp,
   });
 
+  // TODO: integrate ownerState properties with material-next/FormControl: color, disabled, error, focused, hiddenLabel, size
   const ownerState = {
     ...props,
-    color: colorProp,
+    color: colorProp || 'primary',
     disabled: disabledState,
     endAdornment,
     error: errorState,
-    focused,
+    focused: focusedState,
     formControl: muiFormControl,
     fullWidth,
-    hiddenLabel: false, // TODO: FormControl integration
+    hiddenLabel: false, // TODO: material-next/FormControl integration
     multiline,
-    // size: fcs.size,
+    size: sizeProp,
     startAdornment,
     type,
   };

@@ -1,4 +1,3 @@
-// TODO: un-skip skipped tests if any
 /* eslint-disable mocha/no-skipped-tests */
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -293,7 +292,8 @@ describe('<InputBase />', () => {
     });
   });
 
-  // TODO: requires material-next/FormControl
+  // TODO: unskip and refactor when integrating material-next/FormControl
+
   describe.skip('with FormControl', () => {
     it('should have the formControl class', () => {
       const { getByTestId } = render(
@@ -645,7 +645,7 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: focused', () => {
-    xit('should render correct border color with `ThemeProvider` imported from `@emotion/react`', function test() {
+    it.skip('should render correct border color with `ThemeProvider` imported from `@emotion/react`', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
