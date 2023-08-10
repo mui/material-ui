@@ -55,10 +55,7 @@ export interface AccordionGroupTypeMap<P = {}, D extends React.ElementType = 'di
      * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
-    variant?: OverridableStringUnion<
-      Exclude<VariantProp, 'solid'>,
-      AccordionGroupPropsVariantOverrides
-    >;
+    variant?: OverridableStringUnion<VariantProp, AccordionGroupPropsVariantOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

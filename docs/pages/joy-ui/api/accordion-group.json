@@ -42,7 +42,7 @@
     "variant": {
       "type": {
         "name": "enum",
-        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'"
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'"
       },
       "default": "'plain'",
       "additionalInfo": { "joy-variant": true }
