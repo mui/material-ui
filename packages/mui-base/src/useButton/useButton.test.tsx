@@ -197,4 +197,46 @@ describe('useButton', () => {
       });
     });
   });
+
+  describe('tabIndex', () => {
+    it('does not return tabIndex in getRootProps when host component is BUTTON', () => {
+      function TestComponent() {
+        const ref = React.useRef(null);
+        const { getRootProps } = useButton({ rootRef: ref });
+
+        expect(getRootProps().tabIndex).to.equal(undefined);
+
+        return <button {...getRootProps()} />;
+      }
+
+      const { getByRole } = render(<TestComponent />);
+      expect(getByRole('button')).to.have.property('tabIndex', 0);
+    });
+
+    it('returns tabIndex in getRootProps when host component is not BUTTON', () => {
+      function TestComponent() {
+        const ref = React.useRef(null);
+        const { getRootProps } = useButton({ rootRef: ref });
+
+        expect(getRootProps().tabIndex).to.equal(ref.current ? 0 : undefined);
+
+        return <span {...getRootProps()} />;
+      }
+
+      const { getByRole } = render(<TestComponent />);
+      expect(getByRole('button')).to.have.property('tabIndex', 0);
+    });
+
+    it('returns provided tabIndex', () => {
+      const customTabIndex = 3;
+      function TestComponent() {
+        const ref = React.useRef(null);
+        const { getRootProps } = useButton({ rootRef: ref, tabIndex: customTabIndex });
+        return <button {...getRootProps()} />;
+      }
+
+      const { getByRole } = render(<TestComponent />);
+      expect(getByRole('button')).to.have.property('tabIndex', customTabIndex);
+    });
+  });
 });
