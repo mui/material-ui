@@ -7,7 +7,7 @@ tags: ['MUI X', 'News']
 card: true
 ---
 
-After more than 18 months in the lab, the date and time picker components have found a new home as part of MUI X.
+After more than 4 years in the lab, the Tree View components have found a new home as part of MUI X.
 This means we'll be dedicating even more time and effort to these complex components, to better meet the needs of both you and your users.
 
 ## TL;DR
@@ -41,7 +41,7 @@ This component could greatly benefit from advanced features such as virtualizati
 
 Given the complex nature of these features, we decided that they would benefit most from the dedicated attention that they would receive from the X team.
 
-The Tree View components is now available in the `@mui/x-tree-view` package whih has a [MIT license](https://unpkg.com/browse/@mui/x-date-pickers/LICENSE).
+The Tree View components is now available in the `@mui/x-tree-view` package which has a [MIT license](https://unpkg.com/browse/@mui/x-tree-view/LICENSE).
 
 ## How do I migrate?
 
@@ -65,7 +65,7 @@ npx @mui/codemod v5.0.0/tree-view-moved-to-x <path>
 
 You can find the documentation for the Tree View component in the [MUI X docs](/x/react-tree-view/).
 
-## What's next for the date and time pickers?
+## What's next for the Tree View?
 
 For now, `@mui/x-tree-view` is in alpha.
 Our next goal is to work on the stability and API consistency of its components to prepare a stable release.
