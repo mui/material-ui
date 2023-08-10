@@ -1,7 +1,7 @@
 ---
-title: Exciting MUI X improvements: v6.11.0
+title: MUI X v6.11.0. A roundup of all new features.
 description: Support for time zones, Charts in alpha, Data Grid filtering, and more.
-date: 2023-08-07T00:00:00.000Z
+date: 2023-08-14T00:00:00.000Z
 authors: ['richbustos', 'josefreitas']
 card: false
 tags: ['MUI X', 'News']
