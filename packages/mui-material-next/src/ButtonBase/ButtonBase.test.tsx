@@ -539,7 +539,7 @@ describe('<ButtonBase />', () => {
   });
 
   describe('prop: disabled', () => {
-    it('should have a negative tabIndex', () => {
+    it('should have a the disabled property', () => {
       const { getByText } = render(<ButtonBase disabled>Hello</ButtonBase>);
       expect(getByText('Hello')).to.have.property('disabled');
     });
@@ -588,6 +588,22 @@ describe('<ButtonBase />', () => {
 
       setProps({ disabled: false });
       expect(button).not.to.have.attribute('aria-disabled');
+    });
+  });
+
+  describe('prop: focusableWhenDisabled', () => {
+    it('should be focusable when disabled if focusableWhenDisabled is true', () => {
+      const { getByText } = render(
+        <ButtonBase disabled focusableWhenDisabled>
+          Hello
+        </ButtonBase>,
+      );
+      const button = getByText('Hello');
+      simulatePointerDevice();
+
+      focusVisible(button);
+
+      expect(button).to.have.class(classes.focusVisible);
     });
   });
 
@@ -799,6 +815,7 @@ describe('<ButtonBase />', () => {
       it('does not call onClick when a spacebar is released and the default is prevented', () => {
         const onClickSpy = spy();
         const onKeyUp: MuiCancellableEventHandler<React.KeyboardEvent> = (event) => {
+          event.preventDefault();
           event.defaultMuiPrevented = true;
         };
         const { getByRole } = render(

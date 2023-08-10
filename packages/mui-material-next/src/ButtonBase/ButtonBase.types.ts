@@ -48,6 +48,11 @@ export interface ButtonBaseTypeMap<
      */
     disableTouchRipple?: boolean;
     /**
+     * If `true`, allows a disabled button to receive focus.
+     * @default false
+     */
+    focusableWhenDisabled?: boolean;
+    /**
      * If `true`, the base button will have a keyboard focus ripple.
      * @default false
      */
