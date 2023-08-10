@@ -81,7 +81,7 @@ const ButtonGroupRoot = styled('div', {
   }),
   [`& .${buttonGroupClasses.grouped}`]: {
     minWidth: 40,
-    '&:not(:first-of-type)': {
+    '&:not(:nth-child(1))': {
       ...(ownerState.orientation === 'horizontal' && {
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
@@ -99,7 +99,7 @@ const ButtonGroupRoot = styled('div', {
           marginTop: -1,
         }),
     },
-    '&:not(:last-of-type)': {
+    '&:not(:nth-last-child(1))': {
       ...(ownerState.orientation === 'horizontal' && {
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
