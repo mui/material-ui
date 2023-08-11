@@ -345,7 +345,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     onClose,
     renderValue: renderValueProp,
     value: valueProp,
-    size: sizeProp = 'md',
+    size: sizeProp = 'sm',
     variant = 'outlined',
     color: colorProp = 'neutral',
     startDecorator,
