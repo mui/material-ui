@@ -92,9 +92,6 @@ const Button = styled(MDButton)(({ theme }) => ({
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
   color: theme.palette.text.secondary,
-  '& svg': {
-    fill: theme.palette.text.secondary,
-  },
   // Reset on touch devices, it doesn't add specificity
   [`:hover`]: {
     backgroundColor: theme.palette.grey[50],
