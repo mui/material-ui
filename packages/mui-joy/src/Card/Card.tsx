@@ -81,7 +81,7 @@ const CardRoot = styled('div', {
       }),
       padding: 'var(--Card-padding)',
       borderRadius: 'var(--Card-radius)',
-      boxShadow: theme.shadow.sm,
+      boxShadow: theme.shadow.md,
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
       display: 'flex',
