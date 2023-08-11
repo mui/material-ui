@@ -57,7 +57,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
     /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.
-     * @default 'md'
+     * @default 'sm'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', ButtonGroupPropsSizeOverrides>;
     /**

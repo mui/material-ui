@@ -191,7 +191,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     className,
     component = 'div',
     disabled = false,
-    size = 'md',
+    size = 'sm',
     color = 'neutral',
     variant = 'outlined',
     children,
@@ -309,7 +309,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
-   * @default 'md'
+   * @default 'sm'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['lg', 'md', 'sm']),
