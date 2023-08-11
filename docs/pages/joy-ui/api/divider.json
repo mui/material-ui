@@ -31,7 +31,7 @@
   },
   "name": "Divider",
   "imports": ["import Divider from '@mui/joy/Divider';", "import { Divider } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiDivider" },
   "slots": [
     {
       "name": "root",

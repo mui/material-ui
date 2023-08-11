@@ -112,7 +112,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
           boxShadow: `var(--Input-focusedInset, inset) 0 0 0 calc(var(--Input-focused) * var(--Input-focusedThickness)) var(--Input-focusedHighlight)`,
         },
-      },
+      } as const,
       {
         '&:hover': {
           ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],

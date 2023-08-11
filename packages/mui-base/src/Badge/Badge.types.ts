@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverrideProps, OverridableTypeMap, OverridableComponent, Simplify } from '@mui/types';
+import { OverrideProps, Simplify } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 
 export interface BadgeRootSlotPropsOverrides {}
@@ -75,23 +75,9 @@ export interface BadgeTypeMap<
   defaultComponent: RootComponentType;
 }
 
-/**
- * Utility to create component types that inherit props from Badge.
- */
-export interface ExtendBadgeTypeMap<TypeMap extends OverridableTypeMap> {
-  props: TypeMap['props'] & BadgeTypeMap['props'];
-  defaultComponent: TypeMap['defaultComponent'];
-}
-
-export type ExtendBadge<TypeMap extends OverridableTypeMap> = OverridableComponent<
-  ExtendBadgeTypeMap<TypeMap>
->;
-
 export type BadgeProps<
   RootComponentType extends React.ElementType = BadgeTypeMap['defaultComponent'],
-> = OverrideProps<BadgeTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = OverrideProps<BadgeTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type BadgeRootSlotProps = {
   children?: React.ReactNode;

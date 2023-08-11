@@ -48,7 +48,7 @@
   },
   "name": "TabPanel",
   "imports": ["import TabPanel from '@mui/joy/TabPanel';", "import { TabPanel } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTabPanel" },
   "slots": [
     {
       "name": "root",

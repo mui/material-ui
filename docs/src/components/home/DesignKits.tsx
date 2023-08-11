@@ -46,7 +46,7 @@ const Anchor = styled('a')(({ theme }) => [
     '&:hover, &:focus': {
       boxShadow: '0 6px 20px 0 rgba(0,0,0,0.2)',
     },
-  },
+  } as const,
   theme.applyDarkStyles({
     '&:hover, &:focus': {
       boxShadow: `0 6px 20px 0 ${alpha(theme.palette.primaryDark[100], 0.5)}`,
