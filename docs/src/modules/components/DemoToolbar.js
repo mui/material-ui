@@ -137,12 +137,6 @@ const MenuItem = styled(MDMenuItem)(({ theme }) => ({
   },
 }));
 
-const MenuDivider = styled(Divider)(() => ({
-  '&.MuiDivider-root': {
-    margin: 0,
-  },
-}));
-
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
     padding: theme.spacing(0, 1, 0.1, 1),
@@ -659,7 +653,6 @@ export default function DemoToolbar(props) {
             <CheckIcon sx={{ fontSize: '0.85rem', ml: 'auto' }} />
           )}
         </MenuItem>
-        <MenuDivider />
         <MenuItem
           value={CODE_STYLING.TAILWIND}
           data-ga-event-category="demo"
@@ -673,7 +666,6 @@ export default function DemoToolbar(props) {
             <CheckIcon sx={{ fontSize: '0.85rem', ml: 2 }} />
           )}
         </MenuItem>
-        <MenuDivider />
         <MenuItem
           value={CODE_STYLING.CSS}
           data-ga-event-category="demo"
@@ -712,7 +704,6 @@ export default function DemoToolbar(props) {
             >
               {t('stackblitz')}
             </MenuItem>
-            <MenuDivider />
           </React.Fragment>
         )}
         <MenuItem
@@ -727,7 +718,6 @@ export default function DemoToolbar(props) {
         >
           {t('viewGitHub')}
         </MenuItem>
-        <MenuDivider />
         <MenuItem
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
@@ -736,7 +726,6 @@ export default function DemoToolbar(props) {
         >
           {t('copySourceLinkJS')}
         </MenuItem>
-        <MenuDivider />
         <MenuItem
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
