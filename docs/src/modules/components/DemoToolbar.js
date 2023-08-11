@@ -112,7 +112,7 @@ const Button = styled(MDButton)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightMedium,
   color: theme.palette.text.secondary,
   '& svg': {
-    color: theme.palette.text.secondary,
+    fill: theme.palette.text.secondary,
   },
   [`:hover`]: {
     backgroundColor: theme.palette.grey[50],
