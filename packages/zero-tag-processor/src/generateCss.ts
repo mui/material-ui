@@ -9,7 +9,7 @@ type CssGenerationOptions = {
 
 type RelevantTokenKey = keyof Pick<
   Theme,
-  'palette' | 'shadows' | 'shape' | 'typography' | 'zIndex'
+  'palette' | 'shadows' | 'shape' | 'typography' | 'zIndex' | 'direction' | 'transitions'
 >;
 const topLevelTokenKeys: RelevantTokenKey[] = [
   'palette',
@@ -17,11 +17,17 @@ const topLevelTokenKeys: RelevantTokenKey[] = [
   'shape',
   'typography',
   'zIndex',
+  'direction',
+  'transitions',
 ];
 
 type CssVarsObject = Record<string, string | number | undefined>;
 
-function iterateObject(tokenObject: object, cssVarsObject: CssVarsObject, prefix: string[]) {
+function iterateObject(
+  tokenObject: object | string | number | boolean,
+  cssVarsObject: CssVarsObject,
+  prefix: string[],
+) {
   if (Array.isArray(tokenObject)) {
     tokenObject.forEach((item, index) => {
       iterateObject(item, cssVarsObject, prefix.concat(`${index}`));
@@ -32,7 +38,8 @@ function iterateObject(tokenObject: object, cssVarsObject: CssVarsObject, prefix
     });
   } else if (['string', 'number', 'boolean'].includes(typeof tokenObject)) {
     const cssVariableName = `--${prefix.filter(Boolean).join('-')}`;
-    cssVarsObject[cssVariableName] = tokenObject;
+    cssVarsObject[cssVariableName] =
+      typeof tokenObject === 'string' ? tokenObject : tokenObject.toString();
   }
 }
 
@@ -46,7 +53,6 @@ function generateCssForTheme(theme: Theme, prefix = ['']) {
   return cssVarsObject;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export function generateCss(
   options: PluginCustomOptions,
   generationOptions: CssGenerationOptions = {},
@@ -63,12 +69,8 @@ export function generateCss(
   Object.entries(themeArgs).forEach(([themeKey, theme]) => {
     const cssVarsObject = generateCssForTheme(theme, [cssVariablesPrefix]);
     const cssThemeObject: Record<string, CssVarsObject> = {};
-    if (themeKey === defaultThemeKey) {
-      if (injectInRoot) {
-        cssThemeObject[':root'] = cssVarsObject;
-      } else {
-        cssThemeObject['.theme'] = cssVarsObject;
-      }
+    if (themeKey === defaultThemeKey && injectInRoot) {
+      cssThemeObject[':root'] = cssVarsObject;
     } else {
       cssThemeObject[`.${themeKey}`] = cssVarsObject;
     }

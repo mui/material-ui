@@ -19,9 +19,9 @@ import { parseExpression } from '@babel/parser';
 import type { SourceLocation } from '@babel/types';
 import type { Theme } from '@mui/material/styles';
 import type { PluginCustomOptions } from './utils/cssFnValueToVariable';
-import cssFnValueToVariable from './utils/cssFnValueToVariable';
-import processCssObject from './utils/processCssObject';
-import valueToLiteral from './utils/valueToLiteral';
+import { cssFnValueToVariable } from './utils/cssFnValueToVariable';
+import { processCssObject } from './utils/processCssObject';
+import { valueToLiteral } from './utils/valueToLiteral';
 
 type VariantData = {
   props: Record<string, string | number | boolean | null>;

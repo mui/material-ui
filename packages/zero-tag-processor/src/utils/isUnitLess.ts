@@ -51,6 +51,6 @@ const unitlessKeys: { [key: string]: 1 } = {
   strokeWidth: 1,
 };
 
-export default function isUnitLess(cssKey: string) {
+export function isUnitLess(cssKey: string) {
   return unitlessKeys[cssKey] === 1;
 }

@@ -4,7 +4,7 @@ import { type ExpressionValue, isSerializable } from '@linaria/utils';
 /**
  * Converts a javascript primitive to its Babel AST node representation.
  */
-export default function valueToLiteral(value: unknown, expression?: ExpressionValue): t.Expression {
+export function valueToLiteral(value: unknown, expression?: ExpressionValue): t.Expression {
   if (value === undefined) {
     return {
       type: 'Identifier',

@@ -4,17 +4,14 @@ import { css, cache } from '@emotion/css';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
 import type { PluginCustomOptions } from './cssFnValueToVariable';
 
-export default function processCssObject(
-  cssObj: object,
-  themeArgs?: PluginCustomOptions['themeArgs'],
-) {
+export function processCssObject(cssObj: object, themeArgs?: PluginCustomOptions['themeArgs']) {
   const { theme } = themeArgs ?? {};
   const processedObj = (
     theme
       ? styleFunctionSx({
           // Does not support shorthand as of now because
           // it also adds the spacing multiplier
-          sx: cssObj,
+          sx: () => cssObj,
           ...themeArgs,
         })
       : cssObj

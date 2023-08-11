@@ -39,6 +39,37 @@ const cssFunctionTransformerPlugin = declare<BabelPluginOptions>((api, pluginOpt
   return {
     name: '@mui/zero-internal/cssFunctionTransformerPlugin',
     visitor: {
+      Program: {
+        exit(programPath) {
+          const expression = programPath.get('body')[0];
+          if (!expression.isExpressionStatement()) {
+            return;
+          }
+          const arrowFnExpression = expression.get('expression');
+          if (
+            !arrowFnExpression.isArrowFunctionExpression() &&
+            !arrowFnExpression.isFunctionExpression()
+          ) {
+            return;
+          }
+          // @NOTE: Very quick and dirty way of checking usage of `theme`
+          // variable inside the function. May give false positives in
+          // some cases. Refine over time as bugs are reported.
+          arrowFnExpression.traverse({
+            Identifier(path) {
+              const name = path.node.name;
+              const binding = path.scope.getBinding(name);
+              if (name === 'theme' && !binding) {
+                throw new Error(
+                  'You cannot use `theme` or other arguments inside runtime functions. Please use token shorthands (like `primary.main` for `theme.palette.primary.main`) if you want to access theme values.',
+                );
+              }
+            },
+          });
+        },
+      },
+      // @TODO - Maybe add support for plain strings in template
+      // literals as well.
       StringLiteral(path) {
         const val = path.node.value;
         if (themeKey === 'typography' && val === 'inherit') {
@@ -55,4 +86,4 @@ const cssFunctionTransformerPlugin = declare<BabelPluginOptions>((api, pluginOpt
   };
 });
 
-export default cssFunctionTransformerPlugin;
+export { cssFunctionTransformerPlugin };

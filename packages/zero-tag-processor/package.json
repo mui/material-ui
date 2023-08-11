@@ -45,11 +45,11 @@
     "@emotion/css": "^11.11.2",
     "@linaria/tags": "^4.5.4",
     "@linaria/utils": "^4.5.3",
-    "@mui/system": "^5.14.4",
+    "@mui/system": "^5.14.5",
     "lodash.get": "^4.4.2"
   },
   "devDependencies": {
-    "@mui/material": "^5.14.4",
+    "@mui/material": "^5.14.5",
     "@types/babel__core": "^7.20.1",
     "@types/babel__helper-plugin-utils": "^7.10.0",
     "@types/lodash.get": "^4.4.7"

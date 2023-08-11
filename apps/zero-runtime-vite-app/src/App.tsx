@@ -6,15 +6,15 @@ const Button = styled('button', {
   name: 'MuiButton',
   slot: 'Root',
 })(
-  () => ({
+  'color:red',
+  ({ theme }: any) => ({
     fontFamily: 'sans-serif',
-    '--var-tag': 'h2',
     color: 'primary.main',
-    backgroundColor: ['primary.main', 'text.primary', 'background.paper'],
+    backgroundColor: [theme.palette.primary.main, 'text.primary', 'background.paper'],
+    fontSize: (props: any) => (props.isRed ? 'h1.fontSize' : 'h2.fontSize'),
   }),
   {
     fontFamily: 'sans-serif',
-    '--var-tag': 'h1',
     // p: (props: any) => (props.isRed ? 10 : 20),
     color: (props: any) => (props.isRed ? 'primary.main' : 'secondary.main'),
   },
@@ -27,10 +27,10 @@ const ShowCaseDiv = styled('div')({
 });
 
 const HalfWidth = styled.div({
-  marginLeft: '20px',
+  marginLeft: 20,
   width: '50%',
   maxHeight: 100,
-  padding: '20px',
+  padding: 20,
   border: '1px solid #ccc',
 });
 

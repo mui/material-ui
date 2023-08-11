@@ -7,10 +7,8 @@ import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { styled } from '@mui/zero-runtime';
 // eslint-disable-next-line no-restricted-imports
 import { slotShouldForwardProp } from '@mui/material/styles/styled';
-// eslint-disable-next-line no-restricted-imports
-import capitalize from '@mui/material/utils/capitalize';
-// eslint-disable-next-line no-restricted-imports
-import sliderClasses, { getSliderUtilityClass } from '@mui/material/Slider/sliderClasses';
+import { capitalize } from '@mui/material/utils';
+import { sliderClasses, getSliderUtilityClass } from '@mui/material/Slider';
 // eslint-disable-next-line no-restricted-imports
 import SliderValueLabel from '@mui/material/Slider/SliderValueLabel';
 import { alpha, lighten, darken } from '../utils/colorManipulator';
@@ -48,7 +46,7 @@ const SliderRoot = styled('span', {
   touchAction: 'none',
   WebkitTapHighlightColor: 'transparent',
   '@media print': {
-    colorAdjust: 'exact',
+    printColorAdjust: 'exact',
   },
   [`&.${sliderClasses.disabled}`]: {
     pointerEvents: 'none',

@@ -4,8 +4,8 @@ import { parseExpression } from '@babel/parser';
 import type { Expression } from '@linaria/tags';
 import type { Theme } from '@mui/material/styles';
 import { unstable_defaultSxConfig as defaultSxConfig } from '@mui/system/styleFunctionSx';
-import isUnitLess from './isUnitLess';
-import cssFunctionTransformerPlugin from './cssFunctionTransformerPlugin';
+import { isUnitLess } from './isUnitLess';
+import { cssFunctionTransformerPlugin } from './cssFunctionTransformerPlugin';
 
 interface StyleObj {
   [key: string]: string | number | Function | StyleObj;
@@ -105,13 +105,13 @@ function iterateAndReplaceFunctions(
       acc.push([variableId, expression, unitLess]);
       css[key] = `var(--${variableId})`;
     } catch (ex) {
-      const err = expressionValue?.buildCodeFrameError('Could not parse function expression.');
+      const err = expressionValue?.buildCodeFrameError(
+        (ex as Error).message || 'Could not parse function expression.',
+      );
       if (!err) {
         throw ex;
       }
-      if ('cause' in err) {
-        err.cause = ex;
-      }
+      err.cause = ex;
       throw err;
     }
   });
@@ -120,7 +120,7 @@ function iterateAndReplaceFunctions(
 /**
  * Goes through the css object and identifies any keys where the value is a function and replaces the function with a variable id.
  */
-export default function cssFnValueToVariable({
+export function cssFnValueToVariable({
   styleObj,
   expressionValue,
   getVariableName,
