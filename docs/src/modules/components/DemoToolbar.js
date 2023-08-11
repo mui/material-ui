@@ -5,7 +5,6 @@ import { useTheme, styled, alpha } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CheckIcon from '@mui/icons-material/Check';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Fade from '@mui/material/Fade';
 import MDButton from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -65,24 +64,6 @@ function DemoTooltip(props) {
   );
 }
 
-function ToggleCodeTooltip(props) {
-  const { showSourceHint, ...other } = props;
-  const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-  const [open, setOpen] = React.useState(false);
-
-  return (
-    <DemoTooltip
-      {...other}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      open={showSourceHint && atLeastSmallViewport ? true : open}
-    />
-  );
-}
-ToggleCodeTooltip.propTypes = {
-  showSourceHint: PropTypes.bool,
-};
-
 const alwaysTrue = () => true;
 
 const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
@@ -114,6 +95,7 @@ const Button = styled(MDButton)(({ theme }) => ({
   '& svg': {
     fill: theme.palette.text.secondary,
   },
+  // Reset on touch devices, it doesn't add specificity
   [`:hover`]: {
     backgroundColor: theme.palette.grey[50],
     '@media (hover: none)': {
