@@ -118,7 +118,7 @@ If you need the style of a button with the functionality of a link, then you can
 
 {{"demo": "ButtonLink.js"}}
 
-## File Upload
+## File upload
 
 To create a file upload button, turn the button into a label using `component="label"` and then create a visually-hidden input with type `file`.
 
