@@ -10382,7 +10382,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
 - [theme] Add htmlFontSize to Typography interface (#23412) @fergusmcdonald
 - [Tooltip] Fix PopperProps popper modifiers not being merged properly (#23421) @dominique-mueller
 - [Tooltip] Long press select text on iOS (#23466) @hmaddisb
-- [Tooltip] Unexpected behaviour onOpen/onClose (#23482) @brorlarsnicklas
+- [Tooltip] Unexpected behavior onOpen/onClose (#23482) @brorlarsnicklas
 
 ### `@material-ui/lab@v5.0.0-alpha.16`
 
