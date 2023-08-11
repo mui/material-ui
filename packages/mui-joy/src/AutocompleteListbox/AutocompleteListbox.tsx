@@ -109,7 +109,7 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     component,
     color: colorProp = 'neutral',
     variant = 'outlined',
-    size = 'md',
+    size = 'sm',
     slots = {},
     slotProps = {},
     ...otherProps
@@ -178,7 +178,7 @@ AutocompleteListbox.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The size of the component (affect other nested list* components).
-   * @default 'md'
+   * @default 'sm'
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**

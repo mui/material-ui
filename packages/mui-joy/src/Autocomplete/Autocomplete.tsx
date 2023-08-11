@@ -342,7 +342,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     required,
     type,
     startDecorator,
-    size: sizeProp = 'md',
+    size: sizeProp = 'sm',
     color: colorProp = 'neutral',
     variant = 'outlined',
     value: valueProp,
@@ -1063,7 +1063,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   required: PropTypes.bool,
   /**
    * The size of the component.
-   * @default 'md'
+   * @default 'sm'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),

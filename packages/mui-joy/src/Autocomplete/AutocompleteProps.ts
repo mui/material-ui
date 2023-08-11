@@ -331,7 +331,7 @@ type AutocompleteOwnProps<
     required?: boolean;
     /**
      * The size of the component.
-     * @default 'md'
+     * @default 'sm'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
     /**

@@ -38,7 +38,7 @@ export interface AutocompleteListboxTypeMap<P = {}, D extends React.ElementType 
     variant?: OverridableStringUnion<VariantProp, AutocompleteListboxPropsVariantOverrides>;
     /**
      * The size of the component (affect other nested list* components).
-     * @default 'md'
+     * @default 'sm'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompleteListboxPropsSizeOverrides>;
     /**
