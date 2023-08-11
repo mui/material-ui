@@ -118,6 +118,12 @@ If you need the style of a button with the functionality of a link, then you can
 
 {{"demo": "ButtonLink.js"}}
 
+## File Upload
+
+Following demo shows how to turn `Button` component to `input` with type as `file`
+
+{{"demo": "InputFileUpload.js"}}
+
 ## CSS variable playground
 
 Play around with the CSS variables available to the Button and Icon Button components to see how the design changes.
