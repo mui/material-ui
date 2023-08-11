@@ -112,7 +112,7 @@
   "getStarted": "Get Started",
   "githubLabel": "Feedback",
   "headTitle": "MUI: A popular React UI framework",
-  "hideFullSource": "Hide all code",
+  "hideFullSource": "Collapse code",
   "hideSource": "Hide code",
   "homeQuickWord": "A quick word from our sponsors:",
   "increaseSpacing": "increase spacing",
@@ -154,7 +154,7 @@
     "system": "System",
     "language": "Language"
   },
-  "showFullSource": "Show all code",
+  "showFullSource": "Expand code",
   "showJSSource": "Show JavaScript source",
   "showSource": "Show code",
   "showTSSource": "Show TypeScript source",
