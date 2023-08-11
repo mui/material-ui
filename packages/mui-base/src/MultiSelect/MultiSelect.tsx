@@ -1,3 +1,4 @@
+'use client';
 let warnedOnce = false;
 
 const warn = () => {
@@ -21,7 +22,7 @@ const warn = () => {
  * @deprecated The multi-select functionality is now available in the Select component. Replace <MultiSelect> with <Select multiple /> in your code.
  * @ignore - do not document.
  */
-export default function MultiSelect() {
+export function MultiSelect() {
   warn();
   return null;
 }

@@ -4,136 +4,136 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
+import Link from 'docs/src/modules/components/Link';
 
 function components() {
   return [
     {
       title: 'Autocomplete',
-      srcLight: '/static/images/base-ui-components/autocomplete-light.png',
-      srcDark: '/static/images/base-ui-components/autocomplete-dark.png',
-      href: '/base/react-autocomplete/',
+      srcLight: '/static/base-ui/react-components/autocomplete-light.png',
+      srcDark: '/static/base-ui/react-components/autocomplete-dark.png',
+      href: '/base-ui/react-autocomplete/',
     },
     {
       title: 'Badge',
-      srcLight: '/static/images/base-ui-components/badge-light.png',
-      srcDark: '/static/images/base-ui-components/badge-dark.png',
-      href: '/base/react-badge/',
+      srcLight: '/static/base-ui/react-components/badge-light.png',
+      srcDark: '/static/base-ui/react-components/badge-dark.png',
+      href: '/base-ui/react-badge/',
     },
     {
       title: 'Button',
-      srcLight: '/static/images/base-ui-components/button-light.png',
-      srcDark: '/static/images/base-ui-components/button-dark.png',
-      href: '/base/react-button/',
+      srcLight: '/static/base-ui/react-components/button-light.png',
+      srcDark: '/static/base-ui/react-components/button-dark.png',
+      href: '/base-ui/react-button/',
     },
     {
       title: 'Click-Away Listener',
-      srcLight: '/static/images/base-ui-components/click-away-light.png',
-      srcDark: '/static/images/base-ui-components/click-away-dark.png',
-      href: '/base/react-click-away-listener/',
+      srcLight: '/static/base-ui/react-components/click-away-light.png',
+      srcDark: '/static/base-ui/react-components/click-away-dark.png',
+      href: '/base-ui/react-click-away-listener/',
     },
     {
       title: 'Focus Trap',
-      srcLight: '/static/images/base-ui-components/focus-trap-light.png',
-      srcDark: '/static/images/base-ui-components/focus-trap-dark.png',
-      href: '/base/react-focus-trap/',
+      srcLight: '/static/base-ui/react-components/focus-trap-light.png',
+      srcDark: '/static/base-ui/react-components/focus-trap-dark.png',
+      href: '/base-ui/react-focus-trap/',
     },
     {
       title: 'Form Control',
-      srcLight: '/static/images/base-ui-components/form-control-light.png',
-      srcDark: '/static/images/base-ui-components/form-control-dark.png',
-      href: '/base/react-form-control/',
+      srcLight: '/static/base-ui/react-components/form-control-light.png',
+      srcDark: '/static/base-ui/react-components/form-control-dark.png',
+      href: '/base-ui/react-form-control/',
     },
     {
       title: 'Input',
-      srcLight: '/static/images/base-ui-components/input-light.png',
-      srcDark: '/static/images/base-ui-components/input-dark.png',
-      href: '/base/react-input/',
+      srcLight: '/static/base-ui/react-components/input-light.png',
+      srcDark: '/static/base-ui/react-components/input-dark.png',
+      href: '/base-ui/react-input/',
     },
     {
       title: 'Menu',
-      srcLight: '/static/images/base-ui-components/menu-light.png',
-      srcDark: '/static/images/base-ui-components/menu-dark.png',
-      href: '/base/react-menu/',
+      srcLight: '/static/base-ui/react-components/menu-light.png',
+      srcDark: '/static/base-ui/react-components/menu-dark.png',
+      href: '/base-ui/react-menu/',
     },
     {
       title: 'Modal',
-      srcLight: '/static/images/base-ui-components/modal-light.png',
-      srcDark: '/static/images/base-ui-components/modal-dark.png',
-      href: '/base/react-modal/',
+      srcLight: '/static/base-ui/react-components/modal-light.png',
+      srcDark: '/static/base-ui/react-components/modal-dark.png',
+      href: '/base-ui/react-modal/',
     },
     {
       title: 'No-SSR',
-      srcLight: '/static/images/base-ui-components/no-ssr-light.png',
-      srcDark: '/static/images/base-ui-components/no-ssr-dark.png',
-      href: '/base/react-no-ssr/',
+      srcLight: '/static/base-ui/react-components/no-ssr-light.png',
+      srcDark: '/static/base-ui/react-components/no-ssr-dark.png',
+      href: '/base-ui/react-no-ssr/',
     },
     {
       title: 'Popper',
-      srcLight: '/static/images/base-ui-components/popper-light.png',
-      srcDark: '/static/images/base-ui-components/popper-dark.png',
-      href: '/base/react-popper/',
+      srcLight: '/static/base-ui/react-components/popper-light.png',
+      srcDark: '/static/base-ui/react-components/popper-dark.png',
+      href: '/base-ui/react-popper/',
     },
     {
       title: 'Portal',
-      srcLight: '/static/images/base-ui-components/portal-light.png',
-      srcDark: '/static/images/base-ui-components/portal-dark.png',
-      href: '/base/react-portal/',
+      srcLight: '/static/base-ui/react-components/portal-light.png',
+      srcDark: '/static/base-ui/react-components/portal-dark.png',
+      href: '/base-ui/react-portal/',
     },
     {
       title: 'Select',
-      srcLight: '/static/images/base-ui-components/select-light.png',
-      srcDark: '/static/images/base-ui-components/select-dark.png',
-      href: '/base/react-select/',
+      srcLight: '/static/base-ui/react-components/select-light.png',
+      srcDark: '/static/base-ui/react-components/select-dark.png',
+      href: '/base-ui/react-select/',
     },
     {
       title: 'Slider',
-      srcLight: '/static/images/base-ui-components/slider-light.png',
-      srcDark: '/static/images/base-ui-components/slider-dark.png',
-      href: '/base/react-slider/',
+      srcLight: '/static/base-ui/react-components/slider-light.png',
+      srcDark: '/static/base-ui/react-components/slider-dark.png',
+      href: '/base-ui/react-slider/',
     },
     {
       title: 'Snackbar',
-      srcLight: '/static/images/base-ui-components/snackbar-light.png',
-      srcDark: '/static/images/base-ui-components/snackbar-dark.png',
-      href: '/base/react-snackbar/',
+      srcLight: '/static/base-ui/react-components/snackbar-light.png',
+      srcDark: '/static/base-ui/react-components/snackbar-dark.png',
+      href: '/base-ui/react-snackbar/',
     },
     {
       title: 'Switch',
-      srcLight: '/static/images/base-ui-components/switch-light.png',
-      srcDark: '/static/images/base-ui-components/switch-dark.png',
-      href: '/base/react-switch/',
+      srcLight: '/static/base-ui/react-components/switch-light.png',
+      srcDark: '/static/base-ui/react-components/switch-dark.png',
+      href: '/base-ui/react-switch/',
     },
     {
       title: 'Table Pagination',
-      srcLight: '/static/images/base-ui-components/pagination-light.png',
-      srcDark: '/static/images/base-ui-components/pagination-dark.png',
-      href: '/base/react-table-pagination/',
+      srcLight: '/static/base-ui/react-components/pagination-light.png',
+      srcDark: '/static/base-ui/react-components/pagination-dark.png',
+      href: '/base-ui/react-table-pagination/',
     },
     {
       title: 'Tabs',
-      srcLight: '/static/images/base-ui-components/tabs-light.png',
-      srcDark: '/static/images/base-ui-components/tabs-dark.png',
-      href: '/base/react-tabs/',
+      srcLight: '/static/base-ui/react-components/tabs-light.png',
+      srcDark: '/static/base-ui/react-components/tabs-dark.png',
+      href: '/base-ui/react-tabs/',
     },
     {
       title: 'Textarea Autosize',
-      srcLight: '/static/images/base-ui-components/textarea-light.png',
-      srcDark: '/static/images/base-ui-components/textarea-dark.png',
-      href: '/base/react-textarea-autosize/',
+      srcLight: '/static/base-ui/react-components/textarea-light.png',
+      srcDark: '/static/base-ui/react-components/textarea-dark.png',
+      href: '/base-ui/react-textarea-autosize/',
     },
   ];
 }
 
-function BaseUIComponents() {
+export default function BaseUIComponents() {
   return (
     <Grid container spacing={2} sx={{ pt: 2, pb: 4 }}>
       {components().map((component) => (
         <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={component.title}>
           <Card
-            component="a"
+            component={Link}
+            noLinkStyle
             variant="outlined"
-            rel="nofollow"
-            target="_blank"
             href={component.href}
             sx={(theme) => ({
               height: '100%',
@@ -149,10 +149,10 @@ function BaseUIComponents() {
           >
             <CardMedia
               component="img"
-              alt={component.title}
+              alt=""
               image={component.srcLight}
               sx={(theme) => ({
-                aspectRatio: '1125 / 645', // based on the image size
+                aspectRatio: '16 / 9',
                 background: `linear-gradient(180deg, ${alpha(
                   theme.palette.grey[50],
                   0.5,
@@ -169,7 +169,12 @@ function BaseUIComponents() {
                 }),
               })}
             />
-            <Typography component="h2" variant="body2" fontWeight={600} sx={{ px: 2, py: 1.5 }}>
+            <Typography
+              component="h2"
+              variant="body2"
+              fontWeight="semiBold"
+              sx={{ px: 2, py: 1.5 }}
+            >
               {component.title}
             </Typography>
           </Card>
@@ -178,5 +183,3 @@ function BaseUIComponents() {
     </Grid>
   );
 }
-
-export default BaseUIComponents;

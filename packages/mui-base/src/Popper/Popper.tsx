@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import {
   chainPropTypes,
@@ -9,8 +10,8 @@ import {
 } from '@mui/utils';
 import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
 import PropTypes from 'prop-types';
-import composeClasses from '../composeClasses';
-import Portal from '../Portal';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { Portal } from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import {
@@ -538,4 +539,4 @@ Popper.propTypes /* remove-proptypes */ = {
   transition: PropTypes.bool,
 } as any;
 
-export default Popper;
+export { Popper };

@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Popper component
 components: Popper
 githubLabel: 'component: Popper'
@@ -26,7 +26,7 @@ It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Popper from '@mui/base/Popper';
+import { Popper } from '@mui/base/Popper';
 
 export default function MyApp() {
   return <Popper>{/* the popper's content */}</Popper>;
@@ -44,7 +44,7 @@ You can disable this behavior with `disablePortal` prop.
 The following demo shows how to create and style a basic popper.
 Click **Toggle Popper** to see how it behaves:
 
-{{"demo": "SimplePopper.js", "defaultCodeOpen": true}}
+{{"demo": "UnstyledPopperBasic", "defaultCodeOpen": true}}
 
 :::warning
 By default, clicking outside the popper does not hide it.

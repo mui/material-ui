@@ -1,8 +1,8 @@
 import * as React from 'react';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
-export default function EmptyTextarea() {
+export default function MinHeightTextarea() {
   const blue = {
     100: '#DAECFF',
     200: '#b6daff',

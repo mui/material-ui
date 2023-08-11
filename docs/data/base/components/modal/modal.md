@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Modal component
 components: Modal
 githubLabel: 'component: modal'
@@ -52,7 +52,7 @@ Modal is a lower-level construct that is used in the following Material UI compo
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Modal from '@mui/base/Modal';
+import { Modal } from '@mui/base/Modal';
 
 export default function MyApp() {
   return <Modal>{/* the modal's content */}</Modal>;

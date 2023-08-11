@@ -2,14 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Chip from '@mui/material/Chip';
 import Tooltip from '@mui/material/Tooltip';
+import ChatRounded from '@mui/icons-material/ChatRounded';
+import { styled } from '@mui/material/styles';
 import SketchIcon from 'docs/src/modules/components/SketchIcon';
 import FigmaIcon from 'docs/src/modules/components/FigmaIcon';
 import AdobeXDIcon from 'docs/src/modules/components/AdobeXDIcon';
 import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
-import ChatRounded from '@mui/icons-material/ChatRounded';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
-import { styled } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Root = styled('ul')({
@@ -39,7 +39,7 @@ export default function ComponentLinkHeader(props) {
   const t = useTranslate();
 
   const packageName =
-    headers.packageName ?? defaultPackageNames[headers.product] ?? '@mui/material';
+    headers.packageName ?? defaultPackageNames[headers.productId] ?? '@mui/material';
 
   return (
     <Root>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import Menu from '@mui/material/Menu';
@@ -13,14 +13,14 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import DoneRounded from '@mui/icons-material/DoneRounded';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import DoneRounded from '@mui/icons-material/DoneRounded';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 const savedScrollTop = {};
@@ -39,8 +39,8 @@ function ProductDrawerButton(props) {
     <React.Fragment>
       <Button
         id="mui-product-selector"
-        aria-controls="drawer-open-button"
         aria-haspopup="true"
+        aria-controls={open ? 'drawer-open-button' : undefined}
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
@@ -148,7 +148,19 @@ function PersistScroll(props) {
     };
   }, [enabled, slot]);
 
-  return <div ref={rootRef}>{children}</div>;
+  return (
+    <Box
+      sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}
+      ref={rootRef}
+    >
+      {children}
+    </Box>
+  );
 }
 
 PersistScroll.propTypes = {
@@ -158,12 +170,12 @@ PersistScroll.propTypes = {
 };
 
 const ToolbarDiv = styled('div')(({ theme }) => ({
-  padding: theme.spacing(1.45, 2),
+  padding: theme.spacing(1.6, 2),
   paddingRight: 0,
+  flexShrink: 0,
   height: 'var(--MuiDocs-header-height)',
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
-  flexGrow: 1,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -178,18 +190,11 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-const AppNavPaperComponent = styled('div')(({ theme }) => {
+const AppNavPaperComponent = styled('div')(() => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-    paddingBottom: theme.spacing(5),
-    [theme.breakpoints.up('xs')]: {
-      borderRadius: '0px 10px 10px 0px',
-    },
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: '0px',
-    },
   };
 });
 
@@ -197,7 +202,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List sx={{ my: 0.5 }}>
+    <List>
       {pages.reduce(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),
@@ -213,7 +218,7 @@ function renderNavItems(options) {
  */
 function reduceChildRoutes(context) {
   const { onClose, activePageParents, items, depth, t } = context;
-  let { page } = context;
+  const { page } = context;
   if (page.inSideNav === false) {
     return items;
   }
@@ -244,12 +249,13 @@ function reduceChildRoutes(context) {
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
-        comingSoon={page.comingSoon}
+        planned={page.planned}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
         topLevel={topLevel && !page.subheader}
-        openImmediately={topLevel || subheader}
+        initiallyExpanded={topLevel || subheader}
+        expandable={!subheader}
       >
         {renderNavItems({
           onClose,
@@ -261,7 +267,6 @@ function reduceChildRoutes(context) {
       </AppNavDrawerItem>,
     );
   } else {
-    page = page.children && page.children.length === 1 ? page.children[0] : page;
     const [path, hash] = page.pathname.split('#');
     items.push(
       <AppNavDrawerItem
@@ -276,7 +281,7 @@ function reduceChildRoutes(context) {
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
-        comingSoon={page.comingSoon}
+        planned={page.planned}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -393,9 +398,9 @@ export default function AppNavDrawer(props) {
                 pr: '12px',
                 mr: '4px',
                 borderRight: '1px solid',
-                borderColor: (theme.vars || theme).palette.grey[200],
+                borderColor: (theme.vars || theme).palette.divider,
                 ...theme.applyDarkStyles({
-                  borderColor: alpha(theme.palette.primary[100], 0.08),
+                  borderColor: (theme.vars || theme).palette.divider,
                 }),
               })}
             >
@@ -408,16 +413,9 @@ export default function AppNavDrawer(props) {
             versionSelector={renderVersionSelector(productIdentifier.versions)}
           />
         </ToolbarDiv>
-        <Divider
-          sx={(theme) => ({
-            borderColor: (theme.vars || theme).palette.grey[100],
-            ...theme.applyDarkStyles({
-              borderColor: alpha(theme.palette.primary[100], 0.08),
-            }),
-          })}
-        />
+        <Divider />
+        <Box sx={{ pt: 0.5, pb: 5, overflowY: 'auto', flexGrow: 1 }}>{navItems}</Box>
         <DiamondSponsors />
-        {navItems}
       </React.Fragment>
     );
   }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);

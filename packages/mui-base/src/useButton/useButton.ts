@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import {
   unstable_useForkRef as useForkRef,
@@ -8,9 +9,9 @@ import {
   UseButtonReturnValue,
   UseButtonRootSlotProps,
 } from './useButton.types';
-import extractEventHandlers from '../utils/extractEventHandlers';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 /**
  *
  * Demos:
@@ -21,7 +22,7 @@ import MuiCancellableEvent from '../utils/muiCancellableEvent';
  *
  * - [useButton API](https://mui.com/base-ui/react-button/hooks-api/#use-button)
  */
-export default function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
+export function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
   const {
     disabled = false,
     focusableWhenDisabled,
@@ -213,11 +214,7 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
       ...otherHandlers,
     };
 
-    // onFocusVisible can be present on the props, but since it's not a valid React event handler,
-    // it must not be forwarded to the inner component.
-    delete externalEventHandlers.onFocusVisible;
-
-    return {
+    const props = {
       type,
       ...externalEventHandlers,
       ...buttonProps,
@@ -230,6 +227,13 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
       onMouseLeave: createHandleMouseLeave(externalEventHandlers),
       ref: handleRef,
     };
+
+    // onFocusVisible can be present on the props or parameters,
+    // but it's not a valid React event handler so it must not be forwarded to the inner component.
+    // If present, it will be handled by the focus handler.
+    delete props.onFocusVisible;
+
+    return props;
   };
 
   return {

@@ -4,8 +4,15 @@ import * as React from 'react';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
-import generalPages from 'docs/src/pages';
+import { useRouter } from 'next/router';
+import { LicenseInfo } from '@mui/x-data-grid-pro';
+import materialPkgJson from 'packages/mui-material/package.json';
+import joyPkgJson from 'packages/mui-joy/package.json';
+import systemPkgJson from 'packages/mui-system/package.json';
+import basePkgJson from 'packages/mui-base/package.json';
+import generalDocsPages from 'docs/data/docs/pages';
 import basePages from 'docs/data/base/pages';
+import docsInfraPages from 'docs/data/docs-infra/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
@@ -14,18 +21,14 @@ import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
+import { CodeStylingProvider } from 'docs/src/modules/utils/codeStylingSolution';
 import { UserLanguageProvider } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
-import { useRouter } from 'next/router';
-import { LicenseInfo } from '@mui/x-data-grid-pro';
-import materialPkgJson from 'packages/mui-material/package.json';
-import joyPkgJson from 'packages/mui-joy/package.json';
-import systemPkgJson from 'packages/mui-system/package.json';
-import basePkgJson from 'packages/mui-base/package.json';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
+import './global.css';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -136,6 +139,9 @@ function AppWrapper(props) {
   const { children, emotionCache, pageProps } = props;
 
   const router = useRouter();
+  // TODO move productId & productCategoryId resolution to page layout.
+  // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
+  // if not present
   const { productId, productCategoryId } = getProductInfoFromUrl(router.asPath);
 
   React.useEffect(() => {
@@ -215,20 +221,37 @@ function AppWrapper(props) {
       };
     }
 
-    return {
-      metadata: '',
-      name: 'Docs-infra',
-      versions: [
-        {
-          text: 'v0.0.0',
-          href: `https://mui.com${languagePrefix}/versions/`,
-        },
-      ],
-    };
+    if (productId === 'docs-infra') {
+      return {
+        metadata: '',
+        name: 'Docs-infra',
+        versions: [
+          {
+            text: 'v0.0.0',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    if (productId === 'docs') {
+      return {
+        metadata: '',
+        name: 'Home docs',
+        versions: [
+          {
+            text: 'v0.0.0',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    return null;
   }, [pageProps.userLanguage, productId]);
 
   const pageContextValue = React.useMemo(() => {
-    let pages = generalPages;
+    let pages = generalDocsPages;
     if (productId === 'base-ui') {
       pages = basePages;
     } else if (productId === 'material-ui') {
@@ -237,6 +260,8 @@ function AppWrapper(props) {
       pages = joyPages;
     } else if (productId === 'system') {
       pages = systemPages;
+    } else if (productId === 'docs-infra') {
+      pages = docsInfraPages;
     }
 
     const { activePage, activePageParents } = findActivePage(pages, router.pathname);
@@ -247,8 +272,9 @@ function AppWrapper(props) {
       pages,
       productIdentifier,
       productId,
+      productCategoryId,
     };
-  }, [productId, productIdentifier, router.pathname]);
+  }, [productId, productCategoryId, productIdentifier, router.pathname]);
 
   let fonts = [];
   if (pathnameToLanguage(router.asPath).canonicalAs.match(/onepirate/)) {
@@ -269,16 +295,18 @@ function AppWrapper(props) {
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
         <CodeCopyProvider>
-          <CodeVariantProvider>
-            <PageContext.Provider value={pageContextValue}>
-              <ThemeProvider>
-                <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                  {children}
-                  <GoogleAnalytics />
-                </DocsStyledEngineProvider>
-              </ThemeProvider>
-            </PageContext.Provider>
-          </CodeVariantProvider>
+          <CodeStylingProvider>
+            <CodeVariantProvider>
+              <PageContext.Provider value={pageContextValue}>
+                <ThemeProvider>
+                  <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                    {children}
+                    <GoogleAnalytics />
+                  </DocsStyledEngineProvider>
+                </ThemeProvider>
+              </PageContext.Provider>
+            </CodeVariantProvider>
+          </CodeStylingProvider>
         </CodeCopyProvider>
       </UserLanguageProvider>
     </React.Fragment>

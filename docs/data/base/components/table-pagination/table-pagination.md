@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Table Pagination component
 components: TablePagination
 githubLabel: 'component: TablePagination'
@@ -34,7 +34,7 @@ See the [Slot props section](#slot-props) for details.
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import TablePagination from '@mui/base/TablePagination';
+import { TablePagination } from '@mui/base/TablePagination';
 
 export default function MyApp() {
   return (
@@ -159,4 +159,4 @@ This prop requires an array of either numbers or objects:
 
 The following demo shows another example of pagination controls but with additional style customization:
 
-{{"demo": "TableCustomized.js"}}
+{{"demo": "TableCustomized"}}

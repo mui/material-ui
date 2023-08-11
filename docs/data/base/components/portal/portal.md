@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Portal component
 components: Portal
 githubLabel: 'component: Portal'
@@ -27,7 +27,7 @@ The Portal component is used internally by the [Modal](/base-ui/react-modal/) an
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Portal from '@mui/base/Portal';
+import { Portal } from '@mui/base/Portal';
 
 export default function MyApp() {
   return (

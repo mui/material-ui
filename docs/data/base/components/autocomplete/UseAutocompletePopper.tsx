@@ -1,6 +1,6 @@
 import * as React from 'react';
-import useAutocomplete, { UseAutocompleteProps } from '@mui/base/useAutocomplete';
-import Popper from '@mui/base/Popper';
+import { useAutocomplete, UseAutocompleteProps } from '@mui/base/useAutocomplete';
+import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 
@@ -51,7 +51,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
   );
 });
 
-export default function UseAutocomplete() {
+export default function UseAutocompletePopper() {
   const [value, setValue] = React.useState<(typeof top100Films)[number] | null>(
     null,
   );

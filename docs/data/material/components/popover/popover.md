@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Popover component
 components: Grow, Popover
 githubLabel: 'component: Popover'
@@ -18,7 +18,7 @@ Things to know when using the `Popover` component:
 
 ## Basic Popover
 
-{{"demo": "BasicPopover.js" }}
+{{"demo": "BasicPopover.js"}}
 
 ## Anchor playground
 

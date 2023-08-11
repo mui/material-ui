@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
-import { getAllBlogPosts, BlogPost } from 'docs/lib/sourcing';
 import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Section from 'docs/src/layouts/Section';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -15,6 +13,10 @@ import Pagination from '@mui/material/Pagination';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import Chip from '@mui/material/Chip';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -24,6 +26,8 @@ import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import Link from 'docs/src/modules/components/Link';
 import generateRssFeed from 'docs/scripts/generateRSSFeed';
+import Section from 'docs/src/layouts/Section';
+import { getAllBlogPosts, BlogPost } from 'docs/lib/sourcing';
 
 export const getStaticProps = () => {
   const data = getAllBlogPosts();
@@ -45,18 +49,21 @@ function PostPreview(props: BlogPost) {
             sx={[
               (theme) => ({
                 fontWeight: 500,
-                color: (theme.vars || theme).palette.grey[700],
-                background: (theme.vars || theme).palette.grey[100],
+                color: (theme.vars || theme).palette.primary[600],
+                background: (theme.vars || theme).palette.primary[50],
+                border: '1px solid',
+                borderColor: (theme.vars || theme).palette.primary[100],
                 '&:hover': {
-                  background: (theme.vars || theme).palette.grey[100],
+                  background: (theme.vars || theme).palette.primary[50],
                 },
               }),
               (theme) =>
                 theme.applyDarkStyles({
-                  color: (theme.vars || theme).palette.grey[50],
-                  background: alpha(theme.palette.grey[700], 0.5),
+                  color: (theme.vars || theme).palette.primary[100],
+                  background: alpha(theme.palette.primary[900], 0.4),
+                  borderColor: alpha(theme.palette.primary[800], 0.5),
                   '&:hover': {
-                    background: alpha(theme.palette.grey[700], 0.5),
+                    background: alpha(theme.palette.primary[900], 0.4),
                   },
                 }),
             ]}
@@ -98,7 +105,7 @@ function PostPreview(props: BlogPost) {
                 width: 28,
                 height: 28,
                 border: 3,
-                borderColor: (theme.vars || theme).palette.grey[100],
+                borderColor: '#FFF',
                 backgroundColor: (theme.vars || theme).palette.grey[100],
                 color: (theme.vars || theme).palette.grey[800],
                 fontSize: theme.typography.pxToRem(13),
@@ -163,7 +170,6 @@ function PostPreview(props: BlogPost) {
           aria-describedby={`describe-${props.slug}`}
           href={`/blog/${props.slug}`}
           id={`describe-${props.slug}`}
-          size="small"
           endIcon={<KeyboardArrowRightRoundedIcon />}
           sx={(theme) => ({
             mt: { xs: 1, md: 0 },
@@ -256,75 +262,103 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       />
       <AppHeader />
       <main id="main-content">
-        <Section bg="gradient" sx={{ backgroundSize: '100% 300px', backgroundRepeat: 'no-repeat' }}>
-          <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
-            Blog
-          </Typography>
-          <Typography component="h1" variant="h2" textAlign="center" sx={{ mb: { xs: 5, md: 10 } }}>
-            The <GradientText>latest</GradientText> about MUI
-          </Typography>
-          <Box
-            component="ul"
-            sx={{
-              display: 'grid',
-              m: 0,
-              p: 0,
-              gap: 2,
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            }}
-          >
-            {[firstPost, secondPost].map((post) => (
-              <Paper
-                key={post.slug}
-                component="li"
-                variant="outlined"
-                sx={[
-                  {
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    position: 'relative',
-                    transition: 'all ease 120ms',
-                    '&:hover, &:focus-within': {
-                      borderColor: 'grey.300',
-                      boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
-                    },
-                    '&:focus-within': {
-                      '& a': {
-                        outline: 0,
-                      },
-                    },
-                  },
-                  (theme) =>
-                    theme.applyDarkStyles({
+        <Box
+          sx={(theme) => ({
+            background: `linear-gradient(180deg, #FFF 50%, 
+          ${(theme.vars || theme).palette.primary[50]} 100%)
+        `,
+            ...theme.applyDarkStyles({
+              background: `linear-gradient(180deg, ${
+                (theme.vars || theme).palette.primaryDark[800]
+              } 50%, 
+          ${alpha(theme.palette.primary[900], 0.2)} 100%)
+          `,
+            }),
+          })}
+        >
+          <Section bg="transparent" cozy>
+            <Typography
+              variant="body2"
+              color="primary.main"
+              fontWeight="bold"
+              textAlign="center"
+              gutterBottom
+            >
+              Blog
+            </Typography>
+            <Typography
+              component="h1"
+              variant="h2"
+              textAlign="center"
+              sx={{ mb: { xs: 5, md: 10 } }}
+            >
+              The <GradientText>latest</GradientText> about MUI
+            </Typography>
+            <Box
+              component="ul"
+              sx={{
+                display: 'grid',
+                m: 0,
+                p: 0,
+                gap: 2,
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              }}
+            >
+              {[firstPost, secondPost].map((post) => (
+                <Paper
+                  key={post.slug}
+                  component="li"
+                  variant="outlined"
+                  sx={[
+                    {
+                      p: 2,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      position: 'relative',
+                      transition: 'all ease 120ms',
                       '&:hover, &:focus-within': {
-                        borderColor: 'primary.600',
-                        boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+                        borderColor: 'grey.300',
+                        boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
                       },
-                    }),
-                ]}
-              >
-                {post.image && (
-                  <Box
-                    component="img"
-                    src={post.image}
-                    sx={{
-                      aspectRatio: '16 / 9',
-                      width: '100%',
-                      height: 'auto',
-                      objectFit: 'cover',
-                      borderRadius: '4px',
-                    }}
-                  />
-                )}
-                <PostPreview {...post} />
-              </Paper>
-            ))}
-          </Box>
-        </Section>
+                      '&:focus-within': {
+                        '& a': {
+                          outline: 0,
+                        },
+                      },
+                    },
+                    (theme) =>
+                      theme.applyDarkStyles({
+                        '&:hover, &:focus-within': {
+                          borderColor: 'primary.600',
+                          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+                        },
+                      }),
+                  ]}
+                >
+                  {post.image && (
+                    <Box
+                      component="img"
+                      src={post.image}
+                      sx={{
+                        aspectRatio: '16 / 9',
+                        width: '100%',
+                        height: 'auto',
+                        objectFit: 'cover',
+                        borderRadius: '4px',
+                      }}
+                    />
+                  )}
+                  <PostPreview {...post} />
+                </Paper>
+              ))}
+            </Box>
+          </Section>
+        </Box>
+        <Divider />
         <Container
           ref={postListRef}
           sx={{
+            py: { xs: 4, sm: 6, md: 8 },
             mt: -6,
             display: 'grid',
             gridTemplateColumns: { md: '1fr 380px' },
@@ -333,8 +367,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
         >
           <Typography
             component="h2"
-            color="text.primary"
-            variant="h5"
+            variant="h6"
             fontWeight="700"
             sx={{ mb: { xs: 1, sm: 2 }, mt: 8 }} // margin-top makes the title appear when scroll into view
           >
@@ -369,7 +402,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 }),
               })}
             >
-              <Typography color="text.primary" fontWeight="500" sx={{ mb: 2 }}>
+              <Typography color="text.primary" fontWeight="semiBold" sx={{ mb: 2 }}>
                 Filter by tag
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
@@ -379,6 +412,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                     <Chip
                       key={tag}
                       variant={selected ? 'filled' : 'outlined'}
+                      color={selected ? 'primary' : undefined}
                       {...(selected
                         ? {
                             label: tag,
@@ -410,6 +444,31 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                     />
                   );
                 })}
+              </Box>
+              <Divider sx={{ mt: 3, mb: 2 }} />
+              <Typography color="text.primary" fontWeight="semiBold" sx={{ mb: 1 }}>
+                Want to hear more from us?
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                Stay on the loop about everything MUI-related through our social media:
+              </Typography>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, '* > svg': { mr: 1 } }}>
+                <Link href="https://github.com/mui" target="_blank" fontSize={14}>
+                  <GitHubIcon fontSize="small" />
+                  GitHub
+                </Link>
+                <Link href="https://twitter.com/MUI_hq" target="_blank" fontSize={14}>
+                  <TwitterIcon fontSize="small" />
+                  Twitter
+                </Link>
+                <Link href="https://www.linkedin.com/company/mui/" target="_blank" fontSize={14}>
+                  <LinkedInIcon fontSize="small" />
+                  LinkedIn
+                </Link>
+                <Link href="https://www.youtube.com/@MUI_hq" target="_blank" fontSize={14}>
+                  <YouTubeIcon fontSize="small" />
+                  Youtube
+                </Link>
               </Box>
             </Box>
           </Box>
@@ -448,6 +507,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           </Box>
         </Container>
       </main>
+      <Divider />
       <HeroEnd />
       <Divider />
       <AppFooter />

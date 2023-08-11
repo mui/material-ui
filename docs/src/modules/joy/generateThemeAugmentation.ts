@@ -54,10 +54,6 @@ export default function generateThemeAugmentation(data: any) {
       prependSpace(augmentPalette(data?.colorSchemes, 'danger'), 4),
     ),
     renderInterface(
-      'PaletteInfoOverrides',
-      prependSpace(augmentPalette(data?.colorSchemes, 'info'), 4),
-    ),
-    renderInterface(
       'PaletteSuccessOverrides',
       prependSpace(augmentPalette(data?.colorSchemes, 'success'), 4),
     ),

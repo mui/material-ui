@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
@@ -258,6 +259,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       if (autoFocusItem) {
         newChildProps.autoFocus = true;
       }
+
       if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
         newChildProps.tabIndex = 0;
       }

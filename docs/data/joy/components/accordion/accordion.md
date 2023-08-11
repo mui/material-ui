@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Accordion component
 githubLabel: 'component: accordion'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/

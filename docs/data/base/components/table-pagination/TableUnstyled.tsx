@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TablePagination, {
+import {
+  TablePagination,
   tablePaginationClasses as classes,
 } from '@mui/base/TablePagination';
 
-export default function UnstyledTable() {
+export default function TableUnstyled() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 

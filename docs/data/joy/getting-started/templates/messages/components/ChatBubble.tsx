@@ -32,10 +32,10 @@ export default function ChatBubble({
         spacing={2}
         sx={{ mb: 0.25 }}
       >
-        <Typography level="body3">
+        <Typography level="body-xs">
           {sender === 'You' ? sender : sender.name}
         </Typography>
-        <Typography level="body3">{timestamp}</Typography>
+        <Typography level="body-xs">{timestamp}</Typography>
       </Stack>
       {attachment ? (
         <Sheet
@@ -52,7 +52,7 @@ export default function ChatBubble({
             <FileIcon fileType={attachment.type} />
             <div>
               <Typography fontSize="sm">{attachment.fileName}</Typography>
-              <Typography level="body2">{attachment.size}</Typography>
+              <Typography level="body-sm">{attachment.size}</Typography>
             </div>
           </Stack>
         </Sheet>

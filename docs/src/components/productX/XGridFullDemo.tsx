@@ -173,6 +173,8 @@ export default function XGridFullDemo() {
           variant="outlined"
           sx={[
             {
+              overflow: 'auto',
+              borderRadius: '8px',
               height: 328,
               '& .MuiDataGrid-root': {
                 bgcolor: '#fff',
@@ -226,7 +228,7 @@ export default function XGridFullDemo() {
           />
         </Paper>
       </Frame.Demo>
-      <Frame.Info data-mui-color-scheme="dark" sx={{ pl: 1, pr: 2, py: 2 }}>
+      <Frame.Info data-mui-color-scheme="dark" sx={{ pl: 1, pr: 2, py: 1.5 }}>
         <SettingsPanel onApply={handleApplyClick} size={size} type={type} />
       </Frame.Info>
     </Frame>

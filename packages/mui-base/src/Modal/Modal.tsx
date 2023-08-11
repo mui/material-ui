@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -10,10 +11,10 @@ import {
 } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { ModalOwnerState, ModalOwnProps, ModalProps, ModalTypeMap } from './Modal.types';
-import composeClasses from '../composeClasses';
-import Portal from '../Portal';
-import ModalManager, { ariaHidden } from './ModalManager';
-import FocusTrap from '../FocusTrap';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { Portal } from '../Portal';
+import { ModalManager, ariaHidden } from './ModalManager';
+import { FocusTrap } from '../FocusTrap';
 import { getModalUtilityClass } from './modalClasses';
 import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
@@ -406,6 +407,14 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   onClose: PropTypes.func,
   /**
+   * A function called when a transition enters.
+   */
+  onTransitionEnter: PropTypes.func,
+  /**
+   * A function called when a transition has exited.
+   */
+  onTransitionExited: PropTypes.func,
+  /**
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
@@ -428,4 +437,4 @@ Modal.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Modal;
+export { Modal };

@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 import { styled, extendTheme, Shadow } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Link from '@mui/joy/Link';
@@ -9,6 +8,7 @@ import Sheet from '@mui/joy/Sheet';
 import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
 import Check from '@mui/icons-material/CheckCircle';
+import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 
 const Table = styled('table')(({ theme }) => ({
   border: '1px solid',
@@ -76,7 +76,7 @@ export default function ShadowThemeViewer() {
           zIndex: 1,
         }}
       >
-        <Typography level="body3" textColor="inherit" startDecorator={<Check />}>
+        <Typography level="body-xs" textColor="inherit" startDecorator={<Check />}>
           Copied
         </Typography>
       </Sheet>
@@ -115,7 +115,6 @@ export default function ShadowThemeViewer() {
                   textAlign="left"
                   fontSize="xs"
                   fontFamily="code"
-                  letterSpacing="sm"
                   onClick={() => copy(token)}
                 >
                   {formatShadowLayers(defaultTheme.shadow[token])}

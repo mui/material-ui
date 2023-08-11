@@ -1,0 +1,13 @@
+<Button startDecorator={<CircularProgress variant="solid" />}>Loading…</Button>
+<IconButton>
+  <CircularProgress />
+</IconButton>
+{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+<Link
+  component="button"
+  variant="plain"
+  startDecorator={<CircularProgress />}
+  sx={{ p: 1 }}
+>
+  Submitting...
+</Link>

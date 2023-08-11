@@ -17,7 +17,7 @@ describe('textToHash', () => {
     ];
     table.forEach((entry, index) => {
       const [markdown, expected] = entry;
-      const text = renderInlineMarkdown(markdown);
+      const text = renderInlineMarkdown(markdown, { mangle: false, headerIds: false });
       const actual = textToHash(text);
 
       expect(actual).to.equal(expected, `snapshot #${index} matches`);

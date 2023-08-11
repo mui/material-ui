@@ -84,7 +84,7 @@ See our [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-
 
 #### Styled components
 
-If you use a CSS-in-JS solution with a styled-components-like API (such as [MUI System](/system/getting-started/overview/) or [Emotion](https://emotion.sh/docs/introduction)), the best method is to provide the styled subcomponents using the [`slots` prop](#overriding-subcomponent-slots), as shown in the [demo below](#overriding-subcomponent-slots).
+If you use a CSS-in-JS solution with a styled-components-like API (such as [MUI System](/system/getting-started/) or [Emotion](https://emotion.sh/docs/introduction)), the best method is to provide the styled subcomponents using the [`slots` prop](#overriding-subcomponent-slots), as shown in the [demo below](#overriding-subcomponent-slots).
 
 Alternatively, you can wrap the whole unstyled component in a `styled` utility and target the individual subcomponents using CSS classes:
 
@@ -140,6 +140,16 @@ In this case, `MyCustomThumb` component receives the `ownerState` object with th
 ```
 
 You can use this object to style your component.
+
+:::warning
+When inserting a component from a third-party library into a slot, you may encounter this warning: `"React does not recognize the ownerState prop on a DOM element."`
+This is because the custom component isn't prepared to receive the `ownerState` like a built-in library component would be.
+:::
+
+If you need to use the `ownerState` to propagate some props to a third-party component, you must create a custom wrapper for this purpose.
+But if you don't need the `ownerState` and just want to resolve the error, you can use the `prepareForSlot` utility:
+
+{{"demo": "PrepareForSlot.js", "defaultCodeOpen": true}}
 
 ### Customizing slot props
 

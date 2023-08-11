@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Typography component
 components: Typography
 githubLabel: 'component: Typography'
@@ -27,9 +27,11 @@ Roboto Font has a few easy ways to get started. For more advanced configuration,
 Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
 />
 ```
 

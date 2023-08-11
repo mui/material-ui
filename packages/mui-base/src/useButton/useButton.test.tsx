@@ -1,8 +1,8 @@
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
-import { createRenderer, fireEvent } from 'test/utils';
+import { act, createRenderer, fireEvent } from 'test/utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { useButton } from '@mui/base/useButton';
 
 describe('useButton', () => {
   const { render } = createRenderer();
@@ -168,6 +168,32 @@ describe('useButton', () => {
 
         expect(handleClickInternal.callCount).to.equal(1);
         expect(handleClickExternal.callCount).to.equal(0);
+      });
+
+      it('handles onFocusVisible and does not include it in the root props', () => {
+        interface WithFocusVisibleHandler {
+          onFocusVisible: React.FocusEventHandler;
+        }
+
+        function TestComponent(props: WithFocusVisibleHandler) {
+          const ref = React.useRef(null);
+          const { getRootProps } = useButton({ ...props, rootRef: ref });
+
+          // @ts-expect-error onFocusVisible is removed from props
+          expect(getRootProps().onFocusVisible).to.equal(undefined);
+
+          return <button {...getRootProps()} />;
+        }
+
+        const handleFocusVisible = spy();
+
+        const { getByRole } = render(<TestComponent onFocusVisible={handleFocusVisible} />);
+
+        act(() => {
+          getByRole('button').focus();
+        });
+
+        expect(handleFocusVisible.callCount).to.equal(1);
       });
     });
   });

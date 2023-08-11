@@ -5,14 +5,14 @@
  * @param object Object to remove event handlers from.
  * @returns Object with event handlers removed.
  */
-export default function omitEventHandlers<T extends Record<string, unknown>>(
-  object: T | undefined,
+export function omitEventHandlers<Props extends Record<string, unknown>>(
+  object: Props | undefined,
 ) {
   if (object === undefined) {
     return {};
   }
 
-  const result = {} as Partial<T>;
+  const result = {} as Partial<Props>;
 
   Object.keys(object)
     .filter((prop) => !(prop.match(/^on[A-Z]/) && typeof object[prop] === 'function'))

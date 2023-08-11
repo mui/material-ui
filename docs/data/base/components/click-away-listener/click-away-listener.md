@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: Detect click outside React component
 components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
@@ -29,7 +29,7 @@ Click-Away Listener also supports the [Portal](/base-ui/react-portal/) component
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 
 export default function MyApp() {
   return (

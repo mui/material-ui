@@ -1,6 +1,6 @@
-export { default } from './Select';
+'use client';
+export { Select } from './Select';
 
-export { default as selectClasses } from './selectClasses';
 export * from './selectClasses';
 
 export * from './Select.types';
