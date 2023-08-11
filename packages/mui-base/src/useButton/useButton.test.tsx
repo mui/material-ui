@@ -227,7 +227,7 @@ describe('useButton', () => {
       expect(getByRole('button')).to.have.property('tabIndex', 0);
     });
 
-    it('returns provided tabIndex', () => {
+    it('returns tabIndex in getRootProps if it is explicitly provided', () => {
       const customTabIndex = 3;
       function TestComponent() {
         const ref = React.useRef(null);
