@@ -74,7 +74,7 @@ const AlertRoot = styled('div', {
       alignItems: 'center',
       padding: `var(--Alert-padding)`,
       borderRadius: 'var(--Alert-radius)',
-      boxShadow: theme.vars.shadow.xs,
+      boxShadow: 'none',
       ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
       fontWeight: theme.vars.fontWeight.md,
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
