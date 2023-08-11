@@ -106,7 +106,7 @@ We always strive to ensure that MUI X remains performant and efficient, particul
 
 We are delighted to announce the upcoming expansion of MUI X: a brand-new suite of components for building and customizing charts.
 
-With MUI X Charts, you can choose from a wide range of chart types, including line charts, bar charts, pie charts, area charts, scatter plots, and more. 
+With MUI X Charts, you can choose from a wide range of chart types, including line charts, bar charts, pie charts, area charts, scatter plots, and more.
 Each chart type is thoughtfully crafted with attention to detail, ensuring that the visual representations are not only aesthetically pleasing, but also highly effective in conveying complex data.
 
 And it ships with gorgeous palettes that were specially crafted by our designers!
@@ -120,7 +120,7 @@ Check out the video below, highlighting some of our Charts:
 As we progress toward the stable version, we're committed to enhancing the overall experience for developers and users, so your feedback is fundamental!
 
 We will also steadily expand our portfolio with new chart types such as [Heat map](https://mui.com/x/react-charts/heat-map/), [Funnel](https://mui.com/x/react-charts/funnel/), [Gantt](https://mui.com/x/react-charts/gantt/), and more.
-If there's a specific chart visualization you'd like us to prioritize, we encourage you to upvote the respective [issue on GitHub](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+charts%22+label%3A%22waiting+for+%F0%9F%91%8D%22). 
+If there's a specific chart visualization you'd like us to prioritize, we encourage you to upvote the respective [issue on GitHub](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+charts%22+label%3A%22waiting+for+%F0%9F%91%8D%22).
 Your input can directly influence our development schedule, so don't hesitate to let us know what matters most to you!
 
 [Get started with charts now!](https://mui.com/x/react-charts/)
