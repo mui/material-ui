@@ -116,9 +116,8 @@ const Root = styled('div')(
       paddingLeft: 30,
     },
     '& h1, & h2, & h3, & h4': {
-      position: 'relative',
-      // Reserve space for the end of the line action button
-      paddingRight: 26 * 2 + 10,
+      display: 'flex',
+      alignItems: 'center',
       '& code': {
         fontSize: 'inherit',
         lineHeight: 'inherit',
@@ -135,20 +134,20 @@ const Root = styled('div')(
         textDecoration: 'none',
       },
       '&:hover .anchor-link, & .comment-link': {
-        position: 'absolute',
+        cursor: 'pointer',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         textAlign: 'center',
         marginLeft: 8,
-        marginTop: 5,
         height: 26,
         width: 26,
-        lineHeight: '21px',
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
         borderRadius: 8,
         color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
-        cursor: 'pointer',
-        display: 'inline-block',
+
         '&:hover': {
           backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
           borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
@@ -163,18 +162,18 @@ const Root = styled('div')(
       },
       '& .comment-link': {
         display: 'none', // So we can have the comment button opt-in.
-        top: 0,
-        right: 0,
+        marginLeft: 'auto',
         transition: theme.transitions.create('opacity', {
           duration: theme.transitions.duration.shortest,
         }),
         '& svg': {
-          opacity: 0.6,
-          marginBottom: 1,
           verticalAlign: 'middle',
+          color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.tertiary})`,
         },
         '&:hover': {
-          '&>svg': { opacity: 1 },
+          '&>svg': {
+            color: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
+          },
         },
       },
     },
