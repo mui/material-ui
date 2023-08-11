@@ -19,8 +19,8 @@ Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases), 
   - [Support for time zones](#support-for-time-zones)
   - [Digital clock](#digital-clock)
 - [Data Grid](#data-grid)
-  - [Copy and paste](#copy-and-paste)
-  - [Filter on column headers](#filter-on-column-headers)
+  - [Copy and paste](#copy-and-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+  - [Copy and paste](#copy-and-paste) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
   - [Performance enhancements: smoother scrolling and expanding rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
 - [Charts - alpha version 🎁](#charts---alpha-version-)
 - [What's next](#whats-next)
@@ -66,7 +66,7 @@ Check out all the possibilities in the [Date Pickers—Digital clock documentati
 
 ## Data Grid
 
-### Copy and paste[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+### Copy and paste [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
 
 After setting the `experimentalFeatures={{ clipboardPaste: true }}` prop, you can copy and paste data directly to and from your Data Grid.
 
@@ -81,7 +81,7 @@ The callbacks `clipboardPasteStart` and `clipboardPasteEnd` are fired during the
 
 For more details on how to use clipboard copy and paste, check out the [Data Grid—Clipboard documentation](https://mui.com/x/react-data-grid/clipboard/).
 
-### Filter on column headers[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+### Filter on column headers [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
 Filtering on column headers gives users the ability to quickly filter data without any additional menu.
 Use the the `unstable_headerFilters` prop to activate this feature.
