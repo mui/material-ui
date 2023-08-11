@@ -50,6 +50,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     WebkitTapHighlightColor: 'transparent',
     boxSizing: 'border-box',
     position: 'relative',
+    font: 'inherit',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
