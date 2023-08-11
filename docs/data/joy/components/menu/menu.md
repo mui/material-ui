@@ -101,8 +101,7 @@ For example, this is how you'd go for displaying the menu on the bottom-end of t
 ### Controlling the open state
 
 By default, the open/close state of the menu is managed internally by the Dropdown component.
-It is possible to control it programmatically from the outside, though.
-To do this, use the `open` and `onOpenChange` props of the Dropdown component, as shown in the demo:
+To control it programmatically from the outside, apply the Dropdown's `open` and `onOpenChange` props as shown below:
 
 {{"demo": "ControlledDropdown.js"}}
 
