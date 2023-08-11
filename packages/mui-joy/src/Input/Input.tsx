@@ -94,6 +94,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         display: 'flex',
         paddingInline: `var(--Input-paddingInline)`,
         borderRadius: 'var(--Input-radius)',
+        boxShadow: theme.vars.shadow.xs,
         ...theme.typography[`body-${ownerState.size!}`],
         ...variantStyle,
         backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
