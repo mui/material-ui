@@ -2195,6 +2195,32 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('props: freeSolo & multiple', () => {
+    it('should not autoHighlight by default and allow user to freely add chips even its one of substring of selected options', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          freeSolo
+          multiple
+          defaultValue={['bahubali']}
+          options={['bahubali', 'rrr']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          onChange={handleChange}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.change(textbox, { target: { value: 'bahu' } });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.eql(['bahubali', 'bahu']);
+      expect(handleChange.args[0][2]).to.equal('createOption');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: 'bahu' });
+    });
+  });
+
   describe('prop: onChange', () => {
     it('provides a reason and details on option creation', () => {
       const handleChange = spy();
