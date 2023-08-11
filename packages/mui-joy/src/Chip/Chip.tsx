@@ -223,7 +223,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     color: colorProp = 'neutral',
     onClick,
     disabled = false,
-    size = 'md',
+    size = 'sm',
     variant = 'soft',
     startDecorator,
     endDecorator,
@@ -372,7 +372,7 @@ Chip.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
-   * @default 'md'
+   * @default 'sm'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['lg', 'md', 'sm']),
