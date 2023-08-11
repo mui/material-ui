@@ -1,7 +1,19 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import SvgIcon from '@mui/joy/SvgIcon';
+import { styled } from '@mui/joy';
+
+const VisuallyHiddenInput = styled('input')`
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  white-space: nowrap;
+  width: 1px;
+`;
 
 export default function InputFileUpload() {
   return (
@@ -30,21 +42,7 @@ export default function InputFileUpload() {
       }
     >
       Upload a file
-      <Box
-        component="input"
-        type="file"
-        sx={{
-          clip: 'rect(0 0 0 0)',
-          clipPath: 'inset(50%)',
-          height: '1px',
-          overflow: 'hidden',
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          whiteSpace: 'nowrap',
-          width: '1px',
-        }}
-      />
+      <VisuallyHiddenInput type="file" />
     </Button>
   );
 }

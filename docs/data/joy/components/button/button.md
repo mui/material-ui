@@ -120,7 +120,7 @@ If you need the style of a button with the functionality of a link, then you can
 
 ## File Upload
 
-Following demo shows how to turn `Button` component to `input` with type as `file`
+To create a file upload button, turn the button into a label using `component="label"` and then create a visually-hidden input with type `file`.
 
 {{"demo": "InputFileUpload.js"}}
 
