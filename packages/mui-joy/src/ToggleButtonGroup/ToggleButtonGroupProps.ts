@@ -58,7 +58,7 @@ export interface ToggleButtonGroupStaticProps {
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
-   * @default 'md'
+   * @default 'sm'
    */
   size?: OverridableStringUnion<'sm' | 'md' | 'lg', ToggleButtonGroupPropsSizeOverrides>;
   /**

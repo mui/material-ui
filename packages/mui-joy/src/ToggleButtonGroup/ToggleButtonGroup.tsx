@@ -69,7 +69,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup<
     className,
     component = 'div',
     disabled = false,
-    size = 'md',
+    size = 'sm',
     color = 'neutral',
     variant = 'outlined',
     children,
@@ -246,7 +246,7 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
-   * @default 'md'
+   * @default 'sm'
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
