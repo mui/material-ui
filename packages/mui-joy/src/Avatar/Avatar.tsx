@@ -158,7 +158,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const {
     alt,
     color: colorProp = 'neutral',
-    size: sizeProp = 'md',
+    size: sizeProp = 'sm',
     variant: variantProp = 'soft',
     src,
     srcSet,
@@ -268,7 +268,7 @@ Avatar.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
-   * @default 'md'
+   * @default 'sm'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['lg', 'md', 'sm']),
