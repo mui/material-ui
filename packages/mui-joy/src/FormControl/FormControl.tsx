@@ -108,7 +108,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     required = false,
     error = false,
     color,
-    size = 'md',
+    size = 'sm',
     orientation = 'vertical',
     slots = {},
     slotProps = {},
@@ -236,7 +236,7 @@ FormControl.propTypes /* remove-proptypes */ = {
   required: PropTypes.bool,
   /**
    * The size of the component.
-   * @default 'md'
+   * @default 'sm'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),

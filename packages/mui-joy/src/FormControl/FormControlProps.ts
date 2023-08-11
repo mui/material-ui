@@ -56,7 +56,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     required?: boolean;
     /**
      * The size of the component.
-     * @default 'md'
+     * @default 'sm'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', FormControlPropsSizeOverrides>;
     /**
