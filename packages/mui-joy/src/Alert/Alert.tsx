@@ -128,7 +128,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     color: colorProp = 'neutral',
     invertedColors = false,
     role = 'alert',
-    variant = 'outlined',
+    variant = 'soft',
     size = 'md',
     startDecorator,
     endDecorator,
