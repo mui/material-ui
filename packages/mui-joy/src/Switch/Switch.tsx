@@ -243,7 +243,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     id,
     color: colorProp,
     variant = 'solid',
-    size: sizeProp = 'md',
+    size: sizeProp = 'sm',
     startDecorator,
     endDecorator,
     component,
@@ -463,7 +463,7 @@ Switch.propTypes /* remove-proptypes */ = {
   required: PropTypes.bool,
   /**
    * The size of the component.
-   * @default 'md'
+   * @default 'sm'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),

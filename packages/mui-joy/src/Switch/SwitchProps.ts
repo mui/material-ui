@@ -82,7 +82,7 @@ export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
       endDecorator?: React.ReactNode | ((ownerState: SwitchOwnerState) => React.ReactNode);
       /**
        * The size of the component.
-       * @default 'md'
+       * @default 'sm'
        */
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', SwitchPropsSizeOverrides>;
       /**
