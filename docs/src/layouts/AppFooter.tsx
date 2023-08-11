@@ -14,9 +14,9 @@ import { alpha } from '@mui/material/styles';
 import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
+import DiscordIcon from 'docs/src/icons/DiscordIcon';
 import Link from 'docs/src/modules/components/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
-import SvgDiscord from 'docs/src/icons/SvgDiscord';
 
 interface AppFooterProps {
   stackOverflowUrl?: string;
@@ -236,7 +236,7 @@ export default function AppFooter(props: AppFooterProps) {
               title="Discord"
               size="small"
             >
-              <SvgDiscord fontSize="small" />
+              <DiscordIcon fontSize="small" />
             </IconButton>
           </Stack>
         </Box>
