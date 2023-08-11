@@ -663,7 +663,7 @@ export default function DemoToolbar(props) {
         >
           {codeStylingLabels[CODE_STYLING.TAILWIND]}
           {styleSolution === CODE_STYLING.TAILWIND && (
-            <CheckIcon sx={{ fontSize: '0.85rem', ml: 2 }} />
+            <CheckIcon sx={{ fontSize: '0.85rem', ml: 'auto' }} />
           )}
         </MenuItem>
         <MenuItem
@@ -675,7 +675,9 @@ export default function DemoToolbar(props) {
           onClick={() => handleStylingSolutionChange(CODE_STYLING.CSS)}
         >
           {codeStylingLabels[CODE_STYLING.CSS]}
-          {styleSolution === CODE_STYLING.CSS && <CheckIcon sx={{ fontSize: '0.85rem', ml: 2 }} />}
+          {styleSolution === CODE_STYLING.CSS && (
+            <CheckIcon sx={{ fontSize: '0.85rem', ml: 'auto' }} />
+          )}
         </MenuItem>
       </Menu>
       <Menu
