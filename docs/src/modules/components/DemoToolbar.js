@@ -693,18 +693,16 @@ export default function DemoToolbar(props) {
         }}
       >
         {demoOptions.hideEditButton ? null : (
-          <React.Fragment>
-            <MenuItem
-              data-ga-event-category="demo"
-              data-ga-event-label={demo.gaLabel}
-              data-ga-event-action="stackblitz"
-              component="button"
-              onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
-              sx={{ width: '100%' }}
-            >
-              {t('stackblitz')}
-            </MenuItem>
-          </React.Fragment>
+          <MenuItem
+            data-ga-event-category="demo"
+            data-ga-event-label={demo.gaLabel}
+            data-ga-event-action="stackblitz"
+            component="button"
+            onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
+            sx={{ width: '100%' }}
+          >
+            {t('stackblitz')}
+          </MenuItem>
         )}
         <MenuItem
           data-ga-event-category="demo"
