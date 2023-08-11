@@ -3717,7 +3717,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Add webpack alias for legacy utils package (#33376) @jgbae
 - [docs] Improve external link icons synonyms (#33257) @davidgarciab
 - [examples] Update Base UI with Tailwind CSS to use the latest versions of the dependencies (#33401) @mnajdova
-- [examples] Add MUI base example (#33154) @siriwatknp
+- [examples] Add Base UI example (#33154) @siriwatknp
 
 ### Core
 
