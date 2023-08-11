@@ -252,7 +252,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     error: errorProp = false,
     disabled,
     fullWidth = false,
-    size: sizeProp = 'md',
+    size: sizeProp = 'sm',
     color: colorProp = 'neutral',
     variant = 'outlined',
     startDecorator,
@@ -426,7 +426,7 @@ Input.propTypes /* remove-proptypes */ = {
   required: PropTypes.bool,
   /**
    * The size of the component.
-   * @default 'md'
+   * @default 'sm'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
