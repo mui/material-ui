@@ -510,8 +510,8 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    // Do not sync highlighted index when user don't want to highlight
-    if (!autoHighlight) {
+    // Do not sync highlighted index when user don't want to highlight for freeSolo
+    if (!autoHighlight && freeSolo) {
       // Reset highlighted index if user navigated using keyboard in previous input
       if (highlightedIndexRef.current !== -1) {
         setHighlightedIndex({ index: -1 });
@@ -526,7 +526,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const valueItem = multiple ? value[value.length - 1] : value;
+    const valueItem = multiple ? value[0] : value;
 
     // The popup is empty, reset
     if (filteredOptions.length === 0 || valueItem == null) {
