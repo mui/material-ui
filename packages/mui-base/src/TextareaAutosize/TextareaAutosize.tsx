@@ -186,7 +186,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   };
 
   React.useEffect(() => {
-    const handleResize = (() => {
+    const handleResize = () => {
       renders.current = 0;
 
       // If the TextareaAutosize component is replaced by Suspense with a fallback, the last
@@ -196,7 +196,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       if (inputRef.current) {
         syncHeightWithFlushSync();
       }
-    });
+    };
     const handleResizeWindow = debounce(() => {
       renders.current = 0;
 
