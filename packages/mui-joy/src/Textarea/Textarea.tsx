@@ -221,7 +221,7 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     focused,
     error: errorProp = false,
     disabled: disabledProp = false,
-    size: sizeProp = 'md',
+    size: sizeProp = 'sm',
     color: colorProp = 'neutral',
     variant = 'outlined',
     startDecorator,
@@ -360,7 +360,7 @@ Textarea.propTypes /* remove-proptypes */ = {
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The size of the component.
-   * @default 'md'
+   * @default 'sm'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
