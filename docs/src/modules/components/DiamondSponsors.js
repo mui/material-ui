@@ -123,29 +123,6 @@ export default function DiamondSponsors() {
             }
           />
         </a>
-        <a
-          data-ga-event-category="sponsor"
-          data-ga-event-action="drawer"
-          data-ga-event-label="zesty.io"
-          href="https://www.zesty.io/integrations/mui-nextjs/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor"
-          rel="noopener noreferrer sponsored"
-          target="_blank"
-        >
-          <Box
-            component="img"
-            height="20px"
-            width="77px"
-            src="https://brand.zesty.io/zesty-io-logo-horizontal.svg"
-            alt="zesty.io"
-            title="The only Next.js CMS you need"
-            loading="lazy"
-            sx={(theme) =>
-              theme.applyDarkStyles({
-                content: `url(https://brand.zesty.io/zesty-io-logo-horizontal-light-color.svg)`,
-              })
-            }
-          />
-        </a>
         <Link
           aria-label={t('diamondSponsors')}
           rel="noopener noreferrer"
