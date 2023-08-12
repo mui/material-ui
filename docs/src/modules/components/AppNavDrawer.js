@@ -181,6 +181,7 @@ const AppNavPaperComponent = styled('div')(() => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
+    overflowY: 'unset !important', // Can't customize the Paper slot
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   };
 });
@@ -401,7 +402,11 @@ export default function AppNavDrawer(props) {
           />
         </ToolbarDiv>
         <Divider />
-        <Box sx={{ pt: 0.5, pb: 5, overflowY: 'auto', flexGrow: 1 }}>{navItems}</Box>
+        <Box sx={{ pt: 0.5, pb: 5, overflowY: 'auto', flexGrow: 1 }}>
+          <PersistScroll slot="side" enabled>
+            {navItems}
+          </PersistScroll>
+        </Box>
       </React.Fragment>
     );
   }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
@@ -432,12 +437,9 @@ export default function AppNavDrawer(props) {
             component: AppNavPaperComponent,
           }}
         >
-          <PersistScroll slot="swipeable" enabled={mobileOpen}>
-            {drawer}
-          </PersistScroll>
+          {drawer}
         </SwipeableDrawer>
-      ) : null}
-      {disablePermanent || mobile ? null : (
+      ) : (
         <StyledDrawer
           variant="permanent"
           PaperProps={{
@@ -445,9 +447,7 @@ export default function AppNavDrawer(props) {
           }}
           open
         >
-          <PersistScroll slot="side" enabled>
-            {drawer}
-          </PersistScroll>
+          {drawer}
         </StyledDrawer>
       )}
     </nav>
