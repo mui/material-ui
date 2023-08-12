@@ -14,8 +14,8 @@ export default function DiamondSponsors() {
       spacing={0.5}
       direction="column"
       sx={{
-        mt: 1.5,
-        py: 1.5,
+        mt: 3,
+        pt: 1.5,
         borderTop: '1px solid',
         borderColor: 'divider',
       }}
@@ -49,7 +49,7 @@ export default function DiamondSponsors() {
           (theme) => ({
             '& a': {
               width: '100%',
-              height: 40,
+              height: 45,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
