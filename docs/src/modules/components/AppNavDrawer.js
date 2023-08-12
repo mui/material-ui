@@ -384,15 +384,12 @@ export default function AppNavDrawer(props) {
               component="a"
               onClick={onClose}
               aria-label={t('goToHome')}
-              sx={(theme) => ({
+              sx={{
                 pr: '12px',
                 mr: '4px',
                 borderRight: '1px solid',
-                borderColor: (theme.vars || theme).palette.divider,
-                ...theme.applyDarkStyles({
-                  borderColor: (theme.vars || theme).palette.divider,
-                }),
-              })}
+                borderColor: 'divider',
+              }}
             >
               <SvgMuiLogomark width={30} />
             </Box>
