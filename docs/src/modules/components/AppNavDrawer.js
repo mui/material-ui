@@ -445,7 +445,6 @@ export default function AppNavDrawer(props) {
             keepMounted: true,
           }}
           PaperProps={{
-            className: 'algolia-drawer',
             component: AppNavPaperComponent,
           }}
         >
