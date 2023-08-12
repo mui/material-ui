@@ -181,7 +181,8 @@ const AppNavPaperComponent = styled('div')(() => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
-    overflowY: 'unset !important', // Can't customize the Paper slot
+    border: '0 !important', // TODO add a Paper slot
+    overflowY: 'unset !important', // TODO add a Paper slot
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   };
 });
@@ -292,6 +293,7 @@ export default function AppNavDrawer(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const t = useTranslate();
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
+  const swipeableDrawer = disablePermanent || mobile;
 
   const drawer = React.useMemo(() => {
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
@@ -402,14 +404,27 @@ export default function AppNavDrawer(props) {
           />
         </ToolbarDiv>
         <Divider />
-        <Box sx={{ pt: 0.5, pb: 5, overflowY: 'auto', flexGrow: 1 }}>
+        <Box
+          sx={{
+            pt: 0.5,
+            pb: 5,
+            overflowY: 'auto',
+            flexGrow: 1,
+            ...(swipeableDrawer
+              ? {}
+              : {
+                  borderRight: '1px solid',
+                  borderColor: 'divider',
+                }),
+          }}
+        >
           <PersistScroll slot="side" enabled>
             {navItems}
           </PersistScroll>
         </Box>
       </React.Fragment>
     );
-  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
+  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl, swipeableDrawer]);
 
   if (process.env.NODE_ENV !== 'production') {
     if (!productIdentifier) {
@@ -422,7 +437,7 @@ export default function AppNavDrawer(props) {
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>
-      {disablePermanent || mobile ? (
+      {swipeableDrawer ? (
         <SwipeableDrawer
           disableBackdropTransition={!iOS}
           variant="temporary"
