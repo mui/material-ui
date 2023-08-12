@@ -147,19 +147,7 @@ function PersistScroll(props) {
     };
   }, [enabled, slot]);
 
-  return (
-    <Box
-      sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
-      ref={rootRef}
-    >
-      {children}
-    </Box>
-  );
+  return <div ref={rootRef}>{children}</div>;
 }
 
 PersistScroll.propTypes = {
