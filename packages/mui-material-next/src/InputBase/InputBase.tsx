@@ -16,6 +16,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
+import { OverridableComponent } from '@mui/types';
 // import formControlState from '@mui/material/FormControl/formControlState';
 import FormControlContext from '@mui/material/FormControl/FormControlContext';
 import useFormControl from '@mui/material/FormControl/useFormControl';
@@ -536,7 +537,7 @@ const InputBase = React.forwardRef(function InputBase<
       </Root>
     </React.Fragment>
   );
-});
+}) as OverridableComponent<InputBaseTypeMap>;
 
 InputBase.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -548,6 +549,16 @@ InputBase.propTypes /* remove-proptypes */ = {
    */
   'aria-describedby': PropTypes.string,
   /**
+   * Defines a string value that labels the current element.
+   * @see aria-labelledby.
+   */
+  'aria-label': PropTypes.string,
+  /**
+   * Identifies the element (or elements) that labels the current element.
+   * @see aria-describedby.
+   */
+  'aria-labelledby': PropTypes.string,
+  /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
@@ -558,9 +569,17 @@ InputBase.propTypes /* remove-proptypes */ = {
    */
   autoFocus: PropTypes.bool,
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
@@ -641,6 +660,10 @@ InputBase.propTypes /* remove-proptypes */ = {
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
   /**
    * @ignore
    */

@@ -3,7 +3,7 @@ import { SlotComponentProps } from '@mui/base';
 import { FormControlState } from '@mui/material/FormControl';
 import { UseInputRootSlotProps } from '@mui/base/useInput';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion, OverrideProps, OverridableComponent, Simplify } from '@mui/types';
+import { OverridableStringUnion, OverrideProps, Simplify } from '@mui/types';
 import { Theme } from '../styles';
 import { InputBaseClasses } from './inputBaseClasses';
 
@@ -300,7 +300,3 @@ export type InputBaseInputSlotProps = Simplify<
     type: React.HTMLInputTypeAttribute | undefined;
   }
 >;
-
-declare const InputBase: OverridableComponent<InputBaseTypeMap>;
-
-export default InputBase;
