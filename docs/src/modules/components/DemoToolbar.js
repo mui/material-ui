@@ -92,18 +92,19 @@ const Button = styled(MDButton)(({ theme }) => ({
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
   color: theme.palette.text.secondary,
-  // Reset on touch devices, it doesn't add specificity
-  [`:hover`]: {
+  '&:hover': {
     backgroundColor: theme.palette.grey[50],
+    // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
-      backgroundColor: theme.palette.grey[50],
+      backgroundColor: 'transparent',
     },
   },
   ...theme.applyDarkStyles({
-    [`:hover`]: {
+    '&:hover': {
       backgroundColor: theme.palette.primaryDark[700],
+      // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: theme.palette.primaryDark[700],
+        backgroundColor: 'transparent',
       },
     },
   }),
