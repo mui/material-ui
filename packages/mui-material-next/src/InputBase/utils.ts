@@ -5,7 +5,6 @@
 // @param value
 // @returns {boolean} true if string (including '') or number (including zero)
 
-// TODO: drop this? it looks unused
 export function hasValue(value: string | any[] | null | undefined) {
   return value != null && !(Array.isArray(value) && value.length === 0);
 }
