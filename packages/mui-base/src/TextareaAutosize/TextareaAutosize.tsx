@@ -220,7 +220,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
   useEnhancedEffect(() => {
     syncHeight();
-  });
+  }, [value]); // To avoid an infinite loop (https://github.com/mui/material-ui/issues/33081)
 
   React.useEffect(() => {
     renders.current = 0;
