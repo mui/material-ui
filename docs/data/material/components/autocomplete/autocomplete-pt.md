@@ -70,7 +70,7 @@ O componente tem dois estados que podem ser controlados:
 2. o estado "input value" com a combinação das propriedades `inputValue`/`onInputChange`. Esse estado representa o valor exibido na caixa de texto.
 
 :::warning
-⚠️ These two states are isolated, they should be controlled independently.
+⚠️ Esses dois estados são isolados, eles devem ser controlados independentemente.
 :::
 
 {{"demo": "ControllableStates.js"}}
@@ -91,9 +91,15 @@ The prop is designed to cover the primary use case of a **search input** with su
 The value created by typing into the textbox is always a string, regardless of the type of the options.
 :::
 
+:::warning
+⚠️ Tome cuidado ao usar o modo free solo com opções não string, pois pode causar incompatibilidade de tipagem.
+
+O valor criado ao digitar na caixa de texto é sempre uma string, independentemente do tipo das opções.
+:::
+
 ### Creatable
 
-If you intend to use this mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:
+Se você pretende usar esse modo para uma experiência de [caixa de combinação](#combo-box) (uma versão aprimorada de um elemento select) recomendamos definir:
 
 - `selectOnFocus` para ajudar o usuário a limpar o valor selecionado.
 - `clearOnBlur` para ajudar o usuário a digitar um novo valor.
@@ -102,13 +108,15 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 
 {{"demo": "FreeSoloCreateOption.js"}}
 
-You could also display a dialog when the user wants to add a new value.
+Você também pode exibir uma caixa de diálogo quando o usuário deseja adicionar um novo valor.
 
 {{"demo": "FreeSoloCreateOptionDialog.js"}}
 
 ## Agrupamento
 
 You can group the options with the `groupBy` prop. If you do so, make sure that the options are also sorted with the same dimension that they are grouped by, otherwise, you will notice duplicate headers.
+
+Você pode agrupar as opções com a propriedade `groupBy`. Se você fizer isso, certifique-se de que as opções também sejam classificadas com a mesma dimensão que elas são agrupadas, caso contrário, você notará cabeçalhos duplicados.
 
 {{"demo": "Grouped.js"}}
 
@@ -118,13 +126,15 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 
 ## `useAutocomplete`
 
-For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component is built on this hook.
+Para casos de uso de personalização avançada, um hook `useAutocomplete()` sem cabeçalho é exposto. Ele aceita quase as mesmas opções que o componente Autocomplete, menos todas as props relacionadas à renderização de JSX. O componente Autocomplete é construído neste hook.
 
 ```tsx
 import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 ```
 
-The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
+O hook `useAutocomplete` também é reexportado de @mui/material para conveniência e compatibilidade com versões anteriores.
+
+```tsx
 
 ```tsx
 import { createFilterOptions } from '@material-ui/core/Autocomplete';
@@ -138,18 +148,18 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 {{"demo": "CustomizedHook.js"}}
 
-Head to the [customization](#customization) section for an example with the `Autocomplete` component instead of the hook.
+Vá para a seção de [personalização](#customization) para um exemplo com o componente `Autocomplete` em vez do hook.
 
 ## Requisições assíncronas
 
-The component supports two different asynchronous use-cases:
+O componente suporta dois casos de uso assíncronos diferentes:
 
 - [Carregar ao abrir](#load-on-open): espera uma interação com o componente para carregar as opções.
 - [Pesquisar enquanto digita](#search-as-you-type): um novo pedido é feito para cada tecla pressionada.
 
 ### Carregar ao abrir
 
-It displays a progress state as long as the network request is pending.
+Exibe um estado de progresso enquanto a solicitação de rede estiver pendente.
 
 {{"demo": "Asynchronous.js"}}
 
@@ -157,7 +167,9 @@ It displays a progress state as long as the network request is pending.
 
 If your logic is fetching new options on each keystroke and using the current value of the textbox to filter on the server, you may want to consider throttling requests.
 
-Additionally, you will need to disable the built-in filtering of the `Autocomplete` component by overriding the `filterOptions` prop:
+Se a sua lógica estiver buscando novas opções em cada tecla pressionada e usando o valor atual da caixa de texto para filtrar no servidor, você pode querer considerar a limitação de solicitações.
+
+Adicionalmente, você precisará desabilitar a filtragem integrada do componente `Autocomplete` substituindo a propriedade `filterOptions`:
 
 ```jsx
 <Autocomplete filterOptions={(x) => x} />
@@ -165,23 +177,23 @@ Additionally, you will need to disable the built-in filtering of the `Autocomple
 
 ### Lugares com a API do Google Maps
 
-A customized UI for Google Maps Places Autocomplete. For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
+Uma interface personalizada para o Google Maps Places Autocomplete. Para esta demonstração, precisamos carregar a [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) e [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
 
 {{"demo": "GoogleMaps.js"}}
 
 :::warning
-⚠️ Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+⚠️ Antes de começar a usar a API do Google Maps JavaScript e a API do Places, você precisa obter sua própria [chave da API](https://developers.google.com/maps/documentation/javascript/get-api-key).
 :::
 
 ## Múltiplos valores
 
-Also known as tags, the user is allowed to enter more than one value.
+Também conhecido como tags, o usuário pode inserir mais de um valor.
 
 {{"demo": "Tags.js"}}
 
 ### Opções fixas
 
-In the event that you need to lock certain tags so that they can't be removed, you can set the chips disabled.
+No caso de você precisar bloquear determinadas tags para que elas não possam ser removidas, você pode desabilitar os chips.
 
 {{"demo": "FixedTags.js"}}
 
@@ -191,13 +203,13 @@ In the event that you need to lock certain tags so that they can't be removed, y
 
 ### Limitar tags
 
-You can use the `limitTags` prop to limit the number of displayed options when not focused.
+Você pode usar a propriedade `limitTags` para limitar o número de opções exibidas quando não estiver focado.
 
 {{"demo": "LimitTags.js"}}
 
 ## Tamanhos
 
-Fancy smaller inputs? Use the `size` prop.
+Caixas de texto menores? Use a propriedade `size`.
 
 {{"demo": "Sizes.js"}}
 
@@ -205,27 +217,27 @@ Fancy smaller inputs? Use the `size` prop.
 
 ### Input customizado
 
-The `renderInput` prop allows you to customize the rendered input. The first argument of this render prop contains props that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
+A propriedade `renderInput` permite que você personalize a entrada renderizada. O primeiro argumento desse render prop contém as props que você precisa encaminhar. Preste atenção específicamente às chaves `ref` e `inputProps`.
 
 {{"demo": "CustomInputAutocomplete.js"}}
 
 ### Seletor do GitHub
 
-This demo reproduces GitHub's label picker:
+Essa demonstração reproduz o seletor de etiquetas do GitHub:
 
 {{"demo": "GitHubLabel.js"}}
 
-Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
+Vá para a seção de [hook personalizado](#customized-hook) para um exemplo de personalização com o hook `useAutocomplete` em vez do componente.
 
 ## Realce
 
-The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+A demonstração a seguir depende do [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), um utilitário pequeno (1 kB) para destacar texto em componentes de sugestão automática e autocompletar.
 
 {{"demo": "Highlights.js"}}
 
 ## Filtro customizado
 
-The component exposes a factory to create a filter method that can be provided to the `filterOptions` prop. You can use it to change the default option filter behavior.
+Esse componente expõe uma fábrica para criar um método de filtro que pode ser fornecido à propriedade `filterOptions`. Você pode usá-lo para alterar o comportamento padrão de filtro de opções.
 
 ```js
 import { createFilterOptions } from '@mui/material/Autocomplete';
@@ -246,9 +258,10 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 
 #### Retornos
 
-`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.
 
-In the following demo, the options need to start with the query prefix:
+`filterOptions`: o método de filtro retornado pode ser fornecido diretamente à propriedade `filterOptions` do componente `Autocomplete`, ou o parâmetro de mesmo nome para o hook.
+
+Na demonstração a seguir, as opções precisam começar com o prefixo da consulta:
 
 ```jsx
 const filterOptions = createFilterOptions({
@@ -263,7 +276,7 @@ const filterOptions = createFilterOptions({
 
 ### Avançado
 
-For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
+Para mecanismos de filtragem mais ricos, como correspondência difusa, é recomendável olhar para [match-sorter](https://github.com/kentcdodds/match-sorter). Por exemplo:
 
 ```jsx
 import { matchSorter } from 'match-sorter';
@@ -275,13 +288,13 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ## Virtualização
 
-Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+Busca dentro de 10.000 opções geradas aleatoriamente. A lista é virtualizada graças ao [react-window](https://github.com/bvaughn/react-window).
 
 {{"demo": "Virtualize.js"}}
 
 ## Eventos
 
-If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+Se você deseja impedir o comportamento padrão do manipulador de teclas, você pode definir a propriedade `defaultMuiPrevented` do evento como `true`:
 
 ```jsx
 <Autocomplete
@@ -299,11 +312,11 @@ If you would like to prevent the default key handler behavior, you can set the e
 
 ### autocomplete/autofill
 
-Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component.
+Navegadores têm heurísticas para ajudar o usuário a preencher entradas de formulário. No entanto, isso pode prejudicar a experiência do usuário do componente.
 
-By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
+Por padrão, o componente desabilita o recurso de **autocomplete** da caixa de texto (lembrando o que o usuário digitou para um determinado campo em uma sessão anterior) com o atributo `autoComplete="off"`. O Google Chrome atualmente não suporta essa configuração de atributo ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). Uma possível solução alternativa é remover o `id` para que o componente gere um aleatório.
 
-In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
+Além de lembrar valores inseridos anteriormente, o navegador também pode sugerir preenchimentos automáticos (login salvo, endereço ou detalhes de pagamento). No caso de você querer evitar o preenchimento automático, você pode tentar o seguinte:
 
 - Nomeie o campo sem fornecer informações para o navegador do que ele representa. `id="field1"` ao invés de `id="country"`. Se você deixar o id do vazio, o componente utiliza um id aleatório.
 - Defina `autoComplete="new-password"` (alguns navegadores irão sugerir uma senha forte para entradas com esta configuração de atributo):
@@ -318,18 +331,18 @@ In addition to remembering past entered values, the browser might also propose *
   />
   ```
 
-Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
+Leia o [guia no MDN](https://developer.mozilla.org/pt-BR/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) para mais detalhes.
 
 ### iOS VoiceOver
 
-VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You can work around the issue with the `disablePortal` prop.
+VoiceOver no iOS Safari não suporta muito bem o atributo `aria-owns`. Você pode contornar o problema com a propriedade `disablePortal`.
 
 ### ListboxComponent
 
-If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
+Se você fornecer uma propriedade `ListboxComponent` personalizada, você precisa garantir que o contêiner de rolagem pretendido tenha o atributo `role` definido como `listbox`. Isso garante o comportamento correto da rolagem, por exemplo, ao usar o teclado para navegar.
 
 ## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
 
-We encourage the usage of a label for the textbox. The component implements the WAI-ARIA authoring practices.
+Nós encorajamos o uso de um label para a caixa de texto. O componente implementa as práticas de autoria WAI-ARIA.
