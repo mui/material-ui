@@ -80,7 +80,7 @@ If you prefer more simplicity, you can disable the default filter panel using th
 
 For more details on how to use and customize the filters, check out its [documentation page](https://mui.com/x/react-data-grid/filtering/header-filters/).
 
-### Copy and paste <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="premium-pro"></span></a>
+### Copy and paste <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premium"></span></a>
 
 After setting the `experimentalFeatures={{ clipboardPaste: true }}` prop, you can copy and paste data directly to and from your Data Grid.
 
