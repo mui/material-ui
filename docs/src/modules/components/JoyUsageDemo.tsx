@@ -635,7 +635,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                           {resolvedValue}
                         </Box>
                         {/* void */}
-                        <Box />
+                        <div />
                         <Box sx={{ gridColumn: '-1 / -2', gridRow: '1' }} />
                         <Box sx={{ gridRow: '-1 / -2', gridColumn: '1' }} />
                         {/* void */}

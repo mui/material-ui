@@ -46,7 +46,7 @@ export default function DribbbleShot() {
           }}
         >
           {/* The first box acts as a container that inherits style from the CardCover */}
-          <Box>
+          <div>
             <Box
               sx={{
                 p: 2,
@@ -79,7 +79,7 @@ export default function DribbbleShot() {
                 <Favorite />
               </IconButton>
             </Box>
-          </Box>
+          </div>
         </CardCover>
       </Box>
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>

@@ -8,7 +8,7 @@ type FileIconProps = {
 
 export default function FileIcon({ fileType }: FileIconProps) {
   return (
-    <Box position="relative" ml={1}>
+    <Box sx={{ position: 'relative', ml: 1 }}>
       <svg
         width="32"
         height="40"
