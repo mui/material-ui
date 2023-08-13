@@ -1921,32 +1921,83 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@lerna/child-process@7.1.4":
-  version "7.1.4"
-  resolved "https://registry.yarnpkg.com/@lerna/child-process/-/child-process-7.1.4.tgz#5ab64540b01a339ecc6787f4f06d29aee99d71d5"
-  integrity sha512-cSiMDx9oI9vvVT+V/WHcbqrksNoc9PIPFiks1lPS7zrVWkEbgA6REQyYmRd2H71kihzqhX5TJ20f2dWv6oEPdA==
+"@lerna/child-process@7.1.5":
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/@lerna/child-process/-/child-process-7.1.5.tgz#a01e8821fb7b17a68d1c1527127543af6cf27f1b"
+  integrity sha512-YXmxzxXTP3u9HQpSXvK8qqoAm7VWQIFria3FVMQKkOSkWkph1TNnvt3Q1JvKT7/Jgd1HfTc3QrK09a2FND9+8A==
   dependencies:
     chalk "^4.1.0"
     execa "^5.0.0"
     strong-log-transformer "^2.1.0"
 
-"@lerna/create@7.1.4":
-  version "7.1.4"
-  resolved "https://registry.yarnpkg.com/@lerna/create/-/create-7.1.4.tgz#bfff377c36734ef9a95e3fe8cb030d6498844928"
-  integrity sha512-D5YWXsXIxWb1aGqcbtttczg86zMzkNhcs00/BleFNxdNYlTRdjLIReELOGBGrq3Hij05UN+7Dv9EKnPFJVbqAw==
+"@lerna/create@7.1.5":
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/@lerna/create/-/create-7.1.5.tgz#180b26f028be25b541a327429168da6c10bdb265"
+  integrity sha512-/CDI/cvXJbycgSDzWXzP7DBuJ10qL/uYEouFt3/mxi9+hSfM885fu6lbVPV7QOf8A0otXcTs7PN2dVyMrnWQeg==
   dependencies:
-    "@lerna/child-process" "7.1.4"
+    "@lerna/child-process" "7.1.5"
+    "@npmcli/run-script" "6.0.2"
+    "@nx/devkit" ">=16.5.1 < 17"
+    "@octokit/plugin-enterprise-rest" "6.0.1"
+    "@octokit/rest" "19.0.11"
+    byte-size "8.1.1"
+    chalk "4.1.0"
+    clone-deep "4.0.1"
+    cmd-shim "6.0.1"
+    columnify "1.6.0"
+    conventional-changelog-core "5.0.1"
+    conventional-recommended-bump "7.0.1"
+    cosmiconfig "^8.2.0"
     dedent "0.7.0"
+    execa "5.0.0"
     fs-extra "^11.1.1"
+    get-stream "6.0.0"
+    git-url-parse "13.1.0"
+    glob-parent "5.1.2"
+    globby "11.1.0"
+    graceful-fs "4.2.11"
+    has-unicode "2.0.1"
+    ini "^1.3.8"
     init-package-json "5.0.0"
+    inquirer "^8.2.4"
+    is-stream "2.0.0"
+    js-yaml "4.1.0"
+    libnpmpublish "7.3.0"
+    load-json-file "6.2.0"
+    lodash "^4.17.21"
+    make-dir "3.1.0"
+    minimatch "3.0.5"
+    multimatch "5.0.0"
+    node-fetch "2.6.7"
     npm-package-arg "8.1.1"
+    npm-packlist "5.1.1"
+    npm-registry-fetch "^14.0.5"
+    npmlog "^6.0.2"
+    nx ">=16.5.1 < 17"
+    p-map "4.0.0"
+    p-map-series "2.1.0"
+    p-queue "6.6.2"
     p-reduce "^2.1.0"
     pacote "^15.2.0"
     pify "5.0.0"
+    read-cmd-shim "4.0.0"
+    read-package-json "6.0.4"
+    resolve-from "5.0.0"
+    rimraf "^4.4.1"
     semver "^7.3.4"
+    signal-exit "3.0.7"
     slash "^3.0.0"
+    ssri "^9.0.1"
+    strong-log-transformer "2.1.0"
+    tar "6.1.11"
+    temp-dir "1.0.0"
+    upath "2.0.1"
+    uuid "^9.0.0"
     validate-npm-package-license "^3.0.4"
     validate-npm-package-name "5.0.0"
+    write-file-atomic "5.0.1"
+    write-pkg "4.0.0"
+    yargs "16.2.0"
     yargs-parser "20.2.4"
 
 "@material-ui/types@^4.0.0":
@@ -10690,13 +10741,13 @@ lazystream@^1.0.0:
   dependencies:
     readable-stream "^2.0.5"
 
-lerna@^7.1.4:
-  version "7.1.4"
-  resolved "https://registry.yarnpkg.com/lerna/-/lerna-7.1.4.tgz#0778732f4c77ead71a20ba1e9b0a77edc75cb383"
-  integrity sha512-/cabvmTTkmayyALIZx7OpHRex72i8xSOkiJchEkrKxAZHoLNaGSwqwKkj+x6WtmchhWl/gLlqwQXGRuxrJKiBw==
+lerna@^7.1.5:
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/lerna/-/lerna-7.1.5.tgz#f65bde23d477382a221f9373f82d027825fa8622"
+  integrity sha512-5bvfmoIH4Czk5mdoLaRPYkM3M63Ei6+TOuXs3MgXmvqD8vs+vQpHuBVmiYFp5Mwsck3FkidJ+eTxfucltA2Lmw==
   dependencies:
-    "@lerna/child-process" "7.1.4"
-    "@lerna/create" "7.1.4"
+    "@lerna/child-process" "7.1.5"
+    "@lerna/create" "7.1.5"
     "@npmcli/run-script" "6.0.2"
     "@nx/devkit" ">=16.5.1 < 17"
     "@octokit/plugin-enterprise-rest" "6.0.1"
