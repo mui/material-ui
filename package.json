@@ -170,7 +170,7 @@
     "markdownlint-cli2": "^0.8.1",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
-    "piscina": "^4.0.0",
+    "piscina": "^4.1.0",
     "postcss-styled-syntax": "^0.4.0",
     "prettier": "^2.8.8",
     "pretty-quick": "^3.1.3",
