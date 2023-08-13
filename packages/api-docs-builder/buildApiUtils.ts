@@ -595,7 +595,7 @@ export function generateBaseUIApiPages() {
       const demosSource = `
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
-import AppFrame from 'docs/src/modules/components/AppFrame';
+import { getLayout } from 'docs/src/modules/components/AppFrame';
 import * as pageProps from '${importStatement}?@mui/markdown';
 
 export default function Page(props) {
@@ -603,9 +603,7 @@ export default function Page(props) {
   return <MarkdownDocs {...pageProps} {...other} />;
 }
 
-Page.getLayout = (page) => {
-  return <AppFrame>{page}</AppFrame>;
-};
+Page.getLayout = getLayout;
       `;
 
       const componentPageDirectory = `docs/pages/${productName}-ui/react-${componentName}/`;
@@ -681,7 +679,7 @@ Page.getLayout = (page) => {
       const tabsApiSource = `
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
-import AppFrame from 'docs/src/modules/components/AppFrame';
+import { getLayout } from 'docs/src/modules/components/AppFrame';
 import * as pageProps from '${importStatement}?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 ${apiTabImportStatements}
@@ -691,9 +689,7 @@ export default function Page(props) {
   return <MarkdownDocs {...pageProps} {...other} />;
 }
 
-Page.getLayout = (page) => {
-  return <AppFrame>{page}</AppFrame>;
-};
+Page.getLayout = getLayout;
 
 export const getStaticPaths = () => {
   return {
