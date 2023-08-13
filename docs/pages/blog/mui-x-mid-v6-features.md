@@ -23,7 +23,7 @@ Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases), 
   - [Filter on column headers ](#filter-on-column-headers-)
   - [Performance enhancements: smoother scrolling and expanding rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
 - [Charts - alpha version 🎁](#charts---alpha-version-)
-- [What's next](#whats-next)
+- [Tree View is now part of the MUI X family](#tree-view-is-now-part-of-the-mui-x-family)
 - [Feedback](#feedback)
 
 ## Date Pickers
@@ -125,10 +125,18 @@ Your input can directly influence our development schedule, so don't hesitate to
 
 [Get started with charts now!](https://mui.com/x/react-charts/)
 
-## What's next
+## Tree View is now part of the MUI X family
 
-[Tree View](https://mui.com/x/react-tree-view/) will be migrating from the [lab](https://mui.com/material-ui/about-the-lab/) to Alpha and will be part of MUI X!
-Keep on the lookout for the next blog on steps for migration.
+[Tree View](https://mui.com/x/react-tree-view/) will be migrating from the [lab](https://mui.com/material-ui/about-the-lab/) to Alpha and is now part of MUI X!
+
+The Tree View is a component that represents hierarchical in a tree-like format.
+Think of a file system navigator displaying folders and files or a navigation list. 
+
+<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline>
+  <source src="/static/blog/mui-x-mid-v6-features/treeview.mov" type="video/mp4">
+</video>
+
+Keep on the look out on our next blog for the Tree View migration.
 
 ## Feedback
 
