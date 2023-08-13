@@ -95,13 +95,6 @@ If you prefer more simplicity, you can disable the default filter panel using th
 
 For more details on how to use and customize the filters, check out its [documentation page](https://mui.com/x/react-data-grid/filtering/header-filters/).
 
-### Performance enhancements: smoother scrolling and expanding rows
-
-The Data Grid received significant performance improvements in MUI X v6, particularly concerning its scrolling efficiency and the expansion of child rows.
-
-These performance upgrades are part of our ongoing commitment to provide end users with a superior experience.
-We always strive to ensure that MUI X remains performant and efficient, particularly when dealing with large and complex data.
-
 ## Charts - alpha version 🎁
 
 We are delighted to announce the upcoming expansion of MUI X: a brand-new suite of components for building and customizing charts.
