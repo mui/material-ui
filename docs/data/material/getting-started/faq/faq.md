@@ -14,7 +14,7 @@ There are many ways to support MUI:
 - **Help new users**. You can answer questions on
   [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**.
-  - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
+  - Edit the documentation. Every page has an "Edit this page" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui/material-ui/issues/new).
   - Review and comment on existing [pull requests](https://github.com/mui/material-ui/pulls) and [issues](https://github.com/mui/material-ui/issues).
   - [Improve our documentation](https://github.com/mui/material-ui/tree/HEAD/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui/material-ui/pulls).
