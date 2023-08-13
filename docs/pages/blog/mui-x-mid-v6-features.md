@@ -53,7 +53,7 @@ Check the [full instructions](https://mui.com/x/react-date-pickers/timezone/) fo
 
 ### Digital clock
 
-The digital clock is an alternative to the Time Pickers' analog clock.
+The digital clock is an alternative to the Time Pickers' [analog clock](https://mui.com/x/react-date-pickers/time-clock/).
 The original proposal was mainly focused on mobile devices, whereas the new interface is designed for a desktop experience for better time precision.
 This new addition makes our Date Pickers even more versatile and user-friendly than before.
 It's available as the default variant for desktops on both the [Time Picker](https://mui.com/x/react-date-pickers/time-picker/) and the [Date Time Picker](https://mui.com/x/react-date-pickers/date-time-picker/).
