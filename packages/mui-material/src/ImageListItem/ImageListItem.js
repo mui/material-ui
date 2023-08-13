@@ -37,6 +37,7 @@ const ImageListItemRoot = styled('li', {
 })(({ ownerState }) => ({
   display: 'block',
   position: 'relative',
+  overflow: 'hidden',
   ...(ownerState.variant === 'standard' && {
     // For titlebar under list item
     display: 'flex',
