@@ -151,7 +151,11 @@ Render Material UI's theme provider below Theme UI's provider and assign the mat
 
 ```js
 import { ThemeUIProvider } from 'theme-ui';
-import { createTheme as materialCreateTheme, THEME_ID } from '@mui/material/styles';
+import {
+  ThemeProvider as MaterialThemeProvider,
+  createTheme as materialCreateTheme,
+  THEME_ID,
+} from '@mui/material/styles';
 
 const themeUITheme = {
   fonts: {
