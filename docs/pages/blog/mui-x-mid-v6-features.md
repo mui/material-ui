@@ -8,7 +8,7 @@ tags: ['MUI X', 'News']
 ---
 
 <a href="https://github.com/mui/mui-x/releases/tag/v6.11.1">
-  <img src="/static/blog/mui-x-mid-v6-features/intro.png" alt="" width="2400" height="600" style="margin-bottom: 16px;" />
+  <img src="/static/blog/mui-x-mid-v6-features/intro.png" alt="" width="1384" height="346" style="margin-bottom: 16px;" />
 </a>
 
 Since the first v6 stable release, we've continuously rolled out new major features.
