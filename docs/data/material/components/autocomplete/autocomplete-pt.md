@@ -70,7 +70,7 @@ O componente tem dois estados que podem ser controlados:
 2. o estado "input value" com a combinação das propriedades `inputValue`/`onInputChange`. Esse estado representa o valor exibido na caixa de texto.
 
 :::warning
-⚠️ Esses dois estados são isolados, eles devem ser controlados independentemente.
+⚠️ Esses dois estados são isolados, e devem ser controlados independentemente.
 :::
 
 {{"demo": "ControllableStates.js"}}
@@ -81,15 +81,9 @@ Set `freeSolo` to true so the textbox can contain any arbitrary value.
 
 ### Campo search
 
-The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
+Esta propriedade é projetada para cobrir o caso de uso primário de uma **entrada de pesquisa** com sugestões, por exemplo, pesquisa do Google ou react-autowhatever.
 
 {{"demo": "FreeSolo.js"}}
-
-:::warning
-⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
-
-The value created by typing into the textbox is always a string, regardless of the type of the options.
-:::
 
 :::warning
 ⚠️ Tome cuidado ao usar o modo free solo com opções não string, pois pode causar incompatibilidade de tipagem.
@@ -114,8 +108,6 @@ Você também pode exibir uma caixa de diálogo quando o usuário deseja adicion
 
 ## Agrupamento
 
-You can group the options with the `groupBy` prop. If you do so, make sure that the options are also sorted with the same dimension that they are grouped by, otherwise, you will notice duplicate headers.
-
 Você pode agrupar as opções com a propriedade `groupBy`. Se você fizer isso, certifique-se de que as opções também sejam classificadas com a mesma dimensão que elas são agrupadas, caso contrário, você notará cabeçalhos duplicados.
 
 {{"demo": "Grouped.js"}}
@@ -134,11 +126,11 @@ import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 
 O hook `useAutocomplete` também é reexportado de @mui/material para conveniência e compatibilidade com versões anteriores.
 
-```tsx
+````tsx
 
 ```tsx
 import { createFilterOptions } from '@material-ui/core/Autocomplete';
-```
+````
 
 - 📦 [4.5 kB gzipped](/size-snapshot/).
 
@@ -164,8 +156,6 @@ Exibe um estado de progresso enquanto a solicitação de rede estiver pendente.
 {{"demo": "Asynchronous.js"}}
 
 ### Pesquisar enquanto digita
-
-If your logic is fetching new options on each keystroke and using the current value of the textbox to filter on the server, you may want to consider throttling requests.
 
 Se a sua lógica estiver buscando novas opções em cada tecla pressionada e usando o valor atual da caixa de texto para filtrar no servidor, você pode querer considerar a limitação de solicitações.
 
@@ -257,7 +247,6 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 - `config.trim` (_bool_ [opcional]): Padrão `false`. Remover espaços ao fim.
 
 #### Retornos
-
 
 `filterOptions`: o método de filtro retornado pode ser fornecido diretamente à propriedade `filterOptions` do componente `Autocomplete`, ou o parâmetro de mesmo nome para o hook.
 
