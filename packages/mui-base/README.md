@@ -12,6 +12,9 @@ npm install @mui/base
 
 // with yarn
 yarn add @mui/base
+
+// with Bun
+bun add @mui/base
 ```
 
 ## Documentation

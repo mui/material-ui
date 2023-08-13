@@ -17,6 +17,10 @@ yarn add @mui/joy @emotion/react @emotion/styled
 pnpm add @mui/joy @emotion/react @emotion/styled
 ```
 
+```bash bun
+bun add @mui/joy @emotion/react @emotion/styled
+```
+
 </codeblock>
 
 ## Peer dependencies
@@ -53,6 +57,10 @@ yarn add @fontsource/inter
 
 ```bash pnpm
 pnpm add @fontsource/inter
+```
+
+```bash bun
+bun add @fontsource/inter
 ```
 
 </codeblock>

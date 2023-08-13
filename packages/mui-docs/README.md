@@ -12,6 +12,9 @@ npm install @mui/docs
 
 // with yarn
 yarn add @mui/docs
+
+// with Bun
+bun add @mui/docs
 ```
 
 The docs has a peer dependency on the core components.
@@ -23,6 +26,9 @@ npm install @mui/material
 
 // with yarn
 yarn add @mui/material
+
+// with Bun
+bun add @mui/material
 ```
 
 ## Documentation

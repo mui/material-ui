@@ -20,6 +20,10 @@ yarn add @mui/system @emotion/react @emotion/styled
 pnpm add @mui/system @emotion/react @emotion/styled
 ```
 
+```bash bun
+bun add @mui/system @emotion/react @emotion/styled
+```
+
 </codeblock>
 
 ## With styled-components
@@ -39,6 +43,10 @@ yarn add @mui/system @mui/styled-engine-sc styled-components
 
 ```bash pnpm
 pnpm add @mui/system @mui/styled-engine-sc styled-components
+```
+
+```bash bun
+bun add @mui/system @mui/styled-engine-sc styled-components
 ```
 
 </codeblock>

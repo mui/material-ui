@@ -12,6 +12,9 @@ npm install @mui/styles
 
 // with yarn
 yarn add @mui/styles
+
+// with Bun
+bun add @mui/styles
 ```
 
 ## Documentation

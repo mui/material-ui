@@ -33,6 +33,10 @@ yarn add @mui/lab @mui/material
 pnpm add @mui/lab @mui/material
 ```
 
+```bash bun
+bun add @mui/lab @mui/material
+```
+
 </codeblock>
 
 Note that the lab has a peer dependency on the Material UI components.

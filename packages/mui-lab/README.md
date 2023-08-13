@@ -14,6 +14,9 @@ npm install @mui/lab
 
 // with yarn
 yarn add @mui/lab
+
+// with Bun
+bun add @mui/lab
 ```
 
 The lab has peer dependencies on the Material Design components and on the Emotion library.
@@ -27,6 +30,9 @@ npm install @mui/material @emotion/react @emotion/styled
 
 // with yarn
 yarn add @mui/material @emotion/react @emotion/styled
+
+// with Bun
+bun add @mui/material @emotion/react @emotion/styled
 ```
 
 ## Documentation

@@ -12,6 +12,9 @@ npm install @mui/joy @emotion/react @emotion/styled
 
 // with yarn
 yarn add @mui/joy @emotion/react @emotion/styled
+
+// with Bun
+bun add @mui/joy @emotion/react @emotion/styled
 ```
 
 ## Documentation
