@@ -121,7 +121,7 @@ Your input can directly influence our development schedule, so don't hesitate to
 [Tree View](https://mui.com/x/react-tree-view/) will be migrating from the [lab](https://mui.com/material-ui/about-the-lab/) to Alpha and is now part of MUI X!
 
 The Tree View is a component that represents hierarchical in a tree-like format.
-Think of a file system navigator displaying folders and files or a navigation list. 
+Think of a file system navigator displaying folders and files or a navigation list.
 
 <video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline>
   <source src="/static/blog/mui-x-mid-v6-features/treeview.mov" type="video/mp4">
