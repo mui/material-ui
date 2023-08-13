@@ -19,9 +19,8 @@ Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases), 
   - [Support for time zones](#support-for-time-zones)
   - [Digital clock](#digital-clock)
 - [Data Grid](#data-grid)
-  - [Copy and paste ](#copy-and-paste-)
-  - [Filter on column headers ](#filter-on-column-headers-)
-  - [Performance enhancements: smoother scrolling and expanding rows](#performance-enhancements-smoother-scrolling-and-expanding-rows)
+  - [Filter on column headers](#filter-on-column-headers) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+  - [Copy and paste](#copy-and-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
 - [Charts - alpha version 🎁](#charts---alpha-version-)
 - [Tree View is now part of the MUI X family](#tree-view-is-now-part-of-the-mui-x-family)
 - [Feedback](#feedback)
@@ -66,6 +65,20 @@ Check out all the possibilities in the [Date Pickers—Digital clock documentati
 
 ## Data Grid
 
+### Filter on column headers [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+
+Filtering on column headers gives users the ability to quickly filter data without any additional menu.
+Use the the `unstable_headerFilters` prop to activate this feature.
+
+The new filter fields are displayed below the headers, and are synchronized with the filter panel.
+If you prefer more simplicity, you can disable the default filter panel using the `disableColumnFilter` prop, and set filters to use only the default operator.
+
+<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline>
+  <source src="/static/blog/mui-x-mid-v6-features/header_filter.mp4" type="video/mp4">
+</video>
+
+For more details on how to use and customize the filters, check out its [documentation page](https://mui.com/x/react-data-grid/filtering/header-filters/).
+
 ### Copy and paste [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
 
 After setting the `experimentalFeatures={{ clipboardPaste: true }}` prop, you can copy and paste data directly to and from your Data Grid.
@@ -80,20 +93,6 @@ This feature is integrated with the editing API, so pasted data can be persisted
 The callbacks `clipboardPasteStart` and `clipboardPasteEnd` are fired during the clipboard paste operation, which can be useful for extra customizations around the event.
 
 For more details on how to use clipboard copy and paste, check out the [Data Grid—Clipboard documentation](https://mui.com/x/react-data-grid/clipboard/).
-
-### Filter on column headers [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
-
-Filtering on column headers gives users the ability to quickly filter data without any additional menu.
-Use the the `unstable_headerFilters` prop to activate this feature.
-
-The new filter fields are displayed below the headers, and are synchronized with the filter panel.
-If you prefer more simplicity, you can disable the default filter panel using the `disableColumnFilter` prop, and set filters to use only the default operator.
-
-<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline>
-  <source src="/static/blog/mui-x-mid-v6-features/header_filter.mp4" type="video/mp4">
-</video>
-
-For more details on how to use and customize the filters, check out its [documentation page](https://mui.com/x/react-data-grid/filtering/header-filters/).
 
 ## Charts - alpha version 🎁
 
