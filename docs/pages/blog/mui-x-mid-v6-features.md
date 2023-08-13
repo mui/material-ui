@@ -20,7 +20,7 @@ Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases), 
 - [Data Grid](#data-grid)
   - [Filter on column headers](#filter-on-column-headers) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
   - [Copy and paste](#copy-and-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
-- [Charts - alpha version 🎁](#charts---alpha-version)
+- [Charts - alpha version](#charts-alpha-version)
 - [Tree View is now part of the MUI X family](#tree-view-is-now-part-of-the-mui-x-family)
 - [Feedback](#feedback)
 
@@ -93,7 +93,7 @@ The callbacks `clipboardPasteStart` and `clipboardPasteEnd` are fired during the
 
 For more details on how to use clipboard copy and paste, check out the [Data Grid—Clipboard documentation](https://mui.com/x/react-data-grid/clipboard/).
 
-## Charts - alpha version 🎁
+## Charts - alpha version
 
 We are delighted to announce the upcoming expansion of MUI X: a brand-new suite of components for building and customizing charts.
 
