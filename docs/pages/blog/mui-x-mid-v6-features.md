@@ -1,5 +1,5 @@
 ---
-title: MUI X v6.11.0. A roundup of all new features.
+title: MUI X v6.11.1. A roundup of all new features.
 description: Support for time zones, Charts in alpha, Data Grid filtering, and more.
 date: 2023-08-14T00:00:00.000Z
 authors: ['richbustos', 'josefreitas']
@@ -7,10 +7,12 @@ card: false
 tags: ['MUI X', 'News']
 ---
 
-<img src="/static/blog/mui-x-mid-v6-features/intro.png" alt="" width="2400" height="600" style="margin-bottom: 16px;" />
+<a href="https://github.com/mui/mui-x/releases/tag/v6.11.1">
+  <img src="/static/blog/mui-x-mid-v6-features/intro.png" alt="" width="2400" height="600" style="margin-bottom: 16px;" />
+</a>
 
 Since the first v6 stable release, we've continuously rolled out new major features.
-Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases), it's time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
+Now that we've reached [MUI X v6.11.1](https://github.com/mui/mui-x/releases/tag/v6.11.1), it's time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
 
 ## Table of contents
 
