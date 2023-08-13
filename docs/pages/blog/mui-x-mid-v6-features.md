@@ -14,7 +14,6 @@ Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases), 
 
 ## Table of contents
 
-- [Table of contents](#table-of-contents)
 - [Date Pickers](#date-pickers)
   - [Support for time zones](#support-for-time-zones)
   - [Digital clock](#digital-clock)
