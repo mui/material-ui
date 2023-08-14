@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { ModalProps } from '../Modal';
+import { PopoverProps } from '../PopoverProps';
 import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';
 import { TransitionProps } from '../transitions/transition';
@@ -35,6 +36,7 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose?: ModalProps['onClose'];
   /**

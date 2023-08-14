@@ -311,6 +311,7 @@ Drawer.propTypes /* remove-proptypes */ = {
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`.
    */
   onClose: PropTypes.func,
   /**
