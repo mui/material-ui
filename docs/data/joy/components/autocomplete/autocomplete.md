@@ -204,7 +204,7 @@ You can use the `limitTags` prop to limit the number of displayed options when n
 
 ### Sizes
 
-The autocomplete component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`. The size is propagated to internal components, including `Input`, `Chip`, and `List`.
+The autocomplete component comes with three sizes out of the box: `sm` (the default), `md`, and `lg`. The size is propagated to internal components, including `Input`, `Chip`, and `List`.
 
 {{"demo": "Sizes.js"}}
 

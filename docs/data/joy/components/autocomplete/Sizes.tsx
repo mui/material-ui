@@ -8,7 +8,7 @@ export default function Sizes() {
       <Autocomplete
         multiple
         size="sm"
-        placeholder='size="sm"'
+        placeholder='size="sm"(the default)'
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
@@ -16,7 +16,7 @@ export default function Sizes() {
       <Autocomplete
         multiple
         size="md"
-        placeholder='size="md" (default)'
+        placeholder='size="md"'
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
