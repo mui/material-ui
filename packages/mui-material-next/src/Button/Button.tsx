@@ -321,8 +321,6 @@ export const ButtonRoot = styled(ButtonBase, {
     [`&.${buttonBaseClasses.disabled}`]: {
       // Allows developer to specify the disabled icon color var
       '--md-comp-button-icon-color': 'var(--md-comp-button-disabled-icon-color)',
-      pointerEvents: 'none', // Disable link interactions
-      cursor: 'default',
       color: disabledLabelTextColor,
       backgroundColor: disabledContainerColor[ownerState.variant ?? 'text'],
       boxShadow: tokens.sys.elevation[0],
