@@ -758,14 +758,37 @@ describe('<ButtonBase />', () => {
     });
 
     describe('prop: disableRipple', () => {
-      it('removes the TouchRipple', () => {
-        const { getByText } = render(
-          <ButtonBase disableRipple focusRipple TouchRippleProps={{ className: 'touch-ripple' }}>
-            Hello
+      const touchRippleTestId = 'touch-ripple-test-id';
+
+      it('is enabled by default', () => {
+        const { getAllByTestId } = render(
+          <ButtonBase
+            TouchRippleProps={{
+              // @ts-ignore allow for test id
+              'data-testid': touchRippleTestId,
+            }}
+          >
+            Hello World
           </ButtonBase>,
         );
 
-        expect(getByText('Hello').querySelector('.touch-ripple')).to.equal(null);
+        expect(getAllByTestId(touchRippleTestId).length).to.equal(1);
+      });
+
+      it('removes the TouchRipple when disableRipple is true', () => {
+        const { queryByTestId } = render(
+          <ButtonBase
+            TouchRippleProps={{
+              // @ts-ignore allow for test id
+              'data-testid': touchRippleTestId,
+            }}
+            disableRipple
+          >
+            Hello World
+          </ButtonBase>,
+        );
+
+        expect(queryByTestId(touchRippleTestId)).to.equal(null);
       });
     });
 
@@ -1065,6 +1088,14 @@ describe('<ButtonBase />', () => {
       fireEvent.mouseDown(button!);
 
       expect(button).to.have.class(classes.active);
+    });
+  });
+
+  describe('prop: tabIndex', () => {
+    it('should apply user value of tabIndex', () => {
+      const { getByRole } = render(<ButtonBase tabIndex={5} />);
+
+      expect(getByRole('button')).to.have.property('tabIndex', 5);
     });
   });
 });

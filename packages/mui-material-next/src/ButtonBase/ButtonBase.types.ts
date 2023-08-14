@@ -53,11 +53,6 @@ export interface ButtonBaseTypeMap<
      */
     focusableWhenDisabled?: boolean;
     /**
-     * If `true`, the base button will have a keyboard focus ripple.
-     * @default false
-     */
-    focusRipple?: boolean;
-    /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.
      * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).

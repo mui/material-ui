@@ -106,6 +106,10 @@ The breaking changes in this section apply to the following components:
 
 So the examples below are interchangeable for these components.
 
+### Removed focusRipple
+
+The `focusRipple` prop was removed as ripples are absent in Material You's focused states.
+
 ### Prevent default on `key-up` and `key-down` events
 
 If you need to prevent default on a `key-up` and/or `key-down` event, then besides calling `preventDefault` you'll need to set `event.defaultMuiPrevented` to `true` as follows:

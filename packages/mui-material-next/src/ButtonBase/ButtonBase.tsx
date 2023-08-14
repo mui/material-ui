@@ -101,7 +101,6 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     disabled = false,
     disableRipple = false,
     disableTouchRipple = false,
-    focusRipple = false,
     focusVisibleClassName,
     focusableWhenDisabled = false,
     LinkComponent = 'a',
@@ -155,8 +154,6 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     disabled,
     disableRipple,
     disableTouchRipple,
-    focusRipple,
-    tabIndex,
     focusVisible,
     active,
   };
@@ -166,8 +163,6 @@ const ButtonBase = React.forwardRef(function ButtonBase<
   const rootProps = useSlotProps({
     elementType: ButtonBaseRoot,
     getSlotProps: (otherHandlers: EventHandlers) => ({
-      // tabIndex should be handled by useButton after https://github.com/mui/material-ui/issues/38368 is fixed
-      tabIndex,
       ...getRootProps({
         ...otherHandlers,
         ...getRippleHandlers(props),
@@ -257,10 +252,10 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    */
   disableTouchRipple: PropTypes.bool,
   /**
-   * If `true`, the base button will have a keyboard focus ripple.
+   * If `true`, allows a disabled button to receive focus.
    * @default false
    */
-  focusRipple: PropTypes.bool,
+  focusableWhenDisabled: PropTypes.bool,
   /**
    * This prop can help identify which element has keyboard focus.
    * The class name will be applied when the element gains the focus through keyboard interaction.
