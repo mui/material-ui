@@ -22,7 +22,7 @@ export default function InputDecorators() {
                 variant: 'outlined',
               },
             }}
-            sx={{ mr: -1.5, '&:hover': { bgcolor: 'transparent' } }}
+            sx={{ mr: -1, '&:hover': { bgcolor: 'transparent' } }}
           >
             <Option value="dollar">US dollar</Option>
             <Option value="baht">Thai baht</Option>
