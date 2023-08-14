@@ -1,4 +1,4 @@
-# Header styles
+# Headers
 
 <p class="description">Headers.</p>
 
