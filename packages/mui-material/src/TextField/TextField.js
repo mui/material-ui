@@ -146,15 +146,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     InputMore['aria-describedby'] = undefined;
   }
 
-  const handleClick = (event) => {
-    if (!disabled && onClick) {
-      // The `onClick` is registered both on the root and the input elements.
-      // Without stopping the propagation, the event could be triggered twice.
-      event.stopPropagation();
-      onClick(event);
-    }
-  };
-
   const id = useId(idOverride);
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const inputLabelId = label && id ? `${id}-label` : undefined;
@@ -196,7 +187,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       color={color}
       variant={variant}
       ownerState={ownerState}
-      onClick={handleClick}
       {...other}
     >
       {label != null && label !== '' && (
