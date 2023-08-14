@@ -38,7 +38,7 @@ The textarea component supports the four global variants: solid (default), soft,
 
 ### Sizes
 
-The textarea component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
+The textarea component comes with three sizes out of the box: `sm` (the default), `md`, and `lg`.
 
 {{"demo": "TextareaSizes.js"}}
 
