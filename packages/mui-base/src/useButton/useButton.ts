@@ -209,17 +209,17 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     }
   }
 
-  const getRootProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
+  const getRootProps = <TOther extends Record<string, any> = {}>(
+    externalProps: TOther = {} as TOther,
   ): UseButtonRootSlotProps<TOther> => {
-    const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseButtonParameters>;
     const externalEventHandlers = {
-      ...propsEventHandlers,
-      ...otherHandlers,
+      ...extractEventHandlers(parameters),
+      ...extractEventHandlers(externalProps),
     };
 
     const props = {
       type,
+      ...externalProps,
       ...externalEventHandlers,
       ...buttonProps,
       onBlur: createHandleBlur(externalEventHandlers),

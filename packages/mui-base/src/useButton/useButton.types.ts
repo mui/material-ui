@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { EventHandlers } from '../utils/types';
 import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 export interface UseButtonParameters {
@@ -48,8 +47,8 @@ export interface UseButtonReturnValue {
    * @param otherHandlers event handlers for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <TOther extends EventHandlers = {}>(
-    otherHandlers?: TOther,
+  getRootProps: <TOther extends Record<string, any> = {}>(
+    externalProps?: TOther,
   ) => UseButtonRootSlotProps<TOther>;
   /**
    * If `true`, the component is being focused using keyboard.
