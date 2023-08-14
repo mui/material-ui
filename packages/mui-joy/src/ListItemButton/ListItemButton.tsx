@@ -80,9 +80,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     minBlockSize: 'var(--ListItem-minHeight)',
     border: '1px solid transparent', // use `transparent` as a placeholder to prevent the button from jumping when switching to `outlined` variant
     borderRadius: 'var(--ListItem-radius)',
-    flexGrow: ownerState.row ? 0 : 1,
-    flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
-    flexShrink: 0,
+    flex: 'none', // prevent children from shrinking when the List's height is limited.
     fontSize: 'inherit', // prevent user agent style when component="button"
     lineHeight: 'inherit', // prevent user agent style when component="button"
     minInlineSize: 0,
