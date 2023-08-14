@@ -145,26 +145,19 @@ function Styles() {
     }
 
     .TriggerButtonIntroduction {
-      font-family: IBM Plex Sans, sans-serif;
-      font-size: 0.875rem;
+      font-family: IBM Plex Sans,sans-serif;
       font-weight: 600;
-      box-sizing: border-box;
-      min-height: calc(1.5em + 22px);
-      border-radius: 12px;
-      padding: 6px 12px;
+      font-size: 0.875rem;
       line-height: 1.5;
-      background: ${isDarkMode ? cyan[900] : '#FFF'};
-      border: 1px solid ${isDarkMode ? cyan[800] : grey[200]};
-      color: ${isDarkMode ? grey[100] : grey[900]};
-      box-shadow: ${
-        isDarkMode
-          ? '0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px 4px 4px rgba(0, 0, 0, 0.1)'
-          : '0px 2px 2px rgba(205, 210, 215, 0.2), inset 0px 4px 4px rgba(205, 210, 215, 0.1)'
-      };
+      background-color: ${cyan[500]};
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      border: none;
 
       &:hover {
-        background: ${isDarkMode ? cyan[800] : grey[50]};
-        border-color: ${isDarkMode ? cyan[700] : grey[300]};
+        background-color: ${cyan[600]};
       }
 
       &:focus-visible {
