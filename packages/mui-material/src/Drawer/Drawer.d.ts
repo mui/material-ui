@@ -2,7 +2,6 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { ModalProps } from '../Modal';
-import { PopoverProps } from '../PopoverProps';
 import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';
 import { TransitionProps } from '../transitions/transition';
