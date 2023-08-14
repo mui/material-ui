@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled } from '@mui/material/styles';
+import { styled, ThemeProvider } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import Menu from '@mui/material/Menu';
@@ -16,7 +16,6 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
-import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -148,19 +147,7 @@ function PersistScroll(props) {
     };
   }, [enabled, slot]);
 
-  return (
-    <Box
-      sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
-      ref={rootRef}
-    >
-      {children}
-    </Box>
-  );
+  return <div ref={rootRef}>{children}</div>;
 }
 
 PersistScroll.propTypes = {
@@ -194,6 +181,8 @@ const AppNavPaperComponent = styled('div')(() => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
+    border: '0 !important', // TODO add a Paper slot
+    overflowY: 'unset !important', // TODO add a Paper slot
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   };
 });
@@ -293,6 +282,26 @@ function reduceChildRoutes(context) {
   return items;
 }
 
+// TODO: Collapse should expose an API to customize the duration based on the height.
+function transitionTheme(theme) {
+  return {
+    ...theme,
+    transitions: {
+      ...theme.transitions,
+      getAutoHeightDuration: (height) => {
+        if (!height) {
+          return 0;
+        }
+
+        const constant = height / 50;
+
+        // https://www.wolframalpha.com/input/?i=(4+%2B+15+*+(x+%2F+36+)+**+0.25+%2B+(x+%2F+36)+%2F+5)+*+10
+        return Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10);
+      },
+    },
+  };
+}
+
 // iOS is hosted on high-end devices. We can enable the backdrop transition without
 // dropping frames. The performance will be good enough.
 // So: <SwipeableDrawer disableBackdropTransition={false} />
@@ -304,6 +313,7 @@ export default function AppNavDrawer(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const t = useTranslate();
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
+  const swipeableDrawer = disablePermanent || mobile;
 
   const drawer = React.useMemo(() => {
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
@@ -394,15 +404,12 @@ export default function AppNavDrawer(props) {
               component="a"
               onClick={onClose}
               aria-label={t('goToHome')}
-              sx={(theme) => ({
+              sx={{
                 pr: '12px',
                 mr: '4px',
                 borderRight: '1px solid',
-                borderColor: (theme.vars || theme).palette.divider,
-                ...theme.applyDarkStyles({
-                  borderColor: (theme.vars || theme).palette.divider,
-                }),
-              })}
+                borderColor: 'divider',
+              }}
             >
               <SvgMuiLogomark width={30} />
             </Box>
@@ -414,11 +421,27 @@ export default function AppNavDrawer(props) {
           />
         </ToolbarDiv>
         <Divider />
-        <Box sx={{ pt: 0.5, pb: 5, overflowY: 'auto', flexGrow: 1 }}>{navItems}</Box>
-        <DiamondSponsors />
+        <Box
+          sx={{
+            pt: 0.5,
+            pb: 5,
+            overflowY: 'auto',
+            flexGrow: 1,
+            ...(swipeableDrawer
+              ? {}
+              : {
+                  borderRight: '1px solid',
+                  borderColor: 'divider',
+                }),
+          }}
+        >
+          <PersistScroll slot="side" enabled>
+            {navItems}
+          </PersistScroll>
+        </Box>
       </React.Fragment>
     );
-  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
+  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl, swipeableDrawer]);
 
   if (process.env.NODE_ENV !== 'production') {
     if (!productIdentifier) {
@@ -430,41 +453,43 @@ export default function AppNavDrawer(props) {
   }
 
   return (
-    <nav className={className} aria-label={t('mainNavigation')}>
-      {disablePermanent || mobile ? (
-        <SwipeableDrawer
-          disableBackdropTransition={!iOS}
-          variant="temporary"
-          open={mobileOpen}
-          onOpen={onOpen}
-          onClose={onClose}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          PaperProps={{
-            className: 'algolia-drawer',
-            component: AppNavPaperComponent,
-          }}
-        >
-          <PersistScroll slot="swipeable" enabled={mobileOpen}>
-            {drawer}
-          </PersistScroll>
-        </SwipeableDrawer>
-      ) : null}
-      {disablePermanent || mobile ? null : (
-        <StyledDrawer
-          variant="permanent"
-          PaperProps={{
-            component: AppNavPaperComponent,
-          }}
-          open
-        >
-          <PersistScroll slot="side" enabled>
-            {drawer}
-          </PersistScroll>
-        </StyledDrawer>
-      )}
-    </nav>
+    <ThemeProvider theme={transitionTheme}>
+      <nav className={className} aria-label={t('mainNavigation')}>
+        {disablePermanent || mobile ? (
+          <SwipeableDrawer
+            disableBackdropTransition={!iOS}
+            variant="temporary"
+            open={mobileOpen}
+            onOpen={onOpen}
+            onClose={onClose}
+            ModalProps={{
+              keepMounted: true,
+            }}
+            PaperProps={{
+              className: 'algolia-drawer',
+              component: AppNavPaperComponent,
+            }}
+          >
+            <PersistScroll slot="swipeable" enabled={mobileOpen}>
+              {drawer}
+            </PersistScroll>
+          </SwipeableDrawer>
+        ) : null}
+        {disablePermanent || mobile ? null : (
+          <StyledDrawer
+            variant="permanent"
+            PaperProps={{
+              component: AppNavPaperComponent,
+            }}
+            open
+          >
+            <PersistScroll slot="side" enabled>
+              {drawer}
+            </PersistScroll>
+          </StyledDrawer>
+        )}
+      </nav>
+    </ThemeProvider>
   );
 }
 
