@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Select, SelectRootSlotProps } from '@mui/base/Select';
+import { Select, SelectRootSlotProps, SelectProps } from '@mui/base/Select';
 import {
   Option as BaseOption,
   OptionProps,
@@ -7,6 +7,7 @@ import {
 } from '@mui/base/Option';
 import { useTheme } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+import clsx from 'clsx';
 
 const getOptionColorClasses = ({
   selected,
@@ -73,25 +74,76 @@ export default function UnstyledSelectIntroduction() {
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
-      <Select
-        slots={{ root: Button }}
+      <CustomSelect
         slotProps={{
-          root: ({ focusVisible }) => ({
-            className: `relative text-sm box-border w-80 px-3 py-2 rounded-lg text-left bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-700 outline-0 shadow-md shadow-slate-100 dark:shadow-slate-900 ${
-              focusVisible ? 'border-purple-400 shadow-outline-purple' : ''
-            } [&>svg]:text-base	[&>svg]:absolute [&>svg]:h-full [&>svg]:top-0 [&>svg]:right-2.5`,
-          }),
-          listbox: {
-            className: `text-sm p-1.5 my-3 w-80 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 shadow shadow-slate-200 dark:shadow-slate-900`,
-          },
-          popper: { className: `${isDarkMode ? 'dark' : ''} z-10` },
+          popper: { className: `${isDarkMode ? '' : ''} z-20` },
         }}
         defaultValue={10}
       >
         <Option value={10}>Documentation</Option>
         <Option value={20}>Components</Option>
         <Option value={30}>Features</Option>
-      </Select>
+      </CustomSelect>
     </div>
   );
 }
+
+const resolveSlotProps = (fn: any, args: any) =>
+  typeof fn === 'function' ? fn(args) : fn;
+
+const CustomSelect = React.forwardRef(function CustomSelect<
+  TValue extends {},
+  Multiple extends boolean,
+>(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
+  return (
+    <Select
+      ref={ref}
+      className={clsx('CustomSelect', props.className)}
+      slots={{ root: Button }}
+      slotProps={{
+        ...props.slotProps,
+        root: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.root,
+            ownerState,
+          );
+          return {
+            ...resolvedSlotProps,
+            className: clsx(
+              `relative text-sm font-sans box-border w-80 px-3 py-2 rounded-lg text-left bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-700 outline-0 shadow-md shadow-slate-100 dark:shadow-slate-900 ${
+                ownerState.focusVisible
+                  ? 'border-purple-400 shadow-outline-purple'
+                  : ''
+              } [&>svg]:text-base	[&>svg]:absolute [&>svg]:h-full [&>svg]:top-0 [&>svg]:right-2.5`,
+              resolvedSlotProps?.className,
+            ),
+          };
+        },
+        listbox: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.listbox,
+            ownerState,
+          );
+          return {
+            ...resolvedSlotProps,
+            className: clsx(
+              `text-sm font-sans p-1.5 my-3 w-80 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 shadow shadow-slate-200 dark:shadow-slate-900`,
+              resolvedSlotProps?.className,
+            ),
+          };
+        },
+        popper: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.popper,
+            ownerState,
+          );
+          return {
+            ...resolvedSlotProps,
+            className: clsx(resolvedSlotProps?.className),
+          };
+        },
+      }}
+      {...props}
+    />
+  );
+});
