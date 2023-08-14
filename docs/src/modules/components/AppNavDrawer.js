@@ -434,7 +434,7 @@ export default function AppNavDrawer(props) {
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>
-      {disablePermanent || mobile ? (
+      {swipeableDrawer ? (
         <SwipeableDrawer
           disableBackdropTransition={!iOS}
           variant="temporary"
@@ -445,16 +445,12 @@ export default function AppNavDrawer(props) {
             keepMounted: true,
           }}
           PaperProps={{
-            className: 'algolia-drawer',
             component: AppNavPaperComponent,
           }}
         >
-          <PersistScroll slot="swipeable" enabled={mobileOpen}>
-            {drawer}
-          </PersistScroll>
+          {drawer}
         </SwipeableDrawer>
-      ) : null}
-      {disablePermanent || mobile ? null : (
+      ) : (
         <StyledDrawer
           variant="permanent"
           PaperProps={{
@@ -462,9 +458,7 @@ export default function AppNavDrawer(props) {
           }}
           open
         >
-          <PersistScroll slot="side" enabled>
-            {drawer}
-          </PersistScroll>
+          {drawer}
         </StyledDrawer>
       )}
     </nav>
