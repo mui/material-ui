@@ -23,7 +23,7 @@ export default function AvatarUsage() {
           propName: 'size',
           knob: 'radio',
           options: ['sm', 'md', 'lg'],
-          defaultValue: 'md',
+          defaultValue: 'sm',
         },
       ]}
       renderDemo={(props) => (

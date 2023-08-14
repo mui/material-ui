@@ -67,7 +67,7 @@ Note that you lose the global variants when you add custom variants.
 
 ### Sizes
 
-The Avatar component comes in three sizes: `sm`, `md` (default), and `lg`:
+The Avatar component comes in three sizes: `sm` (default), `md`, and `lg`:
 
 {{"demo": "AvatarSizes.js"}}
 
