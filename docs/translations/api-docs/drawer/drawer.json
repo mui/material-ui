@@ -13,7 +13,7 @@
       "description": "Callback fired when the component requests to be closed.",
       "typeDescriptions": {
         "event": "The event source of the callback.",
-        "reason": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>, <code>&quot;tabKeyDown&quot;</code>."
+        "reason": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>."
       }
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
