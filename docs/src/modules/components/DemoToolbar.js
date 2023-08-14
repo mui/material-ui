@@ -4,6 +4,7 @@ import copy from 'clipboard-copy';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import CheckIcon from '@mui/icons-material/Check';
 import Fade from '@mui/material/Fade';
 import MDButton from '@mui/material/Button';
@@ -11,7 +12,6 @@ import Box from '@mui/material/Box';
 import MDToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
 import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 import SvgIcon from '@mui/material/SvgIcon';
-import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import Snackbar from '@mui/material/Snackbar';
 import Menu from '@mui/material/Menu';
 import MDMenuItem, { menuItemClasses } from '@mui/material/MenuItem';
@@ -63,6 +63,24 @@ function DemoTooltip(props) {
     />
   );
 }
+
+function ToggleCodeTooltip(props) {
+  const { showSourceHint, ...other } = props;
+  const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <DemoTooltip
+      {...other}
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={showSourceHint && atLeastSmallViewport ? true : open}
+    />
+  );
+}
+ToggleCodeTooltip.propTypes = {
+  showSourceHint: PropTypes.bool,
+};
 
 const alwaysTrue = () => true;
 
@@ -322,15 +340,6 @@ export default function DemoToolbar(props) {
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
-  const handleCopyClick = async () => {
-    try {
-      await copy(demoData.raw);
-      setSnackbarMessage(t('copiedSource'));
-      setSnackbarOpen(true);
-    } finally {
-      handleMoreClose();
-    }
-  };
 
   const createHandleCodeSourceLink = (anchor, codeVariantParam, stylingSolution) => async () => {
     try {
@@ -547,33 +556,37 @@ export default function DemoToolbar(props) {
             {showCodeLabel}
           </Button>
           {demoOptions.hideEditButton ? null : (
-            <DemoTooltip title={t('codesandbox')} placement="bottom">
-              <IconButton
-                data-ga-event-category="demo"
-                data-ga-event-label={demo.gaLabel}
-                data-ga-event-action="codesandbox"
-                onClick={() => codeSandbox.createReactApp(demoData).openSandbox()}
-                {...getControlProps(4)}
-                sx={{ borderRadius: 1 }}
-              >
-                <SvgIcon viewBox="0 0 1024 1024">
-                  <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                </SvgIcon>
-              </IconButton>
-            </DemoTooltip>
+            <React.Fragment>
+              <DemoTooltip title={t('codesandbox')} placement="bottom">
+                <IconButton
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demo.gaLabel}
+                  data-ga-event-action="codesandbox"
+                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox()}
+                  {...getControlProps(4)}
+                  sx={{ borderRadius: 1 }}
+                >
+                  <SvgIcon viewBox="0 0 1024 1024">
+                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                  </SvgIcon>
+                </IconButton>
+              </DemoTooltip>
+              <DemoTooltip title={t('stackblitz')} placement="bottom">
+                <IconButton
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demo.gaLabel}
+                  data-ga-event-action="stackblitz"
+                  onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
+                  {...getControlProps(5)}
+                  sx={{ borderRadius: 1 }}
+                >
+                  <SvgIcon viewBox="0 0 19 28">
+                    <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+                  </SvgIcon>
+                </IconButton>
+              </DemoTooltip>
+            </React.Fragment>
           )}
-          <DemoTooltip title={t('copySource')} placement="bottom">
-            <IconButton
-              data-ga-event-category="demo"
-              data-ga-event-label={demo.gaLabel}
-              data-ga-event-action="copy"
-              onClick={handleCopyClick}
-              {...getControlProps(6)}
-              sx={{ borderRadius: 1 }}
-            >
-              <ContentCopyRoundedIcon />
-            </IconButton>
-          </DemoTooltip>
           <DemoTooltip title={t('resetFocus')} placement="bottom">
             <IconButton
               data-ga-event-category="demo"
@@ -674,18 +687,6 @@ export default function DemoToolbar(props) {
           horizontal: 'right',
         }}
       >
-        {demoOptions.hideEditButton ? null : (
-          <MenuItem
-            data-ga-event-category="demo"
-            data-ga-event-label={demo.gaLabel}
-            data-ga-event-action="stackblitz"
-            component="button"
-            onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
-            sx={{ width: '100%' }}
-          >
-            {t('stackblitz')}
-          </MenuItem>
-        )}
         <MenuItem
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
