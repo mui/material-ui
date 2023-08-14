@@ -46,7 +46,10 @@ export default function NavTabs() {
     // event.type can be equal to focus with selectionFollowsFocus.
     if (
       event.type !== 'click' ||
-      (event.type === 'click' && samePageLinkNavigation(event as any))
+      (event.type === 'click' &&
+        samePageLinkNavigation(
+          event as React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+        ))
     ) {
       setValue(newValue);
     }
