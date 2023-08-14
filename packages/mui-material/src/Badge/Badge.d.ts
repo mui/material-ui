@@ -1,14 +1,32 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import { BadgeTypeMap as BaseBadgeTypeMap, ExtendBadgeTypeMap } from '@mui/base/Badge';
+import { OverridableStringUnion, Simplify } from '@mui/types';
+import { SlotComponentProps } from '@mui/base/utils';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BadgeClasses } from './badgeClasses';
 
 export interface BadgePropsVariantOverrides {}
-
 export interface BadgePropsColorOverrides {}
+export interface BadgeRootSlotPropsOverrides {}
+export interface BadgeBadgeSlotPropsOverrides {}
+
+export type BadgeOwnerState = Simplify<
+  BadgeOwnProps & {
+    badgeContent: React.ReactNode;
+    invisible: boolean;
+    max: number;
+    displayValue: React.ReactNode;
+    showZero: boolean;
+    anchorOrigin: BadgeOrigin;
+    color: OverridableStringUnion<
+      'primary' | 'secondary' | 'default' | 'error' | 'info' | 'success' | 'warning',
+      BadgePropsColorOverrides
+    >;
+    overlap: 'rectangular' | 'circular';
+    variant: OverridableStringUnion<'standard' | 'dot', BadgePropsVariantOverrides>;
+  }
+>;
 
 export interface BadgeOrigin {
   vertical: 'top' | 'bottom';
@@ -24,6 +42,14 @@ export interface BadgeOwnProps {
    * }
    */
   anchorOrigin?: BadgeOrigin;
+  /**
+   * The content rendered within the badge.
+   */
+  badgeContent?: React.ReactNode;
+  /**
+   * The badge will be added relative to this node.
+   */
+  children?: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -51,7 +77,7 @@ export interface BadgeOwnProps {
    *
    * @default {}
    */
-  componentsProps?: BaseBadgeTypeMap['props']['slotProps'];
+  componentsProps?: BadgeOwnProps['slotProps'];
   /**
    * The components used for each slot inside.
    *
@@ -65,10 +91,50 @@ export interface BadgeOwnProps {
     Badge?: React.ElementType;
   };
   /**
+   * If `true`, the badge is invisible.
+   * @default false
+   */
+  invisible?: boolean;
+  /**
+   * Max count to show.
+   * @default 99
+   */
+  max?: number;
+  /**
    * Wrapped shape the badge should overlap.
    * @default 'rectangular'
    */
   overlap?: 'rectangular' | 'circular';
+  /**
+   * The props used for each slot inside the Badge.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<'span', BadgeRootSlotPropsOverrides, BadgeOwnerState>;
+    badge?: SlotComponentProps<'span', BadgeBadgeSlotPropsOverrides, BadgeOwnerState>;
+  };
+  /**
+   * The components used for each slot inside the Badge.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    /**
+     * The component that renders the root.
+     * @default 'span'
+     */
+    root?: React.ElementType;
+    /**
+     * The component that renders the badge.
+     * @default 'span'
+     */
+    badge?: React.ElementType;
+  };
+  /**
+   * Controls whether the badge is hidden when `badgeContent` is zero.
+   * @default false
+   */
+  showZero?: boolean;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -80,10 +146,13 @@ export interface BadgeOwnProps {
   variant?: OverridableStringUnion<'standard' | 'dot', BadgePropsVariantOverrides>;
 }
 
-export type BadgeTypeMap<D extends React.ElementType = 'span', P = {}> = ExtendBadgeTypeMap<{
-  props: P & BadgeOwnProps;
-  defaultComponent: D;
-}>;
+export interface BadgeTypeMap<
+  DefaultComponent extends React.ElementType = 'span',
+  AdditionalProps = {},
+> {
+  props: AdditionalProps & BadgeOwnProps;
+  defaultComponent: DefaultComponent;
+}
 
 type BadgeRootProps = NonNullable<BadgeTypeMap['props']['slotProps']>['root'];
 type BadgeBadgeProps = NonNullable<BadgeTypeMap['props']['slotProps']>['badge'];
@@ -105,8 +174,10 @@ export declare const BadgeMark: React.FC<BadgeBadgeProps>;
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 
 export type BadgeProps<
-  D extends React.ElementType = BadgeTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BadgeTypeMap<D, P>, D>;
+  RootComponent extends React.ElementType = BadgeTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BadgeTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Badge;

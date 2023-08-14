@@ -78,9 +78,9 @@ export interface ButtonGroupOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & ButtonGroupOwnProps;
-  defaultComponent: D;
+export interface ButtonGroupTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+  props: AdditionalProps & ButtonGroupOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -96,8 +96,10 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
 declare const ButtonGroup: OverridableComponent<ButtonGroupTypeMap>;
 
 export type ButtonGroupProps<
-  D extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ButtonGroupTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ButtonGroupTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default ButtonGroup;

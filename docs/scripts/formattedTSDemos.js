@@ -6,13 +6,13 @@
  */
 
 /**
- * List of demos or folders to ignore when transpiling
- * Example: "app-bar/BottomAppBar.tsx"
+ * List of demos or folders to ignore when transpiling.
+ * Only ignore files that aren't used in the UI.
  */
 const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
 
-const fse = require('fs-extra');
 const path = require('path');
+const fse = require('fs-extra');
 const babel = require('@babel/core');
 const prettier = require('prettier');
 const typescriptToProptypes = require('typescript-to-proptypes');
@@ -27,6 +27,7 @@ const babelConfig = {
   generatorOpts: { retainLines: true },
   babelrc: false,
   configFile: false,
+  shouldPrintComment: (comment) => !comment.startsWith(' @babel-ignore-comment-in-output'),
 };
 
 const workspaceRoot = path.join(__dirname, '../../');
@@ -97,7 +98,7 @@ async function transpileFile(tsxPath, program) {
 
     const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program, {
       shouldResolveObject: ({ name }) => {
-        if (name === 'classes') {
+        if (name === 'classes' || name === 'ownerState') {
           return false;
         }
 
@@ -105,14 +106,14 @@ async function transpileFile(tsxPath, program) {
       },
     });
     const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
-
     const prettierConfig = prettier.resolveConfig.sync(jsPath, {
       config: path.join(workspaceRoot, 'prettier.config.js'),
     });
     const prettierFormat = (jsSource) =>
       prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
 
-    const prettified = prettierFormat(codeWithPropTypes);
+    const codeWithoutTsIgnoreComments = codeWithPropTypes.replace(/^\s*\/\/ @ts-ignore.*$/gm, '');
+    const prettified = prettierFormat(codeWithoutTsIgnoreComments);
     const formatted = fixBabelGeneratorIssues(prettified);
     const correctedLineEndings = fixLineEndings(source, formatted);
 

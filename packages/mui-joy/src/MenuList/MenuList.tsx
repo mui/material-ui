@@ -1,9 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_capitalize as capitalize, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
-import useMenu, { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useMenu, MenuProvider } from '@mui/base/useMenu';
+import { ListActionTypes } from '@mui/base/useList';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { StyledList } from '../List/List';
@@ -35,13 +37,13 @@ const MenuListRoot = styled(StyledList, {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
-    '--List-radius': theme.vars.radius.sm,
     '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.surface,
     '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
+    borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
     overflow: 'auto',
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
@@ -72,6 +74,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     size = 'md',
     variant = 'outlined',
     color: colorProp = 'neutral',
+    onItemsChange,
     slots = {},
     slotProps = {},
     ...other
@@ -79,15 +82,21 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const { contextValue, getListboxProps, dispatch } = useMenu({
+  const {
+    contextValue: menuContextValue,
+    getListboxProps,
+    dispatch,
+  } = useMenu({
     listboxRef: ref,
-    listboxId: idProp,
+    id: idProp,
+    onItemsChange,
   });
 
   React.useImperativeHandle(
     actions,
     () => ({
       dispatch,
+      resetHighlight: () => dispatch({ type: ListActionTypes.resetHighlight, event: null }),
     }),
     [dispatch],
   );
@@ -113,16 +122,6 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     className: classes.root,
   });
 
-  const menuContextValue = React.useMemo(
-    () =>
-      ({
-        ...contextValue,
-        getListboxProps,
-        open: true,
-      } as MenuProviderValue),
-    [contextValue, getListboxProps],
-  );
-
   return (
     <SlotRoot {...rootProps}>
       <MenuProvider value={menuContextValue}>
@@ -143,14 +142,7 @@ MenuList.propTypes /* remove-proptypes */ = {
    * A ref with imperative actions.
    * It allows to select the first or last menu item.
    */
-  actions: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.shape({
-        dispatch: PropTypes.func.isRequired,
-      }),
-    }),
-  ]),
+  actions: refType,
   /**
    * @ignore
    */
@@ -160,7 +152,7 @@ MenuList.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -172,6 +164,10 @@ MenuList.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   id: PropTypes.string,
+  /**
+   * Function called when the items displayed in the menu change.
+   */
+  onItemsChange: PropTypes.func,
   /**
    * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
    * @default 'md'

@@ -45,17 +45,20 @@ export interface AvatarOwnProps {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
+    /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
   sx?: SxProps<Theme>;
   /**
    * The shape of the avatar.
    * @default 'circular'
    */
-  variant?: OverridableStringUnion<'circular' | 'rounded' | 'square', AvatarPropsVariantOverrides>;
+  variant?: OverridableStringUnion<'circular' | 'rounded' | 'square', AvatarPropsVariantOverrides>;  
 }
 
-export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & AvatarOwnProps;
-  defaultComponent: D;
+export interface AvatarTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+  props: AdditionalProps & AvatarOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -71,8 +74,10 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
 declare const Avatar: OverridableComponent<AvatarTypeMap>;
 
 export type AvatarProps<
-  D extends React.ElementType = AvatarTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<AvatarTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = AvatarTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<AvatarTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Avatar;

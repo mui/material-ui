@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
 import {
@@ -5,26 +6,25 @@ import {
   SnackbarCloseReason,
   UseSnackbarReturnValue,
 } from './useSnackbar.types';
-import extractEventHandlers from '../utils/extractEventHandlers';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 
 /**
  * The basic building block for creating custom snackbar.
  *
  * Demos:
  *
- * - [Snackbar](https://mui.com/base/react-snackbar/#hook)
+ * - [Snackbar](https://mui.com/base-ui/react-snackbar/#hook)
  *
  * API:
  *
- * - [useSnackbar API](https://mui.com/base/react-snackbar/hooks-api/#use-snackbar)
+ * - [useSnackbar API](https://mui.com/base-ui/react-snackbar/hooks-api/#use-snackbar)
  */
-export default function useSnackbar(parameters: UseSnackbarParameters): UseSnackbarReturnValue {
+export function useSnackbar(parameters: UseSnackbarParameters): UseSnackbarReturnValue {
   const {
     autoHideDuration = null,
     disableWindowBlurListener = false,
     onClose,
     open,
-    ref,
     resumeHideDuration,
   } = parameters;
 
@@ -157,7 +157,6 @@ export default function useSnackbar(parameters: UseSnackbarParameters): UseSnack
     };
 
     return {
-      ref,
       // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
       // See https://github.com/mui/material-ui/issues/29080
       role: 'presentation',

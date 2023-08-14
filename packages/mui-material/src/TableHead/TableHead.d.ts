@@ -19,9 +19,9 @@ export interface TableHeadOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'> {
-  props: P & TableHeadOwnProps;
-  defaultComponent: D;
+export interface TableHeadTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'thead'> {
+  props: AdditionalProps & TableHeadOwnProps;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -36,8 +36,10 @@ export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'>
 declare const TableHead: OverridableComponent<TableHeadTypeMap>;
 
 export type TableHeadProps<
-  D extends React.ElementType = TableHeadTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TableHeadTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TableHeadTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TableHeadTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default TableHead;

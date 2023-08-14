@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { PropTypes, Theme } from '..';
@@ -66,9 +67,9 @@ export interface FabOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
-  props: P & FabOwnProps;
-  defaultComponent: D;
+export type FabTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps &  FabOwnProps;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**
@@ -85,8 +86,10 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
 declare const Fab: ExtendButtonBase<FabTypeMap>;
 
 export type FabProps<
-  D extends React.ElementType = FabTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<FabTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = FabTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<FabTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Fab;

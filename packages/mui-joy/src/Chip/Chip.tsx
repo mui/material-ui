@@ -1,13 +1,16 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useButton from '@mui/base/useButton';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useButton } from '@mui/base/useButton';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { VariantColorProvider } from '../styles/variantColorInheritance';
 import { useColorInversion } from '../styles/ColorInversion';
+import { resolveSxValue } from '../styles/styleUtils';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
@@ -39,6 +42,8 @@ const ChipRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const { borderRadius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
   return [
     {
       // for controlling chip delete margin offset
@@ -51,41 +56,38 @@ const ChipRoot = styled('div', {
       '--Avatar-radius': 'var(--Chip-decoratorChildRadius)',
       '--Avatar-size': 'var(--Chip-decoratorChildHeight)',
       '--Icon-margin': 'initial', // reset the icon's margin.
+      '--Icon-color': 'currentColor',
       '--unstable_actionRadius': 'var(--_Chip-radius)', // to be used with Radio or Checkbox
       ...(ownerState.size === 'sm' && {
-        '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decoratorChildHeight':
           'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth, 0px))',
-        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.714)', // 0.875rem by default
+        '--Icon-fontSize': theme.vars.fontSize.sm,
         '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)',
-        fontSize: theme.vars.fontSize.xs,
+        gap: '0.25rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Chip-gap': '0.375rem',
         '--Chip-paddingInline': '0.75rem',
         '--Chip-decoratorChildHeight': 'min(1.375rem, var(--_Chip-minHeight))',
-        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.778)', // 1.125rem by default
+        '--Icon-fontSize': theme.vars.fontSize.lg,
         '--_Chip-minHeight': 'var(--Chip-minHeight, 2rem)',
-        fontSize: theme.vars.fontSize.sm,
+        gap: '0.375rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Chip-gap': '0.5rem',
         '--Chip-paddingInline': '1rem',
         '--Chip-decoratorChildHeight': 'min(1.75rem, var(--_Chip-minHeight))',
-        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 2)', // 1.25rem by default
+        '--Icon-fontSize': theme.vars.fontSize.xl,
         '--_Chip-minHeight': 'var(--Chip-minHeight, 2.5rem)',
-        fontSize: theme.vars.fontSize.md,
+        gap: '0.5rem',
       }),
       '--_Chip-radius': 'var(--Chip-radius, 1.5rem)',
       '--_Chip-paddingBlock':
         'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Chip-decoratorChildHeight)) / 2, 0px)',
       minHeight: 'var(--_Chip-minHeight)',
+      maxWidth: 'max-content', // to prevent Chip from stretching to full width when used with flexbox
       paddingInline: 'var(--Chip-paddingInline)',
       borderRadius: 'var(--_Chip-radius)',
       position: 'relative',
-      fontWeight: theme.vars.fontWeight.md,
-      fontFamily: theme.vars.fontFamily.body,
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -93,14 +95,17 @@ const ChipRoot = styled('div', {
       textDecoration: 'none',
       verticalAlign: 'middle',
       boxSizing: 'border-box',
+      ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
+      fontWeight: theme.vars.fontWeight.md,
       [`&.${chipClasses.disabled}`]: {
         color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       },
-    },
+    } as const,
     ...(!ownerState.clickable
       ? [
-          theme.variants[ownerState.variant!]?.[ownerState.color!],
           {
+            backgroundColor: theme.vars.palette.background.surface,
+            ...variantStyle,
             [`&.${chipClasses.disabled}`]:
               theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
           },
@@ -108,9 +113,10 @@ const ChipRoot = styled('div', {
       : [
           {
             '--variant-borderWidth': '0px',
-            color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
+            color: variantStyle?.color,
           },
         ]),
+    borderRadius !== undefined && { '--_Chip-radius': borderRadius },
   ];
 });
 
@@ -137,6 +143,10 @@ const ChipAction = styled('button', {
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => [
   {
+    '--Icon-color':
+      ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+        ? 'currentColor'
+        : theme.vars.palette.text.icon,
     position: 'absolute',
     zIndex: 0,
     top: 0,
@@ -152,8 +162,11 @@ const ChipAction = styled('button', {
     textDecoration: 'none',
     borderRadius: 'inherit',
     [theme.focus.selector]: theme.focus.default,
+  } as const,
+  {
+    backgroundColor: theme.vars.palette.background.surface,
+    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
   { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
   { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
   {
@@ -168,10 +181,9 @@ const ChipStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: ChipOwnerState }>({
   '--Avatar-marginInlineStart': 'calc(var(--Chip-decoratorChildOffset) * -1)',
-  '--Chip-deleteMargin': '0 0 0 calc(var(--Chip-decoratorChildOffset) * -1)',
+  '--IconButton-margin': '0 0 0 calc(var(--Chip-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Chip-paddingInline) / -4)',
   display: 'inherit',
-  marginInlineEnd: 'var(--Chip-gap)',
   // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
   order: 0,
   zIndex: 1,
@@ -183,10 +195,9 @@ const ChipEndDecorator = styled('span', {
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: ChipOwnerState }>({
-  '--Chip-deleteMargin': '0 calc(var(--Chip-decoratorChildOffset) * -1) 0 0',
+  '--IconButton-margin': '0 calc(var(--Chip-decoratorChildOffset) * -1) 0 0',
   '--Icon-margin': '0 calc(var(--Chip-paddingInline) / -4) 0 0',
   display: 'inherit',
-  marginInlineStart: 'var(--Chip-gap)',
   // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
   order: 2,
   zIndex: 1,
@@ -209,11 +220,11 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const {
     children,
     className,
-    color: colorProp = 'primary',
+    color: colorProp = 'neutral',
     onClick,
     disabled = false,
     size = 'md',
-    variant = 'solid',
+    variant = 'soft',
     startDecorator,
     endDecorator,
     component,
@@ -241,7 +252,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const { focusVisible, getRootProps } = useButton({
     ...resolvedActionProps,
     disabled,
-    ref: actionRef,
+    rootRef: actionRef,
   });
 
   ownerState.focusVisible = focusVisible;
@@ -294,26 +305,27 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     ownerState,
   });
 
-  const chipContextValue = React.useMemo(
-    () => ({ disabled, variant, color: color === 'context' ? undefined : color }),
-    [color, disabled, variant],
-  );
+  const chipContextValue = React.useMemo(() => ({ disabled }), [disabled]);
 
   return (
     <ChipContext.Provider value={chipContextValue}>
-      <SlotRoot {...rootProps}>
-        {clickable && <SlotAction {...actionProps} />}
+      <VariantColorProvider variant={variant} color={colorProp}>
+        <SlotRoot {...rootProps}>
+          {clickable && <SlotAction {...actionProps} />}
 
-        {/* label is always the first element for integrating with other controls, eg. Checkbox, Radio. Use CSS order to rearrange position */}
-        <SlotLabel {...labelProps} id={id}>
-          {children}
-        </SlotLabel>
-        {startDecorator && (
-          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
-        )}
+          {/* label is always the first element for integrating with other controls, eg. Checkbox, Radio. Use CSS order to rearrange position */}
+          <SlotLabel {...labelProps} id={id}>
+            {children}
+          </SlotLabel>
+          {startDecorator && (
+            <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
+          )}
 
-        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
-      </SlotRoot>
+          {endDecorator && (
+            <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>
+          )}
+        </SlotRoot>
+      </VariantColorProvider>
     </ChipContext.Provider>
   );
 }) as OverridableComponent<ChipTypeMap>;
@@ -333,10 +345,10 @@ Chip.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -402,7 +414,7 @@ Chip.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'solid'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

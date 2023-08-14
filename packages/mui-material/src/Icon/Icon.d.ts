@@ -56,9 +56,9 @@ export interface IconOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
-  props: P & IconOwnProps;
-  defaultComponent: D;
+export interface IconTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'span'> {
+  props: AdditionalProps & IconOwnProps;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -74,8 +74,10 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
 declare const Icon: OverridableComponent<IconTypeMap> & { muiName: string };
 
 export type IconProps<
-  D extends React.ElementType = IconTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<IconTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = IconTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<IconTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Icon;

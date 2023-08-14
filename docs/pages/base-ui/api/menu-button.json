@@ -1,0 +1,46 @@
+{
+  "props": {
+    "className": { "type": { "name": "string" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
+    "label": { "type": { "name": "string" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    }
+  },
+  "name": "MenuButton",
+  "imports": [
+    "import { MenuButton } from '@mui/base/MenuButton';",
+    "import { MenuButton } from '@mui/base';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": ".MuiMenuButton-root"
+    }
+  ],
+  "classes": {
+    "classes": ["active", "disabled", "expanded"],
+    "globalClasses": {
+      "active": "Mui-active",
+      "disabled": "Mui-disabled",
+      "expanded": "Mui-expanded"
+    }
+  },
+  "spread": true,
+  "muiName": "MuiMenuButton",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-base/src/MenuButton/MenuButton.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

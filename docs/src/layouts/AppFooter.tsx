@@ -10,28 +10,36 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
-import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import { alpha } from '@mui/material/styles';
+import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
+import DiscordIcon from 'docs/src/icons/DiscordIcon';
 import Link from 'docs/src/modules/components/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
-export default function AppFooter() {
+interface AppFooterProps {
+  stackOverflowUrl?: string;
+}
+
+export default function AppFooter(props: AppFooterProps) {
+  const { stackOverflowUrl } = props;
+
   return (
     <Container component="footer">
       <Box
         sx={{
-          pt: 4,
-          pb: 8,
+          py: 8,
           display: 'grid',
           gridAutoColumns: '1fr',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           justifyContent: 'space-between',
           gap: 4,
           gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
           gridTemplateRows: 'auto',
           '& a:not(.MuiIconButton-root)': {
-            mt: 1,
+            pt: 0.5,
+            pb: 0.5,
             color: 'text.secondary',
             typography: 'body2',
             '&:hover': {
@@ -42,14 +50,13 @@ export default function AppFooter() {
         }}
       >
         <div>
-          <SvgMuiLogo width={32} />
-          <Typography variant="body2" fontWeight="bold" sx={{ pt: 2 }}>
+          <Typography variant="body2" fontWeight="bold">
             Keep up to date
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
             Join our newsletter for regular updates. No spam ever.
           </Typography>
-          <EmailSubscribe sx={{ mb: 1 }} />
+          <EmailSubscribe sx={{ mb: 4 }} />
         </div>
         <Box
           sx={{
@@ -60,17 +67,18 @@ export default function AppFooter() {
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
+            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Products
             </Typography>
-            <Link href={ROUTES.productCore}>MUI Core</Link>
+            <Link href={ROUTES.productMaterial}>Material UI</Link>
+            <Link href={ROUTES.productBase}>Base UI</Link>
             <Link href={ROUTES.productAdvanced}>MUI X</Link>
             <Link href={ROUTES.productTemplates}>Templates</Link>
             <Link href={ROUTES.productDesignKits}>Design kits</Link>
             <Link href={ROUTES.productToolpad}>MUI Toolpad</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
+            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Resources
             </Typography>
             <Link href={ROUTES.materialIcons}>Material Icons</Link>
@@ -80,7 +88,7 @@ export default function AppFooter() {
             <Link href={ROUTES.theming}>Theming</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
+            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Explore
             </Typography>
             <Link href={ROUTES.documentation}>Documentation</Link>
@@ -88,10 +96,9 @@ export default function AppFooter() {
             <Link href={ROUTES.blog}>Blog</Link>
             <Link href={ROUTES.showcase}>Showcase</Link>
             <Link href={ROUTES.roadmap}>Roadmap</Link>
-            <Link href={ROUTES.languages}>Languages</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
+            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Company
             </Typography>
             <Link href={ROUTES.about}>About</Link>
@@ -101,18 +108,24 @@ export default function AppFooter() {
               <Box
                 sx={(theme) => ({
                   px: 0.5,
-                  py: '3px',
+                  py: 0.1,
                   ml: 1,
                   mb: '1px',
-                  borderRadius: 0.5,
-                  fontSize: theme.typography.pxToRem(9),
-                  fontWeight: 700,
+                  position: 'relative',
+                  top: theme.spacing(-0.5),
+                  fontSize: theme.typography.pxToRem(10),
+                  fontWeight: 'Bold',
                   textTransform: 'uppercase',
-                  color: '#fff',
-                  letterSpacing: '0.1rem',
-                  bgcolor: 'success.main',
+                  letterSpacing: '.04rem',
+                  borderRadius: 8,
+                  border: 1,
+                  borderColor: 'success.300',
+                  bgcolor: alpha(theme.palette.success[100], 0.5),
+                  color: 'success.700',
                   ...theme.applyDarkStyles({
-                    bgcolor: 'success.900',
+                    borderColor: alpha(theme.palette.success[800], 0.5),
+                    bgcolor: alpha(theme.palette.success[800], 0.5),
+                    color: 'success.300',
                   }),
                 })}
               >
@@ -130,16 +143,28 @@ export default function AppFooter() {
       <Divider />
       <Box
         sx={{
-          py: 4,
+          my: 6,
           display: { xs: 'block', sm: 'flex' },
           alignItems: { sm: 'center' },
           justifyContent: { sm: 'space-between' },
         }}
       >
-        <Typography color="text.secondary" variant="body2">
-          Copyright © {new Date().getFullYear()} Material UI SAS.
-        </Typography>
-        <Box sx={{ py: { xs: 2, sm: 0 } }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: { xs: 'start', sm: 'center' },
+            gap: 1.5,
+          }}
+        >
+          <Link href="/" aria-label="Go to homepage">
+            <SvgMuiLogotype height={28} width={91} />
+          </Link>
+          <Typography color="text.tertiary" variant="caption" fontWeight={400}>
+            Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
+          </Typography>
+        </Box>
+        <Box sx={{ mt: { xs: 3, sm: 0 } }}>
           <Stack spacing={2} direction="row">
             <IconButton
               target="_blank"
@@ -160,16 +185,6 @@ export default function AppFooter() {
               size="small"
             >
               <RssFeedIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://stackoverflow.com/questions/tagged/mui"
-              aria-label="Stack Overflow"
-              title="Stack Overflow"
-              size="small"
-            >
-              <SvgStackOverflow fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
@@ -201,6 +216,28 @@ export default function AppFooter() {
             >
               <YouTubeIcon fontSize="small" />
             </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://mui.com/r/discord/"
+              aria-label="Discord"
+              title="Discord"
+              size="small"
+            >
+              <DiscordIcon fontSize="small" />
+            </IconButton>
+            {stackOverflowUrl ? (
+              <IconButton
+                target="_blank"
+                rel="noopener noreferrer"
+                href={stackOverflowUrl}
+                aria-label="Stack Overflow"
+                title="Stack Overflow"
+                size="small"
+              >
+                <SvgStackOverflow fontSize="small" />
+              </IconButton>
+            ) : null}
           </Stack>
         </Box>
       </Box>

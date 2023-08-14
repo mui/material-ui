@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
-import Popper from '@mui/base/Popper';
+import { Popper } from '@mui/base/Popper';
 import { ColorPaletteProp, styled, VariantProp } from '../styles';
 import { CreateSlotsAndSlotProps, SlotProps } from './types';
 import useSlot from './useSlot';
@@ -163,7 +163,7 @@ describe('useSlot', () => {
           anchorEl: () => document.createElement('div'),
         },
         internalForwardedProps: {
-          component: ItemRoot,
+          slots: { root: ItemRoot },
         },
       });
       return <SlotRoot {...rootProps} />;
@@ -237,7 +237,7 @@ describe('useSlot', () => {
           anchorEl: () => document.createElement('div'),
         },
         internalForwardedProps: {
-          component: ItemListbox,
+          slots: { root: ItemListbox },
         },
       });
       const [SlotOption, optionProps] = useSlot('option', {

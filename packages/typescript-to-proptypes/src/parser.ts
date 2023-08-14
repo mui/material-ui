@@ -1,5 +1,5 @@
 import * as doctrine from 'doctrine';
-import * as ts from 'typescript';
+import ts from 'typescript';
 import * as t from './types';
 
 /**
@@ -147,7 +147,12 @@ export function parseFromProgram(
     }
     if (type.symbol) {
       const name = checker.getFullyQualifiedName(type.symbol);
-      return name === 'global.JSX.Element' || name === 'React.ReactElement';
+      return (
+        // Remove once global JSX namespace is no longer used by React
+        name === 'global.JSX.Element' ||
+        name === 'React.JSX.Element' ||
+        name === 'React.ReactElement'
+      );
     }
 
     return false;
@@ -192,7 +197,9 @@ export function parseFromProgram(
       const symbol = typeNode.aliasSymbol ? typeNode.aliasSymbol : typeNode.symbol;
       const typeName = symbol ? checker.getFullyQualifiedName(symbol) : null;
       switch (typeName) {
+        // Remove once global JSX namespace is no longer used by React
         case 'global.JSX.Element':
+        case 'React.JSX.Element':
         case 'React.ReactElement': {
           return t.createElementType({ jsDoc: getDocumentation(symbol), elementType: 'element' });
         }
@@ -230,7 +237,6 @@ export function parseFromProgram(
       }
     }
 
-    // @ts-ignore
     if (checker.isArrayType(type)) {
       // @ts-ignore
       const arrayType: ts.Type = checker.getElementTypeOfArrayType(type);
@@ -240,7 +246,6 @@ export function parseFromProgram(
       });
     }
 
-    // @ts-expect-error
     const isTupleType = checker.isTupleType(type);
     if (isTupleType) {
       return t.createArrayType({

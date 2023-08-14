@@ -13,7 +13,7 @@ This section assumes that you've already installed Joy UI in your app—see [Ins
 
 #### yarn
 
-```sh
+```bash
 yarn add @mui/icons-material @mui/material
 ```
 
@@ -39,7 +39,7 @@ You can keep track of the progress in [this issue](https://github.com/mui/materi
 
 #### npm
 
-```sh
+```bash
 npm install @mui/icons-material @mui/material
 ```
 
@@ -184,6 +184,32 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
 <iframe src="https://codesandbox.io/embed/joy-ui-fontawesome-kjbnqj?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
      style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"
      title="joy-ui-fontawesome"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+### Iconify
+
+- [Browse icons](https://icon-sets.iconify.design/)
+- [Installation—React](https://iconify.design/docs/icon-components/react/)
+- [Installation—Web component](https://iconify.design/docs/iconify-icon/)
+- [Figma plugin](https://iconify.design/docs/design/figma/)
+
+<iframe src="https://codesandbox.io/embed/joy-ui-iconify-r8fjrm?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
+     style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"
+     title="joy-ui-iconify"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+### Lucide
+
+- [Browse icons](https://icon-sets.iconify.design/)
+- [Installation—React](https://lucide.dev/guide/packages/lucide-react)
+
+<iframe src="https://codesandbox.io/embed/joy-ui-lucide-sy7hio?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
+     style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"
+     title="joy-ui-lucide"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>

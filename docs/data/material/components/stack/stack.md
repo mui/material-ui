@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Stack component
 components: Stack
 githubLabel: 'component: Stack'
@@ -14,7 +14,7 @@ githubLabel: 'component: Stack'
 The Stack component manages the layout of its immediate children along the vertical or horizontal axis, with optional spacing and dividers between each child.
 
 :::info
-Stack is ideal for one-dimensional layouts, while Grid is preferable when you need both vertical _and_ hortizontal arrangement.
+Stack is ideal for one-dimensional layouts, while Grid is preferable when you need both vertical _and_ horizontal arrangement.
 :::
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
@@ -22,7 +22,7 @@ Stack is ideal for one-dimensional layouts, while Grid is preferable when you ne
 ## Basics
 
 ```jsx
-import Stack from '@mui/joy/Stack';
+import Stack from '@mui/material/Stack';
 ```
 
 The Stack component acts as a generic container, wrapping around the elements to be arranged.

@@ -11,11 +11,11 @@ interface TabListOwnProps extends DistributiveOmit<TabsTypeMap['props'], 'childr
 }
 
 export interface TabListTypeMap<
-  P = {},
-  D extends React.ElementType = TabsTypeMap['defaultComponent'],
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = TabsTypeMap['defaultComponent'],
 > {
-  props: P & TabListOwnProps;
-  defaultComponent: D;
+  props: AdditionalProps & TabListOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -34,8 +34,8 @@ declare const TabList: OverridableComponent<TabListTypeMap>;
 export type TabListClassKey = keyof NonNullable<TabListTypeMap['props']['classes']>;
 
 export type TabListProps<
-  D extends React.ElementType = TabListTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TabListTypeMap<P, D>, D>;
+  DefaultComponent extends React.ElementType = TabListTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TabListTypeMap<AdditionalProps, DefaultComponent>, DefaultComponent>;
 
 export default TabList;

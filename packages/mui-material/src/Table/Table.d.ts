@@ -39,9 +39,9 @@ export interface TableOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
-  props: P & TableOwnProps;
-  defaultComponent: D;
+export interface TableTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'table'> {
+  props: AdditionalProps & TableOwnProps;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -56,8 +56,10 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
 declare const Table: OverridableComponent<TableTypeMap>;
 
 export type TableProps<
-  D extends React.ElementType = TableTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TableTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TableTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TableTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Table;

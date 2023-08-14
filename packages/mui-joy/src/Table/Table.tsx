@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -13,11 +14,13 @@ import { TypographyInheritContext } from '../Typography/Typography';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TableOwnerState) => {
-  const { size, variant, color, borderAxis, stickyHeader, noWrap, hoverRow } = ownerState;
+  const { size, variant, color, borderAxis, stickyHeader, stickyFooter, noWrap, hoverRow } =
+    ownerState;
   const slots = {
     root: [
       'root',
       stickyHeader && 'stickyHeader',
+      stickyFooter && 'stickyFooter',
       noWrap && 'noWrap',
       hoverRow && 'hoverRow',
       borderAxis && `borderAxis${capitalize(borderAxis)}`,
@@ -97,6 +100,9 @@ const tableSelector = {
   getFooterCell() {
     return '& tfoot th, & tfoot td';
   },
+  getFooterFirstRowCell() {
+    return `& tfoot tr:not(:last-of-type) th, & tfoot tr:not(:last-of-type) td`;
+  },
 };
 
 const TableRoot = styled('table', {
@@ -114,25 +120,23 @@ const TableRoot = styled('table', {
         '--unstable_TableCell-height': 'var(--TableCell-height, 32px)',
         '--TableCell-paddingX': '0.25rem',
         '--TableCell-paddingY': '0.25rem',
-        fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
         '--unstable_TableCell-height': 'var(--TableCell-height, 40px)',
         '--TableCell-paddingX': '0.5rem',
         '--TableCell-paddingY': '0.375rem',
-        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
         '--unstable_TableCell-height': 'var(--TableCell-height, 48px)',
         '--TableCell-paddingX': '0.75rem',
         '--TableCell-paddingY': '0.5rem',
-        fontSize: theme.vars.fontSize.md,
       }),
       tableLayout: 'fixed',
       width: '100%',
       borderSpacing: '0px',
       borderCollapse: 'separate',
-      color: theme.vars.palette.text.primary,
+      borderRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
+      ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '& caption': {
         color: theme.vars.palette.text.tertiary,
@@ -181,7 +185,7 @@ const TableRoot = styled('table', {
           borderBottomRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
-    },
+    } as const,
     (ownerState.borderAxis?.startsWith('x') || ownerState.borderAxis?.startsWith('both')) && {
       // insert border between rows
       [tableSelector.getHeaderCell()]: {
@@ -237,29 +241,41 @@ const TableRoot = styled('table', {
     ownerState.stripe && {
       [tableSelector.getBodyRow(ownerState.stripe)]: {
         // For customization, a table cell can look for this variable with a fallback value.
-        background: `var(--TableRow-stripeBackground, ${theme.vars.palette.background.level1})`,
+        background: `var(--TableRow-stripeBackground, ${theme.vars.palette.background.level2})`,
         color: theme.vars.palette.text.primary,
       },
     },
     ownerState.hoverRow && {
       [tableSelector.getBodyRow()]: {
         '&:hover': {
-          background: `var(--TableRow-hoverBackground, ${theme.vars.palette.background.level2})`,
+          background: `var(--TableRow-hoverBackground, ${theme.vars.palette.background.level3})`,
         },
       },
     },
     ownerState.stickyHeader && {
       // The column header
-      [tableSelector.getHeadCell()]: {
+      [tableSelector.getHeaderCell()]: {
         position: 'sticky',
         top: 0,
-      },
-      [tableSelector.getHeaderCell()]: {
         zIndex: theme.vars.zIndex.table,
       },
       [tableSelector.getHeaderCellOfRow(2)]: {
         // support upto 2 rows for the sticky header
         top: 'var(--unstable_TableCell-height)',
+      },
+    },
+    ownerState.stickyFooter && {
+      // The column header
+      [tableSelector.getFooterCell()]: {
+        position: 'sticky',
+        bottom: 0,
+        zIndex: theme.vars.zIndex.table,
+        color: theme.vars.palette.text.secondary,
+        fontWeight: theme.vars.fontWeight.lg,
+      },
+      [tableSelector.getFooterFirstRowCell()]: {
+        // support upto 2 rows for the sticky footer
+        bottom: 'var(--unstable_TableCell-height)',
       },
     },
   ];
@@ -292,6 +308,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     color: colorProp = 'neutral',
     stripe,
     stickyHeader = false,
+    stickyFooter = false,
     slots = {},
     slotProps = {},
     ...other
@@ -310,6 +327,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     variant,
     stripe,
     stickyHeader,
+    stickyFooter,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -356,7 +374,7 @@ Table.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -401,7 +419,14 @@ Table.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * Set the header sticky.
+   * If `true`, the footer always appear at the bottom of the overflow table.
+   *
+   * ⚠️ It doesn't work with IE11.
+   * @default false
+   */
+  stickyFooter: PropTypes.bool,
+  /**
+   * If `true`, the header always appear at the top of the overflow table.
    *
    * ⚠️ It doesn't work with IE11.
    * @default false

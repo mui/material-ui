@@ -41,6 +41,11 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, MenuPropsColorOverrides>;
     /**
+     * The component used for the root node.
+     * Either a string to use a HTML element or a component.
+     */
+    component?: React.ElementType;
+    /**
      * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
      * @default false
      */
@@ -49,6 +54,10 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * Triggered when focus leaves the menu and the menu should close.
      */
     onClose?: () => void;
+    /**
+     * Function called when the items displayed in the menu change.
+     */
+    onItemsChange?: (items: string[]) => void;
     /**
      * Controls whether the menu is displayed.
      * @default false

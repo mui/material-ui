@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
-import Option, { optionClasses } from '@mui/base/Option';
-import SelectProvider from '../useSelect/SelectProvider';
+import { Option, optionClasses } from '@mui/base/Option';
+import { SelectProvider } from '../useSelect/SelectProvider';
 
 const dummyGetItemState = () => ({
   disabled: false,
@@ -61,6 +61,7 @@ describe('<Option />', () => {
       },
     },
     skip: [
+      'componentProp',
       'reactTestRenderer', // Need to be wrapped in SelectContext
     ],
   }));

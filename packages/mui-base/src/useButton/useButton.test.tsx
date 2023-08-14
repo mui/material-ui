@@ -1,8 +1,8 @@
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
-import { createRenderer, fireEvent } from 'test/utils';
+import { act, createRenderer, fireEvent } from 'test/utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { useButton } from '@mui/base/useButton';
 
 describe('useButton', () => {
   const { render } = createRenderer();
@@ -12,7 +12,7 @@ describe('useButton', () => {
       it('is set when triggered by mouse', () => {
         function TestComponent() {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ rootRef: buttonRef });
 
           return <button {...getRootProps()} className={active ? 'active' : ''} />;
         }
@@ -28,7 +28,7 @@ describe('useButton', () => {
       it('is set when triggered by keyboard', () => {
         function TestComponent() {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ rootRef: buttonRef });
 
           return <button {...getRootProps()} className={active ? 'active' : ''} />;
         }
@@ -45,7 +45,7 @@ describe('useButton', () => {
       it('is set when clicked on an element inside the button', () => {
         function TestComponent() {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ rootRef: buttonRef });
 
           return (
             <button {...getRootProps()} className={active ? 'active' : ''}>
@@ -64,7 +64,7 @@ describe('useButton', () => {
       it('is unset when mouse button is released above another element', () => {
         function TestComponent() {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ rootRef: buttonRef });
 
           return (
             <div data-testid="parent">
@@ -87,7 +87,7 @@ describe('useButton', () => {
       it('is set when triggered by mouse', () => {
         function TestComponent() {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ rootRef: buttonRef });
 
           return <span {...getRootProps()} className={active ? 'active' : ''} />;
         }
@@ -103,7 +103,7 @@ describe('useButton', () => {
       it('is set when triggered by keyboard', () => {
         function TestComponent() {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ rootRef: buttonRef });
 
           return <span {...getRootProps()} className={active ? 'active' : ''} />;
         }
@@ -126,7 +126,7 @@ describe('useButton', () => {
       it('calls them when provided in props', () => {
         function TestComponent(props: WithClickHandler) {
           const ref = React.useRef(null);
-          const { getRootProps } = useButton({ ...props, ref });
+          const { getRootProps } = useButton({ ...props, rootRef: ref });
           return <button {...getRootProps()} />;
         }
 
@@ -143,7 +143,7 @@ describe('useButton', () => {
 
         function TestComponent() {
           const ref = React.useRef(null);
-          const { getRootProps } = useButton({ ref });
+          const { getRootProps } = useButton({ rootRef: ref });
           return <button {...getRootProps({ onClick: handleClick })} />;
         }
 
@@ -159,7 +159,7 @@ describe('useButton', () => {
 
         function TestComponent(props: WithClickHandler) {
           const ref = React.useRef(null);
-          const { getRootProps } = useButton({ ...props, ref });
+          const { getRootProps } = useButton({ ...props, rootRef: ref });
           return <button {...getRootProps({ onClick: handleClickInternal })} />;
         }
 
@@ -169,6 +169,74 @@ describe('useButton', () => {
         expect(handleClickInternal.callCount).to.equal(1);
         expect(handleClickExternal.callCount).to.equal(0);
       });
+
+      it('handles onFocusVisible and does not include it in the root props', () => {
+        interface WithFocusVisibleHandler {
+          onFocusVisible: React.FocusEventHandler;
+        }
+
+        function TestComponent(props: WithFocusVisibleHandler) {
+          const ref = React.useRef(null);
+          const { getRootProps } = useButton({ ...props, rootRef: ref });
+
+          // @ts-expect-error onFocusVisible is removed from props
+          expect(getRootProps().onFocusVisible).to.equal(undefined);
+
+          return <button {...getRootProps()} />;
+        }
+
+        const handleFocusVisible = spy();
+
+        const { getByRole } = render(<TestComponent onFocusVisible={handleFocusVisible} />);
+
+        act(() => {
+          getByRole('button').focus();
+        });
+
+        expect(handleFocusVisible.callCount).to.equal(1);
+      });
+    });
+  });
+
+  describe('tabIndex', () => {
+    it('does not return tabIndex in getRootProps when host component is BUTTON', () => {
+      function TestComponent() {
+        const ref = React.useRef(null);
+        const { getRootProps } = useButton({ rootRef: ref });
+
+        expect(getRootProps().tabIndex).to.equal(undefined);
+
+        return <button {...getRootProps()} />;
+      }
+
+      const { getByRole } = render(<TestComponent />);
+      expect(getByRole('button')).to.have.property('tabIndex', 0);
+    });
+
+    it('returns tabIndex in getRootProps when host component is not BUTTON', () => {
+      function TestComponent() {
+        const ref = React.useRef(null);
+        const { getRootProps } = useButton({ rootRef: ref });
+
+        expect(getRootProps().tabIndex).to.equal(ref.current ? 0 : undefined);
+
+        return <span {...getRootProps()} />;
+      }
+
+      const { getByRole } = render(<TestComponent />);
+      expect(getByRole('button')).to.have.property('tabIndex', 0);
+    });
+
+    it('returns tabIndex in getRootProps if it is explicitly provided', () => {
+      const customTabIndex = 3;
+      function TestComponent() {
+        const ref = React.useRef(null);
+        const { getRootProps } = useButton({ rootRef: ref, tabIndex: customTabIndex });
+        return <button {...getRootProps()} />;
+      }
+
+      const { getByRole } = render(<TestComponent />);
+      expect(getByRole('button')).to.have.property('tabIndex', customTabIndex);
     });
   });
 });

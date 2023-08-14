@@ -1,7 +1,14 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled, screen } from 'test/utils';
+import {
+  createMount,
+  createRenderer,
+  describeConformanceUnstyled,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import { expect } from 'chai';
-import Input, { inputClasses } from '@mui/base/Input';
+import { spy } from 'sinon';
+import { Input, inputClasses } from '@mui/base/Input';
 
 describe('<Input />', () => {
   const mount = createMount();
@@ -23,6 +30,7 @@ describe('<Input />', () => {
         testWithElement: 'input',
       },
     },
+    skip: ['componentProp'],
   }));
 
   it('should render textarea without any console errors when multiline=true', () => {
@@ -36,6 +44,41 @@ describe('<Input />', () => {
     const { getByRole } = render(<Input slotProps={{ input: { ref: inputRef } }} />);
 
     expect(inputRef.current).to.deep.equal(getByRole('textbox'));
+  });
+
+  it('should call event handlers passed in slotProps', () => {
+    const handleOnKeyDown = spy();
+    const handleOnKeyUp = spy();
+    const { getByRole } = render(
+      <Input
+        autoFocus
+        slotProps={{ input: { onKeyDown: handleOnKeyDown, onKeyUp: handleOnKeyUp } }}
+      />,
+    );
+
+    const input = getByRole('textbox');
+
+    fireEvent.keyDown(input, { key: 'a' });
+    fireEvent.keyUp(input, { key: 'a' });
+
+    expect(handleOnKeyDown.callCount).to.equal(1);
+    expect(handleOnKeyUp.callCount).to.equal(1);
+  });
+
+  it('should call event handlers passed to component', () => {
+    const handleOnKeyDown = spy();
+    const handleOnKeyUp = spy();
+    const { getByRole } = render(
+      <Input onKeyDown={handleOnKeyDown} onKeyUp={handleOnKeyUp} autoFocus />,
+    );
+
+    const input = getByRole('textbox');
+
+    fireEvent.keyDown(input, { key: 'a' });
+    fireEvent.keyUp(input, { key: 'a' });
+
+    expect(handleOnKeyDown.callCount).to.equal(1);
+    expect(handleOnKeyUp.callCount).to.equal(1);
   });
 
   describe('prop: multiline', () => {

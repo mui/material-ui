@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
-import ListItem, { listItemClasses } from '@mui/joy/ListItem';
+import ListItem from '@mui/joy/ListItem';
 import ListItemButton, { listItemButtonClasses } from '@mui/joy/ListItemButton';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
@@ -40,14 +40,10 @@ export default function ExampleCollapsibleList() {
           '--ListItem-startActionTranslateX': '-50%',
 
           [`& .${listItemButtonClasses.root}`]: {
-            borderLeft: '1px solid',
-            borderColor: 'divider',
+            borderLeftColor: 'divider',
           },
           [`& .${listItemButtonClasses.root}.${listItemButtonClasses.selected}`]: {
-            borderColor: 'currentColor',
-          },
-          [`& .${listItemClasses.nested} > .${listItemButtonClasses.root}`]: {
-            border: 'none',
+            borderLeftColor: 'currentColor',
           },
           '& [class*="startAction"]': {
             color: 'var(--joy-palette-text-tertiary)',
@@ -56,7 +52,7 @@ export default function ExampleCollapsibleList() {
       >
         <ListItem nested>
           <ListItem component="div" startAction={<ReceiptLong />}>
-            <Typography level="body3" sx={{ textTransform: 'uppercase' }}>
+            <Typography level="body-xs" sx={{ textTransform: 'uppercase' }}>
               Documentation
             </Typography>
           </ListItem>
@@ -95,7 +91,7 @@ export default function ExampleCollapsibleList() {
             >
               Tutorial
             </Typography>
-            <Typography component="span" level="body3" sx={{ ml: 1 }}>
+            <Typography component="span" level="body-xs" sx={{ ml: 1 }}>
               9
             </Typography>
           </ListItem>
@@ -146,7 +142,7 @@ export default function ExampleCollapsibleList() {
             >
               How-to Guides
             </Typography>
-            <Typography component="span" level="body3" sx={{ ml: 1 }}>
+            <Typography component="span" level="body-xs" sx={{ ml: 1 }}>
               39
             </Typography>
           </ListItem>

@@ -21,11 +21,11 @@ export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'c
 }
 
 export interface DialogTitleTypeMap<
-  P = {},
-  D extends React.ElementType = TypographyTypeMap['defaultComponent'],
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
 > {
-  props: P & DialogTitleOwnProps;
-  defaultComponent: D;
+  props: AdditionalProps & DialogTitleOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -41,8 +41,10 @@ export interface DialogTitleTypeMap<
 declare const DialogTitle: OverridableComponent<DialogTitleTypeMap>;
 
 export type DialogTitleProps<
-  D extends React.ElementType = DialogTitleTypeMap['defaultComponent'],
-  P = { component?: React.ElementType },
-> = OverrideProps<DialogTitleTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = DialogTitleTypeMap['defaultComponent'],
+  AdditionalProps = { component?: React.ElementType },
+> = OverrideProps<DialogTitleTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default DialogTitle;

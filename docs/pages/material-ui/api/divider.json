@@ -2,7 +2,7 @@
   "props": {
     "absolute": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "flexItem": { "type": { "name": "bool" }, "default": "false" },
     "light": { "type": { "name": "bool" }, "default": "false" },
@@ -14,7 +14,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "textAlign": {
       "type": {
@@ -32,6 +33,10 @@
     }
   },
   "name": "Divider",
+  "imports": [
+    "import Divider from '@mui/material/Divider';",
+    "import { Divider } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

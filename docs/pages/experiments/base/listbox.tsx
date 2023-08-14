@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import clsx from 'clsx';
-import useList, { ListContext, useListItem } from '@mui/base/useList';
+import { useList, ListContext, useListItem } from '@mui/base/useList';
 
 const styles = `
   body {
@@ -93,7 +93,7 @@ const Item = React.forwardRef(function Item(
   ref: React.Ref<HTMLElement>,
 ) {
   const { value: item, id } = props;
-  const { getRootProps, selected, highlighted } = useListItem({ item, ref });
+  const { getRootProps, selected, highlighted } = useListItem({ item, rootRef: ref });
 
   const itemProps = getRootProps();
 

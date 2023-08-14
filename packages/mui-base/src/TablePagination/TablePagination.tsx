@@ -1,11 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
-import isHostComponent from '../utils/isHostComponent';
-import TablePaginationActions from './TablePaginationActions';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { isHostComponent } from '../utils/isHostComponent';
+import { TablePaginationActions } from './TablePaginationActions';
 import { getTablePaginationUtilityClass } from './tablePaginationClasses';
 import {
   TablePaginationProps,
@@ -53,18 +53,16 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Table Pagination](https://mui.com/base/react-table-pagination/)
+ * - [Table Pagination](https://mui.com/base-ui/react-table-pagination/)
  *
  * API:
  *
- * - [TablePagination API](https://mui.com/base/react-table-pagination/components-api/#table-pagination)
+ * - [TablePagination API](https://mui.com/base-ui/react-table-pagination/components-api/#table-pagination)
  */
-const TablePagination = React.forwardRef<unknown, TablePaginationProps>(function TablePagination(
-  props,
-  ref,
-) {
+const TablePagination = React.forwardRef(function TablePagination<
+  RootComponentType extends React.ElementType,
+>(props: TablePaginationProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
-    component,
     colSpan: colSpanProp,
     count,
     getItemAriaLabel = defaultGetAriaLabel,
@@ -86,7 +84,8 @@ const TablePagination = React.forwardRef<unknown, TablePaginationProps>(function
   const classes = useUtilityClasses();
 
   let colSpan;
-  if (!component || component === 'td' || !isHostComponent(component)) {
+  const Root = slots.root ?? 'td';
+  if (Root === 'td' || !isHostComponent(Root)) {
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 
@@ -100,14 +99,13 @@ const TablePagination = React.forwardRef<unknown, TablePaginationProps>(function
   const selectId = useId(selectIdProp);
   const labelId = useId(labelIdProp);
 
-  const Root = component ?? slots.root ?? 'td';
   const rootProps: WithOptionalOwnerState<TablePaginationRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       colSpan,
-      ref,
+      ref: forwardedRef,
     },
     ownerState,
     className: classes.root,
@@ -120,8 +118,8 @@ const TablePagination = React.forwardRef<unknown, TablePaginationProps>(function
     additionalProps: {
       value: rowsPerPage,
       id: selectId,
-      onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
-        onRowsPerPageChange && onRowsPerPageChange(e),
+      onChange: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
+        onRowsPerPageChange && onRowsPerPageChange(event),
       'aria-label': rowsPerPage.toString(),
       'aria-labelledby': [labelId, selectId].filter(Boolean).join(' ') || undefined,
     },
@@ -238,7 +236,7 @@ const TablePagination = React.forwardRef<unknown, TablePaginationProps>(function
       </Toolbar>
     </Root>
   );
-}) as OverridableComponent<TablePaginationTypeMap>;
+}) as PolymorphicComponent<TablePaginationTypeMap>;
 
 TablePagination.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -248,16 +246,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  children: PropTypes.node,
-  /**
-   * @ignore
-   */
   colSpan: PropTypes.number,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The total number of rows.
    *
@@ -358,7 +347,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the TablePagination.
    * @default {}
    */
-  slotProps: PropTypes.shape({
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     actions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     displayedRows: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     menuItem: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -385,4 +374,4 @@ TablePagination.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default TablePagination;
+export { TablePagination };

@@ -49,15 +49,17 @@ export interface StepperOwnProps extends Pick<PaperProps, 'elevation' | 'square'
   sx?: SxProps<Theme>;
 }
 
-export interface StepperTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & StepperOwnProps;
-  defaultComponent: D;
+export interface StepperTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+  props: AdditionalProps & StepperOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 export type StepperProps<
-  D extends React.ElementType = StepperTypeMap['defaultComponent'],
-  P = { component?: React.ElementType },
-> = OverrideProps<StepperTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = StepperTypeMap['defaultComponent'],
+  AdditionalProps = { component?: React.ElementType },
+> = OverrideProps<StepperTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
 

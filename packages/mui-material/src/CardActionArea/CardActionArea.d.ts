@@ -17,9 +17,9 @@ export interface CardActionAreaOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
-  props: P & CardActionAreaOwnProps;
-  defaultComponent: D;
+export type CardActionAreaTypeMap<AdditionalProps, DefaultComponent extends React.ElementType> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps & CardActionAreaOwnProps;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**
@@ -38,8 +38,10 @@ declare const CardActionArea: ExtendButtonBase<
 >;
 
 export type CardActionAreaProps<
-  D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<CardActionAreaTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<CardActionAreaTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default CardActionArea;

@@ -92,9 +92,9 @@ export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
   >;
 }
 
-export interface BackdropTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & BackdropOwnProps;
-  defaultComponent: D;
+export interface BackdropTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+  props: AdditionalProps & BackdropOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 type BackdropRootProps = NonNullable<BackdropTypeMap['props']['componentsProps']>['root'];
@@ -115,8 +115,10 @@ export declare const BackdropRoot: React.FC<BackdropRootProps>;
 declare const Backdrop: OverridableComponent<BackdropTypeMap>;
 
 export type BackdropProps<
-  D extends React.ElementType = BackdropTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BackdropTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = BackdropTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BackdropTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Backdrop;

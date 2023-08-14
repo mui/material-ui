@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Typography component
 components: Typography
 githubLabel: 'component: Typography'
@@ -17,7 +17,7 @@ A [typographic scale](https://m2.material.io/design/typography/#type-scale) has 
 
 ## General
 
-The _Roboto_ font will **not** be automatically loaded by MUI.
+The _Roboto_ font will **not** be automatically loaded by Material UI.
 You are responsible for loading any fonts used in your application.
 Roboto Font has a few easy ways to get started. For more advanced configuration, check out
 [the theme customization section](/material-ui/customization/typography/).
@@ -27,9 +27,11 @@ Roboto Font has a few easy ways to get started. For more advanced configuration,
 Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
 />
 ```
 
@@ -57,7 +59,7 @@ import '@fontsource/roboto/700.css';
 For more info check out [Fontsource](https://github.com/fontsource/fontsource).
 
 Fontsource can be configured to load specific subsets, weights and styles.
-MUI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+Material UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Component
 

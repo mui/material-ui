@@ -1,5 +1,5 @@
-import { SxProps } from '@mui/system';
 import * as React from 'react';
+import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ScopedCssBaselineClasses } from './scopedCssBaselineClasses';
@@ -25,9 +25,9 @@ export interface ScopedCssBaselineOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & ScopedCssBaselineOwnProps;
-  defaultComponent: D;
+export interface ScopedCssBaselineTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+  props: AdditionalProps & ScopedCssBaselineOwnProps;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -42,9 +42,11 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
 declare const ScopedCssBaseline: OverridableComponent<ScopedCssBaselineTypeMap>;
 
 export type ScopedCssBaselineProps<
-  D extends React.ElementType = ScopedCssBaselineTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ScopedCssBaselineTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ScopedCssBaselineTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ScopedCssBaselineTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 /**
  *

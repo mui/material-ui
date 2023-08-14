@@ -49,11 +49,11 @@ export interface LoadingButtonOwnProps {
 }
 
 export type LoadingButtonTypeMap<
-  P = {},
-  D extends React.ElementType = 'button',
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'button',
 > = ExtendButtonTypeMap<{
-  props: P & LoadingButtonOwnProps;
-  defaultComponent: D;
+  props: AdditionalProps & LoadingButtonOwnProps;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**
@@ -70,8 +70,8 @@ export type LoadingButtonTypeMap<
 declare const LoadingButton: ExtendButton<LoadingButtonTypeMap>;
 
 export type LoadingButtonProps<
-  D extends React.ElementType = LoadingButtonTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<LoadingButtonTypeMap<P, D>, D>;
+  DefaultComponent extends React.ElementType = LoadingButtonTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<LoadingButtonTypeMap<AdditionalProps, DefaultComponent>, DefaultComponent>;
 
 export default LoadingButton;

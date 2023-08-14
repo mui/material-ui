@@ -40,9 +40,9 @@ export interface MasonryOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & MasonryOwnProps;
-  defaultComponent: D;
+export interface MasonryTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+  props: AdditionalProps & MasonryOwnProps;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -57,8 +57,8 @@ export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
 declare const Masonry: OverridableComponent<MasonryTypeMap>;
 
 export type MasonryProps<
-  D extends React.ElementType = MasonryTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<MasonryTypeMap<P, D>, D>;
+  DefaultComponent extends React.ElementType = MasonryTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<MasonryTypeMap<AdditionalProps, DefaultComponent>, DefaultComponent>;
 
 export default Masonry;

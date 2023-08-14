@@ -1,6 +1,6 @@
-import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
+import { Simplify } from '@mui/types';
 import * as React from 'react';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps, SlotComponentPropsWithSlotState } from '../utils';
 import {
   UseSliderHiddenInputProps,
   UseSliderParameters,
@@ -8,20 +8,23 @@ import {
   UseSliderThumbSlotProps,
 } from '../useSlider';
 
-export interface SliderOwnerState extends SliderOwnProps {
-  disabled: boolean;
-  focusedThumbIndex: number;
-  isRtl: boolean;
-  max: number;
-  min: number;
-  dragging: boolean;
-  marked: boolean;
-  orientation: 'horizontal' | 'vertical';
-  scale: (value: number) => number;
-  step: number | null;
-  track: 'normal' | false | 'inverted';
-  valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
-}
+export type SliderOwnerState = Simplify<
+  SliderOwnProps & {
+    disabled: boolean;
+    focusedThumbIndex: number;
+    activeThumbIndex: number;
+    isRtl: boolean;
+    max: number;
+    min: number;
+    dragging: boolean;
+    marked: boolean;
+    orientation: 'horizontal' | 'vertical';
+    scale: (value: number) => number;
+    step: number | null;
+    track: 'normal' | false | 'inverted';
+    valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
+  }
+>;
 
 export interface SliderRootSlotPropsOverrides {}
 export interface SliderTrackSlotPropsOverrides {}
@@ -31,6 +34,12 @@ export interface SliderMarkSlotPropsOverrides {}
 export interface SliderMarkLabelSlotPropsOverrides {}
 export interface SliderValueLabelSlotPropsOverrides {}
 export interface SliderInputSlotPropsOverrides {}
+
+export interface SliderThumbSlotState {
+  focused: boolean;
+  active: boolean;
+  index: number;
+}
 
 export interface SliderOwnProps extends Omit<UseSliderParameters, 'ref'> {
   /**
@@ -64,7 +73,12 @@ export interface SliderOwnProps extends Omit<UseSliderParameters, 'ref'> {
     root?: SlotComponentProps<'span', SliderRootSlotPropsOverrides, SliderOwnerState>;
     track?: SlotComponentProps<'span', SliderTrackSlotPropsOverrides, SliderOwnerState>;
     rail?: SlotComponentProps<'span', SliderRailSlotPropsOverrides, SliderOwnerState>;
-    thumb?: SlotComponentProps<'span', SliderThumbSlotPropsOverrides, SliderOwnerState>;
+    thumb?: SlotComponentPropsWithSlotState<
+      'span',
+      SliderThumbSlotPropsOverrides,
+      SliderOwnerState,
+      SliderThumbSlotState
+    >;
     mark?: SlotComponentProps<'span', SliderMarkSlotPropsOverrides, SliderOwnerState>;
     markLabel?: SlotComponentProps<'span', SliderMarkLabelSlotPropsOverrides, SliderOwnerState>;
     valueLabel?: SlotComponentProps<
@@ -147,27 +161,17 @@ export interface SliderSlots {
   input?: React.ElementType;
 }
 
-export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
-  props: P & SliderOwnProps;
-  defaultComponent: D;
+export interface SliderTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'span',
+> {
+  props: SliderOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
-/**
- * Utility to create component types that inherit props from Slider.
- */
-export interface ExtendSliderTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & Omit<SliderTypeMap['props'], 'isRtl'>;
-  defaultComponent: M['defaultComponent'];
-}
-
-export type ExtendSlider<M extends OverridableTypeMap> = OverridableComponent<
-  ExtendSliderTypeMap<M>
->;
-
-export type SliderProps<D extends React.ElementType = SliderTypeMap['defaultComponent']> =
-  OverrideProps<SliderTypeMap<{}, D>, D> & {
-    component?: D;
-  };
+export type SliderProps<
+  RootComponentType extends React.ElementType = SliderTypeMap['defaultComponent'],
+> = PolymorphicProps<SliderTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type SliderRootSlotProps = UseSliderRootSlotProps & {
   children: React.ReactNode;

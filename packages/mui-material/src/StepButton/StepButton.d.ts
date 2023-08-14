@@ -33,9 +33,9 @@ export interface StepButtonOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
-  props: P & StepButtonOwnProps;
-  defaultComponent: D;
+export type StepButtonTypeMap<AdditionalProps, DefaultComponent extends React.ElementType> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps & StepButtonOwnProps;
+  defaultComponent: DefaultComponent;
 
   ignoredProps: 'disabled';
 }>;
@@ -58,8 +58,10 @@ declare const StepButton: ExtendButtonBase<
 export type StepButtonClasskey = keyof NonNullable<StepButtonProps['classes']>;
 
 export type StepButtonProps<
-  D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<StepButtonTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<StepButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default StepButton;

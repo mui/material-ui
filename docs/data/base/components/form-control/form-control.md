@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: React Form Control component and hook
 components: FormControl
 hooks: useFormControlContext
@@ -24,10 +24,10 @@ For instance, you may want to show an additional element asking the user to ente
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import FormControl from '@mui/base/FormControl';
+import { FormControl } from '@mui/base/FormControl';
 
 export default function MyApp() {
   return (
@@ -51,7 +51,21 @@ For instance, if the form's **Submit** button needs to change states after the u
 The following demo shows how to create and style a form that uses Form Control to wrap the elements of the form.
 Note that it also uses the `useFormControlContext` hook in order to pass props to the custom Input—see the [Hook](#hook) section below for more details.
 
-{{"demo": "BasicFormControl.js"}}
+{{"demo": "BasicFormControl"}}
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<FormControl<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<FormControl<'button'> slots={{ root: 'button' }} onClick={() => {}} />
+```
 
 ## Hook
 
@@ -79,28 +93,16 @@ The demo below shows how to integrate this hook with its component counterpart:
 
 {{"demo": "UseFormControl.js", "defaultCodeOpen": false}}
 
-Note that even though Form Control supports both controlled and uncontrolled-style APIs
-(i.e. it accepts `value` and `defaultValue` props), `useFormControlContext` returns only the controlled `value`.
+Note that even though Form Control supports both controlled and uncontrolled-style APIs (i.e. it accepts `value` and `defaultValue` props), `useFormControlContext` returns only the controlled `value`.
 This way, you don't have to implement both in your custom input—Form Control does this for you.
 
-`useFormControlContext` returns an object with the following fields:
+:::info
 
-| Name       | Type    | Description                                                                                                                                                                |
-| :--------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `disabled` | boolean | Represents the value of the FormControl's `disabled` prop.                                                                                                                 |
-| `error`    | boolean | Represents the value of the Form Control component's `error` prop. Note that it is not calculated automatically (i.e. it's not set when `required: true` and `value: ''`). |
-| `filled`   | boolean | Set to `true` if `value` is not empty.                                                                                                                                     |
-| `focused`  | boolean | Set to `true` if the wrapped input has received focus.                                                                                                                     |
-| `required` | boolean | Represents the value of the Form Control component's `required` prop.                                                                                                      |
-| `value`    | unknown | The current value of the form control.                                                                                                                                     |
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
 
-The following callbacks are also part of the returned object—they are meant to be used when creating custom inputs:
-
-| Name       | Type                      | Description                                                   |
-| :--------- | :------------------------ | :------------------------------------------------------------ |
-| `onChange` | React.ChangeEvent => void | Value change handler. Should be forwarded to the inner input. |
-| `onBlur`   | () => void                | Focus change handler. Should be forwarded to the inner input. |
-| `onFocus`  | () => void                | Focus change handler. Should be forwarded to the inner input. |
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 ## Customization
 

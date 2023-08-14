@@ -26,15 +26,16 @@ export interface UseTabParameters {
    */
   id?: string;
   /**
-   * Ref to the DOM element associated with the tab.
+   * Ref to the root slot's DOM element.
    */
-  ref?: React.Ref<any>;
+  rootRef?: React.Ref<Element>;
 }
 
 export type UseTabRootSlotProps<TOther = {}> = UseButtonRootSlotProps<TOther> & {
   'aria-controls': React.AriaAttributes['aria-controls'];
   'aria-selected': React.AriaAttributes['aria-selected'];
   id: string | undefined;
+  ref: React.RefCallback<Element> | null;
   role: React.AriaRole;
 };
 
@@ -64,6 +65,10 @@ export interface UseTabReturnValue {
    * 0-based index of the tab in the list of tabs.
    */
   index: number;
+  /**
+   * Ref to the root slot's DOM element.
+   */
+  rootRef: React.RefCallback<Element> | null;
   /**
    * If `true`, the tab is selected.
    */

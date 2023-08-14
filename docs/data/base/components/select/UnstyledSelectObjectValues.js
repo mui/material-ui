@@ -1,9 +1,61 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Select, { selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
+import { Select, selectClasses } from '@mui/base/Select';
+import { Option, optionClasses } from '@mui/base/Option';
+import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
+
+export default function UnstyledSelectObjectValues() {
+  const [character, setCharacter] = React.useState(characters[0]);
+  return (
+    <div>
+      <CustomSelect
+        value={character}
+        onChange={(event, newValue) => setCharacter(newValue)}
+      >
+        {characters.map((c) => (
+          <StyledOption key={c.name} value={c}>
+            {c.name}
+          </StyledOption>
+        ))}
+      </CustomSelect>
+      <Paragraph>Selected character:</Paragraph>
+      <Pre>{JSON.stringify(character, null, 2)}</Pre>
+    </div>
+  );
+}
+
+function CustomSelect(props) {
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} slots={slots} />;
+}
+
+CustomSelect.propTypes = {
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
+  }),
+};
+
+const characters = [
+  { name: 'Frodo', race: 'Hobbit' },
+  { name: 'Sam', race: 'Hobbit' },
+  { name: 'Merry', race: 'Hobbit' },
+  { name: 'Gandalf', race: 'Maia' },
+  { name: 'Gimli', race: 'Dwarf' },
+];
 
 const blue = {
   100: '#DAECFF',
@@ -32,15 +84,17 @@ const StyledButton = styled('button')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
   min-width: 320px;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
   text-align: left;
   line-height: 1.5;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -83,7 +137,9 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
@@ -150,55 +206,3 @@ const Pre = styled('pre')(
   color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
   `,
 );
-
-function CustomSelect(props) {
-  const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <Select {...props} slots={slots} />;
-}
-
-CustomSelect.propTypes = {
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    listbox: PropTypes.elementType,
-    popper: PropTypes.func,
-    root: PropTypes.elementType,
-  }),
-};
-
-const characters = [
-  { name: 'Frodo', race: 'Hobbit' },
-  { name: 'Sam', race: 'Hobbit' },
-  { name: 'Merry', race: 'Hobbit' },
-  { name: 'Gandalf', race: 'Maia' },
-  { name: 'Gimli', race: 'Dwarf' },
-];
-
-export default function UnstyledSelectObjectValues() {
-  const [character, setCharacter] = React.useState(characters[0]);
-  return (
-    <div>
-      <CustomSelect
-        value={character}
-        onChange={(e, newValue) => setCharacter(newValue)}
-      >
-        {characters.map((c) => (
-          <StyledOption key={c.name} value={c}>
-            {c.name}
-          </StyledOption>
-        ))}
-      </CustomSelect>
-      <Paragraph>Selected character:</Paragraph>
-      <Pre>{JSON.stringify(character, null, 2)}</Pre>
-    </div>
-  );
-}

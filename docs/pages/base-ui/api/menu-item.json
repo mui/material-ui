@@ -1,0 +1,39 @@
+{
+  "props": {
+    "label": { "type": { "name": "string" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    }
+  },
+  "name": "MenuItem",
+  "imports": [
+    "import { MenuItem } from '@mui/base/MenuItem';",
+    "import { MenuItem } from '@mui/base';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'li'",
+      "class": ".MuiMenuItem-root"
+    }
+  ],
+  "classes": {
+    "classes": ["disabled", "focusVisible"],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+  },
+  "spread": true,
+  "muiName": "MuiMenuItem",
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/mui-base/src/MenuItem/MenuItem.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

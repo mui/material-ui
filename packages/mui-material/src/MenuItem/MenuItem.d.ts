@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
@@ -47,9 +48,9 @@ export interface MenuItemOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = ExtendButtonBaseTypeMap<{
-  props: P & MenuItemOwnProps;
-  defaultComponent: D;
+export type MenuItemTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'li'> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps & MenuItemOwnProps;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**
@@ -66,8 +67,10 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
 declare const MenuItem: ExtendButtonBase<MenuItemTypeMap>;
 
 export type MenuItemProps<
-  D extends React.ElementType = MenuItemTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<MenuItemTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = MenuItemTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<MenuItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default MenuItem;

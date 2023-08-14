@@ -80,11 +80,11 @@ export interface ToggleButtonOwnProps {
 }
 
 export type ToggleButtonTypeMap<
-  P = {},
-  D extends React.ElementType = 'button',
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'button',
 > = ExtendButtonBaseTypeMap<{
-  props: P & ToggleButtonOwnProps;
-  defaultComponent: D;
+  props: AdditionalProps & ToggleButtonOwnProps;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**
@@ -101,8 +101,10 @@ export type ToggleButtonTypeMap<
 declare const ToggleButton: ExtendButtonBase<ToggleButtonTypeMap>;
 
 export type ToggleButtonProps<
-  D extends React.ElementType = ToggleButtonTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ToggleButtonTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ToggleButtonTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ToggleButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default ToggleButton;

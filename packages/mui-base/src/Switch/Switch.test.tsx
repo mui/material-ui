@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
-import Switch, { SwitchOwnerState, switchClasses } from '@mui/base/Switch';
 import { expect } from 'chai';
+import { Switch, SwitchOwnerState, switchClasses } from '@mui/base/Switch';
 
 describe('<Switch />', () => {
   const mount = createMount();
@@ -30,6 +30,7 @@ describe('<Switch />', () => {
         isOptional: true,
       },
     },
+    skip: ['componentProp'],
   }));
 
   describe('componentState', () => {

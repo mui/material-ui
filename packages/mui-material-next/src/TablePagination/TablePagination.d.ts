@@ -154,9 +154,9 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TablePaginationTypeMap<P, D extends React.ElementType> {
-  props: P & TablePaginationOwnProps;
-  defaultComponent: D;
+export interface TablePaginationTypeMap<P, DefaultComponent extends React.ElementType> {
+  props: AdditionalProps & TablePaginationOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -176,8 +176,8 @@ declare const TablePagination: OverridableComponent<
 >;
 
 export type TablePaginationProps<
-  D extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
-  P = {},
-> = OverrideProps<TablePaginationTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
+  AdditionalProps = {},
+> = OverrideProps<TablePaginationTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default TablePagination;

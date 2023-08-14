@@ -1,13 +1,18 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
-import composeClasses from '../composeClasses';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { getTabsListUtilityClass } from './tabsListClasses';
-import { TabsListProps, TabsListRootSlotProps, TabsListTypeMap } from './TabsList.types';
-import useTabsList from '../useTabsList';
+import {
+  TabsListOwnerState,
+  TabsListProps,
+  TabsListRootSlotProps,
+  TabsListTypeMap,
+} from './TabsList.types';
+import { useTabsList } from '../useTabsList';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import TabsListProvider from '../useTabsList/TabsListProvider';
+import { TabsListProvider } from '../useTabsList/TabsListProvider';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
   const { orientation } = ownerState;
@@ -23,20 +28,23 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/base/react-tabs/)
+ * - [Tabs](https://mui.com/base-ui/react-tabs/)
  *
  * API:
  *
- * - [TabsList API](https://mui.com/base/react-tabs/components-api/#tabs-list)
+ * - [TabsList API](https://mui.com/base-ui/react-tabs/components-api/#tabs-list)
  */
-const TabsList = React.forwardRef<unknown, TabsListProps>(function TabsList(props, ref) {
-  const { children, component, slotProps = {}, slots = {}, ...other } = props;
+const TabsList = React.forwardRef(function TabsList<RootComponentType extends React.ElementType>(
+  props: TabsListProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
+  const { children, slotProps = {}, slots = {}, ...other } = props;
 
   const { isRtl, orientation, getRootProps, contextValue } = useTabsList({
-    ref,
+    rootRef: forwardedRef,
   });
 
-  const ownerState = {
+  const ownerState: TabsListOwnerState = {
     ...props,
     isRtl,
     orientation,
@@ -44,7 +52,7 @@ const TabsList = React.forwardRef<unknown, TabsListProps>(function TabsList(prop
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabsListRoot: React.ElementType = component ?? slots.root ?? 'div';
+  const TabsListRoot: React.ElementType = slots.root ?? 'div';
   const tabsListRootProps: WithOptionalOwnerState<TabsListRootSlotProps> = useSlotProps({
     elementType: TabsListRoot,
     getSlotProps: getRootProps,
@@ -59,7 +67,7 @@ const TabsList = React.forwardRef<unknown, TabsListProps>(function TabsList(prop
       <TabsListRoot {...tabsListRootProps}>{children}</TabsListRoot>
     </TabsListProvider>
   );
-}) as OverridableComponent<TabsListTypeMap>;
+}) as PolymorphicComponent<TabsListTypeMap>;
 
 TabsList.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -71,10 +79,9 @@ TabsList.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
+   * @ignore
    */
-  component: PropTypes.elementType,
+  className: PropTypes.string,
   /**
    * The props used for each slot inside the TabsList.
    * @default {}
@@ -92,4 +99,4 @@ TabsList.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default TabsList;
+export { TabsList };

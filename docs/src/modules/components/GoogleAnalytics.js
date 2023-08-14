@@ -1,11 +1,12 @@
 import * as React from 'react';
-import loadScript from 'docs/src/modules/utils/loadScript';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useRouter } from 'next/router';
+import loadScript from 'docs/src/modules/utils/loadScript';
 import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
+import { useNoSsrCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import { useRouter } from 'next/router';
 
 // So we can write code like:
 //
@@ -79,6 +80,8 @@ function GoogleAnalytics() {
       window.gtag('event', 'page_view', {
         page_title: document.title,
         page_location: canonicalAsServer,
+        productId: document.querySelector('meta[name="mui:productId"]').content,
+        productCategoryId: document.querySelector('meta[name="mui:productCategoryId"]').content,
       });
     });
   }, [router.route]);
@@ -144,6 +147,13 @@ function GoogleAnalytics() {
       colorScheme,
     });
   }, [colorScheme]);
+
+  const codeStylingVariant = useNoSsrCodeStyling();
+  React.useEffect(() => {
+    window.gtag('set', 'user_properties', {
+      codeStylingVariant,
+    });
+  }, [codeStylingVariant]);
 
   return null;
 }

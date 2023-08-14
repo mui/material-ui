@@ -1,5 +1,5 @@
+'use client';
 import * as React from 'react';
-import { OverridableComponent } from '@mui/types';
 import {
   chainPropTypes,
   HTMLElementType,
@@ -10,10 +10,10 @@ import {
 } from '@mui/utils';
 import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
 import PropTypes from 'prop-types';
-import composeClasses from '../composeClasses';
-import Portal from '../Portal';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { Portal } from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import {
   PopperPlacementType,
   PopperTooltipProps,
@@ -75,14 +75,12 @@ const useUtilityClasses = () => {
 
 const defaultPopperOptions = {};
 
-const PopperTooltip = React.forwardRef(function PopperTooltip(
-  props: PopperTooltipProps,
-  ref: React.ForwardedRef<HTMLElement>,
-) {
+const PopperTooltip = React.forwardRef(function PopperTooltip<
+  RootComponentType extends React.ElementType,
+>(props: PopperTooltipProps<RootComponentType>, forwardedRef: React.ForwardedRef<HTMLDivElement>) {
   const {
     anchorEl,
     children,
-    component,
     direction,
     disablePortal,
     modifiers,
@@ -99,7 +97,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
   } = props;
 
   const tooltipRef = React.useRef<HTMLElement | null>(null);
-  const ownRef = useForkRef(tooltipRef, ref);
+  const ownRef = useForkRef(tooltipRef, forwardedRef);
 
   const popperRef = React.useRef<Instance | null>(null);
   const handlePopperRef = useForkRef(popperRef, popperRefProp);
@@ -217,7 +215,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
   }
 
   const classes = useUtilityClasses();
-  const Root = component ?? slots.root ?? 'div';
+  const Root = slots.root ?? 'div';
 
   const rootProps: WithOptionalOwnerState<PopperRootSlotProps> = useSlotProps({
     elementType: Root,
@@ -234,22 +232,22 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
   return (
     <Root {...rootProps}>{typeof children === 'function' ? children(childProps) : children}</Root>
   );
-}) as OverridableComponent<PopperTooltipTypeMap>;
+}) as PolymorphicComponent<PopperTooltipTypeMap>;
 
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
  *
  * Demos:
  *
- * - [Popper](https://mui.com/base/react-popper/)
+ * - [Popper](https://mui.com/base-ui/react-popper/)
  *
  * API:
  *
- * - [Popper API](https://mui.com/base/react-popper/components-api/#popper)
+ * - [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
  */
-const Popper = React.forwardRef(function Popper(
-  props: PopperProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
+const Popper = React.forwardRef(function Popper<RootComponentType extends React.ElementType>(
+  props: PopperProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<HTMLDivElement>,
 ) {
   const {
     anchorEl,
@@ -313,7 +311,7 @@ const Popper = React.forwardRef(function Popper(
         direction={direction}
         disablePortal={disablePortal}
         modifiers={modifiers}
-        ref={ref}
+        ref={forwardedRef}
         open={transition ? !exited : open}
         placement={placement}
         popperOptions={popperOptions}
@@ -336,7 +334,7 @@ const Popper = React.forwardRef(function Popper(
       </PopperTooltip>
     </Portal>
   );
-}) as OverridableComponent<PopperTypeMap>;
+}) as PolymorphicComponent<PopperTypeMap>;
 
 Popper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -535,14 +533,10 @@ Popper.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * @ignore
-   */
-  style: PropTypes.object,
-  /**
    * Help supporting a react-transition-group/Transition component.
    * @default false
    */
   transition: PropTypes.bool,
 } as any;
 
-export default Popper;
+export { Popper };

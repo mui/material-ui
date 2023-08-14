@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import {
   unstable_useForkRef as useForkRef,
@@ -8,24 +9,25 @@ import {
   UseButtonReturnValue,
   UseButtonRootSlotProps,
 } from './useButton.types';
-import extractEventHandlers from '../utils/extractEventHandlers';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 /**
  *
  * Demos:
  *
- * - [Button](https://mui.com/base/react-button/#hook)
+ * - [Button](https://mui.com/base-ui/react-button/#hook)
  *
  * API:
  *
- * - [useButton API](https://mui.com/base/react-button/hooks-api/#use-button)
+ * - [useButton API](https://mui.com/base-ui/react-button/hooks-api/#use-button)
  */
-export default function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
+export function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
   const {
     disabled = false,
     focusableWhenDisabled,
     href,
-    ref: externalRef,
+    rootRef: externalRef,
     tabIndex,
     to,
     type,
@@ -118,54 +120,56 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
     otherHandlers.onMouseDown?.(event);
   };
 
-  const createHandleKeyDown = (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
-    otherHandlers.onKeyDown?.(event);
+  const createHandleKeyDown =
+    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {
+      otherHandlers.onKeyDown?.(event);
 
-    if (event.defaultPrevented) {
-      return;
-    }
+      if (event.defaultMuiPrevented) {
+        return;
+      }
 
-    if (event.target === event.currentTarget && !isNativeButton() && event.key === ' ') {
-      event.preventDefault();
-    }
+      if (event.target === event.currentTarget && !isNativeButton() && event.key === ' ') {
+        event.preventDefault();
+      }
 
-    if (event.target === event.currentTarget && event.key === ' ' && !disabled) {
-      setActive(true);
-    }
+      if (event.target === event.currentTarget && event.key === ' ' && !disabled) {
+        setActive(true);
+      }
 
-    // Keyboard accessibility for non interactive elements
-    if (
-      event.target === event.currentTarget &&
-      !isNativeButton() &&
-      event.key === 'Enter' &&
-      !disabled
-    ) {
-      otherHandlers.onClick?.(event);
-      event.preventDefault();
-    }
-  };
+      // Keyboard accessibility for non interactive elements
+      if (
+        event.target === event.currentTarget &&
+        !isNativeButton() &&
+        event.key === 'Enter' &&
+        !disabled
+      ) {
+        otherHandlers.onClick?.(event);
+        event.preventDefault();
+      }
+    };
 
-  const createHandleKeyUp = (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
-    // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-    // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
+  const createHandleKeyUp =
+    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {
+      // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
+      // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
 
-    if (event.target === event.currentTarget) {
-      setActive(false);
-    }
+      if (event.target === event.currentTarget) {
+        setActive(false);
+      }
 
-    otherHandlers.onKeyUp?.(event);
+      otherHandlers.onKeyUp?.(event);
 
-    // Keyboard accessibility for non interactive elements
-    if (
-      event.target === event.currentTarget &&
-      !isNativeButton() &&
-      !disabled &&
-      event.key === ' ' &&
-      !event.defaultPrevented
-    ) {
-      otherHandlers.onClick?.(event);
-    }
-  };
+      // Keyboard accessibility for non interactive elements
+      if (
+        event.target === event.currentTarget &&
+        !isNativeButton() &&
+        !disabled &&
+        event.key === ' ' &&
+        !event.defaultMuiPrevented
+      ) {
+        otherHandlers.onClick?.(event);
+      }
+    };
 
   const updateHostElementName = React.useCallback((instance: HTMLElement | null) => {
     setHostElementName(instance?.tagName ?? '');
@@ -182,6 +186,10 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
   }
 
   const buttonProps: AdditionalButtonProps = {};
+
+  if (tabIndex !== undefined) {
+    buttonProps.tabIndex = tabIndex;
+  }
 
   if (hostElementName === 'BUTTON') {
     buttonProps.type = type ?? 'button';
@@ -210,11 +218,7 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
       ...otherHandlers,
     };
 
-    // onFocusVisible can be present on the props, but since it's not a valid React event handler,
-    // it must not be forwarded to the inner component.
-    delete externalEventHandlers.onFocusVisible;
-
-    return {
+    const props = {
       type,
       ...externalEventHandlers,
       ...buttonProps,
@@ -227,14 +231,20 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
       onMouseLeave: createHandleMouseLeave(externalEventHandlers),
       ref: handleRef,
     };
+
+    // onFocusVisible can be present on the props or parameters,
+    // but it's not a valid React event handler so it must not be forwarded to the inner component.
+    // If present, it will be handled by the focus handler.
+    delete props.onFocusVisible;
+
+    return props;
   };
 
   return {
     getRootProps,
     focusVisible,
     setFocusVisible,
-    disabled,
     active,
-    ref: handleRef,
+    rootRef: handleRef,
   };
 }

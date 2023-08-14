@@ -39,7 +39,6 @@ export default function MultipleSelectNative() {
           multiple
           native
           value={personName}
-          // @ts-ignore Typings are not considering `native`
           onChange={handleChangeMultiple}
           label="Native"
           inputProps={{

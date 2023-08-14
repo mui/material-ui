@@ -36,9 +36,9 @@ export interface MenuListOwnProps {
   variant?: 'menu' | 'selectedMenu';
 }
 
-export type MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> = ExtendListTypeMap<{
-  props: P & MenuListOwnProps;
-  defaultComponent: D;
+export type MenuListTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'ul'> = ExtendListTypeMap<{
+  props: AdditionalProps & MenuListOwnProps;
+  defaultComponent: DefaultComponent;
 }>;
 
 export type MenuListClassKey = keyof NonNullable<MenuListTypeMap['props']['classes']>;
@@ -61,8 +61,10 @@ export type MenuListClassKey = keyof NonNullable<MenuListTypeMap['props']['class
 declare const MenuList: ExtendList<MenuListTypeMap>;
 
 export type MenuListProps<
-  D extends React.ElementType = MenuListTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<MenuListTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = MenuListTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<MenuListTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default MenuList;

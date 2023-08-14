@@ -2,14 +2,14 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
 import { TabsProps } from '@mui/base/Tabs';
-import useTabs, { TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
-import useTabsList, { TabsListProvider as BaseTabsListProvider } from '@mui/base/useTabsList';
+import { useTabs, TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
+import { useTabsList, TabsListProvider as BaseTabsListProvider } from '@mui/base/useTabsList';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tab, { tabClasses as classes } from '@mui/joy/Tab';
 
 function TabsListProvider({ children }: React.PropsWithChildren<{}>) {
   const { contextValue: tabsListContextValue } = useTabsList({
-    ref: { current: null },
+    rootRef: { current: null },
   });
   return <BaseTabsListProvider value={tabsListContextValue}>{children}</BaseTabsListProvider>;
 }

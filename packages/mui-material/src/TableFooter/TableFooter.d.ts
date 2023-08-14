@@ -19,9 +19,9 @@ export interface TableFooterOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot'> {
-  props: P & TableFooterOwnProps;
-  defaultComponent: D;
+export interface TableFooterTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'tfoot'> {
+  props: AdditionalProps & TableFooterOwnProps;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -36,8 +36,10 @@ export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot
 declare const TableFooter: OverridableComponent<TableFooterTypeMap>;
 
 export type TableFooterProps<
-  D extends React.ElementType = TableFooterTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TableFooterTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TableFooterTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TableFooterTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default TableFooter;

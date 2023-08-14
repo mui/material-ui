@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex */
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -125,11 +126,11 @@ function defaultIsEnabled(): boolean {
  *
  * Demos:
  *
- * - [Focus Trap](https://mui.com/base/react-focus-trap/)
+ * - [Focus Trap](https://mui.com/base-ui/react-focus-trap/)
  *
  * API:
  *
- * - [FocusTrap API](https://mui.com/base/react-focus-trap/components-api/#focus-trap)
+ * - [FocusTrap API](https://mui.com/base-ui/react-focus-trap/components-api/#focus-trap)
  */
 function FocusTrap(props: FocusTrapProps): JSX.Element {
   const {
@@ -423,4 +424,4 @@ if (process.env.NODE_ENV !== 'production') {
   (FocusTrap as any)['propTypes' + ''] = exactProp(FocusTrap.propTypes);
 }
 
-export default FocusTrap;
+export { FocusTrap };

@@ -1,7 +1,7 @@
-const { createMacro, MacroError } = require('babel-plugin-macros');
-const helperModuleImports = require('@babel/helper-module-imports');
 const fs = require('fs');
 const path = require('path');
+const { createMacro, MacroError } = require('babel-plugin-macros');
+const helperModuleImports = require('@babel/helper-module-imports');
 
 function invertObject(object) {
   const inverted = {};

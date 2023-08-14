@@ -5,9 +5,9 @@
 When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client.
 From that point on, the client takes over rendering duties.
 
-## MUI on the server
+## Material UI on the server
 
-MUI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated.
+Material UI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated.
 It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker (FOUC).
 To inject the style down to the client, we need to:
 
@@ -88,7 +88,7 @@ inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemePr
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. To do this, we use [ReactDOMServer.renderToString()](https://react.dev/reference/react-dom/server/renderToString).
 
-MUI is using Emotion as its default styled engine.
+Material UI uses Emotion as its default styled engine.
 We need to extract the styles from the Emotion instance.
 For this, we need to share the same cache configuration for both the client and server:
 
@@ -166,7 +166,12 @@ function renderFullPage(html, css) {
         <title>My page</title>
         ${css}
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+        />
       </head>
       <body>
         <div id="root">${html}</div>
@@ -215,9 +220,9 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui/material-ui) under the [`/examples`](https://github.com/mui/material-ui/tree/HEAD/examples) folder:
 
-- [The reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/material-express-ssr)
-- [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/material-gatsby)
-- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/material-next) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/material-next-ts))
+- [The reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-express-ssr)
+- [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-gatsby)
+- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-ts))
 
 ## Troubleshooting
 

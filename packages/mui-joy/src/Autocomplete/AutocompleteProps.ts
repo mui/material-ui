@@ -3,6 +3,7 @@ import {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
+  AutocompleteFreeSoloValueMapping,
   AutocompleteInputChangeReason,
   AutocompleteValue,
   UseAutocompleteProps,
@@ -44,12 +45,12 @@ export interface AutocompleteSlots {
   input?: React.ElementType;
   /**
    * The component that renders the start decorator.
-   * @default 'span'
+   * @default 'div'
    */
   startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
-   * @default 'span'
+   * @default 'div'
    */
   endDecorator?: React.ElementType;
   /**
@@ -84,7 +85,7 @@ export interface AutocompleteSlots {
   noOptions?: React.ElementType;
   /**
    * The component that renders the limit tag.
-   * @default 'span'
+   * @default 'div'
    */
   limitTag?: React.ElementType;
 }
@@ -379,6 +380,7 @@ export interface AutocompleteOwnerState<
   FreeSolo extends boolean | undefined,
 > extends ApplyColorInversion<AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>> {
   focused?: boolean;
+  getOptionLabel: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
   hasClearIcon?: boolean;
   hasPopupIcon?: boolean;
   hasOptions?: boolean;

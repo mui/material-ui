@@ -54,9 +54,9 @@ export interface TabOwnProps {
   wrapped?: boolean;
 }
 
-export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButtonBaseTypeMap<{
-  props: P & TabOwnProps;
-  defaultComponent: D;
+export type TabTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps & TabOwnProps;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**
@@ -73,8 +73,10 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
 declare const Tab: ExtendButtonBase<TabTypeMap>;
 
 export type TabProps<
-  D extends React.ElementType = TabTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TabTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TabTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TabTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Tab;

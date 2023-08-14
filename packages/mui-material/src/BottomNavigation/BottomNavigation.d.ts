@@ -36,9 +36,9 @@ export interface BottomNavigationOwnProps {
   value?: any;
 }
 
-export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & BottomNavigationOwnProps;
-  defaultComponent: D;
+export interface BottomNavigationTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+  props: AdditionalProps & BottomNavigationOwnProps;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -53,8 +53,10 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
 declare const BottomNavigation: OverridableComponent<BottomNavigationTypeMap>;
 
 export type BottomNavigationProps<
-  D extends React.ElementType = BottomNavigationTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BottomNavigationTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = BottomNavigationTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BottomNavigationTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default BottomNavigation;

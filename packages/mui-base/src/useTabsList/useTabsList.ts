@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { useTabsContext } from '../Tabs';
 import {
@@ -10,21 +11,21 @@ import {
 import { EventHandlers } from '../utils';
 import { useCompoundParent } from '../utils/useCompound';
 import { TabMetadata } from '../useTabs/useTabs';
-import useList, { ListState, UseListParameters } from '../useList';
-import tabsListReducer from './tabsListReducer';
+import { useList, ListState, UseListParameters } from '../useList';
+import { tabsListReducer } from './tabsListReducer';
 
 /**
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/base/react-tabs/#hooks)
+ * - [Tabs](https://mui.com/base-ui/react-tabs/#hooks)
  *
  * API:
  *
- * - [useTabsList API](https://mui.com/base/react-tabs/hooks-api/#use-tabs-list)
+ * - [useTabsList API](https://mui.com/base-ui/react-tabs/hooks-api/#use-tabs-list)
  */
 function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue {
-  const { ref: externalRef } = parameters;
+  const { rootRef: externalRef } = parameters;
 
   const {
     direction = 'ltr',
@@ -103,6 +104,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     dispatch,
     getRootProps: getListboxRootProps,
     state: { highlightedValue, selectedValues },
+    rootRef: mergedRootRef,
   } = useList<
     string | number,
     ListState<string | number>,
@@ -115,7 +117,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     getItemDomElement: getTabElement,
     isItemDisabled,
     items: subitemKeys,
-    listRef: externalRef,
+    rootRef: externalRef,
     onChange: handleChange,
     orientation: listOrientation,
     reducerActionContext: React.useMemo(
@@ -151,18 +153,24 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     };
   };
 
-  return {
-    dispatch,
-    isRtl,
-    orientation,
-    selectedValue: selectedValues[0] ?? null,
-    highlightedValue,
-    getRootProps,
-    contextValue: {
+  const contextValue = React.useMemo(
+    () => ({
       ...compoundComponentContextValue,
       ...listContextValue,
-    },
+    }),
+    [compoundComponentContextValue, listContextValue],
+  );
+
+  return {
+    contextValue,
+    dispatch,
+    getRootProps,
+    highlightedValue,
+    isRtl,
+    orientation,
+    rootRef: mergedRootRef,
+    selectedValue: selectedValues[0] ?? null,
   };
 }
 
-export default useTabsList;
+export { useTabsList };

@@ -19,9 +19,9 @@ export interface TableBodyOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'> {
-  props: P & TableBodyOwnProps;
-  defaultComponent: D;
+export interface TableBodyTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'tbody'> {
+  props: AdditionalProps & TableBodyOwnProps;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -36,8 +36,10 @@ export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'>
 declare const TableBody: OverridableComponent<TableBodyTypeMap>;
 
 export type TableBodyProps<
-  D extends React.ElementType = TableBodyTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TableBodyTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TableBodyTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TableBodyTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default TableBody;

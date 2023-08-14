@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import useTabsList, { TabsListProvider } from '@mui/base/useTabsList';
+import { useTabsList, TabsListProvider } from '@mui/base/useTabsList';
 import TabsListContext from './TabsListContext';
 
 const FlexContainer = styled('div', {
@@ -31,7 +32,7 @@ const FlexContainer = styled('div', {
 const TabsList = React.forwardRef((props, ref) => {
   const { variant, indicator, textColor, children, ...other } = props;
 
-  const { getRootProps, contextValue } = useTabsList({ ...props, ref });
+  const { getRootProps, contextValue } = useTabsList({ ...props, rootRef: ref });
 
   const tabsListContextValue = React.useMemo(
     () => ({

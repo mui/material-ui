@@ -174,9 +174,9 @@ export interface TabsOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
-  props: P & TabsOwnProps;
-  defaultComponent: D;
+export interface TabsTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = typeof ButtonBase> {
+  props: AdditionalProps & TabsOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -197,8 +197,10 @@ export interface TabsActions {
 }
 
 export type TabsProps<
-  D extends React.ElementType = TabsTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TabsTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TabsTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TabsTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Tabs;

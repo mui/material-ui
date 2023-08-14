@@ -42,11 +42,11 @@ export interface BottomNavigationActionOwnProps {
 }
 
 export type BottomNavigationActionTypeMap<
-  P,
-  D extends React.ElementType,
+  AdditionalProps,
+  DefaultComponent extends React.ElementType,
 > = ExtendButtonBaseTypeMap<{
-  props: P & BottomNavigationActionOwnProps;
-  defaultComponent: D;
+  props: AdditionalProps & BottomNavigationActionOwnProps;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**
@@ -65,8 +65,10 @@ declare const BottomNavigationAction: ExtendButtonBase<
 >;
 
 export type BottomNavigationActionProps<
-  D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BottomNavigationActionTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BottomNavigationActionTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default BottomNavigationAction;

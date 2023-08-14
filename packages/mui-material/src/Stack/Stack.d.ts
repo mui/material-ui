@@ -39,9 +39,9 @@ export interface StackOwnProps extends SystemProps<Theme> {
   sx?: SxProps<Theme>;
 }
 
-export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & StackOwnProps;
-  defaultComponent: D;
+export interface StackTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+  props: AdditionalProps & StackOwnProps;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -56,8 +56,10 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
 declare const Stack: OverridableComponent<StackTypeMap>;
 
 export type StackProps<
-  D extends React.ElementType = StackTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<StackTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = StackTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<StackTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Stack;

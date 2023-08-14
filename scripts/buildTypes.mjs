@@ -54,6 +54,22 @@ async function main() {
 
   async function rewriteImportPaths(declarationFile) {
     const code = await fse.readFile(declarationFile, { encoding: 'utf8' });
+    const basename = path.basename(declarationFile);
+
+    if (
+      // Only consider React components
+      basename[0] === basename[0].toUpperCase() &&
+      code.indexOf("import PropTypes from 'prop-types';") !== -1
+    ) {
+      throw new Error(
+        [
+          `${declarationFile} imports from 'prop-types', this is wrong.`,
+          "It's likely missing a cast to any on the propTypes declaration:",
+          'ComponentName.propTypes = { /* prop */ } as any;',
+        ].join('\n'),
+      );
+    }
+
     let fixedCode = code;
     const changes = [];
 

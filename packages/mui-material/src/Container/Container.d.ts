@@ -36,9 +36,9 @@ export interface ContainerOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & ContainerOwnProps;
-  defaultComponent: D;
+export interface ContainerTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+  props: AdditionalProps & ContainerOwnProps;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -53,8 +53,10 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
 declare const Container: OverridableComponent<ContainerTypeMap>;
 
 export type ContainerProps<
-  D extends React.ElementType = ContainerTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ContainerTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ContainerTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ContainerTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Container;

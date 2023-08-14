@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
@@ -49,22 +50,22 @@ function isEmpty(obj: State) {
  *
  * Demos:
  *
- * - [Textarea Autosize](https://mui.com/base/react-textarea-autosize/)
+ * - [Textarea Autosize](https://mui.com/base-ui/react-textarea-autosize/)
  * - [Textarea Autosize](https://mui.com/material-ui/react-textarea-autosize/)
  *
  * API:
  *
- * - [TextareaAutosize API](https://mui.com/base/react-textarea-autosize/components-api/#textarea-autosize)
+ * - [TextareaAutosize API](https://mui.com/base-ui/react-textarea-autosize/components-api/#textarea-autosize)
  */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,
-  ref: React.ForwardedRef<Element>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const { onChange, maxRows, minRows = 1, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const handleRef = useForkRef(ref, inputRef);
+  const handleRef = useForkRef(forwardedRef, inputRef);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
   const renders = React.useRef(0);
   const [state, setState] = React.useState<State>({
@@ -263,7 +264,8 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         style={{
           ...styles.shadow,
           ...style,
-          padding: 0,
+          paddingTop: 0,
+          paddingBottom: 0,
         }}
       />
     </React.Fragment>
@@ -310,4 +312,4 @@ TextareaAutosize.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default TextareaAutosize;
+export { TextareaAutosize };

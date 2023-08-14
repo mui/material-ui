@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -7,7 +8,7 @@ import {
   useSlotProps,
   unstable_composeClasses as composeClasses,
 } from '@mui/base';
-import useSlider, { valueToPercent } from '@mui/base/useSlider';
+import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
@@ -349,7 +350,7 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
       height: 8,
       transform: 'translate(-50%, -50%) rotate(45deg)',
       backgroundColor: 'inherit',
-      right: '-20%',
+      right: -8,
       top: '50%',
     },
   }),
@@ -569,7 +570,8 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     values,
     trackOffset,
     trackLeap,
-  } = useSlider({ ...ownerState, ref });
+    getThumbStyle,
+  } = useSlider({ ...ownerState, rootRef: ref });
 
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
   ownerState.dragging = dragging;
@@ -767,7 +769,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
               })}
               style={{
                 ...style,
-                pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+                ...getThumbStyle(index),
                 ...thumbProps.style,
               }}
             >

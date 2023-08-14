@@ -1,19 +1,23 @@
 import * as React from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
-import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
+// icons
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
+
 import useScript from './useScript';
 import FirstSidebar from './components/FirstSidebar';
 import SecondSidebar from './components/SecondSidebar';
 import OrderTable from './components/OrderTable';
+import OrderList from './components/OrderList';
 import Header from './components/Header';
 import ColorSchemeToggle from './components/ColorSchemeToggle';
-import customTheme from './theme';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -31,18 +35,7 @@ export default function JoyOrderDashboardTemplate() {
   }, [status]);
 
   return (
-    <CssVarsProvider disableTransitionOnChange theme={customTheme}>
-      <GlobalStyles
-        styles={{
-          '[data-feather], .feather': {
-            color: 'var(--Icon-color)',
-            margin: 'var(--Icon-margin)',
-            fontSize: 'var(--Icon-fontSize, 20px)',
-            width: '1em',
-            height: '1em',
-          },
-        }}
-      />
+    <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
         <Header />
@@ -51,14 +44,14 @@ export default function JoyOrderDashboardTemplate() {
         <Box
           component="main"
           className="MainContent"
-          sx={(theme) => ({
+          sx={{
             px: {
               xs: 2,
               md: 6,
             },
             pt: {
-              xs: `calc(${theme.spacing(2)} + var(--Header-height))`,
-              sm: `calc(${theme.spacing(2)} + var(--Header-height))`,
+              xs: 'calc(12px + var(--Header-height))',
+              sm: 'calc(12px + var(--Header-height))',
               md: 3,
             },
             pb: {
@@ -72,39 +65,32 @@ export default function JoyOrderDashboardTemplate() {
             minWidth: 0,
             height: '100dvh',
             gap: 1,
-          })}
+          }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Breadcrumbs
               size="sm"
               aria-label="breadcrumbs"
-              separator={<i data-feather="chevron-right" />}
-              sx={{
-                '--Breadcrumbs-gap': '1rem',
-                '--Icon-fontSize': '16px',
-                fontWeight: 'lg',
-                color: 'neutral.400',
-                px: 0,
-              }}
+              separator={<ChevronRightRoundedIcon fontSize="sm" />}
             >
               <Link
                 underline="none"
                 color="neutral"
-                fontSize="inherit"
                 href="#some-link"
                 aria-label="Home"
               >
-                <i data-feather="home" />
+                <HomeRoundedIcon />
               </Link>
               <Link
                 underline="hover"
                 color="neutral"
-                fontSize="inherit"
                 href="#some-link"
+                fontSize={12}
+                fontWeight={500}
               >
                 Dashboard
               </Link>
-              <Typography fontSize="inherit" variant="soft" color="primary">
+              <Typography color="primary" fontWeight={500} fontSize={12}>
                 Orders
               </Typography>
             </Breadcrumbs>
@@ -115,38 +101,25 @@ export default function JoyOrderDashboardTemplate() {
           <Box
             sx={{
               display: 'flex',
-              alignItems: 'center',
               my: 1,
               gap: 1,
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: { xs: 'start', sm: 'center' },
               flexWrap: 'wrap',
-              '& > *': {
-                minWidth: 'clamp(0px, (500px - 100%) * 999, 100%)',
-                flexGrow: 1,
-              },
+              justifyContent: 'space-between',
             }}
           >
-            <Typography level="h1" fontSize="xl4">
-              Orders
-            </Typography>
-            <Box sx={{ flex: 999 }} />
-            <Box sx={{ display: 'flex', gap: 1, '& > *': { flexGrow: 1 } }}>
-              <Button
-                variant="outlined"
-                color="neutral"
-                startDecorator={<i data-feather="download-cloud" />}
-              >
-                Download PDF
-              </Button>
-              <Button
-                variant="outlined"
-                color="neutral"
-                startDecorator={<i data-feather="table" />}
-              >
-                Download CSV
-              </Button>
-            </Box>
+            <Typography level="h2">Orders</Typography>
+            <Button
+              color="primary"
+              startDecorator={<DownloadRoundedIcon />}
+              size="sm"
+            >
+              Download PDF
+            </Button>
           </Box>
           <OrderTable />
+          <OrderList />
         </Box>
       </Box>
     </CssVarsProvider>

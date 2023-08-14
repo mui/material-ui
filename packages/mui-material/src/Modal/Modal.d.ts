@@ -68,7 +68,11 @@ export interface ModalOwnProps extends Omit<BaseModalTypeMap['props'], 'slotProp
    */
   componentsProps?: {
     root?: SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>;
-    backdrop?: SlotComponentProps<typeof Backdrop, ModalComponentsPropsOverrides, ModalOwnerState>;
+    backdrop?: SlotComponentProps<
+      typeof Backdrop,
+      ModalComponentsPropsOverrides,
+      ModalOwnerState
+    >;
   };
   /**
    * The props used for each slot inside the Modal.
@@ -76,7 +80,11 @@ export interface ModalOwnProps extends Omit<BaseModalTypeMap['props'], 'slotProp
    */
   slotProps?: {
     root?: SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>;
-    backdrop?: SlotComponentProps<typeof Backdrop, ModalComponentsPropsOverrides, ModalOwnerState>;
+    backdrop?: SlotComponentProps<
+      typeof Backdrop,
+      ModalComponentsPropsOverrides,
+      ModalOwnerState
+    >;
   };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -84,9 +92,9 @@ export interface ModalOwnProps extends Omit<BaseModalTypeMap['props'], 'slotProp
   sx?: SxProps<Theme>;
 }
 
-export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
-  props: P & ModalOwnProps;
-  defaultComponent: D;
+export interface ModalTypeMap<DefaultComponent extends React.ElementType = 'div', AdditionalProps = {}> {
+  props: AdditionalProps & ModalOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 type ModalRootProps = NonNullable<ModalTypeMap['props']['slotProps']>['root'];
@@ -123,8 +131,10 @@ export type ModalClasses = Record<ModalClassKey, string>;
 export declare const modalClasses: ModalClasses;
 
 export type ModalProps<
-  D extends React.ElementType = ModalTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ModalTypeMap<D, P>, D>;
+  RootComponent extends React.ElementType = ModalTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ModalTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Modal;

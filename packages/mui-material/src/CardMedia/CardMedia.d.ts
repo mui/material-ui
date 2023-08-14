@@ -31,9 +31,9 @@ export interface CardMediaOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface CardMediaTypeMap<P, D extends React.ElementType> {
-  props: P & CardMediaOwnProps;
-  defaultComponent: D;
+export interface CardMediaTypeMap<AdditionalProps, DefaultComponent extends React.ElementType> {
+  props: AdditionalProps & CardMediaOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -48,9 +48,11 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
  */
 declare const CardMedia: OverridableComponent<CardMediaTypeMap<{}, 'div'>>;
 
-export type CardMediaProps<D extends React.ElementType = 'div', P = {}> = OverrideProps<
-  CardMediaTypeMap<P, D>,
-  D
->;
+export type CardMediaProps<
+  RootComponent extends React.ElementType = 'div',
+  AdditionalProps = {},
+> = OverrideProps<CardMediaTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default CardMedia;

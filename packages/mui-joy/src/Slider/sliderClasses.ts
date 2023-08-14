@@ -39,8 +39,6 @@ export interface SliderClasses {
   colorNeutral: string;
   /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the root element if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
   /** Class name applied to the root element if `color="warning"`. */
@@ -61,6 +59,8 @@ export interface SliderClasses {
   sizeMd: string;
   /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Class name applied to the input element. */
+  input: string;
 }
 
 export type SliderClassKey = keyof SliderClasses;
@@ -91,7 +91,6 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',
@@ -103,6 +102,7 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'input',
 ]);
 
 export default sliderClasses;

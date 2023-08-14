@@ -132,7 +132,7 @@ describe('<Modal />', () => {
       }
 
       render(
-        <Modal open BackdropComponent={TestBackdrop}>
+        <Modal open slots={{ backdrop: TestBackdrop }}>
           <div />
         </Modal>,
       );
@@ -165,7 +165,15 @@ describe('<Modal />', () => {
         return <div data-testid="backdrop" data-timeout={transitionDuration} />;
       }
       render(
-        <Modal open BackdropComponent={TestBackdrop} BackdropProps={{ transitionDuration: 200 }}>
+        <Modal
+          open
+          slots={{ backdrop: TestBackdrop }}
+          slotProps={{
+            backdrop: {
+              transitionDuration: 200,
+            },
+          }}
+        >
           <div />
         </Modal>,
       );
@@ -176,7 +184,15 @@ describe('<Modal />', () => {
     it('should attach a handler to the backdrop that fires onClose', () => {
       const onClose = spy();
       const { getByTestId } = render(
-        <Modal onClose={onClose} open BackdropProps={{ 'data-testid': 'backdrop' }}>
+        <Modal
+          onClose={onClose}
+          open
+          slotProps={{
+            backdrop: {
+              'data-testid': 'backdrop',
+            },
+          }}
+        >
           <div />
         </Modal>,
       );
@@ -220,7 +236,15 @@ describe('<Modal />', () => {
     it('should call through to the user specified onBackdropClick callback', () => {
       const onBackdropClick = spy();
       const { getByTestId } = render(
-        <Modal onBackdropClick={onBackdropClick} open BackdropProps={{ 'data-testid': 'backdrop' }}>
+        <Modal
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+          slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}
+        >
           <div />
         </Modal>,
       );
@@ -241,7 +265,15 @@ describe('<Modal />', () => {
       }
       const onBackdropClick = spy();
       const { getByTestId } = render(
-        <Modal onBackdropClick={onBackdropClick} open BackdropComponent={CustomBackdrop}>
+        <Modal
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+          slots={{ backdrop: CustomBackdrop }}
+        >
           <div />
         </Modal>,
       );
@@ -826,6 +858,17 @@ describe('<Modal />', () => {
         </div>,
       );
       expect(within(getByTestId('parent')).getByTestId('child')).not.to.equal(null);
+    });
+  });
+
+  describe('prop: BackdropProps', () => {
+    it('should handle custom className', () => {
+      const { getByTestId } = render(
+        <Modal open BackdropProps={{ className: 'custom-backdrop', 'data-testid': 'backdrop' }}>
+          <div />
+        </Modal>,
+      );
+      expect(getByTestId('backdrop')).to.have.class('custom-backdrop');
     });
   });
 });

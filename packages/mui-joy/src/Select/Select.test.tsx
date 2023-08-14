@@ -31,10 +31,38 @@ describe('Joy <Select />', () => {
     slots: {
       root: { expectedClassName: classes.root },
       button: { expectedClassName: classes.button },
+      listbox: {
+        testWithComponent: React.forwardRef<HTMLUListElement>((props, ref) => {
+          const excludePopperProps = <T extends Record<string, any>>({
+            anchorEl,
+            direction,
+            disablePortal,
+            keepMounted,
+            modifiers,
+            open,
+            placement,
+            popperOptions,
+            popperRef,
+            TransitionProps,
+            ownerState,
+            ...other
+          }: T) => other;
+          return <ul ref={ref} {...excludePopperProps(props)} data-testid="custom" />;
+        }),
+        testWithElement: null,
+        expectedClassName: classes.listbox,
+      },
       startDecorator: { expectedClassName: classes.startDecorator },
       endDecorator: { expectedClassName: classes.endDecorator },
     },
-    skip: ['classesRoot', 'propsSpread', 'componentProp', 'componentsProp'],
+    skip: [
+      'classesRoot',
+      'propsSpread',
+      'componentProp',
+      'componentsProp',
+      // https://github.com/facebook/react/issues/11565
+      'reactTestRenderer',
+    ],
   }));
 
   describeJoyColorInversion(<Select listboxOpen />, {
@@ -123,12 +151,12 @@ describe('Joy <Select />', () => {
     expect(handleClose.callCount).to.equal(1);
   });
 
-  it('should focus list if no selection', () => {
+  it('should focus the trigger button if no selection', () => {
     const { getByRole } = render(<Select value="" autoFocus />);
 
     fireEvent.keyDown(getByRole('combobox'), { key: 'ArrowDown' });
 
-    expect(getByRole('listbox')).toHaveFocus();
+    expect(getByRole('combobox')).toHaveFocus();
   });
 
   describe('prop: onChange', () => {
@@ -141,7 +169,7 @@ describe('Joy <Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.click(getByRole('combobox'));
+      fireEvent.mouseDown(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -159,7 +187,7 @@ describe('Joy <Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.click(getByRole('combobox'));
+      fireEvent.mouseDown(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -281,7 +309,7 @@ describe('Joy <Select />', () => {
           <Select id="foo-bar" />
         </div>,
       );
-      fireEvent.click(screen.getByLabelText('label'));
+      fireEvent.mouseDown(screen.getByLabelText('label'));
       expect(screen.getByRole('listbox')).toBeVisible();
     });
 
@@ -312,22 +340,10 @@ describe('Joy <Select />', () => {
       expect(getByRole('combobox')).not.to.have.attribute('aria-disabled');
     });
 
-    it('indicates that activating the button displays a listbox', () => {
-      const { getByRole } = render(<Select value="" />);
-
-      expect(getByRole('combobox')).to.have.attribute('aria-haspopup', 'listbox');
-    });
-
     it('renders an element with listbox behavior', () => {
       const { getByRole } = render(<Select defaultListboxOpen value="" />);
 
       expect(getByRole('listbox')).toBeVisible();
-    });
-
-    specify('the listbox is automatically focused on open', () => {
-      const { getByRole } = render(<Select defaultListboxOpen value="" />);
-
-      expect(getByRole('listbox')).toHaveFocus();
     });
 
     it('identifies each selectable element containing an option', () => {
@@ -357,7 +373,12 @@ describe('Joy <Select />', () => {
     describe('Grouped options', () => {
       it('first selectable option is focused to use the arrow', () => {
         const { getByRole, getAllByRole } = render(
-          <Select defaultValue="" defaultListboxOpen slotProps={{ listbox: { component: 'div' } }}>
+          <Select
+            autoFocus
+            defaultValue=""
+            defaultListboxOpen
+            slotProps={{ listbox: { component: 'div' } }}
+          >
             <List role="group">
               <ListItem role="presentation">Category 1</ListItem>
               <Option value={1}>Option 1</Option>
@@ -371,12 +392,12 @@ describe('Joy <Select />', () => {
           </Select>,
         );
 
-        const listbox = getByRole('listbox');
+        const combobox = getByRole('combobox');
         const options = getAllByRole('option');
 
-        fireEvent.keyDown(listbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(listbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(listbox, { key: 'Enter' });
+        fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+        fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+        fireEvent.keyDown(combobox, { key: 'Enter' });
 
         expect(options[1]).to.have.attribute('aria-selected', 'true');
       });
@@ -621,34 +642,15 @@ describe('Joy <Select />', () => {
     );
     // Fire Click of the avatar
     act(() => {
-      getByTestId('test-element').click();
+      fireEvent.mouseDown(getByTestId('test-element'));
     });
 
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
-  });
 
-  it('should not show dropdown if stop propagation is handled', () => {
-    const handleClick = spy();
-    const { getByTestId, getByRole } = render(
-      <Select
-        defaultValue="1"
-        startDecorator={
-          <div
-            data-testid="test-element"
-            onMouseDown={(event) => event.stopPropagation()}
-            onClick={handleClick}
-          />
-        }
-      >
-        <Option value="1">Eric</Option>
-      </Select>,
-    );
-    // Fire Click of the avatar
+    // click again should close
     act(() => {
-      getByTestId('test-element').click();
+      fireEvent.mouseDown(getByTestId('test-element'));
     });
-
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
-    expect(handleClick.callCount).to.equal(1);
   });
 });

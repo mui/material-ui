@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useTab from '@mui/base/useTab';
+import { useTab } from '@mui/base/useTab';
 // TODO: use useButton hook here
 import ButtonBase from '@mui/material/ButtonBase';
 import {
@@ -140,7 +141,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     ...other
   } = props;
 
-  const { disabled, selected, getRootProps } = useTab(props);
+  const { disabled, selected, getRootProps } = useTab({ ...props, rootRef: ref });
 
   let indicator = indicatorProp;
   let textColor = textColorProp;
@@ -178,7 +179,6 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     <TabRoot
       focusRipple={!disableFocusRipple}
       className={clsx(classes.root, className)}
-      ref={ref}
       ownerState={ownerState}
       {...other}
       {...getRootProps()}

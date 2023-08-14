@@ -266,9 +266,9 @@ export interface SliderOwnProps {
   valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 }
 
-export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
-  props: P & SliderOwnProps;
-  defaultComponent: D;
+export interface SliderTypeMap<DefaultComponent extends React.ElementType = 'span', AdditionalProps = {}> {
+  props: AdditionalProps & SliderOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -306,8 +306,10 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
 declare const Slider: OverridableComponent<SliderTypeMap>;
 
 export type SliderProps<
-  D extends React.ElementType = SliderTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<SliderTypeMap<D, P>, D>;
+  RootComponent extends React.ElementType = SliderTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Slider;

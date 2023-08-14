@@ -47,15 +47,17 @@ export interface StepOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface StepTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & StepOwnProps;
-  defaultComponent: D;
+export interface StepTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+  props: AdditionalProps & StepOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 export type StepProps<
-  D extends React.ElementType = StepTypeMap['defaultComponent'],
-  P = { component?: React.ElementType },
-> = OverrideProps<StepTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = StepTypeMap['defaultComponent'],
+  AdditionalProps = { component?: React.ElementType },
+> = OverrideProps<StepTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export type StepClasskey = keyof NonNullable<StepProps['classes']>;
 

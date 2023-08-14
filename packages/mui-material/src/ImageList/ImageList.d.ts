@@ -45,9 +45,9 @@ export interface ImageListOwnProps {
   >;
 }
 
-export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
-  props: P & ImageListOwnProps;
-  defaultComponent: D;
+export interface ImageListTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'ul'> {
+  props: AdditionalProps & ImageListOwnProps;
+  defaultComponent: DefaultComponent;
 }
 /**
  *
@@ -62,8 +62,10 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
 declare const ImageList: OverridableComponent<ImageListTypeMap>;
 
 export type ImageListProps<
-  D extends React.ElementType = ImageListTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ImageListTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ImageListTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ImageListTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default ImageList;

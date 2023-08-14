@@ -149,6 +149,11 @@ interface JoyUsageDemoProps<ComponentProps> {
      * If `false`, the prop does not display in the code block.
      */
     codeBlockDisplay?: boolean;
+    /**
+     * The string to be displayed in the form label.
+     * If not provided, the `propName` is displayed as Pascal case.
+     */
+    formLabel?: string;
   }>;
   /**
    * A function to override the code block result.
@@ -228,7 +233,9 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           flexShrink: 0,
           gap: 2,
           p: 3,
-          background: (theme) => `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+          borderLeft: '1px solid',
+          borderColor: (theme) => `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+          background: (theme) => `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
           backdropFilter: 'blur(8px)',
           minWidth: '280px',
         }}
@@ -246,8 +253,8 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           </Typography>
           <IconButton
             aria-label="Reset all"
-            variant="outlined"
-            color="neutral"
+            variant="soft"
+            color="primary"
             size="sm"
             onClick={() => setProps(initialProps as T)}
             sx={{
@@ -268,435 +275,427 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             },
           }}
         >
-          {data.map(({ propName, knob, options = [], defaultValue, labels }) => {
-            const resolvedValue = props[propName] ?? defaultValue;
-            if (!knob) {
-              return null;
-            }
-            if (knob === 'switch') {
-              return (
-                <FormControl
-                  key={propName}
-                  size="sm"
-                  orientation="horizontal"
-                  sx={{ justifyContent: 'space-between' }}
-                >
-                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
-                  <Switch
-                    checked={Boolean(resolvedValue)}
-                    onChange={(event) =>
-                      setProps((latestProps) => ({
-                        ...latestProps,
-                        [propName]: event.target.checked,
-                      }))
-                    }
-                    endDecorator={resolvedValue ? 'True' : 'False'}
-                    slotProps={{
-                      endDecorator: {
-                        sx: {
-                          minWidth: 30,
-                        },
-                      },
-                    }}
-                    sx={{
-                      fontSize: 'xs',
-                      color: 'text.secondary',
-                      textTransform: 'capitalize',
-                      '--Switch-trackBackground': (theme) =>
-                        `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
-                      '&:hover': {
+          {data.map(
+            ({ propName, formLabel = propName, knob, options = [], defaultValue, labels }) => {
+              const resolvedValue = props[propName] ?? defaultValue;
+              if (!knob) {
+                return null;
+              }
+              if (knob === 'switch') {
+                return (
+                  <FormControl
+                    key={propName}
+                    size="sm"
+                    orientation="horizontal"
+                    sx={{ justifyContent: 'space-between' }}
+                  >
+                    <FormLabel sx={{ textTransform: 'capitalize' }}>{formLabel}</FormLabel>
+                    <Switch
+                      checked={Boolean(resolvedValue)}
+                      onChange={(event) =>
+                        setProps((latestProps) => ({
+                          ...latestProps,
+                          [propName]: event.target.checked,
+                        }))
+                      }
+                      sx={{
+                        '--Switch-trackWidth': '32px',
                         '--Switch-trackBackground': (theme) =>
-                          `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
-                      },
-                    }}
-                  />
-                </FormControl>
-              );
-            }
-            if (knob === 'radio') {
-              const labelId = `${componentName}-${propName}`;
-              return (
-                <FormControl key={propName} size="sm">
-                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
-                  <RadioGroup
-                    orientation="horizontal"
-                    name={labelId}
-                    value={resolvedValue}
-                    onChange={(event) => {
-                      let value: string | boolean | undefined = event.target.value;
-                      if (value === 'true') {
-                        value = true;
-                      } else if (value === 'false') {
-                        value = false;
-                      } else if (value === 'undefined') {
-                        value = undefined;
-                      }
-                      setProps((latestProps) => ({
-                        ...latestProps,
-                        [propName]: value,
-                      }));
-                    }}
-                    sx={{ flexWrap: 'wrap', gap: 1 }}
-                  >
-                    {options.map((value: string, index: number) => {
-                      const checked = String(resolvedValue) === value;
-                      return (
-                        <Chip
-                          key={value}
-                          variant="plain"
-                          color={checked ? 'primary' : 'neutral'}
-                          size="sm"
-                          sx={{ bgcolor: 'background.body' }}
-                        >
-                          <Radio
-                            size="sm"
-                            variant={checked ? 'solid' : 'outlined'}
-                            color={checked ? 'primary' : 'neutral'}
-                            label={<Typography>{labels?.[index] || value}</Typography>}
-                            value={value}
-                            disableIcon
-                            overlay
-                          />
-                        </Chip>
-                      );
-                    })}
-                  </RadioGroup>
-                </FormControl>
-              );
-            }
-            if (knob === 'controlled') {
-              const labelId = `${componentName}-${propName}`;
-              const finalValue =
-                resolvedValue === undefined ? 'uncontrolled' : String(resolvedValue);
-              return (
-                <FormControl key={propName} size="sm">
-                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
-                  <RadioGroup
-                    orientation="horizontal"
-                    name={labelId}
-                    value={finalValue}
-                    onChange={(event) => {
-                      let value: string | boolean | undefined = event.target.value;
-                      if (value === 'true') {
-                        value = true;
-                      } else if (value === 'false') {
-                        value = false;
-                      } else if (value === 'uncontrolled') {
-                        value = undefined;
-                      }
-                      setProps((latestProps) => ({
-                        ...latestProps,
-                        [propName]: value,
-                      }));
-                    }}
-                    sx={{ flexWrap: 'wrap', gap: 1 }}
-                  >
-                    {['uncontrolled', 'true', 'false'].map((value, index) => {
-                      const checked = finalValue === value;
-                      return (
-                        <Chip
-                          key={value}
-                          variant="plain"
-                          color={checked ? 'primary' : 'neutral'}
-                          size="sm"
-                          sx={{ bgcolor: 'background.body' }}
-                        >
-                          <Radio
-                            size="sm"
-                            variant={checked ? 'solid' : 'outlined'}
-                            color={checked ? 'primary' : 'neutral'}
-                            label={<Typography>{labels?.[index] || value}</Typography>}
-                            value={value}
-                            disableIcon
-                            overlay
-                          />
-                        </Chip>
-                      );
-                    })}
-                  </RadioGroup>
-                </FormControl>
-              );
-            }
-            if (knob === 'color') {
-              return (
-                <FormControl key={propName} sx={{ mb: 1 }} size="sm">
-                  <FormLabel>Color</FormLabel>
-                  <RadioGroup
-                    orientation="horizontal"
-                    name={`${componentName}-color`}
-                    value={resolvedValue || ''}
-                    onChange={(event) =>
-                      setProps((latestProps) => ({
-                        ...latestProps,
-                        color: event.target.value,
-                      }))
-                    }
-                    sx={{ flexWrap: 'wrap', gap: 1.5 }}
-                  >
-                    {(['primary', 'neutral', 'danger', 'info', 'success', 'warning'] as const).map(
-                      (value) => {
-                        const checked = resolvedValue === value;
+                          `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
+                        '&:hover': {
+                          '--Switch-trackBackground': (theme) =>
+                            `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
+                        },
+                      }}
+                    />
+                  </FormControl>
+                );
+              }
+              if (knob === 'radio') {
+                const labelId = `${componentName}-${propName}`;
+                return (
+                  <FormControl key={propName} size="sm">
+                    <FormLabel sx={{ textTransform: 'capitalize' }}>{formLabel}</FormLabel>
+                    <RadioGroup
+                      orientation="horizontal"
+                      name={labelId}
+                      value={resolvedValue}
+                      onChange={(event) => {
+                        let value: string | boolean | undefined = event.target.value;
+                        if (value === 'true') {
+                          value = true;
+                        } else if (value === 'false') {
+                          value = false;
+                        } else if (value === 'undefined') {
+                          value = undefined;
+                        }
+                        setProps((latestProps) => ({
+                          ...latestProps,
+                          [propName]: value,
+                        }));
+                      }}
+                      sx={{ flexWrap: 'wrap', gap: 1 }}
+                    >
+                      {options.map((value: string, index: number) => {
+                        const checked = String(resolvedValue) === value;
                         return (
-                          <Sheet
+                          <Chip
                             key={value}
-                            variant="solid"
-                            color={value}
-                            sx={{
-                              width: 28,
-                              height: 28,
-                              borderRadius: 'sm',
-                              textTransform: 'capitalize',
-                            }}
+                            variant="plain"
+                            color={checked ? 'primary' : 'neutral'}
+                            size="sm"
+                            sx={{ bgcolor: 'background.body' }}
                           >
                             <Radio
-                              variant="solid"
-                              color={value}
-                              label={value}
+                              size="sm"
+                              variant={checked ? 'solid' : 'outlined'}
+                              color={checked ? 'primary' : 'neutral'}
+                              label={<Typography>{labels?.[index] || value}</Typography>}
                               value={value}
                               disableIcon
                               overlay
-                              sx={{
-                                // [`& .${radioClasses.action}`]: { bgcolor: `${value}.500` },
-                                [`& .${radioClasses.label}`]: {
-                                  fontSize: '10px',
-                                  color: 'text.secondary',
-                                  position: 'absolute',
-                                  bottom: '-1rem',
-                                  left: '50%',
-                                  transform: 'translateX(-50%)',
-                                  opacity: '0.01', // prevent double for touch device.
-                                  transition: '0.2s',
-                                },
-                                [`&:hover, &.${radioClasses.focusVisible}, &.${radioClasses.checked}`]:
-                                  {
-                                    [`& .${radioClasses.label}`]: {
-                                      opacity: 1,
-                                      bottom: '-1.25rem',
-                                    },
-                                  },
-                              }}
                             />
-                            {checked && (
-                              <Check
-                                fontSize="md"
-                                color="inherit"
+                          </Chip>
+                        );
+                      })}
+                    </RadioGroup>
+                  </FormControl>
+                );
+              }
+              if (knob === 'controlled') {
+                const labelId = `${componentName}-${propName}`;
+                const finalValue =
+                  resolvedValue === undefined ? 'uncontrolled' : String(resolvedValue);
+                return (
+                  <FormControl key={propName} size="sm">
+                    <FormLabel sx={{ textTransform: 'capitalize' }}>{formLabel}</FormLabel>
+                    <RadioGroup
+                      orientation="horizontal"
+                      name={labelId}
+                      value={finalValue}
+                      onChange={(event) => {
+                        let value: string | boolean | undefined = event.target.value;
+                        if (value === 'true') {
+                          value = true;
+                        } else if (value === 'false') {
+                          value = false;
+                        } else if (value === 'uncontrolled') {
+                          value = undefined;
+                        }
+                        setProps((latestProps) => ({
+                          ...latestProps,
+                          [propName]: value,
+                        }));
+                      }}
+                      sx={{ flexWrap: 'wrap', gap: 1 }}
+                    >
+                      {['uncontrolled', 'true', 'false'].map((value, index) => {
+                        const checked = finalValue === value;
+                        return (
+                          <Chip
+                            key={value}
+                            variant="plain"
+                            color={checked ? 'primary' : 'neutral'}
+                            size="sm"
+                            sx={{ bgcolor: 'background.body' }}
+                          >
+                            <Radio
+                              size="sm"
+                              variant={checked ? 'solid' : 'outlined'}
+                              color={checked ? 'primary' : 'neutral'}
+                              label={<Typography>{labels?.[index] || value}</Typography>}
+                              value={value}
+                              disableIcon
+                              overlay
+                            />
+                          </Chip>
+                        );
+                      })}
+                    </RadioGroup>
+                  </FormControl>
+                );
+              }
+              if (knob === 'color') {
+                return (
+                  <FormControl key={propName} sx={{ mb: 1 }} size="sm">
+                    <FormLabel sx={{ textTransform: 'capitalize' }}>{formLabel}</FormLabel>
+                    <RadioGroup
+                      orientation="horizontal"
+                      name={`${componentName}-color`}
+                      value={resolvedValue || ''}
+                      onChange={(event) =>
+                        setProps((latestProps) => ({
+                          ...latestProps,
+                          [propName || 'color']: event.target.value,
+                        }))
+                      }
+                      sx={{ flexWrap: 'wrap', gap: 1.5 }}
+                    >
+                      {(['primary', 'neutral', 'danger', 'success', 'warning'] as const).map(
+                        (value) => {
+                          const checked = resolvedValue === value;
+                          return (
+                            <Sheet
+                              key={value}
+                              variant="solid"
+                              color={value}
+                              sx={{
+                                width: 28,
+                                height: 28,
+                                borderRadius: 'xl',
+                                textTransform: 'capitalize',
+                              }}
+                            >
+                              <Radio
+                                variant="solid"
+                                color={value}
+                                label={value}
+                                value={value}
+                                disableIcon
+                                overlay
                                 sx={{
-                                  zIndex: 1,
-                                  position: 'absolute',
-                                  top: '50%',
-                                  left: '50%',
-                                  transform: 'translate(-50%, -50%)',
-                                  pointerEvents: 'none',
+                                  // [`& .${radioClasses.action}`]: { bgcolor: `${value}.500` },
+                                  [`& .${radioClasses.label}`]: {
+                                    fontSize: '10px',
+                                    color: 'text.secondary',
+                                    position: 'absolute',
+                                    bottom: '-1rem',
+                                    left: '50%',
+                                    transform: 'translateX(-50%)',
+                                    opacity: '0.01', // prevent double for touch device.
+                                    transition: '0.2s',
+                                  },
+                                  [`&:hover, &.${radioClasses.focusVisible}, &.${radioClasses.checked}`]:
+                                    {
+                                      [`& .${radioClasses.label}`]: {
+                                        opacity: 1,
+                                        bottom: '-1.25rem',
+                                      },
+                                    },
                                 }}
                               />
-                            )}
-                          </Sheet>
-                        );
-                      },
-                    )}
-                  </RadioGroup>
-                </FormControl>
-              );
-            }
-            if (knob === 'select') {
-              return (
-                <FormControl key={propName} size="sm">
-                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
-                  <Select
-                    placeholder="Select a variant..."
-                    slotProps={{
-                      listbox: {
-                        sx: {
-                          '--ListItemDecorator-size': '24px',
+                              {checked && (
+                                <Check
+                                  fontSize="md"
+                                  color="inherit"
+                                  sx={{
+                                    zIndex: 1,
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    transform: 'translate(-50%, -50%)',
+                                    pointerEvents: 'none',
+                                  }}
+                                />
+                              )}
+                            </Sheet>
+                          );
                         },
-                      },
-                    }}
-                    value={(resolvedValue || 'none') as string}
-                    onChange={(event, val) =>
-                      setProps((latestProps) => ({
-                        ...latestProps,
-                        [propName]: val,
-                      }))
-                    }
-                  >
-                    {options.map((value) => (
-                      <Option
-                        key={value}
-                        value={value}
-                        label={value}
-                        sx={{
-                          [`&.${optionClasses.selected}`]: {
-                            [`& .${listItemDecoratorClasses.root}`]: {
-                              opacity: 1,
-                            },
+                      )}
+                    </RadioGroup>
+                  </FormControl>
+                );
+              }
+              if (knob === 'select') {
+                return (
+                  <FormControl key={propName} size="sm">
+                    <FormLabel sx={{ textTransform: 'capitalize' }}>{formLabel}</FormLabel>
+                    <Select
+                      placeholder="Select a variant..."
+                      slotProps={{
+                        listbox: {
+                          sx: {
+                            '--ListItemDecorator-size': '24px',
                           },
-                        }}
-                      >
-                        <ListItemDecorator sx={{ opacity: 0 }}>
-                          <CheckRounded />
-                        </ListItemDecorator>
-                        {value}
-                      </Option>
-                    ))}
-                  </Select>
-                </FormControl>
-              );
-            }
-            if (knob === 'input') {
-              return (
-                <FormControl key={propName}>
-                  <FormLabel>{propName}</FormLabel>
-                  <Input
-                    size="sm"
-                    value={props[propName] ?? ''}
-                    onChange={(event) =>
-                      setProps((latestProps) => ({
-                        ...latestProps,
-                        [propName]: event.target.value,
-                      }))
-                    }
-                    sx={{
-                      textTransform: 'capitalize',
-                      [`& .${inputClasses.root}`]: {
-                        bgcolor: 'background.body',
-                      },
-                    }}
-                  />
-                </FormControl>
-              );
-            }
-            if (knob === 'number') {
-              return (
-                <FormControl key={propName}>
-                  <FormLabel>{propName}</FormLabel>
-                  <Input
-                    size="sm"
-                    type="number"
-                    value={
-                      typeof props[propName] === 'number'
-                        ? (props[propName] as number)
-                        : (defaultValue as string)
-                    }
-                    onChange={(event) =>
-                      setProps((latestProps) => ({
-                        ...latestProps,
-                        [propName]: Number.isNaN(event.target.valueAsNumber)
-                          ? undefined
-                          : event.target.valueAsNumber,
-                      }))
-                    }
-                    sx={{
-                      textTransform: 'capitalize',
-                      [`& .${inputClasses.root}`]: {
-                        bgcolor: 'background.body',
-                      },
-                    }}
-                  />
-                </FormControl>
-              );
-            }
-            if (knob === 'placement') {
-              return (
-                <FormControl key={propName}>
-                  <FormLabel>Placement</FormLabel>
-                  <RadioGroup
-                    name="placement"
-                    value={resolvedValue}
-                    onChange={(event) =>
-                      setProps((latestProps) => ({
-                        ...latestProps,
-                        [propName]: event.target.value,
-                      }))
-                    }
-                  >
-                    <Box
-                      sx={{
-                        display: 'grid',
-                        gridTemplateColumns: '40px 1fr 1fr 1fr 40px',
-                        gridTemplateRows: 'repeat(5, 20px)',
-                        gridAutoFlow: 'row dense',
-                        alignItems: 'center',
+                        },
                       }}
+                      value={(resolvedValue || 'none') as string}
+                      onChange={(event, val) =>
+                        setProps((latestProps) => ({
+                          ...latestProps,
+                          [propName]: val,
+                        }))
+                      }
+                    >
+                      {options.map((value) => (
+                        <Option
+                          key={value}
+                          value={value}
+                          label={value}
+                          sx={{
+                            [`&.${optionClasses.selected}`]: {
+                              [`& .${listItemDecoratorClasses.root}`]: {
+                                opacity: 1,
+                              },
+                            },
+                          }}
+                        >
+                          <ListItemDecorator sx={{ opacity: 0 }}>
+                            <CheckRounded />
+                          </ListItemDecorator>
+                          {value}
+                        </Option>
+                      ))}
+                    </Select>
+                  </FormControl>
+                );
+              }
+              if (knob === 'input') {
+                return (
+                  <FormControl key={propName} size="sm">
+                    <FormLabel sx={{ textTransform: 'capitalize' }}>{formLabel}</FormLabel>
+                    <Input
+                      size="sm"
+                      value={props[propName] ?? ''}
+                      onChange={(event) =>
+                        setProps((latestProps) => ({
+                          ...latestProps,
+                          [propName]: event.target.value,
+                        }))
+                      }
+                      sx={{
+                        textTransform: 'capitalize',
+                        [`& .${inputClasses.root}`]: {
+                          bgcolor: 'background.body',
+                        },
+                      }}
+                    />
+                  </FormControl>
+                );
+              }
+              if (knob === 'number') {
+                return (
+                  <FormControl key={propName} size="sm">
+                    <FormLabel sx={{ textTransform: 'capitalize' }}>{formLabel}</FormLabel>
+                    <Input
+                      size="sm"
+                      type="number"
+                      value={
+                        typeof props[propName] === 'number'
+                          ? (props[propName] as number)
+                          : (defaultValue as string)
+                      }
+                      onChange={(event) =>
+                        setProps((latestProps) => ({
+                          ...latestProps,
+                          [propName]: Number.isNaN(event.target.valueAsNumber)
+                            ? undefined
+                            : event.target.valueAsNumber,
+                        }))
+                      }
+                      sx={{
+                        textTransform: 'capitalize',
+                        [`& .${inputClasses.root}`]: {
+                          bgcolor: 'background.body',
+                        },
+                      }}
+                    />
+                  </FormControl>
+                );
+              }
+              if (knob === 'placement') {
+                return (
+                  <FormControl key={propName}>
+                    <FormLabel sx={{ textTransform: 'capitalize' }}>{formLabel}</FormLabel>
+                    <RadioGroup
+                      name="placement"
+                      value={resolvedValue}
+                      onChange={(event) =>
+                        setProps((latestProps) => ({
+                          ...latestProps,
+                          [propName]: event.target.value,
+                        }))
+                      }
                     >
                       <Box
                         sx={{
-                          gridRow: '2 / -2',
-                          gridColumn: '2 / -2',
-                          fontSize: 'sm',
-                          border: '1px solid',
-                          borderColor: 'divider',
-                          borderRadius: 'sm',
-                          alignSelf: 'stretch',
-                          display: 'flex',
-                          justifyContent: 'center',
+                          display: 'grid',
+                          gridTemplateColumns: '40px 1fr 1fr 1fr 40px',
+                          gridTemplateRows: 'repeat(5, 20px)',
+                          gridAutoFlow: 'row dense',
                           alignItems: 'center',
-                          fontWeight: 'md',
-                          color: 'text.secondary',
                         }}
                       >
-                        {resolvedValue}
-                      </Box>
-                      {/* void */}
-                      <Box />
-                      <Box sx={{ gridColumn: '-1 / -2', gridRow: '1' }} />
-                      <Box sx={{ gridRow: '-1 / -2', gridColumn: '1' }} />
-                      {/* void */}
-                      {[
-                        'top-start',
-                        'top',
-                        'top-end',
-                        'left-start',
-                        'right-start',
-                        'left',
-                        'right',
-                        'left-end',
-                        'right-end',
-                        'bottom-start',
-                        'bottom',
-                        'bottom-end',
-                      ].map((placement) => (
-                        <Sheet
-                          key={placement}
-                          variant="soft"
-                          color="primary"
+                        <Box
                           sx={{
-                            position: 'relative',
-                            height: '14px',
-                            width: 32,
-                            borderRadius: 'xs',
-                            mx: 0.5,
-                            ...(placement.match(/^(top|bottom)$/) && {
-                              justifySelf: 'center',
-                            }),
-                            ...(placement.match(/^(top-end|bottom-end)$/) && {
-                              justifySelf: 'flex-end',
-                            }),
+                            gridRow: '2 / -2',
+                            gridColumn: '2 / -2',
+                            fontSize: 'sm',
+                            border: '1px solid',
+                            borderColor: 'divider',
+                            borderRadius: 'sm',
+                            alignSelf: 'stretch',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            fontWeight: 'md',
+                            color: 'text.secondary',
                           }}
                         >
-                          <Radio
-                            value={placement}
-                            overlay
-                            disableIcon
-                            slotProps={{
-                              action: ({ checked }) => ({
-                                sx: (theme) => ({
-                                  ...(checked && {
-                                    ...theme.variants.solid.primary,
-                                    '&:hover': theme.variants.solid.primary,
-                                  }),
-                                }),
+                          {resolvedValue}
+                        </Box>
+                        {/* void */}
+                        <Box />
+                        <Box sx={{ gridColumn: '-1 / -2', gridRow: '1' }} />
+                        <Box sx={{ gridRow: '-1 / -2', gridColumn: '1' }} />
+                        {/* void */}
+                        {[
+                          'top-start',
+                          'top',
+                          'top-end',
+                          'left-start',
+                          'right-start',
+                          'left',
+                          'right',
+                          'left-end',
+                          'right-end',
+                          'bottom-start',
+                          'bottom',
+                          'bottom-end',
+                        ].map((placement) => (
+                          <Sheet
+                            key={placement}
+                            variant="soft"
+                            color="primary"
+                            sx={{
+                              position: 'relative',
+                              height: '14px',
+                              width: 32,
+                              borderRadius: 'xs',
+                              mx: 0.5,
+                              ...(placement.match(/^(top|bottom)$/) && {
+                                justifySelf: 'center',
+                              }),
+                              ...(placement.match(/^(top-end|bottom-end)$/) && {
+                                justifySelf: 'flex-end',
                               }),
                             }}
-                          />
-                        </Sheet>
-                      ))}
-                    </Box>
-                  </RadioGroup>
-                </FormControl>
-              );
-            }
-            return null;
-          })}
+                          >
+                            <Radio
+                              value={placement}
+                              overlay
+                              disableIcon
+                              slotProps={{
+                                action: ({ checked }) => ({
+                                  sx: (theme) => ({
+                                    ...(checked && {
+                                      ...theme.variants.solid.primary,
+                                      '&:hover': theme.variants.solid.primary,
+                                    }),
+                                  }),
+                                }),
+                              }}
+                            />
+                          </Sheet>
+                        ))}
+                      </Box>
+                    </RadioGroup>
+                  </FormControl>
+                );
+              }
+              return null;
+            },
+          )}
         </Box>
       </Sheet>
     </Box>

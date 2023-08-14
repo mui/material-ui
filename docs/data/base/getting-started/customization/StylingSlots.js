@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import Switch, { switchClasses } from '@mui/base/Switch';
+import { Switch, switchClasses } from '@mui/base/Switch';
 
 const Root = styled('span')`
   font-size: 0;
@@ -35,8 +35,8 @@ const Thumb = styled('span')`
   transition: all 200ms ease;
 
   .${switchClasses.focusVisible} & {
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+    background-color: rgb(255 255 255 / 1);
+    box-shadow: 0 0 1px 8px rgb(0 0 0 / 0.25);
   }
 
   .${switchClasses.checked} > & {

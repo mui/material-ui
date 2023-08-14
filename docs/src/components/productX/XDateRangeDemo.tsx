@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
@@ -7,12 +8,12 @@ import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Frame from 'docs/src/components/action/Frame';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { PickersShortcutsItem, PickersShortcutsProps, DateRange } from '@mui/x-date-pickers-pro';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { startOfWeek, endOfWeek, subDays } from 'date-fns';
+import Frame from 'docs/src/components/action/Frame';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -46,20 +47,21 @@ function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Date>>) {
       }}
     >
       <List
-        dense
-        sx={(theme) => ({
+        sx={{
           display: 'flex',
-          px: theme.spacing(4),
+          py: 1.5,
+          px: 1.5,
+          gap: 1.5,
           '& .MuiListItem-root': {
-            py: 2,
-            pr: theme.spacing(1),
+            p: 0,
+            width: 'fit-content',
           },
-        })}
+        }}
       >
         {resolvedItems.map((item) => {
           return (
             <ListItem key={item.label}>
-              <Chip {...item} />
+              <Chip size="small" {...item} />
             </ListItem>
           );
         })}
@@ -127,6 +129,10 @@ export default function XDateRangeDemo() {
                 lineHeight: 0,
                 margin: 0,
               },
+              '& .MuiPickersArrowSwitcher-root': {
+                padding: 0,
+                paddingTop: 0.5,
+              },
               '& .MuiPickersDay-root': {
                 width: 28,
                 height: 28,
@@ -162,21 +168,38 @@ export default function XDateRangeDemo() {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
+            lineHeight: 1,
+            mb: 0.5,
           }}
         >
           <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-            🎉&nbsp;&nbsp;&nbsp;Stable version available now for your project!
+            Date Range Picker now available for your project!
           </Typography>
-          <Button
+          <Chip
             variant="outlined"
-            href="/x/react-Date-pickers/Date-range-picker/"
-            component="a"
-            sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
-          >
-            View more demos
-          </Button>
+            label="Available now"
+            color="success"
+            size="small"
+            sx={(theme) => ({
+              pb: 0.2,
+              fontWeight: theme.typography.fontWeightSemiBold,
+              color: (theme.vars || theme).palette.success[300],
+              borderColor: alpha(theme.palette.success[300], 0.3),
+              background: alpha(theme.palette.success[800], 0.3),
+            })}
+          />
         </Box>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          A thorough and advanced stable implementation of a long-requested component!
+        </Typography>
+        <Button
+          variant="outlined"
+          href="/x/react-date-pickers/date-range-picker/"
+          component="a"
+          sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
+        >
+          View the documentation
+        </Button>
       </Frame.Info>
     </Frame>
   );

@@ -1,10 +1,10 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Menu component
-components: Menu, MenuItem, MenuList
+components: Menu, MenuItem, MenuList, MenuButton
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
-unstyled: /base/react-menu/
+unstyled: /base-ui/react-menu/
 ---
 
 # Menu
@@ -13,11 +13,13 @@ unstyled: /base/react-menu/
 
 ## Introduction
 
-Joy UI provides three menu-related components:
+Joy UI provides five menu-related components:
 
+- `MenuButton`: A button that opens a menu. It reuses the styles from [`Button`](/joy-ui/react-button/).
 - `Menu`: A listbox popup for wrapping the menu items which reuses the styles from [`List`](/joy-ui/react-list/).
 - `MenuItem`: A menu item which reuses the styles from [`ListItemButton`](/joy-ui/react-list/).
 - `MenuList`: A standalone listbox for composition usage. It also reuses the styles from [`List`](/joy-ui/react-list/).
+- `Dropdown`: The outermost component that wires a button with a menu. It only provides a context and does not render anything.
 
 {{"demo": "MenuUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -27,18 +29,27 @@ After [installation](/joy-ui/getting-started/installation/), you can start build
 
 ```jsx
 import Menu from '@mui/joy/Menu';
+import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
+import Dropdown from '@mui/joy/Dropdown';
 
 export default function MyApp() {
   return (
-    <Menu>
-      <MenuItem>Add item</MenuItem>
-    </Menu>
+    <Dropdown>
+      <MenuButton>Actions</MenuButton>
+      <Menu>
+        <MenuItem>Add item</MenuItem>
+      </Menu>
+    </Dropdown>
   );
 }
 ```
 
 ### Basic usage
+
+Place both the Menu and Menu Button inside a Dropdown component.
+This will wire them together.
+The Menu Button will toggle the visibility of the menu and act as an anchor for the Menu's popup.
 
 The basic version of the menu opens over the anchor element by default.
 You can change this via [specific positioning props](#menu-positioning).
@@ -68,9 +79,17 @@ The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/
 
 {{"demo": "SelectedMenu.js"}}
 
+### Icon button menu
+
+To use [IconButton](/joy-ui/react-button/#icon-button) component as a menu button, pass it to the root slot of the `MenuButton` component.
+
+Use `slotProps` to pass props to the IconButton component.
+
+{{"demo": "IconButtonMenu.js"}}
+
 ### Positioned menu
 
-The `Menu` is based on the Base UI `Popper` component, which exposes a few [placement props](/base/react-popper/#placement).
+The `Menu` is based on the Base UI `Popper` component, which exposes a few [placement props](/base-ui/react-popper/#placement).
 For example, this is how you'd go for displaying the menu on the bottom-end of the anchor button.
 
 {{"demo": "PositionedMenu.js"}}
@@ -78,6 +97,13 @@ For example, this is how you'd go for displaying the menu on the bottom-end of t
 ### Group menus
 
 {{"demo": "GroupMenu.js"}}
+
+### Controlling the open state
+
+By default, the open/close state of the menu is managed internally by the Dropdown component.
+To control it programmatically from the outside, apply the Dropdown's `open` and `onOpenChange` props as shown below:
+
+{{"demo": "ControlledDropdown.js"}}
 
 ### `MenuList` composition
 

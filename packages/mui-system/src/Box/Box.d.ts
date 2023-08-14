@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@mui/types';
-import { Theme } from '../createTheme';
+import { Theme as SystemTheme } from '../createTheme';
 import {
   SxProps,
   AllSystemCSSProperties,
@@ -170,7 +170,7 @@ export type SystemProps<Theme extends object = {}> = {
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>);
 };
 
-export interface BoxOwnProps<T extends object = Theme> extends SystemProps<T> {
+export interface BoxOwnProps<Theme extends object = SystemTheme> extends SystemProps<SystemTheme> {
   children?: React.ReactNode;
   /**
    * The component used for the root node.
@@ -181,13 +181,14 @@ export interface BoxOwnProps<T extends object = Theme> extends SystemProps<T> {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<T>;
+  sx?: SxProps<Theme>;
 }
 
-export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div', T extends object = Theme> {
-  props: P & BoxOwnProps<T>;
-  defaultComponent: D;
+export interface BoxTypeMap<AdditionalProps = {}, RootComponent extends React.ElementType = 'div', Theme extends object = SystemTheme> {
+  props: AdditionalProps & BoxOwnProps<Theme>;
+  defaultComponent: RootComponent;
 }
+
 /**
  *
  * Demos:
@@ -202,8 +203,10 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div', T exten
 declare const Box: OverridableComponent<BoxTypeMap>;
 
 export type BoxProps<
-  D extends React.ElementType = BoxTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BoxTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = BoxTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BoxTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Box;

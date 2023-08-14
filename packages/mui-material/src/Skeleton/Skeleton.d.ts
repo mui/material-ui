@@ -46,9 +46,9 @@ export interface SkeletonOwnProps {
   width?: number | string;
 }
 
-export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
-  props: P & SkeletonOwnProps;
-  defaultComponent: D;
+export interface SkeletonTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'span'> {
+  props: AdditionalProps & SkeletonOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -64,8 +64,10 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
 declare const Skeleton: OverridableComponent<SkeletonTypeMap>;
 
 export type SkeletonProps<
-  D extends React.ElementType = SkeletonTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<SkeletonTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = SkeletonTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<SkeletonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Skeleton;

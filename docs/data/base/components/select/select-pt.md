@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: Unstyled React Select components and hook
 components: SelectUnstyled, MultiSelectUnstyled, OptionUnstyled, OptionGroupUnstyled
 githubLabel: 'component: select'
@@ -28,7 +28,7 @@ Base UI offers two components to replace the native HTML `<select>` tag: `Select
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import SelectUnstyled from '@mui/base/SelectUnstyled';
@@ -46,7 +46,7 @@ export default function MyApp() {
 
 ### Basics
 
-The following demo shows how to create and style a select component. Note that it also uses [`PopperUnstyled`](/base/react-popper/) to render a popup for the list of options:
+The following demo shows how to create and style a select component. Note that it also uses [`PopperUnstyled`](/base-ui/react-popper/) to render a popup for the list of options:
 
 {{"demo": "UnstyledSelectSimple.js", "defaultCodeOpen": false}}
 
@@ -95,7 +95,7 @@ The `SelectUnstyled` and `MultiSelectUnstyled` components are composed of a root
 ### Slot props
 
 :::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+The following props are available on all non-utility Base components. See [Usage](/base-ui/getting-started/usage/) for full details.
 :::
 
 Use the `component` prop to override the root slot with a custom element:

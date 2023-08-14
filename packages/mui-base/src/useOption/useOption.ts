@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { SelectOption, UseOptionParameters, UseOptionReturnValue } from './useOption.types';
@@ -9,18 +10,18 @@ import { useCompoundItem } from '../utils/useCompoundItem';
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/#hooks)
+ * - [Select](https://mui.com/base-ui/react-select/#hooks)
  *
  * API:
  *
- * - [useOption API](https://mui.com/base/react-select/hooks-api/#use-option)
+ * - [useOption API](https://mui.com/base-ui/react-select/hooks-api/#use-option)
  */
-export default function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
-  const { value, label, disabled, optionRef: optionRefParam, id: idParam } = params;
+export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
+  const { value, label, disabled, rootRef: optionRefParam, id: idParam } = params;
 
   const {
     getRootProps: getListItemProps,
-    ref: listItemRefHandler,
+    rootRef: listItemRefHandler,
     highlighted,
     selected,
   } = useListItem({
@@ -29,7 +30,7 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
 
   const id = useId(idParam);
 
-  const optionRef = React.useRef<HTMLElement>(null);
+  const optionRef = React.useRef<Element>(null);
 
   const selectOption: SelectOption<Value> = React.useMemo(
     () => ({
@@ -58,6 +59,6 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
     highlighted,
     index,
     selected,
-    ref: handleRef,
+    rootRef: handleRef,
   };
 }

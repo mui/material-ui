@@ -1,6 +1,15 @@
 import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
-import Slider, { sliderClasses } from '@mui/base/Slider';
+import { Slider, sliderClasses } from '@mui/base/Slider';
+
+export default function UnstyledSliderIntroduction() {
+  return (
+    <Box sx={{ width: 320 }}>
+      <StyledSlider defaultValue={50} />
+      <StyledSlider defaultValue={10} disabled />
+    </Box>
+  );
+}
 
 const blue = {
   100: '#DAECFF',
@@ -95,12 +104,3 @@ const StyledSlider = styled(Slider)(
   }
 `,
 );
-
-export default function UnstyledSlider() {
-  return (
-    <Box sx={{ width: 320 }}>
-      <StyledSlider defaultValue={50} />
-      <StyledSlider defaultValue={10} disabled />
-    </Box>
-  );
-}

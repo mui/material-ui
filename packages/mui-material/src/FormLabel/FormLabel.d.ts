@@ -56,9 +56,9 @@ export interface FormLabelOwnProps extends FormLabelBaseProps {
   sx?: SxProps<Theme>;
 }
 
-export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
-  props: P & FormLabelOwnProps;
-  defaultComponent: D;
+export interface FormLabelTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'label'> {
+  props: AdditionalProps & FormLabelOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -75,14 +75,16 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
  */
 declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 
-export interface ExtendFormLabelTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & Pick<FormLabelOwnProps, 'filled' | 'color'>;
-  defaultComponent: M['defaultComponent'];
+export interface ExtendFormLabelTypeMap<TypeMap extends OverridableTypeMap> {
+  props: TypeMap['props'] & Pick<FormLabelOwnProps, 'filled' | 'color'>;
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
 export type FormLabelProps<
-  D extends React.ElementType = FormLabelTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<FormLabelTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = FormLabelTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<FormLabelTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default FormLabel;

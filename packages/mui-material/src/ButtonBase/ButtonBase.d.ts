@@ -85,9 +85,9 @@ export interface ButtonBaseOwnProps {
   touchRippleRef?: React.Ref<TouchRippleActions>;
 }
 
-export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button'> {
-  props: P & ButtonBaseOwnProps;
-  defaultComponent: D;
+export interface ButtonBaseTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'button'> {
+  props: AdditionalProps & ButtonBaseOwnProps;
+  defaultComponent: DefaultComponent;
 }
 
 /**
@@ -95,15 +95,15 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
  * This component has an additional overload if the `href` prop is set which
  * can make extension quite tricky
  */
-export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & Omit<ButtonBaseTypeMap['props'], 'classes'>;
-  defaultComponent: M['defaultComponent'];
+export interface ExtendButtonBaseTypeMap<TypeMap extends OverridableTypeMap> {
+  props: TypeMap['props'] & Omit<ButtonBaseTypeMap['props'], 'classes'>;
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
-export type ExtendButtonBase<M extends OverridableTypeMap> = ((
-  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>,
+export type ExtendButtonBase<TypeMap extends OverridableTypeMap> = ((
+  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<TypeMap>, 'a'>,
 ) => JSX.Element) &
-  OverridableComponent<ExtendButtonBaseTypeMap<M>>;
+  OverridableComponent<ExtendButtonBaseTypeMap<TypeMap>>;
 
 /**
  * `ButtonBase` contains as few styles as possible.
@@ -121,9 +121,11 @@ export type ExtendButtonBase<M extends OverridableTypeMap> = ((
 declare const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap>;
 
 export type ButtonBaseProps<
-  D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ButtonBaseTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ButtonBaseTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export interface ButtonBaseActions {
   focusVisible(): void;
