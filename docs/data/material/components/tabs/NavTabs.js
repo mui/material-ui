@@ -22,6 +22,7 @@ function LinkTab(props) {
     <Tab
       component="a"
       onClick={(event) => {
+        // Routing libraries handle this, you can remove the onClick handle when using them.
         if (samePageLinkNavigation(event)) {
           event.preventDefault();
         }
@@ -35,7 +36,11 @@ export default function NavTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
-    if (event.type !== 'click' || samePageLinkNavigation(event)) {
+    // event.type can be equal to focus with selectionFollowsFocus.
+    if (
+      event.type !== 'click' ||
+      (event.type === 'click' && samePageLinkNavigation(event))
+    ) {
       setValue(newValue);
     }
   };
