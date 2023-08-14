@@ -55,12 +55,14 @@ export default function TypographyUsage() {
         <Box sx={{ maxWidth: '400px' }}>
           <Typography
             {...props}
-            sx={{
-              overflow: 'hidden',
-              display: '-webkit-box',
-              '-webkit-line-clamp': '3',
-              '-webkit-box-orient': 'vertical',
-            }}
+            sx={
+              !props.noWrap && {
+                overflow: 'hidden',
+                display: '-webkit-box',
+                '-webkit-line-clamp': '3',
+                '-webkit-box-orient': 'vertical',
+              }
+            }
           >
             {props.children}
           </Typography>
