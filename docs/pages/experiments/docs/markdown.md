@@ -11,7 +11,7 @@
   - First item
   - Second item
 
-## Light lists
+## Tight lists
 
 https://spec.commonmark.org/0.30/#tight
 
