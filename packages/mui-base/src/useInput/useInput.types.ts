@@ -18,7 +18,7 @@ export interface UseInputParameters {
   error?: boolean;
   onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onClick?: React.MouseEventHandler;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   inputRef?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
   /**
