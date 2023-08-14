@@ -8,16 +8,12 @@ function useIsDarkMode() {
   return theme.palette.mode === 'dark';
 }
 
-export default function TableCustomized() {
+export default function UnstyledPaginationIntroduction() {
   // Replace this with your app logic for determining dark mode
   const isDarkMode = useIsDarkMode();
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -35,67 +31,19 @@ export default function TableCustomized() {
 
   return (
     <div
-      className={`${isDarkMode ? 'dark' : ''} max-w-full`}
-      style={{ width: '500px' }}
+      className={isDarkMode ? 'dark' : ''}
+      style={{ width: 500, maxWidth: '100%' }}
     >
       <table
-        className="text-sm w-full border-collapse"
         aria-label="custom pagination table"
+        className="text-sm [&>th]:p-4 [&>td]:p-4 border border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-xl shadow-md w-full"
       >
-        <thead>
-          <tr>
-            <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-purple-50 dark:bg-purple-950">
-              Dessert
-            </th>
-            <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-purple-50 dark:bg-purple-950">
-              Calories
-            </th>
-            <th className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5 bg-purple-50 dark:bg-purple-950">
-              Fat
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
-            <tr key={row.name}>
-              <td className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5">
-                {row.name}
-              </td>
-              <td
-                className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5"
-                style={{ width: 120 }}
-                align="right"
-              >
-                {row.calories}
-              </td>
-              <td
-                className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5"
-                style={{ width: 120 }}
-                align="right"
-              >
-                {row.fat}
-              </td>
-            </tr>
-          ))}
-
-          {emptyRows > 0 && (
-            <tr style={{ height: 34 * emptyRows }}>
-              <td
-                className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5"
-                colSpan={3}
-              />
-            </tr>
-          )}
-        </tbody>
         <tfoot>
-          <tr className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5">
+          <tr>
             <CustomTablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
-              count={rows.length}
+              count={13}
               rowsPerPage={rowsPerPage}
               page={page}
               slotProps={{
@@ -128,7 +76,7 @@ const CustomTablePagination = React.forwardRef<
     <TablePagination
       ref={ref}
       {...props}
-      className={clsx('CustomTablePagination p-1.5', props.className)}
+      className={clsx('CustomTablePagination p-4', props.className)}
       slotProps={{
         ...props.slotProps,
         select: (ownerState) => {
@@ -139,7 +87,7 @@ const CustomTablePagination = React.forwardRef<
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl bg-transparent hover:bg-slate-20 hover:dark:bg-slate-800 focus:outline-0 focus:shadow-outline-purple-xs',
+              'py-0.5 px-1.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl bg-transparent hover:bg-slate-20 hover:dark:bg-slate-800 focus:outline-0 focus:shadow-outline-purple-xs',
               resolvedSlotProps?.className,
             ),
           };
@@ -152,7 +100,7 @@ const CustomTablePagination = React.forwardRef<
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl text-center [&>button]:my-0 [&>button]:mx-2 [&>button]:border-transparent [&>button]:rounded-sm [&>button]:bg-transparent [&>button:hover]:bg-slate-50 [&>button:hover]:dark:bg-slate-800 [&>button:focus]:outline-0 [&>button:focus]:shadow-outline-purple-xs',
+              'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl text-center [&>button]:my-0 [&>button]:mx-2 [&>button]:border-none [&>button]:rounded-sm [&>button]:bg-transparent [&>button:hover]:bg-slate-50 [&>button:hover]:dark:bg-slate-800 [&>button:focus]:outline-0 [&>button:focus]:shadow-outline-purple-xs',
               resolvedSlotProps?.className,
             ),
           };
@@ -162,6 +110,7 @@ const CustomTablePagination = React.forwardRef<
             props.slotProps?.spacer,
             ownerState,
           );
+
           return {
             ...resolvedSlotProps,
             className: clsx('hidden', resolvedSlotProps?.className),
@@ -204,23 +153,3 @@ const CustomTablePagination = React.forwardRef<
     />
   );
 });
-
-function createData(name: string, calories: number, fat: number) {
-  return { name, calories, fat };
-}
-
-const rows = [
-  createData('Cupcake', 305, 3.7),
-  createData('Donut', 452, 25.0),
-  createData('Eclair', 262, 16.0),
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Gingerbread', 356, 16.0),
-  createData('Honeycomb', 408, 3.2),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Jelly Bean', 375, 0.0),
-  createData('KitKat', 518, 26.0),
-  createData('Lollipop', 392, 0.2),
-  createData('Marshmallow', 318, 0),
-  createData('Nougat', 360, 19.0),
-  createData('Oreo', 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
