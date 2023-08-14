@@ -3271,6 +3271,14 @@
   dependencies:
     "@babel/types" "^7.0.0"
 
+"@types/babel__helper-module-imports@^7.18.0":
+  version "7.18.0"
+  resolved "https://registry.yarnpkg.com/@types/babel__helper-module-imports/-/babel__helper-module-imports-7.18.0.tgz#63033441e16edb3d59acb74953ea6794cefbec69"
+  integrity sha512-bXrjmO0EhInafHtFIaimws2rDf8Sp0E6T3cstzSL4lUAPtzZ2GhoV48U6n4IHyBIBsd88r4JIw2UPTqlyWwXcg==
+  dependencies:
+    "@types/babel__core" "*"
+    "@types/babel__traverse" "*"
+
 "@types/babel__helper-plugin-utils@^7.10.0":
   version "7.10.0"
   resolved "https://registry.yarnpkg.com/@types/babel__helper-plugin-utils/-/babel__helper-plugin-utils-7.10.0.tgz#dcd2416f9c189d5837ab2a276368cf67134efe78"

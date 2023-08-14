@@ -54,7 +54,8 @@
   "linaria": {
     "tags": {
       "styled": "@mui/zero-tag-processor/styled",
-      "default": "@mui/zero-tag-processor/styled"
+      "default": "@mui/zero-tag-processor/styled",
+      "sx": "@mui/zero-tag-processor/sx"
     }
   }
 }
