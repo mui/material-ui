@@ -14,7 +14,7 @@ export default function DiamondSponsors() {
       spacing={0.5}
       direction="column"
       sx={{
-        mt: 3,
+        mt: 1.5,
         pt: 1.5,
         borderTop: '1px solid',
         borderColor: 'divider',
