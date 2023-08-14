@@ -24,19 +24,19 @@ export default function ButtonColors() {
           gap: 1,
         }}
       >
-        <Button size="md" variant={variant} color="primary">
+        <Button variant={variant} color="primary">
           Primary
         </Button>
-        <Button size="md" variant={variant} color="neutral">
+        <Button variant={variant} color="neutral">
           Neutral
         </Button>
-        <Button size="md" variant={variant} color="danger">
+        <Button variant={variant} color="danger">
           Danger
         </Button>
-        <Button size="md" variant={variant} color="success">
+        <Button variant={variant} color="success">
           Success
         </Button>
-        <Button size="md" variant={variant} color="warning">
+        <Button variant={variant} color="warning">
           Warning
         </Button>
       </Box>
