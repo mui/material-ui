@@ -130,7 +130,8 @@ const Root = styled('div')(
       },
       '& a:not(.anchor-link):hover': {
         color: 'currentColor',
-        borderBottom: '1px solid currentColor',
+        border: 'none',
+        boxShadow: '0 1px 0 0 currentColor',
         textDecoration: 'none',
       },
       '&:hover .anchor-link, & .comment-link': {
@@ -138,6 +139,7 @@ const Root = styled('div')(
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
+        flexShrink: 0,
         textAlign: 'center',
         marginLeft: 8,
         height: 26,
@@ -168,12 +170,7 @@ const Root = styled('div')(
         }),
         '& svg': {
           verticalAlign: 'middle',
-          color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.tertiary})`,
-        },
-        '&:hover': {
-          '&>svg': {
-            color: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
-          },
+          fill: 'currentColor',
         },
       },
     },
