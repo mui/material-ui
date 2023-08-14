@@ -42,7 +42,7 @@
     "react": "^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.6",
+    "@babel/runtime": "^7.22.10",
     "@types/prop-types": "^15.7.5",
     "@types/react-is": "^18.2.1",
     "prop-types": "^15.8.1",

@@ -57,7 +57,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.6",
+    "@babel/runtime": "^7.22.10",
     "@mui/private-theming": "^5.14.5",
     "@mui/styled-engine": "^5.13.2",
     "@mui/types": "^7.2.4",
