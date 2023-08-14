@@ -54,7 +54,7 @@ Note that you lose the global variants when you add custom variants.
 
 ### Sizes
 
-The Toggle Button Group component comes in three sizes: `sm`, `md` (default), and `lg`.
+The Toggle Button Group component comes in three sizes: `sm` (default), `md`, and `lg`.
 
 {{"demo": "ToggleGroupSizes.js"}}
 
