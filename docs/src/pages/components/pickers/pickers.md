@@ -10,19 +10,16 @@ components: TextField
 - On mobile, pickers are best suited for display in confirmation dialog.
 - For inline display, such as on a form, consider using compact controls such as segmented dropdown buttons.
 
-## @material-ui/pickers
+## @mui/x-date-pickers
 
-![stars](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars)
-![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
-
-[@material-ui/pickers](https://material-ui-pickers.dev/) provides date picker and time picker controls.
+[@mui/x-date-pickers](https://mui.com/x/react-date-pickers/) provides date picker and time picker controls.
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}
 
 ## Native pickers
 
 ⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime).
-Have a look at [@material-ui/pickers](https://material-ui-pickers.dev/) for a richer solution.
+Have a look at [@mui/x-date-pickers](https://mui.com/x/react-date-pickers/) for a richer solution.
 
 ### Datepickers
 
