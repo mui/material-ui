@@ -459,11 +459,11 @@ const InputBase = React.forwardRef(function InputBase<
     ? slots.textarea ?? TextareaAutosize
     : slots.input ?? InputBaseInput;
 
-  const {
-    ownerState: inputOwnerState,
-    ...otherInputProps
-  }: WithOptionalOwnerState<InputBaseInputSlotProps> = useSlotProps({
-    elementType: InputComponent,
+  const inputProps: WithOptionalOwnerState<InputBaseInputSlotProps> = useSlotProps({
+    // TextareaAutosize doesn't support ownerState, we manually change the
+    // elementType so ownerState is excluded from the return value (this doesn't
+    // affect other returned props)
+    elementType: InputComponent === TextareaAutosize ? 'textarea' : InputComponent,
     getSlotProps: (otherHandlers: EventHandlers) => {
       return getInputProps({
         ...propsToForwardToInputSlot,
@@ -506,18 +506,6 @@ const InputBase = React.forwardRef(function InputBase<
     checkDirty(inputRef);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  let inputProps: WithOptionalOwnerState<InputBaseInputSlotProps> = {
-    ...otherInputProps,
-  };
-
-  // manually stop passing ownerState to TextareaAutosize
-  if (InputComponent !== TextareaAutosize && !isHostComponent(InputComponent)) {
-    inputProps = {
-      ...inputProps,
-      ownerState: inputOwnerState,
-    };
-  }
 
   return (
     <React.Fragment>
