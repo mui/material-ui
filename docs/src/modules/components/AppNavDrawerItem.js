@@ -330,7 +330,7 @@ export default function AppNavDrawerItem(props) {
         {planned && <Chip label="Planned" sx={sxChip('grey')} />}
       </Item>
       {expandable ? (
-        <Collapse in={open} timeout={150} unmountOnExit>
+        <Collapse in={open} timeout={250} unmountOnExit>
           {children}
         </Collapse>
       ) : (
