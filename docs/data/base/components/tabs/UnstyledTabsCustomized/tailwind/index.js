@@ -7,7 +7,7 @@ import { Tab } from '@mui/base/Tab';
 export default function UnstyledTabsCustomized() {
   return (
     <Tabs defaultValue={1}>
-      <TabsList className="mb-4 rounded-xl bg-purple-500 flex items-center justify-center content-between min-w-tabs-list shadow-lg">
+      <TabsList className="mb-4 rounded-xl bg-purple-500 flex font-sans items-center justify-center content-between min-w-tabs-list shadow-lg">
         <Tab
           slotProps={{
             root: ({ selected, disabled }) => ({
@@ -57,13 +57,13 @@ export default function UnstyledTabsCustomized() {
           Three
         </Tab>
       </TabsList>
-      <TabPanel className="w-full text-sm" value={1}>
+      <TabPanel className="w-full font-sans text-sm" value={1}>
         First page
       </TabPanel>
-      <TabPanel className="w-full text-sm" value={2}>
+      <TabPanel className="w-full font-sans text-sm" value={2}>
         Second page
       </TabPanel>
-      <TabPanel className="w-full text-sm" value={3}>
+      <TabPanel className="w-full font-sans text-sm" value={3}>
         Third page
       </TabPanel>
     </Tabs>

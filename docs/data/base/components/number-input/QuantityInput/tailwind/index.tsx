@@ -15,7 +15,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(
       slotProps={{
         root: {
           className:
-            'leading-snug text-slate-900 dark:text-slate-300 flex flex-row flex-nowrap justify-center items-center',
+            'leading-snug font-sans text-slate-900 dark:text-slate-300 flex flex-row flex-nowrap justify-center items-center',
         },
         input: {
           className:

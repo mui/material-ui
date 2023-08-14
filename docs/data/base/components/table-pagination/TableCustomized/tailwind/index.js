@@ -35,7 +35,7 @@ export default function TableCustomized() {
       style={{ width: '500px' }}
     >
       <table
-        className="text-sm w-full border-collapse"
+        className="text-sm font-sans w-full border-collapse"
         aria-label="custom pagination table"
       >
         <thead>
