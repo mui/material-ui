@@ -22,7 +22,7 @@ export default function ChipUsage() {
           propName: 'size',
           knob: 'radio',
           options: ['sm', 'md', 'lg'],
-          defaultValue: 'md',
+          defaultValue: 'sm',
         },
         {
           propName: 'disabled',
