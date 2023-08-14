@@ -131,9 +131,9 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
                 borderColor: 'primary.500',
               },
               [`& .${inputBaseClasses.input}`]: {
-                borderRadius: `calc(${theme.spacing(1)} - 1px)`,
+                borderRadius: `calc(${theme.shape.borderRadius}px - 1px)`,
                 py: '11px',
-                px: 1,
+                px: 1.5,
               },
             }),
             (theme) =>
