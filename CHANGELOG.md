@@ -3717,7 +3717,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Add webpack alias for legacy utils package (#33376) @jgbae
 - [docs] Improve external link icons synonyms (#33257) @davidgarciab
 - [examples] Update Base UI with Tailwind CSS to use the latest versions of the dependencies (#33401) @mnajdova
-- [examples] Add MUI base example (#33154) @siriwatknp
+- [examples] Add Base UI example (#33154) @siriwatknp
 
 ### Core
 
@@ -10382,7 +10382,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
 - [theme] Add htmlFontSize to Typography interface (#23412) @fergusmcdonald
 - [Tooltip] Fix PopperProps popper modifiers not being merged properly (#23421) @dominique-mueller
 - [Tooltip] Long press select text on iOS (#23466) @hmaddisb
-- [Tooltip] Unexpected behaviour onOpen/onClose (#23482) @brorlarsnicklas
+- [Tooltip] Unexpected behavior onOpen/onClose (#23482) @brorlarsnicklas
 
 ### `@material-ui/lab@v5.0.0-alpha.16`
 
