@@ -36,7 +36,10 @@ export interface BottomNavigationOwnProps {
   value?: any;
 }
 
-export interface BottomNavigationTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface BottomNavigationTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & BottomNavigationOwnProps;
   defaultComponent: DefaultComponent;
 }

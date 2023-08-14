@@ -45,7 +45,10 @@ export interface ImageListOwnProps {
   >;
 }
 
-export interface ImageListTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'ul'> {
+export interface ImageListTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'ul',
+> {
   props: AdditionalProps & ImageListOwnProps;
   defaultComponent: DefaultComponent;
 }

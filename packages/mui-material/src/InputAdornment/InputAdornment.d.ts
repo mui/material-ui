@@ -40,7 +40,10 @@ export interface InputAdornmentOwnProps {
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export interface InputAdornmentTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface InputAdornmentTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & InputAdornmentOwnProps;
   defaultComponent: DefaultComponent;
 }

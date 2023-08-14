@@ -94,7 +94,10 @@ export interface PaginationItemOwnProps {
   variant?: OverridableStringUnion<'text' | 'outlined', PaginationItemPropsVariantOverrides>;
 }
 
-export interface PaginationItemTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface PaginationItemTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & PaginationItemOwnProps;
   defaultComponent: DefaultComponent;
 }

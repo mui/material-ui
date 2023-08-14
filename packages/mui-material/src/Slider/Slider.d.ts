@@ -266,7 +266,10 @@ export interface SliderOwnProps {
   valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 }
 
-export interface SliderTypeMap<DefaultComponent extends React.ElementType = 'span', AdditionalProps = {}> {
+export interface SliderTypeMap<
+  DefaultComponent extends React.ElementType = 'span',
+  AdditionalProps = {},
+> {
   props: AdditionalProps & SliderOwnProps;
   defaultComponent: DefaultComponent;
 }

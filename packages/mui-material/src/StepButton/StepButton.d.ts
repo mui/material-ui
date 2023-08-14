@@ -33,7 +33,10 @@ export interface StepButtonOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export type StepButtonTypeMap<AdditionalProps, DefaultComponent extends React.ElementType> = ExtendButtonBaseTypeMap<{
+export type StepButtonTypeMap<
+  AdditionalProps,
+  DefaultComponent extends React.ElementType,
+> = ExtendButtonBaseTypeMap<{
   props: AdditionalProps & StepButtonOwnProps;
   defaultComponent: DefaultComponent;
 

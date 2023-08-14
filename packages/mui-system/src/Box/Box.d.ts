@@ -184,7 +184,11 @@ export interface BoxOwnProps<Theme extends object = SystemTheme> extends SystemP
   sx?: SxProps<Theme>;
 }
 
-export interface BoxTypeMap<AdditionalProps = {}, RootComponent extends React.ElementType = 'div', Theme extends object = SystemTheme> {
+export interface BoxTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+  Theme extends object = SystemTheme,
+> {
   props: AdditionalProps & BoxOwnProps<Theme>;
   defaultComponent: RootComponent;
 }

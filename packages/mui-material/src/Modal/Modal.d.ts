@@ -68,11 +68,7 @@ export interface ModalOwnProps extends Omit<BaseModalTypeMap['props'], 'slotProp
    */
   componentsProps?: {
     root?: SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>;
-    backdrop?: SlotComponentProps<
-      typeof Backdrop,
-      ModalComponentsPropsOverrides,
-      ModalOwnerState
-    >;
+    backdrop?: SlotComponentProps<typeof Backdrop, ModalComponentsPropsOverrides, ModalOwnerState>;
   };
   /**
    * The props used for each slot inside the Modal.
@@ -80,11 +76,7 @@ export interface ModalOwnProps extends Omit<BaseModalTypeMap['props'], 'slotProp
    */
   slotProps?: {
     root?: SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>;
-    backdrop?: SlotComponentProps<
-      typeof Backdrop,
-      ModalComponentsPropsOverrides,
-      ModalOwnerState
-    >;
+    backdrop?: SlotComponentProps<typeof Backdrop, ModalComponentsPropsOverrides, ModalOwnerState>;
   };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -92,7 +84,10 @@ export interface ModalOwnProps extends Omit<BaseModalTypeMap['props'], 'slotProp
   sx?: SxProps<Theme>;
 }
 
-export interface ModalTypeMap<DefaultComponent extends React.ElementType = 'div', AdditionalProps = {}> {
+export interface ModalTypeMap<
+  DefaultComponent extends React.ElementType = 'div',
+  AdditionalProps = {},
+> {
   props: AdditionalProps & ModalOwnProps;
   defaultComponent: DefaultComponent;
 }

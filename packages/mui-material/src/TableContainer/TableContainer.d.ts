@@ -19,7 +19,10 @@ export interface TableContainerOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TableContainerTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface TableContainerTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & TableContainerOwnProps;
   defaultComponent: DefaultComponent;
 }

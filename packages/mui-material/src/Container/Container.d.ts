@@ -36,7 +36,10 @@ export interface ContainerOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ContainerTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface ContainerTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & ContainerOwnProps;
   defaultComponent: DefaultComponent;
 }

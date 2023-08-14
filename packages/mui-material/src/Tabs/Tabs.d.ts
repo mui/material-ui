@@ -174,7 +174,10 @@ export interface TabsOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TabsTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = typeof ButtonBase> {
+export interface TabsTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = typeof ButtonBase,
+> {
   props: AdditionalProps & TabsOwnProps;
   defaultComponent: DefaultComponent;
 }

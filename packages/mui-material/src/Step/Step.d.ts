@@ -47,7 +47,10 @@ export interface StepOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface StepTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface StepTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & StepOwnProps;
   defaultComponent: DefaultComponent;
 }

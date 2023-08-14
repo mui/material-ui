@@ -49,7 +49,10 @@ export interface StepperOwnProps extends Pick<PaperProps, 'elevation' | 'square'
   sx?: SxProps<Theme>;
 }
 
-export interface StepperTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface StepperTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & StepperOwnProps;
   defaultComponent: DefaultComponent;
 }

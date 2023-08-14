@@ -73,7 +73,10 @@ export interface TypographyOwnProps extends SystemProps<Theme> {
   >;
 }
 
-export interface TypographyTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'span'> {
+export interface TypographyTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'span',
+> {
   props: AdditionalProps & TypographyOwnProps;
   defaultComponent: DefaultComponent;
 }

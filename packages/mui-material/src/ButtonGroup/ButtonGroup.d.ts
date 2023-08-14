@@ -78,7 +78,10 @@ export interface ButtonGroupOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ButtonGroupTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface ButtonGroupTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & ButtonGroupOwnProps;
   defaultComponent: DefaultComponent;
 }

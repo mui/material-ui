@@ -79,7 +79,10 @@ export interface BreadcrumbsOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface BreadcrumbsTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'nav'> {
+export interface BreadcrumbsTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'nav',
+> {
   props: AdditionalProps & BreadcrumbsOwnProps;
   defaultComponent: DefaultComponent;
 }

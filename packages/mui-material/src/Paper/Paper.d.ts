@@ -38,7 +38,10 @@ export interface PaperOwnProps {
   variant?: OverridableStringUnion<'elevation' | 'outlined', PaperPropsVariantOverrides>;
 }
 
-export interface PaperTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface PaperTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & PaperOwnProps;
   defaultComponent: DefaultComponent;
 }

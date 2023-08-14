@@ -29,7 +29,10 @@ export interface TableRowOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TableRowTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'tr'> {
+export interface TableRowTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'tr',
+> {
   props: AdditionalProps & TableRowOwnProps;
   defaultComponent: DefaultComponent;
 }

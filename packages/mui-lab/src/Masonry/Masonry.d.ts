@@ -40,7 +40,10 @@ export interface MasonryOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface MasonryTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface MasonryTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & MasonryOwnProps;
   defaultComponent: DefaultComponent;
 }

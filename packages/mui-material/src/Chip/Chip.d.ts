@@ -92,7 +92,10 @@ export interface ChipOwnProps {
   variant?: OverridableStringUnion<'filled' | 'outlined', ChipPropsVariantOverrides>;
 }
 
-export interface ChipTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface ChipTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & ChipOwnProps;
   defaultComponent: DefaultComponent;
 }

@@ -56,7 +56,10 @@ export interface IconOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface IconTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'span'> {
+export interface IconTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'span',
+> {
   props: AdditionalProps & IconOwnProps;
   defaultComponent: DefaultComponent;
 }

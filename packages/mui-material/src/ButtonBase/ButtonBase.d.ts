@@ -85,7 +85,10 @@ export interface ButtonBaseOwnProps {
   touchRippleRef?: React.Ref<TouchRippleActions>;
 }
 
-export interface ButtonBaseTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'button'> {
+export interface ButtonBaseTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'button',
+> {
   props: AdditionalProps & ButtonBaseOwnProps;
   defaultComponent: DefaultComponent;
 }

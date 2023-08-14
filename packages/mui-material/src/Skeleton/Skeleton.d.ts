@@ -46,7 +46,10 @@ export interface SkeletonOwnProps {
   width?: number | string;
 }
 
-export interface SkeletonTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'span'> {
+export interface SkeletonTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'span',
+> {
   props: AdditionalProps & SkeletonOwnProps;
   defaultComponent: DefaultComponent;
 }

@@ -33,7 +33,10 @@ export interface ToolbarOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ToolbarTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface ToolbarTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & ToolbarOwnProps;
   defaultComponent: DefaultComponent;
 }

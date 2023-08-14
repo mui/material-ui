@@ -39,7 +39,10 @@ export interface ListSubheaderOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ListSubheaderTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'li'> {
+export interface ListSubheaderTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'li',
+> {
   props: AdditionalProps & ListSubheaderOwnProps;
   defaultComponent: DefaultComponent;
 }

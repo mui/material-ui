@@ -92,7 +92,10 @@ export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
   >;
 }
 
-export interface BackdropTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface BackdropTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & BackdropOwnProps;
   defaultComponent: DefaultComponent;
 }

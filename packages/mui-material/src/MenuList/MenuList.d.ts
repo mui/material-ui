@@ -36,7 +36,10 @@ export interface MenuListOwnProps {
   variant?: 'menu' | 'selectedMenu';
 }
 
-export type MenuListTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'ul'> = ExtendListTypeMap<{
+export type MenuListTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'ul',
+> = ExtendListTypeMap<{
   props: AdditionalProps & MenuListOwnProps;
   defaultComponent: DefaultComponent;
 }>;

@@ -39,7 +39,10 @@ export interface StackOwnProps extends SystemProps<Theme> {
   sx?: SxProps<Theme>;
 }
 
-export interface StackTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface StackTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & StackOwnProps;
   defaultComponent: DefaultComponent;
 }

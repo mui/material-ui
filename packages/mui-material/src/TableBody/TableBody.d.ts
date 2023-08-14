@@ -19,7 +19,10 @@ export interface TableBodyOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TableBodyTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'tbody'> {
+export interface TableBodyTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'tbody',
+> {
   props: AdditionalProps & TableBodyOwnProps;
   defaultComponent: DefaultComponent;
 }

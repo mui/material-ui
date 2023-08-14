@@ -53,7 +53,10 @@ export interface DividerOwnProps {
   variant?: OverridableStringUnion<'fullWidth' | 'inset' | 'middle', DividerPropsVariantOverrides>;
 }
 
-export interface DividerTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'hr'> {
+export interface DividerTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'hr',
+> {
   props: AdditionalProps & DividerOwnProps;
   defaultComponent: DefaultComponent;
 }

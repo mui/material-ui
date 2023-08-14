@@ -29,7 +29,10 @@ export interface ImageListItemOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ImageListItemTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'li'> {
+export interface ImageListItemTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'li',
+> {
   props: AdditionalProps & ImageListItemOwnProps;
   defaultComponent: DefaultComponent;
 }

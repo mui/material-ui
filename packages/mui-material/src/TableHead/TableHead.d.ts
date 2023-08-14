@@ -19,7 +19,10 @@ export interface TableHeadOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TableHeadTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'thead'> {
+export interface TableHeadTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'thead',
+> {
   props: AdditionalProps & TableHeadOwnProps;
   defaultComponent: DefaultComponent;
 }

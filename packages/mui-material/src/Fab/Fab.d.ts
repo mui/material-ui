@@ -67,8 +67,11 @@ export interface FabOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export type FabTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
-  props: AdditionalProps &  FabOwnProps;
+export type FabTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'button',
+> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps & FabOwnProps;
   defaultComponent: DefaultComponent;
 }>;
 

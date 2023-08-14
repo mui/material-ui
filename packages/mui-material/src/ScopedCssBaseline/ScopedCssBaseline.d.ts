@@ -25,7 +25,10 @@ export interface ScopedCssBaselineOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ScopedCssBaselineTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface ScopedCssBaselineTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & ScopedCssBaselineOwnProps;
   defaultComponent: DefaultComponent;
 }

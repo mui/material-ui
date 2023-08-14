@@ -19,7 +19,10 @@ export interface TableFooterOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TableFooterTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'tfoot'> {
+export interface TableFooterTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'tfoot',
+> {
   props: AdditionalProps & TableFooterOwnProps;
   defaultComponent: DefaultComponent;
 }

@@ -39,7 +39,10 @@ export interface TableOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TableTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'table'> {
+export interface TableTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'table',
+> {
   props: AdditionalProps & TableOwnProps;
   defaultComponent: DefaultComponent;
 }

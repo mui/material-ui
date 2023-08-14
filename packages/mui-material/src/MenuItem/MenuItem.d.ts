@@ -48,7 +48,10 @@ export interface MenuItemOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export type MenuItemTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'li'> = ExtendButtonBaseTypeMap<{
+export type MenuItemTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'li',
+> = ExtendButtonBaseTypeMap<{
   props: AdditionalProps & MenuItemOwnProps;
   defaultComponent: DefaultComponent;
 }>;

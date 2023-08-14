@@ -79,7 +79,10 @@ export interface FormControlOwnProps {
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export interface FormControlTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface FormControlTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & FormControlOwnProps;
   defaultComponent: DefaultComponent;
 }

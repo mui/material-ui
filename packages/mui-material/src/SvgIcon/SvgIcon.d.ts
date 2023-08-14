@@ -83,7 +83,10 @@ export interface SvgIconOwnProps {
   viewBox?: string;
 }
 
-export interface SvgIconTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'svg'> {
+export interface SvgIconTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'svg',
+> {
   props: AdditionalProps & SvgIconOwnProps;
   defaultComponent: DefaultComponent;
 }

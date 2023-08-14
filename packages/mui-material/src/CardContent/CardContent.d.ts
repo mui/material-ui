@@ -19,7 +19,10 @@ export interface CardContentOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface CardContentTypeMap<AdditionalProps = {}, DefaultComponent extends React.ElementType = 'div'> {
+export interface CardContentTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
   props: AdditionalProps & CardContentOwnProps;
   defaultComponent: DefaultComponent;
 }
