@@ -20,6 +20,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import { useRouter } from 'next/router';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
@@ -340,6 +341,15 @@ export default function DemoToolbar(props) {
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
+  const handleCopyClick = async () => {
+    try {
+      await copy(demoData.raw);
+      setSnackbarMessage(t('copiedSource'));
+      setSnackbarOpen(true);
+    } finally {
+      handleMoreClose();
+    }
+  };
 
   const createHandleCodeSourceLink = (anchor, codeVariantParam, stylingSolution) => async () => {
     try {
@@ -526,8 +536,9 @@ export default function DemoToolbar(props) {
                 data-ga-event-action="source-js"
                 data-ga-event-label={demo.gaLabel}
                 {...getControlProps(1)}
+                // eslint-disable-next-line material-ui/no-hardcoded-labels
               >
-                {t('JS')}
+                JS
               </ToggleButton>
               <ToggleButton
                 value={CODE_VARIANTS.TS}
@@ -537,8 +548,9 @@ export default function DemoToolbar(props) {
                 data-ga-event-action="source-ts"
                 data-ga-event-label={demo.gaLabel}
                 {...getControlProps(2)}
+                // eslint-disable-next-line material-ui/no-hardcoded-labels
               >
-                {t('TS')}
+                TS
               </ToggleButton>
             </ToggleButtonGroup>
           </Box>
@@ -587,6 +599,18 @@ export default function DemoToolbar(props) {
               </DemoTooltip>
             </React.Fragment>
           )}
+          <DemoTooltip title={t('copySource')} placement="bottom">
+            <IconButton
+              data-ga-event-category="demo"
+              data-ga-event-label={demo.gaLabel}
+              data-ga-event-action="copy"
+              onClick={handleCopyClick}
+              {...getControlProps(6)}
+              sx={{ borderRadius: 1 }}
+            >
+              <ContentCopyRoundedIcon />
+            </IconButton>
+          </DemoTooltip>
           <DemoTooltip title={t('resetFocus')} placement="bottom">
             <IconButton
               data-ga-event-category="demo"
@@ -724,6 +748,7 @@ export default function DemoToolbar(props) {
         message={snackbarMessage}
       />
     </React.Fragment>
+    /* eslint-enable material-ui/no-hardcoded-labels */
   );
 }
 
