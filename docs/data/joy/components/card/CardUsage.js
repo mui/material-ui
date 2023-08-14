@@ -13,8 +13,8 @@ export default function CardUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
-          defaultValue: 'plain',
+          knob: 'radio',
+          defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {

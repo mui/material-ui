@@ -15,6 +15,7 @@ import CreateNewFolder from '@mui/icons-material/CreateNewFolder';
 export default function DribbbleShot() {
   return (
     <Card
+      variant="plain"
       sx={{
         width: 300,
         bgcolor: 'initial',
