@@ -10,7 +10,7 @@ export default function AlertUsage() {
         {
           propName: 'variant',
           knob: 'radio',
-          defaultValue: 'outlined',
+          defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
