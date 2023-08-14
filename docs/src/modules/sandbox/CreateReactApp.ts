@@ -30,8 +30,6 @@ export const getHtml = ({
     <!-- Check the Tailwind CSS's installation guide for setting up tailwind: https://tailwindcss.com/docs/installation -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      const defaultTheme = require('tailwindcss/defaultTheme');
-
       tailwind.config = {
         theme: {
           extend: {
