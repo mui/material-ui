@@ -55,6 +55,10 @@ describe('CodeSandbox', () => {
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
     />
+    <link
+      href="https://fonts.cdnfonts.com/css/ibm-plex-sans"
+      rel="stylesheet"
+    />
     <!-- Icons to support Material Design -->
     <link
       rel="stylesheet"
@@ -143,6 +147,10 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+    />
+    <link
+      href="https://fonts.cdnfonts.com/css/ibm-plex-sans"
+      rel="stylesheet"
     />
     <!-- Icons to support Material Design -->
     <link
