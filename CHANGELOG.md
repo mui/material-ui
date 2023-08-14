@@ -46,7 +46,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 14 -->[docs][material-ui] Remove incorrect `aria-label`s in extended variant examples of Floating Action Button (#37170) @ashleykolodziej
 - &#8203;<!-- 13 -->[docs][material-ui] Adjust slightly the installation page content (#38380) @danilo-leal
 - &#8203;<!-- 12 -->[docs][Switch] Fix the readOnly class name in docs (#38277) @michaldudak
-- &#8203;<!-- 11 -->[docs][TablePagination] Add Tailwind CSS & plain CSS  introduction demo (#38286) @mnajdova
+- &#8203;<!-- 11 -->[docs][TablePagination] Add Tailwind CSS & plain CSS introduction demo (#38286) @mnajdova
 
 ### Examples
 
@@ -67,7 +67,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 03 -->[website] Fix EmailSubscribe look (#38429) @oliviertassinari
 - &#8203;<!-- 02 -->[website] Link Discord in footer (#38369) @richbustos
 - &#8203;<!-- 01 -->[website] Clean up the `GetStartedButtons` component (#38256) @danilo-leal
-
 
 All contributors of this release in alphabetical order: @alexfauquette, @ashleykolodziej, @danilo-leal, @decadef20, @DiegoAndai, @flaviendelangle, @LukasTy, @michaldudak, @mj12albert, @mnajdova, @nithins1, @oliviertassinari, @richbustos, @sai6855, @samuelsycamore, @TheNatkat, @zanivan
 
