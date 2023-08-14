@@ -24,7 +24,7 @@ export default function SwitchUsage() {
           propName: 'size',
           knob: 'radio',
           options: ['sm', 'md', 'lg'],
-          defaultValue: 'md',
+          defaultValue: 'sm',
         },
         { propName: 'disabled', knob: 'switch' },
       ]}
