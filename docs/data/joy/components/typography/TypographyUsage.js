@@ -41,7 +41,8 @@ export default function TypographyUsage() {
         {
           propName: 'children',
           knob: 'input',
-          defaultValue: 'Typography',
+          defaultValue:
+            'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
         },
 
         {
@@ -52,7 +53,17 @@ export default function TypographyUsage() {
       ]}
       renderDemo={(props) => (
         <Box sx={{ maxWidth: '400px' }}>
-          <Typography {...props}>{props.children}</Typography>
+          <Typography
+            {...props}
+            sx={{
+              overflow: 'hidden',
+              display: '-webkit-box',
+              '-webkit-line-clamp': '3',
+              '-webkit-box-orient': 'vertical',
+            }}
+          >
+            {props.children}
+          </Typography>
         </Box>
       )}
     />
