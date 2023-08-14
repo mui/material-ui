@@ -100,7 +100,8 @@ function Styles() {
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         color: ${isDarkMode ? grey[300] : grey[900]};
         position: relative;
-        box-shadow: 0px 2px 24px ${isDarkMode ? cyan[900] : cyan[100]};
+        box-shadow: 0px 2px 24px ${isDarkMode ? cyan[800] : cyan[100]};
+
 
 
         transition-property: all;
