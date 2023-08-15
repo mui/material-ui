@@ -1,3 +1,12 @@
-<StyledBadge badgeContent={5}>
-  <BadgeContent />
-</StyledBadge>
+<React.Fragment>
+  <Badge
+    slotProps={{
+      root: { className: 'CustomBadgeIntroduction' },
+      badge: { className: 'CustomBadgeIntroduction--badge' },
+    }}
+    badgeContent={5}
+  >
+    <span className="CustomBadgeIntroduction--content" />
+  </Badge>
+  <Styles />
+</React.Fragment>
