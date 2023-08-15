@@ -13,38 +13,42 @@ export default function NotificationCard() {
         variant="outlined"
         sx={(theme) => ({
           display: 'flex',
-          p: 1.5,
+          p: 2,
+          gap: 2,
           maxWidth: 283,
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.800',
+            bgcolor: 'primaryDark.900',
+            borderColor: 'primaryDark.700',
           }),
         })}
       >
         <Avatar
           imgProps={{ 'aria-labelledby': 'demo-notification-card-messenger-name' }}
           src="/static/images/avatar/3-sm.jpeg"
-          variant="rounded"
           sx={{ width: 40, height: 40 }}
         />
-        <Box sx={{ ml: 1, flexBasis: 180, flexGrow: 1, minWidth: '0px' }}>
+        <Box sx={{ flexGrow: 1 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography
               id="demo-notification-card-messenger-name"
-              color="text.secondary"
-              variant="caption"
-              sx={{ fontWeight: 500 }}
+              color="primary.400"
+              fontWeight={500}
+              fontSize={12}
+              gutterBottom
             >
-              Angela Erickson
+              From: Angela Erickson
             </Typography>
             <Typography color="text.secondary" variant="caption">
-              12:50
+              09:41
             </Typography>
           </Box>
-          <Box sx={{ display: 'flex', mt: 0.5 }}>
+          <Box sx={{ display: 'flex' }}>
             <Box sx={{ flexGrow: 1, minWidth: '0px' }}>
-              <Typography component="div">Great news</Typography>
-              <Typography variant="caption" color="text.secondary" noWrap sx={{ fontWeight: 500 }}>
-                Hey! Check this out, just a few minutes ago...
+              <Typography fontWeight={600} fontSize={14} gutterBottom>
+                Incredible discoveries!
+              </Typography>
+              <Typography fontSize={14} color="text.secondary" noWrap>
+                Just found out Material UI & Joy UI and wow...
               </Typography>
             </Box>
             <Chip
