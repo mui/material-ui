@@ -12,6 +12,7 @@ import {
   ExtendListItemButton,
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
+import listItemClasses from '../ListItem/listItemClasses';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
 import RowListContext from '../List/RowListContext';
@@ -80,7 +81,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     minBlockSize: 'var(--ListItem-minHeight)',
     border: '1px solid transparent', // use `transparent` as a placeholder to prevent the button from jumping when switching to `outlined` variant
     borderRadius: 'var(--ListItem-radius)',
-    flex: 'none', // prevent children from shrinking when the List's height is limited.
+    flex: 'var(--unstable_ListItem-flex, none)', // prevent children from shrinking when the List's height is limited.
     fontSize: 'inherit', // prevent user agent style when component="button"
     lineHeight: 'inherit', // prevent user agent style when component="button"
     minInlineSize: 0,
@@ -89,6 +90,9 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       zIndex: 1, // to be above of the next element. For example, the first Tab item should be above the second so that the outline is above the second Tab.
     },
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    [`.${listItemClasses.root} > &`]: {
+      '--unstable_ListItem-flex': '1 0 0%', // grow to fill the available space of ListItem
+    },
     [`&.${listItemButtonClasses.selected}`]: {
       ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
       '--Icon-color': 'currentColor',
