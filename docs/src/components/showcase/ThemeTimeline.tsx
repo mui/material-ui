@@ -9,7 +9,6 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector, { timelineConnectorClasses } from '@mui/lab/TimelineConnector';
 import TimelineContent, { timelineContentClasses } from '@mui/lab/TimelineContent';
 import TimelineDot, { timelineDotClasses } from '@mui/lab/TimelineDot';
-import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
 export default function BasicTimeline() {
   return (
@@ -18,46 +17,41 @@ export default function BasicTimeline() {
         variant="outlined"
         sx={(theme) => ({
           p: 2,
+          pb: 1,
           display: 'flex',
           alignItems: 'flex-start',
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.800',
+            bgcolor: 'primaryDark.900',
+            borderColor: 'primaryDark.700',
           }),
         })}
       >
         <Box
           sx={(theme) => ({
-            p: 0.5,
-            borderRadius: 0.5,
-            minWidth: 28,
-            typography: 'body2',
+            height: 24,
+            width: 24,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             textAlign: 'center',
+            fontSize: '0.75rem',
+            fontWeight: 700,
+            borderRadius: 0.3,
             bgcolor: 'primary.50',
-            color: 'primary.main',
+            color: 'primary.600',
             ...theme.applyDarkStyles({
-              bgcolor: 'primary.700',
-              color: '#fff',
+              bgcolor: 'primary.900',
+              color: 'primary.50',
             }),
           })}
         >
           1
         </Box>
         <Box sx={{ ml: 2, flex: 1 }}>
-          <Box sx={{ display: 'flex' }}>
-            <Typography
-              variant="body2"
-              sx={(theme) => ({
-                mb: 1,
-                color: 'text.secondary',
-                ...theme.applyDarkStyles({
-                  color: 'grey.400',
-                }),
-              })}
-            >
-              Use the sx prop to add these properties:
-            </Typography>
-            <InfoOutlined fontSize="small" sx={{ ml: 'auto', color: 'grey.500' }} />
-          </Box>
+          <Typography variant="body2" color="text.primary" gutterBottom>
+            Install one of our production-ready libraries to get your next app started inevitably
+            successful:
+          </Typography>
           <Timeline
             sx={[
               {
@@ -65,7 +59,7 @@ export default function BasicTimeline() {
                 py: 0,
                 my: 0,
                 [`& .${timelineItemClasses.root}`]: {
-                  minHeight: 36,
+                  minHeight: 24,
                   '&:before': {
                     display: 'none',
                   },
@@ -79,8 +73,8 @@ export default function BasicTimeline() {
                   bgcolor: 'primary.500',
                 },
                 [`& .${timelineConnectorClasses.root}`]: {
-                  margin: '-15px 0',
-                  bgcolor: 'primary.50',
+                  margin: '-8px 0',
+                  bgcolor: 'primary.100',
                 },
                 [`& .${timelineContentClasses.root}`]: {
                   fontSize: '0.875rem',
@@ -90,7 +84,7 @@ export default function BasicTimeline() {
               (theme) =>
                 theme.applyDarkStyles({
                   [`& .${timelineConnectorClasses.root}`]: {
-                    bgcolor: 'primaryDark.700',
+                    bgcolor: 'primary.900',
                   },
                   [`& .${timelineContentClasses.root}`]: {
                     color: 'grey.100',
@@ -103,20 +97,20 @@ export default function BasicTimeline() {
                 <TimelineDot />
                 <TimelineConnector />
               </TimelineSeparator>
-              <TimelineContent>Margin Top</TimelineContent>
+              <TimelineContent>Material UI</TimelineContent>
             </TimelineItem>
             <TimelineItem>
               <TimelineSeparator>
                 <TimelineDot />
                 <TimelineConnector />
               </TimelineSeparator>
-              <TimelineContent>Padding Bottom</TimelineContent>
+              <TimelineContent>Base UI</TimelineContent>
             </TimelineItem>
             <TimelineItem>
               <TimelineSeparator>
                 <TimelineDot />
               </TimelineSeparator>
-              <TimelineContent>Flexbox</TimelineContent>
+              <TimelineContent>Joy UI</TimelineContent>
             </TimelineItem>
           </Timeline>
         </Box>

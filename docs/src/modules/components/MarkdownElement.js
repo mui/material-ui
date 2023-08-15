@@ -107,13 +107,18 @@ const Root = styled('div')(
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '20px 0 8px',
     },
-    '& p, & ul, & ol': {
+    '& p': {
       marginTop: 0,
       marginBottom: 16,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
     },
-    '& ul': {
+    '& ul, & ol': {
       paddingLeft: 30,
+      marginTop: 0,
+      marginBottom: 16,
+      '& ul, & ol': {
+        marginBottom: 6,
+      },
     },
     '& h1, & h2, & h3, & h4': {
       position: 'relative',

@@ -10,6 +10,7 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { shouldHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 import featureToggle from 'docs/src/featureToggle';
+import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 
 const Nav = styled('nav')(({ theme }) => ({
   top: 'var(--MuiDocs-header-height)',
@@ -350,6 +351,7 @@ export default function AppTableOfContents(props) {
           </NavList>
         </React.Fragment>
       ) : null}
+      <DiamondSponsors />
     </Nav>
   );
 }

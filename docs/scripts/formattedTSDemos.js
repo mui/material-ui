@@ -106,14 +106,14 @@ async function transpileFile(tsxPath, program) {
       },
     });
     const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
-
     const prettierConfig = prettier.resolveConfig.sync(jsPath, {
       config: path.join(workspaceRoot, 'prettier.config.js'),
     });
     const prettierFormat = (jsSource) =>
       prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
 
-    const prettified = prettierFormat(codeWithPropTypes);
+    const codeWithoutTsIgnoreComments = codeWithPropTypes.replace(/^\s*\/\/ @ts-ignore.*$/gm, '');
+    const prettified = prettierFormat(codeWithoutTsIgnoreComments);
     const formatted = fixBabelGeneratorIssues(prettified);
     const correctedLineEndings = fixLineEndings(source, formatted);
 
