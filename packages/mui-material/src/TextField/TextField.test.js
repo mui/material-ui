@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { spy } from 'sinon';
+import { createRenderer, describeConformance, fireEvent } from 'test/utils';
 import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
@@ -224,6 +225,17 @@ describe('<TextField />', () => {
       );
 
       expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
+    });
+  });
+
+  describe('click handling', () => {
+    it('should trigger `onClick` only once', () => {
+      const handleClick = spy();
+      const { getByRole } = render(
+        <TextField variant="outlined" disabled label="Test" onClick={handleClick} />,
+      );
+      fireEvent.click(getByRole('textbox'));
+      expect(handleClick.callCount).to.equal(1);
     });
   });
 });
