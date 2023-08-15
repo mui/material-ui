@@ -30,9 +30,9 @@
     "url": "https://opencollective.com/mui"
   },
   "dependencies": {
-    "@babel/core": "^7.22.9",
-    "@babel/runtime": "^7.22.6",
-    "@babel/traverse": "^7.22.8",
+    "@babel/core": "^7.22.10",
+    "@babel/runtime": "^7.22.10",
+    "@babel/traverse": "^7.22.10",
     "jscodeshift": "^0.13.1",
     "jscodeshift-add-imports": "^1.0.10",
     "yargs": "^17.7.2"
