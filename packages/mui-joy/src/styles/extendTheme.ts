@@ -231,7 +231,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       divider: `rgba(${getCssVar(
         'palette-neutral-mainChannel',
         colorChannel(defaultColors.neutral[500]), // should be the same index as in `attachColorChannels`
-      )} / 0.3)`,
+      )} / 0.2)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
