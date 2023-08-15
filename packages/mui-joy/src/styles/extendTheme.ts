@@ -191,7 +191,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...defaultColors.neutral,
         ...createLightModeVariantVariables('neutral'),
         plainColor: getCssVarColor('palette-neutral-700'),
+        plainHoverBg: getCssVarColor(`palette-neutral-300`),
+        plainActiveBg: getCssVarColor(`palette-neutral-400`),
+
         outlinedColor: getCssVarColor('palette-neutral-700'),
+        
       },
       danger: {
         ...defaultColors.danger,
