@@ -46,6 +46,7 @@ const AspectRatioRoot = styled('div', {
         : theme.vars.palette.text.icon,
     borderRadius: 'var(--AspectRatio-radius)',
     display: ownerState.flex ? 'flex' : 'block',
+    flex: ownerState.flex ? 1 : 'initial',
     flexDirection: 'column',
     margin: 'var(--AspectRatio-margin)',
   };
