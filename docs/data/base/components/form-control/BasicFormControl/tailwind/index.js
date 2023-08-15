@@ -16,7 +16,7 @@ export default function BasicFormControl() {
 
   return (
     <div className={`${isDarkMode ? 'dark' : ''}`}>
-      <FormControl defaultValue="" required>
+      <FormControl defaultValue="" className="font-sans" required>
         <Label>Name</Label>
         <Input
           placeholder="Write your name here"

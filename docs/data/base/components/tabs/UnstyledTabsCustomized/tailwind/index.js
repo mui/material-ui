@@ -11,7 +11,7 @@ export default function UnstyledTabsCustomized() {
         <Tab
           slotProps={{
             root: ({ selected, disabled }) => ({
-              className: `${
+              className: `font-sans ${
                 selected
                   ? 'text-purple-500 bg-white'
                   : 'text-white bg-transparent focus:text-white hover:bg-purple-400'
@@ -27,7 +27,7 @@ export default function UnstyledTabsCustomized() {
         <Tab
           slotProps={{
             root: ({ selected, disabled }) => ({
-              className: `${
+              className: `font-sans ${
                 selected
                   ? 'text-purple-500 bg-white'
                   : 'text-white bg-transparent focus:text-white hover:bg-purple-400'
@@ -43,7 +43,7 @@ export default function UnstyledTabsCustomized() {
         <Tab
           slotProps={{
             root: ({ selected, disabled }) => ({
-              className: `${
+              className: `font-sans ${
                 selected
                   ? 'text-purple-500 bg-white'
                   : 'text-white bg-transparent focus:text-white hover:bg-purple-400'

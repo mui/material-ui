@@ -23,7 +23,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(
         }),
         input: {
           className:
-            'col-start-1 col-end-2 row-start-1 row-end-3 text-sm leading-normal text-slate-900 bg-inherit border-0 rounded-[inherit] dark:text-slate-300 px-3 py-2 outline-0 focus-visible:outline-0 focus-visible:outline-none',
+            'col-start-1 col-end-2 row-start-1 row-end-3 text-sm font-sans leading-normal text-slate-900 bg-inherit border-0 rounded-[inherit] dark:text-slate-300 px-3 py-2 outline-0 focus-visible:outline-0 focus-visible:outline-none',
         },
         incrementButton: {
           children: '▴',
