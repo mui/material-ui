@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import { Badge as BaseBadge } from '@mui/base/Badge';
 import { useTheme } from '@mui/system';
 
+import clsx from 'clsx';
+
 function useIsDarkMode() {
   const theme = useTheme();
   return theme.palette.mode === 'dark';
