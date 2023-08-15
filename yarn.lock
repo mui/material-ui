@@ -1693,10 +1693,10 @@
   resolved "https://registry.yarnpkg.com/@eslint-community/regexpp/-/regexpp-4.6.2.tgz#1816b5f6948029c5eaacb0703b850ee0cb37d8f8"
   integrity sha512-pPTNuaAG3QMH+buKyBIGJs3g/S5y0caxw0ygM3YyE6yJFySwiGGSzA+mM3KJ8QQvzeLh3blwgSonkFjgQdxzMw==
 
-"@eslint/eslintrc@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-2.1.1.tgz#18d635e24ad35f7276e8a49d135c7d3ca6a46f93"
-  integrity sha512-9t7ZA7NGGK8ckelF0PQCfcxIUzs1Md5rrO6U/c+FIQNanea5UZC0wqKXH4vHBccmu4ZJgZ2idtPeW7+Q2npOEA==
+"@eslint/eslintrc@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-2.1.2.tgz#c6936b4b328c64496692f76944e755738be62396"
+  integrity sha512-+wvgpDsrB1YqAMdEUCcnTlpfVBH7Vqn6A/NT3D8WVXFIaKMlErPIZT3oCIAVCOtarRpMtelZLqJeU3t7WY6X6g==
   dependencies:
     ajv "^6.12.4"
     debug "^4.3.2"
@@ -1708,10 +1708,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@eslint/js@^8.46.0":
-  version "8.46.0"
-  resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.46.0.tgz#3f7802972e8b6fe3f88ed1aabc74ec596c456db6"
-  integrity sha512-a8TLtmPi8xzPkCbp/OGFUo5yhRkHM2Ko9kOWP4znJr0WAhWyThaw3PnwX4vOTWOAMsV2uRt32PPDcEz63esSaA==
+"@eslint/js@^8.47.0":
+  version "8.47.0"
+  resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.47.0.tgz#5478fdf443ff8158f9de171c704ae45308696c7d"
+  integrity sha512-P6omY1zv5MItm93kLM8s2vr1HICJH8v0dvddDhysbIuZ+vcjOHg5Zbkf1mTkcmi2JA9oBG2anOkRnW8WJTS8Og==
 
 "@fast-csv/format@4.3.5":
   version "4.3.5"
@@ -7558,20 +7558,20 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-2.1.0.tgz#f65328259305927392c938ed44eb0a5c9b2bd303"
   integrity sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==
 
-eslint-visitor-keys@^3.3.0, eslint-visitor-keys@^3.4.1, eslint-visitor-keys@^3.4.2:
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-3.4.2.tgz#8c2095440eca8c933bedcadf16fefa44dbe9ba5f"
-  integrity sha512-8drBzUEyZ2llkpCA67iYrgEssKDUu68V8ChqqOfFupIaG/LCVPUT+CoGJpT77zJprs4T/W7p07LP7zAIMuweVw==
+eslint-visitor-keys@^3.3.0, eslint-visitor-keys@^3.4.1, eslint-visitor-keys@^3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-3.4.3.tgz#0cd72fe8550e3c2eae156a96a4dddcd1c8ac5800"
+  integrity sha512-wpc+LXeiyiisxPlEkUzU6svyS1frIO3Mgxj1fdy7Pm8Ygzguax2N3Fa/D/ag1WqbOprdI+uY6wMUl8/a2G+iag==
 
-eslint@^8.46.0:
-  version "8.46.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.46.0.tgz#a06a0ff6974e53e643acc42d1dcf2e7f797b3552"
-  integrity sha512-cIO74PvbW0qU8e0mIvk5IV3ToWdCq5FYG6gWPHHkx6gNdjlbAYvtfHmlCMXxjcoVaIdwy/IAt3+mDkZkfvb2Dg==
+eslint@^8.47.0:
+  version "8.47.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.47.0.tgz#c95f9b935463fb4fad7005e626c7621052e90806"
+  integrity sha512-spUQWrdPt+pRVP1TTJLmfRNJJHHZryFmptzcafwSvHsceV81djHOdnEeDmkdotZyLNjDhrOasNK8nikkoG1O8Q==
   dependencies:
     "@eslint-community/eslint-utils" "^4.2.0"
     "@eslint-community/regexpp" "^4.6.1"
-    "@eslint/eslintrc" "^2.1.1"
-    "@eslint/js" "^8.46.0"
+    "@eslint/eslintrc" "^2.1.2"
+    "@eslint/js" "^8.47.0"
     "@humanwhocodes/config-array" "^0.11.10"
     "@humanwhocodes/module-importer" "^1.0.1"
     "@nodelib/fs.walk" "^1.2.8"
@@ -7582,7 +7582,7 @@ eslint@^8.46.0:
     doctrine "^3.0.0"
     escape-string-regexp "^4.0.0"
     eslint-scope "^7.2.2"
-    eslint-visitor-keys "^3.4.2"
+    eslint-visitor-keys "^3.4.3"
     espree "^9.6.1"
     esquery "^1.4.2"
     esutils "^2.0.2"
