@@ -33,7 +33,7 @@ export default function FlexAspectRatio() {
             Lorem ipsum is placeholder text commonly used in the graphic.
           </Typography>
           <CardActions buttonFlex="none">
-            <Button variant="soft" color="neutral">
+            <Button variant="outlined" color="primary" size="sm">
               Learn more
             </Button>
           </CardActions>
