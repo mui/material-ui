@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import Tabs, { TabsOwnProps } from '@mui/base/Tabs';
-import TabsList from '@mui/base/TabsList';
-import TabPanel from '@mui/base/TabPanel';
-import Tab from '@mui/base/Tab';
+import { Tabs, TabsOwnProps } from '@mui/base/Tabs';
+import { TabsList } from '@mui/base/TabsList';
+import { TabPanel } from '@mui/base/TabPanel';
+import { Tab } from '@mui/base/Tab';
 import HighlightedCode from './HighlightedCode';
 
 const StyledTabList = styled(TabsList)(({ theme }) => ({

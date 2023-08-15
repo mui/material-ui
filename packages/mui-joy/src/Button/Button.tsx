@@ -1,8 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useButton from '@mui/base/useButton';
-import composeClasses from '@mui/base/composeClasses';
+import { useButton } from '@mui/base/useButton';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { Interpolation } from '@mui/system';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, Theme, useThemeProps } from '../styles';
@@ -149,7 +149,7 @@ export const getButtonStyles = ({
         width: '100%',
       }),
       [theme.focus.selector]: theme.focus.default,
-    },
+    } as const,
     {
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '&:hover': {

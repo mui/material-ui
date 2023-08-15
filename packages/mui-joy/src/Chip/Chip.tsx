@@ -2,8 +2,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useButton from '@mui/base/useButton';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useButton } from '@mui/base/useButton';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { useThemeProps } from '../styles';
@@ -100,7 +100,7 @@ const ChipRoot = styled('div', {
       [`&.${chipClasses.disabled}`]: {
         color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       },
-    },
+    } as const,
     ...(!ownerState.clickable
       ? [
           {
@@ -162,7 +162,7 @@ const ChipAction = styled('button', {
     textDecoration: 'none',
     borderRadius: 'inherit',
     [theme.focus.selector]: theme.focus.default,
-  },
+  } as const,
   {
     backgroundColor: theme.vars.palette.background.surface,
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],

@@ -617,7 +617,7 @@ export function getThemedComponents(): ThemeOptions {
                     color: (theme.vars || theme).palette.primary.main,
                   },
                 },
-              },
+              } as const,
               theme.applyDarkStyles({
                 color: (theme.vars || theme).palette.grey[500],
                 borderColor: (theme.vars || theme).palette.primaryDark[600],
@@ -901,7 +901,7 @@ export function getThemedComponents(): ThemeOptions {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
                 },
               },
-            },
+            } as const,
             theme.applyDarkStyles({
               color: theme.palette.grey[300],
               '&:hover': {
@@ -1023,7 +1023,7 @@ export function getThemedComponents(): ThemeOptions {
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
                 backgroundColor: (theme.vars || theme).palette.primary[50],
               },
-            },
+            } as const,
             theme.applyDarkStyles({
               color: theme.palette.grey[300],
               borderColor: theme.palette.primaryDark[500],
@@ -1101,7 +1101,7 @@ export function getThemedComponents(): ThemeOptions {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
                 },
               },
-            },
+            } as const,
             theme.applyDarkStyles({
               color: theme.palette.grey[300],
               borderColor: theme.palette.primaryDark[500],

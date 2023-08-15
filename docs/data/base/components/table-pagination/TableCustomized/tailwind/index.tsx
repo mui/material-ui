@@ -1,6 +1,7 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import { useTheme } from '@mui/system';
-import TablePagination from '@mui/base/TablePagination';
+import { TablePagination, TablePaginationProps } from '@mui/base/TablePagination';
 
 function useIsDarkMode() {
   const theme = useTheme();
@@ -91,8 +92,7 @@ export default function TableCustomized() {
         </tbody>
         <tfoot>
           <tr className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5">
-            <TablePagination
-              className="CustomTablePagination p-1.5"
+            <CustomTablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
               count={rows.length}
@@ -101,27 +101,10 @@ export default function TableCustomized() {
               slotProps={{
                 select: {
                   'aria-label': 'rows per page',
-                  className:
-                    'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl bg-transparent hover:bg-slate-20 hover:dark:bg-slate-800 focus:outline-0 focus:shadow-outline-purple-xs',
                 },
                 actions: {
                   showFirstButton: true,
                   showLastButton: true,
-                  className:
-                    'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl text-center [&>button]:my-0 [&>button]:mx-2 [&>button]:border-transparent [&>button]:rounded-sm [&>button]:bg-transparent [&>button:hover]:bg-slate-50 [&>button:hover]:dark:bg-slate-800 [&>button:focus]:outline-0 [&>button:focus]:shadow-outline-purple-xs',
-                },
-                spacer: {
-                  className: 'hidden',
-                },
-                toolbar: {
-                  className:
-                    'flex flex-col items-start gap-2.5 md:flex-row md:items-center',
-                },
-                selectLabel: {
-                  className: 'm-0',
-                },
-                displayedRows: {
-                  className: 'm-0 md:ml-auto',
                 },
               }}
               onPageChange={handleChangePage}
@@ -133,6 +116,94 @@ export default function TableCustomized() {
     </div>
   );
 }
+
+const resolveSlotProps = (fn: any, args: any) =>
+  typeof fn === 'function' ? fn(args) : fn;
+
+const CustomTablePagination = React.forwardRef<
+  HTMLTableCellElement,
+  TablePaginationProps
+>((props, ref) => {
+  return (
+    <TablePagination
+      ref={ref}
+      {...props}
+      className={clsx('CustomTablePagination p-1.5', props.className)}
+      slotProps={{
+        ...props.slotProps,
+        select: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.select,
+            ownerState,
+          );
+          return {
+            ...resolvedSlotProps,
+            className: clsx(
+              'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl bg-transparent hover:bg-slate-20 hover:dark:bg-slate-800 focus:outline-0 focus:shadow-outline-purple-xs',
+              resolvedSlotProps?.className,
+            ),
+          };
+        },
+        actions: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.actions,
+            ownerState,
+          );
+          return {
+            ...resolvedSlotProps,
+            className: clsx(
+              'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl text-center [&>button]:my-0 [&>button]:mx-2 [&>button]:border-transparent [&>button]:rounded-sm [&>button]:bg-transparent [&>button:hover]:bg-slate-50 [&>button:hover]:dark:bg-slate-800 [&>button:focus]:outline-0 [&>button:focus]:shadow-outline-purple-xs',
+              resolvedSlotProps?.className,
+            ),
+          };
+        },
+        spacer: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.spacer,
+            ownerState,
+          );
+          return {
+            ...resolvedSlotProps,
+            className: clsx('hidden', resolvedSlotProps?.className),
+          };
+        },
+        toolbar: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.toolbar,
+            ownerState,
+          );
+          return {
+            ...resolvedSlotProps,
+            className: clsx(
+              'flex flex-col items-start gap-2.5 md:flex-row md:items-center',
+              resolvedSlotProps?.className,
+            ),
+          };
+        },
+        selectLabel: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.selectLabel,
+            ownerState,
+          );
+          return {
+            ...resolvedSlotProps,
+            className: clsx('m-0', resolvedSlotProps?.className),
+          };
+        },
+        displayedRows: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(
+            props.slotProps?.displayedRows,
+            ownerState,
+          );
+          return {
+            ...resolvedSlotProps,
+            className: clsx('m-0 md:ml-auto', resolvedSlotProps?.className),
+          };
+        },
+      }}
+    />
+  );
+});
 
 function createData(name: string, calories: number, fat: number) {
   return { name, calories, fat };
