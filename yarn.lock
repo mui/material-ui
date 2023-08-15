@@ -13131,10 +13131,10 @@ pirates@^4.0.1, pirates@^4.0.5:
   resolved "https://registry.yarnpkg.com/pirates/-/pirates-4.0.5.tgz#feec352ea5c3268fb23a37c702ab1699f35a5f3b"
   integrity sha512-8V9+HQPupnaXMA23c5hvl69zXvTwTzyAYasnkb0Tts4XvO4CliqONMOnvlq26rkhLC3nWDFBJf73LU1e1VZLaQ==
 
-piscina@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/piscina/-/piscina-4.0.0.tgz#f8913d52b2000606d51aaa242f0813a0c77ca3b1"
-  integrity sha512-641nAmJS4k4iqpNUqfggqUBUMmlw0ZoM5VZKdQkV2e970Inn3Tk9kroCc1wpsYLD07vCwpys5iY0d3xI/9WkTg==
+piscina@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/piscina/-/piscina-4.1.0.tgz#809578ee3ab2ecf4cf71c2a062100b4b95a85b96"
+  integrity sha512-sjbLMi3sokkie+qmtZpkfMCUJTpbxJm/wvaPzU28vmYSsTSW8xk9JcFUsbqGJdtPpIQ9tuj+iDcTtgZjwnOSig==
   dependencies:
     eventemitter-asyncresource "^1.0.0"
     hdr-histogram-js "^2.0.1"
