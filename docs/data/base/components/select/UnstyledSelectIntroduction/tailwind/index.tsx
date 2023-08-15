@@ -1,11 +1,39 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { Select } from '@mui/base/Select';
-import { Option as BaseOption } from '@mui/base/Option';
+import { Select, SelectRootSlotProps, SelectProps } from '@mui/base/Select';
+import {
+  Option as BaseOption,
+  OptionProps,
+  OptionOwnerState,
+} from '@mui/base/Option';
 import { useTheme } from '@mui/system';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import clsx from 'clsx';
 
-const getOptionColorClasses = ({ selected, highlighted, disabled }) => {
+function useIsDarkMode() {
+  const theme = useTheme();
+  return theme.palette.mode === 'dark';
+}
+
+export default function UnstyledSelectIntroduction() {
+  // Replace this with your app logic for determining dark modes
+  const isDarkMode = useIsDarkMode();
+
+  return (
+    <div className={isDarkMode ? 'dark' : ''}>
+      <CustomSelect defaultValue={10}>
+        <Option value={10}>Documentation</Option>
+        <Option value={20}>Components</Option>
+        <Option value={30}>Features</Option>
+      </CustomSelect>
+    </div>
+  );
+}
+
+const getOptionColorClasses = ({
+  selected,
+  highlighted,
+  disabled,
+}: Partial<OptionOwnerState<number>>) => {
   let classes = '';
   if (disabled) {
     classes += 'text-slate-400 dark:text-slate-700';
@@ -23,7 +51,7 @@ const getOptionColorClasses = ({ selected, highlighted, disabled }) => {
   return classes;
 };
 
-const Option = React.forwardRef((props, ref) => {
+const Option = React.forwardRef<HTMLLIElement, OptionProps<number>>((props, ref) => {
   return (
     <BaseOption
       ref={ref}
@@ -39,29 +67,29 @@ const Option = React.forwardRef((props, ref) => {
   );
 });
 
-function useIsDarkMode() {
-  const theme = useTheme();
-  return theme.palette.mode === 'dark';
-}
-
-export default function UnstyledSelectBasic() {
-  // Replace this with your app logic for determining dark modes
-  const isDarkMode = useIsDarkMode();
-
+const Button = React.forwardRef(function Button<
+  TValue extends {},
+  Multiple extends boolean,
+>(
+  props: SelectRootSlotProps<TValue, Multiple>,
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) {
+  const { ownerState, ...other } = props;
   return (
-    <div className={isDarkMode ? 'dark' : ''}>
-      <CustomSelect defaultValue={10}>
-        <Option value={10}>Ten</Option>
-        <Option value={20}>Twenty</Option>
-        <Option value={30}>Thirty</Option>
-      </CustomSelect>
-    </div>
+    <button type="button" {...other} ref={ref}>
+      {other.children}
+      <UnfoldMoreRoundedIcon />
+    </button>
   );
-}
+});
 
-const resolveSlotProps = (fn, args) => (typeof fn === 'function' ? fn(args) : fn);
+const resolveSlotProps = (fn: any, args: any) =>
+  typeof fn === 'function' ? fn(args) : fn;
 
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+const CustomSelect = React.forwardRef(function CustomSelect<
+  TValue extends {},
+  Multiple extends boolean,
+>(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
   // Replace this with your app logic for determining dark modes
   const isDarkMode = useIsDarkMode();
 
@@ -69,6 +97,10 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
     <Select
       ref={ref}
       {...props}
+      slots={{
+        root: Button,
+        ...props.slots,
+      }}
       className={clsx('CustomSelect', props.className)}
       slotProps={{
         ...props.slotProps,
@@ -80,13 +112,11 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `text-sm font-sans box-border w-80 px-3 py-2 rounded-lg text-left bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-700 outline-0 shadow shadow-slate-200 dark:shadow-slate-900 ${
+              `relative text-sm font-sans box-border w-80 px-3 py-2 rounded-lg text-left bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-700 outline-0 shadow-md shadow-slate-100 dark:shadow-slate-900 ${
                 ownerState.focusVisible
                   ? 'border-purple-400 shadow-outline-purple'
                   : ''
-              } ${
-                ownerState.open ? 'after:content-["▴"]' : 'after:content-["▾"]'
-              } after:float-right`,
+              } [&>svg]:text-base	[&>svg]:absolute [&>svg]:h-full [&>svg]:top-0 [&>svg]:right-2.5`,
               resolvedSlotProps?.className,
             ),
           };
@@ -121,16 +151,3 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
     />
   );
 });
-
-CustomSelect.propTypes = {
-  className: PropTypes.string,
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-};
