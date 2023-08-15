@@ -50,7 +50,7 @@ const linkMapping = {
   minimal: 'https://mui.com/store/items/minimal-dashboard/',
   theFront: 'https://mui.com/store/items/the-front-landing-page/',
   miro: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
-  flexy: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
+  devias: 'https://mui.com/store/items/devias-kit-pro/',
   berry: 'https://mui.com/store/items/berry-react-material-admin/',
   webbee: 'https://mui.com/store/items/webbee-landing-page/',
 };
