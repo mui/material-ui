@@ -10,7 +10,7 @@
       "description": "Props applied to the <a href=\"/material-ui/api/modal/\"><code>Modal</code></a> element."
     },
     "onClose": {
-      "description": "Callback fired when the component requests to be closed.",
+      "description": "Callback fired when the component requests to be closed. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>.",
       "typeDescriptions": {
         "event": "The event source of the callback.",
         "reason": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>."
