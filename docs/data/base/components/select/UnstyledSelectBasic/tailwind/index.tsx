@@ -57,12 +57,7 @@ export default function UnstyledSelectBasic() {
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
-      <CustomSelect
-        slotProps={{
-          popper: { className: `${isDarkMode ? 'dark' : ''} z-10` },
-        }}
-        defaultValue={10}
-      >
+      <CustomSelect defaultValue={10}>
         <Option value={10}>Ten</Option>
         <Option value={20}>Twenty</Option>
         <Option value={30}>Thirty</Option>
@@ -78,9 +73,13 @@ const CustomSelect = React.forwardRef(function CustomSelect<
   TValue extends {},
   Multiple extends boolean,
 >(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
+  // Replace this with your app logic for determining dark modes
+  const isDarkMode = useIsDarkMode();
+
   return (
     <Select
       ref={ref}
+      {...props}
       className={clsx('CustomSelect', props.className)}
       slotProps={{
         ...props.slotProps,
@@ -92,7 +91,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `text-sm box-border w-80 px-3 py-2 rounded-lg text-left bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-700 outline-0 shadow shadow-slate-200 dark:shadow-slate-900 ${
+              `text-sm font-sans box-border w-80 px-3 py-2 rounded-lg text-left bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-700 outline-0 shadow shadow-slate-200 dark:shadow-slate-900 ${
                 ownerState.focusVisible
                   ? 'border-purple-400 shadow-outline-purple'
                   : ''
@@ -123,11 +122,13 @@ const CustomSelect = React.forwardRef(function CustomSelect<
           );
           return {
             ...resolvedSlotProps,
-            className: clsx(resolvedSlotProps?.className),
+            className: clsx(
+              `${isDarkMode ? 'dark' : ''} z-10`,
+              resolvedSlotProps?.className,
+            ),
           };
         },
       }}
-      {...props}
     />
   );
 });

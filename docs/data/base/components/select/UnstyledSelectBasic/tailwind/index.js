@@ -50,12 +50,7 @@ export default function UnstyledSelectBasic() {
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
-      <CustomSelect
-        slotProps={{
-          popper: { className: `${isDarkMode ? 'dark' : ''} z-10` },
-        }}
-        defaultValue={10}
-      >
+      <CustomSelect defaultValue={10}>
         <Option value={10}>Ten</Option>
         <Option value={20}>Twenty</Option>
         <Option value={30}>Thirty</Option>
@@ -67,9 +62,13 @@ export default function UnstyledSelectBasic() {
 const resolveSlotProps = (fn, args) => (typeof fn === 'function' ? fn(args) : fn);
 
 const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+  // Replace this with your app logic for determining dark modes
+  const isDarkMode = useIsDarkMode();
+
   return (
     <Select
       ref={ref}
+      {...props}
       className={clsx('CustomSelect', props.className)}
       slotProps={{
         ...props.slotProps,
@@ -81,7 +80,7 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `text-sm box-border w-80 px-3 py-2 rounded-lg text-left bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-700 outline-0 shadow shadow-slate-200 dark:shadow-slate-900 ${
+              `text-sm font-sans box-border w-80 px-3 py-2 rounded-lg text-left bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-700 outline-0 shadow shadow-slate-200 dark:shadow-slate-900 ${
                 ownerState.focusVisible
                   ? 'border-purple-400 shadow-outline-purple'
                   : ''
@@ -112,11 +111,13 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
           );
           return {
             ...resolvedSlotProps,
-            className: clsx(resolvedSlotProps?.className),
+            className: clsx(
+              `${isDarkMode ? 'dark' : ''} z-10`,
+              resolvedSlotProps?.className,
+            ),
           };
         },
       }}
-      {...props}
     />
   );
 });
@@ -129,149 +130,7 @@ CustomSelect.propTypes = {
    */
   slotProps: PropTypes.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        anchorEl: PropTypes.oneOfType([
-          function (props, propName) {
-            if (props[propName] == null) {
-              return new Error(
-                "Prop '" + propName + "' is required but wasn't specified",
-              );
-            } else if (
-              typeof props[propName] !== 'object' ||
-              props[propName].nodeType !== 1
-            ) {
-              return new Error(
-                "Expected prop '" + propName + "' to be of type Element",
-              );
-            }
-          },
-          PropTypes.func,
-          PropTypes.shape({
-            contextElement: function (props, propName) {
-              if (props[propName] == null) {
-                return null;
-              } else if (
-                typeof props[propName] !== 'object' ||
-                props[propName].nodeType !== 1
-              ) {
-                return new Error(
-                  "Expected prop '" + propName + "' to be of type Element",
-                );
-              }
-            },
-            getBoundingClientRect: PropTypes.func.isRequired,
-          }),
-        ]),
-        children: PropTypes.oneOfType([
-          PropTypes.element,
-          PropTypes.func,
-          PropTypes.number,
-          PropTypes.shape({
-            '__@iterator@62': PropTypes.func.isRequired,
-          }),
-          PropTypes.string,
-          PropTypes.bool,
-        ]),
-        container: PropTypes.oneOfType([
-          function (props, propName) {
-            if (props[propName] == null) {
-              return new Error(
-                "Prop '" + propName + "' is required but wasn't specified",
-              );
-            } else if (
-              typeof props[propName] !== 'object' ||
-              props[propName].nodeType !== 1
-            ) {
-              return new Error(
-                "Expected prop '" + propName + "' to be of type Element",
-              );
-            }
-          },
-          PropTypes.func,
-        ]),
-        direction: PropTypes.oneOf(['ltr', 'rtl']),
-        disablePortal: PropTypes.bool,
-        keepMounted: PropTypes.bool,
-        modifiers: PropTypes.arrayOf(
-          PropTypes.shape({
-            data: PropTypes.object,
-            effect: PropTypes.func,
-            enabled: PropTypes.bool,
-            fn: PropTypes.func,
-            name: PropTypes.any,
-            options: PropTypes.object,
-            phase: PropTypes.oneOf([
-              'afterMain',
-              'afterRead',
-              'afterWrite',
-              'beforeMain',
-              'beforeRead',
-              'beforeWrite',
-              'main',
-              'read',
-              'write',
-            ]),
-            requires: PropTypes.arrayOf(PropTypes.string),
-            requiresIfExists: PropTypes.arrayOf(PropTypes.string),
-          }),
-        ),
-        open: PropTypes.bool,
-        placement: PropTypes.oneOf([
-          'auto-end',
-          'auto-start',
-          'auto',
-          'bottom-end',
-          'bottom-start',
-          'bottom',
-          'left-end',
-          'left-start',
-          'left',
-          'right-end',
-          'right-start',
-          'right',
-          'top-end',
-          'top-start',
-          'top',
-        ]),
-        popperOptions: PropTypes.shape({
-          modifiers: PropTypes.array,
-          onFirstUpdate: PropTypes.func,
-          placement: PropTypes.oneOf([
-            'auto-end',
-            'auto-start',
-            'auto',
-            'bottom-end',
-            'bottom-start',
-            'bottom',
-            'left-end',
-            'left-start',
-            'left',
-            'right-end',
-            'right-start',
-            'right',
-            'top-end',
-            'top-start',
-            'top',
-          ]),
-          strategy: PropTypes.oneOf(['absolute', 'fixed']),
-        }),
-        popperRef: PropTypes.oneOfType([
-          PropTypes.func,
-          PropTypes.shape({
-            current: PropTypes.object,
-          }),
-        ]),
-        slotProps: PropTypes.shape({
-          root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-        }),
-        slots: PropTypes.shape({
-          root: PropTypes.elementType,
-        }),
-        transition: PropTypes.bool,
-      }),
-    ]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
 };

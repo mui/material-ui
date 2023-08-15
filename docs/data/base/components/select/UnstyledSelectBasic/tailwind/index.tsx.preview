@@ -1,9 +1,4 @@
-<CustomSelect
-  slotProps={{
-    popper: { className: `${isDarkMode ? 'dark' : ''} z-10` },
-  }}
-  defaultValue={10}
->
+<CustomSelect defaultValue={10}>
   <Option value={10}>Ten</Option>
   <Option value={20}>Twenty</Option>
   <Option value={30}>Thirty</Option>

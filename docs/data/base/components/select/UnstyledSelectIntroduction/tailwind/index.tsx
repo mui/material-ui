@@ -9,6 +9,26 @@ import { useTheme } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import clsx from 'clsx';
 
+function useIsDarkMode() {
+  const theme = useTheme();
+  return theme.palette.mode === 'dark';
+}
+
+export default function UnstyledSelectIntroduction() {
+  // Replace this with your app logic for determining dark modes
+  const isDarkMode = useIsDarkMode();
+
+  return (
+    <div className={isDarkMode ? 'dark' : ''}>
+      <CustomSelect defaultValue={10}>
+        <Option value={10}>Documentation</Option>
+        <Option value={20}>Components</Option>
+        <Option value={30}>Features</Option>
+      </CustomSelect>
+    </div>
+  );
+}
+
 const getOptionColorClasses = ({
   selected,
   highlighted,
@@ -63,31 +83,6 @@ const Button = React.forwardRef(function Button<
   );
 });
 
-function useIsDarkMode() {
-  const theme = useTheme();
-  return theme.palette.mode === 'dark';
-}
-
-export default function UnstyledSelectIntroduction() {
-  // Replace this with your app logic for determining dark modes
-  const isDarkMode = useIsDarkMode();
-
-  return (
-    <div className={isDarkMode ? 'dark' : ''}>
-      <CustomSelect
-        slotProps={{
-          popper: { className: `${isDarkMode ? '' : ''} z-20` },
-        }}
-        defaultValue={10}
-      >
-        <Option value={10}>Documentation</Option>
-        <Option value={20}>Components</Option>
-        <Option value={30}>Features</Option>
-      </CustomSelect>
-    </div>
-  );
-}
-
 const resolveSlotProps = (fn: any, args: any) =>
   typeof fn === 'function' ? fn(args) : fn;
 
@@ -95,11 +90,18 @@ const CustomSelect = React.forwardRef(function CustomSelect<
   TValue extends {},
   Multiple extends boolean,
 >(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
+  // Replace this with your app logic for determining dark modes
+  const isDarkMode = useIsDarkMode();
+
   return (
     <Select
       ref={ref}
+      {...props}
+      slots={{
+        root: Button,
+        ...props.slots,
+      }}
       className={clsx('CustomSelect', props.className)}
-      slots={{ root: Button }}
       slotProps={{
         ...props.slotProps,
         root: (ownerState) => {
@@ -139,11 +141,13 @@ const CustomSelect = React.forwardRef(function CustomSelect<
           );
           return {
             ...resolvedSlotProps,
-            className: clsx(resolvedSlotProps?.className),
+            className: clsx(
+              `${isDarkMode ? 'dark' : ''} z-10`,
+              resolvedSlotProps?.className,
+            ),
           };
         },
       }}
-      {...props}
     />
   );
 });
