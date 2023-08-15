@@ -4,13 +4,15 @@ import generateUtilityClass from '../generateUtilityClass';
 export interface SkeletonClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `variant="text"`. */
+  /** Styles applied to the root element if `size="text"`. */
   text: string;
-  /** Styles applied to the root element if `variant="rectangular"`. */
+  /** Styles applied to the root element if `size="text"`. */
+  box: string;
+  /** Styles applied to the root element if `shape="rectangular"`. */
   rectangular: string;
-  /** Styles applied to the root element if `variant="rounded"`. */
+  /** Styles applied to the root element if `shape="rounded"`. */
   rounded: string;
-  /** Styles applied to the root element if `variant="circular"`. */
+  /** Styles applied to the root element if `shape="circular"`. */
   circular: string;
   /** Styles applied to the root element if `animation="pulse"`. */
   pulse: string;
@@ -33,6 +35,7 @@ export function getSkeletonUtilityClass(slot: string): string {
 const skeletonClasses: SkeletonClasses = generateUtilityClasses('MuiSkeleton', [
   'root',
   'text',
+  'box',
   'rectangular',
   'rounded',
   'circular',

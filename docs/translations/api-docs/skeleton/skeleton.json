@@ -12,6 +12,10 @@
     "height": {
       "description": "Height of the skeleton. Useful when you don&#39;t want to adapt the skeleton to a text element but for instance a card."
     },
+    "shape": { "description": "The shape of the skeleton." },
+    "size": {
+      "description": "Determines the scaling behavior of the skeleton, whether to adapt to the size of the text or the size of the containing element."
+    },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -25,22 +29,27 @@
     "text": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code>"
+      "conditions": "<code>size=\"text\"</code>"
+    },
+    "box": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"text\"</code>"
     },
     "rectangular": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"rectangular\"</code>"
+      "conditions": "<code>shape=\"rectangular\"</code>"
     },
     "rounded": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"rounded\"</code>"
+      "conditions": "<code>shape=\"rounded\"</code>"
     },
     "circular": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"circular\"</code>"
+      "conditions": "<code>shape=\"circular\"</code>"
     },
     "pulse": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

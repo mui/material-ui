@@ -11,6 +11,13 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "height": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "shape": {
+      "type": {
+        "name": "enum",
+        "description": "'circular'<br>&#124;&nbsp;'rectangular'<br>&#124;&nbsp;'rounded'"
+      }
+    },
+    "size": { "type": { "name": "enum", "description": "'text'<br>&#124;&nbsp;'box'" } },
     "sx": {
       "type": {
         "name": "union",
@@ -23,7 +30,9 @@
         "name": "union",
         "description": "'circular'<br>&#124;&nbsp;'rectangular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
-      "default": "'text'"
+      "default": "'text'",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>shape</code> prop to set the shape of the skeleton and <code>size</code> prop to set the scale adaptation."
     },
     "width": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
   },
@@ -36,6 +45,7 @@
     "classes": [
       "root",
       "text",
+      "box",
       "rectangular",
       "rounded",
       "circular",

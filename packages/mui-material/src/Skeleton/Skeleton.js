@@ -10,11 +10,13 @@ import useThemeProps from '../styles/useThemeProps';
 import { getSkeletonUtilityClass } from './skeletonClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, animation, hasChildren, width, height } = ownerState;
+  const { classes, variant, shape, size, animation, hasChildren, width, height } = ownerState;
 
   const slots = {
     root: [
       'root',
+      size,
+      shape,
       variant,
       animation,
       hasChildren && 'withChildren',
@@ -60,9 +62,10 @@ const SkeletonRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-
     return [
       styles.root,
+      styles[ownerState.shape],
+      styles[ownerState.size],
       styles[ownerState.variant],
       ownerState.animation !== false && styles[ownerState.animation],
       ownerState.hasChildren && styles.withChildren,
@@ -74,6 +77,8 @@ const SkeletonRoot = styled('span', {
   ({ theme, ownerState }) => {
     const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
     const radiusValue = toUnitless(theme.shape.borderRadius);
+    const shape = ownerState.shape || ownerState.variant;
+    const size = ownerState.size || ownerState.variant;
 
     return {
       display: 'block',
@@ -82,7 +87,7 @@ const SkeletonRoot = styled('span', {
         ? theme.vars.palette.Skeleton.bg
         : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
       height: '1.2em',
-      ...(ownerState.variant === 'text' && {
+      ...(size === 'text' && {
         marginTop: 0,
         marginBottom: 0,
         height: 'auto',
@@ -95,10 +100,10 @@ const SkeletonRoot = styled('span', {
           content: '"\\00a0"',
         },
       }),
-      ...(ownerState.variant === 'circular' && {
+      ...(shape === 'circular' && {
         borderRadius: '50%',
       }),
-      ...(ownerState.variant === 'rounded' && {
+      ...(shape === 'rounded' && {
         borderRadius: (theme.vars || theme).shape.borderRadius,
       }),
       ...(ownerState.hasChildren && {
@@ -156,6 +161,8 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     className,
     component = 'span',
     height,
+    shape,
+    size,
     style,
     variant = 'text',
     width,
@@ -166,6 +173,8 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     ...props,
     animation,
     component,
+    size,
+    shape,
     variant,
     hasChildren: Boolean(other.children),
   };
@@ -222,6 +231,15 @@ Skeleton.propTypes /* remove-proptypes */ = {
    */
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
+   * The shape of the skeleton.
+   */
+  shape: PropTypes.oneOf(['circular', 'rectangular', 'rounded']),
+  /**
+   * Determines the scaling behavior of the skeleton, whether to adapt to the size of the text or
+   * the size of the containing element.
+   */
+  size: PropTypes.oneOf(['text', 'box']),
+  /**
    * @ignore
    */
   style: PropTypes.object,
@@ -236,6 +254,7 @@ Skeleton.propTypes /* remove-proptypes */ = {
   /**
    * The type of content that will be rendered.
    * @default 'text'
+   * @deprecated Use `shape` prop to set the shape of the skeleton and `size` prop to set the scale adaptation.
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['circular', 'rectangular', 'rounded', 'text']),
