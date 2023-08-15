@@ -39,7 +39,7 @@ export default function MyApp() {
 
 The following demo shows how to assign styles and props to the Switch component:
 
-{{"demo": "UnstyledSwitchBasic"}}
+{{"demo": "UnstyledSwitchIntroduction"}}
 
 ### Anatomy
 

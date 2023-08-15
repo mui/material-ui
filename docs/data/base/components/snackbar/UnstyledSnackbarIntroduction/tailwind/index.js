@@ -40,7 +40,7 @@ export default function UnstyledSnackbarIntroduction() {
   return (
     <div className={`${isDarkMode ? 'dark' : ''}`}>
       <button
-        className="cursor-pointer text-sm box-border rounded-lg font-semibold px-4 py-2 bg-violet-500 hover:bg-violet-600 active:bg-violet-700 text-white border-none leading-normalfocus-visible:outline-0 focus-visible:shadow-outline-purple"
+        className="cursor-pointer text-sm font-sans box-border rounded-lg font-semibold px-4 py-2 bg-violet-500 hover:bg-violet-600 active:bg-violet-700 text-white border-none leading-normal focus-visible:outline-0 focus-visible:shadow-outline-purple"
         type="button"
         onClick={handleClick}
       >
@@ -51,7 +51,7 @@ export default function UnstyledSnackbarIntroduction() {
         open={open}
         onClose={handleClose}
         exited={exited}
-        className="fixed z-50 flex right-4 bottom-4 left-auto max-w-xl	min-w-xs"
+        className="fixed z-50 font-sans flex right-4 bottom-4 left-auto max-w-xl	min-w-xs"
       >
         <Transition
           timeout={{ enter: 400, exit: 400 }}
