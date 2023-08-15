@@ -1,5 +1,5 @@
 ---
-title: MUI X v6.11.1. A roundup of all new features
+title: MUI X v6.11.0. A roundup of all new features
 description: Support for time zones, Charts in alpha, Data Grid filtering, and more.
 date: 2023-08-14T00:00:00.000Z
 authors: ['richbustos', 'josefreitas']
@@ -7,12 +7,12 @@ card: false
 tags: ['MUI X', 'News']
 ---
 
-<a href="https://github.com/mui/mui-x/releases/tag/v6.11.1">
+<a href="https://github.com/mui/mui-x/releases/tag/v6.11.0">
   <img src="/static/blog/mui-x-mid-v6-features/intro.png" alt="open release page" width="1384" height="346" style="margin-bottom: 16px;" />
 </a>
 
 Since the first v6 stable release, we've continuously rolled out new major features.
-Now that we've reached [MUI X v6.11.1](https://github.com/mui/mui-x/releases/tag/v6.11.1), it's time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
+Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases/tag/v6.11.0), it's time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
 
 ## Table of contents
 
@@ -23,7 +23,7 @@ Now that we've reached [MUI X v6.11.1](https://github.com/mui/mui-x/releases/ta
   - [Filter on column headers](#filter-on-column-headers) <a title="Pro plan" href="/x/introduction/licensing/#pro-plan"><span class="plan-pro"></span></a>
   - [Copy and paste](#copy-and-paste) <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premium"></span></a>
 - [Charts - alpha version](#charts-alpha-version)
-- [Tree View is now part of the MUI X family](#tree-view-is-now-part-of-the-mui-x-family)
+- [Tree View is moving to MUI X](#tree-view-is-moving-to-mui-x)
 - [Feedback](#feedback)
 
 ## Date Pickers
@@ -118,9 +118,9 @@ Your input can directly influence our development schedule, so don't hesitate to
 
 [Get started with charts now!](https://mui.com/x/react-charts/)
 
-## Tree View is now part of the MUI X family
+## Tree View is moving to MUI X
 
-[Tree View](https://mui.com/x/react-tree-view/) will be migrating from the [lab](https://mui.com/material-ui/about-the-lab/) to Alpha and is now part of MUI X!
+Tree View is being migrated from the [lab](https://mui.com/material-ui/about-the-lab/) to MUI X, it will soon have a first Alpha release!
 
 The Tree View is a component that represents hierarchical in a tree-like format.
 Think of a file system navigator displaying folders and files or a navigation list.
@@ -130,6 +130,9 @@ Think of a file system navigator displaying folders and files or a navigation li
 </video>
 
 Keep on the look out on our next blog for the Tree View migration.
+
+We decided to migrate this component to MUI X as there are still many features that would be great to build (e.g. checkbox, drag & drop, virtualization) and it's usually not a significant component of a design system.
+Head to [MUI Core vs. MUI X](https://mui-org.notion.site/X-FAQ-c33e9a7eabba4da1ad7f8c04f99044cc) if you would like to learn more about this decision.
 
 ## Feedback
 

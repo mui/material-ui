@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { shouldHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
+import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 import featureToggle from 'docs/src/featureToggle';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
@@ -198,7 +198,7 @@ export default function AppTableOfContents(props) {
 
   const handleClick = (hash) => (event) => {
     // Ignore click for new tab/new window behavior
-    if (shouldHandleLinkClick(event)) {
+    if (samePageLinkNavigation(event)) {
       return;
     }
 
