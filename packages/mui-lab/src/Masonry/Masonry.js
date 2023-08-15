@@ -290,23 +290,17 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       return undefined;
     }
 
-    let animationFrame;
-
-    const resizeObserver = new ResizeObserver(() => {
-      // see https://github.com/mui/material-ui/issues/36909
-      animationFrame = window.requestAnimationFrame(handleResize);
-    });
+    const resizeObserver = new ResizeObserver(handleResize);
 
     if (masonryRef.current) {
       masonryRef.current.childNodes.forEach((childNode) => {
-        resizeObserver.observe(childNode);
+        if (childNode.dataset.class !== 'line-break') {
+          resizeObserver.observe(childNode);
+        }
       });
     }
 
     return () => {
-      if (animationFrame) {
-        window.cancelAnimationFrame(animationFrame);
-      }
       if (resizeObserver) {
         resizeObserver.disconnect();
       }
