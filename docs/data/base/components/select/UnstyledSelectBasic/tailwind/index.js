@@ -8,7 +8,7 @@ import clsx from 'clsx';
 const getOptionColorClasses = ({ selected, highlighted, disabled }) => {
   let classes = '';
   if (disabled) {
-    classes += 'text-slate-400 dark:text-slate-700';
+    classes += ' text-slate-400 dark:text-slate-700';
   } else {
     if (selected) {
       classes +=

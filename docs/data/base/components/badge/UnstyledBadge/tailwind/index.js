@@ -39,7 +39,7 @@ const Badge = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'box-border m-0 p-0 text-xs list-none relative inline-block leading-none',
+              'box-border m-0 p-0 text-xs font-sans list-none relative inline-block leading-none',
               resolvedSlotProps?.className,
             ),
           };
@@ -52,7 +52,7 @@ const Badge = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'z-auto absolute top-0 right-0 min-w-badge min-h-badge font-sans p-0 text-white font-semibold font-xs font-sans rounded-xl bg-purple-500 leading-5.5 whitespace-nowrap text-center translate-x-1/2 -translate-y-1/2 drop-shadow-lg origin-right',
+              'z-auto absolute top-0 right-0 min-w-badge min-h-badge font-sans p-0 text-white font-semibold font-xs rounded-xl bg-purple-500 leading-5.5 whitespace-nowrap text-center translate-x-1/2 -translate-y-1/2 drop-shadow-lg origin-right',
               resolvedSlotProps?.className,
             ),
           };
