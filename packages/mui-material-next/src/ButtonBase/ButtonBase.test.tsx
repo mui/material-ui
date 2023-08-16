@@ -553,7 +553,7 @@ describe('<ButtonBase />', () => {
       expect(getByText('Hello')).to.have.property('disabled', true);
     });
 
-    it('should reset the focused state', () => {
+    it('should reset the focused state upon being disabled', () => {
       const { getByText, setProps } = render(<ButtonBase>Hello</ButtonBase>);
       const button = getByText('Hello');
       simulatePointerDevice();
