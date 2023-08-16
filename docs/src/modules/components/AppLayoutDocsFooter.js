@@ -506,7 +506,6 @@ export default function AppLayoutDocsFooter(props) {
                   ref: inputRef,
                 }}
               />
-
               {rating !== 1 && (
                 <Alert
                   severity="warning"
