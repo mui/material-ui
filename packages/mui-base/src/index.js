@@ -48,3 +48,4 @@ export * from './useTab';
 export * from './useTabPanel';
 export * from './useTabs';
 export * from './useTabsList';
+export * from './unstable_useModal';

@@ -26,6 +26,10 @@
     }
   },
   "name": "AppBar",
+  "imports": [
+    "import AppBar from '@mui/material/AppBar';",
+    "import { AppBar } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

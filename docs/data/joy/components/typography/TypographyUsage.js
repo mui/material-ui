@@ -3,7 +3,7 @@ import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function TypographyUsages() {
+export default function TypographyUsage() {
   return (
     <JoyUsageDemo
       componentName="Typography"

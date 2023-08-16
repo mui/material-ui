@@ -125,7 +125,7 @@ const MenuButton = React.forwardRef(function MenuButton(
   const color = getColor(inProps.color, buttonGroup.color || colorProp);
   const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp || loading);
 
-  const { getRootProps, open, active } = useMenuButton({ rootRef: forwardedRef });
+  const { getRootProps, open, active } = useMenuButton({ rootRef: forwardedRef, disabled });
 
   const loadingIndicator = loadingIndicatorProp ?? (
     <CircularProgress

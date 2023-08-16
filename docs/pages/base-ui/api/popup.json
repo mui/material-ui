@@ -46,6 +46,10 @@
     "withTransition": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Popup",
+  "imports": [
+    "import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';",
+    "import { Unstable_Popup as Popup } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

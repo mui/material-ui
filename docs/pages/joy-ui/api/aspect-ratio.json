@@ -52,7 +52,11 @@
     }
   },
   "name": "AspectRatio",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import AspectRatio from '@mui/joy/AspectRatio';",
+    "import { AspectRatio } from '@mui/joy';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAspectRatio" },
   "slots": [
     {
       "name": "root",

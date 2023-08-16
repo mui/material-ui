@@ -31,7 +31,11 @@
     }
   },
   "name": "ListDivider",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import ListDivider from '@mui/joy/ListDivider';",
+    "import { ListDivider } from '@mui/joy';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiListDivider" },
   "slots": [
     {
       "name": "root",

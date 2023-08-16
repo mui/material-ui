@@ -45,7 +45,8 @@
     }
   },
   "name": "MenuList",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import MenuList from '@mui/joy/MenuList';", "import { MenuList } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiMenuList" },
   "slots": [
     {
       "name": "root",

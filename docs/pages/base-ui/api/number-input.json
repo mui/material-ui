@@ -42,7 +42,46 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "NumberInput",
+  "imports": [
+    "import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';",
+    "import { Unstable_NumberInput as NumberInput } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiNumberInput-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": ".MuiNumberInput-input"
+    },
+    {
+      "name": "incrementButton",
+      "description": "The component that renders the increment button.",
+      "default": "'button'",
+      "class": ".MuiNumberInput-incrementButton"
+    },
+    {
+      "name": "decrementButton",
+      "description": "The component that renders the decrement button.",
+      "default": "'button'",
+      "class": ".MuiNumberInput-decrementButton"
+    }
+  ],
+  "classes": {
+    "classes": ["disabled", "error", "focused", "formControl", "readOnly"],
+    "globalClasses": {
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "readOnly": "Mui-readOnly",
+      "error": "Mui-error"
+    }
+  },
   "spread": true,
   "muiName": "MuiNumberInput",
   "forwardsRefTo": "HTMLDivElement",

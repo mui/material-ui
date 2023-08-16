@@ -40,6 +40,7 @@
     }
   },
   "name": "Modal",
+  "imports": ["import { Modal } from '@mui/base/Modal';", "import { Modal } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

@@ -60,7 +60,11 @@
     }
   },
   "name": "RadioGroup",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import RadioGroup from '@mui/joy/RadioGroup';",
+    "import { RadioGroup } from '@mui/joy';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiRadioGroup" },
   "slots": [
     {
       "name": "root",
