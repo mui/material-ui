@@ -9,6 +9,7 @@ import FormControl, { useFormControl } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import { createTheme } from '@mui/material/styles';
+import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material-next/InputBase';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
@@ -627,6 +628,22 @@ describe('<InputBase />', () => {
       );
 
       expect(getByTestId('adornment')).not.to.equal(null);
+    });
+
+    // TODO: use material-next/Select
+    it('should allow a Select as an adornment', () => {
+      render(
+        <InputBase
+          value=""
+          name="text"
+          endAdornment={
+            <InputAdornment position="end">
+              <Select value="" name="suffix" />
+            </InputAdornment>
+          }
+          variant="standard"
+        />,
+      );
     });
   });
 
