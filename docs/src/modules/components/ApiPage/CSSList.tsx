@@ -22,16 +22,17 @@ export type CSSListProps = {
 
 type HashParams = { componentName?: string; className: string };
 
-export type GetPropsToCParams = {
+export type GetCssToCParams = {
   componentName: string;
   componentStyles: CSSListProps['componentStyles'];
   t: (key: any, options?: {}) => any;
   hash?: string;
 };
+
 const getHash = ({ componentName, className }: HashParams) =>
   `${componentName ? `${componentName}-` : ''}css-${className}`;
 
-export const getCssToC = ({ componentName, componentStyles, t, hash }: GetPropsToCParams) =>
+export const getCssToC = ({ componentName, componentStyles, t, hash }: GetCssToCParams) =>
   componentStyles.classes.length === 0
     ? []
     : [

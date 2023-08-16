@@ -3,13 +3,17 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
-import Checkbox from '@mui/material/Checkbox';
+import CalendarViewDayRoundedIcon from '@mui/icons-material/CalendarViewDayRounded';
+import ReorderRoundedIcon from '@mui/icons-material/ReorderRounded';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import ExpendableApiItem from './ApiPage/ExpendableApiItem';
+import useApiPageOption from 'docs/src/modules/utils/useApiPageOption';
+import ExpendableApiItem from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
 
 // TODO: Move to translation
 const additionalPropsInfoText = {
@@ -131,7 +135,14 @@ export default function PropertiesTable(props) {
   } = props;
   const t = useTranslate();
 
-  const [isExpended, setIsExpended] = React.useState(true);
+  const [displayOption, setDisplayOption] = useApiPageOption('api-page-props');
+
+  const handleAlignment = (event, newDisplayOption) => {
+    if (newDisplayOption === null) {
+      return;
+    }
+    setDisplayOption(newDisplayOption);
+  };
 
   return (
     <React.Fragment>
@@ -154,11 +165,30 @@ export default function PropertiesTable(props) {
             </svg>
           </a>
         </Level>
-        <Checkbox
-          sx={{ ml: 'auto' }}
-          checked={isExpended}
-          onChange={(event) => setIsExpended(event.target.checked)}
-        />
+
+        <ToggleButtonGroup
+          value={displayOption}
+          exclusive
+          onChange={handleAlignment}
+          // eslint-disable-next-line material-ui/no-hardcoded-labels
+          aria-label="API display option"
+        >
+          <ToggleButton
+            value="collapsed"
+            // eslint-disable-next-line material-ui/no-hardcoded-labels
+            aria-label="colapsed list"
+          >
+            <ReorderRoundedIcon />
+          </ToggleButton>
+
+          <ToggleButton
+            value="expended"
+            // eslint-disable-next-line material-ui/no-hardcoded-labels
+            aria-label="expended list"
+          >
+            <CalendarViewDayRoundedIcon />
+          </ToggleButton>
+        </ToggleButtonGroup>
       </div>
 
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
@@ -191,7 +221,7 @@ export default function PropertiesTable(props) {
                   ''
                 }
                 type="props"
-                isExtendable={isExtendable && isExpended}
+                isExtendable={isExtendable && displayOption === 'collapsed'}
               >
                 {propDescription?.description && (
                   <p
