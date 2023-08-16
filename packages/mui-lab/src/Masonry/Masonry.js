@@ -325,7 +325,14 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {children}
+      {children.map((child) => {
+        return React.cloneElement(child, {
+          style: {
+            ...child.props.style,
+            flexShrink: 0,
+          },
+        });
+      })}
       {lineBreaks}
     </MasonryRoot>
   );
