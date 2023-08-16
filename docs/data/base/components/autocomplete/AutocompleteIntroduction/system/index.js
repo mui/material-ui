@@ -1,74 +1,120 @@
 import * as React from 'react';
-import { useAutocomplete, UseAutocompleteProps } from '@mui/base/useAutocomplete';
+import PropTypes from 'prop-types';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
+import { Button } from '@mui/base/Button';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ClearIcon from '@mui/icons-material/Clear';
 
-const Autocomplete = React.forwardRef(function Autocomplete(
-  props: UseAutocompleteProps<(typeof top100Films)[number], false, false, false>,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
+const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
+  const {
+    disableClearable = false,
+    disabled = false,
+    readOnly = false,
+    ...other
+  } = props;
+
   const {
     getRootProps,
     getInputProps,
+    getPopupIndicatorProps,
+    getClearProps,
     getListboxProps,
     getOptionProps,
-    groupedOptions,
-    focused,
+    dirty,
+    id,
     popupOpen,
+    focused,
     anchorEl,
     setAnchorEl,
-  } = useAutocomplete(props);
+    groupedOptions,
+  } = useAutocomplete({
+    ...props,
+    componentName: 'BaseAutocompleteIntroduction',
+  });
+
+  const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
 
   const rootRef = useForkRef(ref, setAnchorEl);
 
   return (
     <React.Fragment>
       <StyledAutocompleteRoot
-        {...getRootProps()}
+        {...getRootProps(other)}
         ref={rootRef}
-        className={focused ? 'focused' : ''}
+        className={focused ? 'focused' : undefined}
       >
-        <StyledInput {...getInputProps()} />
+        <StyledInput
+          id={id}
+          ref={setAnchorEl}
+          disabled={disabled}
+          readOnly={readOnly}
+          {...getInputProps()}
+        />
+        {hasClearIcon && (
+          <StyledClearIndicator {...getClearProps()}>
+            <ClearIcon />
+          </StyledClearIndicator>
+        )}
+
+        <StyledPopupIndicator
+          {...getPopupIndicatorProps()}
+          className={popupOpen ? 'popupOpen' : undefined}
+        >
+          <ArrowDropDownIcon />
+        </StyledPopupIndicator>
       </StyledAutocompleteRoot>
-      {anchorEl && (
+      {anchorEl ? (
         <Popper
           open={popupOpen}
           anchorEl={anchorEl}
           slots={{
             root: StyledPopper,
           }}
+          modifiers={[
+            { name: 'flip', enabled: false },
+            { name: 'preventOverflow', enabled: false },
+          ]}
         >
           <StyledListbox {...getListboxProps()}>
-            {groupedOptions.length > 0 ? (
-              (groupedOptions as typeof top100Films).map((option, index) => (
-                <StyledOption {...getOptionProps({ option, index })}>
-                  {option.label}
-                </StyledOption>
-              ))
-            ) : (
+            {groupedOptions.map((option, index) => {
+              const optionProps = getOptionProps({ option, index });
+
+              return <StyledOption {...optionProps}>{option.label}</StyledOption>;
+            })}
+
+            {groupedOptions.length === 0 && (
               <StyledNoOptions>No results</StyledNoOptions>
             )}
           </StyledListbox>
         </Popper>
-      )}
+      ) : null}
     </React.Fragment>
   );
 });
 
-export default function UseAutocompletePopper() {
-  const [value, setValue] = React.useState<(typeof top100Films)[number] | null>(
-    null,
-  );
+Autocomplete.propTypes = {
+  /**
+   * If `true`, the input can't be cleared.
+   * @default false
+   */
+  disableClearable: PropTypes.oneOf([false]),
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
+   * @default false
+   */
+  readOnly: PropTypes.bool,
+};
 
-  const handleChange = (
-    event: React.SyntheticEvent,
-    newValue: (typeof top100Films)[number] | null,
-  ) => setValue(newValue);
-
-  return (
-    <Autocomplete options={top100Films} value={value} onChange={handleChange} />
-  );
+export default function AutocompleteIntroduction() {
+  return <Autocomplete options={top100Films} />;
 }
 
 const blue = {
@@ -101,21 +147,23 @@ const StyledAutocompleteRoot = styled('div')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  box-shadow: 0px 4px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   display: flex;
   gap: 5px;
   padding-right: 5px;
   overflow: hidden;
   width: 320px;
-  margin: 1.5rem 0;
-
+  
   &.focused {
     border-color: ${blue[400]};
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
   &:hover {
-    border-color: ${blue[400]};
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
   &:focus-visible {
@@ -163,7 +211,9 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 4px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
@@ -205,13 +255,58 @@ const StyledOption = styled('li')(
   `,
 );
 
+const StyledPopupIndicator = styled(Button)(
+  ({ theme }) => `
+    outline: 0;
+    box-shadow: none;
+    border: 0;
+    border-radius: 4px;
+    background-color: transparent;
+    align-self: center;
+    padding: 0 2px;
+    
+    &:hover {
+      background-color: ${theme.palette.mode === 'dark' ? grey[700] : blue[100]};
+      cursor: pointer;
+    }
+
+    & > svg {
+      transform: translateY(2px);
+    }
+
+    &.popupOpen > svg {
+      transform: translateY(2px) rotate(180deg);
+    }
+  `,
+);
+
+const StyledClearIndicator = styled(Button)(
+  ({ theme }) => `
+    outline: 0;
+    box-shadow: none;
+    border: 0;
+    border-radius: 4px;
+    background-color: transparent;
+    align-self: center;
+    padding: 0 2px;
+    
+    &:hover {
+      background-color: ${theme.palette.mode === 'dark' ? grey[700] : blue[100]};
+      cursor: pointer;
+    }
+
+    & > svg {
+      transform: translateY(2px) scale(0.9);
+    }
+  `,
+);
+
 const StyledNoOptions = styled('li')`
   list-style: none;
   padding: 8px;
   cursor: default;
 `;
 
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
   { label: 'The Shawshank Redemption', year: 1994 },
   { label: 'The Godfather', year: 1972 },

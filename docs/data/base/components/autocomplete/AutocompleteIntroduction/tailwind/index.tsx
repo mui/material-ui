@@ -1,217 +1,136 @@
 import * as React from 'react';
 import { useAutocomplete, UseAutocompleteProps } from '@mui/base/useAutocomplete';
+import { Button } from '@mui/base/Button';
 import { Popper } from '@mui/base/Popper';
-import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ClearIcon from '@mui/icons-material/Clear';
+import clsx from 'clsx';
 
 const Autocomplete = React.forwardRef(function Autocomplete(
   props: UseAutocompleteProps<(typeof top100Films)[number], false, false, false>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const {
+    disableClearable = false,
+    disabled = false,
+    readOnly = false,
+    options,
+    isOptionEqualToValue,
+    ...other
+  } = props;
+
+  const {
     getRootProps,
     getInputProps,
+    getPopupIndicatorProps,
+    getClearProps,
     getListboxProps,
     getOptionProps,
-    groupedOptions,
-    focused,
+    dirty,
+    id,
     popupOpen,
+    focused,
     anchorEl,
     setAnchorEl,
-  } = useAutocomplete(props);
+    groupedOptions,
+  } = useAutocomplete({
+    ...props,
+    componentName: 'BaseAutocompleteIntroduction',
+  });
+
+  const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
 
   const rootRef = useForkRef(ref, setAnchorEl);
 
   return (
     <React.Fragment>
-      <StyledAutocompleteRoot
-        {...getRootProps()}
+      <div
+        {...getRootProps(other)}
         ref={rootRef}
-        className={focused ? 'focused' : ''}
+        className={clsx(
+          'flex gap-[5px] pr-[5px] overflow-hidden w-80 rounded-lg bg-white dark:bg-gray-800 border border-solid border-gray-200 dark:border-gray-700 hover:border-violet-400 dark:hover:border-violet-400 focus-visible:outline-0',
+          !focused &&
+            'shadow-[0_2px_2px_transparent] shadow-gray-50 dark:shadow-gray-900',
+          focused &&
+            'border-violet-400 dark:border-violet-400 shadow-[0_0_0_3px_transparent] shadow-violet-200 dark:shadow-violet-500',
+        )}
       >
-        <StyledInput {...getInputProps()} />
-      </StyledAutocompleteRoot>
-      {anchorEl && (
+        <input
+          id={id}
+          ref={setAnchorEl}
+          disabled={disabled}
+          readOnly={readOnly}
+          {...getInputProps()}
+          className="text-sm leading-[1.5] text-gray-900 dark:text-gray-300 bg-inherit border-0 rounded-[inherit] px-3 py-2 outline-0 grow shrink-0 basis-auto"
+        />
+        {hasClearIcon && (
+          <Button
+            {...getClearProps()}
+            className="self-center outline-0 shadow-none border-0 py-0 px-0.5 rounded-[4px] bg-transparent hover:bg-violet-100 dark:hover:bg-gray-700 hover:cursor-pointer"
+          >
+            <ClearIcon className="translate-y-[2px] scale-90" />
+          </Button>
+        )}
+        <Button
+          {...getPopupIndicatorProps()}
+          className="self-center outline-0 shadow-none border-0 py-0 px-0.5 rounded-[4px] bg-transparent hover:bg-violet-100 dark:hover:bg-gray-700 hover:cursor-pointer"
+        >
+          <ArrowDropDownIcon
+            className={clsx('translate-y-[2px]', popupOpen && 'rotate-180')}
+          />
+        </Button>
+      </div>
+      {anchorEl ? (
         <Popper
           open={popupOpen}
           anchorEl={anchorEl}
-          slots={{
-            root: StyledPopper,
+          slotProps={{
+            root: {
+              className: 'relative z-[1001] w-80', // z-index: 1001 is needed to override ComponentPageTabs with z-index: 1000
+            },
           }}
+          modifiers={[
+            { name: 'flip', enabled: false },
+            { name: 'preventOverflow', enabled: false },
+          ]}
         >
-          <StyledListbox {...getListboxProps()}>
-            {groupedOptions.length > 0 ? (
-              (groupedOptions as typeof top100Films).map((option, index) => (
-                <StyledOption {...getOptionProps({ option, index })}>
+          <ul
+            {...getListboxProps()}
+            className="text-sm box-border p-1.5 my-3 mx-0 min-w-[320px] rounded-xl overflow-auto outline-0 max-h-[300px] z-[1] bg-white dark:bg-gray-800 border border-solid border-gray-200 dark:border-gray-900 text-gray-900 dark:text-gray-200 shadow-[0_4px_30px_transparent] shadow-gray-200 dark:shadow-gray-900"
+          >
+            {(groupedOptions as typeof top100Films).map((option, index) => {
+              const optionProps = getOptionProps({ option, index });
+
+              return (
+                <li
+                  {...optionProps}
+                  className="list-none p-2 rounded-lg cursor-default last-of-type:border-b-0 hover:cursor-pointer aria-selected:bg-violet-100 dark:aria-selected:bg-violet-900 aria-selected:text-violet-900 dark:aria-selected:text-violet-100 ui-focused:bg-gray-100 dark:ui-focused:bg-gray-700 ui-focus-visible:bg-gray-100 dark:ui-focus-visible:bg-gray-800 ui-focused:text-gray-900 dark:ui-focused:text-gray-300 ui-focus-visible:text-gray-900 dark:ui-focus-visible:text-gray-300 ui-focus-visible:shadow-[0_0_0_3px_transparent] ui-focus-visible:shadow-violet-200 dark:ui-focus-visible:shadow-violet-500 ui-focused:aria-selected:bg-violet-100 dark:ui-focused:aria-selected:bg-violet-900 ui-focus-visible:aria-selected:bg-violet-100 dark:ui-focus-visible:aria-selected:bg-violet-900 ui-focused:aria-selected:text-violet-900 dark:ui-focused:aria-selected:text-violet-100 ui-focus-visible:aria-selected:text-violet-900 dark:ui-focus-visible:aria-selected:text-violet-100"
+                >
                   {option.label}
-                </StyledOption>
-              ))
-            ) : (
-              <StyledNoOptions>No results</StyledNoOptions>
+                </li>
+              );
+            })}
+
+            {groupedOptions.length === 0 && (
+              <li className="list-none p-2 cursor-default">No results</li>
             )}
-          </StyledListbox>
+          </ul>
         </Popper>
-      )}
+      ) : null}
     </React.Fragment>
   );
 });
 
-export default function UseAutocompletePopper() {
-  const [value, setValue] = React.useState<(typeof top100Films)[number] | null>(
-    null,
-  );
-
-  const handleChange = (
-    event: React.SyntheticEvent,
-    newValue: (typeof top100Films)[number] | null,
-  ) => setValue(newValue);
-
+export default function AutocompleteIntroduction() {
   return (
-    <Autocomplete options={top100Films} value={value} onChange={handleChange} />
+    <Autocomplete
+      options={top100Films}
+      isOptionEqualToValue={(option, value) => option.label === value.label}
+    />
   );
 }
 
-const blue = {
-  100: '#DAECFF',
-  200: '#99CCF3',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  900: '#003A75',
-};
-
-const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
-};
-
-const StyledAutocompleteRoot = styled('div')(
-  ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: 400;
-  border-radius: 8px;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  display: flex;
-  gap: 5px;
-  padding-right: 5px;
-  overflow: hidden;
-  width: 320px;
-  margin: 1.5rem 0;
-
-  &.focused {
-    border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-  }
-
-  &:hover {
-    border-color: ${blue[400]};
-  }
-
-  &:focus-visible {
-    outline: 0;
-  }
-`,
-);
-
-const StyledInput = styled('input')(
-  ({ theme }) => `
-  font-size: 0.875rem;
-  font-family: inherit;
-  font-weight: 400;
-  line-height: 1.5;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  background: inherit;
-  border: none;
-  border-radius: inherit;
-  padding: 8px 12px;
-  outline: 0;
-  flex: 1 0 auto;
-`,
-);
-
-// ComponentPageTabs has z-index: 1000
-const StyledPopper = styled('div')`
-  position: relative;
-  z-index: 1001;
-  width: 320px;
-`;
-
-const StyledListbox = styled('ul')(
-  ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  padding: 6px;
-  margin: 12px 0;
-  min-width: 320px;
-  border-radius: 12px;
-  overflow: auto;
-  outline: 0px;
-  max-height: 300px;
-  z-index: 1;
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
-  `,
-);
-
-const StyledOption = styled('li')(
-  ({ theme }) => `
-  list-style: none;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: default;
-
-  &:last-of-type {
-    border-bottom: none;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &[aria-selected=true] {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
-    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-  }
-
-  &.Mui-focused,
-  &.Mui-focusVisible {
-    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  }
-
-  &.Mui-focusVisible {
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-  }
-
-  &[aria-selected=true].Mui-focused,
-  &[aria-selected=true].Mui-focusVisible {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
-    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-  }
-  `,
-);
-
-const StyledNoOptions = styled('li')`
-  list-style: none;
-  padding: 8px;
-  cursor: default;
-`;
-
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
   { label: 'The Shawshank Redemption', year: 1994 },
   { label: 'The Godfather', year: 1972 },

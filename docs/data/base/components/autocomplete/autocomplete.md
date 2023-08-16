@@ -18,7 +18,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 The autocomplete component is an enhanced text input that shows a list of suggested options as users type and lets them select an option from the list. It implements the WAI-ARIA Combobox pattern, and is typically used to assist users in completing form inputs or search queries faster.
 
-{{"demo": "AutocompleteIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "AutocompleteIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 :::warning
 Material UI and Joy UI have Autocomplete components that are built using the `useAutocomplete` hook, and they include many features not yet described here.
