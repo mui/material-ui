@@ -32,24 +32,27 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 },
 ```
 
-## Public Sans font
+## Inter font
 
-Joy UI is designed to use the [Public Sans](https://fonts.google.com/specimen/Public+Sans)
+Joy UI uses the [Inter](https://rsms.me/inter/)
 font by default.
-You may add it to your project with npm via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
+Add it to your project via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
+
+### Fontsource
+
+Run one of the following commands to add Inter through Fontsource to your Joy UI project:
 
 <codeblock storageKey="package-manager">
-
 ```bash npm
-npm install @fontsource/public-sans
+npm install @fontsource/inter
 ```
 
 ```bash yarn
-yarn add @fontsource/public-sans
+yarn add @fontsource/inter
 ```
 
 ```bash pnpm
-yarn add @fontsource/public-sans
+pnpm add @fontsource/inter
 ```
 
 </codeblock>
@@ -57,16 +60,18 @@ yarn add @fontsource/public-sans
 Then you can import it in your entry point like this:
 
 ```tsx
-import '@fontsource/public-sans';
+import '@fontsource/inter';
 ```
 
 ### Google Web Fonts
 
-To install the Public Sans font in your project using the Google Web Fonts CDN, add the following code snippet inside your project's `<head />` tag:
+To install Inter through the Google Web Fonts CDN, add the following code inside your project's `<head />` tag:
 
 ```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Public+Sans&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
 />
 ```

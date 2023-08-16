@@ -98,6 +98,13 @@ For example, this is how you'd go for displaying the menu on the bottom-end of t
 
 {{"demo": "GroupMenu.js"}}
 
+### Controlling the open state
+
+By default, the open/close state of the menu is managed internally by the Dropdown component.
+To control it programmatically from the outside, apply the Dropdown's `open` and `onOpenChange` props as shown below:
+
+{{"demo": "ControlledDropdown.js"}}
+
 ### `MenuList` composition
 
 To get full control of the DOM structure, use the `MenuList` component.

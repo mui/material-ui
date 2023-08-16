@@ -5,7 +5,7 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
 import { EventHandlers } from '../utils/types';
-import useForcedRerendering from '../utils/useForcedRerendering';
+import { useForcedRerendering } from '../utils/useForcedRerendering';
 import { UseListItemParameters, UseListItemReturnValue } from './useListItem.types';
 import { ListActionTypes } from './listActions.types';
 import { ListContext } from './ListContext';
@@ -18,7 +18,7 @@ import { ListContext } from './ListContext';
  * @template ItemValue The type of the item's value. This should be consistent with the type of useList's `items` parameter.
  * @ignore - internal hook.
  */
-export default function useListItem<ItemValue>(
+export function useListItem<ItemValue>(
   parameters: UseListItemParameters<ItemValue>,
 ): UseListItemReturnValue {
   const { handlePointerOverEvents = false, item, rootRef: externalRef } = parameters;

@@ -50,11 +50,6 @@
       "nodeName": "the content element",
       "conditions": "<code>color=\"danger\"</code>"
     },
-    "colorInfo": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the content element",
-      "conditions": "<code>color=\"info\"</code>"
-    },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the content element",

@@ -62,13 +62,14 @@ const adBodyInlineStyles = (theme) => {
         fontSize: theme.typography.pxToRem(14),
       },
       '&:after': {
+        // Link
         marginLeft: 4,
         content: '"Get started"',
-        // Style taken from the Link component
-        color: theme.palette.secondary.main,
-        '&:hover': {
-          textDecoration: 'underline',
-        },
+        // Style taken from the Link component & MarkdownElement.
+        color:
+          theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[300],
+        textDecoration: 'underline',
+        textDecorationColor: alpha(theme.palette.primary.main, 0.4),
       },
     },
     poweredby: {

@@ -2,11 +2,11 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
-import Section from 'docs/src/layouts/Section';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import Link from 'docs/src/modules/components/Link';
 import ArrowForward from '@mui/icons-material/ArrowForward';
+import Link from 'docs/src/modules/components/Link';
+import Section from 'docs/src/layouts/Section';
 
 export default function BaseUITestimonial() {
   return (
@@ -33,12 +33,16 @@ export default function BaseUITestimonial() {
             <Typography variant="h4" component="h2" mb={2.5} sx={{ color: '#fff' }}>
               Nhost&apos;s dashboard
             </Typography>
-            <img
-              src="/static/branding/base-ui/nhost.jpg"
-              srcSet="/static/branding/base-ui/nhost.jpg 1x, /static/branding/base-ui/nhost-2x.jpg 2x "
+            <Box
+              component="img"
+              srcSet="/static/branding/base-ui/nhost.jpg, /static/branding/base-ui/nhost-2x.jpg 2x "
               alt="Screenshot displaying part of the Nhost dashboard that used Base UI to be built."
               loading="lazy"
-              width="570px"
+              sx={{
+                backgroundColor: '#fff',
+                width: 510,
+                height: 210,
+              }}
             />
           </Box>
           <Typography variant="body2" sx={{ mt: 2 }}>

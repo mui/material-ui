@@ -15,8 +15,8 @@ import PhotoOutlined from '@mui/icons-material/PhotoOutlined';
 import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
-import Frame from 'docs/src/components/action/Frame';
 import Button from '@mui/material/Button';
+import Frame from 'docs/src/components/action/Frame';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps & { lastNestedChild?: boolean },

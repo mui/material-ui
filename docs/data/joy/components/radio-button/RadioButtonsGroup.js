@@ -9,7 +9,7 @@ export default function RadioButtonsGroup() {
   return (
     <FormControl>
       <FormLabel>Gender</FormLabel>
-      <RadioGroup defaultValue="female" name="radio-buttons-group" sx={{ my: 1 }}>
+      <RadioGroup defaultValue="female" name="radio-buttons-group">
         <Radio
           value="female"
           label="Female"

@@ -3,10 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
-import Portal from '@mui/base/Portal';
-import FocusTrap from '@mui/base/FocusTrap';
-import useModal from './useModal';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { Portal } from '@mui/base/Portal';
+import { FocusTrap } from '@mui/base/FocusTrap';
+import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { getModalUtilityClass } from './modalClasses';
@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: ModalOwnerState) => {
   return composeClasses(slots, getModalUtilityClass, {});
 };
 
-export const ModalRoot = styled('div', {
+const ModalRoot = styled('div', {
   name: 'JoyModal',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -112,7 +112,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const { getRootProps, getBackdropProps, rootRef, portalRef, isTopModal } = useModal({
     ...ownerState,
-    ref,
+    rootRef: ref,
   });
 
   const classes = useUtilityClasses(ownerState);

@@ -19,7 +19,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 
 The Switch component provides users with a switch for toggling between two mutually exclusive states.
 
-{{"demo": "UnstyledSwitchIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledSwitchIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
@@ -28,7 +28,7 @@ The Switch component provides users with a switch for toggling between two mutua
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Switch from '@mui/base/Switch';
+import { Switch } from '@mui/base/Switch';
 
 export default function MyApp() {
   return <Switch />;
@@ -39,7 +39,7 @@ export default function MyApp() {
 
 The following demo shows how to assign styles and props to the Switch component:
 
-{{"demo": "UnstyledSwitchBasic"}}
+{{"demo": "UnstyledSwitchIntroduction"}}
 
 ### Anatomy
 
@@ -90,7 +90,7 @@ The same applies for props specific to custom primitive elements:
 ## Hook
 
 ```js
-import useSwitch from '@mui/base/useSwitch';
+import { useSwitch } from '@mui/base/useSwitch';
 ```
 
 The `useSwitch` hook lets you apply the functionality of a switch to a fully custom component.

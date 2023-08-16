@@ -1,52 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { SxProps } from '@mui/system';
-// eslint-disable-next-line no-restricted-imports -- importing types
-import { InternalStandardProps as StandardProps } from '@mui/material';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { styled, useThemeProps, Theme } from '@mui/material/styles';
+import { styled, useThemeProps } from '@mui/material/styles';
 import TimelineContext from './TimelineContext';
-import { getTimelineUtilityClass } from './timelineClasses';
+import { TimelineClassKey, getTimelineUtilityClass } from './timelineClasses';
 import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
-
-export type TimelineClassKey = keyof NonNullable<TimelineProps['classes']>;
-
-export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
-  /**
-   * The position where the TimelineContent should appear relative to the time axis.
-   * @default 'right'
-   */
-  position?: 'left' | 'right' | 'alternate' | 'alternate-reverse';
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `position="left"`. */
-    positionLeft?: string;
-    /** Styles applied to the root element if `position="right"`. */
-    positionRight?: string;
-    /** Styles applied to the root element if `position="alternate"`. */
-    positionAlternate?: string;
-    /** Styles applied to the root element if `position="alternate-reverse"`. */
-    positionAlternateReverse?: string;
-  };
-
-  /**
-   * className applied to the root element.
-   */
-  className?: string;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme>;
-}
+import { TimelineProps } from './Timeline.types';
 
 type OwnerState = TimelineProps;
 

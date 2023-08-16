@@ -6,10 +6,10 @@ import { visuallyHidden } from '@mui/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Link from 'docs/src/modules/components/Link';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
@@ -35,11 +35,10 @@ function ProductItem({
         p: 2,
         flexDirection: { xs: 'column', md: 'row' },
         alignItems: { md: 'center' },
+        gap: 2.5,
       }}
     >
-      <Box component="span" sx={{ mr: 2, mb: { xs: 1, md: 0 } }}>
-        {icon}
-      </Box>
+      <Box component="span">{icon}</Box>
       <span>
         <Typography
           component="span"
@@ -68,7 +67,6 @@ function ProductItem({
           sx={{
             display: 'inline-flex',
             alignItems: 'center',
-            minHeight: 24,
             '& > svg': { transition: '0.2s' },
             '&:hover > svg': { transform: 'translateX(2px)' },
           }}

@@ -292,7 +292,7 @@ const DemoRootJoy = joyStyled('div', {
     borderColor: grey[100],
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    backgroundColor: alpha(grey[50], 0.2),
+    backgroundColor: '#fff',
     ...theme.applyDarkStyles({
       borderColor: alpha(grey[700], 0.3),
       backgroundColor: alpha(blueDark[800], 0.2),
@@ -538,9 +538,9 @@ export default function Demo(props) {
           {demoElement}
         </DemoSandbox>
       </DemoRoot>
-      {/* TODO: BrandingProvider shouldn't be needed, it should already be at the top of the docs page */}
+      {/* TODO: Wrapper shouldn't be needed, it should already be at the top of the docs page */}
       {demoOptions.hideToolbar ? null : (
-        <BrandingProvider {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
+        <Wrapper {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
           {Object.keys(stylingSolutionMapping).map((key) => (
             <React.Fragment key={key}>
               <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
@@ -616,7 +616,7 @@ export default function Demo(props) {
             )}
           </Collapse>
           {adVisibility ? <AdCarbonInline /> : null}
-        </BrandingProvider>
+        </Wrapper>
       )}
     </Root>
   );

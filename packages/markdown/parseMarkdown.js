@@ -230,6 +230,8 @@ function renderInline(markdown) {
 // Help rank mui.com on component searches first.
 const noSEOadvantage = [
   'https://m2.material.io/',
+  'https://m3.material.io/',
+  'https://material.io/',
   'https://getbootstrap.com/',
   'https://icons.getbootstrap.com/',
   'https://pictogrammers.com/',
@@ -238,6 +240,9 @@ const noSEOadvantage = [
   'https://heroicons.com/',
   'https://react-icons.github.io/',
   'https://fontawesome.com/',
+  'https://www.radix-ui.com/',
+  'https://react-spectrum.adobe.com/',
+  'https://headlessui.com/',
 ];
 
 /**
@@ -446,6 +451,12 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
   }
   if (productId === 'x-date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
+  }
+  if (productId === 'x-charts') {
+    return `/x/api/charts/${kebabCase(component)}/`;
+  }
+  if (productId === 'x-tree-view') {
+    return `/x/api/tree-view/${kebabCase(component)}/`;
   }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;

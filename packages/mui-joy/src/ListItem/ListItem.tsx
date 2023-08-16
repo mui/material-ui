@@ -7,7 +7,7 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -43,26 +43,28 @@ const ListItemRoot = styled('li', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemOwnerState }>(({ theme, ownerState }) => [
-  !ownerState.nested && {
-    // add negative margin to ListItemButton equal to this ListItem padding
-    '--ListItemButton-marginInline': `calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))`,
-    '--ListItemButton-marginBlock': 'calc(-1 * var(--ListItem-paddingY))',
-    alignItems: 'center',
-    marginInline: 'var(--ListItem-marginInline)',
-  },
-  ownerState.nested && {
-    // add negative margin to NestedList equal to this ListItem padding
-    '--NestedList-marginRight': 'calc(-1 * var(--ListItem-paddingRight))',
-    '--NestedList-marginLeft': 'calc(-1 * var(--ListItem-paddingLeft))',
-    '--NestedListItem-paddingLeft': `calc(var(--ListItem-paddingLeft) + var(--List-nestedInsetStart))`,
-    // add negative margin to ListItem, ListItemButton to make them start from the edge.
-    '--ListItemButton-marginBlock': '0px',
-    '--ListItemButton-marginInline':
-      'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
-    '--ListItem-marginInline':
-      'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
-    flexDirection: 'column',
-  },
+  !ownerState.nested &&
+    ({
+      // add negative margin to ListItemButton equal to this ListItem padding
+      '--ListItemButton-marginInline': `calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))`,
+      '--ListItemButton-marginBlock': 'calc(-1 * var(--ListItem-paddingY))',
+      alignItems: 'center',
+      marginInline: 'var(--ListItem-marginInline)',
+    } as const),
+  ownerState.nested &&
+    ({
+      // add negative margin to NestedList equal to this ListItem padding
+      '--NestedList-marginRight': 'calc(-1 * var(--ListItem-paddingRight))',
+      '--NestedList-marginLeft': 'calc(-1 * var(--ListItem-paddingLeft))',
+      '--NestedListItem-paddingLeft': `calc(var(--ListItem-paddingLeft) + var(--List-nestedInsetStart))`,
+      // add negative margin to ListItem, ListItemButton to make them start from the edge.
+      '--ListItemButton-marginBlock': '0px',
+      '--ListItemButton-marginInline':
+        'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
+      '--ListItem-marginInline':
+        'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
+      flexDirection: 'column',
+    } as const),
   // Base styles
   {
     // Integration with control elements, eg. Checkbox, Radio.
@@ -97,16 +99,15 @@ const ListItemRoot = styled('li', {
         marginBlockStart: 'var(--List-gap)',
       }),
     minBlockSize: 'var(--ListItem-minHeight)',
-    fontSize: 'var(--ListItem-fontSize)',
-    fontFamily: theme.vars.fontFamily.body,
-    ...(ownerState.sticky && {
-      // sticky in list item can be found in grouped options
-      position: 'sticky',
-      top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
-      zIndex: 1,
-      background: 'var(--ListItem-stickyBackground)',
-    }),
-  },
+    ...(ownerState.sticky &&
+      ({
+        // sticky in list item can be found in grouped options
+        position: 'sticky',
+        top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
+        zIndex: 1,
+        background: `var(--ListItem-stickyBackground, ${theme.vars.palette.background.body})`,
+      } as const)),
+  } as const,
   theme.variants[ownerState.variant!]?.[ownerState.color!],
 ]);
 
@@ -278,7 +279,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

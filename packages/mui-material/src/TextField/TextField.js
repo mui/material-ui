@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { refType, unstable_useId as useId } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -147,6 +147,15 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     InputMore['aria-describedby'] = undefined;
   }
 
+  const handleClick = (event) => {
+    if (!disabled && onClick) {
+      // The `onClick` is registered both on the root and the input elements.
+      // Without stopping the propagation, the event could be triggered twice.
+      event.stopPropagation();
+      onClick(event);
+    }
+  };
+
   const id = useId(idOverride);
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const inputLabelId = label && id ? `${id}-label` : undefined;
@@ -170,7 +179,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       onBlur={onBlur}
       onChange={onChange}
       onFocus={onFocus}
-      onClick={onClick}
+      onClick={handleClick}
       placeholder={placeholder}
       inputProps={inputProps}
       {...InputMore}
@@ -189,6 +198,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       color={color}
       variant={variant}
       ownerState={ownerState}
+      onClick={handleClick}
       {...other}
     >
       {label != null && label !== '' && (

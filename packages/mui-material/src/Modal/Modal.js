@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import ModalUnstyled, { modalClasses as modalUnstyledClasses } from '@mui/base/Modal';
+import { Modal as ModalUnstyled, modalClasses as modalUnstyledClasses } from '@mui/base/Modal';
 import { isHostComponent, resolveComponentProps } from '@mui/base/utils';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import styled from '../styles/styled';

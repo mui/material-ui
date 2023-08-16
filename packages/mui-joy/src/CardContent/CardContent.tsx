@@ -28,7 +28,7 @@ const CardContentRoot = styled('div', {
   flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   flex: 1, // fill the available space in the Card and also shrink if needed
   zIndex: 1,
-  columnGap: 'calc(0.75 * var(--Card-padding))',
+  columnGap: 'var(--Card-padding)',
   padding: 'var(--unstable_padding)',
   [`.${cardOverflowClasses.root} > &`]: {
     '--unstable_padding': 'calc(var(--Card-padding) * 0.75) 0px',

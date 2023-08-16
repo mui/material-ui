@@ -15,7 +15,9 @@
     "fullWidth": {
       "description": "If <code>true</code>, the button will take up the full width of its container."
     },
-    "loading": { "description": "If <code>true</code>, the loading indicator is shown." },
+    "loading": {
+      "description": "If <code>true</code>, the loading indicator is shown and the button becomes disabled."
+    },
     "loadingIndicator": {
       "description": "The node should contain an element with <code>role=&quot;progressbar&quot;</code> with an accessible name. By default we render a <code>CircularProgress</code> that is labelled by the button itself."
     },
@@ -49,11 +51,6 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"danger\"</code>"
-    },
-    "colorInfo": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"info\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
