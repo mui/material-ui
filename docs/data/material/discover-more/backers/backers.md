@@ -21,7 +21,7 @@ Even when there are no more slots available, we accept higher bids.
 
 ### Gold 🏆
 
-via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://www.patreon.com/oliviertassinari)
+via [Open Collective](https://opencollective.com/mui) or via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift.com" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=96" srcset="https://avatars.githubusercontent.com/u/30204434?s=192 2x" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
@@ -37,7 +37,7 @@ Gold Sponsors are those who have pledged \$500/month or more to MUI.
 
 ### Silver
 
-via [OpenCollective](https://opencollective.com/mui)
+via [Open Collective](https://opencollective.com/mui)
 
 <p style="overflow: auto;">
   <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/silver-sponsor.svg?avatarHeight=70&width=600" style="border-radius: 10px;">Silver Sponsors</object>
@@ -47,7 +47,7 @@ Silver Sponsors are those who have pledged $250/month to $500/month to MUI.
 
 ### Bronze
 
-via [OpenCollective](https://opencollective.com/mui)
+via [Open Collective](https://opencollective.com/mui)
 
 <p style="overflow: auto;">
   <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/bronze-sponsor.svg?avatarHeight=60&width=600" style="border-radius: 10px;">Bronze Sponsors</object>
@@ -57,7 +57,7 @@ Bronze Sponsors are those who have pledged $100/month to $250/month to MUI.
 
 ### Backers
 
-via [OpenCollective](https://opencollective.com/mui)
+via [Open Collective](https://opencollective.com/mui)
 
 <p style="overflow: auto;">
   <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/backer.svg?avatarHeight=50&width=600" style="border-radius: 10px;">Backers</object>
@@ -73,7 +73,7 @@ The absolute best way to support MUI's libraries ongoing development efforts is 
 
 ### How is sponsorship money spent?
 
-Sponsorship money is used to fund software development, testing, documentation, and releases of the MUI software suite.
+Sponsorship money is used to fund open-source software development, testing, documentation, and releases of the projects.
 
 ### Is sponsorship required to use MUI's products?
 
@@ -81,12 +81,12 @@ Users are not obligated to give back to MUI, but it is in their interest to do s
 
 By significantly reducing the amount of work needed to achieve business goals and reducing running costs, MUI's libraries result in huge time and money savings for users. We encourage organizations to contribute a portion of these savings back, enabling the project to advance more rapidly and result in even greater savings for your organization.
 
-### What's the difference between Patreon and OpenCollective?
+### What's the difference between Open Collective and the for-profit?
 
-Funds received via Patreon or other forms, directly support [Olivier Tassinari](https://github.com/oliviertassinari) and the core team mission.
+Patreon or other forms, directly support [Olivier Tassinari](https://github.com/oliviertassinari) and the core team mission.
 The funds go to a for-profit entity that employs some of the core team members.
 
-Funds donated via OpenCollective are managed transparently and aimed to sustain the MIT core of MUI. MUI benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
+Funds donated via Open Collective are managed transparently and aimed to sustain the MIT core of MUI. MUI benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
 
 ## Services
 
