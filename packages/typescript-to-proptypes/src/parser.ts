@@ -737,19 +737,3 @@ export function parseFromProgram(
 
   return programNode;
 }
-
-/**
- * Creates a program, parses the specified file and returns the PropTypes as an AST, if you need to parse more than one file
- * use `createProgram` and `parseFromProgram` for better performance
- * @param filePath The file to parse
- * @param options The options from `loadConfig`
- * @param parserOptions Options that specify how the parser should act
- */
-export function parseFile(
-  filePath: string,
-  options: ts.CompilerOptions,
-  parserOptions: Partial<ParserOptions> = {},
-) {
-  const program = ts.createProgram([filePath], options);
-  return parseFromProgram(filePath, program, parserOptions);
-}

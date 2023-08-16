@@ -19,7 +19,8 @@ import {
 } from './buildApiUtils';
 import generateComponentApi, { ReactApi } from './ApiBuilders/ComponentApiBuilder';
 import generateHookApi from './ApiBuilders/HookApiBuilder';
-import { createTypeScriptProject, TypeScriptProject } from './utils/createTypeScriptProject';
+import { createTypescriptProjectBuilder } from './utils/createTypeScriptProject';
+import { CORE_TYPESCRIPT_PROJECTS, CoreTypeScriptProjects } from './utils/coreTypeScriptProjects';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
 
@@ -112,7 +113,7 @@ interface Settings {
   /**
    * Component directories to be used to generate API
    */
-  getProjects: () => TypeScriptProject[];
+  typeScriptProjects: CoreTypeScriptProjects[];
   getApiPages: () => Array<{ pathname: string }>;
   getComponentInfo: (filename: string) => ComponentInfo;
   getHookInfo?: (filename: string) => HookInfo;
@@ -123,18 +124,7 @@ const SETTINGS: Settings[] = [
     output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
     },
-    getProjects: () => [
-      createTypeScriptProject({
-        name: 'material',
-        rootPath: path.join(process.cwd(), 'packages/mui-material'),
-        entryPointPath: 'src/index.d.ts',
-      }),
-      createTypeScriptProject({
-        name: 'lab',
-        rootPath: path.join(process.cwd(), 'packages/mui-lab'),
-        entryPointPath: 'src/index.d.ts',
-      }),
-    ],
+    typeScriptProjects: ['material', 'lab'],
     getApiPages: () => findApiPages('docs/pages/material-ui/api'),
     getComponentInfo: getMaterialComponentInfo,
   },
@@ -142,13 +132,7 @@ const SETTINGS: Settings[] = [
     output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/base/pagesApi.js'),
     },
-    getProjects: () => [
-      createTypeScriptProject({
-        name: 'base',
-        rootPath: path.join(process.cwd(), 'packages/mui-base'),
-        entryPointPath: 'src/index.d.ts',
-      }),
-    ],
+    typeScriptProjects: ['base'],
     getApiPages: () => findApiPages('docs/pages/base-ui/api'),
     getComponentInfo: getBaseComponentInfo,
     getHookInfo: getBaseHookInfo,
@@ -157,13 +141,7 @@ const SETTINGS: Settings[] = [
     output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/joy/pagesApi.js'),
     },
-    getProjects: () => [
-      createTypeScriptProject({
-        name: 'joy',
-        rootPath: path.join(process.cwd(), 'packages/mui-joy'),
-        entryPointPath: 'src/index.ts',
-      }),
-    ],
+    typeScriptProjects: ['joy'],
     getApiPages: () => findApiPages('docs/pages/joy-ui/api'),
     getComponentInfo: getJoyComponentInfo,
   },
@@ -171,13 +149,7 @@ const SETTINGS: Settings[] = [
     output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/system/pagesApi.js'),
     },
-    getProjects: () => [
-      createTypeScriptProject({
-        name: 'system',
-        rootPath: path.join(process.cwd(), 'packages/mui-system'),
-        entryPointPath: 'src/index.d.ts',
-      }),
-    ],
+    typeScriptProjects: ['system'],
     getApiPages: () => findApiPages('docs/pages/system/api'),
     getComponentInfo: getSystemComponentInfo,
   },
@@ -187,13 +159,15 @@ type CommandOptions = { grep?: string };
 
 async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
+  const buildTypeScriptProject = createTypescriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
+
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
   await SETTINGS.reduce(async (resolvedPromise, setting) => {
     await resolvedPromise;
     /**
      * @type {string[]}
      */
-    const projects = setting.getProjects();
+    const projects = setting.typeScriptProjects.map(buildTypeScriptProject);
     const apiPagesManifestPath = setting.output.apiManifestPath;
 
     const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];

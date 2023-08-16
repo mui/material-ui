@@ -162,7 +162,7 @@ ModalClose.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes.elementType.isRequired,
   /**
    * @ignore
    */

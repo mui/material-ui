@@ -324,7 +324,7 @@ Link.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes.elementType.isRequired,
   /**
    * If `true`, the component is disabled.
    * @default false

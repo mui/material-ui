@@ -10,7 +10,7 @@ export interface TypeScriptProject {
   checker: ts.TypeChecker;
 }
 
-interface CreateTypeScriptProjectOptions {
+export interface CreateTypeScriptProjectOptions {
   name: string;
   rootPath: string;
   /**
@@ -47,6 +47,13 @@ export const createTypeScriptProject = (
     throw tsConfigFile.error;
   }
 
+  // The build config does not parse the `.d.ts` files, but we sometime need them to get the exports.
+  if (tsConfigFile.config.exclude) {
+    tsConfigFile.config.exclude = tsConfigFile.config.exclude.filter(
+      (pattern: string) => pattern !== 'src/**/*.d.ts',
+    );
+  }
+
   const tsConfigFileContent = ts.parseJsonConfigFileContent(
     tsConfigFile.config,
     ts.sys,
@@ -58,7 +65,7 @@ export const createTypeScriptProject = (
   }
 
   const program = ts.createProgram({
-    rootNames: [entryPointPath],
+    rootNames: tsConfigFileContent.fileNames,
     options: tsConfigFileContent.options,
   });
 
@@ -77,5 +84,29 @@ export const createTypeScriptProject = (
     exports,
     program,
     checker,
+  };
+};
+
+export const createTypescriptProjectBuilder = <P extends string>(
+  projectsConfig: Record<P, Omit<CreateTypeScriptProjectOptions, 'name'>>,
+) => {
+  const projects = new Map<P, TypeScriptProject>();
+
+  return (projectName: P) => {
+    const cachedProject = projects.get(projectName);
+    if (cachedProject != null) {
+      return cachedProject;
+    }
+
+    // eslint-disable-next-line no-console
+    console.log(`Building new TS project: ${projectName}`);
+
+    const project = createTypeScriptProject({
+      name: projectName,
+      ...projectsConfig[projectName],
+    });
+
+    projects.set(projectName, project);
+    return project;
   };
 };

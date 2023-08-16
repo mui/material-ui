@@ -1,7 +1,8 @@
 import * as ts from 'typescript';
 import { getSymbolDescription } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
-import getPropsFromComponentSymbol from './getPropsFromComponentSymbol';
+import { getPropsFromComponentSymbol } from './getPropsFromComponentSymbol';
+import resolveExportSpecifier from './resolveExportSpecifier';
 
 export interface Classes {
   classes: string[];
@@ -78,10 +79,14 @@ export default function parseStyles({
     throw new Error(`No exported component for the componentName "${componentName}"`);
   }
 
+  const localeSymbol = resolveExportSpecifier(exportedSymbol, project);
+  const declaration = localeSymbol.valueDeclaration!;
+
   const classesProp = getPropsFromComponentSymbol({
-    symbol: exportedSymbol,
+    node: declaration,
     project,
     shouldInclude: ({ name }) => name === 'classes',
+    checkDeclarations: true,
   })?.classes;
   if (classesProp == null) {
     // We could not infer the type of the classes prop, so we try to extract them from the {ComponentName}Classes interface

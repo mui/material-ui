@@ -86,22 +86,22 @@ Hidden.propTypes /* remove-proptypes */ = {
    */
   initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   /**
-   * If `true`, component is hidden on screens below (but not including) this size.
+   * If `true`, screens this size and down are hidden.
    * @default false
    */
   lgDown: PropTypes.bool,
   /**
-   * If `true`, component is hidden on screens this size and above.
+   * If `true`, screens this size and up are hidden.
    * @default false
    */
   lgUp: PropTypes.bool,
   /**
-   * If `true`, component is hidden on screens below (but not including) this size.
+   * If `true`, screens this size and down are hidden.
    * @default false
    */
   mdDown: PropTypes.bool,
   /**
-   * If `true`, component is hidden on screens this size and above.
+   * If `true`, screens this size and up are hidden.
    * @default false
    */
   mdUp: PropTypes.bool,
@@ -113,32 +113,32 @@ Hidden.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']).isRequired),
   ]),
   /**
-   * If `true`, component is hidden on screens below (but not including) this size.
+   * If `true`, screens this size and down are hidden.
    * @default false
    */
   smDown: PropTypes.bool,
   /**
-   * If `true`, component is hidden on screens this size and above.
+   * If `true`, screens this size and up are hidden.
    * @default false
    */
   smUp: PropTypes.bool,
   /**
-   * If `true`, component is hidden on screens below (but not including) this size.
+   * If `true`, screens this size and down are hidden.
    * @default false
    */
   xlDown: PropTypes.bool,
   /**
-   * If `true`, component is hidden on screens this size and above.
+   * If `true`, screens this size and up are hidden.
    * @default false
    */
   xlUp: PropTypes.bool,
   /**
-   * If `true`, component is hidden on screens below (but not including) this size.
+   * If `true`, screens this size and down are hidden.
    * @default false
    */
   xsDown: PropTypes.bool,
   /**
-   * If `true`, component is hidden on screens this size and above.
+   * If `true`, screens this size and up are hidden.
    * @default false
    */
   xsUp: PropTypes.bool,

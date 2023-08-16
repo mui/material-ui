@@ -123,7 +123,7 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes.elementType.isRequired,
   /**
    * Disable `color-scheme` CSS property.
    * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme

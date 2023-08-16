@@ -1,9 +1,21 @@
 import * as ts from 'typescript';
 import { TypeScriptProject } from './createTypeScriptProject';
-import resolveExportSpecifier from './resolveExportSpecifier';
 
 export interface ParsedProp {
-  types: ts.Type[];
+  /**
+   * If `true`, some signatures do not contain this property.
+   * e.g: `id` in `{ id: number, value: string } | { value: string }`
+   */
+  onlyUsedInSomeSignatures: boolean;
+  signatures: { symbol: ts.Symbol; type: ts.Type }[];
+}
+
+export interface ParsedComponent {
+  name: string;
+  location: ts.Node;
+  type: ts.Type;
+  sourceFile: ts.SourceFile | undefined;
+  props: Record<string, ParsedProp>;
 }
 
 function isTypeJSXElementLike(type: ts.Type, project: TypeScriptProject): boolean {
@@ -24,22 +36,19 @@ function isTypeJSXElementLike(type: ts.Type, project: TypeScriptProject): boolea
   return false;
 }
 
-function parsePropsSymbol({
-  symbol,
-  location,
+function parsePropsType({
+  name,
+  type,
   shouldInclude = () => true,
-  project,
+  location,
+  sourceFile,
 }: {
-  symbol: ts.Symbol | undefined;
+  name: string;
+  type: ts.Type;
   location: ts.Node;
-  shouldInclude: (data: { name: string; depth: number }) => boolean;
-  project: TypeScriptProject;
-}): Record<string, ParsedProp> {
-  const type =
-    symbol === undefined
-      ? project.checker.getTypeAtLocation(location)
-      : project.checker.getTypeOfSymbolAtLocation(symbol, location);
-
+  shouldInclude?: (data: { name: string; depth: number }) => boolean;
+  sourceFile: ts.SourceFile | undefined;
+}): ParsedComponent {
   const parsedProps: Record<string, ParsedProp> = {};
 
   type
@@ -47,31 +56,43 @@ function parsePropsSymbol({
     .filter((property) => shouldInclude({ name: property.getName(), depth: 1 }))
     .forEach((property) => {
       parsedProps[property.getName()] = {
-        types: [project.checker.getTypeAtLocation(property.declarations?.[0]!)],
+        signatures: [
+          {
+            symbol: property,
+            type,
+          },
+        ],
+        onlyUsedInSomeSignatures: false,
       };
     });
 
-  return parsedProps;
+  return {
+    name,
+    location,
+    type,
+    sourceFile,
+    props: parsedProps,
+  };
 }
 
 function parseFunctionComponent({
-  declaration,
+  node,
   shouldInclude,
   project,
 }: {
-  declaration: ts.VariableDeclaration | ts.FunctionDeclaration;
-  shouldInclude: (data: { name: string; depth: number }) => boolean;
+  node: ts.VariableDeclaration | ts.FunctionDeclaration;
+  shouldInclude?: (data: { name: string; depth: number }) => boolean;
   project: TypeScriptProject;
-}) {
-  if (!declaration.name) {
+}): ParsedComponent | null {
+  if (!node.name) {
     return null;
   }
 
-  const symbol = project.checker.getSymbolAtLocation(declaration.name);
+  const symbol = project.checker.getSymbolAtLocation(node.name);
   if (!symbol) {
     return null;
   }
-  const componentName = declaration.name.getText();
+  const componentName = node.name.getText();
 
   // Discriminate render functions to components
   if (componentName[0].toUpperCase() !== componentName[0]) {
@@ -80,160 +101,194 @@ function parseFunctionComponent({
 
   const type = project.checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!);
 
-  // squash props
-  // { variant: 'a', href: string } & { variant: 'b' }
-  // to
-  // { variant: 'a' | 'b', href?: string }
+  let squashedParsedComponent: ParsedComponent | null = null;
 
-  const squashedProps: Record<string, ParsedProp> = {};
+  const signatures = type
+    .getCallSignatures()
+    .filter((signature) => isTypeJSXElementLike(signature.getReturnType(), project));
 
-  type.getCallSignatures().forEach((signature) => {
-    if (!isTypeJSXElementLike(signature.getReturnType(), project)) {
-      return;
-    }
-
-    const signatureProps = parsePropsSymbol({
-      symbol: signature.parameters[0],
-      location: signature.parameters[0].valueDeclaration!,
+  signatures.forEach((signature) => {
+    const parsedComponent = parsePropsType({
       shouldInclude,
-      project,
+      name: componentName,
+      type: project.checker.getTypeOfSymbolAtLocation(
+        signature.parameters[0],
+        signature.parameters[0].valueDeclaration!,
+      ),
+      location: signature.parameters[0].valueDeclaration!,
+      sourceFile: node.getSourceFile(),
     });
 
-    Object.keys(signatureProps).forEach((propName) => {
-      if (!squashedProps[propName]) {
-        squashedProps[propName] = signatureProps[propName];
+    if (squashedParsedComponent == null) {
+      squashedParsedComponent = { ...parsedComponent };
+    }
+
+    Object.keys(parsedComponent.props).forEach((propName) => {
+      if (!squashedParsedComponent!.props[propName]) {
+        squashedParsedComponent!.props[propName] = parsedComponent.props[propName];
       } else {
-        squashedProps[propName] = {
-          ...squashedProps[propName],
-          types: [...squashedProps[propName].types, ...signatureProps[propName].types],
-        };
+        squashedParsedComponent!.props[propName].signatures = [
+          ...squashedParsedComponent!.props[propName].signatures,
+          ...parsedComponent.props[propName].signatures,
+        ];
       }
+    });
+
+    Object.keys(squashedParsedComponent.props).forEach((propName) => {
+      squashedParsedComponent!.props[propName].onlyUsedInSomeSignatures =
+        squashedParsedComponent!.props[propName].signatures.length < signatures.length;
     });
   });
 
-  return squashedProps;
+  return squashedParsedComponent;
 }
 
-interface GetPropsFromComponentDeclarationOptions {
+export interface GetPropsFromComponentDeclarationOptions {
   project: TypeScriptProject;
-  symbol: ts.Symbol;
+  node: ts.Node;
   /**
    * Called before a PropType is added to a component/object
    * @returns true to include the prop, false to skip it
    */
-  shouldInclude: (data: { name: string; depth: number }) => boolean;
+  shouldInclude?: (data: { name: string; depth: number }) => boolean;
+  /**
+   * Control if const declarations should be checked
+   * @default false
+   * @example declare const Component: React.JSXElementConstructor<Props>;
+   */
+  checkDeclarations?: boolean;
 }
-export default function getPropsFromComponentSymbol({
-  symbol: inSymbol,
+export function getPropsFromComponentSymbol({
+  node,
   shouldInclude,
   project,
+  checkDeclarations,
 }: GetPropsFromComponentDeclarationOptions) {
-  const localeSymbol = resolveExportSpecifier(inSymbol, project);
-  const declaration = localeSymbol.valueDeclaration!;
+  let parsedComponent: ParsedComponent | null = null;
 
   // function x(props: type) { return <div/> }
   if (
-    ts.isFunctionDeclaration(declaration) &&
-    declaration.name &&
-    declaration.parameters.length === 1 &&
+    ts.isFunctionDeclaration(node) &&
+    node.name &&
+    node.parameters.length === 1 &&
     project.checker
-      .getTypeAtLocation(declaration.name)
+      .getTypeAtLocation(node.name)
       .getCallSignatures()
       .some((signature) => isTypeJSXElementLike(signature.getReturnType(), project))
   ) {
-    return parseFunctionComponent({ declaration, shouldInclude, project });
-  }
-
-  // x = (props: type) => { return <div/> }
-  // x = function(props: type) { return <div/> }
-  // x = function y(props: type) { return <div/> }
-  // x = react.memo((props:type) { return <div/> })
-  if (ts.isVariableDeclaration(declaration) && declaration.name) {
-    const type = project.checker.getTypeAtLocation(declaration.name);
-    if (!declaration.initializer) {
-      if (
-        type.aliasSymbol &&
-        type.aliasTypeArguments &&
-        project.checker.getFullyQualifiedName(type.aliasSymbol) === 'React.JSXElementConstructor'
-      ) {
-        const propsSymbol = type.aliasTypeArguments[0].getSymbol();
-        if (propsSymbol === undefined) {
-          throw new TypeError(
-            'Unable to find symbol for `props`. This is a bug in typescript-to-proptypes.',
-          );
+    parsedComponent = parseFunctionComponent({ node, shouldInclude, project });
+  } else if (ts.isVariableStatement(node)) {
+    // const x = ...
+    ts.forEachChild(node.declarationList, (variableNode) => {
+      // x = (props: type) => { return <div/> }
+      // x = function(props: type) { return <div/> }
+      // x = function y(props: type) { return <div/> }
+      // x = react.memo((props:type) { return <div/> })
+      if (ts.isVariableDeclaration(variableNode) && variableNode.name) {
+        const type = project.checker.getTypeAtLocation(variableNode.name);
+        if (!variableNode.initializer) {
+          if (
+            checkDeclarations &&
+            type.aliasSymbol &&
+            type.aliasTypeArguments &&
+            project.checker.getFullyQualifiedName(type.aliasSymbol) ===
+              'React.JSXElementConstructor'
+          ) {
+            const propsType = type.aliasTypeArguments[0];
+            if (propsType === undefined) {
+              throw new TypeError(
+                'Unable to find symbol for `props`. This is a bug in typescript-to-proptypes.',
+              );
+            }
+            parsedComponent = parsePropsType({
+              name: variableNode.name.getText(),
+              type: propsType,
+              location: variableNode.name,
+              shouldInclude,
+              sourceFile: node.getSourceFile(),
+            });
+          } else if (checkDeclarations) {
+            parsedComponent = parseFunctionComponent({
+              node: variableNode,
+              shouldInclude,
+              project,
+            });
+          }
+        } else if (
+          (ts.isArrowFunction(variableNode.initializer) ||
+            ts.isFunctionExpression(variableNode.initializer)) &&
+          variableNode.initializer.parameters.length === 1
+        ) {
+          parsedComponent = parseFunctionComponent({
+            node: variableNode,
+            shouldInclude,
+            project,
+          });
         }
-        return parsePropsSymbol({
-          symbol: propsSymbol,
-          location: declaration.name,
-          shouldInclude,
-          project,
-        });
-      }
-
-      return parseFunctionComponent({ declaration, shouldInclude, project });
-    }
-    if (
-      (ts.isArrowFunction(declaration.initializer) ||
-        ts.isFunctionExpression(declaration.initializer)) &&
-      declaration.initializer.parameters.length === 1
-    ) {
-      return parseFunctionComponent({ declaration, shouldInclude, project });
-    }
-    //  x = react.memo((props:type) { return <div/> })
-    if (
-      ts.isCallExpression(declaration.initializer) &&
-      declaration.initializer.arguments.length > 0
-    ) {
-      const arg = declaration.initializer.arguments[0];
-      if ((ts.isArrowFunction(arg) || ts.isFunctionExpression(arg)) && arg.parameters.length > 0) {
-        const symbol = project.checker.getSymbolAtLocation(arg.parameters[0].name);
-        if (symbol) {
-          return parsePropsSymbol({
-            symbol,
-            location: symbol.valueDeclaration!,
+        //  x = react.memo((props:type) { return <div/> })
+        else if (
+          ts.isCallExpression(variableNode.initializer) &&
+          variableNode.initializer.arguments.length > 0
+        ) {
+          const arg = variableNode.initializer.arguments[0];
+          if (
+            (ts.isArrowFunction(arg) || ts.isFunctionExpression(arg)) &&
+            arg.parameters.length > 0
+          ) {
+            const symbol = project.checker.getSymbolAtLocation(arg.parameters[0].name);
+            if (symbol) {
+              parsedComponent = parsePropsType({
+                shouldInclude,
+                name: variableNode.name.getText(),
+                location: symbol.valueDeclaration!,
+                type: project.checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!),
+                sourceFile: node.getSourceFile(),
+              });
+            }
+          }
+        }
+        // handle component factories: x = createComponent()
+        else if (
+          checkDeclarations &&
+          variableNode.initializer &&
+          type
+            .getCallSignatures()
+            .some((signature) => isTypeJSXElementLike(signature.getReturnType(), project))
+        ) {
+          parsedComponent = parseFunctionComponent({
+            node: variableNode,
             shouldInclude,
             project,
           });
         }
       }
 
-      return null;
-    }
-    // handle component factories: x = createComponent()
-    if (
-      type
-        .getCallSignatures()
-        .some((signature) => isTypeJSXElementLike(signature.getReturnType(), project))
-    ) {
-      return parseFunctionComponent({ declaration, shouldInclude, project });
-    }
+      if (
+        ts.isClassDeclaration(variableNode) &&
+        variableNode.name &&
+        variableNode.heritageClauses &&
+        variableNode.heritageClauses.length === 1
+      ) {
+        const heritage = variableNode.heritageClauses[0];
+        if (heritage.types.length !== 1) {
+          return;
+        }
 
-    return null;
-  }
+        const arg = heritage.types[0];
+        if (!arg.typeArguments) {
+          return;
+        }
 
-  if (
-    ts.isClassDeclaration(declaration) &&
-    declaration.name &&
-    declaration.heritageClauses &&
-    declaration.heritageClauses.length === 1
-  ) {
-    const heritage = declaration.heritageClauses[0];
-    if (heritage.types.length !== 1) {
-      return null;
-    }
-
-    const arg = heritage.types[0];
-    if (!arg.typeArguments) {
-      return null;
-    }
-
-    return parsePropsSymbol({
-      symbol: undefined,
-      location: arg.typeArguments[0],
-      shouldInclude,
-      project,
+        parsedComponent = parsePropsType({
+          shouldInclude,
+          name: variableNode.name.getText(),
+          location: arg.typeArguments[0],
+          type: project.checker.getTypeAtLocation(arg.typeArguments[0]),
+          sourceFile: node.getSourceFile(),
+        });
+      }
     });
   }
 
-  return null;
+  return parsedComponent;
 }

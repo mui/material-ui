@@ -236,7 +236,7 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes.elementType.isRequired,
   /**
    * The boolean to select a variant.
    * Use indeterminate when there is no progress value.
