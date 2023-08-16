@@ -4,21 +4,10 @@ export type ApiDisplayOptions = 'collapsed' | 'expended';
 
 const options: ApiDisplayOptions[] = ['collapsed', 'expended'];
 
-export default function useApiPageOption(storageKey: string) {
-  const [option, setOption] = React.useState(
-    () => options[Math.floor(options.length * Math.random())],
-  );
+const getRandomOption = () => options[Math.floor(options.length * Math.random())];
 
-  React.useEffect(() => {
-    try {
-      const savedOption = localStorage.getItem(storageKey);
-      if (savedOption !== null) {
-        setOption(savedOption as ApiDisplayOptions);
-      }
-    } catch (error) {
-      // do nothing
-    }
-  }, [storageKey]);
+export default function useApiPageOption(storageKey: string) {
+  const [option, setOption] = React.useState(options[0]);
 
   const updateOption = React.useCallback(
     (newOption: ApiDisplayOptions) => {
@@ -31,5 +20,21 @@ export default function useApiPageOption(storageKey: string) {
     },
     [storageKey],
   );
+
+  React.useEffect(() => {
+    try {
+      const savedOption = localStorage.getItem(storageKey);
+      if (savedOption !== null) {
+        setOption(savedOption as ApiDisplayOptions);
+        return;
+      }
+
+      const randomOption = getRandomOption();
+      updateOption(randomOption);
+    } catch (error) {
+      // do nothing
+    }
+  }, [storageKey, updateOption]);
+
   return [option, updateOption];
 }
