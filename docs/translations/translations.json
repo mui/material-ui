@@ -97,9 +97,10 @@
   "feedbackMessageUp": "What did you like about this page? (optional)",
   "feedbackSectionSpecific": "How can we improve the <strong>{{sectionName}}</strong> section? (optional)",
   "feedbackMessageToGitHub": {
-    "usecases": "If something is broken or if you need an answer about a problem you've encountered, please",
+    "usecases": "Is something broken? Do you need a reply to a problem you've encountered?",
     "callToAction": {
-      "link": "open an issue instead."
+      "text": "Please ",
+      "link": "open an issue."
     }
   },
   "feedbackNo": "No",
