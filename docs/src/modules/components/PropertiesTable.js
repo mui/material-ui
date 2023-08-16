@@ -152,7 +152,7 @@ export default function PropertiesTable(props) {
           alignItems: 'baseline',
         }}
       >
-        <Level id={titleHash}>
+        <Level id={titleHash} style={{flexGrow: 1}}>
           {t(title)}
           <a
             aria-labelledby={titleHash}
@@ -167,18 +167,37 @@ export default function PropertiesTable(props) {
         </Level>
 
         <ToggleButtonGroup
+          size="small"
           value={displayOption}
           exclusive
           onChange={handleAlignment}
           // eslint-disable-next-line material-ui/no-hardcoded-labels
           aria-label="API display option"
+          sx={{
+            '& .MuiSvgIcon-root': {
+              height: '0.8em',
+              width: '0.8em',
+            },
+            '&.MuiToggleButtonGroup-root .MuiToggleButton-root': {
+              padding: '0.15rem 0.3rem',
+              borderRadius: '10px',
+              '&.MuiToggleButtonGroup-grouped:not(:last-of-type)': {
+                borderTopRightRadius: 0,
+                borderBottomRightRadius: 0,
+              },
+              '&.MuiToggleButtonGroup-grouped:not(:first-of-type)': {
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0,
+              },
+            },
+          }}
         >
           <ToggleButton
             value="collapsed"
             // eslint-disable-next-line material-ui/no-hardcoded-labels
             aria-label="colapsed list"
           >
-            <ReorderRoundedIcon />
+            <ReorderRoundedIcon size="small" />
           </ToggleButton>
 
           <ToggleButton
