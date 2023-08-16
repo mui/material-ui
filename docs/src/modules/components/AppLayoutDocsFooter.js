@@ -520,7 +520,8 @@ export default function AppLayoutDocsFooter(props) {
                       target="_blank"
                     >
                       {t('feedbackMessageToGitHub.callToAction.link')}
-                    </Link>
+                    </Link>{' '}
+                    {t('feedbackMessageToGitHub.reasonWhy')}
                   </Typography>
                 </Alert>
               )}
