@@ -8,8 +8,9 @@ import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
 import { ModalBackdrop } from '../Modal/Modal';
-import { SheetRoot } from '../Sheet/Sheet';
 import CloseModalContext from '../Modal/CloseModalContext';
+import DrawerAnchorContext from './DrawerAnchorContext';
+import DrawerOpenContext from './DrawerOpenContext';
 import { useThemeProps, Theme } from '../styles';
 import styled from '../styles/styled';
 import drawerClasses, { getDrawerUtilityClass } from './drawerClasses';
@@ -62,30 +63,7 @@ const DrawerContent = styled('div', {
   slot: 'Backdrop',
   overridesResolver: (props, styles) => styles.content,
 })<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
-  position: 'fixed',
-  boxSizing: 'border-box',
-  overflow: 'auto',
-  ...(ownerState.anchor === 'left' && {
-    top: 0,
-    left: 0,
-    transform: ownerState.open ? 'translateX(0)' : 'translateX(-100%)',
-  }),
-  ...(ownerState.anchor === 'right' && {
-    top: 0,
-    right: 0,
-    transform: ownerState.open ? 'translateX(0)' : 'translateX(100%)',
-  }),
-  ...(ownerState.anchor === 'top' && {
-    top: 0,
-    transform: ownerState.open ? 'translateY(0)' : 'translateY(-100%)',
-  }),
-  ...(ownerState.anchor === 'bottom' && {
-    bottom: 0,
-    transform: ownerState.open ? 'translateY(0)' : 'translateY(100%)',
-  }),
-  height: ownerState.anchor!.match(/(left|right)/) ? '100%' : 'auto',
-  width: ownerState.anchor!.match(/(top|bottom)/) ? '100vw' : 'auto',
-  transition: 'transform 0.3s ease',
+
 }));
 
 const oppositeDirection = {
@@ -187,28 +165,32 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
 
   return (
     <CloseModalContext.Provider value={onClose}>
-      <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
-        {/*
-         * Marking an element with the role presentation indicates to assistive technology
-         * that this element should be ignored; it exists to support the web application and
-         * is not meant for humans to interact with directly.
-         * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-         */}
-        <SlotRoot {...rootProps}>
-          {!hideBackdrop ? <SlotBackdrop {...backdropProps} /> : null}
-          <FocusTrap
-            disableEnforceFocus={disableEnforceFocus}
-            disableAutoFocus={disableAutoFocus}
-            disableRestoreFocus={disableRestoreFocus}
-            isEnabled={isTopModal}
-            open={open}
-          >
-            <SlotContent {...contentProps} tabIndex={contentProps.tabIndex ?? -1}>
-              {children}
-            </SlotContent>
-          </FocusTrap>
-        </SlotRoot>
-      </Portal>
+      <DrawerAnchorContext.Provider value={anchor}>
+        <DrawerOpenContext.Provider value={open}>
+          <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
+            {/*
+            * Marking an element with the role presentation indicates to assistive technology
+            * that this element should be ignored; it exists to support the web application and
+            * is not meant for humans to interact with directly.
+            * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+            */}
+            <SlotRoot {...rootProps}>
+              {!hideBackdrop ? <SlotBackdrop {...backdropProps} /> : null}
+              <FocusTrap
+                disableEnforceFocus={disableEnforceFocus}
+                disableAutoFocus={disableAutoFocus}
+                disableRestoreFocus={disableRestoreFocus}
+                isEnabled={isTopModal}
+                open={open}
+              >
+                <SlotContent {...contentProps} tabIndex={contentProps.tabIndex ?? -1}>
+                  {children}
+                </SlotContent>
+              </FocusTrap>
+            </SlotRoot>
+          </Portal>
+        </DrawerOpenContext.Provider>
+      </DrawerAnchorContext.Provider>
     </CloseModalContext.Provider>
   );
 }) as OverridableComponent<DrawerTypeMap>;

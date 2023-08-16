@@ -79,6 +79,9 @@ export * from './Divider';
 export { default as Drawer } from './Drawer';
 export * from './Drawer';
 
+export { default as DrawerContent } from './DrawerContent';
+export * from './DrawerContent';
+
 export { default as Dropdown } from './Dropdown';
 export * from './Dropdown';
 

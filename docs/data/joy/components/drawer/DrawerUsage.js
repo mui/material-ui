@@ -3,6 +3,7 @@ import Button from '@mui/joy/Button';
 import Sheet from '@mui/joy/Sheet';
 import Box from '@mui/joy/Box';
 import Drawer from '@mui/joy/Drawer';
+import DrawerContent from '@mui/joy/DrawerContent';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import List from '@mui/joy/List';
 import Divider from '@mui/joy/Divider';
@@ -84,9 +85,9 @@ export default function CheckboxUsage({ window }) {
                 open={state[anchor]}
                 onClose={toggleDrawer(anchor, false)}
               >
-                <Sheet {...props}>
+                <DrawerContent {...props}>
                   {list(anchor)}
-                </Sheet>
+                </DrawerContent>
               </Drawer>
             ))}
           </React.Fragment>
