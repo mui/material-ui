@@ -248,18 +248,26 @@ const Root = styled('div')(
       paddingBottom: 12,
     },
     '& blockquote': {
-      borderRadius: `var(--muidocs-shape-borderRadius, ${
-        theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
-      }px)`,
-      border: '1px solid',
-      borderLeft: '8px solid',
-      borderColor: `var(--muidocs-palette-warning-300, ${lightTheme.palette.warning[300]})`,
-      backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
-      padding: '10px 20px',
-      margin: '20px 0',
+      position: 'relative',
+      borderLeft: '1.5px solid',
+      borderColor: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[200]})`,
+      padding: '0 16px',
+      margin: 0,
       '& p': {
-        marginTop: 10,
-        color: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
+        fontStyle: 'italic',
+        fontSize: theme.typography.pxToRem(13),
+        fontFamily: lightTheme.typography.fontFamilyCode,
+        fontWeight: lightTheme.typography.fontWeightMedium,
+        textIndent: 20,
+      },
+      ':before': {
+        position: 'absolute',
+        content: 'open-quote',
+        color: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
+        fontSize: '2.5rem',
+        top: 8,
+        marginLeft: -6,
+        lineHeight: 0.5,
       },
     },
     '& .MuiCallout-root': {
@@ -553,10 +561,9 @@ const Root = styled('div')(
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
       },
       '& blockquote': {
-        borderColor: `var(--muidocs-palette-warning-500, ${darkTheme.palette.warning[500]})`,
-        backgroundColor: alpha(darkTheme.palette.warning[900], 0.2),
-        '& p': {
-          color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
+        borderColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
+        ':before': {
+          color: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
         },
       },
       '& .MuiCallout-root': {
