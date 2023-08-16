@@ -687,7 +687,7 @@ function AboutContent() {
                 endIcon={<KeyboardArrowRightRounded />}
                 sx={{ ml: -1 }}
               >
-                See Open Collective{' '}
+                {'See Open Collective'}
               </Button>
             </Widget>
           </Grid>
