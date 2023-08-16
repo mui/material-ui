@@ -45,7 +45,7 @@ const ModalRoot = styled('div', {
   }),
 }));
 
-export const ModalBackdrop = styled('div', {
+const ModalBackdrop = styled('div', {
   name: 'JoyModal',
   slot: 'Backdrop',
   overridesResolver: (props, styles) => styles.backdrop,
