@@ -85,22 +85,16 @@ export interface PopoverProps
    */
   container?: ModalProps['container'];
   /**
-   * Disables the margin threshold so that when scrolled the popover stays in the correct position
-   * By default, false for backward compatibility.
-   *
-   * @default false
-   */
-  disableMarginThreshold?: boolean;
-  /**
    * The elevation of the popover.
    * @default 8
    */
   elevation?: number;
   /**
    * Specifies how close to the edge of the window the popover can appear.
+   * If null, the popover will not be constrained by the window.
    * @default 16
    */
-  marginThreshold?: number;
+  marginThreshold?: number | null;
   onClose?: ModalProps['onClose'];
   /**
    * If `true`, the component is shown.

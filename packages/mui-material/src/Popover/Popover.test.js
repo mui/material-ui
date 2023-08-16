@@ -846,10 +846,7 @@ describe('<Popover />', () => {
 
   describe('marginThreshold', () => {
     [0, 18, 16].forEach((marginThreshold) => {
-      function getElementStyleOfOpenPopover(
-        anchorEl = document.createElement('svg'),
-        disableMarginThreshold = false,
-      ) {
+      function getElementStyleOfOpenPopover(anchorEl = document.createElement('svg')) {
         let style;
         render(
           <Popover
@@ -862,7 +859,6 @@ describe('<Popover />', () => {
             }}
             marginThreshold={marginThreshold}
             slotProps={{ paper: { component: FakePaper } }}
-            disableMarginThreshold={disableMarginThreshold}
           >
             <div />
           </Popover>,
@@ -965,22 +961,37 @@ describe('<Popover />', () => {
           });
         });
       });
+    });
 
-      describe('disableMarginThreshold', () => {
-        it('should not apply the marginThreshold when disableMarginThreshold is true', () => {
-          const lessThanThreshold = marginThreshold - 1;
-          const mockedAnchor = document.createElement('div');
-          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
-            top: lessThanThreshold,
-            left: lessThanThreshold,
-          }));
+    describe('positioning when `marginThreshold=null`', () => {
+      it('should not apply the marginThreshold when marginThreshold is null', () => {
+        const mockedAnchor = document.createElement('div');
+        const valueOutsideWindow = -100;
+        stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+          top: valueOutsideWindow,
+          left: valueOutsideWindow,
+        }));
 
-          const style = getElementStyleOfOpenPopover(mockedAnchor, true);
+        let style;
+        render(
+          <Popover
+            anchorEl={mockedAnchor}
+            open
+            TransitionProps={{
+              onEntering: (node) => {
+                style = node.style;
+              },
+            }}
+            marginThreshold={null}
+            slotProps={{ paper: { component: FakePaper } }}
+          >
+            <div />
+          </Popover>,
+        );
 
-          expect(style.top).to.equal(`${lessThanThreshold}px`);
-          expect(style.left).to.equal(`${lessThanThreshold}px`);
-          expect(style.transformOrigin).to.match(/0px 0px( 0px)?/);
-        });
+        expect(style.top).to.equal(`${valueOutsideWindow}px`);
+        expect(style.left).to.equal(`${valueOutsideWindow}px`);
+        expect(style.transformOrigin).to.match(/0px 0px( 0px)?/);
       });
     });
   });

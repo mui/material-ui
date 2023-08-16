@@ -125,7 +125,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     TransitionComponent = Grow,
     transitionDuration: transitionDurationProp = 'auto',
     TransitionProps: { onEntering, ...TransitionProps } = {},
-    disableMarginThreshold = false,
     disableScrollLock = false,
     ...other
   } = props;
@@ -246,13 +245,13 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const widthThreshold = containerWindow.innerWidth - marginThreshold;
 
       // Check if the vertical axis needs shifting
-      if (!disableMarginThreshold && top < marginThreshold) {
+      if (marginThreshold !== null && top < marginThreshold) {
         const diff = top - marginThreshold;
 
         top -= diff;
 
         elemTransformOrigin.vertical += diff;
-      } else if (!disableMarginThreshold && bottom > heightThreshold) {
+      } else if (marginThreshold !== null && bottom > heightThreshold) {
         const diff = bottom - heightThreshold;
 
         top -= diff;
@@ -275,7 +274,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       }
 
       // Check if the horizontal axis needs shifting
-      if (!disableMarginThreshold && left < marginThreshold) {
+      if (marginThreshold !== null && left < marginThreshold) {
         const diff = left - marginThreshold;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
@@ -291,14 +290,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         transformOrigin: getTransformOriginValue(elemTransformOrigin),
       };
     },
-    [
-      anchorEl,
-      anchorReference,
-      disableMarginThreshold,
-      getAnchorOffset,
-      getTransformOrigin,
-      marginThreshold,
-    ],
+    [anchorEl, anchorReference, getAnchorOffset, getTransformOrigin, marginThreshold],
   );
 
   const [isPositioned, setIsPositioned] = React.useState(open);
@@ -549,13 +541,6 @@ Popover.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
-   * Disables the margin threshold so that when scrolled the popover stays in the correct position
-   * By default, false for backward compatibility.
-   *
-   * @default false
-   */
-  disableMarginThreshold: PropTypes.bool,
-  /**
    * Disable the scroll lock behavior.
    * @default false
    */
@@ -567,6 +552,7 @@ Popover.propTypes /* remove-proptypes */ = {
   elevation: integerPropType,
   /**
    * Specifies how close to the edge of the window the popover can appear.
+   * If null, the popover will not be constrained by the window.
    * @default 16
    */
   marginThreshold: PropTypes.number,
