@@ -97,53 +97,54 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 {{"demo": "ListRouter.js"}}
 
-## More examples
+## Next.js
 
-### Next.js Pages Router
+The example repos provide adapter components for the use of [Next.js's Link component](https://nextjs.org/docs/api-reference/next/link) with Material UI:
 
-The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-pages-router-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/pages/api-reference/components/link) with Material UI.
+- [Next.js App Router example repo](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-ts)
+- [Next.js Pages Router example repo](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-pages-router-ts)
 
-- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/-/examples/material-ui-nextjs-pages-router-ts/src/Link.tsx) component.
-  This component is unstyled and only responsible for handling the navigation.
-  The prop `href` was renamed `to` to avoid a naming conflict.
-  This is similar to react-router's Link component.
+The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/-/examples/material-ui-nextjs-ts/src/Link.tsx) component.
+This component is unstyled and only responsible for handling the navigation.
+The prop `href` was renamed `to` to avoid a naming conflict.
+This is similar to react-router's Link component.
 
-  ```tsx
-  import Button from '@mui/material/Button';
-  import { NextLinkComposed } from '../src/Link';
+```tsx
+import Button from '@mui/material/Button';
+import { NextLinkComposed } from '../src/Link';
 
-  export default function Index() {
-    return (
-      <Button
-        component={NextLinkComposed}
-        to={{
-          pathname: '/about',
-          query: { name: 'test' },
-        }}
-      >
-        Button link
-      </Button>
-    );
-  }
-  ```
+export default function App() {
+  return (
+    <Button
+      component={NextLinkComposed}
+      to={{
+        pathname: '/about',
+        query: { name: 'test' },
+      }}
+    >
+      Button link
+    </Button>
+  );
+}
+```
 
-- The second version of the adapter is the `Link` component.
-  This component is styled.
-  It uses the [Material UI Link component](/material-ui/react-link/) with `NextLinkComposed`.
+The second version of the adapter is the `Link` component.
+This component is styled.
+It uses the [Material UI Link component](/material-ui/react-link/) with `NextLinkComposed`.
 
-  ```tsx
-  import Link from '../src/Link';
+```tsx
+import Link from '../src/Link';
 
-  export default function Index() {
-    return (
-      <Link
-        href={{
-          pathname: '/about',
-          query: { name: 'test' },
-        }}
-      >
-        Link
-      </Link>
-    );
-  }
-  ```
+export default function App() {
+  return (
+    <Link
+      href={{
+        pathname: '/about',
+        query: { name: 'test' },
+      }}
+    >
+      Link
+    </Link>
+  );
+}
+```
