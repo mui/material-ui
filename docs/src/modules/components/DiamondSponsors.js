@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -59,9 +58,6 @@ export default function DiamondSponsors() {
               borderRadius: '12px',
               boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
               transition: theme.transitions.create(['color', 'border-color']),
-              boxShadow: `inset 0 1px 2px ${
-                (theme.vars || theme).palette.grey[50]
-              }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
               '&:hover': {
                 backgroundColor: 'grey.50',
               },
@@ -73,9 +69,6 @@ export default function DiamondSponsors() {
           (theme) =>
             theme.applyDarkStyles({
               '& a': {
-                boxShadow: `inset 0 1px 1px ${
-                  (theme.vars || theme).palette.primaryDark[900]
-                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primaryDark[800],
                   borderColor: (theme.vars || theme).palette.primaryDark[600],

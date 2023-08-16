@@ -119,43 +119,35 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
               borderRadius: 1,
               border: '1px solid',
               bgcolor: '#fff',
-              boxShadow: `inset 0 1px 2px ${
-                (theme.vars || theme).palette.grey[50]
-              }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
-              borderColor: 'grey.200',
+              boxShadow: '0 1px 2px 0 rgba(0 0 0 / 0.1)',
+              borderColor: 'grey.300',
               typography: 'body2',
               '&:hover': {
-                borderColor: 'grey.300',
-                boxShadow: `inset 0 1px 2px ${(theme.vars || theme).palette.grey[50]}, 0 1px 2px ${
-                  (theme.vars || theme).palette.grey[100]
-                }`,
+                borderColor: 'grey.400',
+                boxShadow: '0 1px 2px 0 rgba(0 0 0 / 0.2)',
               },
               [`&.${inputBaseClasses.focused}`]: {
                 boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary[200]}`,
-                borderColor: 'primary.300',
+                borderColor: 'primary.500',
               },
               [`& .${inputBaseClasses.input}`]: {
                 borderRadius: `calc(${theme.shape.borderRadius}px - 1px)`,
-                py: 1,
+                py: '11px',
                 px: 1.5,
               },
             }),
             (theme) =>
               theme.applyDarkStyles({
                 bgcolor: 'primaryDark.900',
-                boxShadow: `inset 0 1px 1px ${
-                  (theme.vars || theme).palette.primaryDark[900]
-                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
+                boxShadow: '0 1px 2px 0 rgba(0 0 0 / 1)',
                 borderColor: 'primaryDark.500',
                 '&:hover': {
-                  borderColor: 'primaryDark.400',
-                  boxShadow: `inset 0 1px 1px ${
-                    (theme.vars || theme).palette.primaryDark[900]
-                  }, 0 1px 2px ${(theme.vars || theme).palette.common.black}`,
+                  borderColor: 'primaryDark.300',
+                  boxShadow: '0 1px 2px 0 rgba(0 0 0 / 1)',
                 },
                 [`&.${inputBaseClasses.focused}`]: {
-                  boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary[800]}`,
-                  borderColor: 'primary.600',
+                  boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primaryDark[500]}`,
+                  borderColor: 'primaryDark.300',
                 },
               }),
           ]}
@@ -169,25 +161,16 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
               color: 'primary.600',
               py: 1,
               px: 1.5,
-              border: '1px solid',
-              borderColor: 'primary.100',
-              boxShadow: `inset 0 1px 2px ${
-                (theme.vars || theme).palette.grey[50]
-              }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
               '&:hover': {
                 bgcolor: alpha(theme.palette.primary[100], 1),
               },
             }),
             (theme) =>
               theme.applyDarkStyles({
-                bgcolor: alpha(theme.palette.primary[800], 0.3),
+                bgcolor: 'primaryDark.500',
                 color: 'primaryDark.100',
-                borderColor: 'primary.800',
-                boxShadow: `inset 0 1px 1px ${
-                  (theme.vars || theme).palette.primary[900]
-                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
                 '&:hover': {
-                  bgcolor: 'primary.800',
+                  bgcolor: 'primaryDark.600',
                 },
               }),
           ]}

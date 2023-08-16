@@ -54,7 +54,7 @@ export default function ComponentPageTabs(props) {
         sx={{
           position: 'sticky',
           top: 65, // to be positioned below the app bar
-          mt: 1,
+          mt: 3,
           pt: 1,
           mx: {
             xs: -2,
