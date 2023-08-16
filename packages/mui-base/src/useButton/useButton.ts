@@ -219,9 +219,9 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
 
     const props = {
       type,
-      ...externalProps,
       ...externalEventHandlers,
       ...buttonProps,
+      ...externalProps,
       onBlur: createHandleBlur(externalEventHandlers),
       onClick: createHandleClick(externalEventHandlers),
       onFocus: createHandleFocus(externalEventHandlers),
