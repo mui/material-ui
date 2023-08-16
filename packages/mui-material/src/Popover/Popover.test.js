@@ -844,7 +844,7 @@ describe('<Popover />', () => {
     });
   });
 
-  describe('marginThreshold', () => {
+  describe('prop: marginThreshold', () => {
     [0, 18, 16].forEach((marginThreshold) => {
       function getElementStyleOfOpenPopover(anchorEl = document.createElement('svg')) {
         let style;
