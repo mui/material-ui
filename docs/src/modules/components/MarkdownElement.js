@@ -249,10 +249,10 @@ const Root = styled('div')(
     },
     '& blockquote': {
       position: 'relative',
-      borderLeft: '1.5px solid',
-      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       padding: '0 16px',
       margin: 0,
+      borderLeft: '1.5px solid',
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       '& p': {
         fontStyle: 'italic',
         fontSize: theme.typography.pxToRem(13),
