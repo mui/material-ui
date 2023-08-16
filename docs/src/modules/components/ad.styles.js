@@ -6,7 +6,7 @@ const adBodyImageStyles = (theme) => ({
     display: 'block',
     overflow: 'hidden',
     border: '1px dashed',
-    borderColor: 'divider',
+    borderColor: theme.palette.divider,
     padding: '12px 12px 12px calc(12px + 130px)',
     borderRadius: theme.shape.borderRadius,
   },
