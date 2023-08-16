@@ -3,16 +3,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
-import CalendarViewDayRoundedIcon from '@mui/icons-material/CalendarViewDayRounded';
-import ReorderRoundedIcon from '@mui/icons-material/ReorderRounded';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { useApiPageOption } from 'docs/src/modules/utils/useApiPageOption';
+import ToggleDisplayOption, {
+  useApiPageOption,
+} from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
 import ExpendableApiItem from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
 
 // TODO: Move to translation
@@ -137,13 +135,6 @@ export default function PropertiesTable(props) {
 
   const [displayOption, setDisplayOption] = useApiPageOption('api-page-props');
 
-  const handleAlignment = (event, newDisplayOption) => {
-    if (newDisplayOption === null) {
-      return;
-    }
-    setDisplayOption(newDisplayOption);
-  };
-
   return (
     <React.Fragment>
       <div
@@ -166,48 +157,7 @@ export default function PropertiesTable(props) {
           </a>
         </Level>
 
-        <ToggleButtonGroup
-          size="small"
-          value={displayOption}
-          exclusive
-          onChange={handleAlignment}
-          // eslint-disable-next-line material-ui/no-hardcoded-labels
-          aria-label="API display option"
-          sx={{
-            '& .MuiSvgIcon-root': {
-              height: '0.8em',
-              width: '0.8em',
-            },
-            '&.MuiToggleButtonGroup-root .MuiToggleButton-root': {
-              padding: '0.15rem 0.3rem',
-              borderRadius: '10px',
-              '&.MuiToggleButtonGroup-grouped:not(:last-of-type)': {
-                borderTopRightRadius: 0,
-                borderBottomRightRadius: 0,
-              },
-              '&.MuiToggleButtonGroup-grouped:not(:first-of-type)': {
-                borderTopLeftRadius: 0,
-                borderBottomLeftRadius: 0,
-              },
-            },
-          }}
-        >
-          <ToggleButton
-            value="collapsed"
-            // eslint-disable-next-line material-ui/no-hardcoded-labels
-            aria-label="colapsed list"
-          >
-            <ReorderRoundedIcon size="small" />
-          </ToggleButton>
-
-          <ToggleButton
-            value="expended"
-            // eslint-disable-next-line material-ui/no-hardcoded-labels
-            aria-label="expended list"
-          >
-            <CalendarViewDayRoundedIcon />
-          </ToggleButton>
-        </ToggleButtonGroup>
+        <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
       </div>
 
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
