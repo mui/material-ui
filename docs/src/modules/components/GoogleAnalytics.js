@@ -7,6 +7,7 @@ import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useNoSsrCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { useApiPageOption } from 'docs/src/modules/utils/useApiPageOption';
 
 // So we can write code like:
 //
@@ -154,6 +155,13 @@ function GoogleAnalytics() {
       codeStylingVariant,
     });
   }, [codeStylingVariant]);
+
+  const [apiPropsLayout] = useApiPageOption('api-page-props');
+  React.useEffect(() => {
+    window.gtag('set', 'user_properties', {
+      apiPropsLayout,
+    });
+  }, [apiPropsLayout]);
 
   return null;
 }

@@ -12,7 +12,7 @@ import {
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import useApiPageOption from 'docs/src/modules/utils/useApiPageOption';
+import { useApiPageOption } from 'docs/src/modules/utils/useApiPageOption';
 import ExpendableApiItem from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
 
 // TODO: Move to translation
@@ -152,7 +152,7 @@ export default function PropertiesTable(props) {
           alignItems: 'baseline',
         }}
       >
-        <Level id={titleHash} style={{flexGrow: 1}}>
+        <Level id={titleHash} style={{ flexGrow: 1 }}>
           {t(title)}
           <a
             aria-labelledby={titleHash}
