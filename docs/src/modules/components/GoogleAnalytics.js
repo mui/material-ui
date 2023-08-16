@@ -7,7 +7,7 @@ import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useNoSsrCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import { useApiPageOption } from 'docs/src/modules/utils/useApiPageOption';
+import { useApiPageOption } from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
 
 // So we can write code like:
 //

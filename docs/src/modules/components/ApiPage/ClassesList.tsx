@@ -1,7 +1,11 @@
+/* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import ApiItem from './ApiItem';
+import ExpendableApiItem from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
+// import ToggleDisplayOption, {
+//   useApiPageOption,
+// } from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
 
 export type ClassesListProps = {
   componentClasses: {
@@ -16,11 +20,26 @@ export type ClassesListProps = {
     };
   };
   componentName: string;
+  spreadHint?: string;
+  title: string;
+  titleHash: string;
+  level?: 'h2' | 'h3' | 'h4';
 };
 
 export default function ClassesList(props: ClassesListProps) {
-  const { componentClasses, classDescriptions, componentName } = props;
+  const {
+    componentClasses,
+    classDescriptions,
+    componentName,
+    spreadHint,
+    title = 'api-docs.classesDescription',
+    titleHash = 'classes',
+    level: Level = 'h2',
+  } = props;
+
   const t = useTranslate();
+
+  // const [displayOption, setDisplayOption] = useApiPageOption('api-page-classes');
 
   const list = componentClasses.classes.map((classes) => ({
     classes,
@@ -31,32 +50,58 @@ export default function ClassesList(props: ClassesListProps) {
 
   const hashPrefix = componentName ? `${componentName}-` : '';
   return (
-    <div>
-      {list
-        .sort((a, b) => a.className.localeCompare(b.className))
-        .map((item) => {
-          const isGlobalStateClass = !!componentClasses.globalClasses[item.classes];
-          const cssClassName = `.${item.className}`;
+    <React.Fragment>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'baseline',
+        }}
+      >
+        <Level id={titleHash} style={{ flexGrow: 1 }}>
+          {t(title)}
+          <a
+            aria-labelledby={titleHash}
+            className="anchor-link"
+            href={`#${titleHash}`}
+            tabIndex={-1}
+          >
+            <svg>
+              <use xlinkHref="#anchor-link-icon" />
+            </svg>
+          </a>
+        </Level>
 
-          const description =
-            classDescriptions[item.classes] &&
-            classDescriptions[item.classes].description
-              .replace(/{{conditions}}/, classDescriptions[item.classes].conditions!)
-              .replace(/{{nodeName}}/, classDescriptions[item.classes].nodeName!);
-          return (
-            <ApiItem
-              id={`${hashPrefix}classes-${item.className}`}
-              key={item.className}
-              note={isGlobalStateClass ? t('api-docs.state') : ''}
-              title={cssClassName}
-              type="classes"
-              description={description}
-            />
+        {/* <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} /> */}
+      </div>
 
-            // </ApiItem>
-          );
-        })}
-    </div>
+      {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
+
+      <div>
+        {list
+          .sort((a, b) => a.className.localeCompare(b.className))
+          .map((item) => {
+            const isGlobalStateClass = !!componentClasses.globalClasses[item.classes];
+            const cssClassName = `.${item.className}`;
+
+            const description =
+              classDescriptions[item.classes] &&
+              classDescriptions[item.classes].description
+                .replace(/{{conditions}}/, classDescriptions[item.classes].conditions!)
+                .replace(/{{nodeName}}/, classDescriptions[item.classes].nodeName!);
+            return (
+              <ExpendableApiItem
+                id={`${hashPrefix}classes-${item.className}`}
+                key={item.className}
+                note={isGlobalStateClass ? t('api-docs.state') : ''}
+                title={cssClassName}
+                type="classes"
+              >
+                <p dangerouslySetInnerHTML={{ __html: description }} />
+              </ExpendableApiItem>
+            );
+          })}
+      </div>
+    </React.Fragment>
   );
 }
 

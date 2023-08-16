@@ -10,7 +10,9 @@ const options: ApiDisplayOptions[] = ['collapsed', 'expended'];
 
 const getRandomOption = () => options[Math.floor(options.length * Math.random())];
 
-export function useApiPageOption(storageKey: string) {
+export function useApiPageOption(
+  storageKey: string,
+): [ApiDisplayOptions, (newOption: ApiDisplayOptions) => void] {
   const [option, setOption] = React.useState(options[0]);
 
   const updateOption = React.useCallback(

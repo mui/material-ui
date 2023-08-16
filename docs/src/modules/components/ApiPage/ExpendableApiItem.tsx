@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { alpha, styled } from '@mui/material/styles';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { IconButton } from '@mui/material';
+import { IconButton, SxProps } from '@mui/material';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
@@ -198,6 +198,7 @@ export type ApiItemProps = {
   isExtendable?: boolean;
   className?: string;
   children?: React.ReactNode;
+  sx?: SxProps;
 };
 
 function ApiItem(props: ApiItemProps) {

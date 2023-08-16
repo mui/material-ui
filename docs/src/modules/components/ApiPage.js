@@ -316,6 +316,7 @@ import { ${pageContent.name} } from '${source}';`}
               componentStyles={componentStyles}
               classDescriptions={classDescriptions}
               componentName={pageContent.name}
+              spreadHint={t('api-docs.cssDescription')}
             />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
