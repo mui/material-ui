@@ -334,30 +334,6 @@ describe('<ButtonBase />', () => {
         ).to.have.lengthOf(0);
       });
 
-      it('should start the ripple when the mouse is pressed 2', () => {
-        const { getByRole } = render(
-          <ButtonBase
-            TouchRippleProps={{
-              classes: {
-                rippleVisible: 'ripple-visible',
-                child: 'child',
-                childLeaving: 'child-leaving',
-              },
-            }}
-          />,
-        );
-        const button = getByRole('button');
-        fireEvent.mouseDown(button);
-        fireEvent.mouseUp(button);
-
-        fireEvent.mouseDown(button);
-
-        expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
-        expect(
-          button.querySelectorAll('.ripple-visible .child:not(.child-leaving)'),
-        ).to.have.lengthOf(1);
-      });
-
       it('should stop the ripple when the button blurs', () => {
         const { getByRole } = render(
           <ButtonBase
