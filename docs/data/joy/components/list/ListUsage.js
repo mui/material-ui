@@ -50,7 +50,7 @@ ${prependLinesSpace(code, 3)}
   </ListItem>
 </List>`}
       renderDemo={(props) => (
-        <List {...props} sx={{ width: 240, my: 5 }}>
+        <List sx={{ width: 240, my: 5 }}>
           <ListItem>
             <ListItemButton {...props}>
               <ListItemDecorator>
