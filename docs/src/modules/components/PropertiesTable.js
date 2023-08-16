@@ -247,7 +247,7 @@ export default function PropertiesTable(props) {
                         </svg>
                       ),
                     }}
-                    className="MuiApi-colapsable"
+                    className="MuiApi-collapsible"
                   >
                     <span
                       dangerouslySetInnerHTML={{
@@ -261,7 +261,7 @@ export default function PropertiesTable(props) {
                   .filter((key) => propData.additionalInfo?.[key])
                   .map((key) => (
                     <p
-                      className="prop-list-additional-description  MuiApi-colapsable"
+                      className="prop-list-additional-description  MuiApi-collapsible"
                       key={key}
                       dangerouslySetInnerHTML={{
                         __html: additionalPropsInfoText[key],
@@ -272,7 +272,7 @@ export default function PropertiesTable(props) {
                   <Alert
                     severity="warning"
                     sx={{ mb: 1, py: 0 }}
-                    className="MuiApi-colapsable"
+                    className="MuiApi-collapsible"
                     iconMapping={{
                       warning: (
                         <svg
@@ -301,7 +301,7 @@ export default function PropertiesTable(props) {
                 )}
                 <div className="prop-list-additional-info">
                   {typeName && (
-                    <p className="prop-list-type MuiApi-colapsable">
+                    <p className="prop-list-type MuiApi-collapsible">
                       <span className="prop-list-title">{t('api-docs.type')}:</span>
                       <code
                         dangerouslySetInnerHTML={{
@@ -311,13 +311,13 @@ export default function PropertiesTable(props) {
                     </p>
                   )}
                   {propDefault && (
-                    <p className="prop-list-default-props MuiApi-colapsable">
+                    <p className="prop-list-default-props MuiApi-collapsible">
                       <span className="prop-list-title">{t('api-docs.default')}:</span>
                       <code className="Api-code">{propDefault}</code>
                     </p>
                   )}
                   {signature && (
-                    <div className="prop-list-signature MuiApi-colapsable">
+                    <div className="prop-list-signature MuiApi-collapsible">
                       <span className="prop-list-title">{t('api-docs.signature')}:</span>
 
                       <div className="prop-list-content">

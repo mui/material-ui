@@ -76,7 +76,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       paddingLeft: 6,
     },
     '& .MuiApi-item-content-colapsed': {
-      '& .MuiApi-colapsable': {
+      '& .MuiApi-collapsible': {
         display: 'none',
       },
     },
