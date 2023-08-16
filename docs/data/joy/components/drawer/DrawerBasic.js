@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
+import Sheet from '@mui/joy/Sheet';
 import Drawer from '@mui/joy/Drawer';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import Button from '@mui/joy/Button';
@@ -65,7 +66,9 @@ export default function DrawerBasic() {
           open={state[anchor]}
           onClose={toggleDrawer(anchor, false)}
         >
-          {list(anchor)}
+          <Sheet>
+            {list(anchor)}
+          </Sheet>
         </Drawer>
       ))}
     </React.Fragment>

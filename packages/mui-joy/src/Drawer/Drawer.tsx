@@ -57,7 +57,7 @@ const DrawerBackdrop = styled(ModalBackdrop as unknown as 'div', {
   overridesResolver: (props, styles) => styles.backdrop,
 })({});
 
-const DrawerContent = styled(SheetRoot as unknown as 'div', {
+const DrawerContent = styled('div', {
   name: 'JoyDrawer',
   slot: 'Backdrop',
   overridesResolver: (props, styles) => styles.content,
@@ -155,7 +155,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
 
   const { getRootProps, getBackdropProps, rootRef, portalRef, isTopModal } = useModal({
     ...ownerState,
-    ref,
+    rootRef: ref,
   });
 
   const classes = useUtilityClasses(ownerState);

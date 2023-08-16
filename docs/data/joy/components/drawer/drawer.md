@@ -9,6 +9,10 @@ githubLabel: 'component: drawer'
 
 <p class="description">Navigation drawers provide quick access to other destinations in your app without removing the user out of context.</p>
 
+## Introduction
+
+{{"demo": "DrawerUsage.js", "hideToolbar": true, "bg": "gradient"}}
+
 ## Temporary drawers
 
 Temporary navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.
