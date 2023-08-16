@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
-import { ThemeProvider } from '@mui/joy/styles';
-import Tooltip, { tooltipClasses as classes, TooltipClassKey } from '@mui/joy/Tooltip';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { PopperProps } from '@mui/base';
+import { ThemeProvider } from '@mui/joy/styles';
+import Tooltip, { tooltipClasses as classes, TooltipClassKey } from '@mui/joy/Tooltip';
 
 describe('<Tooltip />', () => {
   const { render } = createRenderer();

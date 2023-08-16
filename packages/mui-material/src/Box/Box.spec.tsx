@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import { Box as SystemBox, createBox } from '@mui/system';
 import { expectType } from '@mui/types';
+import Box from '@mui/material/Box';
 import { createTheme } from '@mui/material/styles';
 
 function ThemeValuesCanBeSpread() {

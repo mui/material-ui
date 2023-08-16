@@ -38,10 +38,6 @@ import AcUnitRounded from '@mui/icons-material/AcUnitRounded';
 import FavoriteBorderRounded from '@mui/icons-material/FavoriteBorderRounded';
 import ShareRounded from '@mui/icons-material/ShareRounded';
 import RateReviewOutlined from '@mui/icons-material/RateReviewOutlined';
-import GradientText from 'docs/src/components/typography/GradientText';
-import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
-import HeroContainer from 'docs/src/layouts/HeroContainer';
-import IconImage from 'docs/src/components/icon/IconImage';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -58,6 +54,10 @@ import Badge from '@mui/material/Badge';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import IconImage from 'docs/src/components/icon/IconImage';
+import HeroContainer from 'docs/src/layouts/HeroContainer';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
+import GradientText from 'docs/src/components/typography/GradientText';
 import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
@@ -246,8 +246,10 @@ export default function MaterialHero() {
             make it easy to implement your own custom design system.
           </Typography>
           <GetStartedButtons
-            to="/material-ui/getting-started/"
-            installation="npm install @mui/material @emotion/react @emotion/styled"
+            primaryUrl={ROUTES.materialDocs}
+            secondaryLabel="View templates"
+            secondaryUrl={ROUTES.freeTemplates}
+            altInstallation="npm install @mui/material @emotion/react @emotion/styled"
           />
         </Box>
       }

@@ -12,7 +12,7 @@ const TEXT_NAVIGATION_RESET_TIMEOUT = 500; // milliseconds
  * @param callback A function to be called when the navigation should be performed.
  * @returns A function to be used in a keydown event handler.
  */
-export default function useTextNavigation(
+export function useTextNavigation(
   callback: (searchString: string, event: React.KeyboardEvent) => void,
 ) {
   const textCriteriaRef = React.useRef<{

@@ -13,14 +13,13 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import DoneRounded from '@mui/icons-material/DoneRounded';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
-import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import DoneRounded from '@mui/icons-material/DoneRounded';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 const savedScrollTop = {};
@@ -148,19 +147,7 @@ function PersistScroll(props) {
     };
   }, [enabled, slot]);
 
-  return (
-    <Box
-      sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
-      ref={rootRef}
-    >
-      {children}
-    </Box>
-  );
+  return <div ref={rootRef}>{children}</div>;
 }
 
 PersistScroll.propTypes = {
@@ -172,6 +159,7 @@ PersistScroll.propTypes = {
 const ToolbarDiv = styled('div')(({ theme }) => ({
   padding: theme.spacing(1.6, 2),
   paddingRight: 0,
+  flexShrink: 0,
   height: 'var(--MuiDocs-header-height)',
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
@@ -193,6 +181,8 @@ const AppNavPaperComponent = styled('div')(() => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
+    border: '0 !important', // TODO add a Paper slot
+    overflowY: 'unset !important', // TODO add a Paper slot
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   };
 });
@@ -248,7 +238,7 @@ function reduceChildRoutes(context) {
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
-        comingSoon={page.comingSoon}
+        planned={page.planned}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -280,7 +270,7 @@ function reduceChildRoutes(context) {
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
-        comingSoon={page.comingSoon}
+        planned={page.planned}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -303,6 +293,7 @@ export default function AppNavDrawer(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const t = useTranslate();
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
+  const swipeableDrawer = disablePermanent || mobile;
 
   const drawer = React.useMemo(() => {
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
@@ -393,15 +384,12 @@ export default function AppNavDrawer(props) {
               component="a"
               onClick={onClose}
               aria-label={t('goToHome')}
-              sx={(theme) => ({
+              sx={{
                 pr: '12px',
                 mr: '4px',
                 borderRight: '1px solid',
-                borderColor: (theme.vars || theme).palette.divider,
-                ...theme.applyDarkStyles({
-                  borderColor: (theme.vars || theme).palette.divider,
-                }),
-              })}
+                borderColor: 'divider',
+              }}
             >
               <SvgMuiLogomark width={30} />
             </Box>
@@ -413,11 +401,27 @@ export default function AppNavDrawer(props) {
           />
         </ToolbarDiv>
         <Divider />
-        <Box sx={{ pt: 0.5, pb: 4, overflowY: 'auto', flexGrow: 1 }}>{navItems}</Box>
-        <DiamondSponsors />
+        <Box
+          sx={{
+            pt: 0.5,
+            pb: 5,
+            overflowY: 'auto',
+            flexGrow: 1,
+            ...(swipeableDrawer
+              ? {}
+              : {
+                  borderRight: '1px solid',
+                  borderColor: 'divider',
+                }),
+          }}
+        >
+          <PersistScroll slot="side" enabled>
+            {navItems}
+          </PersistScroll>
+        </Box>
       </React.Fragment>
     );
-  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
+  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl, swipeableDrawer]);
 
   if (process.env.NODE_ENV !== 'production') {
     if (!productIdentifier) {
@@ -430,7 +434,7 @@ export default function AppNavDrawer(props) {
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>
-      {disablePermanent || mobile ? (
+      {swipeableDrawer ? (
         <SwipeableDrawer
           disableBackdropTransition={!iOS}
           variant="temporary"
@@ -441,16 +445,12 @@ export default function AppNavDrawer(props) {
             keepMounted: true,
           }}
           PaperProps={{
-            className: 'algolia-drawer',
             component: AppNavPaperComponent,
           }}
         >
-          <PersistScroll slot="swipeable" enabled={mobileOpen}>
-            {drawer}
-          </PersistScroll>
+          {drawer}
         </SwipeableDrawer>
-      ) : null}
-      {disablePermanent || mobile ? null : (
+      ) : (
         <StyledDrawer
           variant="permanent"
           PaperProps={{
@@ -458,9 +458,7 @@ export default function AppNavDrawer(props) {
           }}
           open
         >
-          <PersistScroll slot="side" enabled>
-            {drawer}
-          </PersistScroll>
+          {drawer}
         </StyledDrawer>
       )}
     </nav>

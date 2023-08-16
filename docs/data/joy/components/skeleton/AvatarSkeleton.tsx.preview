@@ -1,12 +1,7 @@
-<Box sx={{ m: 'auto' }}>
-  <Avatar src={loading ? '' : '/static/images/avatar/1.jpg'}>
-    <Skeleton loading={loading} />
-  </Avatar>
-</Box>
-<FormControl
-  orientation="horizontal"
-  sx={{ gap: 1, justifyContent: 'center' }}
->
+<Avatar src={loading ? '' : '/static/images/avatar/1.jpg'}>
+  <Skeleton loading={loading} />
+</Avatar>
+<FormControl orientation="horizontal" sx={{ gap: 1 }}>
   <Switch
     size="sm"
     checked={loading}

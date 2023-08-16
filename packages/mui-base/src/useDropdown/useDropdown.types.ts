@@ -1,4 +1,4 @@
-import { type DropdownContextValue } from './DropdownContext';
+import type { DropdownContextValue } from './DropdownContext';
 
 export interface UseDropdownParameters {
   /**

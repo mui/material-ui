@@ -17,7 +17,7 @@ export interface SelectProviderProps<Value> {
  *
  * @ignore - do not document.
  */
-export default function SelectProvider<Value>(props: SelectProviderProps<Value>) {
+export function SelectProvider<Value>(props: SelectProviderProps<Value>) {
   const { value, children } = props;
 
   const {

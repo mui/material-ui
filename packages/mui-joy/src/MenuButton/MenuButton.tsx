@@ -1,8 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useMenuButton from '@mui/base/useMenuButton';
-import composeClasses from '@mui/base/composeClasses';
+import { useMenuButton } from '@mui/base/useMenuButton';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import {
@@ -125,7 +125,7 @@ const MenuButton = React.forwardRef(function MenuButton(
   const color = getColor(inProps.color, buttonGroup.color || colorProp);
   const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp || loading);
 
-  const { getRootProps, open, active } = useMenuButton({ rootRef: forwardedRef });
+  const { getRootProps, open, active } = useMenuButton({ rootRef: forwardedRef, disabled });
 
   const loadingIndicator = loadingIndicatorProp ?? (
     <CircularProgress

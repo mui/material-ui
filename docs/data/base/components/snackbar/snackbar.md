@@ -20,7 +20,7 @@ A snackbar provides users with a brief, temporary message about app processes wi
 
 The Snackbar component is built to appear on-screen to inform users about an action that the app is taking.
 
-{{"demo": "UnstyledSnackbarIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledSnackbarIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
@@ -29,7 +29,7 @@ The Snackbar component is built to appear on-screen to inform users about an act
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Snackbar from '@mui/base/Snackbar';
+import { Snackbar } from '@mui/base/Snackbar';
 
 export default function MyApp() {
   return <Snackbar>{/* snackbar text */}</Snackbar>;
@@ -88,7 +88,7 @@ The same applies for props specific to custom primitive elements:
 ## Hook
 
 ```js
-import useSnackbar from '@mui/base/useSnackbar';
+import { useSnackbar } from '@mui/base/useSnackbar';
 ```
 
 The `useSnackbar` hook lets you apply the functionality of a snackbar to a fully custom component.

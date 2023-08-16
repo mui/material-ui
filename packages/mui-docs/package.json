@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "5.14.1",
+  "version": "5.14.5",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -44,8 +44,8 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.6",
-    "@mui/utils": "^5.14.1",
+    "@babel/runtime": "^7.22.10",
+    "@mui/utils": "^5.14.5",
     "nprogress": "^0.2.0"
   },
   "publishConfig": {

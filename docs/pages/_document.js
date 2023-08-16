@@ -4,12 +4,12 @@ import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import createEmotionCache from 'docs/src/createEmotionCache';
-import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { getInitColorSchemeScript as getMuiInitColorSchemeScript } from '@mui/material/styles';
 import { getInitColorSchemeScript as getJoyInitColorSchemeScript } from '@mui/joy/styles';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import createEmotionCache from 'docs/src/createEmotionCache';
+import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark

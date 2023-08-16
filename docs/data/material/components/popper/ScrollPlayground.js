@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -15,6 +14,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import FormGroup from '@mui/material/FormGroup';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 const Popper = styled(MuiPopper, {
   shouldForwardProp: (prop) => prop !== 'arrow',
