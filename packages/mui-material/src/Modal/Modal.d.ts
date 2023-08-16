@@ -31,7 +31,7 @@ export interface ModalTypeMap<
   AdditionalProps = {},
 > {
   props: AdditionalProps & {
-    /*
+    /**
      * A backdrop component. This prop enables custom backdrop rendering.
      * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
      * Use the `slots.backdrop` prop to make your application ready for the next version of Material UI.
