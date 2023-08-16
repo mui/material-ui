@@ -16,7 +16,9 @@
     "packages/mui-styled-engine",
     "packages/mui-styled-engine-sc",
     "packages/mui-material-next",
-    "packages/mui-joy"
+    "packages/mui-joy",
+    "packages/zero-runtime",
+    "packages/zero-tag-processor"
   ],
   "publishDirectory": {
     "@mui/codemod": "packages/mui-codemod/build",
@@ -32,7 +34,9 @@
     "@mui/utils": "packages/mui-utils/build",
     "@mui/base": "packages/mui-base/build",
     "@mui/material-next": "packages/mui-material-next/build",
-    "@mui/joy": "packages/mui-joy/build"
+    "@mui/joy": "packages/mui-joy/build",
+    "@mui/zero-runtime": "packages/zero-runtime/build",
+    "@mui/zero-tag-processor": "packages/zero-tag-processor/build"
   },
   "sandboxes": [
     "material-ui-issue-latest-s2dsx",
