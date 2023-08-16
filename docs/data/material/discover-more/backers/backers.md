@@ -11,10 +11,9 @@ The core of MUI is our crowd-funded open-source projects, licensed under the per
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="octopus" href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://i.ibb.co/w0HF0Nz/Logo-Blue-140px-rgb.png" srcset="https://i.ibb.co/w0HF0Nz/Logo-Blue-140px-rgb.png 2x" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="doit" href="https://www.doit.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 24px;"><img height="128" width="128" src="https://avatars.githubusercontent.com/u/8424863?s=128" srcset="https://avatars.githubusercontent.com/u/8424863?s=256 2x" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="zesty.io" href="https://www.zesty.io/integrations/mui-nextjs/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor" rel="noopener sponsored" target="_blank"><img height="90" width="90" src="https://brand.zesty.io/zesty-io-logo.svg" alt="zesty.io" title="The only Next.js CMS you need" loading="lazy" /></a>
 </p>
 
-_0/3 slots available_
+_1/3 slots available_
 
 Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
 Please contact us at sales@mui.com to subscribe to this tier.
@@ -68,9 +67,9 @@ via [OpenCollective](https://opencollective.com/mui)
 
 ### Why is Material UI a "crowd-funded open-source project"?
 
-Material UI (as well as Base UI and Joy UI) is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To ensure that MUI's component libraries can stand the test of time for our users, they need to be well directed and financially sustainable.
+Material UI (as well as [Base UI](/base-ui/getting-started/) and [Joy UI](/joy-ui/getting-started/)) is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To ensure that MUI's component libraries can stand the test of time for our users, they need to be well directed and financially sustainable.
 
-The absolute best way to support MUI's ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving MUI's products, which you and other MUI users then benefit from.
+The absolute best way to support MUI's libraries ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving MUI's products, which you and other MUI users then benefit from.
 
 ### How is sponsorship money spent?
 
