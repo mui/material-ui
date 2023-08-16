@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
+import userEvent from '@testing-library/user-event';
 import {
   describeConformance,
   act,
@@ -18,6 +19,10 @@ import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material-next/ButtonBase';
 import { ButtonBaseActions } from './ButtonBase.types';
 import { TouchRippleActions } from './TouchRipple.types';
+
+// TODO v6: initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file
+// currently the setup() method uses the ClipboardEvent constructor which is incompatible with our lowest supported version of iOS Safari (12.2) https://github.com/mui/material-ui/blob/master/.browserslistrc#L44
+// userEvent.setup() requires Safari 14 or up to work
 
 describe('<ButtonBase />', () => {
   const { render } = createRenderer();
@@ -619,17 +624,41 @@ describe('<ButtonBase />', () => {
   });
 
   describe('event: focus', () => {
-    it('when disabled should be called onFocus', () => {
+    it('should call onFocus', async () => {
       const onFocusSpy = spy();
-      const { getByRole } = render(
+      render(
+        <ButtonBase component="div" onFocus={onFocusSpy}>
+          Hello
+        </ButtonBase>,
+      );
+
+      await userEvent.keyboard('[Tab]');
+
+      expect(onFocusSpy.callCount).to.equal(1);
+    });
+
+    it('when disabled should not call onFocus', async () => {
+      const onFocusSpy = spy();
+      render(
         <ButtonBase component="div" disabled onFocus={onFocusSpy}>
           Hello
         </ButtonBase>,
       );
 
-      act(() => {
-        getByRole('button').focus();
-      });
+      await userEvent.keyboard('[Tab]');
+
+      expect(onFocusSpy.callCount).to.equal(0);
+    });
+
+    it('when disabled and focusableWhenDisabled should call onFocus', async () => {
+      const onFocusSpy = spy();
+      render(
+        <ButtonBase component="div" disabled onFocus={onFocusSpy} focusableWhenDisabled>
+          Hello
+        </ButtonBase>,
+      );
+
+      await userEvent.keyboard('[Tab]');
 
       expect(onFocusSpy.callCount).to.equal(1);
     });
