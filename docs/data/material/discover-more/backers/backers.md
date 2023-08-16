@@ -21,7 +21,7 @@ Even when there are no more slots available, we accept higher bids.
 
 ### Gold 🏆
 
-via [Open Collective](https://opencollective.com/mui) or via [Patreon](https://www.patreon.com/oliviertassinari)
+via [Open Collective](https://opencollective.com/mui) or via [the for-profit](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift.com" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=96" srcset="https://avatars.githubusercontent.com/u/30204434?s=192 2x" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
@@ -83,10 +83,10 @@ By significantly reducing the amount of work needed to achieve business goals an
 
 ### What's the difference between Open Collective and the for-profit?
 
-Patreon or other forms, directly support [Olivier Tassinari](https://github.com/oliviertassinari) and the core team mission.
-The funds go to a for-profit entity that employs some of the core team members.
+Funds donated via Open Collective are managed transparently and aimed to sustain the MIT projects.
+MUI benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
 
-Funds donated via Open Collective are managed transparently and aimed to sustain the MIT core of MUI. MUI benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
+Funds transferred to the MUI for-profit support the company's mission.
 
 ## Services
 
