@@ -424,6 +424,35 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 export function getThemedComponents(): ThemeOptions {
   return {
     components: {
+      MuiAlert: {
+        styleOverrides: {
+          root: {
+            padding: '12px 16px',
+          },
+          standardWarning: ({ theme }) => [
+            {
+              backgroundColor: alpha(theme.palette.warning[50], 0.5),
+              color: (theme.vars || theme).palette.grey[900],
+              border: '1px solid',
+              borderColor: alpha(theme.palette.warning[600], 0.3),
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.warning[700],
+              },
+            },
+            theme.applyDarkStyles({
+              backgroundColor: alpha(theme.palette.warning[700], 0.2),
+              color: (theme.vars || theme).palette.warning[50],
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.warning[200],
+              },
+            }),
+          ],
+          icon: {
+            paddingTop: 12,
+            paddingBottom: 0,
+          },
+        },
+      },
       MuiButtonBase: {
         defaultProps: {
           disableTouchRipple: true,
