@@ -506,13 +506,14 @@ export default function AppLayoutDocsFooter(props) {
                   ref: inputRef,
                 }}
               />
-              <Alert
-                severity="warning"
-                color="warning"
-                icon={<PanToolRoundedIcon fontSize="small" />}
-                sx={{ my: 1.5 }}
-              >
-                {rating !== 1 && (
+
+              {rating !== 1 && (
+                <Alert
+                  severity="warning"
+                  color="warning"
+                  icon={<PanToolRoundedIcon fontSize="small" />}
+                  sx={{ my: 1.5 }}
+                >
                   <Typography id="feedback-description" color="text.secondary">
                     {t('feedbackMessageToGitHub.usecases')}{' '}
                     <Link
@@ -522,8 +523,8 @@ export default function AppLayoutDocsFooter(props) {
                       {t('feedbackMessageToGitHub.callToAction.link')}
                     </Link>
                   </Typography>
-                )}
-              </Alert>
+                </Alert>
+              )}
               <DialogActions>
                 <Button type="reset">{t('cancel')}</Button>
                 <Button type="submit" variant="contained">
