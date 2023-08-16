@@ -1,6 +1,7 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Badge as BaseBadge, BadgeProps } from '@mui/base/Badge';
+import { Badge as BaseBadge } from '@mui/base/Badge';
 import { useTheme } from '@mui/system';
 
 function useIsDarkMode() {
@@ -8,7 +9,7 @@ function useIsDarkMode() {
   return theme.palette.mode === 'dark';
 }
 
-export default function UnstyledBadge() {
+export default function UnstyledBadgeIntroduction() {
   // Replace this with your app logic for determining dark mode
   const isDarkMode = useIsDarkMode();
 
@@ -21,10 +22,9 @@ export default function UnstyledBadge() {
   );
 }
 
-const resolveSlotProps = (fn: any, args: any) =>
-  typeof fn === 'function' ? fn(args) : fn;
+const resolveSlotProps = (fn, args) => (typeof fn === 'function' ? fn(args) : fn);
 
-const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
+const Badge = React.forwardRef((props, ref) => {
   return (
     <BaseBadge
       ref={ref}
@@ -39,7 +39,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'box-border m-0 p-0 text-xs font-sans list-none relative inline-block leading-none',
+              'box-border m-0 p-0 text-xs list-none relative inline-block leading-none',
               resolvedSlotProps?.className,
             ),
           };
@@ -52,7 +52,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'z-auto absolute top-0 right-0 min-w-badge min-h-badge font-sans p-0 text-white font-semibold font-xs rounded-xl bg-purple-500 leading-5.5 whitespace-nowrap text-center translate-x-1/2 -translate-y-1/2 drop-shadow-lg origin-right',
+              'z-auto absolute top-0 right-0 min-w-badge min-h-badge font-sans p-0 text-white font-semibold font-xs font-sans rounded-xl bg-purple-500 leading-5.5 whitespace-nowrap text-center translate-x-1/2 -translate-y-1/2 drop-shadow-lg origin-right',
               resolvedSlotProps?.className,
             ),
           };
@@ -61,3 +61,14 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     />
   );
 });
+
+Badge.propTypes = {
+  /**
+   * The props used for each slot inside the Badge.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+};

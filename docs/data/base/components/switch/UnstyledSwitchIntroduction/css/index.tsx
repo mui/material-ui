@@ -2,44 +2,44 @@ import * as React from 'react';
 import { Switch, switchClasses } from '@mui/base/Switch';
 import { useTheme } from '@mui/system';
 
-export default function UnstyledSwitches() {
+export default function UnstyledSwitchIntroduction() {
   const label = { 'aria-label': 'Demo switch' };
 
   return (
     <div>
       <Switch
         slotProps={{
-          root: { className: 'CustomSwitch' },
-          input: { ...label, className: 'CustomSwitch-input' },
-          thumb: { className: 'CustomSwitch-thumb' },
-          track: { className: 'CustomSwitch-track' },
+          root: { className: 'CustomSwitchIntroduction' },
+          input: { ...label, className: 'CustomSwitchIntroduction-input' },
+          thumb: { className: 'CustomSwitchIntroduction-thumb' },
+          track: { className: 'CustomSwitchIntroduction-track' },
         }}
         defaultChecked
       />
       <Switch
         slotProps={{
-          root: { className: 'CustomSwitch' },
-          input: { ...label, className: 'CustomSwitch-input' },
-          thumb: { className: 'CustomSwitch-thumb' },
-          track: { className: 'CustomSwitch-track' },
+          root: { className: 'CustomSwitchIntroduction' },
+          input: { ...label, className: 'CustomSwitchIntroduction-input' },
+          thumb: { className: 'CustomSwitchIntroduction-thumb' },
+          track: { className: 'CustomSwitchIntroduction-track' },
         }}
       />
       <Switch
         slotProps={{
-          root: { className: 'CustomSwitch' },
-          input: { ...label, className: 'CustomSwitch-input' },
-          thumb: { className: 'CustomSwitch-thumb' },
-          track: { className: 'CustomSwitch-track' },
+          root: { className: 'CustomSwitchIntroduction' },
+          input: { ...label, className: 'CustomSwitchIntroduction-input' },
+          thumb: { className: 'CustomSwitchIntroduction-thumb' },
+          track: { className: 'CustomSwitchIntroduction-track' },
         }}
         defaultChecked
         disabled
       />
       <Switch
         slotProps={{
-          root: { className: 'CustomSwitch' },
-          input: { ...label, className: 'CustomSwitch-input' },
-          thumb: { className: 'CustomSwitch-thumb' },
-          track: { className: 'CustomSwitch-track' },
+          root: { className: 'CustomSwitchIntroduction' },
+          input: { ...label, className: 'CustomSwitchIntroduction-input' },
+          thumb: { className: 'CustomSwitchIntroduction-thumb' },
+          track: { className: 'CustomSwitchIntroduction-track' },
         }}
         disabled
       />
@@ -79,7 +79,7 @@ function Styles() {
   return (
     <style>
       {`
-      .CustomSwitch {
+      .CustomSwitchIntroduction {
         font-size: 0;
         position: relative;
         display: inline-block;
@@ -89,12 +89,12 @@ function Styles() {
         cursor: pointer;
       }
 
-      .CustomSwitch.${switchClasses.disabled} {
+      .CustomSwitchIntroduction.${switchClasses.disabled} {
         opacity: 0.4;
         cursor: not-allowed;
       }
 
-      .CustomSwitch-track {
+      .CustomSwitchIntroduction-track {
         background: ${isDarkMode ? grey[600] : grey[400]};
         border-radius: 16px;
         display: block;
@@ -103,7 +103,7 @@ function Styles() {
         position: absolute;
       }
 
-      .CustomSwitch-thumb {
+      .CustomSwitchIntroduction-thumb {
         display: block;
         width: 16px;
         height: 16px;
@@ -118,22 +118,28 @@ function Styles() {
         transition-duration: 120ms;
       }
 
-      .CustomSwitch.${switchClasses.focusVisible} .CustomSwitch-thumb {
+      .CustomSwitchIntroduction.${
+        switchClasses.focusVisible
+      } .CustomSwitchIntroduction-thumb {
         background-color: ${grey[500]};
-        box-shadow: 0 0 1px 8px rgba(13, 84, 99, 0.35);
+        box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
       }
 
-      .CustomSwitch.${switchClasses.checked} .CustomSwitch-thumb {
+      .CustomSwitchIntroduction.${
+        switchClasses.checked
+      } .CustomSwitchIntroduction-thumb {
         left: 20px;
         top: 4px;
         background-color: #fff;
       }
 
-      .CustomSwitch.${switchClasses.checked} .CustomSwitch-track {
+      .CustomSwitchIntroduction.${
+        switchClasses.checked
+      } .CustomSwitchIntroduction-track {
         background: ${cyan[500]};
       }
 
-      .CustomSwitch-input {
+      .CustomSwitchIntroduction-input {
         cursor: inherit;
         position: absolute;
         width: 100%;
