@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -15,18 +14,11 @@ import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
 import styled, { rootShouldForwardProp } from '../styles/styled';
-import { getSelectUtilityClasses } from './selectClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
-  const slots = {
-    root: ['root'],
-    select: ['select'],
-    icon: ['icon'],
-  };
-
-  return composeClasses(slots, getSelectUtilityClasses, classes);
+  return classes;
 };
 
 const styledRootConfig = {

@@ -88,6 +88,7 @@ const useUtilityClasses = (ownerState) => {
   const { classes, variant, disabled, multiple, open, error } = ownerState;
 
   const slots = {
+    root: ['root'],
     select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
