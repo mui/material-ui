@@ -9,6 +9,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import ButtonGroupContext from './ButtonGroupContext';
+import ButtonGroupButtonContext from './ButtonGroupButtonContext';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -27,6 +28,8 @@ const overridesResolver = (props, styles) => {
       [`& .${buttonGroupClasses.grouped}`]:
         styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.color)}`],
     },
+    { [`& .${buttonGroupClasses.firstButton}`]: styles.firstButton },
+    { [`& .${buttonGroupClasses.lastButton}`]: styles.lastButton },
     styles.root,
     styles[ownerState.variant],
     ownerState.disableElevation === true && styles.disableElevation,
@@ -55,6 +58,8 @@ const useUtilityClasses = (ownerState) => {
       `grouped${capitalize(variant)}${capitalize(color)}`,
       disabled && 'disabled',
     ],
+    firstButton: ['firstButton'],
+    lastButton: ['lastButton'],
   };
 
   return composeClasses(slots, getButtonGroupUtilityClass, classes);
@@ -81,7 +86,7 @@ const ButtonGroupRoot = styled('div', {
   }),
   [`& .${buttonGroupClasses.grouped}`]: {
     minWidth: 40,
-    '&:not(:first-of-type)': {
+    [`&.${buttonGroupClasses.lastButton}`]: {
       ...(ownerState.orientation === 'horizontal' && {
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
@@ -99,7 +104,7 @@ const ButtonGroupRoot = styled('div', {
           marginTop: -1,
         }),
     },
-    '&:not(:last-of-type)': {
+    [`&.${buttonGroupClasses.firstButton}`]: {
       ...(ownerState.orientation === 'horizontal' && {
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
@@ -243,6 +248,13 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     ],
   );
 
+  const buttonGroupPositionContext = (index, childrenParam) => ({
+    firstButton: index === 0,
+    lastButton: index === childrenParam.length - 1,
+    firstButtonClass: classes.firstButton,
+    lastButtonClass: classes.lastButton,
+  });
+
   return (
     <ButtonGroupRoot
       as={component}
@@ -252,7 +264,19 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      <ButtonGroupContext.Provider value={context}>{children}</ButtonGroupContext.Provider>
+      <ButtonGroupContext.Provider value={context}>
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) {
+            return child;
+          }
+
+          return (
+            <ButtonGroupButtonContext.Provider value={buttonGroupPositionContext(index, children)}>
+              {child}
+            </ButtonGroupButtonContext.Provider>
+          );
+        })}
+      </ButtonGroupContext.Provider>
     </ButtonGroupRoot>
   );
 });

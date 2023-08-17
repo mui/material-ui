@@ -11,6 +11,7 @@ import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
+import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, classes } = ownerState;
@@ -295,9 +296,21 @@ const ButtonEndIcon = styled('span', {
   ...commonIconStyles(ownerState),
 }));
 
+const getClassNameBasedOnPosition = (buttonGroupButtonContext) => {
+  if (buttonGroupButtonContext.firstButton) {
+    return buttonGroupButtonContext.firstButtonClass;
+  }
+
+  if (buttonGroupButtonContext.lastButton) {
+    return buttonGroupButtonContext.lastButtonClass;
+  }
+  return '';
+};
+
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
   const contextProps = React.useContext(ButtonGroupContext);
+  const buttonGroupButtonContext = React.useContext(ButtonGroupButtonContext);
   const resolvedProps = resolveProps(contextProps, inProps);
   const props = useThemeProps({ props: resolvedProps, name: 'MuiButton' });
   const {
@@ -348,7 +361,12 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
-      className={clsx(contextProps.className, classes.root, className)}
+      className={clsx(
+        contextProps.className,
+        classes.root,
+        className,
+        getClassNameBasedOnPosition(buttonGroupButtonContext),
+      )}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
