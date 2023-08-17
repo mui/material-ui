@@ -278,7 +278,7 @@ const Root = styled('div')(
       }px)`,
       color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
       '&>svg': {
-        marginTop: 4,
+        marginTop: 2,
         width: 20,
         height: 20,
         flexShrink: 0,
