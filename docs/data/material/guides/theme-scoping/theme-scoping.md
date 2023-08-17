@@ -15,13 +15,13 @@ To do this, you need to render Material UI's `ThemeProvider` as an inner provide
 import { ThemeProvider, THEME_ID, createTheme } from '@mui/material/styles';
 import { AnotherThemeProvider } from 'another-ui-library';
 
-const materialTheme = createTheme(…your theme);
+const materialTheme = createTheme(/* your theme */);
 
 function App() {
   return (
     <AnotherThemeProvider>
       <ThemeProvider theme={{ [THEME_ID]: materialTheme }}>
-        …components from another library and Material UI
+        {/* components from another library and Material UI */}
       </ThemeProvider>
     </AnotherThemeProvider>
   )
