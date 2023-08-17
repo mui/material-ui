@@ -19,8 +19,8 @@ There are many ways to support MUI:
   - Review and comment on existing [pull requests](https://github.com/mui/material-ui/pulls) and [issues](https://github.com/mui/material-ui/issues).
   - Help [translate](https://translate.mui.com) the documentation.
   - [Improve our documentation](https://github.com/mui/material-ui/tree/HEAD/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui/material-ui/pulls).
-- **Support us financially on [OpenCollective](https://opencollective.com/mui)**.
-  If you use Material UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective.
+- **Support us financially on [Open Collective](https://opencollective.com/mui)**.
+  If you use Material UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through Open Collective.
   All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
 
 ## Why do the fixed positioned elements move when a modal is opened?

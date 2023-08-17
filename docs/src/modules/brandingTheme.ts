@@ -424,6 +424,35 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 export function getThemedComponents(): ThemeOptions {
   return {
     components: {
+      MuiAlert: {
+        styleOverrides: {
+          root: {
+            padding: '12px 16px',
+          },
+          standardWarning: ({ theme }) => [
+            {
+              backgroundColor: alpha(theme.palette.warning[50], 0.5),
+              color: (theme.vars || theme).palette.grey[900],
+              border: '1px solid',
+              borderColor: alpha(theme.palette.warning[600], 0.3),
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.warning[700],
+              },
+            },
+            theme.applyDarkStyles({
+              backgroundColor: alpha(theme.palette.warning[700], 0.2),
+              color: (theme.vars || theme).palette.warning[50],
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.warning[200],
+              },
+            }),
+          ],
+          icon: {
+            paddingTop: 12,
+            paddingBottom: 0,
+          },
+        },
+      },
       MuiButtonBase: {
         defaultProps: {
           disableTouchRipple: true,
@@ -666,6 +695,9 @@ export function getThemedComponents(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.grey[200],
                 color: (theme.vars || theme).palette.primary[500],
                 borderRadius: theme.shape.borderRadius,
+                boxShadow: `inset 0 1px 2px ${
+                  (theme.vars || theme).palette.grey[50]
+                }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
                 '&:hover': {
                   borderColor: (theme.vars || theme).palette.grey[300],
                   background: (theme.vars || theme).palette.grey[50],
@@ -674,6 +706,9 @@ export function getThemedComponents(): ThemeOptions {
               theme.applyDarkStyles({
                 borderColor: (theme.vars || theme).palette.primaryDark[700],
                 color: (theme.vars || theme).palette.primary[300],
+                boxShadow: `inset 0 1px 1px ${
+                  (theme.vars || theme).palette.primaryDark[900]
+                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
                 '&:hover': {
                   borderColor: (theme.vars || theme).palette.primaryDark[600],
                   background: alpha(theme.palette.primaryDark[700], 0.4),
@@ -948,6 +983,9 @@ export function getThemedComponents(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.grey[100],
                 '&[href]': {
                   textDecorationLine: 'none',
+                  boxShadow: `inset 0 1px 2px ${
+                    (theme.vars || theme).palette.grey[50]
+                  }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
                   '&:hover': {
                     borderColor: (theme.vars || theme).palette.primary[300],
                     boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
@@ -968,6 +1006,9 @@ export function getThemedComponents(): ThemeOptions {
                 backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
                 '&[href]': {
                   textDecorationLine: 'none',
+                  boxShadow: `inset 0 1px 1px ${
+                    (theme.vars || theme).palette.primaryDark[900]
+                  }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
                   '&:hover': {
                     boxShadow: `0px 4px 24px ${(theme.vars || theme).palette.common.black}`,
                   },

@@ -202,7 +202,16 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         },
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999, minWidth: 0, p: 3 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          flexGrow: 999,
+          minWidth: 0,
+          p: 3,
+          bgcolor: 'var(--joy-palette-background-surface)',
+        }}
+      >
         <Box
           sx={{
             flexGrow: 1,
