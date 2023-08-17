@@ -272,9 +272,11 @@ const Root = styled('div')(
       padding: '16px',
       margin: '16px 0',
       border: '1px solid',
+      borderColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
+      color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
       '&>svg': {
         marginTop: 4,
         width: 20,
@@ -315,7 +317,7 @@ const Root = styled('div')(
           color: `var(--muidocs-palette-primary-800, ${lightTheme.palette.primary[800]})`,
         },
         '&>svg': {
-          fill: `var(--muidocs-palette-grey-700, ${lightTheme.palette.grey[700]})`,
+          fill: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         },
       },
       '&.MuiCallout-success': {
@@ -583,6 +585,7 @@ const Root = styled('div')(
         },
       },
       '& .MuiCallout-root': {
+        borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
           backgroundColor: alpha(darkTheme.palette.error[700], 0.25),
