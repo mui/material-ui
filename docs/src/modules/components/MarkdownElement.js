@@ -272,11 +272,19 @@ const Root = styled('div')(
       padding: '16px',
       margin: '16px 0',
       border: '1px solid',
+      color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
       borderColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
-      color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
+      '& .MuiCallout-content': {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 6,
+        '&>p': {
+          marginBottom: 0,
+        },
+      },
       '&>svg': {
         marginTop: 2,
         width: 20,

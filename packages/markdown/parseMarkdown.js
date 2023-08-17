@@ -431,7 +431,8 @@ function createRender(context) {
                   ].join('\n')
                 : ''
             }
-            ${this.parser.parse(token.tokens)}\n</aside>`;
+            <div class="MuiCallout-content">
+            ${this.parser.parse(token.tokens)}\n</div></aside>`;
           },
         },
       ],
