@@ -18,7 +18,11 @@ export default function FlexAspectRatio() {
         <FormLabel>Flex</FormLabel>
         <Switch checked={flex} onChange={(event) => setFlex(event.target.checked)} />
       </FormControl>
-      <Card orientation="horizontal" sx={{ resize: 'horizontal', overflow: 'auto' }}>
+      <Card
+        orientation="horizontal"
+        variant="outlined"
+        sx={{ boxShadow: 'none', resize: 'horizontal', overflow: 'auto' }}
+      >
         <AspectRatio ratio="21/9" flex={flex} sx={{ flexBasis: 200 }}>
           <Typography level="h1" component="div">
             21 / 9
@@ -26,14 +30,17 @@ export default function FlexAspectRatio() {
         </AspectRatio>
         <CardContent>
           <Typography level="body-xs">20 APR 2023</Typography>
-          <Typography level="h2" component="div">
+          <Typography level="title-lg" component="div">
             Widget Title
           </Typography>
-          <Typography>
+          <Typography level="body-lg">
             Lorem ipsum is placeholder text commonly used in the graphic.
           </Typography>
           <CardActions buttonFlex="none">
-            <Button variant="outlined" color="primary" size="sm">
+            <Button variant="outlined" color="neutral" size="sm">
+              See details
+            </Button>
+            <Button variant="solid" color="neutral" size="sm">
               Learn more
             </Button>
           </CardActions>
