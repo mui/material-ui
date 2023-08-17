@@ -210,4 +210,23 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
       '<script src="https://cdn.tailwindcss.com"></script>',
     );
   });
+
+  it('should generate the correct stylesheet font link in index.html for Material Two Tones icons', () => {
+    const raw = `import * as React from 'react';
+    import Icon from '@mui/material/Icon';
+
+    export default function TwoToneIcons() {
+      return <Icon baseClassName="material-icons-two-tone">add_circle</Icon>;
+    }
+    `;
+
+    const result = StackBlitz.createReactApp({
+      raw,
+      codeVariant: 'JS',
+    });
+
+    expect(result.files['index.html']).to.contain(
+      'https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone',
+    );
+  });
 });

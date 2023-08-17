@@ -1,18 +1,23 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useAutocomplete } from '@mui/base/useAutocomplete';
+import { useAutocomplete, UseAutocompleteProps } from '@mui/base/useAutocomplete';
 import { Button } from '@mui/base/Button';
+import { Input } from '@mui/base/Input';
 import { Popper } from '@mui/base/Popper';
-import { styled } from '@mui/system';
+import { useTheme } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearIcon from '@mui/icons-material/Clear';
+import clsx from 'clsx';
 
-const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, ref) {
+const Autocomplete = React.forwardRef(function Autocomplete(
+  props: UseAutocompleteProps<(typeof top100Films)[number], false, false, false>,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
   const {
     disableClearable = false,
     disabled = false,
     readOnly = false,
+    options,
     ...other
   } = props;
 
@@ -41,86 +46,94 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
 
   return (
     <React.Fragment>
-      <StyledAutocompleteRoot
+      <div
         {...getRootProps(other)}
         ref={rootRef}
-        className={focused ? 'focused' : undefined}
+        className={clsx('Autocomplete__root', focused && 'focused')}
       >
-        <StyledInput
+        <Input
           id={id}
           ref={setAnchorEl}
           disabled={disabled}
           readOnly={readOnly}
-          {...getInputProps()}
+          slotProps={{
+            root: {
+              className: 'Autocomplete__input-root',
+            },
+            input: {
+              className: 'Autocomplete__input',
+              ...getInputProps(),
+            },
+          }}
         />
         {hasClearIcon && (
-          <StyledClearIndicator {...getClearProps()}>
+          <Button
+            {...getClearProps()}
+            className="Autocomplete__indicator clear-indicator"
+          >
             <ClearIcon />
-          </StyledClearIndicator>
+          </Button>
         )}
-
-        <StyledPopupIndicator
+        <Button
           {...getPopupIndicatorProps()}
-          className={popupOpen ? 'popupOpen' : undefined}
+          className={clsx(
+            'Autocomplete__indicator',
+            'popup-indicator',
+            popupOpen && 'popupOpen',
+          )}
         >
           <ArrowDropDownIcon />
-        </StyledPopupIndicator>
-      </StyledAutocompleteRoot>
+        </Button>
+      </div>
       {anchorEl ? (
         <Popper
           open={popupOpen}
           anchorEl={anchorEl}
-          slots={{
-            root: StyledPopper,
+          slotProps={{
+            root: { className: 'Autocomplete__popper' },
           }}
-          modifiers={[{ name: 'flip', enabled: false }]}
+          modifiers={[
+            { name: 'flip', enabled: false },
+            { name: 'preventOverflow', enabled: false },
+          ]}
         >
-          <StyledListbox {...getListboxProps()}>
-            {groupedOptions.map((option, index) => {
+          <ul {...getListboxProps()} className="Autocomplete__listbox">
+            {(groupedOptions as typeof top100Films).map((option, index) => {
               const optionProps = getOptionProps({ option, index });
 
-              return <StyledOption {...optionProps}>{option.label}</StyledOption>;
+              return (
+                <li {...optionProps} className="Autocomplete__option">
+                  {option.label}
+                </li>
+              );
             })}
 
             {groupedOptions.length === 0 && (
-              <StyledNoOptions>No results</StyledNoOptions>
+              <li className="Autocomplete__no-options">No results</li>
             )}
-          </StyledListbox>
+          </ul>
         </Popper>
       ) : null}
+      <Styles />
     </React.Fragment>
   );
 });
 
-CustomAutocomplete.propTypes = {
-  /**
-   * If `true`, the input can't be cleared.
-   * @default false
-   */
-  disableClearable: PropTypes.oneOf([false]),
-  /**
-   * If `true`, the component is disabled.
-   * @default false
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
-   * @default false
-   */
-  readOnly: PropTypes.bool,
-};
-
 export default function AutocompleteIntroduction() {
-  return <CustomAutocomplete options={top100Films} />;
+  return <Autocomplete options={top100Films} />;
 }
 
-const blue = {
-  100: '#DAECFF',
-  200: '#99CCF3',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  900: '#003A75',
+const cyan = {
+  50: '#E9F8FC',
+  100: '#BDEBF4',
+  200: '#99D8E5',
+  300: '#66BACC',
+  400: '#1F94AD',
+  500: '#0D5463',
+  600: '#094855',
+  700: '#063C47',
+  800: '#043039',
+  900: '#022127',
 };
 
 const grey = {
@@ -136,168 +149,166 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledAutocompleteRoot = styled('div')(
-  ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: 400;
-  border-radius: 12px;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  display: flex;
-  gap: 5px;
-  padding-right: 5px;
-  overflow: hidden;
-  width: 320px;
-  
-  &.focused {
-    border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-  }
+function useIsDarkMode() {
+  const theme = useTheme();
+  return theme.palette.mode === 'dark';
+}
 
-  &:hover {
-    border-color: ${blue[400]};
-  }
+function Styles() {
+  // Replace this with your app logic for determining dark mode
+  const isDarkMode = useIsDarkMode();
 
-  &:focus-visible {
-    outline: 0;
-  }
-`,
-);
+  return (
+    <style>
+      {`
+      .Autocomplete__root {
+        font-family: IBM Plex Sans, sans-serif;
+        font-weight: 400;
+        border-radius: 8px;
+        background: ${isDarkMode ? grey[900] : '#fff'};
+        border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+        color: ${isDarkMode ? grey[300] : grey[900]};
+        box-shadow: 0px 4px 6px ${
+          isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+        };
+        display: flex;
+        gap: 5px;
+        overflow: hidden;
+        width: 320px;
 
-const StyledInput = styled('input')(
-  ({ theme }) => `
-  font-size: 0.875rem;
-  font-family: inherit;
-  font-weight: 400;
-  line-height: 1.5;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  background: inherit;
-  border: none;
-  border-radius: inherit;
-  padding: 12px 12px;
-  outline: 0;
-  flex: 1 0 auto;
-`,
-);
+        &.focused {
+          border-color: ${cyan[400]};
+          box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
+        }
 
-// ComponentPageTabs has z-index: 1000
-const StyledPopper = styled('div')`
-  position: relative;
-  z-index: 1001;
-  width: 320px;
-`;
+        &:hover {
+          border-color: ${cyan[400]};
+        }
 
-const StyledListbox = styled('ul')(
-  ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  padding: 6px;
-  margin: 12px 0;
-  min-width: 320px;
-  border-radius: 12px;
-  overflow: auto;
-  outline: 0px;
-  max-height: 300px;
-  z-index: 1;
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
-  `,
-);
+        &:focus-visible {
+          outline: 0;
+        }
+      }
 
-const StyledOption = styled('li')(
-  ({ theme }) => `
-  list-style: none;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: default;
+      .Autocomplete__popper {
+        position: relative;
+        z-index: 1001;
+        width: 320px;
+      }
 
-  &:last-of-type {
-    border-bottom: none;
-  }
+      .Autocomplete__input-root {
+        background: inherit;
+        border-radius: inherit;
+        flex: 1 0 auto;
+      }
 
-  &:hover {
-    cursor: pointer;
-  }
+      .Autocomplete__input {
+        font-size: 0.875rem;
+        font-family: inherit;
+        font-weight: 400;
+        line-height: 1.5;
+        color: ${isDarkMode ? grey[300] : grey[900]};
+        background: inherit;
+        border: none;
+        border-radius: inherit;
+        padding: 8px 12px;
+        outline: 0;
+      }
 
-  &[aria-selected=true] {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
-    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-  }
+      .Autocomplete__indicator {
+        outline: 0;
+        box-shadow: none;
+        border: 0;
+        border-radius: 4px;
+        background-color: transparent;
+        align-self: center;
+        padding: 0 2px;
+        margin-right: 4px;
 
-  &.Mui-focused,
-  &.Mui-focusVisible {
-    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  }
+        &:hover {
+          background-color: ${isDarkMode ? grey[700] : cyan[100]};
+          cursor: pointer;
+        }
+      }
 
-  &.Mui-focusVisible {
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-  }
+      .Autocomplete__indicator.popup-indicator > svg {
+        transform: translateY(2px);
+      }
 
-  &[aria-selected=true].Mui-focused,
-  &[aria-selected=true].Mui-focusVisible {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
-    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-  }
-  `,
-);
+      .Autocomplete__indicator.popup-indicator.popupOpen > svg {
+        transform: translateY(2px) rotate(180deg);
+      }
 
-const StyledPopupIndicator = styled(Button)(
-  ({ theme }) => `
-    margin-top: 5px;
-    margin-bottom: 5px;
-    outline: 0;
-    box-shadow: none;
-    border: 0;
-    border-radius: 7px;
-    background-color: transparent;
-    
-    &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[700] : blue[100]};
-      cursor: pointer;
-    }
+      .Autocomplete__indicator.clear-indicator > svg {
+        transform: translateY(2px) scale(0.9);
+      }
 
-    & > svg {
-      transform: translateY(1px);
-    }
+      .Autocomplete__listbox {
+        font-family: IBM Plex Sans, sans-serif;
+        font-size: 0.875rem;
+        box-sizing: border-box;
+        padding: 6px;
+        margin: 12px 0;
+        width: 100%;
+        border-radius: 12px;
+        overflow: auto;
+        outline: 0px;
+        max-height: 300px;
+        z-index: 1;
+        position: absolute;
+        background: ${isDarkMode ? grey[900] : '#fff'};
+        border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+        color: ${isDarkMode ? grey[300] : grey[900]};
+        box-shadow: 0px 4px 6px ${
+          isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+        };
+      }
 
-    &.popupOpen > svg {
-      transform: translateY(1px) rotate(180deg);
-    }
-  `,
-);
+      .Autocomplete__option {
+        list-style: none;
+        padding: 8px;
+        border-radius: 8px;
+        cursor: default;
 
-const StyledClearIndicator = styled(Button)(
-  ({ theme }) => `
-    margin-top: 5px;
-    margin-bottom: 5px;
-    outline: 0;
-    box-shadow: none;
-    border: 0;
-    border-radius: 7px;
-    background-color: transparent;
-    
-    &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[700] : blue[100]};
-      cursor: pointer;
-    }
+        &:last-of-type {
+          border-bottom: none;
+        }
 
-    & > svg {
-      transform: translateY(1px);
-    }
-  `,
-);
+        &:hover {
+          cursor: pointer;
+        }
 
-const StyledNoOptions = styled('li')`
-  list-style: none;
-  padding: 8px;
-  cursor: default;
-`;
+        &[aria-selected=true] {
+          background-color: ${isDarkMode ? cyan[900] : cyan[100]};
+          color: ${isDarkMode ? cyan[100] : cyan[900]};
+        }
+
+        &.Mui-focused,
+        &.Mui-focusVisible {
+          background-color: ${isDarkMode ? grey[800] : grey[100]};
+          color: ${isDarkMode ? grey[300] : grey[900]};
+        }
+
+        &.Mui-focusVisible {
+          box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
+        }
+
+        &[aria-selected=true].Mui-focused,
+        &[aria-selected=true].Mui-focusVisible {
+          background-color: ${isDarkMode ? cyan[900] : cyan[100]};
+          color: ${isDarkMode ? cyan[100] : cyan[900]};
+        }
+      }
+
+      .Autocomplete__no-options {
+        list-style: none;
+        padding: 8px;
+        cursor: default;
+      }
+      `}
+    </style>
+  );
+}
 
 const top100Films = [
   { label: 'The Shawshank Redemption', year: 1994 },

@@ -4,13 +4,14 @@ import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 
-const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, ref) {
+const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   const {
     getRootProps,
     getInputProps,
     getListboxProps,
     getOptionProps,
     groupedOptions,
+    focused,
     popupOpen,
     anchorEl,
     setAnchorEl,
@@ -20,7 +21,11 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
 
   return (
     <React.Fragment>
-      <StyledAutocompleteRoot {...getRootProps()} ref={rootRef}>
+      <StyledAutocompleteRoot
+        {...getRootProps()}
+        ref={rootRef}
+        className={focused ? 'focused' : ''}
+      >
         <StyledInput {...getInputProps()} />
       </StyledAutocompleteRoot>
       {anchorEl && (
@@ -31,17 +36,17 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
             root: StyledPopper,
           }}
         >
-          {groupedOptions.length > 0 ? (
-            <StyledListbox {...getListboxProps()}>
-              {groupedOptions.map((option, index) => (
+          <StyledListbox {...getListboxProps()}>
+            {groupedOptions.length > 0 ? (
+              groupedOptions.map((option, index) => (
                 <StyledOption {...getOptionProps({ option, index })}>
                   {option.label}
                 </StyledOption>
-              ))}
-            </StyledListbox>
-          ) : (
-            <StyledNoOptions>No results</StyledNoOptions>
-          )}
+              ))
+            ) : (
+              <StyledNoOptions>No results</StyledNoOptions>
+            )}
+          </StyledListbox>
         </Popper>
       )}
     </React.Fragment>
@@ -54,11 +59,7 @@ export default function UseAutocompletePopper() {
   const handleChange = (event, newValue) => setValue(newValue);
 
   return (
-    <CustomAutocomplete
-      options={top100Films}
-      value={value}
-      onChange={handleChange}
-    />
+    <Autocomplete options={top100Films} value={value} onChange={handleChange} />
   );
 }
 
@@ -88,7 +89,7 @@ const StyledAutocompleteRoot = styled('div')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
-  border-radius: 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
@@ -98,7 +99,7 @@ const StyledAutocompleteRoot = styled('div')(
   padding-right: 5px;
   overflow: hidden;
   width: 320px;
-  margin: 2rem 0 1.5rem;
+  margin: 1.5rem 0;
 
   &.focused {
     border-color: ${blue[400]};
@@ -125,7 +126,7 @@ const StyledInput = styled('input')(
   background: inherit;
   border: none;
   border-radius: inherit;
-  padding: 12px 12px;
+  padding: 8px 12px;
   outline: 0;
   flex: 1 0 auto;
 `,
