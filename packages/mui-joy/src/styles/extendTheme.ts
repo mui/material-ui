@@ -488,7 +488,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       'body-lg': {
         fontFamily: getCssVar(`fontFamily-body, ${fontFamily.body}`),
         fontSize: getCssVar(`fontSize-lg, ${fontSize.lg}`),
-        lineHeight: getCssVar(`lineHeight-xs, ${lineHeight.xs}`),
+        lineHeight: getCssVar(`lineHeight-md, ${lineHeight.md}`),
         color: getCssVar(`palette-text-secondary, ${lightColorSystem.palette.text.secondary}`),
       },
 
@@ -502,7 +502,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       'body-sm': {
         fontFamily: getCssVar(`fontFamily-body, ${fontFamily.body}`),
         fontSize: getCssVar(`fontSize-sm, ${fontSize.sm}`),
-        lineHeight: getCssVar(`lineHeight-sm, ${lineHeight.sm}`),
+        lineHeight: getCssVar(`lineHeight-md, ${lineHeight.md}`),
         color: getCssVar(`palette-text-tertiary, ${lightColorSystem.palette.text.tertiary}`),
       },
 
@@ -510,7 +510,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontFamily: getCssVar(`fontFamily-body, ${fontFamily.body}`),
         fontWeight: getCssVar(`fontWeight-md, ${fontWeight.md}`),
         fontSize: getCssVar(`fontSize-xs, ${fontSize.xs}`),
-        lineHeight: getCssVar(`lineHeight-xs, ${lineHeight.xs}`),
+        lineHeight: getCssVar(`lineHeight-md, ${lineHeight.md}`),
         color: getCssVar(`palette-text-tertiary, ${lightColorSystem.palette.text.tertiary}`),
       },
     },
