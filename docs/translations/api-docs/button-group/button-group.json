@@ -61,6 +61,11 @@
       "nodeName": "the root element",
       "conditions": "<code>fullWidth={true}</code>"
     },
+    "firstButton": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the button child",
+      "conditions": "it is the first button"
+    },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -151,6 +156,14 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
       "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "lastButton": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the button child",
+      "conditions": "it is the last button"
+    },
+    "middleButton": {
+      "description": "Style applied to the button child if it is in the the middle buttons."
     }
   }
 }
