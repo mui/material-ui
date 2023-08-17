@@ -62,5 +62,5 @@ export type DrawerContentProps<
 
 export interface DrawerContentOwnerState extends ApplyColorInversion<DrawerContentProps> {
   open?: DrawerProps['open'];
-  anchor?: DrawerProps['anchor']
+  anchor?: DrawerProps['anchor'];
 }

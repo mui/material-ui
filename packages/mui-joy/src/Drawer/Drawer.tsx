@@ -62,9 +62,7 @@ const DrawerContent = styled('div', {
   name: 'JoyDrawer',
   slot: 'Backdrop',
   overridesResolver: (props, styles) => styles.content,
-})<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
-
-}));
+})<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({}));
 
 const oppositeDirection = {
   left: 'right',
@@ -169,11 +167,11 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
         <DrawerOpenContext.Provider value={open}>
           <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
             {/*
-            * Marking an element with the role presentation indicates to assistive technology
-            * that this element should be ignored; it exists to support the web application and
-            * is not meant for humans to interact with directly.
-            * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-            */}
+             * Marking an element with the role presentation indicates to assistive technology
+             * that this element should be ignored; it exists to support the web application and
+             * is not meant for humans to interact with directly.
+             * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+             */}
             <SlotRoot {...rootProps}>
               {!hideBackdrop ? <SlotBackdrop {...backdropProps} /> : null}
               <FocusTrap

@@ -4,14 +4,16 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-} from '@mui/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { SheetRoot } from '../Sheet/Sheet';
 import { getDrawerContentUtilityClass } from './drawerContentClasses';
-import { DrawerContentProps, DrawerContentOwnerState, DrawerContentTypeMap } from './DrawerContentProps';
+import {
+  DrawerContentProps,
+  DrawerContentOwnerState,
+  DrawerContentTypeMap,
+} from './DrawerContentProps';
 import DrawerContentSizeContext from './DrawerContentSizeContext';
 import DrawerContentVariantColorContext from './DrawerContentVariantColorContext';
 import useSlot from '../utils/useSlot';
@@ -67,7 +69,8 @@ const DrawerContentRoot = styled(SheetRoot, {
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: theme.vars.lineHeight.md,
   padding: 'var(--DrawerContent-padding)',
-  minWidth: 'min(calc(100vw - 2 * var(--DrawerContent-padding)), var(--DrawerContent-minWidth, 300px))',
+  minWidth:
+    'min(calc(100vw - 2 * var(--DrawerContent-padding)), var(--DrawerContent-minWidth, 300px))',
   outline: 0,
   display: 'flex',
   flexDirection: 'column',

@@ -9,9 +9,11 @@ import List from '@mui/joy/List';
 import Divider from '@mui/joy/Divider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
-import JoyUsageDemo, { prependLinesSpace } from 'docs/src/modules/components/JoyUsageDemo';
+import JoyUsageDemo, {
+  prependLinesSpace,
+} from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function CheckboxUsage({ window }) {
+export default function CheckboxUsage() {
   return (
     <JoyUsageDemo
       componentName="Darawer"
@@ -37,16 +39,22 @@ export default function CheckboxUsage({ window }) {
         });
 
         const toggleDrawer = (anchor, open) => (event) => {
-          if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+          if (
+            event.type === 'keydown' &&
+            (event.key === 'Tab' || event.key === 'Shift')
+          ) {
             return;
           }
-      
+
           setState({ ...state, [anchor]: open });
         };
-      
+
         const list = (anchor) => (
           <Box
-            sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250, m: 3 }}
+            sx={{
+              width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250,
+              m: 3,
+            }}
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
@@ -54,7 +62,9 @@ export default function CheckboxUsage({ window }) {
             <List>
               {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
                 <ListItem key={text}>
-                  <ListItemButton>{text}</ListItemButton>
+                  <ListItemButton color={props.color} variant={props.variant}>
+                    {text}
+                  </ListItemButton>
                 </ListItem>
               ))}
             </List>
@@ -62,13 +72,15 @@ export default function CheckboxUsage({ window }) {
             <List>
               {['All mail', 'Trash', 'Spam'].map((text) => (
                 <ListItem key={text}>
-                  <ListItemButton>{text}</ListItemButton>
+                  <ListItemButton color={props.color} variant={props.variant}>
+                    {text}
+                  </ListItemButton>
                 </ListItem>
               ))}
             </List>
           </Box>
         );
-      
+
         return (
           <React.Fragment>
             <ButtonGroup variant="outlined">
@@ -85,9 +97,7 @@ export default function CheckboxUsage({ window }) {
                 open={state[anchor]}
                 onClose={toggleDrawer(anchor, false)}
               >
-                <DrawerContent {...props}>
-                  {list(anchor)}
-                </DrawerContent>
+                <DrawerContent {...props}>{list(anchor)}</DrawerContent>
               </Drawer>
             ))}
           </React.Fragment>

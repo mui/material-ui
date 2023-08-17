@@ -74,9 +74,7 @@ export default function DrawerBasic() {
           open={state[anchor]}
           onClose={toggleDrawer(anchor, false)}
         >
-          <DrawerContent>
-            {list(anchor)}
-          </DrawerContent>
+          <DrawerContent>{list(anchor)}</DrawerContent>
         </Drawer>
       ))}
     </React.Fragment>
