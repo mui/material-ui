@@ -92,6 +92,30 @@ The following example replaces the `MuiBadge-anchorOriginBottomLeftCircular` cla
 + .MuiBadge-anchorOriginBottomLeft.MuiBadge-overlapCircular
 ```
 
+## InputBase
+
+### Removed the `inputComponent` prop
+
+The `inputComponent` is deprecated in favor of `slots.input`:
+
+```diff
+ <InputBase
+-    inputComponent="textarea"
++    slots={{ input: 'textarea' }}
+ />
+```
+
+### Removed `inputProps`
+
+`inputProps` are deprecated in favor of `slotProps.input`:
+
+```diff
+ <InputBase
+-    inputProps={{ className: 'my-input' }}
++    slotProps={{ input: { className: 'my-input' } }}
+ />
+```
+
 ## Slider
 
 ### Thumb and Value Label slots must accept refs
