@@ -591,7 +591,7 @@ const Root = styled('div')(
           backgroundColor: alpha(darkTheme.palette.error[700], 0.2),
           borderColor: alpha(lightTheme.palette.error[600], 0.3),
           '& strong': {
-            color: `var(--muidocs-palette-error-100, ${darkTheme.palette.error[100]})`,
+            color: `var(--muidocs-palette-error-300, ${darkTheme.palette.error[300]})`,
           },
           '&>svg': {
             fill: `var(--muidocs-palette-error-500, ${darkTheme.palette.error[500]})`,
