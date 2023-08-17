@@ -65,3 +65,21 @@ It says, "You will fail if you don't heed this dire warning."
 Add some **bold text** and a [link](#link).
 :::
 ```
+
+## Empty
+
+Should not be used, here just to ensure forgetting the token is not a big deal.
+
+:::
+This is a callout.
+It says, "You will fail if you don't heed this dire warning."
+Add some **bold text** and a [link](#link).
+:::
+
+```markup
+:::
+This is a callout.
+It says, "You will fail if you don't heed this dire warning."
+Add some **bold text** and a [link](#link).
+:::
+```

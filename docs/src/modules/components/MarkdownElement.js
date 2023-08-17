@@ -273,6 +273,14 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
+      display: 'flex',
+      '&>svg': {
+        width: 24,
+        height: 24,
+        flexShrink: 0,
+        marginLeft: -5,
+        marginRight:5
+      },
       '& > ul, & > p': {
         '&:last-child': {
           margin: 0,

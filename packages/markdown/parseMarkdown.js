@@ -419,10 +419,19 @@ function createRender(context) {
             }
             return undefined;
           },
+
           renderer(token) {
-            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${this.parser.parse(
-              token.tokens,
-            )}\n</aside>`;
+            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">
+            ${
+              ['info', 'success', 'warning', 'error'].includes(token.severity)
+                ? [
+                    '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
+                    `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
+                    '</svg>',
+                  ].join('\n')
+                : ''
+            }
+            ${this.parser.parse(token.tokens)}\n</aside>`;
           },
         },
       ],
@@ -620,6 +629,37 @@ ${headers.hooks
         <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.24 11.28L9.69 11.2c-.38-.39-.38-1.01 0-1.4.39-.39 1.02-.39 1.41 0l1.36 1.37 4.42-4.46c.39-.39 1.02-.39 1.41 0 .38.39.38 1.01 0 1.4l-5.13 5.17c-.37.4-1.01.4-1.4 0zM3 6c-.55 0-1 .45-1 1v13c0 1.1.9 2 2 2h13c.55 0 1-.45 1-1s-.45-1-1-1H5c-.55 0-1-.45-1-1V7c0-.55-.45-1-1-1z" />
       </symbol>
       </svg>`);
+
+      // icons for callout (info, success, warning, error)
+
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="info-icon" viewBox="0 0 24 24">
+      <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z""/>
+      </symbol>
+      </svg>`,
+      );
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="success-icon" viewBox="0 0 24 24">
+      <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z""/>
+      </symbol>
+      </svg>`,
+      );
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="warning-icon" viewBox="0 0 24 24">
+      <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z""/>
+      </symbol>
+      </svg>`,
+      );
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="error-icon" viewBox="0 0 24 24">
+      <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z""/>
+      </symbol>
+      </svg>`,
+      );
 
       docs[userLanguage] = {
         description,
