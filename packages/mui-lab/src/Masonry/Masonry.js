@@ -109,7 +109,6 @@ export const getStyle = ({ ownerState, theme }) => {
             ? Math.ceil(baseHeight + parseToNumber(spacing))
             : `calc(${baseHeight}px + ${spacing})`,
       }),
-
       ...(!ownerState.maxColumnHeight &&
         !ownerState.isSSR && {
           opacity: 0,
@@ -284,23 +283,34 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     }
   };
 
+  const resizeObserverRef = React.useRef(
+    typeof ResizeObserver === 'undefined' ? undefined : new ResizeObserver(handleResize),
+  );
+
   useEnhancedEffect(() => {
+    const resizeObserver = resizeObserverRef.current;
+
     // IE and old browsers are not supported
-    if (typeof ResizeObserver === 'undefined') {
+    if (!resizeObserver) {
       return undefined;
     }
 
-    const resizeObserver = new ResizeObserver(handleResize);
+    let animationFrame;
 
     if (masonryRef.current) {
-      masonryRef.current.childNodes.forEach((childNode) => {
-        if (childNode.dataset.class !== 'line-break') {
-          resizeObserver.observe(childNode);
-        }
+      animationFrame = window.requestAnimationFrame(() => {
+        masonryRef.current.childNodes.forEach((childNode) => {
+          if (childNode.dataset.class !== 'line-break') {
+            resizeObserver.observe(childNode);
+          }
+        });
       });
     }
 
     return () => {
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+      }
       if (resizeObserver) {
         resizeObserver.disconnect();
       }
