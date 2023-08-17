@@ -163,7 +163,7 @@
       "conditions": "it is the last button"
     },
     "middleButton": {
-      "description": "Style applied to the button child if it is in the the middle buttons."
+      "description": "Style applied to the button child if it is in the middle buttons."
     }
   }
 }

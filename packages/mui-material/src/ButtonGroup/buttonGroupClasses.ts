@@ -58,7 +58,7 @@ export interface ButtonGroupClasses {
   groupedContainedSecondary: string;
   /** Styles applied to the button child if it is the last button. */
   lastButton: string;
-  /** Style applied to the button child if it is in the the middle buttons. */
+  /** Style applied to the button child if it is in the middle buttons. */
   middleButton: string;
 }
 
