@@ -8,15 +8,10 @@ Welcome to the MUI community!
 Our tools are used by thousands of developers and teams all around the world, many of whom actively engage with the community through various online platforms.
 These are the best places to start asking questions and looking for answers when you need help.
 
-### Discord
-
-MUI maintains an official [Discord server](https://mui.com/r/discord/) for real-time updates and discussions.
-This is a great place to post if you need help troubleshooting or you're looking for feedback on a project.
-
 ### Stack Overflow
 
 [Stack Overflow](https://stackoverflow.com/) contains a wealth of information about Material UI and other MUI products, spanning many years and countless discussion threads.
-Head here to see if your problem has already been resolved by the community, or else [post a question](https://stackoverflow.com/questions/tagged/mui) to get help from community experts as well as MUI maintainers.
+Head here to see if your problem has already been resolved by the community, or else [post a question](https://stackoverflow.com/questions/tagged/material-ui) to get help from community experts as well as MUI maintainers.
 
 :::success
 If you're using an older version of Material UI, you may find answers on SO with links to content that no longer exists in the latest version of the documentation.
@@ -26,8 +21,6 @@ Visit the [MUI Versions](https://mui.com/versions/) page to find the archived do
 ### GitHub
 
 MUI uses GitHub issues to track bug reports and feature requests.
-
-(Need help debugging your app? Try [Discord](#discord) instead.)
 
 If you think you've found a bug in the codebase, or you have an idea for a new feature, please [search the issues on GitHub](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed) before opening a new one, to ensure you're not creating a duplicate.
 

@@ -62,7 +62,7 @@ export default function UserCard() {
           resize: 'horizontal',
         }}
       >
-        <AspectRatio ratio="1" maxHeight={182} sx={{ minWidth: 182, flex: 1 }}>
+        <AspectRatio flex ratio="1" maxHeight={182} sx={{ minWidth: 182 }}>
           <img
             src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
             srcSet="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286&dpr=2 2x"

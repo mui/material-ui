@@ -42,9 +42,10 @@ export default function CardUsage() {
           sx={{
             m: 1,
             mb: 4,
+            maxWidth: 350,
           }}
         >
-          <AspectRatio ratio="16/9" sx={{ width: 160 }}>
+          <AspectRatio ratio="16/9">
             <img
               src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
               srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
@@ -53,11 +54,21 @@ export default function CardUsage() {
             />
           </AspectRatio>
           <CardContent>
-            <Typography fontWeight="lg" textColor="inherit">
-              Yosemite
+            <Typography level="body-xs">NATIONAL PARK</Typography>
+            <Typography
+              level="title-lg"
+              component="div"
+              sx={{ textWrap: 'balance' }}
+            >
+              Yosemite - Your Next Adventure
             </Typography>
-            <Typography level="body-sm">April 24 to May 02, 2021</Typography>
+            <Typography>
+              Yosemite National Park is in California’s Sierra Nevada mountains.
+            </Typography>
             <CardActions>
+              <Button variant="outlined" size="sm">
+                Add to list
+              </Button>
               <Button size="sm">Explore</Button>
             </CardActions>
           </CardContent>

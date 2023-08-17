@@ -117,6 +117,12 @@ By default, tabs use a `button` element, but you can provide your custom tag or 
 
 {{"demo": "NavTabs.js"}}
 
+### Third-party routing library
+
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
+The `Tab` component provides the `component` prop to handle this use case.
+Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
+
 ## Icon tabs
 
 Tab labels may be either all icons or all text.
@@ -130,12 +136,6 @@ Tab labels may be either all icons or all text.
 By default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`.
 
 {{"demo": "IconPositionTabs.js"}}
-
-## Third-party routing library
-
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
-The `Tab` component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
 
 ## Accessibility
 
