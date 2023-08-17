@@ -395,7 +395,7 @@ export const createSolidInversion = (theme: ThemeFragment, addDefaultValues?: bo
   return result;
 };
 
-export const inverseSolid = (color: ColorPaletteProp) => (theme: ThemeFragment) => {
+export const invertSolidVariant = (color: ColorPaletteProp) => (theme: ThemeFragment) => {
   const getCssVarDefault = createGetCssVar(theme.cssVarPrefix);
   const prefixVar = createPrefixVar(theme.cssVarPrefix);
   const getCssVar = (cssVar: string) => {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { inverseSolid } from '@mui/joy/styles';
+import { invertSolidVariant } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import Chip from '@mui/joy/Chip';
@@ -14,7 +14,12 @@ export default function ColorInversionOverview() {
       variant="solid"
       color="primary"
       sx={[
-        { gap: 2, maxWidth: 300, boxShadow: 'md', '& *': inverseSolid('primary') },
+        {
+          gap: 2,
+          maxWidth: 300,
+          boxShadow: 'md',
+          '& *': invertSolidVariant('primary'),
+        },
       ]}
     >
       <Chip

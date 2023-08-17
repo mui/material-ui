@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ColorPaletteProp, inverseSolid } from '@mui/joy/styles';
+import { ColorPaletteProp, invertSolidVariant } from '@mui/joy/styles';
 import Autocomplete from '@mui/joy/Autocomplete';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -59,7 +59,7 @@ export default function ColorInversionPopup() {
           zIndex: 0,
           borderRadius: 'sm',
           p: 4,
-          '& *': inverseSolid(color),
+          '& *': invertSolidVariant(color),
         }}
       >
         <Autocomplete
