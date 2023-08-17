@@ -228,13 +228,31 @@ describe('<TextField />', () => {
     });
   });
 
-  describe('click handling', () => {
+  describe('event: click', () => {
     it('should trigger `onClick` only once', () => {
       const handleClick = spy();
       const { getByRole } = render(
         <TextField variant="outlined" disabled label="Test" onClick={handleClick} />,
       );
       fireEvent.click(getByRole('textbox'));
+      expect(handleClick.callCount).to.equal(1);
+    });
+
+    it('registers `onClick` on the root slot', () => {
+      const handleClick = spy();
+      const { getByTestId } = render(
+        <TextField
+          data-testid="root"
+          onClick={handleClick}
+          inputProps={{
+            onClick: handleClick,
+          }}
+        />,
+      );
+
+      const root = getByTestId('root');
+
+      fireEvent.click(root);
       expect(handleClick.callCount).to.equal(1);
     });
   });
