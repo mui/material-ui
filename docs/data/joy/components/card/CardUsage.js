@@ -13,7 +13,7 @@ export default function CardUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'plain',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
@@ -42,7 +42,7 @@ export default function CardUsage() {
           sx={{
             m: 1,
             mb: 4,
-            maxWidth: 300,
+            maxWidth: 350,
           }}
         >
           <AspectRatio ratio="16/9">
@@ -54,16 +54,21 @@ export default function CardUsage() {
             />
           </AspectRatio>
           <CardContent>
-            <Typography level="body-xs" fontWeight="lg" textColor="text.icon">
-              NATIONAL PARK
-            </Typography>
-            <Typography level="h4" component="div" sx={{ textWrap: 'balance' }}>
+            <Typography level="body-xs">NATIONAL PARK</Typography>
+            <Typography
+              level="title-lg"
+              component="div"
+              sx={{ textWrap: 'balance' }}
+            >
               Yosemite - Your Next Adventure
             </Typography>
             <Typography>
               Yosemite National Park is in California’s Sierra Nevada mountains.
             </Typography>
             <CardActions>
+              <Button variant="outlined" size="sm">
+                Add to list
+              </Button>
               <Button size="sm">Explore</Button>
             </CardActions>
           </CardContent>
