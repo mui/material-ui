@@ -113,10 +113,10 @@ export const getButtonStyles = ({
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': theme.vars.fontSize.xl,
-        '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
-        '--CircularProgress-thickness': '3px',
+        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '2px',
         '--Button-gap': '0.5rem',
-        minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
+        minHeight: 'var(--Button-minHeight, 2.25rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
         paddingBlock: '0.25rem', // the padding-block act as a minimum spacing between content and root element
         paddingInline: '1rem',
