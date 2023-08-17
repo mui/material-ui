@@ -86,11 +86,9 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
   const handleRef = useForkRef(refs.setFloating, forwardedRef);
   const [exited, setExited] = React.useState(true);
 
-  React.useEffect(() => {
-    if (open) {
-      setExited(false);
-    }
-  }, [open]);
+  const handleEntering = () => {
+    setExited(false);
+  };
 
   const handleExited = () => {
     setExited(true);
@@ -130,6 +128,7 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     className: classes.root,
     additionalProps: {
       ref: handleRef,
+      role: 'tooltip',
       style: { ...floatingStyles, display },
     },
   });
@@ -144,6 +143,7 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     placement: finalPlacement,
     requestOpen: open,
     onExited: handleExited,
+    onEnter: handleEntering,
   };
 
   return (
