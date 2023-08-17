@@ -24,7 +24,13 @@ export default function AnimatedPopup() {
 }
 
 function Animated(props) {
-  const { requestOpen, onExited, children, className } = props;
+  const { requestOpen, onEnter, onExited, children, className } = props;
+
+  React.useEffect(() => {
+    if (requestOpen) {
+      onEnter();
+    }
+  }, [onEnter, requestOpen]);
 
   const handleAnimationEnd = React.useCallback(() => {
     if (!requestOpen) {
@@ -45,6 +51,7 @@ function Animated(props) {
 Animated.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  onEnter: PropTypes.func.isRequired,
   onExited: PropTypes.func.isRequired,
   requestOpen: PropTypes.bool.isRequired,
 };

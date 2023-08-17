@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Unstable_Popup as BasePopup, PopupProps } from '@mui/base/Unstable_Popup';
 import Button from '@mui/joy/Button';
 import { CssVarsProvider } from '@mui/joy/styles';
-import { Box, styled } from '@mui/system';
+import { styled } from '@mui/system';
 import Fade from '@mui/material/Fade';
 
 const StyledPopup = styled(BasePopup)`
@@ -27,20 +27,30 @@ const Section = styled('div')`
 function Animated(
   props: React.PropsWithChildren<{
     className?: string;
-    open: boolean;
-    onDisappeared: () => void;
+    requestOpen: boolean;
+    onExited: () => void;
+    onEnter: () => void;
   }>,
 ) {
-  const { open, onDisappeared, children, className } = props;
+  const { requestOpen, onEnter, onExited, children, className } = props;
 
   const handleAnimationEnd = React.useCallback(() => {
-    if (!open) {
-      onDisappeared();
+    if (!requestOpen) {
+      onExited();
     }
-  }, [onDisappeared, open]);
+  }, [onExited, requestOpen]);
+
+  React.useEffect(() => {
+    if (requestOpen) {
+      onEnter();
+    }
+  }, [onEnter, requestOpen]);
 
   return (
-    <div onAnimationEnd={handleAnimationEnd} className={className + (open ? ' open' : ' close')}>
+    <div
+      onAnimationEnd={handleAnimationEnd}
+      className={className + (requestOpen ? ' open' : ' close')}
+    >
       {children}
     </div>
   );
@@ -105,31 +115,36 @@ function PopupWithTrigger(props: PopupProps & { label: string }) {
   );
 }
 
+const Container = styled('div')`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 export default function PopupPlayground() {
   return (
     <CssVarsProvider>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+      <Container>
         <PopupWithTrigger label="default" />
         <PopupWithTrigger label="placed to the right" placement="right" />
         <PopupWithTrigger label="always mounted" keepMounted />
         <PopupWithTrigger label="non-portaled" disablePortal />
         <PopupWithTrigger label="with offset" offset={20} />
         <PopupWithTrigger label="with Material UI transition" withTransition>
-          {({ requestOpen, onExited }) => (
-            <Fade in={requestOpen} onExited={onExited} timeout={250}>
+          {({ requestOpen, onExited, onEnter }) => (
+            <Fade in={requestOpen} onExited={onExited} onEnter={onEnter} timeout={250}>
               <PopupBody>This is an animated popup</PopupBody>
             </Fade>
           )}
         </PopupWithTrigger>
 
         <PopupWithTrigger label="with custom transition" withTransition>
-          {({ requestOpen: open, onExited }) => (
-            <PopAnimation open={open} onDisappeared={onExited}>
+          {({ requestOpen: open, onExited, onEnter }) => (
+            <PopAnimation requestOpen={open} onExited={onExited} onEnter={onEnter}>
               <PopupBody>This is an animated popup</PopupBody>
             </PopAnimation>
           )}
         </PopupWithTrigger>
-      </Box>
+      </Container>
     </CssVarsProvider>
   );
 }

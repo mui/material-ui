@@ -29,10 +29,17 @@ function Animated(
   props: React.PropsWithChildren<{
     className?: string;
     requestOpen: boolean;
+    onEnter: () => void;
     onExited: () => void;
   }>,
 ) {
-  const { requestOpen, onExited, children, className } = props;
+  const { requestOpen, onEnter, onExited, children, className } = props;
+
+  React.useEffect(() => {
+    if (requestOpen) {
+      onEnter();
+    }
+  }, [onEnter, requestOpen]);
 
   const handleAnimationEnd = React.useCallback(() => {
     if (!requestOpen) {
