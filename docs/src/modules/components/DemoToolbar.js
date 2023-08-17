@@ -344,10 +344,6 @@ export default function DemoToolbar(props) {
     }
   };
 
-  const handleCodeOpenClick = () => {
-    onCodeOpenChange();
-  };
-
   const handleResetFocusClick = () => {
     initialFocusRef.current.focusVisible();
   };
@@ -533,7 +529,7 @@ export default function DemoToolbar(props) {
             data-ga-event-category="demo"
             data-ga-event-label={demo.gaLabel}
             data-ga-event-action="expand"
-            onClick={handleCodeOpenClick}
+            onClick={onCodeOpenChange}
             {...getControlProps(3)}
           >
             {showCodeLabel}
