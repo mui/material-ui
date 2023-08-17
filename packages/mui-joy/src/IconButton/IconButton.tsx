@@ -56,10 +56,10 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)', // 1.5rem by default
-        '--CircularProgress-size': '24px',
-        '--CircularProgress-thickness': '3px',
-        minWidth: 'var(--IconButton-size, 2.5rem)',
-        minHeight: 'var(--IconButton-size, 2.5rem)',
+        '--CircularProgress-size': '20px',
+        '--CircularProgress-thickness': '2px',
+        minWidth: 'var(--IconButton-size, 2.25rem)',
+        minHeight: 'var(--IconButton-size, 2.25rem)',
         fontSize: theme.vars.fontSize.md,
         paddingInline: '0.25rem',
       }),
