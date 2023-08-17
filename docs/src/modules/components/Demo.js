@@ -412,11 +412,6 @@ export default function Demo(props) {
 
   const hasNonSystemDemos = demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs;
 
-  const [demoHovered, setDemoHovered] = React.useState(false);
-  const handleDemoHover = (event) => {
-    setDemoHovered(event.type === 'mouseenter');
-  };
-
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
     () => ({
@@ -517,8 +512,6 @@ export default function Demo(props) {
         hideToolbar={demoOptions.hideToolbar}
         bg={demoOptions.bg}
         id={demoId}
-        onMouseEnter={handleDemoHover}
-        onMouseLeave={handleDemoHover}
       >
         <Wrapper {...(demoData.productId === 'joy-ui' && { mode })}>
           <InitialFocus
@@ -558,7 +551,6 @@ export default function Demo(props) {
                   hasNonSystemDemos={hasNonSystemDemos}
                   demo={demo}
                   demoData={demoData}
-                  demoHovered={demoHovered}
                   demoId={demoId}
                   demoName={demoName}
                   demoOptions={demoOptions}
