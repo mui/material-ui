@@ -274,4 +274,9 @@ ApiItem.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
+export const ApiItemContaier = styled('div')({
+  width: '100%',
+  display: 'table',
+});
+
 export default ApiItem;

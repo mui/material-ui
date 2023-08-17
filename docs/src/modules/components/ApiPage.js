@@ -304,14 +304,11 @@ import { ${pageContent.name} } from '${source}';`}
                   .replace(/{{defaultPropsLink}}/, defaultPropsLink),
               }}
             />
-            <Divider />
+            <Divider sx={{ 'hr&&': { mb: 0 } }} />
           </React.Fragment>
         )}
         {Object.keys(componentStyles.classes).length ? (
           <React.Fragment>
-            <Heading hash="css" />
-            <p dangerouslySetInnerHTML={{ __html: t('api-docs.cssDescription') }} />
-            <br />
             <CSSList
               componentStyles={componentStyles}
               classDescriptions={classDescriptions}
@@ -331,18 +328,14 @@ import { ${pageContent.name} } from '${source}';`}
         ) : null}
         {componentSlots?.length > 0 ? (
           <React.Fragment>
-            <Heading hash="slots" />
-            {slotGuideLink && (
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink),
-                }}
-              />
-            )}
             <SlotsList
               componentSlots={componentSlots}
               slotDescriptions={slotDescriptions}
               componentName={pageContent.name}
+              spreadHint={
+                slotGuideLink &&
+                t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
+              }
             />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
@@ -358,19 +351,12 @@ import { ${pageContent.name} } from '${source}';`}
           </React.Fragment>
         ) : null}
         {hasClasses ? (
-          <React.Fragment>
-            <Heading hash="classes" />
-            <p
-              dangerouslySetInnerHTML={{
-                __html: t('api-docs.classesDescription'),
-              }}
-            />
-            <ClassesList
-              componentClasses={componentClasses}
-              componentName={pageContent.name}
-              classDescriptions={classDescriptions}
-            />
-          </React.Fragment>
+          <ClassesList
+            componentClasses={componentClasses}
+            componentName={pageContent.name}
+            classDescriptions={classDescriptions}
+            spreadHint={t('api-docs.classesDescription')}
+          />
         ) : null}
         <DesignInfo />
       </MarkdownElement>

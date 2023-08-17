@@ -234,11 +234,12 @@ ${rootImport}`;
           )}
           {Object.keys(componentStyles.classes).length ? (
             <React.Fragment>
-              <Heading text="css" hash={`${componentName}-css`} level="h3" />
               <CSSList
                 componentStyles={componentStyles}
                 classDescriptions={classDescriptions}
                 componentName={componentName}
+                titleHash={`${componentName}-css`}
+                level="h3"
               />
               <br />
               <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
@@ -254,21 +255,16 @@ ${rootImport}`;
           ) : null}
           {componentSlots?.length ? (
             <React.Fragment>
-              <Heading text="slots" hash={`${componentNameKebabCase}-slots`} level="h3" />
-              {slotGuideLink && (
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t('api-docs.slotDescription').replace(
-                      /{{slotGuideLink}}/,
-                      slotGuideLink,
-                    ),
-                  }}
-                />
-              )}
               <SlotsList
                 componentSlots={componentSlots}
                 slotDescriptions={slotDescriptions}
                 componentName={componentName}
+                titleHash={`${componentNameKebabCase}-slots`}
+                level="h3"
+                spreadHint={
+                  slotGuideLink &&
+                  t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
+                }
               />
               <br />
               <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
@@ -284,20 +280,14 @@ ${rootImport}`;
           ) : null}
           {componentClasses?.classes?.length ||
           Object.keys(componentClasses?.classes?.globalClasses || {}).length ? (
-            <React.Fragment>
-              <Heading text="classes" hash={`${componentNameKebabCase}-classes`} level="h3" />
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.classesDescription'),
-                }}
-              />
-              <ClassesList
-                componentClasses={componentClasses}
-                componentName={pageContent.name}
-                classDescriptions={classDescriptions}
-              />
-              <br />
-            </React.Fragment>
+            <ClassesList
+              componentClasses={componentClasses}
+              componentName={pageContent.name}
+              classDescriptions={classDescriptions}
+              spreadHint={t('api-docs.classesDescription')}
+              titleHash={`${componentNameKebabCase}-classes`}
+              level="h3"
+            />
           ) : null}
         </MarkdownElement>
         <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">

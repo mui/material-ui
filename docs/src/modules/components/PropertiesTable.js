@@ -11,7 +11,9 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ToggleDisplayOption, {
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
-import ExpendableApiItem from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
+import ExpendableApiItem, {
+  ApiItemContaier,
+} from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
 
 // TODO: Move to translation
 const additionalPropsInfoText = {
@@ -161,7 +163,7 @@ export default function PropertiesTable(props) {
       </div>
 
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
-      <div style={{ display: 'table' }}>
+      <ApiItemContaier>
         {Object.entries(properties)
           .filter(([, propData]) => propData.description !== '@ignore')
           .map(([propName, propData]) => {
@@ -329,7 +331,7 @@ export default function PropertiesTable(props) {
               </StyledApiItem>
             );
           })}
-      </div>
+      </ApiItemContaier>
     </React.Fragment>
   );
 }

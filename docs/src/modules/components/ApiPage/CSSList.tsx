@@ -2,7 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import ExpendableApiItem from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
+import ExpendableApiItem, {
+  ApiItemContaier,
+} from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
 import ToggleDisplayOption, {
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
@@ -98,7 +100,7 @@ export default function CSSList(props: CSSListProps) {
       </div>
 
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
-      <div className="MuiApi-css-list">
+      <ApiItemContaier className="MuiApi-css-list">
         {componentStyles.classes.map((className) => {
           const isGlobalStateClass = !!componentStyles.globalClasses[className];
           return (
@@ -142,7 +144,7 @@ export default function CSSList(props: CSSListProps) {
             </ExpendableApiItem>
           );
         })}
-      </div>
+      </ApiItemContaier>
     </React.Fragment>
   );
 }

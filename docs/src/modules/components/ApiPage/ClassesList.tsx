@@ -2,7 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import ExpendableApiItem from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
+import ExpendableApiItem, {
+  ApiItemContaier,
+} from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
 // import ToggleDisplayOption, {
 //   useApiPageOption,
 // } from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
@@ -32,7 +34,7 @@ export default function ClassesList(props: ClassesListProps) {
     classDescriptions,
     componentName,
     spreadHint,
-    title = 'api-docs.classesDescription',
+    title = 'api-docs.classes',
     titleHash = 'classes',
     level: Level = 'h2',
   } = props;
@@ -76,7 +78,7 @@ export default function ClassesList(props: ClassesListProps) {
 
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
 
-      <div>
+      <ApiItemContaier>
         {list
           .sort((a, b) => a.className.localeCompare(b.className))
           .map((item) => {
@@ -100,7 +102,7 @@ export default function ClassesList(props: ClassesListProps) {
               </ExpendableApiItem>
             );
           })}
-      </div>
+      </ApiItemContaier>
     </React.Fragment>
   );
 }
