@@ -5,6 +5,7 @@ interface IButtonGroupButtonContext {
   lastButton?: boolean;
   firstButtonClass?: string;
   lastButtonClass?: string;
+  middleButtonClass?: string;
 }
 
 /**

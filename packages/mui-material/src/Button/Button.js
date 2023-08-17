@@ -304,7 +304,7 @@ const getClassNameBasedOnPosition = (buttonGroupButtonContext) => {
   if (buttonGroupButtonContext.lastButton) {
     return buttonGroupButtonContext.lastButtonClass;
   }
-  return '';
+  return buttonGroupButtonContext.middleButtonClass;
 };
 
 const Button = React.forwardRef(function Button(inProps, ref) {
