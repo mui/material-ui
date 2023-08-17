@@ -68,7 +68,6 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
       value={displayOption}
       exclusive
       onChange={handleAlignment}
-      // eslint-disable-next-line material-ui/no-hardcoded-labels
       aria-label="API display option"
       sx={{
         '& .MuiSvgIcon-root': {
@@ -89,19 +88,11 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         },
       }}
     >
-      <ToggleButton
-        value="collapsed"
-        // eslint-disable-next-line material-ui/no-hardcoded-labels
-        aria-label="colapsed list"
-      >
+      <ToggleButton value="collapsed" aria-label="colapsed list">
         <ReorderRoundedIcon size="small" />
       </ToggleButton>
 
-      <ToggleButton
-        value="expended"
-        // eslint-disable-next-line material-ui/no-hardcoded-labels
-        aria-label="expended list"
-      >
+      <ToggleButton value="expended" aria-label="expended list">
         <CalendarViewDayRoundedIcon />
       </ToggleButton>
     </ToggleButtonGroup>
