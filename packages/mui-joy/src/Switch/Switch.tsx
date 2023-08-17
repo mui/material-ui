@@ -65,23 +65,23 @@ const SwitchRoot = styled('div', {
     '--Switch-thumbShadow':
       ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-trackBackground)', // create border-like if the thumb is bigger than the track
     ...(ownerState.size === 'sm' && {
-      '--Switch-trackWidth': '40px',
-      '--Switch-trackHeight': '20px',
-      '--Switch-thumbSize': '12px',
+      '--Switch-trackWidth': '32px',
+      '--Switch-trackHeight': '16px',
+      '--Switch-thumbSize': '8px',
       '--Switch-gap': '6px',
       fontSize: theme.vars.fontSize.sm,
     }),
     ...(ownerState.size === 'md' && {
-      '--Switch-trackWidth': '48px',
-      '--Switch-trackHeight': '24px',
-      '--Switch-thumbSize': '16px',
+      '--Switch-trackWidth': '40px',
+      '--Switch-trackHeight': '20px',
+      '--Switch-thumbSize': '12px',
       '--Switch-gap': '8px',
       fontSize: theme.vars.fontSize.md,
     }),
     ...(ownerState.size === 'lg' && {
-      '--Switch-trackWidth': '64px',
-      '--Switch-trackHeight': '32px',
-      '--Switch-thumbSize': '24px',
+      '--Switch-trackWidth': '48px',
+      '--Switch-trackHeight': '24px',
+      '--Switch-thumbSize': '16px',
       '--Switch-gap': '12px',
     }),
     '--unstable_paddingBlock': `max((var(--Switch-trackHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumbSize)) / 2, 0px)`,
