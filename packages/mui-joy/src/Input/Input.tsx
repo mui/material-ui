@@ -60,7 +60,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           '--Icon-fontSize': theme.vars.fontSize.xl,
         }),
         ...(ownerState.size === 'md' && {
-          '--Input-minHeight': '2.5rem',
+          '--Input-minHeight': '2.25rem',
           '--Input-paddingInline': '0.75rem',
           '--Input-decoratorChildHeight': 'min(2rem, var(--Input-minHeight))',
           '--Icon-fontSize': theme.vars.fontSize.xl2,
