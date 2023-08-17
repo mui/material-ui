@@ -335,7 +335,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {children.map((child) => {
+      {React.Children.map(children, (child) => {
         return React.cloneElement(child, {
           style: {
             ...child.props.style,
