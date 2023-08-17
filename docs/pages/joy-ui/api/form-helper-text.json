@@ -24,7 +24,7 @@
     "import FormHelperText from '@mui/joy/FormHelperText';",
     "import { FormHelperText } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiFormHelperText" },
   "slots": [
     {
       "name": "root",

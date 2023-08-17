@@ -22,7 +22,7 @@ A select is a UI element that gives users a list of options to choose from.
 Base UI offers components to replace the native HTML `<select>` tag: Select.
 It also includes Option for creating the options on the list, and Option Group for grouping those options.
 
-{{"demo": "UnstyledSelectIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledSelectIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ### Features
 

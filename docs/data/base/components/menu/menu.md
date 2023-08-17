@@ -45,7 +45,7 @@ export default function MyApp() {
         <MenuItem>My account</MenuItem>
         <MenuItem>Notification preferences</MenuItem>
       </Menu>
-    <Dropdown>
+    </Dropdown>
   );
 }
 ```

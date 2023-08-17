@@ -19,7 +19,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 
 The Switch component provides users with a switch for toggling between two mutually exclusive states.
 
-{{"demo": "UnstyledSwitchIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledSwitchIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
@@ -39,7 +39,7 @@ export default function MyApp() {
 
 The following demo shows how to assign styles and props to the Switch component:
 
-{{"demo": "UnstyledSwitchBasic"}}
+{{"demo": "UnstyledSwitchIntroduction"}}
 
 ### Anatomy
 
