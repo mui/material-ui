@@ -49,6 +49,7 @@ describe('useSelect', () => {
           overflow: 'hidden',
           padding: 0,
           position: 'absolute',
+          left: '50%',
           bottom: 0,
         },
       });

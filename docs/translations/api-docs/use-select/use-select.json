@@ -18,6 +18,9 @@
     "multiple": {
       "description": "If <code>true</code>, the end user can select multiple values.\nThis affects the type of the <code>value</code>, <code>defaultValue</code>, and <code>onChange</code> props."
     },
+    "name": {
+      "description": "The <code>name</code> attribute of the hidden input element.\nThis is useful when the select is embedded in a form and you want to access the selected value in the form data."
+    },
     "onChange": { "description": "Callback fired when an option is selected." },
     "onHighlightChange": { "description": "Callback fired when an option is highlighted." },
     "onOpenChange": { "description": "Callback fired when the listbox is opened or closed." },
@@ -26,6 +29,9 @@
     },
     "options": {
       "description": "An alternative way to specify the options.\nIf this parameter is set, options defined as JSX children are ignored."
+    },
+    "required": {
+      "description": "If <code>true</code>, the select embedded in a form must have a selected value.\nOtherwise, the form submission will fail."
     },
     "value": {
       "description": "The selected value.\nSet to <code>null</code> to deselect all options."
@@ -47,6 +53,7 @@
       "description": "Action dispatcher for the select component.\nAllows to programmatically control the select."
     },
     "getButtonProps": { "description": "Resolver for the button slot&#39;s props." },
+    "getHiddenInputProps": { "description": "Resolver for the hidden input slot&#39;s props." },
     "getListboxProps": { "description": "Resolver for the listbox slot&#39;s props." },
     "getOptionMetadata": {
       "description": "A function that returns the metadata of an option with a given value."

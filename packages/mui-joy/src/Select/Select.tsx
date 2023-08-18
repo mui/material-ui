@@ -679,12 +679,6 @@ Select.propTypes /* remove-proptypes */ = {
    */
   endDecorator: PropTypes.node,
   /**
-   * A function to convert the currently selected value to a string.
-   * Used to set a value of a hidden input associated with the select,
-   * so that the selected value can be posted with a form.
-   */
-  getSerializedValue: PropTypes.func,
-  /**
    * The indicator(*) for the select.
    *    ________________
    *   [ value        * ]

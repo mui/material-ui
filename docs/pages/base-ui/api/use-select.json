@@ -29,6 +29,7 @@
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
     "multiple": { "type": { "name": "Multiple", "description": "Multiple" }, "default": "false" },
+    "name": { "type": { "name": "string", "description": "string" } },
     "onChange": {
       "type": {
         "name": "(event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void",
@@ -51,6 +52,7 @@
         "description": "SelectOptionDefinition&lt;OptionValue&gt;[]"
       }
     },
+    "required": { "type": { "name": "boolean", "description": "boolean" } },
     "value": {
       "type": {
         "name": "SelectValue&lt;OptionValue, Multiple&gt;",
@@ -90,6 +92,13 @@
       "type": {
         "name": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectButtonSlotProps&lt;OtherHandlers&gt;",
         "description": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectButtonSlotProps&lt;OtherHandlers&gt;"
+      },
+      "required": true
+    },
+    "getHiddenInputProps": {
+      "type": {
+        "name": "() =&gt; UseSelectHiddenInputSlotProps",
+        "description": "() =&gt; UseSelectHiddenInputSlotProps"
       },
       "required": true
     },

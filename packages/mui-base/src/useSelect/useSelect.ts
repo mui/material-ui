@@ -37,6 +37,7 @@ const visuallyHiddenStyle: React.CSSProperties = {
   overflow: 'hidden',
   padding: 0,
   position: 'absolute',
+  left: '50%',
   bottom: 0, // to display the native browser validation error at the bottom of the Select.
 };
 

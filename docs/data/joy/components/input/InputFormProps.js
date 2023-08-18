@@ -18,11 +18,15 @@ export default function InputFormProps() {
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          const formData = new FormData(event.currentTarget);
+          const formJson = Object.fromEntries(formData.entries());
+          alert(JSON.stringify(formJson));
         }}
       >
         <Input
           placeholder="Try to submit with no text!"
           required
+          name="foo"
           sx={{ mb: 1, fontSize: 'var(--joy-fontSize-sm)' }}
         />
         <Input placeholder="It is disabled" disabled sx={{ mb: 1 }} />
