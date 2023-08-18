@@ -19,6 +19,7 @@
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "endDecorator": { "type": { "name": "node" } },
+    "getSerializedValue": { "type": { "name": "func" } },
     "indicator": { "type": { "name": "node" } },
     "listboxId": { "type": { "name": "string" } },
     "listboxOpen": { "type": { "name": "bool" } },

@@ -13,6 +13,9 @@
     "getOptionAsString": {
       "description": "A function used to convert the option label to a string.\nThis is useful when labels are elements and need to be converted to plain text\nto enable keyboard navigation with character keys."
     },
+    "getSerializedValue": {
+      "description": "A function to convert the currently selected value to a string.\nUsed to set a value of a hidden input associated with the select,\nso that the selected value can be posted with a form."
+    },
     "listboxId": { "description": "The <code>id</code> attribute of the listbox element." },
     "listboxRef": { "description": "The ref of the listbox element." },
     "multiple": {

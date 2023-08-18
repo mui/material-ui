@@ -24,6 +24,12 @@
       },
       "default": "defaultOptionStringifier"
     },
+    "getSerializedValue": {
+      "type": {
+        "name": "(option: SelectValue&lt;SelectOption&lt;OptionValue&gt;, Multiple&gt;) =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt;[&#39;value&#39;]",
+        "description": "(option: SelectValue&lt;SelectOption&lt;OptionValue&gt;, Multiple&gt;) =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt;[&#39;value&#39;]"
+      }
+    },
     "listboxId": { "type": { "name": "string", "description": "string" } },
     "listboxRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
