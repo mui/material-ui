@@ -16,7 +16,7 @@ import JoyUsageDemo, {
 export default function CheckboxUsage() {
   return (
     <JoyUsageDemo
-      componentName="Darawer"
+      componentName="DrawerContent"
       data={[
         {
           propName: 'variant',
@@ -30,6 +30,9 @@ export default function CheckboxUsage() {
           defaultValue: 'neutral',
         },
       ]}
+      getCodeBlock={(code) => `<Drawer>
+${prependLinesSpace(code, 2)}
+</Drawer>`}
       renderDemo={(props) => {
         const [state, setState] = React.useState({
           top: false,
