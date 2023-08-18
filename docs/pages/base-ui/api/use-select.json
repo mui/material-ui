@@ -103,8 +103,8 @@
     },
     "getHiddenInputProps": {
       "type": {
-        "name": "() =&gt; UseSelectHiddenInputSlotProps",
-        "description": "() =&gt; UseSelectHiddenInputSlotProps"
+        "name": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectHiddenInputSlotProps&lt;OtherHandlers&gt;",
+        "description": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectHiddenInputSlotProps&lt;OtherHandlers&gt;"
       },
       "required": true
     },

@@ -140,7 +140,8 @@ export type UseSelectButtonSlotProps<TOther = {}> = UseListRootSlotProps<
     ref: React.RefCallback<Element> | null;
   };
 
-export type UseSelectHiddenInputSlotProps = React.InputHTMLAttributes<HTMLInputElement>;
+export type UseSelectHiddenInputSlotProps<TOther = {}> =
+  React.InputHTMLAttributes<HTMLInputElement> & TOther;
 
 interface UseSelectListboxSlotEventHandlers {
   onMouseDown: React.MouseEventHandler;
@@ -191,7 +192,9 @@ export interface UseSelectReturnValue<Value, Multiple> {
    * Resolver for the hidden input slot's props.
    * @returns HTML input attributes that should be spread on the hidden input slot
    */
-  getHiddenInputProps: () => UseSelectHiddenInputSlotProps;
+  getHiddenInputProps: <OtherHandlers extends EventHandlers = {}>(
+    otherHandlers?: OtherHandlers,
+  ) => UseSelectHiddenInputSlotProps<OtherHandlers>;
   /**
    * Resolver for the listbox slot's props.
    * @param otherHandlers event handlers for the listbox slot
