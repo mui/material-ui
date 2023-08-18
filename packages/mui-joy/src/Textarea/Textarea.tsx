@@ -97,6 +97,7 @@ const TextareaRoot = styled('div', {
       paddingInlineStart: `var(--Textarea-paddingInline)`, // the paddingInlineEnd is added to the textarea. It looks better when the scrollbar appears.
       paddingBlock: 'var(--Textarea-paddingBlock)',
       borderRadius: 'var(--Textarea-radius)',
+      boxShadow: theme.shadow.xs,
       ...theme.typography[`body-${ownerState.size!}`],
       ...variantStyle,
       backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,

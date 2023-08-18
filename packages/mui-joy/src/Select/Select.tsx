@@ -143,6 +143,7 @@ const SelectRoot = styled('div', {
       display: 'flex',
       alignItems: 'center',
       borderRadius: 'var(--Select-radius)',
+      boxShadow: theme.shadow.xs,
       cursor: 'pointer',
       ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
