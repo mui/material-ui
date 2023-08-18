@@ -19,6 +19,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 The Popper is a utility component for creating various kinds of popups.
 It relies on the third-party [Floating UI](https://floating-ui.com/) library for positioning.
 
+{{"demo": "UnstyledPopupIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
+
 :::info
 The Popup component, once stable, is intended to replace the [Popper](/base-ui/react-popper/) component, which will be phased out in a future release of Base UI.
 :::
