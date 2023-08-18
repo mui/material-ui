@@ -145,5 +145,9 @@
   },
   "name": "useSelect",
   "filename": "/packages/mui-base/src/useSelect/useSelect.ts",
+  "imports": [
+    "import { useSelect } from '@mui/base/useSelect';",
+    "import { useSelect } from '@mui/base';"
+  ],
   "demos": "<ul><li><a href=\"/base-ui/react-select/#hooks\">Select</a></li></ul>"
 }

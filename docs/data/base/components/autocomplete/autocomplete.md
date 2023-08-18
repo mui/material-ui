@@ -18,7 +18,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 The autocomplete component is an enhanced text input that shows a list of suggested options as users type and lets them select an option from the list. It implements the WAI-ARIA Combobox pattern, and is typically used to assist users in completing form inputs or search queries faster.
 
-{{"demo": "AutocompleteIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "AutocompleteIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 :::warning
 Material UI and Joy UI have Autocomplete components that are built using the `useAutocomplete` hook, and they include many features not yet described here.
@@ -35,7 +35,7 @@ To learn more about implementing a custom Autocomplete, you can explore the [`us
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this hook as follows:
 
 ```jsx
-import useAutocomplete from '@mui/base/useAutocomplete';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 
 export default function App() {
   const {
@@ -139,8 +139,8 @@ Base UI provides a [`<Popper />`](/base-ui/react-popper/) component built around
 To render the listbox in Base UI's Popper, the `ref`s must be merged as follows:
 
 ```jsx
-import useAutocomplete from '@mui/base/useAutocomplete';
-import Popper from '@mui/base/Popper';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
+import { Popper } from '@mui/base/Popper';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 
 export default function App(props) {

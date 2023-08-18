@@ -16,7 +16,7 @@ export default function ControlledOpenSelect() {
   return (
     <Stack spacing={2} useFlexGap>
       <Button
-        variant="soft"
+        variant="solid"
         onMouseDown={() => {
           skipRef.current = true;
         }}

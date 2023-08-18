@@ -5,8 +5,11 @@ import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '..
 import { OverrideProps } from '../OverridableComponent';
 import { CardActionAreaClasses } from './cardActionAreaClasses';
 
-export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
-  props: P & {
+export type CardActionAreaTypeMap<
+  AdditionalProps,
+  DefaultComponent extends React.ElementType,
+> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps & {
     /**
      * Override or extend the styles applied to the component.
      */
@@ -17,7 +20,7 @@ export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButton
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**
@@ -36,8 +39,10 @@ declare const CardActionArea: ExtendButtonBase<
 >;
 
 export type CardActionAreaProps<
-  D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<CardActionAreaTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<CardActionAreaTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default CardActionArea;

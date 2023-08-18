@@ -5,7 +5,7 @@ import {
   unstable_useId as useId,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
-import useButton from '../useButton';
+import { useButton } from '../useButton';
 import {
   ButtonClickAction,
   SelectAction,
@@ -17,15 +17,15 @@ import {
   UseSelectParameters,
   UseSelectReturnValue,
 } from './useSelect.types';
-import useList, { UseListParameters } from '../useList';
+import { useList, UseListParameters } from '../useList';
 import { EventHandlers } from '../utils/types';
-import defaultOptionStringifier from './defaultOptionStringifier';
+import { defaultOptionStringifier } from './defaultOptionStringifier';
 import { SelectProviderValue } from './SelectProvider';
 import { useCompoundParent } from '../utils/useCompound';
 import { SelectOption } from '../useOption/useOption.types';
-import selectReducer from './selectReducer';
-import combineHooksSlotProps from '../utils/combineHooksSlotProps';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
+import { selectReducer } from './selectReducer';
+import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 
 // visually hidden style based on https://webaim.org/techniques/css/invisiblecontent/
 const visuallyHiddenStyle: React.CSSProperties = {
@@ -297,10 +297,10 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     rootRef: mergedListRootRef,
   } = useList(useListParameters);
 
-  const createHandleButtonClick =
+  const createHandleButtonMouseDown =
     (otherHandlers?: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent & MuiCancellableEvent) => {
-      otherHandlers?.onClick?.(event);
+      otherHandlers?.onMouseDown?.(event);
       if (!event.defaultMuiPrevented) {
         const action: ButtonClickAction = {
           type: SelectActionTypes.buttonClick,
@@ -340,7 +340,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   ) => {
     return {
       ...otherHandlers,
-      onClick: createHandleButtonClick(otherHandlers),
+      onMouseDown: createHandleButtonMouseDown(otherHandlers),
       ref: mergedListRootRef,
       role: 'combobox' as const,
       'aria-expanded': open,
@@ -432,4 +432,4 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   };
 }
 
-export default useSelect;
+export { useSelect };

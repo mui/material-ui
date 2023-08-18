@@ -28,7 +28,7 @@ const getJsFilesInFolder = (folderPath) => {
       return [...acc, ...filesInFolder];
     }
     if (file.name.endsWith('.js') || file.name.endsWith('.tsx')) {
-      return [...acc, path.join(folderPath, file.name)];
+      return [...acc, path.join(folderPath, file.name).replace(/\\/g, '/')];
     }
     return acc;
   }, []);

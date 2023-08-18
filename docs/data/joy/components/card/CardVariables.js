@@ -111,7 +111,7 @@ export default function CardVariables() {
                 Card title
               </Link>
             </Typography>
-            <Typography level="body2">A very very long description.</Typography>
+            <Typography level="body-sm">A very very long description.</Typography>
           </CardContent>
           <CardActions buttonFlex="1">
             <IconButton variant="outlined" color="neutral" size="sm">
@@ -143,7 +143,7 @@ export default function CardVariables() {
               backdropFilter: 'blur(4px)',
             }}
           />
-          <CardContent sx={{ textAlign: 'center' }}>
+          <CardContent>
             <CircularProgress
               determinate
               value={70}
@@ -156,10 +156,12 @@ export default function CardVariables() {
             >
               <Typography>70%</Typography>
             </CircularProgress>
+          </CardContent>
+          <CardContent sx={{ textAlign: 'center', justifyContent: 'center' }}>
             <Typography fontWeight="lg" textColor="#fff">
               Card title
             </Typography>
-            <Typography level="body2" textColor="neutral.300">
+            <Typography level="body-sm" textColor="neutral.300">
               Long description.
             </Typography>
           </CardContent>
@@ -180,7 +182,7 @@ export default function CardVariables() {
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <Typography fontWeight="xl" level="body2" textColor="text.primary">
+          <Typography fontWeight="xl" level="body-sm" textColor="text.primary">
             CSS variables
           </Typography>
           {vars.map((data) => (
@@ -194,7 +196,7 @@ export default function CardVariables() {
                 defaultValue={
                   Number(data.defaultValue.replace('px', '')) || undefined
                 }
-                endDecorator={<Typography level="body3">px</Typography>}
+                endDecorator={<Typography level="body-xs">px</Typography>}
                 type={data.type}
                 sx={{
                   maxWidth: 160,

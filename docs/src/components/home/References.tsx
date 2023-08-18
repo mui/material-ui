@@ -2,8 +2,8 @@ import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
 import Box from '@mui/material/Box';
-import Section from 'docs/src/layouts/Section';
 import Typography from '@mui/material/Typography';
+import Section from 'docs/src/layouts/Section';
 import {
   CORE_CUSTOMERS,
   ADVANCED_CUSTOMERS,

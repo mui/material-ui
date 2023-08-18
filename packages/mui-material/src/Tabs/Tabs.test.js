@@ -10,12 +10,12 @@ import {
   strictModeDoubleLoggingSuppressed,
   waitFor,
 } from 'test/utils';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import capitalize from '../utils/capitalize';
 
 function findScrollButton(container, direction) {

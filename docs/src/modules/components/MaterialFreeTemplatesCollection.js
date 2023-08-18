@@ -6,8 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { alpha } from '@mui/material/styles';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 
@@ -127,7 +127,7 @@ function Templates() {
               })}
             />
             <CardContent sx={{ flexGrow: 1, p: 0 }}>
-              <Typography component="h2" variant="h6" fontWeight={600} gutterBottom>
+              <Typography component="h2" fontWeight={600} gutterBottom>
                 {layout.title}
               </Typography>
               <Typography component="p" variant="body2" color="text.secondary">
@@ -135,7 +135,7 @@ function Templates() {
               </Typography>
             </CardContent>
             <CardActions sx={{ p: 0, ml: -1 }}>
-              <Button component="a" href={layout.source} size="small">
+              <Button component="a" href={layout.source}>
                 {t('sourceCode')}
               </Button>
             </CardActions>

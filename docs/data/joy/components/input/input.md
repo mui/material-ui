@@ -98,9 +98,15 @@ To trigger the focus ring programmatically, set the CSS variable `--Input-focuse
 💡 The focus ring still appear on focus even though you set `--Input-focused: 0`.
 :::
 
+### Label and helper text
+
+Group Input with the Form label and Form helper text in a Form control component to create a text field.
+
+{{"demo": "InputField.js"}}
+
 ### Validation
 
-Use the `error` prop to toggle the error state:
+Use the `error` prop on Input or Form Control to toggle the error state:
 
 {{"demo": "InputValidation.js"}}
 

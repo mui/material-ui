@@ -13,7 +13,7 @@
       "deprecated": true,
       "deprecationInfo": "Use <code>slotProps.backdrop</code> instead."
     },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "closeAfterTransition": { "type": { "name": "bool" }, "default": "false" },
     "component": { "type": { "name": "elementType" } },
     "components": {
@@ -66,10 +66,11 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "Modal",
+  "imports": ["import Modal from '@mui/material/Modal';", "import { Modal } from '@mui/material';"],
   "styles": { "classes": ["root", "hidden", "backdrop"], "globalClasses": {}, "name": "MuiModal" },
   "spread": true,
   "themeDefaultProps": false,

@@ -89,6 +89,7 @@ export default function ComponentsApiContent(props) {
       styles: componentStyles,
       slots: componentSlots,
       classes: componentClasses,
+      imports,
     } = pageContent;
 
     const { classDescriptions, propDescriptions, slotDescriptions } =
@@ -108,11 +109,6 @@ export default function ComponentsApiContent(props) {
     } else if (isBaseComponent) {
       slotGuideLink = '/base-ui/guides/overriding-component-structure/';
     }
-
-    const source = filename
-      .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
-      // convert things like `/Table/Table.js` to ``
-      .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
     // The `ref` is forwarded to the root element.
     let refHint = t('api-docs.refRootElement');
@@ -139,18 +135,16 @@ export default function ComponentsApiContent(props) {
 
     const componentNameKebabCase = kebabCase(componentName);
 
+    const importInstructions = imports.join(`
+// ${t('or')}
+`);
+
     return (
       <React.Fragment key={`component-api-${key}`}>
         <MarkdownElement>
           <Heading hash={componentNameKebabCase} text={`${componentName} API`} />
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
-          <HighlightedCode
-            code={`
-import ${pageContent.name} from '${source}/${pageContent.name}';
-// ${t('or')}
-import { ${pageContent.name} } from '${source}';`}
-            language="jsx"
-          />
+          <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           <Heading text="props" hash={`${componentNameKebabCase}-props`} level="h3" />
           <p dangerouslySetInnerHTML={{ __html: spreadHint }} />

@@ -5,7 +5,7 @@
     "classes": {
       "type": { "name": "object" },
       "default": "{}",
-      "additionalPropsInfo": { "cssApi": true }
+      "additionalInfo": { "cssApi": true }
     },
     "defaultOpen": { "type": { "name": "bool" }, "default": "false" },
     "defaultValue": { "type": { "name": "any" } },
@@ -22,7 +22,7 @@
     "onChange": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(event: SelectChangeEvent<T>, child?: object) => void",
+        "type": "function(event: SelectChangeEvent<Value>, child?: object) => void",
         "describedArgs": ["event", "child"]
       }
     },
@@ -45,7 +45,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "union", "description": "''<br>&#124;&nbsp;any" } },
     "variant": {
@@ -57,6 +57,10 @@
     }
   },
   "name": "Select",
+  "imports": [
+    "import Select from '@mui/material/Select';",
+    "import { Select } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "select",

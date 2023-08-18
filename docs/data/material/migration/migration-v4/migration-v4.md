@@ -28,7 +28,7 @@ Need to refer back to an older version of the docs? Check out [the v4 documentat
 :::
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts-v4-v5-migration).
 :::
 
 ## Why you should migrate
@@ -78,6 +78,7 @@ The minimum supported version of React has been increased from v16.8.0 to v17.0.
 If you are using a React version below 17.0.0, update your packages to at least v4.11.2 for Material UI and v17.0.0 for React.
 
 <codeblock storageKey="package-manager">
+
 ```bash npm
 npm install @material-ui/core@^4.11.2 react@^17.0.0
 ```
@@ -196,6 +197,7 @@ See [Migration from the lab](https://mui.com/x/migration/migration-pickers-lab/)
 Next, add the Emotion packages.
 
 <codeblock storageKey="package-manager">
+
 ```bash npm
 npm install @emotion/react @emotion/styled
 ```

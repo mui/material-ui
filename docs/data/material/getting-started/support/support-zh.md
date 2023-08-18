@@ -10,7 +10,7 @@
 
 For crowdsourced answers from expert MUI developers in our community. Stack Overflow is also visited from time to time by the maintainers of MUI.
 
-[发布一个问题](https://stackoverflow.com/questions/tagged/mui)
+[发布一个问题](https://stackoverflow.com/questions/tagged/material-ui)
 
 :::info
 💡 **Tip**:
