@@ -36,7 +36,7 @@ export default function SimplePopup() {
         anchor={anchor}
         className={`${isDarkMode ? 'dark' : ''}`}
       >
-        <div className=" z-50 rounded-lg font-medium font-sans text-sm mt-2 p-3 border border-solid border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 shadow-md text-purple-900 dark:text-purple-100">
+        <div className=" z-50 rounded-lg font-sans text-sm mt-2 p-3 border border-solid border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 shadow-md text-purple-900 dark:text-purple-100">
           The content of the Popup.
         </div>
       </Popup>
