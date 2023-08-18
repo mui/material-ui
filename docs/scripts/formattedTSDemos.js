@@ -15,11 +15,15 @@ const path = require('path');
 const fse = require('fs-extra');
 const babel = require('@babel/core');
 const prettier = require('prettier');
-const typescriptToProptypes = require('typescript-to-proptypes');
+const { getPropTypesFromFile, injectPropTypesInFile } = require('typescript-to-proptypes');
+const {
+  createTypescriptProjectBuilder,
+} = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');
+const {
+  CORE_TYPESCRIPT_PROJECTS,
+} = require('@mui-internal/api-docs-builder/utils/coreTypeScriptProjects');
 const yargs = require('yargs');
 const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui-internal/docs-utilities');
-
-const tsConfig = typescriptToProptypes.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
@@ -75,7 +79,7 @@ const TranspileResult = {
   Failed: 1,
 };
 
-async function transpileFile(tsxPath, program) {
+async function transpileFile(tsxPath, project) {
   const jsPath = tsxPath.replace(/\.tsx?$/, '.js');
   try {
     const source = await fse.readFile(tsxPath, 'utf8');
@@ -96,7 +100,11 @@ async function transpileFile(tsxPath, program) {
       throw new Error('TypeScript demo contains prop-types, please remove them');
     }
 
-    const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program, {
+    console.log(tsxPath);
+
+    const propTypesAST = getPropTypesFromFile({
+      project,
+      filePath: tsxPath,
       shouldResolveObject: ({ name }) => {
         if (name === 'classes' || name === 'ownerState' || name === 'popper') {
           return false;
@@ -105,7 +113,7 @@ async function transpileFile(tsxPath, program) {
         return undefined;
       },
     });
-    const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
+    const codeWithPropTypes = injectPropTypesInFile({ components: propTypesAST, target: code });
     const prettierConfig = prettier.resolveConfig.sync(jsPath, {
       config: path.join(workspaceRoot, 'prettier.config.js'),
     });
@@ -128,6 +136,7 @@ async function transpileFile(tsxPath, program) {
 
 async function main(argv) {
   const { watch: watchMode, disableCache, pattern } = argv;
+  const buildProject = createTypescriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
 
   // TODO: Remove at some point.
   // Though not too soon so that it isn't disruptive.
@@ -146,15 +155,19 @@ async function main(argv) {
   const tsxFiles = [
     ...(await getFiles(path.join(workspaceRoot, 'docs/src/pages'))), // old structure
     ...(await getFiles(path.join(workspaceRoot, 'docs/data'))), // new structure
-  ].filter((fileName) => {
-    return filePattern.test(fileName);
-  });
+  ].filter((fileName) => filePattern.test(fileName));
 
-  const program = typescriptToProptypes.createTSProgram(tsxFiles, tsConfig);
+  const project = buildProject('docs');
 
   let successful = 0;
   let failed = 0;
-  (await Promise.all(tsxFiles.map((file) => transpileFile(file, program)))).forEach((result) => {
+  (
+    await Promise.all(
+      tsxFiles.map((file) => {
+        return transpileFile(file, project);
+      }),
+    )
+  ).forEach((result) => {
     switch (result) {
       case TranspileResult.Success: {
         successful += 1;
@@ -189,7 +202,7 @@ async function main(argv) {
 
   tsxFiles.forEach((filePath) => {
     fse.watchFile(filePath, { interval: 500 }, async () => {
-      if ((await transpileFile(filePath, program, true)) === 0) {
+      if ((await transpileFile(filePath, project, true)) === 0) {
         console.log('Success - %s', filePath);
       }
     });

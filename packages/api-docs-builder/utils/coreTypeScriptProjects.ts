@@ -7,7 +7,8 @@ export type CoreTypeScriptProjects =
   | 'base'
   | 'joy'
   | 'system'
-  | 'material-next';
+  | 'material-next'
+  | 'docs';
 
 export const CORE_TYPESCRIPT_PROJECTS: Record<
   CoreTypeScriptProjects,
@@ -36,5 +37,9 @@ export const CORE_TYPESCRIPT_PROJECTS: Record<
   'material-next': {
     rootPath: path.join(process.cwd(), 'packages/mui-material-next'),
     entryPointPath: 'src/index.ts',
+  },
+  docs: {
+    rootPath: path.join(process.cwd(), 'docs'),
+    tsConfigPath: 'tsconfig.json',
   },
 };

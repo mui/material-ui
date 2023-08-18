@@ -359,12 +359,7 @@ async function run(argv: HandlerArgv) {
 
       return fileName === folderName;
     })
-    .filter((filePath) => {
-      // return filePath === '/home/delangle/Git/material/material-ui/packages/mui-material/src/Zoom/Zoom.d.ts'
-      return filePattern.test(filePath);
-    });
-
-  // files.reverse()
+    .filter((filePath) => filePattern.test(filePath));
 
   const promises = files.map<Promise<void>>(async (tsFile) => {
     const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;

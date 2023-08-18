@@ -36,6 +36,12 @@ function isTypeJSXElementLike(type: ts.Type, project: TypeScriptProject): boolea
   return false;
 }
 
+function getJSXLikeReturnValueFromFunction(type: ts.Type, project: TypeScriptProject) {
+  return type
+    .getCallSignatures()
+    .filter((signature) => isTypeJSXElementLike(signature.getReturnType(), project));
+}
+
 function parsePropsType({
   name,
   type,
@@ -99,11 +105,10 @@ function parseFunctionComponent({
     return null;
   }
 
-  const signatures = project.checker
-    .getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!)
-    .getCallSignatures()
-    .filter((signature) => isTypeJSXElementLike(signature.getReturnType(), project));
-
+  const signatures = getJSXLikeReturnValueFromFunction(
+    project.checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!),
+    project,
+  );
   if (signatures.length === 0) {
     return null;
   }
@@ -206,6 +211,7 @@ function getPropsFromVariableDeclaration({
 
     return null;
   }
+
   if (
     (ts.isArrowFunction(node.initializer) || ts.isFunctionExpression(node.initializer)) &&
     node.initializer.parameters.length === 1
@@ -216,17 +222,30 @@ function getPropsFromVariableDeclaration({
       project,
     });
   }
-  //  x = react.memo((props:type) { return <div/> })
+  //  x = React.memo((props:type) { return <div/> })
+  //  x = React.forwardRef((props:type) { return <div/> })
   if (ts.isCallExpression(node.initializer) && node.initializer.arguments.length > 0) {
-    const arg = node.initializer.arguments[0];
-    if ((ts.isArrowFunction(arg) || ts.isFunctionExpression(arg)) && arg.parameters.length > 0) {
-      const symbol = project.checker.getSymbolAtLocation(arg.parameters[0].name);
-      if (symbol) {
+    const potentialComponent = node.initializer.arguments[0];
+    if (
+      (ts.isArrowFunction(potentialComponent) || ts.isFunctionExpression(potentialComponent)) &&
+      potentialComponent.parameters.length > 0 &&
+      getJSXLikeReturnValueFromFunction(
+        project.checker.getTypeAtLocation(potentialComponent),
+        project,
+      ).length > 0
+    ) {
+      const propsSymbol = project.checker.getSymbolAtLocation(
+        potentialComponent.parameters[0].name,
+      );
+      if (propsSymbol) {
         return parsePropsType({
-          shouldInclude,
           name: node.name.getText(),
-          location: symbol.valueDeclaration!,
-          type: project.checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!),
+          type: project.checker.getTypeOfSymbolAtLocation(
+            propsSymbol,
+            propsSymbol.valueDeclaration!,
+          ),
+          location: propsSymbol.valueDeclaration!,
+          shouldInclude,
           sourceFile: node.getSourceFile(),
         });
       }
@@ -234,13 +253,12 @@ function getPropsFromVariableDeclaration({
 
     return null;
   }
+
   // handle component factories: x = createComponent()
   if (
     checkDeclarations &&
     node.initializer &&
-    type
-      .getCallSignatures()
-      .some((signature) => isTypeJSXElementLike(signature.getReturnType(), project))
+    getJSXLikeReturnValueFromFunction(type, project).length > 0
   ) {
     return parseFunctionComponent({
       node,
@@ -257,7 +275,7 @@ export function getPropsFromComponentNode({
   shouldInclude,
   project,
   checkDeclarations,
-}: GetPropsFromComponentDeclarationOptions) {
+}: GetPropsFromComponentDeclarationOptions): ParsedComponent | null {
   let parsedComponent: ParsedComponent | null = null;
 
   // function x(props: type) { return <div/> }
@@ -265,10 +283,8 @@ export function getPropsFromComponentNode({
     ts.isFunctionDeclaration(node) &&
     node.name &&
     node.parameters.length === 1 &&
-    project.checker
-      .getTypeAtLocation(node.name)
-      .getCallSignatures()
-      .some((signature) => isTypeJSXElementLike(signature.getReturnType(), project))
+    getJSXLikeReturnValueFromFunction(project.checker.getTypeAtLocation(node.name), project)
+      .length > 0
   ) {
     parsedComponent = parseFunctionComponent({ node, shouldInclude, project });
   } else if (ts.isVariableDeclaration(node)) {

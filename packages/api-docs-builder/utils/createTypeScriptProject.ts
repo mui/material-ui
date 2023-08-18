@@ -21,9 +21,10 @@ export interface CreateTypeScriptProjectOptions {
   tsConfigPath?: string;
   /**
    * File used as root of the package.
+   * This property is used to gather the exports of the project.
    * The path must be relative to the root path.
    */
-  entryPointPath: string;
+  entryPointPath?: string;
 }
 
 export const createTypeScriptProject = (
@@ -33,11 +34,10 @@ export const createTypeScriptProject = (
     name,
     rootPath,
     tsConfigPath: inputTsConfigPath = 'tsconfig.build.json',
-    entryPointPath: inputEntryPointPath = 'src/index.ts',
+    entryPointPath: inputEntryPointPath,
   } = options;
 
   const tsConfigPath = path.join(rootPath, inputTsConfigPath);
-  const entryPointPath = path.join(rootPath, inputEntryPointPath);
 
   const tsConfigFile = ts.readConfigFile(tsConfigPath, (filePath) =>
     fs.readFileSync(filePath).toString(),
@@ -70,13 +70,20 @@ export const createTypeScriptProject = (
   });
 
   const checker = program.getTypeChecker();
-  const sourceFile = program.getSourceFile(entryPointPath);
 
-  const exports = Object.fromEntries(
-    checker.getExportsOfModule(checker.getSymbolAtLocation(sourceFile!)!).map((symbol) => {
-      return [symbol.name, symbol];
-    }),
-  );
+  let exports: TypeScriptProject['exports'];
+  if (inputEntryPointPath) {
+    const entryPointPath = path.join(rootPath, inputEntryPointPath);
+    const sourceFile = program.getSourceFile(entryPointPath);
+
+    exports = Object.fromEntries(
+      checker.getExportsOfModule(checker.getSymbolAtLocation(sourceFile!)!).map((symbol) => {
+        return [symbol.name, symbol];
+      }),
+    );
+  } else {
+    exports = {};
+  }
 
   return {
     name,
