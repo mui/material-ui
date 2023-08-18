@@ -299,7 +299,7 @@ const Root = styled('div')(
           margin: 0,
         },
       },
-      '& > p, & ul, li': {
+      '& ul, li, p': {
         color: 'inherit',
       },
       '&.MuiCallout-error': {
