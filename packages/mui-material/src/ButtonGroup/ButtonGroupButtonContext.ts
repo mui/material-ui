@@ -3,9 +3,6 @@ import * as React from 'react';
 interface IButtonGroupButtonContext {
   firstButton?: boolean;
   lastButton?: boolean;
-  firstButtonClass?: string;
-  lastButtonClass?: string;
-  middleButtonClass?: string;
 }
 
 /**

@@ -296,15 +296,14 @@ const ButtonEndIcon = styled('span', {
   ...commonIconStyles(ownerState),
 }));
 
-const getClassNameBasedOnPosition = (buttonGroupButtonContext) => {
+const addPositionDataAttr = (buttonGroupButtonContext) => {
   if (buttonGroupButtonContext.firstButton) {
-    return buttonGroupButtonContext.firstButtonClass;
+    return { 'data-first-child': '' };
   }
-
   if (buttonGroupButtonContext.lastButton) {
-    return buttonGroupButtonContext.lastButtonClass;
+    return { 'data-last-child': '' };
   }
-  return buttonGroupButtonContext.middleButtonClass;
+  return { 'data-middle-child': '' };
 };
 
 const Button = React.forwardRef(function Button(inProps, ref) {
@@ -358,21 +357,19 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     </ButtonEndIcon>
   );
 
+  const dataAttrs = addPositionDataAttr(buttonGroupButtonContext);
+
   return (
     <ButtonRoot
       ownerState={ownerState}
-      className={clsx(
-        contextProps.className,
-        classes.root,
-        className,
-        getClassNameBasedOnPosition(buttonGroupButtonContext),
-      )}
+      className={clsx(contextProps.className, classes.root, className)}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
+      {...dataAttrs}
       {...other}
       classes={classes}
     >

@@ -16,8 +16,6 @@ export interface ButtonGroupClasses {
   disabled: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
-  /** Styles applied to the button child if it is the first button. */
-  firstButton: string;
   /** Styles applied to the root element if `orientation="vertical"`. */
   vertical: string;
   /** Styles applied to the children. */
@@ -56,10 +54,6 @@ export interface ButtonGroupClasses {
   groupedContainedPrimary: string;
   /** Styles applied to the children if `variant="contained"` and `color="secondary"`. */
   groupedContainedSecondary: string;
-  /** Styles applied to the button child if it is the last button. */
-  lastButton: string;
-  /** Style applied to the button child if it is in the middle buttons. */
-  middleButton: string;
 }
 
 export type ButtonGroupClassKey = keyof ButtonGroupClasses;
@@ -76,7 +70,6 @@ const buttonGroupClasses: ButtonGroupClasses = generateUtilityClasses('MuiButton
   'disableElevation',
   'disabled',
   'fullWidth',
-  'firstButton',
   'vertical',
   'grouped',
   'groupedHorizontal',
@@ -96,8 +89,6 @@ const buttonGroupClasses: ButtonGroupClasses = generateUtilityClasses('MuiButton
   'groupedContainedVertical',
   'groupedContainedPrimary',
   'groupedContainedSecondary',
-  'lastButton',
-  'middleButton',
 ]);
 
 export default buttonGroupClasses;

@@ -28,9 +28,6 @@ const overridesResolver = (props, styles) => {
       [`& .${buttonGroupClasses.grouped}`]:
         styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.color)}`],
     },
-    { [`& .${buttonGroupClasses.firstButton}`]: styles.firstButton },
-    { [`& .${buttonGroupClasses.lastButton}`]: styles.lastButton },
-    { [`& .${buttonGroupClasses.middleButton}`]: styles.middleButton },
     styles.root,
     styles[ownerState.variant],
     ownerState.disableElevation === true && styles.disableElevation,
@@ -59,9 +56,6 @@ const useUtilityClasses = (ownerState) => {
       `grouped${capitalize(variant)}${capitalize(color)}`,
       disabled && 'disabled',
     ],
-    firstButton: ['firstButton'],
-    lastButton: ['lastButton'],
-    middleButton: ['middleButton'],
   };
 
   return composeClasses(slots, getButtonGroupUtilityClass, classes);
@@ -97,7 +91,7 @@ const ButtonGroupRoot = styled('div', {
       boxShadow: 'none',
     }),
   },
-  [`& .${buttonGroupClasses.firstButton},.${buttonGroupClasses.middleButton}`]: {
+  '& [data-first-child],[data-middle-child]': {
     ...(ownerState.orientation === 'horizontal' && {
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
@@ -171,7 +165,7 @@ const ButtonGroupRoot = styled('div', {
         }),
     },
   },
-  [`& .${buttonGroupClasses.lastButton},.${buttonGroupClasses.middleButton}`]: {
+  '& [data-last-child],[data-middle-child]': {
     ...(ownerState.orientation === 'horizontal' && {
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0,
@@ -253,9 +247,6 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   const buttonGroupPositionContext = (index, childrenParam) => ({
     firstButton: index === 0,
     lastButton: index === childrenParam.length - 1,
-    firstButtonClass: classes.firstButton,
-    lastButtonClass: classes.lastButton,
-    middleButtonClass: classes.middleButton,
   });
 
   return (
