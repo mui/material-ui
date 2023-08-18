@@ -281,8 +281,11 @@ const Root = styled('div')(
         display: 'flex',
         flexDirection: 'column',
         gap: 6,
-        '&>p': {
+        '&>p, ul': {
           marginBottom: 0,
+        },
+        '&>ul': {
+          paddingLeft: 22,
         },
       },
       '&>svg': {
