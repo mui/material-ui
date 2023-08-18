@@ -116,6 +116,8 @@ function checkType({
     return createObjectType({ jsDoc: undefined });
   }
 
+  const a = name === 'component';
+
   const typeNode = type as any;
   const symbol = typeNode.aliasSymbol ? typeNode.aliasSymbol : typeNode.symbol;
   const jsDoc = getSymbolDocumentation({ symbol, project });
@@ -318,9 +320,7 @@ function checkSymbol({
 }): PropTypeDefinition {
   const declarations = symbol.getDeclarations();
   const declaration = declarations && declarations[0];
-
   const symbolFilenames = getSymbolFileNames(symbol);
-
   const jsDoc = getSymbolDocumentation({ symbol, project });
 
   // TypeChecker keeps the name for
@@ -478,7 +478,7 @@ function generatePropTypesFromNode(
   const propsFilename =
     parsedComponent.sourceFile !== undefined ? parsedComponent.sourceFile.fileName : undefined;
 
-  const types = Object.values(parsedComponent.props).map((prop) => {
+  const types = Object.entries(parsedComponent.props).map(([propName, prop]) => {
     const propTypeDefinitions = prop.signatures.map(({ symbol, type }) =>
       checkSymbol({
         symbol,

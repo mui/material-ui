@@ -164,9 +164,6 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
   await SETTINGS.reduce(async (resolvedPromise, setting) => {
     await resolvedPromise;
-    /**
-     * @type {string[]}
-     */
     const projects = setting.typeScriptProjects.map(buildTypeScriptProject);
     const apiPagesManifestPath = setting.output.apiManifestPath;
 

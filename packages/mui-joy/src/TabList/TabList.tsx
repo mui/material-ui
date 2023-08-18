@@ -117,6 +117,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     size: sizeProp,
     disableUnderline = false,
     underlinePlacement = orientation === 'horizontal' ? 'bottom' : 'right',
+    tabFlex,
     sticky,
     slots = {},
     slotProps = {},
@@ -135,6 +136,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     color,
     size,
     sticky,
+    tabFlex,
     nesting: false,
     disableUnderline,
     underlinePlacement,
@@ -186,7 +188,7 @@ TabList.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType.isRequired,
+  component: PropTypes.elementType,
   /**
    * If `true`, the TabList's underline will disappear.
    * @default false

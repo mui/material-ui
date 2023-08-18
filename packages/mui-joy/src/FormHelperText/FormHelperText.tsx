@@ -101,7 +101,7 @@ FormHelperText.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType.isRequired,
+  component: PropTypes.elementType,
   /**
    * The props used for each slot inside.
    * @default {}

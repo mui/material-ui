@@ -218,7 +218,7 @@ ModalDialog.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType.isRequired,
+  component: PropTypes.elementType,
   /**
    * The layout of the dialog
    * @default 'center'

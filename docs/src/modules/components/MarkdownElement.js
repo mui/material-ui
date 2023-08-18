@@ -121,9 +121,8 @@ const Root = styled('div')(
       },
     },
     '& h1, & h2, & h3, & h4': {
-      position: 'relative',
-      // Reserve space for the end of the line action button
-      paddingRight: 26 * 2 + 10,
+      display: 'flex',
+      alignItems: 'center',
       '& code': {
         fontSize: 'inherit',
         lineHeight: 'inherit',
@@ -136,24 +135,26 @@ const Root = styled('div')(
       },
       '& a:not(.anchor-link):hover': {
         color: 'currentColor',
-        borderBottom: '1px solid currentColor',
+        border: 'none',
+        boxShadow: '0 1px 0 0 currentColor',
         textDecoration: 'none',
       },
       '&:hover .anchor-link, & .comment-link': {
-        position: 'absolute',
+        cursor: 'pointer',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
         textAlign: 'center',
         marginLeft: 8,
-        marginTop: 5,
         height: 26,
         width: 26,
-        lineHeight: '21px',
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
         borderRadius: 8,
         color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
-        cursor: 'pointer',
-        display: 'inline-block',
+
         '&:hover': {
           backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
           borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
@@ -168,18 +169,13 @@ const Root = styled('div')(
       },
       '& .comment-link': {
         display: 'none', // So we can have the comment button opt-in.
-        top: 0,
-        right: 0,
+        marginLeft: 'auto',
         transition: theme.transitions.create('opacity', {
           duration: theme.transitions.duration.shortest,
         }),
         '& svg': {
-          opacity: 0.6,
-          marginBottom: 1,
           verticalAlign: 'middle',
-        },
-        '&:hover': {
-          '&>svg': { opacity: 1 },
+          fill: 'currentColor',
         },
       },
     },
@@ -248,18 +244,26 @@ const Root = styled('div')(
       paddingBottom: 12,
     },
     '& blockquote': {
-      borderRadius: `var(--muidocs-shape-borderRadius, ${
-        theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
-      }px)`,
-      border: '1px solid',
-      borderLeft: '8px solid',
-      borderColor: `var(--muidocs-palette-warning-300, ${lightTheme.palette.warning[300]})`,
-      backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
-      padding: '10px 20px',
-      margin: '20px 0',
+      position: 'relative',
+      padding: '0 16px',
+      margin: 0,
+      borderLeft: '1.5px solid',
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       '& p': {
-        marginTop: 10,
-        color: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
+        fontStyle: 'italic',
+        fontSize: theme.typography.pxToRem(13),
+        fontFamily: lightTheme.typography.fontFamilyCode,
+        fontWeight: lightTheme.typography.fontWeightMedium,
+        textIndent: 20,
+      },
+      ':before': {
+        position: 'absolute',
+        content: 'open-quote',
+        color: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
+        fontSize: '2.5rem',
+        top: 8,
+        marginLeft: -6,
+        lineHeight: 0.5,
       },
     },
     '& .MuiCallout-root': {
@@ -553,10 +557,9 @@ const Root = styled('div')(
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
       },
       '& blockquote': {
-        borderColor: `var(--muidocs-palette-warning-500, ${darkTheme.palette.warning[500]})`,
-        backgroundColor: alpha(darkTheme.palette.warning[900], 0.2),
-        '& p': {
-          color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
+        borderColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
+        ':before': {
+          color: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
         },
       },
       '& .MuiCallout-root': {

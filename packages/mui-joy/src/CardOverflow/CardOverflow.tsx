@@ -46,6 +46,7 @@ const CardOverflowRoot = styled('div', {
     alignSelf: 'stretch', // prevent shrinking if parent's align-items is not initial
     borderRadius: 'var(--CardOverflow-radius)',
     position: 'relative',
+    display: 'flex',
     ...(ownerState['data-parent'] === 'Card-horizontal' && {
       '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
       marginTop: 'var(--CardOverflow-offset)',
@@ -76,6 +77,7 @@ const CardOverflowRoot = styled('div', {
     }),
     ...(ownerState['data-parent'] === 'Card-vertical' && {
       '--AspectRatio-margin': '0px calc(-1 * var(--Card-padding))',
+      flexDirection: 'column', // required to make AspectRatio works
       marginLeft: 'var(--CardOverflow-offset)',
       marginRight: 'var(--CardOverflow-offset)',
       padding: '0px var(--Card-padding)',
@@ -182,7 +184,7 @@ CardOverflow.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType.isRequired,
+  component: PropTypes.elementType,
   /**
    * The props used for each slot inside.
    * @default {}

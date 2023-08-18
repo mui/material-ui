@@ -99,16 +99,17 @@ function parseFunctionComponent({
     return null;
   }
 
-  const type = project.checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!);
-
-  let squashedParsedComponent: ParsedComponent | null = null;
-
-  const signatures = type
+  const signatures = project.checker
+    .getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!)
     .getCallSignatures()
     .filter((signature) => isTypeJSXElementLike(signature.getReturnType(), project));
 
-  signatures.forEach((signature) => {
-    const parsedComponent = parsePropsType({
+  if (signatures.length === 0) {
+    return null;
+  }
+
+  const parsedComponents = signatures.map((signature) =>
+    parsePropsType({
       shouldInclude,
       name: componentName,
       type: project.checker.getTypeOfSymbolAtLocation(
@@ -117,28 +118,34 @@ function parseFunctionComponent({
       ),
       location: signature.parameters[0].valueDeclaration!,
       sourceFile: node.getSourceFile(),
-    });
+    }),
+  );
 
-    if (squashedParsedComponent == null) {
-      squashedParsedComponent = { ...parsedComponent };
-    }
-
+  const squashedProps: Record<string, ParsedProp> = {};
+  parsedComponents.forEach((parsedComponent) => {
     Object.keys(parsedComponent.props).forEach((propName) => {
-      if (!squashedParsedComponent!.props[propName]) {
-        squashedParsedComponent!.props[propName] = parsedComponent.props[propName];
+      if (!squashedProps[propName]) {
+        squashedProps[propName] = parsedComponent.props[propName];
       } else {
-        squashedParsedComponent!.props[propName].signatures = [
-          ...squashedParsedComponent!.props[propName].signatures,
+        squashedProps[propName].signatures = [
+          ...squashedProps[propName].signatures,
           ...parsedComponent.props[propName].signatures,
         ];
       }
     });
-
-    Object.keys(squashedParsedComponent.props).forEach((propName) => {
-      squashedParsedComponent!.props[propName].onlyUsedInSomeSignatures =
-        squashedParsedComponent!.props[propName].signatures.length < signatures.length;
-    });
   });
+
+  const squashedParsedComponent: ParsedComponent = {
+    ...parsedComponents[0],
+    props: squashedProps,
+  };
+
+  if (squashedParsedComponent != null) {
+    Object.keys(squashedParsedComponent.props).forEach((propName) => {
+      squashedParsedComponent.props[propName].onlyUsedInSomeSignatures =
+        squashedParsedComponent.props[propName].signatures.length < signatures.length;
+    });
+  }
 
   return squashedParsedComponent;
 }

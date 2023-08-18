@@ -522,7 +522,6 @@ export function parseFromProgram(
     if (!node.name) {
       return;
     }
-
     const symbol = checker.getSymbolAtLocation(node.name);
     if (!symbol) {
       return;
@@ -533,11 +532,21 @@ export function parseFromProgram(
     if (componentName[0].toUpperCase() !== componentName[0]) {
       return;
     }
-
     const type = checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!);
-    type.getCallSignatures().forEach((signature) => {
+    type.getCallSignatures().forEach((signature, index) => {
       if (!isTypeJSXElementLike(signature.getReturnType())) {
         return;
+      }
+
+      if (index === 1) {
+        console.log(
+          checker
+            .getTypeOfSymbolAtLocation(
+              signature.parameters[0],
+              signature.parameters[0].valueDeclaration!,
+            )
+            .getProperties(),
+        );
       }
 
       parsePropsSymbol(
@@ -589,29 +598,32 @@ export function parseFromProgram(
       return true;
     });
 
-    programNode.body.push(
-      t.createComponent(
-        componentName,
-        Object.entries(props).map(([name, propType]) => {
-          const onlyUsedInSomeSignatures = usedPropsPerSignature.some(
-            (usedProps) => !usedProps.has(name),
-          );
-          if (onlyUsedInSomeSignatures) {
-            // mark as optional
-            return {
-              ...propType,
-              propType: t.createUnionType({
-                // TODO: jsDoc from signatures is dropped
-                jsDoc: undefined,
-                types: [propType.propType, t.createUndefinedType({ jsDoc: undefined })],
-              }),
-            };
-          }
-          return propType;
-        }),
-        node.getSourceFile().fileName,
-      ),
+    const a = t.createComponent(
+      componentName,
+      Object.entries(props).map(([name, propType]) => {
+        const onlyUsedInSomeSignatures = usedPropsPerSignature.some(
+          (usedProps) => !usedProps.has(name),
+        );
+        if (onlyUsedInSomeSignatures) {
+          // mark as optional
+          return {
+            ...propType,
+            propType: t.createUnionType({
+              // TODO: jsDoc from signatures is dropped
+              jsDoc: undefined,
+              types: [propType.propType, t.createUndefinedType({ jsDoc: undefined })],
+            }),
+          };
+        }
+        return propType;
+      }),
+      node.getSourceFile().fileName,
     );
+
+    const b = a.types.find((el) => el.name === 'component');
+    // if(b) console.log(b)
+
+    programNode.body.push(a);
   }
 
   function visit(node: ts.Node) {

@@ -66,8 +66,8 @@ const CardRoot = styled('div', {
       '--Divider-inset': 'calc(-1 * var(--Card-padding))',
       ...(ownerState.size === 'sm' && {
         '--Card-radius': theme.vars.radius.sm,
-        '--Card-padding': '0.5rem',
-        gap: '0.375rem 0.5rem',
+        '--Card-padding': '0.625rem',
+        gap: '0.5rem',
       }),
       ...(ownerState.size === 'md' && {
         '--Card-radius': theme.vars.radius.md,
@@ -215,7 +215,7 @@ Card.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType.isRequired,
+  component: PropTypes.elementType,
   /**
    * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
    * @default false

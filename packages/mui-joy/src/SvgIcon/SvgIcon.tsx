@@ -165,7 +165,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType.isRequired,
+  component: PropTypes.elementType,
   /**
    * The theme's fontSize applied to the icon that will override the `size` prop.
    * Use this prop when you want to use a specific font-size from the theme.
