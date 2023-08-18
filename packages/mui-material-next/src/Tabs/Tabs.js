@@ -146,10 +146,7 @@ const TabsIndicator = styled('span', {
   }),
 }));
 
-const TabsScrollbarSize = styled(ScrollbarSize, {
-  name: 'MuiTabs',
-  slot: 'ScrollbarSize',
-})({
+const TabsScrollbarSize = styled(ScrollbarSize)({
   overflowX: 'auto',
   overflowY: 'hidden',
   // Hide dimensionless scrollbar on macOS
