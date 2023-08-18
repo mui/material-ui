@@ -43,16 +43,26 @@ const visuallyHiddenStyle: React.CSSProperties = {
 
 const noop = () => {};
 
-function defaultFormValueProvider<OptionValue>(optionValue: OptionValue | OptionValue[] | null) {
-  if (optionValue == null) {
+function defaultFormValueProvider<OptionValue>(
+  selectedOption: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
+) {
+  if (Array.isArray(selectedOption)) {
+    if (selectedOption.length === 0) {
+      return '';
+    }
+
+    return JSON.stringify(selectedOption.map((o) => o.value));
+  }
+
+  if (selectedOption?.value == null) {
     return '';
   }
 
-  if (typeof optionValue === 'string' || typeof optionValue === 'number') {
-    return String(optionValue);
+  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
+    return selectedOption.value;
   }
 
-  return JSON.stringify(optionValue);
+  return JSON.stringify(selectedOption.value);
 }
 
 function preventDefault(event: React.SyntheticEvent) {
@@ -89,6 +99,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     open: openProp,
     options: optionsParam,
     getOptionAsString = defaultOptionStringifier,
+    getSerializedValue = defaultFormValueProvider,
     value: valueProp,
   } = props;
 
@@ -382,18 +393,25 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     >;
   }
 
-  const getHiddenInputProps = React.useCallback(
-    () => ({
-      name,
-      tabIndex: -1,
-      'aria-hidden': true,
-      required: required ? true : undefined,
-      value: defaultFormValueProvider<OptionValue>(selectValue),
-      onChange: noop,
-      style: visuallyHiddenStyle,
-    }),
-    [name, required, selectValue],
-  );
+  let selectedOptionsMetadata: SelectValue<SelectOption<OptionValue>, Multiple>;
+  if (multiple) {
+    selectedOptionsMetadata = (selectValue as OptionValue[])
+      .map((v) => getOptionMetadata(v))
+      .filter((o) => o !== undefined) as SelectValue<SelectOption<OptionValue>, Multiple>;
+  } else {
+    selectedOptionsMetadata = (getOptionMetadata(selectValue as OptionValue) ??
+      null) as SelectValue<SelectOption<OptionValue>, Multiple>;
+  }
+
+  const getHiddenInputProps = () => ({
+    name,
+    tabIndex: -1,
+    'aria-hidden': true,
+    required: required ? true : undefined,
+    value: getSerializedValue(selectedOptionsMetadata),
+    onChange: noop,
+    style: visuallyHiddenStyle,
+  });
 
   return {
     buttonActive,

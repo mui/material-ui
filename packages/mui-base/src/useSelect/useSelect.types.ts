@@ -104,6 +104,14 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    */
   options?: SelectOptionDefinition<OptionValue>[];
   /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  getSerializedValue?: (
+    option: SelectValue<SelectOption<OptionValue>, Multiple>,
+  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+  /**
    * A function used to convert the option label to a string.
    * This is useful when labels are elements and need to be converted to plain text
    * to enable keyboard navigation with character keys.
