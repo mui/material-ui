@@ -1,7 +1,7 @@
 import * as ts from 'typescript';
 import { getSymbolDescription } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
-import { getPropsFromComponentSymbol } from './getPropsFromComponentSymbol';
+import { getPropsFromComponentNode } from './getPropsFromComponentNode';
 import resolveExportSpecifier from './resolveExportSpecifier';
 
 export interface Classes {
@@ -82,20 +82,21 @@ export default function parseStyles({
   const localeSymbol = resolveExportSpecifier(exportedSymbol, project);
   const declaration = localeSymbol.valueDeclaration!;
 
-  const classesProp = getPropsFromComponentSymbol({
+  const classesProp = getPropsFromComponentNode({
     node: declaration,
     project,
     shouldInclude: ({ name }) => name === 'classes',
     checkDeclarations: true,
-  })?.classes;
+  })?.props.classes;
   if (classesProp == null) {
     // We could not infer the type of the classes prop, so we try to extract them from the {ComponentName}Classes interface
     return extractClasses(project, componentName);
   }
 
   const classes: Record<string, string> = {};
-  classesProp.types.forEach((propType) => {
-    removeUndefinedFromType(propType)
+  classesProp.signatures.forEach((propType) => {
+    const type = project.checker.getTypeAtLocation(propType.symbol.declarations?.[0]!);
+    removeUndefinedFromType(type)
       ?.getProperties()
       .forEach((property) => {
         classes[property.escapedName.toString()] = getSymbolDescription(property, project);

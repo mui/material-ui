@@ -2,8 +2,8 @@ import ts from 'typescript';
 import * as doctrine from 'doctrine';
 import {
   GetPropsFromComponentDeclarationOptions,
-  getPropsFromComponentSymbol,
-} from '@mui-internal/api-docs-builder/utils/getPropsFromComponentSymbol';
+  getPropsFromComponentNode,
+} from '@mui-internal/api-docs-builder/utils/getPropsFromComponentNode';
 import { TypeScriptProject } from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
 import {
   createUnionType,
@@ -21,48 +21,6 @@ import {
   createStringType,
 } from './createType';
 import { PropTypeDefinition, PropTypesComponent, PropType } from './models';
-
-const REACT_COMPONENT_IMPORTS = ['Component', 'PureComponent', 'memo', 'forwardRef'];
-
-function getReactImportsFromNode(node: ts.Node) {
-  if (
-    !ts.isImportDeclaration(node) ||
-    !ts.isStringLiteral(node.moduleSpecifier) ||
-    node.moduleSpecifier.text !== 'react' ||
-    !node.importClause
-  ) {
-    return [];
-  }
-
-  const reactImports: string[] = [];
-
-  // import x from 'react'
-  if (node.importClause.name) {
-    const nameText = node.importClause.name.text;
-    reactImports.push(...REACT_COMPONENT_IMPORTS.map((x) => `${nameText}.${x}`));
-  }
-
-  // import {x, y as z} from 'react'
-  const bindings = node.importClause.namedBindings;
-  if (bindings) {
-    if (ts.isNamedImports(bindings)) {
-      bindings.elements.forEach((spec) => {
-        const nameIdentifier = spec.propertyName || spec.name;
-        const nameText = nameIdentifier.getText();
-        if (REACT_COMPONENT_IMPORTS.includes(nameText)) {
-          reactImports.push(spec.name.getText());
-        }
-      });
-    }
-    // import * as x from 'react'
-    else {
-      const nameText = bindings.name.text;
-      reactImports.push(...REACT_COMPONENT_IMPORTS.map((x) => `${nameText}.${x}`));
-    }
-  }
-
-  return reactImports;
-}
 
 function getSymbolFileNames(symbol: ts.Symbol): Set<string> {
   const declarations = symbol.getDeclarations() || [];
@@ -115,8 +73,6 @@ function checkType({
   if (typeStack.includes((type as any).id)) {
     return createObjectType({ jsDoc: undefined });
   }
-
-  const a = name === 'component';
 
   const typeNode = type as any;
   const symbol = typeNode.aliasSymbol ? typeNode.aliasSymbol : typeNode.symbol;
@@ -470,7 +426,7 @@ function squashPropTypeDefinitions({
 function generatePropTypesFromNode(
   params: Omit<GetPropsFromComponentDeclarationOptions, 'project'> & { project: PropTypesProject },
 ): PropTypesComponent | null {
-  const parsedComponent = getPropsFromComponentSymbol(params);
+  const parsedComponent = getPropsFromComponentNode(params);
   if (parsedComponent == null) {
     return null;
   }
@@ -478,13 +434,13 @@ function generatePropTypesFromNode(
   const propsFilename =
     parsedComponent.sourceFile !== undefined ? parsedComponent.sourceFile.fileName : undefined;
 
-  const types = Object.entries(parsedComponent.props).map(([propName, prop]) => {
-    const propTypeDefinitions = prop.signatures.map(({ symbol, type }) =>
+  const types = Object.values(parsedComponent.props).map((prop) => {
+    const propTypeDefinitions = prop.signatures.map(({ symbol, componentType }) =>
       checkSymbol({
         symbol,
         project: params.project,
         location: parsedComponent.location,
-        typeStack: [(type as any).id],
+        typeStack: [(componentType as any).id],
       }),
     );
 
@@ -509,7 +465,6 @@ export function getPropTypesFromFile({
   checkDeclarations,
 }: GetPropTypesFromFileOptions) {
   const sourceFile = project.program.getSourceFile(filePath);
-  const reactImports: string[] = [];
   const reactComponentName = filePath.match(/.*\/([^/]+)/)?.[1];
   const components: PropTypesComponent[] = [];
   const sigilIds: Map<ts.Symbol | ts.Type, number> = new Map();
@@ -563,9 +518,6 @@ export function getPropTypesFromFile({
   };
 
   if (sourceFile) {
-    ts.forEachChild(sourceFile, (node) => {
-      reactImports.push(...getReactImportsFromNode(node));
-    });
     ts.forEachChild(sourceFile, (node) => {
       const component = generatePropTypesFromNode({
         project: propTypesProject,
