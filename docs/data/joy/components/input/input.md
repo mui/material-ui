@@ -166,6 +166,24 @@ You can use these to customize the component with both the `sx` prop and the the
 
 {{"demo": "InputVariables.js", "hideToolbar": true}}
 
+## Integration with 3rd party libraries
+
+### React imask
+
+To integrate [react-imask](https://github.com/uNmAnNeR/imaskjs) with Joy UI Input, create a wrapper component that maps the props and ref to react-imask.
+
+Then pass the wrapper component as a value to `slotProps.input.component`:
+
+{{"demo": "InputReactImask.js"}}
+
+### React number format
+
+To integrate [react-number-format](https://github.com/s-yadav/react-number-format) with Joy UI Input, create a wrapper component that maps the props and ref to react-imask.
+
+Then pass the wrapper component as a value to `slotProps.input.component`:
+
+{{"demo": "InputReactNumberFormat.js"}}
+
 ## Accessibility
 
 All inputs should have a descriptive label linked to help users understand its purpose.
