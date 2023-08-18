@@ -82,18 +82,20 @@ function Styles() {
   
         .CustomPopup{
             background-color: ${isDarkMode ? grey[900] : grey[50]};
-          border-radius: 8px;
-          border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
-          box-shadow: ${
-            isDarkMode ? `0 4px 8px rgb(0 0 0 / 0.7)` : `0 4px 8px rgb(0 0 0 / 0.1)`
-          };
-          padding: 0.75rem;
-          color: ${isDarkMode ? cyan[100] : cyan[700]};
-          font-size: 0.875rem;
-          font-family: 'IBM Plex Sans', sans-serif;
-          font-weight: 500;
-          opacity: 1;
-          margin: 0.5rem 0px;
+            border-radius: 8px;
+            border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+            box-shadow: ${
+              isDarkMode
+                ? `0 4px 8px rgb(0 0 0 / 0.7)`
+                : `0 4px 8px rgb(0 0 0 / 0.1)`
+            };
+            padding: 0.75rem;
+            color: ${isDarkMode ? cyan[100] : cyan[700]};
+            font-size: 0.875rem;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 500;
+            opacity: 1;
+            margin: 0.5rem 0px;
         }
     `}</style>
   );
