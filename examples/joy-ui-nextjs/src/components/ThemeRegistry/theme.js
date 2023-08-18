@@ -1,12 +1,33 @@
-import { Inter } from 'next/font/google';
 import { extendTheme } from '@mui/joy/styles';
+import { Inter, Source_Code_Pro } from 'next/font/google';
 
-Inter({
+const inter = Inter({
   subsets: ['latin'],
-  display: 'swap',
+  adjustFontFallback: false, // prevent automatically adding Arial as the fallback
+  fallback: ['var(--joy-fontFamily-fallback)'], // explicitly stated we wish to use Joy UI's fallback
+});
+
+const sourceCodePro = Source_Code_Pro({
+  subsets: ["latin"],
+  adjustFontFallback: false,
+  fallback: [ // copied from the default theme
+    "ui-monospace",
+    "SFMono-Regular",
+    "Menlo",
+    "Monaco",
+    "Consolas",
+    "Liberation Mono",
+    "Courier New",
+    "monospace",
+  ],
 });
 
 const theme = extendTheme({
+  fontFamily: {
+    body: inter.style.fontFamily,
+    display: inter.style.fontFamily,
+    code: sourceCodePro.style.fontFamily,
+  },
   components: {
     JoyButton: {
       styleOverrides: {
