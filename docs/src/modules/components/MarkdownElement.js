@@ -123,6 +123,7 @@ const Root = styled('div')(
     '& h1, & h2, & h3, & h4': {
       display: 'flex',
       alignItems: 'center',
+      gap: 6,
       '& code': {
         fontSize: 'inherit',
         lineHeight: 'inherit',
@@ -131,7 +132,8 @@ const Root = styled('div')(
       },
       '& .anchor-link': {
         // To prevent the link to get the focus.
-        display: 'none',
+        display: 'inline-flex',
+        visibility: 'hidden',
       },
       '& a:not(.anchor-link):hover': {
         color: 'currentColor',
@@ -139,14 +141,13 @@ const Root = styled('div')(
         boxShadow: '0 1px 0 0 currentColor',
         textDecoration: 'none',
       },
-      '&:hover .anchor-link, & .comment-link': {
+      '& .anchor-link, & .comment-link': {
         cursor: 'pointer',
-        display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
         textAlign: 'center',
-        marginLeft: 8,
+        marginLeft: 4,
         height: 26,
         width: 26,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
@@ -154,7 +155,6 @@ const Root = styled('div')(
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
         borderRadius: 8,
         color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
-
         '&:hover': {
           backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
           borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
@@ -166,6 +166,9 @@ const Root = styled('div')(
           fill: 'currentColor',
           pointerEvents: 'none',
         },
+      },
+      '&:hover .anchor-link': {
+        visibility: 'visible',
       },
       '& .comment-link': {
         display: 'none', // So we can have the comment button opt-in.
