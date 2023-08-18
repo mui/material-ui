@@ -14,13 +14,13 @@ components: TextField
 
 ![estrelas](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
 
-A biblioteca [@material-ui/pickers](https://material-ui-pickers.dev/) fornece os controles de seletores de data e hora.
+A biblioteca [@material-ui/pickers](https://mui.com/x/react-date-pickers/) fornece os controles de seletores de data e hora.
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}
 
 ## Seletores nativos
 
-⚠️ O suporte dos navegadores aos controles de entrada nativos [não é perfeito](https://caniuse.com/#feat=input-datetime). Dê uma olhada em [@material-ui/pickers](https://material-ui-pickers.dev/) para obter uma melhor solução.
+⚠️ O suporte dos navegadores aos controles de entrada nativos [não é perfeito](https://caniuse.com/#feat=input-datetime). Dê uma olhada em [@material-ui/pickers](https://mui.com/x/react-date-pickers/) para obter uma melhor solução.
 
 ### Seletores de data
 
