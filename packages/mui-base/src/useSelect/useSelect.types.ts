@@ -62,6 +62,16 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    */
   multiple?: Multiple;
   /**
+   * The `name` attribute of the hidden input element.
+   * This is useful when the select is embedded in a form and you want to access the selected value in the form data.
+   */
+  name?: string;
+  /**
+   * If `true`, the select embedded in a form must have a selected value.
+   * Otherwise, the form submission will fail.
+   */
+  required?: boolean;
+  /**
    * Callback fired when an option is selected.
    */
   onChange?: (
@@ -122,6 +132,8 @@ export type UseSelectButtonSlotProps<TOther = {}> = UseListRootSlotProps<
     ref: React.RefCallback<Element> | null;
   };
 
+export type UseSelectHiddenInputSlotProps = React.InputHTMLAttributes<HTMLInputElement>;
+
 interface UseSelectListboxSlotEventHandlers {
   onMouseDown: React.MouseEventHandler;
 }
@@ -167,6 +179,11 @@ export interface UseSelectReturnValue<Value, Multiple> {
   getButtonProps: <OtherHandlers extends EventHandlers = {}>(
     otherHandlers?: OtherHandlers,
   ) => UseSelectButtonSlotProps<OtherHandlers>;
+  /**
+   * Resolver for the hidden input slot's props.
+   * @returns HTML input attributes that should be spread on the hidden input slot
+   */
+  getHiddenInputProps: () => UseSelectHiddenInputSlotProps;
   /**
    * Resolver for the listbox slot's props.
    * @param otherHandlers event handlers for the listbox slot

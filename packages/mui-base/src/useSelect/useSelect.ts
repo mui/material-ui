@@ -27,6 +27,33 @@ import selectReducer from './selectReducer';
 import combineHooksSlotProps from '../utils/combineHooksSlotProps';
 import MuiCancellableEvent from '../utils/muiCancellableEvent';
 
+// visually hidden style based on https://webaim.org/techniques/css/invisiblecontent/
+const visuallyHiddenStyle: React.CSSProperties = {
+  clip: 'rect(1px, 1px, 1px, 1px)',
+  clipPath: 'inset(50%)',
+  height: '1px',
+  width: '1px',
+  margin: '-1px',
+  overflow: 'hidden',
+  padding: 0,
+  position: 'absolute',
+  bottom: 0, // to display the native browser validation error at the bottom of the Select.
+};
+
+const noop = () => {};
+
+function defaultFormValueProvider<OptionValue>(optionValue: OptionValue | OptionValue[] | null) {
+  if (optionValue == null) {
+    return '';
+  }
+
+  if (typeof optionValue === 'string' || typeof optionValue === 'number') {
+    return String(optionValue);
+  }
+
+  return JSON.stringify(optionValue);
+}
+
 function preventDefault(event: React.SyntheticEvent) {
   event.preventDefault();
 }
@@ -53,6 +80,8 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     listboxId: listboxIdProp,
     listboxRef: listboxRefProp,
     multiple = false as Multiple,
+    name,
+    required,
     onChange,
     onHighlightChange,
     onOpenChange,
@@ -352,6 +381,19 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     >;
   }
 
+  const getHiddenInputProps = React.useCallback(
+    () => ({
+      name,
+      tabIndex: -1,
+      'aria-hidden': true,
+      required: required ? true : undefined,
+      value: defaultFormValueProvider<OptionValue>(selectValue),
+      onChange: noop,
+      style: visuallyHiddenStyle,
+    }),
+    [name, required, selectValue],
+  );
+
   return {
     buttonActive,
     buttonFocusVisible,
@@ -360,6 +402,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     disabled,
     dispatch,
     getButtonProps,
+    getHiddenInputProps,
     getListboxProps,
     getOptionMetadata,
     listboxRef: mergedListRootRef,

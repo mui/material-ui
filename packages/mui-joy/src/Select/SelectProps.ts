@@ -170,15 +170,6 @@ export type SelectOwnProps<TValue extends {}> = SelectStaticProps &
      * The default selected value. Use when the component is not controlled.
      */
     defaultValue?: TValue | null;
-
-    /**
-     * A function to convert the currently selected value to a string.
-     * Used to set a value of a hidden input associated with the select,
-     * so that the selected value can be posted with a form.
-     */
-    getSerializedValue?: (
-      option: SelectOption<TValue> | null,
-    ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
     /**
      * Callback fired when an option is selected.
      */

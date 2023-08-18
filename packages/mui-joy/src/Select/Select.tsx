@@ -24,18 +24,6 @@ function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> |
   return selectedOption?.label ?? '';
 }
 
-function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> | null) {
-  if (selectedOption?.value == null) {
-    return '';
-  }
-
-  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
-    return selectedOption.value;
-  }
-
-  return JSON.stringify(selectedOption.value);
-}
-
 const defaultModifiers: PopperProps['modifiers'] = [
   {
     name: 'offset',
@@ -54,8 +42,6 @@ const defaultModifiers: PopperProps['modifiers'] = [
     },
   },
 ];
-
-const noop = () => {};
 
 const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
   const { color, disabled, focusVisible, size, variant, open } = ownerState;
@@ -338,7 +324,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledExternalProp,
-    getSerializedValue = defaultFormValueProvider,
     placeholder,
     listboxId,
     listboxOpen: listboxOpenProp,
@@ -440,6 +425,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     disabled,
     getButtonProps,
     getListboxProps,
+    getHiddenInputProps,
     getOptionMetadata,
     open: listboxOpen,
     value,
@@ -450,6 +436,8 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     disabled: disabledProp,
     listboxId,
     multiple: false,
+    name,
+    required,
     onChange,
     onOpenChange: handleOpenChange,
     open: listboxOpenProp,
@@ -609,26 +597,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
 
         {indicator && <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>}
-        <input
-          name={name}
-          tabIndex={-1} // remove from tab order
-          aria-hidden="true" // hide from screen reader
-          required={required ? true : undefined}
-          value={getSerializedValue(selectedOption)}
-          onChange={noop} // to prevent React warning
-          style={{
-            // visually hidden style based on https://webaim.org/techniques/css/invisiblecontent/
-            clip: 'rect(1px, 1px, 1px, 1px)',
-            clipPath: 'inset(50%)',
-            height: '1px',
-            width: '1px',
-            margin: '-1px',
-            overflow: 'hidden',
-            padding: 0,
-            position: 'absolute',
-            bottom: 0, // to display the native browser validation error at the bottom of the Select.
-          }}
-        />
+        <input {...getHiddenInputProps()} />
       </SlotRoot>
       {result}
     </React.Fragment>
