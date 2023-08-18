@@ -8,17 +8,18 @@ const inter = Inter({
 });
 
 const sourceCodePro = Source_Code_Pro({
-  subsets: ["latin"],
+  subsets: ['latin'],
   adjustFontFallback: false,
-  fallback: [ // copied from the default theme
-    "ui-monospace",
-    "SFMono-Regular",
-    "Menlo",
-    "Monaco",
-    "Consolas",
-    "Liberation Mono",
-    "Courier New",
-    "monospace",
+  // copied from the default theme
+  fallback: [
+    'ui-monospace',
+    'SFMono-Regular',
+    'Menlo',
+    'Monaco',
+    'Consolas',
+    'Liberation Mono',
+    'Courier New',
+    'monospace',
   ],
 });
 
