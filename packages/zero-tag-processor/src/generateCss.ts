@@ -67,7 +67,7 @@ export function generateCss(
   }
   let cssStr = '';
   Object.entries(themeArgs).forEach(([themeKey, theme]) => {
-    const cssVarsObject = generateCssForTheme(theme, [cssVariablesPrefix]);
+    const cssVarsObject = generateCssForTheme(theme as Theme, [cssVariablesPrefix]);
     const cssThemeObject: Record<string, CssVarsObject> = {};
     if (themeKey === defaultThemeKey && injectInRoot) {
       cssThemeObject[':root'] = cssVarsObject;
