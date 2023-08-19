@@ -1,0 +1,30 @@
+<Dropdown>
+  <MenuButton className="TriggerButton">Dashboard</MenuButton>
+
+  <Menu
+    className="CustomMenu"
+    slotProps={{
+      listbox: { className: 'CustomMenu--listbox' },
+    }}
+  >
+    <MenuItem
+      className="CustomMenu--item"
+      onClick={createHandleMenuClick('Profile')}
+    >
+      Profile
+    </MenuItem>
+    <MenuItem
+      className="CustomMenu--item"
+      onClick={createHandleMenuClick('My account')}
+    >
+      My account
+    </MenuItem>
+    <MenuItem
+      className="CustomMenu--item"
+      onClick={createHandleMenuClick('Log out')}
+    >
+      Log out
+    </MenuItem>
+  </Menu>
+  <Styles />
+</Dropdown>
