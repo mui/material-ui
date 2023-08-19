@@ -8,7 +8,7 @@ export default function DifferentChildren() {
   return (
     <Stack spacing={2}>
       {/* It has one button with href which is rendered as anchor tag */}
-      <ButtonGroup variant="contained" aria-label="split button">
+      <ButtonGroup variant="contained">
         <Button href="##">Button 1</Button>
         <Button>Button 2</Button>
         <Button>Button 3</Button>
@@ -29,6 +29,11 @@ export default function DifferentChildren() {
             <Button disabled>Disabled</Button>
           </span>
         </Tooltip>
+      </ButtonGroup>
+
+      {/* One button */}
+      <ButtonGroup>
+        <Button>One Button</Button>
       </ButtonGroup>
     </Stack>
   );

@@ -303,6 +303,9 @@ const addPositionDataAttr = (buttonGroupButtonContext) => {
   if (buttonGroupButtonContext.lastButton) {
     return { 'data-last-child': '' };
   }
+  if (buttonGroupButtonContext.onlyChild) {
+    return {};
+  }
   return { 'data-middle-child': '' };
 };
 
@@ -357,7 +360,11 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     </ButtonEndIcon>
   );
 
-  const dataAttrs = addPositionDataAttr(buttonGroupButtonContext);
+  let extendedOtherProp = other;
+  if (buttonGroupButtonContext) {
+    const dataAttrs = addPositionDataAttr(buttonGroupButtonContext);
+    extendedOtherProp = { ...dataAttrs, ...other };
+  }
 
   return (
     <ButtonRoot
@@ -369,8 +376,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
-      {...dataAttrs}
-      {...other}
+      {...extendedOtherProp}
       classes={classes}
     >
       {startIcon}
