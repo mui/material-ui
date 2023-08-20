@@ -64,12 +64,6 @@ const examples = [
     src: '/static/images/examples/styled.png',
   },
   {
-    name: 'Gatsby',
-    label: 'View JS example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-gatsby',
-    src: '/static/images/examples/gatsby.svg',
-  },
-  {
     name: 'Preact',
     label: 'View JS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-preact',
