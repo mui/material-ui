@@ -44,15 +44,7 @@
   "name": "Radio",
   "imports": ["import Radio from '@mui/material/Radio';", "import { Radio } from '@mui/material';"],
   "styles": {
-    "classes": [
-      "root",
-      "checked",
-      "disabled",
-      "colorPrimary",
-      "colorSecondary",
-      "sizeSmall",
-      "sizeMedium"
-    ],
+    "classes": ["root", "checked", "disabled", "colorPrimary", "colorSecondary", "sizeSmall"],
     "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
     "name": "MuiRadio"
   },

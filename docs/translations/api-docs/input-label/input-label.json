@@ -63,11 +63,6 @@
       "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     },
-    "sizeNormal": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"normal\"</code>"
-    },
     "shrink": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
