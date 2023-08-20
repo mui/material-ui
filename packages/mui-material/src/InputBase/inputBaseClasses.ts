@@ -18,8 +18,6 @@ export interface InputBaseClasses {
   error: string;
   /** Styles applied to the input element if `size="small"`. */
   sizeSmall: string;
-  /** Styles applied to the input element if `size="medium"`. */
-  sizeMedium: string;
   /** Styles applied to the root element if `multiline={true}`. */
   multiline: string;
   /** Styles applied to the root element if the color is secondary. */
@@ -61,7 +59,6 @@ const inputBaseClasses: InputBaseClasses = generateUtilityClasses('MuiInputBase'
   'adornedEnd',
   'error',
   'sizeSmall',
-  'sizeMedium',
   'multiline',
   'colorSecondary',
   'fullWidth',

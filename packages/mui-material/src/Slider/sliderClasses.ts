@@ -40,8 +40,6 @@ export interface SliderClasses {
   markLabelActive: string;
   /** Styles applied to the root element if `size="small"`. */
   sizeSmall: string;
-  /** Styles applied to the root element if `size="medium"`. */
-  sizeMedium: string;
   /** Styles applied to the thumb element if `color="primary"`. */
   thumbColorPrimary: string;
   /** Styles applied to the thumb element if `color="secondary"`. */
@@ -79,7 +77,6 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'markLabelActive',
   'rail',
   'sizeSmall',
-  'sizeMedium',
   'thumb',
   'thumbColorPrimary',
   'thumbColorSecondary',

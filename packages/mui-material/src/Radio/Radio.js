@@ -18,7 +18,7 @@ const useUtilityClasses = (ownerState) => {
   const { classes, color, size } = ownerState;
 
   const slots = {
-    root: ['root', `color${capitalize(color)}`, `size${capitalize(size)}`],
+    root: ['root', `color${capitalize(color)}`, size !== 'medium' && `size${capitalize(size)}`],
   };
 
   return {

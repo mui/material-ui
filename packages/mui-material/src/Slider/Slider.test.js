@@ -1354,25 +1354,6 @@ describe('<Slider />', () => {
       expect(root).to.have.class(classes.sizeSmall);
       expect(thumb).to.have.class(classes.thumbSizeSmall);
     });
-
-    it('add sizeSmall class to the root element when the size prop equals "small"', () => {
-      render(<Slider size="small" />);
-
-      const root = document.querySelector(`.${classes.root}`);
-      expect(root).to.have.class(classes.sizeSmall);
-    });
-
-    it('add sizeMedium class to the root element when the size prop equals "medium"', () => {
-      render(<Slider size="medium" />);
-      const root = document.querySelector(`.${classes.root}`);
-      expect(root).to.have.class(classes.sizeMedium);
-    });
-
-    it('add sizeMedium class to the root element when the size is not explicitly provided', () => {
-      render(<Slider />);
-      const root = document.querySelector(`.${classes.root}`);
-      expect(root).to.have.class(classes.sizeMedium);
-    });
   });
 
   describe('prop: components', () => {

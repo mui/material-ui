@@ -121,20 +121,6 @@ describe('<InputLabel />', () => {
     });
   });
 
-  describe('prop: size', () => {
-    it('add sizeSmall class to the root element when the size prop equals "small"', () => {
-      const { getByTestId } = render(<InputLabel data-testid="root" size="small" />);
-      const input = getByTestId('root');
-      expect(input).to.have.class(classes.sizeSmall);
-    });
-
-    it('add sizeNormal class to the root element when the size prop equals "medium"', () => {
-      const { getByTestId } = render(<InputLabel data-testid="root" size="normal" />);
-      const input = getByTestId('root');
-      expect(input).to.have.class(classes.sizeNormal);
-    });
-  });
-
   describe('Emotion compatibility', () => {
     it('classes.root should overwrite built-in styles.', () => {
       const text = 'The label';

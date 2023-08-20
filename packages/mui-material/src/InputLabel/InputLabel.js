@@ -19,7 +19,7 @@ const useUtilityClasses = (ownerState) => {
       formControl && 'formControl',
       !disableAnimation && 'animated',
       shrink && 'shrink',
-      size && `size${capitalize(size)}`,
+      size && size !== 'normal' && `size${capitalize(size)}`,
       variant,
     ],
     asterisk: [required && 'asterisk'],

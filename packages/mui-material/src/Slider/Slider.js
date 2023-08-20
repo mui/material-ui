@@ -470,7 +470,7 @@ const useUtilityClasses = (ownerState) => {
       track === 'inverted' && 'trackInverted',
       track === false && 'trackFalse',
       color && `color${capitalize(color)}`,
-      size && `size${capitalize(size)}`,
+      size !== 'medium' && `size${capitalize(size)}`,
     ],
     rail: ['rail'],
     track: ['track'],
