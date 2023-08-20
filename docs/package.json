@@ -104,7 +104,7 @@
     "react-imask": "^6.6.3",
     "react-intersection-observer": "^9.5.2",
     "react-is": "^18.2.0",
-    "react-number-format": "^5.2.2",
+    "react-number-format": "^5.3.0",
     "react-router-dom": "^6.15.0",
     "react-runner": "^1.0.3",
     "react-simple-code-editor": "^0.13.1",
