@@ -338,9 +338,13 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         return;
       }
 
+      if (child.props.onKeyDown) {
+        child.props.onKeyDown(event);
+      }
+
       const newValue = child.props.value;
       if (newValue !== value) {
-        setValueState(child.props.value);
+        setValueState(newValue);
 
         if (onChange) {
           clonedOnChange(event, newValue, child);
