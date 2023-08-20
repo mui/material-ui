@@ -13,7 +13,7 @@ curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip
 cd material-ui-nextjs
 ```
 
-Install dependencies and run:
+Install it and run:
 
 ```bash
 npm install
@@ -21,6 +21,14 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+or:
+
+<!-- #default-branch-switch -->
+
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-nextjs)
+
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/material-ui-nextjs)
 
 You can start editing the page by modifying `src/app/page.js`. The page auto-updates as you edit the file.
 

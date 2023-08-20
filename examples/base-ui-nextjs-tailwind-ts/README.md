@@ -13,7 +13,7 @@ curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip
 cd base-ui-nextjs-tailwind-ts
 ```
 
-Install dependencies and run:
+Install it and run:
 
 ```bash
 npm install
