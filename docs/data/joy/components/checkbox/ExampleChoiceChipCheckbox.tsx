@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Checkbox from '@mui/joy/Checkbox';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -14,7 +13,7 @@ export default function ExampleChoiceChipCheckbox() {
       <Typography id="rank" level="body-sm" fontWeight="lg" sx={{ mb: 1.5 }}>
         Choose amenities
       </Typography>
-      <Box role="group" aria-labelledby="rank">
+      <div role="group" aria-labelledby="rank">
         <List
           orientation="horizontal"
           wrap
@@ -64,7 +63,7 @@ export default function ExampleChoiceChipCheckbox() {
             ),
           )}
         </List>
-      </Box>
+      </div>
     </Sheet>
   );
 }
