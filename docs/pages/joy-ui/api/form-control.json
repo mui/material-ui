@@ -46,7 +46,7 @@
     "import FormControl from '@mui/joy/FormControl';",
     "import { FormControl } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiFormControl" },
   "slots": [
     {
       "name": "root",

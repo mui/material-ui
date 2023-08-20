@@ -39,7 +39,7 @@
     "import AutocompleteOption from '@mui/joy/AutocompleteOption';",
     "import { AutocompleteOption } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAutocompleteOption" },
   "slots": [
     {
       "name": "root",

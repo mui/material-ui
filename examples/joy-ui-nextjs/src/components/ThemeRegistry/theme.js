@@ -1,15 +1,12 @@
-import { Public_Sans } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { extendTheme } from '@mui/joy/styles';
 
-const publicSans = Public_Sans({
+Inter({
   subsets: ['latin'],
   display: 'swap',
 });
 
 const theme = extendTheme({
-  fontFamily: {
-    body: publicSans.style.fontFamily,
-  },
   components: {
     JoyButton: {
       styleOverrides: {

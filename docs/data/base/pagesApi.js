@@ -72,6 +72,7 @@ module.exports = [
     title: 'useMenuButton',
   },
   { pathname: '/base-ui/react-menu/hooks-api/#use-menu-item', title: 'useMenuItem' },
+  { pathname: '/base-ui/react-modal/hooks-api/#use-modal', title: 'useModal' },
   {
     pathname: '/base-ui/react-number-input/hooks-api/#use-number-input',
     title: 'useNumberInput',

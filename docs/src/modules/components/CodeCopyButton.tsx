@@ -20,8 +20,8 @@ export default function CodeCopyButton(props: CodeCopyButtonProps) {
       aria-label="Copy the code"
       type="button"
       className="MuiCode-copy"
-      onClick={async (event) => {
-        event.stopPropagation();
+      onClick={async () => {
+        // event.stopPropagation();
         await copy(code);
       }}
     >

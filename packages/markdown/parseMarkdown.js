@@ -230,6 +230,8 @@ function renderInline(markdown) {
 // Help rank mui.com on component searches first.
 const noSEOadvantage = [
   'https://m2.material.io/',
+  'https://m3.material.io/',
+  'https://material.io/',
   'https://getbootstrap.com/',
   'https://icons.getbootstrap.com/',
   'https://pictogrammers.com/',
@@ -238,6 +240,9 @@ const noSEOadvantage = [
   'https://heroicons.com/',
   'https://react-icons.github.io/',
   'https://fontawesome.com/',
+  'https://www.radix-ui.com/',
+  'https://react-spectrum.adobe.com/',
+  'https://headlessui.com/',
 ];
 
 /**

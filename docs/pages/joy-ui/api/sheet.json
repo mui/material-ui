@@ -38,7 +38,7 @@
   },
   "name": "Sheet",
   "imports": ["import Sheet from '@mui/joy/Sheet';", "import { Sheet } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSheet" },
   "slots": [
     {
       "name": "root",
