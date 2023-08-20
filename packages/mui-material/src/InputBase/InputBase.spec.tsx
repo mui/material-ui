@@ -7,3 +7,18 @@ import InputBase from '@mui/material/InputBase';
     expectType<React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, typeof event>(event);
   }}
 />;
+
+<InputBase
+  slotProps={{
+    input: {
+      sx: {
+        background: 'white',
+      },
+    },
+    root: {
+      sx: {
+        background: 'black',
+      },
+    },
+  }}
+/>;
