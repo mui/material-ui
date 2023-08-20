@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.22.10",
-    "@mui/base": "5.0.0-beta.11",
+    "@mui/base": "^5.14.5",
     "@mui/material": "^5.14.5",
     "@mui/system": "^5.14.5",
     "@mui/types": "^7.2.4",
