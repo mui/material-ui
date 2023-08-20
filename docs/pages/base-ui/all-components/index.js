@@ -4,9 +4,9 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/all-components/all-components.md?@mui/markdown';
 
 export default function Page() {
-  return null;
+  return <MarkdownDocs {...pageProps} disableToc />;
 }
 
-Page.getLayout = () => {
-  return <AppFrame><MarkdownDocs {...pageProps} /></AppFrame>;
+Page.getLayout = (page) => {
+  return <AppFrame>{page}</AppFrame>;
 };

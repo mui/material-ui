@@ -4,9 +4,9 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/joy/components/button-group/button-group.md?@mui/markdown';
 
 export default function Page() {
-  return null;
+  return <MarkdownDocs {...pageProps} />;
 }
 
-Page.getLayout = () => {
-  return <AppFrame><MarkdownDocs {...pageProps} /></AppFrame>;
+Page.getLayout = (page) => {
+  return <AppFrame>{page}</AppFrame>;
 };
