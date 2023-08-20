@@ -245,7 +245,3 @@ AppFrame.propTypes = {
   className: PropTypes.string,
   disableDrawer: PropTypes.bool,
 };
-
-export function getLayout(page) {
-  return <AppFrame>{page}</AppFrame>;
-}

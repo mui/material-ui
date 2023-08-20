@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
-import { getLayout } from 'docs/src/modules/components/AppFrame';
+import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/focus-trap/focus-trap.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import FocusTrapApiJsonPageContent from '../../api/focus-trap.json';
@@ -10,7 +10,9 @@ export default function Page(props) {
   return <MarkdownDocs {...pageProps} {...other} />;
 }
 
-Page.getLayout = getLayout;
+Page.getLayout = (page) => {
+  return <AppFrame>{page}</AppFrame>;
+};
 
 export const getStaticPaths = () => {
   return {
