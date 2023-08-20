@@ -8,6 +8,7 @@ import InputBase from '@mui/material/InputBase';
   }}
 />;
 
+// Tests presence of `sx` prop on input and root slot
 <InputBase
   slotProps={{
     input: {
