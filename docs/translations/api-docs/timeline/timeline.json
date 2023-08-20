@@ -11,5 +11,27 @@
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
   },
-  "classDescriptions": {}
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "positionLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"left\"</code>"
+    },
+    "positionRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"right\"</code>"
+    },
+    "positionAlternate": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"alternate\"</code>"
+    },
+    "positionAlternateReverse": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"alternate-reverse\"</code>"
+    }
+  }
 }

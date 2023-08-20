@@ -20,7 +20,17 @@
   },
   "name": "Timeline",
   "imports": ["import Timeline from '@mui/lab/Timeline';", "import { Timeline } from '@mui/lab';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": {
+    "classes": [
+      "root",
+      "positionLeft",
+      "positionRight",
+      "positionAlternate",
+      "positionAlternateReverse"
+    ],
+    "globalClasses": {},
+    "name": "MuiTimeline"
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTimeline",
