@@ -47,7 +47,11 @@
     }
   },
   "name": "Accordion",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import Accordion from '@mui/joy/Accordion';",
+    "import { Accordion } from '@mui/joy';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAccordion" },
   "slots": [
     {
       "name": "root",

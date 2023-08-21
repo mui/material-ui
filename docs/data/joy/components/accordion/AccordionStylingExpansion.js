@@ -24,6 +24,8 @@ export default function AccordionStylingExpansion() {
           bgcolor: 'background.body',
           borderRadius: 'lg',
           boxShadow: 'xs',
+          borderBottom: '1px solid',
+          borderColor: 'divider',
         },
         '& [aria-expanded="true"]': {
           boxShadow: (theme) => `inset 0 -1px 0 ${theme.vars.palette.divider}`,
