@@ -87,7 +87,7 @@ const LoadingButtonRoot = styled(Button, {
     }),
 }));
 
-const LoadingButtonLoadingIndicator = styled('div', {
+const LoadingButtonLoadingIndicator = styled('span', {
   name: 'MuiLoadingButton',
   slot: 'LoadingIndicator',
   overridesResolver: (props, styles) => {
