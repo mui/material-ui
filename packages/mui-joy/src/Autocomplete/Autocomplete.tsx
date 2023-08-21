@@ -23,7 +23,7 @@ import { VariantColorProvider, getChildVariantAndColor } from '../styles/variant
 // slot components
 import { StyledIconButton } from '../IconButton/IconButton';
 // default render components
-import Chip, { chipClasses } from '../Chip';
+import Chip from '../Chip';
 import ChipDelete from '../ChipDelete';
 import {
   StyledInputRoot,
@@ -106,9 +106,17 @@ const AutocompleteRoot = styled(StyledInputRoot as unknown as 'div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
-  '--Autocomplete-wrapperGap': '3px',
+  ...(ownerState.size === 'sm' && {
+    '--Autocomplete-wrapperGap': '3px',
+    '--Chip-minHeight': '1.5rem',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Autocomplete-wrapperGap': '3px',
+    '--Chip-minHeight': '1.75rem',
+  }),
   ...(ownerState.size === 'lg' && {
     '--Autocomplete-wrapperGap': '4px',
+    '--Chip-minHeight': '2.5rem',
   }),
   /* Avoid double tap issue on iOS */
   '@media (pointer: fine)': {
@@ -136,24 +144,15 @@ const AutocompleteWrapper = styled('div', {
   display: 'flex',
   alignItems: 'center',
   flexWrap: 'wrap',
+  gap: 'var(--Autocomplete-wrapperGap)',
   [`&.${autocompleteClasses.multiple}`]: {
-    paddingBlockEnd: 'min(var(--_Input-paddingBlock), var(--Autocomplete-wrapperGap))',
-    // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
-    ...(ownerState.startDecorator &&
-      Array.isArray(ownerState.value) &&
-      (ownerState.value as Array<unknown>).length > 0 && {
-        marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapperGap), 0px)',
-        marginInlineStart: 'calc(-1 * var(--Autocomplete-wrapperGap))',
-        [`& .${autocompleteClasses.input}`]: {
-          marginInlineStart: 'max(var(--Autocomplete-wrapperGap), var(--Input-gap))',
-        },
-      }),
-  },
-  [`& .${chipClasses.root}`]: {
-    // TODO: use flexbox `gap` later.
-    minWidth: 0,
-    marginInlineStart: 'var(--Autocomplete-wrapperGap)',
-    marginBlockStart: 'var(--Autocomplete-wrapperGap)',
+    paddingBlock: 'var(--Autocomplete-wrapperGap)',
+    ...(!ownerState.startDecorator && {
+      paddingInlineStart: 'var(--Autocomplete-wrapperGap)',
+    }),
+    ...(!ownerState.endDecorator && {
+      paddingInlineEnd: 'var(--Autocomplete-wrapperGap)',
+    }),
   },
 }));
 
@@ -165,10 +164,7 @@ const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
   minWidth: 30,
   minHeight: 'var(--Chip-minHeight)',
   ...(ownerState.multiple && {
-    marginBlockStart: 'var(--Autocomplete-wrapperGap)',
-    ...(!ownerState.startDecorator && {
-      marginInlineStart: 'var(--Input-paddingInline)',
-    }),
+    marginInlineStart: 'calc(var(--Autocomplete-wrapperGap) * 2.5)',
   }),
 }));
 
