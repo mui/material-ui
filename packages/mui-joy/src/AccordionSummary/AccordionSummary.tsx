@@ -54,6 +54,9 @@ const AccordionSummaryButton = styled(StyledListItemButton as unknown as 'button
   '&:focus-visible': {
     zIndex: 1, // to make the focus ring appear above the next Accordion.
   },
+  [`.${accordionSummaryClasses.root} &`]: {
+    '--unstable_ListItem-flex': '1 0 0%', // grow to fill the available space of ListItem
+  },
 });
 
 const AccordionSummaryIndicator = styled('span', {

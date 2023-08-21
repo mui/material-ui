@@ -42,13 +42,19 @@ export default function AccordionUsage() {
         code.replace(
           '$children',
           `<Accordion${props.disabled ? ' disabled' : ''}${
-            props.variant === 'solid' ? ` variant=${props.variant}` : ''
+            props.variant === 'solid'
+              ? ` variant=${props.variant} color=${props.color}`
+              : ''
           }>
     <AccordionSummary${
-      props.variant === 'solid' ? ` variant=${props.variant}` : ''
+      props.variant === 'solid'
+        ? ` variant=${props.variant} color=${props.color}`
+        : ''
     }>Title</AccordionSummary>
     <AccordionDetails${
-      props.variant === 'solid' ? ` variant=${props.variant}` : ''
+      props.variant === 'solid'
+        ? ` variant=${props.variant} color=${props.color}`
+        : ''
     }>Content</AccordionDetails>
   </Accordion>`,
         )
@@ -59,46 +65,73 @@ export default function AccordionUsage() {
           sx={{ width: 300, maxWidth: '100%', alignSelf: 'flex-start', mb: 3 }}
         >
           <Accordion
-            variant={props.variant === 'solid' ? 'solid' : undefined}
+            {...(props.variant === 'solid' && {
+              variant: 'solid',
+              color: props.color,
+            })}
             disabled={disabled}
           >
             <AccordionSummary
-              variant={props.variant === 'solid' ? 'solid' : undefined}
+              {...(props.variant === 'solid' && {
+                variant: 'solid',
+                color: props.color,
+              })}
             >
               First Header
             </AccordionSummary>
             <AccordionDetails
-              variant={props.variant === 'solid' ? 'solid' : undefined}
+              {...(props.variant === 'solid' && {
+                variant: 'solid',
+                color: props.color,
+              })}
             >
               Content of the first accordion.
             </AccordionDetails>
           </Accordion>
           <Accordion
             disabled={disabled}
-            variant={props.variant === 'solid' ? 'solid' : undefined}
+            {...(props.variant === 'solid' && {
+              variant: 'solid',
+              color: props.color,
+            })}
           >
             <AccordionSummary
-              variant={props.variant === 'solid' ? 'solid' : undefined}
+              {...(props.variant === 'solid' && {
+                variant: 'solid',
+                color: props.color,
+              })}
             >
               Second Header
             </AccordionSummary>
             <AccordionDetails
-              variant={props.variant === 'solid' ? 'solid' : undefined}
+              {...(props.variant === 'solid' && {
+                variant: 'solid',
+                color: props.color,
+              })}
             >
               Content of the second accordion.
             </AccordionDetails>
           </Accordion>
           <Accordion
             disabled={disabled}
-            variant={props.variant === 'solid' ? 'solid' : undefined}
+            {...(props.variant === 'solid' && {
+              variant: 'solid',
+              color: props.color,
+            })}
           >
             <AccordionSummary
-              variant={props.variant === 'solid' ? 'solid' : undefined}
+              {...(props.variant === 'solid' && {
+                variant: 'solid',
+                color: props.color,
+              })}
             >
               Third Header
             </AccordionSummary>
             <AccordionDetails
-              variant={props.variant === 'solid' ? 'solid' : undefined}
+              {...(props.variant === 'solid' && {
+                variant: 'solid',
+                color: props.color,
+              })}
             >
               Content of the third accordion.
             </AccordionDetails>
