@@ -125,6 +125,18 @@ const SelectRoot = styled('div', {
         '--Select-decoratorChildHeight': 'min(2.375rem, var(--Select-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
+      ...(ownerState.variant === 'plain' && {
+        boxShadow: 'none',
+      }),
+      ...(ownerState.variant === 'outlined' && {
+        boxShadow: theme.shadow.xs,
+      }),
+      ...(ownerState.variant === 'soft' && {
+        boxShadow: theme.shadow.xs,
+      }),
+      ...(ownerState.variant === 'solid' && {
+        boxShadow: theme.shadow.xs,
+      }),
       // variables for controlling child components
       '--Select-decoratorChildOffset':
         'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decoratorChildHeight)) / 2), var(--Select-paddingInline))',
@@ -143,7 +155,6 @@ const SelectRoot = styled('div', {
       display: 'flex',
       alignItems: 'center',
       borderRadius: 'var(--Select-radius)',
-      boxShadow: theme.shadow.xs,
       cursor: 'pointer',
       ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,

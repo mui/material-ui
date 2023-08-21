@@ -78,6 +78,18 @@ const TextareaRoot = styled('div', {
         '--Textarea-decoratorChildHeight': 'min(2.375rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
+      ...(ownerState.variant === 'plain' && {
+        boxShadow: 'none',
+      }),
+      ...(ownerState.variant === 'outlined' && {
+        boxShadow: theme.shadow.xs,
+      }),
+      ...(ownerState.variant === 'soft' && {
+        boxShadow: theme.shadow.xs,
+      }),
+      ...(ownerState.variant === 'solid' && {
+        boxShadow: theme.shadow.xs,
+      }),
       // variables for controlling child components
       '--_Textarea-paddingBlock':
         'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Textarea-decoratorChildHeight)) / 2, 0px)',
@@ -97,7 +109,6 @@ const TextareaRoot = styled('div', {
       paddingInlineStart: `var(--Textarea-paddingInline)`, // the paddingInlineEnd is added to the textarea. It looks better when the scrollbar appears.
       paddingBlock: 'var(--Textarea-paddingBlock)',
       borderRadius: 'var(--Textarea-radius)',
-      boxShadow: theme.shadow.xs,
       ...theme.typography[`body-${ownerState.size!}`],
       ...variantStyle,
       backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,

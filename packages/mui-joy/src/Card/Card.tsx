@@ -79,9 +79,11 @@ const CardRoot = styled('div', {
         '--Card-padding': '1.5rem',
         gap: '1rem 1.5rem',
       }),
+      ...(ownerState.variant === 'plain' && {
+        boxShadow: theme.shadow.xs,
+      }),
       padding: 'var(--Card-padding)',
       borderRadius: 'var(--Card-radius)',
-      boxShadow: theme.shadow.xs,
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
       display: 'flex',
