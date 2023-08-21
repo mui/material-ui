@@ -239,21 +239,20 @@ describe('<TextField />', () => {
     });
 
     it('registers `onClick` on the root slot', () => {
-      const handleClick = spy();
-      const { getByTestId } = render(
-        <TextField
-          data-testid="root"
-          onClick={handleClick}
-          inputProps={{
-            onClick: handleClick,
-          }}
-        />,
+      const handleClick = spy((event) => event.currentTarget);
+      const { getByTestId, getByRole } = render(
+        <TextField data-testid="root" onClick={handleClick} />,
       );
+
+      const input = getByRole('textbox');
 
       const root = getByTestId('root');
 
-      fireEvent.click(root);
+      fireEvent.click(input);
+
       expect(handleClick.callCount).to.equal(1);
+      // return value is event.currentTarget
+      expect(handleClick.returned(root));
     });
   });
 });
