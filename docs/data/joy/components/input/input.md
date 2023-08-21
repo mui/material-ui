@@ -166,21 +166,21 @@ You can use these to customize the component with both the `sx` prop and the the
 
 {{"demo": "InputVariables.js", "hideToolbar": true}}
 
-## Integration with 3rd party libraries
+## Third-party library integration
 
-To integrate Input with 3rd party libraries, create a wrapper component to map props with 3rd party component API.
+To integrate the Input component with 3rd party libraries, create a wrapper component to map props with 3rd party component APIs.
 
 Then use the wrapper component as a value to `slotProps.input.component` of Joy UI Input.
 
 ### React imask
 
-[react-imask](https://github.com/uNmAnNeR/imaskjs) provides `IMaskInput` component for creating a wrapper component.
+[react-imask](https://github.com/uNmAnNeR/imaskjs) provides the vanilla JavaScript `IMaskInput` component, which enables multiple ways to format text.
 
 {{"demo": "InputReactImask.js"}}
 
 ### React number format
 
-[react-number-format](https://github.com/s-yadav/react-number-format) provides `NumericFormat` component for creating a wrapper component.
+[react-number-format](https://github.com/s-yadav/react-number-format) provides the `NumericFormat` component, which enables the formatting of texts that meet a specific number or string pattern.
 
 {{"demo": "InputReactNumberFormat.js"}}
 
