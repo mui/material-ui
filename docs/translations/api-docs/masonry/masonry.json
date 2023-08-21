@@ -10,9 +10,7 @@
     "defaultColumns": {
       "description": "The default number of columns of the component. This is provided for server-side rendering."
     },
-    "defaultHeight": {
-      "description": "The default height of the component in px. This is provided for server-side rendering."
-    },
+    "defaultHeight": { "description": "The default height of the component in px." },
     "defaultSpacing": {
       "description": "The default spacing of the component. Like <code>spacing</code>, it is a factor of the theme&#39;s spacing. This is provided for server-side rendering."
     },

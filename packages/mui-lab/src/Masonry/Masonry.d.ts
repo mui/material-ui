@@ -23,7 +23,7 @@ export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     defaultColumns?: number;
     /**
-     * The default height of the component in px. This is provided for server-side rendering.
+     * The default height of the component in px.
      */
     defaultHeight?: number;
     /**
