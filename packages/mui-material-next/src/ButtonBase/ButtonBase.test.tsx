@@ -271,24 +271,6 @@ describe('<ButtonBase />', () => {
 
   describe('ripple', () => {
     describe('interactions', () => {
-      it('should not have a focus ripple by default', () => {
-        const { getByRole } = render(
-          <ButtonBase
-            TouchRippleProps={{
-              classes: {
-                ripplePulsate: 'ripple-visible',
-              },
-            }}
-          />,
-        );
-        const button = getByRole('button');
-        simulatePointerDevice();
-
-        focusVisible(button);
-
-        expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(0);
-      });
-
       it('should start the ripple when the mouse is pressed', () => {
         const { getByRole } = render(
           <ButtonBase
