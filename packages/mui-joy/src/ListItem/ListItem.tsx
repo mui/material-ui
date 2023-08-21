@@ -70,7 +70,7 @@ export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
       ...(ownerState.endAction && {
         '--unstable_endActionWidth': '2.5rem', // to add sufficient padding-right on ListItemButton
       }),
-      boxSizing: 'border-box',
+      boxSizing: 'border-box' as const,
       borderRadius: 'var(--ListItem-radius)',
       display: 'flex',
       flex: 'none', // prevent children from shrinking when the List's height is limited.
