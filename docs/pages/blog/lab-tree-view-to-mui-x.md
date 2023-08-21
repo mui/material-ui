@@ -74,7 +74,7 @@ You can find the documentation for the Tree View component in the [MUI X docs](/
 ## What's next for the Tree View?
 
 For now, `@mui/x-tree-view` is in alpha.
-Our next goal is to work on the stability and API consistency of its components to prepare a stable release.
+Our next goal is to work on the stability and API consistency of its components to prepare a stable release on the next few months.
 
 Please feel free to try out the component and provide any feedback you may have.
 
