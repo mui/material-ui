@@ -1069,10 +1069,10 @@ export default function BaseUIThemesDemo() {
           </StyledSnackbarButton>
           <StyledSnackbar open={openSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
             <CheckCircleRoundedIcon fontSize="small" />
-            <Box>
+            <div>
               <div data-title>This is a Base UI snackbar.</div>
               <div data-description>Free to design as you want it.</div>
-            </Box>
+            </div>
           </StyledSnackbar>
         </Box>
         {/* Button "View all components" component */}

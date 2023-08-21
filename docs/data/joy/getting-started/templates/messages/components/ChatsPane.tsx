@@ -65,8 +65,7 @@ export default function ChatsPane({
           <i data-feather="x" />
         </IconButton>
       </Stack>
-
-      <Box px={2} pb={1.5}>
+      <Box sx={{ px: 2, pb: 1.5 }}>
         <Input
           size="sm"
           startDecorator={<i data-feather="search" />}

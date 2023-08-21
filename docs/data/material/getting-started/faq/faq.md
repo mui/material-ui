@@ -139,15 +139,10 @@ const ref = React.createRef();
 const element = ref.current;
 ```
 
-If you're not sure if the Material UI component in question forwards its ref you
-can check the API documentation under "Props" e.g. the [Button API](/material-ui/api/button/#props)
-includes
+If you're not sure if the Material UI component in question forwards its ref you can check the API documentation under "Props".
+You should find the message below, like in the [Button API](/material-ui/api/button/#props), [Button API](/material-ui/api/button/#props)
 
-:::info
-The ref is forwarded to the root element.
-:::
-
-indicating that you can access the DOM element with a ref.
+> The ref is forwarded to the root element.
 
 ## My App doesn't render correctly on the server
 
@@ -376,8 +371,6 @@ Example of fix:
 ### [legacy] React class name hydration mismatch
 
 :::warning
-**⚠️ Warning**
-
 Prop className did not match.
 :::
 
