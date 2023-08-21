@@ -24,7 +24,7 @@
     "import ListItemDecorator from '@mui/joy/ListItemDecorator';",
     "import { ListItemDecorator } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiListItemDecorator" },
   "slots": [
     {
       "name": "root",

@@ -17,7 +17,7 @@
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableIndicator": { "type": { "name": "bool" }, "default": "false" },
-    "indicatorInset": { "type": { "name": "bool" } },
+    "indicatorInset": { "type": { "name": "bool" }, "default": "false" },
     "indicatorPlacement": {
       "type": {
         "name": "enum",
@@ -58,7 +58,7 @@
   },
   "name": "Tab",
   "imports": ["import Tab from '@mui/joy/Tab';", "import { Tab } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTab" },
   "slots": [
     {
       "name": "root",

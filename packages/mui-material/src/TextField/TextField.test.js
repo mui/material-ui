@@ -243,4 +243,13 @@ describe('<TextField />', () => {
       expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
     });
   });
+
+  it('should trigger `onClick` only once', () => {
+    const handleClick = spy();
+    const { getByRole } = render(
+      <TextField variant="outlined" label="Test" onClick={handleClick} />,
+    );
+    fireEvent.click(getByRole('textbox'));
+    expect(handleClick.callCount).to.equal(1);
+  });
 });

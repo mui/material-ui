@@ -81,7 +81,7 @@ export default function EmailContent() {
             flexWrap: 'wrap',
           }}
         >
-          <Box>
+          <div>
             <Typography
               component="span"
               level="body-sm"
@@ -92,8 +92,8 @@ export default function EmailContent() {
             <Chip size="sm" variant="soft" onClick={() => {}}>
               alex.jonnold@hike.com
             </Chip>
-          </Box>
-          <Box>
+          </div>
+          <div>
             <Typography
               component="span"
               level="body-sm"
@@ -104,7 +104,7 @@ export default function EmailContent() {
             <Chip size="sm" variant="soft" onClick={() => {}}>
               steve@mail.com
             </Chip>
-          </Box>
+          </div>
         </Box>
       </Box>
       <Divider />
@@ -169,9 +169,9 @@ export default function EmailContent() {
         <Card variant="outlined" orientation="horizontal">
           <CardOverflow>
             <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
-              <Box>
+              <div>
                 <FolderIcon />
-              </Box>
+              </div>
             </AspectRatio>
           </CardOverflow>
           <Box sx={{ py: { xs: 1, sm: 2 }, pr: 2 }}>

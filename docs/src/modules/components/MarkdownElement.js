@@ -107,18 +107,23 @@ const Root = styled('div')(
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '20px 0 8px',
     },
-    '& p, & ul, & ol': {
+    '& p': {
       marginTop: 0,
       marginBottom: 16,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
     },
-    '& ul': {
+    '& ul, & ol': {
       paddingLeft: 30,
+      marginTop: 0,
+      marginBottom: 16,
+      '& ul, & ol': {
+        marginBottom: 6,
+      },
     },
     '& h1, & h2, & h3, & h4': {
-      position: 'relative',
-      // Reserve space for the end of the line action button
-      paddingRight: 26 * 2 + 10,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 6,
       '& code': {
         fontSize: 'inherit',
         lineHeight: 'inherit',
@@ -127,28 +132,29 @@ const Root = styled('div')(
       },
       '& .anchor-link': {
         // To prevent the link to get the focus.
-        display: 'none',
+        display: 'inline-flex',
+        visibility: 'hidden',
       },
       '& a:not(.anchor-link):hover': {
         color: 'currentColor',
-        borderBottom: '1px solid currentColor',
+        border: 'none',
+        boxShadow: '0 1px 0 0 currentColor',
         textDecoration: 'none',
       },
-      '&:hover .anchor-link, & .comment-link': {
-        position: 'absolute',
+      '& .anchor-link, & .comment-link': {
+        cursor: 'pointer',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
         textAlign: 'center',
-        marginLeft: 8,
-        marginTop: 5,
+        marginLeft: 4,
         height: 26,
         width: 26,
-        lineHeight: '21px',
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
         borderRadius: 8,
         color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
-        cursor: 'pointer',
-        display: 'inline-block',
         '&:hover': {
           backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
           borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
@@ -161,20 +167,18 @@ const Root = styled('div')(
           pointerEvents: 'none',
         },
       },
+      '&:hover .anchor-link': {
+        visibility: 'visible',
+      },
       '& .comment-link': {
         display: 'none', // So we can have the comment button opt-in.
-        top: 0,
-        right: 0,
+        marginLeft: 'auto',
         transition: theme.transitions.create('opacity', {
           duration: theme.transitions.duration.shortest,
         }),
         '& svg': {
-          opacity: 0.6,
-          marginBottom: 1,
           verticalAlign: 'middle',
-        },
-        '&:hover': {
-          '&>svg': { opacity: 1 },
+          fill: 'currentColor',
         },
       },
     },
@@ -243,33 +247,62 @@ const Root = styled('div')(
       paddingBottom: 12,
     },
     '& blockquote': {
-      borderRadius: `var(--muidocs-shape-borderRadius, ${
-        theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
-      }px)`,
-      border: '1px solid',
-      borderLeft: '8px solid',
-      borderColor: `var(--muidocs-palette-warning-300, ${lightTheme.palette.warning[300]})`,
-      backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
-      padding: '10px 20px',
-      margin: '20px 0',
+      position: 'relative',
+      padding: '0 16px',
+      margin: 0,
+      borderLeft: '1.5px solid',
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       '& p': {
-        marginTop: 10,
-        color: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
+        fontStyle: 'italic',
+        fontSize: theme.typography.pxToRem(13),
+        fontFamily: lightTheme.typography.fontFamilyCode,
+        fontWeight: lightTheme.typography.fontWeightMedium,
+        textIndent: 20,
+      },
+      ':before': {
+        position: 'absolute',
+        content: 'open-quote',
+        color: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
+        fontSize: '2.5rem',
+        top: 8,
+        marginLeft: -6,
+        lineHeight: 0.5,
       },
     },
     '& .MuiCallout-root': {
+      display: 'flex',
+      gap: 12,
       padding: '16px',
       margin: '16px 0',
       border: '1px solid',
+      color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
+      borderColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
+      '& .MuiCallout-content': {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 6,
+        '&>p, ul': {
+          marginBottom: 0,
+        },
+        '&>ul': {
+          paddingLeft: 22,
+        },
+      },
+      '&>svg': {
+        marginTop: 2,
+        width: 20,
+        height: 20,
+        flexShrink: 0,
+      },
       '& > ul, & > p': {
         '&:last-child': {
           margin: 0,
         },
       },
-      '& > p, & ul, li': {
+      '& ul, li, p': {
         color: 'inherit',
       },
       '&.MuiCallout-error': {
@@ -278,6 +311,9 @@ const Root = styled('div')(
         borderColor: `var(--muidocs-palette-error-100, ${lightTheme.palette.error[100]})`,
         '& strong': {
           color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
+        },
+        '&>svg': {
+          fill: `var(--muidocs-palette-error-500, ${lightTheme.palette.error[600]})`,
         },
         '& a': {
           color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
@@ -290,17 +326,23 @@ const Root = styled('div')(
       '&.MuiCallout-info': {
         color: `var(--muidocs-palette-primary-900, ${lightTheme.palette.primary[900]})`,
         backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
-        borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+        borderColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
         '& strong': {
           color: `var(--muidocs-palette-primary-800, ${lightTheme.palette.primary[800]})`,
+        },
+        '&>svg': {
+          fill: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         },
       },
       '&.MuiCallout-success': {
         color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
         backgroundColor: `var(--muidocs-palette-success-50, ${lightTheme.palette.success[50]})`,
-        borderColor: `var(--muidocs-palette-success-200, ${lightTheme.palette.success[200]})`,
+        borderColor: `var(--muidocs-palette-success-100, ${lightTheme.palette.success[100]})`,
         '& strong': {
           color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
+        },
+        '&>svg': {
+          fill: `var(--muidocs-palette-success-600, ${lightTheme.palette.success[600]})`,
         },
         '& a': {
           color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
@@ -313,9 +355,12 @@ const Root = styled('div')(
       '&.MuiCallout-warning': {
         color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
         backgroundColor: alpha(lightTheme.palette.warning[50], 0.5),
-        borderColor: alpha(lightTheme.palette.warning[600], 0.3),
+        borderColor: `var(--muidocs-palette-warning-200, ${lightTheme.palette.warning[200]})`,
         '& strong': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
+        },
+        '&>svg': {
+          fill: `var(--muidocs-palette-warning-600, ${lightTheme.palette.warning[600]})`,
         },
         '& a': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
@@ -548,19 +593,22 @@ const Root = styled('div')(
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
       },
       '& blockquote': {
-        borderColor: `var(--muidocs-palette-warning-500, ${darkTheme.palette.warning[500]})`,
-        backgroundColor: alpha(darkTheme.palette.warning[900], 0.2),
-        '& p': {
-          color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
+        borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+        ':before': {
+          color: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
         },
       },
       '& .MuiCallout-root': {
+        borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
-          backgroundColor: alpha(darkTheme.palette.error[700], 0.25),
+          backgroundColor: alpha(darkTheme.palette.error[700], 0.2),
           borderColor: alpha(lightTheme.palette.error[600], 0.3),
           '& strong': {
-            color: `var(--muidocs-palette-error-100, ${darkTheme.palette.error[100]})`,
+            color: `var(--muidocs-palette-error-300, ${darkTheme.palette.error[300]})`,
+          },
+          '&>svg': {
+            fill: `var(--muidocs-palette-error-500, ${darkTheme.palette.error[500]})`,
           },
           '& a': {
             color: `var(--muidocs-palette-error-200, ${darkTheme.palette.error[200]})`,
@@ -573,13 +621,19 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
           },
+          '&>svg': {
+            fill: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
+          },
         },
         '&.MuiCallout-success': {
           color: `var(--muidocs-palette-success-50, ${darkTheme.palette.success[50]})`,
-          backgroundColor: alpha(darkTheme.palette.success[700], 0.2),
+          backgroundColor: alpha(darkTheme.palette.success[700], 0.15),
           borderColor: alpha(lightTheme.palette.success[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-success-200, ${darkTheme.palette.success[200]})`,
+          },
+          '&>svg': {
+            fill: `var(--muidocs-palette-success-500, ${darkTheme.palette.success[500]})`,
           },
           '& a': {
             color: `var(--muidocs-palette-success-100, ${darkTheme.palette.success[100]})`,
@@ -587,10 +641,13 @@ const Root = styled('div')(
         },
         '&.MuiCallout-warning': {
           color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
-          backgroundColor: alpha(darkTheme.palette.warning[700], 0.2),
+          backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
           borderColor: alpha(darkTheme.palette.warning[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
+          },
+          '&>svg': {
+            fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
           },
           '& a': {
             color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,

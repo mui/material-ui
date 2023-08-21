@@ -488,6 +488,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /base-ui/react-components/ /base-ui/all-components/ 301
 /system/getting-started/overview/ /system/getting-started/ 301
 /blog/introducing-mui-base/ /blog/introducing-base-ui/ 301
+/material-ui/react-tree-view/ /x/react-tree-view/ 301
+/material-ui/api/tree-view/ /x/api/tree-view/tree-view/ 301
+/material-ui/api/tree-item/ /x/api/tree-view/tree-item/ 301
 
 # Proxies
 
@@ -497,6 +500,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /r/store-* https://mui-store.netlify.app/r/store-:splat 200
 /legal/* https://mui-store.netlify.app/legal/:splat 200
 /r/legal-* https://mui-store.netlify.app/r/legal-:splat 200
+/.well-known/apple-developer-merchantid-domain-association https://store-wp.mui.com/.well-known/apple-developer-merchantid-domain-association 200
 
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,

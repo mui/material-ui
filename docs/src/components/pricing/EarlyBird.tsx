@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
@@ -46,7 +45,7 @@ export default function EarlyBird() {
           }),
         })}
       >
-        <Box>
+        <div>
           <Typography fontWeight="bold" sx={{ mb: 0.5 }}>
             🐦&nbsp;&nbsp;Early bird special!
           </Typography>
@@ -55,7 +54,7 @@ export default function EarlyBird() {
             added opportunity to influence its development. The early bird special is available for
             a limited time, so don&apos;t miss this opportunity!
           </Typography>
-        </Box>
+        </div>
         <Button
           component={Link}
           noLinkStyle
