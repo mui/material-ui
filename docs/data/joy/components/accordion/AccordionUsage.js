@@ -5,7 +5,7 @@ import AccordionDetails from '@mui/joy/AccordionDetails';
 import AccordionSummary from '@mui/joy/AccordionSummary';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function ButtonUsage() {
+export default function AccordionUsage() {
   return (
     <JoyUsageDemo
       componentName="AccordionGroup"
