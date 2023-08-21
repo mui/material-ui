@@ -11,6 +11,7 @@ Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https:
 - [Next.js](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts))
 - [Create React App](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-ts))
 - [Remix](https://github.com/mui/material-ui/tree/master/examples/material-ui-remix-ts)
+- [Gatsby](https://github.com/mui/material-ui/tree/master/examples/material-ui-gatsby)
 - [Preact](https://github.com/mui/material-ui/tree/master/examples/material-ui-preact)
 - [CDN](https://github.com/mui/material-ui/tree/master/examples/material-ui-via-cdn)
 - [Plain server-side](https://github.com/mui/material-ui/tree/master/examples/material-ui-express-ssr)

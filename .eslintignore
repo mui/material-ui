@@ -5,6 +5,7 @@
 /docs/export
 /docs/pages/playground/
 /examples/material-ui-cra*/src/serviceWorker.js
+/examples/material-ui-gatsby/public/
 /examples/material-ui-preact/config
 /examples/material-ui-preact/scripts
 /examples/material-ui-nextjs/src
