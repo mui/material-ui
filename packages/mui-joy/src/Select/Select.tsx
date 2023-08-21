@@ -116,7 +116,7 @@ const SelectRoot = styled('div', {
       ...(ownerState.size === 'md' && {
         '--Select-minHeight': '2.25rem',
         '--Select-paddingInline': '0.75rem',
-        '--Select-decoratorChildHeight': 'min(2rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(1.75rem, var(--Select-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       ...(ownerState.size === 'lg' && {
