@@ -43,7 +43,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
           ? 'currentColor'
           : theme.vars.palette.text.icon,
       ...(ownerState.instanceSize && {
-        '--IconButton-size': { sm: '2rem', md: '2.5rem', lg: '3rem' }[ownerState.instanceSize],
+        '--IconButton-size': { sm: '2rem', md: '2.25rem', lg: '3rem' }[ownerState.instanceSize],
       }),
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
