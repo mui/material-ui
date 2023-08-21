@@ -239,6 +239,7 @@ function reduceChildRoutes(context) {
         legacy={page.legacy}
         newFeature={page.newFeature}
         planned={page.planned}
+        unstable={page.unstable}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -271,6 +272,7 @@ function reduceChildRoutes(context) {
         legacy={page.legacy}
         newFeature={page.newFeature}
         planned={page.planned}
+        unstable={page.unstable}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
