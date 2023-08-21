@@ -55,7 +55,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
         paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
       }),
       ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)', // 1.5rem by default
+        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.25rem) / 1.5)', // 1.5rem by default
         '--CircularProgress-size': '20px',
         '--CircularProgress-thickness': '2px',
         minWidth: 'var(--IconButton-size, 2.25rem)',
