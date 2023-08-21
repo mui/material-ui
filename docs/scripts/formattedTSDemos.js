@@ -136,7 +136,6 @@ async function transpileFile(tsxPath, project) {
 
 async function main(argv) {
   const { watch: watchMode, disableCache, pattern } = argv;
-  const buildProject = createTypescriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
 
   // TODO: Remove at some point.
   // Though not too soon so that it isn't disruptive.
@@ -157,7 +156,8 @@ async function main(argv) {
     ...(await getFiles(path.join(workspaceRoot, 'docs/data'))), // new structure
   ].filter((fileName) => filePattern.test(fileName));
 
-  const project = buildProject('docs');
+  const buildProject = createTypescriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
+  const project = buildProject('docs', { files: tsxFiles });
 
   let successful = 0;
   let failed = 0;

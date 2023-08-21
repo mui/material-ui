@@ -25,6 +25,11 @@ export interface CreateTypeScriptProjectOptions {
    * The path must be relative to the root path.
    */
   entryPointPath?: string;
+  /**
+   * Files to include in the project.
+   * By default, it will use the files defined in the tsconfig.
+   */
+  files?: string[];
 }
 
 export const createTypeScriptProject = (
@@ -35,6 +40,7 @@ export const createTypeScriptProject = (
     rootPath,
     tsConfigPath: inputTsConfigPath = 'tsconfig.build.json',
     entryPointPath: inputEntryPointPath,
+    files,
   } = options;
 
   const tsConfigPath = path.join(rootPath, inputTsConfigPath);
@@ -65,7 +71,7 @@ export const createTypeScriptProject = (
   }
 
   const program = ts.createProgram({
-    rootNames: tsConfigFileContent.fileNames,
+    rootNames: files ?? tsConfigFileContent.fileNames,
     options: tsConfigFileContent.options,
   });
 
@@ -99,7 +105,7 @@ export const createTypescriptProjectBuilder = <P extends string>(
 ) => {
   const projects = new Map<P, TypeScriptProject>();
 
-  return (projectName: P) => {
+  return (projectName: P, options: { files?: string[] } = {}) => {
     const cachedProject = projects.get(projectName);
     if (cachedProject != null) {
       return cachedProject;
@@ -111,6 +117,7 @@ export const createTypescriptProjectBuilder = <P extends string>(
     const project = createTypeScriptProject({
       name: projectName,
       ...projectsConfig[projectName],
+      ...options,
     });
 
     projects.set(projectName, project);

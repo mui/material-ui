@@ -1,12 +1,12 @@
 import * as babel from '@babel/core';
 import * as babelTypes from '@babel/types';
 import { v4 as uuid } from 'uuid';
-import { generatePropTypes, GenerateOptions } from './generatePropTypes';
+import { generatePropTypes, GeneratePropTypesOptions } from './generatePropTypes';
 import { PropTypesComponent, PropTypeDefinition, LiteralType } from './models';
 
 export interface InjectPropTypesInFileOptions
   extends Pick<
-    GenerateOptions,
+    GeneratePropTypesOptions,
     | 'sortProptypes'
     | 'includeJSDoc'
     | 'comment'

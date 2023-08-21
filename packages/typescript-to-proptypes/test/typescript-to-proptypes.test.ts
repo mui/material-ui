@@ -1,9 +1,16 @@
 import path from 'path';
 import fs from 'fs';
+import * as ts from 'typescript';
 import { expect } from 'chai';
 import glob from 'fast-glob';
 import prettier from 'prettier';
-import * as ttp from '../src';
+import {
+  TypeScriptProject,
+  createTypescriptProjectBuilder,
+} from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
+import { generatePropTypes } from '../src/generatePropTypes';
+import { injectPropTypesInFile } from '../src/injectPropTypesInFile';
+import { getPropTypesFromFile } from '../src/getPropTypesFromFile';
 import { TestOptions } from './types';
 
 const testCases = glob
@@ -23,26 +30,38 @@ const testCases = glob
   });
 
 describe('typescript-to-proptypes', () => {
-  let cachedProgram: ttp.ts.Program;
-  function getProgram() {
-    return cachedProgram;
+  let cachedProject: TypeScriptProject;
+  function getProject() {
+    return cachedProject;
   }
 
   before(function beforeHook() {
     // Creating a TS program might take a while.
     this.timeout(20000);
+
+    const buildProject = createTypescriptProjectBuilder({
+      test: {
+        rootPath: path.join(__dirname, '..'),
+        tsConfigPath: 'tsconfig.json',
+      },
+    });
+
+    cachedProject = buildProject('test', {
+      files: testCases.map((testCase) => testCase.inputPath),
+    });
+
     // Create program for all files to speed up tests
-    cachedProgram = ttp.createTSProgram(
-      testCases.map((testCase) => testCase.inputPath),
-      ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json')),
-    );
+    // cachedProject = ttp.createTSProgram(
+    //   testCases.map((testCase) => testCase.inputPath),
+    //   ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json')),
+    // );
   });
 
   testCases.forEach((testCase) => {
     const { name: testName, inputPath, inputJS, outputPath } = testCase;
 
     it(testName, async () => {
-      const program = getProgram();
+      const project = getProject();
       let options: TestOptions = {};
       try {
         const optionsModule = await import(`./${testName}/options`);
@@ -51,7 +70,7 @@ describe('typescript-to-proptypes', () => {
         // Assume "Cannot find module" which means "no options".
       }
 
-      const ast = ttp.parseFromProgram(inputPath, program, options.parser);
+      const components = getPropTypesFromFile({ filePath: inputPath, project, ...options.parser });
 
       let inputSource = null;
       if (inputPath.endsWith('.d.ts')) {
@@ -61,10 +80,10 @@ describe('typescript-to-proptypes', () => {
           // ignore
         }
       } else {
-        inputSource = ttp.ts.transpileModule(fs.readFileSync(inputPath, 'utf8'), {
+        inputSource = ts.transpileModule(fs.readFileSync(inputPath, 'utf8'), {
           compilerOptions: {
-            target: ttp.ts.ScriptTarget.ESNext,
-            jsx: ttp.ts.JsxEmit.Preserve,
+            target: ts.ScriptTarget.ESNext,
+            jsx: ts.JsxEmit.Preserve,
           },
         }).outputText;
       }
@@ -72,14 +91,18 @@ describe('typescript-to-proptypes', () => {
       let result = '';
       // For d.ts files we just generate the AST
       if (!inputSource) {
-        result = ast.body
+        result = components
           .map((component) => {
-            return ttp.generate(component, options.generator);
+            return generatePropTypes(component, options.generator);
           })
           .join('\n');
       } else {
         // For .tsx? files we transpile them and inject the proptypes
-        const injected = ttp.inject(ast, inputSource, options.injector);
+        const injected = injectPropTypesInFile({
+          components,
+          target: inputSource,
+          options: options.injector,
+        });
         if (!injected) {
           throw new Error('Injection failed');
         }

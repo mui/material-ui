@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { PropTypeDefinition, PropTypesComponent, PropType, LiteralType } from './models';
 import { createDOMElementType, createBooleanType, uniqueUnionTypes } from './createType';
 
-export interface GenerateOptions {
+export interface GeneratePropTypesOptions {
   /**
    * If source itself written in typescript prop-types disable prop-types validation
    * by injecting propTypes as
@@ -99,7 +99,7 @@ function defaultSortLiteralUnions(a: LiteralType, b: LiteralType) {
  */
 export function generatePropTypes(
   component: PropTypesComponent,
-  options: GenerateOptions = {},
+  options: GeneratePropTypesOptions = {},
 ): string {
   const {
     disablePropTypesTypeChecking = false,

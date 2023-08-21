@@ -1,7 +1,11 @@
-import { ParserOptions, GenerateOptions, InjectOptions } from '../src';
+import {
+  InjectPropTypesInFileOptions,
+  GetPropTypesFromFileOptions,
+  GeneratePropTypesOptions,
+} from '../src';
 
 export type TestOptions = {
-  parser?: Partial<ParserOptions>;
-  generator?: Partial<GenerateOptions>;
-  injector?: Partial<InjectOptions>;
+  parser?: GetPropTypesFromFileOptions;
+  generator?: GeneratePropTypesOptions;
+  injector?: InjectPropTypesInFileOptions;
 };
