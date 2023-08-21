@@ -29,9 +29,6 @@ export default function FileUpload({
         {
           gap: 1.5,
           alignItems: 'flex-start',
-          ...(progress >= 100 && {
-            borderColor: 'primary.500',
-          }),
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -55,8 +52,13 @@ export default function FileUpload({
           <LinearProgress
             value={progress}
             determinate
-            variant="plain"
-            sx={{ bgcolor: 'neutral.softBg' }}
+            sx={[
+              {
+                ...(progress >= 100 && {
+                  color: 'var(--joy-palette-success-solidBg)',
+                }),
+              },
+            ]}
           />
           <Typography fontSize="xs">{progress}%</Typography>
         </Box>

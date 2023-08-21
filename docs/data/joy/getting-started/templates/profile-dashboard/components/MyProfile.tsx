@@ -31,7 +31,7 @@ export default function MyProfile() {
         mx: 'auto',
       }}
     >
-      <Typography level="h1" fontSize="xl2" sx={{ mb: 1 }}>
+      <Typography level="h2" sx={{ mb: 1 }}>
         My profile
       </Typography>
       <Tabs defaultValue={0} sx={{ bgcolor: 'transparent' }}>
@@ -48,17 +48,12 @@ export default function MyProfile() {
               position: 'relative',
               zIndex: 1,
               height: 'var(--_shadow-height)',
-              background:
-                'radial-gradient(closest-side, rgba(0 0 0 / 0.12), transparent 100%)',
             },
           }}
         />
         <TabList
           sticky="top"
-          variant="plain"
           sx={(theme) => ({
-            '--Chip-minHeight': '20px',
-            '--ListItem-minHeight': '48px',
             top: 'calc(-1 * (var(--main-paddingTop, 0px) - var(--Header-height, 0px)))',
             zIndex: 10,
             width: '100%',
@@ -75,9 +70,6 @@ export default function MyProfile() {
               flex: 'none',
               zIndex: 1,
               right: 0,
-              borderBottom: '1px solid transparent',
-              background: `linear-gradient(to left, ${theme.vars.palette.background.body}, rgb(0 0 0 / 0))`,
-              backgroundClip: 'content-box',
             },
             '&::-webkit-scrollbar': {
               width: 0,
@@ -151,17 +143,18 @@ export default function MyProfile() {
           <Box sx={{ display: { xs: 'contents', sm: 'flex' }, gap: 2 }}>
             <FormControl sx={{ flex: 1 }}>
               <FormLabel sx={{ display: { sm: 'none' } }}>First name</FormLabel>
-              <Input placeholder="first name" defaultValue="Siriwat" />
+              <Input size="sm" placeholder="first name" defaultValue="Siriwat" />
             </FormControl>
             <FormControl sx={{ flex: 1 }}>
               <FormLabel sx={{ display: { sm: 'none' } }}>Last name</FormLabel>
-              <Input placeholder="last name" defaultValue="K." />
+              <Input size="sm" placeholder="last name" defaultValue="K." />
             </FormControl>
           </Box>
           <Divider role="presentation" />
           <FormControl sx={{ display: { sm: 'contents' } }}>
             <FormLabel>Email</FormLabel>
             <Input
+              size="sm"
               type="email"
               startDecorator={<i data-feather="mail" />}
               placeholder="email"
@@ -191,14 +184,18 @@ export default function MyProfile() {
           <Divider role="presentation" />
           <FormControl sx={{ display: { sm: 'contents' } }}>
             <FormLabel>Role</FormLabel>
-            <Input defaultValue="UI Developer" />
+            <Input size="sm" defaultValue="UI Developer" />
           </FormControl>
           <Divider role="presentation" />
           <CountrySelector />
           <Divider role="presentation" />
           <FormControl sx={{ display: { sm: 'contents' } }}>
             <FormLabel>Timezone</FormLabel>
-            <Select startDecorator={<i data-feather="clock" />} defaultValue="1">
+            <Select
+              size="sm"
+              startDecorator={<i data-feather="clock" />}
+              defaultValue="1"
+            >
               <Option value="1">
                 Indochina Time (Bangkok){' '}
                 <Typography textColor="text.tertiary" ml={0.5}>
@@ -221,6 +218,7 @@ export default function MyProfile() {
           <div>
             <EditorToolbar />
             <Textarea
+              size="sm"
               minRows={4}
               sx={{ mt: 1.5 }}
               defaultValue="I'm a software developer based in Bangkok, Thailand. My goal is to solve UI problems with neat CSS without using too much JavaScript."
