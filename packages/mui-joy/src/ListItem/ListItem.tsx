@@ -58,7 +58,7 @@ export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
         'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
       '--ListItem-marginInline':
         'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
-      flexDirection: 'column',
+      flexDirection: 'column' as const,
     },
     // Base styles
     {
