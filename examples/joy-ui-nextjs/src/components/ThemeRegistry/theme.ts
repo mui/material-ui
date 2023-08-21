@@ -3,15 +3,13 @@ import { Inter, Source_Code_Pro } from 'next/font/google';
 
 const inter = Inter({
   subsets: ['latin'],
-  adjustFontFallback: false, // prevent automatically adding Arial as the fallback
-  fallback: ['var(--joy-fontFamily-fallback)'], // explicitly stated we wish to use Joy UI's fallback
+  fallback: ['var(--joy-fontFamily-fallback)'], // use Joy UI's fallback font
 });
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ['latin'],
-  adjustFontFallback: false,
-  // copied from the default theme
   fallback: [
+    // the default theme's fallback for monospace fonts
     'ui-monospace',
     'SFMono-Regular',
     'Menlo',
