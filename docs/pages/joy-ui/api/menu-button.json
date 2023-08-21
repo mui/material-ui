@@ -62,7 +62,11 @@
     }
   },
   "name": "MenuButton",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import MenuButton from '@mui/joy/MenuButton';",
+    "import { MenuButton } from '@mui/joy';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiMenuButton" },
   "slots": [
     {
       "name": "root",

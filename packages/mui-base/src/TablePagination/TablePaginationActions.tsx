@@ -161,4 +161,4 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions<
   );
 }) as PolymorphicComponent<TablePaginationActionsTypeMap>;
 
-export default TablePaginationActions;
+export { TablePaginationActions };

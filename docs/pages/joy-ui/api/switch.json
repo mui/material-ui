@@ -63,7 +63,8 @@
     }
   },
   "name": "Switch",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import Switch from '@mui/joy/Switch';", "import { Switch } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSwitch" },
   "slots": [
     {
       "name": "root",
@@ -129,7 +130,8 @@
     "globalClasses": {
       "checked": "Mui-checked",
       "disabled": "Mui-disabled",
-      "focusVisible": "Mui-focusVisible"
+      "focusVisible": "Mui-focusVisible",
+      "readOnly": "Mui-readOnly"
     }
   },
   "spread": true,

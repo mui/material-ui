@@ -339,7 +339,7 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
  *
  * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
  */
-export default function useAutocomplete<
+export function useAutocomplete<
   Value,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,

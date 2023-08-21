@@ -35,23 +35,26 @@ export interface StackBaseProps {
    */
   useFlexGap?: boolean;
 }
-export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
+export interface StackTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps &
     StackBaseProps & {
       /**
        * The system prop, which allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps<Theme>;
     } & SystemProps<Theme>;
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 export type StackProps<
-  D extends React.ElementType = StackTypeMap['defaultComponent'],
-  P = {
+  RootComponent extends React.ElementType = StackTypeMap['defaultComponent'],
+  AdditionalProps = {
     component?: React.ElementType;
   },
-> = OverrideProps<StackTypeMap<P, D>, D>;
+> = OverrideProps<StackTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export interface StackOwnerState {
   direction: StackProps['direction'];

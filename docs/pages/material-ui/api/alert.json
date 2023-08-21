@@ -70,6 +70,7 @@
     }
   },
   "name": "Alert",
+  "imports": ["import Alert from '@mui/material/Alert';", "import { Alert } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

@@ -65,10 +65,12 @@ In the event you need to provide a richer structure, see the next section.
 You can achieve the integration with third-party routing libraries with the `component` prop.
 You can learn more about this prop in the **[composition guide](/material-ui/guides/composition/#component-prop)**.
 
-### Link
+## react-router examples
 
 Here are a few demos with [react-router](https://github.com/remix-run/react-router).
 You can apply the same strategy with all the components: BottomNavigation, Card, etc.
+
+### Link
 
 {{"demo": "LinkRouter.js"}}
 
@@ -99,9 +101,9 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 ### Next.js
 
-The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-next-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/api-reference/next/link) with Material UI.
+The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/api-reference/next/link) with Material UI.
 
-- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/-/examples/material-next-ts/src/Link.tsx) component.
+- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/-/examples/material-ui-nextjs-pages-router-ts/src/Link.tsx) component.
   This component is unstyled and only responsible for handling the navigation.
   The prop `href` was renamed `to` to avoid a naming conflict.
   This is similar to react-router's Link component.

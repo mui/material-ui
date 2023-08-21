@@ -13,6 +13,10 @@
     }
   },
   "name": "StepButton",
+  "imports": [
+    "import StepButton from '@mui/material/StepButton';",
+    "import { StepButton } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "horizontal", "vertical", "touchRipple"],
     "globalClasses": {},

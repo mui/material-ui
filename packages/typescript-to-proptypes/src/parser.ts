@@ -1,5 +1,5 @@
 import * as doctrine from 'doctrine';
-import * as ts from 'typescript';
+import ts from 'typescript';
 import * as t from './types';
 
 /**
@@ -237,7 +237,6 @@ export function parseFromProgram(
       }
     }
 
-    // @ts-ignore
     if (checker.isArrayType(type)) {
       // @ts-ignore
       const arrayType: ts.Type = checker.getElementTypeOfArrayType(type);
@@ -247,7 +246,6 @@ export function parseFromProgram(
       });
     }
 
-    // @ts-expect-error
     const isTupleType = checker.isTupleType(type);
     if (isTupleType) {
       return t.createArrayType({

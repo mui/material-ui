@@ -31,6 +31,10 @@
     "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'" }
   },
   "name": "SvgIcon",
+  "imports": [
+    "import SvgIcon from '@mui/material/SvgIcon';",
+    "import { SvgIcon } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

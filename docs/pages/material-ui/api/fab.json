@@ -37,6 +37,7 @@
     }
   },
   "name": "Fab",
+  "imports": ["import Fab from '@mui/material/Fab';", "import { Fab } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

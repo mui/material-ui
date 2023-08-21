@@ -5,7 +5,7 @@
  * @param object Object to remove event handlers from.
  * @returns Object with event handlers removed.
  */
-export default function omitEventHandlers<Props extends Record<string, unknown>>(
+export function omitEventHandlers<Props extends Record<string, unknown>>(
   object: Props | undefined,
 ) {
   if (object === undefined) {

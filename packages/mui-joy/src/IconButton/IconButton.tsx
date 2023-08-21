@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import useButton from '@mui/base/useButton';
-import composeClasses from '@mui/base/composeClasses';
+import { useButton } from '@mui/base/useButton';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -87,7 +87,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       justifyContent: 'center',
       position: 'relative',
       [theme.focus.selector]: { '--Icon-color': 'currentColor', ...theme.focus.default },
-    },
+    } as const,
     {
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '&:hover': {
@@ -100,10 +100,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
         '--Icon-color': 'currentColor',
         ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
       },
-      '&:disabled': {
-        '--Icon-color': 'currentColor',
-        ...theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-      },
+      '&:disabled': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
     },
   ],
 );

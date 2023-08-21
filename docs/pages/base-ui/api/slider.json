@@ -86,6 +86,7 @@
     }
   },
   "name": "Slider",
+  "imports": ["import { Slider } from '@mui/base/Slider';", "import { Slider } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

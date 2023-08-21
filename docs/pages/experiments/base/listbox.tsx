@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import clsx from 'clsx';
-import useList, { ListContext, useListItem } from '@mui/base/useList';
+import { useList, ListContext, useListItem } from '@mui/base/useList';
 
 const styles = `
   body {

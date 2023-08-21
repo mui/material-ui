@@ -130,7 +130,7 @@ export default function InstagramPost() {
           2 DAYS AGO
         </Link>
       </CardContent>
-      <CardOverflow sx={{ pb: 'var(--Card-padding)', display: 'flex' }}>
+      <CardContent orientation="horizontal" sx={{ gap: 1 }}>
         <IconButton size="sm" variant="plain" color="neutral" sx={{ ml: -1 }}>
           <Face />
         </IconButton>
@@ -138,12 +138,12 @@ export default function InstagramPost() {
           variant="plain"
           size="sm"
           placeholder="Add a comment…"
-          sx={{ flexGrow: 1, mr: 1, '--Input-focusedThickness': '0px' }}
+          sx={{ flex: 1, px: 0, '--Input-focusedThickness': '0px' }}
         />
         <Link disabled underline="none" role="button">
           Post
         </Link>
-      </CardOverflow>
+      </CardContent>
     </Card>
   );
 }

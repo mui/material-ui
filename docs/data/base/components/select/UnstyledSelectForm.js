@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Select, { selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
+import { Select, selectClasses } from '@mui/base/Select';
+import { Option, optionClasses } from '@mui/base/Option';
+import { Popper } from '@mui/base/Popper';
 import { styled, Box } from '@mui/system';
 
 export default function UnstyledSelectForm() {
@@ -15,7 +15,7 @@ export default function UnstyledSelectForm() {
           <StyledOption value={30}>Thirty</StyledOption>
         </CustomSelect>
       </Box>
-      <Box>
+      <div>
         <Label htmlFor="named-select">
           With the <code>name</code> prop
         </Label>
@@ -24,7 +24,7 @@ export default function UnstyledSelectForm() {
           <StyledOption value={20}>Twenty</StyledOption>
           <StyledOption value={30}>Thirty</StyledOption>
         </CustomSelect>
-      </Box>
+      </div>
     </div>
   );
 }

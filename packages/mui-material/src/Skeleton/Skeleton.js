@@ -3,7 +3,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { keyframes, css } from '@mui/system';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -119,7 +119,7 @@ const SkeletonRoot = styled('span', {
   ({ ownerState }) =>
     ownerState.animation === 'pulse' &&
     css`
-      animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
+      animation: ${pulseKeyframe} 2s ease-in-out 0.5s infinite;
     `,
   ({ ownerState, theme }) =>
     ownerState.animation === 'wave' &&
@@ -131,7 +131,7 @@ const SkeletonRoot = styled('span', {
       -webkit-mask-image: -webkit-radial-gradient(white, black);
 
       &::after {
-        animation: ${waveKeyframe} 1.6s linear 0.5s infinite;
+        animation: ${waveKeyframe} 2s linear 0.5s infinite;
         background: linear-gradient(
           90deg,
           transparent,

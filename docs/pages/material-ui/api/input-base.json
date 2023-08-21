@@ -74,6 +74,10 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "InputBase",
+  "imports": [
+    "import InputBase from '@mui/material/InputBase';",
+    "import { InputBase } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

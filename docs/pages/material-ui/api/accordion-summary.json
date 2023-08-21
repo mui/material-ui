@@ -13,6 +13,10 @@
     }
   },
   "name": "AccordionSummary",
+  "imports": [
+    "import AccordionSummary from '@mui/material/AccordionSummary';",
+    "import { AccordionSummary } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

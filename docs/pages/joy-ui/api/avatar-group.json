@@ -44,7 +44,11 @@
     }
   },
   "name": "AvatarGroup",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import AvatarGroup from '@mui/joy/AvatarGroup';",
+    "import { AvatarGroup } from '@mui/joy';"
+  ],
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAvatarGroup" },
   "slots": [
     {
       "name": "root",

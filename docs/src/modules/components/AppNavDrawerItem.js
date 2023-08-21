@@ -5,7 +5,7 @@ import { alpha, styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import { shouldHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
+import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
 import Link from 'docs/src/modules/components/Link';
 import standardNavIcons from './AppNavIcons';
 
@@ -273,7 +273,7 @@ export default function AppNavDrawerItem(props) {
   const [open, setOpen] = React.useState(initiallyExpanded);
   const handleClick = (event) => {
     // Ignore the action if opening the link in a new tab
-    if (shouldHandleLinkClick(event)) {
+    if (samePageLinkNavigation(event)) {
       return;
     }
 

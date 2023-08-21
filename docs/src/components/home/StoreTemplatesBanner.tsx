@@ -24,7 +24,7 @@ const Image = styled('img')(({ theme }) => ({
     width: 450,
     height: 450 / ratio,
   },
-  border: '6px solid',
+  border: '4px solid',
   borderColor: (theme.vars || theme).palette.grey[400],
   borderRadius: (theme.vars || theme).shape.borderRadius,
   objectFit: 'cover',
@@ -50,7 +50,7 @@ const linkMapping = {
   minimal: 'https://mui.com/store/items/minimal-dashboard/',
   theFront: 'https://mui.com/store/items/the-front-landing-page/',
   miro: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
-  flexy: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
+  devias: 'https://mui.com/store/items/devias-kit-pro/',
   berry: 'https://mui.com/store/items/berry-react-material-admin/',
   webbee: 'https://mui.com/store/items/webbee-landing-page/',
 };
@@ -281,12 +281,12 @@ export default function StoreTemplatesBanner() {
           pointerEvents: 'none',
           zIndex: 10,
           background: `linear-gradient(to right, ${
-            (theme.vars || theme).palette.grey[50]
+            (theme.vars || theme).palette.primary[50]
           }, ${transparent})`,
           ...theme.applyDarkStyles({
             background: `linear-gradient(to right, ${
               (theme.vars || theme).palette.primaryDark[900]
-            }, ${alpha(theme.palette.primaryDark[900], 0)})`,
+            }, ${alpha(theme.palette.primary[900], 0)})`,
           }),
         })}
       />

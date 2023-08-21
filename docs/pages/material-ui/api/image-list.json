@@ -25,6 +25,10 @@
     }
   },
   "name": "ImageList",
+  "imports": [
+    "import ImageList from '@mui/material/ImageList';",
+    "import { ImageList } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "masonry", "quilted", "standard", "woven"],
     "globalClasses": {},

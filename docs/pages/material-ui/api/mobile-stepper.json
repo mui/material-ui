@@ -29,6 +29,10 @@
     }
   },
   "name": "MobileStepper",
+  "imports": [
+    "import MobileStepper from '@mui/material/MobileStepper';",
+    "import { MobileStepper } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

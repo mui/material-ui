@@ -52,6 +52,10 @@
     }
   },
   "name": "TablePagination",
+  "imports": [
+    "import TablePagination from '@mui/material/TablePagination';",
+    "import { TablePagination } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
