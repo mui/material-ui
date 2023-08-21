@@ -888,7 +888,7 @@ describe('<Popover />', () => {
 
           expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
           expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
-          expect(positioningStyle.transformOrigin).to.match(/0px -1px( 0ms)?/);
+          expect(positioningStyle.transformOrigin).to.match(/0px -1px( 0px)?/);
         });
 
         describe('bottom > heightThreshold', () => {
