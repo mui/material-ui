@@ -16,7 +16,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 ## Introduction
 
-The Popper is a utility component for creating various kinds of popups.
+The Popup is a utility component for creating various kinds of popups.
 It relies on the third-party [Floating UI](https://floating-ui.com/) library for positioning.
 
 {{"demo": "UnstyledPopupIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
