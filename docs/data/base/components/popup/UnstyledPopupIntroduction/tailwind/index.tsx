@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Popup } from '@mui/base/Unstable_Popup/Popup';
+import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
 
 export default function SimplePopup() {
   const [anchor, setAnchor] = React.useState<null | HTMLElement>(null);
