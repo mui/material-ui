@@ -20,7 +20,6 @@ export default function Header() {
         py: 1,
         px: 2,
         gap: 1,
-        boxShadow: 'sm',
       }}
     >
       <GlobalStyles

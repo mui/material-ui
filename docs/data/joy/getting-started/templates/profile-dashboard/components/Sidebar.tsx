@@ -4,6 +4,7 @@ import { styled } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import Divider from '@mui/joy/Divider';
 import IconButton from '@mui/joy/IconButton';
@@ -20,6 +21,7 @@ import Sheet from '@mui/joy/Sheet';
 import MuiLogo from './MuiLogo';
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { closeSidebar } from '../utils';
+import { Stack } from '@mui/system';
 
 const Dropdown = styled('i')(({ theme }) => ({
   color: theme.vars.palette.text.tertiary,
@@ -72,7 +74,6 @@ export default function Sidebar() {
           left: 0,
           width: '100vw',
           height: '100vh',
-
           opacity: 'calc(var(--SideNavigation-slideIn, 0) - 0.2)',
           transition: 'opacity 0.4s',
           transform: {
@@ -84,7 +85,7 @@ export default function Sidebar() {
       />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <MuiLogo />
-        <Typography fontWeight="xl">MUI</Typography>
+        <Typography level="title-lg">MUI</Typography>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
       <Input startDecorator={<i data-feather="search" />} placeholder="Search" />
@@ -98,10 +99,10 @@ export default function Sidebar() {
         }}
       >
         <List
+          size="sm"
           sx={{
             '--ListItem-radius': '8px',
-            '--List-gap': '4px',
-            '--List-nestedInsetStart': '40px',
+            '--List-nestedInsetStart': '32px',
           }}
         >
           <ListItem>
@@ -159,9 +160,7 @@ export default function Sidebar() {
             </ListItemButton>
             <List>
               <ListItem>
-                <ListItemButton selected color="primary">
-                  My Profile
-                </ListItemButton>
+                <ListItemButton selected>My Profile</ListItemButton>
               </ListItem>
               <ListItem>
                 <ListItemButton>New user</ListItemButton>
@@ -173,11 +172,13 @@ export default function Sidebar() {
           </ListItem>
         </List>
         <List
+          size="sm"
           sx={{
             mt: 'auto',
             flexGrow: 0,
             '--ListItem-radius': '8px',
             '--List-gap': '8px',
+            mb: 2,
           }}
         >
           <ListItem>
@@ -198,35 +199,32 @@ export default function Sidebar() {
           </ListItem>
         </List>
         <Card
-          variant="soft"
-          color="primary"
           invertedColors
+          variant="soft"
+          color="warning"
+          size="sm"
           sx={{ boxShadow: 'none' }}
         >
-          <Typography fontSize="sm" fontWeight="lg" mb={0.5}>
-            Used space
-          </Typography>
+          <Stack direction="row" justifyContent="space-between" alignItems="center">
+            <Typography level="title-sm">Used space</Typography>
+            <IconButton size="sm">
+              <i data-feather="x" />
+            </IconButton>
+          </Stack>
           <Typography level="body-xs">
             Your team has used 80% of your available space. Need more?
           </Typography>
-          <LinearProgress value={80} determinate sx={{ my: 1.5 }} />
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <Link fontSize="sm" component="button" fontWeight="lg">
-              Upgrade plan
-            </Link>
-            <Link fontSize="sm" component="button">
-              Dismiss
-            </Link>
-          </Box>
+          <LinearProgress variant="outlined" value={80} determinate sx={{ my: 1 }} />
+          <Button size="sm" variant="solid">
+            Upgrade plan
+          </Button>
         </Card>
       </Box>
       <Divider />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-        <Avatar variant="outlined" src="/static/images/avatar/3.jpg" />
+        <Avatar variant="outlined" size="sm" src="/static/images/avatar/3.jpg" />
         <Box sx={{ minWidth: 0, flex: 1 }}>
-          <Typography fontSize="sm" fontWeight="lg">
-            Siriwat K.
-          </Typography>
+          <Typography level="title-sm">Siriwat K.</Typography>
           <Typography level="body-xs">siriwatk@test.com</Typography>
         </Box>
         <IconButton variant="plain" color="neutral">
