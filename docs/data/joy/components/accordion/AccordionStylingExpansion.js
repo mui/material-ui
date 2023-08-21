@@ -10,7 +10,7 @@ export default function AccordionStylingExpansion() {
       sx={{
         maxWidth: 400,
         [`& .${accordionClasses.root}`]: {
-          marginTop: '0.25rem',
+          marginTop: '0.5rem',
           transition: '0.2s ease',
           '& button:not([aria-expanded="true"])': {
             transition: '0.2s ease',
@@ -21,11 +21,10 @@ export default function AccordionStylingExpansion() {
           },
         },
         [`& .${accordionClasses.root}.${accordionClasses.expanded}`]: {
-          bgcolor: 'background.body',
-          borderRadius: 'lg',
-          boxShadow: 'xs',
+          bgcolor: 'background.level1',
+          borderRadius: 'md',
           borderBottom: '1px solid',
-          borderColor: 'divider',
+          borderColor: 'background.level2',
         },
         '& [aria-expanded="true"]': {
           boxShadow: (theme) => `inset 0 -1px 0 ${theme.vars.palette.divider}`,
