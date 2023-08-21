@@ -36,6 +36,7 @@ const AccordionSummaryRoot = styled(StyledListItem as unknown as 'div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AccordionSummaryOwnerState }>(({ theme }) => ({
   fontWeight: theme.vars.fontWeight.md,
+  gap: 'calc(var(--ListItem-paddingX, 0.75rem) + 0.25rem)',
   [`&.${accordionSummaryClasses.expanded}`]: {
     '--Icon-color': 'currentColor',
   },
@@ -46,7 +47,7 @@ const AccordionSummaryButton = styled(StyledListItemButton as unknown as 'button
   slot: 'Button',
   overridesResolver: (props, styles) => styles.button,
 })<{ ownerState: AccordionSummaryOwnerState }>({
-  gap: '0.5rem',
+  gap: 'inherit',
   fontWeight: 'inherit',
   justifyContent: 'space-between',
   font: 'inherit',

@@ -19,6 +19,8 @@ Joy UI provides four accordion-related components:
 - [`AccordionSummary`](#basic-usage): A header of the accordion which contain a button that triggers the expansion.
 - [`AccordionDetails`](#basic-usage): A wrapper for the accordion details.
 
+{{"demo": "AccordionUsage.js", "hideToolbar": true, "bg": "gradient"}}
+
 ## Basics
 
 ```jsx

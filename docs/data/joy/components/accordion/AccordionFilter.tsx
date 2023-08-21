@@ -46,11 +46,11 @@ export default function AccordionFilter() {
       }}
     >
       <Accordion>
-        <AccordionSummary sx={{ gap: 2 }}>
+        <AccordionSummary>
           <Avatar color="primary">
             <TapAndPlayRoundedIcon />
           </Avatar>
-          <ListItemContent sx={{ mx: 1 }}>
+          <ListItemContent>
             <Typography level="title-md">Connections</Typography>
             <Typography level="body-sm">
               Activate or deactivate your connections
@@ -81,11 +81,11 @@ export default function AccordionFilter() {
       </Accordion>
 
       <Accordion>
-        <AccordionSummary sx={{ gap: 2 }}>
+        <AccordionSummary>
           <Avatar color="success">
             <EditNotificationsRoundedIcon />
           </Avatar>
-          <ListItemContent sx={{ mx: 1 }}>
+          <ListItemContent>
             <Typography level="title-md">Notifications</Typography>
             <Typography level="body-sm">
               Enable or disable your notifications
@@ -116,11 +116,11 @@ export default function AccordionFilter() {
       </Accordion>
 
       <Accordion>
-        <AccordionSummary sx={{ gap: 2 }}>
+        <AccordionSummary>
           <Avatar color="danger">
             <AccessibilityNewRoundedIcon />
           </Avatar>
-          <ListItemContent sx={{ mx: 1 }}>
+          <ListItemContent>
             <Typography level="title-md">Accessibility</Typography>
             <Typography level="body-sm">
               Toggle your accessibility settings

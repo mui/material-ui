@@ -59,7 +59,7 @@ const AccordionDetailsContent = styled('div', {
   // Otherwise, the focus ring of the children can be cut off.
   paddingInlineStart: 'var(--ListItem-paddingLeft)',
   paddingInlineEnd: 'var(--ListItem-paddingRight)',
-  paddingBlockStart: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
+  paddingBlockStart: 'calc(var(--ListItem-paddingY) / 2)',
   paddingBlockEnd: 'calc(2.5 * var(--ListItem-paddingY))',
   transition: 'var(--AccordionDetails-transition)',
   [`&:not(.${accordionDetailsClasses.expanded})`]: {
