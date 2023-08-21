@@ -41,35 +41,37 @@
       "additionalInfo": { "slotsApi": true }
     }
   },
-  "name": "Drawer",
-  "imports": ["import Drawer from '@mui/joy/Drawer';", "import { Drawer } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiDrawer" },
+  "name": "PermanentDrawer",
+  "imports": [
+    "import PermanentDrawer from '@mui/joy/PermanentDrawer';",
+    "import { PermanentDrawer } from '@mui/joy';"
+  ],
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiPermanentDrawer" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiDrawer-root"
+      "class": ".MuiPermanentDrawer-root"
     },
     {
       "name": "backdrop",
       "description": "The component that renders the backdrop.",
       "default": "'div'",
-      "class": ".MuiDrawer-backdrop"
+      "class": null
     },
     {
       "name": "content",
       "description": "The component that renders the content of the drawer.",
       "default": "'div'",
-      "class": ".MuiDrawer-content"
+      "class": null
     }
   ],
-  "classes": { "classes": ["hidden"], "globalClasses": {} },
   "spread": true,
   "themeDefaultProps": false,
-  "muiName": "JoyDrawer",
+  "muiName": "JoyPermanentDrawer",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-joy/src/Drawer/Drawer.tsx",
+  "filename": "/packages/mui-joy/src/PermanentDrawer/PermanentDrawer.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-drawer/\">Drawer</a></li></ul>",
   "cssComponent": false

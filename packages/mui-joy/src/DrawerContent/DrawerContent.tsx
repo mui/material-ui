@@ -70,7 +70,7 @@ const DrawerContentRoot = styled(SheetRoot, {
   lineHeight: theme.vars.lineHeight.md,
   padding: 'var(--DrawerContent-padding)',
   minWidth:
-    'min(calc(100vw - 2 * var(--DrawerContent-padding)), var(--DrawerContent-minWidth, 300px))',
+    'min(calc(100vw - 2 * var(--DrawerContent-padding)), var(--DrawerContent-minWidth, 240px))',
   outline: 0,
   display: 'flex',
   flexDirection: 'column',
@@ -103,11 +103,11 @@ const DrawerContentRoot = styled(SheetRoot, {
  *
  * Demos:
  *
- * - [Modal](https://mui.com/joy-ui/react-modal/)
+ * - [Drawer](https://mui.com/joy-ui/react-drawer/)
  *
  * API:
  *
- * - [DrawerContent API](https://mui.com/joy-ui/api/modal-dialog/)
+ * - [DrawerContent API](https://mui.com/joy-ui/api/drawer-content/)
  */
 const DrawerContent = React.forwardRef(function DrawerContent(inProps, ref) {
   const props = useThemeProps<typeof inProps & DrawerContentProps>({
@@ -167,5 +167,62 @@ const DrawerContent = React.forwardRef(function DrawerContent(inProps, ref) {
     </DrawerContentSizeContext.Provider>
   );
 }) as OverridableComponent<DrawerContentTypeMap>;
+
+DrawerContent.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The size of the component.
+   * @default 'md'
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'outlined'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+} as any;
 
 export default DrawerContent;

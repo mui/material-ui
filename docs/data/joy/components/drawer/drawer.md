@@ -1,7 +1,7 @@
 ---
 productId: joy-ui
 title: React Drawer component
-components: Drawer
+components: Drawer, DrawerContent, PermanentDrawer
 githubLabel: 'component: drawer'
 ---
 
@@ -21,3 +21,11 @@ The Drawer can be cancelled by clicking the overlay or pressing the Esc key.
 It closes when an item is selected, handled by controlling the `open` prop.
 
 {{"demo": "DrawerBasic.js"}}
+
+## Permanent drawers
+
+Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
+
+Permanent navigation drawers are the **recommended default for desktop**.
+
+{{"demo": "PermanentDrawer.js", "iframe": true}}
