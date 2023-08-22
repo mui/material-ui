@@ -51,6 +51,10 @@
     "value": { "type": { "name": "number" } }
   },
   "name": "Rating",
+  "imports": [
+    "import Rating from '@mui/material/Rating';",
+    "import { Rating } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

@@ -41,6 +41,7 @@
     }
   },
   "name": "Chip",
+  "imports": ["import Chip from '@mui/material/Chip';", "import { Chip } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

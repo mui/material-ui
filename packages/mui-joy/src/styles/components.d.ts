@@ -1,5 +1,21 @@
 import { GlobalStateSlot } from '@mui/utils';
 import { CSSInterpolation } from '@mui/system';
+import { AccordionProps, AccordionOwnerState, AccordionSlot } from '../Accordion/AccordionProps';
+import {
+  AccordionGroupProps,
+  AccordionGroupOwnerState,
+  AccordionGroupSlot,
+} from '../AccordionGroup/AccordionGroupProps';
+import {
+  AccordionSummaryProps,
+  AccordionSummaryOwnerState,
+  AccordionSummarySlot,
+} from '../AccordionSummary/AccordionSummaryProps';
+import {
+  AccordionDetailsProps,
+  AccordionDetailsOwnerState,
+  AccordionDetailsSlot,
+} from '../AccordionDetails/AccordionDetailsProps';
 import {
   AspectRatioProps,
   AspectRatioOwnerState,
@@ -213,6 +229,22 @@ export type StyleOverrides<
 >;
 export interface Components<Theme = unknown> {
   // alphabetical order
+  JoyAccordion?: {
+    defaultProps?: Partial<AccordionProps>;
+    styleOverrides?: StyleOverrides<AccordionSlot, AccordionOwnerState, Theme>;
+  };
+  JoyAccordionGroup?: {
+    defaultProps?: Partial<AccordionGroupProps>;
+    styleOverrides?: StyleOverrides<AccordionGroupSlot, AccordionGroupOwnerState, Theme>;
+  };
+  JoyAccordionSummary?: {
+    defaultProps?: Partial<AccordionSummaryProps>;
+    styleOverrides?: StyleOverrides<AccordionSummarySlot, AccordionSummaryOwnerState, Theme>;
+  };
+  JoyAccordionDetails?: {
+    defaultProps?: Partial<AccordionDetailsProps>;
+    styleOverrides?: StyleOverrides<AccordionDetailsSlot, AccordionDetailsOwnerState, Theme>;
+  };
   JoyAlert?: {
     defaultProps?: Partial<AlertProps>;
     styleOverrides?: StyleOverrides<AlertSlot, AlertOwnerState, Theme>;

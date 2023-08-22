@@ -35,7 +35,11 @@
     }
   },
   "name": "Breadcrumbs",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import Breadcrumbs from '@mui/joy/Breadcrumbs';",
+    "import { Breadcrumbs } from '@mui/joy';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiBreadcrumbs" },
   "slots": [
     {
       "name": "root",

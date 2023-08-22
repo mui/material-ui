@@ -27,7 +27,7 @@ const CompactNumberInput = React.forwardRef(function CompactNumberInput(
     <div
       {...getRootProps()}
       className={clsx(
-        'grid grid-cols-[2.5rem] grid-rows-[2rem_2rem] gap-y-px rounded-lg border border-solid overflow-auto text-slate-900 dark:text-slate-300 bg-slate-200 dark:bg-slate-800 border-slate-200 dark:border-slate-800 hover:border-violet-500 dark:hover:border-violet-500',
+        'grid grid-cols-[2.5rem] grid-rows-[2rem_2rem] gap-y-px font-sans rounded-lg border border-solid overflow-auto text-slate-900 dark:text-slate-300 bg-slate-200 dark:bg-slate-800 border-slate-200 dark:border-slate-800 hover:border-violet-500 dark:hover:border-violet-500',
         className,
       )}
     >

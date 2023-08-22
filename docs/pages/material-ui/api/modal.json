@@ -70,7 +70,22 @@
     }
   },
   "name": "Modal",
-  "styles": { "classes": ["root", "hidden", "backdrop"], "globalClasses": {}, "name": "MuiModal" },
+  "imports": ["import Modal from '@mui/material/Modal';", "import { Modal } from '@mui/material';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiModal" },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiModal-root"
+    },
+    {
+      "name": "backdrop",
+      "description": "The component that renders the backdrop.",
+      "class": ".MuiModal-backdrop"
+    }
+  ],
+  "classes": { "classes": ["hidden"], "globalClasses": {} },
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiModal",

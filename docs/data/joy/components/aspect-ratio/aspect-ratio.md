@@ -82,6 +82,10 @@ When the Aspect Ratio component is a child of a flexbox `row` container, use `fl
 
 {{"demo": "FlexRowRatio.js"}}
 
+By default, the Aspect Ratio component will retain the provided aspect ratio. If you want the Aspect Ratio component to fill the vertical space, set the `flex` prop to `true`:
+
+{{"demo": "FlexAspectRatio.js"}}
+
 ## Using with Next.js Image
 
 The Aspect Ratio component can be used with a [Next.js Image](https://nextjs.org/docs/app/building-your-application/optimizing/images) component as a child.

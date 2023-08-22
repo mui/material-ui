@@ -79,6 +79,10 @@
     "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "Tooltip",
+  "imports": [
+    "import Tooltip from '@mui/material/Tooltip';",
+    "import { Tooltip } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "popper",

@@ -40,6 +40,10 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "FormControlLabel",
+  "imports": [
+    "import FormControlLabel from '@mui/material/FormControlLabel';",
+    "import { FormControlLabel } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

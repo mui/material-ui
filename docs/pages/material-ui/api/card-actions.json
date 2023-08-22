@@ -12,6 +12,10 @@
     }
   },
   "name": "CardActions",
+  "imports": [
+    "import CardActions from '@mui/material/CardActions';",
+    "import { CardActions } from '@mui/material';"
+  ],
   "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiCardActions" },
   "spread": true,
   "themeDefaultProps": true,
