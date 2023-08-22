@@ -1,22 +1,20 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react';
 import copy from 'clipboard-copy';
-import { Button as ButtonUnstyled, ButtonProps } from '@mui/base/Button';
 import { SxProps } from '@mui/system';
 import { styled, Theme } from '@mui/material/styles';
 import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
 import CheckRounded from '@mui/icons-material/CheckRounded';
 
-const Button = styled(ButtonUnstyled)(({ theme }) => ({
+const Button = styled('button')(({ theme }) => ({
   boxSizing: 'border-box',
-  position: 'relative',
   minWidth: 64,
   margin: 0,
   marginTop: 16,
   cursor: 'copy',
   padding: 0,
-  width: 'max-content',
   display: 'inline-flex',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   justifyContent: 'center',
   verticalAlign: 'middle',
   gap: 8,
@@ -24,45 +22,45 @@ const Button = styled(ButtonUnstyled)(({ theme }) => ({
   border: 0,
   boxShadow: 'none',
   backgroundColor: 'transparent',
-  color: (theme.vars || theme).palette.grey[600],
   fontFamily: theme.typography.fontFamilyCode,
   fontSize: theme.typography.pxToRem(12),
   textDecoration: 'none',
   textTransform: 'initial',
   lineHeight: 1.5,
   letterSpacing: 0,
-  transition: theme.transitions.create(['background-color', 'color'], {
+  transition: theme.transitions.create('color', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.shortest,
   }),
   WebkitTapHighlightColor: 'transparent',
   WebkitFontSmoothing: 'subpixel-antialiased',
+  color: (theme.vars || theme).palette.grey[600],
+  '&:hover, &:focus-visible': {
+    color: (theme.vars || theme).palette.primary.main,
+    '@media (hover: none)': {
+      color: (theme.vars || theme).palette.grey[600],
+    },
+  },
   '& svg': {
     display: 'inline-block',
-    position: 'absolute',
-    right: -20,
+    position: 'relative',
+    right: 3,
     top: 1,
     opacity: 0,
-    color: (theme.vars || theme).palette.primary.main,
     transition: theme.transitions.create('opacity', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.shortest,
     }),
   },
-  '&:hover, & .Mui-focusVisible': {
-    color: (theme.vars || theme).palette.primary.main,
-    '& svg': {
-      opacity: 1,
-    },
+  '&:focus svg': {
+    opacity: 1,
   },
 }));
 
-export default function NpmCopyButton({
-  installation,
-  onClick,
-  sx,
-  ...props
-}: ButtonProps & { installation: string; sx?: SxProps<Theme> }) {
+export default function NpmCopyButton(
+  props: React.HTMLAttributes<HTMLButtonElement> & { installation: string; sx?: SxProps<Theme> },
+) {
+  const { installation, onClick, sx, ...other } = props;
   const [copied, setCopied] = React.useState(false);
   const handleCopy = () => {
     setCopied(true);
@@ -76,14 +74,14 @@ export default function NpmCopyButton({
         handleCopy();
         onClick?.(event);
       }}
-      {...props}
+      {...other}
     >
       <strong>$</strong>
       {installation}
       {copied ? (
-        <CheckRounded color="primary" sx={{ fontSize: 15 }} />
+        <CheckRounded color="inherit" sx={{ fontSize: 15 }} />
       ) : (
-        <ContentCopyRounded color="primary" sx={{ fontSize: 15 }} />
+        <ContentCopyRounded color="inherit" sx={{ fontSize: 15 }} />
       )}
     </Button>
   );
