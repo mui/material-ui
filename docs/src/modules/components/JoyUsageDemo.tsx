@@ -3,6 +3,7 @@ import Check from '@mui/icons-material/Check';
 import CheckRounded from '@mui/icons-material/CheckRounded';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import Box from '@mui/joy/Box';
+import Divider from '@mui/joy/Divider';
 import Chip from '@mui/joy/Chip';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
@@ -244,7 +245,6 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         sx={(theme) => ({
           flexShrink: 0,
           gap: 2,
-          p: 3,
           borderLeft: '1px solid',
           borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
           background: `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
@@ -254,7 +254,8 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
       >
         <Box
           sx={{
-            mb: 2,
+            px: 3,
+            py: 2,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -266,7 +267,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           <IconButton
             aria-label="Reset all"
             variant="outlined"
-            // color="primary"
+            color="primary"
             size="sm"
             onClick={() => setProps(initialProps as T)}
             sx={{
@@ -277,8 +278,10 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             <ReplayRoundedIcon />
           </IconButton>
         </Box>
+        <Divider sx={{ opacity: 0.5 }} />
         <Box
           sx={{
+            p: 3,
             display: 'flex',
             flexDirection: 'column',
             gap: 3,
