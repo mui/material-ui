@@ -1,5 +1,5 @@
 packages:
-  - "benchmark"
-  - "packages/*"
-  - "docs"
-  - "test"
+  - 'benchmark'
+  - 'packages/*'
+  - 'docs'
+  - 'test'
