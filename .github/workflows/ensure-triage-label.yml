@@ -1,4 +1,5 @@
 name: Ensure triage label is present
+
 on:
   label:
     types:
@@ -6,6 +7,9 @@ on:
   issues:
     types:
       - opened
+
+permissions: {}
+
 jobs:
   label_issues:
     runs-on: ubuntu-latest

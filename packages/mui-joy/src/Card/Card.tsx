@@ -66,8 +66,8 @@ const CardRoot = styled('div', {
       '--Divider-inset': 'calc(-1 * var(--Card-padding))',
       ...(ownerState.size === 'sm' && {
         '--Card-radius': theme.vars.radius.sm,
-        '--Card-padding': '0.5rem',
-        gap: '0.375rem 0.5rem',
+        '--Card-padding': '0.625rem',
+        gap: '0.5rem',
       }),
       ...(ownerState.size === 'md' && {
         '--Card-radius': theme.vars.radius.md,

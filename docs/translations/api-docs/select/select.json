@@ -74,6 +74,7 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
     "select": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the select component <code>select</code> class"

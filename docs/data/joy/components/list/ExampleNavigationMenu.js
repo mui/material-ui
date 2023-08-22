@@ -106,7 +106,7 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
   const id = open ? 'about-popper' : undefined;
   return (
     <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-      <Box onMouseLeave={() => setAnchorEl(null)}>
+      <div onMouseLeave={() => setAnchorEl(null)}>
         <ListItemButton
           aria-haspopup
           aria-expanded={open ? 'true' : 'false'}
@@ -176,7 +176,7 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
             </ListItem>
           </List>
         </Popper>
-      </Box>
+      </div>
     </ClickAwayListener>
   );
 });
@@ -212,7 +212,7 @@ const AdmissionsMenu = React.forwardRef(
     const id = open ? 'admissions-popper' : undefined;
     return (
       <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-        <Box onMouseLeave={() => setAnchorEl(null)}>
+        <div onMouseLeave={() => setAnchorEl(null)}>
           <ListItemButton
             aria-haspopup
             aria-expanded={open ? 'true' : 'false'}
@@ -284,7 +284,7 @@ const AdmissionsMenu = React.forwardRef(
               </ListItem>
             </List>
           </Popper>
-        </Box>
+        </div>
       </ClickAwayListener>
     );
   },

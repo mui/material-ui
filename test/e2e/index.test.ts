@@ -256,12 +256,13 @@ describe('e2e', () => {
   });
 
   describe('<TextField />', () => {
-    it('should handle `onClick` when clicking on the focused label position', async () => {
-      await renderFixture('TextField/TextFieldWithOnClick');
+    it('should fire `onClick` when clicking on the focused label position', async () => {
+      await renderFixture('TextField/OutlinedTextFieldOnClick');
 
       // execute the click on the focused label position
       await page.getByRole('textbox').click({ position: { x: 10, y: 10 } });
-      await page.waitForSelector('.MuiInputBase-root.Mui-error');
+      const errorSelector = page.locator('.MuiInputBase-root.Mui-error');
+      await errorSelector.waitFor();
     });
   });
 });

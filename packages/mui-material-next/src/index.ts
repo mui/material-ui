@@ -6,6 +6,9 @@ export * from './Badge';
 export { default as Button } from './Button';
 export * from './Button';
 
+export { default as ButtonBase } from './ButtonBase';
+export * from './ButtonBase';
+
 export { default as Chip } from './Chip';
 export * from './Chip';
 

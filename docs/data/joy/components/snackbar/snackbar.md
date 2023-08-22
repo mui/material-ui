@@ -31,8 +31,8 @@ Radix will enhance the functionalities by preserving the styles of Joy UI compon
 Animation is created by targeting `data-*` attributes injected by Radix UI's `Toast.Root` component.
 In this demo, it uses `@mui/system` keyframes API, same as emotion's keyframes, to build the animation stylesheet.
 
-- [Install Radix UI's Toast](https://www.radix-ui.com/docs/primitives/components/toast#installation)
-- [Toast component documentation](https://www.radix-ui.com/docs/primitives/components/toast)
+- [Install Radix UI's Toast](https://www.radix-ui.com/primitives/docs/components/toast#installation)
+- [Toast component documentation](https://www.radix-ui.com/primitives/docs/components/toast)
 
 <iframe src="https://codesandbox.io/embed/snackbar-joy-ui-feat-radix-v8e7qw?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:360px; border:2; border-radius: 8px; overflow:hidden;"
