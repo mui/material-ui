@@ -166,7 +166,7 @@ export default function JoyVariablesDemo(props: {
             <IconButton
               aria-label="Reset all"
               variant="outlined"
-              color="neutral"
+              color="primary"
               size="sm"
               onClick={() => setSx({})}
               sx={{
@@ -207,23 +207,22 @@ export default function JoyVariablesDemo(props: {
                               px
                             </Typography>
                           ) : null}
-                          {sx[item.var] && sx[item.var] !== item.defaultValue ? (
-                            <IconButton
-                              tabIndex={-1}
-                              variant="plain"
-                              color="neutral"
-                              size="sm"
-                              onClick={() =>
-                                setSx((prevSx) => {
-                                  const newSx = { ...prevSx };
-                                  delete newSx[item.var];
-                                  return newSx;
-                                })
-                              }
-                            >
-                              <ReplayRoundedIcon fontSize="sm" />
-                            </IconButton>
-                          ) : null}
+                          <IconButton
+                            tabIndex={-1}
+                            variant="plain"
+                            color="neutral"
+                            size="sm"
+                            disabled={!sx[item.var] && sx[item.var] !== item.defaultValue}
+                            onClick={() =>
+                              setSx((prevSx) => {
+                                const newSx = { ...prevSx };
+                                delete newSx[item.var];
+                                return newSx;
+                              })
+                            }
+                          >
+                            <ReplayRoundedIcon fontSize="sm" />
+                          </IconButton>
                         </React.Fragment>
                       }
                       type="number"
