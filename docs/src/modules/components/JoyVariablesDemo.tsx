@@ -48,8 +48,8 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
         aria-controls={`section-${slot}`}
         component="button"
         underline="none"
-        fontSize="xs"
-        textTransform="uppercase"
+        fontSize="sm"
+        // textTransform="uppercase"
         fontWeight="lg"
         endDecorator={
           <KeyboardArrowDown
@@ -69,9 +69,9 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
           id={`section-${slot}`}
           sx={{
             display: 'flex',
+            flexDirection: 'column',
             flexWrap: 'wrap',
-            gap: 2,
-            '& > *': { flex: 1 },
+            gap: 1,
           }}
         >
           {data.map((item) => renderField(item))}
@@ -93,28 +93,36 @@ export default function JoyVariablesDemo(props: {
   return (
     <Box
       sx={{
-        m: 0,
-        mt: 2,
         flexGrow: 1,
-        maxWidth: 'calc(100% + 24px)',
+        maxWidth: '100%',
         display: 'flex',
-        flexDirection: { xs: 'column', sm: 'row' },
-        flexWrap: 'wrap',
-        gap: 2,
+        flexDirection: { xs: 'column', md: 'row' },
         '& .markdown-body pre': {
           margin: 0,
-          borderRadius: 'sm',
+          borderRadius: 'md',
         },
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999 }}>
+      <Box
+        sx={(theme) => ({
+          display: 'flex',
+          flexDirection: 'column',
+          flexGrow: 999,
+          minWidth: 0,
+          p: 3,
+          gap: 3,
+          bgcolor: '#FFF',
+          [theme.getColorSchemeSelector('dark')]: {
+            backgroundColor: theme.palette.neutral[900],
+          },
+        })}
+      >
         <Box
           sx={{
             flexGrow: 1,
             m: 'auto',
             display: 'flex',
             alignItems: 'center',
-            p: 2,
           }}
         >
           {props.renderDemo(sx)}
@@ -127,21 +135,23 @@ export default function JoyVariablesDemo(props: {
                 : `<${componentName} ${formatSx(sx)}${childrenAccepted ? '>' : '/>'}`
             }
             language="jsx"
-            sx={{ display: { xs: 'none', md: 'initial' } }}
+            sx={{ display: { xs: 'none', md: 'block' } }}
           />
         </BrandingProvider>
       </Box>
       <Sheet
-        variant="outlined"
-        sx={{
-          minWidth: 0,
-          flexBasis: 240,
-          flexGrow: 1,
-          borderRadius: 'sm',
-          boxShadow: 'sm',
-        }}
+        sx={(theme) => ({
+          flexShrink: 0,
+          gap: 2,
+          p: 3,
+          borderLeft: '1px solid',
+          borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+          background: `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
+          backdropFilter: 'blur(8px)',
+          minWidth: '280px',
+        })}
       >
-        <List component="div" sx={{ '--List-padding': '1rem', '--ListDivider-gap': '0px' }}>
+        <List component="div">
           <Box
             sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
           >
@@ -164,7 +174,7 @@ export default function JoyVariablesDemo(props: {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              gap: 2,
+              gap: 1,
             }}
           >
             {data.map((dataItem) => {

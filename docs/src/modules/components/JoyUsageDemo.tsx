@@ -203,14 +203,17 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
       }}
     >
       <Box
-        sx={{
+        sx={(theme) => ({
           display: 'flex',
           flexDirection: 'column',
           flexGrow: 999,
           minWidth: 0,
           p: 3,
-          bgcolor: 'var(--joy-palette-background-surface)',
-        }}
+          bgcolor: '#FFF',
+          [theme.getColorSchemeSelector('dark')]: {
+            backgroundColor: theme.palette.neutral[900],
+          },
+        })}
       >
         <Box
           sx={{
@@ -238,16 +241,16 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         </BrandingProvider>
       </Box>
       <Sheet
-        sx={{
+        sx={(theme) => ({
           flexShrink: 0,
           gap: 2,
           p: 3,
           borderLeft: '1px solid',
-          borderColor: (theme) => `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
-          background: (theme) => `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
+          borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+          background: `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
           backdropFilter: 'blur(8px)',
           minWidth: '280px',
-        }}
+        })}
       >
         <Box
           sx={{
@@ -262,8 +265,8 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           </Typography>
           <IconButton
             aria-label="Reset all"
-            variant="soft"
-            color="primary"
+            variant="outlined"
+            // color="primary"
             size="sm"
             onClick={() => setProps(initialProps as T)}
             sx={{
@@ -278,7 +281,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 2.5,
+            gap: 3,
             [`& .${formLabelClasses.root}`]: {
               fontWeight: 'lg',
             },
@@ -343,7 +346,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                           [propName]: value,
                         }));
                       }}
-                      sx={{ flexWrap: 'wrap', gap: 1 }}
+                      sx={{ flexWrap: 'wrap', gap: 1, '--unstable_RadioGroup-margin': 0 }}
                     >
                       {options.map((value: string, index: number) => {
                         const checked = String(resolvedValue) === value;
@@ -438,7 +441,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                           [propName || 'color']: event.target.value,
                         }))
                       }
-                      sx={{ flexWrap: 'wrap', gap: 1.5 }}
+                      sx={{ flexWrap: 'wrap', gap: 1.5, '--unstable_RadioGroup-margin': 0 }}
                     >
                       {(['primary', 'neutral', 'danger', 'success', 'warning'] as const).map(
                         (value) => {
@@ -449,8 +452,8 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                               variant="solid"
                               color={value}
                               sx={{
-                                width: 28,
-                                height: 28,
+                                width: 26,
+                                height: 26,
                                 borderRadius: 'xl',
                                 textTransform: 'capitalize',
                               }}
