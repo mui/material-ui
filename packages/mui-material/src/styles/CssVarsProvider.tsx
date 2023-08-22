@@ -1,4 +1,6 @@
 'use client';
+// do not remove the following import (https://github.com/microsoft/TypeScript/issues/29808#issuecomment-1320713018)
+import * as React from 'react';
 import {
   unstable_createCssVarsProvider as createCssVarsProvider,
   SxProps,
