@@ -7,8 +7,6 @@ import Chip from '@mui/material/Chip';
 import TreeView from '@mui/lab/TreeView';
 import MuiTreeItem, { useTreeItem, TreeItemProps, TreeItemContentProps } from '@mui/lab/TreeItem';
 import Typography from '@mui/material/Typography';
-import AddBoxOutlined from '@mui/icons-material/AddBoxOutlined';
-import IndeterminateCheckBoxOutlined from '@mui/icons-material/IndeterminateCheckBoxOutlined';
 import FolderRounded from '@mui/icons-material/FolderRounded';
 import FolderOpenRounded from '@mui/icons-material/FolderOpenRounded';
 import PhotoOutlined from '@mui/icons-material/PhotoOutlined';
@@ -152,19 +150,14 @@ const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => [
     },
     '& .MuiTreeItem-root': {
       position: 'relative',
-      '&:last-of-type': {
-        '&:before': {
-          height: 30 / 2,
-        },
-      },
       '&:before': {
         content: '""',
         display: 'block',
         position: 'absolute',
-        left: -18,
+        left: -14,
         height: '100%',
-        width: 2,
-        backgroundColor: (theme.vars || theme).palette.grey[200],
+        width: 1.5,
+        backgroundColor: (theme.vars || theme).palette.grey[100],
       },
     },
     '& .MuiTreeItem-content': {
@@ -173,25 +166,12 @@ const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => [
     '& .MuiTreeItem-group': {
       marginLeft: 0,
       paddingLeft: theme.spacing(3),
-      '& .MuiTreeItem-content': {
-        '&:before': {
-          content: '""',
-          position: 'absolute',
-          display: 'block',
-          width: 24,
-          height: 2,
-          backgroundColor: (theme.vars || theme).palette.grey[200],
-          top: '50%',
-          left: 6,
-          transform: 'translate(-100%, -50%)',
-        },
-      },
     },
   },
   theme.applyDarkStyles({
     '& .MuiTreeItem-root': {
       '&:before': {
-        backgroundColor: (theme.vars || theme).palette.primaryDark[500],
+        backgroundColor: (theme.vars || theme).palette.primaryDark[700],
       },
     },
     '& .MuiTreeItem-group': {
@@ -230,8 +210,6 @@ export default function XDateRangeDemo() {
           <TreeView
             aria-label="file system navigator"
             defaultExpanded={['2', '2.3', '3']}
-            defaultCollapseIcon={<IndeterminateCheckBoxOutlined fontSize="small" />}
-            defaultExpandIcon={<AddBoxOutlined fontSize="small" />}
             sx={{ height: { xs: 260, sm: 300 }, overflowY: 'auto', p: 1 }}
           >
             <TreeItem nodeId="1" label="Drive">
@@ -255,12 +233,12 @@ export default function XDateRangeDemo() {
               <TreeItem nodeId="1.2" label="Photos">
                 <TreeItem
                   nodeId="1.2.1"
-                  label="Family.jpeg"
+                  label="family.jpeg"
                   ContentProps={{ lastNestedChild: true }}
                 />
                 <TreeItem
                   nodeId="1.2.2"
-                  label="My Dog.png"
+                  label="my_dogpng"
                   ContentProps={{ lastNestedChild: true }}
                 />
               </TreeItem>
@@ -268,15 +246,15 @@ export default function XDateRangeDemo() {
             <TreeItem nodeId="2" label="Favorite">
               <TreeItem
                 nodeId="2.1"
-                label="MUI Retreat Picture.jpg"
+                label="MUI_retreat_photo.jpg"
                 ContentProps={{ lastNestedChild: true }}
               />
               <TreeItem
                 nodeId="2.2"
-                label="v5 launch video.mkv"
+                label="v6_secrets.mkv"
                 ContentProps={{ lastNestedChild: true }}
               />
-              <TreeItem nodeId="2.3" label="images">
+              <TreeItem nodeId="2.3" label="Other pictures">
                 <TreeItem
                   nodeId="2.3.1"
                   label="my_avatar.jpg"

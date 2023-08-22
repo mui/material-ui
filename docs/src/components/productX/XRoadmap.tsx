@@ -35,7 +35,7 @@ export default function XRoadmap() {
               content: '""',
               display: 'block',
               position: 'absolute',
-              width: 2,
+              width: 1.5,
               bgcolor: 'primaryDark.500',
               top: 24,
               bottom: 10,
@@ -51,25 +51,16 @@ export default function XRoadmap() {
   const bullet = (
     <Box
       sx={{
-        ml: 1,
+        ml: 1.3,
         mr: -2,
         display: 'flex',
         alignItems: 'center',
         '&:before': {
           content: '""',
           display: 'block',
-          height: 2,
+          height: 1.5,
           width: 15,
           bgcolor: 'primaryDark.500',
-        },
-        '&:after': {
-          content: '""',
-          width: 6,
-          height: 6,
-          bgcolor: 'warning.500',
-          borderRadius: '50%',
-          display: 'block',
-          marginRight: 1.5,
         },
       }}
     />

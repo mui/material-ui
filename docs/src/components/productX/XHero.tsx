@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { red } from '@mui/material/colors';
+import { red, green, yellow, blue } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
@@ -207,10 +207,25 @@ export default function XHero() {
                         px: 0.5,
                       },
                     },
-                    '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
-                      '& .MuiChip-root': {
-                        color: red[500],
-                      },
+                    '& .MuiChip-root.Rejected': {
+                      color: red[800],
+                      backgroundColor: red[50],
+                      borderColor: red[100],
+                    },
+                    '& .MuiChip-root.Filled': {
+                      color: green[800],
+                      backgroundColor: green[50],
+                      borderColor: green[100],
+                    },
+                    '& .MuiChip-root.Open': {
+                      color: blue[800],
+                      backgroundColor: blue[50],
+                      borderColor: blue[100],
+                    },
+                    '& .MuiChip-root.PartiallyFilled': {
+                      color: 'text.secondary',
+                      backgroundColor: yellow[50],
+                      borderColor: yellow[600],
                     },
                     '& .grouping-column-header': {
                       pl: 6,
@@ -226,10 +241,25 @@ export default function XHero() {
                       '& .MuiDataGrid-cell': {
                         borderColor: alpha(theme.palette.primaryDark[600], 0.5),
                       },
-                      '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
-                        '& .MuiChip-root': {
-                          color: red[300],
-                        },
+                      '& .MuiChip-root.Rejected': {
+                        color: red[200],
+                        backgroundColor: alpha(red[900], 0.2),
+                        borderColor: alpha(red[700], 0.5),
+                      },
+                      '& .MuiChip-root.Filled': {
+                        color: green[200],
+                        backgroundColor: alpha(green[900], 0.2),
+                        borderColor: alpha(green[700], 0.5),
+                      },
+                      '& .MuiChip-root.Open': {
+                        color: blue[200],
+                        backgroundColor: alpha(blue[900], 0.2),
+                        borderColor: alpha(blue[700], 0.5),
+                      },
+                      '& .MuiChip-root.PartiallyFilled': {
+                        color: yellow[200],
+                        backgroundColor: alpha(yellow[900], 0.2),
+                        borderColor: alpha(yellow[700], 0.2),
                       },
                     },
                   }),
@@ -274,9 +304,9 @@ export default function XHero() {
                 flexGrow: 1,
               })}
             >
-              <Box sx={{ p: 2 }}>
-                <Typography fontWeight={500}>Cool Project</Typography>
-              </Box>
+              <Typography fontWeight={500} p={2}>
+                Cool UI project
+              </Typography>
               <Divider />
               <FolderTreeView />
             </Paper>
@@ -305,6 +335,9 @@ export default function XHero() {
                   '& [role="row"]': {
                     margin: { xs: '4px 0', xl: '6px 0' },
                   },
+                  '& .MuiPickersArrowSwitcher-root': {
+                    padding: 1,
+                  },
                   '& .MuiDateRangePickerDay-root': {
                     lineHeight: 0,
                     margin: 0,
@@ -314,6 +347,12 @@ export default function XHero() {
                     height: { xs: 28, xl: 32 },
                     fontWeight: 400,
                   },
+                  '& .MuiDateRangePickerDay-day.Mui-selected': {
+                    fontWeight: 600,
+                  },
+                  '& .MuiDateRangePickerDay-day:not(.Mui-selected)': {
+                    borderColor: 'primary.300',
+                  },
                 },
                 (theme) =>
                   theme.applyDarkStyles({
@@ -321,6 +360,9 @@ export default function XHero() {
                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
                     '& > div': {
                       backgroundColor: 'primaryDark.800',
+                    },
+                    '& .MuiDateRangePickerDay-day.Mui-selected': {
+                      color: '#FFF',
                     },
                   }),
               ]}

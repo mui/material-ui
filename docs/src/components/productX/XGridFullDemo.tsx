@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { red, green, yellow, blue } from '@mui/material/colors';
+import { alpha } from '@mui/material/styles';
 import { DataGridPro, GridToolbar, GridPaginationModel } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import FormControl from '@mui/material/FormControl';
@@ -183,6 +185,26 @@ export default function XGridFullDemo() {
                 '& .MuiDataGrid-cell': {
                   bgcolor: 'grey.50',
                 },
+                '& .MuiChip-root.Rejected': {
+                  color: red[800],
+                  backgroundColor: red[50],
+                  borderColor: red[100],
+                },
+                '& .MuiChip-root.Filled': {
+                  color: green[800],
+                  backgroundColor: green[50],
+                  borderColor: green[100],
+                },
+                '& .MuiChip-root.Open': {
+                  color: blue[800],
+                  backgroundColor: blue[50],
+                  borderColor: blue[100],
+                },
+                '& .MuiChip-root.PartiallyFilled': {
+                  color: 'text.secondary',
+                  backgroundColor: yellow[50],
+                  borderColor: yellow[600],
+                },
                 '& .MuiDataGrid-footerContainer': {
                   minHeight: 48,
                   borderTop: '1px solid',
@@ -208,6 +230,26 @@ export default function XGridFullDemo() {
                   },
                   '& .MuiDataGrid-footerContainer': {
                     borderColor: 'primaryDark.600',
+                  },
+                  '& .MuiChip-root.Rejected': {
+                    color: red[200],
+                    backgroundColor: alpha(red[900], 0.2),
+                    borderColor: alpha(red[700], 0.5),
+                  },
+                  '& .MuiChip-root.Filled': {
+                    color: green[200],
+                    backgroundColor: alpha(green[900], 0.2),
+                    borderColor: alpha(green[700], 0.5),
+                  },
+                  '& .MuiChip-root.Open': {
+                    color: blue[200],
+                    backgroundColor: alpha(blue[900], 0.2),
+                    borderColor: alpha(blue[700], 0.5),
+                  },
+                  '& .MuiChip-root.PartiallyFilled': {
+                    color: yellow[200],
+                    backgroundColor: alpha(yellow[900], 0.2),
+                    borderColor: alpha(yellow[700], 0.2),
                   },
                 },
               }),
