@@ -53,12 +53,17 @@ export const ButtonBaseRoot = styled('button', {
   textDecoration: 'none',
   // So we take precedent over the style of a native <a /> element.
   color: 'inherit',
+  '&:active': {
+    userSelect: 'none',
+  },
   '&::-moz-focus-inner': {
     borderStyle: 'none', // Remove Firefox dotted outline.
   },
   [`&.${buttonBaseClasses.disabled}`]: {
-    pointerEvents: 'none', // Disable link interactions
     cursor: 'default',
+    '&:active': {
+      pointerEvents: 'none', // Disable link interactions
+    },
   },
   '@media print': {
     colorAdjust: 'exact',
