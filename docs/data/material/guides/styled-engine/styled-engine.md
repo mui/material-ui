@@ -151,7 +151,11 @@ Render Material UI's theme provider below Theme UI's provider and assign the mat
 
 ```js
 import { ThemeUIProvider } from 'theme-ui';
-import { createTheme as materialCreateTheme, THEME_ID } from '@mui/material/styles';
+import {
+  ThemeProvider as MaterialThemeProvider,
+  createTheme as materialCreateTheme,
+  THEME_ID,
+} from '@mui/material/styles';
 
 const themeUITheme = {
   fonts: {
@@ -187,12 +191,12 @@ Render Material UI's theme provider below Chakra UI's provider and assign the ma
 import { ChakraProvider, extendTheme as chakraExtendTheme } from '@chakra-ui/react';
 import {
   ThemeProvider as MaterialThemeProvider,
-  createTheme as muiCreateTheme,
+  createTheme as materialCreateTheme,
   THEME_ID,
 } from '@mui/material/styles';
 
 const chakraTheme = chakraExtendTheme();
-const materialTheme = muiCreateTheme();
+const materialTheme = materialCreateTheme();
 
 function App() {
   return (

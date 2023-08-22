@@ -145,7 +145,7 @@ export default function ExampleCollection() {
                   href={example.link}
                   variant="body2"
                   sx={{
-                    fontWeight: 500,
+                    fontWeight: 'medium',
                     display: 'flex',
                     alignItems: 'center',
                     mt: 0.5,
@@ -170,7 +170,7 @@ export default function ExampleCollection() {
                       href={example.tsLink}
                       variant="body2"
                       sx={{
-                        fontWeight: 500,
+                        fontWeight: 'medium',
                         display: 'flex',
                         alignItems: 'center',
                       }}

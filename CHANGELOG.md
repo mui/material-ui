@@ -1,5 +1,75 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.5
+
+<!-- generated comparing v5.14.4..master -->
+
+_Aug 14, 2023_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- @mnajdova [made it easier to use third-party components in Base UI slots](https://mui.com/base-ui/getting-started/customization/#overriding-subcomponent-slots) with the introduction of the `prepareForSlot` utility (#38138)
+
+### `@mui/material@5.14.5`
+
+- &#8203;<!-- 04 -->[TextField] Fix to handle `onClick` on root element (#38072) @LukasTy
+
+### `@mui/codemod@5.14.5`
+
+- &#8203;<!-- 31 -->[codemod] Add v5.0.0/tree-view-moved-to-x codemod (#38248) @flaviendelangle
+
+### `@mui/joy@5.0.0-beta.2`
+
+- &#8203;<!-- 07 -->[Input][joy-ui] Fix the `FormHelperText` icon color (#38387) @TheNatkat
+- &#8203;<!-- 06 -->[Skeleton][joy-ui] Soften the pulse animation (#38384) @zanivan
+- &#8203;<!-- 05 -->[TabPanel][joy-ui] Add `keepMounted` prop (#38293) @decadef20
+
+### `@mui/base@5.0.0-beta.11`
+
+- &#8203;<!-- 30 -->[base-ui] Remove the legacy Extend\* types (#38184) @michaldudak
+- &#8203;<!-- 29 -->[base-ui] Add `useModal` hook (#38187) @mnajdova
+- &#8203;<!-- 28 -->[base-ui] Add `prepareForSlot` util (#38138) @mnajdova
+- &#8203;<!-- 26 -->[useButton][base-ui] Fix tabIndex not being forwarded (#38417) @DiegoAndai
+- &#8203;<!-- 25 -->[useButton][base-ui] Fix onFocusVisible not being handled (#38399) @DiegoAndai
+
+### Docs
+
+- &#8203;<!-- 32 -->[blog] Blog post for MUI X mid v6. Date Pickers, Data Grid, and Charts (#38241) @richbustos
+- &#8203;<!-- 35 -->[docs][base-ui] Update number input API docs (#38363) @mj12albert
+- &#8203;<!-- 29 -->[docs] Improve page transition speed (#38394) @oliviertassinari
+- &#8203;<!-- 28 -->[docs] Improve examples (#38398) @oliviertassinari
+- &#8203;<!-- 19 -->[docs][docs] Add `FileUpload` demo (#38420) @sai6855
+- &#8203;<!-- 18 -->[docs][joy-ui] Refine the Order Dashboard template design (#38395) @zanivan
+- &#8203;<!-- 17 -->[docs][material-ui][joy-ui] Simplify the Quickstart section on the Usage page (#38385) @danilo-leal
+- &#8203;<!-- 16 -->[docs][Menu][joy] Explain how to control the open state (#38355) @michaldudak
+- &#8203;<!-- 15 -->[docs][material] Revise the Support page (#38207) @samuelsycamore
+- &#8203;<!-- 14 -->[docs][material-ui] Remove incorrect `aria-label`s in extended variant examples of Floating Action Button (#37170) @ashleykolodziej
+- &#8203;<!-- 13 -->[docs][material-ui] Adjust slightly the installation page content (#38380) @danilo-leal
+- &#8203;<!-- 12 -->[docs][Switch] Fix the readOnly class name in docs (#38277) @michaldudak
+- &#8203;<!-- 11 -->[docs][TablePagination] Add Tailwind CSS & plain CSS introduction demo (#38286) @mnajdova
+
+### Examples
+
+- &#8203;<!-- 10 -->[examples] Add Joy UI + Vite.js + TypeScript example app (#37406) @nithins1
+
+### Core
+
+- &#8203;<!-- 30 -->[core] Consistent URL add leading / @oliviertassinari
+- &#8203;<!-- 27 -->[docs-infra] Fix rebase issue @oliviertassinari
+- &#8203;<!-- 26 -->[docs-infra] Fix typo in docs infra docs @oliviertassinari
+- &#8203;<!-- 25 -->[docs-infra] Fix nested list margin (#38456) @oliviertassinari
+- &#8203;<!-- 24 -->[docs-infra] Move the Diamond Sponsors to the TOC (#38410) @danilo-leal
+- &#8203;<!-- 22 -->[docs-infra] Move imports into page data (#38297) @alexfauquette
+- &#8203;<!-- 21 -->[docs-infra] Adjust heading styles (#38365) @danilo-leal
+- &#8203;<!-- 20 -->[docs-infra] Fix info callout border color (#38370) @danilo-leal
+- &#8203;<!-- 05 -->[website] Upgrade the homepage hero demos design (#38388) @danilo-leal
+- &#8203;<!-- 04 -->[website] Improve Base UI hero section demo (#38255) @danilo-leal
+- &#8203;<!-- 03 -->[website] Fix EmailSubscribe look (#38429) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Link Discord in footer (#38369) @richbustos
+- &#8203;<!-- 01 -->[website] Clean up the `GetStartedButtons` component (#38256) @danilo-leal
+
+All contributors of this release in alphabetical order: @alexfauquette, @ashleykolodziej, @danilo-leal, @decadef20, @DiegoAndai, @flaviendelangle, @LukasTy, @michaldudak, @mj12albert, @mnajdova, @nithins1, @oliviertassinari, @richbustos, @sai6855, @samuelsycamore, @TheNatkat, @zanivan
+
 ## 5.14.4
 
 <!-- generated comparing v5.14.3..master -->
@@ -8,7 +78,7 @@ _Aug 8, 2023_
 
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎉 Added [Number input](https://mui.com/base-ui/react-number-input) component & [useNumberInput](https://mui.com/base-ui/react-number-input#hook) hook in [Base UI](https://mui.com/base-ui/getting-started/) @mj12albert
+- 🎉 Added [Number Input](https://mui.com/base-ui/react-number-input/) component & [useNumberInput](https://mui.com/base-ui/react-number-input/#hook) hook in [Base UI](https://mui.com/base-ui/getting-started/) @mj12albert
 
 ### `@mui/material@5.14.4`
 
@@ -46,7 +116,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   A codemod is provided to help with the migration:
 
   ```bash
-  npx @mui/codemod v5.0.0/base-use-named-imports <path>
+  npx @mui/codemod v5.0.0/base-use-named-exports <path>
   ```
 
 #### Changes
@@ -5666,7 +5736,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 ### Core
 
-- &#8203;<!-- 23 -->[core] Fix link to Open Collective @oliviertassinari
+- &#8203;<!-- 23 -->[core] Fix link to Open Collective @oliviertassinari
 - &#8203;<!-- 26 -->[core] Update snapshots and s3 fallback (#30134) @Janpot
 - &#8203;<!-- 24 -->[ci] Update CI bucket (#30080) @Janpot
 - &#8203;<!-- 13 -->[fix] size:snapshot for mui-material-next and mui-joy components (#30106) @Janpot

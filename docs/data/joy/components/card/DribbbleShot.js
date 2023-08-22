@@ -46,7 +46,7 @@ export default function DribbbleShot() {
           }}
         >
           {/* The first box acts as a container that inherits style from the CardCover */}
-          <Box>
+          <div>
             <Box
               sx={{
                 p: 2,
@@ -72,14 +72,24 @@ export default function DribbbleShot() {
                   Yosemite
                 </Link>
               </Typography>
-              <IconButton size="sm" color="neutral" sx={{ ml: 'auto' }}>
+              <IconButton
+                size="sm"
+                variant="solid"
+                color="neutral"
+                sx={{ ml: 'auto', bgcolor: 'rgba(0 0 0 / 0.2)' }}
+              >
                 <CreateNewFolder />
               </IconButton>
-              <IconButton size="sm" color="neutral">
+              <IconButton
+                size="sm"
+                variant="solid"
+                color="neutral"
+                sx={{ bgcolor: 'rgba(0 0 0 / 0.2)' }}
+              >
                 <Favorite />
               </IconButton>
             </Box>
-          </Box>
+          </div>
         </CardCover>
       </Box>
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>

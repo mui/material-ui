@@ -44,10 +44,10 @@ export default function ColorInversionNavigation() {
           defaultValue="1"
           size="sm"
           placeholder={
-            <Box>
+            <div>
               <Typography level="inherit">Saleshouse</Typography>
               <Typography level="body-md">general team</Typography>
-            </Box>
+            </div>
           }
           startDecorator={
             <Sheet

@@ -10,6 +10,7 @@
       "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
+    "flex": { "type": { "name": "bool" }, "default": "false" },
     "maxHeight": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "minHeight": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "objectFit": {
