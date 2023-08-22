@@ -164,7 +164,7 @@ To create a floating label input, a custom component (combination of `<input>` a
 Play around with the CSS variables available to the Input component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
 
-{{"demo": "InputVariables.js", "hideToolbar": true}}
+{{"demo": "InputVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Accessibility
 

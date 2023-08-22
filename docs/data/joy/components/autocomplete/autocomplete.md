@@ -307,11 +307,11 @@ If you would like to prevent the default key handler behavior, you can set the e
 />
 ```
 
-## CSS Variables
+## CSS variable playground
 
 The Autocomplete component reuses CSS variables from the Input component to give you the consistent customization experience.
 
-{{"demo": "AutocompleteVariables.js", "hideToolbar": true}}
+{{"demo": "AutocompleteVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Limitations
 

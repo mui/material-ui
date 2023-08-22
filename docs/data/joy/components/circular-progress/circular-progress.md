@@ -91,7 +91,7 @@ The size of the Circular Progress is controlled by a button, an icon button, or 
 Play around with all the CSS variables available on the component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
 
-{{"demo": "CircularProgressVariables.js", "hideToolbar": true}}
+{{"demo": "CircularProgressVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Accessibility
 

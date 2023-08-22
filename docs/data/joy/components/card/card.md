@@ -168,7 +168,7 @@ If you need to adjust a Card's padding or border radius, it's preferable to do s
 This is because the variables are also used to calculate a proper radius for the Card's children, to prevent a mismatch between their relative proportions.
 :::
 
-{{"demo": "CardVariables.js" , "hideToolbar": true}}
+{{"demo": "CardVariables.js" , "hideToolbar": true, "bg": "gradient"}}
 
 ## Common examples
 

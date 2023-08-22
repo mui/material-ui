@@ -131,11 +131,11 @@ You can use these to customize the components with both the `sx` prop and the th
 
 ### Button
 
-{{"demo": "ButtonVariables.js", "hideToolbar": true}}
+{{"demo": "ButtonVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ### Icon Button
 
-{{"demo": "IconButtonVariables.js", "hideToolbar": true}}
+{{"demo": "IconButtonVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Accessibility
 
