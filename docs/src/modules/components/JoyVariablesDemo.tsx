@@ -50,7 +50,6 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
         component="button"
         underline="none"
         fontSize="sm"
-        // textTransform="uppercase"
         fontWeight="lg"
         endDecorator={
           <KeyboardArrowDown
