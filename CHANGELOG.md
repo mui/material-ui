@@ -116,7 +116,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   A codemod is provided to help with the migration:
 
   ```bash
-  npx @mui/codemod v5.0.0/base-use-named-imports <path>
+  npx @mui/codemod v5.0.0/base-use-named-exports <path>
   ```
 
 #### Changes
