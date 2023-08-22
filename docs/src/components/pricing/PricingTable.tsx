@@ -10,10 +10,10 @@ import Tooltip from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import Link from 'docs/src/modules/components/Link';
-import IconImage from 'docs/src/components/icon/IconImage';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
+import Link from 'docs/src/modules/components/Link';
+import IconImage from 'docs/src/components/icon/IconImage';
 import LicensingModelSwitch from 'docs/src/components/pricing/LicensingModelSwitch';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
 
@@ -1118,10 +1118,10 @@ export default function PricingTable({
             </Button>
           </Box>
           <ColumnHeadHighlight>
-            <Box>
+            <div>
               <PlanName plan="pro" />
               <PlanPrice plan="pro" />
-            </Box>
+            </div>
             <PricingTableBuyPro />
           </ColumnHeadHighlight>
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>

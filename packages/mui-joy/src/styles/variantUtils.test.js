@@ -240,6 +240,7 @@ describe('variant utils', () => {
       },
       outlinedDisabled: {
         primary: {
+          '--Icon-color': 'currentColor',
           color: 'var(--any-token)',
           borderColor: 'var(--any-token)',
           backgroundColor: 'var(--any-token)',

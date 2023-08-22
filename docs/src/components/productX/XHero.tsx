@@ -7,20 +7,19 @@ import Typography from '@mui/material/Typography';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import GradientText from 'docs/src/components/typography/GradientText';
-import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
-import HeroContainer from 'docs/src/layouts/HeroContainer';
-import IconImage from 'docs/src/components/icon/IconImage';
-import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
-import ROUTES from 'docs/src/route';
 import { alpha } from '@mui/material/styles';
-
 import {
   DataGridPremium,
   useGridApiRef,
   useKeepGroupedColumnsHidden,
 } from '@mui/x-data-grid-premium';
 import { useDemoData } from '@mui/x-data-grid-generator';
+import GradientText from 'docs/src/components/typography/GradientText';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
+import HeroContainer from 'docs/src/layouts/HeroContainer';
+import IconImage from 'docs/src/components/icon/IconImage';
+import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
+import ROUTES from 'docs/src/route';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -118,7 +117,7 @@ export default function XHero() {
             components. We&apos;re kicking it off with the most powerful Data Grid on the market.
           </Typography>
           <GetStartedButtons
-            to={ROUTES.advancedComponents}
+            primaryUrl={ROUTES.advancedComponents}
             sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
           />
         </Box>

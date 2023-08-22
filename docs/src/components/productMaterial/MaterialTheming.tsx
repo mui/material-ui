@@ -3,12 +3,12 @@ import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/s
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
 import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 import Frame from 'docs/src/components/action/Frame';
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
@@ -21,51 +21,42 @@ const code = `
   sx={{
     p: 1,
     display: 'flex',
-    flexDirection: { xs: 'column', sm: 'row' },
+    alignItems: 'center',
+    gap: 2,
   }}
 >
   <CardMedia
     component="img"
-    width="124"
-    height="124"
-    alt="Beside Myself album cover"
-    src="/static/images/cards/basement-beside-myself.jpeg"
+    width="100"
+    height="100"
+    alt="Birds of Tokyo album cover"
+    src="/static/images/cards/birds-of-tokyo.jpg"
     sx={{
-      borderRadius: 0.5,
-      width: 'clamp(124px, (304px - 100%) * 999 , 100%)',
+      borderRadius: 0.6,
+      height: 100,
+      width: 100,
     }}
   />
-  <Box sx={{ alignSelf: 'center', px: { xs: 0, sm: 2 } }}>
-    <Typography
-      variant="body1"
-      color="text.primary"
-      fontWeight={600}
-      sx={{
-        textAlign: { xs: 'center', sm: 'start' },
-        mt: { xs: 1.5, sm: 0 },
-      }}
-    >
-      Ultraviolet
-    </Typography>
-    <Typography
-      component="div"
-      variant="caption"
-      color="text.secondary"
-      fontWeight={500}
-      sx={{ textAlign: { xm: 'center', sm: 'start' } }}
-    >
-      Basement • Beside Myself
-    </Typography>
-    <Stack
-      direction="row"
-      spacing={1}
-      sx={{
-        mt: 2,
-        justifyContent: { xs: 'space-between', sm: 'flex-start' },
-      }}
-    >
-      <IconButton aria-label="fast rewind" disabled>
-        <FastRewindRounded />
+  <Stack direction="column" spacing={2} alignItems="center">
+    <Stack direction="column" spacing={0.2} alignItems="center">
+      <Typography color="text.primary" fontWeight="medium" fontSize={15}>
+        If This Ship Sinks (I Give In)
+      </Typography>
+      <Typography
+        component="div"
+        variant="caption"
+        color="text.secondary"
+        fontWeight="regular"
+      >
+        Birds Of Tokyo
+      </Typography>
+    </Stack>
+    <Stack direction="row" alignItems="center" spacing={1.5}>
+      <IconButton aria-label="shuffle" disabled size="small" sx={{ flexGrow: 0 }}>
+        <ShuffleRoundedIcon fontSize="small" />
+      </IconButton>
+      <IconButton aria-label="fast rewind" disabled size="small">
+        <FastRewindRounded fontSize="small" />
       </IconButton>
       <IconButton
         aria-label={paused ? 'play' : 'pause'}
@@ -74,11 +65,14 @@ const code = `
       >
         {paused ? <PlayArrowRounded /> : <PauseRounded />}
       </IconButton>
-      <IconButton aria-label="fast forward" disabled>
-        <FastForwardRounded />
+      <IconButton aria-label="fast forward" disabled size="small">
+        <FastForwardRounded fontSize="small" />
+      </IconButton>
+      <IconButton aria-label="loop" disabled size="small">
+        <LoopRoundedIcon fontSize="small" />
       </IconButton>
     </Stack>
-  </Box>
+  </Stack>
 </Card>`;
 
 export default function MaterialTheming() {
@@ -87,7 +81,7 @@ export default function MaterialTheming() {
     <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
+          <Box sx={{ maxWidth: 500 }}>
             <SectionHeadline
               overline="Theming"
               title={
@@ -119,8 +113,7 @@ export default function MaterialTheming() {
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{
-                py: 2,
-                px: 2,
+                p: 2,
                 flexGrow: 1,
                 display: 'flex',
                 justifyContent: 'center',
@@ -129,10 +122,10 @@ export default function MaterialTheming() {
               }}
             >
               {customized ? (
-                <PlayerCard />
+                <PlayerCard horizontal extraStyles />
               ) : (
                 <CssVarsProvider>
-                  <PlayerCard disableTheming />
+                  <PlayerCard horizontal disableTheming />
                 </CssVarsProvider>
               )}
             </Frame.Demo>

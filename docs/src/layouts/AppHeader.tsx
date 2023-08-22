@@ -5,6 +5,9 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
@@ -12,9 +15,6 @@ import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import Link from 'docs/src/modules/components/Link';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
-import Tooltip from '@mui/material/Tooltip';
-import IconButton from '@mui/material/IconButton';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Header = styled('header')(({ theme }) => [
@@ -26,7 +26,7 @@ const Header = styled('header')(({ theme }) => [
     backdropFilter: 'blur(8px)',
     boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.grey[100]}`,
     backgroundColor: 'rgba(255,255,255,0.8)',
-  },
+  } as const,
   theme.applyDarkStyles({
     boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.primaryDark[700]}`,
     backgroundColor: alpha(theme.palette.primaryDark[900], 0.7),

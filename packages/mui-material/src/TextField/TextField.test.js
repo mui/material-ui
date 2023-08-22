@@ -155,22 +155,6 @@ describe('<TextField />', () => {
     });
   });
 
-  describe('prop: disabled', () => {
-    it('should not run click event when disabled', () => {
-      const handleClick = spy();
-      const { getByRole } = render(<TextField disabled onClick={handleClick} />);
-      fireEvent.click(getByRole('textbox'));
-      expect(handleClick.callCount).to.equal(0);
-    });
-
-    it('should not run click event when disabled and when onClick prop is set through InputProps', () => {
-      const handleClick = spy();
-      const { getByRole } = render(<TextField disabled InputProps={{ onClick: handleClick }} />);
-      fireEvent.click(getByRole('textbox'));
-      expect(handleClick.callCount).to.equal(0);
-    });
-  });
-
   describe('prop: select', () => {
     it('can render a <select /> when `native`', () => {
       const currencies = [
@@ -241,6 +225,25 @@ describe('<TextField />', () => {
       );
 
       expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
+    });
+  });
+
+  describe('event: click', () => {
+    it('registers `onClick` on the root slot', () => {
+      const handleClick = spy((event) => event.currentTarget);
+      const { getByTestId, getByRole } = render(
+        <TextField data-testid="root" onClick={handleClick} />,
+      );
+
+      const input = getByRole('textbox');
+
+      const root = getByTestId('root');
+
+      fireEvent.click(input);
+
+      expect(handleClick.callCount).to.equal(1);
+      // return value is event.currentTarget
+      expect(handleClick.returned(root));
     });
   });
 });

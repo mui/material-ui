@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useSwitch from '@mui/base/useSwitch';
+import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -16,7 +16,8 @@ import { TypographyNestedContext } from '../Typography/Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
-  const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
+  const { checked, disabled, disableIcon, focusVisible, color, variant, size, indeterminate } =
+    ownerState;
 
   const slots = {
     root: [
@@ -28,7 +29,12 @@ const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    checkbox: ['checkbox', checked && 'checked', disabled && 'disabled'], // disabled class is necessary for displaying global variant
+    checkbox: [
+      'checkbox',
+      checked && 'checked',
+      indeterminate && 'indeterminate',
+      disabled && 'disabled', // disabled class is necessary for displaying global variant
+    ],
     action: [
       'action',
       checked && 'checked',
@@ -50,20 +56,20 @@ const CheckboxRoot = styled('span', {
   '--Icon-fontSize': 'var(--Checkbox-size)',
   ...(ownerState.size === 'sm' && {
     '--Checkbox-size': '1rem',
-    '--Checkbox-gap': '0.375rem',
-    '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.375rem' },
+    '--Checkbox-gap': '0.5rem',
+    '& ~ *': { '--FormHelperText-margin': '0 0 0 1.5rem' },
     fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'md' && {
     '--Checkbox-size': '1.25rem',
-    '--Checkbox-gap': '0.5rem',
-    '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.75rem' },
+    '--Checkbox-gap': '0.625rem',
+    '& ~ *': { '--FormHelperText-margin': '0.25rem 0 0 1.875rem' },
     fontSize: theme.vars.fontSize.md,
   }),
   ...(ownerState.size === 'lg' && {
     '--Checkbox-size': '1.5rem',
-    '--Checkbox-gap': '0.625rem',
-    '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.125rem' },
+    '--Checkbox-gap': '0.75rem',
+    '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.25rem' },
     fontSize: theme.vars.fontSize.lg,
   }),
   position: ownerState.overlay ? 'initial' : 'relative',
@@ -90,8 +96,12 @@ const CheckboxCheckbox = styled('span', {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
       boxSizing: 'border-box',
-      borderRadius: theme.vars.radius.xs,
+      borderRadius: `min(${theme.vars.radius.sm}, 0.25rem)`,
       width: 'var(--Checkbox-size)',
       height: 'var(--Checkbox-size)',
       display: 'inline-flex',
@@ -101,7 +111,10 @@ const CheckboxCheckbox = styled('span', {
       ...(ownerState.disableIcon && {
         display: 'contents',
       }),
-    },
+      [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
+        '--Icon-color': 'currentColor',
+      },
+    } as const,
     ...(!ownerState.disableIcon
       ? [
           {
@@ -136,7 +149,7 @@ const CheckboxAction = styled('span', {
     right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
     [theme.focus.selector]: theme.focus.default,
-  },
+  } as const,
   ...(ownerState.disableIcon
     ? [
         theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -391,7 +404,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

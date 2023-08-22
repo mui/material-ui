@@ -5,19 +5,19 @@ import Box from '@mui/material/Box';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import LaunchRounded from '@mui/icons-material/LaunchRounded';
+import DashboardRounded from '@mui/icons-material/DashboardRounded';
+import Layers from '@mui/icons-material/Layers';
+import ShoppingBag from '@mui/icons-material/ShoppingBag';
+import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
-import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import Link from 'docs/src/modules/components/Link';
-import DashboardRounded from '@mui/icons-material/DashboardRounded';
-import Layers from '@mui/icons-material/Layers';
-import ShoppingBag from '@mui/icons-material/ShoppingBag';
-import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import More from 'docs/src/components/action/More';
 
 const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
@@ -135,7 +135,7 @@ export default function TemplateDemo() {
     <Section bg="gradient">
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
+          <Box sx={{ maxWidth: 500 }}>
             <SectionHeadline
               overline="Use cases"
               title={

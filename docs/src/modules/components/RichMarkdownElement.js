@@ -1,5 +1,5 @@
-import * as React from 'react';
 import path from 'path';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
@@ -124,6 +124,7 @@ export default function RichMarkdownElement(props) {
         rawCSSTS: demo.rawCSSTS,
         jsCSS: demoComponents[demo.moduleCSS] ?? null,
         tsxCSS: demoComponents[demo.moduleTSCSS] ?? null,
+        gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
       }}
       disableAd={disableAd}
       demoOptions={renderedMarkdownOrDemo}

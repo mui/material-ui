@@ -6,7 +6,7 @@ export default function composeClasses<ClassKey extends string>(
   const output: Record<ClassKey, string> = {} as any;
 
   Object.keys(slots).forEach(
-    // `Objet.keys(slots)` can't be wider than `T` because we infer `T` from `slots`.
+    // `Object.keys(slots)` can't be wider than `T` because we infer `T` from `slots`.
     // @ts-expect-error https://github.com/microsoft/TypeScript/pull/12253#issuecomment-263132208
     (slot: ClassKey) => {
       output[slot] = slots[slot]

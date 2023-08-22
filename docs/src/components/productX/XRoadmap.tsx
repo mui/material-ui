@@ -5,10 +5,6 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
-import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
 import TableChartRounded from '@mui/icons-material/TableChartRounded';
 import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
@@ -18,6 +14,10 @@ import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import PendingActionsRounded from '@mui/icons-material/PendingActions';
 import SpeedRounded from '@mui/icons-material/SpeedRounded';
 import { alpha } from '@mui/material/styles';
+import ROUTES from 'docs/src/route';
+import Link from 'docs/src/modules/components/Link';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import Section from 'docs/src/layouts/Section';
 
 export default function XRoadmap() {
   function renderList(content: React.ReactElement, nested?: boolean) {
@@ -87,7 +87,7 @@ export default function XRoadmap() {
           }`,
       }}
     >
-      <Box>
+      <div>
         <Grid container spacing={2} alignItems="center" justifyContent="space-between">
           <Grid item xs={12} md={5}>
             <Box maxWidth={500} sx={{ mb: { xs: 2, sm: 0 } }}>
@@ -204,7 +204,7 @@ export default function XRoadmap() {
             </Grid>
           </Grid>
         </Grid>
-      </Box>
+      </div>
     </Section>
   );
 }

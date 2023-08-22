@@ -10,13 +10,13 @@ export default function AlertUsage() {
         {
           propName: 'variant',
           knob: 'radio',
-          defaultValue: 'soft',
+          defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'primary',
+          defaultValue: 'neutral',
         },
         {
           propName: 'size',
