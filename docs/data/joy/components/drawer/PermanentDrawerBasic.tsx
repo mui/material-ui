@@ -11,7 +11,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 
 const drawerWidth = 240;
 
-export default function PermanentDrawerDemo() {
+export default function PermanentDrawerBasic() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />

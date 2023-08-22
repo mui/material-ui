@@ -28,4 +28,4 @@ Permanent navigation drawers are always visible and pinned to the left edge, at 
 
 Permanent navigation drawers are the **recommended default for desktop**.
 
-{{"demo": "PermanentDrawer.js", "iframe": true}}
+{{"demo": "PermanentDrawerBasic.js", "iframe": true}}
