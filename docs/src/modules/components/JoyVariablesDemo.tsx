@@ -259,7 +259,9 @@ export default function JoyVariablesDemo(props: {
                         [`& .${inputClasses.endDecorator}`]: { alignItems: 'center' },
                       }}
                     />
-                    <FormHelperText>{item.helperText}</FormHelperText>
+                    <FormHelperText sx={{ mb: 1, '--FormHelperText-fontSize': '0.75rem' }}>
+                      {item.helperText}
+                    </FormHelperText>
                   </FormControl>
                 );
               }
