@@ -39,18 +39,18 @@ export const ModalCloseRoot = styled(StyledIconButton, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalCloseOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
-    '--IconButton-size': '28px',
+    '--IconButton-size': '1.75rem',
   }),
   ...(ownerState.size === 'md' && {
-    '--IconButton-size': '36px',
+    '--IconButton-size': '2rem',
   }),
   ...(ownerState.size === 'lg' && {
-    '--IconButton-size': '40px',
+    '--IconButton-size': '2.25rem',
   }),
   position: 'absolute',
   zIndex: 1, // stay on top of the title in case it is positioned relatively
-  top: `var(--ModalClose-inset, ${theme.spacing(1)})`,
-  right: `var(--ModalClose-inset, ${theme.spacing(1)})`,
+  top: `var(--ModalClose-inset, 0.625rem)`,
+  right: `var(--ModalClose-inset, 0.625rem)`,
   borderRadius: `var(--ModalClose-radius, ${theme.vars.radius.sm})`,
   // for variant without a background, use `tertiary` text color to reduce the importance of the close icon.
   ...(!theme.variants[ownerState.variant!]?.[ownerState.color!]?.backgroundColor && {

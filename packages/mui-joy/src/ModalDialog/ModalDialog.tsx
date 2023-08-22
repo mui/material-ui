@@ -9,7 +9,9 @@ import {
   unstable_isMuiElement as isMuiElement,
   unstable_useId as useId,
 } from '@mui/utils';
+import { Breakpoint } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
+import { Theme } from '../styles/types/theme';
 import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogOwnerState, ModalDialogTypeMap } from './ModalDialogProps';
@@ -34,35 +36,47 @@ const useUtilityClasses = (ownerState: ModalDialogOwnerState) => {
   return composeClasses(slots, getModalDialogUtilityClass, {});
 };
 
+function getBreakpointValue(theme: Theme, breakpoint: string | undefined) {
+  return breakpoint && theme.breakpoints?.values[breakpoint as Breakpoint]
+    ? `${theme.breakpoints?.values[breakpoint as Breakpoint]}px`
+    : breakpoint;
+}
+
 const ModalDialogRoot = styled(StyledCardRoot, {
   name: 'JoyModalDialog',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalDialogOwnerState }>(({ theme, ownerState }) => ({
   '--ModalDialog-minWidth':
-    typeof ownerState.minWidth === 'number' ? `${ownerState.minWidth}px` : ownerState.minWidth,
+    typeof ownerState.minWidth === 'number'
+      ? `${ownerState.minWidth}px`
+      : getBreakpointValue(theme, ownerState.minWidth),
   '--ModalDialog-maxWidth':
-    typeof ownerState.maxWidth === 'number' ? `${ownerState.maxWidth}px` : ownerState.maxWidth,
+    typeof ownerState.maxWidth === 'number'
+      ? `${ownerState.maxWidth}px`
+      : getBreakpointValue(theme, ownerState.maxWidth),
   '--ModalClose-radius':
     'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
   ...(ownerState.variant === 'solid' && {
     '--DialogContent-color': 'currentColor',
   }),
   ...(ownerState.size === 'sm' && {
-    '--Card-padding': '0.625rem',
+    '--Card-padding': '1rem',
     '--ModalDialog-titleOffset': theme.spacing(0.25),
     '--ModalDialog-descriptionOffset': theme.spacing(0.25),
-    '--ModalClose-inset': theme.spacing(1),
+    '--ModalClose-inset': '0.375rem',
   }),
   ...(ownerState.size === 'md' && {
+    '--Card-padding': '1.25rem',
     '--ModalDialog-titleOffset': theme.spacing(0.25),
     '--ModalDialog-descriptionOffset': theme.spacing(0.75),
-    '--ModalClose-inset': theme.spacing(1.5),
+    '--ModalClose-inset': '0.5rem',
   }),
   ...(ownerState.size === 'lg' && {
+    '--Card-padding': '1.5rem',
     '--ModalDialog-titleOffset': theme.spacing(0.5),
     '--ModalDialog-descriptionOffset': theme.spacing(1),
-    '--ModalClose-inset': theme.spacing(1.5),
+    '--ModalClose-inset': '0.625rem',
   }),
   boxSizing: 'border-box',
   boxShadow: theme.shadow.md,
