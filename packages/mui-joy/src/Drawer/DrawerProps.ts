@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, VariantProp, ApplyColorInversion } from '../styles/types';
 import { ModalOwnProps } from '../Modal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -45,6 +46,21 @@ export interface DrawerTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'left'
        */
       anchor?: 'left' | 'top' | 'right' | 'bottom';
+      /**
+       * The color of the component. It supports those theme colors that make sense for this component.
+       * @default 'neutral'
+       */
+      color?: OverridableStringUnion<ColorPaletteProp, DrawerPropsColorOverrides>;
+      /**
+       * The size of the component.
+       * @default 'md'
+       */
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', DrawerPropsSizeOverrides>;
+      /**
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+       * @default 'outlined'
+       */
+      variant?: OverridableStringUnion<VariantProp, DrawerPropsVariantOverrides>;
     };
   defaultComponent: D;
 }
@@ -54,4 +70,4 @@ export type DrawerProps<
   P = { component?: React.ElementType },
 > = OverrideProps<DrawerTypeMap<P, D>, D>;
 
-export interface DrawerOwnerState extends DrawerProps {}
+export interface DrawerOwnerState extends ApplyColorInversion<DrawerProps> {}

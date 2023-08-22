@@ -40,7 +40,6 @@
   "classDescriptions": { "root": { "description": "Class name applied to the root element." } },
   "slotDescriptions": {
     "root": "The component that renders the root.",
-    "backdrop": "The component that renders the backdrop.",
     "content": "The component that renders the content of the drawer."
   }
 }

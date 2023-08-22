@@ -2,7 +2,6 @@ import * as React from 'react';
 import { styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import PermanentDrawer from '@mui/joy/PermanentDrawer';
-import DrawerContent from '@mui/joy/DrawerContent';
 import CssBaseline from '@mui/joy/CssBaseline';
 import List from '@mui/joy/List';
 import Typography from '@mui/joy/Typography';
@@ -41,31 +40,30 @@ export default function PermanentDrawerDemo() {
           '& .MuiDrawer-content': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            pt: 0,
           },
         }}
         anchor="left"
       >
-        <DrawerContent sx={{ pt: 0 }}>
-          <Box sx={{ minHeight: 56 }} />
+        <Box sx={{ minHeight: 56 }} />
+        <Divider />
+        <Box role="presentation">
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
+              <ListItem key={text}>
+                <ListItemButton>{text}</ListItemButton>
+              </ListItem>
+            ))}
+          </List>
           <Divider />
-          <Box role="presentation">
-            <List>
-              {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
-                <ListItem key={text}>
-                  <ListItemButton>{text}</ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-            <Divider />
-            <List>
-              {['All mail', 'Trash', 'Spam'].map((text) => (
-                <ListItem key={text}>
-                  <ListItemButton>{text}</ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </Box>
-        </DrawerContent>
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text) => (
+              <ListItem key={text}>
+                <ListItemButton>{text}</ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
       </PermanentDrawer>
       <Box
         component="main"

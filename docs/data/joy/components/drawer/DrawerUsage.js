@@ -3,7 +3,6 @@ import Button from '@mui/joy/Button';
 import Sheet from '@mui/joy/Sheet';
 import Box from '@mui/joy/Box';
 import Drawer from '@mui/joy/Drawer';
-import DrawerContent from '@mui/joy/DrawerContent';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import List from '@mui/joy/List';
 import Divider from '@mui/joy/Divider';
@@ -16,7 +15,7 @@ import JoyUsageDemo, {
 export default function CheckboxUsage() {
   return (
     <JoyUsageDemo
-      componentName="DrawerContent"
+      componentName="Drawer"
       data={[
         {
           propName: 'variant',
@@ -30,9 +29,6 @@ export default function CheckboxUsage() {
           defaultValue: 'neutral',
         },
       ]}
-      getCodeBlock={(code) => `<Drawer>
-${prependLinesSpace(code, 2)}
-</Drawer>`}
       renderDemo={(props) => {
         const [state, setState] = React.useState({
           top: false,
@@ -99,8 +95,9 @@ ${prependLinesSpace(code, 2)}
                 anchor={anchor}
                 open={state[anchor]}
                 onClose={toggleDrawer(anchor, false)}
+                {...props}
               >
-                <DrawerContent {...props}>{list(anchor)}</DrawerContent>
+                {list(anchor)}
               </Drawer>
             ))}
           </React.Fragment>

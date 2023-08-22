@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/types';
+import { OverrideProps, OverridableStringUnion } from '@mui/types';
+import { SxProps, ApplyColorInversion, ColorPaletteProp, VariantProp } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type PermanentDrawerSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDecorator';
@@ -11,11 +11,6 @@ export interface PermanentDrawerSlots {
    * @default 'div'
    */
   root?: React.ElementType;
-  /**
-   * The component that renders the backdrop.
-   * @default 'div'
-   */
-  backdrop?: React.ElementType;
   /**
    * The component that renders the content of the drawer.
    * @default 'div'
@@ -31,7 +26,6 @@ export type PermanentDrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
   PermanentDrawerSlots,
   {
     root: SlotProps<'div', {}, PermanentDrawerOwnerState>;
-    backdrop: SlotProps<'div', {}, PermanentDrawerOwnerState>;
     content: SlotProps<'div', {}, PermanentDrawerOwnerState>;
   }
 >;
@@ -45,6 +39,21 @@ export interface PermanentDrawerTypeMap<P = {}, D extends React.ElementType = 'd
        */
       anchor?: 'left' | 'top' | 'right' | 'bottom';
       /**
+       * The color of the component. It supports those theme colors that make sense for this component.
+       * @default 'neutral'
+       */
+      color?: OverridableStringUnion<ColorPaletteProp, PermanentDrawerPropsColorOverrides>;
+      /**
+       * The size of the component.
+       * @default 'md'
+       */
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', PermanentDrawerPropsSizeOverrides>;
+      /**
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+       * @default 'outlined'
+       */
+      variant?: OverridableStringUnion<VariantProp, PermanentDrawerPropsVariantOverrides>;
+      /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps;
@@ -57,4 +66,6 @@ export type PermanentDrawerProps<
   P = { component?: React.ElementType },
 > = OverrideProps<PermanentDrawerTypeMap<P, D>, D>;
 
-export interface PermanentDrawerOwnerState extends PermanentDrawerProps {}
+export interface PermanentDrawerOwnerState extends ApplyColorInversion<PermanentDrawerProps> {
+  open: true;
+}

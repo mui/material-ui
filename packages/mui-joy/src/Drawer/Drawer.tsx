@@ -1,27 +1,31 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { HTMLElementType } from '@mui/utils';
+import { HTMLElementType, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
+import { useThemeProps, Theme, styled, useColorInversion } from '../styles';
+import { SheetRoot } from '../Sheet/Sheet';
 import { ModalBackdrop } from '../Modal/Modal';
 import CloseModalContext from '../Modal/CloseModalContext';
-import DrawerAnchorContext from './DrawerAnchorContext';
-import DrawerOpenContext from './DrawerOpenContext';
-import { useThemeProps, Theme } from '../styles';
-import styled from '../styles/styled';
+import useSlot from '../utils/useSlot';
 import drawerClasses, { getDrawerUtilityClass } from './drawerClasses';
 import { DrawerProps, DrawerOwnerState, DrawerTypeMap } from './DrawerProps';
-import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: DrawerOwnerState) => {
-  const { open } = ownerState;
+  const { open, variant, color, size } = ownerState;
 
   const slots = {
-    root: ['root', !open && 'hidden'],
+    root: [
+      'root',
+      !open && 'hidden',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+    ],
     backdrop: ['backdrop'],
     content: ['content'],
   };
@@ -58,11 +62,70 @@ const DrawerBackdrop = styled(ModalBackdrop as unknown as 'div', {
   overridesResolver: (props, styles) => styles.backdrop,
 })({});
 
-const DrawerContent = styled('div', {
+export const DrawerContent = styled(SheetRoot as unknown as 'div', {
   name: 'JoyDrawer',
-  slot: 'Backdrop',
-  overridesResolver: (props, styles) => styles.content,
-})<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({}));
+  slot: 'Content',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: DrawerOwnerState }>(({ theme, ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
+    '--DrawerContent-padding': theme.spacing(2),
+    '--DrawerContent-radius': theme.vars.radius.sm,
+    '--DrawerContent-gap': theme.spacing(0.75),
+    '--DrawerContent-titleOffset': theme.spacing(0.25),
+    '--DrawerContent-descriptionOffset': theme.spacing(0.25),
+    '--ModalClose-inset': theme.spacing(1.25),
+  }),
+  ...(ownerState.size === 'md' && {
+    '--DrawerContent-padding': theme.spacing(2.5),
+    '--DrawerContent-radius': theme.vars.radius.md,
+    '--DrawerContent-gap': theme.spacing(1.5),
+    '--DrawerContent-titleOffset': theme.spacing(0.25),
+    '--DrawerContent-descriptionOffset': theme.spacing(0.75),
+    '--ModalClose-inset': theme.spacing(1.5),
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--DrawerContent-padding': theme.spacing(3),
+    '--DrawerContent-radius': theme.vars.radius.md,
+    '--DrawerContent-gap': theme.spacing(2),
+    '--DrawerContent-titleOffset': theme.spacing(0.5),
+    '--DrawerContent-descriptionOffset': theme.spacing(1),
+    '--ModalClose-inset': theme.spacing(1.5),
+  }),
+  boxShadow: theme.shadow.md,
+  borderRadius: 'var(--DrawerContent-radius)',
+  fontFamily: theme.vars.fontFamily.body,
+  lineHeight: theme.vars.lineHeight.md,
+  padding: 'var(--DrawerContent-padding)',
+  minWidth:
+    'min(calc(100vw - 2 * var(--DrawerContent-padding)), var(--DrawerContent-minWidth, 240px))',
+  outline: 0,
+  display: 'flex',
+  flexDirection: 'column',
+  position: 'fixed',
+  boxSizing: 'border-box',
+  overflow: 'auto',
+  ...(ownerState.anchor === 'left' && {
+    top: 0,
+    left: 0,
+    transform: ownerState.open ? 'translateX(0)' : 'translateX(-100%)',
+  }),
+  ...(ownerState.anchor === 'right' && {
+    top: 0,
+    right: 0,
+    transform: ownerState.open ? 'translateX(0)' : 'translateX(100%)',
+  }),
+  ...(ownerState.anchor === 'top' && {
+    top: 0,
+    transform: ownerState.open ? 'translateY(0)' : 'translateY(-100%)',
+  }),
+  ...(ownerState.anchor === 'bottom' && {
+    bottom: 0,
+    transform: ownerState.open ? 'translateY(0)' : 'translateY(100%)',
+  }),
+  height: ownerState.anchor!.match(/(left|right)/) ? '100%' : 'auto',
+  width: ownerState.anchor!.match(/(top|bottom)/) ? '100vw' : 'auto',
+  transition: 'transform 0.3s ease',
+}));
 
 const oppositeDirection = {
   left: 'right',
@@ -108,6 +171,9 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     disableRestoreFocus = false,
     disableScrollLock = false,
     hideBackdrop = false,
+    color: colorProp = 'neutral',
+    variant = 'outlined',
+    size = 'md',
     onClose,
     onKeyDown,
     open,
@@ -116,6 +182,9 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
+
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -127,6 +196,9 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     disableRestoreFocus,
     disableScrollLock,
     hideBackdrop,
+    color,
+    variant,
+    size,
   };
 
   const { getRootProps, getBackdropProps, rootRef, portalRef, isTopModal } = useModal({
@@ -157,38 +229,35 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   const [SlotContent, contentProps] = useSlot('content', {
     className: classes.content,
     elementType: DrawerContent,
+    additionalProps: {
+      tabIndex: -1,
+    },
     externalForwardedProps,
     ownerState,
   });
 
   return (
     <CloseModalContext.Provider value={onClose}>
-      <DrawerAnchorContext.Provider value={anchor}>
-        <DrawerOpenContext.Provider value={open}>
-          <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
-            {/*
-             * Marking an element with the role presentation indicates to assistive technology
-             * that this element should be ignored; it exists to support the web application and
-             * is not meant for humans to interact with directly.
-             * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-             */}
-            <SlotRoot {...rootProps}>
-              {!hideBackdrop ? <SlotBackdrop {...backdropProps} /> : null}
-              <FocusTrap
-                disableEnforceFocus={disableEnforceFocus}
-                disableAutoFocus={disableAutoFocus}
-                disableRestoreFocus={disableRestoreFocus}
-                isEnabled={isTopModal}
-                open={open}
-              >
-                <SlotContent {...contentProps} tabIndex={contentProps.tabIndex ?? -1}>
-                  {children}
-                </SlotContent>
-              </FocusTrap>
-            </SlotRoot>
-          </Portal>
-        </DrawerOpenContext.Provider>
-      </DrawerAnchorContext.Provider>
+      <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
+        {/*
+         * Marking an element with the role presentation indicates to assistive technology
+         * that this element should be ignored; it exists to support the web application and
+         * is not meant for humans to interact with directly.
+         * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+         */}
+        <SlotRoot {...rootProps}>
+          {!hideBackdrop ? <SlotBackdrop {...backdropProps} /> : null}
+          <FocusTrap
+            disableEnforceFocus={disableEnforceFocus}
+            disableAutoFocus={disableAutoFocus}
+            disableRestoreFocus={disableRestoreFocus}
+            isEnabled={isTopModal}
+            open={open}
+          >
+            <SlotContent {...contentProps}>{children}</SlotContent>
+          </FocusTrap>
+        </SlotRoot>
+      </Portal>
     </CloseModalContext.Provider>
   );
 }) as OverridableComponent<DrawerTypeMap>;
@@ -207,6 +276,11 @@ Drawer.propTypes /* remove-proptypes */ = {
    * A single child content element.
    */
   children: PropTypes.element.isRequired,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -284,6 +358,11 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool.isRequired,
   /**
+   * The size of the component.
+   * @default 'md'
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
    * The props used for each slot inside.
    * @default {}
    */
@@ -301,6 +380,11 @@ Drawer.propTypes /* remove-proptypes */ = {
     content: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'outlined'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default Drawer;

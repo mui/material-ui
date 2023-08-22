@@ -1,13 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { HTMLElementType } from '@mui/utils';
+import { HTMLElementType, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import DrawerAnchorContext from '../Drawer/DrawerAnchorContext';
-import DrawerOpenContext from '../Drawer/DrawerOpenContext';
-import { useThemeProps, Theme } from '../styles';
-import styled from '../styles/styled';
+import { DrawerContent } from '../Drawer/Drawer';
+import { useThemeProps, Theme, styled, useColorInversion } from '../styles';
 import { getPermanentDrawerUtilityClass } from './permanentDrawerClasses';
 import {
   PermanentDrawerProps,
@@ -17,8 +15,15 @@ import {
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: PermanentDrawerOwnerState) => {
+  const { variant, color, size } = ownerState;
+
   const slots = {
-    root: ['root'],
+    root: [
+      'root',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+    ],
     content: ['content'],
   };
 
@@ -32,6 +37,12 @@ const PermanentDrawerRoot = styled('div', {
 })({
   flex: '0 0 auto',
 });
+
+const PermanentDrawerContent = styled(DrawerContent as unknown as 'div', {
+  name: 'JoyPermanentDrawer',
+  slot: 'Content',
+  overridesResolver: (props, styles) => styles.backdrop,
+})({});
 
 const oppositeDirection = {
   left: 'right',
@@ -66,11 +77,28 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     name: 'JoyDrawer',
   });
 
-  const { children, anchor = 'left', component, slots = {}, slotProps = {}, ...other } = props;
+  const {
+    children,
+    anchor = 'left',
+    component,
+    slots = {},
+    slotProps = {},
+    color: colorProp = 'neutral',
+    variant = 'outlined',
+    size = 'md',
+    ...other
+  } = props;
+
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState: PermanentDrawerOwnerState = {
     ...props,
+    open: true,
     anchor,
+    color,
+    size,
+    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -84,13 +112,17 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     ownerState,
   });
 
-  // type = "temporary"
+  const [SlotContent, contentProps] = useSlot('content', {
+    className: classes.content,
+    elementType: PermanentDrawerContent,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
-    <DrawerAnchorContext.Provider value={anchor}>
-      <DrawerOpenContext.Provider value={true}>
-        <SlotRoot {...rootProps}>{children}</SlotRoot>
-      </DrawerOpenContext.Provider>
-    </DrawerAnchorContext.Provider>
+    <SlotRoot {...rootProps}>
+      <SlotContent {...contentProps}>{children}</SlotContent>
+    </SlotRoot>
   );
 }) as OverridableComponent<PermanentDrawerTypeMap>;
 

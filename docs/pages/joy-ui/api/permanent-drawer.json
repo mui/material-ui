@@ -55,12 +55,6 @@
       "class": ".MuiPermanentDrawer-root"
     },
     {
-      "name": "backdrop",
-      "description": "The component that renders the backdrop.",
-      "default": "'div'",
-      "class": null
-    },
-    {
       "name": "content",
       "description": "The component that renders the content of the drawer.",
       "default": "'div'",

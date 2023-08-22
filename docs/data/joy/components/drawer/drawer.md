@@ -1,7 +1,7 @@
 ---
 productId: joy-ui
 title: React Drawer component
-components: Drawer, DrawerContent, PermanentDrawer
+components: Drawer, PermanentDrawer
 githubLabel: 'component: drawer'
 ---
 

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import PermanentDrawer from '@mui/joy/PermanentDrawer';
-import DrawerContent from '@mui/joy/DrawerContent';
 import CssBaseline from '@mui/joy/CssBaseline';
 import List from '@mui/joy/List';
 import Typography from '@mui/joy/Typography';
@@ -17,44 +16,54 @@ export default function PermanentDrawerDemo() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        sx={{
+          width: `calc(100% - ${drawerWidth}px)`,
+          ml: `${drawerWidth}px`,
+        }}
       >
-        <Typography level="h4" noWrap component="div">
+        <Box
+          sx={{
+            color: 'white',
+            fontSize: 20,
+            marginTop: 'auto',
+            marginBottom: 'auto',
+            marginLeft: 1,
+          }}
+        >
           Permanent drawer
-        </Typography>
+        </Box>
       </AppBar>
       <PermanentDrawer
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          '& .MuiDrawer-paper': {
+          '& .MuiDrawer-content': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            pt: 0,
           },
         }}
         anchor="left"
       >
-        <DrawerContent>
-          <Box sx={{ minHeight: 56 }} />
+        <Box sx={{ minHeight: 56 }} />
+        <Divider />
+        <Box role="presentation">
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
+              <ListItem key={text}>
+                <ListItemButton>{text}</ListItemButton>
+              </ListItem>
+            ))}
+          </List>
           <Divider />
-          <Box sx={{ width: drawerWidth }} role="presentation">
-            <List>
-              {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
-                <ListItem key={text}>
-                  <ListItemButton>{text}</ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-            <Divider />
-            <List>
-              {['All mail', 'Trash', 'Spam'].map((text) => (
-                <ListItem key={text}>
-                  <ListItemButton>{text}</ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </Box>
-        </DrawerContent>
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text) => (
+              <ListItem key={text}>
+                <ListItemButton>{text}</ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
       </PermanentDrawer>
       <Box
         component="main"
@@ -93,7 +102,7 @@ export default function PermanentDrawerDemo() {
   );
 }
 
-const AppBar = styled('div')({
+const AppBar = styled('header')(({ theme }) => ({
   minHeight: 56,
   display: 'flex',
   flexDirection: 'column',
@@ -104,4 +113,5 @@ const AppBar = styled('div')({
   top: 0,
   left: 'auto',
   right: 0,
-});
+  ...theme.variants.solid.primary,
+}));
