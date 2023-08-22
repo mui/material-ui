@@ -35,7 +35,7 @@
     "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true lerna run --parallel build:modern",
     "rsc:build": "ts-node ./packages/rsc-builder/buildRsc.ts",
     "template:screenshot": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/generateTemplateScreenshots",
-    "install:codesandbox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 pnpm install --ignore-engines",
+    "install:codesandbox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 pnpm install",
     "jsonlint": "node ./scripts/jsonlint.mjs",
     "eslint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
     "eslint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
