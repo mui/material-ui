@@ -170,7 +170,7 @@ You can use these to customize the component with both the `sx` prop and the the
 
 To integrate the Input component with 3rd party libraries, create a wrapper component to map props with 3rd party component APIs.
 
-Then use the wrapper component as a value to `slotProps.input.component` of Joy UI Input.
+Then, use the wrapper component as a value to the `slotProps.input.component` property of the Joy UI Input.
 
 ### React imask
 
