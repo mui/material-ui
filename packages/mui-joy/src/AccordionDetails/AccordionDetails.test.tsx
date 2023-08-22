@@ -34,7 +34,7 @@ describe('<AccordionDetails />', () => {
         <Accordion>
           <AccordionDetails>
             <a href="/foo">Hello</a>
-            <input />
+            <input type="text" />
           </AccordionDetails>
         </Accordion>,
       );
@@ -48,7 +48,7 @@ describe('<AccordionDetails />', () => {
         <Accordion expanded>
           <AccordionDetails>
             <a href="/foo">Hello</a>
-            <input />
+            <input type="text" />
           </AccordionDetails>
         </Accordion>,
       );
