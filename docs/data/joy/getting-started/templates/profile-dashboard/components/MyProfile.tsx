@@ -117,15 +117,6 @@ export default function MyProfile() {
           <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={3}>
             Billing
           </Tab>
-          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={4}>
-            Notifications
-          </Tab>
-          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={5}>
-            Integrations
-          </Tab>
-          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={6}>
-            API
-          </Tab>
         </TabList>
         <Box
           sx={{
