@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -13,6 +12,9 @@ import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
@@ -23,11 +25,10 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
 import IconImage from 'docs/src/components/icon/IconImage';
-import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
-import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
-import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
+import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import teamMembers from 'docs/data/about/teamMembers.json';
 /**
  * Import data from: https://tools-public.mui.com/prod/pages/nSwYn51
 
@@ -36,7 +37,6 @@ curl 'https://tools-public.mui.com/prod/api/data/muicomabout/queryAbout' \
   --data-raw '{}' \
   --compressed
 */
-import teamMembers from 'docs/data/about/teamMembers.json';
 
 interface Profile {
   name: string;
@@ -141,7 +141,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
             </Box>
           </Box>
         </Tooltip>
-        <Box mx="auto" height={15} />
+        <Box sx={{ mx: 'auto', height: 15 }} />
         <Box sx={{ mt: -0.5, mr: -0.5 }}>
           {props.github && (
             <IconButton
@@ -672,7 +672,7 @@ function AboutContent() {
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 If you use MUI in a commercial project and would like to support its continued
                 development by becoming a Sponsor, or in a side or hobby project and would like to
-                become a Backer, you can do so through OpenCollective.
+                become a Backer, you can do so through {'Open Collective'}.
                 <br />
                 <br />
                 All funds donated are managed transparently, and Sponsors receive recognition in the
@@ -687,7 +687,7 @@ function AboutContent() {
                 endIcon={<KeyboardArrowRightRounded />}
                 sx={{ ml: -1 }}
               >
-                See Open Collective{' '}
+                {'See Open Collective'}
               </Button>
             </Widget>
           </Grid>

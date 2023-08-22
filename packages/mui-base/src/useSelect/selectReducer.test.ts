@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import selectReducer from './selectReducer';
+import { selectReducer } from './selectReducer';
 import { SelectAction, SelectActionTypes, SelectInternalState } from './useSelect.types';
 import { ActionWithContext } from '../utils/useControllableReducer.types';
 import { ListActionContext } from '../useList';

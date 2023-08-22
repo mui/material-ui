@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import * as ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
@@ -15,6 +14,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import SearchIcon from '@mui/icons-material/Search';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
@@ -47,6 +47,10 @@ const SearchButton = styled('button')(({ theme }) => [
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
+    boxShadow: `inset 0 1px 1px ${(theme.vars || theme).palette.grey[100]}, 0 1px 0.5px ${alpha(
+      theme.palette.grey[100],
+      0.6,
+    )}`,
     '&:hover': {
       background: (theme.vars || theme).palette.grey[100],
       borderColor: (theme.vars || theme).palette.grey[300],
@@ -55,6 +59,9 @@ const SearchButton = styled('button')(({ theme }) => [
   theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
     borderColor: (theme.vars || theme).palette.primaryDark[700],
+    boxShadow: `inset 0 1px 1px ${(theme.vars || theme).palette.primaryDark[900]}, 0 1px 0.5px ${
+      (theme.vars || theme).palette.common.black
+    }`,
     '&:hover': {
       background: (theme.vars || theme).palette.primaryDark[700],
       borderColor: (theme.vars || theme).palette.primaryDark[600],
@@ -303,6 +310,8 @@ export default function AppSearch(props) {
   const optionalFilters = [];
   if (pageContext.productId !== 'null') {
     optionalFilters.push(`productId:${pageContext.productId}`);
+  } else if (pageContext.productCategoryId !== 'null') {
+    optionalFilters.push(`productCategoryId:${pageContext.productCategoryId}`);
   }
 
   return (

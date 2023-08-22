@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import { alpha, styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
+import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import { shouldHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
+import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
 import Link from 'docs/src/modules/components/Link';
 import standardNavIcons from './AppNavIcons';
 
@@ -45,7 +46,7 @@ const Item = styled(
       }),
       fontSize: theme.typography.pxToRem(14),
       textDecoration: 'none',
-      paddingLeft: 16 + (depth + 1) * 10 - (expandable ? 21 : 0),
+      paddingLeft: 10 + (depth + 1) * 13 - (expandable ? 21 : 0),
       '&:before': {
         content: '""',
         display: 'block',
@@ -92,7 +93,7 @@ const Item = styled(
         },
       }),
       ...(hasIcon && {
-        paddingLeft: 2,
+        paddingLeft: 0,
       }),
       '&.app-drawer-active': {
         // To match browserUrlPreviewMarge
@@ -258,7 +259,7 @@ export default function AppNavDrawerItem(props) {
     icon,
     legacy,
     newFeature,
-    comingSoon,
+    planned,
     linkProps,
     onClick,
     initiallyExpanded = false,
@@ -272,7 +273,7 @@ export default function AppNavDrawerItem(props) {
   const [open, setOpen] = React.useState(initiallyExpanded);
   const handleClick = (event) => {
     // Ignore the action if opening the link in a new tab
-    if (shouldHandleLinkClick(event)) {
+    if (samePageLinkNavigation(event)) {
       return;
     }
 
@@ -287,6 +288,21 @@ export default function AppNavDrawerItem(props) {
   };
 
   const hasIcon = icon && (typeof icon !== 'string' || !!standardNavIcons[icon]);
+  const IconComponent = typeof icon === 'string' ? standardNavIcons[icon] : icon;
+  const iconElement = hasIcon ? (
+    <Box
+      component="span"
+      sx={{
+        '& svg': { fontSize: (theme) => theme.typography.pxToRem(16.5) },
+        display: 'flex',
+        alignItems: 'center',
+        height: '100%',
+        marginRight: '6px',
+      }}
+    >
+      <IconComponent fontSize="small" color="primary" />
+    </Box>
+  ) : null;
 
   return (
     <StyledLi {...other} depth={depth}>
@@ -304,13 +320,14 @@ export default function AppNavDrawerItem(props) {
         onClick={handleClick}
         {...linkProps}
       >
+        {iconElement}
         {expandable && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
         {title}
         {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
         {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
         {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
         {newFeature && <Chip label="New" sx={sxChip('success')} />}
-        {comingSoon && <Chip label="Coming soon" sx={sxChip('grey')} />}
+        {planned && <Chip label="Planned" sx={sxChip('grey')} />}
       </Item>
       {expandable ? (
         <Collapse in={open} timeout="auto" unmountOnExit>
@@ -325,7 +342,6 @@ export default function AppNavDrawerItem(props) {
 
 AppNavDrawerItem.propTypes = {
   children: PropTypes.node,
-  comingSoon: PropTypes.bool,
   depth: PropTypes.number.isRequired,
   expandable: PropTypes.bool,
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -336,6 +352,7 @@ AppNavDrawerItem.propTypes = {
   newFeature: PropTypes.bool,
   onClick: PropTypes.func,
   plan: PropTypes.oneOf(['community', 'pro', 'premium']),
+  planned: PropTypes.bool,
   subheader: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   topLevel: PropTypes.bool,

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Textarea from '@mui/joy/Textarea';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function TextareaUsage() {
   return (

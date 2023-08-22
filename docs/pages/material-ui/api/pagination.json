@@ -1,7 +1,7 @@
 {
   "props": {
     "boundaryCount": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -56,7 +56,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -67,6 +67,10 @@
     }
   },
   "name": "Pagination",
+  "imports": [
+    "import Pagination from '@mui/material/Pagination';",
+    "import { Pagination } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "ul", "outlined", "text"],
     "globalClasses": {},

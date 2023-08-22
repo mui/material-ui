@@ -1,9 +1,9 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function TypographyUsages() {
+export default function TypographyUsage() {
   return (
     <JoyUsageDemo
       componentName="Typography"
@@ -41,7 +41,8 @@ export default function TypographyUsages() {
         {
           propName: 'children',
           knob: 'input',
-          defaultValue: 'Typography',
+          defaultValue:
+            'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
         },
 
         {
@@ -52,7 +53,19 @@ export default function TypographyUsages() {
       ]}
       renderDemo={(props) => (
         <Box sx={{ maxWidth: '400px' }}>
-          <Typography {...props}>{props.children}</Typography>
+          <Typography
+            {...props}
+            sx={
+              !props.noWrap && {
+                overflow: 'hidden',
+                display: '-webkit-box',
+                '-webkit-line-clamp': '3',
+                '-webkit-box-orient': 'vertical',
+              }
+            }
+          >
+            {props.children}
+          </Typography>
         </Box>
       )}
     />

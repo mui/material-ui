@@ -2,17 +2,17 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
+import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `
@@ -165,7 +165,7 @@ export default function MaterialStyling() {
     <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
+          <Box sx={{ maxWidth: 500 }}>
             <SectionHeadline
               overline="Styling"
               title={

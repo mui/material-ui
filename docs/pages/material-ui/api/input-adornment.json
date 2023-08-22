@@ -5,7 +5,7 @@
       "required": true
     },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "disablePointerEvents": { "type": { "name": "bool" }, "default": "false" },
     "disableTypography": { "type": { "name": "bool" }, "default": "false" },
@@ -14,7 +14,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -24,6 +24,10 @@
     }
   },
   "name": "InputAdornment",
+  "imports": [
+    "import InputAdornment from '@mui/material/InputAdornment';",
+    "import { InputAdornment } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

@@ -1,7 +1,7 @@
-import * as ts from 'typescript';
-import * as prettier from 'prettier';
 import fs from 'fs';
 import path from 'path';
+import * as ts from 'typescript';
+import * as prettier from 'prettier';
 import kebabCase from 'lodash/kebabCase';
 import { getHeaders, getTitle } from '@mui/markdown';
 import { getLineFeed } from '@mui-internal/docs-utilities';

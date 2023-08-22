@@ -50,7 +50,7 @@ function ProductSuite() {
     <Section bg="gradient" ref={ref}>
       <Grid container spacing={2}>
         <Grid item md={6}>
-          <Box maxWidth={500}>
+          <Box sx={{ maxWidth: 500 }}>
             <SectionHeadline
               overline="Products"
               title={

@@ -8,9 +8,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { alpha } from '@mui/material/styles';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { alpha } from '@mui/material/styles';
 
 /**
  * The app structure:
@@ -529,7 +529,7 @@ export default function Showcase() {
                   }),
                 })}
               >
-                <Box component="a" href={app.link} rel="noopener nofollow" target="_blank">
+                <a href={app.link} rel="noopener nofollow noreferrer" target="_blank">
                   <CardMedia
                     component="img"
                     loading="lazy"
@@ -550,7 +550,7 @@ export default function Showcase() {
                       }),
                     })}
                   />
-                </Box>
+                </a>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                   <Typography
                     component="h2"

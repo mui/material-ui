@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { alpha } from '@mui/material/styles';
 import Link from 'docs/src/modules/components/Link';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
-import { alpha } from '@mui/material/styles';
 
 export default function TableOfContentsBanner() {
   return FEATURE_TOGGLE.enable_toc_banner ? (
@@ -15,9 +15,10 @@ export default function TableOfContentsBanner() {
           mb: 2,
           mx: 0.5,
           p: 1,
+          pl: '10px',
           display: 'flex',
           alignItems: 'center',
-          gap: 1.5,
+          gap: '10px',
           backgroundColor: alpha(theme.palette.grey[50], 0.4),
           border: '1px solid',
           borderColor: (theme.vars || theme).palette.divider,

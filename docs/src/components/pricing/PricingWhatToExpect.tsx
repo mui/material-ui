@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Section from 'docs/src/layouts/Section';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
@@ -9,6 +8,7 @@ import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import Section from 'docs/src/layouts/Section';
 import Link from 'docs/src/modules/components/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 

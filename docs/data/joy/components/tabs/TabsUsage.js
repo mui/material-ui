@@ -1,9 +1,9 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function TabsUsage() {
   const [index, setIndex] = React.useState(0);

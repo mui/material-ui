@@ -11,8 +11,8 @@ import { LANGUAGES_IGNORE_PAGES } from 'docs/config';
  * File to keep in sync with:
  *
  * - /docs/src/modules/components/Link.tsx
- * - /examples/material-next/src/Link.js
- * - /examples/material-next-ts/src/Link.tsx
+ * - /examples/material-ui-nextjs-pages-router/src/Link.js
+ * - /examples/material-ui-nextjs-pages-router-ts/src/Link.tsx
  */
 
 // Add support for the sx prop for consistency with the other branches.

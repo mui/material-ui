@@ -10,71 +10,81 @@ import FilterDramaIcon from '@mui/icons-material/FilterDrama';
 
 const examples = [
   {
-    name: 'Next.js',
+    name: 'Next.js App Router',
     label: 'View JS example',
     tsLabel: 'View TS example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-next',
-    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-next-ts',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs',
+    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts',
     src: '/static/images/examples/next.svg',
-  },
-  {
-    name: 'Create React App',
-    label: 'View JS example',
-    tsLabel: 'View TS example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-cra',
-    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-cra-ts',
-    src: '/static/images/examples/cra.svg',
-  },
-  {
-    name: 'Remix',
-    label: 'View example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-remix-ts',
-    src: '/static/images/examples/remix.svg',
-  },
-  {
-    name: 'Tailwind CSS + CRA + TypeScript',
-    label: 'View example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-cra-tailwind-ts',
-    src: '/static/images/examples/tailwindcss.svg',
   },
   {
     name: 'Vite.js',
     label: 'View JS example',
     tsLabel: 'View TS example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-vite',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite',
+    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-ts',
     src: '/static/images/examples/vite.svg',
+  },
+  {
+    name: 'Next.js Pages Router',
+    label: 'View JS example',
+    tsLabel: 'View TS example',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-pages-router',
+    tsLink:
+      'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-pages-router-ts',
+    src: '/static/images/examples/next.svg',
+  },
+  {
+    name: 'Remix',
+    label: 'View TS example',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-remix-ts',
+    src: '/static/images/examples/remix.svg',
+  },
+  {
+    name: 'Tailwind CSS + CRA',
+    label: 'View TS example',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-tailwind-ts',
+    src: '/static/images/examples/tailwindcss.svg',
+  },
+  {
+    name: 'Create React App',
+    label: 'View JS example',
+    tsLabel: 'View TS example',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra',
+    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-ts',
+    src: '/static/images/examples/cra.svg',
   },
   {
     name: 'styled-components',
     label: 'View JS example',
     tsLabel: 'View TS example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components',
     tsLink:
-      'https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts',
+      'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts',
     src: '/static/images/examples/styled.png',
   },
   {
     name: 'Gatsby',
-    label: 'View example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-gatsby',
+    label: 'View JS example',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-gatsby',
     src: '/static/images/examples/gatsby.svg',
   },
   {
     name: 'Preact',
-    label: 'View example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-preact',
+    label: 'View JS example',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-preact',
     src: '/static/images/examples/preact.svg',
   },
   {
     name: 'CDN',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-via-cdn',
-    label: 'View example',
+    label: 'View JS example',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-via-cdn',
     src: <FilterDramaIcon />,
   },
   {
     name: 'Express.js (server-rendered)',
-    label: 'View example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-express-ssr',
+    label: 'View JS example',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-express-ssr',
     src: '/static/images/examples/express.png',
   },
 ];
@@ -83,7 +93,7 @@ export default function ExampleCollection() {
   return (
     <Grid container spacing={2}>
       {examples.map((example) => (
-        <Grid key={example.name} item xs={12} sm={6}>
+        <Grid key={example.name} xs={12} sm={6}>
           <Card
             sx={[
               {
@@ -127,12 +137,15 @@ export default function ExampleCollection() {
                   flexWrap: 'wrap',
                   alignItems: 'baseline',
                 }}
+                data-ga-event-category="material-ui-example"
+                data-ga-event-label={example.name}
+                data-ga-event-action="click"
               >
                 <Link
                   href={example.link}
                   variant="body2"
                   sx={{
-                    fontWeight: 500,
+                    fontWeight: 'medium',
                     display: 'flex',
                     alignItems: 'center',
                     mt: 0.5,
@@ -157,7 +170,7 @@ export default function ExampleCollection() {
                       href={example.tsLink}
                       variant="body2"
                       sx={{
-                        fontWeight: 500,
+                        fontWeight: 'medium',
                         display: 'flex',
                         alignItems: 'center',
                       }}

@@ -3,8 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import { DropdownProps } from './Dropdown.types';
-import DropdownContext from '../useDropdown/DropdownContext';
-import useDropdown from '../useDropdown/useDropdown';
+import { DropdownContext } from '../useDropdown/DropdownContext';
+import { useDropdown } from '../useDropdown/useDropdown';
 /**
  *
  * Demos:
@@ -56,4 +56,4 @@ if (process.env.NODE_ENV !== 'production') {
   (Dropdown as any)['propTypes' + ''] = exactProp(Dropdown.propTypes);
 }
 
-export default Dropdown;
+export { Dropdown };

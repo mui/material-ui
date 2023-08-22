@@ -5,17 +5,17 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import LibraryAddCheckRounded from '@mui/icons-material/LibraryAddCheckRounded';
+import SortByAlphaRounded from '@mui/icons-material/SortByAlphaRounded';
+import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
+import FilterAltRounded from '@mui/icons-material/FilterAltRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import LibraryAddCheckRounded from '@mui/icons-material/LibraryAddCheckRounded';
-import SortByAlphaRounded from '@mui/icons-material/SortByAlphaRounded';
-import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
-import FilterAltRounded from '@mui/icons-material/FilterAltRounded';
 import Frame from 'docs/src/components/action/Frame';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
@@ -121,7 +121,7 @@ export default function XDataGrid() {
     <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
+          <Box sx={{ maxWidth: 500 }}>
             <SectionHeadline
               overline="Data Grid"
               title={
@@ -130,7 +130,7 @@ export default function XDataGrid() {
                   been seen before
                 </Typography>
               }
-              description="The MUI Data Grid is a data table powerhouse. It is packed with exclusive features that will enrich the experience of dealing with and maintaining lots of data."
+              description="The MUI X Data Grid is a data table powerhouse. It is packed with exclusive features that will enrich the experience of dealing with and maintaining lots of data."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>

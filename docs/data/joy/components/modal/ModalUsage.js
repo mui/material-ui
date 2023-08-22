@@ -1,12 +1,12 @@
 import * as React from 'react';
-import JoyUsageDemo, {
-  prependLinesSpace,
-} from 'docs/src/modules/components/JoyUsageDemo';
 import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
+import JoyUsageDemo, {
+  prependLinesSpace,
+} from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function ModalUsage() {
   const [open, setOpen] = React.useState(false);

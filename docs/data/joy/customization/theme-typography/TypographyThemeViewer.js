@@ -7,9 +7,6 @@ import Typography from '@mui/joy/Typography';
 const defaultTheme = extendTheme();
 
 const Table = styled('table')(({ theme }) => ({
-  border: '1px solid',
-  borderColor: theme.vars.palette.divider,
-  borderRadius: theme.vars.radius.md,
   borderCollapse: 'separate',
   borderSpacing: 0,
   display: 'block',
@@ -63,7 +60,17 @@ export default function TypographyThemeViewer() {
       />
     ) : null;
   return (
-    <Box sx={{ maxWidth: '100%', overflowX: 'scroll' }}>
+    <Box
+      sx={{
+        marginBottom: '-9px',
+        maxWidth: '100%',
+        overflowX: 'scroll',
+        border: '1px solid',
+        borderColor: 'divider',
+        borderTopLeftRadius: '12px',
+        borderTopRightRadius: '12px',
+      }}
+    >
       <Table>
         <thead>
           <tr>

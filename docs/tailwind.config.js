@@ -2,6 +2,8 @@
 // eslint-disable-next-line import/no-import-module-exports
 import plugin from 'tailwindcss/plugin';
 
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class', '[data-mui-color-scheme="dark"]'],
@@ -12,6 +14,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        appear: 'in-right 200ms',
+      },
+      border: {
+        3: '3px',
+      },
       boxShadow: {
         'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
         'outline-purple-light': '0 0 0 4px rgba(245, 208, 254, 0.25)',
@@ -21,8 +29,8 @@ module.exports = {
       cursor: {
         inherit: 'inherit',
       },
-      border: {
-        3: '3px',
+      fontFamily: {
+        sans: ['IBM Plex Sans', ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
         'in-right': {
@@ -30,14 +38,8 @@ module.exports = {
           to: { transform: 'translateX(0)' },
         },
       },
-      animation: {
-        appear: 'in-right 200ms',
-      },
-      minWidth: {
-        badge: '22px',
-        listbox: '200px',
-        snackbar: '300px',
-        'tabs-list': '400px',
+      lineHeight: {
+        5.5: '1.375rem',
       },
       maxWidth: {
         snackbar: '560px',
@@ -45,8 +47,11 @@ module.exports = {
       minHeight: {
         badge: '22px',
       },
-      lineHeight: {
-        5.5: '1.375rem',
+      minWidth: {
+        badge: '22px',
+        listbox: '200px',
+        snackbar: '300px',
+        'tabs-list': '400px',
       },
     },
   },

@@ -78,7 +78,7 @@ const AlertRoot = styled('div', {
       ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
       fontWeight: theme.vars.fontWeight.md,
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    },
+    } as const,
     ownerState.color !== 'context' &&
       ownerState.invertedColors &&
       theme.colorInversion[ownerState.variant!]?.[ownerState.color!],

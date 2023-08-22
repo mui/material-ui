@@ -2,14 +2,27 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import ModalUnstyled, { modalClasses as modalUnstyledClasses } from '@mui/base/Modal';
-import { isHostComponent, resolveComponentProps } from '@mui/base/utils';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
+import { useSlotProps } from '@mui/base';
+import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import FocusTrap from '../Unstable_TrapFocus';
+import Portal from '../Portal';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
+import { getModalUtilityClass } from './modalClasses';
 
-export const modalClasses = modalUnstyledClasses;
+const useUtilityClasses = (ownerState) => {
+  const { open, exited, classes } = ownerState;
+
+  const slots = {
+    root: ['root', !open && exited && 'hidden'],
+    backdrop: ['backdrop'],
+  };
+
+  return composeClasses(slots, getModalUtilityClass, classes);
+};
 
 const ModalRoot = styled('div', {
   name: 'MuiModal',
@@ -60,7 +73,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const {
     BackdropComponent = ModalBackdrop,
     BackdropProps,
-    classes,
+    classes: classesProp,
     className,
     closeAfterTransition = false,
     children,
@@ -86,10 +99,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     ...other
   } = props;
 
-  const [exited, setExited] = React.useState(true);
-
-  const commonProps = {
-    container,
+  const propsWithDefaults = {
+    ...props,
     closeAfterTransition,
     disableAutoFocus,
     disableEnforceFocus,
@@ -99,16 +110,39 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock,
     hideBackdrop,
     keepMounted,
-    onBackdropClick,
-    onClose,
-    open,
   };
 
+  const {
+    getRootProps,
+    getBackdropProps,
+    getTransitionProps,
+    portalRef,
+    isTopModal,
+    exited,
+    hasTransition,
+  } = useModal({
+    ...propsWithDefaults,
+    rootRef: ref,
+  });
+
   const ownerState = {
-    ...props,
-    ...commonProps,
+    ...propsWithDefaults,
     exited,
   };
+
+  const classes = useUtilityClasses(ownerState);
+
+  const childProps = {};
+  if (children.props.tabIndex === undefined) {
+    childProps.tabIndex = '-1';
+  }
+
+  // It's a Transition like component
+  if (hasTransition) {
+    const { onEnter, onExited } = getTransitionProps();
+    childProps.onEnter = onEnter;
+    childProps.onExited = onExited;
+  }
 
   const RootSlot = slots?.root ?? components.Root ?? ModalRoot;
   const BackdropSlot = slots?.backdrop ?? components.Backdrop ?? BackdropComponent;
@@ -116,41 +150,70 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const rootSlotProps = slotProps?.root ?? componentsProps.root;
   const backdropSlotProps = slotProps?.backdrop ?? componentsProps.backdrop;
 
+  const rootProps = useSlotProps({
+    elementType: RootSlot,
+    externalSlotProps: rootSlotProps,
+    externalForwardedProps: other,
+    getSlotProps: getRootProps,
+    additionalProps: {
+      ref,
+      as: component,
+    },
+    ownerState,
+    className: clsx(
+      className,
+      rootSlotProps?.className,
+      classes?.root,
+      !ownerState.open && ownerState.exited && classes?.hidden,
+    ),
+  });
+
+  const backdropProps = useSlotProps({
+    elementType: BackdropSlot,
+    externalSlotProps: backdropSlotProps,
+    additionalProps: BackdropProps,
+    getSlotProps: (otherHandlers) => {
+      return getBackdropProps({
+        ...otherHandlers,
+        onClick: (e) => {
+          if (onBackdropClick) {
+            onBackdropClick(e);
+          }
+          if (otherHandlers?.onClick) {
+            otherHandlers.onClick(e);
+          }
+        },
+      });
+    },
+    className: clsx(backdropSlotProps?.className, BackdropProps?.className, classes?.backdrop),
+    ownerState,
+  });
+
+  if (!keepMounted && !open && (!hasTransition || exited)) {
+    return null;
+  }
+
   return (
-    <ModalUnstyled
-      slots={{
-        root: RootSlot,
-        backdrop: BackdropSlot,
-      }}
-      slotProps={{
-        root: () => ({
-          ...resolveComponentProps(rootSlotProps, ownerState),
-          ...(!isHostComponent(RootSlot) && { as: component, theme }),
-          className: clsx(
-            className,
-            rootSlotProps?.className,
-            classes?.root,
-            !ownerState.open && ownerState.exited && classes?.hidden,
-          ),
-        }),
-        backdrop: () => ({
-          ...BackdropProps,
-          ...resolveComponentProps(backdropSlotProps, ownerState),
-          className: clsx(
-            backdropSlotProps?.className,
-            BackdropProps?.className,
-            classes?.backdrop,
-          ),
-        }),
-      }}
-      onTransitionEnter={() => setExited(false)}
-      onTransitionExited={() => setExited(true)}
-      ref={ref}
-      {...other}
-      {...commonProps}
-    >
-      {children}
-    </ModalUnstyled>
+    <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
+      {/*
+       * Marking an element with the role presentation indicates to assistive technology
+       * that this element should be ignored; it exists to support the web application and
+       * is not meant for humans to interact with directly.
+       * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+       */}
+      <RootSlot {...rootProps}>
+        {!hideBackdrop && BackdropComponent ? <BackdropSlot {...backdropProps} /> : null}
+        <FocusTrap
+          disableEnforceFocus={disableEnforceFocus}
+          disableAutoFocus={disableAutoFocus}
+          disableRestoreFocus={disableRestoreFocus}
+          isEnabled={isTopModal}
+          open={open}
+        >
+          {React.cloneElement(children, childProps)}
+        </FocusTrap>
+      </RootSlot>
+    </Portal>
   );
 });
 

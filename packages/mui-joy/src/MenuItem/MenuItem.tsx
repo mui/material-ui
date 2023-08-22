@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
-import useMenuItem from '@mui/base/useMenuItem';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useMenuItem } from '@mui/base/useMenuItem';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';

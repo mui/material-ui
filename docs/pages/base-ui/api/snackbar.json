@@ -22,11 +22,15 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     }
   },
   "name": "Snackbar",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import { Snackbar } from '@mui/base/Snackbar';",
+    "import { Snackbar } from '@mui/base';"
+  ],
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",

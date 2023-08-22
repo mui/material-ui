@@ -49,9 +49,11 @@ describe('CodeSandbox', () => {
   <head>
     <title>BasicButtons Material Demo</title>
     <!-- Fonts to support Material Design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
@@ -136,9 +138,11 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   <head>
     <title>BasicButtons Material Demo</title>
     <!-- Fonts to support Material Design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
@@ -237,6 +241,25 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
     });
     expect(result.files['public/index.html'].content).to.contain(
       '<script src="https://cdn.tailwindcss.com"></script>',
+    );
+  });
+
+  it('should generate the correct stylesheet font link in index.html for Material Two Tones icons', () => {
+    const raw = `import * as React from 'react';
+    import Icon from '@mui/material/Icon';
+
+    export default function TwoToneIcons() {
+      return <Icon baseClassName="material-icons-two-tone">add_circle</Icon>;
+    }
+    `;
+
+    const result = CodeSandbox.createReactApp({
+      raw,
+      codeVariant: 'JS',
+    });
+
+    expect(result.files['public/index.html'].content).to.contain(
+      'https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone',
     );
   });
 });

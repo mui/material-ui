@@ -1,3 +1,3 @@
 'use client';
-export { default } from './useMenuButton';
+export { useMenuButton } from './useMenuButton';
 export * from './useMenuButton.types';
