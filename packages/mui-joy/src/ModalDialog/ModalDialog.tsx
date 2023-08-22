@@ -271,10 +271,16 @@ ModalDialog.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The maximum width of the component.
+   * @example 'md' will use the theme's `md` breakpoint value
+   * @example 360 is the number of pixels
+   * @example '60ch' can be any valid CSS max-width unit
    */
   maxWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The minimum width of the component.
+   * @example 'md' will use the theme's `md` breakpoint value
+   * @example 360 is the number of pixels
+   * @example '60ch' can be any valid CSS min-width unit
    */
   minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
