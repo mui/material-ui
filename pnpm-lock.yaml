@@ -447,6 +447,9 @@ importers:
       '@emotion/react':
         specifier: ^11.11.1
         version: 11.11.1(@types/react@18.2.20)(react@18.2.0)
+      '@emotion/server':
+        specifier: ^11.11.0
+        version: 11.11.0
       '@emotion/styled':
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.20)(react@18.2.0)
