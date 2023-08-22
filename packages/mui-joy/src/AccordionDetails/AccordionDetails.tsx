@@ -107,15 +107,19 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
       elements.forEach((elm) => {
         if (expanded) {
           const prevTabIndex = elm.getAttribute('data-prev-tabindex');
-          if (!prevTabIndex || prevTabIndex === 'none') {
-            elm.removeAttribute('tabindex');
-            elm.removeAttribute('data-prev-tabindex');
-          } else {
-            elm.removeAttribute('data-prev-tabindex');
+          const currentTabIndex = elm.getAttribute('tabindex');
+
+          if (currentTabIndex && prevTabIndex) {
+            // restore tabindex
             elm.setAttribute('tabindex', prevTabIndex);
+            elm.removeAttribute('data-prev-tabindex');
+          }
+
+          if (!prevTabIndex && !currentTabIndex) {
+            elm.removeAttribute('tabindex');
           }
         } else {
-          elm.setAttribute('data-prev-tabindex', elm.getAttribute('tabindex') || 'none');
+          elm.setAttribute('data-prev-tabindex', elm.getAttribute('tabindex') || '');
           elm.setAttribute('tabindex', '-1');
         }
       });
