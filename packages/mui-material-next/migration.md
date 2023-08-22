@@ -92,6 +92,46 @@ The following example replaces the `MuiBadge-anchorOriginBottomLeftCircular` cla
 + .MuiBadge-anchorOriginBottomLeft.MuiBadge-overlapCircular
 ```
 
+## Button
+
+See the [ButtonBase](https://github.com/mui/material-ui/blob/master/packages/mui-material-next/migration.md#buttonbase) section for more breaking changes.
+
+## ButtonBase
+
+The breaking changes in this section apply to the following components:
+
+- `Button`
+- `ButtonBase`
+<!-- Add other ButtonBase-based components when those are migrated -->
+
+So the examples below are interchangeable for these components.
+
+### Removed focusRipple
+
+The `focusRipple` prop was removed as ripples are absent in Material You's focused states.
+
+### Prevent default on `key-up` and `key-down` events
+
+If you need to prevent default on a `key-up` and/or `key-down` event, then besides calling `preventDefault` you'll need to set `event.defaultMuiPrevented` to `true` as follows:
+
+```diff
+ const onKeyDown = (event) => {
+   event.preventDefault();
++  event.defaultMuiPrevented = true;
+ };
+
+ const onKeyUp = (event) => {
+   event.preventDefault();
++  event.defaultMuiPrevented = true;
+ };
+
+ <Button onKeyDown={onKeyDown} onKeyUp={onKeyUp}>
+   Button
+ </Button>
+```
+
+This is to ensure that default is prevented when the `ButtonBase` root is not a native button, for example, when the root element used is a `span`.
+
 ## Slider
 
 ### Thumb and Value Label slots must accept refs
