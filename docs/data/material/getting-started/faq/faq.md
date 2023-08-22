@@ -18,8 +18,8 @@ There are many ways to support MUI:
   - Report bugs or missing features by [creating an issue](https://github.com/mui/material-ui/issues/new).
   - Review and comment on existing [pull requests](https://github.com/mui/material-ui/pulls) and [issues](https://github.com/mui/material-ui/issues).
   - [Improve our documentation](https://github.com/mui/material-ui/tree/HEAD/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui/material-ui/pulls).
-- **Support us financially on [OpenCollective](https://opencollective.com/mui)**.
-  If you use Material UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective.
+- **Support us financially on [Open Collective](https://opencollective.com/mui)**.
+  If you use Material UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through Open Collective.
   All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
 
 ## Why do the fixed positioned elements move when a modal is opened?
@@ -138,15 +138,10 @@ const ref = React.createRef();
 const element = ref.current;
 ```
 
-If you're not sure if the Material UI component in question forwards its ref you
-can check the API documentation under "Props" e.g. the [Button API](/material-ui/api/button/#props)
-includes
+If you're not sure if the Material UI component in question forwards its ref you can check the API documentation under "Props".
+You should find the message below, like in the [Button API](/material-ui/api/button/#props), [Button API](/material-ui/api/button/#props)
 
-:::info
-The ref is forwarded to the root element.
-:::
-
-indicating that you can access the DOM element with a ref.
+> The ref is forwarded to the root element.
 
 ## My App doesn't render correctly on the server
 
@@ -375,8 +370,6 @@ Example of fix:
 ### [legacy] React class name hydration mismatch
 
 :::warning
-**⚠️ Warning**
-
 Prop className did not match.
 :::
 

@@ -11,14 +11,16 @@ import { useMenuButton } from '@mui/base/useMenuButton';
 const Menu = React.forwardRef(function Menu(props, ref) {
   const { children, ...other } = props;
 
-  const { contextValue, getListboxProps } = useMenu({
+  const { open, triggerElement, contextValue, getListboxProps } = useMenu({
     listboxRef: ref,
   });
 
   return (
-    <ul className="menu-root" {...other} {...getListboxProps()}>
-      <MenuProvider value={contextValue}>{children}</MenuProvider>
-    </ul>
+    <Popper open={open} anchorEl={triggerElement}>
+      <ul className="menu-root" {...other} {...getListboxProps()}>
+        <MenuProvider value={contextValue}>{children}</MenuProvider>
+      </ul>
+    </Popper>
   );
 });
 
@@ -62,8 +64,7 @@ const MenuButton = React.forwardRef(function MenuButton(props, forwardedRef) {
 });
 
 export default function UseMenu() {
-  const { contextValue: dropdownContextValue, open } = useDropdown();
-  const buttonRef = React.useRef(null);
+  const { contextValue: dropdownContextValue } = useDropdown();
 
   const createHandleMenuClick = (menuItem) => {
     return () => {
@@ -75,16 +76,14 @@ export default function UseMenu() {
     <React.Fragment>
       <GlobalStyles styles={styles} />
       <DropdownContext.Provider value={dropdownContextValue}>
-        <MenuButton ref={buttonRef}>Theme</MenuButton>
-        <Popper open={open} anchorEl={buttonRef.current}>
-          <Menu id="hooks-menu">
-            <MenuItem onClick={createHandleMenuClick('OS Default')}>
-              OS default
-            </MenuItem>
-            <MenuItem onClick={createHandleMenuClick('Light')}>Light</MenuItem>
-            <MenuItem onClick={createHandleMenuClick('Dark')}>Dark</MenuItem>
-          </Menu>
-        </Popper>
+        <MenuButton>Theme</MenuButton>
+        <Menu id="hooks-menu">
+          <MenuItem onClick={createHandleMenuClick('OS Default')}>
+            OS default
+          </MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Light')}>Light</MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Dark')}>Dark</MenuItem>
+        </Menu>
       </DropdownContext.Provider>
     </React.Fragment>
   );

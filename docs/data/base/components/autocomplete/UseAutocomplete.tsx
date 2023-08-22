@@ -14,6 +14,7 @@ export default function UseAutocomplete() {
     getListboxProps,
     getOptionProps,
     groupedOptions,
+    focused,
   } = useAutocomplete({
     id: 'use-autocomplete-demo',
     options: top100Films,
@@ -24,8 +25,11 @@ export default function UseAutocomplete() {
 
   return (
     <div style={{ marginBottom: 24 }}>
-      <Label {...getInputLabelProps()}>Label</Label>
-      <StyledAutocompleteRoot {...getRootProps()}>
+      <StyledLabel {...getInputLabelProps()}>Pick a movie</StyledLabel>
+      <StyledAutocompleteRoot
+        {...getRootProps()}
+        className={focused ? 'focused' : ''}
+      >
         <StyledInput {...getInputProps()} />
       </StyledAutocompleteRoot>
       {groupedOptions.length > 0 && (
@@ -63,7 +67,7 @@ const grey = {
   900: '#24292f',
 };
 
-const Label = styled('label')`
+const StyledLabel = styled('label')`
   display: block;
   font-family: sans-serif;
   font-size: 14px;
@@ -75,7 +79,7 @@ const StyledAutocompleteRoot = styled('div')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
-  border-radius: 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
@@ -111,7 +115,7 @@ const StyledInput = styled('input')(
   background: inherit;
   border: none;
   border-radius: inherit;
-  padding: 12px 12px;
+  padding: 8px 12px;
   outline: 0;
   flex: 1 0 auto;
 `,
@@ -124,7 +128,7 @@ const StyledListbox = styled('ul')(
   box-sizing: border-box;
   padding: 6px;
   margin: 12px 0;
-  max-width: 320px;
+  width: 320px;
   border-radius: 12px;
   overflow: auto;
   outline: 0px;
@@ -134,7 +138,9 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 4px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
