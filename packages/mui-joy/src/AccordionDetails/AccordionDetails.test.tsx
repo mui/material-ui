@@ -34,7 +34,7 @@ describe('<AccordionDetails />', () => {
         <Accordion>
           <AccordionDetails>
             <a href="/foo">Hello</a>
-            <input type="text" />
+            <input />
           </AccordionDetails>
         </Accordion>,
       );
@@ -48,7 +48,8 @@ describe('<AccordionDetails />', () => {
         <Accordion expanded>
           <AccordionDetails>
             <a href="/foo">Hello</a>
-            <input type="text" />
+            {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
+            <input type="text" role="textbox" />
           </AccordionDetails>
         </Accordion>,
       );
@@ -62,7 +63,8 @@ describe('<AccordionDetails />', () => {
         <Accordion defaultExpanded>
           <AccordionSummary>title</AccordionSummary>
           <AccordionDetails>
-            <input tabIndex={2} />
+            {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
+            <input tabIndex={2} type="text" role="textbox" />
           </AccordionDetails>
         </Accordion>,
       );
