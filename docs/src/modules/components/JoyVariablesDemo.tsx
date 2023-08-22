@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
+import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
@@ -143,7 +144,6 @@ export default function JoyVariablesDemo(props: {
         sx={(theme) => ({
           flexShrink: 0,
           gap: 2,
-          p: 3,
           borderLeft: '1px solid',
           borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
           background: `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
@@ -153,9 +153,16 @@ export default function JoyVariablesDemo(props: {
       >
         <List component="div">
           <Box
-            sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+            sx={{
+              px: 3,
+              pt: 1,
+              pb: 2,
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
           >
-            <Typography fontWeight="lg">CSS Variables</Typography>
+            <Typography fontWeight="lg">CSS variables</Typography>
             <IconButton
               aria-label="Reset all"
               variant="outlined"
@@ -170,8 +177,10 @@ export default function JoyVariablesDemo(props: {
               <ReplayRoundedIcon />
             </IconButton>
           </Box>
+          <Divider sx={{ opacity: 0.5 }} />
           <Box
             sx={{
+              p: 3,
               display: 'flex',
               flexDirection: 'column',
               gap: 1,
