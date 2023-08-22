@@ -209,9 +209,9 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     }
   }
 
-  const getRootProps = <TOther extends Record<string, any> = {}>(
-    externalProps: TOther = {} as TOther,
-  ): UseButtonRootSlotProps<TOther> => {
+  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseButtonRootSlotProps<ExternalProps> => {
     const externalEventHandlers = {
       ...extractEventHandlers(parameters),
       ...extractEventHandlers(externalProps),

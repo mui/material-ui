@@ -39,17 +39,17 @@ export interface UseButtonRootSlotOwnProps {
   ref: React.RefCallback<Element> | null;
 }
 
-export type UseButtonRootSlotProps<TOther = {}> = TOther & UseButtonRootSlotOwnProps;
+export type UseButtonRootSlotProps<ExternalProps = {}> = ExternalProps & UseButtonRootSlotOwnProps;
 
 export interface UseButtonReturnValue {
   /**
    * Resolver for the root slot's props.
-   * @param otherHandlers event handlers for the root slot
+   * @param externalProps additional props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <TOther extends Record<string, any> = {}>(
-    externalProps?: TOther,
-  ) => UseButtonRootSlotProps<TOther>;
+  getRootProps: <ExternalProps extends Record<string, any> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseButtonRootSlotProps<ExternalProps>;
   /**
    * If `true`, the component is being focused using keyboard.
    */
