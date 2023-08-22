@@ -65,34 +65,31 @@ commands:
 
     steps:
       - run:
-          name: View install environment
-          command: |
-            node --version
-            yarn --version
-      - run:
           name: Resolve react version
           command: |
             node scripts/useReactVersion.mjs
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
       - restore_cache:
-          name: Restore yarn cache
+          name: Restore pnpm Package Cache
           keys:
-            - v8-yarn-{{ checksum "yarn.lock" }}
+            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
       - run:
-          name: Set yarn cache folder
+          name: Install pnpm package manager
           command: |
-            # Keep path in sync with `save_cache` for key "v8-yarn-"
-            yarn config set cache-folder /tmp/yarn-cache
-            # Debug information
-            yarn cache dir
-            yarn cache list
+            corepack enable
+            corepack prepare pnpm@latest-8 --activate
+      - run:
+          name: View install environment
+          command: |
+            node --version
+            pnpm --version
       - when:
           condition: << parameters.browsers >>
           steps:
             - run:
                 name: Prepare playwright hash
-                command: yarn --json list --pattern playwright > /tmp/playwright_info.json
+                command: pnpm list --json --filter playwright > /tmp/playwright_info.json
             - store_artifacts:
                 name: Debug playwright hash
                 path: /tmp/playwright_info.json
@@ -102,16 +99,14 @@ commands:
                   - v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
       - run:
           name: Install js dependencies
-          command: yarn install
+          command: pnpm install
           environment:
             PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: <<# parameters.browsers >>0<</ parameters.browsers >><<^ parameters.browsers >>1<</ parameters.browsers >>
       - save_cache:
-          name: Save yarn cache
-          key: v8-yarn-{{ checksum "yarn.lock" }}
+          name: Save pnpm Package Cache
+          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
           paths:
-            # Keep path in sync with "Set yarn cache folder"
-            # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
-            - /tmp/yarn-cache
+            - node_modules
       - when:
           condition: << parameters.browsers >>
           steps:
@@ -139,7 +134,7 @@ jobs:
                 command: git add -A && git diff --exit-code --staged
             - run:
                 name: Check for duplicated packages
-                command: yarn deduplicate
+                command: pnpm deduplicate
   test_unit:
     <<: *defaults
     steps:
@@ -147,7 +142,7 @@ jobs:
       - install_js
       - run:
           name: Tests fake browser
-          command: yarn test:coverage:ci
+          command: pnpm test:coverage:ci
       - run:
           name: Check coverage generated
           command: |
@@ -166,8 +161,8 @@ jobs:
 
             if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
-              yarn workspace @mui/icons-material build:typings
-              yarn workspace @mui/icons-material test:built-typings
+              pnpm --filter @mui/icons-material build:typings
+              pnpm --filter @mui/icons-material test:built-typings
             else
               echo "no changes"
             fi
@@ -182,7 +177,7 @@ jobs:
 
             if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
-              yarn workspace typescript-to-proptypes test
+              pnpm --filter typescript-to-proptypes test
             else
               echo "no changes"
             fi
@@ -199,57 +194,57 @@ jobs:
       - install_js
       - run:
           name: Eslint
-          command: yarn eslint:ci
+          command: pnpm eslint:ci
       - run:
           name: Stylelint
-          command: yarn stylelint
+          command: pnpm stylelint
       - run:
           name: Lint JSON
-          command: yarn jsonlint
+          command: pnpm jsonlint
       - run:
           name: Lint Markdown
-          command: yarn markdownlint
+          command: pnpm markdownlint
   test_static:
     <<: *defaults
     steps:
       - checkout
       - install_js
       - run:
-          name: '`yarn prettier` changes committed?'
-          command: yarn prettier --check
+          name: '`pnpm prettier` changes committed?'
+          command: pnpm prettier --check
       - run:
           name: Generate PropTypes
-          command: yarn proptypes
+          command: pnpm proptypes
       - run:
-          name: '`yarn proptypes` changes committed?'
+          name: '`pnpm proptypes` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
           name: 'Write "use client" directive'
-          command: yarn rsc:build
+          command: pnpm rsc:build
       - run:
-          name: '`yarn rsc:build` changes detected, "use client" missing from exports'
+          name: '`pnpm rsc:build` changes detected, "use client" missing from exports'
           command: git add -A && git diff --exit-code --staged
       - run:
           name: Generate the documentation
-          command: yarn docs:api
+          command: pnpm docs:api
       - run:
-          name: '`yarn docs:api` changes committed?'
+          name: '`pnpm docs:api` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
           name: Update the navigation translations
-          command: yarn docs:i18n
+          command: pnpm docs:i18n
       - run:
-          name: '`yarn docs:i18n` changes committed?'
+          name: '`pnpm docs:i18n` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
-          name: '`yarn extract-error-codes` changes committed?'
+          name: '`pnpm extract-error-codes` changes committed?'
           command: |
-            yarn extract-error-codes
+            pnpm extract-error-codes
             git add -A && git diff --exit-code --staged
       - run:
-          name: '`yarn docs:link-check` changes committed?'
+          name: '`pnpm docs:link-check` changes committed?'
           command: |
-            yarn docs:link-check
+            pnpm docs:link-check
             git add -A && git diff --exit-code --staged
   test_types:
     <<: *defaults
@@ -259,26 +254,26 @@ jobs:
       - install_js
       - run:
           name: Transpile TypeScript demos
-          command: yarn docs:typescript:formatted
+          command: pnpm docs:typescript:formatted
       - run:
-          name: '`yarn docs:typescript:formatted` changes committed?'
+          name: '`pnpm docs:typescript:formatted` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
           name: Tests TypeScript definitions
-          command: yarn typescript:ci
+          command: pnpm typescript:ci
       - run:
           name: Test module augmentation
           command: |
-            yarn workspace @mui/material typescript:module-augmentation
-            yarn workspace @mui/base typescript:module-augmentation
-            yarn workspace @mui/joy typescript:module-augmentation
+            pnpm --filter @mui/material typescript:module-augmentation
+            pnpm --filter @mui/base typescript:module-augmentation
+            pnpm --filter @mui/joy typescript:module-augmentation
       - run:
           name: Diff declaration files
           command: |
             git add -f packages/mui-material/build || echo '/material declarations do not exist'
             git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            yarn lerna run build:types
+            pnpm lerna run build:types
             git --no-pager diff
       - run:
           name: Any defect declaration files?
@@ -312,7 +307,7 @@ jobs:
             # it's expected that typescript@next fails since the lines of the errors
             # change frequently. This build is monitored regardless of its status
             set +e
-            yarn typescript:ci
+            pnpm typescript:ci
             exit 0
 
       - restore_cache:
@@ -328,7 +323,7 @@ jobs:
             git add -f packages/mui-material/build || echo '/core declarations do not exist'
             git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            yarn lerna run build:types
+            pnpm lerna run build:types
             git --no-pager diff
 
       - run:
@@ -353,7 +348,7 @@ jobs:
           browsers: true
       - run:
           name: Tests real browsers
-          command: yarn test:karma
+          command: pnpm test:karma
       - run:
           name: Check coverage generated
           command: |
@@ -382,14 +377,14 @@ jobs:
       - install_js:
           browsers: true
       - run:
-          name: yarn test:e2e
-          command: yarn test:e2e
+          name: pnpm test:e2e
+          command: pnpm test:e2e
       - run:
           name: Can we generate the @mui/material umd build?
-          command: yarn workspace @mui/material build:umd
+          command: pnpm --filter @mui/material build:umd
       - run:
           name: Test umd release
-          command: yarn test:umd
+          command: pnpm test:umd
   test_e2e_website:
     <<: *defaults
     docker:
@@ -401,8 +396,8 @@ jobs:
       - install_js:
           browsers: true
       - run:
-          name: yarn test:e2e-website
-          command: yarn test:e2e-website
+          name: pnpm test:e2e-website
+          command: pnpm test:e2e-website
           environment:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
   test_profile:
@@ -422,11 +417,11 @@ jobs:
           command: |
             # Running on chrome only since actual times are innaccurate anyway
             # The other reason is that browserstack allows little concurrency so it's likely that we're starving other runs.
-            yarn test:karma:profile --browsers chrome,chromeHeadless
-            yarn test:karma:profile --browsers chrome,chromeHeadless
-            yarn test:karma:profile --browsers chrome,chromeHeadless
-            yarn test:karma:profile --browsers chrome,chromeHeadless
-            yarn test:karma:profile --browsers chrome,chromeHeadless
+            pnpm test:karma:profile --browsers chrome,chromeHeadless
+            pnpm test:karma:profile --browsers chrome,chromeHeadless
+            pnpm test:karma:profile --browsers chrome,chromeHeadless
+            pnpm test:karma:profile --browsers chrome,chromeHeadless
+            pnpm test:karma:profile --browsers chrome,chromeHeadless
       # Persist reports for inspection in https://mui-dashboard.netlify.app/
       - store_artifacts:
           # see karma.conf.profile.js reactProfilerReporter.outputDir
@@ -444,10 +439,10 @@ jobs:
           browsers: true
       - run:
           name: Run visual regression tests
-          command: xvfb-run yarn test:regressions
+          command: xvfb-run pnpm test:regressions
       - run:
           name: Upload screenshots to Argos CI
-          command: yarn test:argos
+          command: pnpm test:argos
   test_bundling_prepare:
     <<: *defaults
     steps:
@@ -455,7 +450,7 @@ jobs:
       - install_js
       - run:
           name: Build packages for fixtures
-          command: yarn lerna run --scope "@mui/*" build
+          command: pnpm lerna run --scope "@mui/*" build
       - persist_to_workspace:
           root: packages
           paths:
@@ -476,14 +471,14 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yarn
+            pnpm
             node ../../scripts/useBuildFromSource.js .
       - run:
           name: Test fixture
           command: |
             # TODO: Known failure
             set +e
-            yarn start
+            pnpm start
             exit 0
   test_bundling_next-webpack4:
     <<: *defaults
@@ -504,11 +499,11 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yarn
+            pnpm
             node ../../scripts/useBuildFromSource.js .
       - run:
           name: Test fixture
-          command: yarn start
+          command: pnpm start
   test_bundling_next-webpack5:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
@@ -528,11 +523,11 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yarn
+            pnpm
             node ../../scripts/useBuildFromSource.js .
       - run:
           name: Test fixture
-          command: yarn start
+          command: pnpm start
   test_bundling_create-react-app:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
@@ -552,11 +547,11 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yarn
+            pnpm
             node ../../scripts/useBuildFromSource.js .
       - run:
           name: Test fixture
-          command: yarn start
+          command: pnpm start
   test_bundling_snowpack:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
@@ -576,11 +571,11 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yarn
+            pnpm
             node ../../scripts/useBuildFromSource.js .
       - run:
           name: Test fixture
-          command: yarn start
+          command: pnpm start
   test_bundling_vite:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
@@ -600,11 +595,11 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yarn
+            pnpm
             node ../../scripts/useBuildFromSource.js .
       - run:
           name: Test fixture
-          command: yarn start
+          command: pnpm start
   test_bundling_esbuild:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
@@ -624,14 +619,14 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yarn
+            pnpm
             node ../../scripts/useBuildFromSource.js .
       - run:
           name: Test fixture
           command: |
             # TODO: Known failure
             set +e
-            yarn start
+            pnpm start
             exit 0
   test_bundling_gatsby:
     <<: *defaults
@@ -652,10 +647,10 @@ jobs:
             node ../../scripts/createFixture gatsby
       - run:
           name: Install dependencies
-          command: yarn
+          command: pnpm
       - run:
           name: Test fixture
-          command: yarn start
+          command: pnpm start
   test_bundle_size_monitor:
     <<: *defaults
     steps:
@@ -663,12 +658,12 @@ jobs:
       - install_js
       - run:
           name: prepare danger on PRs
-          command: yarn danger ci
+          command: pnpm danger ci
           environment:
             DANGER_COMMAND: prepareBundleSizeReport
       - run:
           name: build @mui packages
-          command: yarn lerna run --ignore @mui/icons-material --concurrency 8 --scope "@mui/*" build
+          command: pnpm lerna run --ignore @mui/icons-material --concurrency 8 --scope "@mui/*" build
       - run:
           name: create @mui/material canary distributable
           command: |
@@ -699,7 +694,7 @@ jobs:
           destination: mui-material.tgz
       - run:
           name: create a size snapshot
-          command: yarn size:snapshot
+          command: pnpm size:snapshot
       - store_artifacts:
           name: persist size snapshot as pipeline artifact
           path: size-snapshot.json
@@ -733,7 +728,7 @@ jobs:
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
       - run:
           name: run danger on PRs
-          command: yarn danger ci --fail-on-errors
+          command: pnpm danger ci --fail-on-errors
           environment:
             DANGER_COMMAND: 'reportBundleSize'
   test_benchmark:
@@ -746,7 +741,7 @@ jobs:
       - checkout
       - install_js:
           browsers: true
-      - run: yarn benchmark:browser
+      - run: pnpm benchmark:browser
       - store_artifacts:
           name: Publish benchmark results as a pipeline artifact.
           path: tmp/benchmarks
