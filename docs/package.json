@@ -111,6 +111,7 @@
     "react-runner": "^1.0.3",
     "react-simple-code-editor": "^0.13.1",
     "react-swipeable-views": "^0.14.0",
+    "react-swipeable-views-utils": "^0.14.0",
     "react-transition-group": "^4.4.5",
     "react-virtuoso": "^4.4.2",
     "react-window": "^1.8.9",
@@ -133,6 +134,7 @@
     "@types/react-transition-group": "^4.4.6",
     "cross-fetch": "^4.0.0",
     "gm": "^1.25.0",
+    "marked": "^5.1.2",
     "playwright": "^1.36.2",
     "tailwindcss": "^3.3.3"
   }

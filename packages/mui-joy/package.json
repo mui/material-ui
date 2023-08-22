@@ -52,7 +52,8 @@
   "devDependencies": {
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.20",
-    "next": "^13.4.13"
+    "next": "^13.4.13",
+    "test": "workspace:*"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

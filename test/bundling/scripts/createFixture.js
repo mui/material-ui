@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
-import * as process from 'process';
 import { URL } from 'url';
+import * as process from 'process';
 
 /**
  * @typedef {object} FixtureContext

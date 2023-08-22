@@ -57,8 +57,13 @@
   },
   "devDependencies": {
     "@popperjs/core": "^2.11.8",
+    "@types/css-mediaquery": "^0.1.1",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^18.2.20"
+    "@types/react": "^18.2.20",
+    "css-mediaquery": "^0.1.2",
+    "express": "^4.18.2",
+    "playwright": "^1.36.2",
+    "test": "workspace:*"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

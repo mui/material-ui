@@ -53,7 +53,8 @@
   "devDependencies": {
     "@types/prop-types": "^15.7.5",
     "@types/react": "18.2.20",
-    "@types/react-dom": "18.2.7"
+    "@types/react-dom": "18.2.7",
+    "test": "workspace:*"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",
