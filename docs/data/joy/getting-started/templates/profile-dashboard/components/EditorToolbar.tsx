@@ -5,6 +5,11 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import IconButton from '@mui/joy/IconButton';
 
+import FormatBoldRoundedIcon from '@mui/icons-material/FormatBoldRounded';
+import FormatItalicRoundedIcon from '@mui/icons-material/FormatItalicRounded';
+import StrikethroughSRoundedIcon from '@mui/icons-material/StrikethroughSRounded';
+import FormatListBulletedRoundedIcon from '@mui/icons-material/FormatListBulletedRounded';
+
 export default function EditorToolbar({ sx, ...props }: BoxProps) {
   return (
     <Box
@@ -21,16 +26,16 @@ export default function EditorToolbar({ sx, ...props }: BoxProps) {
         </Option>
       </Select>
       <IconButton size="sm" variant="plain" color="neutral">
-        <i data-feather="bold" />
+        <FormatBoldRoundedIcon />
       </IconButton>
       <IconButton size="sm" variant="plain" color="neutral">
-        <i data-feather="italic" />
+        <FormatItalicRoundedIcon />
       </IconButton>
       <IconButton size="sm" variant="plain" color="neutral">
-        <i data-feather="link-2" />
+        <StrikethroughSRoundedIcon />
       </IconButton>
       <IconButton size="sm" variant="plain" color="neutral">
-        <i data-feather="list" />
+        <FormatListBulletedRoundedIcon />
       </IconButton>
     </Box>
   );

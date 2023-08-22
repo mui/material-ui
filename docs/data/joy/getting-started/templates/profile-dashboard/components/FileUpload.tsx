@@ -7,6 +7,10 @@ import IconButton from '@mui/joy/IconButton';
 import LinearProgress from '@mui/joy/LinearProgress';
 import Typography from '@mui/joy/Typography';
 
+import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded';
+
 export default function FileUpload({
   icon,
   fileName,
@@ -43,7 +47,7 @@ export default function FileUpload({
           '--Icon-fontSize': '16px',
         }}
       >
-        <div>{icon ?? <i data-feather="file" />}</div>
+        <div>{icon ?? <InsertDriveFileRoundedIcon />}</div>
       </AspectRatio>
       <CardContent>
         <Typography fontSize="sm">{fileName}</Typography>
@@ -67,7 +71,7 @@ export default function FileUpload({
         <AspectRatio
           ratio="1"
           variant="solid"
-          color="primary"
+          color="success"
           sx={{
             minWidth: 20,
             borderRadius: '50%',
@@ -75,17 +79,12 @@ export default function FileUpload({
           }}
         >
           <div>
-            <i data-feather="check" />
+            <CheckRoundedIcon />
           </div>
         </AspectRatio>
       ) : (
-        <IconButton
-          variant="plain"
-          color="neutral"
-          size="sm"
-          sx={{ mt: -1, mr: -1 }}
-        >
-          <i data-feather="trash-2" />
+        <IconButton variant="plain" color="danger" size="sm" sx={{ mt: -1, mr: -1 }}>
+          <RemoveCircleOutlineRoundedIcon />
         </IconButton>
       )}
     </Card>

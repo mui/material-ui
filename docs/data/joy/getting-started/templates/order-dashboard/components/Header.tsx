@@ -3,6 +3,7 @@ import GlobalStyles from '@mui/joy/GlobalStyles';
 import Sheet from '@mui/joy/Sheet';
 import IconButton from '@mui/joy/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import MuiLogo from './MuiLogo';
 
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { toggleSidebar } from '../utils';
@@ -42,6 +43,7 @@ export default function Header() {
         color="neutral"
         size="sm"
       >
+        <MuiLogo variant="plain" sx={{ boxShadow: 'none', mr: 'auto' }} />
         <MenuIcon />
       </IconButton>
       <ColorSchemeToggle id={undefined} />

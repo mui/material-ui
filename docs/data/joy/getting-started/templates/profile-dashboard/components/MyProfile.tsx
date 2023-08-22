@@ -20,6 +20,15 @@ import DropZone from './DropZone';
 import FileUpload from './FileUpload';
 import CountrySelector from './CountrySelector';
 import EditorToolbar from './EditorToolbar';
+import Breadcrumbs from '@mui/joy/Breadcrumbs';
+import Link from '@mui/joy/Link';
+
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import AccessTimeFilledRoundedIcon from '@mui/icons-material/AccessTimeFilledRounded';
+import VideocamRoundedIcon from '@mui/icons-material/VideocamRounded';
+import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
 
 export default function MyProfile() {
   return (
@@ -31,101 +40,96 @@ export default function MyProfile() {
         mx: 'auto',
       }}
     >
-      <Typography level="h2" sx={{ mb: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', pl: 0 }}>
+        <Breadcrumbs
+          size="sm"
+          aria-label="breadcrumbs"
+          separator={<ChevronRightRoundedIcon fontSize="sm" />}
+          sx={{ pl: 0 }}
+        >
+          <Link underline="none" color="neutral" href="#some-link" aria-label="Home">
+            <HomeRoundedIcon />
+          </Link>
+          <Link
+            underline="hover"
+            color="neutral"
+            href="#some-link"
+            fontSize={12}
+            fontWeight={500}
+          >
+            Users
+          </Link>
+          <Typography color="primary" fontWeight={500} fontSize={12}>
+            My Profile
+          </Typography>
+        </Breadcrumbs>
+      </Box>
+      <Typography
+        level="h2"
+        sx={{
+          display: 'flex',
+          mt: 1,
+          mb: 4,
+          gap: 1,
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: { xs: 'start', sm: 'center' },
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+        }}
+      >
         My profile
       </Typography>
-      <Tabs defaultValue={0} sx={{ bgcolor: 'transparent' }}>
-        <Box
+
+      <Tabs
+        variant="outlined"
+        aria-label="Pricing plan"
+        defaultValue={0}
+        sx={{
+          borderRadius: 'md',
+          overflow: 'auto',
+        }}
+      >
+        <TabList
+          disableUnderline
+          tabFlex={1}
           sx={{
-            '--_shadow-height': '16px',
-            height: 0,
-            position: 'sticky',
-            top: 'calc(48px - var(--main-paddingTop, 0px) + var(--Header-height, 0px) - (var(--_shadow-height) / 2))',
-            zIndex: 1,
-            '&::before': {
-              content: '""',
-              display: 'block',
-              position: 'relative',
-              zIndex: 1,
-              height: 'var(--_shadow-height)',
+            [`& .${tabClasses.root}`]: {
+              fontSize: 'sm',
+              fontWeight: 'lg',
+              [`&[aria-selected="true"]`]: {
+                bgcolor: 'background.surface',
+              },
+              [`&.${tabClasses.focusVisible}`]: {
+                outlineOffset: '-4px',
+              },
             },
           }}
-        />
-        <TabList
-          sticky="top"
-          sx={(theme) => ({
-            top: 'calc(-1 * (var(--main-paddingTop, 0px) - var(--Header-height, 0px)))',
-            zIndex: 10,
-            width: '100%',
-            overflow: 'auto hidden',
-            alignSelf: 'flex-start',
-            scrollSnapType: 'inline',
-            '&::after': {
-              pointerEvents: 'none',
-              display: { xs: 'block', sm: 'none' },
-              content: '""',
-              position: 'sticky',
-              top: 0,
-              width: 40,
-              flex: 'none',
-              zIndex: 1,
-              right: 0,
-            },
-            '&::-webkit-scrollbar': {
-              width: 0,
-              display: 'none',
-            },
-            [`& .${tabClasses.root}`]: {
-              '--focus-outline-offset': '-2px',
-              '&:first-of-type': {
-                ml: 'calc(-1 * var(--ListItem-paddingX))',
-              },
-              scrollSnapAlign: 'start',
-              bgcolor: 'transparent',
-              flex: 'none',
-              '&:hover': {
-                bgcolor: 'transparent',
-              },
-              [`&.${tabClasses.selected}`]: {
-                color: 'primary.plainColor',
-                bgcolor: 'transparent',
-                [`& .${chipClasses.root}`]: theme.variants.solid.primary,
-              },
-            },
-          })}
         >
-          <Tab indicatorInset value={0}>
-            Account settings
+          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={0}>
+            Settings
           </Tab>
-          <Tab indicatorInset value={1}>
-            Team{' '}
-            <Chip size="sm" variant="soft" color="neutral" sx={{ ml: 1 }}>
-              2
-            </Chip>
+          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={1}>
+            Team
           </Tab>
-          <Tab indicatorInset value={2}>
+          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={2}>
             Plan
           </Tab>
-          <Tab indicatorInset value={3}>
-            Billing{' '}
-            <Chip size="sm" variant="soft" color="neutral" sx={{ ml: 1 }}>
-              4
-            </Chip>
+          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={3}>
+            Billing
           </Tab>
-          <Tab indicatorInset value={4}>
+          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={4}>
             Notifications
           </Tab>
-          <Tab indicatorInset value={5}>
+          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={5}>
             Integrations
           </Tab>
-          <Tab indicatorInset value={6}>
+          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={6}>
             API
           </Tab>
         </TabList>
         <Box
           sx={{
-            pt: 3,
-            pb: 10,
+            p: 4,
             display: 'grid',
             gridTemplateColumns: {
               xs: '100%',
@@ -156,7 +160,7 @@ export default function MyProfile() {
             <Input
               size="sm"
               type="email"
-              startDecorator={<i data-feather="mail" />}
+              startDecorator={<EmailRoundedIcon />}
               placeholder="email"
               defaultValue="siriwatk@test.com"
             />
@@ -193,7 +197,7 @@ export default function MyProfile() {
             <FormLabel>Timezone</FormLabel>
             <Select
               size="sm"
-              startDecorator={<i data-feather="clock" />}
+              startDecorator={<AccessTimeFilledRoundedIcon />}
               defaultValue="1"
             >
               <Option value="1">
@@ -235,18 +239,19 @@ export default function MyProfile() {
           <Stack useFlexGap spacing={1.5}>
             <DropZone />
             <FileUpload
+              icon={<InsertDriveFileRoundedIcon />}
               fileName="Tech design requirements.pdf"
               fileSize="200 KB"
               progress={100}
             />
             <FileUpload
-              icon={<i data-feather="film" />}
+              icon={<VideocamRoundedIcon />}
               fileName="Dashboard prototype recording.mp4"
               fileSize="16 MB"
               progress={40}
             />
             <FileUpload
-              icon={<i data-feather="upload-cloud" />}
+              icon={<InsertDriveFileRoundedIcon />}
               fileName="Dashboard prototype FINAL.fig"
               fileSize="4.2 MB"
               progress={80}

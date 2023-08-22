@@ -5,6 +5,8 @@ import Card, { CardProps } from '@mui/joy/Card';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 
+import FileUploadRoundedIcon from '@mui/icons-material/FileUploadRounded';
+
 export default function DropZone({ sx, ...props }: CardProps) {
   return (
     <Card
@@ -29,13 +31,13 @@ export default function DropZone({ sx, ...props }: CardProps) {
             width: 32,
             height: 32,
             borderRadius: '50%',
-            bgcolor: 'background.level2',
+            bgcolor: 'background.level3',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <i data-feather="upload-cloud" />
+          <FileUploadRoundedIcon />
         </Box>
       </Box>
       <Typography level="body-sm" textAlign="center">

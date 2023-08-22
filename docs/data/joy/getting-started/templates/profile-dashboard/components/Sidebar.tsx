@@ -22,9 +22,19 @@ import ColorSchemeToggle from './ColorSchemeToggle';
 import { closeSidebar } from '../utils';
 import { Stack } from '@mui/system';
 
-const Dropdown = styled('i')(({ theme }) => ({
-  color: theme.vars.palette.text.tertiary,
-}));
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
+import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded';
+import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
+import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
+import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
+import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
 export default function Sidebar() {
   return (
@@ -45,7 +55,7 @@ export default function Sidebar() {
         width: 'var(--Sidebar-width)',
         top: 0,
         p: 1.5,
-        py: 3,
+        py: 2,
         flexShrink: 0,
         display: 'flex',
         flexDirection: 'column',
@@ -57,9 +67,9 @@ export default function Sidebar() {
       <GlobalStyles
         styles={(theme) => ({
           ':root': {
-            '--Sidebar-width': '224px',
+            '--Sidebar-width': '200px',
             [theme.breakpoints.up('lg')]: {
-              '--Sidebar-width': '256px',
+              '--Sidebar-width': '240px',
             },
           },
         })}
@@ -73,7 +83,8 @@ export default function Sidebar() {
           left: 0,
           width: '100vw',
           height: '100vh',
-          opacity: 'calc(var(--SideNavigation-slideIn, 0) - 0.2)',
+          opacity: 'var(--SideNavigation-slideIn)',
+          backgroundColor: 'var(--joy-palette-background-backdrop)',
           transition: 'opacity 0.4s',
           transform: {
             xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1) + var(--SideNavigation-slideIn, 0) * var(--Sidebar-width, 0px)))',
@@ -87,7 +98,7 @@ export default function Sidebar() {
         <Typography level="title-lg">MUI</Typography>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
-      <Input startDecorator={<i data-feather="search" />} placeholder="Search" />
+      <Input size="sm" startDecorator={<SearchRoundedIcon />} placeholder="Search" />
       <Box
         sx={{
           minHeight: 0,
@@ -100,73 +111,67 @@ export default function Sidebar() {
         <List
           size="sm"
           sx={{
-            '--ListItem-radius': '8px',
+            '--ListItem-radius': '6px',
+            '--List-gap': '6px',
             '--List-nestedInsetStart': '32px',
           }}
         >
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>
-                <i data-feather="home" />
+                <HomeRoundedIcon />
               </ListItemDecorator>
               <ListItemContent>Home</ListItemContent>
-              <Dropdown data-feather="chevron-down" />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>
-                <i data-feather="bar-chart-2" />
+                <DashboardRoundedIcon />
               </ListItemDecorator>
               <ListItemContent>Dashboard</ListItemContent>
-              <Dropdown data-feather="chevron-down" />
+              <ExpandMoreRoundedIcon />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>
-                <i data-feather="layers" />
+                <CollectionsBookmarkRoundedIcon />
               </ListItemDecorator>
               <ListItemContent>Projects</ListItemContent>
-              <Dropdown data-feather="chevron-down" />
+              <ExpandMoreRoundedIcon />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>
-                <i data-feather="check-square" />
+                <AssignmentRoundedIcon />
               </ListItemDecorator>
               <ListItemContent>Tasks</ListItemContent>
-              <Dropdown data-feather="chevron-down" />
+              <ExpandMoreRoundedIcon />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>
-                <i data-feather="flag" />
+                <FlagRoundedIcon />
               </ListItemDecorator>
               <ListItemContent>Reporting</ListItemContent>
-              <Dropdown data-feather="chevron-down" />
+              <ExpandMoreRoundedIcon />
             </ListItemButton>
           </ListItem>
           <ListItem nested>
             <ListItemButton>
               <ListItemDecorator>
-                <i data-feather="bar-chart-2" />
+                <GroupRoundedIcon />
               </ListItemDecorator>
               <ListItemContent>Users</ListItemContent>
-              <i data-feather="chevron-up" />
+              <KeyboardArrowUpRoundedIcon />
             </ListItemButton>
             <List>
-              <ListItem>
-                <ListItemButton selected>My Profile</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>New user</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>Role & Permission</ListItemButton>
-              </ListItem>
+              <ListItemButton selected>My Profile</ListItemButton>
+              <ListItemButton>New user</ListItemButton>
+              <ListItemButton>Role & Permission</ListItemButton>
             </List>
           </ListItem>
         </List>
@@ -183,17 +188,17 @@ export default function Sidebar() {
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>
-                <i data-feather="life-buoy" />
+                <SupportRoundedIcon />
               </ListItemDecorator>
-              <ListItemContent>Supports</ListItemContent>
+              Support
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>
-                <i data-feather="settings" />
+                <SettingsRoundedIcon />
               </ListItemDecorator>
-              <ListItemContent>Settings</ListItemContent>
+              Settings
             </ListItemButton>
           </ListItem>
         </List>
@@ -207,7 +212,7 @@ export default function Sidebar() {
           <Stack direction="row" justifyContent="space-between" alignItems="center">
             <Typography level="title-sm">Used space</Typography>
             <IconButton size="sm">
-              <i data-feather="x" />
+              <CloseRoundedIcon />
             </IconButton>
           </Stack>
           <Typography level="body-xs">
@@ -227,7 +232,7 @@ export default function Sidebar() {
           <Typography level="body-xs">siriwatk@test.com</Typography>
         </Box>
         <IconButton variant="plain" color="neutral">
-          <i data-feather="log-out" />
+          <LogoutRoundedIcon />
         </IconButton>
       </Box>
     </Sheet>
