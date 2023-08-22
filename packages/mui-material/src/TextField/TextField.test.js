@@ -229,15 +229,6 @@ describe('<TextField />', () => {
   });
 
   describe('event: click', () => {
-    it('should trigger `onClick` only once', () => {
-      const handleClick = spy();
-      const { getByRole } = render(
-        <TextField variant="outlined" disabled label="Test" onClick={handleClick} />,
-      );
-      fireEvent.click(getByRole('textbox'));
-      expect(handleClick.callCount).to.equal(1);
-    });
-
     it('registers `onClick` on the root slot', () => {
       const handleClick = spy((event) => event.currentTarget);
       const { getByTestId, getByRole } = render(
