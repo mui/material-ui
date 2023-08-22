@@ -82,13 +82,13 @@ Similarly to the above, target the thumb's children to display icons inside of i
 
 {{"demo": "ExampleThumbChild.js"}}
 
-## CSS Variables
+## CSS variables playground
 
 Play around with all the CSS variables available in the switch component to see how the design changes.
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
-{{"demo": "SwitchVariables.js"}}
+{{"demo": "SwitchVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Accessibility
 

@@ -84,7 +84,7 @@ As an alternative to the behavior of the condensed demo above, consider adding a
 
 {{"demo": "BreadcrumbsWithMenu.js"}}
 
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Breadcrumbs component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.

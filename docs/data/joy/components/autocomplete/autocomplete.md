@@ -307,7 +307,7 @@ If you would like to prevent the default key handler behavior, you can set the e
 />
 ```
 
-## CSS variable playground
+## CSS variables playground
 
 The Autocomplete component reuses CSS variables from the Input component to give you the consistent customization experience.
 

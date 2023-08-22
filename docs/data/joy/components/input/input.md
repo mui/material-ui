@@ -159,7 +159,7 @@ To create a floating label input, a custom component (combination of `<input>` a
 
 {{"demo": "PasswordMeterInput.js"}}
 
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Input component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
