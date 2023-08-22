@@ -12,6 +12,9 @@ export * from './ButtonBase';
 export { default as Chip } from './Chip';
 export * from './Chip';
 
+export { default as InputBase } from './InputBase';
+export * from './InputBase';
+
 export { default as Input } from './Input';
 
 export { default as Slider } from './Slider';

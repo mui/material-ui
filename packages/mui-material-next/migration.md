@@ -132,6 +132,30 @@ If you need to prevent default on a `key-up` and/or `key-down` event, then besid
 
 This is to ensure that default is prevented when the `ButtonBase` root is not a native button, for example, when the root element used is a `span`.
 
+## InputBase
+
+### Removed the `inputComponent` prop
+
+The `inputComponent` is deprecated in favor of `slots.input`:
+
+```diff
+ <InputBase
+-    inputComponent="textarea"
++    slots={{ input: 'textarea' }}
+ />
+```
+
+### Removed `inputProps`
+
+`inputProps` are deprecated in favor of `slotProps.input`:
+
+```diff
+ <InputBase
+-    inputProps={{ className: 'my-input' }}
++    slotProps={{ input: { className: 'my-input' } }}
+ />
+```
+
 ## Slider
 
 ### Thumb and Value Label slots must accept refs
