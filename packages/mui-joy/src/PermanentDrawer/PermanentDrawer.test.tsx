@@ -21,6 +21,7 @@ describe('<PermanentDrawer />', () => {
       testComponentPropWith: 'header',
       slots: {
         root: { expectedClassName: classes.root },
+        content: { expectedClassName: classes.content },
       },
       skip: [
         'classesRoot',

@@ -71,10 +71,10 @@ export function getAnchor(theme: Theme, anchor: PermanentDrawerProps['anchor']) 
  *
  * - [PermanentDrawer API](https://mui.com/joy-ui/api/permanent-drawer/)
  */
-const Drawer = React.forwardRef(function Drawer(inProps, ref) {
+const PermanentDrawer = React.forwardRef(function PermanentDrawer(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'JoyDrawer',
+    name: 'JoyPermanentDrawer',
   });
 
   const {
@@ -126,7 +126,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   );
 }) as OverridableComponent<PermanentDrawerTypeMap>;
 
-Drawer.propTypes /* remove-proptypes */ = {
+PermanentDrawer.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -137,91 +137,29 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   anchor: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
   /**
-   * A single child content element.
+   * @ignore
    */
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
-   * An HTML element or function that returns one.
-   * The `container` will have the portal children appended to it.
-   *
-   * By default, it uses the body of the top-level document object,
-   * so it's simply `document.body` most of the time.
+   * The size of the component.
+   * @default 'md'
    */
-  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.func,
-  ]),
-  /**
-   * If `true`, the modal will not automatically shift focus to itself when it opens, and
-   * replace it to the last focused element when it closes.
-   * This also works correctly with any modal children that have the `disableAutoFocus` prop.
-   *
-   * Generally this should never be set to `true` as it makes the modal less
-   * accessible to assistive technologies, like screen readers.
-   * @default false
-   */
-  disableAutoFocus: PropTypes.bool,
-  /**
-   * If `true`, the modal will not prevent focus from leaving the modal while open.
-   *
-   * Generally this should never be set to `true` as it makes the modal less
-   * accessible to assistive technologies, like screen readers.
-   * @default false
-   */
-  disableEnforceFocus: PropTypes.bool,
-  /**
-   * If `true`, hitting escape will not fire the `onClose` callback.
-   * @default false
-   */
-  disableEscapeKeyDown: PropTypes.bool,
-  /**
-   * The `children` will be under the DOM hierarchy of the parent component.
-   * @default false
-   */
-  disablePortal: PropTypes.bool,
-  /**
-   * If `true`, the modal will not restore focus to previously focused element once
-   * modal is hidden or unmounted.
-   * @default false
-   */
-  disableRestoreFocus: PropTypes.bool,
-  /**
-   * Disable the scroll lock behavior.
-   * @default false
-   */
-  disableScrollLock: PropTypes.bool,
-  /**
-   * If `true`, the backdrop is not rendered.
-   * @default false
-   */
-  hideBackdrop: PropTypes.bool,
-  /**
-   * Callback fired when the component requests to be closed.
-   * The `reason` parameter can optionally be used to control the response to `onClose`.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`, `"closeClick"`.
-   */
-  onClose: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
-   * If `true`, the component is shown.
-   */
-  open: PropTypes.bool.isRequired,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
-    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
@@ -230,10 +168,22 @@ Drawer.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
-    backdrop: PropTypes.elementType,
     content: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'outlined'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
-export default Drawer;
+export default PermanentDrawer;

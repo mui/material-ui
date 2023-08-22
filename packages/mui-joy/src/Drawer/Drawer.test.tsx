@@ -44,4 +44,26 @@ describe('<Drawer />', () => {
 
     expect(getByText('test')).toBeVisible();
   });
+
+  describe('slots: content', () => {
+    it('has tabIndex={-1} by default', () => {
+      const { getByTestId } = render(
+        <Drawer open slotProps={{ content: { 'data-testid': 'content' } }}>
+          <span>test</span>
+        </Drawer>,
+      );
+
+      expect(getByTestId('content').getAttribute('tabIndex')).to.equal('-1');
+    });
+
+    it('can override tabIndex', () => {
+      const { getByTestId } = render(
+        <Drawer open slotProps={{ content: { 'data-testid': 'content', tabIndex: 0 } }}>
+          <span>test</span>
+        </Drawer>,
+      );
+
+      expect(getByTestId('content').getAttribute('tabIndex')).to.equal('0');
+    });
+  });
 });

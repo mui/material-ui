@@ -1,7 +1,5 @@
 {
   "props": {
-    "children": { "type": { "name": "element" }, "required": true },
-    "open": { "type": { "name": "bool" }, "required": true },
     "anchor": {
       "type": {
         "name": "enum",
@@ -9,36 +7,46 @@
       },
       "default": "'left'"
     },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
+      },
+      "default": "'neutral'",
+      "additionalInfo": { "joy-color": true }
+    },
     "component": { "type": { "name": "elementType" } },
-    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
-    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
-    "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
-    "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
-    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
-    "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
-    "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
-    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
-    "onClose": {
-      "type": { "name": "func" },
-      "signature": {
-        "type": "function(event: object, reason: string) => void",
-        "describedArgs": ["event", "reason"]
-      }
+    "size": {
+      "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },
+      "default": "'md'",
+      "additionalInfo": { "joy-size": true }
     },
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ backdrop?: func<br>&#124;&nbsp;object, content?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ content?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
-      "type": {
-        "name": "shape",
-        "description": "{ backdrop?: elementType, content?: elementType, root?: elementType }"
-      },
+      "type": { "name": "shape", "description": "{ content?: elementType, root?: elementType }" },
       "default": "{}",
       "additionalInfo": { "slotsApi": true }
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'"
+      },
+      "default": "'outlined'",
+      "additionalInfo": { "joy-variant": true }
     }
   },
   "name": "PermanentDrawer",
@@ -46,7 +54,7 @@
     "import PermanentDrawer from '@mui/joy/PermanentDrawer';",
     "import { PermanentDrawer } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiPermanentDrawer" },
+  "styles": { "classes": ["root", "content"], "globalClasses": {}, "name": "MuiPermanentDrawer" },
   "slots": [
     {
       "name": "root",
@@ -58,7 +66,7 @@
       "name": "content",
       "description": "The component that renders the content of the drawer.",
       "default": "'div'",
-      "class": null
+      "class": ".MuiPermanentDrawer-content"
     }
   ],
   "spread": true,
