@@ -77,8 +77,8 @@ commands:
       - run:
           name: Install pnpm package manager
           command: |
-            corepack enable
-            corepack prepare pnpm@latest-8 --activate
+            sudo corepack enable
+            sudo corepack prepare pnpm@latest-8 --activate
       - run:
           name: View install environment
           command: |
