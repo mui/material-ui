@@ -329,7 +329,7 @@ export default function AppNavDrawerItem(props) {
         {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
         {newFeature && <Chip label="New" sx={sxChip('success')} />}
         {planned && <Chip label="Planned" sx={sxChip('grey')} />}
-        {unstable && <Chip label="Unstable" sx={sxChip('warning')} />}
+        {unstable && <Chip label="Preview" sx={sxChip('success')} />}
       </Item>
       {expandable ? (
         <Collapse in={open} timeout={250} unmountOnExit>
