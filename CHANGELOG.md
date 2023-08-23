@@ -14,9 +14,9 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 ### `@mui/material@5.14.6`
 
-- [Modal][material-ui] Update it to use the useModal hook (#38498) @mnajdova
-- [Select][material-ui] Add `root` class to `SelectClasses` (#38424) @sai6855
-- [Skeleton][material-ui] Soften the pulse animation (#38506) @oliviertassinari
+- [Modal] Update it to use the useModal hook (#38498) @mnajdova
+- [Select] Add `root` class to `SelectClasses` (#38424) @sai6855
+- [Skeleton] Soften the pulse animation (#38506) @oliviertassinari
 - [TextField] Fix onClick regressions handling changes (#38474) @mj12albert
 
 ### `@mui/joy@5.0.0-beta.3`
@@ -32,7 +32,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 ### `@mui/zero-runtime@0.0.1-alpha.1`
 
-- [zero][system] Implementation of styled tag processor for linaria (#38378) @brijeshb42
+- Implementation of styled tag processor for linaria (#38378) @brijeshb42
 
 ### Docs
 
