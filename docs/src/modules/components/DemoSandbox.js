@@ -9,6 +9,7 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
 import { jssPreset, StylesProvider } from '@mui/styles';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
@@ -16,8 +17,12 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
 
+const iframeDefaultJoyTheme = extendTheme({
+  cssVarPrefix: 'demo-iframe',
+});
+
 function FramedDemo(props) {
-  const { children, document } = props;
+  const { children, document, productId } = props;
 
   const theme = useTheme();
   React.useEffect(() => {
@@ -47,6 +52,16 @@ function FramedDemo(props) {
 
   const getWindow = React.useCallback(() => document.defaultView, [document]);
 
+  const Wrapper = productId === 'joy-ui' ? CssVarsProvider : React.Fragment;
+  const wrapperProps =
+    productId === 'joy-ui'
+      ? {
+          documentNode: document,
+          colorSchemeNode: document.documentElement,
+          theme: iframeDefaultJoyTheme,
+        }
+      : {};
+
   return (
     <StylesProvider jss={jss} sheetsManager={sheetsManager}>
       <StyleSheetManager
@@ -54,9 +69,11 @@ function FramedDemo(props) {
         stylisPlugins={theme.direction === 'rtl' ? [rtlPluginSc] : []}
       >
         <CacheProvider value={cache}>
-          {React.cloneElement(children, {
-            window: getWindow,
-          })}
+          <Wrapper {...wrapperProps}>
+            {React.cloneElement(children, {
+              window: getWindow,
+            })}
+          </Wrapper>
         </CacheProvider>
       </StyleSheetManager>
     </StylesProvider>
@@ -65,6 +82,7 @@ function FramedDemo(props) {
 FramedDemo.propTypes = {
   children: PropTypes.node,
   document: PropTypes.object.isRequired,
+  productId: PropTypes.string,
 };
 
 const Iframe = styled('iframe')(({ theme }) => ({
@@ -76,7 +94,7 @@ const Iframe = styled('iframe')(({ theme }) => ({
 }));
 
 function DemoIframe(props) {
-  const { children, name, ...other } = props;
+  const { children, name, productId, ...other } = props;
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
    */
@@ -106,7 +124,9 @@ function DemoIframe(props) {
       <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
-            <FramedDemo document={document}>{children}</FramedDemo>,
+            <FramedDemo document={document} productId={productId}>
+              {children}
+            </FramedDemo>,
             document.body,
           )
         : null}
@@ -170,7 +190,7 @@ function DemoSandbox(props) {
     ...other
   } = props;
   const Sandbox = iframe ? DemoIframe : React.Fragment;
-  const sandboxProps = iframe ? { name, ...other } : {};
+  const sandboxProps = iframe ? { name, productId, ...other } : {};
 
   const t = useTranslate();
 

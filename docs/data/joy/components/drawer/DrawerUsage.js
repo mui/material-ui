@@ -94,7 +94,7 @@ function Demo(props) {
       ))}
     </React.Fragment>
   );
-};
+}
 
 export default function DrawerUsage() {
   return (

@@ -41,8 +41,10 @@ const PermanentDrawerRoot = styled('div', {
 const PermanentDrawerContent = styled(DrawerContent as unknown as 'div', {
   name: 'JoyPermanentDrawer',
   slot: 'Content',
-  overridesResolver: (props, styles) => styles.backdrop,
-})({});
+  overridesResolver: (props, styles) => styles.content,
+})({
+  borderRadius: 0,
+});
 
 const oppositeDirection = {
   left: 'right',

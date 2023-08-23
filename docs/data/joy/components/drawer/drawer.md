@@ -37,3 +37,9 @@ Permanent navigation drawers are the **recommended default for desktop**.
 Apps focused on productivity that require balance across the screen.
 
 {{"demo": "ClippedDrawer.js", "iframe": true}}
+
+## Responsive drawer
+
+You can use the `Drawer` component for small screens and the `PermanentDrawer` for a drawer for wider screens.
+
+{{"demo": "ResponsiveDrawer.js", "iframe": true, "disableLiveEdit": true}}

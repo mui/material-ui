@@ -20,7 +20,8 @@ describe('<PermanentDrawer />', () => {
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'header',
       testVariantProps: {
-        color: 'danger', variant: 'plain'
+        color: 'danger',
+        variant: 'plain',
       },
       slots: {
         root: { expectedClassName: classes.root },
