@@ -81,6 +81,7 @@ const Select = React.forwardRef(function Select<
     listboxOpen: listboxOpenProp,
     multiple = false as Multiple,
     name,
+    required = false,
     onChange,
     onListboxOpenChange,
     getOptionAsString = defaultOptionStringifier,
@@ -126,6 +127,9 @@ const Select = React.forwardRef(function Select<
     value,
     open,
   } = useSelect({
+    name,
+    required,
+    getSerializedValue,
     areOptionsEqual,
     buttonRef: handleButtonRef,
     defaultOpen: defaultListboxOpen,

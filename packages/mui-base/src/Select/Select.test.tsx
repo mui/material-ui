@@ -523,7 +523,7 @@ describe('<Select />', () => {
         const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
           event.preventDefault();
           const formData = new FormData(event.currentTarget);
-          expect(formData.get('test-select')).to.equal('2,3');
+          expect(formData.get('test-select')).to.equal('[2,3]');
         };
 
         const { getByText } = render(
