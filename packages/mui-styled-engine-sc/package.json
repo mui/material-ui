@@ -44,7 +44,8 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.20"
+    "@types/react": "^18.2.20",
+    "test": "workspace:*"
   },
   "peerDependencies": {
     "@types/styled-components": "^5.1.14",

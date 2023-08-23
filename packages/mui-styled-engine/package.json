@@ -40,10 +40,13 @@
   "dependencies": {
     "@babel/runtime": "^7.22.10",
     "@emotion/cache": "^11.11.0",
-    "@types/react": "^18.2.20",
     "csstype": "^3.1.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.20",
+    "test": "workspace:*"
   },
   "peerDependencies": {
     "@emotion/react": "^11.4.1",

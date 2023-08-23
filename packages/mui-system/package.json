@@ -56,7 +56,8 @@
     "@types/react": "^18.2.20",
     "@types/styled-components": "^5.1.26",
     "react": "^18.2.0",
-    "styled-components": "^5.3.11"
+    "styled-components": "^5.3.11",
+    "test": "workspace:*"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

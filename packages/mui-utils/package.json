@@ -52,10 +52,13 @@
     "@types/react-dom": "^18.2.7",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-tester": "^11.0.4",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "test": "workspace:*"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",
     "@types/react-dom": "^17.0.0 || ^18.0.0"
   },
