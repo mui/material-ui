@@ -125,16 +125,7 @@ const SelectRoot = styled('div', {
         '--Select-decoratorChildHeight': 'min(2.375rem, var(--Select-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
-      ...(ownerState.variant === 'plain' && {
-        boxShadow: 'none',
-      }),
-      ...(ownerState.variant === 'outlined' && {
-        boxShadow: theme.shadow.xs,
-      }),
-      ...(ownerState.variant === 'soft' && {
-        boxShadow: theme.shadow.xs,
-      }),
-      ...(ownerState.variant === 'solid' && {
+      ...(ownerState.variant !== 'plain' && {
         boxShadow: theme.shadow.xs,
       }),
       // variables for controlling child components
