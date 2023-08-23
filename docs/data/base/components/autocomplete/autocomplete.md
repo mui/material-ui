@@ -8,7 +8,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 # Autocomplete
 
-<p class="description">The Autocomplete component is a text input enhanced by a panel of suggested options.</p>
+<p class="description">An autocomplete component is a text input enhanced by a panel of suggested options.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -16,7 +16,10 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 ## Introduction
 
-The autocomplete component is an enhanced text input that shows a list of suggested options as users type and lets them select an option from the list. It implements the WAI-ARIA Combobox pattern, and is typically used to assist users in completing form inputs or search queries faster.
+An autocomplete component is an enhanced text input that shows a list of suggested options as users type, and lets them select an option from the list.
+
+Base UI provides the `useAutocomplete` hook for building a custom Autocomplete.
+It implements the WAI-ARIA Combobox pattern, and is typically used to assist users in completing form inputs or search queries faster.
 
 {{"demo": "AutocompleteIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
@@ -30,51 +33,18 @@ To learn more about implementing a custom Autocomplete, you can explore the [`us
 
 :::
 
-## Usage
+## Hook
 
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this hook as follows:
+### Usage
 
 ```jsx
 import { useAutocomplete } from '@mui/base/useAutocomplete';
-
-export default function App() {
-  const {
-    getRootProps,
-    getInputProps,
-    getListboxProps,
-    getOptionProps,
-    groupedOptions,
-  } = useAutocomplete({
-    options: [
-      { label: 'The Dark Knight', year: 2008 },
-      { label: '12 Angry Men', year: 1957 },
-      { label: "Schindler's List", year: 1993 },
-    ],
-    getOptionLabel: (option) => option.label,
-  });
-
-  return (
-    <React.Fragment>
-      <div {...getRootProps()}>
-        <input {...getInputProps()} />
-      </div>
-      {groupedOptions.length > 0 && (
-        <ul {...getListboxProps()}>
-          {groupedOptions.map((option, index) => (
-            <li {...getOptionProps({ option, index })}>{option.label}</li>
-          ))}
-        </ul>
-      )}
-    </React.Fragment>
-  );
-}
 ```
 
-## Basics
+The `useAutocomplete` hook requires a list of `options` to be displayed when the textbox receives focus.
+The value must be chosen from a predefined set of values.
 
-The useAutocomplete hook requires a list of `options` to be displayed when the textbox receives focus. The value must be chosen from a predefined set of values.
-
-The following demo shows how to create a simple combobox, apply some styling, and write the selected value to a state variable using the `onChange` prop:
+The following demo shows how to create a simple combobox, apply styles, and write the selected value to a state variable using the `onChange` prop:
 
 {{"demo": "UseAutocomplete.js"}}
 
@@ -113,7 +83,7 @@ const {
 
 ### Controlled states
 
-The useAutocomplete hook has two states that can be controlled:
+The `useAutocomplete` hook has two states that can be controlled:
 
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.

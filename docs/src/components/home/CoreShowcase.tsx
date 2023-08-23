@@ -177,7 +177,7 @@ export default function CoreShowcase() {
         </React.Fragment>
       }
       code={
-        <Box data-mui-color-scheme="dark">
+        <div data-mui-color-scheme="dark">
           <Box
             sx={{
               p: { xs: 2, sm: 1 },
@@ -256,7 +256,7 @@ export default function CoreShowcase() {
               <StylingInfo appeared={customized} sx={{ mb: -2, mx: -2 }} />
             </Box>
           </Box>
-        </Box>
+        </div>
       }
     />
   );

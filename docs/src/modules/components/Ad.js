@@ -218,8 +218,7 @@ export default function Ad() {
       sx={{
         position: 'relative',
         display: 'block',
-        mt: 4,
-        mb: 3,
+        my: 3,
         ...(adShape === 'image' && {
           minHeight: 126,
         }),

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 
-export default function TextFieldWithOnClick() {
+export default function OutlinedTextFieldOnClick() {
   const [isClicked, setIsClicked] = React.useState(false);
   return (
     <TextField
