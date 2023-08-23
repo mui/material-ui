@@ -20,6 +20,7 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
+import { inputBaseClasses } from '@mui/material/InputBase';
 import InputAdornment from '@mui/material/InputAdornment';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -1383,6 +1384,30 @@ describe('<Autocomplete />', () => {
         />,
       );
       expect(queryByTitle('Open').disabled).to.equal(true);
+    });
+
+    it('clicks should not toggle the listbox open state when disabled', () => {
+      const { container, queryByRole } = render(
+        <Autocomplete
+          disabled
+          // multiple
+          options={['one', 'two', 'three']}
+          // value={['one']}
+          value="one"
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = queryByRole('combobox');
+      const listbox = queryByRole('listbox', { hidden: true });
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(listbox).to.equal(null);
+
+      const inputBase = container.querySelector(`.${inputBaseClasses.root}`);
+      fireEvent.click(inputBase);
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(listbox).to.equal(null);
     });
 
     it('should not render the clear button', () => {
