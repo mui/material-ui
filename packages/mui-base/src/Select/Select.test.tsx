@@ -1058,7 +1058,7 @@ describe('<Select />', () => {
     });
 
     it('does not steal focus from other elements on page when it is open on mount', () => {
-      const { getByRole } = render(
+      const { getAllByRole } = render(
         <div>
           <input autoFocus />
           <Select defaultListboxOpen>
@@ -1068,7 +1068,7 @@ describe('<Select />', () => {
         </div>,
       );
 
-      const input = getByRole('textbox');
+      const input = getAllByRole('textbox')[0];
       expect(document.activeElement).to.equal(input);
     });
 
