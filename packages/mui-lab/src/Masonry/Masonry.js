@@ -47,6 +47,7 @@ export const getStyle = ({ ownerState, theme }) => {
     boxSizing: 'border-box',
     '& > *': {
       boxSizing: 'border-box',
+      flexShrink: '0 !important',
     },
   };
 
@@ -335,14 +336,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {React.Children.map(children, (child) => {
-        return React.cloneElement(child, {
-          style: {
-            ...child.props.style,
-            flexShrink: 0,
-          },
-        });
-      })}
+      {children}
       {lineBreaks}
     </MasonryRoot>
   );

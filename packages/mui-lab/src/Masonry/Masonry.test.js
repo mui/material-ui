@@ -139,6 +139,7 @@ describe('<Masonry />', () => {
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
+          flexShrink: '0 !important',
           margin: `calc(${theme.spacing(spacing)} / 2)`,
           width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing)})`,
         },
@@ -167,6 +168,7 @@ describe('<Masonry />', () => {
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
+          flexShrink: '0 !important',
           width: `calc(${(100 / columns).toFixed(2)}% - 0px)`,
         },
         [`@media (min-width:${theme.breakpoints.values.xs}px)`]: {
@@ -216,6 +218,7 @@ describe('<Masonry />', () => {
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
+          flexShrink: '0 !important',
           margin: `calc(${theme.spacing(spacing)} / 2)`,
         },
         margin: `calc(0px - (${theme.spacing(spacing)} / 2))`,
@@ -262,6 +265,7 @@ describe('<Masonry />', () => {
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
+          flexShrink: '0 !important',
           margin: parseToNumber(theme.spacing(defaultSpacing)) / 2,
           width: `calc(${(100 / defaultColumns).toFixed(2)}% - ${theme.spacing(defaultSpacing)})`,
           '&:nth-of-type(4n+1)': { order: 1 },
@@ -296,6 +300,7 @@ describe('<Masonry />', () => {
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
+          flexShrink: '0 !important',
           margin: `calc(${theme.spacing(spacing)} / 2)`,
         },
         margin: `calc(0px - (${theme.spacing(spacing)} / 2))`,
@@ -340,6 +345,7 @@ describe('<Masonry />', () => {
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
+          flexShrink: '0 !important',
           width: `calc(${(100 / columns).toFixed(2)}% - 0px)`,
         },
         [`@media (min-width:${theme.breakpoints.values.xs}px)`]: {
