@@ -43,8 +43,7 @@ export interface SkeletonTypeMap<
       SkeletonPropsShapeOverrides
     >;
     /**
-     * Determines the scaling behavior of the skeleton, whether to adapt to the size of the text or
-     * the size of the containing element.
+     * Determines whether the skeleton should scale to the element's text or bounding box.
      */
     size?: OverridableStringUnion<'text' | 'box', SkeletonPropsSizeOverrides>;
     /**

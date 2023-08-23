@@ -4,15 +4,15 @@ import generateUtilityClass from '../generateUtilityClass';
 export interface SkeletonClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `size="text"`. */
+  /** Styles applied to the root element if `size="text"` or `variant="text"`. */
   text: string;
-  /** Styles applied to the root element if `size="text"`. */
+  /** Styles applied to the root element if `size="box"`. */
   box: string;
-  /** Styles applied to the root element if `shape="rectangular"`. */
+  /** Styles applied to the root element if `shape="rectangular"` or `variant="rectangular"`. */
   rectangular: string;
-  /** Styles applied to the root element if `shape="rounded"`. */
+  /** Styles applied to the root element if `shape="rounded"` or `variant="rounded"`. */
   rounded: string;
-  /** Styles applied to the root element if `shape="circular"`. */
+  /** Styles applied to the root element if `shape="circular"` or `variant="circular"`. */
   circular: string;
   /** Styles applied to the root element if `animation="pulse"`. */
   pulse: string;

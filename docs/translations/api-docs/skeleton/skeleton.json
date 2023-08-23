@@ -14,7 +14,7 @@
     },
     "shape": { "description": "The shape of the skeleton." },
     "size": {
-      "description": "Determines the scaling behavior of the skeleton, whether to adapt to the size of the text or the size of the containing element."
+      "description": "Determines whether the skeleton should scale to the element&#39;s text or bounding box."
     },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
@@ -29,27 +29,27 @@
     "text": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"text\"</code>"
+      "conditions": "<code>size=\"text\"</code> or <code>variant=\"text\"</code>"
     },
     "box": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"text\"</code>"
+      "conditions": "<code>size=\"box\"</code>"
     },
     "rectangular": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>shape=\"rectangular\"</code>"
+      "conditions": "<code>shape=\"rectangular\"</code> or <code>variant=\"rectangular\"</code>"
     },
     "rounded": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>shape=\"rounded\"</code>"
+      "conditions": "<code>shape=\"rounded\"</code> or <code>variant=\"rounded\"</code>"
     },
     "circular": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>shape=\"circular\"</code>"
+      "conditions": "<code>shape=\"circular\"</code> or <code>variant=\"circular\"</code>"
     },
     "pulse": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
