@@ -90,27 +90,6 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 {{"demo": "SwitchVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
-## Accessibility
-
-Here are a few tips to make sure you have an accessible switch component:
-
-- The `Switch` will render with the `checkbox` role as opposed to `switch`.
-  This is mainly because the latter isn't widely supported yet.
-  However, if you believe your audience will support it, make sure to test with assistive technology.
-  Use the `slotProps` prop to change the role:
-
-  ```jsx
-  <Switch slotProps={{ input: { role: 'switch' } }}>
-  ```
-
-- Every form control component should have proper labels.
-  This includes radio buttons, checkboxes, and switches.
-  In most cases, this is done using the `<label>` element.
-  - If a label can't be applied, make sure to add an attribute (e.g. `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `slotProps` prop.
-  ```jsx
-  <Switch value="checkedA" slotProps={{ 'aria-label': 'Switch A' }} />
-  ```
-
 ## Common examples
 
 ### Material Design
@@ -149,3 +128,24 @@ Note how we've used the `:active` pseudo-class to replicate the small thumb size
 ### Mantine
 
 {{"demo": "ExampleMantineSwitch.js"}}
+
+## Accessibility
+
+Here are a few tips to make sure you have an accessible switch component:
+
+- The `Switch` will render with the `checkbox` role as opposed to `switch`.
+  This is mainly because the latter isn't widely supported yet.
+  However, if you believe your audience will support it, make sure to test with assistive technology.
+  Use the `slotProps` prop to change the role:
+
+  ```jsx
+  <Switch slotProps={{ input: { role: 'switch' } }}>
+  ```
+
+- Every form control component should have proper labels.
+  This includes radio buttons, checkboxes, and switches.
+  In most cases, this is done using the `<label>` element.
+  - If a label can't be applied, make sure to add an attribute (e.g. `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `slotProps` prop.
+  ```jsx
+  <Switch value="checkedA" slotProps={{ 'aria-label': 'Switch A' }} />
+  ```

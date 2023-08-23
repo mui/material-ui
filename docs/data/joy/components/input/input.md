@@ -133,6 +133,13 @@ These props may include HTML attributes such as `ref`, `min`, `max`, and `autoco
 
 {{"demo": "InputSlotProps.js"}}
 
+## CSS variables playground
+
+Play around with the CSS variables available to the Input component to see how the design changes.
+You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "InputVariables.js", "hideToolbar": true, "bg": "gradient"}}
+
 ## Common examples
 
 ### Focus outline
@@ -179,13 +186,6 @@ The demos below illustrate how to do this with two popular libraries.
 [react-number-format](https://github.com/s-yadav/react-number-format) provides the `NumericFormat` component for enforcing text formatting that follows a specific number or string pattern.
 
 {{"demo": "InputReactNumberFormat.js"}}
-
-## CSS variables playground
-
-Play around with the CSS variables available to the Input component to see how the design changes.
-You can use these to customize the component with both the `sx` prop and the theme.
-
-{{"demo": "InputVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Accessibility
 
