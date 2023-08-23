@@ -7,6 +7,10 @@ import List from '@mui/joy/List';
 import Divider from '@mui/joy/Divider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import ListItemContent from '@mui/joy/ListItemContent';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 const Demo = (props) => {
@@ -36,20 +40,30 @@ const Demo = (props) => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem key={text}>
-            <ListItemButton color={props.color} variant={props.variant}>
-              {text}
+            <ListItemButton>
+              <ListItemButton>
+                <ListItemDecorator>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemDecorator>
+                <ListItemContent>{text}</ListItemContent>
+              </ListItemButton>
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text) => (
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem key={text}>
-            <ListItemButton color={props.color} variant={props.variant}>
-              {text}
+            <ListItemButton>
+              <ListItemButton>
+                <ListItemDecorator>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemDecorator>
+                <ListItemContent>{text}</ListItemContent>
+              </ListItemButton>
             </ListItemButton>
           </ListItem>
         ))}
@@ -72,6 +86,7 @@ const Demo = (props) => {
           anchor={anchor}
           open={state[anchor]}
           onClose={toggleDrawer(anchor, false)}
+          invertedColors
           {...props}
         >
           {list(anchor)}
@@ -96,6 +111,12 @@ export default function DrawerUsage() {
           propName: 'color',
           knob: 'color',
           defaultValue: 'neutral',
+        },
+        {
+          propName: 'size',
+          knob: 'radio',
+          defaultValue: 'md',
+          options: ['sm', 'md', 'lg'],
         },
       ]}
       renderDemo={(props) => <Demo {...props} />}

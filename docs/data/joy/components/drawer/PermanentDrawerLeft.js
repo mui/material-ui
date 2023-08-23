@@ -5,13 +5,16 @@ import PermanentDrawer from '@mui/joy/PermanentDrawer';
 import CssBaseline from '@mui/joy/CssBaseline';
 import List from '@mui/joy/List';
 import Typography from '@mui/joy/Typography';
-import Divider from '@mui/joy/Divider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
+import ListItemContent from '@mui/joy/ListItemContent';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
 const drawerWidth = 240;
 
-export default function PermanentDrawerBasic() {
+export default function PermanentDrawerLeft() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -37,29 +40,44 @@ export default function PermanentDrawerBasic() {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          '& .MuiDrawer-content': {
+          '& .MuiPermanentDrawer-content': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            pt: 0,
+            p: 0,
           },
         }}
         anchor="left"
       >
-        <Box sx={{ minHeight: 56 }} />
-        <Divider />
+        <Box
+          sx={(theme) => ({
+            boxSizing: 'border-box',
+            minHeight: 55,
+            borderBottom: 1,
+            borderColor: theme.palette.divider,
+          })}
+        />
         <Box role="presentation">
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
+          <List sx={{ mb: 1 }}>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
               <ListItem key={text}>
-                <ListItemButton>{text}</ListItemButton>
+                <ListItemButton>
+                  <ListItemDecorator>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemDecorator>
+                  <ListItemContent>{text}</ListItemContent>
+                </ListItemButton>
               </ListItem>
             ))}
           </List>
-          <Divider />
           <List>
-            {['All mail', 'Trash', 'Spam'].map((text) => (
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
               <ListItem key={text}>
-                <ListItemButton>{text}</ListItemButton>
+                <ListItemButton>
+                  <ListItemDecorator>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemDecorator>
+                  <ListItemContent>{text}</ListItemContent>
+                </ListItemButton>
               </ListItem>
             ))}
           </List>
@@ -67,7 +85,7 @@ export default function PermanentDrawerBasic() {
       </PermanentDrawer>
       <Box
         component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 1 }}
       >
         <Box sx={{ minHeight: 56 }} />
         <Typography>
