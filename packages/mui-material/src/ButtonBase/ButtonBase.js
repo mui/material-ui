@@ -32,42 +32,46 @@ export const ButtonBaseRoot = styled('button', {
   name: 'MuiButtonBase',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  position: 'relative',
-  boxSizing: 'border-box',
-  WebkitTapHighlightColor: 'transparent',
-  backgroundColor: 'transparent', // Reset default value
-  // We disable the focus ring for mouse, touch and keyboard users.
-  outline: 0,
-  border: 0,
-  margin: 0, // Remove the margin in Safari
-  borderRadius: 0,
-  padding: 0, // Remove the padding in Firefox
-  cursor: 'pointer',
-  verticalAlign: 'middle',
-  MozAppearance: 'none', // Reset
-  WebkitAppearance: 'none', // Reset
-  textDecoration: 'none',
-  // So we take precedent over the style of a native <a /> element.
-  color: 'inherit',
-  '&:active': {
-    userSelect: 'none',
-  },
-  '&::-moz-focus-inner': {
-    borderStyle: 'none', // Remove Firefox dotted outline.
-  },
-  [`&.${buttonBaseClasses.disabled}`]: {
-    cursor: 'default',
+})(({ ownerState }) => {
+  const { isButton } = ownerState;
+
+  return {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    boxSizing: 'border-box',
+    WebkitTapHighlightColor: 'transparent',
+    backgroundColor: 'transparent', // Reset default value
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 0,
+    border: 0,
+    margin: 0, // Remove the margin in Safari
+    borderRadius: 0,
+    padding: 0, // Remove the padding in Firefox
+    cursor: 'pointer',
+    verticalAlign: 'middle',
+    MozAppearance: 'none', // Reset
+    WebkitAppearance: 'none', // Reset
+    textDecoration: 'none',
+    // So we take precedent over the style of a native <a /> element.
+    color: 'inherit',
     '&:active': {
-      pointerEvents: 'none', // Disable link interactions
+      userSelect: 'none',
     },
-  },
-  '@media print': {
-    colorAdjust: 'exact',
-  },
+    '&::-moz-focus-inner': {
+      borderStyle: 'none', // Remove Firefox dotted outline.
+    },
+    [`&.${buttonBaseClasses.disabled}`]: {
+      cursor: 'default',
+      ...(!isButton && {
+        pointerEvents: 'none', // Disable link interactions
+      }),
+    },
+    '@media print': {
+      colorAdjust: 'exact',
+    },
+  };
 });
 
 /**
@@ -332,6 +336,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     ...props,
     centerRipple,
     component,
+    isButton: ComponentProp === 'button',
     disabled,
     disableRipple,
     disableTouchRipple,
