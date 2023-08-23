@@ -35,9 +35,7 @@ export default function MyProfile() {
     <Box
       sx={{
         flex: 1,
-        maxWidth: 1200,
         width: '100%',
-        mx: 'auto',
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', pl: 0 }}>
@@ -60,7 +58,7 @@ export default function MyProfile() {
             Users
           </Link>
           <Typography color="primary" fontWeight={500} fontSize={12}>
-            My Profile
+            My profile
           </Typography>
         </Breadcrumbs>
       </Box>
@@ -171,7 +169,7 @@ export default function MyProfile() {
           >
             <Avatar
               size="lg"
-              src="/static/images/avatar/1.jpg"
+              src="/static/images/avatar/3.jpg"
               sx={{ '--Avatar-size': '64px' }}
             />
             <DropZone />
@@ -240,12 +238,6 @@ export default function MyProfile() {
               fileName="Dashboard prototype recording.mp4"
               fileSize="16 MB"
               progress={40}
-            />
-            <FileUpload
-              icon={<InsertDriveFileRoundedIcon />}
-              fileName="Dashboard prototype FINAL.fig"
-              fileSize="4.2 MB"
-              progress={80}
             />
           </Stack>
           <Divider role="presentation" />

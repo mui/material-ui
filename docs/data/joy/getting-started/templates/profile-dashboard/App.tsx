@@ -17,15 +17,15 @@ export default function JoyOrderDashboardTemplate() {
           component="main"
           className="MainContent"
           sx={(theme) => ({
-            '--main-paddingTop': {
-              xs: `calc(${theme.spacing(2)} + var(--Header-height, 0px))`,
-              md: '32px',
-            },
             px: {
               xs: 2,
+              md: 6,
+            },
+            pt: {
+              xs: 'calc(12px + var(--Header-height))',
+              sm: 'calc(12px + var(--Header-height))',
               md: 3,
             },
-            pt: 'var(--main-paddingTop)',
             pb: {
               xs: 2,
               sm: 2,
@@ -37,7 +37,6 @@ export default function JoyOrderDashboardTemplate() {
             minWidth: 0,
             height: '100dvh',
             gap: 1,
-            overflow: 'auto',
           })}
         >
           <MyProfile />

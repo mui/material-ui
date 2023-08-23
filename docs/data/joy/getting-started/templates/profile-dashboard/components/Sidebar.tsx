@@ -21,10 +21,12 @@ import MuiLogo from './MuiLogo';
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { closeSidebar } from '../utils';
 import { Stack } from '@mui/system';
+import AccordionGroup from '@mui/joy/AccordionGroup';
+import Accordion from '@mui/joy/Accordion';
+import AccordionDetails from '@mui/joy/AccordionDetails';
+import AccordionSummary from '@mui/joy/AccordionSummary';
 
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded';
@@ -108,73 +110,71 @@ export default function Sidebar() {
           flexDirection: 'column',
         }}
       >
-        <List
+        <AccordionGroup
+          disableDivider
           size="sm"
           sx={{
-            '--ListItem-radius': '6px',
-            '--List-gap': '6px',
-            '--List-nestedInsetStart': '32px',
+            gap: 1,
           }}
         >
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <HomeRoundedIcon />
-              </ListItemDecorator>
-              <ListItemContent>Home</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <DashboardRoundedIcon />
-              </ListItemDecorator>
-              <ListItemContent>Dashboard</ListItemContent>
-              <ExpandMoreRoundedIcon />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <CollectionsBookmarkRoundedIcon />
-              </ListItemDecorator>
-              <ListItemContent>Projects</ListItemContent>
-              <ExpandMoreRoundedIcon />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <AssignmentRoundedIcon />
-              </ListItemDecorator>
-              <ListItemContent>Tasks</ListItemContent>
-              <ExpandMoreRoundedIcon />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <FlagRoundedIcon />
-              </ListItemDecorator>
-              <ListItemContent>Reporting</ListItemContent>
-              <ExpandMoreRoundedIcon />
-            </ListItemButton>
-          </ListItem>
-          <ListItem nested>
-            <ListItemButton>
-              <ListItemDecorator>
-                <GroupRoundedIcon />
-              </ListItemDecorator>
-              <ListItemContent>Users</ListItemContent>
-              <KeyboardArrowUpRoundedIcon />
-            </ListItemButton>
-            <List>
-              <ListItemButton selected>My Profile</ListItemButton>
-              <ListItemButton>New user</ListItemButton>
-              <ListItemButton>Role & Permission</ListItemButton>
-            </List>
-          </ListItem>
-        </List>
+          <Accordion>
+            <AccordionSummary indicator={null}>
+              <HomeRoundedIcon />
+              <ListItemContent>
+                <Typography level="title-sm">Home</Typography>
+              </ListItemContent>
+            </AccordionSummary>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary>
+              <DashboardRoundedIcon />
+              <ListItemContent>
+                <Typography level="title-sm">Dashboard</Typography>
+              </ListItemContent>
+            </AccordionSummary>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary>
+              <CollectionsBookmarkRoundedIcon />
+              <ListItemContent>
+                <Typography level="title-sm">Projects</Typography>
+              </ListItemContent>
+            </AccordionSummary>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary>
+              <AssignmentRoundedIcon />
+              <ListItemContent>
+                <Typography level="title-sm">Tasks</Typography>
+              </ListItemContent>
+            </AccordionSummary>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary>
+              <FlagRoundedIcon />
+              <ListItemContent>
+                <Typography level="title-sm">Reporting</Typography>
+              </ListItemContent>
+            </AccordionSummary>
+          </Accordion>
+          <Accordion defaultExpanded>
+            <AccordionSummary>
+              <GroupRoundedIcon />
+              <ListItemContent>
+                <Typography level="title-sm">Users</Typography>
+              </ListItemContent>
+            </AccordionSummary>
+            <AccordionDetails>
+              <List size="sm">
+                <ListItemButton selected sx={{ borderRadius: 'sm' }}>
+                  My profile
+                </ListItemButton>
+                <ListItemButton>Create a new user</ListItemButton>
+                <ListItemButton>Roles & permission</ListItemButton>
+              </List>
+            </AccordionDetails>
+          </Accordion>
+        </AccordionGroup>
         <List
           size="sm"
           sx={{
@@ -231,7 +231,7 @@ export default function Sidebar() {
           <Typography level="title-sm">Siriwat K.</Typography>
           <Typography level="body-xs">siriwatk@test.com</Typography>
         </Box>
-        <IconButton variant="plain" color="neutral">
+        <IconButton size="sm" variant="plain" color="neutral">
           <LogoutRoundedIcon />
         </IconButton>
       </Box>

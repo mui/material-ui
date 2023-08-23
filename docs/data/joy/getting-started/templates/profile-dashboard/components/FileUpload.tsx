@@ -40,7 +40,7 @@ export default function FileUpload({
       <AspectRatio
         ratio="1"
         variant="soft"
-        color="primary"
+        color="neutral"
         sx={{
           minWidth: 32,
           borderRadius: '50%',
@@ -54,6 +54,7 @@ export default function FileUpload({
         <Typography level="body-xs">{fileSize}</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <LinearProgress
+            color="neutral"
             value={progress}
             determinate
             sx={[
