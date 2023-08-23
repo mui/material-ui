@@ -59,24 +59,26 @@ const StyledAppContainer = styled(AppContainer, {
           maxWidth: '105ch',
         }),
     ...(!disableAd && {
-      ...(hasTabs ? {
-        '&& .component-tabs .MuiTabs-root': {
-          // 40px matches MarkdownElement h2 margin-top.
-          marginBottom: `calc(${theme.spacing(AD_MARGIN_TOP)} + ${AD_HEIGHT}px + 40px)`,
-        },
-        '&& .component-tabs.ad .MuiTabs-root': {
-          marginBottom: 0,
-        },
-      } : {
-        '&& .description': {
-          paddingBottom: `calc(${theme.spacing(AD_MARGIN_TOP)} + ${AD_HEIGHT}px)`,
-          marginBottom: theme.spacing(AD_MARGIN_BOTTOM),
-        },
-        '&& .description.ad': {
-          paddingBottom: 0,
-          marginBottom: 0,
-        },
-      }),
+      ...(hasTabs
+        ? {
+            '&& .component-tabs .MuiTabs-root': {
+              // 40px matches MarkdownElement h2 margin-top.
+              marginBottom: `calc(${theme.spacing(AD_MARGIN_TOP)} + ${AD_HEIGHT}px + 40px)`,
+            },
+            '&& .component-tabs.ad .MuiTabs-root': {
+              marginBottom: 0,
+            },
+          }
+        : {
+            '&& .description': {
+              paddingBottom: `calc(${theme.spacing(AD_MARGIN_TOP)} + ${AD_HEIGHT}px)`,
+              marginBottom: theme.spacing(AD_MARGIN_BOTTOM),
+            },
+            '&& .description.ad': {
+              paddingBottom: 0,
+              marginBottom: 0,
+            },
+          }),
     }),
     [theme.breakpoints.up('lg')]: {
       paddingLeft: '60px',
