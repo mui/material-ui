@@ -5,7 +5,7 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 
-const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
+const TextMaskAdapter = React.forwardRef(function TextMaskAdapter(props, ref) {
   const { onChange, ...other } = props;
   return (
     <IMaskInput
@@ -21,7 +21,7 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   );
 });
 
-TextMaskCustom.propTypes = {
+TextMaskAdapter.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
@@ -35,7 +35,7 @@ export default function InputReactImask() {
         value={value}
         onChange={(event) => setValue(event.target.value)}
         placeholder="Placeholder"
-        slotProps={{ input: { component: TextMaskCustom } }}
+        slotProps={{ input: { component: TextMaskAdapter } }}
       />
     </FormControl>
   );

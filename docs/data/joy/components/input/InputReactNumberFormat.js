@@ -5,7 +5,7 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 
-const NumericFormatCustom = React.forwardRef(function NumericFormatCustom(
+const NumericFormatAdapter = React.forwardRef(function NumericFormatAdapter(
   props,
   ref,
 ) {
@@ -30,7 +30,7 @@ const NumericFormatCustom = React.forwardRef(function NumericFormatCustom(
   );
 });
 
-NumericFormatCustom.propTypes = {
+NumericFormatAdapter.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
@@ -46,7 +46,7 @@ export default function InputReactNumberFormat() {
         placeholder="Placeholder"
         slotProps={{
           input: {
-            component: NumericFormatCustom,
+            component: NumericFormatAdapter,
           },
         }}
       />

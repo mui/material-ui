@@ -9,8 +9,8 @@ interface CustomProps {
   name: string;
 }
 
-const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(
-  function TextMaskCustom(props, ref) {
+const TextMaskAdapter = React.forwardRef<HTMLElement, CustomProps>(
+  function TextMaskAdapter(props, ref) {
     const { onChange, ...other } = props;
     return (
       <IMaskInput
@@ -36,7 +36,7 @@ export default function InputReactImask() {
         value={value}
         onChange={(event) => setValue(event.target.value)}
         placeholder="Placeholder"
-        slotProps={{ input: { component: TextMaskCustom } }}
+        slotProps={{ input: { component: TextMaskAdapter } }}
       />
     </FormControl>
   );

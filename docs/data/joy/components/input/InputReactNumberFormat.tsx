@@ -9,8 +9,8 @@ interface CustomProps {
   name: string;
 }
 
-const NumericFormatCustom = React.forwardRef<NumericFormatProps, CustomProps>(
-  function NumericFormatCustom(props, ref) {
+const NumericFormatAdapter = React.forwardRef<NumericFormatProps, CustomProps>(
+  function NumericFormatAdapter(props, ref) {
     const { onChange, ...other } = props;
 
     return (
@@ -44,7 +44,7 @@ export default function InputReactNumberFormat() {
         placeholder="Placeholder"
         slotProps={{
           input: {
-            component: NumericFormatCustom,
+            component: NumericFormatAdapter,
           },
         }}
       />

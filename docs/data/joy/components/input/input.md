@@ -163,8 +163,8 @@ To create a floating label input, a custom component (combination of `<input>` a
 
 The Input component can be integrated with third-party formatting libraries for more complex use cases.
 
-Create a wrapper component to map props with third-party component APIs.
-Then pass that wrapper as a value to the `slotProps.input.component` property of the Joy UI Input.
+Create an adapter component to get the props from the Input component and map them to the third-party component APIs.
+Then use that adapter as a value to the `slotProps.input.component` property of the Joy UI Input.
 
 The demos below illustrate how to do this with two popular libraries.
 
