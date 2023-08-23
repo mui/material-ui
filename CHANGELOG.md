@@ -8,9 +8,9 @@ _Aug 23, 2023_
 
 A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
-- 🚀 Added [Popup](https://mui.com/base-ui/react-popup/) component to Base UI (#37960) @michaldudak
-- 🚀 Added [Accordion](https://mui.com/joy-ui/react-accordion/) component to Joy UI (#38164) @siriwatknp
-- 🎉 Added Material You InputBase and ButtonBase components to `material-next` (#38319) @DiegoAndai @mj12albert
+- 🚀 Added the [Popup](https://mui.com/base-ui/react-popup/) component to Base UI (#37960) @michaldudak
+- 🚀 Added the [Accordion](https://mui.com/joy-ui/react-accordion/) component to Joy UI (#38164) @siriwatknp
+- 🚀 Added the Material You InputBase and ButtonBase components to `material-next` (#38319) @DiegoAndai @mj12albert
 - 🔋 Added zero-runtime support for [Linaria](https://linaria.dev/) (#38378) @brijeshb42
 
 ### `@mui/material@5.14.6`
