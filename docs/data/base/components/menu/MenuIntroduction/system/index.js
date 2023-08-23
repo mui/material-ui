@@ -19,7 +19,7 @@ export default function MenuIntroduction() {
         <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
           Profile
         </StyledMenuItem>
-        <StyledMenuItem onClick={createHandleMenuClick('My account')}>
+        <StyledMenuItem onClick={createHandleMenuClick('Language settings')}>
           Language settings
         </StyledMenuItem>
         <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
