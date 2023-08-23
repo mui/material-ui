@@ -19,6 +19,9 @@ describe('<PermanentDrawer />', () => {
       muiName: 'JoyPermanentDrawer',
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'header',
+      testVariantProps: {
+        color: 'danger', variant: 'plain'
+      },
       slots: {
         root: { expectedClassName: classes.root },
         content: { expectedClassName: classes.content },

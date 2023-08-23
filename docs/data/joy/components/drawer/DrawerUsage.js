@@ -13,7 +13,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-const Demo = (props) => {
+function Demo(props) {
   const [state, setState] = React.useState({
     top: false,
     left: false,
