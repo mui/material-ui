@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import { Box } from '@mui/system';
+import { Box, ThemeProvider, createTheme } from '@mui/system';
 
 describe('<Box />', () => {
   const { render } = createRenderer();
@@ -278,5 +278,26 @@ describe('<Box />', () => {
     const { getByTestId } = render(<Box data-testid="regular-box" />);
 
     expect(getByTestId('regular-box')).to.have.class('MuiBox-root');
+  });
+
+  it('should unit in account while computing maxWidth', () => {
+    const theme = createTheme({
+      breakpoints: {
+        unit: 'rem',
+        values: {
+          sm: 20,
+        },
+      },
+    });
+
+    const { getByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Box data-testid="regular-box" maxWidth="sm" />
+      </ThemeProvider>,
+    );
+
+    expect(getByTestId('regular-box')).toHaveComputedStyle({
+      'max-width': '20rem',
+    });
   });
 });
