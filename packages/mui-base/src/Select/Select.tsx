@@ -312,6 +312,11 @@ Select.propTypes /* remove-proptypes */ = {
    */
   renderValue: PropTypes.func,
   /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required: PropTypes.bool,
+  /**
    * The props used for each slot inside the Input.
    * @default {}
    */
