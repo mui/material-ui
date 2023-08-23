@@ -14,9 +14,6 @@ const isDeployPreview = Boolean(process.env.PULL_REQUEST_ID);
 const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
 module.exports = withDocsInfra({
-  experimental: {
-    workerThreads: true,
-  },
   output: 'export',
   distDir: 'export',
 
