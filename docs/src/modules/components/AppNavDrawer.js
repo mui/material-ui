@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled } from '@mui/material/styles';
+import { styled, ThemeProvider } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import Menu from '@mui/material/Menu';
@@ -21,6 +21,26 @@ import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
+
+// TODO: Collapse should expose an API to customize the duration based on the height.
+function transitionTheme(theme) {
+  return {
+    ...theme,
+    transitions: {
+      ...theme.transitions,
+      getAutoHeightDuration: (height) => {
+        if (!height) {
+          return 0;
+        }
+
+        const constant = height / 80;
+
+        // https://www.wolframalpha.com/input/?i=(4+%2B+15+*+(x+%2F+36+)+**+0.25+%2B+(x+%2F+36)+%2F+5)+*+10
+        return Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10);
+      },
+    },
+  };
+}
 
 const savedScrollTop = {};
 
@@ -433,35 +453,37 @@ export default function AppNavDrawer(props) {
   }
 
   return (
-    <nav className={className} aria-label={t('mainNavigation')}>
-      {swipeableDrawer ? (
-        <SwipeableDrawer
-          disableBackdropTransition={!iOS}
-          variant="temporary"
-          open={mobileOpen}
-          onOpen={onOpen}
-          onClose={onClose}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          PaperProps={{
-            component: AppNavPaperComponent,
-          }}
-        >
-          {drawer}
-        </SwipeableDrawer>
-      ) : (
-        <StyledDrawer
-          variant="permanent"
-          PaperProps={{
-            component: AppNavPaperComponent,
-          }}
-          open
-        >
-          {drawer}
-        </StyledDrawer>
-      )}
-    </nav>
+    <ThemeProvider theme={transitionTheme}>
+      <nav className={className} aria-label={t('mainNavigation')}>
+        {swipeableDrawer ? (
+          <SwipeableDrawer
+            disableBackdropTransition={!iOS}
+            variant="temporary"
+            open={mobileOpen}
+            onOpen={onOpen}
+            onClose={onClose}
+            ModalProps={{
+              keepMounted: true,
+            }}
+            PaperProps={{
+              component: AppNavPaperComponent,
+            }}
+          >
+            {drawer}
+          </SwipeableDrawer>
+        ) : (
+          <StyledDrawer
+            variant="permanent"
+            PaperProps={{
+              component: AppNavPaperComponent,
+            }}
+            open
+          >
+            {drawer}
+          </StyledDrawer>
+        )}
+      </nav>
+    </ThemeProvider>
   );
 }
 

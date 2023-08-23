@@ -413,7 +413,7 @@ Refer to the plugin's page for setup and usage instructions.
 
 Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/v4.x/examples/gatsby) for an usage example.
 
-### Next.js
+### Next.js Pages Router
 
 You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui/material-ui/blob/v4.x/examples/nextjs/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
 

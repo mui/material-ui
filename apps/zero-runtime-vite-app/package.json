@@ -1,0 +1,22 @@
+{
+  "name": "zero-runtime-vite-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@mui/zero-runtime": "file:../../packages/zero-runtime/build",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@linaria/vite": "^4.5.4",
+    "@mui/utils": "^5.14.5",
+    "@mui/material": "^5.14.5",
+    "@mui/zero-tag-processor": "file:../../packages/zero-tag-processor/build",
+    "vite": "4.4.9",
+    "@vitejs/plugin-react": "^4.0.4"
+  }
+}

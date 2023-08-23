@@ -100,10 +100,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
         '--Icon-color': 'currentColor',
         ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
       },
-      '&:disabled': {
-        '--Icon-color': 'currentColor',
-        ...theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-      },
+      '&:disabled': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
     },
   ],
 );

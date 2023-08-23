@@ -15,12 +15,12 @@ export default function Search() {
           aria-label="Search"
         />
       </FormControl>
-      <Box display={{ xs: 'none', sm: 'block' }}>
+      <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
         <Button variant="outlined" color="neutral">
           Clear
         </Button>
       </Box>
-      <Box display={{ xs: 'none', sm: 'block' }}>
+      <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
         <Button variant="solid" color="primary">
           Search
         </Button>
