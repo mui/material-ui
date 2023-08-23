@@ -76,8 +76,7 @@ export default function NpmCopyButton(
       }}
       {...other}
     >
-      <strong>$</strong>
-      {installation}
+      $ {installation}
       {copied ? (
         <CheckRounded color="inherit" sx={{ fontSize: 15 }} />
       ) : (
