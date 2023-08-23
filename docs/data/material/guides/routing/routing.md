@@ -99,7 +99,7 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 ## More examples
 
-### Next.js
+### Next.js Pages Router
 
 The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/api-reference/next/link) with Material UI.
 
@@ -147,9 +147,3 @@ The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/mater
     );
   }
   ```
-
-### Gatsby
-
-The [Link](https://www.gatsbyjs.com/docs/linking-between-pages/) component of Gatsby is built on `@reach/router`.
-You can use the same previous documentation for react-router.
-Unlike Next.js, it doesn't require you to create an adapter.

@@ -6,4 +6,4 @@ This is a curated list of some of the best apps we've seen that show off what's 
 
 ---
 
-{{"component": "docs/src/modules/components/MaterialShowcase.js"}}
+{{"component": "modules/components/MaterialShowcase.js"}}

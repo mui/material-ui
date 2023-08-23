@@ -116,7 +116,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   A codemod is provided to help with the migration:
 
   ```bash
-  npx @mui/codemod v5.0.0/base-use-named-imports <path>
+  npx @mui/codemod v5.0.0/base-use-named-exports <path>
   ```
 
 #### Changes
@@ -5736,7 +5736,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 ### Core
 
-- &#8203;<!-- 23 -->[core] Fix link to Open Collective @oliviertassinari
+- &#8203;<!-- 23 -->[core] Fix link to Open Collective @oliviertassinari
 - &#8203;<!-- 26 -->[core] Update snapshots and s3 fallback (#30134) @Janpot
 - &#8203;<!-- 24 -->[ci] Update CI bucket (#30080) @Janpot
 - &#8203;<!-- 13 -->[fix] size:snapshot for mui-material-next and mui-joy components (#30106) @Janpot

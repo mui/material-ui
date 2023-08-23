@@ -44,14 +44,14 @@ export default function TaskCard() {
             src="/static/images/avatar/1-sm.jpeg"
             sx={{ border: '2px solid #FFF' }}
           />
-          <Box>
+          <div>
             <Typography color="primary.200" fontWeight={600} fontSize={12}>
               Assigned to
             </Typography>
             <Typography id="demo-task-card-assignee-name" variant="body2" fontWeight={600}>
               Michael Scott
             </Typography>
-          </Box>
+          </div>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <LinearProgress

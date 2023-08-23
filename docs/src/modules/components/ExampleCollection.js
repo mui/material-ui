@@ -64,12 +64,6 @@ const examples = [
     src: '/static/images/examples/styled.png',
   },
   {
-    name: 'Gatsby',
-    label: 'View JS example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-gatsby',
-    src: '/static/images/examples/gatsby.svg',
-  },
-  {
     name: 'Preact',
     label: 'View JS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-preact',
@@ -86,6 +80,12 @@ const examples = [
     label: 'View JS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-express-ssr',
     src: '/static/images/examples/express.png',
+  },
+  {
+    name: 'Gatsby',
+    label: 'View JS example',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-gatsby',
+    src: '/static/images/examples/gatsby.svg',
   },
 ];
 
@@ -145,7 +145,7 @@ export default function ExampleCollection() {
                   href={example.link}
                   variant="body2"
                   sx={{
-                    fontWeight: 500,
+                    fontWeight: 'medium',
                     display: 'flex',
                     alignItems: 'center',
                     mt: 0.5,
@@ -170,7 +170,7 @@ export default function ExampleCollection() {
                       href={example.tsLink}
                       variant="body2"
                       sx={{
-                        fontWeight: 500,
+                        fontWeight: 'medium',
                         display: 'flex',
                         alignItems: 'center',
                       }}

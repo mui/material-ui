@@ -141,7 +141,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
             </Box>
           </Box>
         </Tooltip>
-        <Box mx="auto" height={15} />
+        <Box sx={{ mx: 'auto', height: 15 }} />
         <Box sx={{ mt: -0.5, mr: -0.5 }}>
           {props.github && (
             <IconButton
@@ -672,7 +672,7 @@ function AboutContent() {
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 If you use MUI in a commercial project and would like to support its continued
                 development by becoming a Sponsor, or in a side or hobby project and would like to
-                become a Backer, you can do so through OpenCollective.
+                become a Backer, you can do so through {'Open Collective'}.
                 <br />
                 <br />
                 All funds donated are managed transparently, and Sponsors receive recognition in the
@@ -687,7 +687,7 @@ function AboutContent() {
                 endIcon={<KeyboardArrowRightRounded />}
                 sx={{ ml: -1 }}
               >
-                See Open Collective{' '}
+                {'See Open Collective'}
               </Button>
             </Widget>
           </Grid>
