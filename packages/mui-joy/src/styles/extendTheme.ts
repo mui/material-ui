@@ -193,7 +193,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         plainColor: getCssVarColor('palette-neutral-700'),
         plainHoverColor: getCssVarColor(`palette-neutral-900`),
         outlinedColor: getCssVarColor('palette-neutral-700'),
-        
       },
       danger: {
         ...defaultColors.danger,
@@ -252,7 +251,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createDarkModeVariantVariables('neutral'),
         plainColor: getCssVarColor('palette-neutral-300'),
         plainHoverColor: getCssVarColor(`palette-neutral-300`),
-        plainActiveColor: getCssVarColor(`palette-neutral-300`),
       },
       danger: {
         ...defaultColors.danger,
