@@ -10,8 +10,8 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 - 🚀 Added the [Popup](https://mui.com/base-ui/react-popup/) component to Base UI (#37960) @michaldudak
 - 🚀 Added the [Accordion](https://mui.com/joy-ui/react-accordion/) component to Joy UI (#38164) @siriwatknp
-- 🚀 Added the Material You InputBase and ButtonBase components to `material-next` (#38319) @DiegoAndai @mj12albert
-- 🔋 Added zero-runtime support for [Linaria](https://linaria.dev/) (#38378) @brijeshb42
+- 🚀 Added InputBase and ButtonBase components to `material-next` (#38319) @DiegoAndai @mj12albert
+- 🔋 First iteration on the CSS-in-JS engine compatible with Server Components (#38378) @brijeshb42
 
 ### `@mui/material@5.14.6`
 
@@ -29,7 +29,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 - [Accordion] Add Joy UI Accordion components (#38164) @siriwatknp
 - Miscellaneous fixes (#38462) @siriwatknp
-- Fix typo: Classname -> Class name for consistency (#38510) @alexfauquette
+- [docs][joy-ui] Fix typo: Classname -> Class name for consistency (#38510) @alexfauquette
 
 ### `@mui/material-next@6.0.0-alpha.98`
 
