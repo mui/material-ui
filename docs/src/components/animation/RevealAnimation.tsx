@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
     transform: 'translateX(20px)',
     animation: '$fadeRightAnimation 0.7s ease-in',
   },
-  
+
   '@keyframes fadeBottomAnimation': {
     '0%': {
       transform: 'translateY(0px)',
@@ -62,11 +62,11 @@ const useStyles = makeStyles(() => ({
 function RevealAnimation(): JSX.Element {
   const classes = useStyles();
 
-  React.useEffect(() => {   
+  React.useEffect(() => {
     function reveal() {
       const reveals = document.querySelectorAll<HTMLElement>('.reveal');
 
-      for (let i = 0; i < reveals.length; i+=1) {
+      for (let i = 0; i < reveals.length; i += 1) {
         const windowHeight = window.innerHeight;
         const elementTop = reveals[i].getBoundingClientRect().top;
         const elementVisible = 150;
@@ -103,4 +103,4 @@ function RevealAnimation(): JSX.Element {
   );
 }
 
-export default RevealAnimation; 
+export default RevealAnimation;
