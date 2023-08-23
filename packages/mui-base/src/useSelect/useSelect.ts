@@ -13,6 +13,7 @@ import {
   SelectInternalState,
   SelectValue,
   UseSelectButtonSlotProps,
+  UseSelectHiddenInputSlotProps,
   UseSelectListboxSlotProps,
   UseSelectParameters,
   UseSelectReturnValue,
@@ -403,7 +404,9 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
       null) as SelectValue<SelectOption<OptionValue>, Multiple>;
   }
 
-  const getHiddenInputProps = () => ({
+  const getHiddenInputProps = <TOther extends EventHandlers>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseSelectHiddenInputSlotProps<TOther> => ({
     name,
     tabIndex: -1,
     'aria-hidden': true,
@@ -411,6 +414,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     value: getSerializedValue(selectedOptionsMetadata),
     onChange: noop,
     style: visuallyHiddenStyle,
+    ...otherHandlers,
   });
 
   return {
