@@ -38,7 +38,7 @@ export default function CoreHeroEnd() {
               description="The core components were crafted by many hands, all over the world. Join us today to get help when you need it, and lend a hand when you can."
             />
             <Button
-              aria-label="Go to documentation"
+              aria-label="Learn more"
               component={Link}
               href={ROUTES.communityHelp}
               noLinkStyle

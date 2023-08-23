@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
@@ -43,7 +44,7 @@ export default (function More(props: ButtonBaseProps) {
           '& * svg': { transition: '0.2s' },
           '&:hover, &:focus': {
             borderColor: 'primary.main',
-            bgcolor: 'primary.50',
+            bgcolor: alpha(theme.palette.primary[100], 0.4),
             '* .chevron': { transform: 'translateX(2px)' },
             '@media (hover: none)': {
               bgcolor: 'transparent',
@@ -52,7 +53,7 @@ export default (function More(props: ButtonBaseProps) {
           ...theme.applyDarkStyles({
             borderColor: 'primaryDark.600',
             '&:hover, &:focus': {
-              bgcolor: 'primaryDark.700',
+              bgcolor: alpha(theme.palette.primary[900], 0.4),
             },
           }),
         }),

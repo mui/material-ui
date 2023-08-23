@@ -131,7 +131,7 @@ export default function MaterialTemplates() {
   const templates = TEMPLATES[demo];
 
   return (
-    <Section bg="gradient">
+    <Section bg="gradient" cozy>
       <Box sx={{ maxWidth: 550, m: 'auto' }}>
         <SectionHeadline
           alwaysCenter
@@ -164,7 +164,7 @@ export default function MaterialTemplates() {
         ))}
         <More
           component={Link}
-          href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta2#populars"
+          href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=material-templates-cta2#populars"
           noLinkStyle
         />
       </Group>
@@ -208,7 +208,6 @@ export default function MaterialTemplates() {
                     backgroundRepeat: 'no-repeat',
                     border: '1px solid',
                     borderColor: templateIndex === index ? 'primary.100' : 'divider',
-                    bgcolor: 'background.paper',
                     boxShadow: `0px 2px 12px ${alpha(theme.palette.primary[200], 0.3)}`,
                     transition: '0.6s cubic-bezier(0.15, 0.3, 0.25, 1)',
                     transform: templateIndex !== index ? 'scale(0.92)' : 'scale(1)',
@@ -250,6 +249,7 @@ export default function MaterialTemplates() {
                     ]}
                   >
                     <Typography
+                      component="p"
                       variant="h6"
                       fontWeight="bold"
                       textAlign="center"

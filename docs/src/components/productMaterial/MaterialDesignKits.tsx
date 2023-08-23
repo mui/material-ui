@@ -213,9 +213,9 @@ export default function MaterialDesignKits() {
                   Available for all design softwares:
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 26, height: 26 } }}>
-                  <img src="/static/branding/design-kits/figma-logo.png" alt="" loading="lazy" />
-                  <img src="/static/branding/design-kits/sketch-logo.png" alt="" loading="lazy" />
-                  <img src="/static/branding/design-kits/adobe-xd-logo.png" alt="" loading="lazy" />
+                  <img src="/static/branding/design-kits/figma-logo.svg" alt="" loading="lazy" />
+                  <img src="/static/branding/design-kits/sketch-logo.svg" alt="" loading="lazy" />
+                  <img src="/static/branding/design-kits/adobexd-logo.svg" alt="" loading="lazy" />
                 </Box>
               </Box>
               <Button
