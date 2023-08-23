@@ -243,7 +243,7 @@ describe('<TextField />', () => {
 
       expect(handleClick.callCount).to.equal(1);
       // return value is event.currentTarget
-      expect(handleClick.returned(root));
+      expect(handleClick.returned(root)).to.equal(true);
     });
   });
 });

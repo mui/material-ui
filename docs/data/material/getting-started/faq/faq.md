@@ -121,7 +121,7 @@ The CSS alternative provides more advantages, such as:
 
 ## How do I use react-router?
 
-We detail the [integration with third-party routing libraries](/material-ui/guides/routing/) like react-router, Gatsby or Next.js in our guide.
+We detail the [integration with third-party routing libraries](/material-ui/guides/routing/) like react-router or Next.js in our guide.
 
 ## How can I access the DOM element?
 
