@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## 5.14.6
+
 <!-- generated comparing v5.14.5..master -->
+
 _Aug 23, 2023_
 
 A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
@@ -12,99 +14,96 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 ### `@mui/material@5.14.6`
 
-- &#8203;<!-- 11 -->[Modal][material-ui] Update it to use the useModal hook (#38498) @mnajdova
-- &#8203;<!-- 10 -->[Select][material-ui] Add `root` class to `SelectClasses` (#38424) @sai6855
-- &#8203;<!-- 09 -->[Skeleton][material-ui] Soften the pulse animation (#38506) @oliviertassinari
-- &#8203;<!-- 07 -->[TextField] Fix onClick regressions handling changes (#38474) @mj12albert
+- [Modal][material-ui] Update it to use the useModal hook (#38498) @mnajdova
+- [Select][material-ui] Add `root` class to `SelectClasses` (#38424) @sai6855
+- [Skeleton][material-ui] Soften the pulse animation (#38506) @oliviertassinari
+- [TextField] Fix onClick regressions handling changes (#38474) @mj12albert
 
 ### `@mui/joy@5.0.0-beta.3`
 
-- &#8203;<!-- 70 -->[Accordion] Add Joy UI Accordion components (#38164) @siriwatknp
-- &#8203;<!-- 13 -->Miscellaneous fixes (#38462) @siriwatknp
-- &#8203;<!-- 12 -->Fix typo: Classname -> Class name for consistency (#38510) @alexfauquette
+- [Accordion] Add Joy UI Accordion components (#38164) @siriwatknp
+- Miscellaneous fixes (#38462) @siriwatknp
+- Fix typo: Classname -> Class name for consistency (#38510) @alexfauquette
 
 ### `@mui/material-next@6.0.0-alpha.98`
 
-- &#8203;<!-- 60 -->[ButtonBase] Add ButtonBase component (#38319) @DiegoAndai
-- &#8203;<!-- 14 -->[Input] Add InputBase component (#38392) @mj12albert
+- [ButtonBase] Add ButtonBase component (#38319) @DiegoAndai
+- [Input] Add InputBase component (#38392) @mj12albert
 
 ### `@mui/zero-runtime@0.0.1-alpha.1`
 
-- &#8203;<!-- 08 -->[zero][system] Implementation of styled tag processor for linaria (#38378) @brijeshb42
+- [zero][system] Implementation of styled tag processor for linaria (#38378) @brijeshb42
 
 ### Docs
 
-- &#8203;<!-- 61 -->[blog] Clarify tree view move @oliviertassinari
-- &#8203;<!-- 69 -->[docs][base-ui] Revise the structure of the Component docs (#38529) @samuelsycamore
-- &#8203;<!-- 68 -->[docs][base-ui] Fix Menu Hooks demo (#38479) @homerchen19
-- &#8203;<!-- 67 -->[docs][base-ui] Correct the MUI System quickstart example (#38496) @michaldudak
-- &#8203;<!-- 66 -->[docs][base-ui] Add Tailwind & plain CSS demos for Autocomplete page (#38157) @mj12albert
-- &#8203;<!-- 65 -->[docs][base-ui] Add Tailwind CSS + plain CSS demo on the Input page (#38302) @alisasanib
-- &#8203;<!-- 64 -->[docs][base-ui] Add Tailwind CSS + plain CSS demo on the Snackbar, Badge, Switch pages (#38425) @alisasanib
-- &#8203;<!-- 63 -->[docs][base-ui] Add Tailwind CSS + plain CSS demo on the Slider page (#38413) @alisasanib
-- &#8203;<!-- 62 -->[docs][base-ui] Add Tailwind CSS + plain CSS demo on the Select page (#38367) @alisasanib
-- &#8203;<!-- 27 -->[docs][joy-ui] Revise the theme color page (#38402) @danilo-leal
-- &#8203;<!-- 26 -->[docs][joy-ui] Sort templates by popularity (#38490) @oliviertassinari
-- &#8203;<!-- 25 -->[docs][joy-ui] Fix the `fullWidth` prop description for the Input (#38545) @0xturner
-- &#8203;<!-- 24 -->[docs][joy-ui] Updated the List playground demo (#38499) @zanivan
-- &#8203;<!-- 23 -->[docs][joy-ui] Changed bgcolor of the Playground demo (#38502) @zanivan
-- &#8203;<!-- 22 -->[docs][material-ui] Fix key warning in SimpleDialog demo (#38580) @ZeeshanTamboli
-- &#8203;<!-- 21 -->[docs][material-ui] Fixed Google Fonts link for material two-tone icons in CodeSandbox and Stackblitz (#38247) @ZeeshanTamboli
-- &#8203;<!-- 20 -->[docs][material-ui] Fix the Drawer's `onClose` API docs (#38273) @johnmatthiggins
-- &#8203;<!-- 19 -->[docs][material-ui] Improve nav link tab example (#38315) @oliviertassinari
-- &#8203;<!-- 18 -->[docs][material-ui] Fix missing import in the styled engine guide  (#38450) @codersjj
-- &#8203;<!-- 54 -->[docs][material-ui][Dialog] Improve screen reader announcement of Customized Dialog (#38592) @ZeeshanTamboli
-- &#8203;<!-- 53 -->[docs] Add 3rd party libraries integration examples for Joy Input (#38541) @siriwatknp
-- &#8203;<!-- 52 -->[docs] Hide translation call to action (#38449) @cristianmacedo
-- &#8203;<!-- 51 -->[docs] Fix codemod name in changelog of v5.14.4 (#38593) @GresilleSiffle
-- &#8203;<!-- 50 -->[docs] More space for theme builder (#38532) @oliviertassinari
-- &#8203;<!-- 49 -->[docs] Fix the math symbol of the width sx prop range @oliviertassinari
-- &#8203;<!-- 48 -->[docs] Fix typo on a11y section of Tabs @oliviertassinari
-- &#8203;<!-- 47 -->[docs] Clarify System peer dependencies @oliviertassinari
-- &#8203;<!-- 46 -->[docs] Fix horizontal scrollbar @oliviertassinari
-- &#8203;<!-- 45 -->[docs] Code style convention @oliviertassinari
-- &#8203;<!-- 44 -->[docs] Fix typo in Base UI @oliviertassinari
-- &#8203;<!-- 43 -->[docs] Update the backers page (#38505) @danilo-leal
-- &#8203;<!-- 42 -->[docs] Add stray design adjustments to the docs (#38501) @danilo-leal
-- &#8203;<!-- 41 -->[docs] Use IBM Plex Sans in Tailwind CSS demos (#38464) @mnajdova
-- &#8203;<!-- 40 -->[docs] Fix SEO issues reported by ahrefs (#38423) @oliviertassinari
-- &#8203;<!-- 39 -->[docs-infra] Add light tweaks to the ad container (#38504) @danilo-leal
-- &#8203;<!-- 38 -->[docs-infra] Fix anchor scroll without tabs (#38586) @oliviertassinari
-- &#8203;<!-- 37 -->[docs-infra] Retain velocity animation speed (#38470) @oliviertassinari
-- &#8203;<!-- 36 -->[docs-infra] Follow import and CSS token standard (#38508) @oliviertassinari
-- &#8203;<!-- 35 -->[docs-infra] Add icon to callouts (#38525) @alexfauquette
-- &#8203;<!-- 34 -->[docs-infra] Fix the anchor link on headings (#38528) @danilo-leal
-- &#8203;<!-- 33 -->[docs-infra] Cleanup code on demo code block expansion (#38522) @ZeeshanTamboli
-- &#8203;<!-- 32 -->[docs-infra] Improve the heading buttons positioning (#38428) @danilo-leal
-- &#8203;<!-- 31 -->[docs-infra] Customize the blockquote design (#38503) @danilo-leal
-- &#8203;<!-- 30 -->[docs-infra] Improve the alert before a negative feedback (#38500) @danilo-leal
-- &#8203;<!-- 29 -->[docs-infra] Fix GoogleAnalytics missing event for code copy (#38469) @alexfauquette
-- &#8203;<!-- 28 -->[docs-infra] Improve affordance on the code block expansion (#38421) @danilo-leal
+- [blog] Clarify tree view move @oliviertassinari
+- [docs][base-ui] Revise the structure of the Component docs (#38529) @samuelsycamore
+- [docs][base-ui] Fix Menu Hooks demo (#38479) @homerchen19
+- [docs][base-ui] Correct the MUI System quickstart example (#38496) @michaldudak
+- [docs][base-ui] Add Tailwind & plain CSS demos for Autocomplete page (#38157) @mj12albert
+- [docs][base-ui] Add Tailwind CSS + plain CSS demo on the Input page (#38302) @alisasanib
+- [docs][base-ui] Add Tailwind CSS + plain CSS demo on the Snackbar, Badge, Switch pages (#38425) @alisasanib
+- [docs][base-ui] Add Tailwind CSS + plain CSS demo on the Slider page (#38413) @alisasanib
+- [docs][base-ui] Add Tailwind CSS + plain CSS demo on the Select page (#38367) @alisasanib
+- [docs][joy-ui] Revise the theme color page (#38402) @danilo-leal
+- [docs][joy-ui] Sort templates by popularity (#38490) @oliviertassinari
+- [docs][joy-ui] Fix the `fullWidth` prop description for the Input (#38545) @0xturner
+- [docs][joy-ui] Updated the List playground demo (#38499) @zanivan
+- [docs][joy-ui] Changed bgcolor of the Playground demo (#38502) @zanivan
+- [docs][material-ui] Fix key warning in SimpleDialog demo (#38580) @ZeeshanTamboli
+- [docs][material-ui] Fixed Google Fonts link for material two-tone icons in CodeSandbox and Stackblitz (#38247) @ZeeshanTamboli
+- [docs][material-ui] Fix the Drawer's `onClose` API docs (#38273) @johnmatthiggins
+- [docs][material-ui] Improve nav link tab example (#38315) @oliviertassinari
+- [docs][material-ui] Fix missing import in the styled engine guide (#38450) @codersjj
+- [docs][material-ui][Dialog] Improve screen reader announcement of Customized Dialog (#38592) @ZeeshanTamboli
+- [docs] Add 3rd party libraries integration examples for Joy Input (#38541) @siriwatknp
+- [docs] Hide translation call to action (#38449) @cristianmacedo
+- [docs] Fix codemod name in changelog of v5.14.4 (#38593) @GresilleSiffle
+- [docs] More space for theme builder (#38532) @oliviertassinari
+- [docs] Fix the math symbol of the width sx prop range @oliviertassinari
+- [docs] Fix typo on a11y section of Tabs @oliviertassinari
+- [docs] Clarify System peer dependencies @oliviertassinari
+- [docs] Fix horizontal scrollbar @oliviertassinari
+- [docs] Code style convention @oliviertassinari
+- [docs] Fix typo in Base UI @oliviertassinari
+- [docs] Update the backers page (#38505) @danilo-leal
+- [docs] Add stray design adjustments to the docs (#38501) @danilo-leal
+- [docs] Use IBM Plex Sans in Tailwind CSS demos (#38464) @mnajdova
+- [docs] Fix SEO issues reported by ahrefs (#38423) @oliviertassinari
+- [docs-infra] Add light tweaks to the ad container (#38504) @danilo-leal
+- [docs-infra] Fix anchor scroll without tabs (#38586) @oliviertassinari
+- [docs-infra] Retain velocity animation speed (#38470) @oliviertassinari
+- [docs-infra] Follow import and CSS token standard (#38508) @oliviertassinari
+- [docs-infra] Add icon to callouts (#38525) @alexfauquette
+- [docs-infra] Fix the anchor link on headings (#38528) @danilo-leal
+- [docs-infra] Cleanup code on demo code block expansion (#38522) @ZeeshanTamboli
+- [docs-infra] Improve the heading buttons positioning (#38428) @danilo-leal
+- [docs-infra] Customize the blockquote design (#38503) @danilo-leal
+- [docs-infra] Improve the alert before a negative feedback (#38500) @danilo-leal
+- [docs-infra] Fix GoogleAnalytics missing event for code copy (#38469) @alexfauquette
+- [docs-infra] Improve affordance on the code block expansion (#38421) @danilo-leal
 
 ### Examples
 
-- &#8203;<!-- 17 -->[examples] Start to remove Gatsby (#38567) @oliviertassinari
-- &#8203;<!-- 16 -->[examples][joy-ui] Fix Joy UI example CLI (#38531) @oliviertassinari
-- &#8203;<!-- 15 -->[examples][joy-ui] Improve example when using Next Font (#38540) @mwskwong
+- [examples] Start to remove Gatsby (#38567) @oliviertassinari
+- [examples][joy-ui] Fix Joy UI example CLI (#38531) @oliviertassinari
+- [examples][joy-ui] Improve example when using Next Font (#38540) @mwskwong
 
 ### Core
 
-- &#8203;<!-- 59 -->[CHANGELOG] Fix issues in highlight @oliviertassinari
-- &#8203;<!-- 58 -->[core] Remove redundant `@material-ui/` aliases from regression test webpack config (#38574) @ZeeshanTamboli
-- &#8203;<!-- 57 -->[core] Fix CI error @oliviertassinari
-- &#8203;<!-- 56 -->[core] Remove unnecessary Box (#38461) @oliviertassinari
-- &#8203;<!-- 55 -->[core] Set GitHub Action top level permission @oliviertassinari
-- &#8203;<!-- 06 -->[website] Improve the Base UI hero section demo (#38585) @danilo-leal
-- &#8203;<!-- 05 -->[website] Add stray design improvements to the Material UI page (#38590) @danilo-leal
-- &#8203;<!-- 04 -->[website] Fix mobile view Material UI page (#38568) @oliviertassinari
-- &#8203;<!-- 03 -->[website] Fix reference to the data grid @oliviertassinari
-- &#8203;<!-- 02 -->[website] Configure Apple Pay @oliviertassinari
-- &#8203;<!-- 01 -->[website] Fix template link on the homepage (#38471) @danilo-leal
-
+- [CHANGELOG] Fix issues in highlight @oliviertassinari
+- [core] Remove redundant `@material-ui/` aliases from regression test webpack config (#38574) @ZeeshanTamboli
+- [core] Fix CI error @oliviertassinari
+- [core] Remove unnecessary Box (#38461) @oliviertassinari
+- [core] Set GitHub Action top level permission @oliviertassinari
+- [website] Improve the Base UI hero section demo (#38585) @danilo-leal
+- [website] Add stray design improvements to the Material UI page (#38590) @danilo-leal
+- [website] Fix mobile view Material UI page (#38568) @oliviertassinari
+- [website] Fix reference to the data grid @oliviertassinari
+- [website] Configure Apple Pay @oliviertassinari
+- [website] Fix template link on the homepage (#38471) @danilo-leal
 
 All contributors of this release in alphabetical order: @0xturner, @alexfauquette, @alisasanib, @brijeshb42, @codersjj, @cristianmacedo, @danilo-leal, @DiegoAndai, @GresilleSiffle, @homerchen19, @johnmatthiggins, @michaldudak, @mj12albert, @mnajdova, @mwskwong, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
-
-
 
 ## 5.14.5
 
