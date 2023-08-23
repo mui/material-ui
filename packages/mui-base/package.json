@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-beta.10",
+  "version": "5.0.0-beta.11",
   "private": false,
   "author": "MUI Team",
   "description": "A library of headless ('unstyled') React UI components and low-level hooks.",
@@ -41,8 +41,9 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.6",
+    "@babel/runtime": "^7.22.10",
     "@emotion/is-prop-valid": "^1.2.1",
+    "@floating-ui/react-dom": "^2.0.1",
     "@mui/types": "workspace:*",
     "@mui/utils": "workspace:*",
     "@popperjs/core": "^2.11.8",

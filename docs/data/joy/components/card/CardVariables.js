@@ -143,7 +143,7 @@ export default function CardVariables() {
               backdropFilter: 'blur(4px)',
             }}
           />
-          <CardContent sx={{ textAlign: 'center' }}>
+          <CardContent>
             <CircularProgress
               determinate
               value={70}
@@ -156,6 +156,8 @@ export default function CardVariables() {
             >
               <Typography>70%</Typography>
             </CircularProgress>
+          </CardContent>
+          <CardContent sx={{ textAlign: 'center', justifyContent: 'center' }}>
             <Typography fontWeight="lg" textColor="#fff">
               Card title
             </Typography>

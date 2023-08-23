@@ -35,14 +35,17 @@ const BreadcrumbsRoot = styled('nav', {
 })<{ ownerState: BreadcrumbsOwnerState }>(({ theme, ownerState }) => ({
   ...(ownerState.size === 'sm' && {
     '--Breadcrumbs-gap': '0.25rem',
+    '--Icon-fontSize': theme.vars.fontSize.lg,
     padding: '0.5rem',
   }),
   ...(ownerState.size === 'md' && {
     '--Breadcrumbs-gap': '0.375rem',
+    '--Icon-fontSize': theme.vars.fontSize.xl,
     padding: '0.75rem',
   }),
   ...(ownerState.size === 'lg' && {
     '--Breadcrumbs-gap': '0.5rem',
+    '--Icon-fontSize': theme.vars.fontSize.xl2,
     padding: '1rem',
   }),
   ...theme.typography[`body-${ownerState.size!}`],

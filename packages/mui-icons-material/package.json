@@ -46,7 +46,7 @@
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.6"
+    "@babel/runtime": "^7.22.10"
   },
   "devDependencies": {
     "@types/react": "^18.2.20",

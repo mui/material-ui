@@ -159,6 +159,27 @@ To create a floating label input, a custom component (combination of `<input>` a
 
 {{"demo": "PasswordMeterInput.js"}}
 
+### Third-party formatting
+
+The Input component can be integrated with third-party formatting libraries for more complex use cases.
+
+Create an adapter component to get the props from the Input component and map them to the third-party component APIs.
+Then use that adapter as a value to the `slotProps.input.component` property of the Joy UI Input.
+
+The demos below illustrate how to do this with two popular libraries.
+
+#### React imask
+
+[react-imask](https://github.com/uNmAnNeR/imaskjs/tree/master/packages/react-imask) provides the `IMaskInput` component for complex formatting options.
+
+{{"demo": "InputReactImask.js"}}
+
+#### React number format
+
+[react-number-format](https://github.com/s-yadav/react-number-format) provides the `NumericFormat` component for enforcing text formatting that follows a specific number or string pattern.
+
+{{"demo": "InputReactNumberFormat.js"}}
+
 ## CSS variable playground
 
 Play around with the CSS variables available to the Input component to see how the design changes.

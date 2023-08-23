@@ -17,6 +17,7 @@ import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
+
   return classes;
 };
 
@@ -73,6 +74,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
 
   const ownerState = { ...props, variant, classes: classesProp };
   const classes = useUtilityClasses(ownerState);
+  const { root, ...restOfClasses } = classes;
 
   const InputComponent =
     input ||
@@ -112,12 +114,12 @@ const Select = React.forwardRef(function Select(inProps, ref) {
                 SelectDisplayProps: { id, ...SelectDisplayProps },
               }),
           ...inputProps,
-          classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
+          classes: inputProps ? deepmerge(restOfClasses, inputProps.classes) : restOfClasses,
           ...(input ? input.props.inputProps : {}),
         },
         ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
         ref: inputComponentRef,
-        className: clsx(InputComponent.props.className, className),
+        className: clsx(InputComponent.props.className, className, classes.root),
         // If a custom input is provided via 'input' prop, do not allow 'variant' to be propagated to it's root element. See https://github.com/mui/material-ui/issues/33894.
         ...(!input && { variant }),
         ...other,

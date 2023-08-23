@@ -7,7 +7,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/core": "^7.22.9",
+    "@babel/core": "^7.22.10",
     "@mui-internal/docs-utilities": "workspace:*",
     "@mui/markdown": "workspace:*",
     "@mui/utils": "workspace:*",
@@ -16,7 +16,7 @@
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
     "react-docgen": "^5.4.3",
-    "recast": "^0.23.3",
+    "recast": "^0.23.4",
     "typescript-to-proptypes": "^5.0.0",
     "yargs": "^17.7.2"
   },
@@ -26,7 +26,7 @@
     "@types/doctrine": "^0.0.5",
     "@types/mdast": "4.0.0",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.17.4",
+    "@types/node": "^18.17.6",
     "chai": "^4.3.7",
     "sinon": "^15.2.0",
     "typescript": "^5.1.6"
