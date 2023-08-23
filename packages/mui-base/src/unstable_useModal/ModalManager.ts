@@ -127,7 +127,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     if (container.parentNode instanceof DocumentFragment) {
       scrollContainer = ownerDocument(container).body;
     } else {
-      // Improve Gatsby support
+      // Support html overflow-y: auto for scroll stability between pages
       // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
       const parent = container.parentElement;
       const containerWindow = ownerWindow(container);
