@@ -134,7 +134,7 @@ jobs:
                 command: git add -A && git diff --exit-code --staged
             - run:
                 name: Check for duplicated packages
-                command: pnpm deduplicate
+                command: pnpm dedupe --check
   test_unit:
     <<: *defaults
     steps:
