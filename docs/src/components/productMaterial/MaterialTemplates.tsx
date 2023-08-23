@@ -56,7 +56,7 @@ function ActionArea(props: ButtonBaseProps) {
 
 export default function MaterialTemplates() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
-  const [templateIndex, setTemplateIndex] = React.useState(0);
+  const [templateIndex, setTemplateIndex] = React.useState(1);
   const icons = {
     [DEMOS[0]]: <DashboardRounded fontSize="small" />,
     [DEMOS[1]]: <Layers fontSize="small" />,
@@ -200,6 +200,7 @@ export default function MaterialTemplates() {
                 <Box
                   key={item.name}
                   sx={(theme) => ({
+                    overflow: 'auto',
                     borderRadius: 1,
                     height: { xs: 250, sm: 340, md: 550 },
                     backgroundImage: `url(${item.src.light})`,
@@ -230,7 +231,6 @@ export default function MaterialTemplates() {
                         flexDirection: 'column',
                         gap: 1,
                         transition: '0.2s',
-                        borderRadius: 1,
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
