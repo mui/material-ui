@@ -3,7 +3,6 @@ import Box from '@mui/joy/Box';
 import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
-import ListDivider from '@mui/joy/ListDivider';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
@@ -57,7 +56,11 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
           />
         }
         onClick={() => setOpen(!open)}
-        sx={{ justifyContent: 'space-between', color: open ? 'text.primary' : 'text.tertiary' }}
+        sx={{
+          pb: 1,
+          justifyContent: 'space-between',
+          color: open ? 'text.primary' : 'text.tertiary',
+        }}
       >
         {slot}
       </Link>
@@ -161,7 +164,9 @@ export default function JoyVariablesDemo(props: {
               alignItems: 'center',
             }}
           >
-            <Typography fontWeight="lg">CSS variables</Typography>
+            <Typography fontWeight="lg" sx={{ fontFamily: 'General Sans' }}>
+              CSS variables
+            </Typography>
             <IconButton
               aria-label="Reset all"
               variant="outlined"
@@ -191,7 +196,11 @@ export default function JoyVariablesDemo(props: {
                 const resolvedInputAttributes = item.inputAttributes || {};
                 return (
                   <FormControl key={item.var}>
-                    <FormLabel>{item.var}</FormLabel>
+                    <FormLabel
+                      sx={{ fontFamily: 'Menlo, Consolas', '--FormLabel-fontSize': '0.75rem' }}
+                    >
+                      {item.var}
+                    </FormLabel>
                     <Input
                       size="sm"
                       variant="outlined"
@@ -201,11 +210,11 @@ export default function JoyVariablesDemo(props: {
                       }}
                       endDecorator={
                         <React.Fragment>
-                          {typeof resolvedValue === 'string' ? (
+                          {typeof resolvedValue === 'string' && (
                             <Typography level="body-xs" mr={0.5}>
                               px
                             </Typography>
-                          ) : null}
+                          )}
                           <IconButton
                             tabIndex={-1}
                             variant="plain"
@@ -266,7 +275,6 @@ export default function JoyVariablesDemo(props: {
               if (Array.isArray(dataItem)) {
                 const [slot, slotData, options] = dataItem;
                 return [
-                  <ListDivider key="divider" />,
                   <SlotVariables
                     key="variables"
                     slot={slot}
