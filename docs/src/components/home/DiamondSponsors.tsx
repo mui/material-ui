@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
@@ -33,7 +32,7 @@ export default function DiamondSponsors() {
   const maxNumberOfDiamondSponsors = 3;
   const spotIsAvailable = maxNumberOfDiamondSponsors > DIAMONDs.length;
   return (
-    <Box ref={ref}>
+    <div ref={ref}>
       <Typography
         component="h3"
         variant="h6"
@@ -105,6 +104,6 @@ export default function DiamondSponsors() {
           </Grid>
         )}
       </Grid>
-    </Box>
+    </div>
   );
 }

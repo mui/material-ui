@@ -14,10 +14,9 @@ There are many ways to support MUI:
 - **Help new users**. You can answer questions on
   [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**.
-  - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
+  - Edit the documentation. Every page has an "Edit this page" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui/material-ui/issues/new).
   - Review and comment on existing [pull requests](https://github.com/mui/material-ui/pulls) and [issues](https://github.com/mui/material-ui/issues).
-  - Help [translate](https://translate.mui.com) the documentation.
   - [Improve our documentation](https://github.com/mui/material-ui/tree/HEAD/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui/material-ui/pulls).
 - **Support us financially on [Open Collective](https://opencollective.com/mui)**.
   If you use Material UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through Open Collective.
@@ -122,7 +121,7 @@ The CSS alternative provides more advantages, such as:
 
 ## How do I use react-router?
 
-We detail the [integration with third-party routing libraries](/material-ui/guides/routing/) like react-router, Gatsby or Next.js in our guide.
+We detail the [integration with third-party routing libraries](/material-ui/guides/routing/) like react-router or Next.js in our guide.
 
 ## How can I access the DOM element?
 
