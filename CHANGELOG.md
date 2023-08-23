@@ -76,18 +76,6 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Add stray design adjustments to the docs (#38501) @danilo-leal
 - [docs] Use IBM Plex Sans in Tailwind CSS demos (#38464) @mnajdova
 - [docs] Fix SEO issues reported by ahrefs (#38423) @oliviertassinari
-- [docs-infra] Add light tweaks to the ad container (#38504) @danilo-leal
-- [docs-infra] Fix anchor scroll without tabs (#38586) @oliviertassinari
-- [docs-infra] Retain velocity animation speed (#38470) @oliviertassinari
-- [docs-infra] Follow import and CSS token standard (#38508) @oliviertassinari
-- [docs-infra] Add icon to callouts (#38525) @alexfauquette
-- [docs-infra] Fix the anchor link on headings (#38528) @danilo-leal
-- [docs-infra] Cleanup code on demo code block expansion (#38522) @ZeeshanTamboli
-- [docs-infra] Improve the heading buttons positioning (#38428) @danilo-leal
-- [docs-infra] Customize the blockquote design (#38503) @danilo-leal
-- [docs-infra] Improve the alert before a negative feedback (#38500) @danilo-leal
-- [docs-infra] Fix GoogleAnalytics missing event for code copy (#38469) @alexfauquette
-- [docs-infra] Improve affordance on the code block expansion (#38421) @danilo-leal
 
 ### Examples
 
@@ -102,6 +90,18 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [core] Fix CI error @oliviertassinari
 - [core] Remove unnecessary Box (#38461) @oliviertassinari
 - [core] Set GitHub Action top level permission @oliviertassinari
+- [docs-infra] Add light tweaks to the ad container (#38504) @danilo-leal
+- [docs-infra] Fix anchor scroll without tabs (#38586) @oliviertassinari
+- [docs-infra] Retain velocity animation speed (#38470) @oliviertassinari
+- [docs-infra] Follow import and CSS token standard (#38508) @oliviertassinari
+- [docs-infra] Add icon to callouts (#38525) @alexfauquette
+- [docs-infra] Fix the anchor link on headings (#38528) @danilo-leal
+- [docs-infra] Cleanup code on demo code block expansion (#38522) @ZeeshanTamboli
+- [docs-infra] Improve the heading buttons positioning (#38428) @danilo-leal
+- [docs-infra] Customize the blockquote design (#38503) @danilo-leal
+- [docs-infra] Improve the alert before a negative feedback (#38500) @danilo-leal
+- [docs-infra] Fix GoogleAnalytics missing event for code copy (#38469) @alexfauquette
+- [docs-infra] Improve affordance on the code block expansion (#38421) @danilo-leal
 - [website] Improve the Base UI hero section demo (#38585) @danilo-leal
 - [website] Add stray design improvements to the Material UI page (#38590) @danilo-leal
 - [website] Fix mobile view Material UI page (#38568) @oliviertassinari
