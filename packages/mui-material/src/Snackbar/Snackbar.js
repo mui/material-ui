@@ -223,10 +223,10 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   disableWindowBlurListener: PropTypes.bool,
   /**
-   * When displaying multiple consecutive Snackbars from a parent rendering a single
-   * <Snackbar/>, add the key prop to ensure independent treatment of each message.
-   * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
-   * features such as autoHideDuration may be canceled.
+   * When displaying multiple consecutive snackbars from a parent rendering a
+   * single `<Snackbar />`, use the prop `key` to ensure independent treatment
+   * of each message, e.g. `<Snackbar key={message} />`, otherwise the message
+   * may update in place and cancel features such as `autoHideDuration`.
    */
   key: () => null,
   /**
