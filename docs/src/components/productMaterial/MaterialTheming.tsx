@@ -33,8 +33,8 @@ const code = `
     src="/static/images/cards/birds-of-tokyo.jpg"
     sx={{
       borderRadius: 0.6,
-      height: 100,
-      width: 100,
+      height: {xs: 80, sm: 100},
+      width: {xs: 80, sm: 100},
     }}
   />
   <Stack direction="column" spacing={2} alignItems="center">

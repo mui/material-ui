@@ -137,13 +137,14 @@ export default function TemplateDemo() {
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box sx={{ maxWidth: 500 }}>
             <SectionHeadline
-              overline="Use cases"
+              overline="Templates"
               title={
                 <Typography variant="h2">
-                  The right template for your <GradientText>specific need</GradientText>
+                  The right template for your <GradientText>specific use case</GradientText>
                 </Typography>
               }
-              description="A growing list of templates for multiple use-cases, all powered by Material UI components and carefully curated by MUI's team."
+              description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team.
+              "
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>

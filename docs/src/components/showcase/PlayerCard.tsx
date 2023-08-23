@@ -84,8 +84,8 @@ export default function PlayerCard({
           src="/static/images/cards/birds-of-tokyo.jpg"
           sx={{
             borderRadius: 0.6,
-            height: horizontal ? 100 : 100,
-            width: horizontal ? 100 : '100%',
+            height: { xs: 80, sm: 100 },
+            width: { xs: horizontal ? 80 : '100%', sm: horizontal ? 100 : '100%' },
           }}
         />
         <Stack direction="column" spacing={2} alignItems="center">

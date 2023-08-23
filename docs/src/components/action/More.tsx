@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
-import AddCircleOutlineRounded from '@mui/icons-material/AddCircleOutlineRounded';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
 export default (function More(props: ButtonBaseProps) {
@@ -28,7 +28,7 @@ export default (function More(props: ButtonBaseProps) {
         }
       }}
       sx={[
-        {
+        (theme) => ({
           p: 2,
           display: 'flex',
           alignItems: 'center',
@@ -40,33 +40,43 @@ export default (function More(props: ButtonBaseProps) {
           transitionProperty: 'all',
           transitionDuration: '150ms',
           borderColor: 'grey.200',
+          '& * svg': { transition: '0.2s' },
           '&:hover, &:focus': {
             borderColor: 'primary.main',
             bgcolor: 'primary.50',
+            '* .chevron': { transform: 'translateX(2px)' },
             '@media (hover: none)': {
               bgcolor: 'transparent',
             },
           },
-        },
-        (theme) =>
-          theme.applyDarkStyles({
+          ...theme.applyDarkStyles({
             borderColor: 'primaryDark.600',
             '&:hover, &:focus': {
               bgcolor: 'primaryDark.700',
             },
           }),
+        }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
     >
       <Box component="span" sx={{ mr: 1, px: '3px', lineHeight: 0 }}>
-        <AddCircleOutlineRounded color="primary" fontSize="small" />
+        <AddCircleRoundedIcon color="primary" fontSize="small" />
       </Box>
-      <Typography component="span" color="primary.main" variant="body2" fontWeight="bold">
+      <Typography
+        component="span"
+        color="primary.main"
+        variant="body2"
+        fontWeight="bold"
+        sx={{
+          width: '100%',
+        }}
+      >
         Much more{' '}
         <KeyboardArrowRightRounded
+          className="chevron"
           color="primary"
           fontSize="small"
-          sx={{ verticalAlign: 'middle' }}
+          sx={{ verticalAlign: 'middle', ml: 'auto' }}
         />
       </Typography>
     </ButtonBase>

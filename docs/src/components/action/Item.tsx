@@ -3,15 +3,20 @@ import { useTheme } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-export function Group({ desktopColumns = 1, ...props }: { desktopColumns?: number } & BoxProps) {
+export function Group({
+  desktopColumns = 1,
+  rowLayout = false,
+  ...props
+}: { desktopColumns?: number; rowLayout?: boolean } & BoxProps) {
   const theme = useTheme();
   return (
     <Box
       {...props}
       sx={{
-        maxWidth: { md: 500 },
+        maxWidth: rowLayout ? 'none' : { md: 500 },
         overflow: 'auto',
-        display: 'grid',
+        display: { xs: 'grid', sm: rowLayout ? 'flex' : 'grid' },
+        justifyContent: { xs: 'start', sm: rowLayout ? 'center' : null },
         gap: 1,
         gridTemplateColumns: `repeat(${desktopColumns}, 1fr)`,
         '@media (prefers-reduced-motion: no-preference)': {
@@ -96,7 +101,7 @@ export default function Item({
           color="text.primary"
           variant="body2"
           fontWeight="bold"
-          sx={{ display: 'block' }}
+          sx={{ display: 'block', mr: 2 }}
         >
           {title}
         </Typography>
