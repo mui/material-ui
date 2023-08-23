@@ -11,7 +11,7 @@ export default function RadioChip() {
 
   return (
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-      <Box>
+      <div>
         <Typography level="title-lg" id="best-movie" mb={2}>
           Best Movie
         </Typography>
@@ -60,7 +60,7 @@ export default function RadioChip() {
             );
           })}
         </RadioGroup>
-      </Box>
+      </div>
     </Box>
   );
 }

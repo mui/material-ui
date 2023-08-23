@@ -372,9 +372,7 @@ module.exports = async function demoLoader() {
   );
 
   componentNames.forEach((componentName) => {
-    const moduleID = path
-      .join(this.rootContext, 'src', componentName.replace(/^docs\/src/, ''))
-      .replace(/\\/g, '/');
+    const moduleID = path.join(this.rootContext, 'src', componentName).replace(/\\/g, '/');
 
     components[moduleID] = componentName;
     componentModuleIDs.add(moduleID);
