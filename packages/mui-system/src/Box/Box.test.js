@@ -280,7 +280,7 @@ describe('<Box />', () => {
     expect(getByTestId('regular-box')).to.have.class('MuiBox-root');
   });
 
-  it('should unit in account while computing maxWidth', () => {
+  it('should take unit in account while computing maxWidth', () => {
     const theme = createTheme({
       breakpoints: {
         unit: 'rem',
