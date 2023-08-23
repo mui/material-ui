@@ -237,10 +237,6 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
  *
- * @deprecated
- * This component uses the deprecated Popper JS library.
- * Use [`Popup`](https://mui.com/base-ui/react-popup/) instead.
- *
  * Demos:
  *
  * - [Popper](https://mui.com/base-ui/react-popper/)
