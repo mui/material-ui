@@ -1,5 +1,5 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const webpackBaseConfig = require('../../webpackBaseConfig');
 
@@ -53,11 +53,6 @@ module.exports = {
   },
   resolve: {
     ...webpackBaseConfig.resolve,
-    alias: {
-      ...webpackBaseConfig.resolve.alias,
-      '@material-ui/core': path.resolve(__dirname, '../../packages/mui-material/src'),
-      '@material-ui/styles': path.resolve(__dirname, '../../packages/mui-styles/src'),
-    },
     fallback: {
       // Exclude polyfill and treat 'fs' as an empty module since it is not required. next -> gzip-size relies on it.
       fs: false,

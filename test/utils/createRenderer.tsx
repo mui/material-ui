@@ -357,6 +357,10 @@ interface Clock {
    * Runs the current test suite (i.e. `describe` block) with fake timers.
    */
   withFakeTimers(): void;
+  /**
+   * Restore the real timer
+   */
+  restore(): void;
 }
 
 type ClockConfig = undefined | number | Date;
@@ -425,6 +429,9 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
       after(() => {
         mode = defaultMode;
       });
+    },
+    restore() {
+      clock?.restore();
     },
   };
 }
@@ -716,10 +723,12 @@ export function fireTouchChangedEvent(
   target.getBoundingClientRect = originalGetBoundingClientRect;
 }
 
-export function act(callback: () => void) {
+function act<T>(callback: () => T | Promise<T>): Promise<T>;
+function act(callback: () => void): void;
+function act<T>(callback: () => void | T | Promise<T>) {
   return traceSync('act', () => rtlAct(callback));
 }
 
 export * from '@testing-library/react/pure';
-export { cleanup, fireEvent };
+export { act, cleanup, fireEvent };
 export const screen = within(document.body, { ...queries, ...customQueries });

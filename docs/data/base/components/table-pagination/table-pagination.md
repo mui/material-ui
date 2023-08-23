@@ -25,7 +25,7 @@ Table Pagination renders its internal elements in a `<td>` tag by default so it 
 You can use the `slots.root` prop to render a different root element—for example, if you need to place the pagination controls outside of the table.
 See the [Slot props section](#slot-props) for details.
 
-{{"demo": "UnstyledPaginationIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledPaginationIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
@@ -34,7 +34,7 @@ See the [Slot props section](#slot-props) for details.
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import TablePagination from '@mui/base/TablePagination';
+import { TablePagination } from '@mui/base/TablePagination';
 
 export default function MyApp() {
   return (
@@ -159,4 +159,4 @@ This prop requires an array of either numbers or objects:
 
 The following demo shows another example of pagination controls but with additional style customization:
 
-{{"demo": "TableCustomized.js"}}
+{{"demo": "TableCustomized"}}

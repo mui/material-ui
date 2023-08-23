@@ -24,7 +24,7 @@ export default function Playground() {
   });
 
   return (
-    <Box>
+    <div>
       <Box
         sx={{
           mt: 3,
@@ -33,16 +33,9 @@ export default function Playground() {
           top: 'var(--MuiDocs-header-height)',
           zIndex: 2,
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark'
-              ? 'rgba(62, 80, 96, 0.3)'
-              : theme.palette.neutral[100],
-
+          borderColor: 'divider',
           borderRadius: 'xs',
-          background: (theme) =>
-            theme.palette.mode === 'dark'
-              ? 'rgba(0,30,60, 0.95)'
-              : theme.palette.primary[50],
+          bgcolor: 'background.surface',
         }}
       >
         <FormControl sx={{ width: 300, mx: 'auto' }}>
@@ -57,7 +50,7 @@ export default function Playground() {
         <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 2 }}>
           <Typography
             id="flags-playground"
-            level="body3"
+            level="body-xs"
             sx={{
               textTransform: 'uppercase',
               fontWeight: 'lg',
@@ -71,9 +64,9 @@ export default function Playground() {
             // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <Link
               component="button"
-              level="body2"
+              level="body-sm"
               onClick={() => setFlags([])}
-              sx={{ ml: 'auto' }}
+              sx={{ ml: 'auto', mr: 2 }}
             >
               Clear all
             </Link>
@@ -284,7 +277,7 @@ export default function Playground() {
           </ListItem>
         </List>
       </Box>
-    </Box>
+    </div>
   );
 }
 

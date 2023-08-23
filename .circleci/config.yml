@@ -44,7 +44,7 @@ defaults: &defaults
     AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:18.16
+    - image: cimg/node:18.17
 
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
@@ -136,7 +136,7 @@ jobs:
           steps:
             - run:
                 name: Should not have any git not staged
-                command: git diff --exit-code
+                command: git add -A && git diff --exit-code --staged
             - run:
                 name: Check for duplicated packages
                 command: yarn deduplicate
@@ -222,35 +222,35 @@ jobs:
           command: yarn proptypes
       - run:
           name: '`yarn proptypes` changes committed?'
-          command: git diff --exit-code
+          command: git add -A && git diff --exit-code --staged
       - run:
           name: 'Write "use client" directive'
           command: yarn rsc:build
       - run:
           name: '`yarn rsc:build` changes detected, "use client" missing from exports'
-          command: git diff --exit-code
+          command: git add -A && git diff --exit-code --staged
       - run:
           name: Generate the documentation
           command: yarn docs:api
       - run:
           name: '`yarn docs:api` changes committed?'
-          command: git diff --exit-code
+          command: git add -A && git diff --exit-code --staged
       - run:
           name: Update the navigation translations
           command: yarn docs:i18n
       - run:
           name: '`yarn docs:i18n` changes committed?'
-          command: git diff --exit-code
+          command: git add -A && git diff --exit-code --staged
       - run:
           name: '`yarn extract-error-codes` changes committed?'
           command: |
             yarn extract-error-codes
-            git diff --exit-code
+            git add -A && git diff --exit-code --staged
       - run:
           name: '`yarn docs:link-check` changes committed?'
           command: |
             yarn docs:link-check
-            git diff --exit-code
+            git add -A && git diff --exit-code --staged
   test_types:
     <<: *defaults
     resource_class: 'medium+'
@@ -344,7 +344,7 @@ jobs:
     <<: *defaults
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -374,7 +374,7 @@ jobs:
   test_e2e:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -393,7 +393,7 @@ jobs:
   test_e2e_website:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -408,7 +408,7 @@ jobs:
   test_profile:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -435,7 +435,7 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -489,7 +489,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -513,7 +513,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -537,7 +537,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -561,7 +561,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -585,7 +585,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -609,7 +609,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -637,7 +637,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -739,7 +739,7 @@ jobs:
   test_benchmark:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.36.1-focal
+      - image: mcr.microsoft.com/playwright:v1.37.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:

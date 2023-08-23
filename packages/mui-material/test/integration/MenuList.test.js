@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import Divider from '@mui/material/Divider';
 import {
   act,
   createRenderer,
@@ -11,6 +8,9 @@ import {
   screen,
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
+import Divider from '@mui/material/Divider';
 
 describe('<MenuList> integration', () => {
   const { clock, render } = createRenderer();

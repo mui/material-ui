@@ -40,7 +40,7 @@ export default function GitHubTooltip() {
           </Typography>
           <Box sx={{ display: 'flex', gap: 1, width: '100%', mt: 1 }}>
             <AdjustIcon color="success" />
-            <Box>
+            <div>
               <Typography fontWeight="lg" fontSize="sm">
                 [system] grey is no more recognized as color with the sx prop
               </Typography>
@@ -51,10 +51,10 @@ export default function GitHubTooltip() {
               <Chip size="sm" color="danger" sx={{ fontWeight: 'lg' }}>
                 bug 🐛
               </Chip>
-              <Chip size="sm" color="info" sx={{ ml: 1, fontWeight: 'lg' }}>
+              <Chip size="sm" color="primary" sx={{ ml: 1, fontWeight: 'lg' }}>
                 package: system
               </Chip>
-            </Box>
+            </div>
           </Box>
         </Box>
       }

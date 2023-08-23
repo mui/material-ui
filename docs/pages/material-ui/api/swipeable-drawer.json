@@ -1,7 +1,15 @@
 {
   "props": {
-    "onClose": { "type": { "name": "func" }, "required": true },
-    "onOpen": { "type": { "name": "func" }, "required": true },
+    "onClose": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] }
+    },
+    "onOpen": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] }
+    },
     "allowSwipeInChildren": {
       "type": { "name": "union", "description": "bool<br>&#124;&nbsp;func" },
       "default": "false"
@@ -27,6 +35,10 @@
     }
   },
   "name": "SwipeableDrawer",
+  "imports": [
+    "import SwipeableDrawer from '@mui/material/SwipeableDrawer';",
+    "import { SwipeableDrawer } from '@mui/material';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "themeDefaultProps": false,

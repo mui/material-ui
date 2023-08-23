@@ -5,15 +5,12 @@ import { useTheme, styled, alpha } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CheckIcon from '@mui/icons-material/Check';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Fade from '@mui/material/Fade';
 import MDButton from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import MDToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
 import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
-import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import SvgIcon from '@mui/material/SvgIcon';
-import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import Snackbar from '@mui/material/Snackbar';
 import Menu from '@mui/material/Menu';
 import MDMenuItem, { menuItemClasses } from '@mui/material/MenuItem';
@@ -22,12 +19,12 @@ import Tooltip from '@mui/material/Tooltip';
 import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
-import { getCookie } from 'docs/src/modules/utils/helpers';
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import { useRouter } from 'next/router';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useSetCodeStyling, useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { useRouter } from 'next/router';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
@@ -66,24 +63,6 @@ function DemoTooltip(props) {
   );
 }
 
-function ToggleCodeTooltip(props) {
-  const { showSourceHint, ...other } = props;
-  const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-  const [open, setOpen] = React.useState(false);
-
-  return (
-    <DemoTooltip
-      {...other}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      open={showSourceHint && atLeastSmallViewport ? true : open}
-    />
-  );
-}
-ToggleCodeTooltip.propTypes = {
-  showSourceHint: PropTypes.bool,
-};
-
 const alwaysTrue = () => true;
 
 const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
@@ -109,36 +88,29 @@ const Button = styled(MDButton)(({ theme }) => ({
   flexShrink: 0,
   borderRadius: 999,
   border: 'none',
-  paddingLeft: theme.spacing(1),
-  paddingRight: theme.spacing(0.5),
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
-  color: theme.palette.primary.main,
-  '& svg': {
-    fill: theme.palette.primary.main,
-  },
-  [`:hover`]: {
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-      : alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
+  color: theme.palette.text.secondary,
+  '&:hover': {
+    backgroundColor: theme.palette.grey[50],
+    // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: 'transparent',
     },
   },
   ...theme.applyDarkStyles({
-    color: theme.palette.primaryDark[200],
-    '& svg': {
-      fill: theme.palette.primaryDark[200],
+    '&:hover': {
+      backgroundColor: theme.palette.primaryDark[700],
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
   }),
 }));
 
 const MenuItem = styled(MDMenuItem)(({ theme }) => ({
+  padding: theme.spacing(1),
   [`& .${menuItemClasses.selected}`]: {
     backgroundColor: theme.palette.primary[50],
   },
@@ -148,8 +120,8 @@ const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
     padding: theme.spacing(0, 1, 0.1, 1),
     fontSize: theme.typography.pxToRem(13),
-    borderRadius: 99,
     borderColor: 'grey.200',
+    borderRadius: '999px',
     '&.Mui-disabled': {
       opacity: 0.5,
     },
@@ -305,7 +277,6 @@ export default function DemoToolbar(props) {
     demo,
     demoData,
     demoId,
-    demoHovered,
     demoName,
     demoOptions,
     demoSourceId,
@@ -373,21 +344,9 @@ export default function DemoToolbar(props) {
     }
   };
 
-  const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
-  React.useEffect(() => {
-    setSourceHintSeen(getCookie('sourceHintSeen'));
-  }, []);
-  const handleCodeOpenClick = () => {
-    document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
-    onCodeOpenChange();
-    setSourceHintSeen(true);
-  };
-
   const handleResetFocusClick = () => {
     initialFocusRef.current.focusVisible();
   };
-
-  const showSourceHint = demoHovered && !sourceHintSeen;
 
   let showCodeLabel;
   if (codeOpen) {
@@ -521,6 +480,7 @@ export default function DemoToolbar(props) {
             aria-expanded={stylingMenuOpen ? 'true' : undefined}
             onClick={handleStylingButtonClick}
             {...getControlProps(0)}
+            sx={{ pr: 0.5 }}
           >
             {codeStylingLabels[styleSolution]}
             <ExpandMoreIcon />
@@ -544,8 +504,9 @@ export default function DemoToolbar(props) {
                 data-ga-event-action="source-js"
                 data-ga-event-label={demo.gaLabel}
                 {...getControlProps(1)}
+                // eslint-disable-next-line material-ui/no-hardcoded-labels
               >
-                {t('JS')}
+                JS
               </ToggleButton>
               <ToggleButton
                 value={CODE_VARIANTS.TS}
@@ -555,32 +516,24 @@ export default function DemoToolbar(props) {
                 data-ga-event-action="source-ts"
                 data-ga-event-label={demo.gaLabel}
                 {...getControlProps(2)}
+                // eslint-disable-next-line material-ui/no-hardcoded-labels
               >
-                {t('TS')}
+                TS
               </ToggleButton>
             </ToggleButtonGroup>
           </Box>
         </Fade>
         <Box sx={{ ml: 'auto' }}>
-          <ToggleCodeTooltip
-            showSourceHint={showSourceHint}
-            PopperProps={{ disablePortal: true }}
-            title={showCodeLabel}
-            placement="bottom"
+          <Button
+            aria-controls={openDemoSource ? demoSourceId : null}
+            data-ga-event-category="demo"
+            data-ga-event-label={demo.gaLabel}
+            data-ga-event-action="expand"
+            onClick={onCodeOpenChange}
+            {...getControlProps(3)}
           >
-            <IconButton
-              aria-controls={openDemoSource ? demoSourceId : null}
-              data-ga-event-category="demo"
-              data-ga-event-label={demo.gaLabel}
-              data-ga-event-action="expand"
-              onClick={handleCodeOpenClick}
-              color="default"
-              {...getControlProps(3)}
-              sx={{ borderRadius: 1 }}
-            >
-              <CodeRoundedIcon />
-            </IconButton>
-          </ToggleCodeTooltip>
+            {showCodeLabel}
+          </Button>
           {demoOptions.hideEditButton ? null : (
             <React.Fragment>
               <DemoTooltip title={t('codesandbox')} placement="bottom">
@@ -673,31 +626,42 @@ export default function DemoToolbar(props) {
       >
         <MenuItem
           value={CODE_STYLING.SYSTEM}
+          data-ga-event-category="demo"
+          data-ga-event-action="styling-system"
+          data-ga-event-label={demo.gaLabel}
           selected={styleSolution === CODE_STYLING.SYSTEM}
           onClick={() => handleStylingSolutionChange(CODE_STYLING.SYSTEM)}
         >
           {codeStylingLabels[CODE_STYLING.SYSTEM]}
           {styleSolution === CODE_STYLING.SYSTEM && (
-            <CheckIcon sx={{ fontSize: '0.85rem', ml: 2 }} />
+            <CheckIcon sx={{ fontSize: '0.85rem', ml: 'auto' }} />
           )}
         </MenuItem>
         <MenuItem
           value={CODE_STYLING.TAILWIND}
+          data-ga-event-category="demo"
+          data-ga-event-action="styling-tailwind"
+          data-ga-event-label={demo.gaLabel}
           selected={styleSolution === CODE_STYLING.TAILWIND}
           onClick={() => handleStylingSolutionChange(CODE_STYLING.TAILWIND)}
         >
           {codeStylingLabels[CODE_STYLING.TAILWIND]}
           {styleSolution === CODE_STYLING.TAILWIND && (
-            <CheckIcon sx={{ fontSize: '0.85rem', ml: 2 }} />
+            <CheckIcon sx={{ fontSize: '0.85rem', ml: 'auto' }} />
           )}
         </MenuItem>
         <MenuItem
           value={CODE_STYLING.CSS}
+          data-ga-event-category="demo"
+          data-ga-event-action="styling-css"
+          data-ga-event-label={demo.gaLabel}
           selected={styleSolution === CODE_STYLING.CSS}
           onClick={() => handleStylingSolutionChange(CODE_STYLING.CSS)}
         >
           {codeStylingLabels[CODE_STYLING.CSS]}
-          {styleSolution === CODE_STYLING.CSS && <CheckIcon sx={{ fontSize: '0.85rem', ml: 2 }} />}
+          {styleSolution === CODE_STYLING.CSS && (
+            <CheckIcon sx={{ fontSize: '0.85rem', ml: 'auto' }} />
+          )}
         </MenuItem>
       </Menu>
       <Menu
@@ -751,6 +715,7 @@ export default function DemoToolbar(props) {
         message={snackbarMessage}
       />
     </React.Fragment>
+    /* eslint-enable material-ui/no-hardcoded-labels */
   );
 }
 
@@ -759,7 +724,6 @@ DemoToolbar.propTypes = {
   codeVariant: PropTypes.string.isRequired,
   demo: PropTypes.object.isRequired,
   demoData: PropTypes.object.isRequired,
-  demoHovered: PropTypes.bool.isRequired,
   demoId: PropTypes.string,
   demoName: PropTypes.string.isRequired,
   demoOptions: PropTypes.object.isRequired,

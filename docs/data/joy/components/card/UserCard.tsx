@@ -62,7 +62,7 @@ export default function UserCard() {
           resize: 'horizontal',
         }}
       >
-        <AspectRatio ratio="1" maxHeight={182} sx={{ minWidth: 182, flex: 1 }}>
+        <AspectRatio flex ratio="1" maxHeight={182} sx={{ minWidth: 182 }}>
           <img
             src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
             srcSet="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286&dpr=2 2x"
@@ -74,7 +74,7 @@ export default function UserCard() {
           <Typography fontSize="xl" fontWeight="lg">
             Alex Morrison
           </Typography>
-          <Typography level="body2" fontWeight="lg" textColor="text.tertiary">
+          <Typography level="body-sm" fontWeight="lg" textColor="text.tertiary">
             Senior Journalist
           </Typography>
           <Sheet
@@ -89,19 +89,19 @@ export default function UserCard() {
             }}
           >
             <div>
-              <Typography level="body3" fontWeight="lg">
+              <Typography level="body-xs" fontWeight="lg">
                 Articles
               </Typography>
               <Typography fontWeight="lg">34</Typography>
             </div>
             <div>
-              <Typography level="body3" fontWeight="lg">
+              <Typography level="body-xs" fontWeight="lg">
                 Followers
               </Typography>
               <Typography fontWeight="lg">980</Typography>
             </div>
             <div>
-              <Typography level="body3" fontWeight="lg">
+              <Typography level="body-xs" fontWeight="lg">
                 Rating
               </Typography>
               <Typography fontWeight="lg">8.9</Typography>

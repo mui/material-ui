@@ -28,7 +28,7 @@ Need to refer back to an older version of the docs? Check out [the v4 documentat
 :::
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts-v4-v5-migration).
 :::
 
 ## Why you should migrate
@@ -77,17 +77,17 @@ The minimum supported version of React has been increased from v16.8.0 to v17.0.
 
 If you are using a React version below 17.0.0, update your packages to at least v4.11.2 for Material UI and v17.0.0 for React.
 
-With npm:
+<codeblock storageKey="package-manager">
 
-```bash
+```bash npm
 npm install @material-ui/core@^4.11.2 react@^17.0.0
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn upgrade @material-ui/core@^4.11.2 react@^17.0.0
 ```
+
+</codeblock>
 
 ### Update TypeScript
 
@@ -107,7 +107,7 @@ If your project includes these packages, you'll need to update them:
 - `@types/react-dom`
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ## Set up `ThemeProvider`
@@ -138,7 +138,7 @@ function App() {
 ```
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ## Update MUI packages
@@ -147,47 +147,44 @@ function App() {
 
 Install the Material UI v5 packages.
 
-With npm:
-
-```bash
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/material @mui/styles
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn add @mui/material @mui/styles
 ```
+
+</codeblock>
 
 If you're using `@material-ui/lab` or `@material-ui/icons`, you will need to install the new packages.
 
 ### `@material-ui/lab`
 
-With npm:
-
-```bash
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/lab
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn add @mui/lab
 ```
 
+</codeblock>
+
 ### `@material-ui/icons`
 
-With npm:
-
-```bash
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/icons-material
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn add @mui/icons-material
 ```
+
+</codeblock>
 
 ### Date and time pickers
 
@@ -199,17 +196,17 @@ See [Migration from the lab](https://mui.com/x/migration/migration-pickers-lab/)
 
 Next, add the Emotion packages.
 
-With npm:
+<codeblock storageKey="package-manager">
 
-```bash
+```bash npm
 npm install @emotion/react @emotion/styled
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn add @emotion/react @emotion/styled
 ```
+
+</codeblock>
 
 #### styled-components (optional)
 
@@ -220,7 +217,7 @@ Note that if your app uses server-side rendering (SSR), there is a [known bug](h
 We strongly recommend using the default setup with Emotion instead.
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ### Replace all imports

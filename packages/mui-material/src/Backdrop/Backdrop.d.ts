@@ -8,8 +8,11 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface BackdropComponentsPropsOverrides {}
 
-export interface BackdropTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
+export interface BackdropTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps &
     Partial<Omit<FadeProps, 'children'>> & {
       /**
        * The content of the component.
@@ -92,7 +95,7 @@ export interface BackdropTypeMap<P = {}, D extends React.ElementType = 'div'> {
         TransitionProps & { children: React.ReactElement<any, any> }
       >;
     };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 type BackdropRootProps = NonNullable<BackdropTypeMap['props']['componentsProps']>['root'];
@@ -113,8 +116,10 @@ export declare const BackdropRoot: React.FC<BackdropRootProps>;
 declare const Backdrop: OverridableComponent<BackdropTypeMap>;
 
 export type BackdropProps<
-  D extends React.ElementType = BackdropTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BackdropTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = BackdropTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BackdropTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Backdrop;

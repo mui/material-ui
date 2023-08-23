@@ -43,6 +43,12 @@ export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'>
        */
       children?: React.ReactNode;
       /**
+       * By default, the AspectRatio will maintain the aspect ratio of its content.
+       * Set this prop to `true` when the container is a flex row and you want the AspectRatio to fill the height of its container.
+       * @default false
+       */
+      flex?: boolean;
+      /**
        * The minimum calculated height of the element (not the CSS height).
        */
       minHeight?: number | string;

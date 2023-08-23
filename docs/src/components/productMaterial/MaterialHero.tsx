@@ -7,6 +7,7 @@ import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -32,16 +33,13 @@ import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
 import CakeRounded from '@mui/icons-material/CakeRounded';
 import CelebrationRounded from '@mui/icons-material/CelebrationRounded';
 import AttractionsRounded from '@mui/icons-material/AttractionsRounded';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import DownloadIcon from '@mui/icons-material/Download';
 import LocalFireDepartment from '@mui/icons-material/LocalFireDepartment';
 import AcUnitRounded from '@mui/icons-material/AcUnitRounded';
 import FavoriteBorderRounded from '@mui/icons-material/FavoriteBorderRounded';
 import ShareRounded from '@mui/icons-material/ShareRounded';
 import RateReviewOutlined from '@mui/icons-material/RateReviewOutlined';
-import GradientText from 'docs/src/components/typography/GradientText';
-import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
-import HeroContainer from 'docs/src/layouts/HeroContainer';
-import IconImage from 'docs/src/components/icon/IconImage';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -51,41 +49,53 @@ import Switch from '@mui/material/Switch';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
-import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Badge from '@mui/material/Badge';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import IconImage from 'docs/src/components/icon/IconImage';
+import HeroContainer from 'docs/src/layouts/HeroContainer';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
+import GradientText from 'docs/src/components/typography/GradientText';
 import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 
+function Checkboxes() {
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+  return (
+    <React.Fragment>
+      <Checkbox {...label} defaultChecked />
+      <Checkbox {...label} />
+    </React.Fragment>
+  );
+}
+
 function ToggleButtons() {
   const [alignment, setAlignment] = React.useState('left');
   return (
-    <ToggleButtonGroup
-      value={alignment}
-      exclusive
-      onChange={(event, newAlignment) => {
-        setAlignment(newAlignment);
-      }}
-      aria-label="text alignment"
-    >
-      <ToggleButton value="left" aria-label="left aligned" size="small">
-        <FormatAlignLeftIcon fontSize="small" />
-      </ToggleButton>
-      <ToggleButton value="center" aria-label="centered" size="small">
-        <FormatAlignCenterIcon fontSize="small" />
-      </ToggleButton>
-      <ToggleButton value="right" aria-label="right aligned" size="small">
-        <FormatAlignRightIcon fontSize="small" />
-      </ToggleButton>
-      <ToggleButton value="justify" aria-label="justified" size="small" disabled>
-        <FormatAlignJustifyIcon fontSize="small" />
-      </ToggleButton>
-    </ToggleButtonGroup>
+    <Paper elevation={0} variant="outlined" sx={{ p: 2 }}>
+      <ToggleButtonGroup
+        value={alignment}
+        exclusive
+        onChange={(event, newAlignment) => {
+          setAlignment(newAlignment);
+        }}
+        aria-label="text alignment"
+      >
+        <ToggleButton value="left" aria-label="left aligned" size="small">
+          <FormatAlignLeftIcon fontSize="small" />
+        </ToggleButton>
+        <ToggleButton value="center" aria-label="centered" size="small">
+          <FormatAlignCenterIcon fontSize="small" />
+        </ToggleButton>
+        <ToggleButton value="right" aria-label="right aligned" size="small" disabled>
+          <FormatAlignRightIcon fontSize="small" />
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </Paper>
   );
 }
 function TabsDemo() {
@@ -125,7 +135,7 @@ function BadgeVisibilityDemo() {
     >
       <div>
         <Badge color="primary" badgeContent={count}>
-          <DownloadIcon fontSize="small" />
+          <NotificationsIcon fontSize="small" />
         </Badge>
         <ButtonGroup>
           <Button
@@ -159,6 +169,7 @@ function SwitchToggleDemo() {
     >
       <Switch {...label} defaultChecked />
       <Switch {...label} />
+      <Checkboxes />
       <ToggleButtons />
     </Box>
   );
@@ -209,6 +220,7 @@ const customTheme = extendTheme({
 export default function MaterialHero() {
   return (
     <HeroContainer
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
@@ -245,8 +257,10 @@ export default function MaterialHero() {
             make it easy to implement your own custom design system.
           </Typography>
           <GetStartedButtons
-            to="/material-ui/getting-started/"
-            installation="npm install @mui/material @emotion/react @emotion/styled"
+            primaryUrl={ROUTES.materialDocs}
+            secondaryLabel="View templates"
+            secondaryUrl={ROUTES.freeTemplates}
+            altInstallation="npm install @mui/material @emotion/react @emotion/styled"
           />
         </Box>
       }
@@ -328,9 +342,8 @@ export default function MaterialHero() {
                   </AccordionSummary>
                 </Accordion>
               </div>
-              {/* <DatePickerDemo /> */}
               <Alert variant="filled" color="info" icon={<CheckCircleRounded fontSize="small" />}>
-                Check out this library!
+                Check Material UI out now!
               </Alert>
               <SwitchToggleDemo />
               <TabsDemo />

@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
@@ -23,7 +23,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "total": { "type": { "name": "number" }, "default": "children.length" },
     "variant": {
@@ -35,6 +36,10 @@
     }
   },
   "name": "AvatarGroup",
+  "imports": [
+    "import AvatarGroup from '@mui/material/AvatarGroup';",
+    "import { AvatarGroup } from '@mui/material';"
+  ],
   "styles": { "classes": ["root", "avatar"], "globalClasses": {}, "name": "MuiAvatarGroup" },
   "spread": true,
   "themeDefaultProps": true,

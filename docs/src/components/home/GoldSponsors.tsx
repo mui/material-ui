@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -16,8 +15,7 @@ const GOLDs = [
     srcSet: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
     description: 'Enterprise-ready open-source software.',
-    // Tidelift requests this format.
-    href: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
+    href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
   },
   {
     src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
@@ -69,22 +67,23 @@ export default function GoldSponsors() {
     rootMargin: '500px',
   });
   return (
-    <Box ref={ref}>
-      <Box sx={{ mb: 1 }}>
-        <Typography
-          component="h3"
-          variant="h5"
-          fontWeight="extraBold"
-          sx={(theme) => ({
-            color: 'warning.700',
-            ...theme.applyDarkStyles({
-              color: 'warning.300',
-            }),
-          })}
-        >
-          Gold
-        </Typography>
-      </Box>
+    <div ref={ref}>
+      <Typography
+        component="h3"
+        variant="h6"
+        fontWeight="bold"
+        sx={(theme) => ({
+          mt: 4,
+          mb: 2,
+          background: `linear-gradient(90deg, ${(theme.vars || theme).palette.warning[400]} 50%, ${
+            (theme.vars || theme).palette.warning[700]
+          } 100%)`,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        })}
+      >
+        Gold
+      </Typography>
       <Grid container spacing={{ xs: 2, md: 3 }}>
         {GOLDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
@@ -138,6 +137,6 @@ export default function GoldSponsors() {
           </Paper>
         </Grid>
       </Grid>
-    </Box>
+    </div>
   );
 }

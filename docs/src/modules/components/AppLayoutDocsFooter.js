@@ -7,15 +7,17 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
-import ThumbUpIcon from '@mui/icons-material/ThumbUpAlt';
-import ThumbDownIcon from '@mui/icons-material/ThumbDownAlt';
+import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
+import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import PanToolRoundedIcon from '@mui/icons-material/PanToolRounded';
 import Snackbar from '@mui/material/Snackbar';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -35,6 +37,9 @@ const PaginationDiv = styled('div')(({ theme }) => {
 
 const PageLinkButton = styled(Button)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightMedium,
+  ...theme.applyDarkStyles({
+    color: (theme.vars || theme).palette.primary[300],
+  }),
 }));
 
 const FeedbackGrid = styled(Grid)(({ theme }) => {
@@ -128,7 +133,7 @@ async function postFeedbackOnSlack(data) {
   /**
    Not used because I ignore how to encode that with:
       'content-type': 'application/x-www-form-urlencoded'
-   
+
    const complexSlackMessage = {
      blocks: [
        {
@@ -241,6 +246,7 @@ function usePageNeighbours() {
 }
 
 const EMPTY_SECTION = { hash: '', text: '' };
+const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API content design' }];
 
 export default function AppLayoutDocsFooter(props) {
   const { tableOfContents = [] } = props;
@@ -353,7 +359,10 @@ export default function AppLayoutDocsFooter(props) {
     const eventListener = (event) => {
       const feedbackHash = event.target.getAttribute('data-feedback-hash');
       if (feedbackHash) {
-        const section = sectionOptions.find((item) => item.hash === feedbackHash) || EMPTY_SECTION;
+        const section =
+          [...sectionOptions, ...SPEACIAL_FEEDBACK_HASH].find(
+            (item) => item.hash === feedbackHash,
+          ) || EMPTY_SECTION;
         setCommentOpen(true);
         setCommentedSection(section);
 
@@ -406,19 +415,33 @@ export default function AppLayoutDocsFooter(props) {
                   component="div"
                   id="feedback-message"
                   variant="body2"
-                  sx={{ mx: 2 }}
+                  sx={{ mx: 1 }}
                 >
                   {t('feedbackMessage')}
                 </Typography>
                 <div>
                   <Tooltip title={t('feedbackYes')}>
-                    <IconButton onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
-                      <ThumbUpIcon fontSize="small" color={rating === 1 ? 'primary' : undefined} />
+                    <IconButton
+                      onClick={handleClickThumb(1)}
+                      aria-pressed={rating === 1}
+                      sx={{ borderRadius: 1 }}
+                    >
+                      <ThumbUpAltRoundedIcon
+                        fontSize="small"
+                        color={rating === 1 ? 'primary' : undefined}
+                      />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title={t('feedbackNo')}>
-                    <IconButton onClick={handleClickThumb(0)} aria-pressed={rating === 0}>
-                      <ThumbDownIcon fontSize="small" color={rating === 0 ? 'error' : undefined} />
+                    <IconButton
+                      onClick={handleClickThumb(0)}
+                      aria-pressed={rating === 0}
+                      sx={{ borderRadius: 1 }}
+                    >
+                      <ThumbDownAltRoundedIcon
+                        fontSize="small"
+                        color={rating === 0 ? 'error' : undefined}
+                      />
                     </IconButton>
                   </Tooltip>
                 </div>
@@ -483,25 +506,31 @@ export default function AppLayoutDocsFooter(props) {
                   ref: inputRef,
                 }}
               />
+              {rating !== 1 && (
+                <Alert
+                  severity="warning"
+                  color="warning"
+                  icon={<PanToolRoundedIcon fontSize="small" />}
+                  sx={{ my: 1.5 }}
+                >
+                  <Typography id="feedback-description" color="text.secondary">
+                    {t('feedbackMessageToGitHub.usecases')}{' '}
+                    <Link
+                      href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
+                      target="_blank"
+                    >
+                      {t('feedbackMessageToGitHub.callToAction.link')}
+                    </Link>{' '}
+                    {t('feedbackMessageToGitHub.reasonWhy')}
+                  </Typography>
+                </Alert>
+              )}
               <DialogActions>
                 <Button type="reset">{t('cancel')}</Button>
                 <Button type="submit" variant="contained">
                   {t('submit')}
                 </Button>
               </DialogActions>
-              {rating !== 1 && (
-                <Typography id="feedback-description" color="text.secondary">
-                  {t('feedbackMessageToGitHub.usecases')}
-                  <br />
-                  {t('feedbackMessageToGitHub.callToAction.text')}
-                  <Link
-                    href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
-                    target="_blank"
-                  >
-                    {t('feedbackMessageToGitHub.callToAction.link')}
-                  </Link>
-                </Typography>
-              )}
             </Box>
           </form>
         </Collapse>

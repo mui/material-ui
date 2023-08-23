@@ -5,7 +5,8 @@ const adBodyImageStyles = (theme) => ({
   root: {
     display: 'block',
     overflow: 'hidden',
-    border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
+    border: '1px dashed',
+    borderColor: theme.palette.divider,
     padding: '12px 12px 12px calc(12px + 130px)',
     borderRadius: theme.shape.borderRadius,
   },
@@ -62,13 +63,14 @@ const adBodyInlineStyles = (theme) => {
         fontSize: theme.typography.pxToRem(14),
       },
       '&:after': {
+        // Link
         marginLeft: 4,
         content: '"Get started"',
-        // Style taken from the Link component
-        color: theme.palette.secondary.main,
-        '&:hover': {
-          textDecoration: 'underline',
-        },
+        // Style taken from the Link component & MarkdownElement.
+        color:
+          theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[300],
+        textDecoration: 'underline',
+        textDecorationColor: alpha(theme.palette.primary.main, 0.4),
       },
     },
     poweredby: {

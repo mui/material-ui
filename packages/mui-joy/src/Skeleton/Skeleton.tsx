@@ -71,8 +71,8 @@ const SkeletonRoot = styled('span', {
     ownerState.variant !== 'inline' &&
     css`
       &::before {
-        animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
-        background: ${theme.vars.palette.background.level2};
+        animation: ${pulseKeyframe} 2s ease-in-out 0.5s infinite;
+        background: ${theme.vars.palette.background.level3};
       }
     `,
   ({ ownerState, theme }) =>
@@ -80,8 +80,8 @@ const SkeletonRoot = styled('span', {
     ownerState.variant === 'inline' &&
     css`
       &::after {
-        animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
-        background: ${theme.vars.palette.background.level2};
+        animation: ${pulseKeyframe} 2s ease-in-out 0.5s infinite;
+        background: ${theme.vars.palette.background.level3};
       }
     `,
   ({ ownerState, theme }) =>
@@ -89,7 +89,7 @@ const SkeletonRoot = styled('span', {
     css`
       /* Fix bug in Safari https://bugs.webkit.org/show_bug.cgi?id=68196 */
       -webkit-mask-image: -webkit-radial-gradient(white, black);
-      background: ${theme.vars.palette.background.level2};
+      background: ${theme.vars.palette.background.level3};
 
       &::after {
         content: ' ';
@@ -147,111 +147,116 @@ const SkeletonRoot = styled('span', {
         [theme.getColorSchemeSelector('dark')]: {
           '--unstable_wave-bg': 'rgba(255 255 255 / 0.1)',
         },
-      },
-      ownerState.variant === 'rectangular' && {
-        borderRadius: 'min(0.15em, 6px)',
-        height: 'auto',
-        width: '100%',
-        '&::before': {
-          position: 'absolute',
-        },
-        ...(!ownerState.animation && {
-          backgroundColor: theme.vars.palette.background.level2,
-        }),
-        ...(ownerState.level !== 'inherit' && {
-          ...theme.typography[ownerState.level!],
-        }),
-      },
-      ownerState.variant === 'circular' && {
-        borderRadius: '50%',
-        width: '100%',
-        height: '100%',
-        '&::before': {
-          position: 'absolute',
-        },
-        ...(!ownerState.animation && {
-          backgroundColor: theme.vars.palette.background.level2,
-        }),
-        ...(ownerState.level !== 'inherit' && {
-          ...theme.typography[ownerState.level!],
-        }),
-      },
-      ownerState.variant === 'text' && {
-        borderRadius: 'min(0.15em, 6px)',
-        background: 'transparent',
-        width: '100%',
-        ...(ownerState.level !== 'inherit' && {
-          ...theme.typography[ownerState.level || defaultLevel],
-          paddingBlockStart: `calc((${
-            theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
-          } - 1) * 0.56em)`,
-          paddingBlockEnd: `calc((${
-            theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
-          } - 1) * 0.44em)`,
+      } as const,
+      ownerState.variant === 'rectangular' &&
+        ({
+          borderRadius: 'min(0.15em, 6px)',
+          height: 'auto',
+          width: '100%',
           '&::before': {
-            height: '1em',
-            ...theme.typography[ownerState.level || defaultLevel],
-            ...(ownerState.animation === 'wave' && {
-              backgroundColor: theme.vars.palette.background.level2,
-            }),
-            ...(!ownerState.animation && {
-              backgroundColor: theme.vars.palette.background.level2,
-            }),
+            position: 'absolute',
           },
-          '&::after': {
-            height: '1em',
-            top: `calc((${
+          ...(!ownerState.animation && {
+            backgroundColor: theme.vars.palette.background.level3,
+          }),
+          ...(ownerState.level !== 'inherit' && {
+            ...theme.typography[ownerState.level!],
+          }),
+        } as const),
+      ownerState.variant === 'circular' &&
+        ({
+          borderRadius: '50%',
+          width: '100%',
+          height: '100%',
+          '&::before': {
+            position: 'absolute',
+          },
+          ...(!ownerState.animation && {
+            backgroundColor: theme.vars.palette.background.level3,
+          }),
+          ...(ownerState.level !== 'inherit' && {
+            ...theme.typography[ownerState.level!],
+          }),
+        } as const),
+      ownerState.variant === 'text' &&
+        ({
+          borderRadius: 'min(0.15em, 6px)',
+          background: 'transparent',
+          width: '100%',
+          ...(ownerState.level !== 'inherit' && {
+            ...theme.typography[ownerState.level || defaultLevel],
+            paddingBlockStart: `calc((${
               theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
             } - 1) * 0.56em)`,
-            ...theme.typography[ownerState.level || defaultLevel],
-          },
-        }),
-      },
-      ownerState.variant === 'inline' && {
-        display: 'inline',
-        position: 'initial',
-        borderRadius: 'min(0.15em, 6px)',
-        ...(!ownerState.animation && {
-          backgroundColor: theme.vars.palette.background.level2,
-        }),
-        ...(ownerState.level !== 'inherit' && {
-          ...theme.typography[ownerState.level!],
-        }),
-        '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
-        '&::before': {
-          position: 'absolute',
-          zIndex: 'var(--unstable_pseudo-zIndex)',
-          backgroundColor: theme.vars.palette.background.level2,
-        },
-        ...(ownerState.animation === 'pulse' && {
-          '&::after': {
-            content: '""',
+            paddingBlockEnd: `calc((${
+              theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
+            } - 1) * 0.44em)`,
+            '&::before': {
+              height: '1em',
+              ...theme.typography[ownerState.level || defaultLevel],
+              ...(ownerState.animation === 'wave' && {
+                backgroundColor: theme.vars.palette.background.level3,
+              }),
+              ...(!ownerState.animation && {
+                backgroundColor: theme.vars.palette.background.level3,
+              }),
+            },
+            '&::after': {
+              height: '1em',
+              top: `calc((${
+                theme.typography[ownerState.level || defaultLevel]?.lineHeight || 1
+              } - 1) * 0.56em)`,
+              ...theme.typography[ownerState.level || defaultLevel],
+            },
+          }),
+        } as const),
+      ownerState.variant === 'inline' &&
+        ({
+          display: 'inline',
+          position: 'initial',
+          borderRadius: 'min(0.15em, 6px)',
+          ...(!ownerState.animation && {
+            backgroundColor: theme.vars.palette.background.level3,
+          }),
+          ...(ownerState.level !== 'inherit' && {
+            ...theme.typography[ownerState.level!],
+          }),
+          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+          '&::before': {
             position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
             zIndex: 'var(--unstable_pseudo-zIndex)',
-            backgroundColor: theme.vars.palette.background.level2,
+            backgroundColor: theme.vars.palette.background.level3,
           },
-        }),
-      },
-      ownerState.variant === 'overlay' && {
-        borderRadius: theme.vars.radius.xs,
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        zIndex: 'var(--unstable_pseudo-zIndex)',
-        ...(ownerState.animation === 'pulse' && {
-          backgroundColor: theme.vars.palette.background.surface,
-        }),
-        ...(ownerState.level !== 'inherit' && {
-          ...theme.typography[ownerState.level!],
-        }),
-        '&::before': {
+          ...(ownerState.animation === 'pulse' && {
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 'var(--unstable_pseudo-zIndex)',
+              backgroundColor: theme.vars.palette.background.level3,
+            },
+          }),
+        } as const),
+      ownerState.variant === 'overlay' &&
+        ({
+          borderRadius: theme.vars.radius.xs,
           position: 'absolute',
-        },
-      },
+          width: '100%',
+          height: '100%',
+          zIndex: 'var(--unstable_pseudo-zIndex)',
+          ...(ownerState.animation === 'pulse' && {
+            backgroundColor: theme.vars.palette.background.surface,
+          }),
+          ...(ownerState.level !== 'inherit' && {
+            ...theme.typography[ownerState.level!],
+          }),
+          '&::before': {
+            position: 'absolute',
+          },
+        } as const),
     ];
   },
 );
@@ -279,7 +284,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     overlay = false,
     loading = true,
     variant = 'overlay',
-    level = variant === 'text' ? 'body1' : 'inherit',
+    level = variant === 'text' ? 'body-md' : 'inherit',
     height,
     width,
     sx,
@@ -373,10 +378,23 @@ Skeleton.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Applies the theme typography styles.
-   * @default variant === 'text' ? 'body1' : 'inherit'
+   * @default variant === 'text' ? 'body-md' : 'inherit'
    */
   level: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['body1', 'body2', 'body3', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'inherit']),
+    PropTypes.oneOf([
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'title-lg',
+      'title-md',
+      'title-sm',
+      'body-lg',
+      'body-md',
+      'body-sm',
+      'body-xs',
+      'inherit',
+    ]),
     PropTypes.string,
   ]),
   /**

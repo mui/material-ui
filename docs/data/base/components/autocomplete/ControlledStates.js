@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useAutocomplete from '@mui/base/useAutocomplete';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 import { styled } from '@mui/system';
 
 const options = ['Firefox', 'Google Chrome', 'Microsoft Edge', 'Safari', 'Opera'];
@@ -14,6 +14,7 @@ export default function ControlledStates() {
     getListboxProps,
     getOptionProps,
     groupedOptions,
+    focused,
   } = useAutocomplete({
     id: 'controlled-state-demo',
     options,
@@ -32,7 +33,7 @@ export default function ControlledStates() {
         inputValue: <code>{inputValue ?? ' '}</code>
       </Pre>
       <StyledAutocomplete>
-        <StyledInputRoot {...getRootProps()}>
+        <StyledInputRoot {...getRootProps()} className={focused ? 'focused' : ''}>
           <StyledInput {...getInputProps()} />
         </StyledInputRoot>
         {groupedOptions.length > 0 && (
@@ -80,7 +81,7 @@ const StyledInputRoot = styled('div')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
-  border-radius: 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
@@ -116,7 +117,7 @@ const StyledInput = styled('input')(
   background: inherit;
   border: none;
   border-radius: inherit;
-  padding: 12px 12px;
+  padding: 8px 12px;
   outline: 0;
   flex: 1 0 auto;
 `,

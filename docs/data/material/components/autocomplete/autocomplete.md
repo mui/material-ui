@@ -142,7 +142,7 @@ related to the rendering of JSX.
 The Autocomplete component is built on this hook.
 
 ```tsx
-import useAutocomplete from '@mui/base/useAutocomplete';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 ```
 
 The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
@@ -232,6 +232,10 @@ Fancy smaller inputs? Use the `size` prop.
 The `renderInput` prop allows you to customize the rendered input.
 The first argument of this render prop contains props that you need to forward.
 Pay specific attention to the `ref` and `inputProps` keys.
+
+:::warning
+If you're using a custom input component inside the Autocomplete, make sure that you forward the ref to the underlying DOM element.
+:::
 
 {{"demo": "CustomInputAutocomplete.js"}}
 

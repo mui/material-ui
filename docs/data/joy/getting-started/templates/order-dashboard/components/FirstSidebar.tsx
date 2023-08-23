@@ -6,6 +6,13 @@ import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Sheet from '@mui/joy/Sheet';
+// icons
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
+import DynamicFeedRoundedIcon from '@mui/icons-material/DynamicFeedRounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
+
 import MuiLogo from './MuiLogo';
 import { openSidebar } from '../utils';
 
@@ -13,9 +20,6 @@ export default function FirstSidebar() {
   return (
     <Sheet
       className="FirstSidebar"
-      variant="soft"
-      color="primary"
-      invertedColors
       sx={{
         position: {
           xs: 'fixed',
@@ -30,13 +34,12 @@ export default function FirstSidebar() {
         height: '100dvh',
         width: 'var(--FirstSidebar-width)',
         top: 0,
-        p: 1.5,
-        py: 3,
+        p: 2,
         flexShrink: 0,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 2,
+        gap: 1,
         borderRight: '1px solid',
         borderColor: 'divider',
       }}
@@ -49,40 +52,20 @@ export default function FirstSidebar() {
         }}
       />
       <MuiLogo />
-      <List sx={{ '--ListItem-radius': '8px', '--List-gap': '12px' }}>
+      <List size="sm" sx={{ '--ListItem-radius': '6px', '--List-gap': '8px' }}>
         <ListItem>
           <ListItemButton>
-            <i data-feather="home" />
+            <HomeRoundedIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton
-            selected
-            variant="solid"
-            color="primary"
-            onClick={() => openSidebar()}
-          >
-            <i data-feather="bar-chart-2" />
+          <ListItemButton selected variant="soft" onClick={() => openSidebar()}>
+            <DashboardRoundedIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton onClick={() => openSidebar()}>
-            <i data-feather="layers" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton onClick={() => openSidebar()}>
-            <i data-feather="check-square" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton onClick={() => openSidebar()}>
-            <i data-feather="flag" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton onClick={() => openSidebar()}>
-            <i data-feather="users" />
+            <DynamicFeedRoundedIcon />
           </ListItemButton>
         </ListItem>
       </List>
@@ -91,22 +74,22 @@ export default function FirstSidebar() {
           mt: 'auto',
           flexGrow: 0,
           '--ListItem-radius': '8px',
-          '--List-gap': '8px',
+          '--List-gap': '4px',
         }}
       >
         <ListItem>
           <ListItemButton>
-            <i data-feather="life-buoy" />
+            <SupportRoundedIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <i data-feather="settings" />
+            <SettingsRoundedIcon />
           </ListItemButton>
         </ListItem>
       </List>
       <Divider />
-      <Avatar variant="outlined" src="/static/images/avatar/3.jpg" />
+      <Avatar variant="outlined" size="sm" src="/static/images/avatar/3.jpg" />
     </Sheet>
   );
 }

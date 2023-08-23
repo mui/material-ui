@@ -14,10 +14,15 @@
         "name": "shape",
         "description": "{ label?: elementType, list?: elementType, root?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     }
   },
   "name": "OptionGroup",
+  "imports": [
+    "import { OptionGroup } from '@mui/base/OptionGroup';",
+    "import { OptionGroup } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
