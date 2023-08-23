@@ -137,6 +137,7 @@ function DemoIframe(props) {
 DemoIframe.propTypes = {
   children: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
+  productId: PropTypes.string,
 };
 
 // Use the default Material UI theme for the demos
