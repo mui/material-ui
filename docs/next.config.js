@@ -3,12 +3,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const withDocsInfra = require('./nextConfigDocsInfra');
 const { findPages } = require('./src/modules/utils/find');
-const {
-  LANGUAGES,
-  LANGUAGES_SSR,
-  LANGUAGES_IGNORE_PAGES,
-  LANGUAGES_IN_PROGRESS,
-} = require('./config');
+const { LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES, LANGUAGES_IN_PROGRESS } = require('./config');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -19,6 +14,9 @@ const isDeployPreview = Boolean(process.env.PULL_REQUEST_ID);
 const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
 module.exports = withDocsInfra({
+  output: 'export',
+  distDir: 'export',
+
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -232,14 +230,5 @@ module.exports = withDocsInfra({
     }
 
     return map;
-  },
-  // rewrites has no effect when run `next export` for production
-  rewrites: async () => {
-    return [
-      { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
-      // Make sure to include the trailing slash if `trailingSlash` option is set
-      { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
-      { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
-    ];
   },
 });
