@@ -153,7 +153,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 Accordion.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The id to be used in the AccordionDetails which is controlled by the AccordionSummary.

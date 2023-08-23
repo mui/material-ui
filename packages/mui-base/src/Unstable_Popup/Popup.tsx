@@ -156,7 +156,7 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
 Popup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * An HTML element, [virtual element](https://floating-ui.com/docs/virtual-elements),
