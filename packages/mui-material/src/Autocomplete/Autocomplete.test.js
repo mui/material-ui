@@ -10,6 +10,7 @@ import {
   strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import { spy } from 'sinon';
+import userEvent from '@testing-library/user-event';
 import Box from '@mui/system/Box';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -20,7 +21,6 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
-import { inputBaseClasses } from '@mui/material/InputBase';
 import InputAdornment from '@mui/material/InputAdornment';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -1387,14 +1387,19 @@ describe('<Autocomplete />', () => {
     });
 
     it('clicks should not toggle the listbox open state when disabled', () => {
-      const { container, queryByRole } = render(
+      const { getByTestId, queryByRole } = render(
         <Autocomplete
           disabled
-          // multiple
           options={['one', 'two', 'three']}
-          // value={['one']}
-          value="one"
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              InputProps={{
+                ...params.InputProps,
+                'data-testid': 'test-input-root',
+              }}
+            />
+          )}
         />,
       );
       const textbox = queryByRole('combobox');
@@ -1403,8 +1408,43 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.have.attribute('aria-expanded', 'false');
       expect(listbox).to.equal(null);
 
-      const inputBase = container.querySelector(`.${inputBaseClasses.root}`);
+      const inputBase = getByTestId('test-input-root');
       fireEvent.click(inputBase);
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(listbox).to.equal(null);
+    });
+
+    it('mouseup should not toggle the listbox open state when disabled', async () => {
+      const { container, queryByRole } = render(
+        <Autocomplete
+          disabled
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = queryByRole('combobox');
+      const listbox = queryByRole('listbox', { hidden: true });
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(listbox).to.equal(null);
+
+      // userEvent will fail at releasing MouseLeft if we target the
+      // <button> since it has "pointer-events: none"
+      const popupIndicator = container.querySelector(`.${classes.endAdornment}`);
+
+      // TODO v6: refactor using userEvent.setup() which doesn't work until we drop
+      //  iOS Safari 12.x support, see: https://github.com/mui/material-ui/pull/38325
+      await userEvent.pointer([
+        // this sequence does not work with fireEvent
+        // 1. point the cursor somewhere in the textbox and hold down MouseLeft
+        { keys: '[MouseLeft>]', target: textbox },
+        // 2. move the cursor over the popupIndicator
+        { pointerName: 'mouse', target: popupIndicator },
+        // 3. release MouseLeft
+        { keys: '[/MouseLeft]' },
+      ]);
 
       expect(textbox).to.have.attribute('aria-expanded', 'false');
       expect(listbox).to.equal(null);
