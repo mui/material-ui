@@ -31,3 +31,9 @@ Permanent navigation drawers are the **recommended default for desktop**.
 {{"demo": "PermanentDrawerLeft.js", "iframe": true}}
 
 {{"demo": "PermanentDrawerRight.js", "iframe": true}}
+
+### Clipped under the app bar
+
+Apps focused on productivity that require balance across the screen.
+
+{{"demo": "ClippedDrawer.js", "iframe": true}}

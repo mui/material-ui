@@ -26,6 +26,7 @@
     "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
     "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
     "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
+    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
     "onClose": {
       "type": { "name": "func" },
       "signature": {

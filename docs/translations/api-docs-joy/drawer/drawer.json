@@ -29,6 +29,9 @@
     },
     "disableScrollLock": { "description": "Disable the scroll lock behavior." },
     "hideBackdrop": { "description": "If <code>true</code>, the backdrop is not rendered." },
+    "invertedColors": {
+      "description": "If <code>true</code>, the children with an implicit color prop invert their colors to match the component&#39;s variant and color."
+    },
     "onClose": {
       "description": "Callback fired when the component requests to be closed. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>.",
       "typeDescriptions": {

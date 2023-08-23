@@ -1,11 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { HTMLElementType, unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { DrawerContent } from '../Drawer/Drawer';
-import { useThemeProps, Theme, styled, useColorInversion } from '../styles';
+import { useThemeProps, Theme, styled, ColorInversionProvider, useColorInversion } from '../styles';
 import { getPermanentDrawerUtilityClass } from './permanentDrawerClasses';
 import {
   PermanentDrawerProps,
@@ -84,6 +84,7 @@ const PermanentDrawer = React.forwardRef(function PermanentDrawer(inProps, ref) 
     slots = {},
     slotProps = {},
     color: colorProp = 'neutral',
+    invertedColors = false,
     variant = 'outlined',
     size = 'md',
     ...other
@@ -119,11 +120,16 @@ const PermanentDrawer = React.forwardRef(function PermanentDrawer(inProps, ref) 
     ownerState,
   });
 
-  return (
+  const result = (
     <SlotRoot {...rootProps}>
       <SlotContent {...contentProps}>{children}</SlotContent>
     </SlotRoot>
   );
+
+  if (invertedColors) {
+    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
+  }
+  return result;
 }) as OverridableComponent<PermanentDrawerTypeMap>;
 
 PermanentDrawer.propTypes /* remove-proptypes */ = {
@@ -150,6 +156,11 @@ PermanentDrawer.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'md'

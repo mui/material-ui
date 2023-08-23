@@ -16,6 +16,7 @@
       "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
+    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },
       "default": "'md'",

@@ -7,7 +7,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
-import { useThemeProps, Theme, styled, useColorInversion } from '../styles';
+import { useThemeProps, Theme, styled, ColorInversionProvider, useColorInversion } from '../styles';
 import { SheetRoot } from '../Sheet/Sheet';
 import { ModalBackdrop } from '../Modal/Modal';
 import CloseModalContext from '../Modal/CloseModalContext';
@@ -173,6 +173,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     hideBackdrop = false,
     color: colorProp = 'neutral',
     variant = 'outlined',
+    invertedColors = false,
     size = 'md',
     onClose,
     onKeyDown,
@@ -236,7 +237,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     ownerState,
   });
 
-  return (
+  const result = (
     <CloseModalContext.Provider value={onClose}>
       <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
         {/*
@@ -260,6 +261,11 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       </Portal>
     </CloseModalContext.Provider>
   );
+
+  if (invertedColors) {
+    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
+  }
+  return result;
 }) as OverridableComponent<DrawerTypeMap>;
 
 Drawer.propTypes /* remove-proptypes */ = {
@@ -341,6 +347,11 @@ Drawer.propTypes /* remove-proptypes */ = {
    * @default false
    */
   hideBackdrop: PropTypes.bool,
+  /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.

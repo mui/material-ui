@@ -52,6 +52,11 @@ export interface DrawerTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, DrawerPropsColorOverrides>;
       /**
+       * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+       * @default false
+       */
+      invertedColors?: boolean;
+      /**
        * The size of the component.
        * @default 'md'
        */
