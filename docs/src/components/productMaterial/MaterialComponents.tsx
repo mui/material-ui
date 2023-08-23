@@ -61,24 +61,20 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 const CODES = {
   Button: `
-<div>
   <Button variant="text" startIcon={<ShoppingCartRounded />}>
-    Add to Cart
-  </Button>
-  <Button variant="contained" startIcon={<ShoppingCartRounded />}>
-    Add to Cart
-  </Button>
-  <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
-    Add to Cart
-  </Button>
-</div>
+  Add item
+</Button>
+<Button variant="contained" startIcon={<ShoppingCartRounded />}>
+  Add item
+</Button>
+<Button variant="outlined" startIcon={<ShoppingCartRounded />}>
+  Add item  
+</Button>
 `,
   'Text field': `
-<div>
   <TextField variant="standard" label="Username" />
-  <TextField variant="outlined" label="Email" type="email" />
-  <TextField variant="filled" label="Password" type="password" />
-</div>
+<TextField variant="outlined" label="Email" type="email" />
+<TextField variant="filled" label="Password" type="password" />
 `,
   Table: `
 <TableContainer
@@ -106,33 +102,29 @@ const CODES = {
 </TableContainer>
 `,
   Alert: `
-<div>
   <Alert variant="standard" color="info">
-    Check out this alert!
-  </Alert>
-  <Alert variant="outlined" color="info">
-    Check out this alert!
-  </Alert>
-  <Alert variant="filled" color="info">
-    Check out this alert!
-  </Alert>
-</div>
+  This is an alert!
+</Alert>
+<Alert variant="outlined" color="info">
+  This is an alert!
+</Alert>
+<Alert variant="filled" color="info">
+  This is an alert!
+</Alert>
 `,
   Tooltip: `
-<div>
   <Tooltip title="This is a tooltip" arrow placement="top">
-    <Typography>Top</Typography>
-  </Tooltip>
-  <Tooltip title="This is a tooltip" arrow placement="right">
-    <Typography>Right</Typography>
-  </Tooltip>
-  <Tooltip title="This is a tooltip" arrow placement="left">
-    <Typography>Left</Typography>
-  </Tooltip>
-  <Tooltip title="This is a tooltip" arrow placement="bottom">
-    <Typography>Bottom</Typography>
-  </Tooltip>
-</div>
+  <Typography>Top</Typography>
+</Tooltip>
+<Tooltip title="This is a tooltip" arrow placement="right">
+  <Typography>Right</Typography>
+</Tooltip>
+<Tooltip title="This is a tooltip" arrow placement="left">
+  <Typography>Left</Typography>
+</Tooltip>
+<Tooltip title="This is a tooltip" arrow placement="bottom">
+  <Typography>Bottom</Typography>
+</Tooltip>
 `,
 };
 
@@ -187,22 +179,21 @@ export default function MaterialComponents() {
                     }}
                   >
                     <Button variant="text" startIcon={<ShoppingCartRounded />}>
-                      Add to Cart
+                      Add item
                     </Button>
                     <Button variant="contained" startIcon={<ShoppingCartRounded />}>
-                      Add to Cart
+                      Add item
                     </Button>
                     <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
-                      Add to Cart
+                      Add item
                     </Button>
                   </Box>
                 )}
                 {demo === 'Text field' && (
                   <Stack
-                    alignItems="center"
                     justifyContent="center"
                     spacing={2}
-                    sx={{ height: '100%', py: 2 }}
+                    sx={{ p: 2, width: '50%', margin: 'auto' }}
                   >
                     <TextField variant="standard" label="Username" />
                     <TextField variant="outlined" label="Email" type="email" />
@@ -257,17 +248,17 @@ export default function MaterialComponents() {
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexWrap: 'wrap',
-                      gap: 1,
+                      gap: 2,
                     }}
                   >
                     <Alert variant="standard" color="info">
-                      Check out this alert!
+                      This is an alert!
                     </Alert>
                     <Alert variant="outlined" color="info">
-                      Check out this alert!
+                      This is an alert!
                     </Alert>
                     <Alert variant="filled" color="info">
-                      Check out this alert!
+                      This is an alert!
                     </Alert>
                   </Box>
                 )}
