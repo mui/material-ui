@@ -14,6 +14,7 @@ import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
+import { AD_MARGIN_TOP, AD_HEIGHT, AD_MARGIN_BOTTOM } from 'docs/src/modules/components/Ad';
 
 const TOC_WIDTH = 242;
 
@@ -58,22 +59,21 @@ const StyledAppContainer = styled(AppContainer, {
           maxWidth: '105ch',
         }),
     ...(!disableAd && {
-      ...(!hasTabs && {
-        // Sync with material-ui/docs/src/modules/components/Ad.js container
+      ...(hasTabs ? {
+        '&& .component-tabs .MuiTabs-root': {
+          // 40px matches MarkdownElement h2 margin-top.
+          marginBottom: `calc(${theme.spacing(AD_MARGIN_TOP)} + ${AD_HEIGHT}px + 40px)`,
+        },
+        '&& .component-tabs.ad .MuiTabs-root': {
+          marginBottom: 0,
+        },
+      } : {
         '&& .description': {
-          paddingBottom: `calc(${theme.spacing(4)} + 126px)`,
-          marginBottom: theme.spacing(3),
+          paddingBottom: `calc(${theme.spacing(AD_MARGIN_TOP)} + ${AD_HEIGHT}px)`,
+          marginBottom: theme.spacing(AD_MARGIN_BOTTOM),
         },
         '&& .description.ad': {
           paddingBottom: 0,
-          marginBottom: 0,
-        },
-      }),
-      ...(hasTabs && {
-        '&& .component-tabs .MuiTabs-root': {
-          marginBottom: `calc(${theme.spacing(4)} + 126px + 40px)`,
-        },
-        '&& .component-tabs.ad .MuiTabs-root': {
           marginBottom: 0,
         },
       }),
