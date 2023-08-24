@@ -168,7 +168,7 @@ However:
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
 
-## Experimental API
+## Experimental APIs
 
 ### Loading button
 
@@ -195,8 +195,8 @@ To prevent this, ensure that the contents of the Loading Button are nested insid
 
 ### Material You version
 
-The default Button component follows the Material Design 2 specs.
-For the Material Design 3 ([Material You](https://m3.material.io/)) version, you can use the new experimental `@mui/material-next` package:
+The default Material UI Button component follows the Material Design 2 specs.
+To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
 
 ```js
 import Button from '@mui/material-next/Button';
