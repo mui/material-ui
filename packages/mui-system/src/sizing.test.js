@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { createTheme } from '@mui/system';
 import sizing from './sizing';
 
 describe('sizing', () => {
@@ -17,6 +18,28 @@ describe('sizing', () => {
     });
     expect(output).to.deep.equal({
       maxWidth: 0,
+    });
+  });
+
+  describe('maxWidth', () => {
+    it('should work with custom units', () => {
+      const theme = createTheme({
+        breakpoints: {
+          unit: 'rem',
+          values: {
+            xs: 10,
+          },
+        },
+      });
+
+      const output = sizing({
+        maxWidth: 'xs',
+        theme,
+      });
+
+      expect(output).to.deep.equal({
+        maxWidth: '10rem',
+      });
     });
   });
 });
