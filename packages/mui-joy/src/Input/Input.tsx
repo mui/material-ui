@@ -72,18 +72,6 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           '--Input-decoratorChildHeight': 'min(2.375rem, var(--Input-minHeight))',
           '--Icon-fontSize': theme.vars.fontSize.xl2,
         }),
-        ...(ownerState.variant === 'plain' && {
-          boxShadow: 'none',
-        }),
-        ...(ownerState.variant === 'outlined' && {
-          boxShadow: theme.shadow.xs,
-        }),
-        ...(ownerState.variant === 'soft' && {
-          boxShadow: theme.shadow.xs,
-        }),
-        ...(ownerState.variant === 'solid' && {
-          boxShadow: theme.shadow.xs,
-        }),
         // variables for controlling child components
         '--Input-decoratorChildOffset':
           'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decoratorChildHeight)) / 2), var(--Input-paddingInline))',
@@ -96,6 +84,9 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Button-radius': 'var(--Input-decoratorChildRadius)',
         '--IconButton-radius': 'var(--Input-decoratorChildRadius)',
         boxSizing: 'border-box',
+        ...(ownerState.variant !== 'plain' && {
+          boxShadow: theme.shadow.xs,
+        }),
         minWidth: 0,
         minHeight: 'var(--Input-minHeight)',
         ...(ownerState.fullWidth && {

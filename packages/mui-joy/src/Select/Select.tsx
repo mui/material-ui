@@ -125,9 +125,6 @@ const SelectRoot = styled('div', {
         '--Select-decoratorChildHeight': 'min(2.375rem, var(--Select-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
-      ...(ownerState.variant !== 'plain' && {
-        boxShadow: theme.shadow.xs,
-      }),
       // variables for controlling child components
       '--Select-decoratorChildOffset':
         'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decoratorChildHeight)) / 2), var(--Select-paddingInline))',
@@ -140,6 +137,9 @@ const SelectRoot = styled('div', {
       '--Button-radius': 'var(--Select-decoratorChildRadius)',
       '--IconButton-radius': 'var(--Select-decoratorChildRadius)',
       boxSizing: 'border-box',
+      ...(ownerState.variant !== 'plain' && {
+        boxShadow: theme.shadow.xs,
+      }),
       minWidth: 0,
       minHeight: 'var(--Select-minHeight)',
       position: 'relative',
