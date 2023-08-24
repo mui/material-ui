@@ -151,8 +151,16 @@ export default function JoyUISummary() {
               background: 'url(/static/branding/joy-ui/ant-design-dark.svg)',
             }),
           })}
-          width={114}
+          width={115}
           height={37}
+        />
+
+        <Box
+          sx={{
+            background: 'url(/static/branding/joy-ui/material-ui.svg)',
+          }}
+          width={120}
+          height={38}
         />
       </Box>
     </Container>
