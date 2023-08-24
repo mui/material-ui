@@ -1,6 +1,6 @@
 {
   "name": "@mui/zero-tag-processor",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.0",
   "private": true,
   "author": "MUI Team",
   "description": "Linaria tag processors for custom styled implementation.",

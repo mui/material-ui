@@ -12,7 +12,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
   It's intended to replace the Popper component, which uses the deprecated Popper JS library. The Popup is built on top of Floating UI and has a similar API to the Popper.
 - 🚀 Added the [Accordion](https://mui.com/joy-ui/react-accordion/) component to Joy UI (#38164) @siriwatknp
 - 🚀 Added InputBase and ButtonBase components to `material-next` (#38319) @DiegoAndai @mj12albert
-- 🔋 First iteration on the CSS-in-JS engine compatible with Server Components (#38378) @brijeshb42
+- 🔋 First iteration on the zero-runtime styling engine compatible with Server Components (#38378) @brijeshb42
 
 ### `@mui/material@5.14.6`
 
@@ -37,7 +37,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [ButtonBase] Add ButtonBase component (#38319) @DiegoAndai
 - [Input] Add InputBase component (#38392) @mj12albert
 
-### `@mui/zero-runtime@0.0.1-alpha.1`
+### `@mui/zero-runtime@0.0.1-alpha.0`
 
 - Implementation of styled tag processor for linaria (#38378) @brijeshb42
 
