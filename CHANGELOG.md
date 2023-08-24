@@ -28,8 +28,8 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 ### `@mui/joy@5.0.0-beta.3`
 
 - [Accordion] Add Joy UI Accordion components (#38164) @siriwatknp
+- [Select] Add `required` prop (#38167) @siriwatknp
 - Miscellaneous fixes (#38462) @siriwatknp
-- [docs][joy-ui] Fix typo: Classname -> Class name for consistency (#38510) @alexfauquette
 
 ### `@mui/material-next@6.0.0-alpha.98`
 
@@ -52,6 +52,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs][base-ui] Add Tailwind CSS + plain CSS demo on the Snackbar, Badge, Switch pages (#38425) @alisasanib
 - [docs][base-ui] Add Tailwind CSS + plain CSS demo on the Slider page (#38413) @alisasanib
 - [docs][base-ui] Add Tailwind CSS + plain CSS demo on the Select page (#38367) @alisasanib
+- [docs][joy-ui] Fix typo: Classname -> Class name for consistency (#38510) @alexfauquette
 - [docs][joy-ui] Revise the theme color page (#38402) @danilo-leal
 - [docs][joy-ui] Sort templates by popularity (#38490) @oliviertassinari
 - [docs][joy-ui] Fix the `fullWidth` prop description for the Input (#38545) @0xturner
