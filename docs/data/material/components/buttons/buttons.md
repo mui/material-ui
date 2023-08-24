@@ -195,11 +195,45 @@ To prevent this, ensure that the contents of the Loading Button are nested insid
 
 ### Material You version
 
-The default Button component follows the Material Design 2 specs.
-For the Material Design 3 ([Material You](https://m3.material.io/)) version, you can use the new experimental `@mui/material-next` package:
+The Material Design 3 ([Material You](https://m3.material.io/)) version of the Button component can be achieved using the experimental `@mui/material-next` package. To get started, follow these steps:
+
+1. **Wrap Your App with ThemeProvider**. Wrap your app with the `ThemeProvider` component to provide a custom theme for Material You components:
 
 ```js
-import Button from '@mui/material-next/Button';
+import { ThemeProvider } from "@mui/material/styles";
+import { extendTheme } from "@mui/material-next/styles";
+
+const theme = extendTheme({
+  // Your custom theme configuration goes here
+});
+
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      {/* Your app content */}
+      <div className="App">
+        {/* ... */}
+        <MuiYouButton />
+      </div>
+    </ThemeProvider>
+  );
+}
 ```
+
+2. **Utilize Material-Next Components**. Make use of the Material-Next version of the MUI Button component for Material You styling:
+
+```js
+import Button from "@mui/material-next/Button";
+
+const MuiYouButton = () => {
+  return (
+    <Button color="primary" variant="contained">
+      Click me
+    </Button>
+  );
+};
+```
+
+By following the steps above, you can provide a custom theme for Material You components in your MUI application and achieve a consistent and visually appealing user interface.
 
 {{"demo": "ButtonMaterialYouPlayground.js", "hideToolbar": true}}
