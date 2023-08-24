@@ -16,8 +16,12 @@ export const maxWidth = (props) => {
     const styleFromPropValue = (propValue) => {
       const breakpoint =
         props.theme?.breakpoints?.values?.[propValue] || breakpointsValues[propValue];
+
       return {
-        maxWidth: breakpoint || sizingTransform(propValue),
+        maxWidth:
+          (props.theme?.breakpoints?.unit === 'px'
+            ? breakpoint
+            : `${breakpoint}${props.theme.breakpoints.unit}`) || sizingTransform(propValue),
       };
     };
     return handleBreakpoints(props, props.maxWidth, styleFromPropValue);
