@@ -67,9 +67,9 @@ export const DrawerContent = styled(SheetRoot as unknown as 'div', {
   slot: 'Content',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: DrawerOwnerState }>(({ theme, ownerState }) => ({
+  '--DrawerContent-radius': 0,
   ...(ownerState.size === 'sm' && {
     '--DrawerContent-padding': theme.spacing(2),
-    '--DrawerContent-radius': theme.vars.radius.sm,
     '--DrawerContent-gap': theme.spacing(0.75),
     '--DrawerContent-titleOffset': theme.spacing(0.25),
     '--DrawerContent-descriptionOffset': theme.spacing(0.25),
@@ -77,7 +77,6 @@ export const DrawerContent = styled(SheetRoot as unknown as 'div', {
   }),
   ...(ownerState.size === 'md' && {
     '--DrawerContent-padding': theme.spacing(2.5),
-    '--DrawerContent-radius': theme.vars.radius.md,
     '--DrawerContent-gap': theme.spacing(1.5),
     '--DrawerContent-titleOffset': theme.spacing(0.25),
     '--DrawerContent-descriptionOffset': theme.spacing(0.75),
@@ -85,7 +84,6 @@ export const DrawerContent = styled(SheetRoot as unknown as 'div', {
   }),
   ...(ownerState.size === 'lg' && {
     '--DrawerContent-padding': theme.spacing(3),
-    '--DrawerContent-radius': theme.vars.radius.md,
     '--DrawerContent-gap': theme.spacing(2),
     '--DrawerContent-titleOffset': theme.spacing(0.5),
     '--DrawerContent-descriptionOffset': theme.spacing(1),

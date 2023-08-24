@@ -166,9 +166,6 @@ export * from './ModalOverflow';
 export { default as Option } from './Option';
 export * from './Option';
 
-export { default as PermanentDrawer } from './PermanentDrawer';
-export * from './PermanentDrawer';
-
 export { default as Radio } from './Radio';
 export * from './Radio';
 

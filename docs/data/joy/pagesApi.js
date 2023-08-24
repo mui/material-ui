@@ -49,7 +49,6 @@ module.exports = [
   { pathname: '/joy-ui/api/modal-dialog' },
   { pathname: '/joy-ui/api/modal-overflow' },
   { pathname: '/joy-ui/api/option' },
-  { pathname: '/joy-ui/api/permanent-drawer' },
   { pathname: '/joy-ui/api/radio' },
   { pathname: '/joy-ui/api/radio-group' },
   { pathname: '/joy-ui/api/scoped-css-baseline' },
