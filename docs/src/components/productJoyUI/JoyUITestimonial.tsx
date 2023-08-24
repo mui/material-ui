@@ -4,8 +4,6 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import ArrowForward from '@mui/icons-material/ArrowForward';
-import Link from 'docs/src/modules/components/Link';
 import Section from 'docs/src/layouts/Section';
 
 export default function BaseUITestimonial() {
@@ -20,7 +18,8 @@ export default function BaseUITestimonial() {
               borderRadius: 1,
               pt: 3,
               pl: 3,
-              background: 'linear-gradient(260deg, #3399FF 0%, #0059B3 95%)',
+              background:
+                'linear-gradient(49deg, rgba(194, 224, 255, 0.24) 0%, rgba(0, 127, 255, 0.44) 92.71%)',
               backgroundClip: 'padding-box',
               overflow: 'auto',
               '& img': {
@@ -30,26 +29,22 @@ export default function BaseUITestimonial() {
               },
             }}
           >
-            <Typography variant="h4" component="h2" mb={2.5} sx={{ color: '#fff' }}>
-              Nhost&apos;s dashboard
+            <Typography variant="h4" component="h2">
+              big-AGI
+            </Typography>
+            <Typography variant="body2" mb={2.5}>
+              AI web interface
             </Typography>
             <img
-              src="/static/branding/base-ui/nhost.jpg"
-              srcSet="/static/branding/base-ui/nhost.jpg 1x, /static/branding/base-ui/nhost-2x.jpg 2x "
-              alt="Screenshot displaying part of the Nhost dashboard that used Base UI to be built."
+              src="/static/branding/joy-ui/big-agi-cover.jpg"
+              srcSet="/static/branding/joy-ui/big-agi-cover.jpg 1x, /static/branding/joy-ui/big-agi-cover-2x.jpg 2x "
+              alt="Screenshot displaying part of the Big-AGI home page that's built with Joy UI."
               loading="lazy"
               width="570px"
             />
           </Box>
           <Typography variant="body2" sx={{ mt: 2 }}>
-            Nhost&apos;s new dashboard, powered by Base UI &nbsp;&nbsp;
-            <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
-              /
-            </Typography>
-            &nbsp;&nbsp;
-            <Link href="https://nhost.io/blog/new-database-ui" target="_blank">
-              View the blog post <ArrowForward fontSize="small" />
-            </Link>
+            Open-source AI web interface, powered by Joy UI
           </Typography>
         </Grid>
         <Grid xs={12} sm={6} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
@@ -61,10 +56,7 @@ export default function BaseUITestimonial() {
           </Typography>
           <Divider />
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <Avatar
-              alt=""
-              src="https://media.licdn.com/dms/image/C4D03AQHm6cbz2UDXpw/profile-displayphoto-shrink_800_800/0/1642674447256?e=2147483647&v=beta&t=L8g2vW_8mG8AvB3lwui0CT8969_Cx9QQ0iJXIS47i0o"
-            />
+            <Avatar alt="" src="/static/branding/joy-ui/enricoros.png" />
             <Box sx={{ flex: 1 }}>
               <Typography variant="body2" fontWeight={600}>
                 Enrico Ros
@@ -73,18 +65,7 @@ export default function BaseUITestimonial() {
                 Director of Product Management
               </Typography>
             </Box>
-            <Box
-              component="img"
-              src="https://docs.nhost.io/img/logo.svg"
-              alt=""
-              sx={(theme) => ({
-                width: '80px',
-                alignSelf: 'center',
-                ...theme.applyDarkStyles({
-                  content: `url(https://nhost.io/common/logo.svg)`,
-                }),
-              })}
-            />
+            <Box component="img" src="/static/branding/joy-ui/big-agi-logo.svg" alt="" />
           </Box>
         </Grid>
       </Grid>
