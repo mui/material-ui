@@ -311,8 +311,18 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
                     justifyContent: 'space-between',
                   }}
                 >
-                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
+                  <FormLabel
+                    sx={{
+                      textTransform: 'capitalize',
+                      fontWeight: 'medium',
+                      fontSize: '0.875rem',
+                      color: 'text.secondary',
+                    }}
+                  >
+                    {propName}
+                  </FormLabel>
                   <Switch
+                    size="small"
                     checked={Boolean(resolvedValue)}
                     onChange={(event) => {
                       setProps((latestProps) => ({
@@ -320,11 +330,6 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
                         [propName]: event.target.checked,
                       }));
                       onChange?.(event);
-                    }}
-                    sx={{
-                      fontSize: 'xs',
-                      color: 'text.secondary',
-                      textTransform: 'capitalize',
                     }}
                   />
                 </FormControl>
