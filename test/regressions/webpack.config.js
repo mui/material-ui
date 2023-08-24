@@ -33,7 +33,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|ts|tsx)$/,
-        exclude: /node_modules|prism\.js/,
+        exclude: /node_modules|prism/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
