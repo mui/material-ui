@@ -20,6 +20,7 @@ async function run() {
     cwd: workspaceRoot,
     gitignore: true,
     ignore: [...eslintignore, '**/tsconfig*.json', '**/tslint.json'],
+    followSymbolicLinks: false,
   });
 
   let passed = true;
