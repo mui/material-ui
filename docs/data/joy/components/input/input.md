@@ -56,7 +56,7 @@ Every palette included in the theme is available via the `color` prop.
 
 {{"demo": "InputColors.js"}}
 
-### Form props
+### Form submission
 
 You can add standard form attributes such as `required` and `disabled` to the Input component:
 
