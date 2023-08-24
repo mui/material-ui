@@ -202,4 +202,4 @@ For the Material Design 3 ([Material You](https://m3.material.io/)) version, you
 import Button from '@mui/material-next/Button';
 ```
 
-{{"demo": "ButtonMaterialYouPlayground.js", "hideToolbar": true}}
+{{"demo": "ButtonMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
