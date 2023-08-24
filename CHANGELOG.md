@@ -43,6 +43,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 ### Docs
 
 - [blog] Clarify tree view move @oliviertassinari
+- [docs] Improve the "Understanding MUI packages" page images (#38619) @danilo-leal
 - [docs][base-ui] Revise the structure of the Component docs (#38529) @samuelsycamore
 - [docs][base-ui] Fix Menu Hooks demo (#38479) @homerchen19
 - [docs][base-ui] Correct the MUI System quickstart example (#38496) @michaldudak
@@ -90,6 +91,9 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [core] Fix CI error @oliviertassinari
 - [core] Remove unnecessary Box (#38461) @oliviertassinari
 - [core] Set GitHub Action top level permission @oliviertassinari
+- [docs-infra][joy-ui] Polish the usage and CSS vars playgrounds (#38600) @danilo-leal
+- [docs-infra] Support link title (#38579) @oliviertassinari
+- [docs-infra] Fix ad layout shift (#38622) @oliviertassinari
 - [docs-infra] Add light tweaks to the ad container (#38504) @danilo-leal
 - [docs-infra] Fix anchor scroll without tabs (#38586) @oliviertassinari
 - [docs-infra] Retain velocity animation speed (#38470) @oliviertassinari
@@ -102,6 +106,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs-infra] Improve the alert before a negative feedback (#38500) @danilo-leal
 - [docs-infra] Fix GoogleAnalytics missing event for code copy (#38469) @alexfauquette
 - [docs-infra] Improve affordance on the code block expansion (#38421) @danilo-leal
+- [website] Fine-tune the branding theme buttons (#38588) @danilo-leal
 - [website] Improve the Base UI hero section demo (#38585) @danilo-leal
 - [website] Add stray design improvements to the Material UI page (#38590) @danilo-leal
 - [website] Fix mobile view Material UI page (#38568) @oliviertassinari
