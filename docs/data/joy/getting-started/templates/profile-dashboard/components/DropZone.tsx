@@ -17,7 +17,7 @@ export default function DropZone({
 }) {
   return (
     <Card
-      variant="outlined"
+      variant="soft"
       {...props}
       sx={[
         {
@@ -28,13 +28,14 @@ export default function DropZone({
           alignItems: 'center',
           px: 3,
           flexGrow: 1,
+          boxShadow: 'none',
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
       <AspectRatio
         ratio="1"
-        variant="soft"
+        variant="solid"
         color="primary"
         sx={{
           minWidth: 32,

@@ -17,10 +17,6 @@ export default function JoyOrderDashboardTemplate() {
           component="main"
           className="MainContent"
           sx={(theme) => ({
-            px: {
-              xs: 2,
-              md: 6,
-            },
             pt: {
               xs: 'calc(12px + var(--Header-height))',
               sm: 'calc(12px + var(--Header-height))',

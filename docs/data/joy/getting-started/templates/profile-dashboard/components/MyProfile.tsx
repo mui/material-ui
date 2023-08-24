@@ -1,13 +1,13 @@
 import * as React from 'react';
-import Avatar from '@mui/joy/Avatar';
+import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import Chip, { chipClasses } from '@mui/joy/Chip';
 import Divider from '@mui/joy/Divider';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Input from '@mui/joy/Input';
+import IconButton from '@mui/joy/IconButton';
 import Textarea from '@mui/joy/Textarea';
 import Stack from '@mui/joy/Stack';
 import Select from '@mui/joy/Select';
@@ -22,6 +22,9 @@ import CountrySelector from './CountrySelector';
 import EditorToolbar from './EditorToolbar';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Link from '@mui/joy/Link';
+import Card from '@mui/joy/Card';
+import CardActions from '@mui/joy/CardActions';
+import CardOverflow from '@mui/joy/CardOverflow';
 
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
@@ -29,6 +32,7 @@ import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import AccessTimeFilledRoundedIcon from '@mui/icons-material/AccessTimeFilledRounded';
 import VideocamRoundedIcon from '@mui/icons-material/VideocamRounded';
 import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
 export default function MyProfile() {
   return (
@@ -38,7 +42,15 @@ export default function MyProfile() {
         width: '100%',
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', pl: 0 }}>
+      <Box
+        sx={(theme) => ({
+          width: '100%',
+          px: {
+            xs: 2,
+            md: 6,
+          },
+        })}
+      >
         <Breadcrumbs
           size="sm"
           aria-label="breadcrumbs"
@@ -61,154 +73,196 @@ export default function MyProfile() {
             My profile
           </Typography>
         </Breadcrumbs>
+        <Typography
+          level="h2"
+          sx={{
+            mt: 1,
+            mb: 2,
+          }}
+        >
+          My profile
+        </Typography>
       </Box>
-      <Typography
-        level="h2"
-        sx={{
-          display: 'flex',
-          mt: 1,
-          mb: 4,
-          gap: 1,
-          flexDirection: { xs: 'column', sm: 'row' },
-          alignItems: { xs: 'start', sm: 'center' },
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-        }}
-      >
-        My profile
-      </Typography>
 
       <Tabs
-        variant="outlined"
-        aria-label="Pricing plan"
         defaultValue={0}
         sx={{
-          borderRadius: 'md',
-          overflow: 'auto',
+          bgcolor: 'transparent',
         }}
       >
         <TabList
-          disableUnderline
           tabFlex={1}
+          size="sm"
           sx={{
-            [`& .${tabClasses.root}`]: {
-              fontSize: 'sm',
-              fontWeight: 'lg',
-              [`&[aria-selected="true"]`]: {
-                bgcolor: 'background.surface',
-              },
-              [`&.${tabClasses.focusVisible}`]: {
-                outlineOffset: '-4px',
+            pl: {
+              xs: 0,
+              md: 4,
+            },
+            justifyContent: 'left',
+            [`&& .${tabClasses.root}`]: {
+              flex: 'initial',
+              bgcolor: 'transparent',
+              [`&.${tabClasses.selected}`]: {
+                fontWeight: '600',
+                '&::after': {
+                  height: '2px',
+                  bgcolor: 'primary.500',
+                },
               },
             },
           }}
         >
-          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={0}>
+          <Tab indicatorInset value={0}>
             Settings
           </Tab>
-          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={1}>
+          <Tab indicatorInset value={1}>
             Team
           </Tab>
-          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={2}>
+          <Tab indicatorInset value={2}>
             Plan
           </Tab>
-          <Tab disableIndicator variant="soft" sx={{ flexGrow: 1 }} value={3}>
+          <Tab indicatorInset value={3}>
             Billing
           </Tab>
         </TabList>
-        <Box
-          sx={{
-            p: 4,
-            display: 'grid',
-            gridTemplateColumns: {
-              xs: '100%',
-              sm: 'minmax(120px, 30%) 1fr',
-              lg: '280px 1fr minmax(120px, 208px)',
-            },
-            columnGap: { xs: 2, sm: 3, md: 4 },
-            rowGap: { xs: 2, sm: 2.5 },
-            '& > hr': {
-              gridColumn: '1/-1',
-            },
-          }}
-        >
-          <FormLabel sx={{ display: { xs: 'none', sm: 'block' } }}>Name</FormLabel>
-          <Box sx={{ display: { xs: 'contents', sm: 'flex' }, gap: 2 }}>
-            <FormControl sx={{ flex: 1 }}>
-              <FormLabel sx={{ display: { sm: 'none' } }}>First name</FormLabel>
-              <Input size="sm" placeholder="first name" defaultValue="Siriwat" />
-            </FormControl>
-            <FormControl sx={{ flex: 1 }}>
-              <FormLabel sx={{ display: { sm: 'none' } }}>Last name</FormLabel>
-              <Input size="sm" placeholder="last name" defaultValue="K." />
-            </FormControl>
-          </Box>
-          <Divider role="presentation" />
-          <FormControl sx={{ display: { sm: 'contents' } }}>
-            <FormLabel>Email</FormLabel>
-            <Input
-              size="sm"
-              type="email"
-              startDecorator={<EmailRoundedIcon />}
-              placeholder="email"
-              defaultValue="siriwatk@test.com"
-            />
-          </FormControl>
-          <Divider role="presentation" />
+      </Tabs>
+      <Stack
+        spacing={4}
+        sx={(theme) => ({
+          display: 'flex',
+          maxWidth: '800px',
+          mx: 'auto',
+          px: {
+            xs: 2,
+            md: 6,
+          },
+          py: {
+            xs: 2,
+            md: 3,
+          },
+        })}
+      >
+        <Card variant="outlined">
           <div>
-            <FormLabel>Your photo</FormLabel>
-            <FormHelperText>This will be displayed on your profile.</FormHelperText>
+            <Typography level="title-md">Personal info</Typography>
+            <Typography level="body-sm">
+              Customize how your profile information will apper to the networks.
+            </Typography>
           </div>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              flexWrap: 'wrap',
-              gap: 2.5,
-            }}
-          >
-            <Avatar
-              size="lg"
-              src="/static/images/avatar/3.jpg"
-              sx={{ '--Avatar-size': '64px' }}
-            />
-            <DropZone />
-          </Box>
-          <Divider role="presentation" />
-          <FormControl sx={{ display: { sm: 'contents' } }}>
-            <FormLabel>Role</FormLabel>
-            <Input size="sm" defaultValue="UI Developer" />
-          </FormControl>
-          <Divider role="presentation" />
-          <CountrySelector />
-          <Divider role="presentation" />
-          <FormControl sx={{ display: { sm: 'contents' } }}>
-            <FormLabel>Timezone</FormLabel>
-            <Select
-              size="sm"
-              startDecorator={<AccessTimeFilledRoundedIcon />}
-              defaultValue="1"
-            >
-              <Option value="1">
-                Indochina Time (Bangkok){' '}
-                <Typography textColor="text.tertiary" ml={0.5}>
-                  — GMT+07:00
-                </Typography>
-              </Option>
-              <Option value="2">
-                Indochina Time (Ho Chi Minh City){' '}
-                <Typography textColor="text.tertiary" ml={0.5}>
-                  — GMT+07:00
-                </Typography>
-              </Option>
-            </Select>
-          </FormControl>
-          <Divider role="presentation" />
+          <Divider />
+          <Stack direction="row" spacing={4} sx={{ my: 1 }}>
+            <Stack direction="column" spacing={1}>
+              <AspectRatio
+                ratio="1"
+                maxHeight={200}
+                sx={{ flex: 1, minWidth: 120, borderRadius: '100%' }}
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
+                  srcSet="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286&dpr=2 2x"
+                  loading="lazy"
+                  alt=""
+                />
+              </AspectRatio>
+              <IconButton
+                aria-label="upload new picture"
+                size="sm"
+                variant="outlined"
+                color="neutral"
+                sx={{
+                  bgcolor: 'background.body',
+                  position: 'absolute',
+                  zIndex: 2,
+                  borderRadius: '50%',
+                  left: 100,
+                  top: 170,
+                  boxShadow: 'sm',
+                }}
+              >
+                <EditRoundedIcon />
+              </IconButton>
+            </Stack>
+            <Stack spacing={2} sx={{ flexGrow: 1 }}>
+              <Stack spacing={1}>
+                <FormLabel>Name</FormLabel>
+                <FormControl
+                  sx={{
+                    display: {
+                      sm: 'flex-column',
+                      md: 'flex-row',
+                    },
+                    gap: 2,
+                  }}
+                >
+                  <Input size="sm" placeholder="First name" />
+                  <Input size="sm" placeholder="Last name" sx={{ flexGrow: 1 }} />
+                </FormControl>
+              </Stack>
+              <Stack direction="row" spacing={2}>
+                <FormControl>
+                  <FormLabel>Role</FormLabel>
+                  <Input size="sm" defaultValue="UI Developer" />
+                </FormControl>
+                <FormControl sx={{ flexGrow: 1 }}>
+                  <FormLabel>Email</FormLabel>
+                  <Input
+                    size="sm"
+                    type="email"
+                    startDecorator={<EmailRoundedIcon />}
+                    placeholder="email"
+                    defaultValue="siriwatk@test.com"
+                    sx={{ flexGrow: 1 }}
+                  />
+                </FormControl>
+              </Stack>
+              <div>
+                <CountrySelector />
+              </div>
+              <div>
+                <FormControl sx={{ display: { sm: 'contents' } }}>
+                  <FormLabel>Timezone</FormLabel>
+                  <Select
+                    size="sm"
+                    startDecorator={<AccessTimeFilledRoundedIcon />}
+                    defaultValue="1"
+                  >
+                    <Option value="1">
+                      Indochina Time (Bangkok){' '}
+                      <Typography textColor="text.tertiary" ml={0.5}>
+                        — GMT+07:00
+                      </Typography>
+                    </Option>
+                    <Option value="2">
+                      Indochina Time (Ho Chi Minh City){' '}
+                      <Typography textColor="text.tertiary" ml={0.5}>
+                        — GMT+07:00
+                      </Typography>
+                    </Option>
+                  </Select>
+                </FormControl>
+              </div>
+            </Stack>
+          </Stack>
+          <CardOverflow sx={{ bgcolor: 'background.body' }}>
+            <CardActions sx={{ alignSelf: 'flex-end' }}>
+              <Button size="sm" variant="outlined" color="neutral">
+                Cancel
+              </Button>
+              <Button size="sm" variant="solid">
+                Save
+              </Button>
+            </CardActions>
+          </CardOverflow>
+        </Card>
+        <Card variant="outlined">
           <div>
-            <FormLabel>Bio</FormLabel>
-            <FormHelperText>Write a short introduction.</FormHelperText>
+            <Typography level="title-md">Bio</Typography>
+            <Typography level="body-sm">
+              Write a short introduction to be displayed on your profile
+            </Typography>
           </div>
-          <div>
+          <Divider />
+          <Stack spacing={2} sx={{ my: 1 }}>
             <EditorToolbar />
             <Textarea
               size="sm"
@@ -219,13 +273,28 @@ export default function MyProfile() {
             <FormHelperText sx={{ mt: 0.75, fontSize: 'xs' }}>
               275 characters left
             </FormHelperText>
-          </div>
-          <Divider role="presentation" />
+          </Stack>
+          <CardOverflow sx={{ bgcolor: 'background.body' }}>
+            <CardActions sx={{ alignSelf: 'flex-end' }}>
+              <Button size="sm" variant="outlined" color="neutral">
+                Cancel
+              </Button>
+              <Button size="sm" variant="solid">
+                Save
+              </Button>
+            </CardActions>
+          </CardOverflow>
+        </Card>
+        <Card variant="outlined">
           <div>
-            <FormLabel>Portfolio projects</FormLabel>
-            <FormHelperText>Share a few snippets of your work.</FormHelperText>
+            <Typography level="title-md">Portfolio projects</Typography>
+            <Typography level="body-sm">
+              Share a few snippets of your work.
+            </Typography>
           </div>
-          <Stack useFlexGap spacing={1.5}>
+
+          <Divider />
+          <Stack spacing={2} sx={{ my: 1 }}>
             <DropZone />
             <FileUpload
               icon={<InsertDriveFileRoundedIcon />}
@@ -240,22 +309,18 @@ export default function MyProfile() {
               progress={40}
             />
           </Stack>
-          <Divider role="presentation" />
-          <Box
-            sx={{
-              gridColumn: '1/-1',
-              justifySelf: 'flex-end',
-              display: 'flex',
-              gap: 1,
-            }}
-          >
-            <Button variant="outlined" color="neutral" size="sm">
-              Cancel
-            </Button>
-            <Button size="sm">Save</Button>
-          </Box>
-        </Box>
-      </Tabs>
+          <CardOverflow sx={{ bgcolor: 'background.body' }}>
+            <CardActions sx={{ alignSelf: 'flex-end' }}>
+              <Button size="sm" variant="outlined" color="neutral">
+                Cancel
+              </Button>
+              <Button size="sm" variant="solid">
+                Save
+              </Button>
+            </CardActions>
+          </CardOverflow>
+        </Card>
+      </Stack>
     </Box>
   );
 }
