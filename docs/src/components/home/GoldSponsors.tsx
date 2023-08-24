@@ -74,12 +74,17 @@ export default function GoldSponsors() {
         fontWeight="bold"
         sx={(theme) => ({
           mt: 4,
-          mb: 2,
-          background: `linear-gradient(90deg, ${(theme.vars || theme).palette.warning[400]} 50%, ${
+          mb: 1.5,
+          background: `linear-gradient(90deg, ${(theme.vars || theme).palette.warning[500]} 50%, ${
             (theme.vars || theme).palette.warning[700]
           } 100%)`,
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
+          ...theme.applyDarkStyles({
+            background: `linear-gradient(90deg, ${
+              (theme.vars || theme).palette.warning[400]
+            } 50%, ${(theme.vars || theme).palette.warning[700]} 100%)`,
+          }),
         })}
       >
         Gold
