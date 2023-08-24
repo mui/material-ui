@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
-import { Link } from 'mdast';
+import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';

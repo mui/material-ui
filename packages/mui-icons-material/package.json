@@ -49,10 +49,18 @@
     "@babel/runtime": "^7.22.10"
   },
   "devDependencies": {
+    "@mui/internal-waterfall": "workspace:*",
+    "@types/chai": "^4.3.5",
     "@types/react": "^18.2.20",
+    "chai": "^4.3.7",
+    "chalk": "^5.3.0",
+    "cross-fetch": "^4.0.0",
+    "fast-glob": "^3.3.1",
     "fs-extra": "^11.1.1",
+    "lodash": "^4.17.21",
     "mustache": "^4.2.0",
     "react": "^18.2.0",
+    "rimraf": "^5.0.1",
     "shx": "^0.3.4",
     "svgo": "^2.8.0",
     "yargs": "^17.7.2"

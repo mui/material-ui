@@ -46,22 +46,23 @@
     "@mui/system": "workspace:*",
     "@mui/types": "workspace:*",
     "@mui/utils": "workspace:*",
-    "@popperjs/core": "^2.11.8",
     "@types/react-transition-group": "^4.4.6",
     "clsx": "^2.0.0",
-    "csstype": "^3.1.2",
     "prop-types": "^15.8.1",
-    "react-is": "^18.2.0",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@testing-library/user-event": "^14.4.3",
-    "@testing-library/react": "^14.0.0",
+    "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.20",
-    "react": "^18.2.0",
+    "@types/sinon": "^10.0.16",
+    "chai": "^4.3.7",
+    "lodash": "^4.17.21",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
+    "react": "^18.2.0",
+    "sinon": "^15.2.0",
     "test": "workspace:*"
   },
   "peerDependencies": {
