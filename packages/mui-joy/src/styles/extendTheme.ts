@@ -108,7 +108,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     success: colors.green,
     warning: colors.yellow,
     common: {
-      white: '#fff',
+      white: '#FFF',
       black: '#000',
     },
   };
@@ -207,7 +207,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createLightModeVariantVariables('warning'),
       },
       common: {
-        white: '#fff',
+        white: '#FFF',
         black: '#000',
       },
       text: {
@@ -265,7 +265,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createDarkModeVariantVariables('warning'),
       },
       common: {
-        white: '#fff',
+        white: '#FFF',
         black: '#000',
       },
       text: {
