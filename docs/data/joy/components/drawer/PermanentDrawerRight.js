@@ -22,6 +22,8 @@ export default function PermanentDrawerRight() {
         sx={{
           width: `calc(100% - ${drawerWidth}px)`,
           mr: `${drawerWidth}px`,
+          boxShadow: 'lg',
+          zIndex: 10,
         }}
       >
         <Box
@@ -131,5 +133,6 @@ const AppBar = styled('header')(({ theme }) => ({
   top: 0,
   left: 'auto',
   right: 0,
+  zIndex: 10,
   ...theme.variants.solid.primary,
 }));

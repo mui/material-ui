@@ -81,6 +81,7 @@ export default function ResponsiveDrawer(props: Props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          boxShadow: 'lg',
         }}
       >
         <Box
@@ -184,5 +185,6 @@ const AppBar = styled('header')(({ theme }) => ({
   top: 0,
   left: 'auto',
   right: 0,
+  zIndex: 10,
   ...theme.variants.solid.primary,
 }));

@@ -18,7 +18,7 @@ export default function ClippedDrawer() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar sx={{ position: 'fixed', zIndex: 10 }}>
+      <AppBar sx={{ position: 'fixed', zIndex: 10, boxShadow: 'lg' }}>
         <Box
           sx={{
             color: 'white',
@@ -126,5 +126,6 @@ const AppBar = styled('header')(({ theme }) => ({
   top: 0,
   left: 'auto',
   right: 0,
+  zIndex: 10,
   ...theme.variants.solid.primary,
 }));
