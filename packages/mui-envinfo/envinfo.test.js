@@ -28,7 +28,6 @@ describe('@mui/envinfo', () => {
       {
         encoding: 'utf8',
         stdio: 'pipe',
-        cwd: path.resolve(packagePath, '../../docs'), // run the command in the context of the docs application
       },
     );
   }
@@ -49,13 +48,10 @@ describe('@mui/envinfo', () => {
     expect(envinfo).to.have.nested.property('Binaries.npm');
     // CI doesn't install all the covered browsers. Simply asserting that it does print browsers.
     expect(envinfo).to.have.nested.property('Browsers');
-    expect(envinfo).to.have.nested.property('npmPackages.@emotion/react');
-    expect(envinfo).to.have.nested.property('npmPackages.@emotion/styled');
     // Non-exhaustive list of `@mui/*` packages
     expect(envinfo).to.have.nested.property('npmPackages.@mui/material');
-    expect(envinfo).to.have.nested.property('npmPackages.@mui/base');
-    expect(envinfo).to.have.nested.property('npmPackages.@mui/system');
-    expect(envinfo).to.have.nested.property('npmPackages.react');
-    expect(envinfo).to.have.nested.property('npmPackages.react-dom');
+    expect(envinfo).to.have.nested.property('npmPackages.@mui/joy');
+    expect(envinfo).to.have.nested.property('npmPackages.@mui/utils');
+    expect(envinfo).to.have.nested.property('npmPackages.@types/react');
   });
 });
