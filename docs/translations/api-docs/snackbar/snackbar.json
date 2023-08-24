@@ -22,7 +22,7 @@
       "description": "If <code>true</code>, the <code>autoHideDuration</code> timer will expire even if the window is not focused."
     },
     "key": {
-      "description": "When showing multiple consecutive snackbars using a single parent-rendered <code>&lt;Snackbar/&gt;</code>, make sure to use the <code>key</code> prop for each message to treat them separately. For instance, use <code>&lt;Snackbar key={message} /&gt;</code>. Otherwise, messages might update in place, and features like <code>autoHideDuration</code> could be affected."
+      "description": "When displaying multiple consecutive snackbars using a single parent-rendered <code>&lt;Snackbar/&gt;</code>, add the <code>key</code> prop to ensure independent treatment of each message. For instance, use <code>&lt;Snackbar key={message} /&gt;</code>. Otherwise, messages might update in place, and features like <code>autoHideDuration</code> could be affected."
     },
     "message": { "description": "The message to display." },
     "onClose": {

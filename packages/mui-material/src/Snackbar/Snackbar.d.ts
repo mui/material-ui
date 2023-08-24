@@ -56,11 +56,10 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
    */
   disableWindowBlurListener?: boolean;
   /**
-   * When showing multiple consecutive snackbars using a single parent-rendered
-   * `<Snackbar/>`, make sure to use the `key` prop for each message to treat
-   * them separately. For instance, use `<Snackbar key={message} />`. Otherwise,
-   * messages might update in place, and features like `autoHideDuration` could
-   * be affected.
+   * When displaying multiple consecutive snackbars using a single parent-rendered
+   * `<Snackbar/>`, add the `key` prop to ensure independent treatment of each message.
+   * For instance, use `<Snackbar key={message} />`. Otherwise, messages might update
+   * in place, and features like `autoHideDuration` could be affected.
    */
   key?: any;
   /**
