@@ -281,7 +281,13 @@ describe('<Box />', () => {
   });
 
   describe('prop: maxWidth', () => {
-    it('should resolve breakpoints with custom units', () => {
+    it('should resolve breakpoints with custom units', function test() {
+      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+      if (isJSDOM) {
+        this.skip();
+      }
+
       const theme = createTheme({
         breakpoints: {
           unit: 'rem',
@@ -293,12 +299,13 @@ describe('<Box />', () => {
 
       const { container } = render(
         <ThemeProvider theme={theme}>
-          <Box maxWidth="xs" />
+          <Box maxWidth="xs" />,
         </ThemeProvider>,
       );
 
       expect(container.firstChild).toHaveComputedStyle({
-        maxWidth: '10rem',
+        // 10rem x 16px = 160px
+        maxWidth: '160px',
       });
     });
   });
