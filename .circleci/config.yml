@@ -75,11 +75,6 @@ commands:
           keys:
             - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
       - run:
-          name: Install pnpm package manager
-          command: |
-            sudo corepack enable
-            sudo corepack prepare pnpm@latest-8 --activate
-      - run:
           name: View install environment
           command: |
             node --version
