@@ -8,7 +8,7 @@ _Aug 23, 2023_
 
 A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
-- 🚀 Added the [Popup](https://mui.com/base-ui/react-popup/) component to Base UI (#37960) @michaldudak 
+- 🚀 Added the [Popup](https://mui.com/base-ui/react-popup/) component to Base UI (#37960) @michaldudak
   It's intended to replace the Popper component, which uses the deprecated Popper JS library. The Popup is built on top of Floating UI and has a similar API to the Popper.
 - 🚀 Added the [Accordion](https://mui.com/joy-ui/react-accordion/) component to Joy UI (#38164) @siriwatknp
 - 🚀 Added InputBase and ButtonBase components to `material-next` (#38319) @DiegoAndai @mj12albert
