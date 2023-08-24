@@ -27,25 +27,25 @@ jobs:
       - run: echo "${{ github.actor }}"
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
         with:
-          # fetch all tags which are required for `yarn release:changelog`
+          # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
       - name: Use Node.js 18.x
         uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
         with:
           node-version: 18
-          cache: 'yarn' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
-      - run: yarn install
+          cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
+      - run: pnpm install
         env:
           # Don't need playwright in this job
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-      - run: yarn release:build
+      - run: pnpm release:build
       # double run to check if cleanup works
-      - run: yarn release:build
-      - run: yarn release:changelog
+      - run: pnpm release:build
+      - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: yarn validate-declarations
-      - name: yarn release:tag
+      - run: pnpm validate-declarations
+      - name: pnpm release:tag
         run: |
           git remote -v
-          yarn release:tag --dryRun
+          pnpm release:tag --dryRun

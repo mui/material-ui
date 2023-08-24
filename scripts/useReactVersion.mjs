@@ -5,7 +5,7 @@
  *
  * If you work on this file:
  * WARNING: This script can only use built-in modules since it has to run before
- * `yarn install`
+ * `pnpm install`
  */
 import childProcess from 'child_process';
 import fs from 'fs';

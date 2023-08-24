@@ -9,7 +9,7 @@ const packageRoot = path.resolve(__dirname, '../');
 
 async function test(tsconfigPath) {
   try {
-    await exec(['yarn', 'tsc', '--project', tsconfigPath].join(' '), { cwd: packageRoot });
+    await exec(['pnpm', 'tsc', '--project', tsconfigPath].join(' '), { cwd: packageRoot });
   } catch (error) {
     if (error.stdout !== undefined) {
       // `exec` error
