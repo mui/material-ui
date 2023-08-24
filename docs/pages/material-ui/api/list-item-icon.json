@@ -11,6 +11,10 @@
     }
   },
   "name": "ListItemIcon",
+  "imports": [
+    "import ListItemIcon from '@mui/material/ListItemIcon';",
+    "import { ListItemIcon } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "alignItemsFlexStart"],
     "globalClasses": {},

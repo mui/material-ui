@@ -31,6 +31,40 @@ function removeUndefinedFromType(type: ts.Type) {
   return type;
 }
 
+/**
+ * Gets class names and descriptions from the {ComponentName}Classes interface.
+ */
+function extractClasses(project: TypeScriptProject, componentName: string): Styles {
+  const result: Styles = {
+    classes: [],
+    descriptions: {},
+    globalClasses: {},
+    name: null,
+  };
+
+  const classesInterfaceName = `${componentName}Classes`;
+  if (!project.exports[classesInterfaceName]) {
+    return EMPTY_STYLES;
+  }
+
+  const classesType = project.checker.getDeclaredTypeOfSymbol(
+    project.exports[classesInterfaceName],
+  );
+
+  const classesTypeDeclaration = classesType?.symbol?.declarations?.[0];
+  if (classesTypeDeclaration && ts.isInterfaceDeclaration(classesTypeDeclaration)) {
+    const classesProperties = classesType.getProperties();
+    classesProperties.forEach((symbol) => {
+      result.classes.push(symbol.name);
+      result.descriptions[symbol.name] = getSymbolDescription(symbol, project);
+    });
+
+    return result;
+  }
+
+  return EMPTY_STYLES;
+}
+
 export default function parseStyles({
   project,
   componentName,
@@ -50,7 +84,8 @@ export default function parseStyles({
     shouldInclude: ({ name }) => name === 'classes',
   })?.classes;
   if (classesProp == null) {
-    return EMPTY_STYLES;
+    // We could not infer the type of the classes prop, so we try to extract them from the {ComponentName}Classes interface
+    return extractClasses(project, componentName);
   }
 
   const classes: Record<string, string> = {};

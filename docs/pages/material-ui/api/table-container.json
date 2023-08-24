@@ -12,6 +12,10 @@
     }
   },
   "name": "TableContainer",
+  "imports": [
+    "import TableContainer from '@mui/material/TableContainer';",
+    "import { TableContainer } from '@mui/material';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableContainer" },
   "spread": true,
   "themeDefaultProps": true,

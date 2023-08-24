@@ -178,6 +178,10 @@ FormControl.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
+   * Class name applied to the root element.
+   */
+  className: PropTypes.string,
+  /**
    * @ignore
    */
   defaultValue: PropTypes.any,

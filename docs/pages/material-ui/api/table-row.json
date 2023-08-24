@@ -14,6 +14,10 @@
     }
   },
   "name": "TableRow",
+  "imports": [
+    "import TableRow from '@mui/material/TableRow';",
+    "import { TableRow } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "selected", "hover", "head", "footer"],
     "globalClasses": { "selected": "Mui-selected" },

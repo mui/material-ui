@@ -127,7 +127,8 @@ function handleRender(req, res) {
   const html = ReactDOMServer.renderToString(
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline
+            to build upon. */}
         <CssBaseline />
         <App />
       </ThemeProvider>
@@ -166,7 +167,12 @@ function renderFullPage(html, css) {
         <title>My page</title>
         ${css}
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+        />
       </head>
       <body>
         <div id="root">${html}</div>
@@ -200,7 +206,8 @@ function Main() {
   return (
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline
+            to build upon. */}
         <CssBaseline />
         <App />
       </ThemeProvider>

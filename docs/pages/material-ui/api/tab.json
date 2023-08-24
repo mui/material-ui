@@ -25,6 +25,7 @@
     "wrapped": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Tab",
+  "imports": ["import Tab from '@mui/material/Tab';", "import { Tab } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

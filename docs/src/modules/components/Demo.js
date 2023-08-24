@@ -313,7 +313,7 @@ const DemoRootJoy = joyStyled('div', {
     overflow: 'auto',
     backgroundColor: alpha(blue[50], 0.5),
     border: `1px solid`,
-    borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+    borderColor: grey[100],
     backgroundImage: `radial-gradient(at 51% 52%, ${alpha(blue[50], 0.5)} 0px, transparent 50%),
       radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
       radial-gradient(at 0% 95%, ${alpha(blue[100], 0.3)}, transparent 40%),
@@ -321,7 +321,7 @@ const DemoRootJoy = joyStyled('div', {
       radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%);`,
     ...theme.applyDarkStyles({
       backgroundColor: alpha(blue[900], 0.1),
-      borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+      borderColor: alpha(grey[700], 0.3),
       backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
         blueDark[700],
         0.5,
@@ -411,11 +411,6 @@ export default function Demo(props) {
   const demoData = useDemoData(codeVariant, demo, githubLocation, styleSolution);
 
   const hasNonSystemDemos = demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs;
-
-  const [demoHovered, setDemoHovered] = React.useState(false);
-  const handleDemoHover = (event) => {
-    setDemoHovered(event.type === 'mouseenter');
-  };
 
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
@@ -513,13 +508,7 @@ export default function Demo(props) {
   return (
     <Root>
       <AnchorLink id={demoName} />
-      <DemoRoot
-        hideToolbar={demoOptions.hideToolbar}
-        bg={demoOptions.bg}
-        id={demoId}
-        onMouseEnter={handleDemoHover}
-        onMouseLeave={handleDemoHover}
-      >
+      <DemoRoot hideToolbar={demoOptions.hideToolbar} bg={demoOptions.bg} id={demoId}>
         <Wrapper {...(demoData.productId === 'joy-ui' && { mode })}>
           <InitialFocus
             aria-label={t('initialFocusLabel')}
@@ -558,7 +547,6 @@ export default function Demo(props) {
                   hasNonSystemDemos={hasNonSystemDemos}
                   demo={demo}
                   demoData={demoData}
-                  demoHovered={demoHovered}
                   demoId={demoId}
                   demoName={demoName}
                   demoOptions={demoOptions}

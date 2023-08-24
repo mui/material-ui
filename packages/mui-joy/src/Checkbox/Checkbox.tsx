@@ -114,7 +114,7 @@ const CheckboxCheckbox = styled('span', {
       [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
         '--Icon-color': 'currentColor',
       },
-    },
+    } as const,
     ...(!ownerState.disableIcon
       ? [
           {
@@ -149,7 +149,7 @@ const CheckboxAction = styled('span', {
     right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
     [theme.focus.selector]: theme.focus.default,
-  },
+  } as const,
   ...(ownerState.disableIcon
     ? [
         theme.variants[ownerState.variant!]?.[ownerState.color!],

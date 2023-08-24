@@ -12,6 +12,10 @@
     }
   },
   "name": "FormGroup",
+  "imports": [
+    "import FormGroup from '@mui/material/FormGroup';",
+    "import { FormGroup } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "row", "error"],
     "globalClasses": { "error": "Mui-error" },

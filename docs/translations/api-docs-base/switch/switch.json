@@ -2,6 +2,7 @@
   "componentDescription": "The foundation for building custom-styled switches.",
   "propDescriptions": {
     "checked": { "description": "If <code>true</code>, the component is checked." },
+    "className": { "description": "Class name applied to the root element." },
     "defaultChecked": {
       "description": "The default checked state. Use when the component is not controlled."
     },

@@ -12,6 +12,10 @@
     }
   },
   "name": "TableBody",
+  "imports": [
+    "import TableBody from '@mui/material/TableBody';",
+    "import { TableBody } from '@mui/material';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableBody" },
   "spread": true,
   "themeDefaultProps": true,

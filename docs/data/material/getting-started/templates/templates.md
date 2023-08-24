@@ -19,7 +19,7 @@ for reuse in other pages.
 For multi-part examples, a table in the README at the linked source code location describes
 the purpose of each file.
 
-{{"component": "docs/src/modules/components/MaterialFreeTemplatesCollection.js"}}
+{{"component": "modules/components/MaterialFreeTemplatesCollection.js"}}
 
 See any room for improvement?
 Please feel free to open an [issue](https://github.com/mui/material-ui/issues/new/choose) or [pull request](https://github.com/mui/material-ui/pulls) on GitHub.

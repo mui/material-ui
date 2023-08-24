@@ -39,7 +39,8 @@
     }
   },
   "name": "Option",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import Option from '@mui/joy/Option';", "import { Option } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiOption" },
   "slots": [
     {
       "name": "root",

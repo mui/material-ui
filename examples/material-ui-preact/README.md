@@ -18,6 +18,10 @@ npm install
 npm run start
 ```
 
+or
+
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-preact)
+
 ## The idea behind the example
 
 The project uses Material UI with [Preact](https://github.com/developit/preact), which is a lightweight (3 kb) alternative to React with the same modern API.

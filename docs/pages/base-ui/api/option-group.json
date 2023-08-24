@@ -19,6 +19,10 @@
     }
   },
   "name": "OptionGroup",
+  "imports": [
+    "import { OptionGroup } from '@mui/base/OptionGroup';",
+    "import { OptionGroup } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

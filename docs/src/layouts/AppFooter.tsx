@@ -14,6 +14,7 @@ import { alpha } from '@mui/material/styles';
 import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
+import DiscordIcon from 'docs/src/icons/DiscordIcon';
 import Link from 'docs/src/modules/components/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
@@ -215,6 +216,16 @@ export default function AppFooter(props: AppFooterProps) {
               size="small"
             >
               <YouTubeIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://mui.com/r/discord/"
+              aria-label="Discord"
+              title="Discord"
+              size="small"
+            >
+              <DiscordIcon fontSize="small" />
             </IconButton>
             {stackOverflowUrl ? (
               <IconButton

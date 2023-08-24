@@ -80,7 +80,7 @@ const pages: readonly MuiPage[] = [
         pathname: '/joy-ui/components/surfaces',
         subheader: 'surfaces',
         children: [
-          { pathname: '/joy-ui/react-accordion', planned: true },
+          { pathname: '/joy-ui/react-accordion', newFeature: true },
           { pathname: '/joy-ui/react-card' },
           { pathname: '/joy-ui/react-sheet' },
         ],
@@ -147,6 +147,7 @@ const pages: readonly MuiPage[] = [
         pathname: '/joy-ui/guides/overriding-component-structure',
         title: 'Overriding component structure',
       },
+      { pathname: '/joy-ui/guides/themeable-component', title: 'Themeable component' },
       {
         pathname: '/joy-ui/guides/using-joy-ui-and-material-ui-together',
         title: 'Joy UI and Material UI together',

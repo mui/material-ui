@@ -29,6 +29,7 @@
     "onListboxOpenChange": { "type": { "name": "func" } },
     "placeholder": { "type": { "name": "node" } },
     "renderValue": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" } },
     "size": {
       "type": {
         "name": "union",
@@ -61,7 +62,8 @@
     }
   },
   "name": "Select",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import Select from '@mui/joy/Select';", "import { Select } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSelect" },
   "slots": [
     {
       "name": "root",

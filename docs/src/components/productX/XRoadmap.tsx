@@ -87,7 +87,7 @@ export default function XRoadmap() {
           }`,
       }}
     >
-      <Box>
+      <div>
         <Grid container spacing={2} alignItems="center" justifyContent="space-between">
           <Grid item xs={12} md={5}>
             <Box maxWidth={500} sx={{ mb: { xs: 2, sm: 0 } }}>
@@ -204,7 +204,7 @@ export default function XRoadmap() {
             </Grid>
           </Grid>
         </Grid>
-      </Box>
+      </div>
     </Section>
   );
 }

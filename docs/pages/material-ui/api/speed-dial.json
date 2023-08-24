@@ -47,6 +47,10 @@
     "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "SpeedDial",
+  "imports": [
+    "import SpeedDial from '@mui/material/SpeedDial';",
+    "import { SpeedDial } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
