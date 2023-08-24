@@ -17,11 +17,20 @@ export const maxWidth = (props) => {
       const breakpoint =
         props.theme?.breakpoints?.values?.[propValue] || breakpointsValues[propValue];
 
+      if (!breakpoint) {
+        return {
+          maxWidth: sizingTransform(propValue),
+        };
+      }
+
+      if (props.theme?.breakpoints?.unit !== 'px') {
+        return {
+          maxWidth: `${breakpoint}${props.theme.breakpoints.unit}`,
+        };
+      }
+
       return {
-        maxWidth:
-          (props.theme?.breakpoints?.unit === 'px'
-            ? breakpoint
-            : `${breakpoint}${props.theme.breakpoints.unit}`) || sizingTransform(propValue),
+        maxWidth: breakpoint,
       };
     };
     return handleBreakpoints(props, props.maxWidth, styleFromPropValue);
