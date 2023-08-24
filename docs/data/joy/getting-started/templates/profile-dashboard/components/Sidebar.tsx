@@ -57,7 +57,7 @@ export default function Sidebar() {
         width: 'var(--Sidebar-width)',
         top: 0,
         p: 1.5,
-        py: 2,
+        py: 3,
         flexShrink: 0,
         display: 'flex',
         flexDirection: 'column',
@@ -69,9 +69,9 @@ export default function Sidebar() {
       <GlobalStyles
         styles={(theme) => ({
           ':root': {
-            '--Sidebar-width': '200px',
+            '--Sidebar-width': '220px',
             [theme.breakpoints.up('lg')]: {
-              '--Sidebar-width': '220px',
+              '--Sidebar-width': '240px',
             },
           },
         })}
@@ -134,7 +134,7 @@ export default function Sidebar() {
             </AccordionSummary>
           </Accordion>
           <Accordion>
-            <AccordionSummary>
+            <AccordionSummary indicator={null}>
               <CollectionsBookmarkRoundedIcon />
               <ListItemContent>
                 <Typography level="title-sm">Projects</Typography>
@@ -148,9 +148,17 @@ export default function Sidebar() {
                 <Typography level="title-sm">Tasks</Typography>
               </ListItemContent>
             </AccordionSummary>
+            <AccordionDetails>
+              <List size="sm">
+                <ListItemButton>All tasks</ListItemButton>
+                <ListItemButton>Backlog</ListItemButton>
+                <ListItemButton>In progress</ListItemButton>
+                <ListItemButton>Done</ListItemButton>
+              </List>
+            </AccordionDetails>
           </Accordion>
           <Accordion>
-            <AccordionSummary>
+            <AccordionSummary indicator={null}>
               <FlagRoundedIcon />
               <ListItemContent>
                 <Typography level="title-sm">Reporting</Typography>

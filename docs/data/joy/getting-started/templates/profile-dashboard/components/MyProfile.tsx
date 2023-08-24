@@ -43,89 +43,105 @@ export default function MyProfile() {
       }}
     >
       <Box
-        sx={(theme) => ({
-          width: '100%',
-          px: {
-            xs: 2,
-            md: 6,
-          },
-        })}
-      >
-        <Breadcrumbs
-          size="sm"
-          aria-label="breadcrumbs"
-          separator={<ChevronRightRoundedIcon fontSize="sm" />}
-          sx={{ pl: 0 }}
-        >
-          <Link underline="none" color="neutral" href="#some-link" aria-label="Home">
-            <HomeRoundedIcon />
-          </Link>
-          <Link
-            underline="hover"
-            color="neutral"
-            href="#some-link"
-            fontSize={12}
-            fontWeight={500}
-          >
-            Users
-          </Link>
-          <Typography color="primary" fontWeight={500} fontSize={12}>
-            My profile
-          </Typography>
-        </Breadcrumbs>
-        <Typography
-          level="h2"
-          sx={{
-            mt: 1,
-            mb: 2,
-          }}
-        >
-          My profile
-        </Typography>
-      </Box>
-
-      <Tabs
-        defaultValue={0}
         sx={{
-          bgcolor: 'transparent',
+          position: 'sticky',
+          top: {
+            sm: 80,
+            md: -80,
+          },
+          bgcolor: 'background.body',
+          zIndex: 9999,
         }}
       >
-        <TabList
-          tabFlex={1}
-          size="sm"
+        <Box
           sx={{
-            pl: {
-              xs: 0,
-              md: 4,
-            },
-            justifyContent: 'left',
-            [`&& .${tabClasses.root}`]: {
-              flex: 'initial',
-              bgcolor: 'transparent',
-              [`&.${tabClasses.selected}`]: {
-                fontWeight: '600',
-                '&::after': {
-                  height: '2px',
-                  bgcolor: 'primary.500',
-                },
-              },
+            px: {
+              xs: 2,
+              md: 6,
             },
           }}
         >
-          <Tab indicatorInset value={0}>
-            Settings
-          </Tab>
-          <Tab indicatorInset value={1}>
-            Team
-          </Tab>
-          <Tab indicatorInset value={2}>
-            Plan
-          </Tab>
-          <Tab indicatorInset value={3}>
-            Billing
-          </Tab>
-        </TabList>
-      </Tabs>
+          <Breadcrumbs
+            size="sm"
+            aria-label="breadcrumbs"
+            separator={<ChevronRightRoundedIcon fontSize="sm" />}
+            sx={{ pl: 0 }}
+          >
+            <Link
+              underline="none"
+              color="neutral"
+              href="#some-link"
+              aria-label="Home"
+            >
+              <HomeRoundedIcon />
+            </Link>
+            <Link
+              underline="hover"
+              color="neutral"
+              href="#some-link"
+              fontSize={12}
+              fontWeight={500}
+            >
+              Users
+            </Link>
+            <Typography color="primary" fontWeight={500} fontSize={12}>
+              My profile
+            </Typography>
+          </Breadcrumbs>
+          <Typography
+            level="h2"
+            sx={{
+              mt: 1,
+              mb: 2,
+            }}
+          >
+            My profile
+          </Typography>
+        </Box>
+        <Tabs
+          defaultValue={0}
+          sx={{
+            bgcolor: 'transparent',
+          }}
+        >
+          <TabList
+            tabFlex={1}
+            size="sm"
+            sx={{
+              pl: {
+                xs: 0,
+                md: 4,
+              },
+              justifyContent: 'left',
+              [`&& .${tabClasses.root}`]: {
+                flex: 'initial',
+                bgcolor: 'transparent',
+                [`&.${tabClasses.selected}`]: {
+                  fontWeight: '600',
+                  '&::after': {
+                    height: '2px',
+                    bgcolor: 'primary.500',
+                  },
+                },
+              },
+            }}
+          >
+            <Tab indicatorInset value={0}>
+              Settings
+            </Tab>
+            <Tab indicatorInset value={1}>
+              Team
+            </Tab>
+            <Tab indicatorInset value={2}>
+              Plan
+            </Tab>
+            <Tab indicatorInset value={3}>
+              Billing
+            </Tab>
+          </TabList>
+        </Tabs>
+      </Box>
+
       <Stack
         spacing={4}
         sx={(theme) => ({
