@@ -42,7 +42,7 @@ function muiError({ references, babel, config, source }) {
     case 'throw':
       handleMissingErrorCode = ({ errorMessageLiteral }) => {
         throw new MacroError(
-          `Missing error code for message '${errorMessageLiteral}'. Did you forget to run \`yarn extract-errors\` first?`,
+          `Missing error code for message '${errorMessageLiteral}'. Did you forget to run \`pnpm extract-error-codes\` first?`,
         );
       };
       break;

@@ -92,6 +92,7 @@
     "@googleapis/sheets": "^5.0.3",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@mui-internal/docs-utilities": "workspace:*",
+    "@mui/utils": "workspace:*",
     "@octokit/rest": "^20.0.1",
     "@playwright/test": "1.37.1",
     "@rollup/plugin-replace": "^5.0.2",

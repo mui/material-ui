@@ -14,7 +14,7 @@ describe('@mui/envinfo', () => {
 
     // Building might take some time
     this.timeout(10000);
-    execFileSync(isRunningOnWindows ? 'yarn.cmd' : 'yarn', ['build'], {
+    execFileSync('pnpm', ['build'], {
       cwd: packagePath,
       stdio: 'pipe',
     });
@@ -28,6 +28,7 @@ describe('@mui/envinfo', () => {
       {
         encoding: 'utf8',
         stdio: 'pipe',
+        cwd: path.resolve(packagePath, '../../docs'), // run the command in the context of the docs application
       },
     );
   }
@@ -44,7 +45,7 @@ describe('@mui/envinfo', () => {
     // We basically want to test like https://github.com/eps1lon/testing-library-envinfo/blob/2543092f4e4af02d79e306ec6546a9c12b258675/index.test.js#L20-L68
     // The specific versions change over time so we can't use snapshots.
     expect(envinfo).to.have.nested.property('Binaries.Node');
-    expect(envinfo).to.have.nested.property('Binaries.Yarn');
+    expect(envinfo).to.have.nested.property('Binaries.pnpm');
     expect(envinfo).to.have.nested.property('Binaries.npm');
     // CI doesn't install all the covered browsers. Simply asserting that it does print browsers.
     expect(envinfo).to.have.nested.property('Browsers');
@@ -52,10 +53,9 @@ describe('@mui/envinfo', () => {
     expect(envinfo).to.have.nested.property('npmPackages.@emotion/styled');
     // Non-exhaustive list of `@mui/*` packages
     expect(envinfo).to.have.nested.property('npmPackages.@mui/material');
-    expect(envinfo).to.have.nested.property('npmPackages.@mui/lab');
+    expect(envinfo).to.have.nested.property('npmPackages.@mui/base');
+    expect(envinfo).to.have.nested.property('npmPackages.@mui/system');
     expect(envinfo).to.have.nested.property('npmPackages.react');
     expect(envinfo).to.have.nested.property('npmPackages.react-dom');
-    expect(envinfo).to.have.nested.property('npmPackages.styled-components');
-    expect(envinfo).to.have.nested.property('npmPackages.typescript');
   });
 });

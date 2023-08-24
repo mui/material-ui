@@ -3,8 +3,5 @@
   "compilerOptions": {
     "types": ["react", "mocha", "node"]
   },
-  "paths": {
-    "@mui/utils": "./src"
-  },
   "include": ["src/**/*", "../../test/utils/initMatchers.ts"]
 }

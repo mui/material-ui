@@ -81,6 +81,9 @@ importers:
       '@mui-internal/docs-utilities':
         specifier: workspace:*
         version: link:packages/docs-utilities
+      '@mui/utils':
+        specifier: workspace:*
+        version: link:packages/mui-utils
       '@octokit/rest':
         specifier: ^20.0.1
         version: 20.0.1
@@ -1288,6 +1291,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      react-router-dom:
+        specifier: ^6.15.0
+        version: 6.15.0(react-dom@18.2.0)(react@18.2.0)
       test:
         specifier: workspace:*
         version: link:../../test
@@ -1358,6 +1364,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      react-router-dom:
+        specifier: ^6.15.0
+        version: 6.15.0(react-dom@18.2.0)(react@18.2.0)
       test:
         specifier: workspace:*
         version: link:../../test
@@ -1501,8 +1510,8 @@ importers:
         specifier: 18.2.20
         version: 18.2.20
       react:
-        specifier: ^17.0.2
-        version: 17.0.2
+        specifier: ^18.2.0
+        version: 18.2.0
       test:
         specifier: workspace:*
         version: link:../../test
@@ -1684,9 +1693,13 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
+    devDependencies:
+      '@types/react':
+        specifier: 18.2.20
+        version: 18.2.20
       react:
-        specifier: ^17.0.0 || ^18.0.0
-        version: 17.0.2
+        specifier: ^18.2.0
+        version: 18.2.0
 
   packages/zero-tag-processor:
     dependencies:
@@ -1697,6 +1710,9 @@ importers:
         specifier: ^7.22.5
         version: 7.22.5
       '@babel/parser':
+        specifier: ^7.22.10
+        version: 7.22.10
+      '@babel/types':
         specifier: ^7.22.10
         version: 7.22.10
       '@emotion/css':
@@ -5307,7 +5323,6 @@ packages:
   /@remix-run/router@1.8.0:
     resolution: {integrity: sha512-mrfKqIHnSZRyIzBcanNJmVQELTnX+qagEDlcKO90RgRBVOZGSGvZKeDihTRfWcqoDn5N/NkUcwWTccnpN18Tfg==}
     engines: {node: '>=14.0.0'}
-    dev: false
 
   /@rollup/plugin-replace@5.0.2(rollup@3.28.0):
     resolution: {integrity: sha512-M9YXNekv/C/iHHK+cvORzfRYfPbq0RDD8r0G+bMiTXjNGKulPnCT9O3Ss46WfhI6ZOCgApOP7xAdmCQJ+U2LAA==}
@@ -16212,7 +16227,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-router: 6.15.0(react@18.2.0)
-    dev: false
 
   /react-router@6.15.0(react@18.2.0):
     resolution: {integrity: sha512-NIytlzvzLwJkCQj2HLefmeakxxWHWAP+02EGqWEZy+DgfHHKQMUoBBjUQLOtFInBMhWtb3hiUy6MfFgwLjXhqg==}
@@ -16222,7 +16236,6 @@ packages:
     dependencies:
       '@remix-run/router': 1.8.0
       react: 18.2.0
-    dev: false
 
   /react-runner@1.0.3(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-KyAzNzSVdrBc4A7aGW3FD0wVuujfgcBlyIGF0QVicJu0ucMpLYyTHE+PgBu82Iq698TPKRH+eEi6Mrq/e7OffA==}
@@ -16367,13 +16380,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
-
-  /react@17.0.2:
-    resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
 
   /react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
