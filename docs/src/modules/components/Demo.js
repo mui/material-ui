@@ -313,7 +313,7 @@ const DemoRootJoy = joyStyled('div', {
     overflow: 'auto',
     backgroundColor: alpha(blue[50], 0.5),
     border: `1px solid`,
-    borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+    borderColor: grey[100],
     backgroundImage: `radial-gradient(at 51% 52%, ${alpha(blue[50], 0.5)} 0px, transparent 50%),
       radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
       radial-gradient(at 0% 95%, ${alpha(blue[100], 0.3)}, transparent 40%),
@@ -321,7 +321,7 @@ const DemoRootJoy = joyStyled('div', {
       radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%);`,
     ...theme.applyDarkStyles({
       backgroundColor: alpha(blue[900], 0.1),
-      borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+      borderColor: alpha(grey[700], 0.3),
       backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
         blueDark[700],
         0.5,

@@ -24,11 +24,18 @@
       },
       "default": "defaultOptionStringifier"
     },
+    "getSerializedValue": {
+      "type": {
+        "name": "(option: SelectValue&lt;SelectOption&lt;OptionValue&gt;, Multiple&gt;) =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt;[&#39;value&#39;]",
+        "description": "(option: SelectValue&lt;SelectOption&lt;OptionValue&gt;, Multiple&gt;) =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt;[&#39;value&#39;]"
+      }
+    },
     "listboxId": { "type": { "name": "string", "description": "string" } },
     "listboxRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
     "multiple": { "type": { "name": "Multiple", "description": "Multiple" }, "default": "false" },
+    "name": { "type": { "name": "string", "description": "string" } },
     "onChange": {
       "type": {
         "name": "(event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void",
@@ -51,6 +58,7 @@
         "description": "SelectOptionDefinition&lt;OptionValue&gt;[]"
       }
     },
+    "required": { "type": { "name": "boolean", "description": "boolean" } },
     "value": {
       "type": {
         "name": "SelectValue&lt;OptionValue, Multiple&gt;",
@@ -90,6 +98,13 @@
       "type": {
         "name": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectButtonSlotProps&lt;OtherHandlers&gt;",
         "description": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectButtonSlotProps&lt;OtherHandlers&gt;"
+      },
+      "required": true
+    },
+    "getHiddenInputProps": {
+      "type": {
+        "name": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectHiddenInputSlotProps&lt;OtherHandlers&gt;",
+        "description": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectHiddenInputSlotProps&lt;OtherHandlers&gt;"
       },
       "required": true
     },

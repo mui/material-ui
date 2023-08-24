@@ -465,10 +465,13 @@ export function getThemedComponents(): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             ...(ownerState.size === 'large' && {
-              padding: theme.spacing('12px', '12px', '12px', '14px'),
               ...theme.typography.body1,
               lineHeight: 21 / 16,
-              fontWeight: 700,
+              fontWeight: theme.typography.fontWeightBold,
+              padding: theme.spacing('12px', '12px', '12px', '14px'),
+              minHeight: 0,
+              '& > span': { transition: '0.2s', marginLeft: 4 },
+              '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.variant === 'outlined' &&
               ownerState.color === 'secondary' && {
@@ -520,7 +523,7 @@ export function getThemedComponents(): ThemeOptions {
               padding: theme.spacing(0.5, 1),
               fontFamily: theme.typography.fontFamily,
               fontSize: '0.75rem',
-              fontWeight: 600,
+              fontWeight: theme.typography.fontWeightSemiBold,
               borderRadius: '6px',
             }),
             ...(ownerState.variant === 'contained' &&
@@ -530,19 +533,12 @@ export function getThemedComponents(): ThemeOptions {
                   (theme.vars || theme).palette.primary[500]
                 } 0%, ${(theme.vars || theme).palette.primary[600]} 100%)`,
                 border: '1px solid',
-                borderColor: (theme.vars || theme).palette.primary[400],
+                borderColor: alpha(theme.palette.primary[400], 0.6),
                 boxShadow: `0px 2px 4px ${alpha(
                   theme.palette.primary[700],
                   0.2,
-                )}, inset 0px 4px 8px ${alpha(theme.palette.primary[200], 0.4)}`,
+                )}, inset 0px 2px 6px ${alpha(theme.palette.primary[100], 0.5)}`,
                 textShadow: `0px 1px 1px ${alpha(theme.palette.grey[900], 0.3)}`,
-                '&:hover': {
-                  background: `linear-gradient(180deg, ${
-                    (theme.vars || theme).palette.primary[500]
-                  } 0%, ${(theme.vars || theme).palette.primary[400]} 100%)`,
-                  boxShadow:
-                    '0px 0px 8px rgba(0, 127, 255, 0.2), inset 0px 4px 8px rgba(102, 178, 255, 0.4)',
-                },
                 ...theme.applyDarkStyles({
                   boxShadow: `0px 2px 4px ${alpha(
                     theme.palette.common.black,
@@ -978,6 +974,9 @@ export function getThemedComponents(): ThemeOptions {
               '&[href]': {
                 textDecorationLine: 'none',
               },
+              transition: theme.transitions.create(['border', 'box-shadow'], {
+                duration: theme.transitions.duration.shortest,
+              }),
               ...(ownerState.variant === 'outlined' && {
                 display: 'block',
                 borderColor: (theme.vars || theme).palette.grey[100],

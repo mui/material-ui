@@ -89,6 +89,8 @@ const StyledSwitchLabel = styled('label')({
 const StyledTabsList = styled('div')({
   display: 'flex',
   borderBottom: 'var(--border-width) solid var(--border-color)',
+  background: 'var(--TabsList-background)',
+  padding: '4px',
 });
 
 const StyledTab = styled('button')({
@@ -98,12 +100,12 @@ const StyledTab = styled('button')({
   justifyContent: 'center',
   gap: 6,
   position: 'relative',
-  minHeight: 42,
   flex: 1,
-  padding: '0.75rem',
-  background: 'var(--Tab-background)',
+  maxHeight: 42,
+  padding: '0.75rem 0.875rem',
+  background: 'transparent',
   border: 'none',
-  borderRadius: 12,
+  borderRadius: 'var(--Tab-radius)',
   fontSize: 14,
   fontWeight: 600,
   color: 'var(--muidocs-palette-text-secondary)',
@@ -114,7 +116,7 @@ const StyledTab = styled('button')({
 
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
-    outlineOffset: -6,
+    outlineOffset: -4,
   },
 
   '&.Mui-selected': {
@@ -126,7 +128,7 @@ const StyledTab = styled('button')({
       height: 'max(2px, var(--border-width, 0px))',
       left: 2,
       right: 2,
-      bottom: 'calc(-1 * min(2px, var(--border-width, 0px)))',
+      bottom: 'var(--Tab-activeSelector)',
       position: 'absolute',
       backgroundColor: 'var(--color-primary)',
     },
@@ -263,8 +265,8 @@ const StyledViewCode = styled(Link)({
   lineHeight: 21 / 14,
 
   '&:hover': {
-    backgroundColor: 'var(--muidocs-palette-primaryDark-800)',
-    color: 'var(--muidocs-palette-primary-100)',
+    backgroundColor: 'var(--muidocs-palette-primaryDark-600)',
+    color: 'var(--muidocs-palette-primary-50)',
   },
 
   '&:focus-visible': {
@@ -275,7 +277,7 @@ const StyledViewCode = styled(Link)({
     color: 'var(--muidocs-palette-primary-100)',
     boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.05)',
     '&:hover': {
-      color: 'var(--muidocs-palette-primary-100)',
+      color: 'var(--muidocs-palette-primary-50)',
       backgroundColor: 'var(--muidocs-palette-primaryDark-700)',
     },
   },
@@ -486,7 +488,7 @@ const StyledSwitch = styled('span')(`
   }
 
   & .${switchClasses.track} {
-    background: var(--Switch-background, var(--muidocs-palette-grey-400));
+    background: var(--Switch-background, var(--muidocs-palette-grey-300));
     border-radius: max(2px, var(--border-radius) * 4);
     display: block;
     height: 100%;
