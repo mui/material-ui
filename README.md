@@ -240,3 +240,5 @@ These great services sponsor MUI's core infrastructure:
 <img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=70" width="35" height="35" style="margin-top: 1rem;">
 
 [CodeCov](https://about.codecov.io/) lets us monitor test coverage.
+
+-
