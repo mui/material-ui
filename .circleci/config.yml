@@ -74,14 +74,14 @@ commands:
           name: Restore pnpm Package Cache
           keys:
             - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
-      - run:
-          name: View install environment
-          command: |
-            node --version
-            pnpm --version
       - when:
           condition: << parameters.browsers >>
           steps:
+            - run:
+                name: Install pnpm package manager
+                command: |
+                  corepack enable
+                  corepack prepare pnpm@latest-8 --activate
             - run:
                 name: Prepare playwright hash
                 command: pnpm list --json --filter playwright > /tmp/playwright_info.json
@@ -92,6 +92,11 @@ commands:
                 name: Restore playwright cache
                 keys:
                   - v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
+      - run:
+          name: View install environment
+          command: |
+            node --version
+            pnpm --version
       - run:
           name: Install js dependencies
           command: pnpm install
