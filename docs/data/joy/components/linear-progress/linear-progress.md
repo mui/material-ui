@@ -69,13 +69,13 @@ Provides a number to `thickness` prop to control the bar's stroke width.
 
 {{"demo": "LinearProgressThickness.js"}}
 
-## CSS variables
+## CSS variables playground
 
 Play around with all the CSS variables available on the component to see how the design changes.
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
-{{"demo": "LinearProgressVariables.js", "hideToolbar": true}}
+{{"demo": "LinearProgressVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Common examples
 
