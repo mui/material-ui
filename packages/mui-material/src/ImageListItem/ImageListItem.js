@@ -37,7 +37,6 @@ const ImageListItemRoot = styled('li', {
 })(({ ownerState }) => ({
   display: 'block',
   position: 'relative',
-  overflow: 'hidden',
   ...(ownerState.variant === 'standard' && {
     // For titlebar under list item
     display: 'flex',
@@ -102,6 +101,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
         gridColumnEnd: variant !== 'masonry' ? `span ${cols}` : undefined,
         gridRowEnd: variant !== 'masonry' ? `span ${rows}` : undefined,
         marginBottom: variant === 'masonry' ? gap : undefined,
+        overflow: variant === 'masonry' ? 'hidden' : undefined,
         ...style,
       }}
       ownerState={ownerState}
