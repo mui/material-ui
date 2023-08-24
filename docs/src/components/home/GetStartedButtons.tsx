@@ -107,7 +107,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
           </Button>
         ) : null}
       </Box>
-      {altInstallation ? <NpmCopyButton installation={altInstallation} sx={{ mt: 2 }} /> : null}
+      {altInstallation && <NpmCopyButton installation={altInstallation} sx={{ mt: 2 }} />}
     </React.Fragment>
   );
 }

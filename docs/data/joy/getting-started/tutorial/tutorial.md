@@ -256,4 +256,4 @@ Learn more about [different customization approaches](/joy-ui/customization/appr
 To see some more sophisticated examples of Joy UI in action, check out our [collection of templates](/joy-ui/getting-started/templates/).
 
 Are you migrating from Material UI?
-Learn how to work with [Joy UI and Material UI together in one app](/joy-ui/guides/using-joy-ui-and-material-ui-together/).
+Learn how to work with [Joy UI and Material UI together in one app](/joy-ui/integrations/material-ui//).

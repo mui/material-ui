@@ -1,4 +1,4 @@
-# Themeable component
+# Creating themed components
 
 <p class="description">Create your own themeable component with Joy UI theming feature.</p>
 
