@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
-import GetStartedButtons2 from 'docs/src/components/home/GetStartedButtons2';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
@@ -55,11 +55,11 @@ export default function JoyUIHero() {
             UI, but don’t want Material Design. It’s design agnostic and built to be tailored to
             your specific design language.
           </Typography>
-          <GetStartedButtons2
-            getStartedUrl={ROUTES.joyDocs}
-            learnUrl={ROUTES.baseQuickstart}
-            learnLabel="Learn Joy UI"
-            installation="npm install @mui/joy @emotion/styled @emotion/react"
+          <GetStartedButtons
+            primaryUrl={ROUTES.joyDocs}
+            secondaryLabel="Learn Joy UI"
+            secondaryUrl={ROUTES.baseQuickstart}
+            altInstallation="npm install @mui/joy @emotion/react @emotion/styled"
           />
         </Box>
       }
