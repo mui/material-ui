@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { CssVarsProvider, extendTheme, THEME_ID } from '@mui/joy/styles';
-import Head from 'docs/src/modules/components/Head';
 import Divider from '@mui/material/Divider';
+import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -27,7 +27,12 @@ export default function Core() {
       />
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
-      <CssVarsProvider theme={{ [THEME_ID]: theme }}>
+      <CssVarsProvider
+        attribute="data-mui-color-scheme"
+        modeStorageKey="mui-mode"
+        colorSchemeStorageKey="mui-color-scheme"
+        theme={{ [THEME_ID]: theme }}
+      >
         <main id="main-content">
           <JoyUIHero />
           <JoyUISummary />
