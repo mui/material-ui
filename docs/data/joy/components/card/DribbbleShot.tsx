@@ -19,8 +19,7 @@ export default function DribbbleShot() {
       sx={{
         width: 300,
         bgcolor: 'initial',
-        boxShadow: 'none',
-        '--Card-padding': '0px',
+        p: 0,
       }}
     >
       <Box sx={{ position: 'relative' }}>
