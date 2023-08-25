@@ -7,6 +7,7 @@ import {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteValue,
   createFilterOptions,
   UseAutocompleteProps,
   AutocompleteFreeSoloValueMapping,
@@ -22,6 +23,7 @@ export {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteValue,
   createFilterOptions,
 };
 
