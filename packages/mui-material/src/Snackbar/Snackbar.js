@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
-import useSnackbar from '@mui/base/useSnackbar';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
+import { useSnackbar } from '@mui/base/useSnackbar';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
@@ -223,10 +223,10 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   disableWindowBlurListener: PropTypes.bool,
   /**
-   * When displaying multiple consecutive Snackbars from a parent rendering a single
-   * <Snackbar/>, add the key prop to ensure independent treatment of each message.
-   * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
-   * features such as autoHideDuration may be canceled.
+   * When displaying multiple consecutive snackbars using a single parent-rendered
+   * `<Snackbar/>`, add the `key` prop to ensure independent treatment of each message.
+   * For instance, use `<Snackbar key={message} />`. Otherwise, messages might update
+   * in place, and features like `autoHideDuration` could be affected.
    */
   key: () => null,
   /**

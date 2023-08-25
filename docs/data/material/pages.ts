@@ -6,7 +6,6 @@ const pages: MuiPage[] = [
   {
     pathname: '/material-ui/getting-started-group',
     title: 'Getting started',
-    icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/material-ui/getting-started', title: 'Overview' },
       { pathname: '/material-ui/getting-started/installation' },
@@ -24,7 +23,6 @@ const pages: MuiPage[] = [
   {
     pathname: '/material-ui/react-',
     title: 'Components',
-    icon: standardNavIcons.ToggleOnIcon,
     children: [
       {
         pathname: '/material-ui/components/inputs',
@@ -153,12 +151,10 @@ const pages: MuiPage[] = [
   {
     title: 'Component API',
     pathname: '/material-ui/api',
-    icon: standardNavIcons.CodeIcon,
     children: pagesApi,
   },
   {
     pathname: '/material-ui/customization',
-    icon: standardNavIcons.CreateIcon,
     children: [
       {
         pathname: '/material-ui/customization/theme',
@@ -184,9 +180,9 @@ const pages: MuiPage[] = [
   {
     pathname: '/material-ui/guides',
     title: 'How-to guides',
-    icon: standardNavIcons.VisibilityIcon,
     children: [
       { pathname: '/material-ui/guides/api', title: 'API design approach' },
+      { pathname: '/material-ui/guides/themeable-component', title: 'Themeable component' },
       { pathname: '/material-ui/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/material-ui/guides/typescript', title: 'TypeScript' },
       { pathname: '/material-ui/guides/interoperability', title: 'Style library interoperability' },
@@ -214,7 +210,6 @@ const pages: MuiPage[] = [
   {
     pathname: '/material-ui/experimental-api',
     title: 'Experimental APIs',
-    icon: standardNavIcons.ExperimentIcon,
     children: [
       {
         pathname: '/material-ui/experimental-api/classname-generator',
@@ -237,7 +232,6 @@ const pages: MuiPage[] = [
   },
   {
     pathname: '/material-ui/discover-more',
-    icon: standardNavIcons.AddIcon,
     children: [
       { pathname: '/material-ui/discover-more/showcase' },
       { pathname: '/material-ui/discover-more/related-projects' },
@@ -251,7 +245,6 @@ const pages: MuiPage[] = [
   {
     pathname: '/material-ui/migration',
     title: 'Migration',
-    icon: standardNavIcons.BookIcon,
     children: [
       {
         pathname: '/material-ui/migration/migration-grid-v2',

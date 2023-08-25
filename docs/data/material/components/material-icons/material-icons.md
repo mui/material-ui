@@ -28,6 +28,10 @@ npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 yarn add @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 
+```bash pnpm
+pnpm add @mui/icons-material @mui/material @emotion/styled @emotion/react
+```
+
 </codeblock>
 
 See the [Installation](/material-ui/getting-started/installation/) page for additional docs about how to make sure everything is set up correctly.

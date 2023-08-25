@@ -4,7 +4,6 @@ import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import useScript from './useScript';
-import customTheme from './theme';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import MyMessages from './components/MyMessages';
@@ -25,23 +24,23 @@ export default function JoyMessagesTemplate() {
   }, [status]);
 
   return (
-    <CssVarsProvider disableTransitionOnChange theme={customTheme}>
+    <CssVarsProvider disableTransitionOnChange>
       <GlobalStyles
-        styles={{
+        styles={(theme) => ({
           '[data-feather], .feather': {
-            color: 'var(--Icon-color)',
+            color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
             margin: 'var(--Icon-margin)',
-            fontSize: 'var(--Icon-fontSize, 20px)',
+            fontSize: `var(--Icon-fontSize, ${theme.vars.fontSize.xl})`,
             width: '1em',
             height: '1em',
           },
-        }}
+        })}
       />
       <CssBaseline />
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
         <Header />
         <Sidebar />
-        <Box component="main" className="MainContent" flex={1}>
+        <Box component="main" className="MainContent" sx={{ flex: 1 }}>
           <MyMessages />
         </Box>
       </Box>

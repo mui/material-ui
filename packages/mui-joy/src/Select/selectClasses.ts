@@ -21,8 +21,6 @@ export interface SelectClasses {
   colorNeutral: string;
   /** Class name applied to the root slot if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the root slot if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the root slot if `color="success"`. */
   colorSuccess: string;
   /** Class name applied to the root slot if `color="warning"`. */
@@ -68,7 +66,6 @@ const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',

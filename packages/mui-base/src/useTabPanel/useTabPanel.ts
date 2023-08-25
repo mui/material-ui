@@ -56,4 +56,4 @@ function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue 
   };
 }
 
-export default useTabPanel;
+export { useTabPanel };

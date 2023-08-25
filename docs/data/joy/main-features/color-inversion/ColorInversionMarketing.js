@@ -25,7 +25,7 @@ export default function ColorInversionMarketing() {
         bgcolor: color === 'primary' ? '#042449' : undefined,
         p: { xs: '36px', md: '70px' },
         pt: { xs: '24px', md: '60px' },
-        borderRadius: 'sm',
+        borderRadius: 'lg',
         overflow: 'hidden',
         '& button': { borderRadius: 'xl' },
       }}
@@ -71,14 +71,7 @@ export default function ColorInversionMarketing() {
           borderRadius: '50%',
         }}
         onClick={() => {
-          const colors = [
-            'primary',
-            'neutral',
-            'danger',
-            'info',
-            'success',
-            'warning',
-          ];
+          const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
 
           const nextColor = colors.indexOf(color);
           setColor(colors[nextColor + 1] ?? colors[0]);

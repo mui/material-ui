@@ -44,26 +44,7 @@ const ToggleButtonGroupRoot = styled(StyledButtonGroup as unknown as 'div', {
   name: 'JoyToggleButtonGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ToggleButtonGroupOwnerState<any> }>(({ theme, ownerState }) => ({
-  '& [aria-pressed="true"], & [aria-pressed="true"]:not([data-first-child]):not([data-last-child])':
-    {
-      ...(ownerState.color !== 'context' && {
-        backgroundColor:
-          theme.vars.palette?.[ownerState.color!]?.[`${ownerState.variant!}ActiveBg`],
-        ...(ownerState.variant === 'outlined' && {
-          borderColor:
-            theme.vars.palette?.[ownerState.color!]?.[`${ownerState.variant!}HoverBorder`],
-        }),
-        '&:hover': {
-          backgroundColor:
-            theme.vars.palette?.[ownerState.color!]?.[`${ownerState.variant!}ActiveBg`],
-        },
-        '&:not(:disabled)': {
-          zIndex: 2,
-        },
-      }),
-    },
-}));
+})<{ ownerState: ToggleButtonGroupOwnerState<any> }>({});
 /**
  * ⚠️ ToggleButtonGroup must have Button and/or IconButton as direct children.
  *

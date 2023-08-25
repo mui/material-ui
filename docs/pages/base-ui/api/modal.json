@@ -36,10 +36,11 @@
     "slots": {
       "type": { "name": "shape", "description": "{ backdrop?: elementType, root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     }
   },
   "name": "Modal",
+  "imports": ["import { Modal } from '@mui/base/Modal';", "import { Modal } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

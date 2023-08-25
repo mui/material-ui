@@ -7,12 +7,12 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import TextFieldsRounded from '@mui/icons-material/TextFieldsRounded';
+import WidgetsRounded from '@mui/icons-material/WidgetsRounded';
+import ToggleOnRounded from '@mui/icons-material/ToggleOnRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
-import WidgetsRounded from '@mui/icons-material/WidgetsRounded';
-import ToggleOnRounded from '@mui/icons-material/ToggleOnRounded';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
@@ -42,7 +42,7 @@ export default function TemplateDemo() {
     <Section bg="gradient" cozy>
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
+          <Box sx={{ maxWidth: 500 }}>
             <SectionHeadline
               overline="Features"
               title={

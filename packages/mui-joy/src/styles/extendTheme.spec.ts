@@ -1,3 +1,8 @@
+import { expectType } from '@mui/types';
+import { AccordionOwnerState } from '@mui/joy/Accordion';
+import { AccordionGroupOwnerState } from '@mui/joy/AccordionGroup';
+import { AccordionSummaryOwnerState } from '@mui/joy/AccordionSummary';
+import { AccordionDetailsOwnerState } from '@mui/joy/AccordionDetails';
 import { AlertOwnerState } from '@mui/joy/Alert';
 import { AspectRatioOwnerState } from '@mui/joy/AspectRatio';
 import { AutocompleteOwnerState } from '@mui/joy/Autocomplete';
@@ -60,20 +65,91 @@ import { TableOwnerState } from '@mui/joy/Table';
 import { TextareaOwnerState } from '@mui/joy/Textarea';
 import { TooltipOwnerState } from '@mui/joy/Tooltip';
 import { TypographyOwnerState } from '@mui/joy/Typography';
-import { expectType } from '@mui/types';
 
 extendTheme({
   colorInversion: (theme) => ({
     soft: {
       primary: {
-        '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-darkChannel')} / 0.4)`,
+        '--variant-plainColor': `rgba(${theme.getCssVar('palette-primary-darkChannel')} / 0.4)`,
         [theme.getColorSchemeSelector('dark')]: {
-          '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-lightChannel')} / 0.4)`,
+          '--variant-plainColor': `rgba(${theme.getCssVar('palette-primary-lightChannel')} / 0.4)`,
         },
       },
     },
   }),
   components: {
+    JoyAccordion: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyAccordionGroup: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionGroupOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyAccordionSummary: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionSummaryOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        button: ({ ownerState }) => {
+          expectType<AccordionSummaryOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        indicator: ({ ownerState }) => {
+          expectType<AccordionSummaryOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyAccordionDetails: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionDetailsOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        content: ({ ownerState }) => {
+          expectType<AccordionDetailsOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
     JoyAlert: {
       defaultProps: {
         variant: 'soft',
@@ -595,7 +671,7 @@ extendTheme({
     },
     JoyLink: {
       defaultProps: {
-        level: 'body2',
+        level: 'body-md',
       },
       styleOverrides: {
         root: ({ ownerState }) => {
@@ -1124,7 +1200,7 @@ extendTheme({
     },
     JoyTypography: {
       defaultProps: {
-        level: 'body2',
+        level: 'body-md',
         variant: 'outlined',
         color: 'neutral',
       },

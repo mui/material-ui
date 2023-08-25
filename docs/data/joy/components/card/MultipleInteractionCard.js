@@ -39,31 +39,21 @@ export default function MultipleInteractionCard() {
         </IconButton>
       </CardOverflow>
       <CardContent>
-        <Typography level="h2" fontSize="md">
+        <Typography level="title-md">
           <Link href="#multiple-actions" overlay underline="none">
             Yosemite National Park
           </Link>
         </Typography>
-        <Typography level="body2" sx={{ mt: 0.5 }}>
+        <Typography level="body-sm">
           <Link href="#multiple-actions">California</Link>
         </Typography>
       </CardContent>
-      <CardOverflow variant="soft" sx={{ bgcolor: 'background.level1' }}>
+      <CardOverflow variant="soft">
         <Divider inset="context" />
         <CardContent orientation="horizontal">
-          <Typography
-            level="body3"
-            sx={{ fontWeight: 'md', color: 'text.secondary' }}
-          >
-            6.3k views
-          </Typography>
+          <Typography level="body-xs">6.3k views</Typography>
           <Divider orientation="vertical" />
-          <Typography
-            level="body3"
-            sx={{ fontWeight: 'md', color: 'text.secondary' }}
-          >
-            1 hour ago
-          </Typography>
+          <Typography level="body-xs">1 hour ago</Typography>
         </CardContent>
       </CardOverflow>
     </Card>

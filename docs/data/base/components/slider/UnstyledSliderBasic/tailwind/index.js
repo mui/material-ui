@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useTheme } from '@mui/system';
-import Slider from '@mui/base/Slider';
+import { Slider } from '@mui/base/Slider';
 
 function useIsDarkMode() {
   const theme = useTheme();

@@ -19,7 +19,7 @@ export default function ControlledOpenSelect() {
   return (
     <Stack spacing={2} useFlexGap>
       <Button
-        variant="soft"
+        variant="solid"
         onMouseDown={() => {
           skipRef.current = true;
         }}
@@ -28,7 +28,7 @@ export default function ControlledOpenSelect() {
           setOpen((bool) => !bool);
         }}
       >
-        Open the select
+        Toggle the select
       </Button>
       <div>
         <Select

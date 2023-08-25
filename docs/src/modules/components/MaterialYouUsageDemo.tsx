@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { useTheme as md2UseTheme } from '@mui/material/styles';
+import { useTheme as md2UseTheme, alpha } from '@mui/material/styles';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
 import FormLabel, { formLabelClasses } from '@mui/material/FormLabel';
 import IconButton from '@mui/material/IconButton';
@@ -9,13 +10,13 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import {
   extendTheme,
   CssVarsProvider as MaterialYouCssVarsProvider,
   useColorScheme,
 } from '@mui/material-next/styles';
+import BrandingProvider from 'docs/src/BrandingProvider';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 type Mode = 'light' | 'dark' | 'system';
 
@@ -208,7 +209,9 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
         },
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999, minWidth: 0, p: 3 }}>
+      <Box
+        sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999, minWidth: 0, p: 3, gap: 3 }}
+      >
         <Box
           sx={{
             flexGrow: 1,
@@ -238,26 +241,34 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
         </BrandingProvider>
       </Box>
       <Box
-        sx={{
+        sx={(theme) => ({
           flexShrink: 0,
           gap: 2,
-          p: 3,
-          mt: 1,
           borderLeft: '1px solid',
-          borderColor: 'divider',
-          backdropFilter: 'blur(8px)',
-          minWidth: '280px',
-        }}
+          borderColor: theme.palette.grey[200],
+          background: alpha(theme.palette.grey[50], 0.5),
+          minWidth: '250px',
+          [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+            borderColor: alpha(theme.palette.grey[900], 0.8),
+            backgroundColor: alpha(theme.palette.grey[900], 0.3),
+          },
+        })}
       >
         <Box
           sx={{
-            mb: 2,
+            px: 3,
+            py: 2,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}
         >
-          <Typography id="usage-props" component="h3" fontWeight="lg" sx={{ scrollMarginTop: 160 }}>
+          <Typography
+            id="usage-props"
+            component="h3"
+            fontWeight="600"
+            sx={{ scrollMarginTop: 160, fontFamily: 'General Sans' }}
+          >
             Playground
           </Typography>
           <IconButton
@@ -271,11 +282,13 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
             <ReplayRoundedIcon />
           </IconButton>
         </Box>
+        <Divider sx={{ opacity: 0.5 }} />
         <Box
           sx={{
+            p: 3,
             display: 'flex',
             flexDirection: 'column',
-            gap: 2.5,
+            gap: 2,
             [`& .${formLabelClasses.root}`]: {
               fontWeight: 'lg',
             },
@@ -291,11 +304,25 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
                 <FormControl
                   key={propName}
                   size="small"
-                  // orientation="horizontal"
-                  sx={{ justifyContent: 'space-between' }}
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
                 >
-                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
+                  <FormLabel
+                    sx={{
+                      textTransform: 'capitalize',
+                      fontWeight: 'medium',
+                      fontSize: '0.875rem',
+                      color: 'text.secondary',
+                    }}
+                  >
+                    {propName}
+                  </FormLabel>
                   <Switch
+                    size="small"
                     checked={Boolean(resolvedValue)}
                     onChange={(event) => {
                       setProps((latestProps) => ({
@@ -304,11 +331,6 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
                       }));
                       onChange?.(event);
                     }}
-                    sx={{
-                      fontSize: 'xs',
-                      color: 'text.secondary',
-                      textTransform: 'capitalize',
-                    }}
                   />
                 </FormControl>
               );
@@ -316,7 +338,16 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
             if (knob === 'select') {
               return (
                 <FormControl key={propName} size="small">
-                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
+                  <FormLabel
+                    sx={{
+                      textTransform: 'capitalize',
+                      fontWeight: 'medium',
+                      fontSize: '0.875rem',
+                      mb: 0.5,
+                    }}
+                  >
+                    {propName}
+                  </FormLabel>
                   <Select
                     placeholder="Select a variant..."
                     value={(resolvedValue || 'none') as string}

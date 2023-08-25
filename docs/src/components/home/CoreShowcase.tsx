@@ -3,12 +3,12 @@ import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button, { buttonClasses } from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import TouchAppRounded from '@mui/icons-material/TouchAppRounded';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
-import TouchAppRounded from '@mui/icons-material/TouchAppRounded';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
@@ -61,7 +61,7 @@ export default function CoreShowcase() {
                     border: '1px solid',
                     borderColor:
                       mode === 'dark'
-                        ? globalTheme.palette.primaryDark[500]
+                        ? globalTheme.palette.primaryDark[600]
                         : globalTheme.palette.grey[200],
                   },
                 },
@@ -102,17 +102,17 @@ export default function CoreShowcase() {
                     '&.MuiChip-colorSuccess': {
                       backgroundColor:
                         mode === 'dark'
-                          ? globalTheme.palette.success[900]
+                          ? globalTheme.palette.success[800]
                           : globalTheme.palette.success[100],
                       color:
                         mode === 'dark'
                           ? globalTheme.palette.success[100]
-                          : globalTheme.palette.success[900],
+                          : globalTheme.palette.success[800],
                     },
                     '&.MuiChip-colorDefault': {
                       backgroundColor:
                         mode === 'dark'
-                          ? globalTheme.palette.grey[900]
+                          ? globalTheme.palette.primaryDark[600]
                           : globalTheme.palette.grey[200],
                       color:
                         mode === 'dark'
@@ -177,7 +177,7 @@ export default function CoreShowcase() {
         </React.Fragment>
       }
       code={
-        <Box data-mui-color-scheme="dark">
+        <div data-mui-color-scheme="dark">
           <Box
             sx={{
               p: { xs: 2, sm: 1 },
@@ -256,7 +256,7 @@ export default function CoreShowcase() {
               <StylingInfo appeared={customized} sx={{ mb: -2, mx: -2 }} />
             </Box>
           </Box>
-        </Box>
+        </div>
       }
     />
   );

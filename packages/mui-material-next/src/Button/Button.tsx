@@ -1,43 +1,22 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  elementTypeAcceptingRef,
-  refType,
-  unstable_capitalize as capitalize,
-  unstable_useForkRef as useForkRef,
-} from '@mui/utils';
-import useButton from '@mui/base/useButton';
-import { EventHandlers, useSlotProps } from '@mui/base/utils';
-import composeClasses from '@mui/base/composeClasses';
-import { useThemeProps, alpha } from '@mui/system';
-import TouchRipple from './TouchRipple';
-import { TouchRippleActions } from './TouchRipple.types';
-import useTouchRipple from './useTouchRipple';
+import { unstable_capitalize as capitalize } from '@mui/utils';
+import { useSlotProps } from '@mui/base/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useThemeProps, alpha, shouldForwardProp } from '@mui/system';
 import { MD3ColorSchemeTokens, styled } from '../styles';
-import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import { getButtonUtilityClass } from './buttonClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import { ButtonProps, ExtendButton, ButtonTypeMap, ButtonOwnerState } from './Button.types';
+import ButtonBase from '../ButtonBase';
 
-const useUtilityClasses = (styleProps: ButtonOwnerState) => {
-  const {
-    classes,
-    color,
-    disabled,
-    active,
-    disableElevation,
-    focusVisible,
-    focusVisibleClassName,
-    fullWidth,
-    size,
-    variant,
-  } = styleProps;
+const useUtilityClasses = (ownerState: ButtonOwnerState) => {
+  const { classes, color, disableElevation, fullWidth, size, variant } = ownerState;
 
   const slots = {
     root: [
       'root',
-      disabled && 'disabled',
-      focusVisible && 'focusVisible',
-      active && 'active',
       variant,
       `color${capitalize(color ?? '')}`,
       `size${capitalize(size ?? '')}`,
@@ -51,11 +30,10 @@ const useUtilityClasses = (styleProps: ButtonOwnerState) => {
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
 
-  if (focusVisible && focusVisibleClassName) {
-    composedClasses.root += ` ${focusVisibleClassName}`;
-  }
-
-  return composedClasses;
+  return {
+    ...classes, // forward the focused, disabled, etc. classes to the ButtonBase
+    ...composedClasses,
+  };
 };
 
 const commonIconStyles = ({ size }: ButtonOwnerState) => ({
@@ -77,9 +55,10 @@ const commonIconStyles = ({ size }: ButtonOwnerState) => ({
   }),
 });
 
-export const ButtonRoot = styled('button', {
+export const ButtonRoot = styled(ButtonBase, {
   name: 'MuiButton',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop),
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
@@ -282,28 +261,6 @@ export const ButtonRoot = styled('button', {
     '--md-comp-button-pressed-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-focused-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-disabled-icon-color': disabledLabelTextColor,
-    // Normalized styles for buttons
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    boxSizing: 'border-box',
-    WebkitTapHighlightColor: 'transparent',
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
-    border: 0,
-    margin: `var(--Button-margin, 0)`, // Remove the margin in Safari by default
-    cursor: 'pointer',
-    verticalAlign: 'middle',
-    MozAppearance: 'none', // Reset
-    WebkitAppearance: 'none', // Reset
-    textDecoration: 'none',
-    '&::-moz-focus-inner': {
-      borderStyle: 'none', // Remove Firefox dotted outline.
-    },
-    '@media print': {
-      colorAdjust: 'exact',
-    },
     padding: '10px 24px',
     minWidth: 64,
     letterSpacing,
@@ -349,23 +306,21 @@ export const ButtonRoot = styled('button', {
       backgroundColor: hoveredContainerColor[ownerState.variant ?? 'text'],
       boxShadow: hoveredContainerElevation[ownerState.variant ?? 'text'],
     },
-    [`&.${buttonClasses.active}`]: {
+    [`&.${buttonBaseClasses.active}`]: {
       '--md-comp-button-icon-color': 'var(--md-comp-button-pressed-icon-color)',
       ...((ownerState.disableRipple || ownerState.disableTouchRipple) && {
         backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],
       }),
       boxShadow: pressedContainerElevation[ownerState.variant ?? 'text'],
     },
-    [`&.${buttonClasses.focusVisible}`]: {
+    [`&.${buttonBaseClasses.focusVisible}`]: {
       '--md-comp-button-icon-color': 'var(--md-comp-button-focused-icon-color)',
       backgroundColor: focusedContainerColor[ownerState.variant ?? 'text'],
       boxShadow: focusedContainerElevation[ownerState.variant ?? 'text'],
     },
-    [`&.${buttonClasses.disabled}`]: {
+    [`&.${buttonBaseClasses.disabled}`]: {
       // Allows developer to specify the disabled icon color var
       '--md-comp-button-icon-color': 'var(--md-comp-button-disabled-icon-color)',
-      pointerEvents: 'none', // Disable link interactions
-      cursor: 'default',
       color: disabledLabelTextColor,
       backgroundColor: disabledContainerColor[ownerState.variant ?? 'text'],
       boxShadow: tokens.sys.elevation[0],
@@ -413,108 +368,25 @@ const Button = React.forwardRef(function Button<
 >(inProps: ButtonProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
   const props = useThemeProps({ props: inProps, name: 'MuiButton' });
   const {
-    action,
-    centerRipple = false,
     children,
-    className,
     classes: classesProp,
     color = 'primary',
-    component = 'button',
-    disabled = false,
-    focusableWhenDisabled = false,
     disableElevation = false,
-    disableRipple = false,
-    disableTouchRipple = false,
     endIcon: endIconProp,
-    focusVisibleClassName,
     fullWidth = false,
-    LinkComponent = 'a',
-    onBlur,
-    onContextMenu,
-    onDragLeave,
-    onFocusVisible,
-    onMouseDown,
-    onMouseLeave,
-    onMouseUp,
-    onTouchEnd,
-    onTouchMove,
-    onTouchStart,
     size = 'medium',
     startIcon: startIconProp,
-    tabIndex = 0,
-    TouchRippleProps,
-    type,
     variant = 'text',
     ...other
   } = props;
-
-  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
-  const handleRef = useForkRef(buttonRef, ref);
-
-  const rippleRef = React.useRef<TouchRippleActions>(null);
-  let ComponentProp = component;
-
-  if (ComponentProp === 'button' && (other.href || other.to)) {
-    ComponentProp = LinkComponent;
-  }
-
-  const { focusVisible, active, setFocusVisible, getRootProps } = useButton({
-    disabled,
-    focusableWhenDisabled,
-    href: props.href,
-    onFocusVisible,
-    tabIndex,
-    // @ts-ignore
-    to: props.to,
-    type,
-    rootRef: handleRef,
-  });
-
-  React.useImperativeHandle(
-    action,
-    () => ({
-      focusVisible: () => {
-        setFocusVisible(true);
-        buttonRef.current!.focus();
-      },
-    }),
-    [setFocusVisible],
-  );
-
-  const { enableTouchRipple, getRippleHandlers } = useTouchRipple({
-    disabled,
-    disableRipple,
-    disableTouchRipple,
-    rippleRef,
-  });
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (enableTouchRipple && !rippleRef.current) {
-        console.error(
-          [
-            'MUI: The `component` prop provided to Button is invalid.',
-            'Please make sure the children prop is rendered in this custom component.',
-          ].join('\n'),
-        );
-      }
-    }, [enableTouchRipple]);
-  }
 
   const ownerState = {
     ...props,
     classes: classesProp,
     color,
-    component,
-    disabled,
     disableElevation,
-    active,
-    focusVisible,
     fullWidth,
     size,
-    tabIndex,
-    type,
     variant,
   };
 
@@ -522,18 +394,13 @@ const Button = React.forwardRef(function Button<
 
   const rootProps = useSlotProps({
     elementType: ButtonRoot,
-    getSlotProps: (otherHandlers: EventHandlers) =>
-      getRootProps({
-        ...otherHandlers,
-        ...getRippleHandlers(props),
-      }),
     externalForwardedProps: other,
     externalSlotProps: {},
     additionalProps: {
-      as: ComponentProp,
+      classes,
+      ref,
     },
     ownerState,
-    className: [classes.root, className],
   });
 
   const startIcon = startIconProp && (
@@ -553,10 +420,6 @@ const Button = React.forwardRef(function Button<
       {startIcon}
       {children}
       {endIcon}
-      {enableTouchRipple ? (
-        /* TouchRipple is only needed client-side, x2 boost on the server. */
-        <TouchRipple center={centerRipple} {...TouchRippleProps} ref={rippleRef} />
-      ) : null}
     </ButtonRoot>
   );
 }) as ExtendButton<ButtonTypeMap>;
@@ -567,17 +430,6 @@ Button.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * A ref for imperative actions.
-   * It currently only supports `focusVisible()` action.
-   */
-  action: refType,
-  /**
-   * If `true`, the ripples are centered.
-   * They won't start at the cursor interaction position.
-   * @default false
-   */
-  centerRipple: PropTypes.bool,
-  /**
    * The content of the component.
    */
   children: PropTypes.node,
@@ -585,10 +437,6 @@ Button.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
@@ -599,16 +447,6 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: elementTypeAcceptingRef,
-  /**
-   * If `true`, the component is disabled.
-   * @default false
-   */
-  disabled: PropTypes.bool,
   /**
    * If `true`, no elevation is used.
    * @default false
@@ -629,64 +467,14 @@ Button.propTypes /* remove-proptypes */ = {
    */
   endIcon: PropTypes.node,
   /**
-   * @ignore
-   */
-  focusVisibleClassName: PropTypes.string,
-  /**
    * If `true`, the button will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,
   /**
-   * The URL to link to when the button is clicked.
-   * If defined, an `a` element will be used as the root node.
+   * @ignore
    */
   href: PropTypes.string,
-  /**
-   * The component used to render a link when the `href` prop is provided.
-   * @default 'a'
-   */
-  LinkComponent: PropTypes.elementType,
-  /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onContextMenu: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onDragLeave: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocusVisible: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseDown: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseLeave: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseUp: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onTouchEnd: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onTouchMove: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onTouchStart: PropTypes.func,
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.
@@ -701,17 +489,17 @@ Button.propTypes /* remove-proptypes */ = {
    */
   startIcon: PropTypes.node,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
    * @default 0
    */
   tabIndex: PropTypes.number,
-  /**
-   * Props applied to the `TouchRipple` element.
-   */
-  TouchRippleProps: PropTypes.object,
-  /**
-   * @ignore
-   */
-  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
   /**
    * The variant to use.
    * @default 'text'

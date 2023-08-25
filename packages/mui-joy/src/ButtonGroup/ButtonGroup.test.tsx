@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ButtonGroup, {
   buttonGroupClasses as classes,
@@ -8,7 +9,6 @@ import ButtonGroup, {
 } from '@mui/joy/ButtonGroup';
 import Button, { buttonClasses, ButtonClassKey } from '@mui/joy/Button';
 import IconButton, { iconButtonClasses, IconButtonClassKey } from '@mui/joy/IconButton';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<ButtonGroup />', () => {
   const { render } = createRenderer();
@@ -95,7 +95,7 @@ describe('<ButtonGroup />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId, container } = render(
           <ButtonGroup data-testid="root" color={color}>

@@ -43,6 +43,37 @@ The `Select` component is similar to the native HTML's `<select>` and `<option>`
 
 {{"demo": "SelectBasic.js"}}
 
+### Form submission
+
+The `Select` component supports `name` and `required` props that will be used when submitting the form.
+
+{{"demo": "SelectFormSubmission.js"}}
+
+### Variants
+
+The Select component supports the four global variants: `outlined` (default), `plain`, `soft`, and `solid`.
+
+The variant and color values are propagated to the Select's `button` and `listbox` slots.
+
+{{"demo": "SelectVariants.js"}}
+
+:::info
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::
+
+To customize the variant and color for a specific slot, use `slotProps`:
+
+```js
+<Select
+  variant="plain"
+  slotProps={{
+    listbox: {
+      variant: 'outlined',
+    },
+  }}
+/>
+```
+
 ### Decorators
 
 Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the select.

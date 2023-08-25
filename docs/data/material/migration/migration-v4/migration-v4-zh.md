@@ -26,7 +26,7 @@ V5最大的变化之一是将JSS替换为[Emotion](https://emotion.sh/docs/intro
 需要参考旧版本的文档吗？ 在这里查看[v4的文档](https://v4.mui.com/)
 :::
 
-如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion 和 JSS一起工作，请看这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration)
+如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion 和 JSS一起工作，请看这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration)
 :::
 
 ## 为什么你应该迁移

@@ -14,7 +14,7 @@ jobs:
       issues: write
     steps:
       - name: mark-duplicate
-        uses: actions-cool/issues-helper@65840f57fe2b3b9a796776577b6b19d2a16adc72 # v3.4.0
+        uses: actions-cool/issues-helper@5457ae8d7c1dc20597a753501d30183ed8043c8b # v3.5.2
         with:
           actions: 'mark-duplicate'
           token: ${{ secrets.GITHUB_TOKEN }}

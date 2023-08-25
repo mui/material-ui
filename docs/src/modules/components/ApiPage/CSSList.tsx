@@ -20,18 +20,45 @@ export type CSSListProps = {
   componentName?: string;
 };
 
+type HashParams = { componentName?: string; className: string };
+
+export type GetPropsToCParams = {
+  componentName: string;
+  componentStyles: CSSListProps['componentStyles'];
+  t: (key: any, options?: {}) => any;
+  hash?: string;
+};
+const getHash = ({ componentName, className }: HashParams) =>
+  `${componentName ? `${componentName}-` : ''}css-${className}`;
+
+export const getCssToC = ({ componentName, componentStyles, t, hash }: GetPropsToCParams) =>
+  componentStyles.classes.length === 0
+    ? []
+    : [
+        {
+          text: t('api-docs.css'),
+          hash: hash ?? 'css',
+          children: [
+            ...componentStyles.classes.map((className) => ({
+              text: className,
+              hash: getHash({ componentName, className }),
+              children: [],
+            })),
+          ],
+        },
+      ];
+
 export default function CSSList(props: CSSListProps) {
   const { componentStyles, classDescriptions, componentName } = props;
   const t = useTranslate();
 
-  const hashPrefix = componentName ? `${componentName}-` : '';
   return (
     <div className="MuiApi-css-list">
       {componentStyles.classes.map((className) => {
         const isGlobalStateClass = !!componentStyles.globalClasses[className];
         return (
           <ApiItem
-            id={`${hashPrefix}css-${className}`}
+            id={getHash({ componentName, className })}
             key={className}
             description={className}
             title={`.${

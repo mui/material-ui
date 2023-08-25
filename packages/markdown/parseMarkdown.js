@@ -230,6 +230,8 @@ function renderInline(markdown) {
 // Help rank mui.com on component searches first.
 const noSEOadvantage = [
   'https://m2.material.io/',
+  'https://m3.material.io/',
+  'https://material.io/',
   'https://getbootstrap.com/',
   'https://icons.getbootstrap.com/',
   'https://pictogrammers.com/',
@@ -238,6 +240,9 @@ const noSEOadvantage = [
   'https://heroicons.com/',
   'https://react-icons.github.io/',
   'https://fontawesome.com/',
+  'https://www.radix-ui.com/',
+  'https://react-spectrum.adobe.com/',
+  'https://headlessui.com/',
 ];
 
 /**
@@ -336,6 +341,10 @@ function createRender(context) {
     renderer.link = (href, linkTitle, linkText) => {
       let more = '';
 
+      if (linkTitle) {
+        more += ` title="${linkTitle}"`;
+      }
+
       if (noSEOadvantage.some((domain) => href.indexOf(domain) !== -1)) {
         more = ' target="_blank" rel="noopener nofollow"';
       }
@@ -414,10 +423,20 @@ function createRender(context) {
             }
             return undefined;
           },
+
           renderer(token) {
-            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${this.parser.parse(
-              token.tokens,
-            )}\n</aside>`;
+            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">
+            ${
+              ['info', 'success', 'warning', 'error'].includes(token.severity)
+                ? [
+                    '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
+                    `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
+                    '</svg>',
+                  ].join('\n')
+                : ''
+            }
+            <div class="MuiCallout-content">
+            ${this.parser.parse(token.tokens)}\n</div></aside>`;
           },
         },
       ],
@@ -446,6 +465,12 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
   }
   if (productId === 'x-date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
+  }
+  if (productId === 'x-charts') {
+    return `/x/api/charts/${kebabCase(component)}/`;
+  }
+  if (productId === 'x-tree-view') {
+    return `/x/api/tree-view/${kebabCase(component)}/`;
   }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
@@ -610,6 +635,36 @@ ${headers.hooks
       </symbol>
       </svg>`);
 
+      // icons for callout (info, success, warning, error)
+
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="info-icon" viewBox="0 0 20 20">
+      <path d="M9.996 14c.21 0 .39-.072.535-.216a.72.72 0 0 0 .219-.534v-3.5a.728.728 0 0 0-.214-.534.72.72 0 0 0-.532-.216.734.734 0 0 0-.535.216.72.72 0 0 0-.219.534v3.5c0 .213.071.39.214.534a.72.72 0 0 0 .532.216Zm0-6.5c.21 0 .39-.071.535-.214a.714.714 0 0 0 .219-.532.736.736 0 0 0-.214-.535.714.714 0 0 0-.532-.219.736.736 0 0 0-.535.214.714.714 0 0 0-.219.532c0 .21.071.39.214.535.143.146.32.219.532.219Zm.01 10.5a7.81 7.81 0 0 1-3.11-.625 8.065 8.065 0 0 1-2.552-1.719 8.066 8.066 0 0 1-1.719-2.551A7.818 7.818 0 0 1 2 9.99c0-1.104.208-2.14.625-3.105a8.066 8.066 0 0 1 4.27-4.26A7.818 7.818 0 0 1 10.009 2a7.75 7.75 0 0 1 3.106.625 8.083 8.083 0 0 1 4.26 4.265A7.77 7.77 0 0 1 18 9.994a7.81 7.81 0 0 1-.625 3.11 8.066 8.066 0 0 1-1.719 2.552 8.083 8.083 0 0 1-2.546 1.719 7.77 7.77 0 0 1-3.104.625Z"/>
+      </symbol>
+      </svg>`,
+      );
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="success-icon" viewBox="0 0 20 20">
+      <path d="m8.938 10.875-1.25-1.23a.718.718 0 0 0-.521-.228.718.718 0 0 0-.521.229.73.73 0 0 0 0 1.062l1.77 1.771c.153.153.327.23.521.23a.718.718 0 0 0 .521-.23l3.896-3.896a.73.73 0 0 0 0-1.062.718.718 0 0 0-.52-.23.718.718 0 0 0-.521.23l-3.376 3.354ZM10 18a7.796 7.796 0 0 1-3.104-.625 8.065 8.065 0 0 1-2.552-1.719 8.064 8.064 0 0 1-1.719-2.552A7.797 7.797 0 0 1 2 10c0-1.111.208-2.15.625-3.115a8.064 8.064 0 0 1 4.27-4.26A7.797 7.797 0 0 1 10 2c1.111 0 2.15.208 3.115.625a8.096 8.096 0 0 1 4.26 4.26C17.792 7.851 18 8.89 18 10a7.797 7.797 0 0 1-.625 3.104 8.066 8.066 0 0 1-4.26 4.271A7.774 7.774 0 0 1 10 18Z"/>
+      </symbol>
+      </svg>`,
+      );
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="warning-icon" viewBox="0 0 20 20">
+      <path d="M2.33 17a.735.735 0 0 1-.665-.375.631.631 0 0 1-.094-.375.898.898 0 0 1 .115-.396L9.353 3.062a.621.621 0 0 1 .281-.27.85.85 0 0 1 .729 0 .622.622 0 0 1 .281.27l7.667 12.792c.07.125.108.257.114.396a.63.63 0 0 1-.093.375.842.842 0 0 1-.271.27.728.728 0 0 1-.394.105H2.33Zm7.664-2.5c.211 0 .39-.072.536-.214a.714.714 0 0 0 .218-.532.736.736 0 0 0-.214-.535.714.714 0 0 0-.531-.22.736.736 0 0 0-.536.215.714.714 0 0 0-.219.531c0 .212.072.39.215.536.143.146.32.219.531.219Zm0-2.5c.211 0 .39-.072.536-.216a.72.72 0 0 0 .218-.534v-2.5a.728.728 0 0 0-.214-.534.72.72 0 0 0-.531-.216.734.734 0 0 0-.536.216.72.72 0 0 0-.219.534v2.5c0 .212.072.39.215.534a.72.72 0 0 0 .531.216Z"/>
+      </symbol>
+      </svg>`,
+      );
+      rendered.unshift(
+        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="error-icon" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M2 7.4v5.2a2 2 0 0 0 .586 1.414l3.4 3.4A2 2 0 0 0 7.4 18h5.2a2 2 0 0 0 1.414-.586l3.4-3.4A2 2 0 0 0 18 12.6V7.4a2 2 0 0 0-.586-1.414l-3.4-3.4A2 2 0 0 0 12.6 2H7.4a2 2 0 0 0-1.414.586l-3.4 3.4A2 2 0 0 0 2 7.4Zm11.03-.43a.75.75 0 0 1 0 1.06L11.06 10l1.97 1.97a.75.75 0 1 1-1.06 1.06L10 11.06l-1.97 1.97a.75.75 0 0 1-1.06-1.06L8.94 10 6.97 8.03a.75.75 0 0 1 1.06-1.06L10 8.94l1.97-1.97a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/>
+      </symbol>
+      </svg>`,
+      );
       docs[userLanguage] = {
         description,
         location,

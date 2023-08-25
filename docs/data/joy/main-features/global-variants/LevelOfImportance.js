@@ -24,7 +24,7 @@ export default function LevelOfImportance() {
       <Box
         sx={{
           border: '1px solid',
-          borderColor: 'background.level2',
+          borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
           alignSelf: 'center',
           maxWidth: '100%',
           minWidth: { xs: 220, sm: 360 },
@@ -41,7 +41,7 @@ export default function LevelOfImportance() {
             alignItems: 'center',
             p: 2,
             borderBottom: '1px solid',
-            borderColor: 'background.level2',
+            borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
           }}
         >
           <Typography level="h2" fontSize="md">
@@ -57,7 +57,7 @@ export default function LevelOfImportance() {
             sx={{
               borderRadius: 'md',
               overflow: 'auto',
-              borderColor: 'background.level2',
+              borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
               bgcolor: 'background.level1',
             }}
           >
@@ -69,7 +69,7 @@ export default function LevelOfImportance() {
                 display: 'flex',
                 p: 1.5,
                 gap: 1.5,
-                '& > button': { bgcolor: 'background.body' },
+                '& > button': { bgcolor: 'background.surface' },
               }}
             >
               <IconButton
@@ -97,7 +97,7 @@ export default function LevelOfImportance() {
             display: 'flex',
             p: 2,
             borderTop: '1px solid',
-            borderColor: 'background.level2',
+            borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
             gap: 1,
           }}
         >
