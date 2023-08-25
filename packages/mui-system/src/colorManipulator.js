@@ -68,9 +68,8 @@ export function decomposeColor(color) {
 
   if (['rgb', 'rgba', 'hsl', 'hsla', 'color'].indexOf(type) === -1) {
     throw new Error(
-      'MUI: Unsupported `%s` color.\n' +
+      `MUI: Unsupported \`${color}\` color.n` +
         'The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-      color,
     );
   }
 
@@ -85,9 +84,8 @@ export function decomposeColor(color) {
     }
     if (['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].indexOf(colorSpace) === -1) {
       throw new Error(
-        'MUI: unsupported `%s` color space.\n' +
+        `MUI: unsupported \`${colorSpace}\` color space.\n` +
           'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
-        colorSpace,
       );
     }
   } else {

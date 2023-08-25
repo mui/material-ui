@@ -66,9 +66,8 @@ export function decomposeColor(color) {
 
   if (['rgb', 'rgba', 'hsl', 'hsla', 'color'].indexOf(type) === -1) {
     throw new Error(
-      'MUI: Unsupported `%s` color.\n' +
+      `MUI: Unsupported \`${color}\` color.\n` +
         'The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-      color,
     );
   }
 

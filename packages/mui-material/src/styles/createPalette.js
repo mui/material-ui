@@ -224,17 +224,17 @@ export default function createPalette(palette) {
 
     if (!color.hasOwnProperty('main')) {
       throw new Error(
-        'MUI: The color%s provided to augmentColor(color) is invalid.\n' +
-          'The color object needs to have a `main` property or a `%s` property.',
-        name ? ` (${name})` : '',
-        mainShade,
+        `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.\n` +
+          `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
       );
     }
 
     if (typeof color.main !== 'string') {
       throw new Error(
-        'MUI: The color%s provided to augmentColor(color) is invalid.\n' +
-          '`color.main` should be a string, but `%s` was provided instead.\n' +
+        `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.\n` +
+          `\`color.main\` should be a string, but \`${JSON.stringify(
+            color.main,
+          )}\` was provided instead.\n` +
           '\n' +
           'Did you intend to use one of the following approaches?\n' +
           '\n' +
@@ -247,8 +247,6 @@ export default function createPalette(palette) {
           'const theme2 = createTheme({ palette: {\n' +
           '  primary: { main: green[500] },\n' +
           '} });',
-        name ? ` (${name})` : '',
-        JSON.stringify(color.main),
       );
     }
 
