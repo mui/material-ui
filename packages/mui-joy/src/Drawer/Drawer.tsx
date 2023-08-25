@@ -67,35 +67,32 @@ export const DrawerContent = styled(SheetRoot as unknown as 'div', {
   slot: 'Content',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: DrawerOwnerState }>(({ theme, ownerState }) => ({
-  '--DrawerContent-radius': 0,
   ...(ownerState.size === 'sm' && {
-    '--DrawerContent-padding': theme.spacing(2),
-    '--DrawerContent-gap': theme.spacing(0.75),
-    '--DrawerContent-titleOffset': theme.spacing(0.25),
-    '--DrawerContent-descriptionOffset': theme.spacing(0.25),
-    '--ModalClose-inset': theme.spacing(1.25),
+    '--Drawer-contentPadding': theme.spacing(2),
+    '--Drawer-contentGap': theme.spacing(0.75),
+    '--Drawer-contentTitleOffset': theme.spacing(0.25),
+    '--Drawer-contentDescriptionOffset': theme.spacing(0.25),
+    '--Drawer-contentMinWidth': theme.spacing(30),
   }),
   ...(ownerState.size === 'md' && {
-    '--DrawerContent-padding': theme.spacing(2.5),
-    '--DrawerContent-gap': theme.spacing(1.5),
-    '--DrawerContent-titleOffset': theme.spacing(0.25),
-    '--DrawerContent-descriptionOffset': theme.spacing(0.75),
-    '--ModalClose-inset': theme.spacing(1.5),
+    '--Drawer-contentPadding': theme.spacing(2.5),
+    '--Drawer-contentGap': theme.spacing(1.5),
+    '--Drawer-contentTitleOffset': theme.spacing(0.25),
+    '--Drawer-contentDescriptionOffset': theme.spacing(0.75),
+    '--Drawer-contentMinWidth': theme.spacing(35),
   }),
   ...(ownerState.size === 'lg' && {
-    '--DrawerContent-padding': theme.spacing(3),
-    '--DrawerContent-gap': theme.spacing(2),
-    '--DrawerContent-titleOffset': theme.spacing(0.5),
-    '--DrawerContent-descriptionOffset': theme.spacing(1),
-    '--ModalClose-inset': theme.spacing(1.5),
+    '--Drawer-contentPadding': theme.spacing(3),
+    '--Drawer-contentGap': theme.spacing(2),
+    '--Drawer-contentTitleOffset': theme.spacing(0.5),
+    '--Drawer-contentDescriptionOffset': theme.spacing(1),
+    '--Drawer-contentMinWidth': theme.spacing(40),
   }),
   boxShadow: theme.shadow.md,
-  borderRadius: 'var(--DrawerContent-radius)',
-  fontFamily: theme.vars.fontFamily.body,
-  lineHeight: theme.vars.lineHeight.md,
-  padding: 'var(--DrawerContent-padding)',
+  ...theme.typography[`body-${ownerState.size!}`],
+  padding: 'var(--Drawer-contentPadding)',
   minWidth:
-    'min(calc(100vw - 2 * var(--DrawerContent-padding)), var(--DrawerContent-minWidth, 240px))',
+    'min(calc(100vw - 2 * var(--Drawer-contentPadding)), var(--Drawer-contentMinWidth, 240px))',
   outline: 0,
   display: 'flex',
   flexDirection: 'column',
@@ -124,22 +121,6 @@ export const DrawerContent = styled(SheetRoot as unknown as 'div', {
   width: ownerState.anchor!.match(/(top|bottom)/) ? '100vw' : 'auto',
   transition: 'transform 0.3s ease',
 }));
-
-const oppositeDirection = {
-  left: 'right',
-  right: 'left',
-  top: 'down',
-  bottom: 'up',
-};
-
-export function isHorizontal(anchor: DrawerProps['anchor']) {
-  return ['left', 'right'].indexOf(anchor!) !== -1;
-}
-
-export function getAnchor(theme: Theme, anchor: DrawerProps['anchor']) {
-  // @ts-ignore TODO: How is the direction set in Joy UI?
-  return theme.direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
-}
 
 /**
  * The navigation drawers (or "sidebars") provide ergonomic access to destinations in a site or app functionality such as switching accounts.

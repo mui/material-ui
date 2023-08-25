@@ -43,12 +43,10 @@ function Demo(props) {
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem key={text}>
             <ListItemButton>
-              <ListItemButton>
-                <ListItemDecorator>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemDecorator>
-                <ListItemContent>{text}</ListItemContent>
-              </ListItemButton>
+              <ListItemDecorator>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemDecorator>
+              <ListItemContent>{text}</ListItemContent>
             </ListItemButton>
           </ListItem>
         ))}
@@ -58,12 +56,10 @@ function Demo(props) {
         {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem key={text}>
             <ListItemButton>
-              <ListItemButton>
-                <ListItemDecorator>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemDecorator>
-                <ListItemContent>{text}</ListItemContent>
-              </ListItemButton>
+              <ListItemDecorator>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemDecorator>
+              <ListItemContent>{text}</ListItemContent>
             </ListItemButton>
           </ListItem>
         ))}

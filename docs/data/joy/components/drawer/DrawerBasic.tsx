@@ -1,26 +1,28 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Drawer from '@mui/joy/Drawer';
-import ButtonGroup from '@mui/joy/ButtonGroup';
-import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import Divider from '@mui/joy/Divider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import { styled } from '@mui/joy/styles';
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
+interface Props {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window?: () => Window;
+}
 
-export default function DrawerBasic() {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
+export default function DrawerBasic(props: Props) {
+  const { window } = props;
+  const [open, setOpen] = React.useState(false);
 
   const toggleDrawer =
-    (anchor: Anchor, open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
+    (inOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
         event.type === 'keydown' &&
         ((event as React.KeyboardEvent).key === 'Tab' ||
@@ -29,53 +31,58 @@ export default function DrawerBasic() {
         return;
       }
 
-      setState({ ...state, [anchor]: open });
+      setOpen(inOpen);
     };
 
-  const list = (anchor: Anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250, m: 3 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
-          <ListItem key={text}>
-            <ListItemButton>{text}</ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text) => (
-          <ListItem key={text}>
-            <ListItemButton>{text}</ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <React.Fragment>
-      <ButtonGroup variant="outlined">
-        {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => (
-          <Button key={anchor} onClick={toggleDrawer(anchor, true)}>
-            {anchor}
-          </Button>
-        ))}
-      </ButtonGroup>
-      {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => (
-        <Drawer
-          key={anchor}
-          anchor={anchor}
-          open={state[anchor]}
-          onClose={toggleDrawer(anchor, false)}
+    <Box sx={{ display: 'flex' }}>
+      <AppBar>
+        <IconButton variant="solid" color="primary" onClick={toggleDrawer(true)}>
+          <MenuIcon />
+        </IconButton>
+      </AppBar>
+      <Drawer container={container} open={open} onClose={toggleDrawer(false)}>
+        <Box
+          sx={{ width: 240, m: 3 }}
+          role="presentation"
+          onClick={toggleDrawer(false)}
+          onKeyDown={toggleDrawer(false)}
         >
-          {list(anchor)}
-        </Drawer>
-      ))}
-    </React.Fragment>
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
+              <ListItem key={text}>
+                <ListItemButton>{text}</ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text) => (
+              <ListItem key={text}>
+                <ListItemButton>{text}</ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Drawer>
+    </Box>
   );
 }
+
+const AppBar = styled('header')(({ theme }) => ({
+  minHeight: 48,
+  padding: theme.spacing(0.5),
+  display: 'flex',
+  flexDirection: 'row',
+  width: '100%',
+  boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
+  flexShrink: 0,
+  position: 'fixed',
+  top: 0,
+  left: 'auto',
+  right: 0,
+  zIndex: 10,
+  ...theme.variants.solid.primary,
+}));

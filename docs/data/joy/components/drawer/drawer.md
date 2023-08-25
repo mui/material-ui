@@ -20,4 +20,18 @@ The navigation drawers can toggle open or closed. Closed by default, the drawer 
 The Drawer can be cancelled by clicking the overlay or pressing the Esc key.
 It closes when an item is selected, handled by controlling the `open` prop.
 
-{{"demo": "DrawerBasic.js"}}
+{{"demo": "DrawerBasic.js", "iframe": true}}
+
+## Customization
+
+### Anchor
+
+You can use the `anchor` prop for specifying where the drawer should appear from.
+
+{{"demo": "DrawerAnchor.js"}}
+
+### Size
+
+The `size` prop allows you to adjust the size of the drawer.
+
+{{"demo": "DrawerSize.js"}}
