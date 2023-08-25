@@ -1,5 +1,5 @@
 import { deepmerge } from '@mui/utils';
-import MuiError from '@mui/utils/macros/MuiError.macro';
+
 import { darken, getContrastRatio, lighten } from '@mui/system';
 import common from '../colors/common';
 import grey from '../colors/grey';
@@ -223,7 +223,7 @@ export default function createPalette(palette) {
     }
 
     if (!color.hasOwnProperty('main')) {
-      throw new MuiError(
+      throw new Error(
         'MUI: The color%s provided to augmentColor(color) is invalid.\n' +
           'The color object needs to have a `main` property or a `%s` property.',
         name ? ` (${name})` : '',
@@ -232,7 +232,7 @@ export default function createPalette(palette) {
     }
 
     if (typeof color.main !== 'string') {
-      throw new MuiError(
+      throw new Error(
         'MUI: The color%s provided to augmentColor(color) is invalid.\n' +
           '`color.main` should be a string, but `%s` was provided instead.\n' +
           '\n' +

@@ -1,5 +1,3 @@
-import MuiError from '../../macros/MuiError.macro';
-
 // It should to be noted that this function isn't equivalent to `text-transform: capitalize`.
 //
 // A strict capitalization should uppercase the first letter of each word in the sentence.

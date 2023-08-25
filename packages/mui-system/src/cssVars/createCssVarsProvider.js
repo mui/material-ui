@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import MuiError from '@mui/utils/macros/MuiError.macro';
+
 import { deepmerge } from '@mui/utils';
 import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
@@ -51,7 +51,7 @@ export default function createCssVarsProvider(options) {
   const useColorScheme = () => {
     const value = React.useContext(ColorSchemeContext);
     if (!value) {
-      throw new MuiError('MUI: `useColorScheme` must be called under <CssVarsProvider />');
+      throw new Error('MUI: `useColorScheme` must be called under <CssVarsProvider />');
     }
     return value;
   };

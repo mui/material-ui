@@ -4,7 +4,7 @@ import {
   unstable_defaultSxConfig as defaultSxConfig,
   unstable_styleFunctionSx as styleFunctionSx,
 } from '@mui/system';
-import MuiError from '@mui/utils/macros/MuiError.macro';
+
 import generateUtilityClass from '../generateUtilityClass';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
@@ -26,7 +26,7 @@ function createTheme(options = {}, ...args) {
   } = options;
 
   if (options.vars) {
-    throw new MuiError(
+    throw new Error(
       'MUI: `vars` is a private field used for CSS variables support.\n' +
         'Please use another name.',
     );
