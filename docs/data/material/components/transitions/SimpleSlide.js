@@ -36,7 +36,9 @@ export default function SimpleSlide() {
           label="Show"
         />
         <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
-          {icon}
+          <Box sx={{ position: "relative", zIndex: 1 }}>
+            {icon}
+          </Box>
         </Slide>
       </Box>
     </Box>
