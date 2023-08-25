@@ -84,6 +84,8 @@ export default function GoldSponsors() {
             background: `linear-gradient(90deg, ${
               (theme.vars || theme).palette.warning[400]
             } 50%, ${(theme.vars || theme).palette.warning[700]} 100%)`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
           }),
         })}
       >
