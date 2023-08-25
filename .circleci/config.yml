@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
-  aws-s3: circleci/aws-s3@4.0.0
+  aws-cli: circleci/aws-cli@4.0
+  aws-s3: circleci/aws-s3@4.0
 
 parameters:
   browserstack-force:
@@ -687,11 +688,12 @@ jobs:
                 pattern: '^pull/.+$'
                 value: << pipeline.git.branch >>
           steps:
-            # Upload distributables to S3
-            - aws-s3/copy:
+            - aws-cli/setup:
                 aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
                 region: AWS_REGION_ARTIFACTS
                 aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+            # Upload distributables to S3
+            - aws-s3/copy:
                 from: mui-material.tgz
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
       - store_artifacts:
@@ -715,20 +717,18 @@ jobs:
                 pattern: '^pull/.+$'
                 value: << pipeline.git.branch >>
           steps:
-            # persist size snapshot on S3
-            - aws-s3/copy:
-                arguments: --content-type application/json
+            - aws-cli/setup:
                 aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
                 region: AWS_REGION_ARTIFACTS
                 aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+            # persist size snapshot on S3
+            - aws-s3/copy:
+                arguments: --content-type application/json
                 from: size-snapshot.json
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
             # symlink size-snapshot to latest
             - aws-s3/copy:
                 arguments: --content-type application/json
-                aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                region: AWS_REGION_ARTIFACTS
-                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: size-snapshot.json
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
       - run:
