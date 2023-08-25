@@ -14,7 +14,9 @@ function deepClone<T>(source: T): T | Record<keyof any, unknown> {
   const output: Record<keyof any, unknown> = {};
 
   Object.keys(source).forEach((key) => {
-    output[key] = deepClone(source[key]);
+    if (key !== '__emotion_real') {
+      output[key] = deepClone(source[key]);
+    }
   });
 
   return output;
