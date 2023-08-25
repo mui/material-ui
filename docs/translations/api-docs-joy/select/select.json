@@ -43,6 +43,9 @@
     "renderValue": {
       "description": "Function that customizes the rendering of the selected value."
     },
+    "required": {
+      "description": "If <code>true</code>, the Select cannot be empty when submitting form."
+    },
     "size": { "description": "The size of the component." },
     "slots": { "description": "The components used for each slot inside." },
     "startDecorator": { "description": "Leading adornment for the select." },
