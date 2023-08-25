@@ -73,7 +73,7 @@ const code = `
   </Box>
 </Card>`;
 
-const startLine = [32, 25, 5];
+const startLine = [32, 25, 6];
 const endLine = [44, 30, 8];
 const scrollTo = [540, 320, 0];
 
