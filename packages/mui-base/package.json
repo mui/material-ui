@@ -43,14 +43,14 @@
   "dependencies": {
     "@babel/runtime": "^7.22.10",
     "@floating-ui/react-dom": "^2.0.1",
-    "@mui/types": "workspace:*",
-    "@mui/utils": "workspace:*",
+    "@mui/types": "workspace:^",
+    "@mui/utils": "workspace:^",
     "@popperjs/core": "^2.11.8",
     "clsx": "^2.0.0",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui/material": "workspace:*",
+    "@mui/material": "workspace:^",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/chai": "^4.3.5",
@@ -64,7 +64,7 @@
     "react-dom": "^18.2.0",
     "react": "^18.2.0",
     "sinon": "^15.2.0",
-    "test": "workspace:*"
+    "test": "workspace:^"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",

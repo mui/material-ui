@@ -41,10 +41,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.22.10",
-    "@mui/private-theming": "workspace:*",
-    "@mui/styled-engine": "workspace:*",
-    "@mui/types": "workspace:*",
-    "@mui/utils": "workspace:*",
+    "@mui/private-theming": "workspace:^",
+    "@mui/styled-engine": "workspace:^",
+    "@mui/types": "workspace:^",
+    "@mui/utils": "workspace:^",
     "clsx": "^2.0.0",
     "csstype": "^3.1.2",
     "prop-types": "^15.8.1"
@@ -54,7 +54,7 @@
     "@emotion/styled": "^11.3.0",
     "@mui/joy": "workspace:*",
     "@mui/material-next": "workspace:*",
-    "@mui/material": "workspace:*",
+    "@mui/material": "workspace:^",
     "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.20",
@@ -66,7 +66,7 @@
     "react": "^18.2.0",
     "sinon": "^15.2.0",
     "styled-components": "^5.3.11",
-    "test": "workspace:*"
+    "test": "workspace:^"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

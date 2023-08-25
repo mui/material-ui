@@ -79,16 +79,16 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0(enzyme@3.11.0)(react-dom@18.2.0)(react@18.2.0)
       '@mui-internal/docs-utilities':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:packages/docs-utilities
       '@mui/joy':
         specifier: workspace:*
         version: link:packages/mui-joy
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:packages/mui-material
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:packages/mui-utils
       '@octokit/rest':
         specifier: ^20.0.1
@@ -208,7 +208,7 @@ importers:
         specifier: ^6.7.1
         version: 6.7.1(eslint@8.47.0)
       eslint-plugin-material-ui:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:packages/eslint-plugin-material-ui
       eslint-plugin-mocha:
         specifier: ^10.1.0
@@ -316,7 +316,7 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
       typescript-to-proptypes:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:packages/typescript-to-proptypes
       webpack:
         specifier: ^5.88.2
@@ -346,13 +346,13 @@ importers:
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.20)(react@18.2.0)
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-material
       '@mui/styles':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-styles
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-system
       '@styled-system/css':
         specifier: ^5.1.5
@@ -361,7 +361,7 @@ importers:
         specifier: ^2.1.4
         version: 2.1.4
       docs:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../docs
       express:
         specifier: ^4.18.2
@@ -454,10 +454,10 @@ importers:
         specifier: workspace:*
         version: link:../packages/mui-base
       '@mui/docs':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-docs
       '@mui/icons-material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-icons-material
       '@mui/joy':
         specifier: workspace:*
@@ -466,31 +466,31 @@ importers:
         specifier: workspace:*
         version: link:../packages/mui-lab
       '@mui/markdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/markdown
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-material
       '@mui/material-next':
         specifier: workspace:*
         version: link:../packages/mui-material-next
       '@mui/styled-engine':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-styled-engine
       '@mui/styled-engine-sc':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-styled-engine-sc
       '@mui/styles':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-styles
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-system
       '@mui/types':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-types
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-utils
       '@mui/x-charts':
         specifier: ^6.0.0-alpha.7
@@ -722,7 +722,7 @@ importers:
         specifier: ^7.22.5
         version: 7.22.5(@babel/core@7.22.10)
       '@mui-internal/docs-utilities':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/docs-utilities
       '@types/chai':
         specifier: ^4.3.5
@@ -764,10 +764,10 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3(ts-node@10.9.1)
       test:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../test
       typescript-to-proptypes:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/typescript-to-proptypes
       yargs:
         specifier: ^17.7.2
@@ -785,19 +785,19 @@ importers:
         specifier: ^7.22.10
         version: 7.22.10
       '@mui-internal/docs-utilities':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../docs-utilities
       '@mui/markdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../markdown
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils
       ast-types:
         specifier: ^0.14.2
         version: 0.14.2
       docs:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../docs
       doctrine:
         specifier: ^3.0.0
@@ -930,10 +930,10 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1(react-dom@18.2.0)(react@18.2.0)
       '@mui/types':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-types
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils
       '@popperjs/core':
         specifier: ^2.11.8
@@ -946,7 +946,7 @@ importers:
         version: 15.8.1
     devDependencies:
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material
       '@testing-library/react':
         specifier: ^14.0.0
@@ -988,7 +988,7 @@ importers:
         specifier: ^15.2.0
         version: 15.2.0
       test:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../test
 
   packages/mui-codemod:
@@ -1033,10 +1033,10 @@ importers:
         specifier: workspace:*
         version: link:../mui-base
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils
       nprogress:
         specifier: ^0.2.0
@@ -1074,11 +1074,11 @@ importers:
         specifier: ^7.22.10
         version: 7.22.10
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material
     devDependencies:
       '@mui/internal-waterfall':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../waterfall
       '@types/chai':
         specifier: ^4.3.5
@@ -1138,16 +1138,16 @@ importers:
         specifier: workspace:*
         version: link:../mui-base
       '@mui/core-downloads-tracker':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-core-downloads-tracker
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-system
       '@mui/types':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-types
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils
       '@types/react-dom':
         specifier: ^17.0.0 || ^18.0.0
@@ -1160,7 +1160,7 @@ importers:
         version: 15.8.1
     devDependencies:
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material
       '@types/chai':
         specifier: ^4.3.5
@@ -1196,7 +1196,7 @@ importers:
         specifier: ^15.2.0
         version: 15.2.0
       test:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../test
 
   packages/mui-lab:
@@ -1214,16 +1214,16 @@ importers:
         specifier: workspace:*
         version: link:../mui-base
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-system
       '@mui/types':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-types
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils
       clsx:
         specifier: ^2.0.0
@@ -1260,7 +1260,7 @@ importers:
         specifier: ^15.2.0
         version: 15.2.0
       test:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../test
 
   packages/mui-material:
@@ -1278,16 +1278,16 @@ importers:
         specifier: workspace:*
         version: link:../mui-base
       '@mui/core-downloads-tracker':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-core-downloads-tracker
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-system
       '@mui/types':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-types
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils
       '@types/react-transition-group':
         specifier: ^4.4.6
@@ -1309,13 +1309,13 @@ importers:
         version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@mui/icons-material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-icons-material
       '@mui/lab':
         specifier: workspace:*
         version: link:../mui-lab
       '@mui/styles':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-styles
       '@popperjs/core':
         specifier: ^2.11.8
@@ -1390,7 +1390,7 @@ importers:
         specifier: ^15.2.0
         version: 15.2.0
       test:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../test
 
   packages/mui-material-next:
@@ -1408,16 +1408,16 @@ importers:
         specifier: workspace:*
         version: link:../mui-base
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-system
       '@mui/types':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-types
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils
       '@types/react-transition-group':
         specifier: ^4.4.6
@@ -1466,7 +1466,7 @@ importers:
         specifier: ^15.2.0
         version: 15.2.0
       test:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../test
 
   packages/mui-private-theming:
@@ -1475,20 +1475,20 @@ importers:
         specifier: ^7.22.10
         version: 7.22.10
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material
       '@mui/styles':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-styles
       '@mui/types':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-types
       '@types/chai':
         specifier: ^4.3.5
@@ -1503,7 +1503,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       test:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../test
 
   packages/mui-styled-engine:
@@ -1540,7 +1540,7 @@ importers:
         specifier: ^4.3.7
         version: 4.3.7
       test:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../test
 
   packages/mui-styled-engine-sc:
@@ -1574,7 +1574,7 @@ importers:
         specifier: ^5.3.1
         version: 5.3.11(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
       test:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../test
 
   packages/mui-styles:
@@ -1586,13 +1586,13 @@ importers:
         specifier: ^0.9.1
         version: 0.9.1
       '@mui/private-theming':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-private-theming
       '@mui/types':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-types
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils
       clsx:
         specifier: ^2.0.0
@@ -1635,7 +1635,7 @@ importers:
         specifier: workspace:*
         version: link:../mui-joy
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material
       '@types/chai':
         specifier: ^4.3.5
@@ -1659,7 +1659,7 @@ importers:
         specifier: ^15.2.0
         version: 15.2.0
       test:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../test
 
   packages/mui-system:
@@ -1668,16 +1668,16 @@ importers:
         specifier: ^7.22.10
         version: 7.22.10
       '@mui/private-theming':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-private-theming
       '@mui/styled-engine':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-styled-engine
       '@mui/types':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-types
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils
       clsx:
         specifier: ^2.0.0
@@ -1699,7 +1699,7 @@ importers:
         specifier: workspace:*
         version: link:../mui-joy
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material
       '@mui/material-next':
         specifier: workspace:*
@@ -1738,7 +1738,7 @@ importers:
         specifier: ^5.3.11
         version: 5.3.11(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
       test:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../test
 
   packages/mui-types:
@@ -1763,7 +1763,7 @@ importers:
         specifier: ^7.22.5
         version: 7.22.5
       '@mui/types':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-types
       '@types/babel-plugin-macros':
         specifier: ^3.1.0
@@ -1811,7 +1811,7 @@ importers:
         specifier: ^15.2.0
         version: 15.2.0
       test:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../test
 
   packages/netlify-plugin-cache-docs:
@@ -1954,14 +1954,14 @@ importers:
         specifier: ^4.5.3
         version: 4.5.3
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-system
       lodash.get:
         specifier: ^4.4.2
         version: 4.4.2
     devDependencies:
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material
       '@types/babel__core':
         specifier: ^7.20.1
@@ -2009,7 +2009,7 @@ importers:
         specifier: workspace:*
         version: link:../packages/mui-base
       '@mui/icons-material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-icons-material
       '@mui/joy':
         specifier: workspace:*
@@ -2018,16 +2018,16 @@ importers:
         specifier: workspace:*
         version: link:../packages/mui-lab
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-material
       '@mui/material-next':
         specifier: workspace:*
         version: link:../packages/mui-material-next
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-system
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-utils
       '@playwright/test':
         specifier: 1.37.1
@@ -2075,7 +2075,7 @@ importers:
         specifier: ^1.11.0
         version: 1.11.0(chai@4.3.7)(mocha@10.2.0)
       docs:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../docs
       dom-accessibility-api:
         specifier: ^0.6.1

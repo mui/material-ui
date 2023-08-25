@@ -40,15 +40,15 @@
   "dependencies": {
     "@babel/runtime": "^7.22.10",
     "@mui/base": "workspace:*",
-    "@mui/core-downloads-tracker": "workspace:*",
-    "@mui/system": "workspace:*",
-    "@mui/types": "workspace:*",
-    "@mui/utils": "workspace:*",
+    "@mui/core-downloads-tracker": "workspace:^",
+    "@mui/system": "workspace:^",
+    "@mui/types": "workspace:^",
+    "@mui/utils": "workspace:^",
     "clsx": "^2.0.0",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui/material": "workspace:*",
+    "@mui/material": "workspace:^",
     "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.20",
@@ -60,7 +60,7 @@
     "react-dom": "^18.2.0",
     "react": "^18.2.0",
     "sinon": "^15.2.0",
-    "test": "workspace:*"
+    "test": "workspace:^"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

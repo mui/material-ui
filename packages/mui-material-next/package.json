@@ -42,10 +42,10 @@
   "dependencies": {
     "@babel/runtime": "^7.22.10",
     "@mui/base": "workspace:*",
-    "@mui/material": "workspace:*",
-    "@mui/system": "workspace:*",
-    "@mui/types": "workspace:*",
-    "@mui/utils": "workspace:*",
+    "@mui/material": "workspace:^",
+    "@mui/system": "workspace:^",
+    "@mui/types": "workspace:^",
+    "@mui/utils": "workspace:^",
     "@types/react-transition-group": "^4.4.6",
     "clsx": "^2.0.0",
     "prop-types": "^15.8.1",
@@ -63,7 +63,7 @@
     "react-router-dom": "^6.15.0",
     "react": "^18.2.0",
     "sinon": "^15.2.0",
-    "test": "workspace:*"
+    "test": "workspace:^"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

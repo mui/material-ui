@@ -36,7 +36,7 @@
   "dependencies": {
     "@babel/runtime": "^7.22.10",
     "@mui/base": "workspace:*",
-    "@mui/utils": "workspace:*",
+    "@mui/utils": "workspace:^",
     "nprogress": "^0.2.0",
     "prop-types": "^15.8.1"
   },
@@ -45,7 +45,7 @@
     "react": "^18.2.0"
   },
   "peerDependencies": {
-    "@mui/material": "workspace:*",
+    "@mui/material": "workspace:^",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0"
   },

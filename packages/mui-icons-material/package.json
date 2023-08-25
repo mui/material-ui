@@ -49,7 +49,7 @@
     "@babel/runtime": "^7.22.10"
   },
   "devDependencies": {
-    "@mui/internal-waterfall": "workspace:*",
+    "@mui/internal-waterfall": "workspace:^",
     "@types/chai": "^4.3.5",
     "@types/react": "^18.2.20",
     "chai": "^4.3.7",
@@ -66,7 +66,7 @@
     "yargs": "^17.7.2"
   },
   "peerDependencies": {
-    "@mui/material": "workspace:*",
+    "@mui/material": "workspace:^",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0"
   },

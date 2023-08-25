@@ -39,18 +39,18 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.22.10",
-    "@mui/utils": "workspace:*",
+    "@mui/utils": "workspace:^",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui/material": "workspace:*",
-    "@mui/styles": "workspace:*",
-    "@mui/types": "workspace:*",
+    "@mui/material": "workspace:^",
+    "@mui/styles": "workspace:^",
+    "@mui/types": "workspace:^",
     "@types/chai": "^4.3.5",
     "@types/react": "^18.2.20",
     "chai": "^4.3.7",
     "react": "^18.2.0",
-    "test": "workspace:*"
+    "test": "workspace:^"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",

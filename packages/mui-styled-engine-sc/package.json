@@ -49,7 +49,7 @@
     "@types/styled-components": "^5.1.26",
     "chai": "^4.3.7",
     "styled-components": "^5.3.1",
-    "test": "workspace:*"
+    "test": "workspace:^"
   },
   "peerDependencies": {
     "@types/styled-components": "^5.1.14",

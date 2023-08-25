@@ -50,7 +50,7 @@
     "@types/chai": "^4.3.5",
     "@types/react": "^18.2.20",
     "chai": "^4.3.7",
-    "test": "workspace:*"
+    "test": "workspace:^"
   },
   "peerDependencies": {
     "@emotion/react": "^11.4.1",
