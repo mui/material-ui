@@ -36,7 +36,7 @@ function ActionArea(props: ButtonBaseProps) {
           },
           '& > svg': { transition: '0.2s' },
           backdropFilter: 'blur(4px)',
-          bgcolor: alpha(theme.palette.primaryDark[500], 0.5),
+          bgcolor: alpha(theme.palette.primary[500], 0.5),
           '&:hover, &:focus': {
             '& > svg': { fontSize: 28 },
           },
@@ -44,9 +44,6 @@ function ActionArea(props: ButtonBaseProps) {
           top: 'calc(50% - 50px)',
           color: '#fff',
           p: 1.5,
-          ...theme.applyDarkStyles({
-            bgcolor: alpha(theme.palette.primary[500], 0.5),
-          }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
@@ -169,7 +166,7 @@ export default function MaterialTemplates() {
         />
       </Group>
       <Frame sx={{ mt: 3 }}>
-        <Frame.Demo sx={{ minHeight: { xs: 240, sm: 320 }, height: { xs: 320, sm: 400, md: 600 } }}>
+        <Frame.Demo sx={{ minHeight: { xs: 240, sm: 320 }, height: { xs: 320, sm: 400, md: 500 } }}>
           <Box
             sx={{
               overflow: 'hidden',
@@ -202,7 +199,7 @@ export default function MaterialTemplates() {
                   sx={(theme) => ({
                     overflow: 'auto',
                     borderRadius: 1,
-                    height: { xs: 250, sm: 340, md: 550 },
+                    height: { xs: 250, sm: 320, md: 450 },
                     backgroundImage: `url(${item.src.light})`,
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
