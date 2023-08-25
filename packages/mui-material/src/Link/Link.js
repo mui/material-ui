@@ -60,6 +60,9 @@ const LinkRoot = styled(Typography, {
         textDecorationColor: 'inherit',
       },
     }),
+    '&:active': {
+      userSelect: 'none',
+    },
     // Same reset as ButtonBase.root
     ...(ownerState.component === 'button' && {
       position: 'relative',
