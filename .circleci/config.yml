@@ -228,7 +228,7 @@ jobs:
           name: 'Write "use client" directive'
           command: yarn rsc:build
       - run:
-          name: '`yarn rsc:build` changes detected, "use client" missing from exports'
+          name: '`yarn rsc:build` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
           name: Generate the documentation
