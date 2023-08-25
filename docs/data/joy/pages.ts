@@ -90,7 +90,7 @@ const pages: readonly MuiPage[] = [
         subheader: 'navigation',
         children: [
           { pathname: '/joy-ui/react-breadcrumbs' },
-          { pathname: '/joy-ui/react-drawer', planned: true },
+          { pathname: '/joy-ui/react-drawer', newFeature: true },
           { pathname: '/joy-ui/react-link' },
           { pathname: '/joy-ui/react-menu' },
           { pathname: '/joy-ui/react-tabs' },
