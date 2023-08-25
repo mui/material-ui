@@ -7,13 +7,13 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
-import { useThemeProps, Theme, styled, ColorInversionProvider, useColorInversion } from '../styles';
+import { useThemeProps, styled, ColorInversionProvider, useColorInversion } from '../styles';
 import { SheetRoot } from '../Sheet/Sheet';
 import { ModalBackdrop } from '../Modal/Modal';
 import CloseModalContext from '../Modal/CloseModalContext';
 import useSlot from '../utils/useSlot';
 import drawerClasses, { getDrawerUtilityClass } from './drawerClasses';
-import { DrawerProps, DrawerOwnerState, DrawerTypeMap } from './DrawerProps';
+import { DrawerOwnerState, DrawerTypeMap } from './DrawerProps';
 
 const useUtilityClasses = (ownerState: DrawerOwnerState) => {
   const { open, variant, color, size } = ownerState;
