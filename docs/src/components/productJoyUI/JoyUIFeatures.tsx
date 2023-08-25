@@ -5,17 +5,21 @@ import JoyBox from '@mui/joy/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
-import SvgIcon from '@mui/joy/SvgIcon';
 import { ColorPaletteProp, VariantProp } from '@mui/joy/styles';
+import JoyFormControl from '@mui/joy/FormControl';
+import JoyFormLabel from '@mui/joy/FormLabel';
+import JoySlider, { sliderClasses as joySliderClasses } from '@mui/joy/Slider';
+import JoySelect from '@mui/joy/Select';
+import JoyOption from '@mui/joy/Option';
+import JoySvgIcon from '@mui/joy/SvgIcon';
 import JoyButton from '@mui/joy/Button';
 import JoyCard from '@mui/joy/Card';
 import JoyChip from '@mui/joy/Chip';
 import JoyIconButton from '@mui/joy/IconButton';
 import JoyTypography from '@mui/joy/Typography';
+import JoySwitch from '@mui/joy/Switch';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -70,9 +74,9 @@ function GlobalVariantDemo() {
           alignItems: 'center',
         }}
       >
-        <FormControl>
-          <FormLabel>Screen</FormLabel>
-          <Select
+        <JoyFormControl>
+          <JoyFormLabel>Screen</JoyFormLabel>
+          <JoySelect
             variant={variant}
             color={color}
             placeholder="Choose an option"
@@ -88,8 +92,8 @@ function GlobalVariantDemo() {
               },
             }}
           >
-            <Option value="1">
-              <SvgIcon>
+            <JoyOption value="1">
+              <JoySvgIcon>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -104,11 +108,11 @@ function GlobalVariantDemo() {
                   <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
                   <path d="M12 18h.01" />
                 </svg>
-              </SvgIcon>
+              </JoySvgIcon>
               Smartphone
-            </Option>
-            <Option value="2">
-              <SvgIcon>
+            </JoyOption>
+            <JoyOption value="2">
+              <JoySvgIcon>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -124,11 +128,11 @@ function GlobalVariantDemo() {
                   <path d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4" />
                   <path d="M8 18h.01" />
                 </svg>
-              </SvgIcon>
+              </JoySvgIcon>
               Tablet
-            </Option>
-            <Option value="3">
-              <SvgIcon>
+            </JoyOption>
+            <JoyOption value="3">
+              <JoySvgIcon>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -142,11 +146,11 @@ function GlobalVariantDemo() {
                 >
                   <path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16" />
                 </svg>
-              </SvgIcon>
+              </JoySvgIcon>
               Laptop
-            </Option>
-          </Select>
-        </FormControl>
+            </JoyOption>
+          </JoySelect>
+        </JoyFormControl>
       </Frame.Demo>
       <Frame.Info
         data-mui-color-scheme="dark"
@@ -228,9 +232,9 @@ function CardDemo({ invertedColors }: { invertedColors?: boolean }) {
         size="sm"
         variant="soft"
         startDecorator={
-          <SvgIcon>
+          <JoySvgIcon>
             <path d="M19.46 8l.79-1.75L22 5.46a.5.5 0 000-.91l-1.75-.79L19.46 2a.5.5 0 00-.91 0l-.79 1.75-1.76.79a.5.5 0 000 .91l1.75.79.79 1.76c.18.39.74.39.92 0zM11.5 9.5L9.91 6c-.35-.78-1.47-.78-1.82 0L6.5 9.5 3 11.09c-.78.36-.78 1.47 0 1.82l3.5 1.59L8.09 18c.36.78 1.47.78 1.82 0l1.59-3.5 3.5-1.59c.78-.36.78-1.47 0-1.82L11.5 9.5zm7.04 6.5l-.79 1.75-1.75.79a.5.5 0 000 .91l1.75.79.79 1.76a.5.5 0 00.91 0l.79-1.75 1.76-.79a.5.5 0 000-.91l-1.75-.79-.79-1.76a.508.508 0 00-.92 0z" />
-          </SvgIcon>
+          </JoySvgIcon>
         }
         sx={{ alignSelf: 'flex-start', borderRadius: 'xl' }}
       >
@@ -402,6 +406,229 @@ function ColorInversionDemo() {
   );
 }
 
+function AutomaticAdjustment() {
+  const defaultJoyTrack = {
+    width: 48,
+    height: 24,
+    radius: 16,
+  };
+  const defaultJoyThumb = {
+    width: 16,
+    height: 16,
+    radius: 8,
+  };
+  const [joyTrack, setJoyTrack] = React.useState<{
+    width?: number;
+    height?: number;
+    radius?: number;
+  }>({});
+  const [joyThumb, setJoyThumb] = React.useState<{
+    width?: number;
+    height?: number;
+    radius?: number;
+  }>({});
+  return (
+    <Frame sx={{ height: '100%' }}>
+      <Frame.Demo sx={{ flexGrow: 1, display: 'grid', gridTemplateRows: 'auto 1fr auto' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, pt: 1.5 }}>
+          <JoyButton
+            variant="plain"
+            color="primary"
+            size="sm"
+            startDecorator={<AutoFixHighIcon />}
+            onClick={() => {
+              setJoyTrack({
+                width: Math.floor(Math.random() * (100 - 64 + 1)) + 64,
+                height: Math.floor(Math.random() * (56 - 24 + 1)) + 24,
+                radius: Math.floor(Math.random() * (20 - 0 + 1)) + 0,
+              });
+              setJoyThumb({
+                width: Math.floor(Math.random() * (48 - 20 + 1)) + 20,
+                height: Math.floor(Math.random() * (48 - 8 + 1)) + 8,
+                radius: undefined,
+              });
+            }}
+          >
+            Random
+          </JoyButton>
+          <JoyButton
+            variant="plain"
+            color="neutral"
+            size="sm"
+            startDecorator={<RestartAltIcon />}
+            onClick={() => {
+              setJoyTrack({});
+              setJoyThumb({});
+            }}
+          >
+            Reset
+          </JoyButton>
+        </Box>
+        <Box sx={{ placeSelf: 'center' }}>
+          <JoySwitch
+            sx={{
+              ...(joyTrack.width && { '--Switch-trackWidth': `${joyTrack.width}px` }),
+              ...(joyTrack.height && { '--Switch-trackHeight': `${joyTrack.height}px` }),
+              ...(joyTrack.radius && { '--Switch-trackRadius': `${joyTrack.radius}px` }),
+              ...(joyThumb.width && { '--Switch-thumbWidth': `${joyThumb.width}px` }),
+              ...(joyThumb.height && { '--Switch-thumbSize': `${joyThumb.height}px` }),
+              ...(joyThumb.radius && { '--Switch-thumbRadius': `${joyThumb.radius}px` }),
+            }}
+          />
+        </Box>
+        <Box
+          sx={{
+            borderTop: '1px solid',
+            borderColor: 'divider',
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+            px: 2,
+            pt: 1.5,
+            pb: 0.5,
+            rowGap: 2,
+            columnGap: 4,
+            alignItems: 'flex-start',
+            [`& label`]: {
+              minWidth: 48,
+            },
+            [`& .${joySliderClasses.root}`]: {
+              '--Slider-size': '36px',
+            },
+          }}
+        >
+          <Box>
+            <JoyTypography level="title-sm" sx={{ mb: 0.5 }}>
+              Track
+            </JoyTypography>
+
+            <JoyFormControl size="sm" orientation="horizontal">
+              <JoyFormLabel>Width: </JoyFormLabel>
+              <JoySlider
+                size="sm"
+                value={joyTrack.width ?? defaultJoyTrack.width}
+                min={40}
+                max={100}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(value) => `${value}px`}
+                onChange={(_, value) => {
+                  setJoyTrack((prev) => ({ ...prev, width: value as number }));
+                }}
+              />
+            </JoyFormControl>
+
+            <JoyFormControl size="sm" orientation="horizontal">
+              <JoyFormLabel>Height: </JoyFormLabel>
+              <JoySlider
+                size="sm"
+                value={joyTrack.height ?? defaultJoyTrack.height}
+                min={16}
+                max={64}
+                valueLabelDisplay="auto"
+                onChange={(_, value) => {
+                  setJoyTrack((prev) => ({ ...prev, height: value as number }));
+                }}
+              />
+            </JoyFormControl>
+
+            <JoyFormControl size="sm" orientation="horizontal">
+              <JoyFormLabel>Radius: </JoyFormLabel>
+              <JoySlider
+                size="sm"
+                value={joyTrack.radius ?? defaultJoyTrack.radius}
+                min={0}
+                max={20}
+                valueLabelDisplay="auto"
+                onChange={(_, value) => {
+                  setJoyTrack((prev) => ({ ...prev, radius: value as number }));
+                }}
+              />
+            </JoyFormControl>
+          </Box>
+
+          <Box>
+            <JoyTypography level="title-sm" sx={{ mb: 0.5 }}>
+              Thumb
+            </JoyTypography>
+            <JoyFormControl size="sm" orientation="horizontal">
+              <JoyFormLabel>Width: </JoyFormLabel>
+              <JoySlider
+                size="sm"
+                value={joyThumb.width ?? defaultJoyThumb.width}
+                min={12}
+                max={48}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(value) => `${value}px`}
+                onChange={(_, value) => {
+                  setJoyThumb((prev) => ({ ...prev, width: value as number }));
+                }}
+              />
+            </JoyFormControl>
+
+            <JoyFormControl size="sm" orientation="horizontal">
+              <JoyFormLabel>Height: </JoyFormLabel>
+              <JoySlider
+                size="sm"
+                value={joyThumb.height ?? defaultJoyThumb.height}
+                min={12}
+                max={48}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(value) => `${value}px`}
+                onChange={(_, value) => {
+                  setJoyThumb((prev) => ({ ...prev, height: value as number }));
+                }}
+              />
+            </JoyFormControl>
+
+            <JoyFormControl size="sm" orientation="horizontal">
+              <JoyFormLabel>Radius: </JoyFormLabel>
+              <JoySlider
+                size="sm"
+                value={joyThumb.radius ?? defaultJoyThumb.radius}
+                min={2}
+                max={24}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(value) => `${value}px`}
+                onChange={(_, value) => {
+                  setJoyThumb((prev) => ({ ...prev, radius: value as number }));
+                }}
+              />
+            </JoyFormControl>
+          </Box>
+        </Box>
+      </Frame.Demo>
+      <Frame.Info
+        data-mui-color-scheme="dark"
+        sx={{
+          minHeight: 220,
+          maxHeight: 450,
+          overflow: 'auto',
+        }}
+      >
+        <HighlightedCode
+          copyButtonHidden
+          component={MarkdownElement}
+          code={`<Switch${
+            Object.keys({ ...joyTrack, ...joyThumb }).length
+              ? `
+  sx={{${joyTrack.width ? `\n    '--Switch-trackWidth': '${joyTrack.width}px',` : ''}${
+                  joyTrack.height ? `\n    '--Switch-trackHeight': '${joyTrack.height}px',` : ''
+                }${joyTrack.radius ? `\n    '--Switch-trackRadius': '${joyTrack.radius}px',` : ''}${
+                  joyThumb.width ? `\n    '--Switch-thumbWidth': '${joyThumb.width}px',` : ''
+                }${joyThumb.height ? `\n    '--Switch-thumbSize': '${joyThumb.height}px',` : ''}${
+                  joyThumb.radius ? `\n    '--Switch-thumbRadius': '${joyThumb.radius}px',` : ''
+                }
+  }}
+/>`
+              : ' />'
+          }
+            `}
+          language="jsx"
+        />
+      </Frame.Info>
+    </Frame>
+  );
+}
+
 export default function JoyUIFeatures() {
   const [index, setIndex] = React.useState(0);
   function getSelectedProps(i: number) {
@@ -452,6 +679,7 @@ export default function JoyUIFeatures() {
         <Grid xs={12} md={6}>
           {index === 0 && <GlobalVariantDemo />}
           {index === 1 && <ColorInversionDemo />}
+          {index === 2 && <AutomaticAdjustment />}
         </Grid>
       </Grid>
     </Section>
