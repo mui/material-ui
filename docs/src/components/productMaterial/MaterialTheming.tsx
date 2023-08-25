@@ -52,7 +52,11 @@ const code = `
       </Typography>
     </Stack>
     <Stack direction="row" alignItems="center" spacing={1.5}>
-      <IconButton aria-label="shuffle" disabled size="small" sx={{ flexGrow: 0 }}>
+      <IconButton 
+        disabled 
+        aria-label="shuffle" 
+        size="small" 
+        sx={{ flexGrow: 0 }}>
         <ShuffleRoundedIcon fontSize="small" />
       </IconButton>
       <IconButton aria-label="fast rewind" disabled size="small">
