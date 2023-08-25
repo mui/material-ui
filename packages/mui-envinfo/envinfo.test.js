@@ -13,7 +13,7 @@ describe('@mui/envinfo', () => {
     }
 
     // Building might take some time
-    this.timeout(10000);
+    this.timeout(20000);
     execFileSync('pnpm', ['build'], {
       cwd: packagePath,
       stdio: 'pipe',
@@ -34,7 +34,7 @@ describe('@mui/envinfo', () => {
 
   it('includes info about the environment relevant to MUI', function test() {
     // Need more time to download packages
-    this.timeout(10000);
+    this.timeout(20000);
 
     const envinfoJSON = execEnvinfo(['--json']);
 
