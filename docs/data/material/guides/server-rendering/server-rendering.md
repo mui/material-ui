@@ -220,11 +220,8 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## Reference implementations
 
-We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui/material-ui) under the [`/examples`](https://github.com/mui/material-ui/tree/HEAD/examples) folder:
-
-- [The reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-express-ssr)
-- [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-gatsby)
-- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-ts))
+You can find different reference implementations in the GitHub repository under the [`/examples`](https://github.com/mui/material-ui/tree/HEAD/examples) folder.
+Here is [the reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-express-ssr) and [the others examples](/material-ui/getting-started/example-projects/).
 
 ## Troubleshooting
 

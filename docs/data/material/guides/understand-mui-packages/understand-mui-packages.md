@@ -22,7 +22,6 @@ The following is an up-to-date list of `@mui` public packages.
 - `@mui/system`
 - `@mui/styled-engine`
 - `@mui/styled-engine-sc`
-- `@mui/styles`
 
 ### Understanding MUI's products
 
