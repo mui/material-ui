@@ -6,7 +6,7 @@ export interface DeepmergeOptions {
   clone?: boolean;
 }
 
-function deepClone<T>(source: T, seen = new Set()): T | Record<keyof any, unknown> {
+function deepClone<T>(source: T, visited = new Set()): T | Record<keyof any, unknown> {
   if (!isPlainObject(source)) {
     return source;
   }
@@ -14,11 +14,11 @@ function deepClone<T>(source: T, seen = new Set()): T | Record<keyof any, unknow
   const output: Record<keyof any, unknown> = {};
 
   Object.keys(source).forEach((key) => {
-    if (!seen.has(source[key])) {
+    if (!visited.has(source[key])) {
       if (typeof source[key] === 'object') {
-        seen.add(source[key]);
+        visited.add(source[key]);
       }
-      output[key] = deepClone(source[key], seen);
+      output[key] = deepClone(source[key], visited);
     }
   });
 
