@@ -6,7 +6,7 @@ export interface DeepmergeOptions {
   clone?: boolean;
 }
 
-function deepClone<T>(source: T): T | Record<keyof any, unknown> {
+function deepClone<T>(source: T, seen = new Set()): T | Record<keyof any, unknown> {
   if (!isPlainObject(source)) {
     return source;
   }
@@ -14,8 +14,11 @@ function deepClone<T>(source: T): T | Record<keyof any, unknown> {
   const output: Record<keyof any, unknown> = {};
 
   Object.keys(source).forEach((key) => {
-    if (key !== '__emotion_real') {
-      output[key] = deepClone(source[key]);
+    if (!seen.has(source[key])) {
+      if (typeof source[key] === 'object') {
+        seen.add(source[key]);
+      }
+      output[key] = deepClone(source[key], seen);
     }
   });
 
