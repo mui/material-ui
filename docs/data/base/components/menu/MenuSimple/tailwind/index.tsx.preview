@@ -1,0 +1,10 @@
+<Dropdown>
+  <MenuButton>Dashboard</MenuButton>
+  <Menu>
+    <MenuItem onClick={createHandleMenuClick('Profile')}>Profile</MenuItem>
+    <MenuItem onClick={createHandleMenuClick('My account')}>
+      My account
+    </MenuItem>
+    <MenuItem onClick={createHandleMenuClick('Log out')}>Log out</MenuItem>
+  </Menu>
+</Dropdown>
