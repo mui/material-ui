@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { styled } from '@mui/system';
 import deepmerge from './deepmerge';
 
 describe('deepmerge', () => {
@@ -9,6 +10,21 @@ describe('deepmerge', () => {
     });
 
     expect({}).not.to.have.property('isAdmin');
+  });
+
+  it('should handle circular references by avoiding infinite recursion during deep cloning', () => {
+    const circularObj = {
+      prop1: 'value1',
+    };
+    // @ts-ignore
+    circularObj.circularRef = circularObj;
+
+    const result = deepmerge({}, circularObj);
+
+    expect(result).to.deep.equal({
+      prop1: 'value1',
+      circularRef: { prop1: 'value1', circularRef: { prop1: 'value1' } },
+    });
   });
 
   // https://github.com/mui/material-ui/issues/20095
