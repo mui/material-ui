@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { refType, deepmerge } from '@mui/utils';
+import { refType } from '@mui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import InputBase from '../InputBase';
@@ -205,32 +205,25 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const {
     disableUnderline,
     components = {},
-    componentsProps: componentsPropsProp,
+    componentsProps = {},
     fullWidth = false,
     hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
     multiline = false,
-    slotProps,
+    slotProps: slotPropsProp,
     slots = {},
     type = 'text',
     ...other
   } = props;
 
-  const ownerState = {
-    ...props,
-    fullWidth,
-    inputComponent,
-    multiline,
-    type,
+  const ownerState = { disableUnderline };
+  const slotProps = slotPropsProp ?? componentsProps;
+  const inputBaseSlotProps = {
+    root: { ownerState, ...slotProps.root },
+    input: { ownerState, ...slotProps.input },
   };
 
   const classes = useUtilityClasses(props);
-  const filledInputComponentsProps = { root: { ownerState }, input: { ownerState } };
-
-  const componentsProps =
-    slotProps ?? componentsPropsProp
-      ? deepmerge(slotProps ?? componentsPropsProp, filledInputComponentsProps)
-      : filledInputComponentsProps;
 
   const RootSlot = slots.root ?? components.Root ?? FilledInputRoot;
   const InputSlot = slots.input ?? components.Input ?? FilledInputInput;
@@ -238,7 +231,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   return (
     <InputBase
       slots={{ root: RootSlot, input: InputSlot }}
-      componentsProps={componentsProps}
+      slotProps={inputBaseSlotProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
