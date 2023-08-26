@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { styled } from '@mui/system';
 import deepmerge from './deepmerge';
 
 describe('deepmerge', () => {
