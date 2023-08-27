@@ -113,6 +113,18 @@ describe('Joy <Button />', () => {
       const button = getByRole('button');
       expect(button).to.have.property('disabled', true);
     });
+    it('should disable button when loading is true and disabled is false', () => {
+      const { getByRole } = render(<Button loading disabled={false} />);
+
+      const button = getByRole('button');
+      expect(button).to.have.property('disabled', true);
+    });
+    it('should disable button when loading is false and disabled is true', () => {
+      const { getByRole } = render(<Button loading={false} disabled />);
+
+      const button = getByRole('button');
+      expect(button).to.have.property('disabled', true);
+    });
 
     it('renders a progressbar', () => {
       const { getByRole } = render(<Button loading>Submit</Button>);

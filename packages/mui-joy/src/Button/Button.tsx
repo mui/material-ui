@@ -215,7 +215,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const size = inProps.size || buttonGroup.size || sizeProp;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, buttonGroup.color || colorProp);
-  const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp || loading);
+  const disabled =
+    (inProps.disabled || inProps.loading) ?? (buttonGroup.disabled || disabledProp || loading);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
