@@ -6050,10 +6050,10 @@ concat-stream@^2.0.0:
     readable-stream "^3.0.2"
     typedarray "^0.0.6"
 
-concurrently@^8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/concurrently/-/concurrently-8.2.0.tgz#cdc9f621a4d913366600355d68254df2c5e782f3"
-  integrity sha512-nnLMxO2LU492mTUj9qX/az/lESonSZu81UznYDoXtz1IQf996ixVqPAgHXwvHiHCAef/7S8HIK+fTFK7Ifk8YA==
+concurrently@^8.2.1:
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/concurrently/-/concurrently-8.2.1.tgz#bcab9cacc38c23c503839583151e0fa96fd5b584"
+  integrity sha512-nVraf3aXOpIcNud5pB9M82p1tynmZkrSGQ1p6X/VY8cJ+2LMVqAgXsJxYYefACSHbTYlm92O1xuhdGTjwoEvbQ==
   dependencies:
     chalk "^4.1.2"
     date-fns "^2.30.0"
