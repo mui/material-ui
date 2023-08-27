@@ -68,16 +68,21 @@ To set up the theme context, create a custom `ThemeRegistry` component that comb
 ```tsx
 // app/ThemeRegistry.tsx
 'use client';
-import createCache from '@emotion/cache';
+import createCache, { EmotionCache, Options } from '@emotion/cache';
 import { useServerInsertedHTML } from 'next/navigation';
 import { CacheProvider } from '@emotion/react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '/path/to/your/theme';
 
+type ThemeRegistryProps = {
+  options: Options;
+  children: React.ReactNode;
+};
+
 // This implementation is from emotion-js
 // https://github.com/emotion-js/emotion/issues/2928#issuecomment-1319747902
-export default function ThemeRegistry(props) {
+export default function ThemeRegistry(props: ThemeRegistryProps) {
   const { options, children } = props;
 
   const [{ cache, flush }] = React.useState(() => {
@@ -85,7 +90,7 @@ export default function ThemeRegistry(props) {
     cache.compat = true;
     const prevInsert = cache.insert;
     let inserted: string[] = [];
-    cache.insert = (...args) => {
+    cache.insert = (...args: Parameters<EmotionCache['insert']>) => {
       const serialized = args[1];
       if (cache.inserted[serialized.name] === undefined) {
         inserted.push(serialized.name);
