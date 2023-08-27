@@ -36,11 +36,11 @@ export default function SimpleSlide() {
           control={<Switch checked={checked} onChange={handleChange} />}
           label="Show"
         />
-        <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
-          <Box sx={{position:"relative",zIndex:1}}>
+        <Box sx={{ overflow: 'hidden' }}>
+          <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
             {icon}
-          </Box>
-        </Slide>
+          </Slide>
+        </Box>
       </Box>
     </Box>
   );
