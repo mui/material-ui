@@ -3827,10 +3827,10 @@
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-9.0.2.tgz#ede1d1b1e451548d44919dc226253e32a6952c4b"
   integrity sha512-kNnC1GFBLuhImSnV7w4njQkUiJi0ZXUycu1rUaouPqiKlXkh77JKgdRnTAp1x5eBwcIwbtI+3otwzuIDEuDoxQ==
 
-"@types/webpack@^5.28.1":
-  version "5.28.1"
-  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-5.28.1.tgz#c369baeff31abe54b45f7f29997e1623604198d6"
-  integrity sha512-qw1MqGZclCoBrpiSe/hokSgQM/su8Ocpl3L/YHE0L6moyaypg4+5F7Uzq7NgaPKPxUxUbQ4fLPLpDWdR27bCZw==
+"@types/webpack@^5.28.2":
+  version "5.28.2"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-5.28.2.tgz#a4db514f30b1b593278fbae6d6f9654c3d53c4c8"
+  integrity sha512-7tcxyrIOd7WGimZIcWU6pDsNh2edGGnwYExOvd3l/nMvuxqwVPrFXnnTbYCnplqV9BJoU7Mo2mfFtiH8CNFvYw==
   dependencies:
     "@types/node" "*"
     tapable "^2.2.0"
