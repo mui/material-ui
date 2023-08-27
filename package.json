@@ -90,7 +90,7 @@
     "@babel/register": "^7.22.5",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@googleapis/sheets": "^5.0.3",
+    "@googleapis/sheets": "^5.0.4",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@octokit/rest": "^20.0.1",
     "@playwright/test": "1.37.1",
