@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.1",
-    "@types/doctrine": "^0.0.5",
+    "@types/doctrine": "^0.0.6",
     "@types/lodash": "^4.14.197",
     "@types/node": "^18.17.6",
     "@types/prettier": "^2.7.3",
