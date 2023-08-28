@@ -22,9 +22,9 @@ function calculateValue(value: number) {
 }
 
 export default function NonLinearSlider() {
-  const [value, setValue] = React.useState<number>(10);
+  const [value, setValue] = React.useState(10);
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
+  const handleChange = (event: Event, newValue: number) => {
     if (typeof newValue === 'number') {
       setValue(newValue);
     }
