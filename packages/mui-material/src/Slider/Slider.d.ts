@@ -4,7 +4,7 @@ import { Mark } from '@mui/base/useSlider';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
-import { OverrideProps, OverridableComponent } from '../OverridableComponent';
+import { OverrideProps, DefaultComponentProps } from '../OverridableComponent';
 import SliderValueLabelComponent from './SliderValueLabel';
 import { SliderClasses } from './sliderClasses';
 
@@ -295,6 +295,20 @@ export declare const SliderTrack: React.FC<SliderTrackProps>;
 export declare const SliderThumb: React.FC<SliderThumbProps>;
 export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
 
+interface SliderType {
+  <RootComponent extends React.ElementType, Value extends number | number[]>(
+    props: {
+      component: RootComponent;
+      value?: Value;
+    } & OverrideProps<SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value>, RootComponent>,
+  ): JSX.Element | null;
+  <Value extends number | number[]>(
+    props: { value?: Value } & DefaultComponentProps<
+      SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value>
+    >,
+  ): JSX.Element | null;
+}
+
 /**
  *
  * Demos:
@@ -305,16 +319,7 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
  *
  * - [Slider API](https://mui.com/material-ui/api/slider/)
  */
-export default function Slider<Value extends number | number[]>(
-  props: {
-    value?: Value;
-  } & Omit<
-    Parameters<
-      OverridableComponent<SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value>>
-    >[0],
-    'value'
-  >,
-): JSX.Element;
+declare const Slider: SliderType;
 
 export type SliderProps<
   RootComponent extends React.ElementType = SliderTypeMap['defaultComponent'],
@@ -322,3 +327,5 @@ export type SliderProps<
 > = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
   component?: React.ElementType;
 };
+
+export default Slider;

@@ -12,6 +12,11 @@ function testOnChange() {
   <Slider onChange={handleElementChange} onChangeCommitted={handleElementChange} />;
 }
 
+const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+  function CustomComponent() {
+    return <div />;
+  };
+
 function TestOnChangeValueType() {
   const [val] = React.useState(1);
   const [multipleVal] = React.useState([1, 2]);
@@ -22,10 +27,16 @@ function TestOnChangeValueType() {
         onChange={(event, value) => {
           expectType<number, typeof value>(value);
         }}
+        onChangeCommitted={(event, value) => {
+          expectType<number, typeof value>(value);
+        }}
       />
       <Slider
         value={multipleVal}
         onChange={(event, value) => {
+          expectType<number[], typeof value>(value);
+        }}
+        onChangeCommitted={(event, value) => {
           expectType<number[], typeof value>(value);
         }}
       />
@@ -33,7 +44,51 @@ function TestOnChangeValueType() {
         onChange={(event, value) => {
           expectType<number[] | number, typeof value>(value);
         }}
+        onChangeCommitted={(event, value) => {
+          expectType<number[] | number, typeof value>(value);
+        }}
       />
+      <Slider
+        onChange={(event, value) => {
+          expectType<number, typeof value>(value);
+        }}
+        onChangeCommitted={(event, value) => {
+          expectType<number, typeof value>(value);
+        }}
+        value={val}
+        component="a"
+        onAbort={(e) => {
+          expectType<React.SyntheticEvent<HTMLAnchorElement, Event>, typeof e>(e);
+        }}
+      />
+      <Slider
+        onChange={(event, value) => {
+          expectType<number[], typeof value>(value);
+        }}
+        onChangeCommitted={(event, value) => {
+          expectType<number[], typeof value>(value);
+        }}
+        value={multipleVal}
+        component="a"
+        onAbort={(e) => {
+          expectType<React.SyntheticEvent<HTMLAnchorElement, Event>, typeof e>(e);
+        }}
+      />
+      <Slider
+        onChange={(event, value) => {
+          expectType<number[] | number, typeof value>(value);
+        }}
+        onChangeCommitted={(event, value) => {
+          expectType<number[] | number, typeof value>(value);
+        }}
+        component="a"
+        onAbort={(e) => {
+          expectType<React.SyntheticEvent<HTMLAnchorElement, Event>, typeof e>(e);
+        }}
+      />
+      <Slider component={CustomComponent} stringProp="" numberProp={1} />
+      {/* @ts-expect-error as required props are missing */}
+      <Slider component={CustomComponent} />
     </React.Fragment>
   );
 }
