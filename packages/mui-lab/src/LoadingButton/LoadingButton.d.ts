@@ -30,7 +30,7 @@ export type LoadingButtonTypeMap<
       startIconLoadingStart?: string;
     };
     /**
-     * If `true`, the loading indicator is shown.
+     * If `true`, the loading indicator is shown and the button becomes disabled.
      * @default false
      */
     loading?: boolean;

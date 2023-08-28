@@ -1,4 +1,3 @@
-/* eslint-disable import/order */
 // inspire by reacts dangerfile
 // danger has to be the first thing required!
 import { danger, markdown } from 'danger';

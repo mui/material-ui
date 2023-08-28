@@ -4,7 +4,9 @@
     "children": { "description": "The content of the component." },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
-    "loading": { "description": "If <code>true</code>, the loading indicator is shown." },
+    "loading": {
+      "description": "If <code>true</code>, the loading indicator is shown and the button becomes disabled."
+    },
     "loadingIndicator": {
       "description": "Element placed before the children if the button is in loading state. The node should contain an element with <code>role=&quot;progressbar&quot;</code> with an accessible name. By default we render a <code>CircularProgress</code> that is labelled by the button itself."
     },
