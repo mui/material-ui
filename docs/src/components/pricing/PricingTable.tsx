@@ -836,11 +836,14 @@ function RowCategory(props: BoxProps) {
       {...props}
       sx={[
         (theme) => ({
-          typography: 'caption',
-          display: 'block',
-          fontWeight: 500,
-          py: 1,
+          py: 1.5,
           pl: 1.5,
+          display: 'block',
+          textTransform: 'uppercase',
+          letterSpacing: '.08rem',
+          fontWeight: theme.typography.fontWeightBold,
+          fontSize: theme.typography.pxToRem(11),
+          color: 'text.secondary',
           borderBottom: '1px solid',
           bgcolor: 'grey.50',
           borderColor: 'grey.200',
