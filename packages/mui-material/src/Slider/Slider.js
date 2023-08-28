@@ -852,6 +852,10 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * @ignore
+   */
+  component: PropTypes.elementType,
+  /**
    * The components used for each slot inside.
    *
    * This prop is an alias for the `slots` prop.
