@@ -71,14 +71,16 @@ They just have to be after external props.
 Example:
 
 ```tsx
-const getRootProps = <OtherProps extends EventHandlers>(otherProps: OtherProps = {} as OtherProps): UseAwesomeControlRootSlotProps<OtherProps> => {
+const getRootProps = <OtherProps extends EventHandlers>(
+  otherProps: OtherProps = {} as OtherProps,
+): UseAwesomeControlRootSlotProps<OtherProps> => {
   return {
     id,
     disabled,
     role: 'button' as const,
     ...otherProps, // if `id`, `disabled`, or `role` is provided here, they will override the default values set by us.
     ref: handleListboxRef, // refs mustn't be overridden, so they come after `...otherProps`
-    onMouseDown: createHandleMouseDown(otherProps) // here we execute the event handler factory supplying it with external props
+    onMouseDown: createHandleMouseDown(otherProps), // here we execute the event handler factory supplying it with external props
   };
 };
 ```
@@ -128,7 +130,7 @@ interface AwesomeControlHookParameters {
 const useAwesomeControlHook = (paramters: AwesomeControlHookParameters) {
   const { rootRef: externalRef } = parameters;
   const innerRef = React.useRef<HTMLDivElement | null>(null);
-  
+
   const handleRef = useForkRef(externalRef, innerRef);
 
   return {
@@ -149,9 +151,9 @@ This is helpful in situations where the ref needs to be merged with yet another 
 Defining proper types can tremendously help developers use the hooks.
 The following types are required for each hook:
 
-* [HookName]Parameters - input parameters
-* [HookName]ReturnValue - the shape of the object returned by the hook
-* [HookName][SlotName]SlotProps - return values of slot props resolvers
+- [HookName]Parameters - input parameters
+- [HookName]ReturnValue - the shape of the object returned by the hook
+- [HookName][SlotName]SlotProps - return values of slot props resolvers
 
 The parameters and return value types are usually straightforward.
 The definition of slot props, however, is more complex as it must take into consideration the object passed as an argument to the props resolver function:
