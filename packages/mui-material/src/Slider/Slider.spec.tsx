@@ -20,6 +20,8 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
 function TestOnChangeValueType() {
   const [val] = React.useState(1);
   const [multipleVal] = React.useState([1, 2]);
+  const handleMultipleChange = (event: Event, value: number[]) => {};
+  const handleChange = (event: Event, value: number) => {};
   return (
     <React.Fragment>
       <Slider
@@ -30,6 +32,16 @@ function TestOnChangeValueType() {
         onChangeCommitted={(event, value) => {
           expectType<number, typeof value>(value);
         }}
+      />
+      <Slider
+        value={val}
+        // @ts-expect-error
+        onChange={handleMultipleChange}
+      />
+      <Slider
+        value={multipleVal}
+        // @ts-expect-error
+        onChange={handleChange}
       />
       <Slider
         value={multipleVal}
