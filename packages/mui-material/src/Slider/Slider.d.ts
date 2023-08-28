@@ -97,7 +97,7 @@ export interface SliderTypeMap<
     /**
      * The default value. Use when the component is not controlled.
      */
-    defaultValue?: number | number[];
+    defaultValue?: Value;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -296,31 +296,15 @@ export declare const SliderThumb: React.FC<SliderThumbProps>;
 export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
 
 interface SliderType {
-  <
-    RootComponent extends React.ElementType,
-    Value extends number | number[],
-    DefaultValue extends number | number[],
-  >(
+  <RootComponent extends React.ElementType, Value extends number | number[]>(
     props: {
       component: RootComponent;
       value?: Value;
-      defaultValue?: DefaultValue;
-    } & OverrideProps<
-      SliderTypeMap<
-        SliderTypeMap['defaultComponent'],
-        {},
-        Value extends undefined ? DefaultValue : Value
-      >,
-      RootComponent
-    >,
+    } & OverrideProps<SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value>, RootComponent>,
   ): JSX.Element | null;
-  <Value extends number | number[], DefaultValue extends number | number[]>(
-    props: { value?: Value; defaultValue?: DefaultValue } & DefaultComponentProps<
-      SliderTypeMap<
-        SliderTypeMap['defaultComponent'],
-        {},
-        Value extends undefined ? DefaultValue : Value
-      >
+  <Value extends number | number[]>(
+    props: { value?: Value } & DefaultComponentProps<
+      SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value>
     >,
   ): JSX.Element | null;
 }
