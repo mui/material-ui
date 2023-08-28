@@ -26,7 +26,7 @@ const Root = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
 }));
 
-export default function SwipeableEdgeDrawer(props: Props) {
+export default function NonModalDialog(props: Props) {
   const { window } = props;
   const [open, setOpen] = React.useState(false);
 
