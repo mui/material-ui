@@ -1233,7 +1233,7 @@ Change the default variant from `standard` to `outlined`.
 If you are composing the `Select` with a form control component, you only need to update `FormControl`—the select inherits the variant from its context.
 
 :::success
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
@@ -1628,7 +1628,7 @@ Change the default variant from `standard` to `outlined`.
 `standard` has been removed from the Material Design guidelines.
 
 :::success
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
