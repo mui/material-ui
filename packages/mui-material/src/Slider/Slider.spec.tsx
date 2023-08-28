@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { expectType } from '@mui/types';
 import Slider from '@mui/material/Slider';
 
 function testOnChange() {
@@ -9,6 +10,32 @@ function testOnChange() {
   function handleElementChange(event: React.ChangeEvent) {}
   // @ts-expect-error internally it's whatever even lead to a change in value
   <Slider onChange={handleElementChange} onChangeCommitted={handleElementChange} />;
+}
+
+function TestOnChangeValueType() {
+  const [val] = React.useState(1);
+  const [multipleVal] = React.useState([1, 2]);
+  return (
+    <React.Fragment>
+      <Slider
+        value={val}
+        onChange={(event, value) => {
+          expectType<number, typeof value>(value);
+        }}
+      />
+      <Slider
+        value={multipleVal}
+        onChange={(event, value) => {
+          expectType<number[], typeof value>(value);
+        }}
+      />
+      <Slider
+        onChange={(event, value) => {
+          expectType<number[] | number, typeof value>(value);
+        }}
+      />
+    </React.Fragment>
+  );
 }
 
 <Slider track="inverted" />;
