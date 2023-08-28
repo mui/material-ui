@@ -71,16 +71,16 @@ They just have to be after external props.
 Example:
 
 ```tsx
-const getRootProps = <OtherProps extends EventHandlers>(
-  otherProps: OtherProps = {} as OtherProps,
-): UseAwesomeControlRootSlotProps<OtherProps> => {
+const getRootProps = <OtherHandlers extends EventHandlers>(
+  otherHandlers: OtherHandlers = {} as OtherHandlers,
+): UseAwesomeControlRootSlotProps<OtherHandlers> => {
   return {
     id,
     disabled,
     role: 'button' as const,
-    ...otherProps, // if `id`, `disabled`, or `role` is provided here, they will override the default values set by us.
-    ref: handleListboxRef, // refs mustn't be overridden, so they come after `...otherProps`
-    onMouseDown: createHandleMouseDown(otherProps), // here we execute the event handler factory supplying it with external props
+    ...otherHandlers, // if `id`, `disabled`, or `role` is provided here, they will override the default values set by us.
+    ref: handleListboxRef, // refs mustn't be overridden, so they come after `...otherHandlers`
+    onMouseDown: createHandleMouseDown(otherHandlers), // here we execute the event handler factory supplying it with external props
   };
 };
 ```
