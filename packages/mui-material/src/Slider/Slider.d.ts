@@ -296,15 +296,31 @@ export declare const SliderThumb: React.FC<SliderThumbProps>;
 export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
 
 interface SliderType {
-  <RootComponent extends React.ElementType, Value extends number | number[]>(
+  <
+    RootComponent extends React.ElementType,
+    Value extends number | number[],
+    DefaultValue extends number | number[],
+  >(
     props: {
       component: RootComponent;
       value?: Value;
-    } & OverrideProps<SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value>, RootComponent>,
+      defaultValue?: DefaultValue;
+    } & OverrideProps<
+      SliderTypeMap<
+        SliderTypeMap['defaultComponent'],
+        {},
+        Value extends undefined ? DefaultValue : Value
+      >,
+      RootComponent
+    >,
   ): JSX.Element | null;
-  <Value extends number | number[]>(
-    props: { value?: Value } & DefaultComponentProps<
-      SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value>
+  <Value extends number | number[], DefaultValue extends number | number[]>(
+    props: { value?: Value; defaultValue?: DefaultValue } & DefaultComponentProps<
+      SliderTypeMap<
+        SliderTypeMap['defaultComponent'],
+        {},
+        Value extends undefined ? DefaultValue : Value
+      >
     >,
   ): JSX.Element | null;
 }
