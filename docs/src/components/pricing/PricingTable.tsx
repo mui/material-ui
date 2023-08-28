@@ -877,7 +877,7 @@ function RowCategory(props: BoxProps) {
           display: 'block',
           fontWeight: 500,
           py: 1,
-          ml: 1,
+          ml: 1.5,
           pl: 1.5,
           borderBottom: '1px solid',
           bgcolor: 'grey.50',
@@ -973,7 +973,7 @@ function StickyHead({
 }
 
 const divider = <Divider />;
-const nestedDivider = <Divider sx={{ ml: 1 }} />;
+const nestedDivider = <Divider sx={{ ml: 1.5 }} />;
 
 function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
   return (
