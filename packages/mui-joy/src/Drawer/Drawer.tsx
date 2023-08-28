@@ -52,7 +52,7 @@ const DrawerRoot = styled('div', {
   }),
   [`& .${drawerClasses.backdrop}`]: {
     opacity: ownerState.open ? 1 : 0,
-    transition: 'opacity 0.3s ease',
+    transition: 'opacity 0.3s ease-in-out',
   },
 }));
 
