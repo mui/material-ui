@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy } from 'sinon';
 import { describeConformance, createRenderer, fireEvent, act } from 'test/utils';
 import { camelCase } from 'lodash';
 import Button, { buttonClasses as classes } from '@mui/material-next/Button';
-import * as useTouchRipple from '@mui/material-next/Button/useTouchRipple';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<Button />', () => {
@@ -174,13 +173,32 @@ describe('<Button />', () => {
     expect(container.querySelector('button')).to.have.class(disabledClassName);
   });
 
-  it('should render active class', () => {
-    const { container } = render(<Button />);
+  it('should render focused class', () => {
+    const focusedClassName = 'testFocusedClassName';
+    const { container } = render(<Button classes={{ focusVisible: focusedClassName }} />);
 
     const button = container.querySelector('button');
+    expect(button).not.to.equal(null);
+    expect(button).not.to.have.class(focusedClassName);
+
+    act(() => {
+      button.focus();
+    });
+
+    expect(button).to.have.class(focusedClassName);
+  });
+
+  it('should render active class', () => {
+    const activeClassName = 'testActiveClassName';
+    const { container } = render(<Button classes={{ active: activeClassName }} />);
+
+    const button = container.querySelector('button');
+    expect(button).not.to.equal(null);
+    expect(button).not.to.have.class(activeClassName);
+
     fireEvent.mouseDown(button);
 
-    expect(button).to.have.class(classes.active);
+    expect(button).to.have.class(activeClassName);
   });
 
   describe('Event handlers', () => {
@@ -215,25 +233,6 @@ describe('<Button />', () => {
 
         expect(handleSpy.callCount).to.equal(1);
       });
-    });
-  });
-
-  describe('Ripple', () => {
-    it('should call ripple mouse down handler', () => {
-      const mouseDownSpy = spy();
-      stub(useTouchRipple, 'default').returns({
-        enableTouchRipple: true,
-        getRippleHandlers: () => ({
-          onMouseDown: mouseDownSpy,
-        }),
-      });
-      const { getByRole } = render(<Button>Hello World</Button>);
-
-      expect(mouseDownSpy.callCount).to.equal(0);
-
-      fireEvent.mouseDown(getByRole('button'));
-
-      expect(mouseDownSpy.callCount).to.equal(1);
     });
   });
 });

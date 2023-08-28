@@ -21,7 +21,7 @@ In the interactive demo below, try changing the code and see how it affects the 
 
 ## Example projects
 
-Visit the [example projects](/material-ui/getting-started/example-projects/) page to see how we recommend implementing Material UI with various React libraries and frameworks like Next.js, Gatsby, Create React App, and more.
+Visit the [example projects](/material-ui/getting-started/example-projects/) page to see how we recommend implementing Material UI with various React libraries and frameworks like Next.js, Vite, and more.
 
 ## Templates
 

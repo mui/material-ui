@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
 import Card from '@mui/joy/Card';
@@ -27,7 +26,7 @@ export default function HeroLeft07() {
         sx={{ gap: 2, my: 1, textAlign: 'left' }}
       >
         <AutoAwesomeIcon color="success" fontSize="xl3" />
-        <Box>
+        <div>
           <Typography fontSize="xl" fontWeight="lg" sx={{ mb: 1 }}>
             The new version is out.
           </Typography>
@@ -35,10 +34,9 @@ export default function HeroLeft07() {
             This is where a notification message will appear. <br />
             Enter text into this container.
           </Typography>
-        </Box>
+        </div>
       </Card>
       <Button size="lg">Download the App</Button>
-
       <Typography
         level="body-xs"
         sx={{

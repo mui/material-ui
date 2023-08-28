@@ -6156,7 +6156,7 @@ A big thanks to the 18 contributors who made this release possible!
 Here are some highlights ✨:
 
 - 💅 Update the Typography implementation to better follow the specification (#12916) @eps1lon.
-- 📝 Enable [translating the documentation into Chinese](https://translate.mui.com) @mbrookes.
+- 📝 Enable [translating the documentation into Chinese](https://crowdin.com/project/material-ui-docs) @mbrookes.
 - 📝 Fix many SEO issues of the docs.
 - And many more bug fixes 🐛 and documentation improvements.
 

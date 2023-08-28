@@ -177,13 +177,13 @@ A selected `ListItemButton` does not apply `:hover` and `:active` global variant
 
 {{"demo": "SelectedList.js"}}
 
-## CSS variables
+## CSS variables playground
 
 Play around with all the CSS variables available in the list component to see how the design changes.
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
-{{"demo": "ListVariables.js", "hideToolbar": true}}
+{{"demo": "ListVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Common examples
 

@@ -88,6 +88,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/base-ui/react-modal', title: 'Modal' },
           { pathname: '/base-ui/react-no-ssr', title: 'No-SSR' },
           { pathname: '/base-ui/react-popper', title: 'Popper' },
+          { pathname: '/base-ui/react-popup', title: 'Popup' },
           { pathname: '/base-ui/react-portal', title: 'Portal' },
           { pathname: '/base-ui/react-textarea-autosize', title: 'Textarea Autosize' },
         ],

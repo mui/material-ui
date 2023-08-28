@@ -10,7 +10,7 @@ import ArrowForward from '@mui/icons-material/ArrowForward';
 export default function DividerInCard() {
   const [orientation, setOrientation] = React.useState('vertical');
   return (
-    <Box>
+    <div>
       <Checkbox
         label="horizontal"
         checked={orientation === 'horizontal'}
@@ -45,6 +45,6 @@ export default function DividerInCard() {
           </Button>
         </Box>
       </Card>
-    </Box>
+    </div>
   );
 }

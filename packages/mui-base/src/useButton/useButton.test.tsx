@@ -239,4 +239,17 @@ describe('useButton', () => {
       expect(getByRole('button')).to.have.property('tabIndex', customTabIndex);
     });
   });
+
+  describe('arbitrary props', () => {
+    it('are passed to the host component', () => {
+      const buttonTestId = 'button-test-id';
+      function TestComponent() {
+        const { getRootProps } = useButton({});
+        return <button {...getRootProps({ 'data-testid': buttonTestId })} />;
+      }
+
+      const { getByRole } = render(<TestComponent />);
+      expect(getByRole('button')).to.have.attribute('data-testid', buttonTestId);
+    });
+  });
 });

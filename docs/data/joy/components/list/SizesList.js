@@ -20,7 +20,7 @@ export default function SizesList() {
       }}
     >
       {['sm', 'md', 'lg'].map((size) => (
-        <Box key={size}>
+        <div key={size}>
           <Typography level="body-xs" mb={2}>
             <code>size=&quot;{size}&quot;</code>
           </Typography>
@@ -47,7 +47,7 @@ export default function SizesList() {
               <ListItemButton>Settings</ListItemButton>
             </ListItem>
           </List>
-        </Box>
+        </div>
       ))}
     </Box>
   );

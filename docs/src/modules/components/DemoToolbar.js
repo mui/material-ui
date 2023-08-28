@@ -4,7 +4,6 @@ import copy from 'clipboard-copy';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import CheckIcon from '@mui/icons-material/Check';
 import Fade from '@mui/material/Fade';
 import MDButton from '@mui/material/Button';
@@ -22,7 +21,6 @@ import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import { useRouter } from 'next/router';
-import { getCookie } from 'docs/src/modules/utils/helpers';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useSetCodeStyling, useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
@@ -64,24 +62,6 @@ function DemoTooltip(props) {
     />
   );
 }
-
-function ToggleCodeTooltip(props) {
-  const { showSourceHint, ...other } = props;
-  const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-  const [open, setOpen] = React.useState(false);
-
-  return (
-    <DemoTooltip
-      {...other}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      open={showSourceHint && atLeastSmallViewport ? true : open}
-    />
-  );
-}
-ToggleCodeTooltip.propTypes = {
-  showSourceHint: PropTypes.bool,
-};
 
 const alwaysTrue = () => true;
 
@@ -297,7 +277,6 @@ export default function DemoToolbar(props) {
     demo,
     demoData,
     demoId,
-    demoHovered,
     demoName,
     demoOptions,
     demoSourceId,
@@ -365,21 +344,10 @@ export default function DemoToolbar(props) {
     }
   };
 
-  const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
-  React.useEffect(() => {
-    setSourceHintSeen(getCookie('sourceHintSeen'));
-  }, []);
-  const handleCodeOpenClick = () => {
-    document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
-    onCodeOpenChange();
-    setSourceHintSeen(true);
-  };
-
   const handleResetFocusClick = () => {
     initialFocusRef.current.focusVisible();
   };
 
-  const showSourceHint = demoHovered && !sourceHintSeen;
   let showCodeLabel;
   if (codeOpen) {
     showCodeLabel = showPreview ? t('hideFullSource') : t('hideSource');
@@ -561,8 +529,7 @@ export default function DemoToolbar(props) {
             data-ga-event-category="demo"
             data-ga-event-label={demo.gaLabel}
             data-ga-event-action="expand"
-            onClick={handleCodeOpenClick}
-            showSourceHint={showSourceHint}
+            onClick={onCodeOpenChange}
             {...getControlProps(3)}
           >
             {showCodeLabel}
@@ -757,7 +724,6 @@ DemoToolbar.propTypes = {
   codeVariant: PropTypes.string.isRequired,
   demo: PropTypes.object.isRequired,
   demoData: PropTypes.object.isRequired,
-  demoHovered: PropTypes.bool.isRequired,
   demoId: PropTypes.string,
   demoName: PropTypes.string.isRequired,
   demoOptions: PropTypes.object.isRequired,
