@@ -45,7 +45,6 @@ export default function DrawerBasic(props: Props) {
       </AppBar>
       <Drawer container={container} open={open} onClose={toggleDrawer(false)}>
         <Box
-          sx={{ width: 240, m: 3 }}
           role="presentation"
           onClick={toggleDrawer(false)}
           onKeyDown={toggleDrawer(false)}
