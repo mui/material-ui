@@ -23,6 +23,7 @@ export interface SliderOwnerState extends SliderProps {
 export interface SliderTypeMap<
   DefaultComponent extends React.ElementType = 'span',
   AdditionalProps = {},
+  Value extends number | number[] = number | number[],
 > {
   props: AdditionalProps & {
     /**
@@ -154,14 +155,14 @@ export interface SliderTypeMap<
      * @param {number | number[]} value The new value.
      * @param {number} activeThumb Index of the currently moved thumb.
      */
-    onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
+    onChange?: (event: Event, value: Value, activeThumb: number) => void;
     /**
      * Callback function that is fired when the `mouseup` is triggered.
      *
      * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
      * @param {number | number[]} value The new value.
      */
-    onChangeCommitted?: (event: React.SyntheticEvent | Event, value: number | number[]) => void;
+    onChangeCommitted?: (event: React.SyntheticEvent | Event, value: Value) => void;
     /**
      * The component orientation.
      * @default 'horizontal'
@@ -244,7 +245,7 @@ export interface SliderTypeMap<
      * The value of the slider.
      * For ranged sliders, provide an array with two values.
      */
-    value?: number | number[];
+    value?: Value;
     /**
      * Controls when the value label is displayed:
      *
@@ -304,7 +305,16 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
  *
  * - [Slider API](https://mui.com/material-ui/api/slider/)
  */
-declare const Slider: OverridableComponent<SliderTypeMap>;
+export default function Slider<Value extends number | number[]>(
+  props: {
+    value?: Value;
+  } & Omit<
+    Parameters<
+      OverridableComponent<SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value>>
+    >[0],
+    'value'
+  >,
+): JSX.Element;
 
 export type SliderProps<
   RootComponent extends React.ElementType = SliderTypeMap['defaultComponent'],
@@ -312,5 +322,3 @@ export type SliderProps<
 > = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
   component?: React.ElementType;
 };
-
-export default Slider;
