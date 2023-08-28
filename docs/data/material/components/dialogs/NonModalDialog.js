@@ -135,7 +135,7 @@ function NonModalDialog(props) {
   );
 }
 
-SwipeableEdgeDrawer.propTypes = {
+NonModalDialog.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -143,4 +143,4 @@ SwipeableEdgeDrawer.propTypes = {
   window: PropTypes.func,
 };
 
-export default SwipeableEdgeDrawer;
+export default NonModalDialog;
