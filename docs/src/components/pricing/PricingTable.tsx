@@ -718,6 +718,32 @@ const communityData: Record<string, React.ReactNode> = {
   // -- picker --
   'date-picker/simple': yes,
   'date-picker/range': no,
+
+  // -- charts - components --
+  'charts/line': yes,
+  'charts/bar': yes,
+  'charts/scatter': yes,
+  'charts/pie': yes,
+  'charts/sparline': yes,
+  'charts/gauge': pending,
+  'charts/treemap': pending,
+  'charts/radar': pending,
+  'charts/funnel': no,
+  'charts/sankey': no,
+  'charts/gantt': no,
+  'charts/gantt-advenced': no,
+  'charts/candlestick': no,
+  'charts/large-dataset': no,
+  // -- charts - features --
+  'charts/legend': yes,
+  'charts/tooltip': yes,
+  'charts/mouse-zoom': no,
+  'charts/export': no,
+  // -- charts - datagrid --
+  'charts/cell-with-charts': pending,
+  'charts/filter-interaction': no,
+  'charts/selection-interaction': no,
+
   // -- general --
   'mui-x-production': yes,
   'mui-x-updates': yes,
@@ -786,6 +812,32 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/localization': yes,
   'date-picker/simple': yes,
   'date-picker/range': yes,
+
+  // -- charts - components --
+  'charts/line': yes,
+  'charts/bar': yes,
+  'charts/scatter': yes,
+  'charts/pie': yes,
+  'charts/sparline': yes,
+  'charts/gauge': pending,
+  'charts/treemap': pending,
+  'charts/radar': pending,
+  'charts/funnel': pending,
+  'charts/sankey': pending,
+  'charts/gantt': pending,
+  'charts/gantt-advenced': no,
+  'charts/candlestick': no,
+  'charts/large-dataset': no,
+  // -- charts - features --
+  'charts/legend': yes,
+  'charts/tooltip': yes,
+  'charts/mouse-zoom': pending,
+  'charts/export': pending,
+  // -- charts - datagrid --
+  'charts/cell-with-charts': pending,
+  'charts/filter-interaction': pending,
+  'charts/selection-interaction': no,
+
   // -- general --
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
@@ -859,6 +911,32 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/localization': yes,
   'date-picker/simple': yes,
   'date-picker/range': yes,
+
+  // -- charts - components --
+  'charts/line': yes,
+  'charts/bar': yes,
+  'charts/scatter': yes,
+  'charts/pie': yes,
+  'charts/sparline': yes,
+  'charts/gauge': pending,
+  'charts/treemap': pending,
+  'charts/radar': pending,
+  'charts/funnel': pending,
+  'charts/sankey': pending,
+  'charts/gantt': pending,
+  'charts/gantt-advenced': pending,
+  'charts/candlestick': pending,
+  'charts/large-dataset': pending,
+  // -- charts - features --
+  'charts/legend': yes,
+  'charts/tooltip': yes,
+  'charts/mouse-zoom': pending,
+  'charts/export': pending,
+  // -- charts - datagrid --
+  'charts/cell-with-charts': pending,
+  'charts/filter-interaction': pending,
+  'charts/selection-interaction': pending,
+
   // -- general --
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
