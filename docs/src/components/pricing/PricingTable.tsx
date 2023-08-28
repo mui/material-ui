@@ -671,11 +671,13 @@ const communityData: Record<string, React.ReactNode> = {
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
+  // -- data grid - columns --
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': no,
   'data-grid/column-reorder': no,
   'data-grid/column-pinning': no,
+  // -- data grid - rows --
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': no,
@@ -683,6 +685,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': no,
   'data-grid/row-cell-selection': no,
+  // -- data grid - filter --
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': no,
@@ -691,8 +694,10 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/multi-column-sorting': no,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': no,
+  // -- data grid - edit --
   'data-grid/edit-row': yes,
   'data-grid/edit-cell': yes,
+  // -- data grid - export --
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
   'data-grid/file-clipboard-copy': yes,
@@ -709,8 +714,11 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
+
+  // -- picker --
   'date-picker/simple': yes,
   'date-picker/range': no,
+  // -- general --
   'mui-x-production': yes,
   'mui-x-updates': yes,
   'mui-x-development': yes,
@@ -733,11 +741,13 @@ const proData: Record<string, React.ReactNode> = {
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
+  // -- data grid - columns --
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
+  // -- data grid - rows --
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
@@ -745,6 +755,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-cell-selection': no,
+  // -- data grid - filter --
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': yes,
@@ -753,8 +764,10 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/multi-column-sorting': yes,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': yes,
+  // -- data grid - edit --
   'data-grid/edit-row': yes,
   'data-grid/edit-cell': yes,
+  // -- data grid - export --
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
   'data-grid/file-clipboard-copy': yes,
@@ -773,6 +786,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/localization': yes,
   'date-picker/simple': yes,
   'date-picker/range': yes,
+  // -- general --
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-development-perpetual': <Info value="Perpetual" />,
@@ -800,11 +814,13 @@ const premiumData: Record<string, React.ReactNode> = {
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
+  // -- data grid - columns --
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
+  // -- data grid - rows --
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
@@ -812,6 +828,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-cell-selection': yes,
+  // -- data grid - filter --
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': yes,
@@ -820,8 +837,10 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/multi-column-sorting': yes,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': yes,
+  // -- data grid - edit --
   'data-grid/edit-row': yes,
   'data-grid/edit-cell': yes,
+  // -- data grid - export --
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
   'data-grid/file-clipboard-copy': yes,
@@ -840,6 +859,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/localization': yes,
   'date-picker/simple': yes,
   'date-picker/range': yes,
+  // -- general --
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-development-perpetual': <Info value="Perpetual" />,
