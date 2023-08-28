@@ -19,3 +19,7 @@ yarn add @mui/base
 <!-- #default-branch-switch -->
 
 [The documentation](https://mui.com/base-ui/getting-started/)
+
+## Contributing
+
+See [the contributing guide](./CONTRIBUTING.md) if you wish to implement Base UI components or hooks.
