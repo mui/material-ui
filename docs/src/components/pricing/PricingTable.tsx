@@ -585,6 +585,32 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'date-picker/simple': <ColumnHead label="Date Picker" />,
   'date-picker/range': <ColumnHead label="Date Range Picker" />,
+
+  // -- charts - components --
+  'charts/line': <ColumnHead label="Line chart" nested />,
+  'charts/bar': <ColumnHead label="Bar chart" nested />,
+  'charts/scatter': <ColumnHead label="Scatter chart" nested />,
+  'charts/pie': <ColumnHead label="Pie chart" nested />,
+  'charts/sparkline': <ColumnHead label="Sparkline" nested />,
+  'charts/gauge': <ColumnHead label="Gauge" nested />,
+  'charts/treemap': <ColumnHead label="Treemap" nested />,
+  'charts/radar': <ColumnHead label="Radar" nested />,
+  'charts/funnel': <ColumnHead label="Funnel" nested />,
+  'charts/sankey': <ColumnHead label="Sankey" nested />,
+  'charts/gantt': <ColumnHead label="Gantt" nested />,
+  'charts/gantt-advenced': <ColumnHead label="Advenced Gantt" nested />,
+  'charts/candlestick': <ColumnHead label="Candlestick" nested />,
+  'charts/large-dataset': <ColumnHead label="Large dataset with canvas" nested />,
+  // -- charts - features --
+  'charts/legend': <ColumnHead label="Legend" nested />,
+  'charts/tooltip': <ColumnHead label="Tooltip" nested />,
+  'charts/mouse-zoom': <ColumnHead label="Zoom on mouse" nested />,
+  'charts/export': <ColumnHead label="Export" nested />,
+  // -- charts - datagrid --
+  'charts/cell-with-charts': <ColumnHead label="Cell with chart" nested />,
+  'charts/filter-interaction': <ColumnHead label="Row filtering" nested />,
+  'charts/selection-interaction': <ColumnHead label="Range selection" nested />,
+
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-development-perpetual': (
@@ -1168,10 +1194,12 @@ export default function PricingTable({
 }) {
   const router = useRouter();
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
+  const [chartsCollapsed, setChartsCollapsed] = React.useState(false);
 
   React.useEffect(() => {
     if (router.query['expand-path'] === 'all') {
       setDataGridCollapsed(true);
+      setChartsCollapsed(true);
     }
   }, [router.query]);
 
@@ -1183,10 +1211,17 @@ export default function PricingTable({
     }, 1fr))`,
   };
 
-  const unfoldMore = (
+  const dataGridUnfoldMore = (
     <UnfoldMoreRounded
       fontSize="small"
       sx={{ color: 'grey.600', opacity: dataGridCollapsed ? 0 : 1 }}
+    />
+  );
+
+  const chartsUnfoldMore = (
+    <UnfoldMoreRounded
+      fontSize="small"
+      sx={{ color: 'grey.600', opacity: chartsCollapsed ? 0 : 1 }}
     />
   );
 
@@ -1252,11 +1287,13 @@ export default function PricingTable({
         }}
       >
         <Cell />
-        <Cell sx={{ minHeight: 60 }}>{unfoldMore}</Cell>
+        <Cell sx={{ minHeight: 60 }}>{dataGridUnfoldMore}</Cell>
         <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          {unfoldMore}
+          {dataGridUnfoldMore}
         </Cell>
-        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>{unfoldMore}</Cell>
+        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          {dataGridUnfoldMore}
+        </Cell>
         <Button
           fullWidth
           onClick={() => setDataGridCollapsed((bool) => !bool)}
@@ -1404,6 +1441,123 @@ export default function PricingTable({
       {renderRow('date-picker/simple')}
       {divider}
       {renderRow('date-picker/range')}
+      {divider}
+      <Box
+        sx={{
+          position: 'relative',
+          minHeight: 58,
+          '& svg': { transition: '0.3s' },
+          '&:hover svg': { color: 'primary.main' },
+          ...gridSx,
+        }}
+      >
+        <Cell />
+        <Cell sx={{ minHeight: 60 }}>{chartsUnfoldMore}</Cell>
+        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          {chartsUnfoldMore}
+        </Cell>
+        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>{chartsUnfoldMore}</Cell>
+        <Button
+          fullWidth
+          onClick={() => setChartsCollapsed((bool) => !bool)}
+          endIcon={
+            <KeyboardArrowRightRounded
+              color="primary"
+              sx={{
+                transform: chartsCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
+              }}
+            />
+          }
+          sx={[
+            (theme) => ({
+              p: 1,
+              py: 1.5,
+              justifyContent: 'flex-start',
+              fontWeight: 400,
+              borderRadius: '0px',
+              color: 'text.primary',
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              width: '100%',
+              height: '100%',
+              '&:hover': {
+                bgcolor: alpha(theme.palette.primary.main, 0.06),
+                '@media (hover: none)': {
+                  bgcolor: 'initial',
+                },
+              },
+            }),
+            (theme) =>
+              theme.applyDarkStyles({
+                '&:hover': {
+                  bgcolor: alpha(theme.palette.primary.main, 0.06),
+                },
+              }),
+          ]}
+        >
+          Charts
+        </Button>
+      </Box>
+      <Collapse in={chartsCollapsed} timeout={700} sx={{ position: 'relative' }}>
+        <Box
+          sx={(theme) => ({
+            position: 'absolute',
+            width: '2px',
+            left: 10,
+            top: 0,
+            bottom: 0,
+            bgcolor: 'grey.100',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.700',
+            }),
+          })}
+        />
+        <RowCategory>Components</RowCategory>
+        {renderRow('charts/line')}
+        {nestedDivider}
+        {renderRow('charts/bar')}
+        {nestedDivider}
+        {renderRow('charts/scatter')}
+        {nestedDivider}
+        {renderRow('charts/pie')}
+        {nestedDivider}
+        {renderRow('charts/sparkline')}
+        {nestedDivider}
+        {renderRow('charts/gauge')}
+        {nestedDivider}
+        {renderRow('charts/treemap')}
+        {nestedDivider}
+        {renderRow('charts/radar')}
+        {nestedDivider}
+        {renderRow('charts/funnel')}
+        {nestedDivider}
+        {renderRow('charts/sankey')}
+        {nestedDivider}
+        {renderRow('charts/gantt')}
+        {nestedDivider}
+        {renderRow('charts/gantt-advenced')}
+        {nestedDivider}
+        {renderRow('charts/candlestick')}
+        {nestedDivider}
+        {renderRow('charts/large-dataset')}
+        {nestedDivider}
+        <RowCategory>Interactions</RowCategory>
+        {renderRow('charts/legend')}
+        {nestedDivider}
+        {renderRow('charts/tooltip')}
+        {nestedDivider}
+        {renderRow('charts/mouse-zoom')}
+        {nestedDivider}
+        {renderRow('charts/export')}
+        {nestedDivider}
+        <RowCategory>Data Grid Integration</RowCategory>
+        {renderRow('charts/cell-with-charts')}
+        {nestedDivider}
+        {renderRow('charts/filter-interaction')}
+        {nestedDivider}
+        {renderRow('charts/selection-interaction')}
+      </Collapse>
       {divider}
       {renderRow('mui-x-production')}
       {divider}
