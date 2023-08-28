@@ -55,7 +55,7 @@ const createHandleKeyDown = (otherHandlers: EventHandlers) => (event: React.Keyb
 
 #### Slot props resolvers
 
-These are functions called `get[SlotName]Props` that accept additional (optional) event handlers and return props to be placed on slots of a component.
+These are functions called `get[SlotName]Props` that accept additional (optional) props and return props to be placed on slots of a component.
 Many components have just one slot (that we call "root"), but more complex components can have more.
 
 The order of merging props for the resulting object is important so that users can override the build-in props when necessary:
@@ -127,7 +127,7 @@ interface AwesomeControlHookParameters {
   // ...
 }
 
-const useAwesomeControlHook = (paramters: AwesomeControlHookParameters) {
+const useAwesomeControlHook = (parameters: AwesomeControlHookParameters) {
   const { rootRef: externalRef } = parameters;
   const innerRef = React.useRef<HTMLDivElement | null>(null);
 
