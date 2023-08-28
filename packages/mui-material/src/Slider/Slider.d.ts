@@ -23,7 +23,7 @@ export interface SliderOwnerState extends SliderProps {
 export interface SliderTypeMap<
   DefaultComponent extends React.ElementType = 'span',
   AdditionalProps = {},
-  Value extends number | number[] = number | number[],
+  Value extends number | number[] | undefined = undefined,
 > {
   props: AdditionalProps & {
     /**
