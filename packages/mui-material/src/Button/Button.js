@@ -360,10 +360,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     </ButtonEndIcon>
   );
 
-  let extendedOtherProp = other;
+  let dataAttrs = {};
   if (buttonGroupButtonContext) {
-    const dataAttrs = addPositionDataAttr(buttonGroupButtonContext);
-    extendedOtherProp = { ...dataAttrs, ...other };
+    dataAttrs = addPositionDataAttr(buttonGroupButtonContext);
   }
 
   return (
@@ -376,7 +375,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
-      {...extendedOtherProp}
+      {...dataAttrs}
+      {...other}
       classes={classes}
     >
       {startIcon}
