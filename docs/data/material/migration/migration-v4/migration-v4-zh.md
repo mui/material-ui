@@ -40,7 +40,7 @@ Material UI v5与v4相比，包括许多错误修复和改进。
 想了解更多，请查看[关于Material UI v5](https://mui.com/blog/mui-core-v5/)发布的博文。
 
 :::info
-💡 在你进行的过程中创建小的提交，以确保顺利迁移。
+在你进行的过程中创建小的提交，以确保顺利迁移。
 
 如果你在途中遇到任何问题，请查看[故障排除](/material-ui/migration/troubleshooting/)文档。
 

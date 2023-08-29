@@ -209,7 +209,7 @@ export default function App() {
 ```
 
 :::info
-💡 **Note:** With the `useColorScheme` hook, Joy UI ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
+**Note:** With the `useColorScheme` hook, Joy UI ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
 :::
 
 Congratulations 🎉! You've built your first good looking UI with Joy UI!

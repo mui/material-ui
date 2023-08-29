@@ -36,7 +36,7 @@ Material UI and Joy UI still share many of the same conventions and features.
 We've done this not only to decrease the learning curve for adopting Joy UI, but also because we believe that the conventions we've established represent the ideal developer experience for working with design systems.
 
 :::info
-💡 Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
+Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
 :::
 
 ## What new features does Joy UI offer?
