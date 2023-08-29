@@ -1045,6 +1045,14 @@ export default function PricingTable({
       columnHeaderHidden ? '0px' : '240px'
     }, 1fr))`,
   };
+  const nestedGridSx = {
+    ...gridSx,
+    // Hack to keep nested grid aligned with others
+    ml: '-14px',
+    '&>div:first-of-type': {
+      ml: '14px',
+    },
+  };
 
   const unfoldMore = (
     <UnfoldMoreRounded
@@ -1054,6 +1062,7 @@ export default function PricingTable({
   );
 
   const renderRow = (key: string) => renderMasterRow(key, gridSx, plans);
+  const renderNestedRow = (key: string) => renderMasterRow(key, nestedGridSx, plans);
 
   return (
     <Box ref={tableRef} {...props} sx={{ pt: 8, pb: 8, ...props.sx }}>
@@ -1177,91 +1186,91 @@ export default function PricingTable({
         })}
       >
         <RowCategory>Column features</RowCategory>
-        {renderRow('data-grid/column-groups')}
+        {renderNestedRow('data-grid/column-groups')}
         {divider}
-        {renderRow('data-grid/column-spanning')}
+        {renderNestedRow('data-grid/column-spanning')}
         {divider}
-        {renderRow('data-grid/column-resizing')}
+        {renderNestedRow('data-grid/column-resizing')}
         {divider}
-        {renderRow('data-grid/column-reorder')}
+        {renderNestedRow('data-grid/column-reorder')}
         {divider}
-        {renderRow('data-grid/column-pinning')}
+        {renderNestedRow('data-grid/column-pinning')}
         {divider}
         <RowCategory>Row features</RowCategory>
-        {renderRow('data-grid/row-height')}
+        {renderNestedRow('data-grid/row-height')}
         {divider}
-        {renderRow('data-grid/row-spanning')}
+        {renderNestedRow('data-grid/row-spanning')}
         {divider}
-        {renderRow('data-grid/row-reordering')}
+        {renderNestedRow('data-grid/row-reordering')}
         {divider}
-        {renderRow('data-grid/row-pinning')}
+        {renderNestedRow('data-grid/row-pinning')}
         {divider}
         <RowCategory>Selection features</RowCategory>
-        {renderRow('data-grid/row-selection')}
+        {renderNestedRow('data-grid/row-selection')}
         {divider}
-        {renderRow('data-grid/row-multiselection')}
+        {renderNestedRow('data-grid/row-multiselection')}
         {divider}
-        {renderRow('data-grid/row-cell-selection')}
+        {renderNestedRow('data-grid/row-cell-selection')}
         {divider}
         <RowCategory>Filtering features</RowCategory>
-        {renderRow('data-grid/filter-column')}
+        {renderNestedRow('data-grid/filter-column')}
         {divider}
-        {renderRow('data-grid/filter-quick')}
+        {renderNestedRow('data-grid/filter-quick')}
         {divider}
-        {renderRow('data-grid/header-filters')}
+        {renderNestedRow('data-grid/header-filters')}
         {divider}
-        {renderRow('data-grid/filter-multicolumn')}
+        {renderNestedRow('data-grid/filter-multicolumn')}
         {divider}
         <RowCategory>Sorting</RowCategory>
-        {renderRow('data-grid/column-sorting')}
+        {renderNestedRow('data-grid/column-sorting')}
         {divider}
-        {renderRow('data-grid/multi-column-sorting')}
+        {renderNestedRow('data-grid/multi-column-sorting')}
         {divider}
         <RowCategory>Pagination features</RowCategory>
-        {renderRow('data-grid/pagination')}
+        {renderNestedRow('data-grid/pagination')}
         {divider}
-        {renderRow('data-grid/pagination-large')}
+        {renderNestedRow('data-grid/pagination-large')}
         {divider}
         <RowCategory>Editing features</RowCategory>
-        {renderRow('data-grid/edit-row')}
+        {renderNestedRow('data-grid/edit-row')}
         {divider}
-        {renderRow('data-grid/edit-cell')}
+        {renderNestedRow('data-grid/edit-cell')}
         {divider}
         <RowCategory>Import & export</RowCategory>
-        {renderRow('data-grid/file-csv')}
+        {renderNestedRow('data-grid/file-csv')}
         {divider}
-        {renderRow('data-grid/file-print')}
+        {renderNestedRow('data-grid/file-print')}
         {divider}
-        {renderRow('data-grid/file-clipboard-copy')}
+        {renderNestedRow('data-grid/file-clipboard-copy')}
         {divider}
-        {renderRow('data-grid/file-clipboard-paste')}
+        {renderNestedRow('data-grid/file-clipboard-paste')}
         {divider}
-        {renderRow('data-grid/file-excel')}
+        {renderNestedRow('data-grid/file-excel')}
         {divider}
         <RowCategory>Rendering features</RowCategory>
-        {renderRow('data-grid/customizable-components')}
+        {renderNestedRow('data-grid/customizable-components')}
         {divider}
-        {renderRow('data-grid/virtualize-column')}
+        {renderNestedRow('data-grid/virtualize-column')}
         {divider}
-        {renderRow('data-grid/virtualize-row')}
+        {renderNestedRow('data-grid/virtualize-row')}
         {divider}
         <RowCategory>Group & pivot</RowCategory>
-        {renderRow('data-grid/tree-data')}
+        {renderNestedRow('data-grid/tree-data')}
         {divider}
-        {renderRow('data-grid/master-detail')}
+        {renderNestedRow('data-grid/master-detail')}
         {divider}
-        {renderRow('data-grid/grouping')}
+        {renderNestedRow('data-grid/grouping')}
         {divider}
-        {renderRow('data-grid/aggregation')}
+        {renderNestedRow('data-grid/aggregation')}
         {divider}
-        {renderRow('data-grid/pivoting')}
+        {renderNestedRow('data-grid/pivoting')}
         {divider}
         <RowCategory>Miscellaneous</RowCategory>
-        {renderRow('data-grid/accessibility')}
+        {renderNestedRow('data-grid/accessibility')}
         {divider}
-        {renderRow('data-grid/keyboard-nav')}
+        {renderNestedRow('data-grid/keyboard-nav')}
         {divider}
-        {renderRow('data-grid/localization')}
+        {renderNestedRow('data-grid/localization')}
       </Collapse>
       {divider}
       {renderRow('date-picker/simple')}
