@@ -39,6 +39,9 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
 })<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
   '--Drawer-transitionDuration': '0.3s',
   '--Drawer-transitionFunction': 'ease',
+  '--ModalClose-inset': '0.5rem',
+  '--ModalClose-radius':
+    'max((var(--Drawer-contentRadius) - var(--variant-borderWidth, 0px)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--Drawer-contentRadius) - var(--variant-borderWidth, 0px)) / 2))',
   ...(ownerState.size === 'sm' && {
     '--Drawer-verticalSize': 'clamp(300px, 30%, 100%)',
     '--Drawer-horizontalSize': 'clamp(256px, 20%, 100%)',
@@ -166,6 +169,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   const { getRootProps, getBackdropProps, rootRef, portalRef, isTopModal } = useModal({
     ...ownerState,
     rootRef: ref,
+    children: null,
   });
 
   const classes = useUtilityClasses(ownerState);

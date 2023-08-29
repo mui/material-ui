@@ -39,7 +39,7 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface DrawerTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    Omit<ModalOwnProps, 'keepMounted'> &
+    Omit<ModalOwnProps, 'keepMounted' | 'children'> &
     DrawerSlotsAndSlotProps & {
       /**
        * Side from which the drawer will appear.

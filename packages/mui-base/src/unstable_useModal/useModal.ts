@@ -218,8 +218,8 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     };
 
     return {
-      onEnter: createChainedFunction(handleEnter, children.props.onEnter),
-      onExited: createChainedFunction(handleExited, children.props.onExited),
+      onEnter: createChainedFunction(handleEnter, children?.props.onEnter),
+      onExited: createChainedFunction(handleExited, children?.props.onExited),
     };
   };
 
