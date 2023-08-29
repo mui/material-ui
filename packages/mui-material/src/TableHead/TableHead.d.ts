@@ -21,10 +21,10 @@ export interface TableHeadOwnProps {
 
 export interface TableHeadTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'thead',
+  RootComponent extends React.ElementType = 'thead',
 > {
   props: AdditionalProps & TableHeadOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 /**
  *

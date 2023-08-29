@@ -21,10 +21,10 @@ export interface TableFooterOwnProps {
 
 export interface TableFooterTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'tfoot',
+  RootComponent extends React.ElementType = 'tfoot',
 > {
   props: AdditionalProps & TableFooterOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 /**
  *

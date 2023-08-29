@@ -55,10 +55,10 @@ export interface DividerOwnProps {
 
 export interface DividerTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'hr',
+  RootComponent extends React.ElementType = 'hr',
 > {
   props: AdditionalProps & DividerOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

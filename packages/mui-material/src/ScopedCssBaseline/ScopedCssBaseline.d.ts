@@ -27,10 +27,10 @@ export interface ScopedCssBaselineOwnProps {
 
 export interface ScopedCssBaselineTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > {
   props: AdditionalProps & ScopedCssBaselineOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 /**
  *

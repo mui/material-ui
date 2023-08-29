@@ -31,10 +31,10 @@ export interface TableRowOwnProps {
 
 export interface TableRowTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'tr',
+  RootComponent extends React.ElementType = 'tr',
 > {
   props: AdditionalProps & TableRowOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 /**
  * Will automatically set dynamic row height

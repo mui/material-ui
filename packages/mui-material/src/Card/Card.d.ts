@@ -27,10 +27,10 @@ export interface CardOwnProps extends DistributiveOmit<PaperOwnProps, 'classes'>
 
 export interface CardTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > {
   props: AdditionalProps & CardOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

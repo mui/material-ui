@@ -66,10 +66,10 @@ export interface ListItemButtonOwnProps extends ListItemButtonBaseProps {}
 
 export type ListItemButtonTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > = ExtendButtonBaseTypeMap<{
   props: AdditionalProps & ListItemButtonOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }>;
 
 /**

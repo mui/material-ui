@@ -94,10 +94,10 @@ export interface ChipOwnProps {
 
 export interface ChipTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > {
   props: AdditionalProps & ChipOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

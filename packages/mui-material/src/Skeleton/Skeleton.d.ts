@@ -48,10 +48,10 @@ export interface SkeletonOwnProps {
 
 export interface SkeletonTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'span',
+  RootComponent extends React.ElementType = 'span',
 > {
   props: AdditionalProps & SkeletonOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

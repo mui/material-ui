@@ -267,11 +267,11 @@ export interface SliderOwnProps {
 }
 
 export interface SliderTypeMap<
-  DefaultComponent extends React.ElementType = 'span',
+  RootComponent extends React.ElementType = 'span',
   AdditionalProps = {},
 > {
   props: AdditionalProps & SliderOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {

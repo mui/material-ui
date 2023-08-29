@@ -31,9 +31,9 @@ export interface CardMediaOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface CardMediaTypeMap<AdditionalProps, DefaultComponent extends React.ElementType> {
+export interface CardMediaTypeMap<AdditionalProps, RootComponent extends React.ElementType> {
   props: AdditionalProps & CardMediaOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

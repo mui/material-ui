@@ -40,11 +40,11 @@ export interface AppBarOwnProps {
 
 export type AppBarTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'header',
+  RootComponent extends React.ElementType = 'header',
 > = ExtendPaperTypeMap<
   {
     props: AdditionalProps & AppBarOwnProps;
-    defaultComponent: DefaultComponent;
+    defaultComponent: RootComponent;
   },
   'position' | 'color' | 'classes'
 >;

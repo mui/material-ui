@@ -128,10 +128,10 @@ export interface TabsOwnProps {
 
 export interface TabsTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = typeof ButtonBase,
+  RootComponent extends React.ElementType = typeof ButtonBase,
 > {
   props: AdditionalProps & TabsOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

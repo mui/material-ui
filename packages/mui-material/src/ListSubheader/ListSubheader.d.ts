@@ -41,10 +41,10 @@ export interface ListSubheaderOwnProps {
 
 export interface ListSubheaderTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'li',
+  RootComponent extends React.ElementType = 'li',
 > {
   props: AdditionalProps & ListSubheaderOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

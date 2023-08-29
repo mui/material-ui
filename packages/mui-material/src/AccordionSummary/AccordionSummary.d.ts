@@ -26,10 +26,10 @@ export interface AccordionSummaryOwnProps {
 
 export type AccordionSummaryTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > = ExtendButtonBaseTypeMap<{
   props: AdditionalProps & AccordionSummaryOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }>;
 
 /**

@@ -8,7 +8,7 @@ import { ExtendPaperTypeMap } from '../Paper/Paper';
 
 export type AccordionTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > = ExtendPaperTypeMap<
   {
     props: AdditionalProps & {
@@ -65,7 +65,7 @@ export type AccordionTypeMap<
        */
       TransitionProps?: TransitionProps;
     };
-    defaultComponent: DefaultComponent;
+    defaultComponent: RootComponent;
   },
   'onChange' | 'classes'
 >;

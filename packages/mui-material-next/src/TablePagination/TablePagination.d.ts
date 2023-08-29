@@ -154,12 +154,9 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TablePaginationTypeMap<
-  AdditionalProps,
-  DefaultComponent extends React.ElementType,
-> {
+export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends React.ElementType> {
   props: AdditionalProps & TablePaginationOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

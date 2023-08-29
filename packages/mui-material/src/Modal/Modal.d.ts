@@ -196,11 +196,11 @@ export interface ModalOwnProps {
 }
 
 export interface ModalTypeMap<
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
   AdditionalProps = {},
 > {
   props: AdditionalProps & ModalOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 type ModalRootProps = NonNullable<ModalTypeMap['props']['slotProps']>['root'];

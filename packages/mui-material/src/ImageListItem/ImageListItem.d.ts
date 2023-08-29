@@ -31,10 +31,10 @@ export interface ImageListItemOwnProps {
 
 export interface ImageListItemTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'li',
+  RootComponent extends React.ElementType = 'li',
 > {
   props: AdditionalProps & ImageListItemOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 /**
  *

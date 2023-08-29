@@ -19,10 +19,10 @@ export interface CardActionAreaOwnProps {
 
 export type CardActionAreaTypeMap<
   AdditionalProps,
-  DefaultComponent extends React.ElementType,
+  RootComponent extends React.ElementType,
 > = ExtendButtonBaseTypeMap<{
   props: AdditionalProps & CardActionAreaOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }>;
 
 /**

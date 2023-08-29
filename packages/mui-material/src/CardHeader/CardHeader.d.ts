@@ -6,8 +6,8 @@ import { Theme } from '..';
 import { CardHeaderClasses } from './cardHeaderClasses';
 
 export interface CardHeaderOwnProps<
-  SubheaderTypographyComponent extends React.ElementType = 'span',
   TitleTypographyComponent extends React.ElementType = 'span',
+  SubheaderTypographyComponent extends React.ElementType = 'span',
 > {
   /**
    * The action to display in the card header.
@@ -64,13 +64,14 @@ export interface CardHeaderOwnProps<
 }
 
 export interface CardHeaderTypeMap<
-  Props = {},
-  DefaultComponent extends React.ElementType = 'div',
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
   TitleTypographyComponent extends React.ElementType = 'span',
   SubheaderTypographyComponent extends React.ElementType = 'span',
 > {
-  props: Props & CardHeaderOwnProps<SubheaderTypographyComponent, TitleTypographyComponent>;
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps &
+    CardHeaderOwnProps<TitleTypographyComponent, SubheaderTypographyComponent>;
+  defaultComponent: RootComponent;
 }
 /**
  *
@@ -86,14 +87,14 @@ declare const CardHeader: OverridableCardHeader;
 
 export interface OverridableCardHeader extends OverridableComponent<CardHeaderTypeMap> {
   <
-    DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
-    Props = {},
+    RootComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
+    AdditionalProps = {},
     TitleTypographyComponent extends React.ElementType = 'span',
     SubheaderTypographyComponent extends React.ElementType = 'span',
   >(
     props: CardHeaderPropsWithComponent<
-      DefaultComponent,
-      Props,
+      RootComponent,
+      AdditionalProps,
       TitleTypographyComponent,
       SubheaderTypographyComponent
     >,
@@ -101,23 +102,23 @@ export interface OverridableCardHeader extends OverridableComponent<CardHeaderTy
 }
 
 export type CardHeaderProps<
-  DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
-  Props = {},
+  RootComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
+  AdditionalProps = {},
   TitleTypographyComponent extends React.ElementType = 'span',
   SubheaderTypographyComponent extends React.ElementType = 'span',
 > = OverrideProps<
   CardHeaderTypeMap<
-    Props,
-    DefaultComponent,
+    AdditionalProps,
+    RootComponent,
     TitleTypographyComponent,
     SubheaderTypographyComponent
   >,
-  DefaultComponent
+  RootComponent
 >;
 
 export type CardHeaderPropsWithComponent<
-  DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
-  Props = {},
+  RootComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
+  AdditionalProps = {},
   TitleTypographyComponent extends React.ElementType = 'span',
   SubheaderTypographyComponent extends React.ElementType = 'span',
 > = {
@@ -125,10 +126,10 @@ export type CardHeaderPropsWithComponent<
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component?: DefaultComponent;
+  component?: RootComponent;
 } & CardHeaderProps<
-  DefaultComponent,
-  Props,
+  RootComponent,
+  AdditionalProps,
   TitleTypographyComponent,
   SubheaderTypographyComponent
 >;

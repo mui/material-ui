@@ -22,10 +22,10 @@ export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'c
 
 export interface DialogTitleTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
+  RootComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
 > {
   props: AdditionalProps & DialogTitleOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

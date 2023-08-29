@@ -12,7 +12,7 @@ export interface FormLabelPropsColorOverrides {}
  */
 export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 
-export interface FormLabelOwnProps extends FormLabelBaseProps {
+export interface FormLabelOwnProps {
   /**
    * The content of the component.
    */
@@ -58,10 +58,10 @@ export interface FormLabelOwnProps extends FormLabelBaseProps {
 
 export interface FormLabelTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'label',
+  RootComponent extends React.ElementType = 'label',
 > {
-  props: AdditionalProps & FormLabelOwnProps;
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps & FormLabelBaseProps & FormLabelOwnProps;
+  defaultComponent: RootComponent;
 }
 
 /**

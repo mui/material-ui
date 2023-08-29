@@ -50,10 +50,10 @@ export interface MenuItemOwnProps {
 
 export type MenuItemTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'li',
+  RootComponent extends React.ElementType = 'li',
 > = ExtendButtonBaseTypeMap<{
   props: AdditionalProps & MenuItemOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }>;
 
 /**

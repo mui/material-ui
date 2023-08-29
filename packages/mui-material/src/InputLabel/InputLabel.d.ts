@@ -65,10 +65,10 @@ export interface InputLabelOwnProps {
 
 export type InputLabelTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'label',
+  RootComponent extends React.ElementType = 'label',
 > = ExtendFormLabelTypeMap<{
   props: AdditionalProps & InputLabelOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }>;
 
 /**

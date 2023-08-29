@@ -45,9 +45,6 @@ export interface AvatarOwnProps {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
   sx?: SxProps<Theme>;
   /**
    * The shape of the avatar.
@@ -58,10 +55,10 @@ export interface AvatarOwnProps {
 
 export interface AvatarTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > {
   props: AdditionalProps & AvatarOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

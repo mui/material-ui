@@ -151,10 +151,10 @@ export interface GridOwnProps extends SystemProps<Theme>, Breakpoints {
 
 export interface GridTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > {
   props: AdditionalProps & GridOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

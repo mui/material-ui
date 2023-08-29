@@ -58,10 +58,10 @@ export interface IconOwnProps {
 
 export interface IconTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'span',
+  RootComponent extends React.ElementType = 'span',
 > {
   props: AdditionalProps & IconOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 /**
  *

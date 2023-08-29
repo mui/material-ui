@@ -85,10 +85,10 @@ export interface SvgIconOwnProps {
 
 export interface SvgIconTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'svg',
+  RootComponent extends React.ElementType = 'svg',
 > {
   props: AdditionalProps & SvgIconOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 /**
  *

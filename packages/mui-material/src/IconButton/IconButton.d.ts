@@ -61,10 +61,10 @@ export interface IconButtonOwnProps {
 
 export type IconButtonTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'button',
+  RootComponent extends React.ElementType = 'button',
 > = ExtendButtonBaseTypeMap<{
   props: AdditionalProps & IconButtonOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }>;
 
 /**

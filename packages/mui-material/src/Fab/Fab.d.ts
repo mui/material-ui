@@ -69,10 +69,10 @@ export interface FabOwnProps {
 
 export type FabTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'button',
+  RootComponent extends React.ElementType = 'button',
 > = ExtendButtonBaseTypeMap<{
   props: AdditionalProps & FabOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }>;
 
 /**

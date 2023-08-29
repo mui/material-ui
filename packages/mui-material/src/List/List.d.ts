@@ -35,12 +35,9 @@ export interface ListOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ListTypeMap<
-  AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'ul',
-> {
+export interface ListTypeMap<AdditionalProps = {}, RootComponent extends React.ElementType = 'ul'> {
   props: AdditionalProps & ListOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

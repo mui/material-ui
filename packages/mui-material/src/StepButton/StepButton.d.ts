@@ -35,10 +35,10 @@ export interface StepButtonOwnProps {
 
 export type StepButtonTypeMap<
   AdditionalProps,
-  DefaultComponent extends React.ElementType,
+  RootComponent extends React.ElementType,
 > = ExtendButtonBaseTypeMap<{
   props: AdditionalProps & StepButtonOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 
   ignoredProps: 'disabled';
 }>;

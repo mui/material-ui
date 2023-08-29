@@ -21,10 +21,10 @@ export interface TableBodyOwnProps {
 
 export interface TableBodyTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'tbody',
+  RootComponent extends React.ElementType = 'tbody',
 > {
   props: AdditionalProps & TableBodyOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 /**
  *

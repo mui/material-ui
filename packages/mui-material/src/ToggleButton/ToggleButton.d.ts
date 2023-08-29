@@ -81,10 +81,10 @@ export interface ToggleButtonOwnProps {
 
 export type ToggleButtonTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'button',
+  RootComponent extends React.ElementType = 'button',
 > = ExtendButtonBaseTypeMap<{
   props: AdditionalProps & ToggleButtonOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }>;
 
 /**

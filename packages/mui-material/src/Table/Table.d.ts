@@ -41,10 +41,10 @@ export interface TableOwnProps {
 
 export interface TableTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'table',
+  RootComponent extends React.ElementType = 'table',
 > {
   props: AdditionalProps & TableOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 /**
  *

@@ -18,10 +18,10 @@ export interface DialogContentTextOwnProps extends Omit<TypographyTypeMap['props
 
 export interface DialogContentTextTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
+  RootComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
 > {
   props: AdditionalProps & DialogContentTextOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

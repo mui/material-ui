@@ -51,10 +51,10 @@ export interface StepperOwnProps extends Pick<PaperProps, 'elevation' | 'square'
 
 export interface StepperTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > {
   props: AdditionalProps & StepperOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 export type StepperProps<

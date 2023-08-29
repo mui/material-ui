@@ -58,10 +58,10 @@ export interface FormHelperTextOwnProps {
 
 export interface FormHelperTextTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'p',
+  RootComponent extends React.ElementType = 'p',
 > {
   props: AdditionalProps & FormHelperTextOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 /**
  *

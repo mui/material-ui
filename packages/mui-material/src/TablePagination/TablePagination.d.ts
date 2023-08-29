@@ -20,7 +20,7 @@ export interface LabelDisplayedRowsArgs {
  */
 export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
 
-interface TablePaginationOwnProps extends TablePaginationBaseProps {
+export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   /**
    * The component used for displaying the actions.
    * Either a string to use a HTML element or a component.
@@ -125,12 +125,9 @@ interface TablePaginationOwnProps extends TablePaginationBaseProps {
   sx?: SxProps<Theme>;
 }
 
-export interface TablePaginationTypeMap<
-  AdditionalProps,
-  DefaultComponent extends React.ElementType,
-> {
+export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends React.ElementType> {
   props: AdditionalProps & TablePaginationOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

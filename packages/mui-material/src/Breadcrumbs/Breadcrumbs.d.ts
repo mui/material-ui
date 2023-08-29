@@ -81,10 +81,10 @@ export interface BreadcrumbsOwnProps {
 
 export interface BreadcrumbsTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'nav',
+  RootComponent extends React.ElementType = 'nav',
 > {
   props: AdditionalProps & BreadcrumbsOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

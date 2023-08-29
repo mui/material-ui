@@ -40,12 +40,9 @@ export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes'>
   variant?: TypographyOwnProps['variant'];
 }
 
-export interface LinkTypeMap<
-  AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'a',
-> {
+export interface LinkTypeMap<AdditionalProps = {}, RootComponent extends React.ElementType = 'a'> {
   props: AdditionalProps & LinkOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

@@ -38,10 +38,10 @@ export interface MenuListOwnProps {
 
 export type MenuListTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'ul',
+  RootComponent extends React.ElementType = 'ul',
 > = ExtendListTypeMap<{
   props: AdditionalProps & MenuListOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }>;
 
 export type MenuListClassKey = keyof NonNullable<MenuListTypeMap['props']['classes']>;

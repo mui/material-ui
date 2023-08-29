@@ -134,9 +134,9 @@ export interface ListItemOwnProps extends ListItemBaseProps {
   };
 }
 
-export interface ListItemTypeMap<AdditionalProps, DefaultComponent extends React.ElementType> {
+export interface ListItemTypeMap<AdditionalProps, RootComponent extends React.ElementType> {
   props: AdditionalProps & ListItemOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**

@@ -44,10 +44,10 @@ export interface TableSortLabelOwnProps {
 
 export type TableSortLabelTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'span',
+  RootComponent extends React.ElementType = 'span',
 > = ExtendButtonBaseTypeMap<{
   props: AdditionalProps & TableSortLabelOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }>;
 
 /**
