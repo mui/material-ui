@@ -414,19 +414,19 @@ function AutomaticAdjustment() {
   };
   const defaultJoyThumb = {
     width: 16,
-    height: 16,
+    size: 16,
     radius: 8,
   };
   const [joyTrack, setJoyTrack] = React.useState<{
     width?: number;
     height?: number;
     radius?: number;
-  }>({});
+  }>(defaultJoyTrack);
   const [joyThumb, setJoyThumb] = React.useState<{
     width?: number;
-    height?: number;
+    size?: number;
     radius?: number;
-  }>({});
+  }>(defaultJoyThumb);
   return (
     <Frame sx={{ height: '100%' }}>
       <Frame.Demo sx={{ flexGrow: 1, display: 'grid', gridTemplateRows: 'auto 1fr auto' }}>
@@ -438,13 +438,13 @@ function AutomaticAdjustment() {
             startDecorator={<AutoFixHighIcon />}
             onClick={() => {
               setJoyTrack({
-                width: Math.floor(Math.random() * (100 - 64 + 1)) + 64,
-                height: Math.floor(Math.random() * (56 - 24 + 1)) + 24,
+                width: Math.floor(Math.random() * (48 - 64 + 1)) + 64,
+                height: Math.floor(Math.random() * (32 - 24 + 1)) + 24,
                 radius: Math.floor(Math.random() * (20 - 0 + 1)) + 0,
               });
               setJoyThumb({
-                width: Math.floor(Math.random() * (48 - 20 + 1)) + 20,
-                height: Math.floor(Math.random() * (48 - 8 + 1)) + 8,
+                width: Math.floor(Math.random() * (24 - 20 + 1)) + 20,
+                size: Math.floor(Math.random() * (24 - 48 + 1)) + 48,
                 radius: undefined,
               });
             }}
@@ -457,8 +457,8 @@ function AutomaticAdjustment() {
             size="sm"
             startDecorator={<RestartAltIcon />}
             onClick={() => {
-              setJoyTrack({});
-              setJoyThumb({});
+              setJoyTrack(defaultJoyTrack);
+              setJoyThumb(defaultJoyThumb);
             }}
           >
             Reset
@@ -471,7 +471,7 @@ function AutomaticAdjustment() {
               ...(joyTrack.height && { '--Switch-trackHeight': `${joyTrack.height}px` }),
               ...(joyTrack.radius && { '--Switch-trackRadius': `${joyTrack.radius}px` }),
               ...(joyThumb.width && { '--Switch-thumbWidth': `${joyThumb.width}px` }),
-              ...(joyThumb.height && { '--Switch-thumbSize': `${joyThumb.height}px` }),
+              ...(joyThumb.size && { '--Switch-thumbSize': `${joyThumb.size}px` }),
               ...(joyThumb.radius && { '--Switch-thumbRadius': `${joyThumb.radius}px` }),
             }}
           />
@@ -505,7 +505,7 @@ function AutomaticAdjustment() {
               <JoyFormLabel>Width: </JoyFormLabel>
               <JoySlider
                 size="sm"
-                value={joyTrack.width ?? defaultJoyTrack.width}
+                value={joyTrack.width}
                 min={40}
                 max={100}
                 valueLabelDisplay="auto"
@@ -520,7 +520,7 @@ function AutomaticAdjustment() {
               <JoyFormLabel>Height: </JoyFormLabel>
               <JoySlider
                 size="sm"
-                value={joyTrack.height ?? defaultJoyTrack.height}
+                value={joyTrack.height}
                 min={16}
                 max={64}
                 valueLabelDisplay="auto"
@@ -534,7 +534,7 @@ function AutomaticAdjustment() {
               <JoyFormLabel>Radius: </JoyFormLabel>
               <JoySlider
                 size="sm"
-                value={joyTrack.radius ?? defaultJoyTrack.radius}
+                value={joyTrack.radius}
                 min={0}
                 max={20}
                 valueLabelDisplay="auto"
@@ -553,7 +553,7 @@ function AutomaticAdjustment() {
               <JoyFormLabel>Width: </JoyFormLabel>
               <JoySlider
                 size="sm"
-                value={joyThumb.width ?? defaultJoyThumb.width}
+                value={joyThumb.width}
                 min={12}
                 max={48}
                 valueLabelDisplay="auto"
@@ -565,10 +565,10 @@ function AutomaticAdjustment() {
             </JoyFormControl>
 
             <JoyFormControl size="sm" orientation="horizontal">
-              <JoyFormLabel>Height: </JoyFormLabel>
+              <JoyFormLabel>Size: </JoyFormLabel>
               <JoySlider
                 size="sm"
-                value={joyThumb.height ?? defaultJoyThumb.height}
+                value={joyThumb.size}
                 min={12}
                 max={48}
                 valueLabelDisplay="auto"
@@ -583,7 +583,7 @@ function AutomaticAdjustment() {
               <JoyFormLabel>Radius: </JoyFormLabel>
               <JoySlider
                 size="sm"
-                value={joyThumb.radius ?? defaultJoyThumb.radius}
+                value={joyThumb.radius}
                 min={2}
                 max={24}
                 valueLabelDisplay="auto"
@@ -614,7 +614,7 @@ function AutomaticAdjustment() {
                   joyTrack.height ? `\n    '--Switch-trackHeight': '${joyTrack.height}px',` : ''
                 }${joyTrack.radius ? `\n    '--Switch-trackRadius': '${joyTrack.radius}px',` : ''}${
                   joyThumb.width ? `\n    '--Switch-thumbWidth': '${joyThumb.width}px',` : ''
-                }${joyThumb.height ? `\n    '--Switch-thumbSize': '${joyThumb.height}px',` : ''}${
+                }${joyThumb.size ? `\n    '--Switch-thumbSize': '${joyThumb.size}px',` : ''}${
                   joyThumb.radius ? `\n    '--Switch-thumbRadius': '${joyThumb.radius}px',` : ''
                 }
   }}
