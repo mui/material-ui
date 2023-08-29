@@ -51,7 +51,7 @@ The badge automatically hidden if `badgeContent` is zero. You can change this by
 Control the badge visibility using the `invisible` prop.
 
 :::info
-If `showZero` is true, the badge will appear even though `invisible` is true.
+**Note:** If `showZero` is true, the badge will appear even though `invisible` is true.
 :::
 
 {{"demo": "BadgeVisibility.js"}}

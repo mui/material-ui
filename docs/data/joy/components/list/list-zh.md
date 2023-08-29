@@ -98,7 +98,7 @@ The nested list inherits the list `size` and a few other CSS variables, such as 
 {{"demo": "NestedList.js"}}
 
 :::info
-By default, nested lists stick to the left of the root list. To add spacing to the start of the nested list, use `--List-nestedInsetStart: ${value}`:
+**Note:** By default, nested lists stick to the left of the root list. To add spacing to the start of the nested list, use `--List-nestedInsetStart: ${value}`:
 
 ```js
 <List sx={{ '--List-nestedInsetStart': '1rem' }}> {/* This is the root List */}

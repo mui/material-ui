@@ -13,7 +13,7 @@ components: AspectRatio
 `AspectRatio` is a wrapper component that allows you to rapidly control its content aspect ratio. Its default implementation combines `height: 0px` with percentage `padding-bottom` to properly accommodate the content.
 
 :::info
-A [native CSS `aspect-radio`property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) already exists but we're not using it yet due to limited browser support. Once that increases significantly, we'll switch over to it.
+**Note:** A [native CSS `aspect-radio`property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) already exists but we're not using it yet due to limited browser support. Once that increases significantly, we'll switch over to it.
 :::
 
 ## Component
