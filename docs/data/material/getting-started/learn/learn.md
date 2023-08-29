@@ -4,20 +4,10 @@
 
 ## Your first component
 
-The following code snippet demonstrates a basic Material UI app that features a `<Button>` component:
+The following demo shows a basic Material UI app that features a `<Button>` component.
+Try changing the `variant` on the [Button](/material-ui/react-button/) to `outlined` to see how the style changes:
 
-```jsx
-import * as React from 'react';
-import Button from '@mui/material/Button';
-
-function App() {
-  return <Button variant="contained">Hello World</Button>;
-}
-```
-
-In the interactive demo below, try changing the code and see how it affects the output. (Hint: change `variant` to `"outlined"` and `color` to `"secondary"`. For more options, see the [`Button` component page](/material-ui/react-button/).)
-
-{{"demo": "../usage/Usage.js", "hideToolbar": true, "bg": true}}
+{{"demo": "../usage/ButtonUsage.js", "defaultCodeOpen": true}}
 
 ## Example projects
 
