@@ -35,3 +35,21 @@ You can use the `anchor` prop for specifying where the drawer should appear from
 The `size` prop allows you to adjust the size of the drawer.
 
 {{"demo": "DrawerSize.js"}}
+
+### Transition
+
+{{"demo": "DrawerTransition.js"}}
+
+### Scrollable content
+
+{{"demo": "DrawerScrollable.js"}}
+
+## Common examples
+
+### Mobile navigation
+
+{{"demo": "DrawerMobileNavigation.js"}}
+
+### Filter drawer
+
+{{"demo": "DrawerFilters.js"}}
