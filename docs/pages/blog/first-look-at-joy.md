@@ -130,7 +130,7 @@ It should be ready for more mature experimentation and testing in the second hal
 Meanwhile, we've developed a couple of templates that showcase what Joy UI looks like out of the box, so you can explore it further.
 Follow the templates' CodeSandbox or live demo links to experiment with Joy UI for yourself.
 
-:::info
+:::success
 They are also available in the docs [Templates page](/joy-ui/getting-started/templates/).
 :::
 
