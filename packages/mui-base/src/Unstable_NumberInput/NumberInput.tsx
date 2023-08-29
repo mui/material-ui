@@ -307,7 +307,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
   /**
    * The current value. Use when the component is controlled.
    */
-  value: PropTypes.any,
+  value: PropTypes.number,
 } as any;
 
 export { NumberInput };

@@ -24,7 +24,7 @@ const STEP_KEYS = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'];
 
 const SUPPORTED_KEYS = [...STEP_KEYS, 'Home', 'End'];
 
-function parseInput(v: string): string {
+export function getInputValueAsString(v: string): string {
   return v ? String(v.trim()) : String(v);
 }
 
@@ -159,7 +159,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
 
       otherHandlers.onInputChange?.(event);
 
-      const val = parseInput(event.currentTarget.value);
+      const val = getInputValueAsString(event.currentTarget.value);
 
       if (val === '' || val === '-') {
         setDirtyValue(val);
@@ -175,7 +175,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
   const handleBlur =
     (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
     (event: React.FocusEvent<HTMLInputElement>) => {
-      const val = parseInput(event.currentTarget.value);
+      const val = getInputValueAsString(event.currentTarget.value);
 
       otherHandlers.onBlur?.(event);
 
