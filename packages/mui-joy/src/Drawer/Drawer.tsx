@@ -9,10 +9,10 @@ import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
 import { useThemeProps, styled, ColorInversionProvider, useColorInversion } from '../styles';
 import { SheetRoot } from '../Sheet/Sheet';
-import { ModalBackdrop } from '../Modal/Modal';
+import { StyledModalBackdrop, StyledModalRoot } from '../Modal/Modal';
 import CloseModalContext from '../Modal/CloseModalContext';
 import useSlot from '../utils/useSlot';
-import drawerClasses, { getDrawerUtilityClass } from './drawerClasses';
+import { getDrawerUtilityClass } from './drawerClasses';
 import { DrawerOwnerState, DrawerTypeMap } from './DrawerProps';
 
 const useUtilityClasses = (ownerState: DrawerOwnerState) => {
@@ -33,36 +33,28 @@ const useUtilityClasses = (ownerState: DrawerOwnerState) => {
   return composeClasses(slots, getDrawerUtilityClass, {});
 };
 
-const DrawerRoot = styled('div', {
+const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
   name: 'JoyDrawer',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: DrawerOwnerState }>(({ theme, ownerState }) => ({
-  '--unstable_popup-zIndex': `calc(${theme.vars.zIndex.modal} + 1)`,
-  '& ~ [role="listbox"]': {
-    // target all the listbox (Autocomplete, Menu, Select, etc.) that uses portal
-    '--unstable_popup-zIndex': `calc(${theme.vars.zIndex.modal} + 1)`,
-  },
-  position: 'fixed',
-  zIndex: theme.vars.zIndex.modal,
+})<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
   transitionProperty: 'visibility',
   transitionDelay: ownerState.open ? '0s' : '300ms',
   ...(!ownerState.open && {
     visibility: 'hidden',
   }),
-  [`& .${drawerClasses.backdrop}`]: {
-    opacity: ownerState.open ? 1 : 0,
-    transition: 'opacity 0.3s ease-in-out',
-  },
 }));
 
-const DrawerBackdrop = styled(ModalBackdrop as unknown as 'div', {
+const DrawerBackdrop = styled(StyledModalBackdrop as unknown as 'div', {
   name: 'JoyDrawer',
   slot: 'Backdrop',
   overridesResolver: (props, styles) => styles.backdrop,
-})({});
+})<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
+  opacity: ownerState.open ? 1 : 0,
+  transition: 'opacity 0.3s ease-in-out',
+}));
 
-export const DrawerContent = styled(SheetRoot as unknown as 'div', {
+const DrawerContent = styled(SheetRoot as unknown as 'div', {
   name: 'JoyDrawer',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.root,

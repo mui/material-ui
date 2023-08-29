@@ -24,32 +24,32 @@ const useUtilityClasses = (ownerState: ModalOwnerState) => {
   return composeClasses(slots, getModalUtilityClass, {});
 };
 
-const ModalRoot = styled('div', {
+export const StyledModalRoot = styled('div')<{ ownerState: ModalOwnerState }>(
+  ({ ownerState, theme }) => ({
+    '--unstable_popup-zIndex': `calc(${theme.vars.zIndex.modal} + 1)`,
+    '& ~ [role="listbox"]': {
+      // target all the listbox (Autocomplete, Menu, Select, etc.) that uses portal
+      '--unstable_popup-zIndex': `calc(${theme.vars.zIndex.modal} + 1)`,
+    },
+    position: 'fixed',
+    zIndex: theme.vars.zIndex.modal,
+    right: 0,
+    bottom: 0,
+    top: 0,
+    left: 0,
+    ...(!ownerState.open && {
+      visibility: 'hidden',
+    }),
+  }),
+);
+
+const ModalRoot = styled(StyledModalRoot, {
   name: 'JoyModal',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalOwnerState }>(({ ownerState, theme }) => ({
-  '--unstable_popup-zIndex': `calc(${theme.vars.zIndex.modal} + 1)`,
-  '& ~ [role="listbox"]': {
-    // target all the listbox (Autocomplete, Menu, Select, etc.) that uses portal
-    '--unstable_popup-zIndex': `calc(${theme.vars.zIndex.modal} + 1)`,
-  },
-  position: 'fixed',
-  zIndex: theme.vars.zIndex.modal,
-  right: 0,
-  bottom: 0,
-  top: 0,
-  left: 0,
-  ...(!ownerState.open && {
-    visibility: 'hidden',
-  }),
-}));
+})<{ ownerState: ModalOwnerState }>({});
 
-export const ModalBackdrop = styled('div', {
-  name: 'JoyModal',
-  slot: 'Backdrop',
-  overridesResolver: (props, styles) => styles.backdrop,
-})<{ ownerState: ModalOwnerState }>(({ theme, ownerState }) => ({
+export const StyledModalBackdrop = styled('div')<{ ownerState: ModalOwnerState }>(({ theme }) => ({
   zIndex: -1,
   position: 'fixed',
   right: 0,
@@ -58,10 +58,14 @@ export const ModalBackdrop = styled('div', {
   left: 0,
   backgroundColor: theme.vars.palette.background.backdrop,
   WebkitTapHighlightColor: 'transparent',
-  ...(ownerState.open && {
-    backdropFilter: 'blur(8px)',
-  }),
+  backdropFilter: 'blur(8px)',
 }));
+
+export const ModalBackdrop = styled(StyledModalBackdrop, {
+  name: 'JoyModal',
+  slot: 'Backdrop',
+  overridesResolver: (props, styles) => styles.backdrop,
+})<{ ownerState: ModalOwnerState }>({});
 /**
  *
  * Demos:
