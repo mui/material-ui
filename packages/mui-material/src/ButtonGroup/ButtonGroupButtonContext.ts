@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface IButtonGroupButtonContext {
+interface ButtonGroupButtonContextType {
   firstButton?: boolean;
   lastButton?: boolean;
   onlyChild?: boolean;
@@ -9,7 +9,7 @@ interface IButtonGroupButtonContext {
 /**
  * @ignore - internal component.
  */
-const ButtonGroupButtonContext = React.createContext<IButtonGroupButtonContext | undefined>(
+const ButtonGroupButtonContext = React.createContext<ButtonGroupButtonContextType | undefined>(
   undefined,
 );
 
