@@ -36,7 +36,7 @@ Material UI and Joy UI still share many of the same conventions and features.
 We've done this not only to decrease the learning curve for adopting Joy UI, but also because we believe that the conventions we've established represent the ideal developer experience for working with design systems.
 
 :::info
-💡 Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
+Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
 :::
 
 ## What new features does Joy UI offer?
@@ -130,8 +130,8 @@ It should be ready for more mature experimentation and testing in the second hal
 Meanwhile, we've developed a couple of templates that showcase what Joy UI looks like out of the box, so you can explore it further.
 Follow the templates' CodeSandbox or live demo links to experiment with Joy UI for yourself.
 
-:::info
-👉 They are also available in the docs [Templates page](/joy-ui/getting-started/templates/).
+:::success
+They are also available in the docs [Templates page](/joy-ui/getting-started/templates/).
 :::
 
 ### Email
