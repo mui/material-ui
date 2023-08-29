@@ -282,7 +282,18 @@ function ColumnHead({
     </Typography>
   );
   return (
-    <Box sx={{ pl: 1, pr: 1, alignSelf: 'center', justifySelf: 'flex-start' }}>
+    <Box
+      sx={{
+        pl: 1,
+        pr: 1,
+        alignSelf: 'center',
+        justifySelf: 'flex-start',
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
       {tooltip ? (
         <Tooltip title={tooltip} placement="right" describeChild>
           {text}
@@ -945,7 +956,7 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
       sx={[
         gridSx,
         (theme) => ({
-          '&:hover': {
+          '&:hover > div': {
             bgcolor: alpha(theme.palette.grey[50], 0.4),
             '@media (hover: none)': {
               bgcolor: 'initial',
