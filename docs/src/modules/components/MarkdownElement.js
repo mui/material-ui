@@ -281,11 +281,18 @@ const Root = styled('div')(
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
       '& .MuiCallout-content': {
+        minWidth: 0,
         display: 'flex',
         flexDirection: 'column',
         gap: 6,
         '&>p, ul': {
           marginBottom: 0,
+        },
+        '& .MuiCode-root': {
+          '&>pre': {
+            margin: 0,
+            marginTop: 4,
+          },
         },
         '&>ul': {
           paddingLeft: 22,
@@ -448,9 +455,8 @@ const Root = styled('div')(
       fontWeight: 500,
       borderRadius: 6,
       border: 'none',
-      backgroundColor: 'transparent',
+      backgroundColor: '#0F1924', // using the code block one-off background color (defined in line 23)
       color: '#FFF',
-      opacity: 0.6,
       transition: theme.transitions.create(['background', 'borderColor', 'display'], {
         duration: theme.transitions.duration.shortest,
       }),
@@ -463,12 +469,15 @@ const Root = styled('div')(
         flexShrink: 0,
         fontSize: '18px',
         margin: 'auto',
+        opacity: 0.6,
       },
       '& .MuiCode-copied-icon': {
         display: 'none',
       },
       '&:hover, &:focus': {
-        opacity: 1,
+        '& svg': {
+          opacity: 1,
+        },
         backgroundColor: lightTheme.palette.primaryDark[500],
         '& .MuiCode-copyKeypress': {
           display: 'block',
