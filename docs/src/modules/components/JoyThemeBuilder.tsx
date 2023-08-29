@@ -355,7 +355,8 @@ export default theme;`;
 function getPaletteFormProps(colorSchemes: any, colorMode: string, node: string) {
   // @ts-ignore
   const themeDefaultValue = defaultTheme.colorSchemes[colorMode].palette[node];
-  const value = colorSchemes[colorMode][node];
+  const value = colorSchemes[colorMode][node] || {};
+
   const mergedValue = { ...themeDefaultValue, ...value };
   return {
     themeDefaultValue,
@@ -719,6 +720,7 @@ function PaletteImport({
 function ColorTokenCreator({ onChange }: { onChange: (name: string, value: string) => void }) {
   const [open, setOpen] = React.useState(false);
   const nameRef = React.useRef<HTMLInputElement | null>(null);
+  const colorRef = React.useRef<HTMLInputElement | null>(null);
   const [name, setName] = React.useState('');
   const [color, setColor] = React.useState('');
   if (!open) {
@@ -739,6 +741,9 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
       </Button>
     );
   }
+
+  const isValidToken = name.trim() && color.trim();
+
   return (
     <Sheet
       variant="soft"
@@ -763,28 +768,41 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
         onChange={(event) => setName(event.target.value)}
       />{' '}
       <b>:</b>{' '}
-      <Input
+      <ColorInput
         size="sm"
         placeholder="A valid CSS color"
         value={color}
-        onChange={(event) => setColor(event.target.value)}
+        onEmptyColor={() => {
+          setColor('');
+        }}
         onKeyDown={(event) => {
           if (event.key === 'Enter' && name && color) {
             onChange(name, color);
             setOpen(false);
           }
         }}
+        onValidColor={(newColor) => {
+          setColor(newColor);
+        }}
+        slotProps={{
+          input: { ref: colorRef },
+        }}
         sx={{ flexGrow: 1 }}
       />
       <IconButton
         variant="solid"
-        color="neutral"
+        color={isValidToken ? 'primary' : 'neutral'}
         size="sm"
         onClick={() => {
-          if (!name) {
+          const trimmedName = name.trim();
+          const trimmedColor = color.trim();
+
+          if (!trimmedName) {
             nameRef.current?.focus();
+          } else if (!trimmedColor) {
+            colorRef.current?.focus();
           } else {
-            onChange(name, color);
+            onChange(trimmedName, trimmedColor);
             setColor('');
             setName('');
             setOpen(false);
@@ -1582,7 +1600,7 @@ export default function JoyThemeBuilder() {
                     }}
                     onRemove={(token) => {
                       setter((prev) => {
-                        const newPalette = prev.background;
+                        const newPalette = prev.background || {};
                         delete newPalette[token];
                         return { ...prev, background: newPalette };
                       });
@@ -1606,7 +1624,7 @@ export default function JoyThemeBuilder() {
                     }}
                     onRemove={(token) => {
                       setter((prev) => {
-                        const newPalette = prev.common;
+                        const newPalette = prev.common || {};
                         delete newPalette[token];
                         return { ...prev, common: newPalette };
                       });
@@ -1630,7 +1648,7 @@ export default function JoyThemeBuilder() {
                     }}
                     onRemove={(token) => {
                       setter((prev) => {
-                        const newPalette = prev.text;
+                        const newPalette = prev.text || {};
                         delete newPalette[token];
                         return { ...prev, text: newPalette };
                       });
@@ -1686,7 +1704,7 @@ export default function JoyThemeBuilder() {
                     }}
                     onRemove={(token) => {
                       setter((prev) => {
-                        const newPalette = prev[colorProp];
+                        const newPalette = prev[colorProp] || {};
                         delete newPalette[token];
                         return { ...prev, [colorProp]: newPalette };
                       });
@@ -1707,7 +1725,7 @@ export default function JoyThemeBuilder() {
                     }}
                     onRemove={(token) => {
                       setter((prev) => {
-                        const newPalette = prev[colorProp];
+                        const newPalette = prev[colorProp] || {};
                         delete newPalette[token];
                         return { ...prev, [colorProp]: newPalette };
                       });
