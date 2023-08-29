@@ -8,16 +8,16 @@ _Aug 29, 2023_
 
 A big thanks to the 11 contributors who made this release possible. This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
-### `@mui/material@`
+### `@mui/material@5.14.7`
 
 - &#8203;<!-- 17 -->[Autocomplete] Fix listbox opened unexpectedly when component is `disabled` (#38611) @mj12albert
 - &#8203;<!-- 03 -->[Select][material-ui] Fix select menu moving on scroll when disableScrollLock is true (#37773) @VishruthR
 
-### `@mui/base@`
+### `@mui/base@5.0.0-beta.13`
 
 - &#8203;<!-- 16 -->[useButton][base-ui] Accept arbitrary props in getRootProps and forward them (#38475) @DiegoAndai
 
-### `@mui/zero-runtime@`
+### `@mui/zero-runtime@0.0.1-alpha.1`
 
 - &#8203;<!-- 02 -->[system][zero][tag] Add support for sx prop (#38535) @brijeshb42
 
