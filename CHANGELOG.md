@@ -1,5 +1,45 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.7
+
+<!-- generated comparing v5.14.6..master -->
+
+_Aug 29, 2023_
+
+A big thanks to the 11 contributors who made this release possible. This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@`
+
+- &#8203;<!-- 15 -->[Autocomplete] Fix listbox opened unexpectedly when component is `disabled` (#38611) @mj12albert
+- &#8203;<!-- 03 -->[Select][material-ui] Fix select menu moving on scroll when disableScrollLock is true (#37773) @VishruthR
+
+### `@mui/base@`
+
+- &#8203;<!-- 14 -->[useButton][base-ui] Accept arbitrary props in getRootProps and forward them (#38475) @DiegoAndai
+
+### `@mui/zero-runtime@`
+
+- &#8203;<!-- 02 -->[system][zero][tag] Add support for sx prop (#38535) @brijeshb42
+
+### Docs
+
+- &#8203;<!-- 09 -->[docs] Show all the code in the usage section (#38691) @oliviertassinari
+- &#8203;<!-- 06 -->[docs][joy-ui] Change the customization and how-to guides docs tree (#38396) @danilo-leal
+- &#8203;<!-- 05 -->[docs][lab][LoadingButton] Improve `loading` prop documentation (#38625) @sai6855
+- &#8203;<!-- 04 -->[docs][material-ui] Format `key` prop JSDoc description in `Snackbar` component code correctly (#38603) @jaydenseric
+
+### Core
+
+- &#8203;<!-- 13 -->[core] Remove unnecessary `@types/jsdom` (#38657) @renovate[bot]
+- &#8203;<!-- 12 -->[core] Improve sponsors GA labels (#38649) @oliviertassinari
+- &#8203;<!-- 11 -->[core] Fix ESM issues with regression tests (#37963) @Janpot
+- &#8203;<!-- 10 -->[core] Potential fix for intermittent ci crashes in e2e test (#38614) @Janpot
+- &#8203;<!-- 08 -->[docs-infra] Adjust the Material You playground demo design (#38636) @danilo-leal
+- &#8203;<!-- 07 -->[docs-infra] Hide the SkipLink button if user prefers reduced motion (#38632) @DerTimonius
+- &#8203;<!-- 01 -->[website] Add tiny fixes the homepage Sponsors section (#38635) @danilo-leal
+
+All contributors of this release in alphabetical order: @brijeshb42, @danilo-leal, @DerTimonius, @DiegoAndai, @Janpot, @jaydenseric, @mj12albert, @oliviertassinari, @renovate[bot], @sai6855, @VishruthR
+
 ## 5.14.6
 
 <!-- generated comparing v5.14.5..master -->
