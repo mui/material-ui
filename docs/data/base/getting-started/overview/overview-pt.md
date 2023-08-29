@@ -15,7 +15,7 @@ Base UI includes prebuilt components with production-ready functionality, along 
 With Base UI, you can rapidly build on top of our foundational components using any styling solution you choose—no need to override any default style engine or theme.
 
 :::info
-**Note:** as of today, Base UI is in alpha.
+As of today, Base UI is in alpha.
 
 We're adding new components and features regularly, and you're welcome to contribute!
 
