@@ -31,9 +31,9 @@ export default function DifferentChildren() {
         </Tooltip>
       </ButtonGroup>
 
-      {/* One button */}
+      {/* Single button */}
       <ButtonGroup>
-        <Button>One Button</Button>
+        <Button>Single Button</Button>
       </ButtonGroup>
     </Stack>
   );
