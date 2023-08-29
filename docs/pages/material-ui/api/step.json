@@ -18,6 +18,7 @@
     }
   },
   "name": "Step",
+  "imports": ["import Step from '@mui/material/Step';", "import { Step } from '@mui/material';"],
   "styles": {
     "classes": ["root", "horizontal", "vertical", "alternativeLabel", "completed"],
     "globalClasses": { "completed": "Mui-completed" },

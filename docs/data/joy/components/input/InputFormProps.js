@@ -1,33 +1,23 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Input from '@mui/joy/Input';
+import Stack from '@mui/joy/Stack';
 
 export default function InputFormProps() {
   return (
-    <Box
-      sx={{
-        py: 2,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 2,
-        alignItems: 'center',
-        flexWrap: 'wrap',
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const formJson = Object.fromEntries(formData.entries());
+        alert(JSON.stringify(formJson));
       }}
     >
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-        }}
-      >
-        <Input
-          placeholder="Try to submit with no text!"
-          required
-          sx={{ mb: 1, fontSize: 'var(--joy-fontSize-sm)' }}
-        />
-        <Input placeholder="It is disabled" disabled sx={{ mb: 1 }} />
+      <Stack spacing={1}>
+        <Input placeholder="Try to submit with no text!" required />
+        <Input placeholder="It is disabled" disabled />
         <Button type="submit">Submit</Button>
-      </form>
-    </Box>
+      </Stack>
+    </form>
   );
 }

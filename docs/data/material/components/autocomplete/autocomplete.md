@@ -233,6 +233,10 @@ The `renderInput` prop allows you to customize the rendered input.
 The first argument of this render prop contains props that you need to forward.
 Pay specific attention to the `ref` and `inputProps` keys.
 
+:::warning
+If you're using a custom input component inside the Autocomplete, make sure that you forward the ref to the underlying DOM element.
+:::
+
 {{"demo": "CustomInputAutocomplete.js"}}
 
 ### Globally Customized Options

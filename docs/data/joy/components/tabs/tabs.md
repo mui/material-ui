@@ -149,13 +149,13 @@ Screen readers will then properly announce the label.
 <Tabs aria-label="Meaningful label">...</Tabs>
 ```
 
-## CSS Variables
+## CSS variables playground
 
 Play around with all the CSS variables available in the slider component to see how the design changes.
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
-{{"demo": "TabsVariables.js"}}
+{{"demo": "TabsVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Common examples
 

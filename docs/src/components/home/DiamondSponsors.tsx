@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
@@ -22,12 +21,6 @@ const DIAMONDs = [
     description: 'Management platform for Google Cloud and AWS.',
     href: 'https://www.doit.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
-  {
-    src: 'https://brand.zesty.io/zesty-io-logo.svg',
-    name: 'Zesty.io',
-    description: 'The only Next.js CMS you need.',
-    href: 'https://www.zesty.io/integrations/mui-nextjs/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor',
-  },
 ];
 
 export default function DiamondSponsors() {
@@ -39,14 +32,14 @@ export default function DiamondSponsors() {
   const maxNumberOfDiamondSponsors = 3;
   const spotIsAvailable = maxNumberOfDiamondSponsors > DIAMONDs.length;
   return (
-    <Box ref={ref}>
+    <div ref={ref}>
       <Typography
         component="h3"
         variant="h6"
         fontWeight="bold"
         sx={(theme) => ({
           mt: 4,
-          mb: 2,
+          mb: 1.5,
           background: `linear-gradient(90deg, ${(theme.vars || theme).palette.primary[400]} 50%, ${
             (theme.vars || theme).palette.primary[700]
           } 100%)`,
@@ -88,6 +81,7 @@ export default function DiamondSponsors() {
                 sx={(theme) => ({
                   mr: 2,
                   border: '1px solid',
+                  borderColor: 'grey.300',
                   ...theme.applyDarkStyles({
                     borderColor: 'primaryDark.400',
                   }),
@@ -111,6 +105,6 @@ export default function DiamondSponsors() {
           </Grid>
         )}
       </Grid>
-    </Box>
+    </div>
   );
 }

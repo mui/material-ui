@@ -49,6 +49,10 @@ export interface MuiPage {
    * @default false
    */
   planned?: boolean;
+  /**
+   * Indicates if the component/hook is not stable yet.
+   */
+  unstable?: boolean;
 }
 
 export interface OrderedMuiPage extends MuiPage {

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
 import List from '@mui/joy/List';
@@ -28,7 +27,7 @@ export default function ExampleFilterStatusCheckbox() {
       >
         Filter status
       </Typography>
-      <Box role="group" aria-labelledby="filter-status">
+      <div role="group" aria-labelledby="filter-status">
         <List>
           <ListItem variant="soft" color="danger">
             <Checkbox
@@ -71,7 +70,7 @@ export default function ExampleFilterStatusCheckbox() {
             />
           </ListItem>
         </List>
-      </Box>
+      </div>
       <Button
         variant="outlined"
         color="neutral"

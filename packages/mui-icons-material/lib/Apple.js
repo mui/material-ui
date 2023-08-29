@@ -1,4 +1,5 @@
 "use strict";
+'use client';
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {

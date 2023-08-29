@@ -21,6 +21,10 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "BottomNavigation",
+  "imports": [
+    "import BottomNavigation from '@mui/material/BottomNavigation';",
+    "import { BottomNavigation } from '@mui/material';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiBottomNavigation" },
   "spread": true,
   "themeDefaultProps": true,

@@ -67,6 +67,10 @@
     }
   },
   "name": "Pagination",
+  "imports": [
+    "import Pagination from '@mui/material/Pagination';",
+    "import { Pagination } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "ul", "outlined", "text"],
     "globalClasses": {},

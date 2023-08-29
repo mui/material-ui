@@ -3,7 +3,7 @@ import Slider from '@mui/material-next/Slider';
 import Box from '@mui/material/Box';
 import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDemo';
 
-export default function ButtonUsage() {
+export default function SliderMaterialYouPlayground() {
   return (
     <MaterialYouUsageDemo
       componentName="Slider"

@@ -1,0 +1,3 @@
+<Button href="/" slots={{ root: LinkSlot }}>
+  Home
+</Button>

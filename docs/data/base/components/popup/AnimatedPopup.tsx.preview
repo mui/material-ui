@@ -1,0 +1,10 @@
+<Button ref={setAnchor} onClick={() => setOpen((o) => !o)} type="button">
+  Toggle Popup
+</Button>
+<Popup anchor={anchor} open={open} withTransition>
+  {(props: PopupChildrenProps) => (
+    <PopAnimation {...props}>
+      <PopupBody>This is an animated popup.</PopupBody>
+    </PopAnimation>
+  )}
+</Popup>

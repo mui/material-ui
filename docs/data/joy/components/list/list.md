@@ -176,9 +176,11 @@ When the item is selected, it applies `color="primary"` and a few extra styles, 
 
 {{"demo": "SelectedList.js"}}
 
-:::info
-A selected List Item Button does not apply `:hover` or `:active` global variant styles.
-:::
+## CSS variables playground
+
+Play around with all the CSS variables available in the list component to see how the design changes.
+
+{{"demo": "ListVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Common examples
 

@@ -95,6 +95,10 @@ Option.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * If `true`, the option will be disabled.
    * @default false
    */

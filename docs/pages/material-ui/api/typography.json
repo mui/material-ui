@@ -33,6 +33,10 @@
     }
   },
   "name": "Typography",
+  "imports": [
+    "import Typography from '@mui/material/Typography';",
+    "import { Typography } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

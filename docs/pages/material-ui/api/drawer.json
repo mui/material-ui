@@ -14,7 +14,10 @@
     "ModalProps": { "type": { "name": "object" }, "default": "{}" },
     "onClose": {
       "type": { "name": "func" },
-      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] }
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
     },
     "open": { "type": { "name": "bool" }, "default": "false" },
     "PaperProps": { "type": { "name": "object" }, "default": "{}" },
@@ -42,6 +45,10 @@
     }
   },
   "name": "Drawer",
+  "imports": [
+    "import Drawer from '@mui/material/Drawer';",
+    "import { Drawer } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

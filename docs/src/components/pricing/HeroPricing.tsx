@@ -9,7 +9,7 @@ export default function HeroPricing() {
     <Container>
       <Box
         sx={{
-          height: '30vh',
+          height: '34vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -19,8 +19,8 @@ export default function HeroPricing() {
         <Typography component="h1" variant="body2" color="primary.main" fontWeight="bold">
           Pricing
         </Typography>
-        <Typography variant="h2" sx={{ my: 1 }}>
-          Start using <GradientText>MUI</GradientText> for free!
+        <Typography variant="h2" textAlign="center" sx={{ my: 1 }}>
+          Start using MUI&apos;s products <GradientText>for free!</GradientText>
         </Typography>
         <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 500 }}>
           Switch to a commercial plan to access advanced

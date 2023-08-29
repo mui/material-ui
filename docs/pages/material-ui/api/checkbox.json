@@ -44,6 +44,10 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "Checkbox",
+  "imports": [
+    "import Checkbox from '@mui/material/Checkbox';",
+    "import { Checkbox } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

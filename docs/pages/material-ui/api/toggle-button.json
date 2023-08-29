@@ -45,6 +45,10 @@
     }
   },
   "name": "ToggleButton",
+  "imports": [
+    "import ToggleButton from '@mui/material/ToggleButton';",
+    "import { ToggleButton } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
