@@ -87,7 +87,7 @@ TypeScript的最小支持版本已经从v3.2提高到v3.5。
 - `@types/react-dom`
 
 :::warning
-📝 确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
+确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
 :::
 
 ## 设置`ThemeProvider`
@@ -117,7 +117,7 @@ function App() {
 ```
 
 :::warning
-📝 确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
+确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
 :::
 
 ## 更新MUI软件包
@@ -197,7 +197,7 @@ yarn add @emotion/react @emotion/styled
 我们强烈建议使用Emotion的默认设置来代替。
 
 :::warning
-📝 确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
+确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
 :::
 
 ### Replace all imports
@@ -320,7 +320,7 @@ npx @mui/codemod v5.0.0/variant-prop <path>
 如果没有定义`underline`，这个codemod通过应用`underline="hover"`来转换组件`<Link />`--默认的`underline`已经从v4的` "hover "`变为v5的 `"always"`。
 
 :::error
-❗️ 如果你已经在主题中定义了underline，你就_不应该_使用这个代码模式。`"always "`作为主题中的默认值。
+如果你已经在主题中定义了underline，你就_不应该_使用这个代码模式。`"always "`作为主题中的默认值。
 :::
 
 ```js

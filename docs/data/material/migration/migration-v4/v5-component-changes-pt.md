@@ -664,7 +664,7 @@ Change the default variant from `standard` to `outlined`.
 `standard` has been removed from the Material Design guidelines.
 
 :::warning
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
@@ -864,7 +864,7 @@ The default `underline` prop is changed from `"hover"` to `"always"`.
 To recreate the behavior from v4, apply `defaultProps` in the theme.
 
 :::warning
-✅ This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod.
+This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod.
 :::
 
 ```js
