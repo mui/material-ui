@@ -3,7 +3,6 @@ import * as React from 'react';
 interface ButtonGroupButtonContextType {
   firstButton?: boolean;
   lastButton?: boolean;
-  onlyChild?: boolean;
 }
 
 /**

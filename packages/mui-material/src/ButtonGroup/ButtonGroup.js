@@ -244,16 +244,10 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     ],
   );
 
-  const buttonGroupPositionContext = (index, childrenParam) => {
-    const childrenCount = React.Children.count(childrenParam);
-    const onlyChild = childrenCount === 1;
-
-    return {
-      firstButton: !onlyChild && index === 0,
-      lastButton: !onlyChild && index === childrenCount - 1,
-      onlyChild,
-    };
-  };
+  const buttonGroupPositionContext = (index, childrenParam) => ({
+    firstButton: index === 0,
+    lastButton: index === React.Children.count(childrenParam) - 1,
+  });
 
   return (
     <ButtonGroupRoot
