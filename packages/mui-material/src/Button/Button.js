@@ -296,7 +296,7 @@ const ButtonEndIcon = styled('span', {
   ...commonIconStyles(ownerState),
 }));
 
-const addPositionDataAttr = (buttonGroupButtonContext) => {
+const addPositionDataAttributes = (buttonGroupButtonContext) => {
   if (buttonGroupButtonContext.firstButton && buttonGroupButtonContext.lastButton) {
     return {};
   }
@@ -360,9 +360,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     </ButtonEndIcon>
   );
 
-  let dataAttrs = {};
+  let dataAttributes = {};
   if (buttonGroupButtonContext) {
-    dataAttrs = addPositionDataAttr(buttonGroupButtonContext);
+    dataAttributes = addPositionDataAttributes(buttonGroupButtonContext);
   }
 
   return (
@@ -375,7 +375,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
-      {...dataAttrs}
+      {...dataAttributes}
       {...other}
       classes={classes}
     >
