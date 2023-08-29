@@ -16,7 +16,7 @@
     "@babel/core": "^7.22.10",
     "@linaria/vite": "^4.5.4",
     "@mui/utils": "^5.14.6",
-    "@mui/material": "^5.14.6",
+    "@mui/material": "^5.14.7",
     "@mui/zero-tag-processor": "file:../../packages/zero-tag-processor/build",
     "@types/babel__core": "^7.20.1",
     "@vitejs/plugin-react": "^4.0.4",
