@@ -32,7 +32,9 @@ describe('<AccordionGroup />', () => {
       ] as const
     ).forEach((sizeConfig) => {
       it(`should have ${sizeConfig.class} class for ${sizeConfig.size} size `, () => {
-        const { getByTestId } = render(<AccordionGroup data-testid="root" size={sizeConfig.size} />);
+        const { getByTestId } = render(
+          <AccordionGroup data-testid="root" size={sizeConfig.size} />,
+        );
 
         expect(getByTestId('root')).to.have.class(sizeConfig.class);
       });
