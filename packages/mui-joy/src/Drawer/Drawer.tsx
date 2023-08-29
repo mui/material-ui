@@ -37,11 +37,8 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
-  transitionProperty: 'visibility',
-  transitionDelay: ownerState.open ? '0s' : '300ms',
-  ...(!ownerState.open && {
-    visibility: 'hidden',
-  }),
+  '--Drawer-transitionDuration': '0.3s',
+  '--Drawer-transitionFunction': 'ease',
   ...(ownerState.size === 'sm' && {
     '--Drawer-verticalSize': 'clamp(300px, 30%, 100%)',
     '--Drawer-horizontalSize': 'clamp(256px, 20%, 100%)',
@@ -54,6 +51,11 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
     '--Drawer-verticalSize': 'clamp(500px, 80%, 100%)',
     '--Drawer-horizontalSize': 'clamp(440px, 60%, 100%)',
   }),
+  transitionProperty: 'visibility',
+  transitionDelay: ownerState.open ? '0s' : 'var(--Drawer-transitionDuration)',
+  ...(!ownerState.open && {
+    visibility: 'hidden',
+  }),
 }));
 
 const DrawerBackdrop = styled(StyledModalBackdrop as unknown as 'div', {
@@ -62,7 +64,7 @@ const DrawerBackdrop = styled(StyledModalBackdrop as unknown as 'div', {
   overridesResolver: (props, styles) => styles.backdrop,
 })<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
   opacity: ownerState.open ? 1 : 0,
-  transition: 'opacity 0.3s ease-in-out',
+  transition: 'opacity var(--Drawer-transitionDuration) ease-in-out',
 }));
 
 const DrawerContent = styled('div', {
@@ -99,7 +101,7 @@ const DrawerContent = styled('div', {
   }),
   height: ownerState.anchor!.match(/(left|right)/) ? '100%' : 'var(--Drawer-verticalSize)',
   width: ownerState.anchor!.match(/(top|bottom)/) ? '100vw' : 'var(--Drawer-horizontalSize)',
-  transition: 'transform 0.3s ease',
+  transition: 'transform var(--Drawer-transitionDuration) var(--Drawer-transitionFunction)',
 }));
 
 /**
