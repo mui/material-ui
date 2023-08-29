@@ -1049,7 +1049,7 @@ export function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
-    if (inputValue === '' || !open) {
+    if (!disabledProp && (inputValue === '' || !open)) {
       handlePopupIndicator(event);
     }
   };

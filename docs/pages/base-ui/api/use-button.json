@@ -32,8 +32,8 @@
     "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseButtonRootSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseButtonRootSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseButtonRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseButtonRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
