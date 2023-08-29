@@ -284,8 +284,7 @@ function ColumnHead({
   return (
     <Box
       sx={{
-        pl: 1,
-        pr: 1,
+        px: 1,
         alignSelf: 'center',
         justifySelf: 'flex-start',
         width: '100%',
