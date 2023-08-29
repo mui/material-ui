@@ -39,18 +39,20 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
 })<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
   '--Drawer-transitionDuration': '0.3s',
   '--Drawer-transitionFunction': 'ease',
-  '--ModalClose-inset': '0.5rem',
   '--ModalClose-radius':
     'max((var(--Drawer-contentRadius) - var(--variant-borderWidth, 0px)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--Drawer-contentRadius) - var(--variant-borderWidth, 0px)) / 2))',
   ...(ownerState.size === 'sm' && {
+    '--ModalClose-inset': '0.5rem',
     '--Drawer-verticalSize': 'clamp(300px, 30%, 100%)',
     '--Drawer-horizontalSize': 'clamp(256px, 20%, 100%)',
   }),
   ...(ownerState.size === 'md' && {
+    '--ModalClose-inset': '0.5rem',
     '--Drawer-verticalSize': 'clamp(400px, 50%, 100%)',
     '--Drawer-horizontalSize': 'clamp(300px, 30%, 100%)',
   }),
   ...(ownerState.size === 'lg' && {
+    '--ModalClose-inset': '0.75rem',
     '--Drawer-verticalSize': 'clamp(500px, 80%, 100%)',
     '--Drawer-horizontalSize': 'clamp(440px, 60%, 100%)',
   }),
