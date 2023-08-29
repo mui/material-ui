@@ -8,7 +8,6 @@ import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
 import { useThemeProps, styled, ColorInversionProvider, useColorInversion } from '../styles';
-import { SheetRoot } from '../Sheet/Sheet';
 import { StyledModalBackdrop, StyledModalRoot } from '../Modal/Modal';
 import CloseModalContext from '../Modal/CloseModalContext';
 import useSlot from '../utils/useSlot';
@@ -43,6 +42,18 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
   ...(!ownerState.open && {
     visibility: 'hidden',
   }),
+  ...(ownerState.size === 'sm' && {
+    '--Drawer-verticalSize': 'clamp(300px, 30%, 100%)',
+    '--Drawer-horizontalSize': 'clamp(256px, 20%, 100%)',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Drawer-verticalSize': 'clamp(400px, 50%, 100%)',
+    '--Drawer-horizontalSize': 'clamp(300px, 30%, 100%)',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Drawer-verticalSize': 'clamp(500px, 80%, 100%)',
+    '--Drawer-horizontalSize': 'clamp(440px, 60%, 100%)',
+  }),
 }));
 
 const DrawerBackdrop = styled(StyledModalBackdrop as unknown as 'div', {
@@ -54,37 +65,14 @@ const DrawerBackdrop = styled(StyledModalBackdrop as unknown as 'div', {
   transition: 'opacity 0.3s ease-in-out',
 }));
 
-const DrawerContent = styled(SheetRoot as unknown as 'div', {
+const DrawerContent = styled('div', {
   name: 'JoyDrawer',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: DrawerOwnerState }>(({ theme, ownerState }) => ({
-  ...(ownerState.size === 'sm' && {
-    '--Drawer-contentPadding': theme.spacing(2),
-    '--Drawer-contentGap': theme.spacing(0.75),
-    '--Drawer-contentTitleOffset': theme.spacing(0.25),
-    '--Drawer-contentDescriptionOffset': theme.spacing(0.25),
-    '--Drawer-contentMinWidth': theme.spacing(30),
-  }),
-  ...(ownerState.size === 'md' && {
-    '--Drawer-contentPadding': theme.spacing(2.5),
-    '--Drawer-contentGap': theme.spacing(1.5),
-    '--Drawer-contentTitleOffset': theme.spacing(0.25),
-    '--Drawer-contentDescriptionOffset': theme.spacing(0.75),
-    '--Drawer-contentMinWidth': theme.spacing(35),
-  }),
-  ...(ownerState.size === 'lg' && {
-    '--Drawer-contentPadding': theme.spacing(3),
-    '--Drawer-contentGap': theme.spacing(2),
-    '--Drawer-contentTitleOffset': theme.spacing(0.5),
-    '--Drawer-contentDescriptionOffset': theme.spacing(1),
-    '--Drawer-contentMinWidth': theme.spacing(40),
-  }),
-  boxShadow: theme.shadow.md,
   ...theme.typography[`body-${ownerState.size!}`],
-  padding: 'var(--Drawer-contentPadding)',
-  minWidth:
-    'min(calc(100vw - 2 * var(--Drawer-contentPadding)), var(--Drawer-contentMinWidth, 240px))',
+  boxShadow: theme.shadow.md,
+  backgroundColor: theme.vars.palette.background.surface,
   outline: 0,
   display: 'flex',
   flexDirection: 'column',
@@ -109,8 +97,8 @@ const DrawerContent = styled(SheetRoot as unknown as 'div', {
     bottom: 0,
     transform: ownerState.open ? 'translateY(0)' : 'translateY(100%)',
   }),
-  height: ownerState.anchor!.match(/(left|right)/) ? '100%' : 'auto',
-  width: ownerState.anchor!.match(/(top|bottom)/) ? '100vw' : 'auto',
+  height: ownerState.anchor!.match(/(left|right)/) ? '100%' : 'var(--Drawer-verticalSize)',
+  width: ownerState.anchor!.match(/(top|bottom)/) ? '100vw' : 'var(--Drawer-horizontalSize)',
   transition: 'transform 0.3s ease',
 }));
 
